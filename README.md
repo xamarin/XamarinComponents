@@ -11,12 +11,11 @@ Plugins for Xamarin are community built NuGet and Components that adds cross-pla
 |Device Motion|Provides access to Accelerometer, Gyroscope, Magnetometer, and Compass.|[NuGet](https://www.nuget.org/packages/Xam.Plugin.DeviceMotion/)|[@rdelrosario](https://github.com/rdelrosario)|
 |Embedded Resource|Unpack embedded resource cross-platform.|[NuGet](https://www.nuget.org/packages/Xam.Plugin.EmbeddedResource/)|[@JosephHill](http://www.twitter.com/josephhill)|
 |External Maps|Launch external maps from Lat/Long or Address.|[NuGet](https://www.nuget.org/packages/Xam.Plugin.ExternalMaps/)|[@JamesMontemagno](http://www.twitter.com/jamesmontemagno)|
-|EZCompress|Compression for image streams.|[Link](https://www.nuget.org/packages/JosephAntolick.EZCompress1.Plugin/)|[@VictorGrunn](http://www.twitter.com/victorgrunn)|
+|EZCompress|Compression for image streams.|[NuGet](https://www.nuget.org/packages/JosephAntolick.EZCompress1.Plugin/)|[@VictorGrunn](http://www.twitter.com/victorgrunn)|
 |HybridKit|Easily call into JavaScript hosted in a WebView.|[NuGet](https://www.nuget.org/packages/Xam.Plugin.HybridKit)|[@chknofthescene](http://www.twitter.com/chknofthescene)|
 |Lamp|Access to LED|[NuGet](https://www.nuget.org/packages/kphillpotts.Lamp.Plugin/)|[@kphillpotts](http://www.twitter.com/kphillpotts)|
 |Local Notifications|Show local notifications|[NuGet](https://www.nuget.org/packages/Xam.Plugins.Notifier/)|[@EdSnider](http://www.twitter.com/EdSnider)|
 |Local Notifications|Send Local Notifications|[NuGet](https://www.nuget.org/packages/Xam.Plugin.LocalNotifications/)|[@Saveliy_Bondini](http://www.twitter.com/saveliy_bondini)|
-
 |Manage Sleep|Manage auto sleep/auto lock.|[NuGet](https://www.nuget.org/packages/Xam.Plugins.ManageSleep/)|[@molinch0](http://www.twitter.com/molinch0)|
 |Messaging|Make phone call, send sms, and send e-mail|[NuGet](https://www.nuget.org/packages/Xam.Plugins.Messaging/)|[@cjlotz](http://www.twitter.com/cjlotz)|
 |Portable Razor|Lightweight implemenation of ASP.NET MVC APIs for mobile.|[NuGet](https://www.nuget.org/packages/PortableRazor/)|[@JosephHill](http://www.twitter.com/josephhill)|
