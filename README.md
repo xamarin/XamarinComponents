@@ -2,6 +2,8 @@
 Plugins for Xamarin are community built NuGet and Components that adds cross-platform functionality or abstracts platform specific functionality to a common API. These are both completely cross-platform and extremely small (i.e., they do 1 or 2 things really well with minimal-to-no dependencies). The Plugin API can be accessed on each platform, however, you will most likely only use the common API in a Portable Class Library or Shared Code project.
 
 ## Available Plugins
+Here you will find a listing of cross platform Plugins for Xamarin that support Xamarin.iOS, Xamarin.Android, Xamarin.Forms, and Windows Platform from a single API.
+
 |Name|Description|NuGet|Creator|
 | ------------------- | --------------------------------- | :-----------: | -------------------- |
 |Battery Status|Gather battery level, charging status, and type.|[NuGet](https://www.nuget.org/packages/Xam.Plugin.Battery/)|[@JamesMontemagno](http://www.twitter.com/jamesmontemagno)|
