@@ -4,27 +4,29 @@ Plugins for Xamarin are community built NuGet and Components that adds cross-pla
 ## Available Plugins
 Here you will find a listing of cross platform Plugins for Xamarin that support Xamarin.iOS, Xamarin.Android, Xamarin.Forms, and Windows Platform from a single API.
 
-|Name|Description|NuGet|Creator|
-| ------------------- | --------------------------------- | :-----------: | -------------------- |
-|Battery Status|Gather battery level, charging status, and type.|[NuGet](https://www.nuget.org/packages/Xam.Plugin.Battery/)|[@JamesMontemagno](http://www.twitter.com/jamesmontemagno)|
-|Badge|Easily update application badges.|[NuGet](https://www.nuget.org/packages/Xam.Plugin.Badge/)|[@Saveliy_Bondini](http://www.twitter.com/saveliy_bondini)|
-|Connectivity|Get network connectivity info such as type and if connection is available.|[NuGet](https://www.nuget.org/packages/Xam.Plugin.Connectivity/)|[@JamesMontemagno](http://www.twitter.com/jamesmontemagno)|
-|Device Info|Properties about device such as OS, Model, and Id.|[NuGet](https://www.nuget.org/packages/Xam.Plugin.DeviceInfo/)|[@JamesMontemagno](http://www.twitter.com/jamesmontemagno)|
-|Device Motion|Provides access to Accelerometer, Gyroscope, Magnetometer, and Compass.|[NuGet](https://www.nuget.org/packages/Xam.Plugin.DeviceMotion/)|[@rdelrosario](https://github.com/rdelrosario)|
-|Embedded Resource|Unpack embedded resource cross-platform.|[NuGet](https://www.nuget.org/packages/Xam.Plugin.EmbeddedResource/)|[@JosephHill](http://www.twitter.com/josephhill)|
-|External Maps|Launch external maps from Lat/Long or Address.|[NuGet](https://www.nuget.org/packages/Xam.Plugin.ExternalMaps/)|[@JamesMontemagno](http://www.twitter.com/jamesmontemagno)|
-|EZCompress|Compression for image streams.|[NuGet](https://www.nuget.org/packages/JosephAntolick.EZCompress1.Plugin/)|[@VictorGrunn](http://www.twitter.com/victorgrunn)|
-|HybridKit|Easily call into JavaScript hosted in a WebView.|[NuGet](https://www.nuget.org/packages/Xam.Plugin.HybridKit)|[@chknofthescene](http://www.twitter.com/chknofthescene)|
-|Lamp|Access to LED|[NuGet](https://www.nuget.org/packages/kphillpotts.Lamp.Plugin/)|[@kphillpotts](http://www.twitter.com/kphillpotts)|
-|Local Notifications|Show local notifications|[NuGet](https://www.nuget.org/packages/Xam.Plugins.Notifier/)|[@EdSnider](http://www.twitter.com/EdSnider)|
-|Local Notifications|Send Local Notifications|[NuGet](https://www.nuget.org/packages/Xam.Plugin.LocalNotifications/)|[@Saveliy_Bondini](http://www.twitter.com/saveliy_bondini)|
-|Manage Sleep|Manage auto sleep/auto lock.|[NuGet](https://www.nuget.org/packages/Xam.Plugins.ManageSleep/)|[@molinch0](http://www.twitter.com/molinch0)|
-|Messaging|Make phone call, send sms, and send e-mail|[NuGet](https://www.nuget.org/packages/Xam.Plugins.Messaging/)|[@cjlotz](http://www.twitter.com/cjlotz)|
-|Portable Razor|Lightweight implemenation of ASP.NET MVC APIs for mobile.|[NuGet](https://www.nuget.org/packages/PortableRazor/)|[@JosephHill](http://www.twitter.com/josephhill)|
-|Settings|Simple & Consistent cross platform settings API.|[NuGet](https://www.nuget.org/packages/Xam.Plugins.Settings/)|[@JamesMontemagno](http://www.twitter.com/jamesmontemagno)|
-|Sockets|TCP & UDP Listeners and Clients + UDP multicast.|[NuGet](https://www.nuget.org/packages/rda.SocketsForPCL)|[@rdavis_au](http://www.twitter.com/rdavis_au)|
-|Text To Speech|Talk back text from shared code.|[NuGet](https://www.nuget.org/packages/Xam.Plugins.TextToSpeech/)|[@JamesMontemagno](http://www.twitter.com/jamesmontemagno)|
-|Vibrate|Vibrate any device.|[NuGet](https://www.nuget.org/packages/Xam.Plugins.Vibrate/)|[@JamesMontemagno](http://www.twitter.com/jamesmontemagno)|
+|Name|Description|NuGet|Docs & Source|Creator|
+| ------------------- | --------------------------------- | :-----------: | :-----------: |-------------------- |
+|Battery Status|Gather battery level, charging status, and type.|[NuGet](https://www.nuget.org/packages/Xam.Plugin.Battery/)|[GitHub](https://github.com/jamesmontemagno/Xamarin.Plugins/blob/master/Battery)|[@JamesMontemagno](http://www.twitter.com/jamesmontemagno)|
+|Badge|Easily update application badges.|[NuGet](https://www.nuget.org/packages/Xam.Plugin.Badge/)|[GitHub](https://github.com/sbondini/Xamarin.Badge)|[@Saveliy_Bondini](http://www.twitter.com/saveliy_bondini)|
+|Connectivity|Get network connectivity info such as type and if connection is available.|[NuGet](https://www.nuget.org/packages/Xam.Plugin.Connectivity/)|[GitHub](https://github.com/jamesmontemagno/Xamarin.Plugins/tree/master/Connectivity)|[@JamesMontemagno](http://www.twitter.com/jamesmontemagno)|
+|Contacts|Access contacts.|[NuGet](https://www.nuget.org/packages/Xam.Plugin.Contacts/)|[GitHub](https://github.com/jamesmontemagno/Xamarin.Plugins/tree/master/Contacts)|[@JamesMontemagno](http://www.twitter.com/jamesmontemagno)|
+|Device Info|Properties about device such as OS, Model, and Id.|[NuGet](https://www.nuget.org/packages/Xam.Plugin.DeviceInfo/)|[GitHub](https://github.com/jamesmontemagno/Xamarin.Plugins/tree/master/DeviceInfo)|[@JamesMontemagno](http://www.twitter.com/jamesmontemagno)|
+|Device Motion|Provides access to Accelerometer, Gyroscope, Magnetometer, and Compass.|[NuGet](https://www.nuget.org/packages/Xam.Plugin.DeviceMotion/)|[GitHub](https://github.com/rdelrosario/xamarin-plugins/tree/master/DeviceMotion)|[@rdelrosario](https://github.com/rdelrosario)|
+|Embedded Resource|Unpack embedded resource cross-platform.|[NuGet](https://www.nuget.org/packages/Xam.Plugin.EmbeddedResource/)|[GitHub](https://github.com/JosephHill/EmbeddedResourcePlugin)|[@JosephHill](http://www.twitter.com/josephhill)|
+|External Maps|Launch external maps from Lat/Long or Address.|[NuGet](https://www.nuget.org/packages/Xam.Plugin.ExternalMaps/)|[GitHub](https://github.com/jamesmontemagno/Xamarin.Plugins/tree/master/ExternalMaps)|[@JamesMontemagno](http://www.twitter.com/jamesmontemagno)|
+|EZCompress|Compression for image streams.|[NuGet](https://www.nuget.org/packages/JosephAntolick.EZCompress1.Plugin/)|[GitHub](https://github.com/VictorGrunn/EZ-Compress-for-Xamarin)|[@VictorGrunn](http://www.twitter.com/victorgrunn)|
+|Geolocator|Easily detect GPS location of device.|[NuGet](https://www.nuget.org/packages/Xam.Plugin.Geolocator/)|[NuGet](https://github.com/jamesmontemagno/Xamarin.Plugins/tree/master/Geolocator)|[@JamesMontemagno](http://www.twitter.com/jamesmontemagno)|
+|HybridKit|Easily call into JavaScript hosted in a WebView.|[NuGet](https://www.nuget.org/packages/Xam.Plugin.HybridKit)|[NuGet](https://github.com/chkn/HybridKit)|[@chknofthescene](http://www.twitter.com/chknofthescene)|
+|Lamp|Access to LED|[NuGet](https://www.nuget.org/packages/kphillpotts.Lamp.Plugin/)|[NuGet](https://github.com/kphillpotts/Xamarin.Plugins/tree/master/Lamp)|[@kphillpotts](http://www.twitter.com/kphillpotts)|
+|Local Notifications|Show local notifications|[NuGet](https://www.nuget.org/packages/Xam.Plugins.Notifier/)|[GitHub](https://github.com/edsnider/Xamarin.Plugins)|[@EdSnider](http://www.twitter.com/EdSnider)|
+|Local Notifications|Send Local Notifications|[NuGet](https://www.nuget.org/packages/Xam.Plugin.LocalNotifications/)|[GitHub](https://github.com/B1naryStudio/Xamarin.LocalNotifications)|[@Saveliy_Bondini](http://www.twitter.com/saveliy_bondini)|
+|Manage Sleep|Manage auto sleep/auto lock.|[NuGet](https://www.nuget.org/packages/Xam.Plugins.ManageSleep/)|[GitHub](https://github.com/molinch/Xam.Plugins.ManageSleep)|[@molinch0](http://www.twitter.com/molinch0)|
+|Messaging|Make phone call, send sms, and send e-mail|[NuGet](https://www.nuget.org/packages/Xam.Plugins.Messaging/)|[GitHub](https://github.com/cjlotz/Xamarin.Plugins)|[@cjlotz](http://www.twitter.com/cjlotz)|
+|Portable Razor|Lightweight implemenation of ASP.NET MVC APIs for mobile.|[NuGet](https://www.nuget.org/packages/PortableRazor/)|[GitHub](https://github.com/xamarin/PortableRazor)|[@JosephHill](http://www.twitter.com/josephhill)|
+|Settings|Simple & Consistent cross platform settings API.|[NuGet](https://www.nuget.org/packages/Xam.Plugins.Settings/)|[GitHub](https://github.com/jamesmontemagno/Xamarin.Plugins/tree/master/Settings)|[@JamesMontemagno](http://www.twitter.com/jamesmontemagno)|
+|Sockets|TCP & UDP Listeners and Clients + UDP multicast.|[NuGet](https://www.nuget.org/packages/rda.SocketsForPCL)|[GitHub](https://github.com/rdavisau/sockets-for-pcl)|[@rdavis_au](http://www.twitter.com/rdavis_au)|
+|Text To Speech|Talk back text from shared code.|[NuGet](https://www.nuget.org/packages/Xam.Plugins.TextToSpeech/)|[GitHub](https://github.com/jamesmontemagno/Xamarin.Plugins/tree/master/TextToSpeech)|[@JamesMontemagno](http://www.twitter.com/jamesmontemagno)|
+|Vibrate|Vibrate any device.|[NuGet](https://www.nuget.org/packages/Xam.Plugins.Vibrate/)|[GitHub](https://github.com/jamesmontemagno/Xamarin.Plugins/tree/master/Vibrate)|[@JamesMontemagno](http://www.twitter.com/jamesmontemagno)|
 
 ### Xamarin.Forms Specific Plugins
 ...
