@@ -12,11 +12,13 @@ Here you will find a listing of cross platform Plugins for Xamarin that support 
 |Badge|Easily update application badges.|[NuGet](https://www.nuget.org/packages/Xam.Plugin.Badge/)|[GitHub](https://github.com/sbondini/Xamarin.Badge)|[@Saveliy_Bondini](http://www.twitter.com/saveliy_bondini)|
 |Connectivity|Get network connectivity info such as type and if connection is available.|[NuGet](https://www.nuget.org/packages/Xam.Plugin.Connectivity/)|[GitHub](https://github.com/jamesmontemagno/Xamarin.Plugins/tree/master/Connectivity)|[@JamesMontemagno](http://www.twitter.com/jamesmontemagno)|
 |Contacts|Access contacts.|[NuGet](https://www.nuget.org/packages/Xam.Plugin.Contacts/)|[GitHub](https://github.com/jamesmontemagno/Xamarin.Plugins/tree/master/Contacts)|[@JamesMontemagno](http://www.twitter.com/jamesmontemagno)|
+|Cryptography|PCL Crypto provides a consistent, portable set of crypto APIs.|[NuGet](https://www.nuget.org/packages/pclcrypto)|[GitHub](https://github.com/aarnott/pclcrypto)|[@aarnott](https://twitter.com/aarnott)|
 |Device Info|Properties about device such as OS, Model, and Id.|[NuGet](https://www.nuget.org/packages/Xam.Plugin.DeviceInfo/)|[GitHub](https://github.com/jamesmontemagno/Xamarin.Plugins/tree/master/DeviceInfo)|[@JamesMontemagno](http://www.twitter.com/jamesmontemagno)|
 |Device Motion|Provides access to Accelerometer, Gyroscope, Magnetometer, and Compass.|[NuGet](https://www.nuget.org/packages/Xam.Plugin.DeviceMotion/)|[GitHub](https://github.com/rdelrosario/xamarin-plugins/tree/master/DeviceMotion)|[@rdelrosario](https://github.com/rdelrosario)|
 |Embedded Resource|Unpack embedded resource cross-platform.|[NuGet](https://www.nuget.org/packages/Xam.Plugin.EmbeddedResource/)|[GitHub](https://github.com/JosephHill/EmbeddedResourcePlugin)|[@JosephHill](http://www.twitter.com/josephhill)|
 |External Maps|Launch external maps from Lat/Long or Address.|[NuGet](https://www.nuget.org/packages/Xam.Plugin.ExternalMaps/)|[GitHub](https://github.com/jamesmontemagno/Xamarin.Plugins/tree/master/ExternalMaps)|[@JamesMontemagno](http://www.twitter.com/jamesmontemagno)|
 |EZCompress|Compression for image streams.|[NuGet](https://www.nuget.org/packages/JosephAntolick.EZCompress1.Plugin/)|[GitHub](https://github.com/VictorGrunn/EZ-Compress-for-Xamarin)|[@VictorGrunn](http://www.twitter.com/victorgrunn)|
+|File System|PCL Storage offers cross platform storage APIs.|[NuGet](https://www.nuget.org/packages/PCLStorage/)|[GitHub](https://github.com/dsplaisted/PCLStorage)|[@dsplaisted](http://www.twitter.com/dsplaisted)|
 |Geolocator|Easily detect GPS location of device.|[NuGet](https://www.nuget.org/packages/Xam.Plugin.Geolocator/)|[GitHub](https://github.com/jamesmontemagno/Xamarin.Plugins/tree/master/Geolocator)|[@JamesMontemagno](http://www.twitter.com/jamesmontemagno)|
 |HybridKit|Easily call into JavaScript hosted in a WebView.|[NuGet](https://www.nuget.org/packages/Xam.Plugin.HybridKit)|[GitHub](https://github.com/chkn/HybridKit)|[@chknofthescene](http://www.twitter.com/chknofthescene)|
 |Lamp|Access to LED|[NuGet](https://www.nuget.org/packages/kphillpotts.Lamp.Plugin/)|[GitHub](https://github.com/kphillpotts/Xamarin.Plugins/tree/master/Lamp)|[@kphillpotts](http://www.twitter.com/kphillpotts)|
@@ -25,9 +27,11 @@ Here you will find a listing of cross platform Plugins for Xamarin that support 
 |Manage Sleep|Manage auto sleep/auto lock.|[NuGet](https://www.nuget.org/packages/Xam.Plugins.ManageSleep/)|[GitHub](https://github.com/molinch/Xam.Plugins.ManageSleep)|[@molinch0](http://www.twitter.com/molinch0)|
 |Messaging|Make phone call, send sms, and send e-mail|[NuGet](https://www.nuget.org/packages/Xam.Plugins.Messaging/)|[GitHub](https://github.com/cjlotz/Xamarin.Plugins)|[@cjlotz](http://www.twitter.com/cjlotz)|
 |Mono.Data.Sqlite|Add Mono.Data.Sqlite to any Xamarin or Windows .NET app.|[NuGet](https://www.nuget.org/packages/Mono.Data.Sqlite.Portable)|[GitHub](https://github.com/mattleibow/Mono.Data.Sqlite)|[@mattleibow](https://twitter.com/mattleibow)|
+|Persistent key-value store|Akavache is an asynchronous, persistent (i.e. writes to disk) key-value store.|[NuGet](https://www.nuget.org/packages/akavache/)|[GitHub](https://github.com/akavache/Akavache)|[@paulcbetts](http://www.twitter.com/paulcbetts)|
 |Portable Razor|Lightweight implemenation of ASP.NET MVC APIs for mobile.|[NuGet](https://www.nuget.org/packages/PortableRazor/)|[GitHub](https://github.com/xamarin/PortableRazor)|[@JosephHill](http://www.twitter.com/josephhill)|
 |Settings|Simple & Consistent cross platform settings API.|[NuGet](https://www.nuget.org/packages/Xam.Plugins.Settings/)|[GitHub](https://github.com/jamesmontemagno/Xamarin.Plugins/tree/master/Settings)|[@JamesMontemagno](http://www.twitter.com/jamesmontemagno)|
 |Sockets|TCP & UDP Listeners and Clients + UDP multicast.|[NuGet](https://www.nuget.org/packages/rda.SocketsForPCL)|[GitHub](https://github.com/rdavisau/sockets-for-pcl)|[@rdavis_au](http://www.twitter.com/rdavis_au)|
+|Splat|Cross-platform Image loading/saving, Color, Geometry, and more.|[NuGet](https://www.nuget.org/packages/Splat/)|[GitHub](https://github.com/paulcbetts/splat)|[@paulcbetts](http://www.twitter.com/paulcbetts)|
 |Text To Speech|Talk back text from shared code.|[NuGet](https://www.nuget.org/packages/Xam.Plugins.TextToSpeech/)|[GitHub](https://github.com/jamesmontemagno/Xamarin.Plugins/tree/master/TextToSpeech)|[@JamesMontemagno](http://www.twitter.com/jamesmontemagno)|
 |Vibrate|Vibrate any device.|[NuGet](https://www.nuget.org/packages/Xam.Plugins.Vibrate/)|[GitHub](https://github.com/jamesmontemagno/Xamarin.Plugins/tree/master/Vibrate)|[@JamesMontemagno](http://www.twitter.com/jamesmontemagno)|
 
@@ -64,7 +68,7 @@ We want to hear any and all ideas that you have for potential plugins. Browse th
 * Name: "FEATURE_NAME Plugin for Xamarin and Windows"
 
 ### Turn into a Component
-..to fill in
+Learn how to turn your NuGet based Plugin for Xamarin into a Component that can be featured in the Xamarin Component Store with our [componenet documentation](http://developer.xamarin.com/guides/cross-platform/advanced/submitting_components/components_and_nuget/).
 
 ### Perks
 * Eligible for Xamarin Open Source Subscription
