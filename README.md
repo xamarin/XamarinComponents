@@ -68,7 +68,7 @@ We want to hear any and all ideas that you have for potential plugins. Browse th
 * Name: "FEATURE_NAME Plugin for Xamarin and Windows"
 
 ### Turn into a Component
-Learn how to turn your NuGet based Plugin for Xamarin into a Component that can be featured in the Xamarin Component Store with our [componenet documentation](http://developer.xamarin.com/guides/cross-platform/advanced/submitting_components/components_and_nuget/).
+Learn how to turn your NuGet based Plugin for Xamarin into a Component that can be featured in the Xamarin Component Store with our [component documentation](http://developer.xamarin.com/guides/cross-platform/advanced/submitting_components/components_and_nuget/).
 
 ### Perks
 * Eligible for Xamarin Open Source Subscription
