@@ -63,7 +63,7 @@ We want to hear any and all ideas that you have for potential plugins. Browse th
 
 **Requirements of a Plugin**
 * Open source on GitHub
-* App-store freindly OSS license (we like MIT)
+* App-store friendly OSS license (we like MIT)
 * Documentation on GitHub's README file
 * Name: "FEATURE_NAME Plugin for Xamarin and Windows"
 
