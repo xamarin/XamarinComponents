@@ -40,7 +40,7 @@ These plugins have been built specifically for Xamarin.Forms and also contain cu
 
 |Name|Description|NuGet|Docs & Source|Creator|
 | ------------------- | --------------------------------- | :-----------: | :-----------: |-------------------- |
-|Advanced Timer|Start, stop, and chnage interval of a timer.|[NuGet](https://www.nuget.org/packages/Mobilist.AdvancedTimer.Forms.Plugin/)|[GitHub](https://github.com/ufuf/AdvancedTimer)|[@ufuf_mobilist](http://twitter.com/ufuf_mobilist)|
+|Advanced Timer|Start, stop, and change interval of a timer.|[NuGet](https://www.nuget.org/packages/Mobilist.AdvancedTimer.Forms.Plugin/)|[GitHub](https://github.com/ufuf/AdvancedTimer)|[@ufuf_mobilist](http://twitter.com/ufuf_mobilist)|
 |Barcode|Barcode scanning and creation|[NuGet](https://www.nuget.org/packages/Acr.XamForms.BarCodeScanner/)|[GitHub](https://github.com/aritchie/acr-xamarin-forms)|[@allanritchie911](https://twitter.com/allanritchie911)|
 |Compass|Access device compass|[NuGet](https://www.nuget.org/packages/JarleySoft.Compass.Forms.Plugin/)|[GitHub](https://github.com/JarleySoft/Xamarin.Plugins/tree/master/Compass)|[@cbartonnh](http://www.twitter.com/cbartonnh)|
 |Device Orientation|Detect and get notified on rotation.|[NuGet](https://www.nuget.org/packages/Xam.Plugins.Forms.DeviceOrientation/)|[GitHub](https://github.com/aliozgur/Xamarin.Plugins/tree/master/DeviceOrientation)|[@aliozgur](http://www.twitter.com/aliozgur)|
