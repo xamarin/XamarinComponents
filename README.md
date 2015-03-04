@@ -10,6 +10,7 @@ Here you will find a listing of cross platform Plugins for Xamarin that support 
 | ------------------- | --------------------------------- | :-----------: | :-----------: |-------------------- |
 |Battery Status|Gather battery level, charging status, and type.|[NuGet](https://www.nuget.org/packages/Xam.Plugin.Battery/)|[GitHub](https://github.com/jamesmontemagno/Xamarin.Plugins/blob/master/Battery)|[@JamesMontemagno](http://www.twitter.com/jamesmontemagno)|
 |Badge|Easily update application badges.|[NuGet](https://www.nuget.org/packages/Xam.Plugin.Badge/)|[GitHub](https://github.com/sbondini/Xamarin.Badge)|[@Saveliy_Bondini](http://www.twitter.com/saveliy_bondini)|
+|Barcode Scanner|Scan and create barcodes with ZXing.NET.Mobile.|[NuGet](https://www.nuget.org/packages/Acr.BarCodes/)|[GitHub](https://github.com/aritchie/barcodes)|[@allanritchie911](https://twitter.com/allanritchie911)|
 |Connectivity|Get network connectivity info such as type and if connection is available.|[NuGet](https://www.nuget.org/packages/Xam.Plugin.Connectivity/)|[GitHub](https://github.com/jamesmontemagno/Xamarin.Plugins/tree/master/Connectivity)|[@JamesMontemagno](http://www.twitter.com/jamesmontemagno)|
 |Contacts|Access contacts.|[NuGet](https://www.nuget.org/packages/Xam.Plugin.Contacts/)|[GitHub](https://github.com/jamesmontemagno/Xamarin.Plugins/tree/master/Contacts)|[@JamesMontemagno](http://www.twitter.com/jamesmontemagno)|
 |Cryptography|PCL Crypto provides a consistent, portable set of crypto APIs.|[NuGet](https://www.nuget.org/packages/pclcrypto)|[GitHub](https://github.com/aarnott/pclcrypto)|[@aarnott](https://twitter.com/aarnott)|
@@ -30,10 +31,12 @@ Here you will find a listing of cross platform Plugins for Xamarin that support 
 |Mono.Data.Sqlite|Add Mono.Data.Sqlite to any Xamarin or Windows .NET app.|[NuGet](https://www.nuget.org/packages/Mono.Data.Sqlite.Portable)|[GitHub](https://github.com/mattleibow/Mono.Data.Sqlite)|[@mattleibow](https://twitter.com/mattleibow)|
 |Persistent key-value store|Akavache is an asynchronous, persistent (i.e. writes to disk) key-value store.|[NuGet](https://www.nuget.org/packages/akavache/)|[GitHub](https://github.com/akavache/Akavache)|[@paulcbetts](http://www.twitter.com/paulcbetts)|
 |Portable Razor|Lightweight implemenation of ASP.NET MVC APIs for mobile.|[NuGet](https://www.nuget.org/packages/PortableRazor/)|[GitHub](https://github.com/xamarin/PortableRazor)|[@JosephHill](http://www.twitter.com/josephhill)|
+|Push Notifications|Cross platform iOS and Android Push Notifications.|[NuGet](https://www.nuget.org/packages/Xam.Plugin.PushNotification/)|[GitHub](https://github.com/rdelrosario/xamarin-plugins)|[@rdelrosario](https://github.com/rdelrosario)|
 |Settings|Simple & Consistent cross platform settings API.|[NuGet](https://www.nuget.org/packages/Xam.Plugins.Settings/)|[GitHub](https://github.com/jamesmontemagno/Xamarin.Plugins/tree/master/Settings)|[@JamesMontemagno](http://www.twitter.com/jamesmontemagno)|
 |Sockets|TCP & UDP Listeners and Clients + UDP multicast.|[NuGet](https://www.nuget.org/packages/rda.SocketsForPCL)|[GitHub](https://github.com/rdavisau/sockets-for-pcl)|[@rdavis_au](http://www.twitter.com/rdavis_au)|
 |Splat|Cross-platform Image loading/saving, Color, Geometry, and more.|[NuGet](https://www.nuget.org/packages/Splat/)|[GitHub](https://github.com/paulcbetts/splat)|[@paulcbetts](http://www.twitter.com/paulcbetts)|
 |Text To Speech|Talk back text from shared code.|[NuGet](https://www.nuget.org/packages/Xam.Plugins.TextToSpeech/)|[GitHub](https://github.com/jamesmontemagno/Xamarin.Plugins/tree/master/TextToSpeech)|[@JamesMontemagno](http://www.twitter.com/jamesmontemagno)|
+|User Dialogs|Message box style dialogs.|[NuGet](https://www.nuget.org/packages/Acr.UserDialogs/)|[GitHub](https://github.com/aritchie/userdialogs)|[@allanritchie911](https://twitter.com/allanritchie911)|
 |Vibrate|Vibrate any device.|[NuGet](https://www.nuget.org/packages/Xam.Plugins.Vibrate/)|[GitHub](https://github.com/jamesmontemagno/Xamarin.Plugins/tree/master/Vibrate)|[@JamesMontemagno](http://www.twitter.com/jamesmontemagno)|
 
 ### Xamarin.Forms Specific Plugins
