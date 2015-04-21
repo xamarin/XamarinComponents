@@ -48,10 +48,10 @@ These plugins have been built specifically for Xamarin.Forms and also contain cu
 |Barcode|Barcode scanning and creation|[NuGet](https://www.nuget.org/packages/Acr.XamForms.BarCodeScanner/)|[GitHub](https://github.com/aritchie/acr-xamarin-forms)|[@allanritchie911](https://twitter.com/allanritchie911)|
 |Compass|Access device compass|[NuGet](https://www.nuget.org/packages/JarleySoft.Compass.Forms.Plugin/)|[GitHub](https://github.com/JarleySoft/Xamarin.Plugins/tree/master/Compass)|[@cbartonnh](http://www.twitter.com/cbartonnh)|
 |Device Orientation|Detect and get notified on rotation.|[NuGet](https://www.nuget.org/packages/Xam.Plugins.Forms.DeviceOrientation/)|[GitHub](https://github.com/aliozgur/Xamarin.Plugins/tree/master/DeviceOrientation)|[@aliozgur](http://www.twitter.com/aliozgur)|
+|Extended Cells|Create customizable, performant ListViews and TableViews.|[NuGet](https://www.nuget.org/packages/Xam.Plugins.Forms.ExtendedCell/)|[GitHub](https://github.com/paulpatarinski/Xamarin.Forms.Plugins/)|[@ppatarinski](http://www.twitter.com/ppatarinski)|
 |Image Circle|Put your images in a circle.|[NuGet](https://www.nuget.org/packages/Xam.Plugins.Forms.ImageCircle/)|[GitHub](https://github.com/jamesmontemagno/Xamarin.Plugins/tree/master/ImageCircle)|[@JamesMontemagno](http://www.twitter.com/jamesmontemagno)|
 |Store Rating|Display a store rating dialog after certain conditions have been met.|[NuGet](https://www.nuget.org/packages/VoxDev.StoreRating.Forms.Plugin/)|[GitHub](https://github.com/voxdev/Xamarin.Plugins)|[@voxdev](http://www.twitter.com/voxdev)|
 |SVG Control|Display SVG images in your apps.|[NuGet](https://www.nuget.org/packages/Xam.Plugins.Forms.Svg/)|[GitHub](https://github.com/paulpatarinski/Xamarin.Forms.Plugins/tree/master/SVG)|[@ppatarinski](http://www.twitter.com/ppatarinski)|
-|Extended Cells|Create customizable,performant Listviews and Tableviews.|[NuGet](https://www.nuget.org/packages/Xam.Plugins.Forms.ExtendedCell/)|[GitHub](https://github.com/paulpatarinski/Xamarin.Forms.Plugins/tree/master/ExtendedCells)|[@ppatarinski](http://www.twitter.com/ppatarinski)|
 |Toasts|Pop up toast notifications|[NuGet](https://www.nuget.org/packages/Toasts.Forms.Plugin/)|[GitHub](https://github.com/EgorBo/Toasts.Forms.Plugin)|[@EgorBo](http://www.twitter.com/EgorBo)|
 
 
