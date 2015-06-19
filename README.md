@@ -52,6 +52,7 @@ These plugins have been built specifically for Xamarin.Forms and also contain cu
 |Store Rating|Display a store rating dialog after certain conditions have been met.|[NuGet](https://www.nuget.org/packages/VoxDev.StoreRating.Forms.Plugin/)|[GitHub](https://github.com/voxdev/Xamarin.Plugins)|[@voxdev](http://www.twitter.com/voxdev)|
 |SVG Control|Display SVG images in your apps.|[NuGet](https://www.nuget.org/packages/Xam.Plugins.Forms.Svg/)|[GitHub](https://github.com/paulpatarinski/Xamarin.Forms.Plugins/tree/master/SVG)|[@ppatarinski](http://www.twitter.com/ppatarinski)|
 |Extended Cells|Create customizable,performant Listviews and Tableviews.|[NuGet](https://www.nuget.org/packages/Xam.Plugins.Forms.ExtendedCell/)|[GitHub](https://github.com/paulpatarinski/Xamarin.Forms.Plugins/tree/master/ExtendedCells)|[@ppatarinski](http://www.twitter.com/ppatarinski)|
+|RoundedBoxView|Create Circles.|[NuGet](https://www.nuget.org/packages/Xam.Plugins.Forms.RoundedBoxView/)|[GitHub](https://github.com/paulpatarinski/Xamarin.Forms.Plugins/tree/master/RoundedBoxView)|[@ppatarinski](http://www.twitter.com/ppatarinski)|
 |Toasts|Pop up toast notifications|[NuGet](https://www.nuget.org/packages/Toasts.Forms.Plugin/)|[GitHub](https://github.com/EgorBo/Toasts.Forms.Plugin)|[@EgorBo](http://www.twitter.com/EgorBo)|
 
 
