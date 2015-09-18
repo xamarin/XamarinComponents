@@ -20,6 +20,7 @@ Here you will find a listing of cross platform Plugins for Xamarin that support 
 |External Maps|Launch external maps from Lat/Long or Address.|[NuGet](https://www.nuget.org/packages/Xam.Plugin.ExternalMaps/)|[GitHub](https://github.com/jamesmontemagno/Xamarin.Plugins/tree/master/ExternalMaps)|[@JamesMontemagno](http://www.twitter.com/jamesmontemagno)|
 |EZCompress|Compression for image streams.|[NuGet](https://www.nuget.org/packages/JosephAntolick.EZCompress1.Plugin/)|[GitHub](https://github.com/VictorGrunn/EZ-Compress-for-Xamarin)|[@VictorGrunn](http://www.twitter.com/victorgrunn)|
 |File System|PCL Storage offers cross platform storage APIs.|[NuGet](https://www.nuget.org/packages/PCLStorage/)|[GitHub](https://github.com/dsplaisted/PCLStorage)|[@dsplaisted](http://www.twitter.com/dsplaisted)|
+|Geofence| Handle geofence events such as entering, leaving and staying in a geofence region.|[NuGet](https://www.nuget.org/packages/Xam.Plugin.Geofence/)|[GitHub](https://github.com/domaven/xamarin-plugins/tree/master/Geofence)|[@domaven](https://github.com/domaven)|
 |Geolocator|Easily detect GPS location of device.|[NuGet](https://www.nuget.org/packages/Xam.Plugin.Geolocator/)|[GitHub](https://github.com/jamesmontemagno/Xamarin.Plugins/tree/master/Geolocator)|[@JamesMontemagno](http://www.twitter.com/jamesmontemagno)|
 |HybridKit|Easily call into JavaScript hosted in a WebView.|[NuGet](https://www.nuget.org/packages/Xam.Plugin.HybridKit)|[GitHub](https://github.com/chkn/HybridKit)|[@chknofthescene](http://www.twitter.com/chknofthescene)|
 |Lamp|Access to LED|[NuGet](https://www.nuget.org/packages/kphillpotts.Lamp.Plugin/)|[GitHub](https://github.com/kphillpotts/Xamarin.Plugins/tree/master/Lamp)|[@kphillpotts](http://www.twitter.com/kphillpotts)|
@@ -48,12 +49,16 @@ These plugins have been built specifically for Xamarin.Forms and also contain cu
 |Barcode|Barcode scanning and creation|[NuGet](https://www.nuget.org/packages/Acr.XamForms.BarCodeScanner/)|[GitHub](https://github.com/aritchie/acr-xamarin-forms)|[@allanritchie911](https://twitter.com/allanritchie911)|
 |Compass|Access device compass|[NuGet](https://www.nuget.org/packages/JarleySoft.Compass.Forms.Plugin/)|[GitHub](https://github.com/JarleySoft/Xamarin.Plugins/tree/master/Compass)|[@cbartonnh](http://www.twitter.com/cbartonnh)|
 |Device Orientation|Detect and get notified on rotation.|[NuGet](https://www.nuget.org/packages/Xam.Plugins.Forms.DeviceOrientation/)|[GitHub](https://github.com/aliozgur/Xamarin.Plugins/tree/master/DeviceOrientation)|[@aliozgur](http://www.twitter.com/aliozgur)|
+|Extended Cells|Create customizable, performant ListViews and TableViews.|[NuGet](https://www.nuget.org/packages/Xam.Plugins.Forms.ExtendedCell/)|[GitHub](https://github.com/paulpatarinski/Xamarin.Forms.Plugins/)|[@ppatarinski](http://www.twitter.com/ppatarinski)|
 |Image Circle|Put your images in a circle.|[NuGet](https://www.nuget.org/packages/Xam.Plugins.Forms.ImageCircle/)|[GitHub](https://github.com/jamesmontemagno/Xamarin.Plugins/tree/master/ImageCircle)|[@JamesMontemagno](http://www.twitter.com/jamesmontemagno)|
 |Store Rating|Display a store rating dialog after certain conditions have been met.|[NuGet](https://www.nuget.org/packages/VoxDev.StoreRating.Forms.Plugin/)|[GitHub](https://github.com/voxdev/Xamarin.Plugins)|[@voxdev](http://www.twitter.com/voxdev)|
 |SVG Control|Display SVG images in your apps.|[NuGet](https://www.nuget.org/packages/Xam.Plugins.Forms.Svg/)|[GitHub](https://github.com/paulpatarinski/Xamarin.Forms.Plugins/tree/master/SVG)|[@ppatarinski](http://www.twitter.com/ppatarinski)|
+<<<<<<< HEAD
 |Extended Cells|Create customizable,performant Listviews and Tableviews.|[NuGet](https://www.nuget.org/packages/Xam.Plugins.Forms.ExtendedCell/)|[GitHub](https://github.com/paulpatarinski/Xamarin.Forms.Plugins/tree/master/ExtendedCells)|[@ppatarinski](http://www.twitter.com/ppatarinski)|
 |RoundedBoxView|Create Circles.|[NuGet](https://www.nuget.org/packages/Xam.Plugins.Forms.RoundedBoxView/)|[GitHub](https://github.com/paulpatarinski/Xamarin.Forms.Plugins/tree/master/RoundedBoxView)|[@ppatarinski](http://www.twitter.com/ppatarinski)|
 |Keyboard Overlap|No more keyboard overlap.|[NuGet](https://www.nuget.org/packages/Xam.Plugins.Forms.KeyboardOverlap/)|[GitHub](https://github.com/paulpatarinski/Xamarin.Forms.Plugins/tree/master/KeyboardOverlap)|[@ppatarinski](http://www.twitter.com/ppatarinski)|
+=======
+>>>>>>> master
 |Toasts|Pop up toast notifications|[NuGet](https://www.nuget.org/packages/Toasts.Forms.Plugin/)|[GitHub](https://github.com/EgorBo/Toasts.Forms.Plugin)|[@EgorBo](http://www.twitter.com/EgorBo)|
 
 
