@@ -50,6 +50,8 @@ These plugins have been built specifically for Xamarin.Forms and also contain cu
 |Compass|Access device compass|[NuGet](https://www.nuget.org/packages/JarleySoft.Compass.Forms.Plugin/)|[GitHub](https://github.com/JarleySoft/Xamarin.Plugins/tree/master/Compass)|[@cbartonnh](http://www.twitter.com/cbartonnh)|
 |Device Orientation|Detect and get notified on rotation.|[NuGet](https://www.nuget.org/packages/Xam.Plugins.Forms.DeviceOrientation/)|[GitHub](https://github.com/aliozgur/Xamarin.Plugins/tree/master/DeviceOrientation)|[@aliozgur](http://www.twitter.com/aliozgur)|
 |Extended Cells|Create customizable, performant ListViews and TableViews.|[NuGet](https://www.nuget.org/packages/Xam.Plugins.Forms.ExtendedCell/)|[GitHub](https://github.com/paulpatarinski/Xamarin.Forms.Plugins/)|[@ppatarinski](http://www.twitter.com/ppatarinski)|
+|FFImageLoading|Image replacement with caching. placeholders, transformations and more|[NuGet](https://www.nuget.org/packages/Xamarin.FFImageLoading.Forms/)|[GitHub](https://github.com/molinch/FFImageLoading)|[@molinch](https://github.com/molinch), [@daniel-luberda](https://github.com/daniel-luberda/)|
+|FlowListView|ListView derivative with flowing, grid-like columns support|[NuGet](https://www.nuget.org/packages/DLToolkit.Forms.Controls.FlowListView/)|[GitHub](https://github.com/daniel-luberda/DLToolkit.Forms.Controls/tree/master/FlowListView)|[@daniel-luberda](https://github.com/daniel-luberda/)|
 |Image Circle|Put your images in a circle.|[NuGet](https://www.nuget.org/packages/Xam.Plugins.Forms.ImageCircle/)|[GitHub](https://github.com/jamesmontemagno/Xamarin.Plugins/tree/master/ImageCircle)|[@JamesMontemagno](http://www.twitter.com/jamesmontemagno)|
 |Store Rating|Display a store rating dialog after certain conditions have been met.|[NuGet](https://www.nuget.org/packages/VoxDev.StoreRating.Forms.Plugin/)|[GitHub](https://github.com/voxdev/Xamarin.Plugins)|[@voxdev](http://www.twitter.com/voxdev)|
 |SVG Control|Display SVG images in your apps.|[NuGet](https://www.nuget.org/packages/Xam.Plugins.Forms.Svg/)|[GitHub](https://github.com/paulpatarinski/Xamarin.Forms.Plugins/tree/master/SVG)|[@ppatarinski](http://www.twitter.com/ppatarinski)|
@@ -57,7 +59,6 @@ These plugins have been built specifically for Xamarin.Forms and also contain cu
 |RoundedBoxView|Create Circles.|[NuGet](https://www.nuget.org/packages/Xam.Plugins.Forms.RoundedBoxView/)|[GitHub](https://github.com/paulpatarinski/Xamarin.Forms.Plugins/tree/master/RoundedBoxView)|[@ppatarinski](http://www.twitter.com/ppatarinski)|
 |Keyboard Overlap|No more keyboard overlap.|[NuGet](https://www.nuget.org/packages/Xam.Plugins.Forms.KeyboardOverlap/)|[GitHub](https://github.com/paulpatarinski/Xamarin.Forms.Plugins/tree/master/KeyboardOverlap)|[@ppatarinski](http://www.twitter.com/ppatarinski)|
 |Toasts|Pop up toast notifications|[NuGet](https://www.nuget.org/packages/Toasts.Forms.Plugin/)|[GitHub](https://github.com/EgorBo/Toasts.Forms.Plugin)|[@EgorBo](http://www.twitter.com/EgorBo)|
-
 
 
 ## Submit Your Ideas
