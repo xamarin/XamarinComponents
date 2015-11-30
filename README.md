@@ -1,7 +1,7 @@
 # ![](https://raw.githubusercontent.com/jamesmontemagno/Xamarin-Templates/master/Plugins-Templates/icons/plugin_icon_nuget.png) Plugins for Xamarin
 Plugins for Xamarin are community built NuGet and Components that adds cross-platform functionality or abstracts platform specific functionality to a common API. These are both completely cross-platform and extremely small (i.e., they do 1 or 2 things really well with minimal-to-no dependencies). The Plugin API can be accessed on each platform, however, you will most likely only use the common API in a Portable Class Library or Shared Code project.
 
-**Disclaimer**: Plugins for Xamarin featured here are non-Xamarin plugins produced by 3rd party developers. Xamarin does not provide official support for these plugins, please contact their creator with any issues.
+**Notice**: Plugins for Xamarin featured here are non-Xamarin plugins produced by 3rd party developers. Xamarin does not provide official support for these plugins, please contact their creator with any issues.
 
 ## Popular Plugins
 Browse through the most popular plugins out there today!
