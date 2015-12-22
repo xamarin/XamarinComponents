@@ -49,6 +49,7 @@ We are continuously monitoring and adding new Plugins all the time, so be sure t
 |Manage Sleep|Manage auto sleep/auto lock.|[NuGet](https://www.nuget.org/packages/Xam.Plugins.ManageSleep/)|[GitHub](https://github.com/molinch/Xam.Plugins.ManageSleep)|[@molinch0](http://www.twitter.com/molinch0)|
 |Microsoft Band|Connect and communicate with the Microsoft Band from shared code!|[NuGet](https://www.nuget.org/packages/Xamarin.Microsoft.Band/)|[GitHub](https://github.com/mattleibow/Microsoft-Band-SDK-Bindings)|[@mattleibow](https://twitter.com/mattleibow)|
 |Mono.Data.Sqlite|Add Mono.Data.Sqlite to any Xamarin or Windows .NET app.|[NuGet](https://www.nuget.org/packages/Mono.Data.Sqlite.Portable)|[GitHub](https://github.com/mattleibow/Mono.Data.Sqlite)|[@mattleibow](https://twitter.com/mattleibow)|
+|ObservableView|A collection representation for searching, filtering, grouping, sorting...|[NuGet](https://www.nuget.org/packages/ObservableView)|[GitHub](https://github.com/thomasgalliker/ObservableView)|[@thomasgalliker](https://ch.linkedin.com/in/thomasgalliker)|
 |Portable Razor|Lightweight implemenation of ASP.NET MVC APIs for mobile.|[NuGet](https://www.nuget.org/packages/PortableRazor/)|[GitHub](https://github.com/xamarin/PortableRazor)|[@JosephHill](http://www.twitter.com/josephhill)|
 
 
