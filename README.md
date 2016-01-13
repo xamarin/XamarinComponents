@@ -34,7 +34,7 @@ Browse through the most popular plugins out there today!
 |Vibrate|Vibrate any device.|[NuGet](https://www.nuget.org/packages/Xam.Plugins.Vibrate/)|[GitHub](https://github.com/jamesmontemagno/Xamarin.Plugins/tree/master/Vibrate)|[@JamesMontemagno](http://www.twitter.com/jamesmontemagno)|
 
 
-## Even more awesome Plugins!
+## Additional Plugins!
 We are continuously monitoring and adding new Plugins all the time, so be sure to checkout our guide on how to get started creating plugins. Sometimes plugins handle very specific use cases such as contacts, beacons, or specific hardware. Below are some more awesome Plugins to get you going:
 
 |Name|Description|NuGet|Docs & Source|Creator|
