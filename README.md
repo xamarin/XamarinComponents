@@ -1,4 +1,4 @@
-# ![](https://raw.githubusercontent.com/jamesmontemagno/Xamarin-Templates/master/Plugins-Templates/icons/plugin_icon_nuget.png) Plugins for Xamarin
+﻿# ![](https://raw.githubusercontent.com/jamesmontemagno/Xamarin-Templates/master/Plugins-Templates/icons/plugin_icon_nuget.png) Plugins for Xamarin
 Plugins for Xamarin are community built NuGet and Components that adds cross-platform functionality or abstracts platform specific functionality to a common API. These are both completely cross-platform and extremely small (i.e., they do 1 or 2 things really well with minimal-to-no dependencies). The Plugin API can be accessed on each platform, however, you will most likely only use the common API in a Portable Class Library or Shared Code project.
 
 **Notice**: Plugins for Xamarin featured here are produced by the amazing open source community of Xamarin developers. Xamarin does not provide official support for these plugins, please contact their creator with any issues.
@@ -49,6 +49,7 @@ We are continuously monitoring and adding new Plugins all the time, so be sure t
 |Microsoft Band|Connect and communicate with the Microsoft Band from shared code!|[NuGet](https://www.nuget.org/packages/Xamarin.Microsoft.Band/)|[GitHub](https://github.com/mattleibow/Microsoft-Band-SDK-Bindings)|[@mattleibow](https://twitter.com/mattleibow)|
 |Mono.Data.Sqlite|Add Mono.Data.Sqlite to any Xamarin or Windows .NET app.|[NuGet](https://www.nuget.org/packages/Mono.Data.Sqlite.Portable)|[GitHub](https://github.com/mattleibow/Mono.Data.Sqlite)|[@mattleibow](https://twitter.com/mattleibow)|
 |Portable Razor|Lightweight implemenation of ASP.NET MVC APIs for mobile.|[NuGet](https://www.nuget.org/packages/PortableRazor/)|[GitHub](https://github.com/xamarin/PortableRazor)|[@JosephHill](http://www.twitter.com/josephhill)|
+|Secure Storage|Provides Secure storage for key value pairs Data|[NuGet](http://www.nuget.org/packages/sameerIOTApps.Plugin.SecureStorage/)|[GitHub](https://github.com/sameerkapps/SecureStorage)|[@sameerIOTApps](https://twitter.com/sameerIOTApps)|
 
 
 ## Submit Your Ideas
