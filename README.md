@@ -31,6 +31,7 @@ Browse through the most popular plugins out there today!
 |Text To Speech|Talk back text from shared code.|[NuGet](https://www.nuget.org/packages/Xam.Plugins.TextToSpeech/)|[GitHub](https://github.com/jamesmontemagno/Xamarin.Plugins/tree/master/TextToSpeech)|[@JamesMontemagno](http://www.twitter.com/jamesmontemagno)|
 |User Dialogs|Message box style dialogs.|[NuGet](https://www.nuget.org/packages/Acr.UserDialogs/)|[GitHub](https://github.com/aritchie/userdialogs)|[@allanritchie911](https://twitter.com/allanritchie911)|
 |Vibrate|Vibrate any device.|[NuGet](https://www.nuget.org/packages/Xam.Plugins.Vibrate/)|[GitHub](https://github.com/jamesmontemagno/Xamarin.Plugins/tree/master/Vibrate)|[@JamesMontemagno](http://www.twitter.com/jamesmontemagno)|
+|Toasts|A simple way of showing some notifications inside your Xamarin or Windows application. |[NuGet](https://www.nuget.org/packages/Toasts.Forms.Plugin)|[GitHub](https://github.com/EgorBo/Toasts.Forms.Plugin)|[@EgorBo](https://twitter.com/EgorBo)|
 
 
 ## Additional Plugins!
