@@ -1,9 +1,27 @@
-# ![](https://raw.githubusercontent.com/jamesmontemagno/Xamarin-Templates/master/Plugins-Templates/icons/plugin_icon_nuget.png) Plugins for Xamarin
-Plugins for Xamarin are community built NuGet and Components that adds cross-platform functionality or abstracts platform specific functionality to a common API. These are both completely cross-platform and extremely small (i.e., they do 1 or 2 things really well with minimal-to-no dependencies). The Plugin API can be accessed on each platform, however, you will most likely only use the common API in a Portable Class Library or Shared Code project.
+# Open Source Components for Xamarin
+Open Source Components for Xamarin are a collection of open source components (including bindings and plugins) created by Xamarin and others in the community.
+
+## Xamarin Supported Open Source Components
+
+Xamarin Supported Open Source components are a collection of Xamarin built bindings and libraries.
+
+| Name                                  | Description                                                                      | Source                                                           |
+|---------------------------------------|----------------------------------------------------------------------------------|------------------------------------------------------------------|
+| Android Support Libraries             | Bindings for Google's Android Support Libraries                                  | [GitHub](https://github.com/xamarin/AndroidSupportComponents)    |
+| Google Play Services Client Libraries | Bindings for Google's Play Services Client Libraries                             | [GitHub](https://github.com/xamarin/GooglePlayServicesComponents)|
+| Google API's for iOS                  | Bindings for Google's API's for iOS Libraries                                    | [GitHub](https://github.com/xamarin/GoogleAPIsForiOSComponents)  |
+| Facebook SDK's                        | Bindings for Facebook's iOS & Android SDK's                                      | [GitHub](https://github.com/xamarin/FacebookComponents)          |
+| Xamarin.Auth                          | Cross-platform API for authenticating users and storing their accounts.          | [GitHub](https://github.com/xamarin/Xamarin.Auth)                |
+
+
+## Community Provided Open Source Plugins
+
+Plugins for Xamarin are community built NuGet and Components that add cross-platform functionality or abstracts platform specific functionality to a common API. These are both completely cross-platform and extremely small (i.e., they do 1 or 2 things really well with minimal-to-no dependencies). The Plugin API can be accessed on each platform, however, you will most likely only use the common API in a Portable Class Library or Shared Code project.
 
 **Notice**: Plugins for Xamarin featured here are produced by the amazing open source community of Xamarin developers. Xamarin does not provide official support for these plugins, please contact their creator with any issues.
 
-## Popular Plugins
+
+### Popular Plugins
 Browse through the most popular plugins out there today!
 
 |Name|Description|NuGet|Docs & Source|Creator|
@@ -33,7 +51,7 @@ Browse through the most popular plugins out there today!
 |Vibrate|Vibrate any device.|[NuGet](https://www.nuget.org/packages/Xam.Plugins.Vibrate/)|[GitHub](https://github.com/jamesmontemagno/Xamarin.Plugins/tree/master/Vibrate)|[@JamesMontemagno](http://www.twitter.com/jamesmontemagno)|
 
 
-## Additional Plugins!
+### Additional Plugins!
 We are continuously monitoring and adding new Plugins all the time, so be sure to checkout our guide on how to get started creating plugins. Sometimes plugins handle very specific use cases such as contacts, beacons, or specific hardware. Below are some more awesome Plugins to get you going:
 
 |Name|Description|NuGet|Docs & Source|Creator|
@@ -51,11 +69,11 @@ We are continuously monitoring and adding new Plugins all the time, so be sure t
 |Portable Razor|Lightweight implemenation of ASP.NET MVC APIs for mobile.|[NuGet](https://www.nuget.org/packages/PortableRazor/)|[GitHub](https://github.com/xamarin/PortableRazor)|[@JosephHill](http://www.twitter.com/josephhill)|
 
 
-## Submit Your Ideas
+### Submit Your Ideas
 We want to hear any and all ideas that you have for potential plugins. Browse through the current issues and see what other developers are interested in or submit your very own. Interested in helping work on a plugin? Simply comment on a plugin that you will start development, create a GitHub repo, and get coding!
 
 
-## Create a Plugin for Xamarin
+### Create a Plugin for Xamarin
 If you are looking to create a plugin be sure to browse through NuGet first and ensure that the plugin doesn't exist. If one does join in on the fun and collaborate. If it doesn't and you want to start building a Plugin here are some tools and guidelines to get you started.
 
 **Tools to get Started**
@@ -70,11 +88,10 @@ If you are looking to create a plugin be sure to browse through NuGet first and 
 * App-store friendly OSS license (we like MIT)
 * No dependency on Xamarin.Forms
 
-### Turn into a Component
+#### Turn into a Component
 Learn how to turn your NuGet based Plugin for Xamarin into a Component that can be featured in the Xamarin Component Store with our [component documentation](http://developer.xamarin.com/guides/cross-platform/advanced/submitting_components/components_and_nuget/).
 
-### Perks
-* Eligible for Xamarin Open Source Subscription
+#### Perks
 * Help out fellow developers speed up development
 * Have fun and learn new tools
 * Our undying love
