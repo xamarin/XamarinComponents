@@ -67,6 +67,7 @@ We are continuously monitoring and adding new Plugins all the time, so be sure t
 |Microsoft Band|Connect and communicate with the Microsoft Band from shared code!|[NuGet](https://www.nuget.org/packages/Xamarin.Microsoft.Band/)|[GitHub](https://github.com/mattleibow/Microsoft-Band-SDK-Bindings)|[@mattleibow](https://twitter.com/mattleibow)|
 |Mono.Data.Sqlite|Add Mono.Data.Sqlite to any Xamarin or Windows .NET app.|[NuGet](https://www.nuget.org/packages/Mono.Data.Sqlite.Portable)|[GitHub](https://github.com/mattleibow/Mono.Data.Sqlite)|[@mattleibow](https://twitter.com/mattleibow)|
 |Portable Razor|Lightweight implemenation of ASP.NET MVC APIs for mobile.|[NuGet](https://www.nuget.org/packages/PortableRazor/)|[GitHub](https://github.com/xamarin/PortableRazor)|[@JosephHill](http://www.twitter.com/josephhill)|
+|File Picker|Simple cross-platform plug-in that allows Pick files, save files and open the default app for file.|[NuGet] SOON|[GitHub](https://github.com/Studyxnet/FilePicker-Plugin-for-Xamarin-and-Windows)|[@studyxnet](http://www.twitter.com/studyxnet)|
 
 
 ### Submit Your Ideas
