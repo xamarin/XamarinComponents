@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="BlurringView">
+      <!--<attr name="blurredView" format="reference" />-->
+      <attr name="downsampleFactor" format="integer" />
+      <attr name="blurRadius" format="integer" />
+      <attr name="overlayColor" format="color" />
+      <attr name="overlayBackgroundColor" format="color" />
+    </declare-styleable>
+</resources>

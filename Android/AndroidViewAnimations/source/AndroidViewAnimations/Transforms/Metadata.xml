@@ -1,0 +1,28 @@
+﻿<metadata>
+	<!-- namespaces -->
+	<attr path="/api/package[@name='com.daimajia.androidanimations.library']" name="managedName">AndroidViewAnimations</attr>
+	<attr path="/api/package[@name='com.daimajia.androidanimations.library.attention']" name="managedName">AndroidViewAnimations.Attention</attr>
+	<attr path="/api/package[@name='com.daimajia.androidanimations.library.bouncing_entrances']" name="managedName">AndroidViewAnimations.BouncingEntrances</attr>
+	<attr path="/api/package[@name='com.daimajia.androidanimations.library.fading_entrances']" name="managedName">AndroidViewAnimations.FadingEntrances</attr>
+	<attr path="/api/package[@name='com.daimajia.androidanimations.library.fading_exits']" name="managedName">AndroidViewAnimations.FadingExits</attr>
+	<attr path="/api/package[@name='com.daimajia.androidanimations.library.flippers']" name="managedName">AndroidViewAnimations.Flippers</attr>
+	<attr path="/api/package[@name='com.daimajia.androidanimations.library.rotating_entrances']" name="managedName">AndroidViewAnimations.RotatingEntrances</attr>
+	<attr path="/api/package[@name='com.daimajia.androidanimations.library.rotating_exits']" name="managedName">AndroidViewAnimations.RotatingExits</attr>
+	<attr path="/api/package[@name='com.daimajia.androidanimations.library.sliders']" name="managedName">AndroidViewAnimations.Sliders</attr>
+	<attr path="/api/package[@name='com.daimajia.androidanimations.library.specials']" name="managedName">AndroidViewAnimations.Specials</attr>
+	<attr path="/api/package[@name='com.daimajia.androidanimations.library.specials.in']" name="managedName">AndroidViewAnimations.Specials.Out</attr>
+	<attr path="/api/package[@name='com.daimajia.androidanimations.library.specials.out']" name="managedName">AndroidViewAnimations.Specials.In</attr>
+	<attr path="/api/package[@name='com.daimajia.androidanimations.library.zooming_entrances']" name="managedName">AndroidViewAnimations.ZoomingEntrances</attr>
+	<attr path="/api/package[@name='com.daimajia.androidanimations.library.zooming_exits']" name="managedName">AndroidViewAnimations.ZoomingExits</attr>
+	
+	<!-- corrections -->
+	<attr path="/api/package[starts-with(@name, 'com.daimajia.androidanimations.library')]/class[@name='BaseViewAnimator' or @extends='com.daimajia.androidanimations.library.BaseViewAnimator']/method[@name='prepare']" name="visibility">public</attr>
+
+	<!-- remove private/internal/implementation/deprecated types -->
+	<remove-node path="/api/package/class[@visibility='']" />
+	<remove-node path="/api/package/interface[@visibility='']" />
+	<remove-node path="/api/package/class[@deprecated='deprecated']" />
+	<remove-node path="/api/package/interface[@deprecated='deprecated']" />
+	<remove-node path="/api/package/class/method[@deprecated='deprecated']" />
+	<remove-node path="/api/package/interface/method[@deprecated='deprecated']" />
+</metadata>

@@ -1,0 +1,9 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android" android:versionCode="1" android:versionName="1.0" package="com.urlimageviewhelper.sample">
+	<uses-sdk android:minSdkVersion="8" />
+	<application android:label="UrlImageViewHelper">
+		<activity android:name="io.card.payment.CardIOActivity" android:configChanges="keyboardHidden|orientation" />
+		<activity android:name="io.card.payment.DataEntryActivity" android:screenOrientation="portrait" />
+	</application>
+	<uses-permission android:name="android.permission.INTERNET" />
+</manifest>

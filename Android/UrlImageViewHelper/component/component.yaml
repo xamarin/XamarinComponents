@@ -1,0 +1,15 @@
+version: 1.0.4.1
+name: UrlImageViewHelper Android
+id: urlimageviewhelper
+publisher: Xamarin Inc
+publisher-url: http://xamarin.com/
+src-url: https://github.com/xamarin/XamarinComponents/tree/master/Android/UrlImageViewHelper
+icons: 
+  - ./icons/urlimageviewhelper_128x128.png
+  - ./icons/urlimageviewhelper_512x512.png
+summary: Async Image Lazy Loading and Caching for Android
+libraries:
+  android: ../output/UrlImageViewHelper.dll
+samples:
+  - name: "Android Sample"
+    path: ../samples/UrlImageViewHelperSample/UrlImageViewHelperSample.sln

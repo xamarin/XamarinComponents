@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<package>
+  <metadata>
+    <id>RecyclerViewAnimators</id>
+    <title>RecyclerView Animators</title>
+    <version>2.1.0.0</version>
+    <authors>Xamarin Inc.</authors>
+    <owners>Xamarin Inc.</owners>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>An Android Animation library which easily add ItemAnimator to RecyclerView items.</description>
+    <copyright>Copyright 2015 Xamarin Inc</copyright>
+    <projectUrl>https://components.xamarin.com/view/RecyclerViewAnimators</projectUrl>
+    <licenseUrl>https://components.xamarin.com/license/RecyclerViewAnimators</licenseUrl>
+    <dependencies>
+      <dependency id="Xamarin.Android.Support.v4" version="23.1.1.0" />
+      <dependency id="Xamarin.Android.Support.v7.RecyclerView" version="23.1.1.0" />
+    </dependencies>
+  </metadata>
+  <files>  
+    <file src="output/RecyclerViewAnimators.dll" target="lib\MonoAndroid403" />
+  </files>
+</package>

@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectTypeGuids>{8FFB629D-F513-41CE-95D2-7ECE97B6EEEC};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <ProjectGuid>{73B16F2C-F815-4E1B-A1A2-4B79AFCBE533}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <RootNamespace>MTiRate</RootNamespace>
+    <IPhoneResourcePrefix>Resources</IPhoneResourcePrefix>
+    <AssemblyName>MTiRate</AssemblyName>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\unified\Debug</OutputPath>
+    <IntermediateOutputPath>obj\unified\Debug</IntermediateOutputPath>
+    <DefineConstants>DEBUG;__UNIFIED__;</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <ConsolePause>false</ConsolePause>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>full</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\unified\Release</OutputPath>
+    <IntermediateOutputPath>obj\unified\Release</IntermediateOutputPath>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <ConsolePause>false</ConsolePause>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <DefineConstants>__UNIFIED__;</DefineConstants>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="Xamarin.iOS" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Resources\" />
+    <Folder Include="Resources\iRate.bundle\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ObjcBindingApiDefinition Include="ApiDefinition.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ObjcBindingCoreSource Include="StructsAndEnums.cs" />
+  </ItemGroup>
+  <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.ObjCBinding.CSharp.targets" />
+  <ItemGroup>
+    <ObjcBindingNativeLibrary Include="..\..\externals\iRateLib\libiRateLib.a">
+      <Link>libiRateLib.a</Link>
+    </ObjcBindingNativeLibrary>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="libiRateLib.linkwith.cs">
+      <DependentUpon>libiRateLib.a</DependentUpon>
+    </Compile>
+    <Compile Include="MTiRateEvents.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="..\..\externals\iRateLib\iRate\iRate\iRate.bundle\ar.lproj\Localizable.strings">
+      <Link>Resources\iRate.bundle\ar.lproj\Localizable.strings</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\externals\iRateLib\iRate\iRate\iRate.bundle\bn.lproj\Localizable.strings">
+      <Link>Resources\iRate.bundle\bn.lproj\Localizable.strings</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\externals\iRateLib\iRate\iRate\iRate.bundle\cs.lproj\Localizable.strings">
+      <Link>Resources\iRate.bundle\cs.lproj\Localizable.strings</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\externals\iRateLib\iRate\iRate\iRate.bundle\da.lproj\Localizable.strings">
+      <Link>Resources\iRate.bundle\da.lproj\Localizable.strings</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\externals\iRateLib\iRate\iRate\iRate.bundle\de-AT.lproj\Localizable.strings">
+      <Link>Resources\iRate.bundle\de-AT.lproj\Localizable.strings</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\externals\iRateLib\iRate\iRate\iRate.bundle\de.lproj\Localizable.strings">
+      <Link>Resources\iRate.bundle\de.lproj\Localizable.strings</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\externals\iRateLib\iRate\iRate\iRate.bundle\el.lproj\Localizable.strings">
+      <Link>Resources\iRate.bundle\el.lproj\Localizable.strings</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\externals\iRateLib\iRate\iRate\iRate.bundle\en.lproj\Localizable.strings">
+      <Link>Resources\iRate.bundle\en.lproj\Localizable.strings</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\externals\iRateLib\iRate\iRate\iRate.bundle\es.lproj\Localizable.strings">
+      <Link>Resources\iRate.bundle\es.lproj\Localizable.strings</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\externals\iRateLib\iRate\iRate\iRate.bundle\fa.lproj\Localizable.strings">
+      <Link>Resources\iRate.bundle\fa.lproj\Localizable.strings</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\externals\iRateLib\iRate\iRate\iRate.bundle\fr.lproj\Localizable.strings">
+      <Link>Resources\iRate.bundle\fr.lproj\Localizable.strings</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\externals\iRateLib\iRate\iRate\iRate.bundle\he.lproj\Localizable.strings">
+      <Link>Resources\iRate.bundle\he.lproj\Localizable.strings</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\externals\iRateLib\iRate\iRate\iRate.bundle\hi.lproj\Localizable.strings">
+      <Link>Resources\iRate.bundle\hi.lproj\Localizable.strings</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\externals\iRateLib\iRate\iRate\iRate.bundle\id.lproj\Localizable.strings">
+      <Link>Resources\iRate.bundle\id.lproj\Localizable.strings</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\externals\iRateLib\iRate\iRate\iRate.bundle\it.lproj\Localizable.strings">
+      <Link>Resources\iRate.bundle\it.lproj\Localizable.strings</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\externals\iRateLib\iRate\iRate\iRate.bundle\ja.lproj\Localizable.strings">
+      <Link>Resources\iRate.bundle\ja.lproj\Localizable.strings</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\externals\iRateLib\iRate\iRate\iRate.bundle\ko.lproj\Localizable.strings">
+      <Link>Resources\iRate.bundle\ko.lproj\Localizable.strings</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\externals\iRateLib\iRate\iRate\iRate.bundle\mk.lproj\Localizable.strings">
+      <Link>Resources\iRate.bundle\mk.lproj\Localizable.strings</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\externals\iRateLib\iRate\iRate\iRate.bundle\nl.lproj\Localizable.strings">
+      <Link>Resources\iRate.bundle\nl.lproj\Localizable.strings</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\externals\iRateLib\iRate\iRate\iRate.bundle\no.lproj\Localizable.strings">
+      <Link>Resources\iRate.bundle\no.lproj\Localizable.strings</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\externals\iRateLib\iRate\iRate\iRate.bundle\pa.lproj\Localizable.strings">
+      <Link>Resources\iRate.bundle\pa.lproj\Localizable.strings</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\externals\iRateLib\iRate\iRate\iRate.bundle\pl.lproj\Localizable.strings">
+      <Link>Resources\iRate.bundle\pl.lproj\Localizable.strings</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\externals\iRateLib\iRate\iRate\iRate.bundle\pt.lproj\Localizable.strings">
+      <Link>Resources\iRate.bundle\pt.lproj\Localizable.strings</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\externals\iRateLib\iRate\iRate\iRate.bundle\ru.lproj\Localizable.strings">
+      <Link>Resources\iRate.bundle\ru.lproj\Localizable.strings</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\externals\iRateLib\iRate\iRate\iRate.bundle\sk.lproj\Localizable.strings">
+      <Link>Resources\iRate.bundle\sk.lproj\Localizable.strings</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\externals\iRateLib\iRate\iRate\iRate.bundle\sl.lproj\Localizable.strings">
+      <Link>Resources\iRate.bundle\sl.lproj\Localizable.strings</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\externals\iRateLib\iRate\iRate\iRate.bundle\sv.lproj\Localizable.strings">
+      <Link>Resources\iRate.bundle\sv.lproj\Localizable.strings</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\externals\iRateLib\iRate\iRate\iRate.bundle\th.lproj\Localizable.strings">
+      <Link>Resources\iRate.bundle\th.lproj\Localizable.strings</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\externals\iRateLib\iRate\iRate\iRate.bundle\tr.lproj\Localizable.strings">
+      <Link>Resources\iRate.bundle\tr.lproj\Localizable.strings</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\externals\iRateLib\iRate\iRate\iRate.bundle\uk.lproj\Localizable.strings">
+      <Link>Resources\iRate.bundle\uk.lproj\Localizable.strings</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\externals\iRateLib\iRate\iRate\iRate.bundle\ur-IN.lproj\Localizable.strings">
+      <Link>Resources\iRate.bundle\ur-IN.lproj\Localizable.strings</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\externals\iRateLib\iRate\iRate\iRate.bundle\ur-PK.lproj\Localizable.strings">
+      <Link>Resources\iRate.bundle\ur-PK.lproj\Localizable.strings</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\externals\iRateLib\iRate\iRate\iRate.bundle\ur.lproj\Localizable.strings">
+      <Link>Resources\iRate.bundle\ur.lproj\Localizable.strings</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\externals\iRateLib\iRate\iRate\iRate.bundle\vi.lproj\Localizable.strings">
+      <Link>Resources\iRate.bundle\vi.lproj\Localizable.strings</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\externals\iRateLib\iRate\iRate\iRate.bundle\zh-Hans.lproj\Localizable.strings">
+      <Link>Resources\iRate.bundle\zh-Hans.lproj\Localizable.strings</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\externals\iRateLib\iRate\iRate\iRate.bundle\zh-Hant.lproj\Localizable.strings">
+      <Link>Resources\iRate.bundle\zh-Hant.lproj\Localizable.strings</Link>
+    </BundleResource>
+  </ItemGroup>
+</Project>

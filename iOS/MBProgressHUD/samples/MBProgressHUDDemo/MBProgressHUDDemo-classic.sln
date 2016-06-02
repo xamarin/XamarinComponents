@@ -1,0 +1,36 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MBProgressHUDDemo-classic", "MBProgressHUDDemo\MBProgressHUDDemo-classic.csproj", "{9B7943D5-29E1-4F04-B9F5-0D640BB05D06}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MBProgressHUD-classic", "..\..\source\MBProgressHUD\MBProgressHUD-classic.csproj", "{579C7FCC-25D7-446A-B75E-C1E21689D4CA}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|iPhoneSimulator = Debug|iPhoneSimulator
+		Release|iPhoneSimulator = Release|iPhoneSimulator
+		Debug|iPhone = Debug|iPhone
+		Release|iPhone = Release|iPhone
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{579C7FCC-25D7-446A-B75E-C1E21689D4CA}.Debug|iPhone.ActiveCfg = Debug|Any CPU
+		{579C7FCC-25D7-446A-B75E-C1E21689D4CA}.Debug|iPhone.Build.0 = Debug|Any CPU
+		{579C7FCC-25D7-446A-B75E-C1E21689D4CA}.Debug|iPhoneSimulator.ActiveCfg = Debug|Any CPU
+		{579C7FCC-25D7-446A-B75E-C1E21689D4CA}.Debug|iPhoneSimulator.Build.0 = Debug|Any CPU
+		{579C7FCC-25D7-446A-B75E-C1E21689D4CA}.Release|iPhone.ActiveCfg = Release|Any CPU
+		{579C7FCC-25D7-446A-B75E-C1E21689D4CA}.Release|iPhone.Build.0 = Release|Any CPU
+		{579C7FCC-25D7-446A-B75E-C1E21689D4CA}.Release|iPhoneSimulator.ActiveCfg = Release|Any CPU
+		{579C7FCC-25D7-446A-B75E-C1E21689D4CA}.Release|iPhoneSimulator.Build.0 = Release|Any CPU
+		{9B7943D5-29E1-4F04-B9F5-0D640BB05D06}.Debug|iPhone.ActiveCfg = Debug|iPhone
+		{9B7943D5-29E1-4F04-B9F5-0D640BB05D06}.Debug|iPhone.Build.0 = Debug|iPhone
+		{9B7943D5-29E1-4F04-B9F5-0D640BB05D06}.Debug|iPhoneSimulator.ActiveCfg = Debug|iPhoneSimulator
+		{9B7943D5-29E1-4F04-B9F5-0D640BB05D06}.Debug|iPhoneSimulator.Build.0 = Debug|iPhoneSimulator
+		{9B7943D5-29E1-4F04-B9F5-0D640BB05D06}.Release|iPhone.ActiveCfg = Release|iPhone
+		{9B7943D5-29E1-4F04-B9F5-0D640BB05D06}.Release|iPhone.Build.0 = Release|iPhone
+		{9B7943D5-29E1-4F04-B9F5-0D640BB05D06}.Release|iPhoneSimulator.ActiveCfg = Release|iPhoneSimulator
+		{9B7943D5-29E1-4F04-B9F5-0D640BB05D06}.Release|iPhoneSimulator.Build.0 = Release|iPhoneSimulator
+	EndGlobalSection
+	GlobalSection(MonoDevelopProperties) = preSolution
+		StartupItem = MBProgressHUDDemo\MBProgressHUDDemo-classic.csproj
+	EndGlobalSection
+EndGlobal

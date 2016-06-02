@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<package>
+  <metadata>
+    <id>AutoFitTextView</id>
+    <title>AutoFitTextView</title>
+    <version>0.2.1.0</version>
+    <authors>Xamarin Inc.</authors>
+    <owners>Xamarin Inc.</owners>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>A TextView that automatically resizes text to fit perfectly within its bounds.</description>
+    <copyright>Copyright 2015 Xamarin Inc</copyright>
+    <iconUrl>https://xamarin-component-icons.s3.amazonaws.com/AutoFitTextView.png</iconUrl>
+    <projectUrl>https://components.xamarin.com/view/AutoFitTextView</projectUrl>
+    <licenseUrl>https://components.xamarin.com/license/AutoFitTextView</licenseUrl>
+    <dependencies>
+    </dependencies>
+  </metadata>
+  <files>  
+    <file src="output/AutoFitTextView.dll" target="lib\MonoAndroid403" />
+  </files>
+</package>

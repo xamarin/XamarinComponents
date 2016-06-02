@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+	<style name="FloatingActionButton">
+		<item name="elevation">6dp</item>
+		<item name="fabSize">normal</item>
+		<item name="pressedTranslationZ">12dp</item>
+		<item name="borderWidth">0dp</item>
+	</style>
+</resources>

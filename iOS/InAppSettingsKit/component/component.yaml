@@ -1,0 +1,17 @@
+version: 2.6.0.0
+name: InAppSettingsKit
+id: InAppSettingsKit
+publisher: Xamarin Inc
+publisher-url: https://xamarin.com
+src-url: https://github.com/xamarin/XamarinComponents/tree/master/iOS/InAppSettingsKit
+summary: This iOS framework allows settings to be in-app in addition to being in the Settings app.
+icons:
+  - icons/InAppSettingsKit_128x128.png
+  - icons/InAppSettingsKit_512x512.png
+libraries:
+  ios: ../output/classic/InAppSettingsKit.dll
+  ios-unified: ../output/unified/InAppSettingsKit.dll
+samples:
+  - name: "InAppSettingsKit Sample"
+    path:  ../samples/InAppSettingsKitSample.sln
+no_build: true

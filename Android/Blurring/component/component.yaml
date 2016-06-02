@@ -1,0 +1,26 @@
+version: 1.0.0
+name: Blurring
+id: Blurring
+publisher: Xamarin Inc
+publisher-url: http://xamarin.com/
+src-url: https://github.com/xamarin/XamarinComponents/tree/master/Android/Blurring
+summary: A custom view for presenting a dynamically blurred version of another view's content.
+
+license: License.md
+details: Details.md
+getting-started: GettingStarted.md
+
+icons:
+  - ../images/icon_128x128.png
+  - ../images/icon_512x512.png
+
+no_build: true
+libraries:
+  android: ../output/Blurring.dll
+is_shell: true
+packages:
+  android: Blurring, Version=1.0.0
+
+samples:
+  - name: "Android Sample"
+    path: ../samples/BlurringSample.sln

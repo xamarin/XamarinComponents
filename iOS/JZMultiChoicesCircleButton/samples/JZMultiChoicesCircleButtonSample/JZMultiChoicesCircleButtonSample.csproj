@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">iPhoneSimulator</Platform>
+    <ProjectTypeGuids>{FEACFBD2-3405-455C-9665-78FE426C6842};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <ProjectGuid>{5BAB2742-2AA4-48BD-B7F8-FD53385F7DB4}</ProjectGuid>
+    <OutputType>Exe</OutputType>
+    <RootNamespace>JZMultiChoicesCircleButtonSample</RootNamespace>
+    <IPhoneResourcePrefix>Resources</IPhoneResourcePrefix>
+    <AssemblyName>JZMultiChoicesCircleButtonSample</AssemblyName>
+    <XamarinInsightsApiKey>4c0ef15ed64ddbe26a0e2610a4a5d2bd8fffd617</XamarinInsightsApiKey>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|iPhoneSimulator' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\iPhoneSimulator\Debug</OutputPath>
+    <DefineConstants>DEBUG;ENABLE_TEST_CLOUD;</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <ConsolePause>false</ConsolePause>
+    <MtouchArch>i386</MtouchArch>
+    <MtouchLink>None</MtouchLink>
+    <MtouchUseRefCounting>true</MtouchUseRefCounting>
+    <MtouchUseSGen>true</MtouchUseSGen>
+    <MtouchFastDev>true</MtouchFastDev>
+    <MtouchDebug>true</MtouchDebug>
+    <CodesignKey>iPhone Developer</CodesignKey>
+    <MtouchProfiling>true</MtouchProfiling>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhone' ">
+    <DebugType>full</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\iPhone\Release</OutputPath>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <ConsolePause>false</ConsolePause>
+    <MtouchArch>ARMv7, ARM64</MtouchArch>
+    <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
+    <MtouchFloat32>true</MtouchFloat32>
+    <MtouchUseSGen>true</MtouchUseSGen>
+    <CodesignKey>iPhone Developer</CodesignKey>
+    <MtouchUseRefCounting>true</MtouchUseRefCounting>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhoneSimulator' ">
+    <DebugType>full</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\iPhoneSimulator\Release</OutputPath>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <ConsolePause>false</ConsolePause>
+    <MtouchArch>i386</MtouchArch>
+    <MtouchLink>None</MtouchLink>
+    <MtouchUseRefCounting>true</MtouchUseRefCounting>
+    <CodesignKey>iPhone Developer</CodesignKey>
+    <MtouchUseSGen>true</MtouchUseSGen>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|iPhone' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\iPhone\Debug</OutputPath>
+    <DefineConstants>DEBUG;ENABLE_TEST_CLOUD;</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <ConsolePause>false</ConsolePause>
+    <MtouchArch>ARMv7, ARM64</MtouchArch>
+    <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
+    <MtouchFloat32>true</MtouchFloat32>
+    <CodesignKey>iPhone Developer</CodesignKey>
+    <DeviceSpecificBuild>true</DeviceSpecificBuild>
+    <MtouchDebug>true</MtouchDebug>
+    <MtouchUseSGen>true</MtouchUseSGen>
+    <MtouchUseRefCounting>true</MtouchUseRefCounting>
+    <MtouchProfiling>true</MtouchProfiling>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Core" />
+    <Reference Include="Xamarin.iOS" />
+  </ItemGroup>
+  <ItemGroup>
+    <InterfaceDefinition Include="Resources\LaunchScreen.xib" />
+    <InterfaceDefinition Include="Main.storyboard" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Info.plist" />
+    <None Include="Entitlements.plist" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Main.cs" />
+    <Compile Include="AppDelegate.cs" />
+    <Compile Include="ViewController.cs" />
+    <Compile Include="ViewController.designer.cs">
+      <DependentUpon>ViewController.cs</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
+  <ItemGroup>
+    <ProjectReference Include="..\..\source\JZMultiChoice\JZMultiChoice.csproj">
+      <Project>{ACF8EC79-0DA1-49E8-8C5B-7C44309DD19A}</Project>
+      <Name>JZMultiChoice</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <ImageAsset Include="Resources\Images.xcassets\AppIcons.appiconset\Contents.json" />
+    <ImageAsset Include="Resources\Images.xcassets\LaunchImages.launchimage\Contents.json" />
+    <ImageAsset Include="Resources\Images.xcassets\Contents.json" />
+    <ImageAsset Include="Resources\Images.xcassets\BackGound.imageset\Contents.json" />
+    <ImageAsset Include="Resources\Images.xcassets\BackGound.imageset\IMG_1793.jpg" />
+    <ImageAsset Include="Resources\Images.xcassets\CalenderRound.imageset\CalenderRound.png" />
+    <ImageAsset Include="Resources\Images.xcassets\CalenderRound.imageset\CalenderRound%402x.png" />
+    <ImageAsset Include="Resources\Images.xcassets\CalenderRound.imageset\CalenderRound%403x.png" />
+    <ImageAsset Include="Resources\Images.xcassets\CalenderRound.imageset\Contents.json" />
+    <ImageAsset Include="Resources\Images.xcassets\CompleteRound.imageset\CompleteRound.png" />
+    <ImageAsset Include="Resources\Images.xcassets\CompleteRound.imageset\CompleteRound%402x.png" />
+    <ImageAsset Include="Resources\Images.xcassets\CompleteRound.imageset\CompleteRound%403x.png" />
+    <ImageAsset Include="Resources\Images.xcassets\CompleteRound.imageset\Contents.json" />
+    <ImageAsset Include="Resources\Images.xcassets\MarkRound.imageset\Contents.json" />
+    <ImageAsset Include="Resources\Images.xcassets\MarkRound.imageset\MarkRound.png" />
+    <ImageAsset Include="Resources\Images.xcassets\MarkRound.imageset\MarkRound%402x.png" />
+    <ImageAsset Include="Resources\Images.xcassets\MarkRound.imageset\MarkRound%403x.png" />
+    <ImageAsset Include="Resources\Images.xcassets\send.imageset\Contents.json" />
+    <ImageAsset Include="Resources\Images.xcassets\send.imageset\send.png" />
+    <ImageAsset Include="Resources\Images.xcassets\send.imageset\send%402x.png" />
+    <ImageAsset Include="Resources\Images.xcassets\send.imageset\send%403x.png" />
+    <ImageAsset Include="Resources\Images.xcassets\SendRound.imageset\Contents.json" />
+    <ImageAsset Include="Resources\Images.xcassets\SendRound.imageset\SendRound.png" />
+    <ImageAsset Include="Resources\Images.xcassets\SendRound.imageset\SendRound%402x.png" />
+    <ImageAsset Include="Resources\Images.xcassets\SendRound.imageset\SendRound%403x.png" />
+    <ImageAsset Include="Resources\Images.xcassets\Success.imageset\Contents.json" />
+    <ImageAsset Include="Resources\Images.xcassets\Success.imageset\Shape.png" />
+    <ImageAsset Include="Resources\Images.xcassets\Success.imageset\Shape%402x.png" />
+    <ImageAsset Include="Resources\Images.xcassets\Success.imageset\Shape%403x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Resources\Images.xcassets\BackGound.imageset\" />
+    <Folder Include="Resources\Images.xcassets\CalenderRound.imageset\" />
+    <Folder Include="Resources\Images.xcassets\CompleteRound.imageset\" />
+    <Folder Include="Resources\Images.xcassets\MarkRound.imageset\" />
+    <Folder Include="Resources\Images.xcassets\send.imageset\" />
+    <Folder Include="Resources\Images.xcassets\SendRound.imageset\" />
+    <Folder Include="Resources\Images.xcassets\Success.imageset\" />
+  </ItemGroup>
+</Project>

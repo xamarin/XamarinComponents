@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<package >
+  <metadata>
+    <id>DeviceYearClass</id>
+    <title>Device Year Class for Xamarin.Android</title>
+    <version>1.0.0</version>
+    <authors>Xamarin Inc.</authors>
+    <owners>Xamarin Inc.</owners>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>A library that analyzes an Android device's specifications and calculates which year the device would be considered "high end".</description>
+    <copyright>Copyright 2015</copyright>
+    <iconUrl>https://xamarin-component-icons.s3.amazonaws.com/DeviceYearClass.png</iconUrl>
+    <projectUrl>https://components.xamarin.com/view/DeviceYearClass</projectUrl>
+    <licenseUrl>https://components.xamarin.com/license/DeviceYearClass</licenseUrl>
+    <dependencies>
+    </dependencies>
+  </metadata>
+  <files>  
+    <file src="output/DeviceYearClass.dll" target="lib\MonoAndroid10" />
+  </files>
+</package>

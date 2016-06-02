@@ -1,0 +1,30 @@
+version: 1.0.0.1
+name: Pull To Bounce
+id: pulltobounce
+publisher: Xamarin Inc
+publisher-url: http://xamarin.com
+src-url: https://github.com/xamarin/XamarinComponents/tree/master/iOS/PullToBounce
+summary: Pull To Bounce can wrap any UIScrollView and add a cool, bouncy pull-to-refresh animation 
+
+no_build: true
+
+icons:
+  - ../images/icon_128x128.png
+  - ../images/icon_512x512.png
+
+libraries:
+  ios: ../output/classic/PullToBounce.dll
+  ios-unified: ../output/unified/PullToBounce.dll
+
+samples:
+  - name: "Storyboard Sample"
+    path: ../samples/PullToBounceSample/PullToBounceSample.sln
+    configuration: "Release"
+  - name: "Table View Controller Sample"
+    path: ../samples/PullToBounceTableViewControllerSample/PullToBounceTableViewControllerSample.sln
+    configuration: "Release"
+  - name: "Classic API Sample"
+    path: ../samples/PullToBounceSample-Classic/PullToBounceSample-Classic.sln
+    configuration: "Release"
+
+monodoc: ../docs/

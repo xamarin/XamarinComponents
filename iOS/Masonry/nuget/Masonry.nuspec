@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<package>
+  <metadata>
+    <id>Masonry</id>
+    <title>Masonry</title>
+    <version>0.6.4.0</version>
+    <authors>Xamarin Inc.</authors>
+    <owners>Xamarin Inc.</owners>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>Harness the power of Auto Layout NSLayoutConstraints with a simplified, chainable and expressive syntax.</description>
+    <copyright>Copyright 2015 Xamarin Inc</copyright>
+    <projectUrl>https://components.xamarin.com/view/Masonry</projectUrl>
+    <licenseUrl>https://components.xamarin.com/license/Masonry</licenseUrl>
+  </metadata>
+  <files>
+    <file src="output/unified/Masonry.dll" target="lib\Xamarin.iOS" />
+    <file src="output/classic/Masonry.dll" target="lib\MonoTouch" />
+  </files>
+</package>

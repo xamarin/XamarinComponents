@@ -1,0 +1,25 @@
+version: 2.2.1
+name: Rounded Image View
+id: RoundedImageView
+publisher: Xamarin Inc
+publisher-url: http://xamarin.com/
+src-url: https://github.com/xamarin/XamarinComponents/tree/master/Android/RoundedImageView
+summary: A fast ImageView (and Drawable) that supports rounded corners (and ovals or circles).
+
+license: License.md
+details: Details.md
+getting-started: GettingStarted.md
+
+icons:
+  - ../images/icon_128x128.png
+  - ../images/icon_512x512.png
+
+no_build: true
+libraries:
+  android: ../output/RoundedImageView.dll
+packages:
+  android: Square.Picasso, Version=2.5.2.1
+
+samples:
+  - name: "Android Sample"
+    path: ../samples/RoundedImageViewSample.sln

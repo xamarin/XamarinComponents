@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>0C78246B-4982-4014-BAFF-804F1138DEC5</string>
+	<key>IDESourceControlProjectName</key>
+	<string>JSQMessagesViewControllerLib</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>3295696B2ABB63B244A5608CBC7B986155E10CBC</key>
+		<string>github.com:jessesquires/JSQSystemSoundPlayer.git</string>
+		<key>90530B99EB0008E7A50951FDFBE02169118FA649</key>
+		<string>github.com:jessesquires/JSQMessagesViewController.git</string>
+		<key>FADD6B378A74209A7A73165B4635988BCB59FF21</key>
+		<string>github.com:xamarin/Xamarin-Bindings.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>JSQMessagesViewController/extern/ios/JSQMessagesViewControllerLib/JSQMessagesViewControllerLib.xcodeproj</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>3295696B2ABB63B244A5608CBC7B986155E10CBC</key>
+		<string>../../../../../..JSQMessagesViewController/extern/ios/JSQSystemSoundPlayer</string>
+		<key>90530B99EB0008E7A50951FDFBE02169118FA649</key>
+		<string>../../../../../..JSQMessagesViewController/extern/ios/JSQMessagesViewController</string>
+		<key>FADD6B378A74209A7A73165B4635988BCB59FF21</key>
+		<string>../../../../../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>github.com:xamarin/Xamarin-Bindings.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>111</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>FADD6B378A74209A7A73165B4635988BCB59FF21</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>90530B99EB0008E7A50951FDFBE02169118FA649</string>
+			<key>IDESourceControlWCCName</key>
+			<string>JSQMessagesViewController</string>
+		</dict>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>3295696B2ABB63B244A5608CBC7B986155E10CBC</string>
+			<key>IDESourceControlWCCName</key>
+			<string>JSQSystemSoundPlayer</string>
+		</dict>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>FADD6B378A74209A7A73165B4635988BCB59FF21</string>
+			<key>IDESourceControlWCCName</key>
+			<string>Xamarin-Bindings</string>
+		</dict>
+	</array>
+</dict>
+</plist>

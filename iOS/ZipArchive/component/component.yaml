@@ -1,0 +1,17 @@
+version: 1.4.0.1
+name: ZipArchive
+id: ZipArchive
+publisher: Xamarin Inc
+publisher-url: https://xamarin.com
+src-url: https://github.com/xamarin/XamarinComponents/tree/master/iOS/ZipArchive
+summary: Add zip and unzip archive ability to your Xamarin.iOS project
+icons:
+  - icons/ZipArchive_128x128.png
+  - icons/ZipArchive_512x512.png
+libraries:
+  ios: ../output/classic/ZipArchive.dll
+  ios-unified: ../output/unified/ZipArchive.dll
+samples:
+  - name: "Zip Archive Sample"
+    path:  ../samples/ZipArchiveSample.sln
+no_build: true

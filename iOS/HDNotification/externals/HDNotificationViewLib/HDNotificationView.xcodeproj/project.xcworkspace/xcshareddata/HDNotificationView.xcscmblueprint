@@ -1,0 +1,30 @@
+{
+  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "11AEAC1CAE2E83062489933FDA33CC629E5B4984",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyRepositoryLocationsKey" : {
+
+  },
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
+    "11AEAC1CAE2E83062489933FDA33CC629E5B4984" : 0,
+    "AD1828ACA2DDFA7329D2D25952C0C200BEA3F710" : 0
+  },
+  "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "9594162F-6EB4-4B27-AAFA-60BF8560B1CC",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
+    "11AEAC1CAE2E83062489933FDA33CC629E5B4984" : "components\/",
+    "AD1828ACA2DDFA7329D2D25952C0C200BEA3F710" : "components\/CI\/iOS\/HDNotificationView\/externals\/HDNotificationView\/"
+  },
+  "DVTSourceControlWorkspaceBlueprintNameKey" : "HDNotificationView",
+  "DVTSourceControlWorkspaceBlueprintVersion" : 204,
+  "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "CI\/iOS\/HDNotificationView\/externals\/HDNotificationViewLib\/HDNotificationView.xcodeproj",
+  "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "github.com:xamarin\/components.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "11AEAC1CAE2E83062489933FDA33CC629E5B4984"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "github.com:nhdang103\/HDNotificationView.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "AD1828ACA2DDFA7329D2D25952C0C200BEA3F710"
+    }
+  ]
+}

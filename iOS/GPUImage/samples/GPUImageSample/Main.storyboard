@@ -1,0 +1,706 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9060" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="9">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9051"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+    </dependencies>
+    <scenes>
+        <!--Scroll-->
+        <!--Table-->
+        <!--Collection-->
+        <!--Tab Bar Controller-->
+        <scene sceneID="8">
+            <objects>
+                <navigationController definesPresentationContext="YES" id="9" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="12">
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                        <rect key="frame" x="0.0" y="20" width="880" height="44"/>
+                    </navigationBar>
+                    <connections>
+                        <segue id="53" destination="21" kind="relationship" relationship="rootViewController"/>
+                    </connections>
+                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <size key="freeformSize" width="600" height="700"/>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="13" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="135" y="90"/>
+        </scene>
+        <scene sceneID="20">
+            <objects>
+                <tableViewController id="21" sceneMemberID="viewController" customClass="MainViewController">
+                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="22">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="700"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <connections>
+                            <outlet property="dataSource" destination="21" id="23"/>
+                            <outlet property="delegate" destination="21" id="24"/>
+                        </connections>
+                        <sections>
+                            <tableViewSection headerTitle="Simple Examples" id="55">
+                                <cells>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="56" rowHeight="44" style="IBUITableViewCellStyleSubtitle" textLabel="411" accessoryType="disclosureIndicator" detailTextLabel="412">
+                                        <rect key="frame" x="0.0" y="55.5" width="600" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="56" id="57">
+                                            <rect key="frame" x="0.0" y="0.0" width="562" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Image Filters" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="411">
+                                                    <rect key="frame" x="20" y="6" width="93" height="19.5"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Using the Tilt Shift image filter with GPUImageView" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="412">
+                                                    <rect key="frame" x="20" y="25.5" width="269" height="13.5"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                                                    <color key="textColor" colorSpace="calibratedWhite" white="0.666666666666667" alpha="1"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <segue id="338" destination="66" kind="show"/>
+                                        </connections>
+                                    </tableViewCell>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="58" rowHeight="44" style="IBUITableViewCellStyleSubtitle" textLabel="423" detailTextLabel="424" accessoryType="disclosureIndicator">
+                                        <rect key="frame" x="0.0" y="99.5" width="600" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="58" id="59">
+                                            <rect key="frame" x="0.0" y="0.0" width="562" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Image Resample" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="423">
+                                                    <rect key="frame" x="20" y="6" width="119.5" height="19.5"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Resampling using Linear, Lanczos and Trilinear to UIImage" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="424">
+                                                    <rect key="frame" x="20" y="25.5" width="305.5" height="13.5"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                                                    <color key="textColor" colorSpace="calibratedWhite" white="0.666666666666667" alpha="1"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <segue id="485" destination="391" kind="show"/>
+                                        </connections>
+                                    </tableViewCell>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="60" rowHeight="44" style="IBUITableViewCellStyleSubtitle" textLabel="614" detailTextLabel="615" accessoryType="disclosureIndicator">
+                                        <rect key="frame" x="0.0" y="143.5" width="600" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="60" id="61">
+                                            <rect key="frame" x="0.0" y="0.0" width="562" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Filtered Image Files" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="614">
+                                                    <rect key="frame" x="20" y="6" width="140.5" height="19.5"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Creating and storing filtered images in the file system" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="615">
+                                                    <rect key="frame" x="20" y="25.5" width="280.5" height="13.5"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                                                    <color key="textColor" colorSpace="calibratedWhite" white="0.666666666666667" alpha="1"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <segue id="612" destination="544" kind="show"/>
+                                        </connections>
+                                    </tableViewCell>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="649" rowHeight="44" style="IBUITableViewCellStyleSubtitle" textLabel="696" detailTextLabel="697" accessoryType="disclosureIndicator">
+                                        <rect key="frame" x="0.0" y="187.5" width="600" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="649" id="650">
+                                            <rect key="frame" x="0.0" y="0.0" width="562" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Filtered Video Files" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="696">
+                                                    <rect key="frame" x="20" y="6" width="137.5" height="19.5"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Applying filters to movies in real time" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="697">
+                                                    <rect key="frame" x="20" y="25.5" width="194" height="13.5"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                                                    <color key="textColor" colorSpace="calibratedWhite" white="0.666666666666667" alpha="1"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <segue id="693" destination="630" kind="show"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </cells>
+                            </tableViewSection>
+                            <tableViewSection headerTitle="Camera Exaples" id="716">
+                                <cells>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="717" rowHeight="44" style="IBUITableViewCellStyleSubtitle" textLabel="723" detailTextLabel="724" accessoryType="disclosureIndicator">
+                                        <rect key="frame" x="0.0" y="545" width="600" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="717" id="718">
+                                            <rect key="frame" x="0.0" y="0.0" width="562" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Capturing Filtered Photos" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="723">
+                                                    <rect key="frame" x="20" y="6" width="185.5" height="19.5"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Applying a real-time filter to the camera stream" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="724">
+                                                    <rect key="frame" x="20" y="25.5" width="248.5" height="13.5"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                                                    <color key="textColor" colorSpace="calibratedWhite" white="0.666666666666667" alpha="1"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <segue id="793" destination="728" kind="show" identifier="stillCamera"/>
+                                        </connections>
+                                    </tableViewCell>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="719" rowHeight="44" style="IBUITableViewCellStyleSubtitle" textLabel="725" detailTextLabel="726" accessoryType="disclosureIndicator">
+                                        <rect key="frame" x="0.0" y="589" width="600" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="719" id="720">
+                                            <rect key="frame" x="0.0" y="0.0" width="562" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Capturing Filtered Videos" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="725">
+                                                    <rect key="frame" x="20" y="6" width="184" height="19.5"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Applying a real-time filter to the video camera stream" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="726">
+                                                    <rect key="frame" x="20" y="25.5" width="280" height="13.5"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                                                    <color key="textColor" colorSpace="calibratedWhite" white="0.666666666666667" alpha="1"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <segue id="1359" destination="985" kind="show" identifier="videoCamera"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </cells>
+                            </tableViewSection>
+                            <tableViewSection headerTitle="Advanced Examples" id="1395">
+                                <cells>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="1398" rowHeight="44" style="IBUITableViewCellStyleSubtitle" textLabel="1554" detailTextLabel="1555" accessoryType="disclosureIndicator">
+                                        <rect key="frame" x="0.0" y="841" width="600" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="1398" id="1399">
+                                            <rect key="frame" x="0.0" y="0.0" width="562" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Multiple Views" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="1554">
+                                                    <rect key="frame" x="20" y="6" width="105" height="19.5"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Rendering a filter to multiple outputs simultaneously" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="1555">
+                                                    <rect key="frame" x="20" y="25.5" width="274" height="13.5"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                                                    <color key="textColor" colorSpace="calibratedWhite" white="0.666666666666667" alpha="1"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <segue id="1758" destination="1541" kind="show" identifier="multipleViews"/>
+                                        </connections>
+                                    </tableViewCell>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="1400" rowHeight="44" style="IBUITableViewCellStyleSubtitle" textLabel="1840" detailTextLabel="1841" accessoryType="disclosureIndicator">
+                                        <rect key="frame" x="0.0" y="885" width="600" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="1400" id="1401">
+                                            <rect key="frame" x="0.0" y="0.0" width="562" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Raw Data Filtering" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="1840">
+                                                    <rect key="frame" x="20" y="6" width="131.5" height="19.5"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Applying a filter and rendering the result to a byte array" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="1841">
+                                                    <rect key="frame" x="20" y="25.5" width="291" height="13.5"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                                                    <color key="textColor" colorSpace="calibratedWhite" white="0.666666666666667" alpha="1"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <segue id="1838" destination="1796" kind="show"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </cells>
+                            </tableViewSection>
+                        </sections>
+                    </tableView>
+                    <navigationItem title="GPU Image" id="52" key="navigationItem"/>
+                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <size key="freeformSize" width="600" height="700"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="27" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="924" y="86"/>
+        </scene>
+        <scene sceneID="65">
+            <objects>
+                <viewController id="66" sceneMemberID="viewController" title="Simple Image Filter" customClass="SimpleImageFilterViewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="63"/>
+                        <viewControllerLayoutGuide type="bottom" id="64"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="67">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="700"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" id="344" translatesAutoresizingMaskIntoConstraints="NO" customClass="GPUImageView">
+                                <rect key="frame" x="0.0" y="64" width="600" height="579"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                            </view>
+                            <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" id="345" translatesAutoresizingMaskIntoConstraints="NO">
+                                <rect key="frame" x="18" y="651" width="564" height="32"/>
+                                <constraints>
+                                    <constraint id="349" firstItem="345" firstAttribute="height" constant="31"/>
+                                </constraints>
+                                <connections>
+                                    <action selector="OnImageSliderChanged:" destination="66" id="354" eventType="valueChanged"/>
+                                </connections>
+                            </slider>
+                        </subviews>
+                        <constraints>
+                            <constraint id="347" firstItem="67" firstAttribute="trailingMargin" secondItem="345" secondAttribute="trailing"/>
+                            <constraint id="348" firstItem="345" firstAttribute="leading" secondItem="67" secondAttribute="leadingMargin"/>
+                            <constraint id="350" firstItem="344" firstAttribute="leading" secondItem="67" secondAttribute="leading"/>
+                            <constraint id="351" firstItem="344" firstAttribute="top" secondItem="63" secondAttribute="bottom"/>
+                            <constraint id="352" firstItem="67" firstAttribute="trailing" secondItem="344" secondAttribute="trailing"/>
+                            <constraint id="385" firstItem="67" firstAttribute="bottom" secondItem="345" secondAttribute="bottom" constant="18"/>
+                            <constraint id="513" firstItem="345" firstAttribute="top" secondItem="344" secondAttribute="bottom" constant="8"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="imageSlider" destination="345" id="name-outlet-345"/>
+                        <outlet property="imageView" destination="344" id="name-outlet-344"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="68" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="240" y="919"/>
+        </scene>
+        <scene sceneID="390">
+            <objects>
+                <viewController id="391" sceneMemberID="viewController" title="Simple Image Resample" customClass="SimpleResampleViewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="403"/>
+                        <viewControllerLayoutGuide type="bottom" id="407"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="396">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="700"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" id="393" translatesAutoresizingMaskIntoConstraints="NO">
+                                <rect key="frame" x="0.0" y="64" width="600" height="581"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                            </imageView>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="395">
+                                <rect key="frame" x="20" y="653" width="560" height="30"/>
+                                <constraints>
+                                    <constraint id="398" firstItem="395" firstAttribute="height" constant="29" ibExternalInspectedSegment="3"/>
+                                </constraints>
+                                <segments>
+                                    <segment title="Linear"/>
+                                    <segment title="Lanczos"/>
+                                    <segment title="Trilinear"/>
+                                </segments>
+                                <connections>
+                                    <action selector="OnResampleSelectorChanged:" destination="391" id="502" eventType="valueChanged"/>
+                                </connections>
+                            </segmentedControl>
+                        </subviews>
+                        <constraints>
+                            <constraint id="399" firstItem="396" firstAttribute="trailingMargin" secondItem="395" secondAttribute="trailing"/>
+                            <constraint id="400" firstItem="395" firstAttribute="leading" secondItem="396" secondAttribute="leadingMargin"/>
+                            <constraint id="401" firstItem="393" firstAttribute="leading" secondItem="396" secondAttribute="leading"/>
+                            <constraint id="402" firstItem="393" firstAttribute="top" secondItem="403" secondAttribute="bottom"/>
+                            <constraint id="404" firstItem="396" firstAttribute="trailing" secondItem="393" secondAttribute="trailing"/>
+                            <constraint id="406" firstItem="396" firstAttribute="bottom" secondItem="395" secondAttribute="bottom" constant="18"/>
+                            <constraint id="512" firstItem="395" firstAttribute="top" secondItem="393" secondAttribute="bottom" constant="8"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="resampleSelector" destination="395" id="name-outlet-395"/>
+                        <outlet property="imageView" destination="393" id="name-outlet-393"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="408" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="982" y="910"/>
+        </scene>
+        <scene sceneID="543">
+            <objects>
+                <viewController id="544" sceneMemberID="viewController" title="Quick Image File Filtering" customClass="SimpleImageFilesViewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="559"/>
+                        <viewControllerLayoutGuide type="bottom" id="563"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="549">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="700"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" id="548" translatesAutoresizingMaskIntoConstraints="NO">
+                                <rect key="frame" x="0.0" y="64" width="600" height="581"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                            </imageView>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="546">
+                                <rect key="frame" x="20" y="653" width="560" height="30"/>
+                                <constraints>
+                                    <constraint id="554" firstItem="546" firstAttribute="height" constant="29" ibExternalInspectedSegment="3"/>
+                                </constraints>
+                                <segments>
+                                    <segment title="Filter Source Image"/>
+                                    <segment title="Quick Image Filter"/>
+                                </segments>
+                                <connections>
+                                    <action selector="OnFilterSelectorChanged:" destination="544" id="616" eventType="valueChanged"/>
+                                </connections>
+                            </segmentedControl>
+                        </subviews>
+                        <constraints>
+                            <constraint id="555" firstItem="549" firstAttribute="trailingMargin" secondItem="546" secondAttribute="trailing"/>
+                            <constraint id="556" firstItem="546" firstAttribute="leading" secondItem="549" secondAttribute="leadingMargin"/>
+                            <constraint id="557" firstItem="548" firstAttribute="leading" secondItem="549" secondAttribute="leading"/>
+                            <constraint id="558" firstItem="548" firstAttribute="top" secondItem="559" secondAttribute="bottom"/>
+                            <constraint id="560" firstItem="549" firstAttribute="trailing" secondItem="548" secondAttribute="trailing"/>
+                            <constraint id="561" firstItem="549" firstAttribute="bottom" secondItem="546" secondAttribute="bottom" constant="18"/>
+                            <constraint id="562" firstItem="546" firstAttribute="top" secondItem="548" secondAttribute="bottom" constant="8"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="filteringSelector" destination="546" id="name-outlet-546"/>
+                        <outlet property="imageView" destination="548" id="547"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="564" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1713" y="918"/>
+        </scene>
+        <scene sceneID="629">
+            <objects>
+                <viewController id="630" sceneMemberID="viewController" title="Simple Video Filter" customClass="SimpVideoFilterViewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="642"/>
+                        <viewControllerLayoutGuide type="bottom" id="646"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="635">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="700"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" id="634" translatesAutoresizingMaskIntoConstraints="NO" customClass="GPUImageView">
+                                <rect key="frame" x="0.0" y="64" width="600" height="579"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                            </view>
+                            <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.1" minValue="0.0" maxValue="0.2" id="632" translatesAutoresizingMaskIntoConstraints="NO">
+                                <rect key="frame" x="18" y="651" width="564" height="32"/>
+                                <constraints>
+                                    <constraint id="637" firstItem="632" firstAttribute="height" constant="31"/>
+                                </constraints>
+                                <connections>
+                                    <action selector="OnPixelWidthChanged:" destination="630" id="695" eventType="valueChanged"/>
+                                </connections>
+                            </slider>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="100%" lineBreakMode="tailTruncation" id="698" translatesAutoresizingMaskIntoConstraints="NO" textAlignment="center" minimumFontSize="10">
+                                <rect key="frame" x="530" y="82" width="50" height="32"/>
+                                <color key="backgroundColor" colorSpace="calibratedWhite" white="0.333333333333333" alpha="1"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" colorSpace="calibratedWhite" white="1" alpha="1"/>
+                                <nil key="highlightedColor"/>
+                                <constraints>
+                                    <constraint id="701" firstItem="698" firstAttribute="height" constant="32"/>
+                                    <constraint id="702" firstItem="698" firstAttribute="width" constant="50"/>
+                                </constraints>
+                            </label>
+                        </subviews>
+                        <constraints>
+                            <constraint id="638" firstItem="635" firstAttribute="trailingMargin" secondItem="632" secondAttribute="trailing"/>
+                            <constraint id="639" firstItem="632" firstAttribute="leading" secondItem="635" secondAttribute="leadingMargin"/>
+                            <constraint id="640" firstItem="634" firstAttribute="leading" secondItem="635" secondAttribute="leading"/>
+                            <constraint id="641" firstItem="634" firstAttribute="top" secondItem="642" secondAttribute="bottom"/>
+                            <constraint id="643" firstItem="635" firstAttribute="trailing" secondItem="634" secondAttribute="trailing"/>
+                            <constraint id="644" firstItem="635" firstAttribute="bottom" secondItem="632" secondAttribute="bottom" constant="18"/>
+                            <constraint id="645" firstItem="632" firstAttribute="top" secondItem="634" secondAttribute="bottom" constant="8"/>
+                            <constraint id="699" firstItem="698" firstAttribute="top" secondItem="642" secondAttribute="bottom" constant="18"/>
+                            <constraint id="700" firstItem="635" firstAttribute="trailingMargin" secondItem="698" secondAttribute="trailing"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="pixelWidthSlider" destination="632" id="name-outlet-632"/>
+                        <outlet property="imageView" destination="634" id="633"/>
+                        <outlet property="progressLabel" destination="698" id="name-outlet-698"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="647" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2414" y="915"/>
+        </scene>
+        <scene sceneID="727">
+            <objects>
+                <viewController id="728" sceneMemberID="viewController" customClass="CameraPhotoViewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="740"/>
+                        <viewControllerLayoutGuide type="bottom" id="744"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="733">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="700"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" id="732" translatesAutoresizingMaskIntoConstraints="NO" customClass="GPUImageView">
+                                <rect key="frame" x="0.0" y="64" width="600" height="579"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                            </view>
+                            <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.1" minValue="0.0" maxValue="0.2" id="730" translatesAutoresizingMaskIntoConstraints="NO">
+                                <rect key="frame" x="18" y="651" width="564" height="32"/>
+                                <constraints>
+                                    <constraint id="735" firstItem="730" firstAttribute="height" constant="31"/>
+                                </constraints>
+                                <connections>
+                                    <action selector="OnImageSliderChanged:" destination="728" id="734" eventType="valueChanged"/>
+                                </connections>
+                            </slider>
+                        </subviews>
+                        <constraints>
+                            <constraint id="736" firstItem="733" firstAttribute="trailingMargin" secondItem="730" secondAttribute="trailing"/>
+                            <constraint id="737" firstItem="730" firstAttribute="leading" secondItem="733" secondAttribute="leadingMargin"/>
+                            <constraint id="738" firstItem="732" firstAttribute="leading" secondItem="733" secondAttribute="leading"/>
+                            <constraint id="739" firstItem="732" firstAttribute="top" secondItem="740" secondAttribute="bottom"/>
+                            <constraint id="741" firstItem="733" firstAttribute="trailing" secondItem="732" secondAttribute="trailing"/>
+                            <constraint id="742" firstItem="733" firstAttribute="bottom" secondItem="730" secondAttribute="bottom" constant="18"/>
+                            <constraint id="743" firstItem="730" firstAttribute="top" secondItem="732" secondAttribute="bottom" constant="8"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="imageSlider" destination="730" id="729"/>
+                        <outlet property="imageView" destination="732" id="731"/>
+                    </connections>
+                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
+                    <navigationItem title="Still Camera Filter" id="952" key="navigationItem">
+                        <barButtonItem id="909" translatesAutoresizingMaskIntoConstraints="NO" key="rightBarButtonItem" systemItem="camera">
+                            <connections>
+                                <action selector="OnTakePhoto:" destination="728" id="967"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="745" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="604" y="1758"/>
+        </scene>
+        <scene sceneID="984">
+            <objects>
+                <viewController id="985" sceneMemberID="viewController" customClass="CameraVideoViewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="1000"/>
+                        <viewControllerLayoutGuide type="bottom" id="1004"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="993">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="700"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" id="989" translatesAutoresizingMaskIntoConstraints="NO" customClass="GPUImageView">
+                                <rect key="frame" x="0.0" y="64" width="600" height="579"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                            </view>
+                            <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.1" minValue="0.0" maxValue="0.2" id="987" translatesAutoresizingMaskIntoConstraints="NO">
+                                <rect key="frame" x="18" y="651" width="564" height="32"/>
+                                <constraints>
+                                    <constraint id="995" firstItem="987" firstAttribute="height" constant="31"/>
+                                </constraints>
+                                <connections>
+                                    <action selector="OnImageSliderChanged:" destination="985" id="994" eventType="valueChanged"/>
+                                </connections>
+                            </slider>
+                        </subviews>
+                        <constraints>
+                            <constraint id="996" firstItem="993" firstAttribute="trailingMargin" secondItem="987" secondAttribute="trailing"/>
+                            <constraint id="997" firstItem="987" firstAttribute="leading" secondItem="993" secondAttribute="leadingMargin"/>
+                            <constraint id="998" firstItem="989" firstAttribute="leading" secondItem="993" secondAttribute="leading"/>
+                            <constraint id="999" firstItem="989" firstAttribute="top" secondItem="1000" secondAttribute="bottom"/>
+                            <constraint id="1001" firstItem="993" firstAttribute="trailing" secondItem="989" secondAttribute="trailing"/>
+                            <constraint id="1002" firstItem="993" firstAttribute="bottom" secondItem="987" secondAttribute="bottom" constant="18"/>
+                            <constraint id="1003" firstItem="987" firstAttribute="top" secondItem="989" secondAttribute="bottom" constant="8"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="imageSlider" destination="987" id="986"/>
+                        <outlet property="imageView" destination="989" id="988"/>
+                    </connections>
+                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
+                    <navigationItem title="Video Camera Filter" id="990" key="navigationItem">
+                        <barButtonItem id="991" translatesAutoresizingMaskIntoConstraints="NO" key="rightBarButtonItem" systemItem="camera">
+                            <connections>
+                                <action selector="OnTakePhoto:" destination="985" id="992"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="1005" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1322" y="1761"/>
+        </scene>
+        <scene sceneID="1540">
+            <objects>
+                <viewController id="1541" sceneMemberID="viewController" title="Multiple Views" customClass="MultipleViewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="1547"/>
+                        <viewControllerLayoutGuide type="bottom" id="1550"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="1544">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="700"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" id="1778" translatesAutoresizingMaskIntoConstraints="NO">
+                                <rect key="frame" x="0.0" y="64" width="600" height="636"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                            </view>
+                            <view contentMode="scaleToFill" id="1543" translatesAutoresizingMaskIntoConstraints="NO" customClass="GPUImageView">
+                                <rect key="frame" x="0.0" y="64" width="300" height="318"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                                <subviews/>
+                            </view>
+                            <view contentMode="scaleToFill" id="1760" translatesAutoresizingMaskIntoConstraints="NO" customClass="GPUImageView">
+                                <rect key="frame" x="300" y="64" width="300" height="318"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                                <subviews/>
+                            </view>
+                            <view contentMode="scaleToFill" id="1761" translatesAutoresizingMaskIntoConstraints="NO" customClass="GPUImageView">
+                                <rect key="frame" x="300" y="382" width="300" height="318"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                            </view>
+                            <view contentMode="scaleToFill" id="1762" translatesAutoresizingMaskIntoConstraints="NO" customClass="GPUImageView">
+                                <rect key="frame" x="0.0" y="382" width="300" height="318"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                            </view>
+                        </subviews>
+                        <constraints>
+                            <constraint id="1763" firstItem="1543" firstAttribute="top" secondItem="1547" secondAttribute="bottom"/>
+                            <constraint id="1764" firstItem="1543" firstAttribute="leading" secondItem="1544" secondAttribute="leading"/>
+                            <constraint id="1765" firstItem="1762" firstAttribute="leading" secondItem="1544" secondAttribute="leading"/>
+                            <constraint id="1766" firstItem="1762" firstAttribute="bottom" secondItem="1544" secondAttribute="bottom"/>
+                            <constraint id="1767" firstItem="1761" firstAttribute="trailing" secondItem="1544" secondAttribute="trailing"/>
+                            <constraint id="1768" firstItem="1761" firstAttribute="bottom" secondItem="1544" secondAttribute="bottom"/>
+                            <constraint id="1769" firstItem="1760" firstAttribute="trailing" secondItem="1544" secondAttribute="trailing"/>
+                            <constraint id="1770" firstItem="1547" firstAttribute="bottom" secondItem="1760" secondAttribute="top"/>
+                            <constraint id="1771" firstItem="1761" firstAttribute="height" secondItem="1543" secondAttribute="height"/>
+                            <constraint id="1772" firstItem="1760" firstAttribute="height" secondItem="1543" secondAttribute="height"/>
+                            <constraint id="1773" firstItem="1762" firstAttribute="height" secondItem="1543" secondAttribute="height"/>
+                            <constraint id="1774" firstItem="1762" firstAttribute="width" secondItem="1543" secondAttribute="width"/>
+                            <constraint id="1775" firstItem="1761" firstAttribute="width" secondItem="1543" secondAttribute="width"/>
+                            <constraint id="1776" firstItem="1760" firstAttribute="width" secondItem="1543" secondAttribute="width"/>
+                            <constraint id="1783" firstItem="1778" firstAttribute="leading" secondItem="1544" secondAttribute="leading"/>
+                            <constraint id="1784" firstItem="1778" firstAttribute="top" secondItem="1547" secondAttribute="bottom"/>
+                            <constraint id="1785" firstItem="1544" firstAttribute="trailing" secondItem="1778" secondAttribute="trailing"/>
+                            <constraint id="1786" firstItem="1544" firstAttribute="bottom" secondItem="1778" secondAttribute="bottom"/>
+                            <constraint id="1787" firstItem="1543" firstAttribute="height" secondItem="1778" secondAttribute="height" multiplier="0.5"/>
+                            <constraint id="1788" firstItem="1543" firstAttribute="width" secondItem="1778" secondAttribute="width" multiplier="0.5"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="topLeftImageView" destination="1543" id="name-outlet-1543"/>
+                        <outlet property="topRightImageView" destination="1760" id="name-outlet-1760"/>
+                        <outlet property="bottomLeftImageView" destination="1762" id="name-outlet-1762"/>
+                        <outlet property="bottomRightImageView" destination="1761" id="name-outlet-1761"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="1551" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="866" y="2562"/>
+        </scene>
+        <scene sceneID="1795">
+            <objects>
+                <viewController id="1796" sceneMemberID="viewController" title="Raw Data Filtering" customClass="RawDataViewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="1802"/>
+                        <viewControllerLayoutGuide type="bottom" id="1805"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="1799">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="700"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" id="1798" translatesAutoresizingMaskIntoConstraints="NO" customClass="GPUImageView">
+                                <rect key="frame" x="0.0" y="64" width="600" height="636"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                            </view>
+                        </subviews>
+                        <constraints>
+                            <constraint id="1800" firstItem="1798" firstAttribute="leading" secondItem="1799" secondAttribute="leading"/>
+                            <constraint id="1801" firstItem="1798" firstAttribute="top" secondItem="1802" secondAttribute="bottom"/>
+                            <constraint id="1803" firstItem="1799" firstAttribute="trailing" secondItem="1798" secondAttribute="trailing"/>
+                            <constraint id="1804" firstItem="1799" firstAttribute="bottom" secondItem="1798" secondAttribute="bottom"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="imageView" destination="1798" id="1797"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="1806" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1614" y="2568"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="Collection.png" width="27" height="27"/>
+        <image name="Scroll.png" width="26" height="27"/>
+        <image name="Table.png" width="26" height="27"/>
+        <image name="Lambeau.jpg" width="2000" height="1494"/>
+        <image name="WID-small.jpg" width="1494" height="2000"/>
+        <image name="xamagon.png" width="400" height="400"/>
+        <image name="Lambeau (copy).jpg" width="2000" height="1494"/>
+        <image name="lookup.png" width="512" height="512"/>
+        <image name="xamagon (copy).png" width="400" height="400"/>
+        <image name="lookup_amatorka.png" width="512" height="512"/>
+        <image name="lookup_miss_etikate.png" width="512" height="512"/>
+        <image name="lookup_soft_elegance_1.png" width="512" height="512"/>
+        <image name="lookup_soft_elegance_2.png" width="512" height="512"/>
+    </resources>
+</document>

@@ -1,0 +1,4 @@
+﻿<metadata>
+  <attr path="/api/package[@name='com.faradaj.blurbehind']" name="managedName">BlurBehindSdk</attr>
+  <attr path="/api/package[@name='com.faradaj.blurbehind.util']" name="managedName">BlurBehindSdk.Util</attr>
+</metadata>

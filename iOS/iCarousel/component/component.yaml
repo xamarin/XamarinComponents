@@ -1,0 +1,29 @@
+version: 1.8.2.0
+name: iCarousel
+id: icarousel
+publisher: Xamarin Inc
+publisher-url: https://xamarin.com
+src-url: https://github.com/xamarin/XamarinComponents/tree/master/iOS/iCarousel
+summary: iCarousel is designed to simplify the implementation of various types of carousel (paged, scrolling views) on iPhone and iPad.
+no_build: true
+libraries:
+  ios: ../output/classic/iCarousel.dll
+  ios-unified: ../output/unified/iCarousel.dll
+samples:
+  - name: "iOS Unified Sample"
+    path: ../samples/iCarouselSamples/iCarouselSamples.sln
+    removeFiles:
+      - BasiciOSExample/Makefile
+      - BasiciOSExample/BasiciOSExample-Classic.csproj
+  - name: "iOS Classic Sample"
+    path: ../samples/iCarouselSamples/iCarouselSamples-Classic.sln
+    removeFiles:
+      - BasiciOSExample/Makefile
+      - BasiciOSExample/BasiciOSExample.csproj
+monodoc: docs/
+screenshots:
+  - screenshots/screenshot1.png
+  - screenshots/screenshot2.png
+icons:
+ - icons/icarousel_128x128.png
+ - icons/icarousel_512x512.png

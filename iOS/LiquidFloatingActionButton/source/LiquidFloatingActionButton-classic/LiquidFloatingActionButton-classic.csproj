@@ -1,0 +1,72 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{82E99AED-4239-466C-A839-E17CFAAC48DC}</ProjectGuid>
+    <ProjectTypeGuids>{6BC8ED88-2882-458C-8E55-DFD12B67127B};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <RootNamespace>LiquidFloatingActionButtons</RootNamespace>
+    <IPhoneResourcePrefix>Resources</IPhoneResourcePrefix>
+    <AssemblyName>LiquidFloatingActionButton</AssemblyName>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug</OutputPath>
+    <DefineConstants>DEBUG</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <ConsolePause>false</ConsolePause>
+    <MtouchDebug>true</MtouchDebug>
+    <CodesignKey>iPhone Developer</CodesignKey>
+    <DocumentationFile>bin\Debug\LiquidFloatingActionButton.xml</DocumentationFile>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>none</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release</OutputPath>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <ConsolePause>false</ConsolePause>
+    <CodesignKey>iPhone Developer</CodesignKey>
+    <DocumentationFile>bin\Release\LiquidFloatingActionButton.xml</DocumentationFile>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="..\LiquidFloatingActionButton\CellSelectedEventArgs.cs">
+      <Link>CellSelectedEventArgs.cs</Link>
+    </Compile>
+    <Compile Include="..\LiquidFloatingActionButton\CircleLiquidBaseView.cs">
+      <Link>CircleLiquidBaseView.cs</Link>
+    </Compile>
+    <Compile Include="..\LiquidFloatingActionButton\CoreGraphicsExtensions.cs">
+      <Link>CoreGraphicsExtensions.cs</Link>
+    </Compile>
+    <Compile Include="..\LiquidFloatingActionButton\LiquidFloatingActionButton.cs">
+      <Link>LiquidFloatingActionButton.cs</Link>
+    </Compile>
+    <Compile Include="..\LiquidFloatingActionButton\LiquidFloatingActionButtonAnimateStyle.cs">
+      <Link>LiquidFloatingActionButtonAnimateStyle.cs</Link>
+    </Compile>
+    <Compile Include="..\LiquidFloatingActionButton\LiquidFloatingCell.cs">
+      <Link>LiquidFloatingCell.cs</Link>
+    </Compile>
+    <Compile Include="..\LiquidFloatingActionButton\LiquittableCircle.cs">
+      <Link>LiquittableCircle.cs</Link>
+    </Compile>
+    <Compile Include="..\LiquidFloatingActionButton\Properties\AssemblyInfo.cs">
+      <Link>Properties\AssemblyInfo.cs</Link>
+    </Compile>
+    <Compile Include="..\LiquidFloatingActionButton\SimpleCircleLiquidEngine.cs">
+      <Link>SimpleCircleLiquidEngine.cs</Link>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Core" />
+    <Reference Include="monotouch" />
+  </ItemGroup>
+  <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.MonoTouch.CSharp.targets" />
+</Project>

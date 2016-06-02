@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<package>
+  <metadata>
+    <id>GPUImage</id>
+    <title>GPUImage</title>
+    <version>0.1.7.1</version>
+    <authors>Xamarin Inc.</authors>
+    <owners>Xamarin Inc.</owners>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>An open source iOS framework for GPU-based image and video processing.</description>
+    <copyright>Copyright 2015 Xamarin Inc</copyright>
+    <projectUrl>https://components.xamarin.com/view/gpuimage</projectUrl>
+    <licenseUrl>https://components.xamarin.com/license/gpuimage</licenseUrl>
+  </metadata>
+  <files>
+    <file src="output/unified/GPUImage.dll" target="lib\Xamarin.iOS" />
+    <file src="output/classic/GPUImage.dll" target="lib\MonoTouch" />
+  </files>
+</package>

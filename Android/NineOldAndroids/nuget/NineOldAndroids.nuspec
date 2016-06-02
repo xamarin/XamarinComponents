@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<package >
+  <metadata>
+    <id>NineOldAndroids</id>
+    <title>Nine Old Androids for Xamarin.Android</title>
+    <version>2.4.0</version>
+    <authors>Xamarin Inc.</authors>
+    <owners>Xamarin Inc.</owners>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>Android library for using the Honeycomb animation API on all versions of Android.</description>
+    <copyright>Copyright 2015</copyright>
+    <iconUrl>https://xamarin-component-icons.s3.amazonaws.com/NineOldAndroids.png</iconUrl>
+    <projectUrl>https://components.xamarin.com/view/NineOldAndroids</projectUrl>
+    <licenseUrl>https://components.xamarin.com/license/NineOldAndroids</licenseUrl>
+    <dependencies>
+    </dependencies>
+  </metadata>
+  <files>  
+    <file src="output/NineOldAndroids.dll" target="lib\MonoAndroid23" />
+  </files>
+</package>

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <com.lyft.android.scissors.CropView
+        android:id="@+id/crop_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:cropviewViewportHeightRatio="1"
+        />
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/crop_fab"
+        style="@style/FloatingActionButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|center_horizontal"
+        android:layout_margin="@dimen/crop_fab_margin"
+        android:src="@drawable/ic_content_content_cut" />
+
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/pick_mini_fab"
+        style="@style/FloatingActionButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|end"
+        android:layout_margin="@dimen/pick_mini_fab_margin"
+        android:src="@drawable/ic_content_add"
+        app:fabSize="mini" />
+
+
+</FrameLayout>

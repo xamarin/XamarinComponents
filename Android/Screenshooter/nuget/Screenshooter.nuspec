@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<package>
+  <metadata>
+    <id>Screenshooter</id>
+    <title>Screenshooter for Xamarin.Android</title>
+    <version>1.0.0</version>
+    <authors>Xamarin Inc.</authors>
+    <owners>Xamarin Inc.</owners>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>The simplest way to take a screenshot of any view in your app.</description>
+    <copyright>Copyright 2015</copyright>
+    <iconUrl>https://xamarin-component-icons.s3.amazonaws.com/Screenshooter.png</iconUrl>
+    <projectUrl>https://components.xamarin.com/view/Screenshooter</projectUrl>
+    <licenseUrl>https://components.xamarin.com/license/Screenshooter</licenseUrl>
+    <dependencies>
+    </dependencies>
+  </metadata>
+  <files>  
+    <file src="output/Screenshooter.dll" target="lib\MonoAndroid23" />
+  </files>
+</package>

@@ -1,0 +1,26 @@
+version: 1.0.2.0
+name: Floating Search View
+id: FloatingSearchView
+publisher: Xamarin Inc
+publisher-url: http://xamarin.com/
+src-url: https://github.com/xamarin/XamarinComponents/tree/master/Android/FloatingSearchView
+summary: An implementation of a floating search box with search suggestions.
+
+license: License.md
+details: Details.md
+getting-started: GettingStarted.md
+
+icons:
+  - ../images/icon_128x128.png
+  - ../images/icon_512x512.png
+
+no_build: true
+libraries:
+  android: ../output/FloatingSearchView.dll
+
+samples:
+  - name: "Android Sample"
+    path: ../samples/FloatingSearchViewSample.sln
+    removeFiles:
+      - FloatingSearchViewSample/Makefile
+ 

@@ -1,0 +1,16 @@
+version: 1.9.1.0
+name: SlackTextViewController
+id: SlackTextViewController
+publisher: Xamarin Inc
+publisher-url: https://xamarin.com
+src-url: https://github.com/xamarin/XamarinComponents/tree/master/iOS/SlackTextViewController
+summary: A drop-in UIViewController subclass with a growing text input view and other useful messaging features.
+icons:
+  - icons/SlackTextViewController_128x128.png
+libraries:
+  ios: ../output/classic/SlackTextViewController.dll
+  ios-unified: ../output/unified/SlackTextViewController.dll
+samples:
+  - name: "iOS Sample"
+    path:  ../samples/SlackTextViewControllerSample.sln
+no_build: true
