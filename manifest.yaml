@@ -14,10 +14,6 @@
   BuildScript: ./Android/AndroidViewAnimations/build.cake
   TriggerPaths: [ Android/AndroidViewAnimations ]
   MacBuildTargets: [ samples, nuget, component ]
-- Name: AndroidVolley
-  BuildScript: ./Android/AndroidVolley/build.cake
-  TriggerPaths: [ Android/AndroidVolley ]
-  MacBuildTargets: [ samples, nuget, component ]
 - Name: AnimatedCircleLoadingView
   BuildScript: ./Android/AnimatedCircleLoadingView/build.cake
   TriggerPaths: [ Android/AnimatedCircleLoadingView ]
