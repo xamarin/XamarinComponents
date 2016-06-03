@@ -1,0 +1,20 @@
+﻿<metadata>
+	<!-- namespaces -->
+	<attr path="/api/package[@name='jp.wasabeef.recyclerview']" name="managedName">RecyclerViewAnimators</attr>
+	<attr path="/api/package[@name='jp.wasabeef.recyclerview.adapters']" name="managedName">RecyclerViewAnimators.Adapters</attr>
+	<attr path="/api/package[@name='jp.wasabeef.recyclerview.animators']" name="managedName">RecyclerViewAnimators.Animators</attr>
+	<attr path="/api/package[@name='jp.wasabeef.recyclerview.animators.holder']" name="managedName">RecyclerViewAnimators.Animators.Holder</attr>
+	
+	<!-- corrections -->
+	<remove-node path="/api/package[@name='jp.wasabeef.recyclerview.animators']/class[@name='BaseItemAnimator.DefaultAddVpaListener']" />
+	<remove-node path="/api/package[@name='jp.wasabeef.recyclerview.animators']/class[@name='BaseItemAnimator.DefaultRemoveVpaListener']" />
+
+	<!-- remove private/internal/implementation/deprecated types -->
+	<remove-node path="/api/package[@name='jp.wasabeef.recyclerview.internal']" />
+	<remove-node path="/api/package/class[@visibility='']" />
+	<remove-node path="/api/package/interface[@visibility='']" />
+	<remove-node path="/api/package/class[@deprecated='deprecated']" />
+	<remove-node path="/api/package/interface[@deprecated='deprecated']" />
+	<remove-node path="/api/package/class/method[@deprecated='deprecated']" />
+	<remove-node path="/api/package/interface/method[@deprecated='deprecated']" />
+</metadata>

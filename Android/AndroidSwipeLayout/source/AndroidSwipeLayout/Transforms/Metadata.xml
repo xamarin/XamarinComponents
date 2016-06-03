@@ -1,0 +1,49 @@
+﻿<metadata>
+	<!-- namespaces -->
+	<attr path="/api/package[@name='com.daimajia.swipe']" name="managedName">AndroidSwipeLayout</attr>
+	<attr path="/api/package[@name='com.daimajia.swipe.adapters']" name="managedName">AndroidSwipeLayout.Adapters</attr>
+	<attr path="/api/package[@name='com.daimajia.swipe.implments']" name="managedName">AndroidSwipeLayout.Implements</attr>
+	<attr path="/api/package[@name='com.daimajia.swipe.interfaces']" name="managedName">AndroidSwipeLayout.Interfaces</attr>
+	<attr path="/api/package[@name='com.daimajia.swipe.util']" name="managedName">AndroidSwipeLayout.Util</attr>
+
+	<!-- manually handle abstract override -->
+	<remove-node path="/api/package[@name='com.daimajia.swipe.adapters']/class[@name='RecyclerSwipeAdapter']/method[@name='onCreateViewHolder']" />
+	<remove-node path="/api/package[@name='com.daimajia.swipe.adapters']/class[@name='RecyclerSwipeAdapter']/method[@name='onBindViewHolder']" />
+
+	<!-- event params -->
+	<attr path="/api/package[@name='com.daimajia.swipe']/interface[@name='SwipeLayout.SwipeListener']/method[@name='onStartOpen']" name="managedName">OnOpening</attr>
+	<attr path="/api/package[@name='com.daimajia.swipe']/interface[@name='SwipeLayout.SwipeListener']/method[@name='onStartClose']" name="managedName">OnClosing</attr>
+	<attr path="/api/package[@name='com.daimajia.swipe']/interface[@name='SwipeLayout.SwipeListener']/method[@name='onOpen']" name="managedName">OnOpened</attr>
+	<attr path="/api/package[@name='com.daimajia.swipe']/interface[@name='SwipeLayout.SwipeListener']/method[@name='onClose']" name="managedName">OnClosed</attr>
+	<attr path="/api/package[@name='com.daimajia.swipe']/class[@name='SimpleSwipeListener']/method[@name='onStartOpen']" name="managedName">OnOpening</attr>
+	<attr path="/api/package[@name='com.daimajia.swipe']/class[@name='SimpleSwipeListener']/method[@name='onStartClose']" name="managedName">OnClosing</attr>
+	<attr path="/api/package[@name='com.daimajia.swipe']/class[@name='SimpleSwipeListener']/method[@name='onOpen']" name="managedName">OnOpened</attr>
+	<attr path="/api/package[@name='com.daimajia.swipe']/class[@name='SimpleSwipeListener']/method[@name='onClose']" name="managedName">OnClosed</attr>
+	<attr path="/api/package[@name='com.daimajia.swipe']/interface[@name='SwipeLayout.OnRevealListener']/method[@name='onReveal']/parameter[1]" name="managedName">child</attr>
+	<attr path="/api/package[@name='com.daimajia.swipe']/interface[@name='SwipeLayout.OnRevealListener']/method[@name='onReveal']/parameter[2]" name="managedName">edge</attr>
+	<attr path="/api/package[@name='com.daimajia.swipe']/interface[@name='SwipeLayout.OnRevealListener']/method[@name='onReveal']/parameter[3]" name="managedName">fraction</attr>
+	<attr path="/api/package[@name='com.daimajia.swipe']/interface[@name='SwipeLayout.OnRevealListener']/method[@name='onReveal']/parameter[4]" name="managedName">distance</attr>
+	<attr path="/api/package[@name='com.daimajia.swipe']/interface[@name='SwipeLayout.DoubleClickListener']/method[@name='onDoubleClick']/parameter[1]" name="managedName">layout</attr>
+	<attr path="/api/package[@name='com.daimajia.swipe']/interface[@name='SwipeLayout.DoubleClickListener']/method[@name='onDoubleClick']/parameter[2]" name="managedName">surface</attr>
+	<attr path="/api/package[@name='com.daimajia.swipe.adapters']/class[@name='BaseSwipeAdapter']/method[@name='fillValues']/parameter[1]" name="managedName">position</attr>
+	<attr path="/api/package[@name='com.daimajia.swipe.adapters']/class[@name='BaseSwipeAdapter']/method[@name='fillValues']/parameter[2]" name="managedName">convertView</attr>
+	<attr path="/api/package[@name='com.daimajia.swipe.adapters']/class[@name='BaseSwipeAdapter']/method[@name='generateView']/parameter[1]" name="managedName">position</attr>
+	<attr path="/api/package[@name='com.daimajia.swipe.adapters']/class[@name='BaseSwipeAdapter']/method[@name='generateView']/parameter[2]" name="managedName">parent</attr>
+	<attr path="/api/package[@name='com.daimajia.swipe.adapters']/class[@name='BaseSwipeAdapter']/method[@name='getSwipeLayoutResourceId']/parameter[1]" name="managedName">position</attr>
+
+	<!-- implements -->
+	<attr path="/api/package[@name='com.daimajia.swipe.interfaces']/interface[@name='SwipeItemMangerInterface']" name="managedName">ISwipeItemManagerInterface</attr>
+	<attr path="/api/package[@name='com.daimajia.swipe.interfaces']/class[@name='SwipeItemAdapterMangerImpl']" name="managedName">SwipeItemAdapterManagerImpl</attr>
+	<attr path="/api/package[@name='com.daimajia.swipe.interfaces']/class[@name='SwipeItemMangerImpl']" name="managedName">SwipeItemManagerImpl</attr>
+	<attr path="/api/package[@name='com.daimajia.swipe.interfaces']/class[@name='SwipeItemRecyclerMangerImpl']" name="managedName">SwipeItemRecyclerManagerImpl</attr>
+	<attr path="/api/package[@name='com.daimajia.swipe.adapters']/class[@name='BaseSwipeAdapter']/field[@name='mItemManger']" name="managedName">MItemManager</attr>
+	<attr path="/api/package[@name='com.daimajia.swipe.adapters']/class[@name='RecyclerSwipeAdapter']/field[@name='mItemManger']" name="managedName">MItemManager</attr>
+	
+	<!-- remove private/internal/implementation/deprecated types -->
+	<remove-node path="/api/package/class[@visibility='']" />
+	<remove-node path="/api/package/interface[@visibility='']" />
+	<remove-node path="/api/package/class[@deprecated='deprecated']" />
+	<remove-node path="/api/package/interface[@deprecated='deprecated']" />
+	<remove-node path="/api/package/class/method[@deprecated='deprecated']" />
+	<remove-node path="/api/package/interface/method[@deprecated='deprecated']" />
+</metadata>

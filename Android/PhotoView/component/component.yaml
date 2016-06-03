@@ -1,0 +1,25 @@
+version: 1.2.4
+name: Photo View
+id: PhotoView
+publisher: Xamarin Inc
+publisher-url: http://xamarin.com/
+src-url: https://github.com/xamarin/XamarinComponents/tree/master/Android/PhotoView
+summary: PhotoView aims to help produce an easily usable implementation of a zooming Android ImageView.
+
+license: License.md
+details: Details.md
+getting-started: GettingStarted.md
+
+icons:
+  - ../images/icon_128x128.png
+  - ../images/icon_512x512.png
+
+no_build: true
+libraries:
+  android: ../output/PhotoView.dll
+packages:
+  android: Xamarin.Android.Support.v4, Version=22.2.1.0
+
+samples:
+  - name: "Android Sample"
+    path: ../samples/PhotoViewSample.sln

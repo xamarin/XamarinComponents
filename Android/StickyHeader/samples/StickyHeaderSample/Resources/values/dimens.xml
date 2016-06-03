@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <dimen name="min_height_textheader_materiallike">65dp</dimen>
+  <dimen name="min_height_header_materiallike">100dp</dimen>
+  <dimen name="min_height_header">120dp</dimen>
+  <dimen name="max_height_header">300dp</dimen>
+  <dimen name="toolbar_height">56dp</dimen>
+</resources>

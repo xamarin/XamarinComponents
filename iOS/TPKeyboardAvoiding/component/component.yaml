@@ -1,0 +1,17 @@
+version: 1.2.11.0
+name: TPKeyboardAvoiding
+id: TPKeyboardAvoiding
+publisher: Xamarin Inc
+publisher-url: https://xamarin.com
+src-url: https://github.com/xamarin/XamarinComponents/tree/master/iOS/TPKeyboardAvoiding
+summary: A drop-in universal solution for moving text fields out of the way of the keyboard in iOS.
+icons:
+  - icons/TPKeyboardAvoiding_128x128.png
+  - icons/TPKeyboardAvoiding_512x512.png
+libraries:
+  ios: ../output/classic/TPKeyboardAvoiding.dll
+  ios-unified: ../output/unified/TPKeyboardAvoiding.dll
+samples:
+  - name: "TPKeyboardAvoiding Sample"
+    path:  ../samples/TPKeyboardAvoidingSample.sln
+no_build: true

@@ -1,0 +1,29 @@
+version: 1.0.5.0
+name: VectorCompat
+id: VectorCompat
+publisher: Xamarin Inc
+publisher-url: http://xamarin.com/
+src-url: https://github.com/xamarin/XamarinComponents/tree/master/Android/VectorCompat
+summary: A support library for VectorDrawable and AnimatedVectorDrawable classes introduced in Lollipop.
+
+license: License.md
+details: Details.md
+getting-started: GettingStarted.md
+
+icons:
+  - ../images/icon_128x128.png
+  - ../images/icon_512x512.png
+
+no_build: true
+libraries:
+  android: ../output/VectorCompat.dll
+is_shell: true
+packages:
+  android: VectorCompat, Version=1.0.5.0
+
+samples:
+  - name: "Android Sample"
+    path: ../samples/VectorCompatSample.sln
+    removeFiles:
+      - VectorCompatSample/Makefile
+ 

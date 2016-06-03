@@ -1,0 +1,7 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<resources>
+	<string name="link_button">Link to Dropbox!</string>
+	<string name="clear_button">Clear cache</string>
+	<string name="app_name">DropboxCoreApiSample</string>
+	<string name="image_list">Images in Dropbox</string>
+</resources>

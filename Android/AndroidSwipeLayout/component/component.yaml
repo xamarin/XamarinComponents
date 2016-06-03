@@ -1,0 +1,30 @@
+version: 1.2.0.0
+name: Android Swipe Layout
+id: AndroidSwipeLayout
+publisher: Xamarin Inc
+publisher-url: http://xamarin.com/
+src-url: https://github.com/xamarin/XamarinComponents/tree/master/Android/AndroidSwipeLayout
+summary: Android Swipe Layout provides a layout which enables view to be swiped away to reveal other views underneath.
+
+license: License.md
+details: Details.md
+getting-started: GettingStarted.md
+
+icons:
+  - ../images/icon_128x128.png
+  - ../images/icon_512x512.png
+
+no_build: true
+libraries:
+  android: ../output/AndroidSwipeLayout.dll
+is_shell: true
+packages:
+  android: 
+    - Xamarin.Android.Support.v4, Version=23.1.1.0
+    - Xamarin.Android.Support.v7.RecyclerView, Version=23.1.1.0
+
+samples:
+  - name: "Android Sample"
+    path: ../samples/AndroidSwipeLayoutSample.sln
+    removeFiles:
+      - AndroidSwipeLayoutSample/Makefile

@@ -1,0 +1,23 @@
+version: 1.2.0.0
+name: Number Progress Bar
+id: NumberProgressBar
+publisher: Xamarin Inc
+publisher-url: http://xamarin.com/
+src-url: https://github.com/xamarin/XamarinComponents/tree/master/Android/NumberProgressBar
+summary: A slim progress indicator with a numeric percentage alongside the progress bar.  
+
+license: License.md
+details: Details.md
+getting-started: GettingStarted.md
+
+icons:
+  - ../images/icon_128x128.png
+  - ../images/icon_512x512.png
+
+no_build: true
+libraries:
+  android: ../output/NumberProgressBar.dll
+
+samples:
+  - name: "Android Sample"
+    path: ../samples/NumberProgressBarSample.sln

@@ -1,0 +1,23 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JZMultiChoice", "JZMultiChoice\JZMultiChoice.csproj", "{ACF8EC79-0DA1-49E8-8C5B-7C44309DD19A}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|iPhoneSimulator = Debug|iPhoneSimulator
+		Release|iPhone = Release|iPhone
+		Release|iPhoneSimulator = Release|iPhoneSimulator
+		Debug|iPhone = Debug|iPhone
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{ACF8EC79-0DA1-49E8-8C5B-7C44309DD19A}.Debug|iPhone.ActiveCfg = Debug|Any CPU
+		{ACF8EC79-0DA1-49E8-8C5B-7C44309DD19A}.Debug|iPhone.Build.0 = Debug|Any CPU
+		{ACF8EC79-0DA1-49E8-8C5B-7C44309DD19A}.Debug|iPhoneSimulator.ActiveCfg = Debug|Any CPU
+		{ACF8EC79-0DA1-49E8-8C5B-7C44309DD19A}.Debug|iPhoneSimulator.Build.0 = Debug|Any CPU
+		{ACF8EC79-0DA1-49E8-8C5B-7C44309DD19A}.Release|iPhone.ActiveCfg = Release|Any CPU
+		{ACF8EC79-0DA1-49E8-8C5B-7C44309DD19A}.Release|iPhone.Build.0 = Release|Any CPU
+		{ACF8EC79-0DA1-49E8-8C5B-7C44309DD19A}.Release|iPhoneSimulator.ActiveCfg = Release|Any CPU
+		{ACF8EC79-0DA1-49E8-8C5B-7C44309DD19A}.Release|iPhoneSimulator.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal

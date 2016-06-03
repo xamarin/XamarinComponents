@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<package>
+  <metadata>
+    <id>Blurring</id>
+    <title>Blurring for Xamarin.Android</title>
+    <version>1.0.0</version>
+    <authors>Xamarin Inc.</authors>
+    <owners>Xamarin Inc.</owners>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>A custom view for presenting a dynamically blurred version of another view's content.</description>
+    <copyright>Copyright 2015 Xamarin Inc</copyright>
+    <iconUrl>https://xamarin-component-icons.s3.amazonaws.com/Blurring.png</iconUrl>
+    <projectUrl>https://components.xamarin.com/view/Blurring</projectUrl>
+    <licenseUrl>https://components.xamarin.com/license/Blurring</licenseUrl>
+    <dependencies>
+      <dependency id="Xamarin.Android.Support.v8.RenderScript" version="23.0.1.1" />
+    </dependencies>
+  </metadata>
+  <files>  
+    <file src="output/Blurring.dll" target="lib\MonoAndroid23" />
+  </files>
+</package>

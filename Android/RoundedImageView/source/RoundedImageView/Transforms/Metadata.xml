@@ -1,0 +1,9 @@
+﻿<metadata>
+  <attr path="/api/package[@name='com.makeramen.roundedimageview']" name="managedName">ImageViews.Rounded</attr>
+
+  <attr path="/api/package[@name='com.makeramen.roundedimageview']/class[@name='RoundedDrawable']/method[@name='setAlpha']" name="propertyName"></attr>
+  <attr path="/api/package[@name='com.makeramen.roundedimageview']/class[@name='RoundedDrawable']/method[@name='setColorFilter']" name="propertyName"></attr>
+  <attr path="/api/package[@name='com.makeramen.roundedimageview']/class[@name='RoundedImageView']/method[@name='setOval']" name="managedName">SetIsOval</attr>
+  <attr path="/api/package[@name='com.makeramen.roundedimageview']/class[@name='RoundedImageView']/method[@name='mutateBackground']" name="managedName">SetMutatesBackground</attr>
+  <attr path="/api/package[@name='com.makeramen.roundedimageview']/class[@name='RoundedImageView']/method[@name='mutatesBackground']" name="managedName">GetMutatesBackground</attr>
+</metadata>

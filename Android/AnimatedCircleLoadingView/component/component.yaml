@@ -1,0 +1,23 @@
+version: 1.1.2
+name: Animated Circle Loading View
+id: AnimatedCircleLoadingView
+publisher: Xamarin Inc
+publisher-url: http://xamarin.com/
+src-url: https://github.com/xamarin/XamarinComponents/tree/master/Android/AnimatedCircleLoadingView
+summary: A determinate/indeterminate loading view animation.
+
+license: License.md
+details: Details.md
+getting-started: GettingStarted.md
+
+icons:
+  - ../images/icon_128x128.png
+  - ../images/icon_512x512.png
+
+no_build: true
+libraries:
+  android: ../output/AnimatedCircleLoadingView.dll
+
+samples:
+  - name: "Android Sample"
+    path: ../samples/AnimatedCircleLoadingViewSample.sln

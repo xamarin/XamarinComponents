@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/layout_container">
+    <ListView
+        android:id="@+id/listview"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+    <FrameLayout
+        android:id="@+id/header"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/max_height_header">
+        <ImageView
+            android:id="@+id/header_image"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="centerCrop"
+            android:src="@drawable/galaxy" />
+        <FrameLayout
+            android:id="@+id/header_text_layout"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/min_height_textheader_materiallike"
+            android:background="@android:color/holo_green_light"
+            android:layout_gravity="bottom">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Hey there!"
+                android:textColor="@android:color/white"
+                android:textStyle="bold"
+                android:layout_gravity="bottom"
+                android:layout_marginLeft="70dp"
+                android:layout_marginBottom="25dp"
+                android:textSize="18sp" />
+        </FrameLayout>
+    </FrameLayout>
+</FrameLayout>

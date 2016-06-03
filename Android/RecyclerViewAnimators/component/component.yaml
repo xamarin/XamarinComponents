@@ -1,0 +1,27 @@
+version: 2.1.0.0
+name: RecyclerView Animators
+id: RecyclerViewAnimators
+publisher: Xamarin Inc
+publisher-url: http://xamarin.com/
+src-url: https://github.com/xamarin/XamarinComponents/tree/master/Android/RecyclerViewAnimators
+summary: An Android Animation library which easily add ItemAnimator to RecyclerView items.
+
+license: License.md
+details: Details.md
+getting-started: GettingStarted.md
+
+icons:
+  - ../images/icon_128x128.png
+  - ../images/icon_512x512.png
+
+no_build: true
+libraries:
+  android: ../output/RecyclerViewAnimators.dll
+is_shell: true
+packages:
+  android: RecyclerViewAnimators, Version=2.1.0.0
+
+samples:
+  - name: "Android Sample"
+    path: ../samples/RecyclerViewAnimatorsSample.sln
+ 

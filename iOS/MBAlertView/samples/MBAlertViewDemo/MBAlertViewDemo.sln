@@ -1,0 +1,46 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MBAlertViewDemo", "MBAlertViewDemo\MBAlertViewDemo.csproj", "{6ECE2F41-3B22-4DE3-950D-B907B0F38ADB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MBAlertView", "..\..\source\MBAlertView\MBAlertView.csproj", "{1E41361D-D504-49FF-989B-4C37D88AB58B}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|iPhoneSimulator = Debug|iPhoneSimulator
+		Release|iPhoneSimulator = Release|iPhoneSimulator
+		Debug|iPhone = Debug|iPhone
+		Release|iPhone = Release|iPhone
+		Ad-Hoc|iPhone = Ad-Hoc|iPhone
+		AppStore|iPhone = AppStore|iPhone
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{1E41361D-D504-49FF-989B-4C37D88AB58B}.Ad-Hoc|iPhone.ActiveCfg = Release|Any CPU
+		{1E41361D-D504-49FF-989B-4C37D88AB58B}.Ad-Hoc|iPhone.Build.0 = Release|Any CPU
+		{1E41361D-D504-49FF-989B-4C37D88AB58B}.AppStore|iPhone.ActiveCfg = Release|Any CPU
+		{1E41361D-D504-49FF-989B-4C37D88AB58B}.AppStore|iPhone.Build.0 = Release|Any CPU
+		{1E41361D-D504-49FF-989B-4C37D88AB58B}.Debug|iPhone.ActiveCfg = Debug|Any CPU
+		{1E41361D-D504-49FF-989B-4C37D88AB58B}.Debug|iPhone.Build.0 = Debug|Any CPU
+		{1E41361D-D504-49FF-989B-4C37D88AB58B}.Debug|iPhoneSimulator.ActiveCfg = Debug|Any CPU
+		{1E41361D-D504-49FF-989B-4C37D88AB58B}.Debug|iPhoneSimulator.Build.0 = Debug|Any CPU
+		{1E41361D-D504-49FF-989B-4C37D88AB58B}.Release|iPhone.ActiveCfg = Release|Any CPU
+		{1E41361D-D504-49FF-989B-4C37D88AB58B}.Release|iPhone.Build.0 = Release|Any CPU
+		{1E41361D-D504-49FF-989B-4C37D88AB58B}.Release|iPhoneSimulator.ActiveCfg = Release|Any CPU
+		{1E41361D-D504-49FF-989B-4C37D88AB58B}.Release|iPhoneSimulator.Build.0 = Release|Any CPU
+		{6ECE2F41-3B22-4DE3-950D-B907B0F38ADB}.Ad-Hoc|iPhone.ActiveCfg = Ad-Hoc|iPhone
+		{6ECE2F41-3B22-4DE3-950D-B907B0F38ADB}.Ad-Hoc|iPhone.Build.0 = Ad-Hoc|iPhone
+		{6ECE2F41-3B22-4DE3-950D-B907B0F38ADB}.AppStore|iPhone.ActiveCfg = AppStore|iPhone
+		{6ECE2F41-3B22-4DE3-950D-B907B0F38ADB}.AppStore|iPhone.Build.0 = AppStore|iPhone
+		{6ECE2F41-3B22-4DE3-950D-B907B0F38ADB}.Debug|iPhone.ActiveCfg = Debug|iPhone
+		{6ECE2F41-3B22-4DE3-950D-B907B0F38ADB}.Debug|iPhone.Build.0 = Debug|iPhone
+		{6ECE2F41-3B22-4DE3-950D-B907B0F38ADB}.Debug|iPhoneSimulator.ActiveCfg = Debug|iPhoneSimulator
+		{6ECE2F41-3B22-4DE3-950D-B907B0F38ADB}.Debug|iPhoneSimulator.Build.0 = Debug|iPhoneSimulator
+		{6ECE2F41-3B22-4DE3-950D-B907B0F38ADB}.Release|iPhone.ActiveCfg = Release|iPhone
+		{6ECE2F41-3B22-4DE3-950D-B907B0F38ADB}.Release|iPhone.Build.0 = Release|iPhone
+		{6ECE2F41-3B22-4DE3-950D-B907B0F38ADB}.Release|iPhoneSimulator.ActiveCfg = Release|iPhoneSimulator
+		{6ECE2F41-3B22-4DE3-950D-B907B0F38ADB}.Release|iPhoneSimulator.Build.0 = Release|iPhoneSimulator
+	EndGlobalSection
+	GlobalSection(MonoDevelopProperties) = preSolution
+		StartupItem = MBAlertViewDemo\MBAlertViewDemo.csproj
+	EndGlobalSection
+EndGlobal

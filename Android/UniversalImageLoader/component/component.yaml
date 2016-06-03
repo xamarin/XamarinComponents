@@ -1,0 +1,25 @@
+version: 1.9.5.0
+name: Universal Image Loader
+id: UniversalImageLoader
+publisher: Xamarin Inc
+publisher-url: http://xamarin.com/
+src-url: https://github.com/xamarin/XamarinComponents/tree/master/Android/UniversalImageLoader
+summary: A powerful, flexible and highly customizable instrument for image loading, caching and displaying.
+
+license: License.md
+details: Details.md
+getting-started: GettingStarted.md
+
+icons:
+  - ../images/icon_128x128.png
+  - ../images/icon_512x512.png
+
+no_build: true
+libraries:
+  android: ../output/UniversalImageLoader.dll
+
+samples:
+  - name: "Android Sample"
+    path: ../samples/UniversalImageLoaderSample.sln
+    removeFiles:
+      - UniversalImageLoaderSample/Makefile

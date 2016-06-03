@@ -1,0 +1,279 @@
+#######################################################
+# Android
+#######################################################
+
+- Name: AndroidEasingFunctions
+  BuildScript: ./Android/AndroidEasingFunctions/build.cake
+  TriggerPaths: [ Android/AndroidEasingFunctions ]
+  MacBuildTargets: [ samples, nuget, component ]
+- Name: AndroidSwipeLayout
+  BuildScript: ./Android/AndroidSwipeLayout/build.cake
+  TriggerPaths: [ Android/AndroidSwipeLayout ]
+  MacBuildTargets: [ samples, component ]
+- Name: AndroidViewAnimations
+  BuildScript: ./Android/AndroidViewAnimations/build.cake
+  TriggerPaths: [ Android/AndroidViewAnimations ]
+  MacBuildTargets: [ samples, nuget, component ]
+- Name: AnimatedCircleLoadingView
+  BuildScript: ./Android/AnimatedCircleLoadingView/build.cake
+  TriggerPaths: [ Android/AnimatedCircleLoadingView ]
+  MacBuildTargets: [ samples, component ]
+- Name: AutoFitTextView
+  BuildScript: ./Android/AutoFitTextView/build.cake
+  TriggerPaths: [ Android/AutoFitTextView ]
+  MacBuildTargets: [ samples, nuget, component ]
+- Name: BetterPickers
+  BuildScript: ./Android/BetterPickers/build.cake
+  TriggerPaths: [ Android/BetterPickers ]
+  MacBuildTargets: [ samples, component ]
+- Name: BlurBehind
+  BuildScript: ./Android/BlurBehind/build.cake
+  TriggerPaths: [ Android/BlurBehind ]
+  MacBuildTargets: [ samples, nuget, component ]
+- Name: Blurring
+  BuildScript: ./Android/Blurring/build.cake
+  TriggerPaths: [ Android/Blurring ]
+  MacBuildTargets: [ samples, nuget, component ]
+- Name: Bolts
+  BuildScript: ./Android/Bolts/build.cake
+  TriggerPaths: [ Android/Bolts ]
+  MacBuildTargets: [ libs, nuget ]
+- Name: DeviceYearClass
+  BuildScript: ./Android/DeviceYearClass/build.cake
+  TriggerPaths: [ Android/DeviceYearClass ]
+  MacBuildTargets: [ samples, nuget, component ]
+- Name: ElasticProgressBar
+  BuildScript: ./Android/ElasticProgressBar/build.cake
+  TriggerPaths: [ Android/ElasticProgressBar ]
+  MacBuildTargets: [ samples, component ]
+- Name: Explosions
+  BuildScript: ./Android/Explosions/build.cake
+  TriggerPaths: [ Android/Explosions ]
+  MacBuildTargets: [ samples, component ]
+- Name: FloatingSearchView
+  BuildScript: ./Android/FloatingSearchView/build.cake
+  TriggerPaths: [ Android/FloatingSearchView ]
+  MacBuildTargets: [ samples, component ]
+- Name: GoogleGson
+  BuildScript: ./Android/GoogleGson/build.cake
+  TriggerPaths: [ Android/GoogleGson ]
+  MacBuildTargets: [ samples, nuget ]
+- Name: JazzyViewPager
+  BuildScript: ./Android/JazzyViewPager/build.cake
+  TriggerPaths: [ Android/JazzyViewPager ]
+  MacBuildTargets: [ samples, component ]
+- Name: KenBurnsView
+  BuildScript: ./Android/KenBurnsView/build.cake
+  TriggerPaths: [ Android/KenBurnsView ]
+  MacBuildTargets: [ samples, component ]
+- Name: MinimalJson
+  BuildScript: ./Android/MinimalJson/build.cake
+  TriggerPaths: [ Android/MinimalJson ]
+  MacBuildTargets: [ samples, nuget ]
+- Name: NineOldAndroids
+  BuildScript: ./Android/NineOldAndroids/build.cake
+  TriggerPaths: [ Android/NineOldAndroids ]
+  MacBuildTargets: [ samples, nuget, component ]
+- Name: NumberProgressBar
+  BuildScript: ./Android/NumberProgressBar/build.cake
+  TriggerPaths: [ Android/NumberProgressBar ]
+  MacBuildTargets: [ samples, component ]
+- Name: PhotoView
+  BuildScript: ./Android/PhotoView/build.cake
+  TriggerPaths: [ Android/PhotoView ]
+  MacBuildTargets: [ samples, component ]
+- Name: RecyclerViewAnimators
+  BuildScript: ./Android/RecyclerViewAnimators/build.cake
+  TriggerPaths: [ Android/RecyclerViewAnimators ]
+  MacBuildTargets: [ samples, nuget, component ]
+- Name: RoundedImageView
+  BuildScript: ./Android/RoundedImageView/build.cake
+  TriggerPaths: [ Android/RoundedImageView ]
+  MacBuildTargets: [ samples, component ]
+- Name: Scissors
+  BuildScript: ./Android/Scissors/build.cake
+  TriggerPaths: [ Android/Scissors ]
+  MacBuildTargets: [ samples, nuget, component ]
+- Name: Screenshooter
+  BuildScript: ./Android/Screenshooter/build.cake
+  TriggerPaths: [ Android/Screenshooter ]
+  MacBuildTargets: [ samples, nuget, component ]
+- Name: SortableTableView
+  BuildScript: ./Android/SortableTableView/build.cake
+  TriggerPaths: [ Android/SortableTableView ]
+  MacBuildTargets: [ samples, component ]
+- Name: StickyHeader
+  BuildScript: ./Android/StickyHeader/build.cake
+  TriggerPaths: [ Android/StickyHeader ]
+  MacBuildTargets: [ samples, component ]
+- Name: StickyListHeaders
+  BuildScript: ./Android/StickyListHeaders/build.cake
+  TriggerPaths: [ Android/StickyListHeaders ]
+  MacBuildTargets: [ samples, component ]
+- Name: UniversalImageLoader
+  BuildScript: ./Android/UniversalImageLoader/build.cake
+  TriggerPaths: [ Android/UniversalImageLoader ]
+  MacBuildTargets: [ samples, component ]
+- Name: UrlImageViewHelper
+  BuildScript: ./Android/UrlImageViewHelper/build.cake
+  TriggerPaths: [ Android/UrlImageViewHelper ]
+  MacBuildTargets: [ samples, component ]
+- Name: VectorCompat
+  BuildScript: ./Android/VectorCompat/build.cake
+  TriggerPaths: [ Android/VectorCompat ]
+  MacBuildTargets: [ samples, nuget, component ]
+
+#######################################################
+# iOS
+#######################################################
+
+- Name: AMScrollingNavbar
+  BuildScript: ./iOS/AMScrollingNavbar/build.cake
+  TriggerPaths: [ iOS/AMScrollingNavbar ]
+  MacBuildTargets: [ samples, component ]
+- Name: AMViralSwitch
+  BuildScript: ./iOS/AMViralSwitch/build.cake
+  TriggerPaths: [ iOS/AMViralSwitch ]
+  MacBuildTargets: [ samples, component ]
+- Name: AnimatedCheckButton
+  BuildScript: ./iOS/AnimatedCheckButton/build.cake
+  TriggerPaths: [ iOS/AnimatedCheckButton ]
+  MacBuildTargets: [ samples, component ]
+- Name: AnimatedShapeButton
+  BuildScript: ./iOS/AnimatedShapeButton/build.cake
+  TriggerPaths: [ iOS/AnimatedShapeButton ]
+  MacBuildTargets: [ samples, component ]
+- Name: Chameleon
+  BuildScript: ./iOS/Chameleon/build.cake
+  TriggerPaths: [ iOS/Chameleon ]
+  MacBuildTargets: [ samples, component ]
+- Name: DACircularProgress
+  BuildScript: ./iOS/DACircularProgress/build.cake
+  TriggerPaths: [ iOS/DACircularProgress ]
+  MacBuildTargets: [ samples, nuget, component ]
+- Name: DZNEmptyDataSet
+  BuildScript: ./iOS/DZNEmptyDataSet/build.cake
+  TriggerPaths: [ iOS/DZNEmptyDataSet ]
+  MacBuildTargets: [ samples, component ]
+- Name: FXBlurView
+  BuildScript: ./iOS/FXBlurView/build.cake
+  TriggerPaths: [ iOS/FXBlurView ]
+  MacBuildTargets: [ samples, component ]
+- Name: GPUImage
+  BuildScript: ./iOS/GPUImage/build.cake
+  TriggerPaths: [ iOS/GPUImage ]
+  MacBuildTargets: [ samples, nuget, component ]
+- Name: HDNotification
+  BuildScript: ./iOS/HDNotification/build.cake
+  TriggerPaths: [ iOS/HDNotification ]
+  MacBuildTargets: [ samples, component ]
+- Name: iCarousel
+  BuildScript: ./iOS/iCarousel/build.cake
+  TriggerPaths: [ iOS/iCarousel ]
+  MacBuildTargets: [ samples, component ]
+- Name: InAppSettingsKit
+  BuildScript: ./iOS/InAppSettingsKit/build.cake
+  TriggerPaths: [ iOS/InAppSettingsKit ]
+  MacBuildTargets: [ samples, component ]
+- Name: iRate
+  BuildScript: ./iOS/iRate/build.cake
+  TriggerPaths: [ iOS/iRate ]
+  MacBuildTargets: [ samples, component ]
+- Name: JDStatusBarNotification
+  BuildScript: ./iOS/JDStatusBarNotification/build.cake
+  TriggerPaths: [ iOS/JDStatusBarNotification ]
+  MacBuildTargets: [ samples, component ]
+- Name: JSQMessagesViewController
+  BuildScript: ./iOS/JSQMessagesViewController/build.cake
+  TriggerPaths: [ iOS/JSQMessagesViewController ]
+  MacBuildTargets: [ samples, component ]
+- Name: JZMultiChoicesCircleButton
+  BuildScript: ./iOS/JZMultiChoicesCircleButton/build.cake
+  TriggerPaths: [ iOS/JZMultiChoicesCircleButton ]
+  MacBuildTargets: [ samples, component ]
+- Name: LiquidFloatingActionButton
+  BuildScript: ./iOS/LiquidFloatingActionButton/build.cake
+  TriggerPaths: [ iOS/LiquidFloatingActionButton ]
+  MacBuildTargets: [ samples, component ]
+- Name: Masonry
+  BuildScript: ./iOS/Masonry/build.cake
+  TriggerPaths: [ iOS/Masonry ]
+  MacBuildTargets: [ samples, nuget, component ]
+- Name: MBAlertView
+  BuildScript: ./iOS/MBAlertView/build.cake
+  TriggerPaths: [ iOS/MBAlertView ]
+  MacBuildTargets: [ samples, component ]
+- Name: MBProgressHUD
+  BuildScript: ./iOS/MBProgressHUD/build.cake
+  TriggerPaths: [ iOS/MBProgressHUD ]
+  MacBuildTargets: [ samples, nuget, component ]
+- Name: MWPhotoBrowser
+  BuildScript: ./iOS/MWPhotoBrowser/build.cake
+  TriggerPaths: [ iOS/MWPhotoBrowser ]
+  MacBuildTargets: [ samples, component ]
+- Name: PullToBounce
+  BuildScript: ./iOS/PullToBounce/build.cake
+  TriggerPaths: [ iOS/PullToBounce ]
+  MacBuildTargets: [ samples, component ]
+- Name: RZTransitions
+  BuildScript: ./iOS/RZTransitions/build.cake
+  TriggerPaths: [ iOS/RZTransitions ]
+  MacBuildTargets: [ samples, component ]
+- Name: SCCatWaitingHUD
+  BuildScript: ./iOS/SCCatWaitingHUD/build.cake
+  TriggerPaths: [ iOS/SCCatWaitingHUD ]
+  MacBuildTargets: [ samples, component ]
+- Name: SDWebImage
+  BuildScript: ./iOS/SDWebImage/build.cake
+  TriggerPaths: [ iOS/SDWebImage ]
+  MacBuildTargets: [ samples, nuget, component ]
+- Name: Shimmer
+  BuildScript: ./iOS/Shimmer/build.cake
+  TriggerPaths: [ iOS/Shimmer ]
+  MacBuildTargets: [ samples, component ]
+- Name: SidePanels
+  BuildScript: ./iOS/SidePanels/build.cake
+  TriggerPaths: [ iOS/SidePanels ]
+  MacBuildTargets: [ samples, component ]
+- Name: SlackTextViewController
+  BuildScript: ./iOS/SlackTextViewController/build.cake
+  TriggerPaths: [ iOS/SlackTextViewController ]
+  MacBuildTargets: [ samples, component ]
+- Name: SWTableViewCell
+  BuildScript: ./iOS/SWTableViewCell/build.cake
+  TriggerPaths: [ iOS/SWTableViewCell ]
+  MacBuildTargets: [ samples, component ]
+- Name: TextSwitch
+  BuildScript: ./iOS/TextSwitch/build.cake
+  TriggerPaths: [ iOS/TextSwitch ]
+  MacBuildTargets: [ samples, component ]
+- Name: TPKeyboardAvoiding
+  BuildScript: ./iOS/TPKeyboardAvoiding/build.cake
+  TriggerPaths: [ iOS/TPKeyboardAvoiding ]
+  MacBuildTargets: [ samples, component ]
+- Name: TransitionSubmit
+  BuildScript: ./iOS/TransitionSubmit/build.cake
+  TriggerPaths: [ iOS/TransitionSubmit ]
+  MacBuildTargets: [ samples, component ]
+- Name: VideoSplash
+  BuildScript: ./iOS/VideoSplash/build.cake
+  TriggerPaths: [ iOS/VideoSplash ]
+  MacBuildTargets: [ samples, component ]
+- Name: ZipArchive
+  BuildScript: ./iOS/ZipArchive/build.cake
+  TriggerPaths: [ iOS/ZipArchive ]
+  MacBuildTargets: [ samples, component ]
+
+#######################################################
+# XPlat
+#######################################################
+
+- Name: DropboxCoreApiAndroid
+  BuildScript: ./XPlat/DropboxCoreApi/Android/build.cake
+  TriggerPaths: [ XPlat/DropboxCoreApi/Android ]
+  MacBuildTargets: [ samples, component ]
+- Name: DropboxCoreApiiOS
+  BuildScript: ./XPlat/DropboxCoreApi/iOS/build.cake
+  TriggerPaths: [ XPlat/DropboxCoreApi/iOS ]
+  MacBuildTargets: [ samples, component ]
+

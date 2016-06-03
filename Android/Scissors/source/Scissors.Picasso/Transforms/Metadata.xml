@@ -1,0 +1,25 @@
+﻿<metadata>
+	<!-- namespaces -->
+	<attr path="/api/package[@name='com.lyft.android.scissors']" name="managedName">Lyft.Scissors</attr>
+
+	<!-- these are core library -->
+	<remove-node path="/api/package[@name='com.lyft.android.scissors']/class[@name='BuildConfig']" />
+	<remove-node path="/api/package[@name='com.lyft.android.scissors']/class[@name='CropView']" />
+	<remove-node path="/api/package[@name='com.lyft.android.scissors']/class[@name='CropView.Extensions']" />
+	<remove-node path="/api/package[@name='com.lyft.android.scissors']/class[@name='CropViewExtensions']" />
+	<remove-node path="/api/package[@name='com.lyft.android.scissors']/class[@name='CropViewExtensions.CropRequest']" />
+	<remove-node path="/api/package[@name='com.lyft.android.scissors']/class[@name='CropViewExtensions.LoadRequest']" />
+	<remove-node path="/api/package[@name='com.lyft.android.scissors']/interface[@name='BitmapLoader']" />
+
+	<!-- these are extensions-->
+	<attr path="/api/package[@name='com.lyft.android.scissors']/class[@name='PicassoFillViewportTransformation']" name="visibility">public</attr>
+	<attr path="/api/package[@name='com.lyft.android.scissors']/class[@name='PicassoFillViewportTransformation']/method[@name='key']" name="managedName">GetKey</attr>
+	
+	<!-- remove private/internal/implementation/deprecated types -->
+	<remove-node path="/api/package/class[@visibility='']" />
+	<remove-node path="/api/package/interface[@visibility='']" />
+	<remove-node path="/api/package/class[@deprecated='deprecated']" />
+	<remove-node path="/api/package/interface[@deprecated='deprecated']" />
+	<remove-node path="/api/package/class/method[@deprecated='deprecated']" />
+	<remove-node path="/api/package/interface/method[@deprecated='deprecated']" />
+</metadata>

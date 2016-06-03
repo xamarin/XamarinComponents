@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/base_view"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center_horizontal"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context=".MainActivity">
+    <com.wnafee.vector.MorphButton
+        android:id="@+id/drawerBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="top|center_horizontal"
+        android:layout_margin="5dp"
+        app:vc_backgroundTint="#3F51B5"
+        app:vc_foregroundTint="#f50057"
+        app:vc_startDrawable="@drawable/ic_arrow_to_drawer"
+        app:vc_endDrawable="@drawable/ic_drawer_to_arrow" />
+    <com.wnafee.vector.MorphButton
+        android:id="@+id/playBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_margin="5dp"
+        android:backgroundTint="@color/accent_material_light"
+        app:vc_backgroundTint="@color/accent_material_light"
+        app:vc_foregroundTint="@color/button_material_light"
+        app:vc_startDrawable="@drawable/ic_play_to_pause"
+        app:vc_endDrawable="@drawable/ic_pause_to_play" />
+    <com.wnafee.vector.MorphButton
+        android:id="@+id/stopBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_margin="5dp"
+        app:vc_foregroundTint="#6A1B9A"
+        app:vc_startDrawable="@drawable/ic_stop_to_play"
+        app:vc_endDrawable="@drawable/ic_play_to_stop" />
+    <com.wnafee.vector.MorphButton
+        android:id="@+id/checkBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_margin="0dp"
+        android:background="?android:selectableItemBackground"
+        android:scaleType="center"
+        app:vc_backgroundTint="#6A1B9A"
+        app:vc_startDrawable="@drawable/abc_btn_check_to_on_mtrl_000"
+        app:vc_endDrawable="@drawable/abc_btn_check_to_on_mtrl_015" />
+</LinearLayout>

@@ -1,0 +1,33 @@
+version: 2.0.0.1
+name: SidePanels
+id: jasidepanels
+publisher: Xamarin Inc
+publisher-url: http://xamarin.com
+src-url: https://github.com/xamarin/XamarinComponents/tree/master/iOS/SidePanels
+summary: SidePanels is a UIViewController container designed for presenting a center panel with revealable side panels
+
+no_build: true
+
+icons:
+  - ../images/sidepanels_128x128.png
+  - ../images/sidepanels_512x512.png
+
+libraries:
+  ios: ../output/classic/SidePanels.dll
+  ios-unified: ../output/unified/SidePanels.dll
+
+samples:
+  - name: "Storyboard Sample"
+    path: ../samples/SidePanelsSample/SidePanelsSample.sln
+    configuration: "Release|iPhone"
+  - name: "Code Sample"
+    path: ../samples/SidePanelsCodeSample/SidePanelsCodeSample.sln
+    configuration: "Release|iPhone"
+  - name: "Classic API Sample"
+    path: ../samples/SidePanelsClassicSample/SidePanelsClassicSample.sln
+    configuration: "Release|iPhone"
+  - name: "JASidePanel Compatibility Sample"
+    path: ../samples/JASidePanelsSample/JASidePanelsSample.sln
+    configuration: "Release|iPhone"
+
+monodoc: ../docs/

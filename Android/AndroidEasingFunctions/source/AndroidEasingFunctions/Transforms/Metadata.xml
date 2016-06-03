@@ -1,0 +1,35 @@
+﻿<metadata>
+	<!-- namespaces -->
+	<attr path="/api/package[@name='com.daimajia.easing']" name="managedName">AndroidEasingFunctions</attr>
+	<attr path="/api/package[@name='com.daimajia.easing.back']" name="managedName">AndroidEasingFunctions.Back</attr>
+	<attr path="/api/package[@name='com.daimajia.easing.bounce']" name="managedName">AndroidEasingFunctions.Bounce</attr>
+	<attr path="/api/package[@name='com.daimajia.easing.circ']" name="managedName">AndroidEasingFunctions.Circ</attr>
+	<attr path="/api/package[@name='com.daimajia.easing.cubic']" name="managedName">AndroidEasingFunctions.Cubic</attr>
+	<attr path="/api/package[@name='com.daimajia.easing.elastic']" name="managedName">AndroidEasingFunctions.Elastic</attr>
+	<attr path="/api/package[@name='com.daimajia.easing.expo']" name="managedName">AndroidEasingFunctions.Expo</attr>
+	<attr path="/api/package[@name='com.daimajia.easing.linear']" name="managedName">AndroidEasingFunctions.Lin</attr>
+	<attr path="/api/package[@name='com.daimajia.easing.quad']" name="managedName">AndroidEasingFunctions.Quad</attr>
+	<attr path="/api/package[@name='com.daimajia.easing.quint']" name="managedName">AndroidEasingFunctions.Quint</attr>
+	<attr path="/api/package[@name='com.daimajia.easing.sine']" name="managedName">AndroidEasingFunctions.Sine</attr>
+
+	<!-- corrections -->
+	<attr path="/api/package[@name='com.daimajia.easing']/class[@name='BaseEasingMethod']/method[@name='evaluate']" name="managedReturn">Java.Lang.Object</attr>
+	<attr path="/api/package[@name='com.daimajia.easing']/class[@name='BaseEasingMethod']/method[@name='evaluate']/parameter[2]" name="managedType">Java.Lang.Object</attr>
+	<attr path="/api/package[@name='com.daimajia.easing']/class[@name='BaseEasingMethod']/method[@name='evaluate']/parameter[3]" name="managedType">Java.Lang.Object</attr>
+	<attr path="/api/package[@name='com.daimajia.easing']/class[@name='BaseEasingMethod']/field[@name='mDuration']" name="managedName">Duration</attr>
+
+	<!-- parameter names -->
+	<attr path="/api/package[@name='com.daimajia.easing']/interface[@name='BaseEasingMethod.EasingListener']/method[@name='on']/parameter[1]" name="managedName">time</attr>
+	<attr path="/api/package[@name='com.daimajia.easing']/interface[@name='BaseEasingMethod.EasingListener']/method[@name='on']/parameter[2]" name="managedName">value</attr>
+	<attr path="/api/package[@name='com.daimajia.easing']/interface[@name='BaseEasingMethod.EasingListener']/method[@name='on']/parameter[3]" name="managedName">start</attr>
+	<attr path="/api/package[@name='com.daimajia.easing']/interface[@name='BaseEasingMethod.EasingListener']/method[@name='on']/parameter[4]" name="managedName">end</attr>
+	<attr path="/api/package[@name='com.daimajia.easing']/interface[@name='BaseEasingMethod.EasingListener']/method[@name='on']/parameter[5]" name="managedName">duration</attr>
+
+	<!-- remove private/internal/implementation/deprecated types -->
+	<remove-node path="/api/package/class[@visibility='']" />
+	<remove-node path="/api/package/interface[@visibility='']" />
+	<remove-node path="/api/package/class[@deprecated='deprecated']" />
+	<remove-node path="/api/package/interface[@deprecated='deprecated']" />
+	<remove-node path="/api/package/class/method[@deprecated='deprecated']" />
+	<remove-node path="/api/package/interface/method[@deprecated='deprecated']" />
+</metadata>

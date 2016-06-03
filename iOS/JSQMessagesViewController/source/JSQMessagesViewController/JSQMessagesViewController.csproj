@@ -1,0 +1,212 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectTypeGuids>{8FFB629D-F513-41CE-95D2-7ECE97B6EEEC};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <ProjectGuid>{602BD0C3-9A72-4EE0-8728-88E93F5A0643}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <RootNamespace>JSQMessagesViewController</RootNamespace>
+    <IPhoneResourcePrefix>Resources</IPhoneResourcePrefix>
+    <AssemblyName>JSQMessagesViewController</AssemblyName>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug</OutputPath>
+    <DefineConstants>DEBUG;</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <ConsolePause>false</ConsolePause>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>full</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release</OutputPath>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <ConsolePause>false</ConsolePause>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="Xamarin.iOS" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Resources\" />
+    <Folder Include="Resources\JSQMessagesAssets.bundle\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="libJSQMessagesViewControllerLib.linkwith.cs">
+      <DependentUpon>libJSQMessagesViewControllerLib.a</DependentUpon>
+    </Compile>
+    <Compile Include="Additions.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ObjcBindingApiDefinition Include="ApiDefinition.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ObjcBindingCoreSource Include="StructsAndEnums.cs" />
+  </ItemGroup>
+  <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.ObjCBinding.CSharp.targets" />
+  <ItemGroup>
+    <ObjcBindingNativeLibrary Include="..\..\externals\JSQMessagesViewControllerLib\libJSQMessagesViewControllerLib.a">
+      <Link>libJSQMessagesViewControllerLib.a</Link>
+    </ObjcBindingNativeLibrary>
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="..\..\externals\ios\JSQMessagesViewController\JSQMessagesViewController\Assets\JSQMessagesAssets.bundle\Base.lproj\JSQMessages.strings">
+      <Link>Resources\JSQMessagesAssets.bundle\Base.lproj\JSQMessages.strings</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\externals\ios\JSQMessagesViewController\JSQMessagesViewController\Assets\JSQMessagesAssets.bundle\Images\bubble_min.png">
+      <Link>Resources\JSQMessagesAssets.bundle\Images\bubble_min.png</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\externals\ios\JSQMessagesViewController\JSQMessagesViewController\Assets\JSQMessagesAssets.bundle\Images\bubble_min%402x.png">
+      <Link>Resources\JSQMessagesAssets.bundle\Images\bubble_min%402x.png</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\externals\ios\JSQMessagesViewController\JSQMessagesViewController\Assets\JSQMessagesAssets.bundle\Images\bubble_min%403x.png">
+      <Link>Resources\JSQMessagesAssets.bundle\Images\bubble_min%403x.png</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\externals\ios\JSQMessagesViewController\JSQMessagesViewController\Assets\JSQMessagesAssets.bundle\Images\bubble_min_tailless.png">
+      <Link>Resources\JSQMessagesAssets.bundle\Images\bubble_min_tailless.png</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\externals\ios\JSQMessagesViewController\JSQMessagesViewController\Assets\JSQMessagesAssets.bundle\Images\bubble_min_tailless%402x.png">
+      <Link>Resources\JSQMessagesAssets.bundle\Images\bubble_min_tailless%402x.png</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\externals\ios\JSQMessagesViewController\JSQMessagesViewController\Assets\JSQMessagesAssets.bundle\Images\bubble_min_tailless%403x.png">
+      <Link>Resources\JSQMessagesAssets.bundle\Images\bubble_min_tailless%403x.png</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\externals\ios\JSQMessagesViewController\JSQMessagesViewController\Assets\JSQMessagesAssets.bundle\Images\bubble_regular.png">
+      <Link>Resources\JSQMessagesAssets.bundle\Images\bubble_regular.png</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\externals\ios\JSQMessagesViewController\JSQMessagesViewController\Assets\JSQMessagesAssets.bundle\Images\bubble_regular%402x.png">
+      <Link>Resources\JSQMessagesAssets.bundle\Images\bubble_regular%402x.png</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\externals\ios\JSQMessagesViewController\JSQMessagesViewController\Assets\JSQMessagesAssets.bundle\Images\bubble_regular%403x.png">
+      <Link>Resources\JSQMessagesAssets.bundle\Images\bubble_regular%403x.png</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\externals\ios\JSQMessagesViewController\JSQMessagesViewController\Assets\JSQMessagesAssets.bundle\Images\bubble_stroked.png">
+      <Link>Resources\JSQMessagesAssets.bundle\Images\bubble_stroked.png</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\externals\ios\JSQMessagesViewController\JSQMessagesViewController\Assets\JSQMessagesAssets.bundle\Images\bubble_stroked%402x.png">
+      <Link>Resources\JSQMessagesAssets.bundle\Images\bubble_stroked%402x.png</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\externals\ios\JSQMessagesViewController\JSQMessagesViewController\Assets\JSQMessagesAssets.bundle\Images\bubble_stroked%403x.png">
+      <Link>Resources\JSQMessagesAssets.bundle\Images\bubble_stroked%403x.png</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\externals\ios\JSQMessagesViewController\JSQMessagesViewController\Assets\JSQMessagesAssets.bundle\Images\bubble_stroked_tailless.png">
+      <Link>Resources\JSQMessagesAssets.bundle\Images\bubble_stroked_tailless.png</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\externals\ios\JSQMessagesViewController\JSQMessagesViewController\Assets\JSQMessagesAssets.bundle\Images\bubble_stroked_tailless%402x.png">
+      <Link>Resources\JSQMessagesAssets.bundle\Images\bubble_stroked_tailless%402x.png</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\externals\ios\JSQMessagesViewController\JSQMessagesViewController\Assets\JSQMessagesAssets.bundle\Images\bubble_stroked_tailless%403x.png">
+      <Link>Resources\JSQMessagesAssets.bundle\Images\bubble_stroked_tailless%403x.png</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\externals\ios\JSQMessagesViewController\JSQMessagesViewController\Assets\JSQMessagesAssets.bundle\Images\bubble_tailless.png">
+      <Link>Resources\JSQMessagesAssets.bundle\Images\bubble_tailless.png</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\externals\ios\JSQMessagesViewController\JSQMessagesViewController\Assets\JSQMessagesAssets.bundle\Images\bubble_tailless%402x.png">
+      <Link>Resources\JSQMessagesAssets.bundle\Images\bubble_tailless%402x.png</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\externals\ios\JSQMessagesViewController\JSQMessagesViewController\Assets\JSQMessagesAssets.bundle\Images\bubble_tailless%403x.png">
+      <Link>Resources\JSQMessagesAssets.bundle\Images\bubble_tailless%403x.png</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\externals\ios\JSQMessagesViewController\JSQMessagesViewController\Assets\JSQMessagesAssets.bundle\Images\clip.png">
+      <Link>Resources\JSQMessagesAssets.bundle\Images\clip.png</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\externals\ios\JSQMessagesViewController\JSQMessagesViewController\Assets\JSQMessagesAssets.bundle\Images\clip%402x.png">
+      <Link>Resources\JSQMessagesAssets.bundle\Images\clip%402x.png</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\externals\ios\JSQMessagesViewController\JSQMessagesViewController\Assets\JSQMessagesAssets.bundle\Images\clip%403x.png">
+      <Link>Resources\JSQMessagesAssets.bundle\Images\clip%403x.png</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\externals\ios\JSQMessagesViewController\JSQMessagesViewController\Assets\JSQMessagesAssets.bundle\Images\play.png">
+      <Link>Resources\JSQMessagesAssets.bundle\Images\play.png</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\externals\ios\JSQMessagesViewController\JSQMessagesViewController\Assets\JSQMessagesAssets.bundle\Images\play%402x.png">
+      <Link>Resources\JSQMessagesAssets.bundle\Images\play%402x.png</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\externals\ios\JSQMessagesViewController\JSQMessagesViewController\Assets\JSQMessagesAssets.bundle\Images\play%403x.png">
+      <Link>Resources\JSQMessagesAssets.bundle\Images\play%403x.png</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\externals\ios\JSQMessagesViewController\JSQMessagesViewController\Assets\JSQMessagesAssets.bundle\Images\typing.png">
+      <Link>Resources\JSQMessagesAssets.bundle\Images\typing.png</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\externals\ios\JSQMessagesViewController\JSQMessagesViewController\Assets\JSQMessagesAssets.bundle\Images\typing%402x.png">
+      <Link>Resources\JSQMessagesAssets.bundle\Images\typing%402x.png</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\externals\ios\JSQMessagesViewController\JSQMessagesViewController\Assets\JSQMessagesAssets.bundle\Images\typing%403x.png">
+      <Link>Resources\JSQMessagesAssets.bundle\Images\typing%403x.png</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\externals\ios\JSQMessagesViewController\JSQMessagesViewController\Assets\JSQMessagesAssets.bundle\Sounds\message_received.aiff">
+      <Link>Resources\JSQMessagesAssets.bundle\Sounds\message_received.aiff</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\externals\ios\JSQMessagesViewController\JSQMessagesViewController\Assets\JSQMessagesAssets.bundle\Sounds\message_sent.aiff">
+      <Link>Resources\JSQMessagesAssets.bundle\Sounds\message_sent.aiff</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\externals\ios\JSQMessagesViewController\JSQMessagesViewController\Assets\JSQMessagesAssets.bundle\de.lproj\JSQMessages.strings">
+      <Link>Resources\JSQMessagesAssets.bundle\de.lproj\JSQMessages.strings</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\externals\ios\JSQMessagesViewController\JSQMessagesViewController\Assets\JSQMessagesAssets.bundle\en.lproj\JSQMessages.strings">
+      <Link>Resources\JSQMessagesAssets.bundle\en.lproj\JSQMessages.strings</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\externals\ios\JSQMessagesViewController\JSQMessagesViewController\Assets\JSQMessagesAssets.bundle\es.lproj\JSQMessages.strings">
+      <Link>Resources\JSQMessagesAssets.bundle\es.lproj\JSQMessages.strings</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\externals\ios\JSQMessagesViewController\JSQMessagesViewController\Assets\JSQMessagesAssets.bundle\fr.lproj\JSQMessages.strings">
+      <Link>Resources\JSQMessagesAssets.bundle\fr.lproj\JSQMessages.strings</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\externals\ios\JSQMessagesViewController\JSQMessagesViewController\Assets\JSQMessagesAssets.bundle\he.lproj\JSQMessages.strings">
+      <Link>Resources\JSQMessagesAssets.bundle\he.lproj\JSQMessages.strings</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\externals\ios\JSQMessagesViewController\JSQMessagesViewController\Assets\JSQMessagesAssets.bundle\it.lproj\JSQMessages.strings">
+      <Link>Resources\JSQMessagesAssets.bundle\it.lproj\JSQMessages.strings</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\externals\ios\JSQMessagesViewController\JSQMessagesViewController\Assets\JSQMessagesAssets.bundle\nl.lproj\JSQMessages.strings">
+      <Link>Resources\JSQMessagesAssets.bundle\nl.lproj\JSQMessages.strings</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\externals\ios\JSQMessagesViewController\JSQMessagesViewController\Assets\JSQMessagesAssets.bundle\pl.lproj\JSQMessages.strings">
+      <Link>Resources\JSQMessagesAssets.bundle\pl.lproj\JSQMessages.strings</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\externals\ios\JSQMessagesViewController\JSQMessagesViewController\Assets\JSQMessagesAssets.bundle\pt.lproj\JSQMessages.strings">
+      <Link>Resources\JSQMessagesAssets.bundle\pt.lproj\JSQMessages.strings</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\externals\ios\JSQMessagesViewController\JSQMessagesViewController\Assets\JSQMessagesAssets.bundle\ro.lproj\JSQMessages.strings">
+      <Link>Resources\JSQMessagesAssets.bundle\ro.lproj\JSQMessages.strings</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\externals\ios\JSQMessagesViewController\JSQMessagesViewController\Assets\JSQMessagesAssets.bundle\ru.lproj\JSQMessages.strings">
+      <Link>Resources\JSQMessagesAssets.bundle\ru.lproj\JSQMessages.strings</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\externals\ios\JSQMessagesViewController\JSQMessagesViewController\Assets\JSQMessagesAssets.bundle\tr.lproj\JSQMessages.strings">
+      <Link>Resources\JSQMessagesAssets.bundle\tr.lproj\JSQMessages.strings</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\externals\ios\JSQMessagesViewController\JSQMessagesViewController\Assets\JSQMessagesAssets.bundle\zh-Hans.lproj\JSQMessages.strings">
+      <Link>Resources\JSQMessagesAssets.bundle\zh-Hans.lproj\JSQMessages.strings</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\externals\ios\JSQMessagesViewController\JSQMessagesViewController\Assets\JSQMessagesAssets.bundle\zh-Hant.lproj\JSQMessages.strings">
+      <Link>Resources\JSQMessagesAssets.bundle\zh-Hant.lproj\JSQMessages.strings</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\externals\ios\Resources\JSQMessagesCollectionViewCellIncoming.nib">
+      <Link>Resources\JSQMessagesCollectionViewCellIncoming.nib</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\externals\ios\Resources\JSQMessagesCollectionViewCellOutgoing.nib">
+      <Link>Resources\JSQMessagesCollectionViewCellOutgoing.nib</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\externals\ios\Resources\JSQMessagesLoadEarlierHeaderView.nib">
+      <Link>Resources\JSQMessagesLoadEarlierHeaderView.nib</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\externals\ios\Resources\JSQMessagesToolbarContentView.nib">
+      <Link>Resources\JSQMessagesToolbarContentView.nib</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\externals\ios\Resources\JSQMessagesTypingIndicatorFooterView.nib">
+      <Link>Resources\JSQMessagesTypingIndicatorFooterView.nib</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\externals\ios\Resources\JSQMessagesViewController.nib">
+      <Link>Resources\JSQMessagesViewController.nib</Link>
+    </BundleResource>
+  </ItemGroup>
+</Project>

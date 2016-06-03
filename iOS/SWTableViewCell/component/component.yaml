@@ -1,0 +1,27 @@
+id: swtableviewcell
+version: 0.3.7.0
+name: SWTableViewCell
+publisher: Xamarin Inc
+publisher-url: http://xamarin.com/
+src-url: https://github.com/xamarin/XamarinComponents/tree/master/iOS/SWTableViewCell
+summary: An easy-to-use UITableViewCell subclass that implements a swipeable content view which exposes utility buttons (similar to iOS 7 Mail Application).
+
+libraries:
+  ios: ../output/classic/SWTableViewCell.dll
+  ios-unified: ../output/unified/SWTableViewCell.dll
+
+samples:
+  - name: "iOS Unified Sample"
+    path: ../samples/SWTableViewCellSample.sln
+    configuration: "Release|iPhone"
+
+monodoc: docs/
+
+icons:
+  - icons/swtableviewcell_128x128.png
+  - icons/swtableviewcell_512x512.png
+  
+screenshots:
+  - screenshots/screenshot2.png
+  - screenshots/screenshot3.png
+  - screenshots/screenshot4.png

@@ -1,0 +1,6 @@
+﻿<metadata>
+  <attr path="/api/package[@name='com.flaviofaria.kenburnsview']" name="managedName">ImageViews.KenBurns</attr>
+
+  <attr path="/api/package[@name='com.flaviofaria.kenburnsview']/interface[@name='KenBurnsView.TransitionListener']/method[@name='onTransitionEnd']/parameter[1]" name="managedName">transition</attr>
+  <attr path="/api/package[@name='com.flaviofaria.kenburnsview']/interface[@name='KenBurnsView.TransitionListener']/method[@name='onTransitionStart']/parameter[1]" name="managedName">transition</attr>
+</metadata>

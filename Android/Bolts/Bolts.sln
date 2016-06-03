@@ -1,0 +1,23 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bolts.Tasks", "source\Bolts.Tasks\Bolts.Tasks.csproj", "{01839933-D4A9-45AF-AF68-597D59484FF4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bolts.AppLinks", "source\Bolts.AppLinks\Bolts.AppLinks.csproj", "{D5133187-767D-4D9B-A1DA-4E55620E0D89}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{01839933-D4A9-45AF-AF68-597D59484FF4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{01839933-D4A9-45AF-AF68-597D59484FF4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{01839933-D4A9-45AF-AF68-597D59484FF4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{01839933-D4A9-45AF-AF68-597D59484FF4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D5133187-767D-4D9B-A1DA-4E55620E0D89}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D5133187-767D-4D9B-A1DA-4E55620E0D89}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D5133187-767D-4D9B-A1DA-4E55620E0D89}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D5133187-767D-4D9B-A1DA-4E55620E0D89}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal

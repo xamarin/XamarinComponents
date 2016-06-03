@@ -1,0 +1,22 @@
+﻿<metadata>
+  <attr path="/api/package[@name='com.nineoldandroids']" name="managedName">NineOldAndroids</attr>
+  <attr path="/api/package[@name='com.nineoldandroids.animation']" name="managedName">NineOldAndroids.Animation</attr>
+  <attr path="/api/package[@name='com.nineoldandroids.util']" name="managedName">NineOldAndroids.Util</attr>
+  <attr path="/api/package[@name='com.nineoldandroids.view']" name="managedName">NineOldAndroids.View</attr>
+  <attr path="/api/package[@name='com.nineoldandroids.view.animation']" name="managedName">NineOldAndroids.View.Animation</attr>
+
+  <attr path="/api/package[@name='com.nineoldandroids.animation']/class[@name='AnimatorSet']/method[@name='setDuration']" name="managedReturn">NineOldAndroids.Animation.Animator</attr>
+  <attr path="/api/package[@name='com.nineoldandroids.animation']/class[@name='ValueAnimator']/method[@name='setDuration']" name="managedReturn">NineOldAndroids.Animation.Animator</attr>
+  
+  <attr path="/api/package[@name='com.nineoldandroids.animation']/interface[@name='ValueAnimator.AnimatorUpdateListener']/method[@name='onAnimationUpdate']/parameter[1]" name="managedName">animation</attr>
+  <attr path="/api/package[@name='com.nineoldandroids.animation']/interface[@name='Animator.AnimatorListener']/method[@name='onAnimationCancel']/parameter[1]" name="managedName">animation</attr>
+  <attr path="/api/package[@name='com.nineoldandroids.animation']/interface[@name='Animator.AnimatorListener']/method[@name='onAnimationEnd']/parameter[1]" name="managedName">animation</attr>
+  <attr path="/api/package[@name='com.nineoldandroids.animation']/interface[@name='Animator.AnimatorListener']/method[@name='onAnimationRepeat']/parameter[1]" name="managedName">animation</attr>
+  <attr path="/api/package[@name='com.nineoldandroids.animation']/interface[@name='Animator.AnimatorListener']/method[@name='onAnimationStart']/parameter[1]" name="managedName">animation</attr>
+
+  <!-- AnimatorInflator is now broken since build tools 22 -->
+  <remove-node path="/api/package[@name='com.nineoldandroids.animation']/class[@name='AnimatorInflater']" />
+  
+  <remove-node path="/api/package[@name='com.nineoldandroids.animation']/class[@visibility='']" />
+  <remove-node path="/api/package[@name='com.nineoldandroids.animation']/interface[@visibility='']" />
+</metadata>

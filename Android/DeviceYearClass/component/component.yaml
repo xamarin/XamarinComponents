@@ -1,0 +1,26 @@
+version: 1.0.0
+name: Device Year Class
+id: DeviceYearClass
+publisher: Xamarin Inc
+publisher-url: http://xamarin.com/
+src-url: https://github.com/xamarin/XamarinComponents/tree/master/Android/DeviceYearClass
+summary: A library that analyzes an Android device's specifications and calculates which year the device would be considered "high end".
+
+license: License.md
+details: Details.md
+getting-started: GettingStarted.md
+
+icons:
+  - ../images/icon_128x128.png
+  - ../images/icon_512x512.png
+screenshots:
+  - screenshot0.png 
+
+no_build: true
+libraries:
+  android: ../output/DeviceYearClass.dll
+
+samples:
+  - name: "Android Sample"
+    path: ../samples/DeviceYearClassSample.sln
+

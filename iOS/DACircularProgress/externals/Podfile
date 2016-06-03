@@ -1,0 +1,2 @@
+platform :ios, '6.0'
+pod 'DACircularProgress', '2.3.1'

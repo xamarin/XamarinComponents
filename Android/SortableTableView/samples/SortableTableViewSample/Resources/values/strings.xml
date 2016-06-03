@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">SortableTableView</string>
+    <string name="title_activity_main">Sortable Table View</string>
+
+    <string name="default_text_ps">180PS</string>
+    <string name="separator">/</string>
+    <string name="default_text_kws">120kW</string>
+
+    <string name="car_producer_image_content_description">Car Producer</string>
+</resources>

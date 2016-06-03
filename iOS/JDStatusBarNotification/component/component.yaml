@@ -1,0 +1,16 @@
+version: 1.5.3.0
+name: JDStatusBarNotification
+id: JDStatusBarNotification
+publisher: Xamarin Inc
+publisher-url: https://xamarin.com
+src-url: https://github.com/xamarin/XamarinComponents/tree/master/iOS/JDStatusBarNotification
+summary: Easy, customizable notifications displayed on top of the statusbar. With progress and activity.
+icons:
+  - icons/JDStatusBarNotification_128x128.png
+libraries:
+  ios: ../output/classic/JDStatusBarNotification.dll
+  ios-unified: ../output/unified/JDStatusBarNotification.dll
+samples:
+  - name: "JDStatusBarNotification Sample"
+    path:  ../samples/JDStatusBarNotificationSample.sln
+no_build: true

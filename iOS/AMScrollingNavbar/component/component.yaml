@@ -1,0 +1,22 @@
+version: 2.0.9.0
+name: AMScrollingNavbar
+id: AMScrollingNavbar
+publisher: Xamarin Inc
+publisher-url: http://xamarin.com
+src-url: https://github.com/xamarin/XamarinComponents/tree/master/iOS/AMScrollingNavbar
+summary: A custom UINavigationController that enables the scrolling of the navigation bar alongside the scrolling of an observed content view
+
+no_build: true
+
+icons:
+  - ../images/icon_128x128.png
+
+libraries:
+  ios: ../output/classic/AMScrollingNavbar.dll
+  ios-unified: ../output/unified/AMScrollingNavbar.dll
+
+samples:
+  - name: "Storyboard Sample"
+    path: ../samples/AMScrollingNavbarSample/AMScrollingNavbarSample.sln
+
+monodoc: ../docs/

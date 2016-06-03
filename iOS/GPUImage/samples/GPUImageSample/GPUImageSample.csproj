@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">iPhoneSimulator</Platform>
+    <ProjectTypeGuids>{FEACFBD2-3405-455C-9665-78FE426C6842};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <ProjectGuid>{424FB004-7068-44D5-880E-CB76B7B8A653}</ProjectGuid>
+    <OutputType>Exe</OutputType>
+    <RootNamespace>GPUImageSample</RootNamespace>
+    <IPhoneResourcePrefix>Resources</IPhoneResourcePrefix>
+    <AssemblyName>GPUImageSample</AssemblyName>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|iPhoneSimulator' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\iPhoneSimulator\Debug</OutputPath>
+    <DefineConstants>DEBUG;</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <ConsolePause>false</ConsolePause>
+    <MtouchArch>i386, x86_64</MtouchArch>
+    <MtouchLink>None</MtouchLink>
+    <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
+    <CodesignKey>iPhone Developer</CodesignKey>
+    <MtouchDebug>true</MtouchDebug>
+    <MtouchUseRefCounting>true</MtouchUseRefCounting>
+    <MtouchI18n>
+    </MtouchI18n>
+    <EnvironmentVariables>
+      <EnvironmentVariables>
+        <Variable name="CG_CONTEXT_SHOW_BACKTRACE" value="YES" />
+      </EnvironmentVariables>
+    </EnvironmentVariables>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhoneSimulator' ">
+    <DebugType>full</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\iPhoneSimulator\Release</OutputPath>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <ConsolePause>false</ConsolePause>
+    <MtouchArch>i386, x86_64</MtouchArch>
+    <MtouchLink>Full</MtouchLink>
+    <CodesignKey>iPhone Developer</CodesignKey>
+    <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
+    <MtouchUseRefCounting>true</MtouchUseRefCounting>
+    <MtouchI18n>
+    </MtouchI18n>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|iPhone' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\iPhone\Debug</OutputPath>
+    <DefineConstants>DEBUG;</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <ConsolePause>false</ConsolePause>
+    <MtouchArch>ARMv7, ARMv7s, ARM64</MtouchArch>
+    <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
+    <CodesignKey>iPhone Developer</CodesignKey>
+    <MtouchDebug>true</MtouchDebug>
+    <MtouchProfiling>true</MtouchProfiling>
+    <MtouchUseRefCounting>true</MtouchUseRefCounting>
+    <IpaPackageName>
+    </IpaPackageName>
+    <MtouchI18n>
+    </MtouchI18n>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhone' ">
+    <DebugType>full</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\iPhone\Release</OutputPath>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
+    <MtouchArch>ARMv7, ARMv7s, ARM64</MtouchArch>
+    <ConsolePause>false</ConsolePause>
+    <CodesignKey>iPhone Developer</CodesignKey>
+    <MtouchUseRefCounting>true</MtouchUseRefCounting>
+    <MtouchI18n>
+    </MtouchI18n>
+    <MtouchLink>Full</MtouchLink>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Core" />
+    <Reference Include="Xamarin.iOS" />
+    <Reference Include="OpenTK-1.0" />
+  </ItemGroup>
+  <ItemGroup>
+    <ImageAsset Include="Resources\Images.xcassets\AppIcons.appiconset\Contents.json" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\Lambeau.jpg" />
+    <BundleResource Include="Resources\WID-small.jpg" />
+    <BundleResource Include="Resources\sample_iPod.m4v" />
+    <BundleResource Include="Resources\Shader.fsh" />
+    <BundleResource Include="Resources\Shader.vsh" />
+    <BundleResource Include="Resources\Shader1.fsh" />
+    <BundleResource Include="Resources\Shader2.fsh" />
+    <BundleResource Include="Resources\xamagon.png" />
+    <BundleResource Include="Resources\lookup_amatorka.png" />
+    <BundleResource Include="Resources\lookup_miss_etikate.png" />
+    <BundleResource Include="Resources\lookup_soft_elegance_1.png" />
+    <BundleResource Include="Resources\lookup_soft_elegance_2.png" />
+    <BundleResource Include="Resources\lookup.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Info.plist" />
+    <None Include="Entitlements.plist" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Main.cs" />
+    <Compile Include="AppDelegate.cs" />
+    <Compile Include="SimpleImageFilterViewController.cs" />
+    <Compile Include="SimpleImageFilterViewController.designer.cs">
+      <DependentUpon>SimpleImageFilterViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SimpleResampleViewController.cs" />
+    <Compile Include="SimpleResampleViewController.designer.cs">
+      <DependentUpon>SimpleResampleViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SimpleImageFilesViewController.cs" />
+    <Compile Include="SimpleImageFilesViewController.designer.cs">
+      <DependentUpon>SimpleImageFilesViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SimpVideoFilterViewController.cs" />
+    <Compile Include="SimpVideoFilterViewController.designer.cs">
+      <DependentUpon>SimpVideoFilterViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CameraPhotoViewController.cs" />
+    <Compile Include="CameraPhotoViewController.designer.cs">
+      <DependentUpon>CameraPhotoViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CameraVideoViewController.cs" />
+    <Compile Include="CameraVideoViewController.designer.cs">
+      <DependentUpon>CameraVideoViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MultipleViewController.cs" />
+    <Compile Include="MultipleViewController.designer.cs">
+      <DependentUpon>MultipleViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="RawDataViewController.cs" />
+    <Compile Include="RawDataViewController.designer.cs">
+      <DependentUpon>RawDataViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MainViewController.cs" />
+    <Compile Include="MainViewController.designer.cs">
+      <DependentUpon>MainViewController.cs</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
+  <ItemGroup>
+    <InterfaceDefinition Include="Main.storyboard" />
+    <InterfaceDefinition Include="LaunchScreen.xib" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\source\GPUImage\GPUImage.csproj">
+      <Project>{E6CE97B8-FA59-47F5-99D6-99BF1DF1FCE1}</Project>
+      <Name>GPUImage</Name>
+    </ProjectReference>
+  </ItemGroup>
+</Project>

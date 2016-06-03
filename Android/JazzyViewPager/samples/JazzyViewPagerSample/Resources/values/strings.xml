@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <string name="app_name">JazzyViewPager</string>
+  <string-array name="jazzy_effects">
+    <item>Standard</item>
+    <item>Tablet</item>
+    <item>Cube</item>
+    <item>FlipHorizontal</item>
+    <item>Stack</item>
+    <item>ZoomIn</item>
+    <item>ZoomOut</item>
+    <item>RotateUp</item>
+    <item>RotateDown</item>
+    <item>Accordion</item>
+  </string-array>
+</resources>

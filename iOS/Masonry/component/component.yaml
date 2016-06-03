@@ -1,0 +1,21 @@
+version: 0.6.4.0
+name: Masonry
+id: Masonry
+publisher: Xamarin Inc
+publisher-url: https://xamarin.com
+summary: Harness the power of Auto Layout NSLayoutConstraints with a simplified, chainable and expressive syntax.
+src-url: https://github.com/xamarin/XamarinComponents/tree/master/iOS/Masonry
+icons:
+  - icons/Masonry_128x128.png
+libraries:
+  ios: ../output/classic/Masonry.dll
+  ios-unified: ../output/unified/Masonry.dll
+samples:
+  - name: "iOS Sample"
+    path:  ../samples/MasonrySample.sln
+no_build: true
+
+is_shell: true
+packages:
+  ios: Masonry, Version=0.6.4.0
+  ios-unified: Masonry, Version=0.6.4.0

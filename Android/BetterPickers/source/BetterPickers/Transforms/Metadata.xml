@@ -1,0 +1,70 @@
+﻿<metadata>
+	<!--
+  This sample removes the class: android.support.v4.content.AsyncTaskLoader.LoadTask:
+  <remove-node path="/api/package[@name='android.support.v4.content']/class[@name='AsyncTaskLoader.LoadTask']" />
+  
+  This sample removes the method: android.support.v4.content.CursorLoader.loadInBackground:
+
+  /Users/redth/xamarin/dev/BetterPickersAndroid/BetterPickers/obj/Debug/generated/src/Com.Doomonafireball.Betterpickers.Calendardatepicker.DayPickerView.cs(187,187): Error CS0234: The type or namespace name `CalendarDatePickerDialog' does not exist in the namespace `Com.Doomonafireball.Betterpickers.Calendardatepicker'. Are you missing an assembly reference? (CS0234) (BetterPickers)
+  /Users/redth/xamarin/dev/BetterPickersAndroid/BetterPickers/obj/Debug/generated/src/Com.Doomonafireball.Betterpickers.Calendardatepicker.YearPickerView.cs(191,191): Error CS0234: The type or namespace name `CalendarDatePickerDialog' does not exist in the namespace `Com.Doomonafireball.Betterpickers.Calendardatepicker'. Are you missing an assembly reference? (CS0234) (BetterPickers)
+
+  -->
+  <attr path="/api/package[@name='com.doomonafireball.betterpickers']" name="managedName">BetterPickers</attr>
+  <attr path="/api/package[@name='com.doomonafireball.betterpickers.datepicker']" name="managedName">BetterPickers.DatePickers</attr>
+  <attr path="/api/package[@name='com.doomonafireball.betterpickers.calendardatepicker']" name="managedName">BetterPickers.CalendarDatePickers</attr>
+  <attr path="/api/package[@name='com.doomonafireball.betterpickers.expirationpicker']" name="managedName">BetterPickers.ExpirationPickers</attr>
+  <attr path="/api/package[@name='com.doomonafireball.betterpickers.hmspicker']" name="managedName">BetterPickers.HmsPickers</attr>
+  <attr path="/api/package[@name='com.doomonafireball.betterpickers.numberpicker']" name="managedName">BetterPickers.NumberPickers</attr>
+  <attr path="/api/package[@name='com.doomonafireball.betterpickers.radialtimepicker']" name="managedName">BetterPickers.RadialTimePickers</attr>
+  <attr path="/api/package[@name='com.doomonafireball.betterpickers.recurrencepicker']" name="managedName">BetterPickers.RecurrencePickers</attr>
+  <attr path="/api/package[@name='com.doomonafireball.betterpickers.timepicker']" name="managedName">BetterPickers.TimePickers</attr>
+  <attr path="/api/package[@name='com.doomonafireball.betterpickers.timezonepicker']" name="managedName">BetterPickers.TimeZonePickers</attr>
+  <attr path="/api/package[@name='com.doomonafireball.betterpickers.widget']" name="managedName">BetterPickers.Widgets</attr>
+
+
+
+  <!--remove-node path="/api/package[@name='com.doomonafireball.betterpickers.calendardatepicker']/class[@name='DayPickerView']" / -->
+  <!-- remove-node path="/api/package[@name='com.doomonafireball.betterpickers.calendardatepicker']/class[@name='YearPickerView']" / -->
+
+  <!-- remove-node path="/api/package[@name='com.doomonafireball.betterpickers.timezonepicker']/class[@name='TimeZoneFilterTypeAdapter']" / -->
+
+
+
+<remove-node path="/api/package[@name='com.doomonafireball.betterpickers.calendardatepicker']/class[@name='MonthView.MonthViewTouchHelper']" />
+
+
+  <attr path="/api/package[@name='com.doomonafireball.betterpickers.calendardatepicker']/interface[@name='CalendarDatePickerController']" name="visibility">public</attr>
+
+
+  <add-node path="/api/package[@name='com.doomonafireball.betterpickers.timezonepicker']/class[@name='TimeZoneFilterTypeAdapter']">
+    	<method name="getItem" return="java.lang.Object" abstract="false" native="false" 
+    		synchronized="false" static="false" final="false" deprecated="not deprecated" visibility="public">
+      		<parameter name="position" type="int" />
+    	</method>
+  	</add-node>
+
+  	<add-node path="/api/package[@name='com.doomonafireball.betterpickers.timezonepicker']/class[@name='TimeZoneInfo']">
+    	<method name="getItem" return="java.lang.Object" abstract="false" native="false" 
+    		synchronized="false" static="false" final="false" deprecated="not deprecated" visibility="public">
+      		<parameter name="position" type="int" />
+    	</method>
+  	</add-node>
+
+
+
+  	<attr path="/api/package[@name='com.doomonafireball.betterpickers.calendardatepicker']/interface[@name='CalendarDatePickerDialog.OnDateSetListener']" name="visibility">public</attr>
+  	<attr path="/api/package[@name='com.doomonafireball.betterpickers.calendardatepicker']/interface[@name='CalendarDatePickerDialog.OnDateChangedListener']" name="visibility">public</attr>
+<!--  	<add-node path="/api/package[@name='com.doomonafireball.betterpickers.calendardatepicker']/class[@name='CalendarDatePickerDialog']">
+	    <method abstract="false" deprecated="not deprecated" final="false" name="newInstance" native="false" return="com.doomonafireball.betterpickers.calendardatepicker.CalendarDatePickerDialog" static="true" synchronized="false" visibility="public">
+	        <parameter name="callback" type="com.doomonafireball.betterpickers.calendardatepicker.CalendarDatePickerDialog.OnDateSetListener" />
+	        <parameter name="year" type="int" />
+	        <parameter name="monthOfYear" type="int" />
+	        <parameter name="dayOfMonth" type="int" />
+	    </method>
+	</add-node>-->
+
+
+	<attr path="/api/package[@name='com.doomonafireball.betterpickers.recurrencepicker']/interface[@name='RecurrencePickerDialog.OnRecurrenceSetListener']/method[@name='onRecurrenceSet']/parameter[1]" name="managedName">rrule</attr>
+	<attr path="/api/package[@name='com.doomonafireball.betterpickers.timezonepicker']/interface[@name='TimeZonePickerDialog.OnTimeZoneSetListener']/method[@name='onTimeZoneSet']/parameter[1]" name="managedName">tzi</attr>
+</metadata>
+

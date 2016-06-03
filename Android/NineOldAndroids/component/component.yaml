@@ -1,0 +1,26 @@
+version: 2.4.0
+name: Nine Old Androids
+id: NineOldAndroids
+publisher: Xamarin Inc
+publisher-url: http://xamarin.com/
+src-url: https://github.com/xamarin/XamarinComponents/tree/master/Android/NineOldAndroids
+summary: Android library for using the Honeycomb animation API on all versions of Android.
+
+license: License.md
+details: Details.md
+getting-started: GettingStarted.md
+
+icons:
+  - ../images/icon_128x128.png
+  - ../images/icon_512x512.png
+
+no_build: true
+is_shell: true
+libraries:
+  android: ../output/NineOldAndroids.dll
+packages:
+  android: NineOldAndroids, Version=2.4.0
+
+samples:
+  - name: "Android Sample"
+    path: ../samples/NineOldAndroidsSample.sln

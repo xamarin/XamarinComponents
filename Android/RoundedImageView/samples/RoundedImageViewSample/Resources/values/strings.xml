@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <string name="app_name">Rounded Image View</string>
+
+  <string-array name="action_list">
+    <item>Bitmap</item>
+    <item>Ovals</item>
+    <item>Corners</item>
+    <item>Picasso</item>
+    <item>Color</item>
+  </string-array>
+</resources>
