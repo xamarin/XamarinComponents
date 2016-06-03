@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<metadata>
+	<attr path="/api/package[@name='com.google.protobuf.nano']" name="managedName">Google.Protobuf.Nano</attr>
+	<attr path="/api/package[@name='com.google.vr.cardboard']" name="managedName">Google.VR.Cardboard</attr>
+	<attr path="/api/package[@name='com.google.vr.cardboard.annotations']" name="managedName">Google.VR.Cardboard.Annotations</attr>
+	<attr path="/api/package[@name='com.google.vr.internal.controller']" name="managedName">Google.VR.Internal.Controller</attr>
+	<attr path="/api/package[@name='com.google.vr.ndk.base']" name="managedName">Google.VR.NDK.Base</attr>
+	<attr path="/api/package[@name='com.google.vr.ndk.base.proto.nano']" name="managedName">Google.VR.NDK.Base.Proto.Nano</attr>
+	<attr path="/api/package[@name='com.google.vr.vrcore.controller.api']" name="managedName">Google.VR.VrCore.Controller.Api</attr>
+	<attr path="/api/package[@name='com.google.vrtoolkit.cardboard']" name="managedName">Google.VRToolkit.Cardboard</attr>
+	<attr path="/api/package[@name='com.google.vrtoolkit.cardboard.proto.nano']" name="managedName">Google.VRToolkit.Cardboard.Proto.Nano</attr>
+
+	<remove-node path="/api/package[@name='com.google.vr.ndk.base.proto.nano']/class[@name='GvrApiData.RenderTextureParamsListData']" />
+	<remove-node path="/api/package[@name='com.google.vr.ndk.base.proto.nano']/class[@name='GvrApiData.RenderTextureParamsListData.RenderTextureParamsData']" />
+	<remove-node path="/api/package[@name='com.google.vrtoolkit.cardboard.proto.nano']/class[@name='CardboardDevice.CardboardInternalParams']" />
+
+
+	<attr path="/api/package[@name='com.google.vrtoolkit.cardboard.proto.nano']/class[@name='CardboardDevice.DeviceParams']/method[@name='mergeFrom' and count(parameter)=1 and parameter[1][@type='com.google.protobuf.nano.CodedInputByteBufferNano']]" name="managedReturn">Google.Protobuf.Nano.MessageNano</attr>
+	<attr path="/api/package[@name='com.google.vrtoolkit.cardboard.proto.nano']/class[@name='Phone.PhoneParams']/method[@name='mergeFrom' and count(parameter)=1 and parameter[1][@type='com.google.protobuf.nano.CodedInputByteBufferNano']]" name="managedReturn">Google.Protobuf.Nano.MessageNano</attr>
+</metadata>
