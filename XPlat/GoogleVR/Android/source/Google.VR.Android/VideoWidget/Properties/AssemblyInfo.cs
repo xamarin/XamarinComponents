@@ -26,3 +26,23 @@ using Android.App;
 //[assembly: AssemblyDelaySign(false)]
 //[assembly: AssemblyKeyFile("")]
 
+[assembly: Java.Interop.JavaLibraryReference ("classes.jar",
+    PackageName = __Consts.PackageName,
+    SourceUrl = __GvrConsts.Url,
+    EmbeddedArchive = __Consts.AarPath,
+    Version = __GvrConsts.Version)]
+
+//[assembly: Android.IncludeAndroidResourcesFromAttribute ("./",
+//    PackageName = __Consts.PackageName,
+//    SourceUrl = __GvrConsts.Url,
+//    EmbeddedArchive = __Consts.AarPath,
+//    Version = __GvrConsts.Version)]
+
+static class __Consts
+{
+    public const string PackageName = "gvr videowidget";
+    public const string AarPath = "gvr-android-sdk-" + __GvrConsts.LongVersion + "/libraries/videowidget/videowidget.aar";
+}
+
+
+

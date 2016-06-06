@@ -40,10 +40,18 @@ Task ("externals")
 	EnsureDirectoryExists ("./externals/android");
 
 	DownloadFile (ANDROID_URL, "./externals/android.zip");
-	
+
 	Unzip ("./externals/android.zip", "./externals");
 	CopyDirectory ("./externals/gvr-android-sdk-" + ANDROID_VERSION, "./externals/android");
 	DeleteDirectory ("./externals/gvr-android-sdk-" + ANDROID_VERSION, true);
+	Unzip ("./externals/android/libraries/audio/audio.aar", "./externals/android/libraries/audio");
+	Unzip ("./externals/android/libraries/base/base.aar", "./externals/android/libraries/base");
+	Unzip ("./externals/android/libraries/common/common.aar", "./externals/android/libraries/common");
+	Unzip ("./externals/android/libraries/commonwidget/commonwidget.aar", "./externals/android/libraries/commonwidget");
+	Unzip ("./externals/android/libraries/controller/controller.aar", "./externals/android/libraries/controller");
+	Unzip ("./externals/android/libraries/panowidget/panowidget.aar", "./externals/android/libraries/panowidget");
+	Unzip ("./externals/android/libraries/videowidget/videowidget.aar", "./externals/android/libraries/videowidget");
+
 });
 
 Task ("clean").IsDependentOn ("clean-base").Does (() => 
