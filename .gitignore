@@ -5,3 +5,4 @@ output
 tools
 externals
 *.designer.cs
+*.userprefs

@@ -32,11 +32,17 @@ using Android.App;
     EmbeddedArchive = __Consts.AarPath,
     Version = __GvrConsts.Version)]
 
-//[assembly: Android.IncludeAndroidResourcesFromAttribute ("./",
-//    PackageName = __Consts.PackageName,
-//    SourceUrl = __GvrConsts.Url,
-//    EmbeddedArchive = __Consts.AarPath,
-//    Version = __GvrConsts.Version)]
+[assembly: Android.IncludeAndroidResourcesFromAttribute ("./",
+    PackageName = __Consts.PackageName,
+    SourceUrl = __GvrConsts.Url,
+    EmbeddedArchive = __Consts.AarPath,
+    Version = __GvrConsts.Version)]
+
+[assembly: Android.NativeLibraryReferenceAttribute ("jni/armeabi-v7a/libpanorenderer.so",
+    SourceUrl = __GvrConsts.Url,
+    EmbeddedArchive = __Consts.AarPath,
+    Version = __GvrConsts.Version,
+    PackageName = __Consts.PackageName)]
 
 static class __Consts
 {

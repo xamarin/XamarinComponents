@@ -38,11 +38,19 @@ using Android.App;
     EmbeddedArchive = __Consts.AarPath,
     Version = __GvrConsts.Version)]
 
+[assembly: Android.NativeLibraryReferenceAttribute ("jni/armeabi-v7a/libgvrbase.so",
+    SourceUrl = __GvrConsts.Url,
+    EmbeddedArchive = __Consts.AarPath,
+    Version = __GvrConsts.Version,
+    PackageName = __Consts.PackageName)]
+
 static class __Consts
 {
     public const string PackageName = "gvr base";
     public const string AarPath = "gvr-android-sdk-" + __GvrConsts.LongVersion + "/libraries/base/base.aar";
 }
+
+
 
 
 

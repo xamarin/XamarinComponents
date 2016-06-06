@@ -32,11 +32,11 @@ using Android.App;
     EmbeddedArchive = __Consts.AarPath,
     Version = __GvrConsts.Version)]
 
-//[assembly: Android.IncludeAndroidResourcesFromAttribute ("./",
-//    PackageName = __Consts.PackageName,
-//    SourceUrl = __GvrConsts.Url,
-//    EmbeddedArchive = __Consts.AarPath,
-//    Version = __GvrConsts.Version)]
+[assembly: Android.IncludeAndroidResourcesFromAttribute ("./",
+    PackageName = __Consts.PackageName,
+    SourceUrl = __GvrConsts.Url,
+    EmbeddedArchive = __Consts.AarPath,
+    Version = __GvrConsts.Version)]
 
 static class __Consts
 {
