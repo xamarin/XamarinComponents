@@ -115,8 +115,6 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <BundleResource Include="..\..\externals\ios\Pods\GVRSDK\VideoWidgetDemo\resources\congo.mp4">
-      <Link>Resources\congo.mp4</Link>
-    </BundleResource>
+    <BundleResource Include="Resources\congo.mp4" />
   </ItemGroup>
 </Project>
