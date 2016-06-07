@@ -48,6 +48,7 @@ Browse through the most popular plugins out there today!
 |Sockets|TCP & UDP Listeners and Clients + UDP multicast.|[NuGet](https://www.nuget.org/packages/rda.SocketsForPCL)|[GitHub](https://github.com/rdavisau/sockets-for-pcl)|[@rdavis_au](http://www.twitter.com/rdavis_au)|
 |Text To Speech|Talk back text from shared code.|[NuGet](https://www.nuget.org/packages/Xam.Plugins.TextToSpeech/)|[GitHub](https://github.com/jamesmontemagno/Xamarin.Plugins/tree/master/TextToSpeech)|[@JamesMontemagno](http://www.twitter.com/jamesmontemagno)|
 |User Dialogs|Message box style dialogs.|[NuGet](https://www.nuget.org/packages/Acr.UserDialogs/)|[GitHub](https://github.com/aritchie/userdialogs)|[@allanritchie911](https://twitter.com/allanritchie911)|
+|Version Tracking|Track which versions of your app a user has previously installed.|[NuGet](https://www.nuget.org/packages/Plugin.VersionTracking/1.0.1)|[GitHub](https://github.com/colbylwilliams/VersionTrackingPlugin)|[@ColbyLWilliams](https://twitter.com/colbylwilliams)|
 |Vibrate|Vibrate any device.|[NuGet](https://www.nuget.org/packages/Xam.Plugins.Vibrate/)|[GitHub](https://github.com/jamesmontemagno/Xamarin.Plugins/tree/master/Vibrate)|[@JamesMontemagno](http://www.twitter.com/jamesmontemagno)|
 
 
