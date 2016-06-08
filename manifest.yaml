@@ -276,4 +276,8 @@
   BuildScript: ./XPlat/DropboxCoreApi/iOS/build.cake
   TriggerPaths: [ XPlat/DropboxCoreApi/iOS ]
   MacBuildTargets: [ samples, component ]
+- Name: AzureMessaging
+  BuildScript: ./XPlat/AzureMessaging/build.cake
+  TriggerPaths: [ XPlat/AzureMessaging ]
+  MacBuildTargets: [ samples, component ]
 
