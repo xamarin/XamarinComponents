@@ -12,14 +12,14 @@ namespace Google.VR
 		FullscreenVR
 	}
 
-	public enum renderingMode : uint
+	public enum GVRRenderingMode : uint
 	{
 		StereoPanning,
 		BinauralLowQuality,
 		BinauralHighQuality
 	}
 
-	public enum materialName : uint
+	public enum GVRMaterialName : uint
 	{
 		Transparent,
 		AcousticCeilingTiles,
@@ -56,13 +56,13 @@ namespace Google.VR
 	[StructLayout (LayoutKind.Sequential)]
 	public struct GVRFieldOfView
 	{
-		public nfloat left;
+		public nfloat Left;
 
-		public nfloat right;
+		public nfloat Right;
 
-		public nfloat top;
+		public nfloat Top;
 
-		public nfloat bottom;
+		public nfloat Bottom;
 	}
 
 	[Native]

@@ -56,7 +56,7 @@ namespace Google.VR
 	{
 		// -(id)initWithRenderingMode:(renderingMode)rendering_mode;
 		[Export ("initWithRenderingMode:")]
-		IntPtr Constructor (renderingMode rendering_mode);
+		IntPtr Constructor (GVRRenderingMode rendering_mode);
 
 		// -(_Bool)start;
 		[Export ("start")]
@@ -116,7 +116,7 @@ namespace Google.VR
 
 		// -(void)setRoomProperties:(float)size_x size_y:(float)size_y size_z:(float)size_z wall_material:(materialName)wall_material ceiling_material:(materialName)ceiling_material floor_material:(materialName)floor_material;
 		[Export ("setRoomProperties:size_y:size_z:wall_material:ceiling_material:floor_material:")]
-		void SetRoomProperties (float size_x, float size_y, float size_z, materialName wall_material, materialName ceiling_material, materialName floor_material);
+		void SetRoomProperties (float size_x, float size_y, float size_z, GVRMaterialName wall_material, GVRMaterialName ceiling_material, GVRMaterialName floor_material);
 	}
 
 	// @interface GVRHeadTransform : NSObject
