@@ -20,6 +20,9 @@
 
     <!-- iOS -->
     <file src="output/Xamarin.Google.VR.iOS.dll" target="lib\Xamarin.iOS10" />
+
+    <!-- Add targets file for external native reference download -->
+    <file src="source/Google.VR.iOS/Google.VR.iOS.targets" target="build\Xamarin.Google.VR.iOS.targets"  />
     
   </files>
 </package>
