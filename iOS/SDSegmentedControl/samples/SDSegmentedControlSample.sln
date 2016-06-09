@@ -1,0 +1,33 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SDSegmentedControlSample", "SDSegmentedControlSample\SDSegmentedControlSample.csproj", "{8F8D8310-684B-465C-8C34-53BDF7D1DC5F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SegmentedControl", "..\source\SDSegmentedControl\SegmentedControl.csproj", "{DDEA604A-C9BF-4829-8B7C-98F2E1C4D555}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|iPhoneSimulator = Debug|iPhoneSimulator
+		Release|iPhoneSimulator = Release|iPhoneSimulator
+		Debug|iPhone = Debug|iPhone
+		Release|iPhone = Release|iPhone
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{8F8D8310-684B-465C-8C34-53BDF7D1DC5F}.Debug|iPhoneSimulator.ActiveCfg = Debug|iPhoneSimulator
+		{8F8D8310-684B-465C-8C34-53BDF7D1DC5F}.Debug|iPhoneSimulator.Build.0 = Debug|iPhoneSimulator
+		{8F8D8310-684B-465C-8C34-53BDF7D1DC5F}.Release|iPhoneSimulator.ActiveCfg = Release|iPhoneSimulator
+		{8F8D8310-684B-465C-8C34-53BDF7D1DC5F}.Release|iPhoneSimulator.Build.0 = Release|iPhoneSimulator
+		{8F8D8310-684B-465C-8C34-53BDF7D1DC5F}.Debug|iPhone.ActiveCfg = Debug|iPhone
+		{8F8D8310-684B-465C-8C34-53BDF7D1DC5F}.Debug|iPhone.Build.0 = Debug|iPhone
+		{8F8D8310-684B-465C-8C34-53BDF7D1DC5F}.Release|iPhone.ActiveCfg = Release|iPhone
+		{8F8D8310-684B-465C-8C34-53BDF7D1DC5F}.Release|iPhone.Build.0 = Release|iPhone
+		{DDEA604A-C9BF-4829-8B7C-98F2E1C4D555}.Debug|iPhoneSimulator.ActiveCfg = Debug|Any CPU
+		{DDEA604A-C9BF-4829-8B7C-98F2E1C4D555}.Debug|iPhoneSimulator.Build.0 = Debug|Any CPU
+		{DDEA604A-C9BF-4829-8B7C-98F2E1C4D555}.Release|iPhoneSimulator.ActiveCfg = Release|Any CPU
+		{DDEA604A-C9BF-4829-8B7C-98F2E1C4D555}.Release|iPhoneSimulator.Build.0 = Release|Any CPU
+		{DDEA604A-C9BF-4829-8B7C-98F2E1C4D555}.Debug|iPhone.ActiveCfg = Debug|Any CPU
+		{DDEA604A-C9BF-4829-8B7C-98F2E1C4D555}.Debug|iPhone.Build.0 = Debug|Any CPU
+		{DDEA604A-C9BF-4829-8B7C-98F2E1C4D555}.Release|iPhone.ActiveCfg = Release|Any CPU
+		{DDEA604A-C9BF-4829-8B7C-98F2E1C4D555}.Release|iPhone.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal

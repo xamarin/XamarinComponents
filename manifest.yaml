@@ -263,6 +263,10 @@
   BuildScript: ./iOS/ZipArchive/build.cake
   TriggerPaths: [ iOS/ZipArchive ]
   MacBuildTargets: [ samples, component ]
+- Name: SDSegmentedControl
+  BuildScript: ./iOS/SDSegmentedControl/build.cake
+  TriggerPaths: [ iOS/SDSegmentedControl ]
+  MacBuildTargets: [ samples, component ]
 
 #######################################################
 # XPlat
