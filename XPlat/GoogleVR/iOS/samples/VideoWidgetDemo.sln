@@ -1,0 +1,33 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VideoWidgetDemo", "VideoWidgetDemo\VideoWidgetDemo.csproj", "{2EAC07D2-FA0F-4257-9CF1-3BF608E9689F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Google.VR.iOS", "..\source\Google.VR.iOS\Google.VR.iOS.csproj", "{ECE2A736-DCE5-4F1E-A695-7C13BDFE6DCD}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|iPhoneSimulator = Debug|iPhoneSimulator
+		Release|iPhone = Release|iPhone
+		Release|iPhoneSimulator = Release|iPhoneSimulator
+		Debug|iPhone = Debug|iPhone
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{2EAC07D2-FA0F-4257-9CF1-3BF608E9689F}.Debug|iPhone.ActiveCfg = Debug|iPhone
+		{2EAC07D2-FA0F-4257-9CF1-3BF608E9689F}.Debug|iPhone.Build.0 = Debug|iPhone
+		{2EAC07D2-FA0F-4257-9CF1-3BF608E9689F}.Debug|iPhoneSimulator.ActiveCfg = Debug|iPhoneSimulator
+		{2EAC07D2-FA0F-4257-9CF1-3BF608E9689F}.Debug|iPhoneSimulator.Build.0 = Debug|iPhoneSimulator
+		{2EAC07D2-FA0F-4257-9CF1-3BF608E9689F}.Release|iPhone.ActiveCfg = Release|iPhone
+		{2EAC07D2-FA0F-4257-9CF1-3BF608E9689F}.Release|iPhone.Build.0 = Release|iPhone
+		{2EAC07D2-FA0F-4257-9CF1-3BF608E9689F}.Release|iPhoneSimulator.ActiveCfg = Release|iPhoneSimulator
+		{2EAC07D2-FA0F-4257-9CF1-3BF608E9689F}.Release|iPhoneSimulator.Build.0 = Release|iPhoneSimulator
+		{ECE2A736-DCE5-4F1E-A695-7C13BDFE6DCD}.Debug|iPhone.ActiveCfg = Debug|Any CPU
+		{ECE2A736-DCE5-4F1E-A695-7C13BDFE6DCD}.Debug|iPhone.Build.0 = Debug|Any CPU
+		{ECE2A736-DCE5-4F1E-A695-7C13BDFE6DCD}.Debug|iPhoneSimulator.ActiveCfg = Debug|Any CPU
+		{ECE2A736-DCE5-4F1E-A695-7C13BDFE6DCD}.Debug|iPhoneSimulator.Build.0 = Debug|Any CPU
+		{ECE2A736-DCE5-4F1E-A695-7C13BDFE6DCD}.Release|iPhone.ActiveCfg = Release|Any CPU
+		{ECE2A736-DCE5-4F1E-A695-7C13BDFE6DCD}.Release|iPhone.Build.0 = Release|Any CPU
+		{ECE2A736-DCE5-4F1E-A695-7C13BDFE6DCD}.Release|iPhoneSimulator.ActiveCfg = Release|Any CPU
+		{ECE2A736-DCE5-4F1E-A695-7C13BDFE6DCD}.Release|iPhoneSimulator.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal

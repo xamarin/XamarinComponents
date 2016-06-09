@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<metadata>
+	<attr path="/api/package[@name='com.google.vr.sdk.base']" name="managedName">Google.VR.SDK.Base</attr>
+	<attr path="/api/package[@name='com.google.vr.sdk.base.sensors']" name="managedName">Google.VR.SDK.Base.Sensors</attr>
+	<attr path="/api/package[@name='com.google.vr.sdk.base.sensors.internal']" name="managedName">Google.VR.SDK.Base.Sensors.Internal</attr>
+	<attr path="/api/package[@name='com.google.vr.sdk.base.testing']" name="managedName">Google.VR.SDK.Base.Testing</attr>
+	<attr path="/api/package[@name='com.google.vr.sdk.base.testing.sensors']" name="managedName">Google.VR.SDK.Base.Testing.Sensors</attr>
+	
+	<attr path="/api/package[@name='com.google.vr.sdk.base']/class[@name='Eye']/method[@name='getType' and count(parameter)=0]" name="managedName">GetEyeType</attr>
+</metadata>

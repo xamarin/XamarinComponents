@@ -1,0 +1,1422 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+	<PropertyGroup>
+		<_GoogleVRiOSAssemblyName>Xamarin.Google.VR.iOS, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</_GoogleVRiOSAssemblyName>
+		<_GoogleVRiOSId>GVR-0.8.0</_GoogleVRiOSId>
+	</PropertyGroup>
+	<ItemGroup Condition="'$(OutputType)'!='Library'">
+		<XamarinBuildRestoreResources Include="_GoogleVRiOSItems" />
+		<XamarinBuildDownload Include="$(_GoogleVRiOSId)">
+			<Url>https://www.gstatic.com/cpdc/ddd681a0d902ddca-GVRSDK-0.8.0.tar.gz</Url>
+			<Kind>Tgz</Kind>
+		</XamarinBuildDownload>
+	</ItemGroup>
+	<Target Name="_GoogleVRiOSItems">
+
+		<ItemGroup>
+			<RestoreAssemblyResource Include="$(XamarinBuildDownloadDir)$(_GoogleVRiOSId)\Libraries\libCardboardSDK.a">
+				<LogicalName>libCardboardSDK.a</LogicalName>
+				<AssemblyName>$(_GoogleVRiOSAssemblyName)</AssemblyName>
+			</RestoreAssemblyResource>
+
+			<RestoreAssemblyResource Include="$(XamarinBuildDownloadDir)$(_GoogleVRiOSId)\Resources\CardboardSDK.bundle\Assets.car">
+				<LogicalName>__monotouch_content_CardboardSDK.bundle_fAssets.car</LogicalName>
+				<AssemblyName>$(_GoogleVRiOSAssemblyName)</AssemblyName>
+			</RestoreAssemblyResource>
+			<RestoreAssemblyResource Include="$(XamarinBuildDownloadDir)$(_GoogleVRiOSId)\Resources\CardboardSDK.bundle\Info.plist">
+				<LogicalName>__monotouch_content_CardboardSDK.bundle_fInfo.plist</LogicalName>
+				<AssemblyName>$(_GoogleVRiOSAssemblyName)</AssemblyName>
+			</RestoreAssemblyResource>
+			<RestoreAssemblyResource Include="$(XamarinBuildDownloadDir)$(_GoogleVRiOSId)\Resources\CardboardSDK.bundle\arrowRight.png">
+				<LogicalName>__monotouch_content_CardboardSDK.bundle_farrowRight.png</LogicalName>
+				<AssemblyName>$(_GoogleVRiOSAssemblyName)</AssemblyName>
+			</RestoreAssemblyResource>
+			<RestoreAssemblyResource Include="$(XamarinBuildDownloadDir)$(_GoogleVRiOSId)\Resources\CardboardSDK.bundle\cardboardLogotype.png">
+				<LogicalName>__monotouch_content_CardboardSDK.bundle_fcardboardLogotype.png</LogicalName>
+				<AssemblyName>$(_GoogleVRiOSAssemblyName)</AssemblyName>
+			</RestoreAssemblyResource>
+			<RestoreAssemblyResource Include="$(XamarinBuildDownloadDir)$(_GoogleVRiOSId)\Resources\CardboardSDK.bundle\continueButton.png">
+				<LogicalName>__monotouch_content_CardboardSDK.bundle_fcontinueButton.png</LogicalName>
+				<AssemblyName>$(_GoogleVRiOSAssemblyName)</AssemblyName>
+			</RestoreAssemblyResource>
+			<RestoreAssemblyResource Include="$(XamarinBuildDownloadDir)$(_GoogleVRiOSId)\Resources\CardboardSDK.bundle\gearButton.png">
+				<LogicalName>__monotouch_content_CardboardSDK.bundle_fgearButton.png</LogicalName>
+				<AssemblyName>$(_GoogleVRiOSAssemblyName)</AssemblyName>
+			</RestoreAssemblyResource>
+			<RestoreAssemblyResource Include="$(XamarinBuildDownloadDir)$(_GoogleVRiOSId)\Resources\CardboardSDK.bundle\ic_arrow_back_white%401x.png">
+				<LogicalName>__monotouch_content_CardboardSDK.bundle_fic__arrow__back__white%401x.png</LogicalName>
+				<AssemblyName>$(_GoogleVRiOSAssemblyName)</AssemblyName>
+			</RestoreAssemblyResource>
+			<RestoreAssemblyResource Include="$(XamarinBuildDownloadDir)$(_GoogleVRiOSId)\Resources\CardboardSDK.bundle\ic_arrow_back_white%402x.png">
+				<LogicalName>__monotouch_content_CardboardSDK.bundle_fic__arrow__back__white%402x.png</LogicalName>
+				<AssemblyName>$(_GoogleVRiOSAssemblyName)</AssemblyName>
+			</RestoreAssemblyResource>
+			<RestoreAssemblyResource Include="$(XamarinBuildDownloadDir)$(_GoogleVRiOSId)\Resources\CardboardSDK.bundle\ic_arrow_back_white%403x.png">
+				<LogicalName>__monotouch_content_CardboardSDK.bundle_fic__arrow__back__white%403x.png</LogicalName>
+				<AssemblyName>$(_GoogleVRiOSAssemblyName)</AssemblyName>
+			</RestoreAssemblyResource>
+			<RestoreAssemblyResource Include="$(XamarinBuildDownloadDir)$(_GoogleVRiOSId)\Resources\CardboardSDK.bundle\ic_settings_white%401x.png">
+				<LogicalName>__monotouch_content_CardboardSDK.bundle_fic__settings__white%401x.png</LogicalName>
+				<AssemblyName>$(_GoogleVRiOSAssemblyName)</AssemblyName>
+			</RestoreAssemblyResource>
+			<RestoreAssemblyResource Include="$(XamarinBuildDownloadDir)$(_GoogleVRiOSId)\Resources\CardboardSDK.bundle\ic_settings_white%402x.png">
+				<LogicalName>__monotouch_content_CardboardSDK.bundle_fic__settings__white%402x.png</LogicalName>
+				<AssemblyName>$(_GoogleVRiOSAssemblyName)</AssemblyName>
+			</RestoreAssemblyResource>
+			<RestoreAssemblyResource Include="$(XamarinBuildDownloadDir)$(_GoogleVRiOSId)\Resources\CardboardSDK.bundle\ic_settings_white%403x.png">
+				<LogicalName>__monotouch_content_CardboardSDK.bundle_fic__settings__white%403x.png</LogicalName>
+				<AssemblyName>$(_GoogleVRiOSAssemblyName)</AssemblyName>
+			</RestoreAssemblyResource>
+			<RestoreAssemblyResource Include="$(XamarinBuildDownloadDir)$(_GoogleVRiOSId)\Resources\CardboardSDK.bundle\qrSample%401x.png">
+				<LogicalName>__monotouch_content_CardboardSDK.bundle_fqrSample%401x.png</LogicalName>
+				<AssemblyName>$(_GoogleVRiOSAssemblyName)</AssemblyName>
+			</RestoreAssemblyResource>
+			<RestoreAssemblyResource Include="$(XamarinBuildDownloadDir)$(_GoogleVRiOSId)\Resources\CardboardSDK.bundle\qrSample%402x.png">
+				<LogicalName>__monotouch_content_CardboardSDK.bundle_fqrSample%402x.png</LogicalName>
+				<AssemblyName>$(_GoogleVRiOSAssemblyName)</AssemblyName>
+			</RestoreAssemblyResource>
+			<RestoreAssemblyResource Include="$(XamarinBuildDownloadDir)$(_GoogleVRiOSId)\Resources\CardboardSDK.bundle\qrSample%403x.png">
+				<LogicalName>__monotouch_content_CardboardSDK.bundle_fqrSample%403x.png</LogicalName>
+				<AssemblyName>$(_GoogleVRiOSAssemblyName)</AssemblyName>
+			</RestoreAssemblyResource>
+			<RestoreAssemblyResource Include="$(XamarinBuildDownloadDir)$(_GoogleVRiOSId)\Resources\CardboardSDK.bundle\rotateInstructions.mp4">
+				<LogicalName>__monotouch_content_CardboardSDK.bundle_frotateInstructions.mp4</LogicalName>
+				<AssemblyName>$(_GoogleVRiOSAssemblyName)</AssemblyName>
+			</RestoreAssemblyResource>
+			<RestoreAssemblyResource Include="$(XamarinBuildDownloadDir)$(_GoogleVRiOSId)\Resources\CardboardSDK.bundle\tickmarks.png">
+				<LogicalName>__monotouch_content_CardboardSDK.bundle_ftickmarks.png</LogicalName>
+				<AssemblyName>$(_GoogleVRiOSAssemblyName)</AssemblyName>
+			</RestoreAssemblyResource>
+			<RestoreAssemblyResource Include="$(XamarinBuildDownloadDir)$(_GoogleVRiOSId)\Resources\CardboardSDK.bundle\ar.lproj\CardboardSDK.strings">
+				<LogicalName>__monotouch_content_CardboardSDK.bundle_far.lproj_fCardboardSDK.strings</LogicalName>
+				<AssemblyName>$(_GoogleVRiOSAssemblyName)</AssemblyName>
+			</RestoreAssemblyResource>
+			<RestoreAssemblyResource Include="$(XamarinBuildDownloadDir)$(_GoogleVRiOSId)\Resources\CardboardSDK.bundle\ca.lproj\CardboardSDK.strings">
+				<LogicalName>__monotouch_content_CardboardSDK.bundle_fca.lproj_fCardboardSDK.strings</LogicalName>
+				<AssemblyName>$(_GoogleVRiOSAssemblyName)</AssemblyName>
+			</RestoreAssemblyResource>
+			<RestoreAssemblyResource Include="$(XamarinBuildDownloadDir)$(_GoogleVRiOSId)\Resources\CardboardSDK.bundle\cs.lproj\CardboardSDK.strings">
+				<LogicalName>__monotouch_content_CardboardSDK.bundle_fcs.lproj_fCardboardSDK.strings</LogicalName>
+				<AssemblyName>$(_GoogleVRiOSAssemblyName)</AssemblyName>
+			</RestoreAssemblyResource>
+			<RestoreAssemblyResource Include="$(XamarinBuildDownloadDir)$(_GoogleVRiOSId)\Resources\CardboardSDK.bundle\da.lproj\CardboardSDK.strings">
+				<LogicalName>__monotouch_content_CardboardSDK.bundle_fda.lproj_fCardboardSDK.strings</LogicalName>
+				<AssemblyName>$(_GoogleVRiOSAssemblyName)</AssemblyName>
+			</RestoreAssemblyResource>
+			<RestoreAssemblyResource Include="$(XamarinBuildDownloadDir)$(_GoogleVRiOSId)\Resources\CardboardSDK.bundle\de.lproj\CardboardSDK.strings">
+				<LogicalName>__monotouch_content_CardboardSDK.bundle_fde.lproj_fCardboardSDK.strings</LogicalName>
+				<AssemblyName>$(_GoogleVRiOSAssemblyName)</AssemblyName>
+			</RestoreAssemblyResource>
+			<RestoreAssemblyResource Include="$(XamarinBuildDownloadDir)$(_GoogleVRiOSId)\Resources\CardboardSDK.bundle\el.lproj\CardboardSDK.strings">
+				<LogicalName>__monotouch_content_CardboardSDK.bundle_fel.lproj_fCardboardSDK.strings</LogicalName>
+				<AssemblyName>$(_GoogleVRiOSAssemblyName)</AssemblyName>
+			</RestoreAssemblyResource>
+			<RestoreAssemblyResource Include="$(XamarinBuildDownloadDir)$(_GoogleVRiOSId)\Resources\CardboardSDK.bundle\en.lproj\CardboardSDK.strings">
+				<LogicalName>__monotouch_content_CardboardSDK.bundle_fen.lproj_fCardboardSDK.strings</LogicalName>
+				<AssemblyName>$(_GoogleVRiOSAssemblyName)</AssemblyName>
+			</RestoreAssemblyResource>
+			<RestoreAssemblyResource Include="$(XamarinBuildDownloadDir)$(_GoogleVRiOSId)\Resources\CardboardSDK.bundle\en_AU.lproj\CardboardSDK.strings">
+				<LogicalName>__monotouch_content_CardboardSDK.bundle_fen__AU.lproj_fCardboardSDK.strings</LogicalName>
+				<AssemblyName>$(_GoogleVRiOSAssemblyName)</AssemblyName>
+			</RestoreAssemblyResource>
+			<RestoreAssemblyResource Include="$(XamarinBuildDownloadDir)$(_GoogleVRiOSId)\Resources\CardboardSDK.bundle\en_GB.lproj\CardboardSDK.strings">
+				<LogicalName>__monotouch_content_CardboardSDK.bundle_fen__GB.lproj_fCardboardSDK.strings</LogicalName>
+				<AssemblyName>$(_GoogleVRiOSAssemblyName)</AssemblyName>
+			</RestoreAssemblyResource>
+			<RestoreAssemblyResource Include="$(XamarinBuildDownloadDir)$(_GoogleVRiOSId)\Resources\CardboardSDK.bundle\en_IN.lproj\CardboardSDK.strings">
+				<LogicalName>__monotouch_content_CardboardSDK.bundle_fen__IN.lproj_fCardboardSDK.strings</LogicalName>
+				<AssemblyName>$(_GoogleVRiOSAssemblyName)</AssemblyName>
+			</RestoreAssemblyResource>
+			<RestoreAssemblyResource Include="$(XamarinBuildDownloadDir)$(_GoogleVRiOSId)\Resources\CardboardSDK.bundle\es.lproj\CardboardSDK.strings">
+				<LogicalName>__monotouch_content_CardboardSDK.bundle_fes.lproj_fCardboardSDK.strings</LogicalName>
+				<AssemblyName>$(_GoogleVRiOSAssemblyName)</AssemblyName>
+			</RestoreAssemblyResource>
+			<RestoreAssemblyResource Include="$(XamarinBuildDownloadDir)$(_GoogleVRiOSId)\Resources\CardboardSDK.bundle\es_MX.lproj\CardboardSDK.strings">
+				<LogicalName>__monotouch_content_CardboardSDK.bundle_fes__MX.lproj_fCardboardSDK.strings</LogicalName>
+				<AssemblyName>$(_GoogleVRiOSAssemblyName)</AssemblyName>
+			</RestoreAssemblyResource>
+			<RestoreAssemblyResource Include="$(XamarinBuildDownloadDir)$(_GoogleVRiOSId)\Resources\CardboardSDK.bundle\fi.lproj\CardboardSDK.strings">
+				<LogicalName>__monotouch_content_CardboardSDK.bundle_ffi.lproj_fCardboardSDK.strings</LogicalName>
+				<AssemblyName>$(_GoogleVRiOSAssemblyName)</AssemblyName>
+			</RestoreAssemblyResource>
+			<RestoreAssemblyResource Include="$(XamarinBuildDownloadDir)$(_GoogleVRiOSId)\Resources\CardboardSDK.bundle\fr.lproj\CardboardSDK.strings">
+				<LogicalName>__monotouch_content_CardboardSDK.bundle_ffr.lproj_fCardboardSDK.strings</LogicalName>
+				<AssemblyName>$(_GoogleVRiOSAssemblyName)</AssemblyName>
+			</RestoreAssemblyResource>
+			<RestoreAssemblyResource Include="$(XamarinBuildDownloadDir)$(_GoogleVRiOSId)\Resources\CardboardSDK.bundle\he.lproj\CardboardSDK.strings">
+				<LogicalName>__monotouch_content_CardboardSDK.bundle_fhe.lproj_fCardboardSDK.strings</LogicalName>
+				<AssemblyName>$(_GoogleVRiOSAssemblyName)</AssemblyName>
+			</RestoreAssemblyResource>
+			<RestoreAssemblyResource Include="$(XamarinBuildDownloadDir)$(_GoogleVRiOSId)\Resources\CardboardSDK.bundle\hi.lproj\CardboardSDK.strings">
+				<LogicalName>__monotouch_content_CardboardSDK.bundle_fhi.lproj_fCardboardSDK.strings</LogicalName>
+				<AssemblyName>$(_GoogleVRiOSAssemblyName)</AssemblyName>
+			</RestoreAssemblyResource>
+			<RestoreAssemblyResource Include="$(XamarinBuildDownloadDir)$(_GoogleVRiOSId)\Resources\CardboardSDK.bundle\hr.lproj\CardboardSDK.strings">
+				<LogicalName>__monotouch_content_CardboardSDK.bundle_fhr.lproj_fCardboardSDK.strings</LogicalName>
+				<AssemblyName>$(_GoogleVRiOSAssemblyName)</AssemblyName>
+			</RestoreAssemblyResource>
+			<RestoreAssemblyResource Include="$(XamarinBuildDownloadDir)$(_GoogleVRiOSId)\Resources\CardboardSDK.bundle\hu.lproj\CardboardSDK.strings">
+				<LogicalName>__monotouch_content_CardboardSDK.bundle_fhu.lproj_fCardboardSDK.strings</LogicalName>
+				<AssemblyName>$(_GoogleVRiOSAssemblyName)</AssemblyName>
+			</RestoreAssemblyResource>
+			<RestoreAssemblyResource Include="$(XamarinBuildDownloadDir)$(_GoogleVRiOSId)\Resources\CardboardSDK.bundle\id.lproj\CardboardSDK.strings">
+				<LogicalName>__monotouch_content_CardboardSDK.bundle_fid.lproj_fCardboardSDK.strings</LogicalName>
+				<AssemblyName>$(_GoogleVRiOSAssemblyName)</AssemblyName>
+			</RestoreAssemblyResource>
+			<RestoreAssemblyResource Include="$(XamarinBuildDownloadDir)$(_GoogleVRiOSId)\Resources\CardboardSDK.bundle\it.lproj\CardboardSDK.strings">
+				<LogicalName>__monotouch_content_CardboardSDK.bundle_fit.lproj_fCardboardSDK.strings</LogicalName>
+				<AssemblyName>$(_GoogleVRiOSAssemblyName)</AssemblyName>
+			</RestoreAssemblyResource>
+			<RestoreAssemblyResource Include="$(XamarinBuildDownloadDir)$(_GoogleVRiOSId)\Resources\CardboardSDK.bundle\iw.lproj\CardboardSDK.strings">
+				<LogicalName>__monotouch_content_CardboardSDK.bundle_fiw.lproj_fCardboardSDK.strings</LogicalName>
+				<AssemblyName>$(_GoogleVRiOSAssemblyName)</AssemblyName>
+			</RestoreAssemblyResource>
+			<RestoreAssemblyResource Include="$(XamarinBuildDownloadDir)$(_GoogleVRiOSId)\Resources\CardboardSDK.bundle\ja.lproj\CardboardSDK.strings">
+				<LogicalName>__monotouch_content_CardboardSDK.bundle_fja.lproj_fCardboardSDK.strings</LogicalName>
+				<AssemblyName>$(_GoogleVRiOSAssemblyName)</AssemblyName>
+			</RestoreAssemblyResource>
+			<RestoreAssemblyResource Include="$(XamarinBuildDownloadDir)$(_GoogleVRiOSId)\Resources\CardboardSDK.bundle\ko.lproj\CardboardSDK.strings">
+				<LogicalName>__monotouch_content_CardboardSDK.bundle_fko.lproj_fCardboardSDK.strings</LogicalName>
+				<AssemblyName>$(_GoogleVRiOSAssemblyName)</AssemblyName>
+			</RestoreAssemblyResource>
+			<RestoreAssemblyResource Include="$(XamarinBuildDownloadDir)$(_GoogleVRiOSId)\Resources\CardboardSDK.bundle\nb.lproj\CardboardSDK.strings">
+				<LogicalName>__monotouch_content_CardboardSDK.bundle_fnb.lproj_fCardboardSDK.strings</LogicalName>
+				<AssemblyName>$(_GoogleVRiOSAssemblyName)</AssemblyName>
+			</RestoreAssemblyResource>
+			<RestoreAssemblyResource Include="$(XamarinBuildDownloadDir)$(_GoogleVRiOSId)\Resources\CardboardSDK.bundle\nl.lproj\CardboardSDK.strings">
+				<LogicalName>__monotouch_content_CardboardSDK.bundle_fnl.lproj_fCardboardSDK.strings</LogicalName>
+				<AssemblyName>$(_GoogleVRiOSAssemblyName)</AssemblyName>
+			</RestoreAssemblyResource>
+			<RestoreAssemblyResource Include="$(XamarinBuildDownloadDir)$(_GoogleVRiOSId)\Resources\CardboardSDK.bundle\pl.lproj\CardboardSDK.strings">
+				<LogicalName>__monotouch_content_CardboardSDK.bundle_fpl.lproj_fCardboardSDK.strings</LogicalName>
+				<AssemblyName>$(_GoogleVRiOSAssemblyName)</AssemblyName>
+			</RestoreAssemblyResource>
+			<RestoreAssemblyResource Include="$(XamarinBuildDownloadDir)$(_GoogleVRiOSId)\Resources\CardboardSDK.bundle\pt.lproj\CardboardSDK.strings">
+				<LogicalName>__monotouch_content_CardboardSDK.bundle_fpt.lproj_fCardboardSDK.strings</LogicalName>
+				<AssemblyName>$(_GoogleVRiOSAssemblyName)</AssemblyName>
+			</RestoreAssemblyResource>
+			<RestoreAssemblyResource Include="$(XamarinBuildDownloadDir)$(_GoogleVRiOSId)\Resources\CardboardSDK.bundle\pt_PT.lproj\CardboardSDK.strings">
+				<LogicalName>__monotouch_content_CardboardSDK.bundle_fpt__PT.lproj_fCardboardSDK.strings</LogicalName>
+				<AssemblyName>$(_GoogleVRiOSAssemblyName)</AssemblyName>
+			</RestoreAssemblyResource>
+			<RestoreAssemblyResource Include="$(XamarinBuildDownloadDir)$(_GoogleVRiOSId)\Resources\CardboardSDK.bundle\ro.lproj\CardboardSDK.strings">
+				<LogicalName>__monotouch_content_CardboardSDK.bundle_fro.lproj_fCardboardSDK.strings</LogicalName>
+				<AssemblyName>$(_GoogleVRiOSAssemblyName)</AssemblyName>
+			</RestoreAssemblyResource>
+			<RestoreAssemblyResource Include="$(XamarinBuildDownloadDir)$(_GoogleVRiOSId)\Resources\CardboardSDK.bundle\ru.lproj\CardboardSDK.strings">
+				<LogicalName>__monotouch_content_CardboardSDK.bundle_fru.lproj_fCardboardSDK.strings</LogicalName>
+				<AssemblyName>$(_GoogleVRiOSAssemblyName)</AssemblyName>
+			</RestoreAssemblyResource>
+			<RestoreAssemblyResource Include="$(XamarinBuildDownloadDir)$(_GoogleVRiOSId)\Resources\CardboardSDK.bundle\sk.lproj\CardboardSDK.strings">
+				<LogicalName>__monotouch_content_CardboardSDK.bundle_fsk.lproj_fCardboardSDK.strings</LogicalName>
+				<AssemblyName>$(_GoogleVRiOSAssemblyName)</AssemblyName>
+			</RestoreAssemblyResource>
+			<RestoreAssemblyResource Include="$(XamarinBuildDownloadDir)$(_GoogleVRiOSId)\Resources\CardboardSDK.bundle\sv.lproj\CardboardSDK.strings">
+				<LogicalName>__monotouch_content_CardboardSDK.bundle_fsv.lproj_fCardboardSDK.strings</LogicalName>
+				<AssemblyName>$(_GoogleVRiOSAssemblyName)</AssemblyName>
+			</RestoreAssemblyResource>
+			<RestoreAssemblyResource Include="$(XamarinBuildDownloadDir)$(_GoogleVRiOSId)\Resources\CardboardSDK.bundle\th.lproj\CardboardSDK.strings">
+				<LogicalName>__monotouch_content_CardboardSDK.bundle_fth.lproj_fCardboardSDK.strings</LogicalName>
+				<AssemblyName>$(_GoogleVRiOSAssemblyName)</AssemblyName>
+			</RestoreAssemblyResource>
+			<RestoreAssemblyResource Include="$(XamarinBuildDownloadDir)$(_GoogleVRiOSId)\Resources\CardboardSDK.bundle\tr.lproj\CardboardSDK.strings">
+				<LogicalName>__monotouch_content_CardboardSDK.bundle_ftr.lproj_fCardboardSDK.strings</LogicalName>
+				<AssemblyName>$(_GoogleVRiOSAssemblyName)</AssemblyName>
+			</RestoreAssemblyResource>
+			<RestoreAssemblyResource Include="$(XamarinBuildDownloadDir)$(_GoogleVRiOSId)\Resources\CardboardSDK.bundle\uk.lproj\CardboardSDK.strings">
+				<LogicalName>__monotouch_content_CardboardSDK.bundle_fuk.lproj_fCardboardSDK.strings</LogicalName>
+				<AssemblyName>$(_GoogleVRiOSAssemblyName)</AssemblyName>
+			</RestoreAssemblyResource>
+			<RestoreAssemblyResource Include="$(XamarinBuildDownloadDir)$(_GoogleVRiOSId)\Resources\CardboardSDK.bundle\vi.lproj\CardboardSDK.strings">
+				<LogicalName>__monotouch_content_CardboardSDK.bundle_fvi.lproj_fCardboardSDK.strings</LogicalName>
+				<AssemblyName>$(_GoogleVRiOSAssemblyName)</AssemblyName>
+			</RestoreAssemblyResource>
+			<RestoreAssemblyResource Include="$(XamarinBuildDownloadDir)$(_GoogleVRiOSId)\Resources\CardboardSDK.bundle\zh_CN.lproj\CardboardSDK.strings">
+				<LogicalName>__monotouch_content_CardboardSDK.bundle_fzh__CN.lproj_fCardboardSDK.strings</LogicalName>
+				<AssemblyName>$(_GoogleVRiOSAssemblyName)</AssemblyName>
+			</RestoreAssemblyResource>
+			<RestoreAssemblyResource Include="$(XamarinBuildDownloadDir)$(_GoogleVRiOSId)\Resources\CardboardSDK.bundle\zh_HK.lproj\CardboardSDK.strings">
+				<LogicalName>__monotouch_content_CardboardSDK.bundle_fzh__HK.lproj_fCardboardSDK.strings</LogicalName>
+				<AssemblyName>$(_GoogleVRiOSAssemblyName)</AssemblyName>
+			</RestoreAssemblyResource>
+			<RestoreAssemblyResource Include="$(XamarinBuildDownloadDir)$(_GoogleVRiOSId)\Resources\CardboardSDK.bundle\zh_TW.lproj\CardboardSDK.strings">
+				<LogicalName>__monotouch_content_CardboardSDK.bundle_fzh__TW.lproj_fCardboardSDK.strings</LogicalName>
+				<AssemblyName>$(_GoogleVRiOSAssemblyName)</AssemblyName>
+			</RestoreAssemblyResource>
+			<RestoreAssemblyResource Include="$(XamarinBuildDownloadDir)$(_GoogleVRiOSId)\Resources\GoogleKitCore.bundle\button_blue.png">
+				<LogicalName>__monotouch_content_GoogleKitCore.bundle_fbutton__blue.png</LogicalName>
+				<AssemblyName>$(_GoogleVRiOSAssemblyName)</AssemblyName>
+			</RestoreAssemblyResource>
+			<RestoreAssemblyResource Include="$(XamarinBuildDownloadDir)$(_GoogleVRiOSId)\Resources\GoogleKitCore.bundle\button_blue%402x.png">
+				<LogicalName>__monotouch_content_GoogleKitCore.bundle_fbutton__blue%402x.png</LogicalName>
+				<AssemblyName>$(_GoogleVRiOSAssemblyName)</AssemblyName>
+			</RestoreAssemblyResource>
+			<RestoreAssemblyResource Include="$(XamarinBuildDownloadDir)$(_GoogleVRiOSId)\Resources\GoogleKitCore.bundle\button_blue%403x.png">
+				<LogicalName>__monotouch_content_GoogleKitCore.bundle_fbutton__blue%403x.png</LogicalName>
+				<AssemblyName>$(_GoogleVRiOSAssemblyName)</AssemblyName>
+			</RestoreAssemblyResource>
+			<RestoreAssemblyResource Include="$(XamarinBuildDownloadDir)$(_GoogleVRiOSId)\Resources\GoogleKitCore.bundle\button_blue_highlighted.png">
+				<LogicalName>__monotouch_content_GoogleKitCore.bundle_fbutton__blue__highlighted.png</LogicalName>
+				<AssemblyName>$(_GoogleVRiOSAssemblyName)</AssemblyName>
+			</RestoreAssemblyResource>
+			<RestoreAssemblyResource Include="$(XamarinBuildDownloadDir)$(_GoogleVRiOSId)\Resources\GoogleKitCore.bundle\button_blue_highlighted%402x.png">
+				<LogicalName>__monotouch_content_GoogleKitCore.bundle_fbutton__blue__highlighted%402x.png</LogicalName>
+				<AssemblyName>$(_GoogleVRiOSAssemblyName)</AssemblyName>
+			</RestoreAssemblyResource>
+			<RestoreAssemblyResource Include="$(XamarinBuildDownloadDir)$(_GoogleVRiOSId)\Resources\GoogleKitCore.bundle\button_blue_highlighted%403x.png">
+				<LogicalName>__monotouch_content_GoogleKitCore.bundle_fbutton__blue__highlighted%403x.png</LogicalName>
+				<AssemblyName>$(_GoogleVRiOSAssemblyName)</AssemblyName>
+			</RestoreAssemblyResource>
+			<RestoreAssemblyResource Include="$(XamarinBuildDownloadDir)$(_GoogleVRiOSId)\Resources\GoogleKitCore.bundle\button_dark.png">
+				<LogicalName>__monotouch_content_GoogleKitCore.bundle_fbutton__dark.png</LogicalName>
+				<AssemblyName>$(_GoogleVRiOSAssemblyName)</AssemblyName>
+			</RestoreAssemblyResource>
+			<RestoreAssemblyResource Include="$(XamarinBuildDownloadDir)$(_GoogleVRiOSId)\Resources\GoogleKitCore.bundle\button_dark%402x.png">
+				<LogicalName>__monotouch_content_GoogleKitCore.bundle_fbutton__dark%402x.png</LogicalName>
+				<AssemblyName>$(_GoogleVRiOSAssemblyName)</AssemblyName>
+			</RestoreAssemblyResource>
+			<RestoreAssemblyResource Include="$(XamarinBuildDownloadDir)$(_GoogleVRiOSId)\Resources\GoogleKitCore.bundle\button_dark%403x.png">
+				<LogicalName>__monotouch_content_GoogleKitCore.bundle_fbutton__dark%403x.png</LogicalName>
+				<AssemblyName>$(_GoogleVRiOSAssemblyName)</AssemblyName>
+			</RestoreAssemblyResource>
+			<RestoreAssemblyResource Include="$(XamarinBuildDownloadDir)$(_GoogleVRiOSId)\Resources\GoogleKitCore.bundle\button_dark_highlighted.png">
+				<LogicalName>__monotouch_content_GoogleKitCore.bundle_fbutton__dark__highlighted.png</LogicalName>
+				<AssemblyName>$(_GoogleVRiOSAssemblyName)</AssemblyName>
+			</RestoreAssemblyResource>
+			<RestoreAssemblyResource Include="$(XamarinBuildDownloadDir)$(_GoogleVRiOSId)\Resources\GoogleKitCore.bundle\button_dark_highlighted%402x.png">
+				<LogicalName>__monotouch_content_GoogleKitCore.bundle_fbutton__dark__highlighted%402x.png</LogicalName>
+				<AssemblyName>$(_GoogleVRiOSAssemblyName)</AssemblyName>
+			</RestoreAssemblyResource>
+			<RestoreAssemblyResource Include="$(XamarinBuildDownloadDir)$(_GoogleVRiOSId)\Resources\GoogleKitCore.bundle\button_dark_highlighted%403x.png">
+				<LogicalName>__monotouch_content_GoogleKitCore.bundle_fbutton__dark__highlighted%403x.png</LogicalName>
+				<AssemblyName>$(_GoogleVRiOSAssemblyName)</AssemblyName>
+			</RestoreAssemblyResource>
+			<RestoreAssemblyResource Include="$(XamarinBuildDownloadDir)$(_GoogleVRiOSId)\Resources\GoogleKitCore.bundle\button_light.png">
+				<LogicalName>__monotouch_content_GoogleKitCore.bundle_fbutton__light.png</LogicalName>
+				<AssemblyName>$(_GoogleVRiOSAssemblyName)</AssemblyName>
+			</RestoreAssemblyResource>
+			<RestoreAssemblyResource Include="$(XamarinBuildDownloadDir)$(_GoogleVRiOSId)\Resources\GoogleKitCore.bundle\button_light%402x.png">
+				<LogicalName>__monotouch_content_GoogleKitCore.bundle_fbutton__light%402x.png</LogicalName>
+				<AssemblyName>$(_GoogleVRiOSAssemblyName)</AssemblyName>
+			</RestoreAssemblyResource>
+			<RestoreAssemblyResource Include="$(XamarinBuildDownloadDir)$(_GoogleVRiOSId)\Resources\GoogleKitCore.bundle\button_light%403x.png">
+				<LogicalName>__monotouch_content_GoogleKitCore.bundle_fbutton__light%403x.png</LogicalName>
+				<AssemblyName>$(_GoogleVRiOSAssemblyName)</AssemblyName>
+			</RestoreAssemblyResource>
+			<RestoreAssemblyResource Include="$(XamarinBuildDownloadDir)$(_GoogleVRiOSId)\Resources\GoogleKitCore.bundle\button_light_highlighted.png">
+				<LogicalName>__monotouch_content_GoogleKitCore.bundle_fbutton__light__highlighted.png</LogicalName>
+				<AssemblyName>$(_GoogleVRiOSAssemblyName)</AssemblyName>
+			</RestoreAssemblyResource>
+			<RestoreAssemblyResource Include="$(XamarinBuildDownloadDir)$(_GoogleVRiOSId)\Resources\GoogleKitCore.bundle\button_light_highlighted%402x.png">
+				<LogicalName>__monotouch_content_GoogleKitCore.bundle_fbutton__light__highlighted%402x.png</LogicalName>
+				<AssemblyName>$(_GoogleVRiOSAssemblyName)</AssemblyName>
+			</RestoreAssemblyResource>
+			<RestoreAssemblyResource Include="$(XamarinBuildDownloadDir)$(_GoogleVRiOSId)\Resources\GoogleKitCore.bundle\button_light_highlighted%403x.png">
+				<LogicalName>__monotouch_content_GoogleKitCore.bundle_fbutton__light__highlighted%403x.png</LogicalName>
+				<AssemblyName>$(_GoogleVRiOSAssemblyName)</AssemblyName>
+			</RestoreAssemblyResource>
+			<RestoreAssemblyResource Include="$(XamarinBuildDownloadDir)$(_GoogleVRiOSId)\Resources\GoogleKitCore.bundle\button_red.png">
+				<LogicalName>__monotouch_content_GoogleKitCore.bundle_fbutton__red.png</LogicalName>
+				<AssemblyName>$(_GoogleVRiOSAssemblyName)</AssemblyName>
+			</RestoreAssemblyResource>
+			<RestoreAssemblyResource Include="$(XamarinBuildDownloadDir)$(_GoogleVRiOSId)\Resources\GoogleKitCore.bundle\button_red%402x.png">
+				<LogicalName>__monotouch_content_GoogleKitCore.bundle_fbutton__red%402x.png</LogicalName>
+				<AssemblyName>$(_GoogleVRiOSAssemblyName)</AssemblyName>
+			</RestoreAssemblyResource>
+			<RestoreAssemblyResource Include="$(XamarinBuildDownloadDir)$(_GoogleVRiOSId)\Resources\GoogleKitCore.bundle\button_red%403x.png">
+				<LogicalName>__monotouch_content_GoogleKitCore.bundle_fbutton__red%403x.png</LogicalName>
+				<AssemblyName>$(_GoogleVRiOSAssemblyName)</AssemblyName>
+			</RestoreAssemblyResource>
+			<RestoreAssemblyResource Include="$(XamarinBuildDownloadDir)$(_GoogleVRiOSId)\Resources\GoogleKitCore.bundle\button_red_highlighted.png">
+				<LogicalName>__monotouch_content_GoogleKitCore.bundle_fbutton__red__highlighted.png</LogicalName>
+				<AssemblyName>$(_GoogleVRiOSAssemblyName)</AssemblyName>
+			</RestoreAssemblyResource>
+			<RestoreAssemblyResource Include="$(XamarinBuildDownloadDir)$(_GoogleVRiOSId)\Resources\GoogleKitCore.bundle\button_red_highlighted%402x.png">
+				<LogicalName>__monotouch_content_GoogleKitCore.bundle_fbutton__red__highlighted%402x.png</LogicalName>
+				<AssemblyName>$(_GoogleVRiOSAssemblyName)</AssemblyName>
+			</RestoreAssemblyResource>
+			<RestoreAssemblyResource Include="$(XamarinBuildDownloadDir)$(_GoogleVRiOSId)\Resources\GoogleKitCore.bundle\button_red_highlighted%403x.png">
+				<LogicalName>__monotouch_content_GoogleKitCore.bundle_fbutton__red__highlighted%403x.png</LogicalName>
+				<AssemblyName>$(_GoogleVRiOSAssemblyName)</AssemblyName>
+			</RestoreAssemblyResource>
+			<RestoreAssemblyResource Include="$(XamarinBuildDownloadDir)$(_GoogleVRiOSId)\Resources\GoogleKitCore.bundle\cell_background_selected_dark.png">
+				<LogicalName>__monotouch_content_GoogleKitCore.bundle_fcell__background__selected__dark.png</LogicalName>
+				<AssemblyName>$(_GoogleVRiOSAssemblyName)</AssemblyName>
+			</RestoreAssemblyResource>
+			<RestoreAssemblyResource Include="$(XamarinBuildDownloadDir)$(_GoogleVRiOSId)\Resources\GoogleKitCore.bundle\cell_background_selected_dark%402x.png">
+				<LogicalName>__monotouch_content_GoogleKitCore.bundle_fcell__background__selected__dark%402x.png</LogicalName>
+				<AssemblyName>$(_GoogleVRiOSAssemblyName)</AssemblyName>
+			</RestoreAssemblyResource>
+			<RestoreAssemblyResource Include="$(XamarinBuildDownloadDir)$(_GoogleVRiOSId)\Resources\GoogleKitCore.bundle\cell_disclosure_accessory.png">
+				<LogicalName>__monotouch_content_GoogleKitCore.bundle_fcell__disclosure__accessory.png</LogicalName>
+				<AssemblyName>$(_GoogleVRiOSAssemblyName)</AssemblyName>
+			</RestoreAssemblyResource>
+			<RestoreAssemblyResource Include="$(XamarinBuildDownloadDir)$(_GoogleVRiOSId)\Resources\GoogleKitCore.bundle\cell_disclosure_accessory%402x.png">
+				<LogicalName>__monotouch_content_GoogleKitCore.bundle_fcell__disclosure__accessory%402x.png</LogicalName>
+				<AssemblyName>$(_GoogleVRiOSAssemblyName)</AssemblyName>
+			</RestoreAssemblyResource>
+			<RestoreAssemblyResource Include="$(XamarinBuildDownloadDir)$(_GoogleVRiOSId)\Resources\GoogleKitCore.bundle\cell_disclosure_accessory%403x.png">
+				<LogicalName>__monotouch_content_GoogleKitCore.bundle_fcell__disclosure__accessory%403x.png</LogicalName>
+				<AssemblyName>$(_GoogleVRiOSAssemblyName)</AssemblyName>
+			</RestoreAssemblyResource>
+			<RestoreAssemblyResource Include="$(XamarinBuildDownloadDir)$(_GoogleVRiOSId)\Resources\GoogleKitCore.bundle\cell_divider.png">
+				<LogicalName>__monotouch_content_GoogleKitCore.bundle_fcell__divider.png</LogicalName>
+				<AssemblyName>$(_GoogleVRiOSAssemblyName)</AssemblyName>
+			</RestoreAssemblyResource>
+			<RestoreAssemblyResource Include="$(XamarinBuildDownloadDir)$(_GoogleVRiOSId)\Resources\GoogleKitCore.bundle\cell_divider%402x.png">
+				<LogicalName>__monotouch_content_GoogleKitCore.bundle_fcell__divider%402x.png</LogicalName>
+				<AssemblyName>$(_GoogleVRiOSAssemblyName)</AssemblyName>
+			</RestoreAssemblyResource>
+			<RestoreAssemblyResource Include="$(XamarinBuildDownloadDir)$(_GoogleVRiOSId)\Resources\GoogleKitCore.bundle\checkbox.png">
+				<LogicalName>__monotouch_content_GoogleKitCore.bundle_fcheckbox.png</LogicalName>
+				<AssemblyName>$(_GoogleVRiOSAssemblyName)</AssemblyName>
+			</RestoreAssemblyResource>
+			<RestoreAssemblyResource Include="$(XamarinBuildDownloadDir)$(_GoogleVRiOSId)\Resources\GoogleKitCore.bundle\checkbox%402x.png">
+				<LogicalName>__monotouch_content_GoogleKitCore.bundle_fcheckbox%402x.png</LogicalName>
+				<AssemblyName>$(_GoogleVRiOSAssemblyName)</AssemblyName>
+			</RestoreAssemblyResource>
+			<RestoreAssemblyResource Include="$(XamarinBuildDownloadDir)$(_GoogleVRiOSId)\Resources\GoogleKitCore.bundle\checkbox_checked.png">
+				<LogicalName>__monotouch_content_GoogleKitCore.bundle_fcheckbox__checked.png</LogicalName>
+				<AssemblyName>$(_GoogleVRiOSAssemblyName)</AssemblyName>
+			</RestoreAssemblyResource>
+			<RestoreAssemblyResource Include="$(XamarinBuildDownloadDir)$(_GoogleVRiOSId)\Resources\GoogleKitCore.bundle\checkbox_checked%402x.png">
+				<LogicalName>__monotouch_content_GoogleKitCore.bundle_fcheckbox__checked%402x.png</LogicalName>
+				<AssemblyName>$(_GoogleVRiOSAssemblyName)</AssemblyName>
+			</RestoreAssemblyResource>
+			<RestoreAssemblyResource Include="$(XamarinBuildDownloadDir)$(_GoogleVRiOSId)\Resources\GoogleKitCore.bundle\checkmark.png">
+				<LogicalName>__monotouch_content_GoogleKitCore.bundle_fcheckmark.png</LogicalName>
+				<AssemblyName>$(_GoogleVRiOSAssemblyName)</AssemblyName>
+			</RestoreAssemblyResource>
+			<RestoreAssemblyResource Include="$(XamarinBuildDownloadDir)$(_GoogleVRiOSId)\Resources\GoogleKitCore.bundle\checkmark%402x.png">
+				<LogicalName>__monotouch_content_GoogleKitCore.bundle_fcheckmark%402x.png</LogicalName>
+				<AssemblyName>$(_GoogleVRiOSAssemblyName)</AssemblyName>
+			</RestoreAssemblyResource>
+			<RestoreAssemblyResource Include="$(XamarinBuildDownloadDir)$(_GoogleVRiOSId)\Resources\GoogleKitCore.bundle\vertical_divider.png">
+				<LogicalName>__monotouch_content_GoogleKitCore.bundle_fvertical__divider.png</LogicalName>
+				<AssemblyName>$(_GoogleVRiOSAssemblyName)</AssemblyName>
+			</RestoreAssemblyResource>
+			<RestoreAssemblyResource Include="$(XamarinBuildDownloadDir)$(_GoogleVRiOSId)\Resources\GoogleKitCore.bundle\vertical_divider%402x.png">
+				<LogicalName>__monotouch_content_GoogleKitCore.bundle_fvertical__divider%402x.png</LogicalName>
+				<AssemblyName>$(_GoogleVRiOSAssemblyName)</AssemblyName>
+			</RestoreAssemblyResource>
+			<RestoreAssemblyResource Include="$(XamarinBuildDownloadDir)$(_GoogleVRiOSId)\Resources\GoogleKitCore.bundle\Resources\ar.lproj\GoogleKitCore.strings">
+				<LogicalName>__monotouch_content_GoogleKitCore.bundle_fResources_far.lproj_fGoogleKitCore.strings</LogicalName>
+				<AssemblyName>$(_GoogleVRiOSAssemblyName)</AssemblyName>
+			</RestoreAssemblyResource>
+			<RestoreAssemblyResource Include="$(XamarinBuildDownloadDir)$(_GoogleVRiOSId)\Resources\GoogleKitCore.bundle\Resources\bg.lproj\GoogleKitCore.strings">
+				<LogicalName>__monotouch_content_GoogleKitCore.bundle_fResources_fbg.lproj_fGoogleKitCore.strings</LogicalName>
+				<AssemblyName>$(_GoogleVRiOSAssemblyName)</AssemblyName>
+			</RestoreAssemblyResource>
+			<RestoreAssemblyResource Include="$(XamarinBuildDownloadDir)$(_GoogleVRiOSId)\Resources\GoogleKitCore.bundle\Resources\ca.lproj\GoogleKitCore.strings">
+				<LogicalName>__monotouch_content_GoogleKitCore.bundle_fResources_fca.lproj_fGoogleKitCore.strings</LogicalName>
+				<AssemblyName>$(_GoogleVRiOSAssemblyName)</AssemblyName>
+			</RestoreAssemblyResource>
+			<RestoreAssemblyResource Include="$(XamarinBuildDownloadDir)$(_GoogleVRiOSId)\Resources\GoogleKitCore.bundle\Resources\cs.lproj\GoogleKitCore.strings">
+				<LogicalName>__monotouch_content_GoogleKitCore.bundle_fResources_fcs.lproj_fGoogleKitCore.strings</LogicalName>
+				<AssemblyName>$(_GoogleVRiOSAssemblyName)</AssemblyName>
+			</RestoreAssemblyResource>
+			<RestoreAssemblyResource Include="$(XamarinBuildDownloadDir)$(_GoogleVRiOSId)\Resources\GoogleKitCore.bundle\Resources\da.lproj\GoogleKitCore.strings">
+				<LogicalName>__monotouch_content_GoogleKitCore.bundle_fResources_fda.lproj_fGoogleKitCore.strings</LogicalName>
+				<AssemblyName>$(_GoogleVRiOSAssemblyName)</AssemblyName>
+			</RestoreAssemblyResource>
+			<RestoreAssemblyResource Include="$(XamarinBuildDownloadDir)$(_GoogleVRiOSId)\Resources\GoogleKitCore.bundle\Resources\de.lproj\GoogleKitCore.strings">
+				<LogicalName>__monotouch_content_GoogleKitCore.bundle_fResources_fde.lproj_fGoogleKitCore.strings</LogicalName>
+				<AssemblyName>$(_GoogleVRiOSAssemblyName)</AssemblyName>
+			</RestoreAssemblyResource>
+			<RestoreAssemblyResource Include="$(XamarinBuildDownloadDir)$(_GoogleVRiOSId)\Resources\GoogleKitCore.bundle\Resources\el.lproj\GoogleKitCore.strings">
+				<LogicalName>__monotouch_content_GoogleKitCore.bundle_fResources_fel.lproj_fGoogleKitCore.strings</LogicalName>
+				<AssemblyName>$(_GoogleVRiOSAssemblyName)</AssemblyName>
+			</RestoreAssemblyResource>
+			<RestoreAssemblyResource Include="$(XamarinBuildDownloadDir)$(_GoogleVRiOSId)\Resources\GoogleKitCore.bundle\Resources\en.lproj\GoogleKitCore.strings">
+				<LogicalName>__monotouch_content_GoogleKitCore.bundle_fResources_fen.lproj_fGoogleKitCore.strings</LogicalName>
+				<AssemblyName>$(_GoogleVRiOSAssemblyName)</AssemblyName>
+			</RestoreAssemblyResource>
+			<RestoreAssemblyResource Include="$(XamarinBuildDownloadDir)$(_GoogleVRiOSId)\Resources\GoogleKitCore.bundle\Resources\en_AU.lproj\GoogleKitCore.strings">
+				<LogicalName>__monotouch_content_GoogleKitCore.bundle_fResources_fen__AU.lproj_fGoogleKitCore.strings</LogicalName>
+				<AssemblyName>$(_GoogleVRiOSAssemblyName)</AssemblyName>
+			</RestoreAssemblyResource>
+			<RestoreAssemblyResource Include="$(XamarinBuildDownloadDir)$(_GoogleVRiOSId)\Resources\GoogleKitCore.bundle\Resources\en_GB.lproj\GoogleKitCore.strings">
+				<LogicalName>__monotouch_content_GoogleKitCore.bundle_fResources_fen__GB.lproj_fGoogleKitCore.strings</LogicalName>
+				<AssemblyName>$(_GoogleVRiOSAssemblyName)</AssemblyName>
+			</RestoreAssemblyResource>
+			<RestoreAssemblyResource Include="$(XamarinBuildDownloadDir)$(_GoogleVRiOSId)\Resources\GoogleKitCore.bundle\Resources\en_IN.lproj\GoogleKitCore.strings">
+				<LogicalName>__monotouch_content_GoogleKitCore.bundle_fResources_fen__IN.lproj_fGoogleKitCore.strings</LogicalName>
+				<AssemblyName>$(_GoogleVRiOSAssemblyName)</AssemblyName>
+			</RestoreAssemblyResource>
+			<RestoreAssemblyResource Include="$(XamarinBuildDownloadDir)$(_GoogleVRiOSId)\Resources\GoogleKitCore.bundle\Resources\es.lproj\GoogleKitCore.strings">
+				<LogicalName>__monotouch_content_GoogleKitCore.bundle_fResources_fes.lproj_fGoogleKitCore.strings</LogicalName>
+				<AssemblyName>$(_GoogleVRiOSAssemblyName)</AssemblyName>
+			</RestoreAssemblyResource>
+			<RestoreAssemblyResource Include="$(XamarinBuildDownloadDir)$(_GoogleVRiOSId)\Resources\GoogleKitCore.bundle\Resources\es_419.lproj\GoogleKitCore.strings">
+				<LogicalName>__monotouch_content_GoogleKitCore.bundle_fResources_fes__419.lproj_fGoogleKitCore.strings</LogicalName>
+				<AssemblyName>$(_GoogleVRiOSAssemblyName)</AssemblyName>
+			</RestoreAssemblyResource>
+			<RestoreAssemblyResource Include="$(XamarinBuildDownloadDir)$(_GoogleVRiOSId)\Resources\GoogleKitCore.bundle\Resources\es_MX.lproj\GoogleKitCore.strings">
+				<LogicalName>__monotouch_content_GoogleKitCore.bundle_fResources_fes__MX.lproj_fGoogleKitCore.strings</LogicalName>
+				<AssemblyName>$(_GoogleVRiOSAssemblyName)</AssemblyName>
+			</RestoreAssemblyResource>
+			<RestoreAssemblyResource Include="$(XamarinBuildDownloadDir)$(_GoogleVRiOSId)\Resources\GoogleKitCore.bundle\Resources\fa.lproj\GoogleKitCore.strings">
+				<LogicalName>__monotouch_content_GoogleKitCore.bundle_fResources_ffa.lproj_fGoogleKitCore.strings</LogicalName>
+				<AssemblyName>$(_GoogleVRiOSAssemblyName)</AssemblyName>
+			</RestoreAssemblyResource>
+			<RestoreAssemblyResource Include="$(XamarinBuildDownloadDir)$(_GoogleVRiOSId)\Resources\GoogleKitCore.bundle\Resources\fi.lproj\GoogleKitCore.strings">
+				<LogicalName>__monotouch_content_GoogleKitCore.bundle_fResources_ffi.lproj_fGoogleKitCore.strings</LogicalName>
+				<AssemblyName>$(_GoogleVRiOSAssemblyName)</AssemblyName>
+			</RestoreAssemblyResource>
+			<RestoreAssemblyResource Include="$(XamarinBuildDownloadDir)$(_GoogleVRiOSId)\Resources\GoogleKitCore.bundle\Resources\fr.lproj\GoogleKitCore.strings">
+				<LogicalName>__monotouch_content_GoogleKitCore.bundle_fResources_ffr.lproj_fGoogleKitCore.strings</LogicalName>
+				<AssemblyName>$(_GoogleVRiOSAssemblyName)</AssemblyName>
+			</RestoreAssemblyResource>
+			<RestoreAssemblyResource Include="$(XamarinBuildDownloadDir)$(_GoogleVRiOSId)\Resources\GoogleKitCore.bundle\Resources\fr_CA.lproj\GoogleKitCore.strings">
+				<LogicalName>__monotouch_content_GoogleKitCore.bundle_fResources_ffr__CA.lproj_fGoogleKitCore.strings</LogicalName>
+				<AssemblyName>$(_GoogleVRiOSAssemblyName)</AssemblyName>
+			</RestoreAssemblyResource>
+			<RestoreAssemblyResource Include="$(XamarinBuildDownloadDir)$(_GoogleVRiOSId)\Resources\GoogleKitCore.bundle\Resources\he.lproj\GoogleKitCore.strings">
+				<LogicalName>__monotouch_content_GoogleKitCore.bundle_fResources_fhe.lproj_fGoogleKitCore.strings</LogicalName>
+				<AssemblyName>$(_GoogleVRiOSAssemblyName)</AssemblyName>
+			</RestoreAssemblyResource>
+			<RestoreAssemblyResource Include="$(XamarinBuildDownloadDir)$(_GoogleVRiOSId)\Resources\GoogleKitCore.bundle\Resources\hi.lproj\GoogleKitCore.strings">
+				<LogicalName>__monotouch_content_GoogleKitCore.bundle_fResources_fhi.lproj_fGoogleKitCore.strings</LogicalName>
+				<AssemblyName>$(_GoogleVRiOSAssemblyName)</AssemblyName>
+			</RestoreAssemblyResource>
+			<RestoreAssemblyResource Include="$(XamarinBuildDownloadDir)$(_GoogleVRiOSId)\Resources\GoogleKitCore.bundle\Resources\hr.lproj\GoogleKitCore.strings">
+				<LogicalName>__monotouch_content_GoogleKitCore.bundle_fResources_fhr.lproj_fGoogleKitCore.strings</LogicalName>
+				<AssemblyName>$(_GoogleVRiOSAssemblyName)</AssemblyName>
+			</RestoreAssemblyResource>
+			<RestoreAssemblyResource Include="$(XamarinBuildDownloadDir)$(_GoogleVRiOSId)\Resources\GoogleKitCore.bundle\Resources\hu.lproj\GoogleKitCore.strings">
+				<LogicalName>__monotouch_content_GoogleKitCore.bundle_fResources_fhu.lproj_fGoogleKitCore.strings</LogicalName>
+				<AssemblyName>$(_GoogleVRiOSAssemblyName)</AssemblyName>
+			</RestoreAssemblyResource>
+			<RestoreAssemblyResource Include="$(XamarinBuildDownloadDir)$(_GoogleVRiOSId)\Resources\GoogleKitCore.bundle\Resources\hy.lproj\GoogleKitCore.strings">
+				<LogicalName>__monotouch_content_GoogleKitCore.bundle_fResources_fhy.lproj_fGoogleKitCore.strings</LogicalName>
+				<AssemblyName>$(_GoogleVRiOSAssemblyName)</AssemblyName>
+			</RestoreAssemblyResource>
+			<RestoreAssemblyResource Include="$(XamarinBuildDownloadDir)$(_GoogleVRiOSId)\Resources\GoogleKitCore.bundle\Resources\id.lproj\GoogleKitCore.strings">
+				<LogicalName>__monotouch_content_GoogleKitCore.bundle_fResources_fid.lproj_fGoogleKitCore.strings</LogicalName>
+				<AssemblyName>$(_GoogleVRiOSAssemblyName)</AssemblyName>
+			</RestoreAssemblyResource>
+			<RestoreAssemblyResource Include="$(XamarinBuildDownloadDir)$(_GoogleVRiOSId)\Resources\GoogleKitCore.bundle\Resources\it.lproj\GoogleKitCore.strings">
+				<LogicalName>__monotouch_content_GoogleKitCore.bundle_fResources_fit.lproj_fGoogleKitCore.strings</LogicalName>
+				<AssemblyName>$(_GoogleVRiOSAssemblyName)</AssemblyName>
+			</RestoreAssemblyResource>
+			<RestoreAssemblyResource Include="$(XamarinBuildDownloadDir)$(_GoogleVRiOSId)\Resources\GoogleKitCore.bundle\Resources\iw.lproj\GoogleKitCore.strings">
+				<LogicalName>__monotouch_content_GoogleKitCore.bundle_fResources_fiw.lproj_fGoogleKitCore.strings</LogicalName>
+				<AssemblyName>$(_GoogleVRiOSAssemblyName)</AssemblyName>
+			</RestoreAssemblyResource>
+			<RestoreAssemblyResource Include="$(XamarinBuildDownloadDir)$(_GoogleVRiOSId)\Resources\GoogleKitCore.bundle\Resources\ja.lproj\GoogleKitCore.strings">
+				<LogicalName>__monotouch_content_GoogleKitCore.bundle_fResources_fja.lproj_fGoogleKitCore.strings</LogicalName>
+				<AssemblyName>$(_GoogleVRiOSAssemblyName)</AssemblyName>
+			</RestoreAssemblyResource>
+			<RestoreAssemblyResource Include="$(XamarinBuildDownloadDir)$(_GoogleVRiOSId)\Resources\GoogleKitCore.bundle\Resources\ka.lproj\GoogleKitCore.strings">
+				<LogicalName>__monotouch_content_GoogleKitCore.bundle_fResources_fka.lproj_fGoogleKitCore.strings</LogicalName>
+				<AssemblyName>$(_GoogleVRiOSAssemblyName)</AssemblyName>
+			</RestoreAssemblyResource>
+			<RestoreAssemblyResource Include="$(XamarinBuildDownloadDir)$(_GoogleVRiOSId)\Resources\GoogleKitCore.bundle\Resources\kk.lproj\GoogleKitCore.strings">
+				<LogicalName>__monotouch_content_GoogleKitCore.bundle_fResources_fkk.lproj_fGoogleKitCore.strings</LogicalName>
+				<AssemblyName>$(_GoogleVRiOSAssemblyName)</AssemblyName>
+			</RestoreAssemblyResource>
+			<RestoreAssemblyResource Include="$(XamarinBuildDownloadDir)$(_GoogleVRiOSId)\Resources\GoogleKitCore.bundle\Resources\km.lproj\GoogleKitCore.strings">
+				<LogicalName>__monotouch_content_GoogleKitCore.bundle_fResources_fkm.lproj_fGoogleKitCore.strings</LogicalName>
+				<AssemblyName>$(_GoogleVRiOSAssemblyName)</AssemblyName>
+			</RestoreAssemblyResource>
+			<RestoreAssemblyResource Include="$(XamarinBuildDownloadDir)$(_GoogleVRiOSId)\Resources\GoogleKitCore.bundle\Resources\ko.lproj\GoogleKitCore.strings">
+				<LogicalName>__monotouch_content_GoogleKitCore.bundle_fResources_fko.lproj_fGoogleKitCore.strings</LogicalName>
+				<AssemblyName>$(_GoogleVRiOSAssemblyName)</AssemblyName>
+			</RestoreAssemblyResource>
+			<RestoreAssemblyResource Include="$(XamarinBuildDownloadDir)$(_GoogleVRiOSId)\Resources\GoogleKitCore.bundle\Resources\lo.lproj\GoogleKitCore.strings">
+				<LogicalName>__monotouch_content_GoogleKitCore.bundle_fResources_flo.lproj_fGoogleKitCore.strings</LogicalName>
+				<AssemblyName>$(_GoogleVRiOSAssemblyName)</AssemblyName>
+			</RestoreAssemblyResource>
+			<RestoreAssemblyResource Include="$(XamarinBuildDownloadDir)$(_GoogleVRiOSId)\Resources\GoogleKitCore.bundle\Resources\lt.lproj\GoogleKitCore.strings">
+				<LogicalName>__monotouch_content_GoogleKitCore.bundle_fResources_flt.lproj_fGoogleKitCore.strings</LogicalName>
+				<AssemblyName>$(_GoogleVRiOSAssemblyName)</AssemblyName>
+			</RestoreAssemblyResource>
+			<RestoreAssemblyResource Include="$(XamarinBuildDownloadDir)$(_GoogleVRiOSId)\Resources\GoogleKitCore.bundle\Resources\mn.lproj\GoogleKitCore.strings">
+				<LogicalName>__monotouch_content_GoogleKitCore.bundle_fResources_fmn.lproj_fGoogleKitCore.strings</LogicalName>
+				<AssemblyName>$(_GoogleVRiOSAssemblyName)</AssemblyName>
+			</RestoreAssemblyResource>
+			<RestoreAssemblyResource Include="$(XamarinBuildDownloadDir)$(_GoogleVRiOSId)\Resources\GoogleKitCore.bundle\Resources\ms.lproj\GoogleKitCore.strings">
+				<LogicalName>__monotouch_content_GoogleKitCore.bundle_fResources_fms.lproj_fGoogleKitCore.strings</LogicalName>
+				<AssemblyName>$(_GoogleVRiOSAssemblyName)</AssemblyName>
+			</RestoreAssemblyResource>
+			<RestoreAssemblyResource Include="$(XamarinBuildDownloadDir)$(_GoogleVRiOSId)\Resources\GoogleKitCore.bundle\Resources\nb.lproj\GoogleKitCore.strings">
+				<LogicalName>__monotouch_content_GoogleKitCore.bundle_fResources_fnb.lproj_fGoogleKitCore.strings</LogicalName>
+				<AssemblyName>$(_GoogleVRiOSAssemblyName)</AssemblyName>
+			</RestoreAssemblyResource>
+			<RestoreAssemblyResource Include="$(XamarinBuildDownloadDir)$(_GoogleVRiOSId)\Resources\GoogleKitCore.bundle\Resources\nl.lproj\GoogleKitCore.strings">
+				<LogicalName>__monotouch_content_GoogleKitCore.bundle_fResources_fnl.lproj_fGoogleKitCore.strings</LogicalName>
+				<AssemblyName>$(_GoogleVRiOSAssemblyName)</AssemblyName>
+			</RestoreAssemblyResource>
+			<RestoreAssemblyResource Include="$(XamarinBuildDownloadDir)$(_GoogleVRiOSId)\Resources\GoogleKitCore.bundle\Resources\no.lproj\GoogleKitCore.strings">
+				<LogicalName>__monotouch_content_GoogleKitCore.bundle_fResources_fno.lproj_fGoogleKitCore.strings</LogicalName>
+				<AssemblyName>$(_GoogleVRiOSAssemblyName)</AssemblyName>
+			</RestoreAssemblyResource>
+			<RestoreAssemblyResource Include="$(XamarinBuildDownloadDir)$(_GoogleVRiOSId)\Resources\GoogleKitCore.bundle\Resources\pl.lproj\GoogleKitCore.strings">
+				<LogicalName>__monotouch_content_GoogleKitCore.bundle_fResources_fpl.lproj_fGoogleKitCore.strings</LogicalName>
+				<AssemblyName>$(_GoogleVRiOSAssemblyName)</AssemblyName>
+			</RestoreAssemblyResource>
+			<RestoreAssemblyResource Include="$(XamarinBuildDownloadDir)$(_GoogleVRiOSId)\Resources\GoogleKitCore.bundle\Resources\pt.lproj\GoogleKitCore.strings">
+				<LogicalName>__monotouch_content_GoogleKitCore.bundle_fResources_fpt.lproj_fGoogleKitCore.strings</LogicalName>
+				<AssemblyName>$(_GoogleVRiOSAssemblyName)</AssemblyName>
+			</RestoreAssemblyResource>
+			<RestoreAssemblyResource Include="$(XamarinBuildDownloadDir)$(_GoogleVRiOSId)\Resources\GoogleKitCore.bundle\Resources\pt_BR.lproj\GoogleKitCore.strings">
+				<LogicalName>__monotouch_content_GoogleKitCore.bundle_fResources_fpt__BR.lproj_fGoogleKitCore.strings</LogicalName>
+				<AssemblyName>$(_GoogleVRiOSAssemblyName)</AssemblyName>
+			</RestoreAssemblyResource>
+			<RestoreAssemblyResource Include="$(XamarinBuildDownloadDir)$(_GoogleVRiOSId)\Resources\GoogleKitCore.bundle\Resources\pt_PT.lproj\GoogleKitCore.strings">
+				<LogicalName>__monotouch_content_GoogleKitCore.bundle_fResources_fpt__PT.lproj_fGoogleKitCore.strings</LogicalName>
+				<AssemblyName>$(_GoogleVRiOSAssemblyName)</AssemblyName>
+			</RestoreAssemblyResource>
+			<RestoreAssemblyResource Include="$(XamarinBuildDownloadDir)$(_GoogleVRiOSId)\Resources\GoogleKitCore.bundle\Resources\ro.lproj\GoogleKitCore.strings">
+				<LogicalName>__monotouch_content_GoogleKitCore.bundle_fResources_fro.lproj_fGoogleKitCore.strings</LogicalName>
+				<AssemblyName>$(_GoogleVRiOSAssemblyName)</AssemblyName>
+			</RestoreAssemblyResource>
+			<RestoreAssemblyResource Include="$(XamarinBuildDownloadDir)$(_GoogleVRiOSId)\Resources\GoogleKitCore.bundle\Resources\ru.lproj\GoogleKitCore.strings">
+				<LogicalName>__monotouch_content_GoogleKitCore.bundle_fResources_fru.lproj_fGoogleKitCore.strings</LogicalName>
+				<AssemblyName>$(_GoogleVRiOSAssemblyName)</AssemblyName>
+			</RestoreAssemblyResource>
+			<RestoreAssemblyResource Include="$(XamarinBuildDownloadDir)$(_GoogleVRiOSId)\Resources\GoogleKitCore.bundle\Resources\sk.lproj\GoogleKitCore.strings">
+				<LogicalName>__monotouch_content_GoogleKitCore.bundle_fResources_fsk.lproj_fGoogleKitCore.strings</LogicalName>
+				<AssemblyName>$(_GoogleVRiOSAssemblyName)</AssemblyName>
+			</RestoreAssemblyResource>
+			<RestoreAssemblyResource Include="$(XamarinBuildDownloadDir)$(_GoogleVRiOSId)\Resources\GoogleKitCore.bundle\Resources\sq.lproj\GoogleKitCore.strings">
+				<LogicalName>__monotouch_content_GoogleKitCore.bundle_fResources_fsq.lproj_fGoogleKitCore.strings</LogicalName>
+				<AssemblyName>$(_GoogleVRiOSAssemblyName)</AssemblyName>
+			</RestoreAssemblyResource>
+			<RestoreAssemblyResource Include="$(XamarinBuildDownloadDir)$(_GoogleVRiOSId)\Resources\GoogleKitCore.bundle\Resources\sr.lproj\GoogleKitCore.strings">
+				<LogicalName>__monotouch_content_GoogleKitCore.bundle_fResources_fsr.lproj_fGoogleKitCore.strings</LogicalName>
+				<AssemblyName>$(_GoogleVRiOSAssemblyName)</AssemblyName>
+			</RestoreAssemblyResource>
+			<RestoreAssemblyResource Include="$(XamarinBuildDownloadDir)$(_GoogleVRiOSId)\Resources\GoogleKitCore.bundle\Resources\sv.lproj\GoogleKitCore.strings">
+				<LogicalName>__monotouch_content_GoogleKitCore.bundle_fResources_fsv.lproj_fGoogleKitCore.strings</LogicalName>
+				<AssemblyName>$(_GoogleVRiOSAssemblyName)</AssemblyName>
+			</RestoreAssemblyResource>
+			<RestoreAssemblyResource Include="$(XamarinBuildDownloadDir)$(_GoogleVRiOSId)\Resources\GoogleKitCore.bundle\Resources\th.lproj\GoogleKitCore.strings">
+				<LogicalName>__monotouch_content_GoogleKitCore.bundle_fResources_fth.lproj_fGoogleKitCore.strings</LogicalName>
+				<AssemblyName>$(_GoogleVRiOSAssemblyName)</AssemblyName>
+			</RestoreAssemblyResource>
+			<RestoreAssemblyResource Include="$(XamarinBuildDownloadDir)$(_GoogleVRiOSId)\Resources\GoogleKitCore.bundle\Resources\tr.lproj\GoogleKitCore.strings">
+				<LogicalName>__monotouch_content_GoogleKitCore.bundle_fResources_ftr.lproj_fGoogleKitCore.strings</LogicalName>
+				<AssemblyName>$(_GoogleVRiOSAssemblyName)</AssemblyName>
+			</RestoreAssemblyResource>
+			<RestoreAssemblyResource Include="$(XamarinBuildDownloadDir)$(_GoogleVRiOSId)\Resources\GoogleKitCore.bundle\Resources\uk.lproj\GoogleKitCore.strings">
+				<LogicalName>__monotouch_content_GoogleKitCore.bundle_fResources_fuk.lproj_fGoogleKitCore.strings</LogicalName>
+				<AssemblyName>$(_GoogleVRiOSAssemblyName)</AssemblyName>
+			</RestoreAssemblyResource>
+			<RestoreAssemblyResource Include="$(XamarinBuildDownloadDir)$(_GoogleVRiOSId)\Resources\GoogleKitCore.bundle\Resources\vi.lproj\GoogleKitCore.strings">
+				<LogicalName>__monotouch_content_GoogleKitCore.bundle_fResources_fvi.lproj_fGoogleKitCore.strings</LogicalName>
+				<AssemblyName>$(_GoogleVRiOSAssemblyName)</AssemblyName>
+			</RestoreAssemblyResource>
+			<RestoreAssemblyResource Include="$(XamarinBuildDownloadDir)$(_GoogleVRiOSId)\Resources\GoogleKitCore.bundle\Resources\zh_CN.lproj\GoogleKitCore.strings">
+				<LogicalName>__monotouch_content_GoogleKitCore.bundle_fResources_fzh__CN.lproj_fGoogleKitCore.strings</LogicalName>
+				<AssemblyName>$(_GoogleVRiOSAssemblyName)</AssemblyName>
+			</RestoreAssemblyResource>
+			<RestoreAssemblyResource Include="$(XamarinBuildDownloadDir)$(_GoogleVRiOSId)\Resources\GoogleKitCore.bundle\Resources\zh_HK.lproj\GoogleKitCore.strings">
+				<LogicalName>__monotouch_content_GoogleKitCore.bundle_fResources_fzh__HK.lproj_fGoogleKitCore.strings</LogicalName>
+				<AssemblyName>$(_GoogleVRiOSAssemblyName)</AssemblyName>
+			</RestoreAssemblyResource>
+			<RestoreAssemblyResource Include="$(XamarinBuildDownloadDir)$(_GoogleVRiOSId)\Resources\GoogleKitCore.bundle\Resources\zh_TW.lproj\GoogleKitCore.strings">
+				<LogicalName>__monotouch_content_GoogleKitCore.bundle_fResources_fzh__TW.lproj_fGoogleKitCore.strings</LogicalName>
+				<AssemblyName>$(_GoogleVRiOSAssemblyName)</AssemblyName>
+			</RestoreAssemblyResource>
+			<RestoreAssemblyResource Include="$(XamarinBuildDownloadDir)$(_GoogleVRiOSId)\Resources\GoogleKitDialogs.bundle\arrow_bottom.png">
+				<LogicalName>__monotouch_content_GoogleKitDialogs.bundle_farrow__bottom.png</LogicalName>
+				<AssemblyName>$(_GoogleVRiOSAssemblyName)</AssemblyName>
+			</RestoreAssemblyResource>
+			<RestoreAssemblyResource Include="$(XamarinBuildDownloadDir)$(_GoogleVRiOSId)\Resources\GoogleKitDialogs.bundle\arrow_bottom%402x.png">
+				<LogicalName>__monotouch_content_GoogleKitDialogs.bundle_farrow__bottom%402x.png</LogicalName>
+				<AssemblyName>$(_GoogleVRiOSAssemblyName)</AssemblyName>
+			</RestoreAssemblyResource>
+			<RestoreAssemblyResource Include="$(XamarinBuildDownloadDir)$(_GoogleVRiOSId)\Resources\GoogleKitDialogs.bundle\arrow_left.png">
+				<LogicalName>__monotouch_content_GoogleKitDialogs.bundle_farrow__left.png</LogicalName>
+				<AssemblyName>$(_GoogleVRiOSAssemblyName)</AssemblyName>
+			</RestoreAssemblyResource>
+			<RestoreAssemblyResource Include="$(XamarinBuildDownloadDir)$(_GoogleVRiOSId)\Resources\GoogleKitDialogs.bundle\arrow_left%402x.png">
+				<LogicalName>__monotouch_content_GoogleKitDialogs.bundle_farrow__left%402x.png</LogicalName>
+				<AssemblyName>$(_GoogleVRiOSAssemblyName)</AssemblyName>
+			</RestoreAssemblyResource>
+			<RestoreAssemblyResource Include="$(XamarinBuildDownloadDir)$(_GoogleVRiOSId)\Resources\GoogleKitDialogs.bundle\arrow_right.png">
+				<LogicalName>__monotouch_content_GoogleKitDialogs.bundle_farrow__right.png</LogicalName>
+				<AssemblyName>$(_GoogleVRiOSAssemblyName)</AssemblyName>
+			</RestoreAssemblyResource>
+			<RestoreAssemblyResource Include="$(XamarinBuildDownloadDir)$(_GoogleVRiOSId)\Resources\GoogleKitDialogs.bundle\arrow_right%402x.png">
+				<LogicalName>__monotouch_content_GoogleKitDialogs.bundle_farrow__right%402x.png</LogicalName>
+				<AssemblyName>$(_GoogleVRiOSAssemblyName)</AssemblyName>
+			</RestoreAssemblyResource>
+			<RestoreAssemblyResource Include="$(XamarinBuildDownloadDir)$(_GoogleVRiOSId)\Resources\GoogleKitDialogs.bundle\arrow_top.png">
+				<LogicalName>__monotouch_content_GoogleKitDialogs.bundle_farrow__top.png</LogicalName>
+				<AssemblyName>$(_GoogleVRiOSAssemblyName)</AssemblyName>
+			</RestoreAssemblyResource>
+			<RestoreAssemblyResource Include="$(XamarinBuildDownloadDir)$(_GoogleVRiOSId)\Resources\GoogleKitDialogs.bundle\arrow_top%402x.png">
+				<LogicalName>__monotouch_content_GoogleKitDialogs.bundle_farrow__top%402x.png</LogicalName>
+				<AssemblyName>$(_GoogleVRiOSAssemblyName)</AssemblyName>
+			</RestoreAssemblyResource>
+			<RestoreAssemblyResource Include="$(XamarinBuildDownloadDir)$(_GoogleVRiOSId)\Resources\GoogleKitDialogs.bundle\background.png">
+				<LogicalName>__monotouch_content_GoogleKitDialogs.bundle_fbackground.png</LogicalName>
+				<AssemblyName>$(_GoogleVRiOSAssemblyName)</AssemblyName>
+			</RestoreAssemblyResource>
+			<RestoreAssemblyResource Include="$(XamarinBuildDownloadDir)$(_GoogleVRiOSId)\Resources\GoogleKitDialogs.bundle\background%402x.png">
+				<LogicalName>__monotouch_content_GoogleKitDialogs.bundle_fbackground%402x.png</LogicalName>
+				<AssemblyName>$(_GoogleVRiOSAssemblyName)</AssemblyName>
+			</RestoreAssemblyResource>
+			<RestoreAssemblyResource Include="$(XamarinBuildDownloadDir)$(_GoogleVRiOSId)\Resources\GoogleKitDialogs.bundle\bottom.png">
+				<LogicalName>__monotouch_content_GoogleKitDialogs.bundle_fbottom.png</LogicalName>
+				<AssemblyName>$(_GoogleVRiOSAssemblyName)</AssemblyName>
+			</RestoreAssemblyResource>
+			<RestoreAssemblyResource Include="$(XamarinBuildDownloadDir)$(_GoogleVRiOSId)\Resources\GoogleKitDialogs.bundle\bottom%402x.png">
+				<LogicalName>__monotouch_content_GoogleKitDialogs.bundle_fbottom%402x.png</LogicalName>
+				<AssemblyName>$(_GoogleVRiOSAssemblyName)</AssemblyName>
+			</RestoreAssemblyResource>
+			<RestoreAssemblyResource Include="$(XamarinBuildDownloadDir)$(_GoogleVRiOSId)\Resources\GoogleKitDialogs.bundle\corner_bottom_left.png">
+				<LogicalName>__monotouch_content_GoogleKitDialogs.bundle_fcorner__bottom__left.png</LogicalName>
+				<AssemblyName>$(_GoogleVRiOSAssemblyName)</AssemblyName>
+			</RestoreAssemblyResource>
+			<RestoreAssemblyResource Include="$(XamarinBuildDownloadDir)$(_GoogleVRiOSId)\Resources\GoogleKitDialogs.bundle\corner_bottom_left%402x.png">
+				<LogicalName>__monotouch_content_GoogleKitDialogs.bundle_fcorner__bottom__left%402x.png</LogicalName>
+				<AssemblyName>$(_GoogleVRiOSAssemblyName)</AssemblyName>
+			</RestoreAssemblyResource>
+			<RestoreAssemblyResource Include="$(XamarinBuildDownloadDir)$(_GoogleVRiOSId)\Resources\GoogleKitDialogs.bundle\corner_bottom_right.png">
+				<LogicalName>__monotouch_content_GoogleKitDialogs.bundle_fcorner__bottom__right.png</LogicalName>
+				<AssemblyName>$(_GoogleVRiOSAssemblyName)</AssemblyName>
+			</RestoreAssemblyResource>
+			<RestoreAssemblyResource Include="$(XamarinBuildDownloadDir)$(_GoogleVRiOSId)\Resources\GoogleKitDialogs.bundle\corner_bottom_right%402x.png">
+				<LogicalName>__monotouch_content_GoogleKitDialogs.bundle_fcorner__bottom__right%402x.png</LogicalName>
+				<AssemblyName>$(_GoogleVRiOSAssemblyName)</AssemblyName>
+			</RestoreAssemblyResource>
+			<RestoreAssemblyResource Include="$(XamarinBuildDownloadDir)$(_GoogleVRiOSId)\Resources\GoogleKitDialogs.bundle\corner_top_left.png">
+				<LogicalName>__monotouch_content_GoogleKitDialogs.bundle_fcorner__top__left.png</LogicalName>
+				<AssemblyName>$(_GoogleVRiOSAssemblyName)</AssemblyName>
+			</RestoreAssemblyResource>
+			<RestoreAssemblyResource Include="$(XamarinBuildDownloadDir)$(_GoogleVRiOSId)\Resources\GoogleKitDialogs.bundle\corner_top_left%402x.png">
+				<LogicalName>__monotouch_content_GoogleKitDialogs.bundle_fcorner__top__left%402x.png</LogicalName>
+				<AssemblyName>$(_GoogleVRiOSAssemblyName)</AssemblyName>
+			</RestoreAssemblyResource>
+			<RestoreAssemblyResource Include="$(XamarinBuildDownloadDir)$(_GoogleVRiOSId)\Resources\GoogleKitDialogs.bundle\corner_top_right.png">
+				<LogicalName>__monotouch_content_GoogleKitDialogs.bundle_fcorner__top__right.png</LogicalName>
+				<AssemblyName>$(_GoogleVRiOSAssemblyName)</AssemblyName>
+			</RestoreAssemblyResource>
+			<RestoreAssemblyResource Include="$(XamarinBuildDownloadDir)$(_GoogleVRiOSId)\Resources\GoogleKitDialogs.bundle\corner_top_right%402x.png">
+				<LogicalName>__monotouch_content_GoogleKitDialogs.bundle_fcorner__top__right%402x.png</LogicalName>
+				<AssemblyName>$(_GoogleVRiOSAssemblyName)</AssemblyName>
+			</RestoreAssemblyResource>
+			<RestoreAssemblyResource Include="$(XamarinBuildDownloadDir)$(_GoogleVRiOSId)\Resources\GoogleKitDialogs.bundle\ic_check.png">
+				<LogicalName>__monotouch_content_GoogleKitDialogs.bundle_fic__check.png</LogicalName>
+				<AssemblyName>$(_GoogleVRiOSAssemblyName)</AssemblyName>
+			</RestoreAssemblyResource>
+			<RestoreAssemblyResource Include="$(XamarinBuildDownloadDir)$(_GoogleVRiOSId)\Resources\GoogleKitDialogs.bundle\ic_check%402x.png">
+				<LogicalName>__monotouch_content_GoogleKitDialogs.bundle_fic__check%402x.png</LogicalName>
+				<AssemblyName>$(_GoogleVRiOSAssemblyName)</AssemblyName>
+			</RestoreAssemblyResource>
+			<RestoreAssemblyResource Include="$(XamarinBuildDownloadDir)$(_GoogleVRiOSId)\Resources\GoogleKitDialogs.bundle\ic_check%403x.png">
+				<LogicalName>__monotouch_content_GoogleKitDialogs.bundle_fic__check%403x.png</LogicalName>
+				<AssemblyName>$(_GoogleVRiOSAssemblyName)</AssemblyName>
+			</RestoreAssemblyResource>
+			<RestoreAssemblyResource Include="$(XamarinBuildDownloadDir)$(_GoogleVRiOSId)\Resources\GoogleKitDialogs.bundle\ic_close.png">
+				<LogicalName>__monotouch_content_GoogleKitDialogs.bundle_fic__close.png</LogicalName>
+				<AssemblyName>$(_GoogleVRiOSAssemblyName)</AssemblyName>
+			</RestoreAssemblyResource>
+			<RestoreAssemblyResource Include="$(XamarinBuildDownloadDir)$(_GoogleVRiOSId)\Resources\GoogleKitDialogs.bundle\ic_close%402x.png">
+				<LogicalName>__monotouch_content_GoogleKitDialogs.bundle_fic__close%402x.png</LogicalName>
+				<AssemblyName>$(_GoogleVRiOSAssemblyName)</AssemblyName>
+			</RestoreAssemblyResource>
+			<RestoreAssemblyResource Include="$(XamarinBuildDownloadDir)$(_GoogleVRiOSId)\Resources\GoogleKitDialogs.bundle\ic_close%403x.png">
+				<LogicalName>__monotouch_content_GoogleKitDialogs.bundle_fic__close%403x.png</LogicalName>
+				<AssemblyName>$(_GoogleVRiOSAssemblyName)</AssemblyName>
+			</RestoreAssemblyResource>
+			<RestoreAssemblyResource Include="$(XamarinBuildDownloadDir)$(_GoogleVRiOSId)\Resources\GoogleKitDialogs.bundle\ic_comment.png">
+				<LogicalName>__monotouch_content_GoogleKitDialogs.bundle_fic__comment.png</LogicalName>
+				<AssemblyName>$(_GoogleVRiOSAssemblyName)</AssemblyName>
+			</RestoreAssemblyResource>
+			<RestoreAssemblyResource Include="$(XamarinBuildDownloadDir)$(_GoogleVRiOSId)\Resources\GoogleKitDialogs.bundle\ic_comment%402x.png">
+				<LogicalName>__monotouch_content_GoogleKitDialogs.bundle_fic__comment%402x.png</LogicalName>
+				<AssemblyName>$(_GoogleVRiOSAssemblyName)</AssemblyName>
+			</RestoreAssemblyResource>
+			<RestoreAssemblyResource Include="$(XamarinBuildDownloadDir)$(_GoogleVRiOSId)\Resources\GoogleKitDialogs.bundle\ic_comment%403x.png">
+				<LogicalName>__monotouch_content_GoogleKitDialogs.bundle_fic__comment%403x.png</LogicalName>
+				<AssemblyName>$(_GoogleVRiOSAssemblyName)</AssemblyName>
+			</RestoreAssemblyResource>
+			<RestoreAssemblyResource Include="$(XamarinBuildDownloadDir)$(_GoogleVRiOSId)\Resources\GoogleKitDialogs.bundle\ic_delete.png">
+				<LogicalName>__monotouch_content_GoogleKitDialogs.bundle_fic__delete.png</LogicalName>
+				<AssemblyName>$(_GoogleVRiOSAssemblyName)</AssemblyName>
+			</RestoreAssemblyResource>
+			<RestoreAssemblyResource Include="$(XamarinBuildDownloadDir)$(_GoogleVRiOSId)\Resources\GoogleKitDialogs.bundle\ic_delete%402x.png">
+				<LogicalName>__monotouch_content_GoogleKitDialogs.bundle_fic__delete%402x.png</LogicalName>
+				<AssemblyName>$(_GoogleVRiOSAssemblyName)</AssemblyName>
+			</RestoreAssemblyResource>
+			<RestoreAssemblyResource Include="$(XamarinBuildDownloadDir)$(_GoogleVRiOSId)\Resources\GoogleKitDialogs.bundle\ic_delete%403x.png">
+				<LogicalName>__monotouch_content_GoogleKitDialogs.bundle_fic__delete%403x.png</LogicalName>
+				<AssemblyName>$(_GoogleVRiOSAssemblyName)</AssemblyName>
+			</RestoreAssemblyResource>
+			<RestoreAssemblyResource Include="$(XamarinBuildDownloadDir)$(_GoogleVRiOSId)\Resources\GoogleKitDialogs.bundle\ic_email.png">
+				<LogicalName>__monotouch_content_GoogleKitDialogs.bundle_fic__email.png</LogicalName>
+				<AssemblyName>$(_GoogleVRiOSAssemblyName)</AssemblyName>
+			</RestoreAssemblyResource>
+			<RestoreAssemblyResource Include="$(XamarinBuildDownloadDir)$(_GoogleVRiOSId)\Resources\GoogleKitDialogs.bundle\ic_email%402x.png">
+				<LogicalName>__monotouch_content_GoogleKitDialogs.bundle_fic__email%402x.png</LogicalName>
+				<AssemblyName>$(_GoogleVRiOSAssemblyName)</AssemblyName>
+			</RestoreAssemblyResource>
+			<RestoreAssemblyResource Include="$(XamarinBuildDownloadDir)$(_GoogleVRiOSId)\Resources\GoogleKitDialogs.bundle\ic_email%403x.png">
+				<LogicalName>__monotouch_content_GoogleKitDialogs.bundle_fic__email%403x.png</LogicalName>
+				<AssemblyName>$(_GoogleVRiOSAssemblyName)</AssemblyName>
+			</RestoreAssemblyResource>
+			<RestoreAssemblyResource Include="$(XamarinBuildDownloadDir)$(_GoogleVRiOSId)\Resources\GoogleKitDialogs.bundle\ic_file_download.png">
+				<LogicalName>__monotouch_content_GoogleKitDialogs.bundle_fic__file__download.png</LogicalName>
+				<AssemblyName>$(_GoogleVRiOSAssemblyName)</AssemblyName>
+			</RestoreAssemblyResource>
+			<RestoreAssemblyResource Include="$(XamarinBuildDownloadDir)$(_GoogleVRiOSId)\Resources\GoogleKitDialogs.bundle\ic_file_download%402x.png">
+				<LogicalName>__monotouch_content_GoogleKitDialogs.bundle_fic__file__download%402x.png</LogicalName>
+				<AssemblyName>$(_GoogleVRiOSAssemblyName)</AssemblyName>
+			</RestoreAssemblyResource>
+			<RestoreAssemblyResource Include="$(XamarinBuildDownloadDir)$(_GoogleVRiOSId)\Resources\GoogleKitDialogs.bundle\ic_file_download%403x.png">
+				<LogicalName>__monotouch_content_GoogleKitDialogs.bundle_fic__file__download%403x.png</LogicalName>
+				<AssemblyName>$(_GoogleVRiOSAssemblyName)</AssemblyName>
+			</RestoreAssemblyResource>
+			<RestoreAssemblyResource Include="$(XamarinBuildDownloadDir)$(_GoogleVRiOSId)\Resources\GoogleKitDialogs.bundle\ic_info.png">
+				<LogicalName>__monotouch_content_GoogleKitDialogs.bundle_fic__info.png</LogicalName>
+				<AssemblyName>$(_GoogleVRiOSAssemblyName)</AssemblyName>
+			</RestoreAssemblyResource>
+			<RestoreAssemblyResource Include="$(XamarinBuildDownloadDir)$(_GoogleVRiOSId)\Resources\GoogleKitDialogs.bundle\ic_info%402x.png">
+				<LogicalName>__monotouch_content_GoogleKitDialogs.bundle_fic__info%402x.png</LogicalName>
+				<AssemblyName>$(_GoogleVRiOSAssemblyName)</AssemblyName>
+			</RestoreAssemblyResource>
+			<RestoreAssemblyResource Include="$(XamarinBuildDownloadDir)$(_GoogleVRiOSId)\Resources\GoogleKitDialogs.bundle\ic_info%403x.png">
+				<LogicalName>__monotouch_content_GoogleKitDialogs.bundle_fic__info%403x.png</LogicalName>
+				<AssemblyName>$(_GoogleVRiOSAssemblyName)</AssemblyName>
+			</RestoreAssemblyResource>
+			<RestoreAssemblyResource Include="$(XamarinBuildDownloadDir)$(_GoogleVRiOSId)\Resources\GoogleKitDialogs.bundle\ic_link.png">
+				<LogicalName>__monotouch_content_GoogleKitDialogs.bundle_fic__link.png</LogicalName>
+				<AssemblyName>$(_GoogleVRiOSAssemblyName)</AssemblyName>
+			</RestoreAssemblyResource>
+			<RestoreAssemblyResource Include="$(XamarinBuildDownloadDir)$(_GoogleVRiOSId)\Resources\GoogleKitDialogs.bundle\ic_link%402x.png">
+				<LogicalName>__monotouch_content_GoogleKitDialogs.bundle_fic__link%402x.png</LogicalName>
+				<AssemblyName>$(_GoogleVRiOSAssemblyName)</AssemblyName>
+			</RestoreAssemblyResource>
+			<RestoreAssemblyResource Include="$(XamarinBuildDownloadDir)$(_GoogleVRiOSId)\Resources\GoogleKitDialogs.bundle\ic_link%403x.png">
+				<LogicalName>__monotouch_content_GoogleKitDialogs.bundle_fic__link%403x.png</LogicalName>
+				<AssemblyName>$(_GoogleVRiOSAssemblyName)</AssemblyName>
+			</RestoreAssemblyResource>
+			<RestoreAssemblyResource Include="$(XamarinBuildDownloadDir)$(_GoogleVRiOSId)\Resources\GoogleKitDialogs.bundle\ic_message.png">
+				<LogicalName>__monotouch_content_GoogleKitDialogs.bundle_fic__message.png</LogicalName>
+				<AssemblyName>$(_GoogleVRiOSAssemblyName)</AssemblyName>
+			</RestoreAssemblyResource>
+			<RestoreAssemblyResource Include="$(XamarinBuildDownloadDir)$(_GoogleVRiOSId)\Resources\GoogleKitDialogs.bundle\ic_message%402x.png">
+				<LogicalName>__monotouch_content_GoogleKitDialogs.bundle_fic__message%402x.png</LogicalName>
+				<AssemblyName>$(_GoogleVRiOSAssemblyName)</AssemblyName>
+			</RestoreAssemblyResource>
+			<RestoreAssemblyResource Include="$(XamarinBuildDownloadDir)$(_GoogleVRiOSId)\Resources\GoogleKitDialogs.bundle\ic_message%403x.png">
+				<LogicalName>__monotouch_content_GoogleKitDialogs.bundle_fic__message%403x.png</LogicalName>
+				<AssemblyName>$(_GoogleVRiOSAssemblyName)</AssemblyName>
+			</RestoreAssemblyResource>
+			<RestoreAssemblyResource Include="$(XamarinBuildDownloadDir)$(_GoogleVRiOSId)\Resources\GoogleKitDialogs.bundle\ic_mode_edit.png">
+				<LogicalName>__monotouch_content_GoogleKitDialogs.bundle_fic__mode__edit.png</LogicalName>
+				<AssemblyName>$(_GoogleVRiOSAssemblyName)</AssemblyName>
+			</RestoreAssemblyResource>
+			<RestoreAssemblyResource Include="$(XamarinBuildDownloadDir)$(_GoogleVRiOSId)\Resources\GoogleKitDialogs.bundle\ic_mode_edit%402x.png">
+				<LogicalName>__monotouch_content_GoogleKitDialogs.bundle_fic__mode__edit%402x.png</LogicalName>
+				<AssemblyName>$(_GoogleVRiOSAssemblyName)</AssemblyName>
+			</RestoreAssemblyResource>
+			<RestoreAssemblyResource Include="$(XamarinBuildDownloadDir)$(_GoogleVRiOSId)\Resources\GoogleKitDialogs.bundle\ic_mode_edit%403x.png">
+				<LogicalName>__monotouch_content_GoogleKitDialogs.bundle_fic__mode__edit%403x.png</LogicalName>
+				<AssemblyName>$(_GoogleVRiOSAssemblyName)</AssemblyName>
+			</RestoreAssemblyResource>
+			<RestoreAssemblyResource Include="$(XamarinBuildDownloadDir)$(_GoogleVRiOSId)\Resources\GoogleKitDialogs.bundle\ic_open_in_browser.png">
+				<LogicalName>__monotouch_content_GoogleKitDialogs.bundle_fic__open__in__browser.png</LogicalName>
+				<AssemblyName>$(_GoogleVRiOSAssemblyName)</AssemblyName>
+			</RestoreAssemblyResource>
+			<RestoreAssemblyResource Include="$(XamarinBuildDownloadDir)$(_GoogleVRiOSId)\Resources\GoogleKitDialogs.bundle\ic_open_in_browser%402x.png">
+				<LogicalName>__monotouch_content_GoogleKitDialogs.bundle_fic__open__in__browser%402x.png</LogicalName>
+				<AssemblyName>$(_GoogleVRiOSAssemblyName)</AssemblyName>
+			</RestoreAssemblyResource>
+			<RestoreAssemblyResource Include="$(XamarinBuildDownloadDir)$(_GoogleVRiOSId)\Resources\GoogleKitDialogs.bundle\ic_open_in_browser%403x.png">
+				<LogicalName>__monotouch_content_GoogleKitDialogs.bundle_fic__open__in__browser%403x.png</LogicalName>
+				<AssemblyName>$(_GoogleVRiOSAssemblyName)</AssemblyName>
+			</RestoreAssemblyResource>
+			<RestoreAssemblyResource Include="$(XamarinBuildDownloadDir)$(_GoogleVRiOSId)\Resources\GoogleKitDialogs.bundle\ic_photo_camera.png">
+				<LogicalName>__monotouch_content_GoogleKitDialogs.bundle_fic__photo__camera.png</LogicalName>
+				<AssemblyName>$(_GoogleVRiOSAssemblyName)</AssemblyName>
+			</RestoreAssemblyResource>
+			<RestoreAssemblyResource Include="$(XamarinBuildDownloadDir)$(_GoogleVRiOSId)\Resources\GoogleKitDialogs.bundle\ic_photo_camera%402x.png">
+				<LogicalName>__monotouch_content_GoogleKitDialogs.bundle_fic__photo__camera%402x.png</LogicalName>
+				<AssemblyName>$(_GoogleVRiOSAssemblyName)</AssemblyName>
+			</RestoreAssemblyResource>
+			<RestoreAssemblyResource Include="$(XamarinBuildDownloadDir)$(_GoogleVRiOSId)\Resources\GoogleKitDialogs.bundle\ic_photo_camera%403x.png">
+				<LogicalName>__monotouch_content_GoogleKitDialogs.bundle_fic__photo__camera%403x.png</LogicalName>
+				<AssemblyName>$(_GoogleVRiOSAssemblyName)</AssemblyName>
+			</RestoreAssemblyResource>
+			<RestoreAssemblyResource Include="$(XamarinBuildDownloadDir)$(_GoogleVRiOSId)\Resources\GoogleKitDialogs.bundle\ic_photo_library.png">
+				<LogicalName>__monotouch_content_GoogleKitDialogs.bundle_fic__photo__library.png</LogicalName>
+				<AssemblyName>$(_GoogleVRiOSAssemblyName)</AssemblyName>
+			</RestoreAssemblyResource>
+			<RestoreAssemblyResource Include="$(XamarinBuildDownloadDir)$(_GoogleVRiOSId)\Resources\GoogleKitDialogs.bundle\ic_photo_library%402x.png">
+				<LogicalName>__monotouch_content_GoogleKitDialogs.bundle_fic__photo__library%402x.png</LogicalName>
+				<AssemblyName>$(_GoogleVRiOSAssemblyName)</AssemblyName>
+			</RestoreAssemblyResource>
+			<RestoreAssemblyResource Include="$(XamarinBuildDownloadDir)$(_GoogleVRiOSId)\Resources\GoogleKitDialogs.bundle\ic_photo_library%403x.png">
+				<LogicalName>__monotouch_content_GoogleKitDialogs.bundle_fic__photo__library%403x.png</LogicalName>
+				<AssemblyName>$(_GoogleVRiOSAssemblyName)</AssemblyName>
+			</RestoreAssemblyResource>
+			<RestoreAssemblyResource Include="$(XamarinBuildDownloadDir)$(_GoogleVRiOSId)\Resources\GoogleKitDialogs.bundle\ic_post_gplus.png">
+				<LogicalName>__monotouch_content_GoogleKitDialogs.bundle_fic__post__gplus.png</LogicalName>
+				<AssemblyName>$(_GoogleVRiOSAssemblyName)</AssemblyName>
+			</RestoreAssemblyResource>
+			<RestoreAssemblyResource Include="$(XamarinBuildDownloadDir)$(_GoogleVRiOSId)\Resources\GoogleKitDialogs.bundle\ic_post_gplus%402x.png">
+				<LogicalName>__monotouch_content_GoogleKitDialogs.bundle_fic__post__gplus%402x.png</LogicalName>
+				<AssemblyName>$(_GoogleVRiOSAssemblyName)</AssemblyName>
+			</RestoreAssemblyResource>
+			<RestoreAssemblyResource Include="$(XamarinBuildDownloadDir)$(_GoogleVRiOSId)\Resources\GoogleKitDialogs.bundle\ic_post_gplus%403x.png">
+				<LogicalName>__monotouch_content_GoogleKitDialogs.bundle_fic__post__gplus%403x.png</LogicalName>
+				<AssemblyName>$(_GoogleVRiOSAssemblyName)</AssemblyName>
+			</RestoreAssemblyResource>
+			<RestoreAssemblyResource Include="$(XamarinBuildDownloadDir)$(_GoogleVRiOSId)\Resources\GoogleKitDialogs.bundle\ic_print.png">
+				<LogicalName>__monotouch_content_GoogleKitDialogs.bundle_fic__print.png</LogicalName>
+				<AssemblyName>$(_GoogleVRiOSAssemblyName)</AssemblyName>
+			</RestoreAssemblyResource>
+			<RestoreAssemblyResource Include="$(XamarinBuildDownloadDir)$(_GoogleVRiOSId)\Resources\GoogleKitDialogs.bundle\ic_print%402x.png">
+				<LogicalName>__monotouch_content_GoogleKitDialogs.bundle_fic__print%402x.png</LogicalName>
+				<AssemblyName>$(_GoogleVRiOSAssemblyName)</AssemblyName>
+			</RestoreAssemblyResource>
+			<RestoreAssemblyResource Include="$(XamarinBuildDownloadDir)$(_GoogleVRiOSId)\Resources\GoogleKitDialogs.bundle\ic_print%403x.png">
+				<LogicalName>__monotouch_content_GoogleKitDialogs.bundle_fic__print%403x.png</LogicalName>
+				<AssemblyName>$(_GoogleVRiOSAssemblyName)</AssemblyName>
+			</RestoreAssemblyResource>
+			<RestoreAssemblyResource Include="$(XamarinBuildDownloadDir)$(_GoogleVRiOSId)\Resources\GoogleKitDialogs.bundle\ic_report_problem.png">
+				<LogicalName>__monotouch_content_GoogleKitDialogs.bundle_fic__report__problem.png</LogicalName>
+				<AssemblyName>$(_GoogleVRiOSAssemblyName)</AssemblyName>
+			</RestoreAssemblyResource>
+			<RestoreAssemblyResource Include="$(XamarinBuildDownloadDir)$(_GoogleVRiOSId)\Resources\GoogleKitDialogs.bundle\ic_report_problem%402x.png">
+				<LogicalName>__monotouch_content_GoogleKitDialogs.bundle_fic__report__problem%402x.png</LogicalName>
+				<AssemblyName>$(_GoogleVRiOSAssemblyName)</AssemblyName>
+			</RestoreAssemblyResource>
+			<RestoreAssemblyResource Include="$(XamarinBuildDownloadDir)$(_GoogleVRiOSId)\Resources\GoogleKitDialogs.bundle\ic_report_problem%403x.png">
+				<LogicalName>__monotouch_content_GoogleKitDialogs.bundle_fic__report__problem%403x.png</LogicalName>
+				<AssemblyName>$(_GoogleVRiOSAssemblyName)</AssemblyName>
+			</RestoreAssemblyResource>
+			<RestoreAssemblyResource Include="$(XamarinBuildDownloadDir)$(_GoogleVRiOSId)\Resources\GoogleKitDialogs.bundle\ic_report_problem_red.png">
+				<LogicalName>__monotouch_content_GoogleKitDialogs.bundle_fic__report__problem__red.png</LogicalName>
+				<AssemblyName>$(_GoogleVRiOSAssemblyName)</AssemblyName>
+			</RestoreAssemblyResource>
+			<RestoreAssemblyResource Include="$(XamarinBuildDownloadDir)$(_GoogleVRiOSId)\Resources\GoogleKitDialogs.bundle\ic_report_problem_red%402x.png">
+				<LogicalName>__monotouch_content_GoogleKitDialogs.bundle_fic__report__problem__red%402x.png</LogicalName>
+				<AssemblyName>$(_GoogleVRiOSAssemblyName)</AssemblyName>
+			</RestoreAssemblyResource>
+			<RestoreAssemblyResource Include="$(XamarinBuildDownloadDir)$(_GoogleVRiOSId)\Resources\GoogleKitDialogs.bundle\ic_report_problem_red%403x.png">
+				<LogicalName>__monotouch_content_GoogleKitDialogs.bundle_fic__report__problem__red%403x.png</LogicalName>
+				<AssemblyName>$(_GoogleVRiOSAssemblyName)</AssemblyName>
+			</RestoreAssemblyResource>
+			<RestoreAssemblyResource Include="$(XamarinBuildDownloadDir)$(_GoogleVRiOSId)\Resources\GoogleKitDialogs.bundle\left.png">
+				<LogicalName>__monotouch_content_GoogleKitDialogs.bundle_fleft.png</LogicalName>
+				<AssemblyName>$(_GoogleVRiOSAssemblyName)</AssemblyName>
+			</RestoreAssemblyResource>
+			<RestoreAssemblyResource Include="$(XamarinBuildDownloadDir)$(_GoogleVRiOSId)\Resources\GoogleKitDialogs.bundle\left%402x.png">
+				<LogicalName>__monotouch_content_GoogleKitDialogs.bundle_fleft%402x.png</LogicalName>
+				<AssemblyName>$(_GoogleVRiOSAssemblyName)</AssemblyName>
+			</RestoreAssemblyResource>
+			<RestoreAssemblyResource Include="$(XamarinBuildDownloadDir)$(_GoogleVRiOSId)\Resources\GoogleKitDialogs.bundle\right.png">
+				<LogicalName>__monotouch_content_GoogleKitDialogs.bundle_fright.png</LogicalName>
+				<AssemblyName>$(_GoogleVRiOSAssemblyName)</AssemblyName>
+			</RestoreAssemblyResource>
+			<RestoreAssemblyResource Include="$(XamarinBuildDownloadDir)$(_GoogleVRiOSId)\Resources\GoogleKitDialogs.bundle\right%402x.png">
+				<LogicalName>__monotouch_content_GoogleKitDialogs.bundle_fright%402x.png</LogicalName>
+				<AssemblyName>$(_GoogleVRiOSAssemblyName)</AssemblyName>
+			</RestoreAssemblyResource>
+			<RestoreAssemblyResource Include="$(XamarinBuildDownloadDir)$(_GoogleVRiOSId)\Resources\GoogleKitDialogs.bundle\top.png">
+				<LogicalName>__monotouch_content_GoogleKitDialogs.bundle_ftop.png</LogicalName>
+				<AssemblyName>$(_GoogleVRiOSAssemblyName)</AssemblyName>
+			</RestoreAssemblyResource>
+			<RestoreAssemblyResource Include="$(XamarinBuildDownloadDir)$(_GoogleVRiOSId)\Resources\GoogleKitDialogs.bundle\top%402x.png">
+				<LogicalName>__monotouch_content_GoogleKitDialogs.bundle_ftop%402x.png</LogicalName>
+				<AssemblyName>$(_GoogleVRiOSAssemblyName)</AssemblyName>
+			</RestoreAssemblyResource>
+			<RestoreAssemblyResource Include="$(XamarinBuildDownloadDir)$(_GoogleVRiOSId)\Resources\GoogleKitDialogs.bundle\Resources\ar.lproj\GoogleKitDialogs.strings">
+				<LogicalName>__monotouch_content_GoogleKitDialogs.bundle_fResources_far.lproj_fGoogleKitDialogs.strings</LogicalName>
+				<AssemblyName>$(_GoogleVRiOSAssemblyName)</AssemblyName>
+			</RestoreAssemblyResource>
+			<RestoreAssemblyResource Include="$(XamarinBuildDownloadDir)$(_GoogleVRiOSId)\Resources\GoogleKitDialogs.bundle\Resources\bg.lproj\GoogleKitDialogs.strings">
+				<LogicalName>__monotouch_content_GoogleKitDialogs.bundle_fResources_fbg.lproj_fGoogleKitDialogs.strings</LogicalName>
+				<AssemblyName>$(_GoogleVRiOSAssemblyName)</AssemblyName>
+			</RestoreAssemblyResource>
+			<RestoreAssemblyResource Include="$(XamarinBuildDownloadDir)$(_GoogleVRiOSId)\Resources\GoogleKitDialogs.bundle\Resources\ca.lproj\GoogleKitDialogs.strings">
+				<LogicalName>__monotouch_content_GoogleKitDialogs.bundle_fResources_fca.lproj_fGoogleKitDialogs.strings</LogicalName>
+				<AssemblyName>$(_GoogleVRiOSAssemblyName)</AssemblyName>
+			</RestoreAssemblyResource>
+			<RestoreAssemblyResource Include="$(XamarinBuildDownloadDir)$(_GoogleVRiOSId)\Resources\GoogleKitDialogs.bundle\Resources\cs.lproj\GoogleKitDialogs.strings">
+				<LogicalName>__monotouch_content_GoogleKitDialogs.bundle_fResources_fcs.lproj_fGoogleKitDialogs.strings</LogicalName>
+				<AssemblyName>$(_GoogleVRiOSAssemblyName)</AssemblyName>
+			</RestoreAssemblyResource>
+			<RestoreAssemblyResource Include="$(XamarinBuildDownloadDir)$(_GoogleVRiOSId)\Resources\GoogleKitDialogs.bundle\Resources\da.lproj\GoogleKitDialogs.strings">
+				<LogicalName>__monotouch_content_GoogleKitDialogs.bundle_fResources_fda.lproj_fGoogleKitDialogs.strings</LogicalName>
+				<AssemblyName>$(_GoogleVRiOSAssemblyName)</AssemblyName>
+			</RestoreAssemblyResource>
+			<RestoreAssemblyResource Include="$(XamarinBuildDownloadDir)$(_GoogleVRiOSId)\Resources\GoogleKitDialogs.bundle\Resources\de.lproj\GoogleKitDialogs.strings">
+				<LogicalName>__monotouch_content_GoogleKitDialogs.bundle_fResources_fde.lproj_fGoogleKitDialogs.strings</LogicalName>
+				<AssemblyName>$(_GoogleVRiOSAssemblyName)</AssemblyName>
+			</RestoreAssemblyResource>
+			<RestoreAssemblyResource Include="$(XamarinBuildDownloadDir)$(_GoogleVRiOSId)\Resources\GoogleKitDialogs.bundle\Resources\el.lproj\GoogleKitDialogs.strings">
+				<LogicalName>__monotouch_content_GoogleKitDialogs.bundle_fResources_fel.lproj_fGoogleKitDialogs.strings</LogicalName>
+				<AssemblyName>$(_GoogleVRiOSAssemblyName)</AssemblyName>
+			</RestoreAssemblyResource>
+			<RestoreAssemblyResource Include="$(XamarinBuildDownloadDir)$(_GoogleVRiOSId)\Resources\GoogleKitDialogs.bundle\Resources\en.lproj\GoogleKitDialogs.strings">
+				<LogicalName>__monotouch_content_GoogleKitDialogs.bundle_fResources_fen.lproj_fGoogleKitDialogs.strings</LogicalName>
+				<AssemblyName>$(_GoogleVRiOSAssemblyName)</AssemblyName>
+			</RestoreAssemblyResource>
+			<RestoreAssemblyResource Include="$(XamarinBuildDownloadDir)$(_GoogleVRiOSId)\Resources\GoogleKitDialogs.bundle\Resources\en_AU.lproj\GoogleKitDialogs.strings">
+				<LogicalName>__monotouch_content_GoogleKitDialogs.bundle_fResources_fen__AU.lproj_fGoogleKitDialogs.strings</LogicalName>
+				<AssemblyName>$(_GoogleVRiOSAssemblyName)</AssemblyName>
+			</RestoreAssemblyResource>
+			<RestoreAssemblyResource Include="$(XamarinBuildDownloadDir)$(_GoogleVRiOSId)\Resources\GoogleKitDialogs.bundle\Resources\en_GB.lproj\GoogleKitDialogs.strings">
+				<LogicalName>__monotouch_content_GoogleKitDialogs.bundle_fResources_fen__GB.lproj_fGoogleKitDialogs.strings</LogicalName>
+				<AssemblyName>$(_GoogleVRiOSAssemblyName)</AssemblyName>
+			</RestoreAssemblyResource>
+			<RestoreAssemblyResource Include="$(XamarinBuildDownloadDir)$(_GoogleVRiOSId)\Resources\GoogleKitDialogs.bundle\Resources\en_IN.lproj\GoogleKitDialogs.strings">
+				<LogicalName>__monotouch_content_GoogleKitDialogs.bundle_fResources_fen__IN.lproj_fGoogleKitDialogs.strings</LogicalName>
+				<AssemblyName>$(_GoogleVRiOSAssemblyName)</AssemblyName>
+			</RestoreAssemblyResource>
+			<RestoreAssemblyResource Include="$(XamarinBuildDownloadDir)$(_GoogleVRiOSId)\Resources\GoogleKitDialogs.bundle\Resources\es.lproj\GoogleKitDialogs.strings">
+				<LogicalName>__monotouch_content_GoogleKitDialogs.bundle_fResources_fes.lproj_fGoogleKitDialogs.strings</LogicalName>
+				<AssemblyName>$(_GoogleVRiOSAssemblyName)</AssemblyName>
+			</RestoreAssemblyResource>
+			<RestoreAssemblyResource Include="$(XamarinBuildDownloadDir)$(_GoogleVRiOSId)\Resources\GoogleKitDialogs.bundle\Resources\es_419.lproj\GoogleKitDialogs.strings">
+				<LogicalName>__monotouch_content_GoogleKitDialogs.bundle_fResources_fes__419.lproj_fGoogleKitDialogs.strings</LogicalName>
+				<AssemblyName>$(_GoogleVRiOSAssemblyName)</AssemblyName>
+			</RestoreAssemblyResource>
+			<RestoreAssemblyResource Include="$(XamarinBuildDownloadDir)$(_GoogleVRiOSId)\Resources\GoogleKitDialogs.bundle\Resources\es_MX.lproj\GoogleKitDialogs.strings">
+				<LogicalName>__monotouch_content_GoogleKitDialogs.bundle_fResources_fes__MX.lproj_fGoogleKitDialogs.strings</LogicalName>
+				<AssemblyName>$(_GoogleVRiOSAssemblyName)</AssemblyName>
+			</RestoreAssemblyResource>
+			<RestoreAssemblyResource Include="$(XamarinBuildDownloadDir)$(_GoogleVRiOSId)\Resources\GoogleKitDialogs.bundle\Resources\fa.lproj\GoogleKitDialogs.strings">
+				<LogicalName>__monotouch_content_GoogleKitDialogs.bundle_fResources_ffa.lproj_fGoogleKitDialogs.strings</LogicalName>
+				<AssemblyName>$(_GoogleVRiOSAssemblyName)</AssemblyName>
+			</RestoreAssemblyResource>
+			<RestoreAssemblyResource Include="$(XamarinBuildDownloadDir)$(_GoogleVRiOSId)\Resources\GoogleKitDialogs.bundle\Resources\fi.lproj\GoogleKitDialogs.strings">
+				<LogicalName>__monotouch_content_GoogleKitDialogs.bundle_fResources_ffi.lproj_fGoogleKitDialogs.strings</LogicalName>
+				<AssemblyName>$(_GoogleVRiOSAssemblyName)</AssemblyName>
+			</RestoreAssemblyResource>
+			<RestoreAssemblyResource Include="$(XamarinBuildDownloadDir)$(_GoogleVRiOSId)\Resources\GoogleKitDialogs.bundle\Resources\fr.lproj\GoogleKitDialogs.strings">
+				<LogicalName>__monotouch_content_GoogleKitDialogs.bundle_fResources_ffr.lproj_fGoogleKitDialogs.strings</LogicalName>
+				<AssemblyName>$(_GoogleVRiOSAssemblyName)</AssemblyName>
+			</RestoreAssemblyResource>
+			<RestoreAssemblyResource Include="$(XamarinBuildDownloadDir)$(_GoogleVRiOSId)\Resources\GoogleKitDialogs.bundle\Resources\fr_CA.lproj\GoogleKitDialogs.strings">
+				<LogicalName>__monotouch_content_GoogleKitDialogs.bundle_fResources_ffr__CA.lproj_fGoogleKitDialogs.strings</LogicalName>
+				<AssemblyName>$(_GoogleVRiOSAssemblyName)</AssemblyName>
+			</RestoreAssemblyResource>
+			<RestoreAssemblyResource Include="$(XamarinBuildDownloadDir)$(_GoogleVRiOSId)\Resources\GoogleKitDialogs.bundle\Resources\he.lproj\GoogleKitDialogs.strings">
+				<LogicalName>__monotouch_content_GoogleKitDialogs.bundle_fResources_fhe.lproj_fGoogleKitDialogs.strings</LogicalName>
+				<AssemblyName>$(_GoogleVRiOSAssemblyName)</AssemblyName>
+			</RestoreAssemblyResource>
+			<RestoreAssemblyResource Include="$(XamarinBuildDownloadDir)$(_GoogleVRiOSId)\Resources\GoogleKitDialogs.bundle\Resources\hi.lproj\GoogleKitDialogs.strings">
+				<LogicalName>__monotouch_content_GoogleKitDialogs.bundle_fResources_fhi.lproj_fGoogleKitDialogs.strings</LogicalName>
+				<AssemblyName>$(_GoogleVRiOSAssemblyName)</AssemblyName>
+			</RestoreAssemblyResource>
+			<RestoreAssemblyResource Include="$(XamarinBuildDownloadDir)$(_GoogleVRiOSId)\Resources\GoogleKitDialogs.bundle\Resources\hr.lproj\GoogleKitDialogs.strings">
+				<LogicalName>__monotouch_content_GoogleKitDialogs.bundle_fResources_fhr.lproj_fGoogleKitDialogs.strings</LogicalName>
+				<AssemblyName>$(_GoogleVRiOSAssemblyName)</AssemblyName>
+			</RestoreAssemblyResource>
+			<RestoreAssemblyResource Include="$(XamarinBuildDownloadDir)$(_GoogleVRiOSId)\Resources\GoogleKitDialogs.bundle\Resources\hu.lproj\GoogleKitDialogs.strings">
+				<LogicalName>__monotouch_content_GoogleKitDialogs.bundle_fResources_fhu.lproj_fGoogleKitDialogs.strings</LogicalName>
+				<AssemblyName>$(_GoogleVRiOSAssemblyName)</AssemblyName>
+			</RestoreAssemblyResource>
+			<RestoreAssemblyResource Include="$(XamarinBuildDownloadDir)$(_GoogleVRiOSId)\Resources\GoogleKitDialogs.bundle\Resources\hy.lproj\GoogleKitDialogs.strings">
+				<LogicalName>__monotouch_content_GoogleKitDialogs.bundle_fResources_fhy.lproj_fGoogleKitDialogs.strings</LogicalName>
+				<AssemblyName>$(_GoogleVRiOSAssemblyName)</AssemblyName>
+			</RestoreAssemblyResource>
+			<RestoreAssemblyResource Include="$(XamarinBuildDownloadDir)$(_GoogleVRiOSId)\Resources\GoogleKitDialogs.bundle\Resources\id.lproj\GoogleKitDialogs.strings">
+				<LogicalName>__monotouch_content_GoogleKitDialogs.bundle_fResources_fid.lproj_fGoogleKitDialogs.strings</LogicalName>
+				<AssemblyName>$(_GoogleVRiOSAssemblyName)</AssemblyName>
+			</RestoreAssemblyResource>
+			<RestoreAssemblyResource Include="$(XamarinBuildDownloadDir)$(_GoogleVRiOSId)\Resources\GoogleKitDialogs.bundle\Resources\it.lproj\GoogleKitDialogs.strings">
+				<LogicalName>__monotouch_content_GoogleKitDialogs.bundle_fResources_fit.lproj_fGoogleKitDialogs.strings</LogicalName>
+				<AssemblyName>$(_GoogleVRiOSAssemblyName)</AssemblyName>
+			</RestoreAssemblyResource>
+			<RestoreAssemblyResource Include="$(XamarinBuildDownloadDir)$(_GoogleVRiOSId)\Resources\GoogleKitDialogs.bundle\Resources\iw.lproj\GoogleKitDialogs.strings">
+				<LogicalName>__monotouch_content_GoogleKitDialogs.bundle_fResources_fiw.lproj_fGoogleKitDialogs.strings</LogicalName>
+				<AssemblyName>$(_GoogleVRiOSAssemblyName)</AssemblyName>
+			</RestoreAssemblyResource>
+			<RestoreAssemblyResource Include="$(XamarinBuildDownloadDir)$(_GoogleVRiOSId)\Resources\GoogleKitDialogs.bundle\Resources\ja.lproj\GoogleKitDialogs.strings">
+				<LogicalName>__monotouch_content_GoogleKitDialogs.bundle_fResources_fja.lproj_fGoogleKitDialogs.strings</LogicalName>
+				<AssemblyName>$(_GoogleVRiOSAssemblyName)</AssemblyName>
+			</RestoreAssemblyResource>
+			<RestoreAssemblyResource Include="$(XamarinBuildDownloadDir)$(_GoogleVRiOSId)\Resources\GoogleKitDialogs.bundle\Resources\ka.lproj\GoogleKitDialogs.strings">
+				<LogicalName>__monotouch_content_GoogleKitDialogs.bundle_fResources_fka.lproj_fGoogleKitDialogs.strings</LogicalName>
+				<AssemblyName>$(_GoogleVRiOSAssemblyName)</AssemblyName>
+			</RestoreAssemblyResource>
+			<RestoreAssemblyResource Include="$(XamarinBuildDownloadDir)$(_GoogleVRiOSId)\Resources\GoogleKitDialogs.bundle\Resources\kk.lproj\GoogleKitDialogs.strings">
+				<LogicalName>__monotouch_content_GoogleKitDialogs.bundle_fResources_fkk.lproj_fGoogleKitDialogs.strings</LogicalName>
+				<AssemblyName>$(_GoogleVRiOSAssemblyName)</AssemblyName>
+			</RestoreAssemblyResource>
+			<RestoreAssemblyResource Include="$(XamarinBuildDownloadDir)$(_GoogleVRiOSId)\Resources\GoogleKitDialogs.bundle\Resources\km.lproj\GoogleKitDialogs.strings">
+				<LogicalName>__monotouch_content_GoogleKitDialogs.bundle_fResources_fkm.lproj_fGoogleKitDialogs.strings</LogicalName>
+				<AssemblyName>$(_GoogleVRiOSAssemblyName)</AssemblyName>
+			</RestoreAssemblyResource>
+			<RestoreAssemblyResource Include="$(XamarinBuildDownloadDir)$(_GoogleVRiOSId)\Resources\GoogleKitDialogs.bundle\Resources\ko.lproj\GoogleKitDialogs.strings">
+				<LogicalName>__monotouch_content_GoogleKitDialogs.bundle_fResources_fko.lproj_fGoogleKitDialogs.strings</LogicalName>
+				<AssemblyName>$(_GoogleVRiOSAssemblyName)</AssemblyName>
+			</RestoreAssemblyResource>
+			<RestoreAssemblyResource Include="$(XamarinBuildDownloadDir)$(_GoogleVRiOSId)\Resources\GoogleKitDialogs.bundle\Resources\lo.lproj\GoogleKitDialogs.strings">
+				<LogicalName>__monotouch_content_GoogleKitDialogs.bundle_fResources_flo.lproj_fGoogleKitDialogs.strings</LogicalName>
+				<AssemblyName>$(_GoogleVRiOSAssemblyName)</AssemblyName>
+			</RestoreAssemblyResource>
+			<RestoreAssemblyResource Include="$(XamarinBuildDownloadDir)$(_GoogleVRiOSId)\Resources\GoogleKitDialogs.bundle\Resources\lt.lproj\GoogleKitDialogs.strings">
+				<LogicalName>__monotouch_content_GoogleKitDialogs.bundle_fResources_flt.lproj_fGoogleKitDialogs.strings</LogicalName>
+				<AssemblyName>$(_GoogleVRiOSAssemblyName)</AssemblyName>
+			</RestoreAssemblyResource>
+			<RestoreAssemblyResource Include="$(XamarinBuildDownloadDir)$(_GoogleVRiOSId)\Resources\GoogleKitDialogs.bundle\Resources\mn.lproj\GoogleKitDialogs.strings">
+				<LogicalName>__monotouch_content_GoogleKitDialogs.bundle_fResources_fmn.lproj_fGoogleKitDialogs.strings</LogicalName>
+				<AssemblyName>$(_GoogleVRiOSAssemblyName)</AssemblyName>
+			</RestoreAssemblyResource>
+			<RestoreAssemblyResource Include="$(XamarinBuildDownloadDir)$(_GoogleVRiOSId)\Resources\GoogleKitDialogs.bundle\Resources\ms.lproj\GoogleKitDialogs.strings">
+				<LogicalName>__monotouch_content_GoogleKitDialogs.bundle_fResources_fms.lproj_fGoogleKitDialogs.strings</LogicalName>
+				<AssemblyName>$(_GoogleVRiOSAssemblyName)</AssemblyName>
+			</RestoreAssemblyResource>
+			<RestoreAssemblyResource Include="$(XamarinBuildDownloadDir)$(_GoogleVRiOSId)\Resources\GoogleKitDialogs.bundle\Resources\nb.lproj\GoogleKitDialogs.strings">
+				<LogicalName>__monotouch_content_GoogleKitDialogs.bundle_fResources_fnb.lproj_fGoogleKitDialogs.strings</LogicalName>
+				<AssemblyName>$(_GoogleVRiOSAssemblyName)</AssemblyName>
+			</RestoreAssemblyResource>
+			<RestoreAssemblyResource Include="$(XamarinBuildDownloadDir)$(_GoogleVRiOSId)\Resources\GoogleKitDialogs.bundle\Resources\nl.lproj\GoogleKitDialogs.strings">
+				<LogicalName>__monotouch_content_GoogleKitDialogs.bundle_fResources_fnl.lproj_fGoogleKitDialogs.strings</LogicalName>
+				<AssemblyName>$(_GoogleVRiOSAssemblyName)</AssemblyName>
+			</RestoreAssemblyResource>
+			<RestoreAssemblyResource Include="$(XamarinBuildDownloadDir)$(_GoogleVRiOSId)\Resources\GoogleKitDialogs.bundle\Resources\no.lproj\GoogleKitDialogs.strings">
+				<LogicalName>__monotouch_content_GoogleKitDialogs.bundle_fResources_fno.lproj_fGoogleKitDialogs.strings</LogicalName>
+				<AssemblyName>$(_GoogleVRiOSAssemblyName)</AssemblyName>
+			</RestoreAssemblyResource>
+			<RestoreAssemblyResource Include="$(XamarinBuildDownloadDir)$(_GoogleVRiOSId)\Resources\GoogleKitDialogs.bundle\Resources\pl.lproj\GoogleKitDialogs.strings">
+				<LogicalName>__monotouch_content_GoogleKitDialogs.bundle_fResources_fpl.lproj_fGoogleKitDialogs.strings</LogicalName>
+				<AssemblyName>$(_GoogleVRiOSAssemblyName)</AssemblyName>
+			</RestoreAssemblyResource>
+			<RestoreAssemblyResource Include="$(XamarinBuildDownloadDir)$(_GoogleVRiOSId)\Resources\GoogleKitDialogs.bundle\Resources\pt.lproj\GoogleKitDialogs.strings">
+				<LogicalName>__monotouch_content_GoogleKitDialogs.bundle_fResources_fpt.lproj_fGoogleKitDialogs.strings</LogicalName>
+				<AssemblyName>$(_GoogleVRiOSAssemblyName)</AssemblyName>
+			</RestoreAssemblyResource>
+			<RestoreAssemblyResource Include="$(XamarinBuildDownloadDir)$(_GoogleVRiOSId)\Resources\GoogleKitDialogs.bundle\Resources\pt_BR.lproj\GoogleKitDialogs.strings">
+				<LogicalName>__monotouch_content_GoogleKitDialogs.bundle_fResources_fpt__BR.lproj_fGoogleKitDialogs.strings</LogicalName>
+				<AssemblyName>$(_GoogleVRiOSAssemblyName)</AssemblyName>
+			</RestoreAssemblyResource>
+			<RestoreAssemblyResource Include="$(XamarinBuildDownloadDir)$(_GoogleVRiOSId)\Resources\GoogleKitDialogs.bundle\Resources\pt_PT.lproj\GoogleKitDialogs.strings">
+				<LogicalName>__monotouch_content_GoogleKitDialogs.bundle_fResources_fpt__PT.lproj_fGoogleKitDialogs.strings</LogicalName>
+				<AssemblyName>$(_GoogleVRiOSAssemblyName)</AssemblyName>
+			</RestoreAssemblyResource>
+			<RestoreAssemblyResource Include="$(XamarinBuildDownloadDir)$(_GoogleVRiOSId)\Resources\GoogleKitDialogs.bundle\Resources\ro.lproj\GoogleKitDialogs.strings">
+				<LogicalName>__monotouch_content_GoogleKitDialogs.bundle_fResources_fro.lproj_fGoogleKitDialogs.strings</LogicalName>
+				<AssemblyName>$(_GoogleVRiOSAssemblyName)</AssemblyName>
+			</RestoreAssemblyResource>
+			<RestoreAssemblyResource Include="$(XamarinBuildDownloadDir)$(_GoogleVRiOSId)\Resources\GoogleKitDialogs.bundle\Resources\ru.lproj\GoogleKitDialogs.strings">
+				<LogicalName>__monotouch_content_GoogleKitDialogs.bundle_fResources_fru.lproj_fGoogleKitDialogs.strings</LogicalName>
+				<AssemblyName>$(_GoogleVRiOSAssemblyName)</AssemblyName>
+			</RestoreAssemblyResource>
+			<RestoreAssemblyResource Include="$(XamarinBuildDownloadDir)$(_GoogleVRiOSId)\Resources\GoogleKitDialogs.bundle\Resources\sk.lproj\GoogleKitDialogs.strings">
+				<LogicalName>__monotouch_content_GoogleKitDialogs.bundle_fResources_fsk.lproj_fGoogleKitDialogs.strings</LogicalName>
+				<AssemblyName>$(_GoogleVRiOSAssemblyName)</AssemblyName>
+			</RestoreAssemblyResource>
+			<RestoreAssemblyResource Include="$(XamarinBuildDownloadDir)$(_GoogleVRiOSId)\Resources\GoogleKitDialogs.bundle\Resources\sq.lproj\GoogleKitDialogs.strings">
+				<LogicalName>__monotouch_content_GoogleKitDialogs.bundle_fResources_fsq.lproj_fGoogleKitDialogs.strings</LogicalName>
+				<AssemblyName>$(_GoogleVRiOSAssemblyName)</AssemblyName>
+			</RestoreAssemblyResource>
+			<RestoreAssemblyResource Include="$(XamarinBuildDownloadDir)$(_GoogleVRiOSId)\Resources\GoogleKitDialogs.bundle\Resources\sr.lproj\GoogleKitDialogs.strings">
+				<LogicalName>__monotouch_content_GoogleKitDialogs.bundle_fResources_fsr.lproj_fGoogleKitDialogs.strings</LogicalName>
+				<AssemblyName>$(_GoogleVRiOSAssemblyName)</AssemblyName>
+			</RestoreAssemblyResource>
+			<RestoreAssemblyResource Include="$(XamarinBuildDownloadDir)$(_GoogleVRiOSId)\Resources\GoogleKitDialogs.bundle\Resources\sv.lproj\GoogleKitDialogs.strings">
+				<LogicalName>__monotouch_content_GoogleKitDialogs.bundle_fResources_fsv.lproj_fGoogleKitDialogs.strings</LogicalName>
+				<AssemblyName>$(_GoogleVRiOSAssemblyName)</AssemblyName>
+			</RestoreAssemblyResource>
+			<RestoreAssemblyResource Include="$(XamarinBuildDownloadDir)$(_GoogleVRiOSId)\Resources\GoogleKitDialogs.bundle\Resources\th.lproj\GoogleKitDialogs.strings">
+				<LogicalName>__monotouch_content_GoogleKitDialogs.bundle_fResources_fth.lproj_fGoogleKitDialogs.strings</LogicalName>
+				<AssemblyName>$(_GoogleVRiOSAssemblyName)</AssemblyName>
+			</RestoreAssemblyResource>
+			<RestoreAssemblyResource Include="$(XamarinBuildDownloadDir)$(_GoogleVRiOSId)\Resources\GoogleKitDialogs.bundle\Resources\tr.lproj\GoogleKitDialogs.strings">
+				<LogicalName>__monotouch_content_GoogleKitDialogs.bundle_fResources_ftr.lproj_fGoogleKitDialogs.strings</LogicalName>
+				<AssemblyName>$(_GoogleVRiOSAssemblyName)</AssemblyName>
+			</RestoreAssemblyResource>
+			<RestoreAssemblyResource Include="$(XamarinBuildDownloadDir)$(_GoogleVRiOSId)\Resources\GoogleKitDialogs.bundle\Resources\uk.lproj\GoogleKitDialogs.strings">
+				<LogicalName>__monotouch_content_GoogleKitDialogs.bundle_fResources_fuk.lproj_fGoogleKitDialogs.strings</LogicalName>
+				<AssemblyName>$(_GoogleVRiOSAssemblyName)</AssemblyName>
+			</RestoreAssemblyResource>
+			<RestoreAssemblyResource Include="$(XamarinBuildDownloadDir)$(_GoogleVRiOSId)\Resources\GoogleKitDialogs.bundle\Resources\vi.lproj\GoogleKitDialogs.strings">
+				<LogicalName>__monotouch_content_GoogleKitDialogs.bundle_fResources_fvi.lproj_fGoogleKitDialogs.strings</LogicalName>
+				<AssemblyName>$(_GoogleVRiOSAssemblyName)</AssemblyName>
+			</RestoreAssemblyResource>
+			<RestoreAssemblyResource Include="$(XamarinBuildDownloadDir)$(_GoogleVRiOSId)\Resources\GoogleKitDialogs.bundle\Resources\zh_CN.lproj\GoogleKitDialogs.strings">
+				<LogicalName>__monotouch_content_GoogleKitDialogs.bundle_fResources_fzh__CN.lproj_fGoogleKitDialogs.strings</LogicalName>
+				<AssemblyName>$(_GoogleVRiOSAssemblyName)</AssemblyName>
+			</RestoreAssemblyResource>
+			<RestoreAssemblyResource Include="$(XamarinBuildDownloadDir)$(_GoogleVRiOSId)\Resources\GoogleKitDialogs.bundle\Resources\zh_HK.lproj\GoogleKitDialogs.strings">
+				<LogicalName>__monotouch_content_GoogleKitDialogs.bundle_fResources_fzh__HK.lproj_fGoogleKitDialogs.strings</LogicalName>
+				<AssemblyName>$(_GoogleVRiOSAssemblyName)</AssemblyName>
+			</RestoreAssemblyResource>
+			<RestoreAssemblyResource Include="$(XamarinBuildDownloadDir)$(_GoogleVRiOSId)\Resources\GoogleKitDialogs.bundle\Resources\zh_TW.lproj\GoogleKitDialogs.strings">
+				<LogicalName>__monotouch_content_GoogleKitDialogs.bundle_fResources_fzh__TW.lproj_fGoogleKitDialogs.strings</LogicalName>
+				<AssemblyName>$(_GoogleVRiOSAssemblyName)</AssemblyName>
+			</RestoreAssemblyResource>
+			<RestoreAssemblyResource Include="$(XamarinBuildDownloadDir)$(_GoogleVRiOSId)\Resources\GoogleKitHUD.bundle\Resources\ar.lproj\GoogleKitHUD.strings">
+				<LogicalName>__monotouch_content_GoogleKitHUD.bundle_fResources_far.lproj_fGoogleKitHUD.strings</LogicalName>
+				<AssemblyName>$(_GoogleVRiOSAssemblyName)</AssemblyName>
+			</RestoreAssemblyResource>
+			<RestoreAssemblyResource Include="$(XamarinBuildDownloadDir)$(_GoogleVRiOSId)\Resources\GoogleKitHUD.bundle\Resources\bg.lproj\GoogleKitHUD.strings">
+				<LogicalName>__monotouch_content_GoogleKitHUD.bundle_fResources_fbg.lproj_fGoogleKitHUD.strings</LogicalName>
+				<AssemblyName>$(_GoogleVRiOSAssemblyName)</AssemblyName>
+			</RestoreAssemblyResource>
+			<RestoreAssemblyResource Include="$(XamarinBuildDownloadDir)$(_GoogleVRiOSId)\Resources\GoogleKitHUD.bundle\Resources\ca.lproj\GoogleKitHUD.strings">
+				<LogicalName>__monotouch_content_GoogleKitHUD.bundle_fResources_fca.lproj_fGoogleKitHUD.strings</LogicalName>
+				<AssemblyName>$(_GoogleVRiOSAssemblyName)</AssemblyName>
+			</RestoreAssemblyResource>
+			<RestoreAssemblyResource Include="$(XamarinBuildDownloadDir)$(_GoogleVRiOSId)\Resources\GoogleKitHUD.bundle\Resources\cs.lproj\GoogleKitHUD.strings">
+				<LogicalName>__monotouch_content_GoogleKitHUD.bundle_fResources_fcs.lproj_fGoogleKitHUD.strings</LogicalName>
+				<AssemblyName>$(_GoogleVRiOSAssemblyName)</AssemblyName>
+			</RestoreAssemblyResource>
+			<RestoreAssemblyResource Include="$(XamarinBuildDownloadDir)$(_GoogleVRiOSId)\Resources\GoogleKitHUD.bundle\Resources\da.lproj\GoogleKitHUD.strings">
+				<LogicalName>__monotouch_content_GoogleKitHUD.bundle_fResources_fda.lproj_fGoogleKitHUD.strings</LogicalName>
+				<AssemblyName>$(_GoogleVRiOSAssemblyName)</AssemblyName>
+			</RestoreAssemblyResource>
+			<RestoreAssemblyResource Include="$(XamarinBuildDownloadDir)$(_GoogleVRiOSId)\Resources\GoogleKitHUD.bundle\Resources\de.lproj\GoogleKitHUD.strings">
+				<LogicalName>__monotouch_content_GoogleKitHUD.bundle_fResources_fde.lproj_fGoogleKitHUD.strings</LogicalName>
+				<AssemblyName>$(_GoogleVRiOSAssemblyName)</AssemblyName>
+			</RestoreAssemblyResource>
+			<RestoreAssemblyResource Include="$(XamarinBuildDownloadDir)$(_GoogleVRiOSId)\Resources\GoogleKitHUD.bundle\Resources\el.lproj\GoogleKitHUD.strings">
+				<LogicalName>__monotouch_content_GoogleKitHUD.bundle_fResources_fel.lproj_fGoogleKitHUD.strings</LogicalName>
+				<AssemblyName>$(_GoogleVRiOSAssemblyName)</AssemblyName>
+			</RestoreAssemblyResource>
+			<RestoreAssemblyResource Include="$(XamarinBuildDownloadDir)$(_GoogleVRiOSId)\Resources\GoogleKitHUD.bundle\Resources\en.lproj\GoogleKitHUD.strings">
+				<LogicalName>__monotouch_content_GoogleKitHUD.bundle_fResources_fen.lproj_fGoogleKitHUD.strings</LogicalName>
+				<AssemblyName>$(_GoogleVRiOSAssemblyName)</AssemblyName>
+			</RestoreAssemblyResource>
+			<RestoreAssemblyResource Include="$(XamarinBuildDownloadDir)$(_GoogleVRiOSId)\Resources\GoogleKitHUD.bundle\Resources\en_AU.lproj\GoogleKitHUD.strings">
+				<LogicalName>__monotouch_content_GoogleKitHUD.bundle_fResources_fen__AU.lproj_fGoogleKitHUD.strings</LogicalName>
+				<AssemblyName>$(_GoogleVRiOSAssemblyName)</AssemblyName>
+			</RestoreAssemblyResource>
+			<RestoreAssemblyResource Include="$(XamarinBuildDownloadDir)$(_GoogleVRiOSId)\Resources\GoogleKitHUD.bundle\Resources\en_GB.lproj\GoogleKitHUD.strings">
+				<LogicalName>__monotouch_content_GoogleKitHUD.bundle_fResources_fen__GB.lproj_fGoogleKitHUD.strings</LogicalName>
+				<AssemblyName>$(_GoogleVRiOSAssemblyName)</AssemblyName>
+			</RestoreAssemblyResource>
+			<RestoreAssemblyResource Include="$(XamarinBuildDownloadDir)$(_GoogleVRiOSId)\Resources\GoogleKitHUD.bundle\Resources\en_IN.lproj\GoogleKitHUD.strings">
+				<LogicalName>__monotouch_content_GoogleKitHUD.bundle_fResources_fen__IN.lproj_fGoogleKitHUD.strings</LogicalName>
+				<AssemblyName>$(_GoogleVRiOSAssemblyName)</AssemblyName>
+			</RestoreAssemblyResource>
+			<RestoreAssemblyResource Include="$(XamarinBuildDownloadDir)$(_GoogleVRiOSId)\Resources\GoogleKitHUD.bundle\Resources\es.lproj\GoogleKitHUD.strings">
+				<LogicalName>__monotouch_content_GoogleKitHUD.bundle_fResources_fes.lproj_fGoogleKitHUD.strings</LogicalName>
+				<AssemblyName>$(_GoogleVRiOSAssemblyName)</AssemblyName>
+			</RestoreAssemblyResource>
+			<RestoreAssemblyResource Include="$(XamarinBuildDownloadDir)$(_GoogleVRiOSId)\Resources\GoogleKitHUD.bundle\Resources\es_419.lproj\GoogleKitHUD.strings">
+				<LogicalName>__monotouch_content_GoogleKitHUD.bundle_fResources_fes__419.lproj_fGoogleKitHUD.strings</LogicalName>
+				<AssemblyName>$(_GoogleVRiOSAssemblyName)</AssemblyName>
+			</RestoreAssemblyResource>
+			<RestoreAssemblyResource Include="$(XamarinBuildDownloadDir)$(_GoogleVRiOSId)\Resources\GoogleKitHUD.bundle\Resources\es_MX.lproj\GoogleKitHUD.strings">
+				<LogicalName>__monotouch_content_GoogleKitHUD.bundle_fResources_fes__MX.lproj_fGoogleKitHUD.strings</LogicalName>
+				<AssemblyName>$(_GoogleVRiOSAssemblyName)</AssemblyName>
+			</RestoreAssemblyResource>
+			<RestoreAssemblyResource Include="$(XamarinBuildDownloadDir)$(_GoogleVRiOSId)\Resources\GoogleKitHUD.bundle\Resources\fa.lproj\GoogleKitHUD.strings">
+				<LogicalName>__monotouch_content_GoogleKitHUD.bundle_fResources_ffa.lproj_fGoogleKitHUD.strings</LogicalName>
+				<AssemblyName>$(_GoogleVRiOSAssemblyName)</AssemblyName>
+			</RestoreAssemblyResource>
+			<RestoreAssemblyResource Include="$(XamarinBuildDownloadDir)$(_GoogleVRiOSId)\Resources\GoogleKitHUD.bundle\Resources\fi.lproj\GoogleKitHUD.strings">
+				<LogicalName>__monotouch_content_GoogleKitHUD.bundle_fResources_ffi.lproj_fGoogleKitHUD.strings</LogicalName>
+				<AssemblyName>$(_GoogleVRiOSAssemblyName)</AssemblyName>
+			</RestoreAssemblyResource>
+			<RestoreAssemblyResource Include="$(XamarinBuildDownloadDir)$(_GoogleVRiOSId)\Resources\GoogleKitHUD.bundle\Resources\fr.lproj\GoogleKitHUD.strings">
+				<LogicalName>__monotouch_content_GoogleKitHUD.bundle_fResources_ffr.lproj_fGoogleKitHUD.strings</LogicalName>
+				<AssemblyName>$(_GoogleVRiOSAssemblyName)</AssemblyName>
+			</RestoreAssemblyResource>
+			<RestoreAssemblyResource Include="$(XamarinBuildDownloadDir)$(_GoogleVRiOSId)\Resources\GoogleKitHUD.bundle\Resources\fr_CA.lproj\GoogleKitHUD.strings">
+				<LogicalName>__monotouch_content_GoogleKitHUD.bundle_fResources_ffr__CA.lproj_fGoogleKitHUD.strings</LogicalName>
+				<AssemblyName>$(_GoogleVRiOSAssemblyName)</AssemblyName>
+			</RestoreAssemblyResource>
+			<RestoreAssemblyResource Include="$(XamarinBuildDownloadDir)$(_GoogleVRiOSId)\Resources\GoogleKitHUD.bundle\Resources\he.lproj\GoogleKitHUD.strings">
+				<LogicalName>__monotouch_content_GoogleKitHUD.bundle_fResources_fhe.lproj_fGoogleKitHUD.strings</LogicalName>
+				<AssemblyName>$(_GoogleVRiOSAssemblyName)</AssemblyName>
+			</RestoreAssemblyResource>
+			<RestoreAssemblyResource Include="$(XamarinBuildDownloadDir)$(_GoogleVRiOSId)\Resources\GoogleKitHUD.bundle\Resources\hi.lproj\GoogleKitHUD.strings">
+				<LogicalName>__monotouch_content_GoogleKitHUD.bundle_fResources_fhi.lproj_fGoogleKitHUD.strings</LogicalName>
+				<AssemblyName>$(_GoogleVRiOSAssemblyName)</AssemblyName>
+			</RestoreAssemblyResource>
+			<RestoreAssemblyResource Include="$(XamarinBuildDownloadDir)$(_GoogleVRiOSId)\Resources\GoogleKitHUD.bundle\Resources\hr.lproj\GoogleKitHUD.strings">
+				<LogicalName>__monotouch_content_GoogleKitHUD.bundle_fResources_fhr.lproj_fGoogleKitHUD.strings</LogicalName>
+				<AssemblyName>$(_GoogleVRiOSAssemblyName)</AssemblyName>
+			</RestoreAssemblyResource>
+			<RestoreAssemblyResource Include="$(XamarinBuildDownloadDir)$(_GoogleVRiOSId)\Resources\GoogleKitHUD.bundle\Resources\hu.lproj\GoogleKitHUD.strings">
+				<LogicalName>__monotouch_content_GoogleKitHUD.bundle_fResources_fhu.lproj_fGoogleKitHUD.strings</LogicalName>
+				<AssemblyName>$(_GoogleVRiOSAssemblyName)</AssemblyName>
+			</RestoreAssemblyResource>
+			<RestoreAssemblyResource Include="$(XamarinBuildDownloadDir)$(_GoogleVRiOSId)\Resources\GoogleKitHUD.bundle\Resources\hy.lproj\GoogleKitHUD.strings">
+				<LogicalName>__monotouch_content_GoogleKitHUD.bundle_fResources_fhy.lproj_fGoogleKitHUD.strings</LogicalName>
+				<AssemblyName>$(_GoogleVRiOSAssemblyName)</AssemblyName>
+			</RestoreAssemblyResource>
+			<RestoreAssemblyResource Include="$(XamarinBuildDownloadDir)$(_GoogleVRiOSId)\Resources\GoogleKitHUD.bundle\Resources\id.lproj\GoogleKitHUD.strings">
+				<LogicalName>__monotouch_content_GoogleKitHUD.bundle_fResources_fid.lproj_fGoogleKitHUD.strings</LogicalName>
+				<AssemblyName>$(_GoogleVRiOSAssemblyName)</AssemblyName>
+			</RestoreAssemblyResource>
+			<RestoreAssemblyResource Include="$(XamarinBuildDownloadDir)$(_GoogleVRiOSId)\Resources\GoogleKitHUD.bundle\Resources\it.lproj\GoogleKitHUD.strings">
+				<LogicalName>__monotouch_content_GoogleKitHUD.bundle_fResources_fit.lproj_fGoogleKitHUD.strings</LogicalName>
+				<AssemblyName>$(_GoogleVRiOSAssemblyName)</AssemblyName>
+			</RestoreAssemblyResource>
+			<RestoreAssemblyResource Include="$(XamarinBuildDownloadDir)$(_GoogleVRiOSId)\Resources\GoogleKitHUD.bundle\Resources\iw.lproj\GoogleKitHUD.strings">
+				<LogicalName>__monotouch_content_GoogleKitHUD.bundle_fResources_fiw.lproj_fGoogleKitHUD.strings</LogicalName>
+				<AssemblyName>$(_GoogleVRiOSAssemblyName)</AssemblyName>
+			</RestoreAssemblyResource>
+			<RestoreAssemblyResource Include="$(XamarinBuildDownloadDir)$(_GoogleVRiOSId)\Resources\GoogleKitHUD.bundle\Resources\ja.lproj\GoogleKitHUD.strings">
+				<LogicalName>__monotouch_content_GoogleKitHUD.bundle_fResources_fja.lproj_fGoogleKitHUD.strings</LogicalName>
+				<AssemblyName>$(_GoogleVRiOSAssemblyName)</AssemblyName>
+			</RestoreAssemblyResource>
+			<RestoreAssemblyResource Include="$(XamarinBuildDownloadDir)$(_GoogleVRiOSId)\Resources\GoogleKitHUD.bundle\Resources\ka.lproj\GoogleKitHUD.strings">
+				<LogicalName>__monotouch_content_GoogleKitHUD.bundle_fResources_fka.lproj_fGoogleKitHUD.strings</LogicalName>
+				<AssemblyName>$(_GoogleVRiOSAssemblyName)</AssemblyName>
+			</RestoreAssemblyResource>
+			<RestoreAssemblyResource Include="$(XamarinBuildDownloadDir)$(_GoogleVRiOSId)\Resources\GoogleKitHUD.bundle\Resources\kk.lproj\GoogleKitHUD.strings">
+				<LogicalName>__monotouch_content_GoogleKitHUD.bundle_fResources_fkk.lproj_fGoogleKitHUD.strings</LogicalName>
+				<AssemblyName>$(_GoogleVRiOSAssemblyName)</AssemblyName>
+			</RestoreAssemblyResource>
+			<RestoreAssemblyResource Include="$(XamarinBuildDownloadDir)$(_GoogleVRiOSId)\Resources\GoogleKitHUD.bundle\Resources\km.lproj\GoogleKitHUD.strings">
+				<LogicalName>__monotouch_content_GoogleKitHUD.bundle_fResources_fkm.lproj_fGoogleKitHUD.strings</LogicalName>
+				<AssemblyName>$(_GoogleVRiOSAssemblyName)</AssemblyName>
+			</RestoreAssemblyResource>
+			<RestoreAssemblyResource Include="$(XamarinBuildDownloadDir)$(_GoogleVRiOSId)\Resources\GoogleKitHUD.bundle\Resources\ko.lproj\GoogleKitHUD.strings">
+				<LogicalName>__monotouch_content_GoogleKitHUD.bundle_fResources_fko.lproj_fGoogleKitHUD.strings</LogicalName>
+				<AssemblyName>$(_GoogleVRiOSAssemblyName)</AssemblyName>
+			</RestoreAssemblyResource>
+			<RestoreAssemblyResource Include="$(XamarinBuildDownloadDir)$(_GoogleVRiOSId)\Resources\GoogleKitHUD.bundle\Resources\lo.lproj\GoogleKitHUD.strings">
+				<LogicalName>__monotouch_content_GoogleKitHUD.bundle_fResources_flo.lproj_fGoogleKitHUD.strings</LogicalName>
+				<AssemblyName>$(_GoogleVRiOSAssemblyName)</AssemblyName>
+			</RestoreAssemblyResource>
+			<RestoreAssemblyResource Include="$(XamarinBuildDownloadDir)$(_GoogleVRiOSId)\Resources\GoogleKitHUD.bundle\Resources\lt.lproj\GoogleKitHUD.strings">
+				<LogicalName>__monotouch_content_GoogleKitHUD.bundle_fResources_flt.lproj_fGoogleKitHUD.strings</LogicalName>
+				<AssemblyName>$(_GoogleVRiOSAssemblyName)</AssemblyName>
+			</RestoreAssemblyResource>
+			<RestoreAssemblyResource Include="$(XamarinBuildDownloadDir)$(_GoogleVRiOSId)\Resources\GoogleKitHUD.bundle\Resources\mn.lproj\GoogleKitHUD.strings">
+				<LogicalName>__monotouch_content_GoogleKitHUD.bundle_fResources_fmn.lproj_fGoogleKitHUD.strings</LogicalName>
+				<AssemblyName>$(_GoogleVRiOSAssemblyName)</AssemblyName>
+			</RestoreAssemblyResource>
+			<RestoreAssemblyResource Include="$(XamarinBuildDownloadDir)$(_GoogleVRiOSId)\Resources\GoogleKitHUD.bundle\Resources\ms.lproj\GoogleKitHUD.strings">
+				<LogicalName>__monotouch_content_GoogleKitHUD.bundle_fResources_fms.lproj_fGoogleKitHUD.strings</LogicalName>
+				<AssemblyName>$(_GoogleVRiOSAssemblyName)</AssemblyName>
+			</RestoreAssemblyResource>
+			<RestoreAssemblyResource Include="$(XamarinBuildDownloadDir)$(_GoogleVRiOSId)\Resources\GoogleKitHUD.bundle\Resources\nb.lproj\GoogleKitHUD.strings">
+				<LogicalName>__monotouch_content_GoogleKitHUD.bundle_fResources_fnb.lproj_fGoogleKitHUD.strings</LogicalName>
+				<AssemblyName>$(_GoogleVRiOSAssemblyName)</AssemblyName>
+			</RestoreAssemblyResource>
+			<RestoreAssemblyResource Include="$(XamarinBuildDownloadDir)$(_GoogleVRiOSId)\Resources\GoogleKitHUD.bundle\Resources\nl.lproj\GoogleKitHUD.strings">
+				<LogicalName>__monotouch_content_GoogleKitHUD.bundle_fResources_fnl.lproj_fGoogleKitHUD.strings</LogicalName>
+				<AssemblyName>$(_GoogleVRiOSAssemblyName)</AssemblyName>
+			</RestoreAssemblyResource>
+			<RestoreAssemblyResource Include="$(XamarinBuildDownloadDir)$(_GoogleVRiOSId)\Resources\GoogleKitHUD.bundle\Resources\no.lproj\GoogleKitHUD.strings">
+				<LogicalName>__monotouch_content_GoogleKitHUD.bundle_fResources_fno.lproj_fGoogleKitHUD.strings</LogicalName>
+				<AssemblyName>$(_GoogleVRiOSAssemblyName)</AssemblyName>
+			</RestoreAssemblyResource>
+			<RestoreAssemblyResource Include="$(XamarinBuildDownloadDir)$(_GoogleVRiOSId)\Resources\GoogleKitHUD.bundle\Resources\pl.lproj\GoogleKitHUD.strings">
+				<LogicalName>__monotouch_content_GoogleKitHUD.bundle_fResources_fpl.lproj_fGoogleKitHUD.strings</LogicalName>
+				<AssemblyName>$(_GoogleVRiOSAssemblyName)</AssemblyName>
+			</RestoreAssemblyResource>
+			<RestoreAssemblyResource Include="$(XamarinBuildDownloadDir)$(_GoogleVRiOSId)\Resources\GoogleKitHUD.bundle\Resources\pt.lproj\GoogleKitHUD.strings">
+				<LogicalName>__monotouch_content_GoogleKitHUD.bundle_fResources_fpt.lproj_fGoogleKitHUD.strings</LogicalName>
+				<AssemblyName>$(_GoogleVRiOSAssemblyName)</AssemblyName>
+			</RestoreAssemblyResource>
+			<RestoreAssemblyResource Include="$(XamarinBuildDownloadDir)$(_GoogleVRiOSId)\Resources\GoogleKitHUD.bundle\Resources\pt_BR.lproj\GoogleKitHUD.strings">
+				<LogicalName>__monotouch_content_GoogleKitHUD.bundle_fResources_fpt__BR.lproj_fGoogleKitHUD.strings</LogicalName>
+				<AssemblyName>$(_GoogleVRiOSAssemblyName)</AssemblyName>
+			</RestoreAssemblyResource>
+			<RestoreAssemblyResource Include="$(XamarinBuildDownloadDir)$(_GoogleVRiOSId)\Resources\GoogleKitHUD.bundle\Resources\pt_PT.lproj\GoogleKitHUD.strings">
+				<LogicalName>__monotouch_content_GoogleKitHUD.bundle_fResources_fpt__PT.lproj_fGoogleKitHUD.strings</LogicalName>
+				<AssemblyName>$(_GoogleVRiOSAssemblyName)</AssemblyName>
+			</RestoreAssemblyResource>
+			<RestoreAssemblyResource Include="$(XamarinBuildDownloadDir)$(_GoogleVRiOSId)\Resources\GoogleKitHUD.bundle\Resources\ro.lproj\GoogleKitHUD.strings">
+				<LogicalName>__monotouch_content_GoogleKitHUD.bundle_fResources_fro.lproj_fGoogleKitHUD.strings</LogicalName>
+				<AssemblyName>$(_GoogleVRiOSAssemblyName)</AssemblyName>
+			</RestoreAssemblyResource>
+			<RestoreAssemblyResource Include="$(XamarinBuildDownloadDir)$(_GoogleVRiOSId)\Resources\GoogleKitHUD.bundle\Resources\ru.lproj\GoogleKitHUD.strings">
+				<LogicalName>__monotouch_content_GoogleKitHUD.bundle_fResources_fru.lproj_fGoogleKitHUD.strings</LogicalName>
+				<AssemblyName>$(_GoogleVRiOSAssemblyName)</AssemblyName>
+			</RestoreAssemblyResource>
+			<RestoreAssemblyResource Include="$(XamarinBuildDownloadDir)$(_GoogleVRiOSId)\Resources\GoogleKitHUD.bundle\Resources\sk.lproj\GoogleKitHUD.strings">
+				<LogicalName>__monotouch_content_GoogleKitHUD.bundle_fResources_fsk.lproj_fGoogleKitHUD.strings</LogicalName>
+				<AssemblyName>$(_GoogleVRiOSAssemblyName)</AssemblyName>
+			</RestoreAssemblyResource>
+			<RestoreAssemblyResource Include="$(XamarinBuildDownloadDir)$(_GoogleVRiOSId)\Resources\GoogleKitHUD.bundle\Resources\sq.lproj\GoogleKitHUD.strings">
+				<LogicalName>__monotouch_content_GoogleKitHUD.bundle_fResources_fsq.lproj_fGoogleKitHUD.strings</LogicalName>
+				<AssemblyName>$(_GoogleVRiOSAssemblyName)</AssemblyName>
+			</RestoreAssemblyResource>
+			<RestoreAssemblyResource Include="$(XamarinBuildDownloadDir)$(_GoogleVRiOSId)\Resources\GoogleKitHUD.bundle\Resources\sr.lproj\GoogleKitHUD.strings">
+				<LogicalName>__monotouch_content_GoogleKitHUD.bundle_fResources_fsr.lproj_fGoogleKitHUD.strings</LogicalName>
+				<AssemblyName>$(_GoogleVRiOSAssemblyName)</AssemblyName>
+			</RestoreAssemblyResource>
+			<RestoreAssemblyResource Include="$(XamarinBuildDownloadDir)$(_GoogleVRiOSId)\Resources\GoogleKitHUD.bundle\Resources\sv.lproj\GoogleKitHUD.strings">
+				<LogicalName>__monotouch_content_GoogleKitHUD.bundle_fResources_fsv.lproj_fGoogleKitHUD.strings</LogicalName>
+				<AssemblyName>$(_GoogleVRiOSAssemblyName)</AssemblyName>
+			</RestoreAssemblyResource>
+			<RestoreAssemblyResource Include="$(XamarinBuildDownloadDir)$(_GoogleVRiOSId)\Resources\GoogleKitHUD.bundle\Resources\th.lproj\GoogleKitHUD.strings">
+				<LogicalName>__monotouch_content_GoogleKitHUD.bundle_fResources_fth.lproj_fGoogleKitHUD.strings</LogicalName>
+				<AssemblyName>$(_GoogleVRiOSAssemblyName)</AssemblyName>
+			</RestoreAssemblyResource>
+			<RestoreAssemblyResource Include="$(XamarinBuildDownloadDir)$(_GoogleVRiOSId)\Resources\GoogleKitHUD.bundle\Resources\tr.lproj\GoogleKitHUD.strings">
+				<LogicalName>__monotouch_content_GoogleKitHUD.bundle_fResources_ftr.lproj_fGoogleKitHUD.strings</LogicalName>
+				<AssemblyName>$(_GoogleVRiOSAssemblyName)</AssemblyName>
+			</RestoreAssemblyResource>
+			<RestoreAssemblyResource Include="$(XamarinBuildDownloadDir)$(_GoogleVRiOSId)\Resources\GoogleKitHUD.bundle\Resources\uk.lproj\GoogleKitHUD.strings">
+				<LogicalName>__monotouch_content_GoogleKitHUD.bundle_fResources_fuk.lproj_fGoogleKitHUD.strings</LogicalName>
+				<AssemblyName>$(_GoogleVRiOSAssemblyName)</AssemblyName>
+			</RestoreAssemblyResource>
+			<RestoreAssemblyResource Include="$(XamarinBuildDownloadDir)$(_GoogleVRiOSId)\Resources\GoogleKitHUD.bundle\Resources\vi.lproj\GoogleKitHUD.strings">
+				<LogicalName>__monotouch_content_GoogleKitHUD.bundle_fResources_fvi.lproj_fGoogleKitHUD.strings</LogicalName>
+				<AssemblyName>$(_GoogleVRiOSAssemblyName)</AssemblyName>
+			</RestoreAssemblyResource>
+			<RestoreAssemblyResource Include="$(XamarinBuildDownloadDir)$(_GoogleVRiOSId)\Resources\GoogleKitHUD.bundle\Resources\zh_CN.lproj\GoogleKitHUD.strings">
+				<LogicalName>__monotouch_content_GoogleKitHUD.bundle_fResources_fzh__CN.lproj_fGoogleKitHUD.strings</LogicalName>
+				<AssemblyName>$(_GoogleVRiOSAssemblyName)</AssemblyName>
+			</RestoreAssemblyResource>
+			<RestoreAssemblyResource Include="$(XamarinBuildDownloadDir)$(_GoogleVRiOSId)\Resources\GoogleKitHUD.bundle\Resources\zh_HK.lproj\GoogleKitHUD.strings">
+				<LogicalName>__monotouch_content_GoogleKitHUD.bundle_fResources_fzh__HK.lproj_fGoogleKitHUD.strings</LogicalName>
+				<AssemblyName>$(_GoogleVRiOSAssemblyName)</AssemblyName>
+			</RestoreAssemblyResource>
+			<RestoreAssemblyResource Include="$(XamarinBuildDownloadDir)$(_GoogleVRiOSId)\Resources\GoogleKitHUD.bundle\Resources\zh_TW.lproj\GoogleKitHUD.strings">
+				<LogicalName>__monotouch_content_GoogleKitHUD.bundle_fResources_fzh__TW.lproj_fGoogleKitHUD.strings</LogicalName>
+				<AssemblyName>$(_GoogleVRiOSAssemblyName)</AssemblyName>
+			</RestoreAssemblyResource>
+			<RestoreAssemblyResource Include="$(XamarinBuildDownloadDir)$(_GoogleVRiOSId)\Resources\MaterialRobotoFontLoader.bundle\Roboto-Black.ttf">
+				<LogicalName>__monotouch_content_MaterialRobotoFontLoader.bundle_fRoboto-Black.ttf</LogicalName>
+				<AssemblyName>$(_GoogleVRiOSAssemblyName)</AssemblyName>
+			</RestoreAssemblyResource>
+			<RestoreAssemblyResource Include="$(XamarinBuildDownloadDir)$(_GoogleVRiOSId)\Resources\MaterialRobotoFontLoader.bundle\Roboto-BlackItalic.ttf">
+				<LogicalName>__monotouch_content_MaterialRobotoFontLoader.bundle_fRoboto-BlackItalic.ttf</LogicalName>
+				<AssemblyName>$(_GoogleVRiOSAssemblyName)</AssemblyName>
+			</RestoreAssemblyResource>
+			<RestoreAssemblyResource Include="$(XamarinBuildDownloadDir)$(_GoogleVRiOSId)\Resources\MaterialRobotoFontLoader.bundle\Roboto-Bold.ttf">
+				<LogicalName>__monotouch_content_MaterialRobotoFontLoader.bundle_fRoboto-Bold.ttf</LogicalName>
+				<AssemblyName>$(_GoogleVRiOSAssemblyName)</AssemblyName>
+			</RestoreAssemblyResource>
+			<RestoreAssemblyResource Include="$(XamarinBuildDownloadDir)$(_GoogleVRiOSId)\Resources\MaterialRobotoFontLoader.bundle\Roboto-BoldItalic.ttf">
+				<LogicalName>__monotouch_content_MaterialRobotoFontLoader.bundle_fRoboto-BoldItalic.ttf</LogicalName>
+				<AssemblyName>$(_GoogleVRiOSAssemblyName)</AssemblyName>
+			</RestoreAssemblyResource>
+			<RestoreAssemblyResource Include="$(XamarinBuildDownloadDir)$(_GoogleVRiOSId)\Resources\MaterialRobotoFontLoader.bundle\Roboto-Italic.ttf">
+				<LogicalName>__monotouch_content_MaterialRobotoFontLoader.bundle_fRoboto-Italic.ttf</LogicalName>
+				<AssemblyName>$(_GoogleVRiOSAssemblyName)</AssemblyName>
+			</RestoreAssemblyResource>
+			<RestoreAssemblyResource Include="$(XamarinBuildDownloadDir)$(_GoogleVRiOSId)\Resources\MaterialRobotoFontLoader.bundle\Roboto-Light.ttf">
+				<LogicalName>__monotouch_content_MaterialRobotoFontLoader.bundle_fRoboto-Light.ttf</LogicalName>
+				<AssemblyName>$(_GoogleVRiOSAssemblyName)</AssemblyName>
+			</RestoreAssemblyResource>
+			<RestoreAssemblyResource Include="$(XamarinBuildDownloadDir)$(_GoogleVRiOSId)\Resources\MaterialRobotoFontLoader.bundle\Roboto-LightItalic.ttf">
+				<LogicalName>__monotouch_content_MaterialRobotoFontLoader.bundle_fRoboto-LightItalic.ttf</LogicalName>
+				<AssemblyName>$(_GoogleVRiOSAssemblyName)</AssemblyName>
+			</RestoreAssemblyResource>
+			<RestoreAssemblyResource Include="$(XamarinBuildDownloadDir)$(_GoogleVRiOSId)\Resources\MaterialRobotoFontLoader.bundle\Roboto-Medium.ttf">
+				<LogicalName>__monotouch_content_MaterialRobotoFontLoader.bundle_fRoboto-Medium.ttf</LogicalName>
+				<AssemblyName>$(_GoogleVRiOSAssemblyName)</AssemblyName>
+			</RestoreAssemblyResource>
+			<RestoreAssemblyResource Include="$(XamarinBuildDownloadDir)$(_GoogleVRiOSId)\Resources\MaterialRobotoFontLoader.bundle\Roboto-MediumItalic.ttf">
+				<LogicalName>__monotouch_content_MaterialRobotoFontLoader.bundle_fRoboto-MediumItalic.ttf</LogicalName>
+				<AssemblyName>$(_GoogleVRiOSAssemblyName)</AssemblyName>
+			</RestoreAssemblyResource>
+			<RestoreAssemblyResource Include="$(XamarinBuildDownloadDir)$(_GoogleVRiOSId)\Resources\MaterialRobotoFontLoader.bundle\Roboto-Regular.ttf">
+				<LogicalName>__monotouch_content_MaterialRobotoFontLoader.bundle_fRoboto-Regular.ttf</LogicalName>
+				<AssemblyName>$(_GoogleVRiOSAssemblyName)</AssemblyName>
+			</RestoreAssemblyResource>
+			<RestoreAssemblyResource Include="$(XamarinBuildDownloadDir)$(_GoogleVRiOSId)\Resources\MaterialRobotoFontLoader.bundle\Roboto-Thin.ttf">
+				<LogicalName>__monotouch_content_MaterialRobotoFontLoader.bundle_fRoboto-Thin.ttf</LogicalName>
+				<AssemblyName>$(_GoogleVRiOSAssemblyName)</AssemblyName>
+			</RestoreAssemblyResource>
+			<RestoreAssemblyResource Include="$(XamarinBuildDownloadDir)$(_GoogleVRiOSId)\Resources\MaterialRobotoFontLoader.bundle\Roboto-ThinItalic.ttf">
+				<LogicalName>__monotouch_content_MaterialRobotoFontLoader.bundle_fRoboto-ThinItalic.ttf</LogicalName>
+				<AssemblyName>$(_GoogleVRiOSAssemblyName)</AssemblyName>
+			</RestoreAssemblyResource>
+
+
+		</ItemGroup>
+	</Target>
+</Project>

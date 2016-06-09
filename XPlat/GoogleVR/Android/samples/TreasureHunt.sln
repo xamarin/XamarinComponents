@@ -1,0 +1,35 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TreasureHunt", "TreasureHunt\TreasureHunt.csproj", "{41DE6A2F-DE8C-4E8D-A0EE-04727526AEF1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Common", "..\source\Google.VR.Android\Common\Common.csproj", "{78D07FE0-C65F-4AE1-B8B0-17C84CDB0D1A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Base", "..\source\Google.VR.Android\Base\Base.csproj", "{43AD9B9F-A5A2-4585-ABC3-EFA15B26F3B4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Audio", "..\source\Google.VR.Android\Audio\Audio.csproj", "{E520AA4D-B4E1-4F9C-982E-9247A6AC4356}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{41DE6A2F-DE8C-4E8D-A0EE-04727526AEF1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{41DE6A2F-DE8C-4E8D-A0EE-04727526AEF1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{41DE6A2F-DE8C-4E8D-A0EE-04727526AEF1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{41DE6A2F-DE8C-4E8D-A0EE-04727526AEF1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{78D07FE0-C65F-4AE1-B8B0-17C84CDB0D1A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{78D07FE0-C65F-4AE1-B8B0-17C84CDB0D1A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{78D07FE0-C65F-4AE1-B8B0-17C84CDB0D1A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{78D07FE0-C65F-4AE1-B8B0-17C84CDB0D1A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{43AD9B9F-A5A2-4585-ABC3-EFA15B26F3B4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{43AD9B9F-A5A2-4585-ABC3-EFA15B26F3B4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{43AD9B9F-A5A2-4585-ABC3-EFA15B26F3B4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{43AD9B9F-A5A2-4585-ABC3-EFA15B26F3B4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E520AA4D-B4E1-4F9C-982E-9247A6AC4356}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E520AA4D-B4E1-4F9C-982E-9247A6AC4356}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E520AA4D-B4E1-4F9C-982E-9247A6AC4356}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E520AA4D-B4E1-4F9C-982E-9247A6AC4356}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
