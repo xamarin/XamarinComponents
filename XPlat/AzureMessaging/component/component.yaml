@@ -1,0 +1,35 @@
+id: azure-messaging
+version: 1.2.5.0
+name: Azure Messaging
+publisher: Xamarin Inc.
+publisher-url: http://www.windowsazure.com/en-us/develop/mobile/
+summary: Send Push Notifications to your iOS and Android apps
+icons:
+  - icons/azure-messaging_512x512.png
+  - icons/azure-messaging_128x128.png
+libraries:
+  ios-unified: ../output/Xamarin.Azure.NotificationHubs.iOS.dll
+  android: ../output/Xamarin.Azure.NotificationHubs.Android.dll
+is_shell: true
+packages:
+  android:
+    - Xamarin.Azure.NotificationHubs.iOS, Version=1.2.5.0
+    - Xamarin.Azure.NotificationHubs.Android, Version=0.4.0.0
+samples:
+  - name: Android Sample
+    path: ../Android/samples/NotificationHubsSample.sln
+    removeProjects:
+      - Xamarin.Azure.NotificationHubs.Android
+    installNuGets:
+      - project: NotificationHubsSample
+        packages:
+          - Xamarin.Azure.NotificationHubs.Android
+  - name: iOS Sample
+    path: ../iOS/samples/NotificationHubsSample.sln
+    removeProjects:
+      - Xamarin.Azure.NotificationHubs.iOS
+    installNuGets:
+      - project: NotificationHubsSample
+        packages:
+          - Xamarin.Azure.NotificationHubs.iOS
+local-nuget-repo: ../output/

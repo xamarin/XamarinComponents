@@ -1,0 +1,53 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Base", "Google.VR.Android\Base\Base.csproj", "{43AD9B9F-A5A2-4585-ABC3-EFA15B26F3B4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Common", "Google.VR.Android\Common\Common.csproj", "{78D07FE0-C65F-4AE1-B8B0-17C84CDB0D1A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CommonWidget", "Google.VR.Android\CommonWidget\CommonWidget.csproj", "{09D1EC1E-A3EF-4076-AEB8-2D352A101305}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Controller", "Google.VR.Android\Controller\Controller.csproj", "{D7BFE143-7AF1-4AB4-AC1D-8D26DD01E8FC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Audio", "Google.VR.Android\Audio\Audio.csproj", "{E520AA4D-B4E1-4F9C-982E-9247A6AC4356}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PanoWidget", "Google.VR.Android\PanoWidget\PanoWidget.csproj", "{D41D4AED-BF36-4A5C-853F-65D5814DA4AC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VideoWidget", "Google.VR.Android\VideoWidget\VideoWidget.csproj", "{9880009D-F546-42D4-B7F1-32E291F515F0}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{43AD9B9F-A5A2-4585-ABC3-EFA15B26F3B4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{43AD9B9F-A5A2-4585-ABC3-EFA15B26F3B4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{43AD9B9F-A5A2-4585-ABC3-EFA15B26F3B4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{43AD9B9F-A5A2-4585-ABC3-EFA15B26F3B4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{78D07FE0-C65F-4AE1-B8B0-17C84CDB0D1A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{78D07FE0-C65F-4AE1-B8B0-17C84CDB0D1A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{78D07FE0-C65F-4AE1-B8B0-17C84CDB0D1A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{78D07FE0-C65F-4AE1-B8B0-17C84CDB0D1A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{09D1EC1E-A3EF-4076-AEB8-2D352A101305}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{09D1EC1E-A3EF-4076-AEB8-2D352A101305}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{09D1EC1E-A3EF-4076-AEB8-2D352A101305}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{09D1EC1E-A3EF-4076-AEB8-2D352A101305}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D7BFE143-7AF1-4AB4-AC1D-8D26DD01E8FC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D7BFE143-7AF1-4AB4-AC1D-8D26DD01E8FC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D7BFE143-7AF1-4AB4-AC1D-8D26DD01E8FC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D7BFE143-7AF1-4AB4-AC1D-8D26DD01E8FC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E520AA4D-B4E1-4F9C-982E-9247A6AC4356}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E520AA4D-B4E1-4F9C-982E-9247A6AC4356}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E520AA4D-B4E1-4F9C-982E-9247A6AC4356}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E520AA4D-B4E1-4F9C-982E-9247A6AC4356}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D41D4AED-BF36-4A5C-853F-65D5814DA4AC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D41D4AED-BF36-4A5C-853F-65D5814DA4AC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D41D4AED-BF36-4A5C-853F-65D5814DA4AC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D41D4AED-BF36-4A5C-853F-65D5814DA4AC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9880009D-F546-42D4-B7F1-32E291F515F0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9880009D-F546-42D4-B7F1-32E291F515F0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9880009D-F546-42D4-B7F1-32E291F515F0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9880009D-F546-42D4-B7F1-32E291F515F0}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal

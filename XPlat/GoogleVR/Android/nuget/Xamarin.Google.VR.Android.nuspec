@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+<package>
+  <metadata>
+    <id>Xamarin.Google.VR.Android</id>
+    <title>Google VR for Xamarin.Android</title>
+    <version>$version$</version>
+    <authors>Xamarin</authors>
+    <owners>Xamarin</owners>
+    <requireLicenseAcceptance>true</requireLicenseAcceptance>
+    <summary>Create new virtual reality experiences in your mobile apps.</summary>
+    <description>
+      Google provides developers with two virtual reality (VR) platforms: Cardboard, the world's most popular and accessible mobile VR platform, and Daydream, a new platform for low-latency, immersive, and interactive mobile VR. The Google VR SDKs include everything you need to develop for these platforms, including libraries, API documentation, developer samples, and design guidelines.
+    </description>
+    <copyright>Copyright © Xamarin. All Rights Reserved.</copyright>
+    <projectUrl>https://github.com/xamarin/XamarinComponents/tree/master/XPlat/GoogleVR/Android</projectUrl>
+    <licenseUrl>https://github.com/xamarin/XamarinComponents/blob/master/XPlat/GoogleVR/Android/component/License.md</licenseUrl>
+    <iconUrl>http://xamarin-component-icons.s3.amazonaws.com/Xamarin.Google.VR.Android.png</iconUrl>
+  </metadata>
+  <files>
+
+    <!-- Android -->
+    <file src="output/Xamarin.Google.VR.Android.Audio.dll" target="lib\MonoAndroid44" />
+    <file src="output/Xamarin.Google.VR.Android.Base.dll" target="lib\MonoAndroid44" />
+    <file src="output/Xamarin.Google.VR.Android.Common.dll" target="lib\MonoAndroid44" />
+    <file src="output/Xamarin.Google.VR.Android.CommonWidget.dll" target="lib\MonoAndroid44" />
+    <file src="output/Xamarin.Google.VR.Android.Controller.dll" target="lib\MonoAndroid44" />
+    <file src="output/Xamarin.Google.VR.Android.PanoWidget.dll" target="lib\MonoAndroid44" />
+    <file src="output/Xamarin.Google.VR.Android.VideoWidget.dll" target="lib\MonoAndroid44" />
+    
+  </files>
+</package>

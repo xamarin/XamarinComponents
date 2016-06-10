@@ -1,0 +1,29 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Google.VR.iOS", "Google.VR.iOS\Google.VR.iOS.csproj", "{ECE2A736-DCE5-4F1E-A695-7C13BDFE6DCD}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+		Debug|iPhoneSimulator = Debug|iPhoneSimulator
+		Release|iPhone = Release|iPhone
+		Release|iPhoneSimulator = Release|iPhoneSimulator
+		Debug|iPhone = Debug|iPhone
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{ECE2A736-DCE5-4F1E-A695-7C13BDFE6DCD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ECE2A736-DCE5-4F1E-A695-7C13BDFE6DCD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{ECE2A736-DCE5-4F1E-A695-7C13BDFE6DCD}.Debug|iPhone.ActiveCfg = Debug|Any CPU
+		{ECE2A736-DCE5-4F1E-A695-7C13BDFE6DCD}.Debug|iPhone.Build.0 = Debug|Any CPU
+		{ECE2A736-DCE5-4F1E-A695-7C13BDFE6DCD}.Debug|iPhoneSimulator.ActiveCfg = Debug|Any CPU
+		{ECE2A736-DCE5-4F1E-A695-7C13BDFE6DCD}.Debug|iPhoneSimulator.Build.0 = Debug|Any CPU
+		{ECE2A736-DCE5-4F1E-A695-7C13BDFE6DCD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{ECE2A736-DCE5-4F1E-A695-7C13BDFE6DCD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{ECE2A736-DCE5-4F1E-A695-7C13BDFE6DCD}.Release|iPhone.ActiveCfg = Release|Any CPU
+		{ECE2A736-DCE5-4F1E-A695-7C13BDFE6DCD}.Release|iPhone.Build.0 = Release|Any CPU
+		{ECE2A736-DCE5-4F1E-A695-7C13BDFE6DCD}.Release|iPhoneSimulator.ActiveCfg = Release|Any CPU
+		{ECE2A736-DCE5-4F1E-A695-7C13BDFE6DCD}.Release|iPhoneSimulator.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal

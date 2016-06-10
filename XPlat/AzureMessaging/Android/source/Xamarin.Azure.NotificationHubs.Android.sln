@@ -1,0 +1,38 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Xamarin.Azure.NotificationHubs.Android", "Xamarin.Azure.NotificationHubs.Android.csproj", "{94785639-56A7-4292-81F9-51BD5E2A403C}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+		Debug|iPhoneSimulator = Debug|iPhoneSimulator
+		Release|iPhoneSimulator = Release|iPhoneSimulator
+		Debug|iPhone = Debug|iPhone
+		Release|iPhone = Release|iPhone
+		Ad-Hoc|iPhone = Ad-Hoc|iPhone
+		AppStore|iPhone = AppStore|iPhone
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{94785639-56A7-4292-81F9-51BD5E2A403C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{94785639-56A7-4292-81F9-51BD5E2A403C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{94785639-56A7-4292-81F9-51BD5E2A403C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{94785639-56A7-4292-81F9-51BD5E2A403C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{94785639-56A7-4292-81F9-51BD5E2A403C}.Debug|iPhoneSimulator.ActiveCfg = Debug|Any CPU
+		{94785639-56A7-4292-81F9-51BD5E2A403C}.Debug|iPhoneSimulator.Build.0 = Debug|Any CPU
+		{94785639-56A7-4292-81F9-51BD5E2A403C}.Release|iPhoneSimulator.ActiveCfg = Release|Any CPU
+		{94785639-56A7-4292-81F9-51BD5E2A403C}.Release|iPhoneSimulator.Build.0 = Release|Any CPU
+		{94785639-56A7-4292-81F9-51BD5E2A403C}.Debug|iPhone.ActiveCfg = Debug|Any CPU
+		{94785639-56A7-4292-81F9-51BD5E2A403C}.Debug|iPhone.Build.0 = Debug|Any CPU
+		{94785639-56A7-4292-81F9-51BD5E2A403C}.Release|iPhone.ActiveCfg = Release|Any CPU
+		{94785639-56A7-4292-81F9-51BD5E2A403C}.Release|iPhone.Build.0 = Release|Any CPU
+		{94785639-56A7-4292-81F9-51BD5E2A403C}.Ad-Hoc|iPhone.ActiveCfg = Debug|Any CPU
+		{94785639-56A7-4292-81F9-51BD5E2A403C}.Ad-Hoc|iPhone.Build.0 = Debug|Any CPU
+		{94785639-56A7-4292-81F9-51BD5E2A403C}.AppStore|iPhone.ActiveCfg = Debug|Any CPU
+		{94785639-56A7-4292-81F9-51BD5E2A403C}.AppStore|iPhone.Build.0 = Debug|Any CPU
+	EndGlobalSection
+	GlobalSection(MonoDevelopProperties) = preSolution
+		StartupItem = AzureMessagingSampleAndroid\AzureMessagingSampleAndroid.csproj
+	EndGlobalSection
+EndGlobal

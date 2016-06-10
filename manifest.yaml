@@ -280,4 +280,16 @@
   BuildScript: ./XPlat/DropboxCoreApi/iOS/build.cake
   TriggerPaths: [ XPlat/DropboxCoreApi/iOS ]
   MacBuildTargets: [ samples, component ]
+- Name: GoogleVRAndroid
+  BuildScript: ./XPlat/GoogleVR/Android/build.cake
+  TriggerPaths: [ XPlat/GoogleVR/Android ]
+  MacBuildTargets: [ samples, nuget ]
+- Name: GoogleVRiOS
+  BuildScript: ./XPlat/GoogleVR/iOS/build.cake
+  TriggerPaths: [ XPlat/GoogleVR/iOS ]
+  MacBuildTargets: [ samples, nuget ]
+- Name: AzureMessaging
+  BuildScript: ./XPlat/AzureMessaging/build.cake
+  TriggerPaths: [ XPlat/AzureMessaging ]
+  MacBuildTargets: [ samples, component ]
 
