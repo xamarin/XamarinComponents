@@ -12,10 +12,10 @@
       Xamarin.iOS Bindings for Azure Notification Hubs
     </description>
     <copyright>Copyright 2013-2016</copyright>
-    <projectUrl>https://github.com/Azure/azure-notificationhubs</projectUrl>
-    <licenseUrl>https://github.com/Azure/azure-notificationhubs/blob/master/LICENSE.txt</licenseUrl>
+    <projectUrl>https://github.com/xamarin/XamarinComponents/tree/master/XPlat/AzureMessaging</projectUrl>
+    <licenseUrl>https://github.com/xamarin/XamarinComponents/blob/master/XPlat/AzureMessaging/component/License.md</licenseUrl>
   </metadata>
   <files>
-    <file src="output/Xamarin.Azure.NotificationHubs.iOS.dll" target="lib/MonoAndroid403" />
+    <file src="output/Xamarin.Azure.NotificationHubs.iOS.dll" target="lib/Xamarin.iOS10" />
   </files>
 </package>
