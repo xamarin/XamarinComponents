@@ -42,13 +42,13 @@ namespace AzureMessagingSampleiOS
 			ProcessNotification (options);
 
 			// Register for Notifications
-			var notificationTypes = UIUserNotificationType.Badge |
-                                    UIUserNotificationType.Sound | 
-                                    UIUserNotificationType.Alert;
+			var notificationTypes = UIUserNotificationType.Badge
+									| UIUserNotificationType.Sound
+									| UIUserNotificationType.Alert;
 
-            var notificationSettings = UIUserNotificationSettings.GetSettingsForTypes (notificationTypes, null);
+			var notificationSettings = UIUserNotificationSettings.GetSettingsForTypes (notificationTypes, null);
 
-            UIApplication.SharedApplication.RegisterUserNotificationSettings (notificationSettings);
+			UIApplication.SharedApplication.RegisterUserNotificationSettings (notificationSettings);
 
 			// make the window visible
 			window.MakeKeyAndVisible ();
@@ -56,10 +56,10 @@ namespace AzureMessagingSampleiOS
 			return true;
 		}
 
-        public override void DidRegisterUserNotificationSettings (UIApplication application, UIUserNotificationSettings notificationSettings)
-        {
-            UIApplication.SharedApplication.RegisterForRemoteNotifications ();
-        }
+			public override void DidRegisterUserNotificationSettings (UIApplication application, UIUserNotificationSettings notificationSettings)
+			{
+				UIApplication.SharedApplication.RegisterForRemoteNotifications ();
+			}
 
 		public override void ReceivedRemoteNotification (UIApplication application, NSDictionary userInfo)
 		{
