@@ -47,16 +47,16 @@
     <ObjcBindingApiDefinition Include="ApiDefinition.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ObjcBindingNativeLibrary Include="..\..\externals\libSDSegmentedControl.a" />
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="libSDSegmentedControl.linkwith.cs">
-      <DependentUpon>libSDSegmentedControl.a</DependentUpon>
-    </Compile>
     <Compile Include="Extensions.cs" />
   </ItemGroup>
   <ItemGroup>
     <ObjcBindingCoreSource Include="StructsAndEnums.cs" />
   </ItemGroup>
+  <ItemGroup>
+    <NativeReference Include="..\..\externals\build\universal\SDSegmentedControl\SDSegmentedControl.framework">
+      <Kind>Framework</Kind>
+      <SmartLink>False</SmartLink>
+    </NativeReference>
+  </ItemGroup>  
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.ObjCBinding.CSharp.targets" />
 </Project>

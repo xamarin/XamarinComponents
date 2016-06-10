@@ -7,7 +7,7 @@
 		<string>UIInterfaceOrientationPortrait</string>
 	</array>
 	<key>MinimumOSVersion</key>
-	<string>7.0</string>
+	<string>8.0</string>
 	<key>CFBundleName</key>
 	<string>SDSegmentedControl Sample</string>
 	<key>CFBundleIdentifier</key>

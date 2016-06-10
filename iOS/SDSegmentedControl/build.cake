@@ -3,6 +3,15 @@
 
 var TARGET = Argument ("t", Argument ("target", "Default"));
 
+var PODS = new List<string> {
+	"platform :ios, '6.0'",
+	"install! 'cocoapods', :integrate_targets => false",
+	"target 'Xamarin' do",
+	"  pod 'SDSegmentedControl', '1.0.4'",
+	"  use_frameworks!",
+	"end",
+};
+
 var buildSpec = new BuildSpec () {
 	Libs = new ISolutionBuilder [] {
 		new IOSSolutionBuilder {
@@ -26,14 +35,49 @@ var buildSpec = new BuildSpec () {
 
 Task ("externals").IsDependentOn ("externals-base").Does (() =>
 {
-	CreatePodfile ("./externals/", "ios", "6.0", new Dictionary<string, string> {
-        { "SDSegmentedControl", "1.0.4" }
-	});
-	if (!FileExists ("./externals/Podfile.lock")) {
-		CocoaPodInstall ("./externals/", new CocoaPodInstallSettings { NoIntegrate = true });
+	EnsureDirectoryExists ("./externals");
+
+	if (CocoaPodVersion () < new System.Version (1, 0))
+		PODS.RemoveAt (1);
+
+	FileWriteLines ("./externals/Podfile", PODS.ToArray ());
+
+	CocoaPodInstall ("./externals", new CocoaPodInstallSettings { NoIntegrate = true });
+
+	var config = "Release";
+
+	var targetsSdks = new Dictionary<string, string> {
+		{ "armv7", "iphoneos" },
+		{ "armv7s", "iphoneos" },
+		{ "arm64", "iphoneos" },
+		{ "i386", "iphonesimulator" },
+		{ "x86_64", "iphonesimulator" },
+	};
+
+	foreach (var targetSdk in targetsSdks) {
+		XCodeBuild (new XCodeBuildSettings {
+			Project = "./externals/Pods/Pods.xcodeproj",
+			Target = "SDSegmentedControl",
+			Sdk = targetSdk.Value,
+			Arch = targetSdk.Key,
+			Configuration = config,
+		});
+
+		MoveFile ("./externals/build/" + config + "-" + targetSdk.Value + "/SDSegmentedControl/SDSegmentedControl.framework/SDSegmentedControl",
+			"./externals/libSDSegmentedControl-" + targetSdk.Key + ".a");
 	}
 
-	BuildXCodeFatLibrary ("Pods/Pods.xcodeproj", "SDSegmentedControl", null, null, null);
+	EnsureDirectoryExists ("./externals/build/universal");
+
+	CopyDirectory ("./externals/build/" + config + "-iphoneos", "./externals/build/universal");
+
+	RunLipoCreate ("./externals", 
+	 	"./build/universal/SDSegmentedControl/SDSegmentedControl.framework/SDSegmentedControl", 
+	 	"./libSDSegmentedControl-armv7.a",
+	 	"./libSDSegmentedControl-armv7s.a",
+	 	"./libSDSegmentedControl-arm64.a",
+	 	"./libSDSegmentedControl-i386.a",
+	 	"./libSDSegmentedControl-x86_64.a");
 });
 
 Task ("clean").IsDependentOn ("clean-base").Does (() =>
