@@ -56,10 +56,10 @@ namespace AzureMessagingSampleiOS
 			return true;
 		}
 
-			public override void DidRegisterUserNotificationSettings (UIApplication application, UIUserNotificationSettings notificationSettings)
-			{
-				UIApplication.SharedApplication.RegisterForRemoteNotifications ();
-			}
+		public override void DidRegisterUserNotificationSettings (UIApplication application, UIUserNotificationSettings notificationSettings)
+		{
+			UIApplication.SharedApplication.RegisterForRemoteNotifications ();
+		}
 
 		public override void ReceivedRemoteNotification (UIApplication application, NSDictionary userInfo)
 		{
