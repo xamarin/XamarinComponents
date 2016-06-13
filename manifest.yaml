@@ -288,4 +288,11 @@
   BuildScript: ./XPlat/AzureMessaging/build.cake
   TriggerPaths: [ XPlat/AzureMessaging ]
   MacBuildTargets: [ samples, component ]
-
+- Name: CardIOAndroid
+  BuildScript: ./XPlat/CardIO/Android/build.cake
+  TriggerPaths: [ XPlat/CardIO/Android ]
+  MacBuildTargets: [ samples, component ]
+- Name: CardIOiOS
+  BuildScript: ./XPlat/CardIO/iOS/build.cake
+  TriggerPaths: [ XPlat/CardIO/iOS ]
+  MacBuildTargets: [ samples, component ]

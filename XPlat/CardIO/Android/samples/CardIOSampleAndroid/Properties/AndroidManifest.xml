@@ -1,0 +1,8 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android" android:versionCode="1" android:versionName="1.0" package="CardIOSampleAndroid.CardIOSampleAndroid">
+	<uses-sdk android:minSdkVersion="10" />
+	<application android:label="CardIOSampleAndroid">
+		<activity android:name="io.card.payment.CardIOActivity" android:configChanges="keyboardHidden|orientation" />
+		<activity android:name="io.card.payment.DataEntryActivity" android:screenOrientation="portrait" />
+	</application>
+</manifest>
