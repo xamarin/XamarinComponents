@@ -13,7 +13,7 @@
     <licenseUrl>https://components.xamarin.com/license/gpuimage</licenseUrl>
   </metadata>
   <files>
-    <file src="output/unified/GPUImage.dll" target="lib\Xamarin.iOS" />
-    <file src="output/classic/GPUImage.dll" target="lib\MonoTouch" />
+    <file src="output/unified/GPUImage.dll" target="lib/Xamarin.iOS" />
+    <file src="output/classic/GPUImage.dll" target="lib/MonoTouch" />
   </files>
 </package>

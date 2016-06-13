@@ -16,6 +16,6 @@
     </dependencies>
   </metadata>
   <files>  
-    <file src="output/DeviceYearClass.dll" target="lib\MonoAndroid10" />
+    <file src="output/DeviceYearClass.dll" target="lib/MonoAndroid10" />
   </files>
 </package>

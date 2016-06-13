@@ -13,6 +13,6 @@
     <licenseUrl>https://github.com/xamarin/XamarinComponents/blob/master/Android/GoogleGson/License.md</licenseUrl>
   </metadata>
   <files>  
-    <file src="output/GoogleGson.dll" target="lib\MonoAndroid" />
+    <file src="output/GoogleGson.dll" target="lib/MonoAndroid" />
   </files>
 </package>
