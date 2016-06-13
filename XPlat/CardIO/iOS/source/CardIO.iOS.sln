@@ -3,8 +3,6 @@ Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Card.IO.iOS", "CardIO.iOS\Card.IO.iOS.csproj", "{A3DABEF0-D210-452B-9031-9DE652314613}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Card.IO.iOS-Classic", "CardIO.iOS\Card.IO.iOS-Classic.csproj", "{91D97F69-DE76-405B-BA3B-614B65B52143}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -17,22 +15,6 @@ Global
 		AppStore|iPhone = AppStore|iPhone
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{91D97F69-DE76-405B-BA3B-614B65B52143}.Ad-Hoc|iPhone.ActiveCfg = Debug|Any CPU
-		{91D97F69-DE76-405B-BA3B-614B65B52143}.Ad-Hoc|iPhone.Build.0 = Debug|Any CPU
-		{91D97F69-DE76-405B-BA3B-614B65B52143}.AppStore|iPhone.ActiveCfg = Debug|Any CPU
-		{91D97F69-DE76-405B-BA3B-614B65B52143}.AppStore|iPhone.Build.0 = Debug|Any CPU
-		{91D97F69-DE76-405B-BA3B-614B65B52143}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{91D97F69-DE76-405B-BA3B-614B65B52143}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{91D97F69-DE76-405B-BA3B-614B65B52143}.Debug|iPhone.ActiveCfg = Debug|Any CPU
-		{91D97F69-DE76-405B-BA3B-614B65B52143}.Debug|iPhone.Build.0 = Debug|Any CPU
-		{91D97F69-DE76-405B-BA3B-614B65B52143}.Debug|iPhoneSimulator.ActiveCfg = Debug|Any CPU
-		{91D97F69-DE76-405B-BA3B-614B65B52143}.Debug|iPhoneSimulator.Build.0 = Debug|Any CPU
-		{91D97F69-DE76-405B-BA3B-614B65B52143}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{91D97F69-DE76-405B-BA3B-614B65B52143}.Release|Any CPU.Build.0 = Release|Any CPU
-		{91D97F69-DE76-405B-BA3B-614B65B52143}.Release|iPhone.ActiveCfg = Release|Any CPU
-		{91D97F69-DE76-405B-BA3B-614B65B52143}.Release|iPhone.Build.0 = Release|Any CPU
-		{91D97F69-DE76-405B-BA3B-614B65B52143}.Release|iPhoneSimulator.ActiveCfg = Release|Any CPU
-		{91D97F69-DE76-405B-BA3B-614B65B52143}.Release|iPhoneSimulator.Build.0 = Release|Any CPU
 		{A3DABEF0-D210-452B-9031-9DE652314613}.Ad-Hoc|iPhone.ActiveCfg = Debug|Any CPU
 		{A3DABEF0-D210-452B-9031-9DE652314613}.Ad-Hoc|iPhone.Build.0 = Debug|Any CPU
 		{A3DABEF0-D210-452B-9031-9DE652314613}.AppStore|iPhone.ActiveCfg = Debug|Any CPU
