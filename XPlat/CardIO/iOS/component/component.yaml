@@ -9,9 +9,9 @@ icons:
   - ./icons/card-io_512x512.png
 summary: Credit card scanning for mobile apps
 libraries:
-  ios-unified: ../output/unified/Card.IO.dll
+  ios-unified: ../output/Card.IO.dll
 samples:
-  - name: "iOS Unified Sample"
+  - name: "iOS Sample"
     path: ../samples/CardIOSampleiOS.sln
     configuration: "Release|iPhone"
 no_build: true

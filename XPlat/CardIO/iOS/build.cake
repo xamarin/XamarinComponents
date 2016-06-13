@@ -12,8 +12,8 @@ var buildSpec = new BuildSpec {
 			Configuration = "Release",
 			OutputFiles = new [] { 
 				new OutputFileCopy {
-					FromFile = "./source/CardIO.iOS/bin/unified/Release/Card.IO.dll",
-					ToDirectory = "./output/unified"
+					FromFile = "./source/CardIO.iOS/bin/Release/Card.IO.dll",
+					ToDirectory = "./output"
 				},
 			}
 		},	

@@ -1,18 +1,9 @@
 ﻿using System;
 
-#if __UNIFIED__
 using Foundation;
 using UIKit;
 using ObjCRuntime;
 using CoreGraphics;
-#else
-using CGRect = System.Drawing.RectangleF;
-using nuint = System.UInt32;
-using nfloat = System.Single;
-using MonoTouch.Foundation;
-using MonoTouch.UIKit;
-using MonoTouch.ObjCRuntime;
-#endif
 
 namespace Card.IO 
 {

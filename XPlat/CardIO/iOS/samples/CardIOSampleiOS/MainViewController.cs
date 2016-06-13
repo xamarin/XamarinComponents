@@ -1,10 +1,6 @@
 ﻿using System;
 using MonoTouch.Dialog;
-#if __UNIFIED__
 using UIKit;
-#else
-using MonoTouch.UIKit;
-#endif
 using Card.IO;
 
 namespace CardIOSampleiOS
