@@ -33,7 +33,10 @@ var buildSpec = new BuildSpec () {
 	},
 };
 
-Task ("externals").IsDependentOn ("externals-base").Does (() =>
+Task ("externals")
+    .WithCriteria (!FileExists ("./externals/build/universal/SDSegmentedControl/SDSegmentedControl.framework/SDSegmentedControl"))
+    .IsDependentOn ("externals-base")
+	.Does (() => 
 {
 	EnsureDirectoryExists ("./externals");
 
