@@ -17,6 +17,6 @@
     </dependencies>
   </metadata>
   <files>  
-    <file src="output/BlurBehind.dll" target="lib\MonoAndroid403" />
+    <file src="output/BlurBehind.dll" target="lib/MonoAndroid403" />
   </files>
 </package>

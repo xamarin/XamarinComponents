@@ -13,7 +13,7 @@
     <licenseUrl>https://components.xamarin.com/license/DACircularProgress</licenseUrl>
   </metadata>
   <files>
-    <file src="output/unified/DACircularProgress.dll" target="lib\Xamarin.iOS" />
-    <file src="output/classic/DACircularProgress.dll" target="lib\MonoTouch" />
+    <file src="output/unified/DACircularProgress.dll" target="lib/Xamarin.iOS" />
+    <file src="output/classic/DACircularProgress.dll" target="lib/MonoTouch" />
   </files>
 </package>

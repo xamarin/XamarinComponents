@@ -16,7 +16,7 @@
     </dependencies>
   </metadata>
   <files>
-    <file src="output/Bolts.Tasks.dll" target="lib\MonoAndroid403" />
-    <file src="output/Bolts.AppLinks.dll" target="lib\MonoAndroid403" />
+    <file src="output/Bolts.Tasks.dll" target="lib/MonoAndroid403" />
+    <file src="output/Bolts.AppLinks.dll" target="lib/MonoAndroid403" />
   </files>
 </package>

@@ -19,13 +19,13 @@
   <files>
 
     <!-- Android -->
-    <file src="output/Xamarin.Google.VR.Android.Audio.dll" target="lib\MonoAndroid44" />
-    <file src="output/Xamarin.Google.VR.Android.Base.dll" target="lib\MonoAndroid44" />
-    <file src="output/Xamarin.Google.VR.Android.Common.dll" target="lib\MonoAndroid44" />
-    <file src="output/Xamarin.Google.VR.Android.CommonWidget.dll" target="lib\MonoAndroid44" />
-    <file src="output/Xamarin.Google.VR.Android.Controller.dll" target="lib\MonoAndroid44" />
-    <file src="output/Xamarin.Google.VR.Android.PanoWidget.dll" target="lib\MonoAndroid44" />
-    <file src="output/Xamarin.Google.VR.Android.VideoWidget.dll" target="lib\MonoAndroid44" />
+    <file src="output/Xamarin.Google.VR.Android.Audio.dll" target="lib/MonoAndroid44" />
+    <file src="output/Xamarin.Google.VR.Android.Base.dll" target="lib/MonoAndroid44" />
+    <file src="output/Xamarin.Google.VR.Android.Common.dll" target="lib/MonoAndroid44" />
+    <file src="output/Xamarin.Google.VR.Android.CommonWidget.dll" target="lib/MonoAndroid44" />
+    <file src="output/Xamarin.Google.VR.Android.Controller.dll" target="lib/MonoAndroid44" />
+    <file src="output/Xamarin.Google.VR.Android.PanoWidget.dll" target="lib/MonoAndroid44" />
+    <file src="output/Xamarin.Google.VR.Android.VideoWidget.dll" target="lib/MonoAndroid44" />
     
   </files>
 </package>

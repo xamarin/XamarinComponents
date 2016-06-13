@@ -13,6 +13,6 @@
     <licenseUrl>https://github.com/xamarin/XamarinComponents/blob/master/Android/MinimalJson/License.md</licenseUrl>
   </metadata>
   <files>  
-    <file src="output/MinimalJson.dll" target="lib\MonoAndroid23" />
+    <file src="output/MinimalJson.dll" target="lib/MonoAndroid23" />
   </files>
 </package>

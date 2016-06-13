@@ -13,7 +13,7 @@
     <licenseUrl>https://components.xamarin.com/license/sdwebimage</licenseUrl>
   </metadata>
   <files>
-    <file src="output/unified/SDWebImage.dll" target="lib\Xamarin.iOS" />
-    <file src="output/classic/SDWebImage.dll" target="lib\MonoTouch" />
+    <file src="output/unified/SDWebImage.dll" target="lib/Xamarin.iOS" />
+    <file src="output/classic/SDWebImage.dll" target="lib/MonoTouch" />
   </files>
 </package>

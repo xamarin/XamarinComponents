@@ -16,6 +16,6 @@
     </dependencies>
   </metadata>
   <files>  
-    <file src="output/AutoFitTextView.dll" target="lib\MonoAndroid403" />
+    <file src="output/AutoFitTextView.dll" target="lib/MonoAndroid403" />
   </files>
 </package>
