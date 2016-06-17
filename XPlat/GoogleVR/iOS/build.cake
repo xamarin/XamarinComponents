@@ -37,7 +37,7 @@ var buildSpec = new BuildSpec {
 	},
 
 	NuGets = new [] {
-		new NuGetInfo { NuSpec = "./nuget/Xamarin.Google.VR.iOS.nuspec", Version = IOS_NUGET_VERSION },
+		new NuGetInfo { NuSpec = "./nuget/Xamarin.Google.VR.iOS.nuspec", Version = IOS_NUGET_VERSION, RequireLicenseAcceptance = true },
 	}
 };
 
