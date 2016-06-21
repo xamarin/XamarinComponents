@@ -1,6 +1,6 @@
 #load "../../../common.cake"
 
-var VERSION = "5.3.4";
+var VERSION = "5.4.0";
 var URL = string.Format ("https://github.com/card-io/card.io-Android-SDK/archive/{0}.zip", VERSION);
 
 var TARGET = Argument ("t", Argument ("target", "Default"));
