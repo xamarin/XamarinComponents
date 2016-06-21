@@ -30,7 +30,6 @@ Browse through the most popular plugins out there today!
 |Barcode Scanner|Scan and create barcodes with ZXing.NET.Mobile.|[NuGet](https://www.nuget.org/packages/ZXing.Net.Mobile)|[GitHub](https://github.com/Redth/ZXing.Net.Mobile)|[@Redth](https://twitter.com/redth)|
 |Compass|Access device compass heading.|[NuGet](https://www.nuget.org/packages/Plugin.Compass/)|[GitHub](https://github.com/JarleySoft/Xamarin.Plugins/tree/master/Compass)|[@cbartonnh](http://www.twitter.com/cbartonnh) & [@JamesMontemagno](http://www.twitter.com/jamesmontemagno)|
 |Connectivity|Get network connectivity info such as type and if connection is available.|[NuGet](https://www.nuget.org/packages/Xam.Plugin.Connectivity/)|[GitHub](https://github.com/jamesmontemagno/Xamarin.Plugins/tree/master/Connectivity)|[@JamesMontemagno](http://www.twitter.com/jamesmontemagno)|
-|CrossDownloadManager|Library to download files in the background.|[NuGet](https://www.nuget.org/packages/Xam.Plugins.DownloadManager/)|[GitHub](https://github.com/SimonSimCity/Xamarin-CrossDownloadManager)|[@simonsimcity](https://github.com/SimonSimCity)|
 |Cryptography|PCL Crypto provides a consistent, portable set of crypto APIs.|[NuGet](https://www.nuget.org/packages/pclcrypto)|[GitHub](https://github.com/aarnott/pclcrypto)|[@aarnott](https://twitter.com/aarnott)|
 |Device Info|Properties about device such as OS, Model, and Id.|[NuGet](https://www.nuget.org/packages/Xam.Plugin.DeviceInfo/)|[GitHub](https://github.com/jamesmontemagno/Xamarin.Plugins/tree/master/DeviceInfo)|[@JamesMontemagno](http://www.twitter.com/jamesmontemagno)|
 |Device Motion|Provides access to Accelerometer, Gyroscope, Magnetometer, and Compass.|[NuGet](https://www.nuget.org/packages/Xam.Plugin.DeviceMotion/)|[GitHub](https://github.com/rdelrosario/xamarin-plugins/tree/master/DeviceMotion)|[@rdelrosario](https://github.com/rdelrosario)|
@@ -61,6 +60,7 @@ We are continuously monitoring and adding new Plugins all the time, so be sure t
 |Badge|Easily update application badges.|[NuGet](https://www.nuget.org/packages/Xam.Plugin.Badge/)|[GitHub](https://github.com/sbondini/Xamarin.Badge)|[@Saveliy_Bondini](http://www.twitter.com/saveliy_bondini)|
 |iBeacon & Estimote|Range and monitor Bluetooth beacons.|[NuGet](https://www.nuget.org/packages/Estimotes.Xplat/)|[GitHub](https://github.com/aritchie/estimotes-xplat)|[@allanritchie911](https://twitter.com/allanritchie911)|
 |Contacts|Access contacts.|[NuGet](https://www.nuget.org/packages/Xam.Plugin.Contacts/)|[GitHub](https://github.com/jamesmontemagno/Xamarin.Plugins/tree/master/Contacts)|[@JamesMontemagno](http://www.twitter.com/jamesmontemagno)|
+|CrossDownloadManager|Library to download files in the background.|[NuGet](https://www.nuget.org/packages/Xam.Plugins.DownloadManager/)|[GitHub](https://github.com/SimonSimCity/Xamarin-CrossDownloadManager)|[@simonsimcity](https://github.com/SimonSimCity)|
 |EZCompress|Compression for image streams.|[NuGet](https://www.nuget.org/packages/JosephAntolick.EZCompress1.Plugin/)|[GitHub](https://github.com/VictorGrunn/EZ-Compress-for-Xamarin)|[@VictorGrunn](http://www.twitter.com/victorgrunn)|
 |Geofence| Handle geofence events such as entering, leaving and staying in a geofence region.|[NuGet](https://www.nuget.org/packages/Xam.Plugin.Geofence/)|[GitHub](https://github.com/domaven/xamarin-plugins/tree/master/Geofence)|[@domaven](https://github.com/domaven)|
 |HybridKit|Easily call into JavaScript hosted in a WebView.|[NuGet](https://www.nuget.org/packages/Xam.Plugin.HybridKit)|[GitHub](https://github.com/chkn/HybridKit)|[@chknofthescene](http://www.twitter.com/chknofthescene)|
@@ -69,6 +69,7 @@ We are continuously monitoring and adding new Plugins all the time, so be sure t
 |Microsoft Band|Connect and communicate with the Microsoft Band from shared code!|[NuGet](https://www.nuget.org/packages/Xamarin.Microsoft.Band/)|[GitHub](https://github.com/mattleibow/Microsoft-Band-SDK-Bindings)|[@mattleibow](https://twitter.com/mattleibow)|
 |Mono.Data.Sqlite|Add Mono.Data.Sqlite to any Xamarin or Windows .NET app.|[NuGet](https://www.nuget.org/packages/Mono.Data.Sqlite.Portable)|[GitHub](https://github.com/mattleibow/Mono.Data.Sqlite)|[@mattleibow](https://twitter.com/mattleibow)|
 |Portable Razor|Lightweight implemenation of ASP.NET MVC APIs for mobile.|[NuGet](https://www.nuget.org/packages/PortableRazor/)|[GitHub](https://github.com/xamarin/PortableRazor)|[@JosephHill](http://www.twitter.com/josephhill)|
+|Secure Storage|Provides Secure storage for key value pairs Data|[NuGet](http://www.nuget.org/packages/sameerIOTApps.Plugin.SecureStorage/)|[GitHub](https://github.com/sameerkapps/SecureStorage)|[@sameerIOTApps](https://twitter.com/sameerIOTApps)|
 
 
 ### Submit Your Ideas
