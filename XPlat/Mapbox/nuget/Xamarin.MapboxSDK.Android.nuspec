@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<package>
+  <metadata>
+    <id>Xamarin.MapboxSDK.Android</id>
+    <title>MapboxSDK for Xamarin.Android</title>
+    <version>$version$</version>
+    <authors>Xamarin</authors>
+    <owners>Xamarin</owners>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <summary>Add smooth and fast vector maps to your Xamarin.Android app!</summary>
+    <description>
+      Mapbox is built on vector maps, an advanced approach to mapping where data is delivered to the device and precisely rendered in real-time. The result is smooth, fast maps.
+    </description>
+    <copyright>Copyright © Xamarin. All Rights Reserved.</copyright>
+    <licenseUrl>https://raw.githubusercontent.com/mapbox/mapbox-gl-native/master/LICENSE.md</licenseUrl>
+    <iconUrl>http://xamarin-component-icons.s3.amazonaws.com/Xamarin.MapboxSDK.Android.png</iconUrl>
+  </metadata>
+  <files>
+
+    <!-- Android -->
+    <file src="output/MapboxSDK.Android.dll" target="lib/MonoAndroid51" />
+    
+  </files>
+</package>

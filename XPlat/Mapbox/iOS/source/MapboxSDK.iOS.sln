@@ -1,0 +1,23 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MapboxSDK.iOS", "MapboxSDK.iOS\MapboxSDK.iOS.csproj", "{D545D620-4CEC-46B1-AECF-8F46FC2F6C21}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|iPhoneSimulator = Debug|iPhoneSimulator
+		Release|iPhone = Release|iPhone
+		Release|iPhoneSimulator = Release|iPhoneSimulator
+		Debug|iPhone = Debug|iPhone
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{D545D620-4CEC-46B1-AECF-8F46FC2F6C21}.Debug|iPhone.ActiveCfg = Debug|Any CPU
+		{D545D620-4CEC-46B1-AECF-8F46FC2F6C21}.Debug|iPhone.Build.0 = Debug|Any CPU
+		{D545D620-4CEC-46B1-AECF-8F46FC2F6C21}.Debug|iPhoneSimulator.ActiveCfg = Debug|Any CPU
+		{D545D620-4CEC-46B1-AECF-8F46FC2F6C21}.Debug|iPhoneSimulator.Build.0 = Debug|Any CPU
+		{D545D620-4CEC-46B1-AECF-8F46FC2F6C21}.Release|iPhone.ActiveCfg = Release|Any CPU
+		{D545D620-4CEC-46B1-AECF-8F46FC2F6C21}.Release|iPhone.Build.0 = Release|Any CPU
+		{D545D620-4CEC-46B1-AECF-8F46FC2F6C21}.Release|iPhoneSimulator.ActiveCfg = Release|Any CPU
+		{D545D620-4CEC-46B1-AECF-8F46FC2F6C21}.Release|iPhoneSimulator.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal

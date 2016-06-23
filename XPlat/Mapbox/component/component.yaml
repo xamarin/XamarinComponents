@@ -1,0 +1,29 @@
+version: 4.0.1.1
+name: Mapbox SDK
+id: mapboxsdk
+publisher: Xamarin Inc.
+publisher-url: http://xamarin.com
+summary: Build the map your application deserves.
+license: License.md
+details: Details.md
+getting-started: GettingStarted.md
+icons:
+  - icons/mapboxsdk_128x128.png
+  - icons/mapboxsdk_512x512.png
+packages:
+  android:
+    - Square.OkHttp3, Version=3.2.0
+    - Square.OkIO, Version=1.6.0
+    - Xamarin.Android.Support.Design, Version=23.1.1.0
+    - Xamarin.Android.Support.v7.AppCompat, Version=23.1.1.0
+    - Xamarin.Android.Support.v4, Version=23.1.1.0
+libraries:
+  android: ../output/MapboxSDK.Android.dll
+  ios-unified: ../output/MapboxSDK.iOS.dll
+samples:
+  - name: "Android Sample"
+    path:  ../Android/samples/MapboxSampleAndroid.sln
+  - name: "iOS Sample"
+    path:  ../iOS/samples/MapboxSampleiOS.sln
+no_build: true
+
