@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>PreferenceSpecifiers</key>
+	<array>
+		<dict>
+			<key>Type</key>
+			<string>PSGroupSpecifier</string>
+			<key>Title</key>
+			<string>Privacy Settings</string>
+			<key>FooterText</key>
+			<string>This setting allows the application to share anonymized location and usage data with MapBox.</string>
+		</dict>
+		<dict>
+			<key>Type</key>
+			<string>PSToggleSwitchSpecifier</string>
+			<key>Title</key>
+			<string>MapBox Metrics</string>
+			<key>Key</key>
+			<string>MGLMapboxMetricsEnabled</string>
+			<key>DefaultValue</key>
+			<true/>
+			<key>Value for ON</key>
+			<true/>
+			<key>Value for OFF</key>
+			<false/>
+		</dict>
+	</array>
+	<key>StringsTable</key>
+	<string>Root</string>
+</dict>
+</plist>

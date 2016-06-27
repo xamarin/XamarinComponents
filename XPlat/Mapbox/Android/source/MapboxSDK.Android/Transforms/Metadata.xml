@@ -1,0 +1,96 @@
+﻿<metadata>
+	<!--
+  This sample removes the class: android.support.v4.content.AsyncTaskLoader.LoadTask:
+  <remove-node path="/api/package[@name='android.support.v4.content']/class[@name='AsyncTaskLoader.LoadTask']" />
+  
+  This sample removes the method: android.support.v4.content.CursorLoader.loadInBackground:
+  <remove-node path="/api/package[@name='android.support.v4.content']/class[@name='CursorLoader']/method[@name='loadInBackground']" />
+  -->
+	<attr path="/api/package[@name='com.mapbox.mapboxsdk']" name="managedName">Mapbox</attr>
+	<attr path="/api/package[@name='com.mapbox.mapboxsdk.annotations']" name="managedName">Mapbox.Annotations</attr>
+	<attr path="/api/package[@name='com.mapbox.mapboxsdk.constants']" name="managedName">Mapbox.Constants</attr>
+	<attr path="/api/package[@name='com.mapbox.mapboxsdk.exceptions']" name="managedName">Mapbox.Exceptions</attr>
+	<attr path="/api/package[@name='com.mapbox.mapboxsdk.geometry']" name="managedName">Mapbox.Geometry</attr>
+	<attr path="/api/package[@name='com.mapbox.mapboxsdk.http']" name="managedName">Mapbox.Http</attr>
+	<attr path="/api/package[@name='com.mapbox.mapboxsdk.utils']" name="managedName">Mapbox.Utils</attr>
+	<attr path="/api/package[@name='com.mapbox.mapboxsdk.camera']" name="managedName">Mapbox.Camera</attr>
+	<attr path="/api/package[@name='com.mapbox.mapboxsdk.layers']" name="managedName">Mapbox.Layers</attr>
+	<attr path="/api/package[@name='com.mapbox.mapboxsdk.location']" name="managedName">Mapbox.Location</attr>
+	<attr path="/api/package[@name='com.mapbox.mapboxsdk.maps']" name="managedName">Mapbox.Maps</attr>
+	<attr path="/api/package[@name='com.mapbox.mapboxsdk.maps.widgets']" name="managedName">Mapbox.Maps.Widgets</attr>
+	<attr path="/api/package[@name='com.mapbox.mapboxsdk.offline']" name="managedName">Mapbox.Offline</attr>
+	<attr path="/api/package[@name='com.mapbox.mapboxsdk.telemetry']" name="managedName">Mapbox.Telemetry</attr>
+
+	<attr path="/api/package[@name='com.almeros.android.multitouch.gesturedetectors']" name="managedName">Mapbox.MultiTouch.GestureDetectors</attr>
+
+	<attr path="/api/package[@name='com.mapzen.android.lost.api']" name="managedName">Mapbox.Mapzen.Lost.Api</attr>
+	<attr path="/api/package[@name='com.mapzen.android.lost.internal']" name="managedName">Mapbox.Mapzen.Lost.Internal</attr>
+
+
+	<remove-node path="/api/package[@name='com.almeros.android.multitouch.gesturedetectors']/class[@name='TwoFingerGestureDetector']/method[@name='handleInProgressEvent' and count(parameter)=2 and parameter[1][@type='int'] and parameter[2][@type='android.view.MotionEvent']]" />
+	<remove-node path="/api/package[@name='com.almeros.android.multitouch.gesturedetectors']/class[@name='TwoFingerGestureDetector']/method[@name='handleStartProgressEvent' and count(parameter)=2 and parameter[1][@type='int'] and parameter[2][@type='android.view.MotionEvent']]" />
+
+	<attr path="/api/package[@name='com.mapbox.mapboxsdk.annotations']/class[@name='Annotation']/method[@name='compareTo' and count(parameter)=1 and parameter[1][@type='com.mapbox.mapboxsdk.annotations.Annotation']]/parameter[1]" name="managedType">Java.Lang.Object</attr>
+
+	<attr path="/api/package[@name='com.mapbox.mapboxsdk.maps']/class[@name='MapView']/method[@name='getMapAsync']" name="managedName">GetMap</attr>
+
+
+	<!-- Fix BaseMarkerOptions builder -->
+	<attr path="/api/package[@name='com.mapbox.mapboxsdk.annotations']/class[@name='BaseMarkerOptions']/method[@name='icon']" name="managedName">SetIcon</attr>
+	<attr path="/api/package[@name='com.mapbox.mapboxsdk.annotations']/class[@name='BaseMarkerOptions']/method[@name='icon']" name="return">com.mapbox.mapboxsdk.annotations.BaseMarkerOptions</attr>
+	<attr path="/api/package[@name='com.mapbox.mapboxsdk.annotations']/class[@name='BaseMarkerOptions']/method[@name='position']" name="managedName">SetPosition</attr>
+	<attr path="/api/package[@name='com.mapbox.mapboxsdk.annotations']/class[@name='BaseMarkerOptions']/method[@name='position']" name="return">com.mapbox.mapboxsdk.annotations.BaseMarkerOptions</attr>
+	<attr path="/api/package[@name='com.mapbox.mapboxsdk.annotations']/class[@name='BaseMarkerOptions']/method[@name='snippet']" name="managedName">SetSnippet</attr>
+	<attr path="/api/package[@name='com.mapbox.mapboxsdk.annotations']/class[@name='BaseMarkerOptions']/method[@name='snippet']" name="return">com.mapbox.mapboxsdk.annotations.BaseMarkerOptions</attr>
+	<attr path="/api/package[@name='com.mapbox.mapboxsdk.annotations']/class[@name='BaseMarkerOptions']/method[@name='title']" name="managedName">SetTitle</attr>
+	<attr path="/api/package[@name='com.mapbox.mapboxsdk.annotations']/class[@name='BaseMarkerOptions']/method[@name='title']" name="return">com.mapbox.mapboxsdk.annotations.BaseMarkerOptions</attr>
+	<remove-node path="/api/package[@name='com.mapbox.mapboxsdk.annotations']/class[@name='BaseMarkerOptions']/method[@name='getThis']" />
+	<attr path="/api/package[@name='com.mapbox.mapboxsdk.annotations']/class[@name='BaseMarkerOptions']/method[@name='getMarker']" name="return">com.mapbox.mapboxsdk.annotations.Marker</attr>
+
+	<attr path ="/api/package[@name='com.mapbox.mapboxsdk.annotations']/class[@name='PolygonOptions']/method[@name='alpha']" name="managedName">SetAlpha</attr>
+	<attr path ="/api/package[@name='com.mapbox.mapboxsdk.annotations']/class[@name='PolygonOptions']/method[@name='fillColor']" name="managedName">SetFillColor</attr>
+	<attr path ="/api/package[@name='com.mapbox.mapboxsdk.annotations']/class[@name='PolygonOptions']/method[@name='strokeColor']" name="managedName">SetStrokeColor</attr>
+
+	<attr path ="/api/package[@name='com.mapbox.mapboxsdk.annotations']/class[@name='PolylineOptions']/method[@name='alpha']" name="managedName">SetAlpha</attr>
+	<attr path ="/api/package[@name='com.mapbox.mapboxsdk.annotations']/class[@name='PolylineOptions']/method[@name='color']" name="managedName">SetColor</attr>
+	<attr path ="/api/package[@name='com.mapbox.mapboxsdk.annotations']/class[@name='PolylineOptions']/method[@name='width']" name="managedName">SetWidth</attr>
+
+
+	<!-- Fix up some yet missing parameter names -->
+	<attr path="/api/package[@name='com.mapbox.mapboxsdk.maps']/interface[@name='MapView.OnMapChangedListener']/method[@name='onMapChanged']/parameter[1]" name="managedName">mapId</attr>
+	<attr path="/api/package[@name='com.mapbox.mapboxsdk.maps']/interface[@name='MapboxMap.OnMyBearingTrackingModeChangeListener']/method[@name='onMyBearingTrackingModeChange']/parameter[1]" name="managedName">trackingMode</attr>
+	<attr path="/api/package[@name='com.mapbox.mapboxsdk.maps']/interface[@name='MapboxMap.OnMyLocationTrackingModeChangeListener']/method[@name='onMyLocationTrackingModeChange']/parameter[1]" name="managedName">trackingMode</attr>
+	<attr path="/api/package[@name='com.mapbox.mapboxsdk.maps']/interface[@name='MapboxMap.OnMyLocationChangeListener']/method[@name='onMyLocationChange']/parameter[1]" name="managedName">location</attr>
+	<attr path="/api/package[@name='com.mapbox.mapboxsdk.maps']/interface[@name='MapboxMap.InfoWindowAdapter']/method[@name='getInfoWindow']/parameter[1]" name="managedName">marker</attr>
+	<attr path="/api/package[@name='com.mapbox.mapboxsdk.maps']/interface[@name='MapboxMap.OnInfoWindowCloseListener']/method[@name='onInfoWindowClose']/parameter[1]" name="managedName">marker</attr>
+	<attr path="/api/package[@name='com.mapbox.mapboxsdk.maps']/interface[@name='MapboxMap.OnInfoWindowLongClickListener']/method[@name='onInfoWindowLongClick']/parameter[1]" name="managedName">marker</attr>
+	<attr path="/api/package[@name='com.mapbox.mapboxsdk.maps']/interface[@name='MapboxMap.OnInfoWindowClickListener']/method[@name='onInfoWindowClick']/parameter[1]" name="managedName">marker</attr>
+	<attr path="/api/package[@name='com.mapbox.mapboxsdk.maps']/interface[@name='MapboxMap.OnMarkerClickListener']/method[@name='onMarkerClick']/parameter[1]" name="managedName">marker</attr>
+	<attr path="/api/package[@name='com.mapbox.mapboxsdk.maps']/interface[@name='MapboxMap.OnMapLongClickListener']/method[@name='onMapLongClick']/parameter[1]" name="managedName">position</attr>
+	<attr path="/api/package[@name='com.mapbox.mapboxsdk.maps']/interface[@name='MapboxMap.OnMapClickListener']/method[@name='onMapClick']/parameter[1]" name="managedName">position</attr>
+	<attr path="/api/package[@name='com.mapbox.mapboxsdk.maps']/interface[@name='MapboxMap.OnFpsChangedListener']/method[@name='onFpsChanged']/parameter[1]" name="managedName">fps</attr>
+	<attr path="/api/package[@name='com.mapbox.mapboxsdk.maps']/interface[@name='MapboxMap.OnCameraChangeListener']/method[@name='onCameraChange']/parameter[1]" name="managedName">cameraPosition</attr>
+	<attr path="/api/package[@name='com.mapbox.mapboxsdk.maps']/interface[@name='OnMapReadyCallback']/method[@name='onMapReady']/parameter[1]" name="managedName">map</attr>
+	<attr path="/api/package[@name='com.mapbox.mapboxsdk.camera']/interface[@name='CameraUpdate']/method[@name='getCameraPosition']/parameter[1]" name="managedName">mapboxMap</attr>
+	<attr path="/api/package[@name='com.mapbox.mapboxsdk.location']/interface[@name='LocationListener']/method[@name='onLocationChanged']/parameter[1]" name="managedName">location</attr>
+	<attr path="/api/package[@name='com.mapbox.mapboxsdk.offline']/interface[@name='OfflineManager.CreateOfflineRegionCallback']/method[@name='onCreate']/parameter[1]" name="managedName">offlineRegion</attr>
+	<attr path="/api/package[@name='com.mapbox.mapboxsdk.offline']/interface[@name='OfflineManager.CreateOfflineRegionCallback']/method[@name='onError']/parameter[1]" name="managedName">error</attr>
+	<attr path="/api/package[@name='com.mapbox.mapboxsdk.offline']/interface[@name='OfflineManager.ListOfflineRegionsCallback']/method[@name='onList']/parameter[1]" name="managedName">offlineRegions</attr>
+	<attr path="/api/package[@name='com.mapbox.mapboxsdk.offline']/interface[@name='OfflineManager.ListOfflineRegionsCallback']/method[@name='onError']/parameter[1]" name="managedName">error</attr>
+	<attr path="/api/package[@name='com.mapbox.mapboxsdk.offline']/interface[@name='OfflineRegion.OfflineRegionDeleteCallback']/method[@name='onError']/parameter[1]" name="managedName">error</attr>
+	<attr path="/api/package[@name='com.mapbox.mapboxsdk.offline']/interface[@name='OfflineRegion.OfflineRegionStatusCallback']/method[@name='onStatus']/parameter[1]" name="managedName">status</attr>
+	<attr path="/api/package[@name='com.mapbox.mapboxsdk.offline']/interface[@name='OfflineRegion.OfflineRegionStatusCallback']/method[@name='onError']/parameter[1]" name="managedName">error</attr>
+	<attr path="/api/package[@name='com.mapbox.mapboxsdk.offline']/interface[@name='OfflineRegion.OfflineRegionObserver']/method[@name='onError']/parameter[1]" name="managedName">error</attr>
+	<attr path="/api/package[@name='com.mapbox.mapboxsdk.offline']/interface[@name='OfflineRegion.OfflineRegionObserver']/method[@name='onStatusChanged']/parameter[1]" name="managedName">status</attr>
+	<attr path="/api/package[@name='com.mapbox.mapboxsdk.offline']/interface[@name='OfflineRegion.OfflineRegionObserver']/method[@name='mapboxTileCountLimitExceeded']/parameter[1]" name="managedName">count</attr>
+
+
+
+
+	
+	<attr path ="/api/package[@name='com.mapzen.android.lost.api']/interface[@name='LocationListener']/method[@name='onLocationChanged']/parameter[1]" name="managedName">location</attr>
+
+	<!-- removeLocationListener returns a bool (instead of void) which causes issues in the C# event generation, so let's just stop it from being generated at all -->
+	<attr path="/api/package[@name='com.mapbox.mapboxsdk.location']/class[@name='LocationServices']/method[@name='addLocationListener']" name="eventName"></attr>
+	<attr path="/api/package[@name='com.mapbox.mapboxsdk.location']/class[@name='LocationServices']/method[@name='removeLocationListener']" name="eventName"></attr>
+</metadata>
