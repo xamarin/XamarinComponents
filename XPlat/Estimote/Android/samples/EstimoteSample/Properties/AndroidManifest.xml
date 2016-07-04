@@ -1,0 +1,9 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android" android:versionName="1.1" package="Estimotes.Droid" android:versionCode="2">
+	<uses-sdk android:minSdkVersion="18" android:targetSdkVersion="21" />
+
+  <application android:label="Estimotes.Droid" android:icon="@drawable/ic_launcher" android:theme="@android:style/Theme.Holo.Light">
+		<!-- TODO: Is it possible to set this value in the binding project? -->
+		<!---<service android:name="com.estimote.sdk.service.BeaconService" android:exported="false" />-->
+	</application>
+</manifest>

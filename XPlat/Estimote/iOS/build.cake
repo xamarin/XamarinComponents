@@ -1,0 +1,71 @@
+#tool nuget:?package=XamarinComponent
+
+#addin nuget:?package=Cake.XCode
+#addin nuget:?package=Cake.Xamarin
+#addin nuget:?package=Cake.Xamarin.Build
+#addin nuget:?package=Cake.FileHelpers
+
+var NUGET_VERSION = "4.6.0";
+var ESTIMOTE_SDK_VERSION = "4.6.0";
+
+var COCOAPODS = new List<string> {
+	"platform :ios, '7.0'",
+	"install! 'cocoapods', :integrate_targets => false",
+	"target 'Xamarin' do",
+	"pod 'EstimoteSDK', '" + ESTIMOTE_SDK_VERSION + "'",
+	"  use_frameworks!",
+	"end",
+};
+
+var TARGET = Argument ("t", Argument ("target", "libs"));
+
+var buildSpec = new BuildSpec {
+	Libs = new [] {
+		new IOSSolutionBuilder {
+			SolutionPath = "./Xamarin.Estimote.iOS.sln",
+			OutputFiles = new [] { 
+				new OutputFileCopy { FromFile = "./source/bin/Release/Xamarin.Estimote.iOS.dll" }
+			}
+		}
+	},
+
+	Samples = new [] {
+		new IOSSolutionBuilder { SolutionPath = "./samples/BeaconExample.sln" },
+		new IOSSolutionBuilder { SolutionPath = "./samples/NearableExample.sln" }
+	},
+
+	NuGets  = new [] {
+		new NuGetInfo { NuSpec = "./nuget/Xamarin.Estimote.iOS.nuspec", Version = NUGET_VERSION },
+	},
+
+	Components = new [] {
+		new Component { ManifestDirectory = "./component" },
+	}
+};
+
+Task ("externals")
+	.IsDependentOn ("externals-base")
+	.WithCriteria (!FileExists ("./externals/Podfile.lock"))
+	.Does (() =>
+{
+	EnsureDirectoryExists ("./externals");
+
+	if (CocoaPodVersion () < new System.Version (1, 0))
+		COCOAPODS.RemoveAt (1);
+
+	FileWriteLines ("./externals/Podfile", COCOAPODS.ToArray ());
+
+	CocoaPodInstall ("./externals", new CocoaPodInstallSettings { NoIntegrate = true });
+});
+
+Task ("clean")
+	.IsDependentOn ("clean-base")
+	.Does (() => 
+{
+	if (DirectoryExists ("./externals"))
+		DeleteDirectory ("./externals", true);
+});
+
+SetupXamarinBuildTasks (buildSpec, Tasks, Task);
+
+RunTarget (TARGET);

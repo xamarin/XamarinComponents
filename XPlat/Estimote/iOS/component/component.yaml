@@ -1,0 +1,40 @@
+%YAML 1.2
+---
+name: Estimote SDK for iOS
+id: estimotesdkios
+publisher: "Xamarin Inc."
+license: License.md
+icons:
+  - icons/estimotesdk_128x128.png
+  - icons/estimotesdk_512x512.png
+publisher-url: "http://www.xamarin.com"
+summary: "Estimote SDK for Xamarin.iOS to actively scan for Bluetooth Beacons, Nearables, and Eddystones."
+details: Details.md
+getting-started: GettingStarted.md
+version: "4.6.0"
+libraries:
+  ios-unified: ../output/Xamarin.Estimote.iOS.dll
+packages:
+  android:
+   - Xamarin.Estimote.iOS, Version=4.6.0.0
+samples:
+  - name: "Beacon Example"
+    path: ../samples/BeaconExample.sln
+    configuration: "Release|iPhone"
+    removeProjects:
+      - Xamarin.Estimote.iOS
+    installNuGets:
+      - project: BeaconExample
+        packages:
+          - Xamarin.Estimote.iOS
+  - name: "Nearable Example"
+    path: ../samples/NearableExample.sln
+    configuration: "Release|iPhone"
+    removeProjects:
+      - Xamarin.Estimote.iOS
+    installNuGets:
+      - project: NearableExample
+        packages:
+          - Xamarin.Estimote.iOS
+local-nuget-repo: ../output
+no_build: true
