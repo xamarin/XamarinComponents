@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
+    <metadata>
+        <id>Xamarin.Estimote.Android</id>
+        <version>$version$</version>
+        <title>Estimote SDK for Xamarin.Android</title>
+        <authors>Xamarin</authors>
+        <owners>Xamarin</owners>
+        <licenseUrl>https://github.com/xamarin/XamarinComponents/blob/master/XPlat/Estimote/Android/component/License.md</licenseUrl>
+        <requireLicenseAcceptance>false</requireLicenseAcceptance>
+        <description>Estimote SDK for Xamarin.Android to actively scan for Bluetooth Beacons, Nearables, and Eddystones.</description>
+        <copyright>Copyright 2016 Xamarin</copyright>
+        <language>en-US</language>
+        <iconUrl>https://xamarin-component-icons.s3.amazonaws.com/Xamarin.Estimote.png</iconUrl>
+        <tags>Xamarin Xamarin.Android Estimote</tags>
+    </metadata>
+    <files>
+        <file src="output/Xamarin.Estimote.Android.dll" target="lib\MonoAndroid43\Xamarin.Estimote.Android.dll" />
+    </files>
+</package>

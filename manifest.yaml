@@ -304,3 +304,11 @@
   BuildScript: ./XPlat/Mapbox/build.cake
   TriggerPaths: [ XPlat/Mapbox ]
   MacBuildTargets: [ samples, component ]
+- Name: EstimoteAndroid
+  BuildScript: ./XPlat/Estimote/Android/build.cake
+  TriggerPaths: [ XPlat/Estimote/Android ]
+  MacBuildTargets: [ samples, component ]
+- Name: EstimoteiOS
+  BuildScript: ./XPlat/Estimote/iOS/build.cake
+  TriggerPaths: [ XPlat/Estimote/iOS ]
+  MacBuildTargets: [ samples, component ]

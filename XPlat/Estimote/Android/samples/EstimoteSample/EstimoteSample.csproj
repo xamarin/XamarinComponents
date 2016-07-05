@@ -1,0 +1,135 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{7B437F08-07CD-4F16-8FE7-997855CA31AD}</ProjectGuid>
+    <ProjectTypeGuids>{EFBA0AD7-5A72-4C68-AF49-83D382785DCF};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <RootNamespace>Estimotes.Droid</RootNamespace>
+    <AndroidApplication>True</AndroidApplication>
+    <AndroidResgenFile>Resources\Resource.designer.cs</AndroidResgenFile>
+    <AndroidResgenClass>Resource</AndroidResgenClass>
+    <MonoAndroidResourcePrefix>Resources</MonoAndroidResourcePrefix>
+    <MonoAndroidAssetsPrefix>Assets</MonoAndroidAssetsPrefix>
+    <AssemblyName>Estimotes.Droid</AssemblyName>
+    <AndroidManifest>Properties\AndroidManifest.xml</AndroidManifest>
+    <TargetFrameworkVersion>v5.0</TargetFrameworkVersion>
+    <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">.\</SolutionDir>
+    <RestorePackages>true</RestorePackages>
+    <AndroidSupportedAbis>armeabi;armeabi-v7a;x86;arm64-v8a;x86_64</AndroidSupportedAbis>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug</OutputPath>
+    <DefineConstants>DEBUG;__MOBILE__;__ANDROID__;</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <AndroidLinkMode>None</AndroidLinkMode>
+    <ConsolePause>false</ConsolePause>
+    <EmbedAssembliesIntoApk>True</EmbedAssembliesIntoApk>
+    <JavaMaximumHeapSize>512M</JavaMaximumHeapSize>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>full</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release</OutputPath>
+    <DefineConstants>__MOBILE__;__ANDROID__;</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <ConsolePause>false</ConsolePause>
+    <AndroidUseSharedRuntime>false</AndroidUseSharedRuntime>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Core" />
+    <Reference Include="Mono.Android" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Resources\Resource.designer.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="LeDevicesListAdapter.cs" />
+    <Compile Include="DeviceItemViewHolder.cs" />
+    <Compile Include="FindAllBeacons.cs" />
+    <Compile Include="BeaconsFoundEventArgs.cs" />
+    <Compile Include="DistanceBeaconActivity.cs" />
+    <Compile Include="DistanceBackgroundView.cs" />
+    <Compile Include="BeaconFoundEventArgs.cs" />
+    <Compile Include="FindSpecificBeacon.cs" />
+    <Compile Include="BeaconFinder.cs" />
+    <Compile Include="NotifyDemoActivity.cs" />
+    <Compile Include="MainActivity.cs" />
+    <Compile Include="ActivityHelpers.cs" />
+    <Compile Include="QuickAction\ActionItem.cs" />
+    <Compile Include="QuickAction\ActionItemClickEventArgs.cs" />
+    <Compile Include="QuickAction\QuickActionAnimationStyle.cs" />
+    <Compile Include="QuickAction\QuickActionLayout.cs" />
+    <Compile Include="QuickAction\QuickAction.cs" />
+    <Compile Include="QuickAction\ActionItemBuilder.cs" />
+    <Compile Include="EstimoteSamples.cs" />
+    <Compile Include="NearableActivity.cs" />
+    <Compile Include="EddystoneActivity.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\AboutResources.txt" />
+    <None Include="Assets\AboutAssets.txt" />
+    <None Include="Properties\AndroidManifest.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable-xhdpi\beacon_gray.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\bg_distance.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\dot.png" />
+    <AndroidResource Include="Resources\layout\actionbar_indeterminate_progress.axml" />
+    <AndroidResource Include="Resources\layout\distance_view.axml" />
+    <AndroidResource Include="Resources\layout\notify_demo.axml" />
+    <AndroidResource Include="Resources\layout\device_item.axml" />
+    <AndroidResource Include="Resources\layout\main.axml" />
+    <AndroidResource Include="Resources\menu\scan_menu.xml" />
+    <AndroidResource Include="Resources\drawable-hdpi\ic_launcher.png" />
+    <AndroidResource Include="Resources\drawable-mdpi\ic_launcher.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\ic_launcher.png" />
+    <AndroidResource Include="Resources\drawable\ic_launcher.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\ic_launcher.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\beacon_blueberry.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\beacon_icy.png" />
+    <AndroidResource Include="Resources\anim\disappear.xml" />
+    <AndroidResource Include="Resources\anim\grow_from_bottom.xml" />
+    <AndroidResource Include="Resources\anim\grow_from_bottomleft_to_topright.xml" />
+    <AndroidResource Include="Resources\anim\grow_from_bottomright_to_topleft.xml" />
+    <AndroidResource Include="Resources\anim\grow_from_top.xml" />
+    <AndroidResource Include="Resources\anim\grow_from_topleft_to_bottomright.xml" />
+    <AndroidResource Include="Resources\anim\grow_from_topright_to_bottomleft.xml" />
+    <AndroidResource Include="Resources\anim\pump_bottom.xml" />
+    <AndroidResource Include="Resources\anim\pump_top.xml" />
+    <AndroidResource Include="Resources\anim\rail.xml" />
+    <AndroidResource Include="Resources\anim\shrink_from_bottom.xml" />
+    <AndroidResource Include="Resources\anim\shrink_from_bottomleft_to_topright.xml" />
+    <AndroidResource Include="Resources\anim\shrink_from_bottomright_to_topleft.xml" />
+    <AndroidResource Include="Resources\anim\shrink_from_top.xml" />
+    <AndroidResource Include="Resources\anim\shrink_from_topleft_to_bottomright.xml" />
+    <AndroidResource Include="Resources\anim\shrink_from_topright_to_bottomleft.xml" />
+    <AndroidResource Include="Resources\values\styles.xml" />
+    <AndroidResource Include="Resources\values\strings.xml" />
+    <AndroidResource Include="Resources\layout\action_item_horizontal.axml" />
+    <AndroidResource Include="Resources\layout\action_item_vertical.axml" />
+    <AndroidResource Include="Resources\layout\horiz_separator.axml" />
+    <AndroidResource Include="Resources\layout\popup_horizontal.axml" />
+    <AndroidResource Include="Resources\layout\popup_vertical.axml" />
+    <AndroidResource Include="Resources\drawable\action_item_btn.xml" />
+    <AndroidResource Include="Resources\drawable\action_item_selected.9.png" />
+    <AndroidResource Include="Resources\drawable\arrow_down.png" />
+    <AndroidResource Include="Resources\drawable\arrow_up.png" />
+    <AndroidResource Include="Resources\drawable\popup.9.png" />
+    <AndroidResource Include="Resources\drawable\ic_refresh.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\source\Xamarin.Estimote.Android.csproj">
+      <Project>{C2098D47-D08C-487C-95D3-5853B678AEB2}</Project>
+      <Name>Xamarin.Estimote.Android</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
+</Project>

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:padding="20dp"
+              android:orientation="vertical">
+
+  <TextView android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="18dp"
+            android:text="You can lock your device now.\n\nKeep walking away from beacon and come back. Pay attention to notification bar."/>
+
+  <TextView android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:padding="5dp"
+            android:background="@android:color/holo_orange_dark"
+            android:textColor="@android:color/white"
+            android:text="Last posted notification:"
+            android:textSize="18dp"/>
+
+  <TextView android:id="@+id/status"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="5dp"
+            android:background="@android:color/holo_orange_light"
+            android:textColor="@android:color/black"
+            android:text="None"
+            android:textSize="18dp"/>
+</LinearLayout>

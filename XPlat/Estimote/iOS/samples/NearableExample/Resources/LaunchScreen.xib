@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6254" systemVersion="13F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB">
+            <rect key="frame" x="0.0" y="0.0" width="480" height="480"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="XamarinLogo.png" translatesAutoresizingMaskIntoConstraints="NO" id="5ba-Y7-pXX">
+                    <rect key="frame" x="8" y="8" width="464" height="464"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="464" id="yIP-gr-itR"/>
+                    </constraints>
+                </imageView>
+            </subviews>
+            <color key="backgroundColor" red="0.16470588235294117" green="0.24313725490196078" blue="0.31372549019607843" alpha="1" colorSpace="calibratedRGB"/>
+            <color key="tintColor" red="0.1647058824" green="0.24313725489999999" blue="0.31372549020000001" alpha="1" colorSpace="calibratedRGB"/>
+            <constraints>
+                <constraint firstAttribute="trailing" secondItem="5ba-Y7-pXX" secondAttribute="trailing" constant="8" id="FYr-Qj-mYP"/>
+                <constraint firstItem="5ba-Y7-pXX" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="8" id="M0u-KF-Cbx"/>
+                <constraint firstAttribute="centerY" secondItem="5ba-Y7-pXX" secondAttribute="centerY" id="OM7-AD-RxT"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <point key="canvasLocation" x="548" y="455"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="XamarinLogo.png" width="968" height="406"/>
+    </resources>
+</document>
