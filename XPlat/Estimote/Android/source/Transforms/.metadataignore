@@ -25,4 +25,4 @@
 /api/package[@name='com.estimote.sdk.connection']/class[@name='BeaconConnection']/method[@name='createNoCloudConnection' and count(parameter)=3 and parameter[1][@type='android.content.Context'] and parameter[2][@type='com.estimote.sdk.MacAddress'] and parameter[3][@type='com.estimote.sdk.connection.BeaconConnection.ConnectionCallback']]/parameter[1]
 /api/package[@name='com.estimote.sdk.connection']/class[@name='BeaconConnection']/method[@name='createNoCloudConnection' and count(parameter)=3 and parameter[1][@type='android.content.Context'] and parameter[2][@type='com.estimote.sdk.MacAddress'] and parameter[3][@type='com.estimote.sdk.connection.BeaconConnection.ConnectionCallback']]/parameter[2]
 /api/package[@name='com.estimote.sdk.connection']/class[@name='BeaconConnection']/method[@name='createNoCloudConnection' and count(parameter)=3 and parameter[1][@type='android.content.Context'] and parameter[2][@type='com.estimote.sdk.MacAddress'] and parameter[3][@type='com.estimote.sdk.connection.BeaconConnection.ConnectionCallback']]/parameter[3]
-	
+
