@@ -3,7 +3,7 @@
 
 var TARGET = Argument ("t", Argument ("target", "Default"));
 
-var AAR_VERSION = "0.9.5";
+var AAR_VERSION = "2.1.0";
 var AAR_URL = string.Format ("https://bintray.com/artifact/download/ischwarz/maven/de/codecrafters/tableview/tableview/{0}/tableview-{0}.aar", AAR_VERSION);
 var AAR_FILE = "SortableTableView.aar";
 
