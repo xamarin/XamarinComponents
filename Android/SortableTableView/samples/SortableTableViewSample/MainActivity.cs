@@ -33,11 +33,11 @@ namespace SortableTableViewSample
 
             var simpleTableHeaderAdapter = new SimpleTableHeaderAdapter(this, "Manufacturer", "Name", "Performance", "Price");
             simpleTableHeaderAdapter.SetTextColor(ContextCompat.GetColor(this, Resource.Color.table_header_text));
-            carTableView.SetHeaderAdapter(simpleTableHeaderAdapter);
+            carTableView.HeaderAdapter = simpleTableHeaderAdapter;
 
             var rowColorEven = ContextCompat.GetColor(this, Resource.Color.table_data_row_even);
             var rowColorOdd = ContextCompat.GetColor(this, Resource.Color.table_data_row_odd);
-            carTableView.SetDataRowColoriser(TableDataRowColorizers.AlternatingRows(rowColorEven, rowColorOdd));
+            carTableView.SetDataRowBackgroundProvider(TableDataRowBackgroundProviders.AlternatingRowColors(rowColorEven, rowColorOdd));
             carTableView.HeaderSortStateViewProvider = SortStateViewProviders.BrightArrows();
 
             carTableView.SetColumnWeight(0, 2);

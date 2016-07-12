@@ -8,12 +8,6 @@ namespace CodeCrafters.TableViews
     {
         private WeakReference dataClickListener;
 
-        public TableDataAdapter DataAdapter
-        {
-            get { return TableDataAdapter; }
-            set { SetDataAdapter(value); }
-        }
-
         public event EventHandler<TableDataClickEventArgs> DataClick
         {
             add
