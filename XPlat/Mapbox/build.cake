@@ -85,6 +85,8 @@ Task ("externals-ios")
 
 	FileWriteLines ("./externals/ios/Podfile", PODFILE.ToArray ());
 
+	CocoaPodRepoUpdate ();
+	
 	CocoaPodInstall ("./externals/ios", new CocoaPodInstallSettings { NoIntegrate = true });
 });
 Task ("externals").IsDependentOn ("externals-android").IsDependentOn ("externals-ios");
