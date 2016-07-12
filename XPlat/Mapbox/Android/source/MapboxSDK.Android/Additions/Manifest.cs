@@ -21,7 +21,6 @@ using Android.Content;
 
 namespace Mapbox.Telemetry
 {
-    [Register ("com/mapbox/mapboxsdk/telemetry/TelemetryService", DoNotGenerateAcw = true)]
     [Service (Name = "com.mapbox.mapboxsdk.telemetry.TelemetryService")]
     partial class TelemetryService
     {
