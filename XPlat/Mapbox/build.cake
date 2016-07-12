@@ -4,7 +4,9 @@
 var TARGET = Argument ("t", Argument ("target", "Default"));
 
 var ANDROID_VERSION = "4.1.0";
+var ANDROID_NUGET_VERSION = "4.1.0.1";
 var IOS_VERSION = "3.2.3";
+var IOS_NUGET_VERSION = "3.2.3";
 
 var MAPBOX_VERSION = "4.1.0";
 var LOST_VERSION = "1.1.0";
@@ -42,8 +44,8 @@ var buildSpec = new BuildSpec {
 	},
 
 	NuGets = new [] {
-		new NuGetInfo { NuSpec = "./nuget/Xamarin.MapboxSDK.Android.nuspec", Version = ANDROID_VERSION },
-		new NuGetInfo { NuSpec = "./nuget/Xamarin.MapboxSDK.iOS.nuspec", Version = IOS_VERSION },
+		new NuGetInfo { NuSpec = "./nuget/Xamarin.MapboxSDK.Android.nuspec", Version = ANDROID_NUGET_VERSION },
+		new NuGetInfo { NuSpec = "./nuget/Xamarin.MapboxSDK.iOS.nuspec", Version = IOS_NUGET_VERSION },
 	},
 
 	Samples = new [] {
