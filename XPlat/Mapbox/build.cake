@@ -3,11 +3,11 @@
 
 var TARGET = Argument ("t", Argument ("target", "Default"));
 
-var ANDROID_VERSION = "4.0.1";
+var ANDROID_VERSION = "4.1.0";
 var IOS_VERSION = "3.2.3";
 
-var MAPBOX_VERSION = "4.0.1";
-var LOST_VERSION = "1.0.1";
+var MAPBOX_VERSION = "4.1.0";
+var LOST_VERSION = "1.1.0";
 
 var LOST_JAR = string.Format ("http://search.maven.org/remotecontent?filepath=com/mapzen/android/lost/{0}/lost-{0}.jar", LOST_VERSION);
 var MAPBOX_ANDROID = string.Format ("http://search.maven.org/remotecontent?filepath=com/mapbox/mapboxsdk/mapbox-android-sdk/{0}/mapbox-android-sdk-{0}.aar", MAPBOX_VERSION);
@@ -16,7 +16,7 @@ var PODFILE = new List<string> {
 	"platform :ios, '8.0'",
 	"install! 'cocoapods', :integrate_targets => false",
 	"target 'Xamarin' do",
-	"  pod 'Mapbox-iOS-SDK', '3.2.2'",
+	"  pod 'Mapbox-iOS-SDK', '3.2.3'",
 	"  use_frameworks!",
 	"end",
 };
