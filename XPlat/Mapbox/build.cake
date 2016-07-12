@@ -9,7 +9,7 @@ var IOS_VERSION = "3.2.3";
 var MAPBOX_VERSION = "4.1.0";
 var LOST_VERSION = "1.1.0";
 
-var LOST_JAR = string.Format ("http://search.maven.org/remotecontent?filepath=com/mapzen/android/lost/{0}/lost-{0}.jar", LOST_VERSION);
+var LOST_AAR = string.Format ("http://search.maven.org/remotecontent?filepath=com/mapzen/android/lost/{0}/lost-{0}.aar", LOST_VERSION);
 var MAPBOX_ANDROID = string.Format ("http://search.maven.org/remotecontent?filepath=com/mapbox/mapboxsdk/mapbox-android-sdk/{0}/mapbox-android-sdk-{0}.aar", MAPBOX_VERSION);
 
 var PODFILE = new List<string> {
@@ -63,7 +63,10 @@ Task ("externals-android")
 {
 	EnsureDirectoryExists ("./externals/android");
 
-	DownloadFile (LOST_JAR, "./externals/android/lost.jar");
+	DownloadFile (LOST_AAR, "./externals/android/lost.aar");
+	Unzip ("./externals/android/lost.aar", "./externals/android/lost");
+	CopyFile ("./externals/android/lost/classes.jar", "./externals/android/lost.jar");
+
 	DownloadFile (MAPBOX_ANDROID, "./externals/android/temp.aar");
 
 	Unzip ("./externals/android/temp.aar", "./externals/android/temp");
