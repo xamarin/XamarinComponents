@@ -23,6 +23,7 @@
 
 	<attr path="/api/package[@name='com.almeros.android.multitouch.gesturedetectors']" name="managedName">Mapbox.MultiTouch.GestureDetectors</attr>
 
+	<attr path="/api/package[@name='com.mapzen.lost']" name="managedName">Mapbox.Mapzen.Lost</attr>
 	<attr path="/api/package[@name='com.mapzen.android.lost.api']" name="managedName">Mapbox.Mapzen.Lost.Api</attr>
 	<attr path="/api/package[@name='com.mapzen.android.lost.internal']" name="managedName">Mapbox.Mapzen.Lost.Internal</attr>
 
@@ -93,4 +94,13 @@
 	<!-- removeLocationListener returns a bool (instead of void) which causes issues in the C# event generation, so let's just stop it from being generated at all -->
 	<attr path="/api/package[@name='com.mapbox.mapboxsdk.location']/class[@name='LocationServices']/method[@name='addLocationListener']" name="eventName"></attr>
 	<attr path="/api/package[@name='com.mapbox.mapboxsdk.location']/class[@name='LocationServices']/method[@name='removeLocationListener']" name="eventName"></attr>
+
+
+	<remove-node path="/api/package[@name='com.mapbox.mapboxsdk.annotations']/class[@name='BaseMarkerOptions']/method[@name='setPosition']" />
+	<remove-node path="/api/package[@name='com.mapbox.mapboxsdk.annotations']/class[@name='BaseMarkerOptions']/method[@name='setSnippet']" />
+	<remove-node path="/api/package[@name='com.mapbox.mapboxsdk.annotations']/class[@name='BaseMarkerOptions']/method[@name='setTitle']" />
+	<remove-node path="/api/package[@name='com.mapbox.mapboxsdk.annotations']/class[@name='BaseMarkerOptions']/method[@name='setIcon']" />
+
+	<attr path="/api/package[@name='com.mapbox.mapboxsdk.annotations']/class[@name='MarkerViewManager.ImageMarkerViewAdapter']/method[@name='getView' and count(parameter)=3 and parameter[1][@type='com.mapbox.mapboxsdk.annotations.MarkerView'] and parameter[2][@type='android.view.View'] and parameter[3][@type='android.view.ViewGroup']]/parameter[1]" name="managedType">Java.Lang.Object</attr>
+
 </metadata>

@@ -17,6 +17,21 @@ namespace Mapbox.Annotations
     //        }
     //    }
     //}
+
+    public partial class MarkerViewOptions
+    {
+        protected override Java.Lang.Object RawMarker {
+            get {
+                return this.Marker;
+            }
+        }
+
+        protected override Java.Lang.Object RawThis {
+            get {
+                return this.This;
+            }
+        }
+    }
 }
 
 namespace Mapbox.Maps
