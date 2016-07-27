@@ -15,9 +15,9 @@ using Foundation;
 [assembly: AssemblyTitle ("Shopify.iOS")]
 [assembly: AssemblyDescription ("Sell with Shopify in iOS apps")]
 [assembly: AssemblyConfiguration ("")]
-[assembly: AssemblyCompany ("Shopify Inc.")]
+[assembly: AssemblyCompany ("Copyright (c) 2016 Xamarin, Inc.")]
 [assembly: AssemblyProduct ("Mobile Buy SDK")]
-[assembly: AssemblyCopyright ("Shopify Inc.")]
+[assembly: AssemblyCopyright ("Copyright (c) 2016 Xamarin, Inc.")]
 [assembly: AssemblyTrademark ("")]
 [assembly: AssemblyCulture ("")]
 
