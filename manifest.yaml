@@ -312,3 +312,11 @@
   BuildScript: ./XPlat/Estimote/iOS/build.cake
   TriggerPaths: [ XPlat/Estimote/iOS ]
   MacBuildTargets: [ samples, component ]
+- Name: ShopifyAndroid
+  BuildScript: ./XPlat/Shopify/Android/build.cake
+  TriggerPaths: [ XPlat/Shopify/Android ]
+  MacBuildTargets: [ samples, component ]
+- Name: ShopifyiOS
+  BuildScript: ./XPlat/Shopify/iOS/build.cake
+  TriggerPaths: [ XPlat/Shopify/iOS ]
+  MacBuildTargets: [ samples, component ]

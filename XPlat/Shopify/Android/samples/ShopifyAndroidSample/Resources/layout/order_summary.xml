@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+             android:layout_width="match_parent"
+             android:layout_height="wrap_content"
+             android:layout_margin="8dp"
+             android:orientation="vertical">
+
+    <TableRow>
+        <TextView
+            style="@style/OrderSummaryTextView"
+            android:text="@string/line_item_price"/>
+
+        <TextView
+            android:id="@+id/line_item_price_value"
+            style="@style/OrderSummaryTextView"
+            android:gravity="right"/>
+    </TableRow>
+
+    <TableRow>
+        <TextView
+            style="@style/OrderSummaryTextView"
+            android:text="@string/discount"/>
+
+        <TextView
+            android:id="@+id/discount_value"
+            style="@style/OrderSummaryTextView"
+            android:gravity="right"/>
+    </TableRow>
+
+    <TableRow>
+        <TextView
+            style="@style/OrderSummaryTextView"
+            android:text="@string/gift_card"/>
+
+        <TextView
+            android:id="@+id/gift_card_value"
+            style="@style/OrderSummaryTextView"
+            android:gravity="right"/>
+    </TableRow>
+
+    <TableRow>
+        <TextView
+            style="@style/OrderSummaryTextView"
+            android:text="@string/shipping"/>
+
+        <TextView
+            android:id="@+id/shipping_value"
+            style="@style/OrderSummaryTextView"
+            android:gravity="right"/>
+    </TableRow>
+
+    <TableRow>
+        <TextView
+            style="@style/OrderSummaryTextView"
+            android:text="@string/taxes"/>
+
+        <TextView
+            android:id="@+id/taxes_value"
+            style="@style/OrderSummaryTextView"
+            android:gravity="right"/>
+    </TableRow>
+
+    <TableRow>
+        <TextView
+            style="@style/OrderSummaryTextView"
+            android:text="@string/total"/>
+
+        <TextView
+            android:id="@+id/total_value"
+            style="@style/OrderSummaryTextView"
+            android:gravity="right"/>
+    </TableRow>
+
+</TableLayout>

@@ -1,0 +1,39 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<metadata>
+
+  <!-- namespaces -->
+  <attr path="/api/package[@name='com.shopify.buy']" name="managedName">Shopify.Buy</attr>
+  <attr path="/api/package[@name='com.shopify.buy.customTabs']" name="managedName">Shopify.Buy.CustomTabs</attr>
+  <attr path="/api/package[@name='com.shopify.buy.dataprovider']" name="managedName">Shopify.Buy.DataProvider</attr>
+  <attr path="/api/package[@name='com.shopify.buy.model']" name="managedName">Shopify.Buy.Model</attr>
+  <attr path="/api/package[@name='com.shopify.buy.model.internal']" name="managedName">Shopify.Buy.Model.Internal</attr>
+  <attr path="/api/package[@name='com.shopify.buy.ui']" name="managedName">Shopify.Buy.UI</attr>
+  <attr path="/api/package[@name='com.shopify.buy.utils']" name="managedName">Shopify.Buy.Utils</attr>
+  
+  <!-- remove the protected fields as we can access this via get/set properties -->
+  <remove-node path="/api/package[@name='com.shopify.buy.model']/class/field[@visibility='protected']" />
+
+  <!-- remove the deserializers as this is just for internal use -->
+  <remove-node path="/api/package[@name='com.shopify.buy.model']/class[@name='Checkout.CheckoutDeserializer']" />
+  <remove-node path="/api/package[@name='com.shopify.buy.model']/class[@name='Checkout.CheckoutSerializer']" />
+  <remove-node path="/api/package[@name='com.shopify.buy.model']/class[@name='Product.ProductDeserializer']" />
+  <remove-node path="/api/package[@name='com.shopify.buy.ui']/interface[@name='ProductDetailsListener']" />
+  <remove-node path="/api/package[@name='com.shopify.buy.utils']/class[@name='DateUtility.DateDeserializer']" />
+
+  <!-- public nested classes require the parents be public -->
+  <attr path="/api/package[@name='com.shopify.buy.ui']/class[@name='ProductDetailsImageAreaTouchHandler']" name="visibility">public</attr>
+
+  <!-- convert Java.Lang.Xxx into System.Xxx -->
+  <attr path="/api/package[@name='com.shopify.buy.model']/class[@name='Checkout']/method[@name='setReservationTime']" name="visibility">internal</attr>
+  <attr path="/api/package[@name='com.shopify.buy.model']/class[@name='Checkout']/method[@name='getReservationTime']" name="visibility">internal</attr>
+  <attr path="/api/package[@name='com.shopify.buy.model']/class[@name='Checkout']/method[@name='getReservationTimeLeft']" name="visibility">internal</attr>
+  <attr path="/api/package[@name='com.shopify.buy.model']/class[@name='Checkout']/method[@name='getOrderId']" name="visibility">internal</attr>
+  <attr path="/api/package[@name='com.shopify.buy.model']/class[@name='Checkout']/method[@name='isRequiresShipping']" name="visibility">internal</attr>
+  <attr path="/api/package[@name='com.shopify.buy.model']/class[@name='Checkout']/method[@name='isTaxesIncluded']" name="visibility">internal</attr>
+  <attr path="/api/package[@name='com.shopify.buy.model']/class[@name='Checkout']/method[@name='getReservationTime']" name="propertyName"></attr>
+  <attr path="/api/package[@name='com.shopify.buy.model']/class[@name='Checkout']/method[@name='getReservationTimeLeft']" name="propertyName"></attr>
+  <attr path="/api/package[@name='com.shopify.buy.model']/class[@name='Checkout']/method[@name='getOrderId']" name="propertyName"></attr>
+  <attr path="/api/package[@name='com.shopify.buy.model']/class[@name='Checkout']/method[@name='isRequiresShipping']" name="propertyName"></attr>
+  <attr path="/api/package[@name='com.shopify.buy.model']/class[@name='Checkout']/method[@name='isTaxesIncluded']" name="propertyName"></attr>
+  
+</metadata>

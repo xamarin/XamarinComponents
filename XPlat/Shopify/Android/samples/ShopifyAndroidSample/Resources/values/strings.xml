@@ -1,0 +1,66 @@
+<resources>
+    <!-- Add your shop URL here in the form '<myshop>.myshopify.com' -->
+    <string name="shop_url">xamarinbindingexample.myshopify.com</string>
+
+    <!-- Add your Shopify API key here -->
+    <string name="shopify_api_key">6149b5dbe23ad2c34bb7098481471e33</string>
+
+    <!-- Add your Channel ID here -->
+    <string name="channel_id">46682499</string>
+
+    <!-- Application and Activity Names -->
+    <string name="app_name">Mobile Buy Sample</string>
+
+    <!-- UI -->
+    <string name="please_wait">Please wait</string>
+    <string name="loading_data">Loading data from store...</string>
+    <string name="syncing_data">Syncing data with Checkout API...</string>
+    <string name="error">Error! See logcat for details.</string>
+    <string name="shop_error">Error! Could not load shop. ProductDetailsActivity will not work.</string>
+
+    <string name="choose_collection">Choose Collection</string>
+    <string name="all_products">All Products</string>
+
+    <string name="choose_product">Choose Product</string>
+    <string name="demo_product_details_activity">Demo ProductDetailsActivity</string>
+    <string name="theme_style">Theme Style</string>
+    <string name="shows_product_image_bg">Shows Product Image BG</string>
+    <string name="yes">YES</string>
+    <string name="no">NO</string>
+    <string name="dark">DARK</string>
+    <string name="light">LIGHT</string>
+    <string name="choose_accent_color">Choose Accent Color</string>
+
+    <string name="choose_shipping_rate">Choose Shipping Rate</string>
+    <string name="no_shipping_rates">Product can\'t be shipped to your address.</string>
+
+    <string name="apply_discounts">Apply Discounts</string>
+    <string name="apply_discount">Apply Discount</string>
+    <string name="apply_gift_card">Apply Gift Card</string>
+    <string name="enter_discount_code">Enter Discount Code</string>
+    <string name="enter_gift_card_code">Enter Gift Card Code</string>
+    <string name="discount_code">Discount Code</string>
+    <string name="gift_card_code">Gift Card Code</string>
+    <string name="checkout">Checkout</string>
+    <string name="discount_error">Could not apply discount code %s</string>
+    <string name="gift_card_error">Could not apply gift card code %s</string>
+
+    <string name="native_checkout">Checkout with Fake Credit Card</string>
+    <string name="web_checkout">Web Checkout</string>
+    <string name="completing_checkout">Completing checkout...</string>
+    <string name="getting_checkout_status">Getting checkout status...</string>
+    <string name="checkout_complete">Checkout complete!</string>
+    <string name="checkout_error">Could not complete checkout</string>
+
+    <string name="line_item_price">Line Item Price</string>
+    <string name="discount">Discount</string>
+    <string name="gift_card">Gift Card</string>
+    <string name="shipping">Shipping</string>
+    <string name="taxes">Taxes</string>
+    <string name="total">Total</string>
+
+    <!-- Custom URL Scheme -->
+    <string name="web_return_to_scheme">mobilebuysample</string>
+    <string name="web_return_to_url">"mobilebuysample://"</string>
+    <string name="web_return_to_label">"Return to Mobile Buy Sample</string>
+</resources>
