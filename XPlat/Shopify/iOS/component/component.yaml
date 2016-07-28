@@ -1,0 +1,21 @@
+version: 1.2.6
+name: Shopify Mobile Buy SDK for Xamarin.iOS
+id: shopify-buy-ios-sdk
+publisher: Xamarin Inc.
+publisher-url: http://xamarin.com
+summary: Shopify’s Mobile Buy SDK makes it simple to sell physical products inside your mobile app.
+license: License.md
+details: Details.md
+getting-started: GettingStarted.md
+icons:
+  - ../../icons/shopify_128x128.png
+  - ../../icons/shopify_512x512.png
+libraries:
+  ios-unified: ../output/Shopify.iOS.dll
+samples:
+  - name: "Callback Sample"
+    path:  ../samples/ShopifyiOSSample.sln
+  - name: "Async Sample"
+    path:  ../samples/ShopifyiOSAsyncSample.sln
+no_build: true
+
