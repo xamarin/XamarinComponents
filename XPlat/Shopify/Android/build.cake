@@ -20,6 +20,7 @@ var buildSpec = new BuildSpec {
 
 	Samples = new [] {
 		new DefaultSolutionBuilder { SolutionPath = "./samples/ShopifyAndroidSample.sln" },
+		new DefaultSolutionBuilder { SolutionPath = "./samples/ShopifyAndroidAsyncSample.sln" },
 	},
 
 	NuGets = new [] {

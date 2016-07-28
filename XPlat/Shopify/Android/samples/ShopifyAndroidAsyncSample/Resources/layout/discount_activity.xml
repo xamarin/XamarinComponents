@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+    <FrameLayout
+        android:id="@+id/discount_button_frame"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="6dp"
+        android:background="@color/discount_button">
+
+        <Button
+            android:id="@+id/discount_button"
+            style="@style/Button"
+            android:text="@string/apply_discount"/>
+    </FrameLayout>
+
+    <FrameLayout
+        android:id="@+id/gift_card_button_frame"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/discount_button_frame"
+        android:layout_margin="6dp"
+        android:background="@color/discount_button">
+
+        <Button
+            android:id="@+id/gift_card_button"
+            style="@style/Button"
+            android:text="@string/apply_gift_card"/>
+    </FrameLayout>
+
+    <include
+        layout="@layout/order_summary"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/gift_card_button_frame"/>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_margin="6dp"
+        android:background="@color/shopify_green">
+
+        <Button
+            android:id="@+id/checkout_button"
+            style="@style/Button"
+            android:text="@string/checkout"/>
+    </FrameLayout>
+
+</RelativeLayout>

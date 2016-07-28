@@ -1,0 +1,100 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp">
+
+        <TextView
+            style="@style/ProductOptionsTextView"
+            android:text="@string/demo_product_details_activity"/>
+
+        <Switch
+            android:id="@+id/product_details_activity_switch"
+            style="@style/Switch"
+            android:textOff="@string/no"
+            android:textOn="@string/yes"/>
+
+    </RelativeLayout>
+
+    <LinearLayout
+        android:id="@+id/product_view_options_container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="6dp">
+
+            <TextView
+                style="@style/ProductOptionsTextView"
+                android:text="@string/theme_style"/>
+
+            <Switch
+                android:id="@+id/theme_style_switch"
+                style="@style/Switch"
+                android:checked="true"
+                android:textOff="@string/dark"
+                android:textOn="@string/light"/>
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="6dp">
+
+            <TextView
+                style="@style/ProductOptionsTextView"
+                android:text="@string/shows_product_image_bg"/>
+
+            <Switch
+                android:id="@+id/product_image_bg_switch"
+                style="@style/Switch"
+                android:checked="true"
+                android:textOff="@string/no"
+                android:textOn="@string/yes"/>
+
+        </RelativeLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="6dp"
+            android:orientation="horizontal">
+
+            <TextView
+                style="@style/ProductOptionsTextView"
+                android:layout_gravity="center_vertical"
+                android:text="@string/choose_accent_color"/>
+
+            <View
+                android:id="@+id/accent_color_view"
+                android:layout_width="0dp"
+                android:layout_height="24dp"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="16dp"
+                android:layout_weight="1"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:layout_marginTop="16dp"
+        android:background="@android:color/black"/>
+
+    <ListView
+        android:id="@+id/list_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+</LinearLayout>
