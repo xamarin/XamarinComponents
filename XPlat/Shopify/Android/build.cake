@@ -26,6 +26,10 @@ var buildSpec = new BuildSpec {
 	NuGets = new [] {
 		new NuGetInfo { NuSpec = "./nuget/Xamarin.Shopify.Android.nuspec", Version = VERSION },
 	},
+
+	Components = new [] {
+		new Component { ManifestDirectory = "./component" }
+	},
 };
 
 
