@@ -26,20 +26,20 @@ using System;
 using Foundation;
 using UIKit;
 
-using Shopify;
+using Shopify.Buy;
 
 namespace ShopifyiOSSample
 {
 	public class ShippingRatesTableViewController : UITableViewController
 	{
-		private readonly BUYClient client;
-		private readonly BUYCheckout checkout;
+		private readonly BuyClient client;
+		private readonly Checkout checkout;
 
 		private NSNumberFormatter currencyFormatter;
-		private BUYShippingRate[] shippingRates;
+		private ShippingRate[] shippingRates;
 		private NSOperation[] allOperations;
 
-		public ShippingRatesTableViewController (BUYClient client, BUYCheckout checkout)
+		public ShippingRatesTableViewController (BuyClient client, Checkout checkout)
 		{
 			this.client = client;
 			this.checkout = checkout;

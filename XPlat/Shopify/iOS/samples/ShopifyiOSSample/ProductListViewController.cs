@@ -27,29 +27,29 @@ using CoreGraphics;
 using Foundation;
 using UIKit;
 
-using Shopify;
+using Shopify.Buy;
 
 namespace ShopifyiOSSample
 {
 	public class ProductListViewController : UITableViewController, IUIViewControllerPreviewingDelegate
 	{
-		private readonly BUYClient client;
-		private readonly BUYCollection collection;
+		private readonly BuyClient client;
+		private readonly Collection collection;
 
-		private BUYProduct[] products;
+		private Product[] products;
 		private NSUrlSessionDataTask collectionTask;
 		private NSUrlSessionDataTask checkoutCreationTask;
 
 		private bool demoProductViewController;
-		private BUYThemeStyle themeStyle;
+		private ThemeStyle themeStyle;
 		private UIColor[] themeTintColors;
 		private nint themeTintColorSelectedIndex;
 		private bool showsProductImageBackground;
 		private bool presentViewController;
 
-		private static BUYAddress Address {
+		private static Address Address {
 			get {
-				var address = new BUYAddress ();
+				var address = new Address ();
 				address.Address1 = "150 Elgin Street";
 				address.Address2 = "8th Floor";
 				address.City = "Ottawa";
@@ -64,7 +64,7 @@ namespace ShopifyiOSSample
 			}
 		}
 
-		public ProductListViewController (BUYClient client, BUYCollection collection)
+		public ProductListViewController (BuyClient client, Collection collection)
 			: base (UITableViewStyle.Grouped)
 		{
 			this.client = client;
@@ -114,7 +114,7 @@ namespace ShopifyiOSSample
 				UIBarButtonItem sortBarButtonItem = new UIBarButtonItem ("Sort", UIBarButtonItemStyle.Plain, PresentCollectionSortOptions);
 				NavigationItem.RightBarButtonItem = sortBarButtonItem;
 
-				GetCollection (BUYCollectionSort.CollectionDefault);
+				GetCollection (CollectionSort.CollectionDefault);
 			} else {
 				UIApplication.SharedApplication.NetworkActivityIndicatorVisible = true;
 				client.GetProductsPage (1, (products, page, reachedEnd, error) => {
@@ -135,22 +135,22 @@ namespace ShopifyiOSSample
 			UIAlertController alertController = UIAlertController.Create ("Collection Sort", null, UIAlertControllerStyle.ActionSheet);
 
 			alertController.AddAction (UIAlertAction.Create ("Default", UIAlertActionStyle.Default, delegate {
-				GetCollection (BUYCollectionSort.CollectionDefault);
+				GetCollection (CollectionSort.CollectionDefault);
 			}));
 			alertController.AddAction (UIAlertAction.Create ("Best Selling", UIAlertActionStyle.Default, delegate {
-				GetCollection (BUYCollectionSort.BestSelling);
+				GetCollection (CollectionSort.BestSelling);
 			}));
 			alertController.AddAction (UIAlertAction.Create ("Title - Ascending", UIAlertActionStyle.Default, delegate {
-				GetCollection (BUYCollectionSort.TitleAscending);
+				GetCollection (CollectionSort.TitleAscending);
 			}));
 			alertController.AddAction (UIAlertAction.Create ("Title - Descending", UIAlertActionStyle.Default, delegate {
-				GetCollection (BUYCollectionSort.TitleDescending);
+				GetCollection (CollectionSort.TitleDescending);
 			}));
 			alertController.AddAction (UIAlertAction.Create ("Price - Ascending", UIAlertActionStyle.Default, delegate {
-				GetCollection (BUYCollectionSort.PriceAscending);
+				GetCollection (CollectionSort.PriceAscending);
 			}));
 			alertController.AddAction (UIAlertAction.Create ("Price - Descending", UIAlertActionStyle.Default, delegate {
-				GetCollection (BUYCollectionSort.PriceDescending);
+				GetCollection (CollectionSort.PriceDescending);
 			}));
 		    
 			// Note: The BUYCollectionSort.CreatedAscending and BUYCollectionSort.CreatedDescending are currently not supported
@@ -165,7 +165,7 @@ namespace ShopifyiOSSample
 			PresentViewController (alertController, true, null);
 		}
 
-		private void GetCollection (BUYCollectionSort collectionSort)
+		private void GetCollection (CollectionSort collectionSort)
 		{
 			if (collectionTask != null) {
 				collectionTask.Cancel ();
@@ -294,16 +294,16 @@ namespace ShopifyiOSSample
 			}
 		}
 
-		private void DemoNativeFlowWithProduct (BUYProduct product)
+		private void DemoNativeFlowWithProduct (Product product)
 		{
 			if (checkoutCreationTask != null && checkoutCreationTask.State == NSUrlSessionTaskState.Running) {
 				checkoutCreationTask.Cancel ();
 			}
 
-			var cart = new BUYCart ();
+			var cart = new Cart ();
 			cart.AddVariant (product.Variants [0]);
 
-			var checkout = new BUYCheckout (cart);
+			var checkout = new Checkout (cart);
 
 			// Apply billing and shipping address, as well as email to the checkout
 			checkout.ShippingAddress = Address;
@@ -325,7 +325,7 @@ namespace ShopifyiOSSample
 			});
 		}
 
-		private void DemoProductViewControllerWithProduct (BUYProduct product)
+		private void DemoProductViewControllerWithProduct (Product product)
 		{
 			var productViewController = GetProductViewController ();
 			productViewController.LoadWithProduct (product, (success, error) => {
@@ -339,14 +339,14 @@ namespace ShopifyiOSSample
 			});
 		}
 
-		private BUYProductViewController GetProductViewController ()
+		private ProductViewController GetProductViewController ()
 		{
-			var theme = new BUYTheme ();
+			var theme = new Theme ();
 			theme.Style = themeStyle;
 			theme.TintColor = themeTintColors [themeTintColorSelectedIndex];
 			theme.ShowsProductImageBackground = showsProductImageBackground;
 
-			var productViewController = new BUYProductViewController (client, theme);
+			var productViewController = new ProductViewController (client, theme);
 			productViewController.MerchantId = AppDelegate.MERCHANT_ID;
 			return productViewController;
 		}
@@ -367,7 +367,7 @@ namespace ShopifyiOSSample
 
 		private void ToggleProductViewControllerThemeStyle (object sender, EventArgs e)
 		{
-			themeStyle = (BUYThemeStyle)(int)((UISegmentedControl)sender).SelectedSegment;
+			themeStyle = (ThemeStyle)(int)((UISegmentedControl)sender).SelectedSegment;
 		}
 
 		private void ToggleProductViewControllerTintColorSelection (object sender, EventArgs e)

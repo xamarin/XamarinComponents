@@ -1,16 +1,16 @@
 ﻿using ObjCRuntime;
 
-namespace Shopify
+namespace Shopify.Buy
 {
 	[Native]
-	public enum BUYThemeStyle : long
+	public enum ThemeStyle : long
 	{
 		Light,
 		Dark
 	}
 
 	[Native]
-	public enum BUYCollectionSort : ulong
+	public enum CollectionSort : ulong
 	{
 		CollectionDefault,
 		BestSelling,
@@ -23,7 +23,7 @@ namespace Shopify
 	}
 
 	[Native]
-	public enum BUYStatus : ulong
+	public enum Status : ulong
 	{
 		Complete = 200,
 		Processing = 202,
@@ -34,7 +34,7 @@ namespace Shopify
 	}
 
 	[Native]
-	public enum BUYCheckoutError : ulong
+	public enum CheckoutError : ulong
 	{
 		CartFetchError,
 		NoShippingMethodsToAddress,
@@ -48,7 +48,7 @@ namespace Shopify
 	}
 
 	[Native]
-	public enum BUYPaymentButtonStyle : long
+	public enum PaymentButtonStyle : long
 	{
 		White = 0,
 		WhiteOutline,
@@ -56,7 +56,7 @@ namespace Shopify
 	}
 
 	[Native]
-	public enum BUYPaymentButtonType : long
+	public enum PaymentButtonType : long
 	{
 		Plain = 0,
 		Buy,
@@ -64,7 +64,7 @@ namespace Shopify
 	}
 
 	[Native]
-	public enum BUYCheckoutType : ulong
+	public enum CheckoutType : ulong
 	{
 		Normal,
 		ApplePay,

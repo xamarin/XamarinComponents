@@ -26,30 +26,30 @@ using System;
 using System.Threading.Tasks;
 using Foundation;
 
-using Shopify;
+using Shopify.Buy;
 
 namespace ShopifyiOSSample
 {
 	public class GetShippingRatesOperation : NSOperation
 	{
-		private readonly BUYClient client;
+		private readonly BuyClient client;
 
 		private bool done;
 		private NSUrlSessionDataTask task;
 
-		public event Action<GetShippingRatesOperation, BUYShippingRate[]> DidReceiveShippingRates;
+		public event Action<GetShippingRatesOperation, ShippingRate[]> DidReceiveShippingRates;
 
 		public event Action<GetShippingRatesOperation, NSError> FailedToReceiveShippingRates;
 
-		public GetShippingRatesOperation (BUYClient client, BUYCheckout checkout)
+		public GetShippingRatesOperation (BuyClient client, Checkout checkout)
 		{
 			this.client = client;
 			this.Checkout = checkout;
 		}
 
-		public BUYCheckout Checkout { get; private set; }
+		public Checkout Checkout { get; private set; }
 
-		public BUYShippingRate[] ShippingRates { get; private set; }
+		public ShippingRate[] ShippingRates { get; private set; }
 
 		public override bool IsFinished {
 			get {
@@ -82,7 +82,7 @@ namespace ShopifyiOSSample
 
 		private void PollForShippingRatesAsync ()
 		{
-			BUYStatus shippingStatus = BUYStatus.Unknown;
+			Status shippingStatus = Status.Unknown;
 
 			task = client.GetShippingRatesForCheckout (Checkout, async (shippingRates, status, error) => {
 				shippingStatus = status;
@@ -93,7 +93,7 @@ namespace ShopifyiOSSample
 					DidChangeValue ("isFinished");
 
 					FailedToReceiveShippingRates?.Invoke (this, error);
-				} else if (shippingStatus == BUYStatus.Complete) {
+				} else if (shippingStatus == Status.Complete) {
 					ShippingRates = shippingRates;
 
 					WillChangeValue ("isFinished");
@@ -101,7 +101,7 @@ namespace ShopifyiOSSample
 					DidChangeValue ("isFinished");
 
 					DidReceiveShippingRates (this, ShippingRates);
-				} else if (shippingStatus == BUYStatus.Processing) {
+				} else if (shippingStatus == Status.Processing) {
 					await Task.Delay (500);
 					PollForShippingRatesAsync ();
 				}

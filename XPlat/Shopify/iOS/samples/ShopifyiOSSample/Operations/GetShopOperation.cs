@@ -25,22 +25,22 @@
 using System;
 using Foundation;
 
-using Shopify;
+using Shopify.Buy;
 
 namespace ShopifyiOSSample
 {
 	public class GetShopOperation : NSOperation
 	{
-		private readonly BUYClient client;
+		private readonly BuyClient client;
 
 		private bool done;
 		private NSUrlSessionDataTask task;
 
-		public event Action<GetShopOperation, BUYShop> DidReceiveShop;
+		public event Action<GetShopOperation, Shop> DidReceiveShop;
 
 		public event Action<GetShopOperation, NSError> FailedToReceiveShop;
 
-		public GetShopOperation (BUYClient client)
+		public GetShopOperation (BuyClient client)
 		{
 			this.client = client;
 		}

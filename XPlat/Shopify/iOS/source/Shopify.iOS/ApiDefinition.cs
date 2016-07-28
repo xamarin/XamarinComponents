@@ -8,11 +8,11 @@ using ObjCRuntime;
 using PassKit;
 using UIKit;
 
-namespace Shopify
+namespace Shopify.Buy
 {
 	// @interface BUYObject : NSObject
-	[BaseType (typeof(NSObject))]
-	interface BUYObject
+	[BaseType (typeof(NSObject), Name = "BUYObject")]
+	interface Object
 	{
 		// @property (readonly, nonatomic, strong) NSNumber * identifier;
 		[Export ("identifier", ArgumentSemantic.Strong)]
@@ -43,7 +43,7 @@ namespace Shopify
 		// +(instancetype)convertObject:(id)object;
 		[Static]
 		[Export ("convertObject:")]
-		BUYObject ConvertObject (NSObject @object);
+		Object ConvertObject (NSObject @object);
 
 		// TODO: DirtyProperties might be string[]
 
@@ -65,15 +65,15 @@ namespace Shopify
 		void TrackDirtyProperties ();
 	}
 
-	interface IBUYSerializable
+	interface ISerializable
 	{
 
 	}
 
 	// @protocol BUYSerializable <NSObject>
 	[Protocol, Model]
-	[BaseType (typeof(NSObject))]
-	interface BUYSerializable
+	[BaseType (typeof(NSObject), Name = "BUYSerializable")]
+	interface Serializable
 	{
 		// @required -(NSDictionary *)jsonDictionaryForCheckout;
 		[Abstract]
@@ -82,8 +82,8 @@ namespace Shopify
 	}
 
 	// @interface BUYAddress : BUYObject <BUYSerializable>
-	[BaseType (typeof(BUYObject))]
-	interface BUYAddress : BUYSerializable
+	[BaseType (typeof(Object), Name = "BUYAddress")]
+	interface Address : Serializable
 	{
 		// @property (copy, nonatomic) NSString * address1;
 		[Export ("address1")]
@@ -147,20 +147,20 @@ namespace Shopify
 		[Deprecated (PlatformName.iOS, 9, 0, message: "Use the CNContact backed `buy_addressFromContact:` instead")]
 		[Static]
 		[Export ("buy_addressFromRecord:")]
-		BUYAddress ApplePayAddressFromRecord ([NullAllowed] ABRecord record);
+		Address ApplePayAddressFromRecord ([NullAllowed] ABRecord record);
 
 		// +(BUYAddress * _Nonnull)buy_addressFromContact:(PKContact * _Nullable)contact __attribute__((availability(ios, introduced=9_0)));
 		[Introduced (PlatformName.iOS, 9, 0)]
 		[Static]
 		[Export ("buy_addressFromContact:")]
-		BUYAddress ApplePayAddressFromContact ([NullAllowed] PKContact contact);
+		Address ApplePayAddressFromContact ([NullAllowed] PKContact contact);
 
 	}
 
 	// @interface Additions (BUYAddress)
 	[Category]
-	[BaseType (typeof(BUYAddress))]
-	interface BUYAddress_Additions
+	[BaseType (typeof(Address))]
+	interface AddressExtensions
 	{
 		// -(BOOL)isPartialAddress;
 		[Export ("isPartialAddress")]
@@ -172,9 +172,9 @@ namespace Shopify
 	}
 
 	// @interface BUYCheckout : BUYObject <BUYSerializable>
-	[BaseType (typeof(BUYObject))]
+	[BaseType (typeof(Object), Name = "BUYCheckout")]
 	[DisableDefaultCtor]
-	interface BUYCheckout : BUYSerializable
+	interface Checkout : Serializable
 	{
 		// @property (copy, nonatomic) NSString * email;
 		[Export ("email")]
@@ -234,23 +234,23 @@ namespace Shopify
 
 		// @property (readonly, copy, nonatomic) NSArray<__kindof BUYLineItem *> * lineItems;
 		[Export ("lineItems", ArgumentSemantic.Copy)]
-		BUYLineItem[] LineItems { get; }
+		LineItem[] LineItems { get; }
 
 		// @property (readonly, copy, nonatomic) NSArray<BUYTaxLine *> * taxLines;
 		[Export ("taxLines", ArgumentSemantic.Copy)]
-		BUYTaxLine[] TaxLines { get; }
+		TaxLine[] TaxLines { get; }
 
 		// @property (nonatomic, strong) BUYAddress * billingAddress;
 		[Export ("billingAddress", ArgumentSemantic.Strong)]
-		BUYAddress BillingAddress { get; set; }
+		Address BillingAddress { get; set; }
 
 		// @property (nonatomic, strong) BUYAddress * shippingAddress;
 		[Export ("shippingAddress", ArgumentSemantic.Strong)]
-		BUYAddress ShippingAddress { get; set; }
+		Address ShippingAddress { get; set; }
 
 		// @property (nonatomic, strong) BUYShippingRate * shippingRate;
 		[Export ("shippingRate", ArgumentSemantic.Strong)]
-		BUYShippingRate ShippingRate { get; set; }
+		ShippingRate ShippingRate { get; set; }
 
 		// @property (readonly, nonatomic) NSString * shippingRateId  DEPRECATED_MSG_ATTRIBUTE("Use shippingRate.shippingRateIdentifier");
 		[Export ("shippingRateId")]
@@ -258,11 +258,11 @@ namespace Shopify
 
 		// @property (nonatomic, strong) BUYDiscount * discount;
 		[Export ("discount", ArgumentSemantic.Strong)]
-		BUYDiscount Discount { get; set; }
+		Discount Discount { get; set; }
 
 		// @property (readonly, nonatomic, strong) NSArray<BUYGiftCard *> * giftCards;
 		[Export ("giftCards", ArgumentSemantic.Strong)]
-		BUYGiftCard[] GiftCards { get; }
+		GiftCard[] GiftCards { get; }
 
 		// @property (nonatomic, strong) NSString * channelId;
 		[Export ("channelId", ArgumentSemantic.Strong)]
@@ -314,7 +314,7 @@ namespace Shopify
 
 		// @property (readonly, nonatomic, strong) BUYMaskedCreditCard * creditCard;
 		[Export ("creditCard", ArgumentSemantic.Strong)]
-		BUYMaskedCreditCard CreditCard { get; }
+		MaskedCreditCard CreditCard { get; }
 
 		// @property (readonly, copy, nonatomic) NSString * customerId;
 		[Export ("customerId")]
@@ -326,11 +326,11 @@ namespace Shopify
 
 		// @property (nonatomic, copy) NSArray <BUYCheckoutAttribute *> *attributes;
 		[Export ("attributes", ArgumentSemantic.Copy)]
-		BUYCheckoutAttribute[] Attributes { get; }
+		CheckoutAttribute[] Attributes { get; }
 
 		// @property (readonly, nonatomic, strong) BUYOrder * order;
 		[Export ("order", ArgumentSemantic.Strong)]
-		BUYOrder Order { get; }
+		Order Order { get; }
 
 		// @property (assign, nonatomic) BOOL partialAddresses;
 		[Export ("partialAddresses")]
@@ -338,7 +338,7 @@ namespace Shopify
 
 		// -(instancetype)initWithCart:(BUYCart *)cart;
 		[Export ("initWithCart:")]
-		IntPtr Constructor (BUYCart cart);
+		IntPtr Constructor (Cart cart);
 
 		// -(instancetype)initWithCartToken:(NSString *)cartToken;
 		[Export ("initWithCartToken:")]
@@ -358,8 +358,8 @@ namespace Shopify
 	}
 
 	// @interface BUYCheckoutAttribute : BUYObject <BUYSerializable>
-	[BaseType (typeof(BUYObject))]
-	interface BUYCheckoutAttribute : BUYSerializable
+	[BaseType (typeof(Object), Name = "BUYCheckoutAttribute")]
+	interface CheckoutAttribute : Serializable
 	{
 		// @property (nonatomic, strong, nonnull) NSString *name;
 		[Export ("name", ArgumentSemantic.Strong)]
@@ -371,8 +371,8 @@ namespace Shopify
 	}
 
 	// @interface BUYShippingRate : BUYObject <BUYSerializable>
-	[BaseType (typeof(BUYObject))]
-	interface BUYShippingRate : BUYSerializable
+	[BaseType (typeof(Object), Name = "BUYShippingRate")]
+	interface ShippingRate : Serializable
 	{
 		// @property (readonly, nonatomic, strong) NSString * shippingRateIdentifier;
 		[Export ("shippingRateIdentifier", ArgumentSemantic.Strong)]
@@ -398,14 +398,14 @@ namespace Shopify
 		// +(NSArray<PKShippingMethod *> * _Nonnull)buy_convertShippingRatesToShippingMethods:(NSArray<BUYShippingRate *> * _Nonnull)rates;
 		[Static]
 		[Export ("buy_convertShippingRatesToShippingMethods:")]
-		PKShippingMethod[] ApplePayConvertShippingRatesToShippingMethods (BUYShippingRate[] rates);
+		PKShippingMethod[] ApplePayConvertShippingRatesToShippingMethods (ShippingRate[] rates);
 
 	}
 
 	// @interface ApplePay (BUYCheckout)
 	[Category]
-	[BaseType (typeof(BUYCheckout))]
-	interface BUYCheckout_ApplePay
+	[BaseType (typeof(Checkout), Name = "BUYCheckout")]
+	interface CheckoutApplePayExtensions
 	{
 		// -(NSArray<PKPaymentSummaryItem *> * _Nonnull)buy_summaryItems;
 		[Export ("buy_summaryItems")]
@@ -417,16 +417,16 @@ namespace Shopify
 	}
 
 	// @interface BUYApplePayHelpers : NSObject <PKPaymentAuthorizationViewControllerDelegate>
-	[BaseType (typeof(NSObject))]
-	interface BUYApplePayHelpers : IPKPaymentAuthorizationViewControllerDelegate
+	[BaseType (typeof(NSObject), Name = "BUYApplePayHelpers")]
+	interface ApplePayHelpers : IPKPaymentAuthorizationViewControllerDelegate
 	{
 		// -(instancetype)initWithClient:(BUYClient *)client checkout:(BUYCheckout *)checkout;
 		[Export ("initWithClient:checkout:")]
-		IntPtr Constructor (BUYClient client, BUYCheckout checkout);
+		IntPtr Constructor (BuyClient client, Checkout checkout);
 
 		// -(instancetype)initWithClient:(BUYClient *)client checkout:(BUYCheckout *)checkout shop:(BUYShop *)shop;
 		[Export ("initWithClient:checkout:shop:")]
-		IntPtr Constructor (BUYClient client, BUYCheckout checkout, BUYShop shop);
+		IntPtr Constructor (BuyClient client, Checkout checkout, Shop shop);
 
 		// -(void)updateAndCompleteCheckoutWithPayment:(PKPayment *)payment completion:(void (^)(PKPaymentAuthorizationStatus))completion __attribute__((deprecated("BUYApplePayHelpers now implements PKPaymentAuthorizationViewControllerDelegate instead")));
 		[Export ("updateAndCompleteCheckoutWithPayment:completion:")]
@@ -448,11 +448,11 @@ namespace Shopify
 
 		// @property (readonly, nonatomic, strong) BUYCheckout * checkout;
 		[Export ("checkout", ArgumentSemantic.Strong)]
-		BUYCheckout Checkout { get; }
+		Checkout Checkout { get; }
 
 		// @property (readonly, nonatomic, strong) BUYClient * client;
 		[Export ("client", ArgumentSemantic.Strong)]
-		BUYClient Client { get; }
+		BuyClient Client { get; }
 
 		// @property (readonly, nonatomic, strong) NSError * lastError;
 		[Export ("lastError", ArgumentSemantic.Strong)]
@@ -460,16 +460,16 @@ namespace Shopify
 
 		// @property (readonly, nonatomic, strong) BUYShop * shop;
 		[Export ("shop", ArgumentSemantic.Strong)]
-		BUYShop Shop { get; }
+		Shop Shop { get; }
 	}
 
 	// @interface BUYCart : NSObject <BUYSerializable>
-	[BaseType (typeof(NSObject))]
-	interface BUYCart : BUYSerializable
+	[BaseType (typeof(NSObject), Name = "BUYCart")]
+	interface Cart : Serializable
 	{
 		// @property (readonly, nonatomic, strong) NSArray<BUYCartLineItem *> * _Nonnull lineItems;
 		[Export ("lineItems", ArgumentSemantic.Strong)]
-		BUYCartLineItem[] LineItems { get; }
+		CartLineItem[] LineItems { get; }
 
 		// -(BOOL)isValid;
 		[Export ("isValid")]
@@ -481,20 +481,20 @@ namespace Shopify
 
 		// -(void)addVariant:(BUYProductVariant * _Nonnull)variant;
 		[Export ("addVariant:")]
-		void AddVariant (BUYProductVariant variant);
+		void AddVariant (ProductVariant variant);
 
 		// -(void)removeVariant:(BUYProductVariant * _Nonnull)variant;
 		[Export ("removeVariant:")]
-		void RemoveVariant (BUYProductVariant variant);
+		void RemoveVariant (ProductVariant variant);
 
 		// -(void)setVariant:(BUYProductVariant * _Nonnull)variant withTotalQuantity:(NSInteger)quantity;
 		[Export ("setVariant:withTotalQuantity:")]
-		void SetVariant (BUYProductVariant variant, nint quantity);
+		void SetVariant (ProductVariant variant, nint quantity);
 	}
 
 	// @interface BUYLineItem : BUYObject <BUYSerializable>
-	[BaseType (typeof(BUYObject))]
-	interface BUYLineItem : BUYSerializable
+	[BaseType (typeof(Object), Name = "BUYLineItem")]
+	interface LineItem : Serializable
 	{
 		// @property (readonly, nonatomic, strong) NSString * lineItemIdentifier;
 		[Export ("lineItemIdentifier", ArgumentSemantic.Strong)]
@@ -558,21 +558,21 @@ namespace Shopify
 
 		// -(instancetype)initWithVariant:(BUYProductVariant *)variant;
 		[Export ("initWithVariant:")]
-		IntPtr Constructor (BUYProductVariant variant);
+		IntPtr Constructor (ProductVariant variant);
 	}
 
 	// @interface BUYCartLineItem : BUYLineItem
-	[BaseType (typeof(BUYLineItem))]
-	interface BUYCartLineItem
+	[BaseType (typeof(LineItem), Name = "BUYCartLineItem")]
+	interface CartLineItem
 	{
 		// @property (readonly, nonatomic, strong) BUYProductVariant * variant;
 		[Export ("variant", ArgumentSemantic.Strong)]
-		BUYProductVariant Variant { get; }
+		ProductVariant Variant { get; }
 	}
 
 	// @interface BUYTheme : NSObject
-	[BaseType (typeof(NSObject))]
-	interface BUYTheme
+	[BaseType (typeof(NSObject), Name = "BUYTheme")]
+	interface Theme
 	{
 		// extern const CGFloat kBuyPaddingSmall;
 		[Static]
@@ -626,7 +626,7 @@ namespace Shopify
 
 		// @property (assign, nonatomic) BUYThemeStyle style;
 		[Export ("style", ArgumentSemantic.Assign)]
-		BUYThemeStyle Style { get; set; }
+		ThemeStyle Style { get; set; }
 
 		// @property (assign, nonatomic) BOOL showsProductImageBackground;
 		[Export ("showsProductImageBackground")]
@@ -693,58 +693,58 @@ namespace Shopify
 
 	}
 
-	interface IBUYThemeable
+	interface IThemeable
 	{
 
 	}
 
 	// @protocol BUYThemeable <NSObject>
 	[Protocol, Model]
-	[BaseType (typeof(NSObject))]
-	interface BUYThemeable
+	[BaseType (typeof(NSObject), Name = "BUYThemeable")]
+	interface Themeable
 	{
 		// @required -(void)setTheme:(BUYTheme *)theme;
 		[Abstract]
 		[Export ("setTheme:")]
-		void SetTheme (BUYTheme theme);
+		void SetTheme (Theme theme);
 	}
 
 	// @interface BUYCheckoutButton : UIButton <BUYThemeable>
-	[BaseType (typeof(UIButton))]
-	interface BUYCheckoutButton : BUYThemeable
+	[BaseType (typeof(UIButton), Name = "BUYCheckoutButton")]
+	interface CheckoutButton : Themeable
 	{
 		// -(void)showActivityIndicator:(BOOL)show;
 		[Export ("showActivityIndicator:")]
 		void ShowActivityIndicator (bool show);
 	}
 
-	delegate void BUYDataCreditCardBlock (BUYCheckout checkout, string paymentSessionId, NSError error);
+	delegate void DataCreditCardBlock (Checkout checkout, string paymentSessionId, NSError error);
 
-	delegate void BUYDataCheckoutBlock (BUYCheckout checkout, NSError error);
+	delegate void DataCheckoutBlock (Checkout checkout, NSError error);
 
-	delegate void BUYDataCheckoutStatusBlock (BUYStatus status, NSError error);
+	delegate void DataCheckoutStatusBlock (Status status, NSError error);
 
-	delegate void BUYDataShippingRatesBlock (BUYShippingRate[] shippingRates, BUYStatus status, NSError error);
+	delegate void DataShippingRatesBlock (ShippingRate[] shippingRates, Status status, NSError error);
 
-	delegate void BUYDataShopBlock (BUYShop shop, NSError error);
+	delegate void DataShopBlock (Shop shop, NSError error);
 
-	delegate void BUYDataProductBlock (BUYProduct product, NSError error);
+	delegate void DataProductBlock (Product product, NSError error);
 
-	delegate void BUYDataProductsBlock (BUYProduct[] products, NSError error);
+	delegate void DataProductsBlock (Product[] products, NSError error);
 
-	delegate void BUYDataCollectionsBlock (BUYCollection[] collections, NSError error);
+	delegate void DataCollectionsBlock (Collection[] collections, NSError error);
 
-	delegate void BUYDataCollectionsListBlock (BUYCollection[] collections, nuint page, bool reachedEnd, NSError error);
+	delegate void DataCollectionsListBlock (Collection[] collections, nuint page, bool reachedEnd, NSError error);
 
-	delegate void BUYDataProductListBlock (BUYProduct[] productList, nuint page, bool reachedEnd, NSError error);
+	delegate void DataProductListBlock (Product[] productList, nuint page, bool reachedEnd, NSError error);
 
-//	delegate void BUYDataImagesListBlock (BUYProductImage[] imagesList, NSError error);
+//	delegate void DataImagesListBlock (BUYProductImage[] imagesList, NSError error);
 
-	delegate void BUYDataGiftCardBlock (BUYGiftCard giftCard, NSError error);
+	delegate void DataGiftCardBlock (GiftCard giftCard, NSError error);
 
-	[BaseType (typeof(NSObject))]
+	[BaseType (typeof(NSObject), Name = "BUYClient")]
 	[DisableDefaultCtor]
-	interface BUYClient
+	interface BuyClient
 	{
 		[Static]
 		[Field ("BUYVersionString", "__Internal")]
@@ -780,67 +780,67 @@ namespace Shopify
 		string UrlScheme { get; set; }
 
 		[Export ("getShop:")]
-		NSUrlSessionDataTask GetShop (BUYDataShopBlock block);
+		NSUrlSessionDataTask GetShop (DataShopBlock block);
 
 		[Export ("getProductsPage:completion:")]
-		NSUrlSessionDataTask GetProductsPage (nuint page, BUYDataProductListBlock block);
+		NSUrlSessionDataTask GetProductsPage (nuint page, DataProductListBlock block);
 
 		[Export ("getProductById:completion:")]
-		NSUrlSessionDataTask GetProduct (string productId, BUYDataProductBlock block);
+		NSUrlSessionDataTask GetProduct (string productId, DataProductBlock block);
 
 		[Export ("getProductsByIds:completion:")]
-		NSUrlSessionDataTask GetProducts (string[] productIds, BUYDataProductsBlock block);
+		NSUrlSessionDataTask GetProducts (string[] productIds, DataProductsBlock block);
 
 		[Export ("getCollections:")]
-		NSUrlSessionDataTask GetCollections (BUYDataCollectionsBlock block);
+		NSUrlSessionDataTask GetCollections (DataCollectionsBlock block);
 
 		[Export("getCollectionsPage:completion:")]
-		NSUrlSessionDataTask GetCollectionsPage(nuint page, BUYDataCollectionsListBlock block);
+		NSUrlSessionDataTask GetCollectionsPage(nuint page, DataCollectionsListBlock block);
 
 		[Export ("getProductsPage:inCollection:completion:")]
-		NSUrlSessionDataTask GetProductsPage (nuint page, NSNumber collectionId, BUYDataProductListBlock block);
+		NSUrlSessionDataTask GetProductsPage (nuint page, NSNumber collectionId, DataProductListBlock block);
 
 		[Export ("getProductsPage:inCollection:sortOrder:completion:")]
-		NSUrlSessionDataTask GetProductsPage (nuint page, NSNumber collectionId, BUYCollectionSort sortOrder, BUYDataProductListBlock block);
+		NSUrlSessionDataTask GetProductsPage (nuint page, NSNumber collectionId, CollectionSort sortOrder, DataProductListBlock block);
 
 		[Export ("createCheckout:completion:")]
-		NSUrlSessionDataTask CreateCheckout (BUYCheckout checkout, BUYDataCheckoutBlock block);
+		NSUrlSessionDataTask CreateCheckout (Checkout checkout, DataCheckoutBlock block);
 
 		[Export ("createCheckoutWithCartToken:completion:")]
-		NSUrlSessionDataTask CreateCheckout (string cartToken, BUYDataCheckoutBlock block);
+		NSUrlSessionDataTask CreateCheckout (string cartToken, DataCheckoutBlock block);
 
 		[Export ("applyGiftCardWithCode:toCheckout:completion:")]
-		NSUrlSessionDataTask ApplyGiftCard (string giftCardCode, BUYCheckout checkout, BUYDataCheckoutBlock block);
+		NSUrlSessionDataTask ApplyGiftCard (string giftCardCode, Checkout checkout, DataCheckoutBlock block);
 
 		[Export ("removeGiftCard:fromCheckout:completion:")]
-		NSUrlSessionDataTask RemoveGiftCard (BUYGiftCard giftCard, BUYCheckout checkout, BUYDataCheckoutBlock block);
+		NSUrlSessionDataTask RemoveGiftCard (GiftCard giftCard, Checkout checkout, DataCheckoutBlock block);
 
 		[Export ("getCheckout:completion:")]
-		NSUrlSessionDataTask GetCheckout (BUYCheckout checkout, BUYDataCheckoutBlock block);
+		NSUrlSessionDataTask GetCheckout (Checkout checkout, DataCheckoutBlock block);
 
 		[Export ("updateCheckout:completion:")]
-		NSUrlSessionDataTask UpdateCheckout (BUYCheckout checkout, BUYDataCheckoutBlock block);
+		NSUrlSessionDataTask UpdateCheckout (Checkout checkout, DataCheckoutBlock block);
 
 		[Export ("completeCheckout:completion:")]
-		NSUrlSessionDataTask CompleteCheckout (BUYCheckout checkout, BUYDataCheckoutBlock block);
+		NSUrlSessionDataTask CompleteCheckout (Checkout checkout, DataCheckoutBlock block);
 
 		[Export ("completeCheckout:withApplePayToken:completion:")]
-		NSUrlSessionDataTask CompleteCheckout (BUYCheckout checkout, PKPaymentToken token, BUYDataCheckoutBlock block);
+		NSUrlSessionDataTask CompleteCheckout (Checkout checkout, PKPaymentToken token, DataCheckoutBlock block);
 
 		[Export ("getCompletionStatusOfCheckout:completion:")]
-		NSUrlSessionDataTask GetCompletionStatusOfCheckout (BUYCheckout checkout, BUYDataCheckoutStatusBlock block);
+		NSUrlSessionDataTask GetCompletionStatusOfCheckout (Checkout checkout, DataCheckoutStatusBlock block);
 
 		[Export ("getCompletionStatusOfCheckoutURL:completion:")]
-		NSUrlSessionDataTask GetCompletionStatusOfCheckoutURL (NSUrl url, BUYDataCheckoutStatusBlock block);
+		NSUrlSessionDataTask GetCompletionStatusOfCheckoutURL (NSUrl url, DataCheckoutStatusBlock block);
 
 		[Export ("getShippingRatesForCheckout:completion:")]
-		NSUrlSessionDataTask GetShippingRatesForCheckout (BUYCheckout checkout, BUYDataShippingRatesBlock block);
+		NSUrlSessionDataTask GetShippingRatesForCheckout (Checkout checkout, DataShippingRatesBlock block);
 
 		[Export ("storeCreditCard:checkout:completion:")]
-		NSUrlSessionDataTask StoreCreditCard (IBUYSerializable creditCard, BUYCheckout checkout, BUYDataCreditCardBlock block);
+		NSUrlSessionDataTask StoreCreditCard (ISerializable creditCard, Checkout checkout, DataCreditCardBlock block);
 
 		[Export ("removeProductReservationsFromCheckout:completion:")]
-		NSUrlSessionDataTask RemoveProductReservationsFromCheckout (BUYCheckout checkout, BUYDataCheckoutBlock block);
+		NSUrlSessionDataTask RemoveProductReservationsFromCheckout (Checkout checkout, DataCheckoutBlock block);
 
 		[Export ("enableApplePayWithMerchantId:")]
 		void EnableApplePay (string merchantId);
@@ -848,8 +848,8 @@ namespace Shopify
 	}
 
 	[Category]
-	[BaseType (typeof(BUYClient))]
-	interface BUYClient_Test
+	[BaseType (typeof(BuyClient), Name = "BUYClient")]
+	interface ClientTestExtensions
 	{
 		[Export ("testIntegrationWithMerchantId:")]
 		bool TestIntegration (string merchantId);
@@ -859,8 +859,8 @@ namespace Shopify
 
 	}
 
-	[BaseType (typeof(BUYObject))]
-	interface BUYCollection
+	[BaseType (typeof(Object), Name = "BUYCollection")]
+	interface Collection
 	{
 		[Export ("title", ArgumentSemantic.Strong)]
 		string Title { get; }
@@ -894,12 +894,12 @@ namespace Shopify
 
 		[Static]
 		[Export ("sortOrderParameterForCollectionSort:")]
-		string SortOrderParameterForCollectionSort (BUYCollectionSort sort);
+		string SortOrderParameterForCollectionSort (CollectionSort sort);
 
 	}
 
-	[BaseType (typeof(NSObject))]
-	interface BUYCreditCard : BUYSerializable
+	[BaseType (typeof(NSObject), Name = "BUYCreditCard")]
+	interface CreditCard : Serializable
 	{
 		[Export ("nameOnCard")]
 		string NameOnCard { get; set; }
@@ -918,8 +918,8 @@ namespace Shopify
 
 	}
 
-	[BaseType (typeof(BUYObject))]
-	interface BUYDiscount : BUYSerializable
+	[BaseType (typeof(Object), Name = "BUYDiscount")]
+	interface Discount : Serializable
 	{
 		[Export ("code")]
 		string Code { get; set; }
@@ -935,8 +935,8 @@ namespace Shopify
 
 	}
 
-	[BaseType (typeof(NSError))]
-	interface BUYError
+	[BaseType (typeof(NSError), Name = "BUYError")]
+	interface Error
 	{
 		[Static]
 		[Field ("BUYShopifyError", "__Internal")]
@@ -944,8 +944,8 @@ namespace Shopify
 
 	}
 
-	[BaseType (typeof(BUYObject))]
-	interface BUYGiftCard : BUYSerializable
+	[BaseType (typeof(Object), Name = "BUYGiftCard")]
+	interface GiftCard : Serializable
 	{
 		[Export ("code")]
 		string Code { get; }
@@ -961,8 +961,8 @@ namespace Shopify
 
 	}
 
-	[BaseType (typeof(UIView))]
-	interface BUYGradientView
+	[BaseType (typeof(UIView), Name = "BUYGradientView")]
+	interface GradientView
 	{
 		[Export ("topColor", ArgumentSemantic.Strong)]
 		UIColor TopColor { get; set; }
@@ -972,8 +972,8 @@ namespace Shopify
 
 	}
 
-	[BaseType (typeof(BUYObject))]
-	interface BUYImage
+	[BaseType (typeof(Object), Name = "BUYImage")]
+	interface Image
 	{
 		[Export ("src")]
 		string Src { get; }
@@ -995,8 +995,8 @@ namespace Shopify
 
 	}
 
-	[BaseType (typeof(NSObject))]
-	interface BUYImageKit
+	[BaseType (typeof(NSObject), Name = "BUYImageKit")]
+	interface ImageKit
 	{
 		[Static]
 		[Export ("imageOfVariantCloseImageWithFrame:")]
@@ -1020,8 +1020,8 @@ namespace Shopify
 
 	}
 
-	[BaseType (typeof(UIImageView))]
-	interface BUYImageView : BUYThemeable
+	[BaseType (typeof(UIImageView), Name = "BUYImageView")]
+	interface ImageView : Themeable
 	{
 		[Static]
 		[Field ("imageDuration", "__Internal")]
@@ -1045,8 +1045,8 @@ namespace Shopify
 
 	}
 
-	[BaseType (typeof(BUYObject))]
-	interface BUYMaskedCreditCard
+	[BaseType (typeof(Object), Name = "BUYMaskedCreditCard")]
+	interface MaskedCreditCard
 	{
 		[Export ("firstName")]
 		string FirstName { get; set; }
@@ -1068,14 +1068,14 @@ namespace Shopify
 
 	}
 
-	interface IBUYNavigationControllerDelegate
+	interface INavigationControllerDelegate
 	{
 
 	}
 
 	[Protocol, Model]
-	[BaseType (typeof(NSObject))]
-	interface BUYNavigationControllerDelegate
+	[BaseType (typeof(NSObject), Name = "BUYNavigationControllerDelegate")]
+	interface NavigationControllerDelegate
 	{
 		[Abstract]
 		[Export ("presentationControllerWillDismiss:")]
@@ -1087,18 +1087,18 @@ namespace Shopify
 
 	}
 
-	[BaseType (typeof(UINavigationController))]
-	interface BUYNavigationController : BUYThemeable
+	[BaseType (typeof(UINavigationController), Name = "BUYNavigationController")]
+	interface NavigationController : Themeable
 	{
 		[Export ("updateCloseButtonImageWithTintColor:duration:")]
 		void UpdateCloseButtonImageWithTintColor (bool tintColor, nfloat duration);
 
 		[NullAllowed, Export ("navigationDelegate", ArgumentSemantic.Weak)]
-		IBUYNavigationControllerDelegate NavigationDelegate { get; set; }
+		INavigationControllerDelegate NavigationDelegate { get; set; }
 	}
 
-	[BaseType (typeof(BUYObject))]
-	interface BUYOption
+	[BaseType (typeof(Object), Name = "BUYOption")]
+	interface Option
 	{
 		[Export ("name")]
 		string Name { get; }
@@ -1111,8 +1111,8 @@ namespace Shopify
 
 	}
 
-	[BaseType (typeof(UIView))]
-	interface BUYVariantOptionBreadCrumbsView : BUYThemeable
+	[BaseType (typeof(UIView), Name = "BUYVariantOptionBreadCrumbsView")]
+	interface VariantOptionBreadCrumbsView : Themeable
 	{
 		[Export ("hiddenConstraint", ArgumentSemantic.Strong)]
 		NSLayoutConstraint HiddenConstraint { get; set; }
@@ -1125,64 +1125,64 @@ namespace Shopify
 
 	}
 
-	[BaseType (typeof(BUYNavigationController))]
-	interface BUYOptionSelectionNavigationController : BUYThemeable
+	[BaseType (typeof(NavigationController), Name = "BUYOptionSelectionNavigationController")]
+	interface OptionSelectionNavigationController : Themeable
 	{
 		[Export ("dismissWithCancelAnimation")]
 		bool DismissWithCancelAnimation { get; set; }
 
 		[Export ("breadsCrumbsView", ArgumentSemantic.Strong)]
-		BUYVariantOptionBreadCrumbsView BreadsCrumbsView { get; set; }
+		VariantOptionBreadCrumbsView BreadsCrumbsView { get; set; }
 
 	}
 
-	interface IBUYOptionSelectionDelegate
+	interface IOptionSelectionDelegate
 	{
 
 	}
 
 	[Protocol, Model]
-	[BaseType (typeof(NSObject))]
-	interface BUYOptionSelectionDelegate
+	[BaseType (typeof(NSObject), Name = "BUYOptionSelectionDelegate")]
+	interface OptionSelectionDelegate
 	{
 		[Abstract]
 		[Export ("optionSelectionController:didSelectOptionValue:")]
-		void OptionSelectionController (BUYOptionSelectionViewController controller, BUYOptionValue optionValue);
+		void OptionSelectionController (OptionSelectionViewController controller, OptionValue optionValue);
 
 		[Abstract]
 		[Export ("optionSelectionControllerDidBackOutOfChoosingOption:")]
-		void OptionSelectionControllerDidBackOutOfChoosingOption (BUYOptionSelectionViewController controller);
+		void OptionSelectionControllerDidBackOutOfChoosingOption (OptionSelectionViewController controller);
 
 	}
 
-	[BaseType (typeof(UITableViewController))]
-	interface BUYOptionSelectionViewController : BUYThemeable
+	[BaseType (typeof(UITableViewController), Name = "BUYOptionSelectionViewController")]
+	interface OptionSelectionViewController : Themeable
 	{
 		[Export ("initWithOptionValues:filteredProductVariantsForSelectionOption:")]
-		IntPtr Constructor (BUYOptionValue[] optionValues, BUYProductVariant[] filteredProductVariantsForSelectionOption);
+		IntPtr Constructor (OptionValue[] optionValues, ProductVariant[] filteredProductVariantsForSelectionOption);
 
 		[Export ("optionValues", ArgumentSemantic.Strong)]
-		BUYOptionValue[] OptionValues { get; }
+		OptionValue[] OptionValues { get; }
 
 		[Export ("selectedOptionValue", ArgumentSemantic.Strong)]
-		BUYOptionValue SelectedOptionValue { get; set; }
+		OptionValue SelectedOptionValue { get; set; }
 
 		[Export ("isLastOption")]
 		bool IsLastOption { get; set; }
 
 		[Export ("filteredProductVariantsForSelectionOption", ArgumentSemantic.Strong)]
-		BUYProductVariant[] FilteredProductVariantsForSelectionOption { get; }
+		ProductVariant[] FilteredProductVariantsForSelectionOption { get; }
 
 		[NullAllowed, Export ("currencyFormatter", ArgumentSemantic.Weak)]
 		NSNumberFormatter CurrencyFormatter { get; set; }
 
 		[NullAllowed, Export ("delegate", ArgumentSemantic.Weak)]
-		IBUYOptionSelectionDelegate Delegate { get; set; }
+		IOptionSelectionDelegate Delegate { get; set; }
 
 	}
 
-	[BaseType (typeof(BUYObject))]
-	interface BUYOptionValue
+	[BaseType (typeof(Object), Name = "BUYOptionValue")]
+	interface OptionValue
 	{
 		[Export ("name")]
 		string Name { get; }
@@ -1195,19 +1195,19 @@ namespace Shopify
 
 	}
 
-	[BaseType (typeof(UITableViewCell))]
-	interface BUYOptionValueCell
+	[BaseType (typeof(UITableViewCell), Name = "BUYOptionValueCell")]
+	interface OptionValueCell
 	{
 		[Export ("selectedImageView", ArgumentSemantic.Strong)]
 		UIImageView SelectedImageView { get; set; }
 
 		[Export ("setOptionValue:productVariant:currencyFormatter:theme:")]
-		void SetOptionValue (BUYOptionValue optionValue, BUYProductVariant productVariant, NSNumberFormatter currencyFormatter, BUYTheme theme);
+		void SetOptionValue (OptionValue optionValue, ProductVariant productVariant, NSNumberFormatter currencyFormatter, Theme theme);
 
 	}
 
-	[BaseType (typeof(BUYObject))]
-	interface BUYOrder
+	[BaseType (typeof(Object), Name = "BUYOrder")]
+	interface Order
 	{
 		[Export ("statusURL", ArgumentSemantic.Strong)]
 		NSUrl StatusURL { get; }
@@ -1217,29 +1217,29 @@ namespace Shopify
 
 	}
 
-	[BaseType (typeof(UIButton))]
+	[BaseType (typeof(UIButton), Name = "BUYPaymentButton")]
 	[DisableDefaultCtor]
-	interface BUYPaymentButton
+	interface PaymentButton
 	{
 		[Static]
 		[Export ("buttonWithType:style:")]
-		UIButton Create (BUYPaymentButtonType buttonType, BUYPaymentButtonStyle buttonStyle);
+		UIButton Create (PaymentButtonType buttonType, PaymentButtonStyle buttonStyle);
 
 	}
 
-	[BaseType (typeof(UIPresentationController))]
-	interface BUYPresentationControllerForVariantSelection
+	[BaseType (typeof(UIPresentationController), Name = "BUYPresentationControllerForVariantSelection")]
+	interface PresentationControllerForVariantSelection
 	{
 		[Export ("backgroundView", ArgumentSemantic.Strong)]
 		UIVisualEffectView BackgroundView { get; set; }
 
 	}
 
-	[BaseType (typeof(UIPresentationController))]
-	interface BUYPresentationControllerWithNavigationController : IUIAdaptivePresentationControllerDelegate, BUYThemeable
+	[BaseType (typeof(UIPresentationController), Name = "BUYPresentationControllerWithNavigationController")]
+	interface PresentationControllerWithNavigationController : IUIAdaptivePresentationControllerDelegate, Themeable
 	{
 		[NullAllowed, Export ("navigationDelegate", ArgumentSemantic.Weak)]
-		IBUYNavigationControllerDelegate NavigationDelegate { get; set; }
+		INavigationControllerDelegate NavigationDelegate { get; set; }
 
 		[Static]
 		[Export ("adaptivePresentationStyle")]
@@ -1247,8 +1247,8 @@ namespace Shopify
 
 	}
 
-	[BaseType (typeof(BUYObject))]
-	interface BUYProduct
+	[BaseType (typeof(Object), Name = "BUYProduct")]
+	interface Product
 	{
 		[Export ("productId", ArgumentSemantic.Copy)]
 		NSNumber ProductId { get; }
@@ -1266,13 +1266,13 @@ namespace Shopify
 		string ProductType { get; }
 
 		[Export ("variants", ArgumentSemantic.Copy)]
-		BUYProductVariant[] Variants { get; }
+		ProductVariant[] Variants { get; }
 
 		[Export ("images", ArgumentSemantic.Copy)]
-		BUYImage[] Images { get; }
+		Image[] Images { get; }
 
 		[Export ("options", ArgumentSemantic.Copy)]
-		BUYOption[] Options { get; }
+		Option[] Options { get; }
 
 		[Export ("htmlDescription")]
 		string HtmlDescription { get; }
@@ -1298,41 +1298,41 @@ namespace Shopify
 	}
 
 	[Category]
-	[BaseType (typeof(BUYProduct))]
-	interface BUYProduct_Options
+	[BaseType (typeof(Product), Name = "BUYProduct")]
+	interface ProductOptionsExtensions
 	{
 		[Export ("valuesForOption:variants:")]
-		BUYOptionValue[] ValuesForOption (BUYOption option, BUYProductVariant[] variants);
+		OptionValue[] ValuesForOption (Option option, ProductVariant[] variants);
 
 		[Export ("variantWithOptions:")]
-		BUYProductVariant VariantWithOptions (BUYOptionValue[] options);
+		ProductVariant VariantWithOptions (OptionValue[] options);
 
 		[Export ("isDefaultVariant")]
 		bool IsDefaultVariant ();
 
 	}
 
-	[BaseType (typeof(UITableViewCell))]
-	interface BUYProductDescriptionCell : BUYThemeable
+	[BaseType (typeof(UITableViewCell), Name = "BUYProductDescriptionCell")]
+	interface ProductDescriptionCell : Themeable
 	{
 		[Export ("setDescriptionHTML:")]
 		void SetDescriptionHTML (string html);
 
 	}
 
-	[BaseType (typeof(UITableViewCell))]
-	interface BUYProductHeaderCell : BUYThemeable
+	[BaseType (typeof(UITableViewCell), Name = "BUYProductHeaderCell")]
+	interface ProductHeaderCell : Themeable
 	{
 		[Export ("setProductVariant:withCurrencyFormatter:")]
-		void SetProductVariant (BUYProductVariant productVariant, NSNumberFormatter currencyFormatter);
+		void SetProductVariant (ProductVariant productVariant, NSNumberFormatter currencyFormatter);
 
 	}
 
-	[BaseType (typeof(UICollectionViewCell))]
-	interface BUYProductImageCollectionViewCell
+	[BaseType (typeof(UICollectionViewCell), Name = "BUYProductImageCollectionViewCell")]
+	interface ProductImageCollectionViewCell
 	{
 		[Export ("productImageView", ArgumentSemantic.Strong)]
-		BUYImageView ProductImageView { get; set; }
+		ImageView ProductImageView { get; set; }
 
 		[Export ("productImageViewConstraintHeight", ArgumentSemantic.Strong)]
 		NSLayoutConstraint ProductImageViewConstraintHeight { get; set; }
@@ -1345,17 +1345,17 @@ namespace Shopify
 
 	}
 
-	[BaseType (typeof(BUYObject))]
-	interface BUYProductVariant
+	[BaseType (typeof(Object), Name = "BUYProductVariant")]
+	interface ProductVariant
 	{
 		[Export ("product", ArgumentSemantic.Strong)]
-		BUYProduct Product { get; set; }
+		Product Product { get; set; }
 
 		[Export ("title")]
 		string Title { get; }
 
 		[Export ("options", ArgumentSemantic.Copy)]
-		BUYOptionValue[] Options { get; }
+		OptionValue[] Options { get; }
 
 		[Export ("price", ArgumentSemantic.Strong)]
 		NSDecimalNumber Price { get; }
@@ -1384,29 +1384,29 @@ namespace Shopify
 		// interface BUYProductVariant_Options
 		[Static]
 		[Export ("filterProductVariants:forOptionValue:")]
-		BUYProductVariant[] FilterProductVariants (BUYProductVariant[] productVariants, BUYOptionValue optionValue);
+		ProductVariant[] FilterProductVariants (ProductVariant[] productVariants, OptionValue optionValue);
 
 	}
 
 	[Category]
-	[BaseType (typeof(BUYProductVariant))]
-	interface BUYProductVariant_Options
+	[BaseType (typeof(ProductVariant), Name = "BUYProductVariant")]
+	interface ProductVariantOptionsExtensions
 	{
 		[Export ("optionValueForName:")]
-		BUYOptionValue OptionValueForName (string optionName);
+		OptionValue OptionValueForName (string optionName);
 
 	}
 
-	[BaseType (typeof(UITableViewCell))]
-	interface BUYProductVariantCell : BUYThemeable
+	[BaseType (typeof(UITableViewCell), Name = "BUYProductVariantCell")]
+	interface ProductVariantCell : Themeable
 	{
 		[Export ("setOptionsForProductVariant:")]
-		void SetOptionsForProductVariant (BUYProductVariant productVariant);
+		void SetOptionsForProductVariant (ProductVariant productVariant);
 
 	}
 
-	[BaseType (typeof(UIView))]
-	interface BUYProductView
+	[BaseType (typeof(UIView), Name = "BUYProductView")]
+	interface ProductView
 	{
 		[Export ("tableView", ArgumentSemantic.Strong)]
 		UITableView TableView { get; set; }
@@ -1421,31 +1421,31 @@ namespace Shopify
 		NSLayoutConstraint FooterOffsetLayoutConstraint { get; set; }
 
 		[Export ("productViewHeader", ArgumentSemantic.Strong)]
-		BUYProductViewHeader ProductViewHeader { get; set; }
+		ProductViewHeader ProductViewHeader { get; set; }
 
 		[Export ("backgroundImageView", ArgumentSemantic.Strong)]
-		BUYProductViewHeaderBackgroundImageView BackgroundImageView { get; set; }
+		ProductViewHeaderBackgroundImageView BackgroundImageView { get; set; }
 
 		[Export ("productViewFooter", ArgumentSemantic.Strong)]
-		BUYProductViewFooter ProductViewFooter { get; set; }
+		ProductViewFooter ProductViewFooter { get; set; }
 
 		[Export ("topGradientView", ArgumentSemantic.Strong)]
-		BUYGradientView TopGradientView { get; set; }
+		GradientView TopGradientView { get; set; }
 
 		[NullAllowed, Export ("theme", ArgumentSemantic.Weak)]
-		BUYTheme Theme { get; set; }
+		Theme Theme { get; set; }
 
 		[Export ("hasSetVariantOnCollectionView")]
 		bool HasSetVariantOnCollectionView { get; set; }
 
 		[Export ("initWithFrame:product:theme:shouldShowApplePaySetup:")]
-		IntPtr Constructor (CGRect rect, BUYProduct product, BUYTheme theme, bool showApplePaySetup);
+		IntPtr Constructor (CGRect rect, Product product, Theme theme, bool showApplePaySetup);
 
 		[Export ("scrollViewDidScroll:")]
 		void ScrollViewDidScroll (UIScrollView scrollView);
 
 		[Export ("updateBackgroundImage:")]
-		void UpdateBackgroundImage (BUYImage[] images);
+		void UpdateBackgroundImage (Image[] images);
 
 		[Export ("showErrorWithMessage:")]
 		void ShowErrorWithMessage (string errorMessage);
@@ -1458,62 +1458,62 @@ namespace Shopify
 
 	}
 
-	interface IBUYViewControllerDelegate
+	interface IViewControllerDelegate
 	{
 
 	}
 
 	[Protocol, Model]
-	[BaseType (typeof(NSObject))]
-	interface BUYViewControllerDelegate
+	[BaseType (typeof(NSObject), Name = "BUYViewControllerDelegate")]
+	interface ViewControllerDelegate
 	{
 		[Export ("controller:failedToCreateCheckout:")]
-		void ControllerFailedToCreateCheckout (BUYViewController controller, NSError error);
+		void ControllerFailedToCreateCheckout (ViewController controller, NSError error);
 
 		[Export ("controllerFailedToStartApplePayProcess:")]
-		void ControllerFailedToStartApplePayProcess (BUYViewController controller);
+		void ControllerFailedToStartApplePayProcess (ViewController controller);
 
 		[Export ("controller:failedToUpdateCheckout:withError:")]
-		void ControllerFailedToUpdateCheckout (BUYViewController controller, BUYCheckout checkout, NSError error);
+		void ControllerFailedToUpdateCheckout (ViewController controller, Checkout checkout, NSError error);
 
 		[Export ("controller:failedToGetShippingRates:withError:")]
-		void ControllerFailedToGetShippingRates (BUYViewController controller, BUYCheckout checkout, NSError error);
+		void ControllerFailedToGetShippingRates (ViewController controller, Checkout checkout, NSError error);
 
 		[Export ("controller:failedToCompleteCheckout:withError:")]
-		void ControllerFailedToCompleteCheckout (BUYViewController controller, BUYCheckout checkout, NSError error);
+		void ControllerFailedToCompleteCheckout (ViewController controller, Checkout checkout, NSError error);
 
 		[Export ("controller:didCompleteCheckout:status:")]
-		void ControllerDidCompleteCheckout (BUYViewController controller, BUYCheckout checkout, BUYStatus status);
+		void ControllerDidCompleteCheckout (ViewController controller, Checkout checkout, Status status);
 
 		[Export ("controller:didDismissApplePayControllerWithStatus:forCheckout:")]
-		void ControllerDidDismissApplePayController (BUYViewController controller, PKPaymentAuthorizationStatus status, BUYCheckout checkout);
+		void ControllerDidDismissApplePayController (ViewController controller, PKPaymentAuthorizationStatus status, Checkout checkout);
 
 		[Export ("controller:didDismissWebCheckout:")]
-		void ControllerDidDismissWebCheckout (BUYViewController controller, BUYCheckout checkout);
+		void ControllerDidDismissWebCheckout (ViewController controller, Checkout checkout);
 
 		[Export ("didDismissViewController:")]
-		void DidDismissViewController (BUYViewController controller);
+		void DidDismissViewController (ViewController controller);
 
 		[Export ("controllerWillCheckoutViaWeb:")]
-		void ControllerWillCheckoutViaWeb (BUYViewController viewController);
+		void ControllerWillCheckoutViaWeb (ViewController viewController);
 
 		[Export ("controllerWillCheckoutViaApplePay:")]
-		void ControllerWillCheckoutViaApplePay (BUYViewController viewController);
+		void ControllerWillCheckoutViaApplePay (ViewController viewController);
 
 	}
 
-	[BaseType (typeof(UIViewController))]
+	[BaseType (typeof(UIViewController), Name = "BUYViewController")]
 	[DisableDefaultCtor]
-	interface BUYViewController : IPKPaymentAuthorizationViewControllerDelegate
+	interface ViewController : IPKPaymentAuthorizationViewControllerDelegate
 	{
 		[NullAllowed, Export ("delegate", ArgumentSemantic.Weak)]
-		IBUYViewControllerDelegate Delegate { get; set; }
+		IViewControllerDelegate Delegate { get; set; }
 
 		[Export ("client", ArgumentSemantic.Strong)]
-		BUYClient Client { get; set; }
+		BuyClient Client { get; set; }
 
 		[Export ("shop", ArgumentSemantic.Strong)]
-		BUYShop Shop { get; set; }
+		Shop Shop { get; set; }
 
 		[Export ("merchantId", ArgumentSemantic.Strong)]
 		string MerchantId { get; set; }
@@ -1534,7 +1534,7 @@ namespace Shopify
 		bool ShouldShowApplePaySetup { get; }
 
 		[Export ("checkout", ArgumentSemantic.Strong)]
-		BUYCheckout Checkout { get; }
+		Checkout Checkout { get; }
 
 		[Export ("loadShopWithCallback:")]
 		void LoadShopWithCallback (Action<bool, NSError> block);
@@ -1546,19 +1546,19 @@ namespace Shopify
 		PKPaymentRequest PaymentRequest { get; }
 
 		[Export ("initWithClient:")]
-		IntPtr Constructor (BUYClient client);
+		IntPtr Constructor (BuyClient client);
 
 		[Export ("startApplePayCheckout:")]
-		void StartApplePayCheckout (BUYCheckout checkout);
+		void StartApplePayCheckout (Checkout checkout);
 
 		[Export ("startWebCheckout:")]
-		void StartWebCheckout (BUYCheckout checkout);
+		void StartWebCheckout (Checkout checkout);
 
 		[Export ("startCheckoutWithCartToken:")]
 		void StartCheckoutWithCartToken (string token);
 
 		[Export ("checkoutCompleted:status:")]
-		void CheckoutCompleted (BUYCheckout checkout, BUYStatus status);
+		void CheckoutCompleted (Checkout checkout, Status status);
 
 		[Static]
 		[Export ("completeCheckoutFromLaunchURL:")]
@@ -1566,23 +1566,23 @@ namespace Shopify
 
 	}
 
-	[BaseType (typeof(BUYViewController))]
-	interface BUYProductViewController : BUYThemeable
+	[BaseType (typeof(ViewController), Name = "BUYProductViewController")]
+	interface ProductViewController : Themeable
 	{
 		[Export ("initWithClient:theme:")]
-		IntPtr Constructor (BUYClient client, BUYTheme theme);
+		IntPtr Constructor (BuyClient client, Theme theme);
 
 		[Export ("loadProduct:completion:")]
 		void LoadProduct (string productId, Action<bool, NSError> completion);
 
 		[Export ("loadWithProduct:completion:")]
-		void LoadWithProduct (BUYProduct product, Action<bool, NSError> completion);
+		void LoadWithProduct (Product product, Action<bool, NSError> completion);
 
 		[Export ("productId", ArgumentSemantic.Strong)]
 		string ProductId { get; }
 
 		[Export ("product", ArgumentSemantic.Strong)]
-		BUYProduct Product { get; }
+		Product Product { get; }
 
 		[Export ("isLoading")]
 		bool IsLoading { get; }
@@ -1592,8 +1592,8 @@ namespace Shopify
 
 	}
 
-	[BaseType (typeof(UIView))]
-	interface BUYProductViewErrorView
+	[BaseType (typeof(UIView), Name = "BUYProductViewErrorView")]
+	interface ProductViewErrorView
 	{
 		[Export ("errorLabel", ArgumentSemantic.Strong)]
 		UILabel ErrorLabel { get; set; }
@@ -1605,41 +1605,41 @@ namespace Shopify
 		NSLayoutConstraint VisibleConstraint { get; set; }
 
 		[Export ("initWithTheme:")]
-		IntPtr Constructor (BUYTheme theme);
+		IntPtr Constructor (Theme theme);
 
 	}
 
-	[BaseType (typeof(UIView))]
-	interface BUYProductViewFooter
+	[BaseType (typeof(UIView), Name = "BUYProductViewFooter")]
+	interface ProductViewFooter
 	{
 		[Export ("initWithTheme:showApplePaySetup:")]
-		IntPtr Constructor (BUYTheme theme, bool showApplePaySetup);
+		IntPtr Constructor (Theme theme, bool showApplePaySetup);
 
 		[Export ("checkoutButton", ArgumentSemantic.Strong)]
-		BUYCheckoutButton CheckoutButton { get; set; }
+		CheckoutButton CheckoutButton { get; set; }
 
 		[Export ("buyPaymentButton", ArgumentSemantic.Strong)]
-		BUYPaymentButton BuyPaymentButton { get; set; }
+		PaymentButton BuyPaymentButton { get; set; }
 
 		[Export ("setApplePayButtonVisible:")]
 		void SetApplePayButtonVisible (bool isApplePayAvailable);
 
 		[Export ("updateButtonsForProductVariant:")]
-		void UpdateButtonsForProductVariant (BUYProductVariant productVariant);
+		void UpdateButtonsForProductVariant (ProductVariant productVariant);
 
 	}
 
-	[BaseType (typeof(UIView))]
-	interface BUYProductViewHeader
+	[BaseType (typeof(UIView), Name = "BUYProductViewHeader")]
+	interface ProductViewHeader
 	{
 		[Export ("collectionView", ArgumentSemantic.Strong)]
 		UICollectionView CollectionView { get; set; }
 
 		[Export ("productViewHeaderOverlay", ArgumentSemantic.Strong)]
-		BUYProductViewHeaderOverlay ProductViewHeaderOverlay { get; set; }
+		ProductViewHeaderOverlay ProductViewHeaderOverlay { get; set; }
 
 		[Export ("initWithFrame:theme:")]
-		IntPtr Constructor (CGRect frame, BUYTheme theme);
+		IntPtr Constructor (CGRect frame, Theme theme);
 
 		[Export ("imageHeightWithScrollViewDidScroll:")]
 		nfloat ImageHeightWithScrollViewDidScroll (UIScrollView scrollView);
@@ -1648,34 +1648,34 @@ namespace Shopify
 		void SetCurrentPage (nint currentPage);
 
 		[Export ("setImageForSelectedVariant:withImages:")]
-		void SetImageForSelectedVariant (BUYProductVariant productVariant, BUYImage[] images);
+		void SetImageForSelectedVariant (ProductVariant productVariant, Image[] images);
 
 	}
 
-	[BaseType (typeof(UIView))]
-	interface BUYProductViewHeaderBackgroundImageView
+	[BaseType (typeof(UIView), Name = "BUYProductViewHeaderBackgroundImageView")]
+	interface ProductViewHeaderBackgroundImageView
 	{
 		[Export ("initWithTheme:")]
-		IntPtr Constructor (BUYTheme theme);
+		IntPtr Constructor (Theme theme);
 
 		[Export ("setBackgroundProductImage:")]
-		void SetBackgroundProductImage (BUYImage image);
+		void SetBackgroundProductImage (Image image);
 
 	}
 
-	[BaseType (typeof(UIView))]
-	interface BUYProductViewHeaderOverlay
+	[BaseType (typeof(UIView), Name = "BUYProductViewHeaderOverlay")]
+	interface ProductViewHeaderOverlay
 	{
 		[Export ("initWithTheme:")]
-		IntPtr Constructor (BUYTheme theme);
+		IntPtr Constructor (Theme theme);
 
 		[Export ("scrollViewDidScroll:withNavigationBarHeight:")]
 		void ScrollViewDidScroll (UIScrollView scrollView, nfloat navigationBarHeight);
 
 	}
 
-	[BaseType (typeof(BUYObject))]
-	interface BUYShop
+	[BaseType (typeof(Object), Name = "BUYShop")]
+	interface Shop
 	{
 		[Export ("name")]
 		string Name { get; }
@@ -1712,38 +1712,39 @@ namespace Shopify
 
 	}
 
-	delegate void BUYCheckoutTypeBlock (BUYCheckoutType checkoutType);
+	delegate void CheckoutTypeBlock (CheckoutType checkoutType);
 
-	interface IBUYStoreViewControllerDelegate
+	interface IStoreViewControllerDelegate
 	{
 
 	}
 
 	[Protocol, Model]
-	interface BUYStoreViewControllerDelegate : BUYViewControllerDelegate
+	[BaseType(typeof(NSObject), Name = "BUYStoreViewControllerDelegate")]
+	interface StoreViewControllerDelegate : ViewControllerDelegate
 	{
 		[Abstract]
 		[Export ("controller:shouldProceedWithCheckoutType:")]
-		void ShouldProceedWithCheckoutType (BUYStoreViewController controller, BUYCheckoutTypeBlock completionHandler);
+		void ShouldProceedWithCheckoutType (StoreViewController controller, CheckoutTypeBlock completionHandler);
 
 	}
 
-	[BaseType (typeof(BUYViewController))]
-	interface BUYStoreViewController
+	[BaseType (typeof(ViewController), Name = "BUYStoreViewController")]
+	interface StoreViewController
 	{
 		[Export ("initWithClient:url:")]
-		IntPtr Constructor (BUYClient client, NSUrl url);
+		IntPtr Constructor (BuyClient client, NSUrl url);
 
 		[Export ("reloadHomePage")]
 		void ReloadHomePage ();
 
 		[NullAllowed, Export ("delegate", ArgumentSemantic.Weak)]
-		IBUYStoreViewControllerDelegate Delegate { get; set; }
+		IStoreViewControllerDelegate Delegate { get; set; }
 
 	}
 
-	[BaseType (typeof(BUYObject))]
-	interface BUYTaxLine
+	[BaseType (typeof(Object), Name = "BUYTaxLine")]
+	interface TaxLine
 	{
 		[Export ("price", ArgumentSemantic.Strong)]
 		NSDecimalNumber Price { get; set; }
@@ -1757,8 +1758,8 @@ namespace Shopify
 	}
 
 	[Category]
-	[BaseType (typeof(BUYTheme))]
-	interface BUYTheme_Additions
+	[BaseType (typeof(Theme), Name = "BUYTheme")]
+	interface ThemeExtensions
 	{
 		[Export ("backgroundColor")]
 		UIColor BackgroundColor ();
@@ -1803,55 +1804,55 @@ namespace Shopify
 		UIBarStyle NavigationBarStyle ();
 
 		[Export ("paymentButtonStyle")]
-		BUYPaymentButtonStyle PaymentButtonStyle ();
+		PaymentButtonStyle PaymentButtonStyle ();
 
 	}
 
 	// @interface BUYVariantOptionView : UIView <BUYThemeable>
-	[BaseType (typeof(UIView))]
-	interface BUYVariantOptionView : BUYThemeable
+	[BaseType (typeof(UIView), Name = "BUYVariantOptionView")]
+	interface VariantOptionView : Themeable
 	{
 		// -(void)setTextForOptionValue:(BUYOptionValue *)optionValue;
 		[Export ("setTextForOptionValue:")]
-		void SetTextForOptionValue (BUYOptionValue optionValue);
+		void SetTextForOptionValue (OptionValue optionValue);
 	}
 
-	interface IBUYVariantSelectionDelegate
+	interface IVariantSelectionDelegate
 	{
 
 	}
 
 	// @protocol BUYVariantSelectionDelegate <NSObject>
 	[Protocol, Model]
-	[BaseType (typeof(NSObject))]
-	interface BUYVariantSelectionDelegate
+	[BaseType (typeof(NSObject), Name = "BUYVariantSelectionDelegate")]
+	interface VariantSelectionDelegate
 	{
 		// @required -(void)variantSelectionController:(BUYVariantSelectionViewController *)controller didSelectVariant:(BUYProductVariant *)variant;
 		[Abstract]
 		[Export ("variantSelectionController:didSelectVariant:")]
-		void VariantSelectionController (BUYVariantSelectionViewController controller, BUYProductVariant variant);
+		void VariantSelectionController (VariantSelectionViewController controller, ProductVariant variant);
 
 		// @required -(void)variantSelectionControllerDidCancelVariantSelection:(BUYVariantSelectionViewController *)controller atOptionIndex:(NSUInteger)optionIndex;
 		[Abstract]
 		[Export ("variantSelectionControllerDidCancelVariantSelection:atOptionIndex:")]
-		void VariantSelectionControllerDidCancelVariantSelection (BUYVariantSelectionViewController controller, nuint optionIndex);
+		void VariantSelectionControllerDidCancelVariantSelection (VariantSelectionViewController controller, nuint optionIndex);
 	}
 
 	// @interface BUYVariantSelectionViewController : UIViewController
-	[BaseType (typeof(UIViewController))]
-	interface BUYVariantSelectionViewController
+	[BaseType (typeof(UIViewController), Name = "BUYVariantSelectionViewController")]
+	interface VariantSelectionViewController
 	{
 		// -(instancetype)initWithProduct:(BUYProduct *)product theme:(BUYTheme *)theme;
 		[Export ("initWithProduct:theme:")]
-		IntPtr Constructor (BUYProduct product, BUYTheme theme);
+		IntPtr Constructor (Product product, Theme theme);
 
 		// @property (readonly, nonatomic, strong) BUYProduct * product;
 		[Export ("product", ArgumentSemantic.Strong)]
-		BUYProduct Product { get; }
+		Product Product { get; }
 
 		// @property (nonatomic, strong) BUYProductVariant * selectedProductVariant;
 		[Export ("selectedProductVariant", ArgumentSemantic.Strong)]
-		BUYProductVariant SelectedProductVariant { get; set; }
+		ProductVariant SelectedProductVariant { get; set; }
 
 		// @property (nonatomic, weak) NSNumberFormatter * _Nullable currencyFormatter;
 		[NullAllowed, Export ("currencyFormatter", ArgumentSemantic.Weak)]
@@ -1859,7 +1860,7 @@ namespace Shopify
 
 		// @property (nonatomic, weak) id<BUYVariantSelectionDelegate> _Nullable delegate;
 		[NullAllowed, Export ("delegate", ArgumentSemantic.Weak)]
-		IBUYVariantSelectionDelegate Delegate { get; set; }
+		IVariantSelectionDelegate Delegate { get; set; }
 	}
 
 //	// @interface BUYAdditions (NSDate)

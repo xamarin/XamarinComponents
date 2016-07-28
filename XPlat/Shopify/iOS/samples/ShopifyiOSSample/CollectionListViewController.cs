@@ -26,14 +26,14 @@ using System;
 using Foundation;
 using UIKit;
 
-using Shopify;
+using Shopify.Buy;
 
 namespace ShopifyiOSSample
 {
 	partial class CollectionListViewController : UITableViewController
 	{
-		private BUYClient client;
-		private BUYCollection[] collections;
+		private BuyClient client;
+		private Collection[] collections;
 
 		public CollectionListViewController (IntPtr handle)
 			: base (handle)
@@ -48,7 +48,7 @@ namespace ShopifyiOSSample
 
 			TableView.RegisterClassForCellReuse (typeof(UITableViewCell), "Cell");
 
-			client = new BUYClient (AppDelegate.SHOP_DOMAIN, AppDelegate.API_KEY, AppDelegate.CHANNEL_ID);
+			client = new BuyClient (AppDelegate.SHOP_DOMAIN, AppDelegate.API_KEY, AppDelegate.CHANNEL_ID);
 
 			UIApplication.SharedApplication.NetworkActivityIndicatorVisible = true;
 			client.GetCollections ((collections, error) => {
@@ -96,7 +96,7 @@ namespace ShopifyiOSSample
 
 		public override void RowSelected (UITableView tableView, NSIndexPath indexPath)
 		{
-			BUYCollection collection = null;
+			Collection collection = null;
 			if (indexPath.Section == 1) {
 				collection = collections [indexPath.Row];
 			}

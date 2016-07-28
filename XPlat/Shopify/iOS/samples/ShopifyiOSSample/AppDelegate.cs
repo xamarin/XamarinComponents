@@ -38,14 +38,6 @@ namespace ShopifyiOSSample
 		// Enter your merchant ID
 		public const string MERCHANT_ID = "merchant.com.xamarintests.xamarinbindings";
 
-//		// Enter your shop domain and API Key
-//		public const string SHOP_DOMAIN = "";
-//		public const string API_KEY = "";
-//		public const string CHANNEL_ID = "";
-//
-//		// Enter your merchant ID
-//		public const string MERCHANT_ID = "";
-
 		public static NSString CheckoutCallbackNotification = (NSString)"CheckoutCallbackNotification";
 
 		public override UIWindow Window { get; set; }

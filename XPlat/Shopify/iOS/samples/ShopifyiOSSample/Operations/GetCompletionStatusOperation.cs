@@ -26,30 +26,30 @@ using System;
 using System.Threading.Tasks;
 using Foundation;
 
-using Shopify;
+using Shopify.Buy;
 
 namespace ShopifyiOSSample
 {
 	public class GetCompletionStatusOperation : NSOperation
 	{
-		private readonly BUYClient client;
+		private readonly BuyClient client;
 
 		private bool done;
 		private NSUrlSessionDataTask task;
 
-		public event Action<GetCompletionStatusOperation, BUYStatus> DidReceiveCompletionStatus;
+		public event Action<GetCompletionStatusOperation, Status> DidReceiveCompletionStatus;
 
 		public event Action<GetCompletionStatusOperation, NSError> FailedToReceiveCompletionStatus;
 
-		public GetCompletionStatusOperation (BUYClient client, BUYCheckout checkout)
+		public GetCompletionStatusOperation (BuyClient client, Checkout checkout)
 		{
 			this.client = client;
 			this.Checkout = checkout;
 		}
 
-		public BUYCheckout Checkout { get; private set; }
+		public Checkout Checkout { get; private set; }
 
-		public BUYStatus CompletionStatus { get; private set; }
+		public Status CompletionStatus { get; private set; }
 
 		public override bool IsFinished {
 			get {
@@ -76,7 +76,7 @@ namespace ShopifyiOSSample
 			}
 
 			task = client.GetCompletionStatusOfCheckout (Checkout, async (status, error) => {
-				if (status == BUYStatus.Processing) {
+				if (status == Status.Processing) {
 					await Task.Delay (500);
 					PollForCompletionStatusAsync ();
 				} else {

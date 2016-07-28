@@ -29,14 +29,14 @@ using PassKit;
 using SafariServices;
 using UIKit;
 
-using Shopify;
+using Shopify.Buy;
 
 namespace ShopifyiOSSample
 {
 	public class PreCheckoutViewController : UITableViewController
 	{
-		private readonly BUYClient client;
-		private BUYCheckout _checkout;
+		private readonly BuyClient client;
+		private Checkout _checkout;
 
 		private PKPaymentSummaryItem[] summaryItems;
 
@@ -57,7 +57,7 @@ namespace ShopifyiOSSample
 			Count
 		}
 
-		public PreCheckoutViewController (BUYClient client, BUYCheckout checkout)
+		public PreCheckoutViewController (BuyClient client, Checkout checkout)
 			: base (UITableViewStyle.Grouped)
 		{
 			this.client = client;
@@ -66,7 +66,7 @@ namespace ShopifyiOSSample
 
 		public NSNumberFormatter CurrencyFormatter { get; set; }
 
-		private BUYCheckout checkout {
+		private Checkout checkout {
 			get { return _checkout; }
 			set {
 				_checkout = value;
@@ -179,7 +179,7 @@ namespace ShopifyiOSSample
 			}));
 
 			alertController.AddAction (UIAlertAction.Create ("OK", UIAlertActionStyle.Default, action => {
-				var discount = new BUYDiscount (alertController.TextFields [0].Text);
+				var discount = new Discount (alertController.TextFields [0].Text);
 				checkout.Discount = discount;
 
 				UIApplication.SharedApplication.NetworkActivityIndicatorVisible = true;

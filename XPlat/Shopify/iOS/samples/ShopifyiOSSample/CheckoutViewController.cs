@@ -29,22 +29,22 @@ using PassKit;
 using SafariServices;
 using UIKit;
 
-using Shopify;
+using Shopify.Buy;
 
 namespace ShopifyiOSSample
 {
 	public class CheckoutViewController : UITableViewController, ISFSafariViewControllerDelegate
 	{
-		private readonly BUYClient client;
-		private BUYCheckout _checkout;
+		private readonly BuyClient client;
+		private Checkout _checkout;
 
-		private BUYShop shop;
+		private Shop shop;
 		private PKPaymentSummaryItem[] summaryItems;
-		private BUYApplePayHelpers applePayHelper;
+		private ApplePayHelpers applePayHelper;
 
-		private static BUYCreditCard CreditCard {
+		private static CreditCard CreditCard {
 			get {
-				var creditCard = new BUYCreditCard ();
+				var creditCard = new CreditCard ();
 				creditCard.Number = "4242424242424242";
 				creditCard.ExpiryMonth = "12";
 				creditCard.ExpiryYear = "2020";
@@ -55,7 +55,7 @@ namespace ShopifyiOSSample
 			}
 		}
 
-		public CheckoutViewController (BUYClient client, BUYCheckout checkout)
+		public CheckoutViewController (BuyClient client, Checkout checkout)
 			: base (UITableViewStyle.Grouped)
 		{
 			this.client = client;
@@ -64,7 +64,7 @@ namespace ShopifyiOSSample
 
 		public NSNumberFormatter CurrencyFormatter { get; set; }
 
-		private BUYCheckout checkout {
+		private Checkout checkout {
 			get { return _checkout; }
 			set {
 				_checkout = value;
@@ -102,7 +102,7 @@ namespace ShopifyiOSSample
 			webCheckoutButton.TouchUpInside += CheckoutOnWeb;
 			footerView.AddSubview (webCheckoutButton);
 
-			var applePayButton = BUYPaymentButton.Create (BUYPaymentButtonType.Buy, BUYPaymentButtonStyle.Black);
+			var applePayButton = PaymentButton.Create (PaymentButtonType.Buy, PaymentButtonStyle.Black);
 			applePayButton.TranslatesAutoresizingMaskIntoConstraints = false;
 			applePayButton.TouchUpInside += CheckoutWithApplePay;
 			footerView.AddSubview (applePayButton);
@@ -235,7 +235,7 @@ namespace ShopifyiOSSample
 		{
 			var request = GetPaymentRequest ();
 
-			applePayHelper = new BUYApplePayHelpers (client, checkout, shop);
+			applePayHelper = new ApplePayHelpers (client, checkout, shop);
 
 			var paymentController = new PKPaymentAuthorizationViewController (request);
 
@@ -334,7 +334,7 @@ namespace ShopifyiOSSample
 			client.GetCompletionStatusOfCheckoutURL (url, (status, error) => {
 				UIApplication.SharedApplication.NetworkActivityIndicatorVisible = false;
 		
-				if (error == null && status == BUYStatus.Complete) {
+				if (error == null && status == Status.Complete) {
 					Console.WriteLine ("Successfully completed checkout");
 					GetCompletedCheckout (() => {
 						InvokeOnMainThread (() => {
