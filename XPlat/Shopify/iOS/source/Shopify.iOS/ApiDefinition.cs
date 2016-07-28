@@ -218,7 +218,7 @@ namespace Shopify.Buy
 
 		// @property (readonly, nonatomic, strong) NSURL * paymentURL;
 		[Export ("paymentURL", ArgumentSemantic.Strong)]
-		NSUrl PaymentURL { get; }
+		NSUrl PaymentUrl { get; }
 
 		// @property (nonatomic, strong) NSNumber * reservationTime;
 		[Export ("reservationTime", ArgumentSemantic.Strong)]
@@ -274,11 +274,11 @@ namespace Shopify.Buy
 
 		// @property (readonly, nonatomic, strong) NSURL * webCheckoutURL;
 		[Export ("webCheckoutURL", ArgumentSemantic.Strong)]
-		NSUrl WebCheckoutURL { get; }
+		NSUrl WebCheckoutUrl { get; }
 
 		// @property (nonatomic, strong) NSString * webReturnToURL;
 		[Export ("webReturnToURL", ArgumentSemantic.Strong)]
-		string WebReturnToURL { get; set; }
+		string WebReturnToUrl { get; set; }
 
 		// @property (nonatomic, strong) NSString * webReturnToLabel;
 		[Export ("webReturnToLabel", ArgumentSemantic.Strong)]
@@ -294,15 +294,15 @@ namespace Shopify.Buy
 
 		// @property (readonly, nonatomic, strong) NSURL * privacyPolicyURL;
 		[Export ("privacyPolicyURL", ArgumentSemantic.Strong)]
-		NSUrl PrivacyPolicyURL { get; }
+		NSUrl PrivacyPolicyUrl { get; }
 
 		// @property (readonly, nonatomic, strong) NSURL * refundPolicyURL;
 		[Export ("refundPolicyURL", ArgumentSemantic.Strong)]
-		NSUrl RefundPolicyURL { get; }
+		NSUrl RefundPolicyUrl { get; }
 
 		// @property (readonly, nonatomic, strong) NSURL * termsOfServiceURL;
 		[Export ("termsOfServiceURL", ArgumentSemantic.Strong)]
-		NSUrl TermsOfServiceURL { get; }
+		NSUrl TermsOfServiceUrl { get; }
 
 		// @property (readonly, copy, nonatomic) NSString * sourceName;
 		[Export ("sourceName")]
@@ -354,7 +354,7 @@ namespace Shopify.Buy
 
 		// @property (readonly, nonatomic, strong) NSURL * orderStatusURL __attribute__((deprecated("Available on the BUYOrder object")));
 		[Export ("orderStatusURL", ArgumentSemantic.Strong)]
-		NSUrl OrderStatusURL { get; }
+		NSUrl OrderStatusUrl { get; }
 	}
 
 	// @interface BUYCheckoutAttribute : BUYObject <BUYSerializable>
@@ -795,7 +795,7 @@ namespace Shopify.Buy
 		NSUrlSessionDataTask GetCollections (DataCollectionsBlock block);
 
 		[Export("getCollectionsPage:completion:")]
-		NSUrlSessionDataTask GetCollectionsPage(nuint page, DataCollectionsListBlock block);
+		NSUrlSessionDataTask GetCollectionsPage (nuint page, DataCollectionsListBlock block);
 
 		[Export ("getProductsPage:inCollection:completion:")]
 		NSUrlSessionDataTask GetProductsPage (nuint page, NSNumber collectionId, DataProductListBlock block);
@@ -831,7 +831,7 @@ namespace Shopify.Buy
 		NSUrlSessionDataTask GetCompletionStatusOfCheckout (Checkout checkout, DataCheckoutStatusBlock block);
 
 		[Export ("getCompletionStatusOfCheckoutURL:completion:")]
-		NSUrlSessionDataTask GetCompletionStatusOfCheckoutURL (NSUrl url, DataCheckoutStatusBlock block);
+		NSUrlSessionDataTask GetCompletionStatusOfCheckoutUrl (NSUrl url, DataCheckoutStatusBlock block);
 
 		[Export ("getShippingRatesForCheckout:completion:")]
 		NSUrlSessionDataTask GetShippingRatesForCheckout (Checkout checkout, DataShippingRatesBlock block);
@@ -872,7 +872,7 @@ namespace Shopify.Buy
 		string HtmlDescription { get; }
 
 		[Export ("imageURL", ArgumentSemantic.Strong)]
-		NSUrl ImageURL { get; }
+		NSUrl ImageUrl { get; }
 
 		[Export ("handle", ArgumentSemantic.Strong)]
 		string CollectionHandle { get; }
@@ -1031,11 +1031,11 @@ namespace Shopify.Buy
 		[Export ("showsActivityIndicator")]
 		bool ShowsActivityIndicator { get; set; }
 
-		[Export ("loadImageWithURL:completion:")]
-		void LoadImageWithURL (NSUrl imageURL, Action<UIImage, NSError> completion);
+		[Export ("loadImageWithURL:completion:"), Async]
+		void LoadImageWithUrl (NSUrl imageUrl, Action<UIImage, NSError> completion);
 
-		[Export ("loadImageWithURL:animateChange:completion:")]
-		void LoadImageWithURL (NSUrl imageURL, bool animateChange, Action<UIImage, NSError> completion);
+		[Export ("loadImageWithURL:animateChange:completion:"), Async]
+		void LoadImageWithUrl (NSUrl imageUrl, bool animateChange, Action<UIImage, NSError> completion);
 
 		[Export ("cancelImageTask")]
 		void CancelImageTask ();
@@ -1210,7 +1210,7 @@ namespace Shopify.Buy
 	interface Order
 	{
 		[Export ("statusURL", ArgumentSemantic.Strong)]
-		NSUrl StatusURL { get; }
+		NSUrl StatusUrl { get; }
 
 		[Export ("name", ArgumentSemantic.Strong)]
 		string Name { get; }
@@ -1536,7 +1536,7 @@ namespace Shopify.Buy
 		[Export ("checkout", ArgumentSemantic.Strong)]
 		Checkout Checkout { get; }
 
-		[Export ("loadShopWithCallback:")]
+		[Export ("loadShopWithCallback:"), Async]
 		void LoadShopWithCallback (Action<bool, NSError> block);
 
 		[Export ("supportedNetworks", ArgumentSemantic.Copy)]
@@ -1562,7 +1562,7 @@ namespace Shopify.Buy
 
 		[Static]
 		[Export ("completeCheckoutFromLaunchURL:")]
-		void CompleteCheckoutFromLaunchURL (NSUrl url);
+		void CompleteCheckoutFromLaunchUrl (NSUrl url);
 
 	}
 
@@ -1572,10 +1572,10 @@ namespace Shopify.Buy
 		[Export ("initWithClient:theme:")]
 		IntPtr Constructor (BuyClient client, Theme theme);
 
-		[Export ("loadProduct:completion:")]
+		[Export ("loadProduct:completion:"), Async]
 		void LoadProduct (string productId, Action<bool, NSError> completion);
 
-		[Export ("loadWithProduct:completion:")]
+		[Export ("loadWithProduct:completion:"), Async]
 		void LoadWithProduct (Product product, Action<bool, NSError> completion);
 
 		[Export ("productId", ArgumentSemantic.Strong)]
@@ -1705,10 +1705,10 @@ namespace Shopify.Buy
 		string[] ShipsToCountries { get; }
 
 		[Export ("shopURL")]
-		NSUrl ShopURL { get; }
+		NSUrl ShopUrl { get; }
 
 		[Export ("myShopifyURL")]
-		NSUrl MyShopifyURL { get; }
+		NSUrl MyShopifyUrl { get; }
 
 	}
 

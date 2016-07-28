@@ -174,7 +174,7 @@ namespace ShopifyiOSSample
 				NavigationController.PopToRootViewController (true);
 			}));
 			alertController.AddAction (UIAlertAction.Create ("Show order status page", UIAlertActionStyle.Default, action => {
-				var safariViewController = new SFSafariViewController (checkout.Order.StatusURL);
+				var safariViewController = new SFSafariViewController (checkout.Order.StatusUrl);
 				safariViewController.Delegate = this;
 				PresentViewController (safariViewController, true, null);
 			}));
@@ -318,12 +318,12 @@ namespace ShopifyiOSSample
 		
 			// On iOS 9+ we should use the SafariViewController to display the checkout in-app
 			if (UIDevice.CurrentDevice.CheckSystemVersion (9, 0)) {
-				var safariViewController = new SFSafariViewController (checkout.WebCheckoutURL);
+				var safariViewController = new SFSafariViewController (checkout.WebCheckoutUrl);
 				safariViewController.Delegate = this;
 		
 				PresentViewController (safariViewController, true, null);
 			} else {
-				UIApplication.SharedApplication.OpenUrl (checkout.WebCheckoutURL);
+				UIApplication.SharedApplication.OpenUrl (checkout.WebCheckoutUrl);
 			}
 		}
 
@@ -331,7 +331,7 @@ namespace ShopifyiOSSample
 		{
 			UIApplication.SharedApplication.NetworkActivityIndicatorVisible = true;
 		
-			client.GetCompletionStatusOfCheckoutURL (url, (status, error) => {
+			client.GetCompletionStatusOfCheckoutUrl (url, (status, error) => {
 				UIApplication.SharedApplication.NetworkActivityIndicatorVisible = false;
 		
 				if (error == null && status == Status.Complete) {

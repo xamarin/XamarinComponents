@@ -21,6 +21,7 @@ var buildSpec = new BuildSpec {
 
 	Samples = new [] {
 		new IOSSolutionBuilder { SolutionPath = "./samples/ShopifyiOSSample.sln" },
+		new IOSSolutionBuilder { SolutionPath = "./samples/ShopifyiOSAsyncSample.sln" },
 	},
 
 	NuGets = new [] {
