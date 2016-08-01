@@ -76,7 +76,4 @@
     <AndroidResource Include="Resources\layout\main.xml" />
     <AndroidResource Include="Resources\values\strings.xml" />
   </ItemGroup>
-  <ItemGroup>
-    <AndroidJavaSource Include="Albums.java" />
-  </ItemGroup>
 </Project>
