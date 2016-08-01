@@ -26,9 +26,9 @@ sales from your Shopify Home.
 ## Initializing the Buy client
 
 ```csharp
-string ShopDomain = "myshopexample.myshopify.com";
-string ApiKey = "1234567890abcdef1234567890abcdef";
-string ChannelId = "12345678";
+const string ShopDomain = "myshopexample.myshopify.com";
+const string ApiKey = "1234567890abcdef1234567890abcdef";
+const string ChannelId = "12345678";
 
 BuyClient myClient = new BuyClient (ShopDomain, ApiKey, ChannelId);
 ```
@@ -49,17 +49,17 @@ need—somewhere easy to access. Commonly, you might store it in your applicatio
 and pass a reference along to other objects that need it.
 
 ```csharp
-Shop myShop = await myClient.GetShopAsync();
+Shop myShop = await myClient.GetShopAsync ();
 ```
 
 ### Getting Collections
 
 Collections and products are provided in paginated lists. The page size is configurable 
-using the pageSize property of `BuyClient`. Pages are numbered starting at 1. To get a 
+using the `PageSize` property of `BuyClient`. Pages are numbered starting at 1. To get a 
 partial list of collections, provide the desired page number:
 
 ```csharp
-var result = await myClient.GetCollectionsPageAsync ();
+var result = await myClient.GetCollectionsPageAsync (1);
 Collection[] myCollections = result.Collections;
 ```
 
@@ -72,7 +72,7 @@ image assigned to a collection using this URL.
 Products returned from the API include all of their subordinate objects, including variants, 
 options, and option values.
 
-To get a partial list of products, use `GetProductsPageAsync` or `GetProductsPage`.
+To get a partial list of products, use `GetProductsPageAsync`.
 
 ```csharp
 var result = await myClient.GetProductsPageAsync (1);
@@ -151,7 +151,7 @@ myCheckout.BillingAddress = myAddress;
 myCheckout.Email = "me@mail.com";
 
 // update the checkout
-myCheckout = await client.UpdateCheckoutAsync (myCheckout);
+myCheckout = await myClient.UpdateCheckoutAsync (myCheckout);
 ```
 
 Once we have set the addresses, we can add the shipping rates:
@@ -161,7 +161,7 @@ Once we have set the addresses, we can add the shipping rates:
 if (checkout.RequiresShipping)
 {
     // get the shipping rates
-    var result = await client.GetShippingRatesForCheckoutAsync (myCheckout);
+    var result = await myClient.GetShippingRatesForCheckoutAsync (myCheckout);
     ShippingRates[] myShippingRates = result.ShippingRates;
     
     if (myShippingRates.Length > 0) {
@@ -169,7 +169,7 @@ if (checkout.RequiresShipping)
         myCheckout.ShippingRate = myShippingRates [0];
         
         // update the checkout
-        myCheckout = await client.UpdateCheckoutAsync (myCheckout);
+        myCheckout = await myClient.UpdateCheckoutAsync (myCheckout);
     }
 }
 ```
@@ -226,14 +226,14 @@ myCheckout = result.Checkout;
 myCheckout = await myClient.CompleteCheckoutAsync (myCheckout);
 
 // get the final checkout
-if (await myClient.GetCompletionStatusOfCheckoutAsync (myCheckout) == Status.Complete)) {
+if ((await myClient.GetCompletionStatusOfCheckoutAsync (myCheckout)) == Status.Complete) {
     myCheckout = await myClient.GetCheckoutAsync (myCheckout);
 }
 ```
 
 #### Web Checkout
 
-In addition to the native checkout, we can transition to th web browser-based checkout.
+In addition to the native checkout, we can transition to the web browser-based checkout.
 First we implement the `ISFSafariViewControllerDelegate` interface:
 
 ```csharp

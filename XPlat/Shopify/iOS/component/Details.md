@@ -49,7 +49,7 @@ need—somewhere easy to access. Commonly, you might store it in your applicatio
 and pass a reference along to other objects that need it.
 
 ```csharp
-Shop myShop = await myClient.GetShopAsync();
+Shop myShop = await myClient.GetShopAsync ();
 ```
 
 ### Getting Collections
