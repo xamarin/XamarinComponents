@@ -3,7 +3,7 @@
 
 var TARGET = Argument ("t", Argument ("target", "Default"));
 
-var AAR_VERSION = "1.0.1";
+var AAR_VERSION = "1.1.1";
 var AAR_URL = string.Format ("http://search.maven.org/remotecontent?filepath=com/lyft/scissors/{0}/scissors-{0}.aar", AAR_VERSION);
 var AAR_DEST = "./externals/Scissors.aar";
 var JAR_DIR = "./externals/Scissors/";

@@ -1,4 +1,4 @@
-version: 1.0.1.0
+version: 1.1.1
 name: Scissors
 id: Lyft.Scissors.Picasso
 publisher: Xamarin Inc
@@ -21,7 +21,8 @@ libraries:
    - ../output/Lyft.Scissors.Picasso.dll
 is_shell: true
 packages:
-  android: Lyft.Scissors.Picasso, Version=1.0.1
+  android: Lyft.Scissors, Version=1.1.1
+  android: Lyft.Scissors.Picasso, Version=1.1.1
 
 samples:
   - name: "Android Sample"

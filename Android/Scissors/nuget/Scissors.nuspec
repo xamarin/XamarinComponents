@@ -3,7 +3,7 @@
   <metadata>
     <id>Lyft.Scissors</id>
     <title>Scissors</title>
-    <version>1.0.1.0</version>
+    <version>1.1.1</version>
     <authors>Xamarin Inc.</authors>
     <owners>Xamarin Inc.</owners>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
@@ -13,6 +13,6 @@
     <licenseUrl>https://components.xamarin.com/license/Lyft.Scissors.Picasso</licenseUrl>
   </metadata>
   <files>  
-    <file src="output/Lyft.Scissors.dll" target="lib/MonoAndroid23" />
+    <file src="output/Lyft.Scissors.dll" target="lib/MonoAndroid403" />
   </files>
 </package>
