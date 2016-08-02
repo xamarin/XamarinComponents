@@ -175,10 +175,10 @@ namespace Shopify.Buy
 			cancellationToken.Register(urlTask.Cancel);
 			return tcs.Task;
 		}
-		public Task<Checkout> RemoveProductReservationsFromCheckoutAsync(Checkout checkout, CancellationToken cancellationToken = default(CancellationToken))
+		public Task<Checkout> RemoveProductReservationsAsync(Checkout checkout, CancellationToken cancellationToken = default(CancellationToken))
 		{
 			var tcs = new TaskCompletionSource<Checkout>();
-			var urlTask = RemoveProductReservationsFromCheckout(checkout, (data, error) => HandleCallback(tcs, cancellationToken, data, error));
+			var urlTask = RemoveProductReservations(checkout, (data, error) => HandleCallback(tcs, cancellationToken, data, error));
 			cancellationToken.Register(urlTask.Cancel);
 			return tcs.Task;
 		}

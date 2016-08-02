@@ -114,7 +114,7 @@ namespace ShopifyiOSSample
 				UIBarButtonItem sortBarButtonItem = new UIBarButtonItem ("Sort", UIBarButtonItemStyle.Plain, PresentCollectionSortOptions);
 				NavigationItem.RightBarButtonItem = sortBarButtonItem;
 
-				GetCollection (CollectionSort.CollectionDefault);
+				GetCollection (CollectionSort.Default);
 			} else {
 				UIApplication.SharedApplication.NetworkActivityIndicatorVisible = true;
 				client.GetProductsPage (1, (products, page, reachedEnd, error) => {
@@ -135,7 +135,7 @@ namespace ShopifyiOSSample
 			UIAlertController alertController = UIAlertController.Create ("Collection Sort", null, UIAlertControllerStyle.ActionSheet);
 
 			alertController.AddAction (UIAlertAction.Create ("Default", UIAlertActionStyle.Default, delegate {
-				GetCollection (CollectionSort.CollectionDefault);
+				GetCollection (CollectionSort.Default);
 			}));
 			alertController.AddAction (UIAlertAction.Create ("Best Selling", UIAlertActionStyle.Default, delegate {
 				GetCollection (CollectionSort.BestSelling);
@@ -328,7 +328,7 @@ namespace ShopifyiOSSample
 		private void DemoProductViewControllerWithProduct (Product product)
 		{
 			var productViewController = GetProductViewController ();
-			productViewController.LoadWithProduct (product, (success, error) => {
+			productViewController.LoadProduct (product, (success, error) => {
 				if (error == null) {
 					if (presentViewController) {
 						productViewController.PresentPortraitInViewController (this);
@@ -395,7 +395,7 @@ namespace ShopifyiOSSample
 
 			var product = products [indexPath.Row];
 			var productViewController = GetProductViewController ();
-			productViewController.LoadWithProduct (product, null);
+			productViewController.LoadProduct (product, null);
 
 			previewingContext.SourceRect = cell.Frame;
 

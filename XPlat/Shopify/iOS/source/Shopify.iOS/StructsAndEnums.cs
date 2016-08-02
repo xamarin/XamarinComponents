@@ -12,7 +12,7 @@ namespace Shopify.Buy
 	[Native]
 	public enum CollectionSort : ulong
 	{
-		CollectionDefault,
+		Default,
 		BestSelling,
 		TitleAscending,
 		TitleDescending,

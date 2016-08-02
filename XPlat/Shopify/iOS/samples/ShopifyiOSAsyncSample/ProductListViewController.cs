@@ -107,7 +107,7 @@ namespace ShopifyiOSSample
 				UIBarButtonItem sortBarButtonItem = new UIBarButtonItem("Sort", UIBarButtonItemStyle.Plain, PresentCollectionSortOptions);
 				NavigationItem.RightBarButtonItem = sortBarButtonItem;
 
-				await GetCollectionAsync(CollectionSort.CollectionDefault);
+				await GetCollectionAsync(CollectionSort.Default);
 			}
 			else
 			{
@@ -132,7 +132,7 @@ namespace ShopifyiOSSample
 
 			alertController.AddAction(UIAlertAction.Create("Default", UIAlertActionStyle.Default, async delegate
 			{
-				await GetCollectionAsync(CollectionSort.CollectionDefault);
+				await GetCollectionAsync(CollectionSort.Default);
 			}));
 			alertController.AddAction(UIAlertAction.Create("Best Selling", UIAlertActionStyle.Default, async delegate
 			{
@@ -334,7 +334,7 @@ namespace ShopifyiOSSample
 		private async Task DemoProductViewControllerWithProductAsync(Product product)
 		{
 			var productViewController = GetProductViewController();
-			await productViewController.LoadWithProductAsync(product);
+			await productViewController.LoadProductAsync(product);
 			if (presentViewController)
 			{
 				productViewController.PresentPortraitInViewController(this);
@@ -402,7 +402,7 @@ namespace ShopifyiOSSample
 
 			var product = products[indexPath.Row];
 			var productViewController = GetProductViewController();
-			productViewController.LoadWithProduct(product, null);
+			productViewController.LoadProduct(product, null);
 
 			previewingContext.SourceRect = cell.Frame;
 

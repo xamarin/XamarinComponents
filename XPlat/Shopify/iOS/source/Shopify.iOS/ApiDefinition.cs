@@ -28,7 +28,7 @@ namespace Shopify.Buy
 
 		// -(void)updateWithDictionary:(NSDictionary *)dictionary;
 		[Export ("updateWithDictionary:")]
-		void UpdateWithDictionary (NSDictionary dictionary);
+		void Update (NSDictionary dictionary);
 
 		// +(NSArray *)convertJSONArray:(NSArray *)json block:(void (^)(id))createdBlock;
 		[Static]
@@ -140,20 +140,20 @@ namespace Shopify.Buy
 		[Static]
 		[Export ("buy_emailFromRecord:")]
 		[return: NullAllowed]
-		string ApplePayEmailFromRecord ([NullAllowed] ABRecord record);
+		string GetApplePayEmail ([NullAllowed] ABRecord record);
 
 		// +(BUYAddress * _Nonnull)buy_addressFromRecord:(ABRecordRef _Nullable)record __attribute__((availability(ios, introduced=8_0, deprecated=9_0)));
 		[Introduced (PlatformName.iOS, 8, 0, message: "Use the CNContact backed `buy_addressFromContact:` instead")]
 		[Deprecated (PlatformName.iOS, 9, 0, message: "Use the CNContact backed `buy_addressFromContact:` instead")]
 		[Static]
 		[Export ("buy_addressFromRecord:")]
-		Address ApplePayAddressFromRecord ([NullAllowed] ABRecord record);
+		Address GetApplePayAddress ([NullAllowed] ABRecord record);
 
 		// +(BUYAddress * _Nonnull)buy_addressFromContact:(PKContact * _Nullable)contact __attribute__((availability(ios, introduced=9_0)));
 		[Introduced (PlatformName.iOS, 9, 0)]
 		[Static]
 		[Export ("buy_addressFromContact:")]
-		Address ApplePayAddressFromContact ([NullAllowed] PKContact contact);
+		Address GetApplePayAddress ([NullAllowed] PKContact contact);
 
 	}
 
@@ -430,21 +430,21 @@ namespace Shopify.Buy
 
 		// -(void)updateAndCompleteCheckoutWithPayment:(PKPayment *)payment completion:(void (^)(PKPaymentAuthorizationStatus))completion __attribute__((deprecated("BUYApplePayHelpers now implements PKPaymentAuthorizationViewControllerDelegate instead")));
 		[Export ("updateAndCompleteCheckoutWithPayment:completion:")]
-		void UpdateAndCompleteCheckoutWithPayment (PKPayment payment, Action<PKPaymentAuthorizationStatus> completion);
+		void UpdateAndCompleteCheckout (PKPayment payment, Action<PKPaymentAuthorizationStatus> completion);
 
 		// -(void)updateCheckoutWithShippingMethod:(PKShippingMethod *)shippingMethod completion:(void (^)(PKPaymentAuthorizationStatus, NSArray *))completion __attribute__((deprecated("BUYApplePayHelpers now implements PKPaymentAuthorizationViewControllerDelegate instead")));
 		[Export ("updateCheckoutWithShippingMethod:completion:")]
-		void UpdateCheckoutWithShippingMethod (PKShippingMethod shippingMethod, Action<PKPaymentAuthorizationStatus, NSArray> completion);
+		void UpdateCheckout (PKShippingMethod shippingMethod, Action<PKPaymentAuthorizationStatus, NSArray> completion);
 
 		// -(void)updateCheckoutWithAddress:(ABRecordRef)address completion:(void (^)(PKPaymentAuthorizationStatus, NSArray *, NSArray *))completion __attribute__((availability(ios, introduced=8_0, deprecated=9_0)));
 		[Introduced (PlatformName.iOS, 8, 0, message: "Use the CNContact backed `updateCheckoutWithContact:completion:` instead")]
 		[Deprecated (PlatformName.iOS, 9, 0, message: "Use the CNContact backed `updateCheckoutWithContact:completion:` instead")]
 		[Export ("updateCheckoutWithAddress:completion:")]
-		void UpdateCheckoutWithAddress (ABRecord address, Action<PKPaymentAuthorizationStatus, NSArray, NSArray> completion);
+		void UpdateCheckout (ABRecord address, Action<PKPaymentAuthorizationStatus, NSArray, NSArray> completion);
 
 		// -(void)updateCheckoutWithContact:(PKContact *)contact completion:(void (^)(PKPaymentAuthorizationStatus, NSArray *, NSArray *))completion __attribute__((deprecated("BUYApplePayHelpers now implements PKPaymentAuthorizationViewControllerDelegate instead")));
 		[Export ("updateCheckoutWithContact:completion:")]
-		void UpdateCheckoutWithContact (PKContact contact, Action<PKPaymentAuthorizationStatus, NSArray, NSArray> completion);
+		void UpdateCheckout (PKContact contact, Action<PKPaymentAuthorizationStatus, NSArray, NSArray> completion);
 
 		// @property (readonly, nonatomic, strong) BUYCheckout * checkout;
 		[Export ("checkout", ArgumentSemantic.Strong)]
@@ -577,47 +577,47 @@ namespace Shopify.Buy
 		// extern const CGFloat kBuyPaddingSmall;
 		[Static]
 		[Field ("kBuyPaddingSmall", "__Internal")]
-		nfloat kBuyPaddingSmall { get; }
+		nfloat BuyPaddingSmall { get; }
 
 		// extern const CGFloat kBuyPaddingMedium;
 		[Static]
 		[Field ("kBuyPaddingMedium", "__Internal")]
-		nfloat kBuyPaddingMedium { get; }
+		nfloat BuyPaddingMedium { get; }
 
 		// extern const CGFloat kBuyPaddingLarge;
 		[Static]
 		[Field ("kBuyPaddingLarge", "__Internal")]
-		nfloat kBuyPaddingLarge { get; }
+		nfloat BuyPaddingLarge { get; }
 
 		// extern const CGFloat kBuyPaddingExtraLarge;
 		[Static]
 		[Field ("kBuyPaddingExtraLarge", "__Internal")]
-		nfloat kBuyPaddingExtraLarge { get; }
+		nfloat BuyPaddingExtraLarge { get; }
 
 		// extern const CGFloat kBuyTopGradientViewHeight;
 		[Static]
 		[Field ("kBuyTopGradientViewHeight", "__Internal")]
-		nfloat kBuyTopGradientViewHeight { get; }
+		nfloat BuyTopGradientViewHeight { get; }
 
 		// extern const CGFloat kBuyCheckoutButtonHeight;
 		[Static]
 		[Field ("kBuyCheckoutButtonHeight", "__Internal")]
-		nfloat kBuyCheckoutButtonHeight { get; }
+		nfloat BuyCheckoutButtonHeight { get; }
 
 		// extern const CGFloat kBuyPageControlHeight;
 		[Static]
 		[Field ("kBuyPageControlHeight", "__Internal")]
-		nfloat kBuyPageControlHeight { get; }
+		nfloat BuyPageControlHeight { get; }
 
 		// extern const CGFloat kBuyBottomGradientHeightWithPageControl;
 		[Static]
 		[Field ("kBuyBottomGradientHeightWithPageControl", "__Internal")]
-		nfloat kBuyBottomGradientHeightWithPageControl { get; }
+		nfloat BuyBottomGradientHeightWithPageControl { get; }
 
 		// extern const CGFloat kBuyBottomGradientHeightWithoutPageControl;
 		[Static]
 		[Field ("kBuyBottomGradientHeightWithoutPageControl", "__Internal")]
-		nfloat kBuyBottomGradientHeightWithoutPageControl { get; }
+		nfloat BuyBottomGradientHeightWithoutPageControl { get; }
 
 
 		// @property (nonatomic, strong) UIColor * tintColor;
@@ -840,7 +840,7 @@ namespace Shopify.Buy
 		NSUrlSessionDataTask StoreCreditCard (ISerializable creditCard, Checkout checkout, DataCreditCardBlock block);
 
 		[Export ("removeProductReservationsFromCheckout:completion:")]
-		NSUrlSessionDataTask RemoveProductReservationsFromCheckout (Checkout checkout, DataCheckoutBlock block);
+		NSUrlSessionDataTask RemoveProductReservations (Checkout checkout, DataCheckoutBlock block);
 
 		[Export ("enableApplePayWithMerchantId:")]
 		void EnableApplePay (string merchantId);
@@ -1000,23 +1000,23 @@ namespace Shopify.Buy
 	{
 		[Static]
 		[Export ("imageOfVariantCloseImageWithFrame:")]
-		UIImage ImageOfVariantCloseImageWithFrame (CGRect frame);
+		UIImage ImageOfVariantCloseImage (CGRect frame);
 
 		[Static]
 		[Export ("imageOfPreviousSelectionIndicatorImageWithFrame:")]
-		UIImage ImageOfPreviousSelectionIndicatorImageWithFrame (CGRect frame);
+		UIImage ImageOfPreviousSelectionIndicatorImage (CGRect frame);
 
 		[Static]
 		[Export ("imageOfDisclosureIndicatorImageWithFrame:color:")]
-		UIImage ImageOfDisclosureIndicatorImageWithFrame (CGRect frame, UIColor color);
+		UIImage ImageOfDisclosureIndicatorImage (CGRect frame, UIColor color);
 
 		[Static]
 		[Export ("imageOfProductViewCloseImageWithFrame:color:hasShadow:")]
-		UIImage ImageOfProductViewCloseImageWithFrame (CGRect frame, UIColor color, bool hasShadow);
+		UIImage ImageOfProductViewCloseImage (CGRect frame, UIColor color, bool hasShadow);
 
 		[Static]
 		[Export ("imageOfVariantBackImageWithFrame:")]
-		UIImage ImageOfVariantBackImageWithFrame (CGRect frame);
+		UIImage ImageOfVariantBackImage (CGRect frame);
 
 	}
 
@@ -1032,10 +1032,10 @@ namespace Shopify.Buy
 		bool ShowsActivityIndicator { get; set; }
 
 		[Export ("loadImageWithURL:completion:"), Async]
-		void LoadImageWithUrl (NSUrl imageUrl, Action<UIImage, NSError> completion);
+		void LoadImage (NSUrl imageUrl, Action<UIImage, NSError> completion);
 
 		[Export ("loadImageWithURL:animateChange:completion:"), Async]
-		void LoadImageWithUrl (NSUrl imageUrl, bool animateChange, Action<UIImage, NSError> completion);
+		void LoadImage (NSUrl imageUrl, bool animateChange, Action<UIImage, NSError> completion);
 
 		[Export ("cancelImageTask")]
 		void CancelImageTask ();
@@ -1091,7 +1091,7 @@ namespace Shopify.Buy
 	interface NavigationController : Themeable
 	{
 		[Export ("updateCloseButtonImageWithTintColor:duration:")]
-		void UpdateCloseButtonImageWithTintColor (bool tintColor, nfloat duration);
+		void UpdateCloseButtonImage (bool tintColor, nfloat duration);
 
 		[NullAllowed, Export ("navigationDelegate", ArgumentSemantic.Weak)]
 		INavigationControllerDelegate NavigationDelegate { get; set; }
@@ -1302,10 +1302,10 @@ namespace Shopify.Buy
 	interface ProductOptionsExtensions
 	{
 		[Export ("valuesForOption:variants:")]
-		OptionValue[] ValuesForOption (Option option, ProductVariant[] variants);
+		OptionValue[] GetValues (Option option, ProductVariant[] variants);
 
 		[Export ("variantWithOptions:")]
-		ProductVariant VariantWithOptions (OptionValue[] options);
+		ProductVariant GetVariant (OptionValue[] options);
 
 		[Export ("isDefaultVariant")]
 		bool IsDefaultVariant ();
@@ -1448,7 +1448,7 @@ namespace Shopify.Buy
 		void UpdateBackgroundImage (Image[] images);
 
 		[Export ("showErrorWithMessage:")]
-		void ShowErrorWithMessage (string errorMessage);
+		void ShowError (string errorMessage);
 
 		[Export ("setInsets:appendToCurrentInset:")]
 		void SetInsets (UIEdgeInsets edgeInsets, bool appendToCurrentInset);
@@ -1537,7 +1537,7 @@ namespace Shopify.Buy
 		Checkout Checkout { get; }
 
 		[Export ("loadShopWithCallback:"), Async]
-		void LoadShopWithCallback (Action<bool, NSError> block);
+		void LoadShop (Action<bool, NSError> block);
 
 		[Export ("supportedNetworks", ArgumentSemantic.Copy)]
 		NSString[] SupportedNetworks { get; set; }
@@ -1555,14 +1555,14 @@ namespace Shopify.Buy
 		void StartWebCheckout (Checkout checkout);
 
 		[Export ("startCheckoutWithCartToken:")]
-		void StartCheckoutWithCartToken (string token);
+		void StartCheckout (string token);
 
 		[Export ("checkoutCompleted:status:")]
 		void CheckoutCompleted (Checkout checkout, Status status);
 
 		[Static]
 		[Export ("completeCheckoutFromLaunchURL:")]
-		void CompleteCheckoutFromLaunchUrl (NSUrl url);
+		void CompleteCheckout (NSUrl url);
 
 	}
 
@@ -1576,7 +1576,7 @@ namespace Shopify.Buy
 		void LoadProduct (string productId, Action<bool, NSError> completion);
 
 		[Export ("loadWithProduct:completion:"), Async]
-		void LoadWithProduct (Product product, Action<bool, NSError> completion);
+		void LoadProduct (Product product, Action<bool, NSError> completion);
 
 		[Export ("productId", ArgumentSemantic.Strong)]
 		string ProductId { get; }
