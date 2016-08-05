@@ -349,7 +349,7 @@ namespace ShopifyiOSSample
 
 			try
 			{
-				var status = await client.GetCompletionStatusOfCheckoutUrlAsync(url);
+				var status = await client.GetCompletionStatusOfCheckoutAsync(url);
 				if (status == Status.Complete)
 				{
 					Console.WriteLine("Successfully completed checkout");

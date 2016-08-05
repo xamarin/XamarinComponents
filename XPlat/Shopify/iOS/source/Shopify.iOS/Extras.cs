@@ -153,10 +153,10 @@ namespace Shopify.Buy
 			return tcs.Task;
 		}
 
-		public Task<Status> GetCompletionStatusOfCheckoutUrlAsync(NSUrl url, CancellationToken cancellationToken = default(CancellationToken))
+		public Task<Status> GetCompletionStatusOfCheckoutAsync(NSUrl url, CancellationToken cancellationToken = default(CancellationToken))
 		{
 			var tcs = new TaskCompletionSource<Status>();
-			var urlTask = GetCompletionStatusOfCheckoutUrl(url, (data, error) => HandleCallback(tcs, cancellationToken, data, error));
+			var urlTask = GetCompletionStatusOfCheckout(url, (data, error) => HandleCallback(tcs, cancellationToken, data, error));
 			cancellationToken.Register(urlTask.Cancel);
 			return tcs.Task;
 		}

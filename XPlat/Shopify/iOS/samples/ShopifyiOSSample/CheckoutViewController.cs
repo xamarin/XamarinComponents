@@ -331,7 +331,7 @@ namespace ShopifyiOSSample
 		{
 			UIApplication.SharedApplication.NetworkActivityIndicatorVisible = true;
 		
-			client.GetCompletionStatusOfCheckoutUrl (url, (status, error) => {
+			client.GetCompletionStatusOfCheckout (url, (status, error) => {
 				UIApplication.SharedApplication.NetworkActivityIndicatorVisible = false;
 		
 				if (error == null && status == Status.Complete) {

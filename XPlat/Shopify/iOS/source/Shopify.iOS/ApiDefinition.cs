@@ -33,12 +33,12 @@ namespace Shopify.Buy
 		// +(NSArray *)convertJSONArray:(NSArray *)json block:(void (^)(id))createdBlock;
 		[Static]
 		[Export ("convertJSONArray:block:")]
-		NSObject[] ConvertJSONArray (NSObject[] json, Action<NSObject> createdBlock);
+		NSObject[] ConvertJsonArray (NSObject[] json, Action<NSObject> createdBlock);
 
 		// +(NSArray *)convertJSONArray:(NSArray *)json;
 		[Static]
 		[Export ("convertJSONArray:")]
-		NSObject[] ConvertJSONArray (NSObject[] json);
+		NSObject[] ConvertJsonArray (NSObject[] json);
 
 		// +(instancetype)convertObject:(id)object;
 		[Static]
@@ -398,7 +398,7 @@ namespace Shopify.Buy
 		// +(NSArray<PKShippingMethod *> * _Nonnull)buy_convertShippingRatesToShippingMethods:(NSArray<BUYShippingRate *> * _Nonnull)rates;
 		[Static]
 		[Export ("buy_convertShippingRatesToShippingMethods:")]
-		PKShippingMethod[] ApplePayConvertShippingRatesToShippingMethods (ShippingRate[] rates);
+		PKShippingMethod[] ConvertToApplePayShippingMethods (ShippingRate[] rates);
 
 	}
 
@@ -417,6 +417,7 @@ namespace Shopify.Buy
 	}
 
 	// @interface BUYApplePayHelpers : NSObject <PKPaymentAuthorizationViewControllerDelegate>
+	[DisableDefaultCtor]
 	[BaseType (typeof(NSObject), Name = "BUYApplePayHelpers")]
 	interface ApplePayHelpers : IPKPaymentAuthorizationViewControllerDelegate
 	{
@@ -577,27 +578,27 @@ namespace Shopify.Buy
 		// extern const CGFloat kBuyPaddingSmall;
 		[Static]
 		[Field ("kBuyPaddingSmall", "__Internal")]
-		nfloat BuyPaddingSmall { get; }
+		nfloat PaddingSmall { get; }
 
 		// extern const CGFloat kBuyPaddingMedium;
 		[Static]
 		[Field ("kBuyPaddingMedium", "__Internal")]
-		nfloat BuyPaddingMedium { get; }
+		nfloat PaddingMedium { get; }
 
 		// extern const CGFloat kBuyPaddingLarge;
 		[Static]
 		[Field ("kBuyPaddingLarge", "__Internal")]
-		nfloat BuyPaddingLarge { get; }
+		nfloat PaddingLarge { get; }
 
 		// extern const CGFloat kBuyPaddingExtraLarge;
 		[Static]
 		[Field ("kBuyPaddingExtraLarge", "__Internal")]
-		nfloat BuyPaddingExtraLarge { get; }
+		nfloat PaddingExtraLarge { get; }
 
 		// extern const CGFloat kBuyTopGradientViewHeight;
 		[Static]
 		[Field ("kBuyTopGradientViewHeight", "__Internal")]
-		nfloat BuyTopGradientViewHeight { get; }
+		nfloat TopGradientViewHeight { get; }
 
 		// extern const CGFloat kBuyCheckoutButtonHeight;
 		[Static]
@@ -607,17 +608,17 @@ namespace Shopify.Buy
 		// extern const CGFloat kBuyPageControlHeight;
 		[Static]
 		[Field ("kBuyPageControlHeight", "__Internal")]
-		nfloat BuyPageControlHeight { get; }
+		nfloat PageControlHeight { get; }
 
 		// extern const CGFloat kBuyBottomGradientHeightWithPageControl;
 		[Static]
 		[Field ("kBuyBottomGradientHeightWithPageControl", "__Internal")]
-		nfloat BuyBottomGradientHeightWithPageControl { get; }
+		nfloat BottomGradientHeightWithPageControl { get; }
 
 		// extern const CGFloat kBuyBottomGradientHeightWithoutPageControl;
 		[Static]
 		[Field ("kBuyBottomGradientHeightWithoutPageControl", "__Internal")]
-		nfloat BuyBottomGradientHeightWithoutPageControl { get; }
+		nfloat BottomGradientHeightWithoutPageControl { get; }
 
 
 		// @property (nonatomic, strong) UIColor * tintColor;
@@ -637,59 +638,59 @@ namespace Shopify.Buy
 
 		[Static]
 		[Export ("topGradientViewTopColor")]
-		UIColor TopGradientViewTopColor ();
+		UIColor TopGradientViewTopColor { get; }
 
 		[Static]
 		[Export ("comparePriceTextColor")]
-		UIColor ComparePriceTextColor ();
+		UIColor ComparePriceTextColor { get; }
 
 		[Static]
 		[Export ("descriptionTextColor")]
-		UIColor DescriptionTextColor ();
+		UIColor DescriptionTextColor { get; }
 
 		[Static]
 		[Export ("variantPriceTextColor")]
-		UIColor VariantPriceTextColor ();
+		UIColor VariantPriceTextColor { get; }
 
 		[Static]
 		[Export ("variantSoldOutTextColor")]
-		UIColor VariantSoldOutTextColor ();
+		UIColor VariantSoldOutTextColor { get; }
 
 		[Static]
 		[Export ("variantBreadcrumbsTextColor")]
-		UIColor VariantBreadcrumbsTextColor ();
+		UIColor VariantBreadcrumbsTextColor { get; }
 
 		[Static]
 		[Export ("productTitleFont")]
-		UIFont ProductTitleFont ();
+		UIFont ProductTitleFont { get; }
 
 		[Static]
 		[Export ("productPriceFont")]
-		UIFont ProductPriceFont ();
+		UIFont ProductPriceFont { get; }
 
 		[Static]
 		[Export ("productComparePriceFont")]
-		UIFont ProductComparePriceFont ();
+		UIFont ProductComparePriceFont { get; }
 
 		[Static]
 		[Export ("variantOptionNameFont")]
-		UIFont VariantOptionNameFont ();
+		UIFont VariantOptionNameFont { get; }
 
 		[Static]
 		[Export ("variantOptionValueFont")]
-		UIFont VariantOptionValueFont ();
+		UIFont VariantOptionValueFont { get; }
 
 		[Static]
 		[Export ("variantOptionPriceFont")]
-		UIFont VariantOptionPriceFont ();
+		UIFont VariantOptionPriceFont { get; }
 
 		[Static]
 		[Export ("variantBreadcrumbsFont")]
-		UIFont VariantBreadcrumbsFont ();
+		UIFont VariantBreadcrumbsFont { get; }
 
 		[Static]
 		[Export ("errorLabelFont")]
-		UIFont ErrorLabelFont ();
+		UIFont ErrorLabelFont { get; }
 
 	}
 
@@ -718,29 +719,29 @@ namespace Shopify.Buy
 		void ShowActivityIndicator (bool show);
 	}
 
-	delegate void DataCreditCardBlock (Checkout checkout, string paymentSessionId, NSError error);
+	delegate void DataCreditCardHandler (Checkout checkout, string paymentSessionId, NSError error);
 
-	delegate void DataCheckoutBlock (Checkout checkout, NSError error);
+	delegate void DataCheckoutHandler (Checkout checkout, NSError error);
 
-	delegate void DataCheckoutStatusBlock (Status status, NSError error);
+	delegate void DataCheckoutStatusHandler (Status status, NSError error);
 
-	delegate void DataShippingRatesBlock (ShippingRate[] shippingRates, Status status, NSError error);
+	delegate void DataShippingRatesHandler (ShippingRate[] shippingRates, Status status, NSError error);
 
-	delegate void DataShopBlock (Shop shop, NSError error);
+	delegate void DataShopHandler (Shop shop, NSError error);
 
-	delegate void DataProductBlock (Product product, NSError error);
+	delegate void DataProductHandler (Product product, NSError error);
 
-	delegate void DataProductsBlock (Product[] products, NSError error);
+	delegate void DataProductsHandler (Product[] products, NSError error);
 
-	delegate void DataCollectionsBlock (Collection[] collections, NSError error);
+	delegate void DataCollectionsHandler (Collection[] collections, NSError error);
 
-	delegate void DataCollectionsListBlock (Collection[] collections, nuint page, bool reachedEnd, NSError error);
+	delegate void DataCollectionsListHandler (Collection[] collections, nuint page, bool reachedEnd, NSError error);
 
-	delegate void DataProductListBlock (Product[] productList, nuint page, bool reachedEnd, NSError error);
+	delegate void DataProductListHandler (Product[] productList, nuint page, bool reachedEnd, NSError error);
 
 //	delegate void DataImagesListBlock (BUYProductImage[] imagesList, NSError error);
 
-	delegate void DataGiftCardBlock (GiftCard giftCard, NSError error);
+	delegate void DataGiftCardHandler (GiftCard giftCard, NSError error);
 
 	[BaseType (typeof(NSObject), Name = "BUYClient")]
 	[DisableDefaultCtor]
@@ -748,7 +749,7 @@ namespace Shopify.Buy
 	{
 		[Static]
 		[Field ("BUYVersionString", "__Internal")]
-		NSString BUYVersionString { get; }
+		NSString VersionString { get; }
 
 
 		[Export ("initWithShopDomain:apiKey:channelId:")]
@@ -780,67 +781,67 @@ namespace Shopify.Buy
 		string UrlScheme { get; set; }
 
 		[Export ("getShop:")]
-		NSUrlSessionDataTask GetShop (DataShopBlock block);
+		NSUrlSessionDataTask GetShop (DataShopHandler block);
 
 		[Export ("getProductsPage:completion:")]
-		NSUrlSessionDataTask GetProductsPage (nuint page, DataProductListBlock block);
+		NSUrlSessionDataTask GetProductsPage (nuint page, DataProductListHandler block);
 
 		[Export ("getProductById:completion:")]
-		NSUrlSessionDataTask GetProduct (string productId, DataProductBlock block);
+		NSUrlSessionDataTask GetProduct (string productId, DataProductHandler block);
 
 		[Export ("getProductsByIds:completion:")]
-		NSUrlSessionDataTask GetProducts (string[] productIds, DataProductsBlock block);
+		NSUrlSessionDataTask GetProducts (string[] productIds, DataProductsHandler block);
 
 		[Export ("getCollections:")]
-		NSUrlSessionDataTask GetCollections (DataCollectionsBlock block);
+		NSUrlSessionDataTask GetCollections (DataCollectionsHandler block);
 
 		[Export("getCollectionsPage:completion:")]
-		NSUrlSessionDataTask GetCollectionsPage (nuint page, DataCollectionsListBlock block);
+		NSUrlSessionDataTask GetCollectionsPage (nuint page, DataCollectionsListHandler block);
 
 		[Export ("getProductsPage:inCollection:completion:")]
-		NSUrlSessionDataTask GetProductsPage (nuint page, NSNumber collectionId, DataProductListBlock block);
+		NSUrlSessionDataTask GetProductsPage (nuint page, NSNumber collectionId, DataProductListHandler block);
 
 		[Export ("getProductsPage:inCollection:sortOrder:completion:")]
-		NSUrlSessionDataTask GetProductsPage (nuint page, NSNumber collectionId, CollectionSort sortOrder, DataProductListBlock block);
+		NSUrlSessionDataTask GetProductsPage (nuint page, NSNumber collectionId, CollectionSort sortOrder, DataProductListHandler block);
 
 		[Export ("createCheckout:completion:")]
-		NSUrlSessionDataTask CreateCheckout (Checkout checkout, DataCheckoutBlock block);
+		NSUrlSessionDataTask CreateCheckout (Checkout checkout, DataCheckoutHandler block);
 
 		[Export ("createCheckoutWithCartToken:completion:")]
-		NSUrlSessionDataTask CreateCheckout (string cartToken, DataCheckoutBlock block);
+		NSUrlSessionDataTask CreateCheckout (string cartToken, DataCheckoutHandler block);
 
 		[Export ("applyGiftCardWithCode:toCheckout:completion:")]
-		NSUrlSessionDataTask ApplyGiftCard (string giftCardCode, Checkout checkout, DataCheckoutBlock block);
+		NSUrlSessionDataTask ApplyGiftCard (string giftCardCode, Checkout checkout, DataCheckoutHandler block);
 
 		[Export ("removeGiftCard:fromCheckout:completion:")]
-		NSUrlSessionDataTask RemoveGiftCard (GiftCard giftCard, Checkout checkout, DataCheckoutBlock block);
+		NSUrlSessionDataTask RemoveGiftCard (GiftCard giftCard, Checkout checkout, DataCheckoutHandler block);
 
 		[Export ("getCheckout:completion:")]
-		NSUrlSessionDataTask GetCheckout (Checkout checkout, DataCheckoutBlock block);
+		NSUrlSessionDataTask GetCheckout (Checkout checkout, DataCheckoutHandler block);
 
 		[Export ("updateCheckout:completion:")]
-		NSUrlSessionDataTask UpdateCheckout (Checkout checkout, DataCheckoutBlock block);
+		NSUrlSessionDataTask UpdateCheckout (Checkout checkout, DataCheckoutHandler block);
 
 		[Export ("completeCheckout:completion:")]
-		NSUrlSessionDataTask CompleteCheckout (Checkout checkout, DataCheckoutBlock block);
+		NSUrlSessionDataTask CompleteCheckout (Checkout checkout, DataCheckoutHandler block);
 
 		[Export ("completeCheckout:withApplePayToken:completion:")]
-		NSUrlSessionDataTask CompleteCheckout (Checkout checkout, PKPaymentToken token, DataCheckoutBlock block);
+		NSUrlSessionDataTask CompleteCheckout (Checkout checkout, PKPaymentToken token, DataCheckoutHandler block);
 
 		[Export ("getCompletionStatusOfCheckout:completion:")]
-		NSUrlSessionDataTask GetCompletionStatusOfCheckout (Checkout checkout, DataCheckoutStatusBlock block);
+		NSUrlSessionDataTask GetCompletionStatusOfCheckout (Checkout checkout, DataCheckoutStatusHandler block);
 
 		[Export ("getCompletionStatusOfCheckoutURL:completion:")]
-		NSUrlSessionDataTask GetCompletionStatusOfCheckoutUrl (NSUrl url, DataCheckoutStatusBlock block);
+		NSUrlSessionDataTask GetCompletionStatusOfCheckout (NSUrl url, DataCheckoutStatusHandler block);
 
 		[Export ("getShippingRatesForCheckout:completion:")]
-		NSUrlSessionDataTask GetShippingRatesForCheckout (Checkout checkout, DataShippingRatesBlock block);
+		NSUrlSessionDataTask GetShippingRatesForCheckout (Checkout checkout, DataShippingRatesHandler block);
 
 		[Export ("storeCreditCard:checkout:completion:")]
-		NSUrlSessionDataTask StoreCreditCard (ISerializable creditCard, Checkout checkout, DataCreditCardBlock block);
+		NSUrlSessionDataTask StoreCreditCard (ISerializable creditCard, Checkout checkout, DataCreditCardHandler block);
 
 		[Export ("removeProductReservationsFromCheckout:completion:")]
-		NSUrlSessionDataTask RemoveProductReservations (Checkout checkout, DataCheckoutBlock block);
+		NSUrlSessionDataTask RemoveProductReservations (Checkout checkout, DataCheckoutHandler block);
 
 		[Export ("enableApplePayWithMerchantId:")]
 		void EnableApplePay (string merchantId);
@@ -894,7 +895,7 @@ namespace Shopify.Buy
 
 		[Static]
 		[Export ("sortOrderParameterForCollectionSort:")]
-		string SortOrderParameterForCollectionSort (CollectionSort sort);
+		string GetSortOrderParameter (CollectionSort sort);
 
 	}
 
@@ -940,7 +941,7 @@ namespace Shopify.Buy
 	{
 		[Static]
 		[Field ("BUYShopifyError", "__Internal")]
-		NSString BUYShopifyError { get; }
+		NSString ShopifyError { get; }
 
 	}
 
@@ -1079,15 +1080,17 @@ namespace Shopify.Buy
 	{
 		[Abstract]
 		[Export ("presentationControllerWillDismiss:")]
+		[EventArgs ("PresentationControllerWillDismiss")]
 		void PresentationControllerWillDismiss (UIPresentationController presentationController);
 
 		[Abstract]
 		[Export ("presentationControllerDidDismiss:")]
+		[EventArgs ("PresentationControllerDidDismiss")]
 		void PresentationControllerDidDismiss (UIPresentationController presentationController);
 
 	}
 
-	[BaseType (typeof(UINavigationController), Name = "BUYNavigationController")]
+	[BaseType (typeof(UINavigationController), Name = "BUYNavigationController", Delegates = new[] { "NavigationDelegate" }, Events = new[] { typeof(NavigationControllerDelegate) })]
 	interface NavigationController : Themeable
 	{
 		[Export ("updateCloseButtonImageWithTintColor:duration:")]
@@ -1147,15 +1150,18 @@ namespace Shopify.Buy
 	{
 		[Abstract]
 		[Export ("optionSelectionController:didSelectOptionValue:")]
-		void OptionSelectionController (OptionSelectionViewController controller, OptionValue optionValue);
+		[EventArgs ("DidSelectOptionValue")]
+		void DidSelectOptionValue (OptionSelectionViewController controller, OptionValue optionValue);
 
 		[Abstract]
 		[Export ("optionSelectionControllerDidBackOutOfChoosingOption:")]
-		void OptionSelectionControllerDidBackOutOfChoosingOption (OptionSelectionViewController controller);
+		[EventArgs ("DidBackOutOfChoosingOption")]
+		void DidBackOutOfChoosingOption (OptionSelectionViewController controller);
 
 	}
 
-	[BaseType (typeof(UITableViewController), Name = "BUYOptionSelectionViewController")]
+	[DisableDefaultCtor]
+	[BaseType (typeof(UITableViewController), Name = "BUYOptionSelectionViewController", Delegates = new[] { "Delegate" }, Events = new[] { typeof(OptionSelectionDelegate) })]
 	interface OptionSelectionViewController : Themeable
 	{
 		[Export ("initWithOptionValues:filteredProductVariantsForSelectionOption:")]
@@ -1235,7 +1241,7 @@ namespace Shopify.Buy
 
 	}
 
-	[BaseType (typeof(UIPresentationController), Name = "BUYPresentationControllerWithNavigationController")]
+	[BaseType (typeof(UIPresentationController), Name = "BUYPresentationControllerWithNavigationController", Delegates = new[] { "NavigationDelegate" }, Events = new[] { typeof(NavigationControllerDelegate) })]
 	interface PresentationControllerWithNavigationController : IUIAdaptivePresentationControllerDelegate, Themeable
 	{
 		[NullAllowed, Export ("navigationDelegate", ArgumentSemantic.Weak)]
@@ -1316,7 +1322,7 @@ namespace Shopify.Buy
 	interface ProductDescriptionCell : Themeable
 	{
 		[Export ("setDescriptionHTML:")]
-		void SetDescriptionHTML (string html);
+		void SetDescriptionHtml (string html);
 
 	}
 
@@ -1384,7 +1390,7 @@ namespace Shopify.Buy
 		// interface BUYProductVariant_Options
 		[Static]
 		[Export ("filterProductVariants:forOptionValue:")]
-		ProductVariant[] FilterProductVariants (ProductVariant[] productVariants, OptionValue optionValue);
+		ProductVariant[] Filter (ProductVariant[] productVariants, OptionValue optionValue);
 
 	}
 
@@ -1393,7 +1399,7 @@ namespace Shopify.Buy
 	interface ProductVariantOptionsExtensions
 	{
 		[Export ("optionValueForName:")]
-		OptionValue OptionValueForName (string optionName);
+		OptionValue OptionValue (string optionName);
 
 	}
 
@@ -1401,10 +1407,11 @@ namespace Shopify.Buy
 	interface ProductVariantCell : Themeable
 	{
 		[Export ("setOptionsForProductVariant:")]
-		void SetOptionsForProductVariant (ProductVariant productVariant);
+		void SetOptions (ProductVariant productVariant);
 
 	}
 
+	[DisableDefaultCtor]
 	[BaseType (typeof(UIView), Name = "BUYProductView")]
 	interface ProductView
 	{
@@ -1468,41 +1475,52 @@ namespace Shopify.Buy
 	interface ViewControllerDelegate
 	{
 		[Export ("controller:failedToCreateCheckout:")]
-		void ControllerFailedToCreateCheckout (ViewController controller, NSError error);
+		[EventArgs ("FailedToCreateChecout")]
+		void FailedToCreateChecout (ViewController controller, NSError error);
 
 		[Export ("controllerFailedToStartApplePayProcess:")]
-		void ControllerFailedToStartApplePayProcess (ViewController controller);
+		[EventArgs ("FailedToStartApplePayProcess")]
+		void FailedToStartApplePayProcess (ViewController controller);
 
 		[Export ("controller:failedToUpdateCheckout:withError:")]
-		void ControllerFailedToUpdateCheckout (ViewController controller, Checkout checkout, NSError error);
+		[EventArgs ("FailedToUpdateCheckout")]
+		void FailedToUpdateCheckout (ViewController controller, Checkout checkout, NSError error);
 
 		[Export ("controller:failedToGetShippingRates:withError:")]
-		void ControllerFailedToGetShippingRates (ViewController controller, Checkout checkout, NSError error);
+		[EventArgs ("FailedToGetShippingRates")]
+		void FailedToGetShippingRates (ViewController controller, Checkout checkout, NSError error);
 
 		[Export ("controller:failedToCompleteCheckout:withError:")]
-		void ControllerFailedToCompleteCheckout (ViewController controller, Checkout checkout, NSError error);
+		[EventArgs ("FailedToCompleteCheckout")]
+		void FailedToCompleteCheckout (ViewController controller, Checkout checkout, NSError error);
 
 		[Export ("controller:didCompleteCheckout:status:")]
-		void ControllerDidCompleteCheckout (ViewController controller, Checkout checkout, Status status);
+		[EventArgs ("DidCompleteCheckout")]
+		void DidCompleteCheckout (ViewController controller, Checkout checkout, Status status);
 
 		[Export ("controller:didDismissApplePayControllerWithStatus:forCheckout:")]
-		void ControllerDidDismissApplePayController (ViewController controller, PKPaymentAuthorizationStatus status, Checkout checkout);
+		[EventArgs ("DidDismissApplePayController")]
+		void DidDismissApplePayController (ViewController controller, PKPaymentAuthorizationStatus status, Checkout checkout);
 
 		[Export ("controller:didDismissWebCheckout:")]
-		void ControllerDidDismissWebCheckout (ViewController controller, Checkout checkout);
+		[EventArgs ("DidDismissWebCheckout")]
+		void DidDismissWebCheckout (ViewController controller, Checkout checkout);
 
 		[Export ("didDismissViewController:")]
+		[EventArgs ("DidDismissViewController")]
 		void DidDismissViewController (ViewController controller);
 
 		[Export ("controllerWillCheckoutViaWeb:")]
-		void ControllerWillCheckoutViaWeb (ViewController viewController);
+		[EventArgs ("WillCheckoutViaWeb")]
+		void WillCheckoutViaWeb (ViewController viewController);
 
 		[Export ("controllerWillCheckoutViaApplePay:")]
-		void ControllerWillCheckoutViaApplePay (ViewController viewController);
+		[EventArgs ("WillCheckoutViaApplePay")]
+		void WillCheckoutViaApplePay (ViewController viewController);
 
 	}
 
-	[BaseType (typeof(UIViewController), Name = "BUYViewController")]
+	[BaseType (typeof(UIViewController), Name = "BUYViewController", Delegates = new[] { "Delegate" }, Events = new[] { typeof(ViewControllerDelegate) })]
 	[DisableDefaultCtor]
 	interface ViewController : IPKPaymentAuthorizationViewControllerDelegate
 	{
@@ -1566,6 +1584,7 @@ namespace Shopify.Buy
 
 	}
 
+	[DisableDefaultCtor]
 	[BaseType (typeof(ViewController), Name = "BUYProductViewController")]
 	interface ProductViewController : Themeable
 	{
@@ -1592,6 +1611,7 @@ namespace Shopify.Buy
 
 	}
 
+	[DisableDefaultCtor]
 	[BaseType (typeof(UIView), Name = "BUYProductViewErrorView")]
 	interface ProductViewErrorView
 	{
@@ -1609,6 +1629,7 @@ namespace Shopify.Buy
 
 	}
 
+	[DisableDefaultCtor]
 	[BaseType (typeof(UIView), Name = "BUYProductViewFooter")]
 	interface ProductViewFooter
 	{
@@ -1629,6 +1650,7 @@ namespace Shopify.Buy
 
 	}
 
+	[DisableDefaultCtor]
 	[BaseType (typeof(UIView), Name = "BUYProductViewHeader")]
 	interface ProductViewHeader
 	{
@@ -1652,6 +1674,7 @@ namespace Shopify.Buy
 
 	}
 
+	[DisableDefaultCtor]
 	[BaseType (typeof(UIView), Name = "BUYProductViewHeaderBackgroundImageView")]
 	interface ProductViewHeaderBackgroundImageView
 	{
@@ -1663,6 +1686,7 @@ namespace Shopify.Buy
 
 	}
 
+	[DisableDefaultCtor]
 	[BaseType (typeof(UIView), Name = "BUYProductViewHeaderOverlay")]
 	interface ProductViewHeaderOverlay
 	{
@@ -1712,7 +1736,7 @@ namespace Shopify.Buy
 
 	}
 
-	delegate void CheckoutTypeBlock (CheckoutType checkoutType);
+	delegate void CheckoutTypeHandler (CheckoutType checkoutType);
 
 	interface IStoreViewControllerDelegate
 	{
@@ -1725,11 +1749,13 @@ namespace Shopify.Buy
 	{
 		[Abstract]
 		[Export ("controller:shouldProceedWithCheckoutType:")]
-		void ShouldProceedWithCheckoutType (StoreViewController controller, CheckoutTypeBlock completionHandler);
+		[EventArgs ("ShouldProceed")]
+		void ShouldProceed (StoreViewController controller, CheckoutTypeHandler completionHandler);
 
 	}
 
-	[BaseType (typeof(ViewController), Name = "BUYStoreViewController")]
+	[DisableDefaultCtor]
+	[BaseType (typeof(ViewController), Name = "BUYStoreViewController", Delegates = new[] { "Delegate" }, Events = new[] { typeof(StoreViewControllerDelegate) })]
 	interface StoreViewController
 	{
 		[Export ("initWithClient:url:")]
@@ -1762,49 +1788,49 @@ namespace Shopify.Buy
 	interface ThemeExtensions
 	{
 		[Export ("backgroundColor")]
-		UIColor BackgroundColor ();
+		UIColor GetBackgroundColor ();
 
 		[Export ("selectedBackgroundColor")]
-		UIColor SelectedBackgroundColor ();
+		UIColor GetSelectedBackgroundColor ();
 
 		[Export ("separatorColor")]
-		UIColor SeparatorColor ();
+		UIColor GetSeparatorColor ();
 
 		[Export ("disclosureIndicatorColor")]
-		UIColor DisclosureIndicatorColor ();
+		UIColor GetDisclosureIndicatorColor ();
 
 		[Export ("checkoutButtonTextColor")]
-		UIColor CheckoutButtonTextColor ();
+		UIColor GetCheckoutButtonTextColor ();
 
 		[Export ("errorTintOverlayColor")]
-		UIColor ErrorTintOverlayColor ();
+		UIColor GetErrorTintOverlayColor ();
 
 		[Export ("navigationBarTitleColor")]
-		UIColor NavigationBarTitleColor ();
+		UIColor GetNavigationBarTitleColor ();
 
 		[Export ("navigationBarTitleVariantSelectionColor")]
-		UIColor NavigationBarTitleVariantSelectionColor ();
+		UIColor GetNavigationBarTitleVariantSelectionColor ();
 
 		[Export ("productTitleColor")]
-		UIColor ProductTitleColor ();
+		UIColor GetProductTitleColor ();
 
 		[Export ("variantOptionNameTextColor")]
-		UIColor VariantOptionNameTextColor ();
+		UIColor GetVariantOptionNameTextColor ();
 
 		[Export ("variantBreadcrumbsBackground")]
-		UIColor VariantBreadcrumbsBackground ();
+		UIColor GetVariantBreadcrumbsBackground ();
 
 		[Export ("blurEffect")]
-		UIBlurEffect BlurEffect ();
+		UIBlurEffect GetBlurEffect ();
 
 		[Export ("activityIndicatorViewStyle")]
-		UIActivityIndicatorViewStyle ActivityIndicatorViewStyle ();
+		UIActivityIndicatorViewStyle GetActivityIndicatorViewStyle ();
 
 		[Export ("navigationBarStyle")]
-		UIBarStyle NavigationBarStyle ();
+		UIBarStyle GetNavigationBarStyle ();
 
 		[Export ("paymentButtonStyle")]
-		PaymentButtonStyle PaymentButtonStyle ();
+		PaymentButtonStyle GetPaymentButtonStyle ();
 
 	}
 
@@ -1830,16 +1856,19 @@ namespace Shopify.Buy
 		// @required -(void)variantSelectionController:(BUYVariantSelectionViewController *)controller didSelectVariant:(BUYProductVariant *)variant;
 		[Abstract]
 		[Export ("variantSelectionController:didSelectVariant:")]
-		void VariantSelectionController (VariantSelectionViewController controller, ProductVariant variant);
+		[EventArgs ("DidSelectVariant")]
+		void DidSelectVariant (VariantSelectionViewController controller, ProductVariant variant);
 
 		// @required -(void)variantSelectionControllerDidCancelVariantSelection:(BUYVariantSelectionViewController *)controller atOptionIndex:(NSUInteger)optionIndex;
 		[Abstract]
 		[Export ("variantSelectionControllerDidCancelVariantSelection:atOptionIndex:")]
-		void VariantSelectionControllerDidCancelVariantSelection (VariantSelectionViewController controller, nuint optionIndex);
+		[EventArgs ("DidCancelVariantSelection")]
+		void DidCancelVariantSelection (VariantSelectionViewController controller, nuint optionIndex);
 	}
 
+	[DisableDefaultCtor]
 	// @interface BUYVariantSelectionViewController : UIViewController
-	[BaseType (typeof(UIViewController), Name = "BUYVariantSelectionViewController")]
+	[BaseType (typeof(UIViewController), Name = "BUYVariantSelectionViewController", Delegates = new[] { "Delegate" }, Events = new[] { typeof(VariantSelectionDelegate) })]
 	interface VariantSelectionViewController
 	{
 		// -(instancetype)initWithProduct:(BUYProduct *)product theme:(BUYTheme *)theme;
