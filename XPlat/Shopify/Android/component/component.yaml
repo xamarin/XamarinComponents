@@ -1,0 +1,38 @@
+version: 1.2.4
+name: Shopify Mobile Buy SDK for Xamarin.Android
+id: shopify-buy-android-sdk
+publisher: Xamarin Inc.
+publisher-url: http://xamarin.com
+summary: Shopify’s Mobile Buy SDK makes it simple to sell physical products inside your mobile app.
+license: License.md
+details: Details.md
+getting-started: GettingStarted.md
+icons:
+  - ../../icons/shopify_128x128.png
+  - ../../icons/shopify_512x512.png
+packages:
+  android:
+    - GoogleGson, Version=2.6.1.0
+    - Square.OkHttp, Version=2.7.5.0
+    - Square.OkHttp.UrlConnection, Version=2.7.5.0
+    - Square.OkIO, Version=1.6.0.0
+    - Square.Picasso, Version=2.5.2.1
+    - Square.Retrofit, Version=1.9.0.0
+    - Xamarin.Android.Bindings.Generators, Version=1.6.1.17
+    - Xamarin.Android.Support.Animated.Vector.Drawable, Version=23.4.0.1
+    - Xamarin.Android.Support.CustomTabs, Version=23.4.0.1
+    - Xamarin.Android.Support.Design, Version=23.4.0.1
+    - Xamarin.Android.Support.v4, Version=23.4.0.1
+    - Xamarin.Android.Support.v7.AppCompat, Version=23.4.0.1
+    - Xamarin.Android.Support.v7.Palette, Version=23.4.0.1
+    - Xamarin.Android.Support.v7.RecyclerView, Version=23.4.0.1
+    - Xamarin.Android.Support.Vector.Drawable, Version=23.4.0.1
+libraries:
+  android: ../output/Shopify.Android.dll
+samples:
+  - name: "Callback Sample"
+    path:  ../samples/ShopifyAndroidSample.sln
+  - name: "Async Sample"
+    path:  ../samples/ShopifyAndroidAsyncSample.sln
+no_build: true
+

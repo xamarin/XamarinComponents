@@ -1,0 +1,23 @@
+
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShopifyAndroidSample", "ShopifyAndroidSample\ShopifyAndroidSample.csproj", "{4E22312A-7182-4446-9711-31D2E9E45922}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Shopify.Android", "..\source\Shopify.Android\Shopify.Android.csproj", "{B9E9E134-2FD9-46A4-AFAC-62F365C7F92E}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{4E22312A-7182-4446-9711-31D2E9E45922}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4E22312A-7182-4446-9711-31D2E9E45922}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4E22312A-7182-4446-9711-31D2E9E45922}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4E22312A-7182-4446-9711-31D2E9E45922}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B9E9E134-2FD9-46A4-AFAC-62F365C7F92E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B9E9E134-2FD9-46A4-AFAC-62F365C7F92E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B9E9E134-2FD9-46A4-AFAC-62F365C7F92E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B9E9E134-2FD9-46A4-AFAC-62F365C7F92E}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+  <metadata>
+    <id>Xamarin.Shopify.Android</id>
+    <title>Shopify Mobile Buy SDK for Xamarin.Android</title>
+    <version>$version$</version>
+    <authors>Xamarin Inc.,Shopify Inc.</authors>
+    <owners>Xamarin Inc.</owners>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>Shopify’s Mobile Buy SDK makes it simple to sell physical products inside your mobile app. With a few lines of code, you can connect your app with the Shopify platform and let your users buy your products using their credit card.</description>
+    <summary>Sell with Shopify in Android apps</summary>
+    <copyright>Copyright © Xamarin. All Rights Reserved.</copyright>
+    <licenseUrl>https://raw.githubusercontent.com/Shopify/mobile-buy-sdk-android/$version$/LICENSE</licenseUrl>
+    <iconUrl>https://avatars3.githubusercontent.com/u/8085?v=3&amp;s=256</iconUrl>
+    <dependencies>
+      <dependency id="GoogleGson" version="2.6.1.0" />
+      <dependency id="Square.OkHttp" version="2.7.5.0" />
+      <dependency id="Square.OkHttp.UrlConnection" version="2.7.5.0" />
+      <dependency id="Square.OkIO" version="1.6.0.0" />
+      <dependency id="Square.Picasso" version="2.5.2.1" />
+      <dependency id="Square.Retrofit" version="1.9.0.0" />
+      <dependency id="Xamarin.Android.Bindings.Generators" version="1.6.1.17" />
+      <dependency id="Xamarin.Android.Support.Animated.Vector.Drawable" version="23.4.0.1" />
+      <dependency id="Xamarin.Android.Support.CustomTabs" version="23.4.0.1" />
+      <dependency id="Xamarin.Android.Support.Design" version="23.4.0.1" />
+      <dependency id="Xamarin.Android.Support.v4" version="23.4.0.1" />
+      <dependency id="Xamarin.Android.Support.v7.AppCompat" version="23.4.0.1" />
+      <dependency id="Xamarin.Android.Support.v7.Palette" version="23.4.0.1" />
+      <dependency id="Xamarin.Android.Support.v7.RecyclerView" version="23.4.0.1" />
+      <dependency id="Xamarin.Android.Support.Vector.Drawable" version="23.4.0.1" />
+    </dependencies>
+  </metadata>
+  <files>
+    <file src="output/Shopify.Android.dll" target="lib/MonoAndroid40" />
+  </files>
+</package>

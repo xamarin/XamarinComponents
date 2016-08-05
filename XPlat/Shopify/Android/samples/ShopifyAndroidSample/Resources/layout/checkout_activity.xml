@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:orientation="vertical">
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="6dp"
+        android:background="@color/shopify_green">
+
+        <Button
+            android:id="@+id/native_checkout_button"
+            style="@style/Button"
+            android:text="@string/native_checkout"/>
+    </FrameLayout>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="6dp"
+        android:background="@color/shopify_green">
+
+        <Button
+            android:id="@+id/web_checkout_button"
+            style="@style/Button"
+            android:text="@string/web_checkout"/>
+    </FrameLayout>
+
+    <include layout="@layout/order_summary"/>
+
+</LinearLayout>
