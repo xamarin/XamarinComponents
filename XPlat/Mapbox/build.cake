@@ -3,12 +3,12 @@
 
 var TARGET = Argument ("t", Argument ("target", "Default"));
 
-var ANDROID_VERSION = "4.1.0";
-var ANDROID_NUGET_VERSION = "4.1.0.1";
-var IOS_VERSION = "3.2.3";
-var IOS_NUGET_VERSION = "3.2.3";
+var ANDROID_VERSION = "4.1.1";
+var ANDROID_NUGET_VERSION = "4.1.1.0";
+var IOS_VERSION = "3.3.3";
+var IOS_NUGET_VERSION = "3.3.3";
 
-var MAPBOX_VERSION = "4.1.0";
+var MAPBOX_VERSION = "4.1.1";
 var LOST_VERSION = "1.1.0";
 
 var LOST_AAR = string.Format ("http://search.maven.org/remotecontent?filepath=com/mapzen/android/lost/{0}/lost-{0}.aar", LOST_VERSION);
