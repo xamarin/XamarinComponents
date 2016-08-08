@@ -55,6 +55,15 @@ namespace Mapbox
 
     partial class MapView
     {
+        const string frameworkPath = "Frameworks/Mapbox.framework/Mapbox";
+
+        // TODO: These Deceleration rates are currently hard coded based on the source of Mapbox
+        // They may change in the future!!!
+        // They are not exposed from the framework since they are not publicly declared in it
+        public static readonly nfloat DecelerationRateNormal = UIScrollView.DecelerationRateNormal;
+        public static readonly nfloat DecelerationRateFast = UIScrollView.DecelerationRateFast;
+        public static readonly nfloat DecelerationRateImmediate = 0.0f;
+
         public void SetVisibleCoordinates (CLLocationCoordinate2D[] coordinates, nuint count, UIEdgeInsets insets, bool animated)
         {
             SetVisibleCoordinates (GetPointer (coordinates), count, insets, animated);
