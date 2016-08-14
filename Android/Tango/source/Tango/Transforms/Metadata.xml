@@ -1,0 +1,11 @@
+<metadata>
+  <attr path="/api/package[@name='com.google.atap.tango']" name="managedName">ProjectTango</attr>
+  <attr path="/api/package[@name='com.google.atap.tangoservice']" name="managedName">ProjectTango.Service</attr>
+  <attr path="/api/package[@name='com.google.atap.tangoservice.experimental']" name="managedName">ProjectTango.Service.Experimental</attr>
+  <attr path="/api/package[@name='com.google.atap.tangohelperlib']" name="managedName">ProjectTango.HelperLib</attr>
+
+  <remove-node path="/api/package/class[@visibility='']" />
+  <remove-node path="/api/package/interface[@visibility='']" />
+  
+  <!--<attr path="/api/package[@name='com.google.atap.tangoservice']/class[@name='Tango']/method[@name='connectListener']" name="managedName">SetOnConnectListener</attr>-->
+</metadata>

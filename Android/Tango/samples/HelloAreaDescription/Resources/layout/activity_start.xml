@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:labelFor="@string/app_name"
+    android:orientation="vertical" >
+
+    <ToggleButton
+        android:id="@+id/load_adf"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:textOff="@string/load_adf_off"
+        android:textOn="@string/load_adf_on"
+        android:textSize="15sp" />
+
+    <ToggleButton
+        android:id="@+id/learning_mode"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:textOff="@string/learning_mode_off"
+        android:textOn="@string/learning_mode_on"
+        android:textSize="15sp" />
+
+    <Button
+        android:id="@+id/start"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:text="@string/start_config"
+        android:textSize="15sp" />
+
+    <Button
+        android:id="@+id/AdfListView"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:text="@string/manage_adfs"
+        android:textSize="15sp" />
+
+</LinearLayout>

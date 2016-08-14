@@ -1,0 +1,13 @@
+*.dex
+*.class
+.gradle/
+build/
+local.properties
+proguard/
+*.log
+.navigation/
+captures/
+*.iml
+.idea
+*.jks
+gradle-app.setting

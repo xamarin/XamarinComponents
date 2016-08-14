@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<package>
+  <metadata>
+    <id>Xamarin.Google.Tango</id>
+    <title>Google Project Tango</title>
+    <version>1.41</version>
+    <authors>Xamarin Inc.</authors>
+    <owners>Xamarin Inc.</owners>
+    <requireLicenseAcceptance>true</requireLicenseAcceptance>
+    <description>Tango is a platform that uses computer vision to give devices the ability to understand their position relative to the world around them.</description>
+    <copyright>Copyright 2016 Xamarin Inc</copyright>
+    <iconUrl>https://github.com/xamarin/XamarinComponents/raw/master/Android/Tango/images/icon_256x256.png</iconUrl>
+    <projectUrl>https://components.xamarin.com/view/Xamarin.Google.Tango</projectUrl>
+    <licenseUrl>https://components.xamarin.com/license/Xamarin.Google.Tango</licenseUrl>
+  </metadata>
+  <files>  
+    <file src="output/Tango.dll" target="lib/MonoAndroid403" />
+    <file src="output/Tango.Support.dll" target="lib/MonoAndroid403" />
+    <file src="output/Tango.UX.dll" target="lib/MonoAndroid403" />
+  </files>
+</package>
