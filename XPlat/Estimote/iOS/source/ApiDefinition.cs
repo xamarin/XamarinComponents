@@ -135,6 +135,11 @@ namespace Estimote
         [Static]
         [Export ("nameForType:")]
         string Name (NearableType type);
+
+        // + (NSString*)nameForNearableBroadcastingScheme:(ESTNearableBroadcastingScheme)scheme;
+        [Static]
+        [Export ("nameForNearableBroadcastingScheme:")]
+        string Name (NearableBroadcastingScheme scheme);
     }
 
     // @interface ESTNearable : NSObject <NSCopying, NSCoding>
@@ -729,52 +734,52 @@ namespace Estimote
         string Location { get; set; }
 
         // @property (nonatomic) NSString * _Nullable city;
-        [Export ("city", ArgumentSemantic.Assign)]
+        [Export ("city", ArgumentSemantic.Strong)]
         [NullAllowed]
         string City { get; set; }
 
         // @property (nonatomic) NSString * _Nullable country;
-        [Export ("country", ArgumentSemantic.Assign)]
+        [Export ("country", ArgumentSemantic.Strong)]
         [NullAllowed]
         string Country { get; set; }
 
         // @property (nonatomic) NSString * _Nullable formattedAddress;
-        [Export ("formattedAddress", ArgumentSemantic.Assign)]
+        [Export ("formattedAddress", ArgumentSemantic.Strong)]
         [NullAllowed]
         string FormattedAddress { get; set; }
 
         // @property (nonatomic) NSString * _Nullable stateName;
-        [Export ("stateName", ArgumentSemantic.Assign)]
+        [Export ("stateName", ArgumentSemantic.Strong)]
         [NullAllowed]
         string StateName { get; set; }
 
         // @property (nonatomic) NSString * _Nullable stateCode;
-        [Export ("stateCode", ArgumentSemantic.Assign)]
+        [Export ("stateCode", ArgumentSemantic.Strong)]
         [NullAllowed]
         string StateCode { get; set; }
 
         // @property (nonatomic) NSString * _Nullable streetName;
-        [Export ("streetName", ArgumentSemantic.Assign)]
+        [Export ("streetName", ArgumentSemantic.Strong)]
         [NullAllowed]
         string StreetName { get; set; }
 
         // @property (nonatomic) NSString * _Nullable streetNumber;
-        [Export ("streetNumber", ArgumentSemantic.Assign)]
+        [Export ("streetNumber", ArgumentSemantic.Strong)]
         [NullAllowed]
         string StreetNumber { get; set; }
 
         // @property (nonatomic) NSString * _Nullable zipCode;
-        [Export ("zipCode", ArgumentSemantic.Assign)]
+        [Export ("zipCode", ArgumentSemantic.Strong)]
         [NullAllowed]
         string ZipCode { get; set; }
 
         // @property (nonatomic) NSString * _Nullable indoorLocationIdentifier;
-        [Export ("indoorLocationIdentifier", ArgumentSemantic.Assign)]
+        [Export ("indoorLocationIdentifier", ArgumentSemantic.Strong)]
         [NullAllowed]
         string IndoorLocationIdentifier { get; set; }
 
         // @property (nonatomic) NSString * _Nullable indoorLocationName;
-        [Export ("indoorLocationName", ArgumentSemantic.Assign)]
+        [Export ("indoorLocationName", ArgumentSemantic.Strong)]
         [NullAllowed]
         string IndoorLocationName { get; set; }
 
@@ -876,6 +881,42 @@ namespace Estimote
         // @property (nonatomic, strong) NSNumber *power;
         [Export ("power", ArgumentSemantic.Strong)]
         NSNumber Power { get; set; }
+
+        // @property (nonatomic, strong) NSString* hardware;
+        [Export ("hardware", ArgumentSemantic.Strong)]
+        string Hardware { get; set; }
+
+        // @property (nonatomic, strong) NSString* firmware;
+        [Export ("firmware", ArgumentSemantic.Strong)]
+        string Firmware { get; set; }
+
+        // @property (nonatomic, strong) NSString* name;
+        [Export ("name", ArgumentSemantic.Strong)]
+        string Name { get; set; }
+
+        // @property (nonatomic, strong) NSNumber* motionOnly;
+        [Export ("motionOnly", ArgumentSemantic.Strong)]
+        NSNumber MotionOnly { get; set; }
+
+        // @property (nonatomic, strong) NSNumber* broadcastingScheme;
+        [Export ("broadcastingScheme", ArgumentSemantic.Strong)]
+        NSNumber BroadcastingScheme { get; set; }
+
+        // @property (nonatomic, strong) NSString* proximityUUID;
+        [Export ("proximityUUID", ArgumentSemantic.Strong)]
+        string ProximityUUID { get; set; }
+
+        // @property (nonatomic, strong) NSNumber* major;
+        [Export ("major", ArgumentSemantic.Strong)]
+        NSNumber Major { get; set; }
+
+        // @property (nonatomic, strong) NSNumber* minor;
+        [Export ("minor", ArgumentSemantic.Strong)]
+        NSNumber Minor { get; set; }
+
+        // @property (nonatomic, strong) NSString* eddystoneURL;
+        [Export ("eddystoneURL", ArgumentSemantic.Strong)]
+        string EddystoneUrl { get; set; }
 
         // - (instancetype)initWithData:(NSDictionary *)data;
         [Export ("initWithData:")]
@@ -1670,6 +1711,11 @@ namespace Estimote
         [Export ("estimoteSecureUUIDState", ArgumentSemantic.Strong)]
         [NullAllowed]
         NSNumber EstimoteSecureUUIDState { get; set; }
+
+        // @property (nonatomic, strong) NSNumber* _Nullable conditionalBroadcasting;
+        [Export ("conditionalBroadcasting", ArgumentSemantic.Strong)]
+        [NullAllowed]
+        NSNumber ConditionalBroadcasting { get; set; }
     }
 
     /// <summary>
@@ -4056,6 +4102,10 @@ namespace Estimote
         [Export ("eddystoneConfigurationServiceEnabled")]
         NSNumber EddystoneConfigurationServiceEnabled { get; }
 
+        // @property (nonatomic, readonly) NSNumber* motionOnlyEnabled;
+        [Export ("motionOnlyEnabled")]
+        NSNumber MotionOnlyEnabled { get; }
+
         // -(instancetype _Nonnull)initWithCloudDictionary:(NSDictionary * _Nonnull)dictionary;
         [Export ("initWithCloudDictionary:")]
         IntPtr Constructor (NSDictionary dictionary);
@@ -4331,6 +4381,10 @@ namespace Estimote
         // @property (readonly, nonatomic, strong) NSArray<ESTLocationBeaconBulkUpdateConfiguration *> * updateConfigurations;
         [Export ("updateConfigurations", ArgumentSemantic.Strong)]
         LocationBeaconBulkUpdateConfiguration [] UpdateConfigurations { get; }
+
+        // - (void)startCloudUpdate;
+        [Export ("startCloudUpdate")]
+        void StartCloudUpdate ();
 
         // -(void)startWithUpdateConfigurations:(NSArray<ESTLocationBeaconBulkUpdateConfiguration *> *)updateConfigurations;
         [Export ("startWithUpdateConfigurations:")]
@@ -7465,6 +7519,66 @@ namespace Estimote
         // - (void)setParams:(id)params forRequest:(NSMutableURLRequest*)request;
         [Export ("setParams:forRequest:")]
         void SetParams (IntPtr parameters, NSMutableUrlRequest request); 
+    }
+
+    // @interface ESTNearableOperationBroadcastingScheme : ESTSettingOperation<ESTNearableOperationProtocol>
+
+    [BaseType (typeof (SettingOperation), Name="ESTNearableOperationBroadcastingScheme")]
+    interface NearableOperationBroadcastingScheme : NearableOperationProtocol
+    {
+        // + (instancetype)readOperationWithCompletion:(ESTSettingNearableBroadcastingSchemeCompletionBlock)completion;
+        [Static]
+        [Export ("readOperationWithCompletion:"), Async]
+        NearableOperationBroadcastingScheme ReadOperation (SettingNearableBroadcastingSchemeCompletionBlock completion);
+
+        // + (instancetype)writeOperationWithSetting:(ESTSettingNearableBroadcastingScheme*)setting completion:(ESTSettingNearableBroadcastingSchemeCompletionBlock)completion;
+        [Static]
+        [Export ("writeOperationWithSetting:completion:"), Async]
+        NearableOperationBroadcastingScheme WriteOperation (SettingNearableBroadcastingScheme setting, SettingNearableBroadcastingSchemeCompletionBlock completion);
+    }
+
+
+    // typedef void(^ESTRequestV2GetDevicesPendingBlock)(NSArray<NSString*>* _Nullable result, NSError* _Nullable error);
+    delegate void RequestV2GetDevicesPendingBlock ([NullAllowed]IntPtr result, [NullAllowed]NSError error);
+
+    // @interface ESTRequestV2GetDevicesPending : ESTRequestGetJSON
+    [BaseType (typeof (RequestGetJSON), Name="ESTRequestV2GetDevicesPending")]
+    interface RequestV2GetDevicesPending
+    {
+        // - (void)sendRequestWithCompletion:(ESTRequestV2GetDevicesPendingBlock)completion;
+        [Export ("sendRequestWithCompletion:"), Async]
+        void SendRequest (RequestV2GetDevicesPendingBlock completion);
+    }
+
+    // typedef void(^ESTSettingNearableBroadcastingSchemeCompletionBlock)(ESTSettingNearableBroadcastingScheme* _Nullable broadcastingSchemeSetting, NSError* _Nullable error);
+    delegate void SettingNearableBroadcastingSchemeCompletionBlock ([NullAllowed]SettingNearableBroadcastingScheme broadcastingSchemeSetting, [NullAllowed]NSError error);
+
+    // @interface ESTSettingNearableBroadcastingScheme : ESTSettingReadWrite<NSCopying>
+    [BaseType (typeof (SettingReadWrite), Name="ESTSettingNearableBroadcastingScheme")]
+    interface SettingNearableBroadcastingScheme : INSCopying
+    {
+        // - (instancetype)initWithValue:(ESTNearableBroadcastingScheme)broadcastingScheme;
+        [Export ("initWithValue:")]
+        IntPtr Constructor (NearableBroadcastingScheme broadcastingScheme);
+
+        // - (ESTNearableBroadcastingScheme)getValue;
+        [Export ("getValue")]
+        NearableBroadcastingScheme Value { get; }
+
+        // - (void)readValueWithCompletion:(ESTSettingNearableBroadcastingSchemeCompletionBlock)completion;
+        [Export ("readValueWithCompletion:"), Async]
+        void ReadValue (SettingNearableBroadcastingSchemeCompletionBlock completion);
+
+        // - (void)writeValue:(ESTNearableBroadcastingScheme)broadcastingScheme completion:(ESTSettingNearableBroadcastingSchemeCompletionBlock)completion;
+        [Export ("writeValue:"), Async]
+        void WriteValue (NearableBroadcastingScheme broadcastingScheme, SettingNearableBroadcastingSchemeCompletionBlock completion);
+
+        // + (NSError* _Nullable)validationErrorForValue:(ESTNearableBroadcastingScheme)broadcastingScheme;
+        [Static]
+        [return: NullAllowed]
+        [Export ("validationErrorForValue:")]
+        NSError ValidationError (NearableBroadcastingScheme broadcastingScheme);
+
     }
 
 }

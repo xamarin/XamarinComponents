@@ -512,5 +512,48 @@ namespace Estimote
         InternalServerError = 500
     }
 
+    [Native]
+    public enum BeaconDetailsFields : ulong
+    {
+        AllFields                        = 1 << 0,
+        Mac                         = 1 << 1,
+        Color                       = 1 << 2,
+        Name                        = 1 << 3,
+        GPSLocation                 = 1 << 4,
+        IndoorLocation              = 1 << 5,
+        PublicIdentifier            = 1 << 6,
+        RemainingBatteryLifetime    = 1 << 7,
+        AllSettings                      = 1 << 8,
+        Battery                     = 1 << 9,
+        Power                       = 1 << 10,
+        Interval                    = 1 << 11,
+        Hardware                    = 1 << 12,
+        Firmware                    = 1 << 13,
+        BasicPowerMode              = 1 << 14,
+        SmartPowerMode              = 1 << 15,
+        TimeZone                    = 1 << 16,
+        Security                    = 1 << 17,
+        MotionDetection             = 1 << 18,
+        ConditionalBroadcasting     = 1 << 19,
+        BroadcastingScheme          = 1 << 20,
+        UUIDMajorMinor              = 1 << 21,
+        EddystoneNamespaceID        = 1 << 22,
+        EddystoneInstanceID         = 1 << 23
+    }
+
+    [Native]
+    public enum SettingIBeaconProximityUUIDError : ulong
+    {
+        InvalidValue = 1
+    }
+
+    // typedef NS_ENUM(char, ESTNearableBroadcastingScheme)
+    public enum NearableBroadcastingScheme : sbyte
+    {
+        Unknown = -1,
+        Nearable,
+        IBeacon,
+        EddystoneUrl
+    }
 }
 

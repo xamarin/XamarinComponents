@@ -5,8 +5,8 @@
 #addin nuget:?package=Cake.Xamarin.Build
 #addin nuget:?package=Cake.FileHelpers
 
-var NUGET_VERSION = "4.6.0";
-var ESTIMOTE_SDK_VERSION = "4.6.0";
+var NUGET_VERSION = "4.7.3";
+var ESTIMOTE_SDK_VERSION = "4.7.3";
 
 var COCOAPODS = new List<string> {
 	"platform :ios, '7.0'",
@@ -54,6 +54,8 @@ Task ("externals")
 		COCOAPODS.RemoveAt (1);
 
 	FileWriteLines ("./externals/Podfile", COCOAPODS.ToArray ());
+	
+	CocoaPodRepoUpdate ();
 
 	CocoaPodInstall ("./externals", new CocoaPodInstallSettings { NoIntegrate = true });
 });
