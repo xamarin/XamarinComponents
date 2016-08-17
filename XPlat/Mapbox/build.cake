@@ -5,8 +5,8 @@ var TARGET = Argument ("t", Argument ("target", "Default"));
 
 var ANDROID_VERSION = "4.1.1";
 var ANDROID_NUGET_VERSION = "4.1.1.0";
-var IOS_VERSION = "3.3.3";
-var IOS_NUGET_VERSION = "3.3.3";
+var IOS_VERSION = "3.3.4";
+var IOS_NUGET_VERSION = "3.3.4";
 
 var MAPBOX_VERSION = "4.1.1";
 var LOST_VERSION = "1.1.0";
