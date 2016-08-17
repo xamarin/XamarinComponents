@@ -5,9 +5,9 @@
 #addin nuget:?package=Cake.Xamarin.Build
 #addin nuget:?package=Cake.FileHelpers
 
-var NUGET_VERSION = "0.10.7";
+var NUGET_VERSION = "0.11.0";
 
-var ESTIMOTES_VERSION = "0.10.7";
+var ESTIMOTES_VERSION = "0.11.0";
 var ESTIMOTES_SDK_URL = "http://search.maven.org/remotecontent?filepath=com/estimote/sdk/" + ESTIMOTES_VERSION + "/sdk-" + ESTIMOTES_VERSION + ".aar";
 var ESTIMOTES_DOC_URL = "http://search.maven.org/remotecontent?filepath=com/estimote/sdk/" + ESTIMOTES_VERSION + "/sdk-" + ESTIMOTES_VERSION + "-javadoc.jar";
 

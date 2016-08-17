@@ -11,13 +11,13 @@ publisher-url: "https://www.xamarin.com"
 summary: "Estimote SDK for Xamarin.Android to actively scan for Bluetooth Beacons, Nearables, and Eddystones."
 details: Details.md
 getting-started: "GettingStarted.md"
-version: "0.10.7.0"
+version: "0.11.0.0"
 is-shell: true
 libraries:
   android: ../output/Xamarin.Estimote.Android.dll
 packages:
   android:
-   - Xamarin.Estimote.Android, Version=0.10.7.0
+   - Xamarin.Estimote.Android, Version=0.11.0.0
 src-url: "https://www.xamarin.com"
 samples:
   - name: "Estimote Sample"
