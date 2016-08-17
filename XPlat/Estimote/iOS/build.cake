@@ -5,8 +5,8 @@
 #addin nuget:?package=Cake.Xamarin.Build
 #addin nuget:?package=Cake.FileHelpers
 
-var NUGET_VERSION = "4.6.0";
-var ESTIMOTE_SDK_VERSION = "4.6.0";
+var NUGET_VERSION = "4.7.4";
+var ESTIMOTE_SDK_VERSION = "4.7.4";
 
 var COCOAPODS = new List<string> {
 	"platform :ios, '7.0'",
