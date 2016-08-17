@@ -3,20 +3,22 @@
 
 var TARGET = Argument ("t", Argument ("target", "Default"));
 
-var ANDROID_VERSION = "4.0.1";
-var IOS_VERSION = "3.2.3";
+var ANDROID_VERSION = "4.1.1";
+var ANDROID_NUGET_VERSION = "4.1.1.0";
+var IOS_VERSION = "3.3.4";
+var IOS_NUGET_VERSION = "3.3.4";
 
-var MAPBOX_VERSION = "4.0.1";
-var LOST_VERSION = "1.0.1";
+var MAPBOX_VERSION = "4.1.1";
+var LOST_VERSION = "1.1.0";
 
-var LOST_JAR = string.Format ("http://search.maven.org/remotecontent?filepath=com/mapzen/android/lost/{0}/lost-{0}.jar", LOST_VERSION);
+var LOST_AAR = string.Format ("http://search.maven.org/remotecontent?filepath=com/mapzen/android/lost/{0}/lost-{0}.aar", LOST_VERSION);
 var MAPBOX_ANDROID = string.Format ("http://search.maven.org/remotecontent?filepath=com/mapbox/mapboxsdk/mapbox-android-sdk/{0}/mapbox-android-sdk-{0}.aar", MAPBOX_VERSION);
 
 var PODFILE = new List<string> {
 	"platform :ios, '8.0'",
 	"install! 'cocoapods', :integrate_targets => false",
 	"target 'Xamarin' do",
-	"  pod 'Mapbox-iOS-SDK', '3.2.2'",
+	"  pod 'Mapbox-iOS-SDK', '3.2.3'",
 	"  use_frameworks!",
 	"end",
 };
@@ -42,8 +44,8 @@ var buildSpec = new BuildSpec {
 	},
 
 	NuGets = new [] {
-		new NuGetInfo { NuSpec = "./nuget/Xamarin.MapboxSDK.Android.nuspec", Version = ANDROID_VERSION },
-		new NuGetInfo { NuSpec = "./nuget/Xamarin.MapboxSDK.iOS.nuspec", Version = IOS_VERSION },
+		new NuGetInfo { NuSpec = "./nuget/Xamarin.MapboxSDK.Android.nuspec", Version = ANDROID_NUGET_VERSION },
+		new NuGetInfo { NuSpec = "./nuget/Xamarin.MapboxSDK.iOS.nuspec", Version = IOS_NUGET_VERSION },
 	},
 
 	Samples = new [] {
@@ -63,7 +65,10 @@ Task ("externals-android")
 {
 	EnsureDirectoryExists ("./externals/android");
 
-	DownloadFile (LOST_JAR, "./externals/android/lost.jar");
+	DownloadFile (LOST_AAR, "./externals/android/lost.aar");
+	Unzip ("./externals/android/lost.aar", "./externals/android/lost");
+	CopyFile ("./externals/android/lost/classes.jar", "./externals/android/lost.jar");
+
 	DownloadFile (MAPBOX_ANDROID, "./externals/android/temp.aar");
 
 	Unzip ("./externals/android/temp.aar", "./externals/android/temp");
@@ -82,6 +87,8 @@ Task ("externals-ios")
 
 	FileWriteLines ("./externals/ios/Podfile", PODFILE.ToArray ());
 
+	CocoaPodRepoUpdate ();
+	
 	CocoaPodInstall ("./externals/ios", new CocoaPodInstallSettings { NoIntegrate = true });
 });
 Task ("externals").IsDependentOn ("externals-android").IsDependentOn ("externals-ios");

@@ -44,6 +44,7 @@ namespace Mapbox
         TileInfoMask = 1 << 2,
         TimestampsMask = 1 << 3,
         CollisionBoxesMask = 1 << 4,
+        OverdrawVisualizationMask = 1 << 5,
     }
 
     [Native]
@@ -71,8 +72,20 @@ namespace Mapbox
     {
         ulong CountOfResourcesCompleted;
         ulong CountOfBytesCompleted;
+        ulong CountOfTilesCompleted;
+        ulong CountOfTileBytesCompleted;
         ulong CountOfResourcesExpected;
         ulong MaximumResourcesExpected;
+    }
+
+    [Native]
+    public enum AnnotationViewDragState : ulong
+    {
+        None = 0,
+        Starting,
+        Dragging,
+        Canceling,
+        Ending
     }
 
     // Symbols don't exist in libMapbox.a !!!

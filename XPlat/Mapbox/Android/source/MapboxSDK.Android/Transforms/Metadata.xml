@@ -23,6 +23,7 @@
 
 	<attr path="/api/package[@name='com.almeros.android.multitouch.gesturedetectors']" name="managedName">Mapbox.MultiTouch.GestureDetectors</attr>
 
+	<attr path="/api/package[@name='com.mapzen.lost']" name="managedName">Mapbox.Mapzen.Lost</attr>
 	<attr path="/api/package[@name='com.mapzen.android.lost.api']" name="managedName">Mapbox.Mapzen.Lost.Api</attr>
 	<attr path="/api/package[@name='com.mapzen.android.lost.internal']" name="managedName">Mapbox.Mapzen.Lost.Internal</attr>
 
@@ -46,6 +47,39 @@
 	<attr path="/api/package[@name='com.mapbox.mapboxsdk.annotations']/class[@name='BaseMarkerOptions']/method[@name='title']" name="return">com.mapbox.mapboxsdk.annotations.BaseMarkerOptions</attr>
 	<remove-node path="/api/package[@name='com.mapbox.mapboxsdk.annotations']/class[@name='BaseMarkerOptions']/method[@name='getThis']" />
 	<attr path="/api/package[@name='com.mapbox.mapboxsdk.annotations']/class[@name='BaseMarkerOptions']/method[@name='getMarker']" name="return">com.mapbox.mapboxsdk.annotations.Marker</attr>
+
+	<!-- Fix BaseMarkerViewOptions builder -->
+	<attr path="/api/package[@name='com.mapbox.mapboxsdk.annotations']/class[@name='BaseMarkerViewOptions']/method[@name='alpha']" name="managedName">SetAlpha</attr>
+	<attr path="/api/package[@name='com.mapbox.mapboxsdk.annotations']/class[@name='BaseMarkerViewOptions']/method[@name='alpha']" name="return">com.mapbox.mapboxsdk.annotations.BaseMarkerViewOptions</attr>
+	<attr path="/api/package[@name='com.mapbox.mapboxsdk.annotations']/class[@name='BaseMarkerViewOptions']/method[@name='infoWindowAnchor']" name="managedName">SetInfoWindowAnchor</attr>
+	<attr path="/api/package[@name='com.mapbox.mapboxsdk.annotations']/class[@name='BaseMarkerViewOptions']/method[@name='infoWindowAnchor']" name="return">com.mapbox.mapboxsdk.annotations.BaseMarkerViewOptions</attr>
+	<attr path="/api/package[@name='com.mapbox.mapboxsdk.annotations']/class[@name='BaseMarkerViewOptions']/method[@name='icon']" name="managedName">SetIcon</attr>
+	<attr path="/api/package[@name='com.mapbox.mapboxsdk.annotations']/class[@name='BaseMarkerViewOptions']/method[@name='icon']" name="return">com.mapbox.mapboxsdk.annotations.BaseMarkerViewOptions</attr>
+	<attr path="/api/package[@name='com.mapbox.mapboxsdk.annotations']/class[@name='BaseMarkerViewOptions']/method[@name='position']" name="managedName">SetPosition</attr>
+	<attr path="/api/package[@name='com.mapbox.mapboxsdk.annotations']/class[@name='BaseMarkerViewOptions']/method[@name='position']" name="return">com.mapbox.mapboxsdk.annotations.BaseMarkerViewOptions</attr>
+	<attr path="/api/package[@name='com.mapbox.mapboxsdk.annotations']/class[@name='BaseMarkerViewOptions']/method[@name='rotation']" name="managedName">SetRotation</attr>
+	<attr path="/api/package[@name='com.mapbox.mapboxsdk.annotations']/class[@name='BaseMarkerViewOptions']/method[@name='rotation']" name="return">com.mapbox.mapboxsdk.annotations.BaseMarkerViewOptions</attr>
+	<attr path="/api/package[@name='com.mapbox.mapboxsdk.annotations']/class[@name='BaseMarkerViewOptions']/method[@name='snippet']" name="managedName">SetSnippet</attr>
+	<attr path="/api/package[@name='com.mapbox.mapboxsdk.annotations']/class[@name='BaseMarkerViewOptions']/method[@name='snippet']" name="return">com.mapbox.mapboxsdk.annotations.BaseMarkerViewOptions</attr>
+	<attr path="/api/package[@name='com.mapbox.mapboxsdk.annotations']/class[@name='BaseMarkerViewOptions']/method[@name='title']" name="managedName">SetTitle</attr>
+	<attr path="/api/package[@name='com.mapbox.mapboxsdk.annotations']/class[@name='BaseMarkerViewOptions']/method[@name='title']" name="return">com.mapbox.mapboxsdk.annotations.BaseMarkerViewOptions</attr>
+	<attr path="/api/package[@name='com.mapbox.mapboxsdk.annotations']/class[@name='BaseMarkerViewOptions']/method[@name='anchor']" name="managedName">SetAnchor</attr>
+	<attr path="/api/package[@name='com.mapbox.mapboxsdk.annotations']/class[@name='BaseMarkerViewOptions']/method[@name='anchor']" name="return">com.mapbox.mapboxsdk.annotations.BaseMarkerViewOptions</attr>
+	<attr path="/api/package[@name='com.mapbox.mapboxsdk.annotations']/class[@name='BaseMarkerViewOptions']/method[@name='flat']" name="managedName">SetFlat</attr>
+	<attr path="/api/package[@name='com.mapbox.mapboxsdk.annotations']/class[@name='BaseMarkerViewOptions']/method[@name='flat']" name="return">com.mapbox.mapboxsdk.annotations.BaseMarkerViewOptions</attr>
+	<attr path="/api/package[@name='com.mapbox.mapboxsdk.annotations']/class[@name='BaseMarkerViewOptions']/method[@name='visible']" name="managedName">SetVisible</attr>
+	<attr path="/api/package[@name='com.mapbox.mapboxsdk.annotations']/class[@name='BaseMarkerViewOptions']/method[@name='visible']" name="return">com.mapbox.mapboxsdk.annotations.BaseMarkerViewOptions</attr>
+
+	<remove-node path="/api/package[@name='com.mapbox.mapboxsdk.annotations']/class[@name='BaseMarkerViewOptions']/field[@name='anchorU']" />
+	<remove-node path="/api/package[@name='com.mapbox.mapboxsdk.annotations']/class[@name='BaseMarkerViewOptions']/field[@name='anchorV']" />
+	<remove-node path="/api/package[@name='com.mapbox.mapboxsdk.annotations']/class[@name='BaseMarkerViewOptions']/field[@name='alpha']" />
+	<remove-node path="/api/package[@name='com.mapbox.mapboxsdk.annotations']/class[@name='BaseMarkerViewOptions']/field[@name='icon']" />
+	<remove-node path="/api/package[@name='com.mapbox.mapboxsdk.annotations']/class[@name='BaseMarkerViewOptions']/field[@name='infoWindowAnchorU']" />
+	<remove-node path="/api/package[@name='com.mapbox.mapboxsdk.annotations']/class[@name='BaseMarkerViewOptions']/field[@name='infoWindowAnchorV']" />
+	<remove-node path="/api/package[@name='com.mapbox.mapboxsdk.annotations']/class[@name='BaseMarkerViewOptions']/field[@name='position']" />
+	<remove-node path="/api/package[@name='com.mapbox.mapboxsdk.annotations']/class[@name='BaseMarkerViewOptions']/field[@name='rotation']" />
+	<remove-node path="/api/package[@name='com.mapbox.mapboxsdk.annotations']/class[@name='BaseMarkerViewOptions']/field[@name='snippet']" />
+	<remove-node path="/api/package[@name='com.mapbox.mapboxsdk.annotations']/class[@name='BaseMarkerViewOptions']/field[@name='title']" />
 
 	<attr path ="/api/package[@name='com.mapbox.mapboxsdk.annotations']/class[@name='PolygonOptions']/method[@name='alpha']" name="managedName">SetAlpha</attr>
 	<attr path ="/api/package[@name='com.mapbox.mapboxsdk.annotations']/class[@name='PolygonOptions']/method[@name='fillColor']" name="managedName">SetFillColor</attr>
@@ -93,4 +127,13 @@
 	<!-- removeLocationListener returns a bool (instead of void) which causes issues in the C# event generation, so let's just stop it from being generated at all -->
 	<attr path="/api/package[@name='com.mapbox.mapboxsdk.location']/class[@name='LocationServices']/method[@name='addLocationListener']" name="eventName"></attr>
 	<attr path="/api/package[@name='com.mapbox.mapboxsdk.location']/class[@name='LocationServices']/method[@name='removeLocationListener']" name="eventName"></attr>
+
+
+	<remove-node path="/api/package[@name='com.mapbox.mapboxsdk.annotations']/class[@name='BaseMarkerOptions']/method[@name='setPosition']" />
+	<remove-node path="/api/package[@name='com.mapbox.mapboxsdk.annotations']/class[@name='BaseMarkerOptions']/method[@name='setSnippet']" />
+	<remove-node path="/api/package[@name='com.mapbox.mapboxsdk.annotations']/class[@name='BaseMarkerOptions']/method[@name='setTitle']" />
+	<remove-node path="/api/package[@name='com.mapbox.mapboxsdk.annotations']/class[@name='BaseMarkerOptions']/method[@name='setIcon']" />
+
+	<attr path="/api/package[@name='com.mapbox.mapboxsdk.annotations']/class[@name='MarkerViewManager.ImageMarkerViewAdapter']/method[@name='getView' and count(parameter)=3 and parameter[1][@type='com.mapbox.mapboxsdk.annotations.MarkerView'] and parameter[2][@type='android.view.View'] and parameter[3][@type='android.view.ViewGroup']]/parameter[1]" name="managedType">Java.Lang.Object</attr>
+
 </metadata>
