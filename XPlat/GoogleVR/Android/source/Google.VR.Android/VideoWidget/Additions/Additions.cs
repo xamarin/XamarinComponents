@@ -407,3 +407,12 @@ namespace Google.Android.ExoPlayer.Extractor.HLS
         }
     }
 }
+
+namespace Google.Android.ExoPlayer.Drm
+{
+
+    internal partial interface IExoMediaDrmOnEventListener<TT> : IExoMediaDrmOnEventListener
+    {
+
+    }
+}

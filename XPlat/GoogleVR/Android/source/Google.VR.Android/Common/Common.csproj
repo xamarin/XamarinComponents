@@ -45,6 +45,7 @@
     <Compile Include="..\GvrConsts.cs">
       <Link>GvrConsts.cs</Link>
     </Compile>
+    <Compile Include="Additions\NameCheck.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Additions\AboutAdditions.txt" />

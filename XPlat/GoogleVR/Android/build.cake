@@ -3,9 +3,9 @@
 
 var TARGET = Argument ("t", Argument ("target", "Default"));
 
-var ANDROID_VERSION = "0954a01934199b8536755f06688d98e3d2a958e4";
-var ANDROID_NUGET_VERSION = "0.8.0-beta1";
-var ANDROID_URL = string.Format ("https://github.com/googlevr/gvr-android-sdk/archive/{0}.zip", ANDROID_VERSION);
+var ANDROID_VERSION = "0.9.1";
+var ANDROID_NUGET_VERSION = "0.9.1-beta1";
+var ANDROID_URL = string.Format ("https://github.com/googlevr/gvr-android-sdk/archive/v{0}.zip", ANDROID_VERSION);
 
 var buildSpec = new BuildSpec {
 
