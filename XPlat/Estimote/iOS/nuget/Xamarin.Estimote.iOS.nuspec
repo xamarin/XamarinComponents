@@ -15,6 +15,6 @@
         <tags>Xamarin Xamarin.iOS Estimote</tags>
     </metadata>
     <files>        
-        <file src="output/Xamarin.Estimote.iOS.dll" target="lib\Xamarin.iOS10\Xamarin.Estimote.iOS.dll" />
+        <file src="output/Xamarin.Estimote.iOS.dll" target="lib/Xamarin.iOS10" />
     </files>
 </package>
