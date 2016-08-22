@@ -15,6 +15,6 @@
         <tags>Xamarin Xamarin.Android Estimote</tags>
     </metadata>
     <files>
-        <file src="output/Xamarin.Estimote.Android.dll" target="lib\MonoAndroid43\Xamarin.Estimote.Android.dll" />
+        <file src="output/Xamarin.Estimote.Android.dll" target="lib/MonoAndroid43" />
     </files>
 </package>
