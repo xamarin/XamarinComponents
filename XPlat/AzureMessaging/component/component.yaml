@@ -17,7 +17,7 @@ packages:
     - Xamarin.Azure.NotificationHubs.Android, Version=0.4.0.0
 samples:
   - name: Android Sample
-    path: ../Android/samples/NotificationHubsSample.sln
+    path: ../Android/samples/NotificationHubsSampleAndroid.sln
     removeProjects:
       - Xamarin.Azure.NotificationHubs.Android
     installNuGets:
@@ -25,7 +25,7 @@ samples:
         packages:
           - Xamarin.Azure.NotificationHubs.Android
   - name: iOS Sample
-    path: ../iOS/samples/NotificationHubsSample.sln
+    path: ../iOS/samples/NotificationHubsSampleiOS.sln
     removeProjects:
       - Xamarin.Azure.NotificationHubs.iOS
     installNuGets:
