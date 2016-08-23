@@ -7570,7 +7570,7 @@ namespace Estimote
         void ReadValue (SettingNearableBroadcastingSchemeCompletionBlock completion);
 
         // - (void)writeValue:(ESTNearableBroadcastingScheme)broadcastingScheme completion:(ESTSettingNearableBroadcastingSchemeCompletionBlock)completion;
-        [Export ("writeValue:"), Async]
+        [Export ("writeValue:completion:"), Async]
         void WriteValue (NearableBroadcastingScheme broadcastingScheme, SettingNearableBroadcastingSchemeCompletionBlock completion);
 
         // + (NSError* _Nullable)validationErrorForValue:(ESTNearableBroadcastingScheme)broadcastingScheme;
