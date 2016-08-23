@@ -100,11 +100,11 @@
     <Compile Include="AppDelegate.cs" />
     <Compile Include="HomeViewController.cs" />
   </ItemGroup>
-  <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
   <ItemGroup>
-    <ProjectReference Include="..\..\..\binding\iOS\Microsoft.WindowsAzure.Messaging.iOS.csproj">
+    <ProjectReference Include="..\..\source\Xamarin.Azure.NotificationHubs.iOS.csproj">
       <Project>{99ECFF92-CA4E-4473-ADFC-5D7F3ABBC4C6}</Project>
-      <Name>Microsoft.WindowsAzure.Messaging.iOS</Name>
+      <Name>Xamarin.Azure.NotificationHubs.iOS</Name>
     </ProjectReference>
   </ItemGroup>
+  <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
 </Project>
