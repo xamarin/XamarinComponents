@@ -34,8 +34,8 @@ var buildSpec = new BuildSpec {
 	},
 
 	Samples = new [] {
-		new DefaultSolutionBuilder { SolutionPath = "./iOS/samples/NotificationHubsSample.sln" },
-		new DefaultSolutionBuilder { SolutionPath = "./Android/samples/NotificationHubsSample.sln" },
+		new DefaultSolutionBuilder { SolutionPath = "./iOS/samples/NotificationHubsSampleiOS.sln" },
+		new DefaultSolutionBuilder { SolutionPath = "./Android/samples/NotificationHubsSampleAndroid.sln" },
 	},
 
 	NuGets = new [] {
