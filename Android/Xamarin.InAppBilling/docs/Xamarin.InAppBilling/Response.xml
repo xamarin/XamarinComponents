@@ -1,0 +1,164 @@
+<Type Name="Response" FullName="Xamarin.InAppBilling.Response">
+  <TypeSignature Language="C#" Value="public static class Response" />
+  <TypeSignature Language="ILAsm" Value=".class public auto ansi abstract sealed beforefieldinit Response extends System.Object" />
+  <AssemblyInfo>
+    <AssemblyName>Xamarin.InAppBilling</AssemblyName>
+    <AssemblyVersion>0.0.0.0</AssemblyVersion>
+  </AssemblyInfo>
+  <Base>
+    <BaseTypeName>System.Object</BaseTypeName>
+  </Base>
+  <Interfaces />
+  <Docs>
+    <summary>
+             List of response codes available within the Google Play In-App Billing API.
+             </summary>
+    <remarks>To be added.</remarks>
+  </Docs>
+  <Members>
+    <Member MemberName="BuyIntent">
+      <MemberSignature Language="C#" Value="public const string BuyIntent;" />
+      <MemberSignature Language="ILAsm" Value=".field public static literal string BuyIntent" />
+      <MemberType>Field</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>0.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.String</ReturnType>
+      </ReturnValue>
+      <Docs>
+        <summary>
+             Gets the buy intent.
+             </summary>
+        <returns>The buy intent.</returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="Code">
+      <MemberSignature Language="C#" Value="public const string Code;" />
+      <MemberSignature Language="ILAsm" Value=".field public static literal string Code" />
+      <MemberType>Field</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>0.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.String</ReturnType>
+      </ReturnValue>
+      <Docs>
+        <summary>
+             Gets the response code.
+             </summary>
+        <returns>The response code.</returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="InAppContinuationToken">
+      <MemberSignature Language="C#" Value="public const string InAppContinuationToken;" />
+      <MemberSignature Language="ILAsm" Value=".field public static literal string InAppContinuationToken" />
+      <MemberType>Field</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>0.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.String</ReturnType>
+      </ReturnValue>
+      <Docs>
+        <summary>
+             Gets the in app continuation token.
+             </summary>
+        <returns>The in app continuation token.</returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="InAppDataSignature">
+      <MemberSignature Language="C#" Value="public const string InAppDataSignature;" />
+      <MemberSignature Language="ILAsm" Value=".field public static literal string InAppDataSignature" />
+      <MemberType>Field</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>0.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.String</ReturnType>
+      </ReturnValue>
+      <Docs>
+        <summary>
+             Gets the in app data signature.
+             </summary>
+        <returns>The in app data signature.</returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="InAppDataSignatureList">
+      <MemberSignature Language="C#" Value="public const string InAppDataSignatureList;" />
+      <MemberSignature Language="ILAsm" Value=".field public static literal string InAppDataSignatureList" />
+      <MemberType>Field</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>0.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.String</ReturnType>
+      </ReturnValue>
+      <Docs>
+        <summary>
+             Gets the in app data signature list.
+             </summary>
+        <returns>The in app data signature list.</returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="InAppPurchaseData">
+      <MemberSignature Language="C#" Value="public const string InAppPurchaseData;" />
+      <MemberSignature Language="ILAsm" Value=".field public static literal string InAppPurchaseData" />
+      <MemberType>Field</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>0.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.String</ReturnType>
+      </ReturnValue>
+      <Docs>
+        <summary>
+             Gets the in app purchase data.
+             </summary>
+        <returns>The in app purchase data.</returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="InAppPurchaseDataList">
+      <MemberSignature Language="C#" Value="public const string InAppPurchaseDataList;" />
+      <MemberSignature Language="ILAsm" Value=".field public static literal string InAppPurchaseDataList" />
+      <MemberType>Field</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>0.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.String</ReturnType>
+      </ReturnValue>
+      <Docs>
+        <summary>
+             Gets the in app purchase data list.
+             </summary>
+        <returns>The in app purchase data list.</returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="InAppPurchaseItemList">
+      <MemberSignature Language="C#" Value="public const string InAppPurchaseItemList;" />
+      <MemberSignature Language="ILAsm" Value=".field public static literal string InAppPurchaseItemList" />
+      <MemberType>Field</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>0.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.String</ReturnType>
+      </ReturnValue>
+      <Docs>
+        <summary>
+             Gets the in app purchase item list.
+             </summary>
+        <returns>The in app purchase item list.</returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+  </Members>
+</Type>

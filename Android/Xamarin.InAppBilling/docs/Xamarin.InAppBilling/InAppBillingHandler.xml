@@ -1,0 +1,444 @@
+<Type Name="InAppBillingHandler" FullName="Xamarin.InAppBilling.InAppBillingHandler">
+  <TypeSignature Language="C#" Value="public class InAppBillingHandler : Xamarin.InAppBilling.IInAppBillingHandler" />
+  <TypeSignature Language="ILAsm" Value=".class public auto ansi beforefieldinit InAppBillingHandler extends System.Object implements class Xamarin.InAppBilling.IInAppBillingHandler" />
+  <AssemblyInfo>
+    <AssemblyName>Xamarin.InAppBilling</AssemblyName>
+    <AssemblyVersion>0.0.0.0</AssemblyVersion>
+  </AssemblyInfo>
+  <Base>
+    <BaseTypeName>System.Object</BaseTypeName>
+  </Base>
+  <Interfaces>
+    <Interface>
+      <InterfaceName>Xamarin.InAppBilling.IInAppBillingHandler</InterfaceName>
+    </Interface>
+  </Interfaces>
+  <Docs>
+    <summary>
+             The <see cref="T:Xamarin.InAppBilling.InAppBillingHandler" /> is a helper class that handles communication with the
+             Google Play services to provide support for getting a list of available products, buying a product, consuming a
+             product, and getting a list of already owned products.
+             </summary>
+    <remarks>To be added.</remarks>
+  </Docs>
+  <Members>
+    <Member MemberName=".ctor">
+      <MemberSignature Language="C#" Value="public InAppBillingHandler (Android.App.Activity activity, Com.Android.Vending.Billing.IInAppBillingService billingService, string publicKey);" />
+      <MemberSignature Language="ILAsm" Value=".method public hidebysig specialname rtspecialname instance void .ctor(class Android.App.Activity activity, class Com.Android.Vending.Billing.IInAppBillingService billingService, string publicKey) cil managed" />
+      <MemberType>Constructor</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>0.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <Parameters>
+        <Parameter Name="activity" Type="Android.App.Activity" />
+        <Parameter Name="billingService" Type="Com.Android.Vending.Billing.IInAppBillingService" />
+        <Parameter Name="publicKey" Type="System.String" />
+      </Parameters>
+      <Docs>
+        <param name="activity">Activity.</param>
+        <param name="billingService">Billing service.</param>
+        <param name="publicKey">Public key.</param>
+        <summary>
+             Initializes a new instance of the <see cref="T:Xamarin.InAppBilling.InAppBillingHandler" /> class.
+             </summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="BuyProduct">
+      <MemberSignature Language="C#" Value="public void BuyProduct (Xamarin.InAppBilling.Product product);" />
+      <MemberSignature Language="ILAsm" Value=".method public hidebysig newslot virtual instance void BuyProduct(class Xamarin.InAppBilling.Product product) cil managed" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>0.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Void</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="product" Type="Xamarin.InAppBilling.Product" />
+      </Parameters>
+      <Docs>
+        <param name="product">The <see cref="!:Xamarin.Android.InAppBilling.Product" /> representing the item the users wants to
+             purchase.</param>
+        <summary>
+             Buys the given <see cref="!:Xamarin.Android.InAppBilling.Product" /></summary>
+        <remarks>This method automatically generates a unique GUID and attaches it as the developer payload for this purchase.
+             </remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="BuyProduct">
+      <MemberSignature Language="C#" Value="public void BuyProduct (Xamarin.InAppBilling.Product product, string payload);" />
+      <MemberSignature Language="ILAsm" Value=".method public hidebysig instance void BuyProduct(class Xamarin.InAppBilling.Product product, string payload) cil managed" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>0.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Void</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="product" Type="Xamarin.InAppBilling.Product" />
+        <Parameter Name="payload" Type="System.String" />
+      </Parameters>
+      <Docs>
+        <param name="product">The <see cref="!:Xamarin.Android.InAppBilling.Product" /> representing the item the users wants to
+             purchase.</param>
+        <param name="payload">The developer payload to attach to the purchase.</param>
+        <summary>
+             Buys the given <see cref="!:Xamarin.Android.InAppBilling.Product" /> and attaches the given developer payload to the 
+             purchase.
+             </summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="BuyProduct">
+      <MemberSignature Language="C#" Value="public void BuyProduct (string sku, string itemType, string payload);" />
+      <MemberSignature Language="ILAsm" Value=".method public hidebysig newslot virtual instance void BuyProduct(string sku, string itemType, string payload) cil managed" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>0.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Void</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="sku" Type="System.String" />
+        <Parameter Name="itemType" Type="System.String" />
+        <Parameter Name="payload" Type="System.String" />
+      </Parameters>
+      <Docs>
+        <param name="sku">The SKU of the item to purchase.</param>
+        <param name="itemType">The type of the item to purchase.</param>
+        <param name="payload">The developer payload to attach to the purchase.</param>
+        <summary>
+             Buys a product based on the given product SKU and Item Type attaching the given payload
+             </summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="BuyProductError">
+      <MemberSignature Language="C#" Value="public event Xamarin.InAppBilling.InAppBillingHandler.BuyProductErrorDelegate BuyProductError;" />
+      <MemberSignature Language="ILAsm" Value=".event class Xamarin.InAppBilling.InAppBillingHandler/BuyProductErrorDelegate BuyProductError" />
+      <MemberType>Event</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>0.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>Xamarin.InAppBilling.InAppBillingHandler+BuyProductErrorDelegate</ReturnType>
+      </ReturnValue>
+      <Docs>
+        <summary>
+             Occurs when the user attempts to buy a product and there is an error.
+             </summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="ConsumePurchase">
+      <MemberSignature Language="C#" Value="public bool ConsumePurchase (string token);" />
+      <MemberSignature Language="ILAsm" Value=".method public hidebysig newslot virtual instance bool ConsumePurchase(string token) cil managed" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>0.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Boolean</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="token" Type="System.String" />
+      </Parameters>
+      <Docs>
+        <param name="token">The purchase token of the purchase to consume.</param>
+        <summary>
+             Consumes the purchased item
+             </summary>
+        <returns>
+          <c>true</c> if the purchase is successfully consumed else returns <c>false</c>.</returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="ConsumePurchase">
+      <MemberSignature Language="C#" Value="public bool ConsumePurchase (Xamarin.InAppBilling.Purchase purchase);" />
+      <MemberSignature Language="ILAsm" Value=".method public hidebysig newslot virtual instance bool ConsumePurchase(class Xamarin.InAppBilling.Purchase purchase) cil managed" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>0.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Boolean</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="purchase" Type="Xamarin.InAppBilling.Purchase" />
+      </Parameters>
+      <Docs>
+        <param name="purchase">The purchase receipt of the item to consume.</param>
+        <summary>
+             Consumes the purchased item.
+             </summary>
+        <returns>
+          <c>true</c> if the purchase is successfully consumed else returns <c>false</c>.</returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="GetPurchases">
+      <MemberSignature Language="C#" Value="public System.Collections.Generic.IList&lt;Xamarin.InAppBilling.Purchase&gt; GetPurchases (string itemType);" />
+      <MemberSignature Language="ILAsm" Value=".method public hidebysig newslot virtual instance class System.Collections.Generic.IList`1&lt;class Xamarin.InAppBilling.Purchase&gt; GetPurchases(string itemType) cil managed" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>0.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Collections.Generic.IList&lt;Xamarin.InAppBilling.Purchase&gt;</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="itemType" Type="System.String" />
+      </Parameters>
+      <Docs>
+        <param name="itemType">Item type (product or subs)</param>
+        <summary>
+             Gets a list of all products of a given item type purchased by the current user.
+             </summary>
+        <returns>A list of <see cref="T:Xamarin.InAppBilling.Product" />s purchased by the current user.</returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="HandleActivityResult">
+      <MemberSignature Language="C#" Value="public void HandleActivityResult (int requestCode, Android.App.Result resultCode, Android.Content.Intent data);" />
+      <MemberSignature Language="ILAsm" Value=".method public hidebysig newslot virtual instance void HandleActivityResult(int32 requestCode, valuetype Android.App.Result resultCode, class Android.Content.Intent data) cil managed" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>0.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Void</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="requestCode" Type="System.Int32" />
+        <Parameter Name="resultCode" Type="Android.App.Result" />
+        <Parameter Name="data" Type="Android.Content.Intent" />
+      </Parameters>
+      <Docs>
+        <param name="requestCode">Request code.</param>
+        <param name="resultCode">Result code.</param>
+        <param name="data">Data.</param>
+        <summary>
+             Handles the activity result.
+             </summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="InAppBillingProcesingError">
+      <MemberSignature Language="C#" Value="public event Xamarin.InAppBilling.InAppBillingHandler.InAppBillingProcessingErrorDelegate InAppBillingProcesingError;" />
+      <MemberSignature Language="ILAsm" Value=".event class Xamarin.InAppBilling.InAppBillingHandler/InAppBillingProcessingErrorDelegate InAppBillingProcesingError" />
+      <MemberType>Event</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>0.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>Xamarin.InAppBilling.InAppBillingHandler+InAppBillingProcessingErrorDelegate</ReturnType>
+      </ReturnValue>
+      <Docs>
+        <summary>
+             Occurs when there is an in app billing procesing error.
+             </summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="OnGetProductsError">
+      <MemberSignature Language="C#" Value="public event Xamarin.InAppBilling.InAppBillingHandler.OnGetProductsErrorDelegate OnGetProductsError;" />
+      <MemberSignature Language="ILAsm" Value=".event class Xamarin.InAppBilling.InAppBillingHandler/OnGetProductsErrorDelegate OnGetProductsError" />
+      <MemberType>Event</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>0.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>Xamarin.InAppBilling.InAppBillingHandler+OnGetProductsErrorDelegate</ReturnType>
+      </ReturnValue>
+      <Docs>
+        <summary>
+             Raised where there is an error getting previously purchased products from the Google Play Services.
+             </summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="OnInvalidOwnedItemsBundleReturned">
+      <MemberSignature Language="C#" Value="public event Xamarin.InAppBilling.InAppBillingHandler.OnInvalidOwnedItemsBundleReturnedDelegate OnInvalidOwnedItemsBundleReturned;" />
+      <MemberSignature Language="ILAsm" Value=".event class Xamarin.InAppBilling.InAppBillingHandler/OnInvalidOwnedItemsBundleReturnedDelegate OnInvalidOwnedItemsBundleReturned" />
+      <MemberType>Event</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>0.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>Xamarin.InAppBilling.InAppBillingHandler+OnInvalidOwnedItemsBundleReturnedDelegate</ReturnType>
+      </ReturnValue>
+      <Docs>
+        <summary>
+             Raised when Google Play Services returns an invalid bundle from previously purchased items
+             </summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="OnProductPurchased">
+      <MemberSignature Language="C#" Value="public event Xamarin.InAppBilling.InAppBillingHandler.OnProductPurchasedDelegate OnProductPurchased;" />
+      <MemberSignature Language="ILAsm" Value=".event class Xamarin.InAppBilling.InAppBillingHandler/OnProductPurchasedDelegate OnProductPurchased" />
+      <MemberType>Event</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>0.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>Xamarin.InAppBilling.InAppBillingHandler+OnProductPurchasedDelegate</ReturnType>
+      </ReturnValue>
+      <Docs>
+        <summary>
+             Occurs after a product has been successfully purchased Google Play.
+             </summary>
+        <remarks>This event is fired after a <c>OnProductPurchased</c> which is raised when the user successfully 
+             logs an intent to purchase with Google Play.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="OnProductPurchasedError">
+      <MemberSignature Language="C#" Value="public event Xamarin.InAppBilling.InAppBillingHandler.OnProductPurchaseErrorDelegate OnProductPurchasedError;" />
+      <MemberSignature Language="ILAsm" Value=".event class Xamarin.InAppBilling.InAppBillingHandler/OnProductPurchaseErrorDelegate OnProductPurchasedError" />
+      <MemberType>Event</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>0.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>Xamarin.InAppBilling.InAppBillingHandler+OnProductPurchaseErrorDelegate</ReturnType>
+      </ReturnValue>
+      <Docs>
+        <summary>
+             Occurs when the is an error on a product purchase attempt.
+             </summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="OnPurchaseConsumed">
+      <MemberSignature Language="C#" Value="public event Xamarin.InAppBilling.InAppBillingHandler.OnPurchaseConsumedDelegate OnPurchaseConsumed;" />
+      <MemberSignature Language="ILAsm" Value=".event class Xamarin.InAppBilling.InAppBillingHandler/OnPurchaseConsumedDelegate OnPurchaseConsumed" />
+      <MemberType>Event</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>0.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>Xamarin.InAppBilling.InAppBillingHandler+OnPurchaseConsumedDelegate</ReturnType>
+      </ReturnValue>
+      <Docs>
+        <summary>
+             Occurs when on product consumed.
+             </summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="OnPurchaseConsumedError">
+      <MemberSignature Language="C#" Value="public event Xamarin.InAppBilling.InAppBillingHandler.OnPurchaseConsumedErrorDelegate OnPurchaseConsumedError;" />
+      <MemberSignature Language="ILAsm" Value=".event class Xamarin.InAppBilling.InAppBillingHandler/OnPurchaseConsumedErrorDelegate OnPurchaseConsumedError" />
+      <MemberType>Event</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>0.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>Xamarin.InAppBilling.InAppBillingHandler+OnPurchaseConsumedErrorDelegate</ReturnType>
+      </ReturnValue>
+      <Docs>
+        <summary>
+             Occurs when there is an error consuming a product.
+             </summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="OnPurchaseFailedValidation">
+      <MemberSignature Language="C#" Value="public event Xamarin.InAppBilling.InAppBillingHandler.OnPurchaseFailedValidationDelegate OnPurchaseFailedValidation;" />
+      <MemberSignature Language="ILAsm" Value=".event class Xamarin.InAppBilling.InAppBillingHandler/OnPurchaseFailedValidationDelegate OnPurchaseFailedValidation" />
+      <MemberType>Event</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>0.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>Xamarin.InAppBilling.InAppBillingHandler+OnPurchaseFailedValidationDelegate</ReturnType>
+      </ReturnValue>
+      <Docs>
+        <summary>
+             Occurs when a previously purchased product fails to validate.
+             </summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="OnUserCanceled">
+      <MemberSignature Language="C#" Value="public event Xamarin.InAppBilling.InAppBillingHandler.OnUserCanceledDelegate OnUserCanceled;" />
+      <MemberSignature Language="ILAsm" Value=".event class Xamarin.InAppBilling.InAppBillingHandler/OnUserCanceledDelegate OnUserCanceled" />
+      <MemberType>Event</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>0.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>Xamarin.InAppBilling.InAppBillingHandler+OnUserCanceledDelegate</ReturnType>
+      </ReturnValue>
+      <Docs>
+        <summary>
+             Occurs when on user canceled.
+             </summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="PublicKey">
+      <MemberSignature Language="C#" Value="public string PublicKey { get; set; }" />
+      <MemberSignature Language="ILAsm" Value=".property instance string PublicKey" />
+      <MemberType>Property</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>0.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.String</ReturnType>
+      </ReturnValue>
+      <Docs>
+        <summary>
+             Gets or sets the Google Play Service public key used for In-App Billing
+             </summary>
+        <value>The public key.</value>
+        <remarks>NOTE: The key will be encrypted when it is stored in memory.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="QueryInventoryAsync">
+      <MemberSignature Language="C#" Value="public System.Threading.Tasks.Task&lt;System.Collections.Generic.IList&lt;Xamarin.InAppBilling.Product&gt;&gt; QueryInventoryAsync (System.Collections.Generic.IList&lt;string&gt; skuList, string itemType);" />
+      <MemberSignature Language="ILAsm" Value=".method public hidebysig newslot virtual instance class System.Threading.Tasks.Task`1&lt;class System.Collections.Generic.IList`1&lt;class Xamarin.InAppBilling.Product&gt;&gt; QueryInventoryAsync(class System.Collections.Generic.IList`1&lt;string&gt; skuList, string itemType) cil managed" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>0.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Threading.Tasks.Task&lt;System.Collections.Generic.IList&lt;Xamarin.InAppBilling.Product&gt;&gt;</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="skuList" Type="System.Collections.Generic.IList&lt;System.String&gt;" />
+        <Parameter Name="itemType" Type="System.String" />
+      </Parameters>
+      <Docs>
+        <param name="skuList">Sku list.</param>
+        <param name="itemType">The <see cref="!:Xamarin.Android.InAppBilling.ItemType" /> of product being queried.</param>
+        <summary>
+             Queries the inventory asynchronously and returns a list of <see cref="!:Xamarin.Android.InAppBilling.Product" />s matching 
+             the given list of SKU numbers.
+             </summary>
+        <returns>List of <see cref="!:Xamarin.Android.InAppBilling.Product" />s matching the given list of SKUs.</returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="QueryInventoryError">
+      <MemberSignature Language="C#" Value="public event Xamarin.InAppBilling.InAppBillingHandler.QueryInventoryErrorDelegate QueryInventoryError;" />
+      <MemberSignature Language="ILAsm" Value=".event class Xamarin.InAppBilling.InAppBillingHandler/QueryInventoryErrorDelegate QueryInventoryError" />
+      <MemberType>Event</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>0.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>Xamarin.InAppBilling.InAppBillingHandler+QueryInventoryErrorDelegate</ReturnType>
+      </ReturnValue>
+      <Docs>
+        <summary>
+             Occurs when there is an error querying inventory from Google Play Services.
+             </summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+  </Members>
+</Type>

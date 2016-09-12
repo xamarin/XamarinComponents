@@ -1,0 +1,21 @@
+<Type Name="InAppBillingServiceConnection+OnDisconnectedDelegate" FullName="Xamarin.InAppBilling.InAppBillingServiceConnection+OnDisconnectedDelegate">
+  <TypeSignature Language="C#" Value="public delegate void InAppBillingServiceConnection.OnDisconnectedDelegate();" />
+  <TypeSignature Language="ILAsm" Value=".class nested public auto ansi sealed InAppBillingServiceConnection/OnDisconnectedDelegate extends System.MulticastDelegate" />
+  <AssemblyInfo>
+    <AssemblyName>Xamarin.InAppBilling</AssemblyName>
+    <AssemblyVersion>0.0.0.0</AssemblyVersion>
+  </AssemblyInfo>
+  <Base>
+    <BaseTypeName>System.Delegate</BaseTypeName>
+  </Base>
+  <Parameters />
+  <ReturnValue>
+    <ReturnType>System.Void</ReturnType>
+  </ReturnValue>
+  <Docs>
+    <summary>
+             Occurs when on disconnected.
+             </summary>
+    <remarks>To be added.</remarks>
+  </Docs>
+</Type>

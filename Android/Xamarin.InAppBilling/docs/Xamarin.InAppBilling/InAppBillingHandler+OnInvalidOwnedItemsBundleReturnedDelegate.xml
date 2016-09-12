@@ -1,0 +1,24 @@
+<Type Name="InAppBillingHandler+OnInvalidOwnedItemsBundleReturnedDelegate" FullName="Xamarin.InAppBilling.InAppBillingHandler+OnInvalidOwnedItemsBundleReturnedDelegate">
+  <TypeSignature Language="C#" Value="public delegate void InAppBillingHandler.OnInvalidOwnedItemsBundleReturnedDelegate(Bundle ownedItems);" />
+  <TypeSignature Language="ILAsm" Value=".class nested public auto ansi sealed InAppBillingHandler/OnInvalidOwnedItemsBundleReturnedDelegate extends System.MulticastDelegate" />
+  <AssemblyInfo>
+    <AssemblyName>Xamarin.InAppBilling</AssemblyName>
+    <AssemblyVersion>0.0.0.0</AssemblyVersion>
+  </AssemblyInfo>
+  <Base>
+    <BaseTypeName>System.Delegate</BaseTypeName>
+  </Base>
+  <Parameters>
+    <Parameter Name="ownedItems" Type="Android.OS.Bundle" />
+  </Parameters>
+  <ReturnValue>
+    <ReturnType>System.Void</ReturnType>
+  </ReturnValue>
+  <Docs>
+    <param name="ownedItems">Owned items.</param>
+    <summary>
+             Raised when Google Play Services returns an invalid bundle from previously purchased items
+             </summary>
+    <remarks>To be added.</remarks>
+  </Docs>
+</Type>

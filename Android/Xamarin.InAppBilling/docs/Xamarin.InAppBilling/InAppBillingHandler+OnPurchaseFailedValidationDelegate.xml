@@ -1,0 +1,28 @@
+<Type Name="InAppBillingHandler+OnPurchaseFailedValidationDelegate" FullName="Xamarin.InAppBilling.InAppBillingHandler+OnPurchaseFailedValidationDelegate">
+  <TypeSignature Language="C#" Value="public delegate void InAppBillingHandler.OnPurchaseFailedValidationDelegate(Purchase purchase, string purchaseData, string purchaseSignature);" />
+  <TypeSignature Language="ILAsm" Value=".class nested public auto ansi sealed InAppBillingHandler/OnPurchaseFailedValidationDelegate extends System.MulticastDelegate" />
+  <AssemblyInfo>
+    <AssemblyName>Xamarin.InAppBilling</AssemblyName>
+    <AssemblyVersion>0.0.0.0</AssemblyVersion>
+  </AssemblyInfo>
+  <Base>
+    <BaseTypeName>System.Delegate</BaseTypeName>
+  </Base>
+  <Parameters>
+    <Parameter Name="purchase" Type="Xamarin.InAppBilling.Purchase" />
+    <Parameter Name="purchaseData" Type="System.String" />
+    <Parameter Name="purchaseSignature" Type="System.String" />
+  </Parameters>
+  <ReturnValue>
+    <ReturnType>System.Void</ReturnType>
+  </ReturnValue>
+  <Docs>
+    <param name="purchase">The purchase information for the product</param>
+    <param name="purchaseData">To be added.</param>
+    <param name="purchaseSignature">To be added.</param>
+    <summary>
+             Occurs when a previously purchased product fails to validate.
+             </summary>
+    <remarks>To be added.</remarks>
+  </Docs>
+</Type>

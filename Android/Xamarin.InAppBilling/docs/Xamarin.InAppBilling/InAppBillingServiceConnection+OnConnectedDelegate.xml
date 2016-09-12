@@ -1,0 +1,21 @@
+<Type Name="InAppBillingServiceConnection+OnConnectedDelegate" FullName="Xamarin.InAppBilling.InAppBillingServiceConnection+OnConnectedDelegate">
+  <TypeSignature Language="C#" Value="public delegate void InAppBillingServiceConnection.OnConnectedDelegate();" />
+  <TypeSignature Language="ILAsm" Value=".class nested public auto ansi sealed InAppBillingServiceConnection/OnConnectedDelegate extends System.MulticastDelegate" />
+  <AssemblyInfo>
+    <AssemblyName>Xamarin.InAppBilling</AssemblyName>
+    <AssemblyVersion>0.0.0.0</AssemblyVersion>
+  </AssemblyInfo>
+  <Base>
+    <BaseTypeName>System.Delegate</BaseTypeName>
+  </Base>
+  <Parameters />
+  <ReturnValue>
+    <ReturnType>System.Void</ReturnType>
+  </ReturnValue>
+  <Docs>
+    <summary>
+             Occurs when on connected.
+             </summary>
+    <remarks>To be added.</remarks>
+  </Docs>
+</Type>

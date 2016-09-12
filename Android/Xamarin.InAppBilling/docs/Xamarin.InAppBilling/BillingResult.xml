@@ -1,0 +1,186 @@
+<Type Name="BillingResult" FullName="Xamarin.InAppBilling.BillingResult">
+  <TypeSignature Language="C#" Value="public static class BillingResult" />
+  <TypeSignature Language="ILAsm" Value=".class public auto ansi abstract sealed beforefieldinit BillingResult extends System.Object" />
+  <AssemblyInfo>
+    <AssemblyName>Xamarin.InAppBilling</AssemblyName>
+    <AssemblyVersion>0.0.0.0</AssemblyVersion>
+  </AssemblyInfo>
+  <Base>
+    <BaseTypeName>System.Object</BaseTypeName>
+  </Base>
+  <Interfaces />
+  <Docs>
+    <summary>
+             Avalible response codes returned by methods from the <c>InAppBillingService</c> functions that are
+             part of Google Play In-App Billing.
+             </summary>
+    <remarks>
+      <c>BillingResult</c> was represented as a sealed class with computed properties instead of an enum
+             to better work with the Google Play InAppBillingService interface and Json.net.</remarks>
+  </Docs>
+  <Members>
+    <Member MemberName="BillingUnavailable">
+      <MemberSignature Language="C#" Value="public const int BillingUnavailable = 3;" />
+      <MemberSignature Language="ILAsm" Value=".field public static literal int32 BillingUnavailable = (3)" />
+      <MemberType>Field</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>0.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Int32</ReturnType>
+      </ReturnValue>
+      <MemberValue>3</MemberValue>
+      <Docs>
+        <summary>
+             In-App Billing is not supported on the given Android device.
+             </summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="DeveloperError">
+      <MemberSignature Language="C#" Value="public const int DeveloperError = 5;" />
+      <MemberSignature Language="ILAsm" Value=".field public static literal int32 DeveloperError = (5)" />
+      <MemberType>Field</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>0.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Int32</ReturnType>
+      </ReturnValue>
+      <MemberValue>5</MemberValue>
+      <Docs>
+        <summary>
+             An invalid argument has been passed to the API or the app was not correctly signed, properly set up for In-app Billing in Google Play Dashboard, or does not have the necessary permissions in its manifest.
+             </summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="Error">
+      <MemberSignature Language="C#" Value="public const int Error = 6;" />
+      <MemberSignature Language="ILAsm" Value=".field public static literal int32 Error = (6)" />
+      <MemberType>Field</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>0.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Int32</ReturnType>
+      </ReturnValue>
+      <MemberValue>6</MemberValue>
+      <Docs>
+        <summary>
+             A fatal error occurred during an API action.
+             </summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="ItemAlreadyOwned">
+      <MemberSignature Language="C#" Value="public const int ItemAlreadyOwned = 7;" />
+      <MemberSignature Language="ILAsm" Value=".field public static literal int32 ItemAlreadyOwned = (7)" />
+      <MemberType>Field</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>0.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Int32</ReturnType>
+      </ReturnValue>
+      <MemberValue>7</MemberValue>
+      <Docs>
+        <summary>
+             The user already owns the given item.
+             </summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="ItemNotOwned">
+      <MemberSignature Language="C#" Value="public const int ItemNotOwned = 8;" />
+      <MemberSignature Language="ILAsm" Value=".field public static literal int32 ItemNotOwned = (8)" />
+      <MemberType>Field</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>0.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Int32</ReturnType>
+      </ReturnValue>
+      <MemberValue>8</MemberValue>
+      <Docs>
+        <summary>
+             The given item has not been purchased by the user.
+             </summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="ItemUnavailable">
+      <MemberSignature Language="C#" Value="public const int ItemUnavailable = 4;" />
+      <MemberSignature Language="ILAsm" Value=".field public static literal int32 ItemUnavailable = (4)" />
+      <MemberType>Field</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>0.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Int32</ReturnType>
+      </ReturnValue>
+      <MemberValue>4</MemberValue>
+      <Docs>
+        <summary>
+             The requested item is unavailable for purchase.
+             </summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="OK">
+      <MemberSignature Language="C#" Value="public const int OK = 0;" />
+      <MemberSignature Language="ILAsm" Value=".field public static literal int32 OK = (0)" />
+      <MemberType>Field</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>0.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Int32</ReturnType>
+      </ReturnValue>
+      <MemberValue>0</MemberValue>
+      <Docs>
+        <summary>
+             The transaction completed successfully.
+             </summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="ServiceUnavailable">
+      <MemberSignature Language="C#" Value="public const int ServiceUnavailable = 2;" />
+      <MemberSignature Language="ILAsm" Value=".field public static literal int32 ServiceUnavailable = (2)" />
+      <MemberType>Field</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>0.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Int32</ReturnType>
+      </ReturnValue>
+      <MemberValue>2</MemberValue>
+      <Docs>
+        <summary>
+             Network connection is down.
+             </summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="UserCancelled">
+      <MemberSignature Language="C#" Value="public const int UserCancelled = 1;" />
+      <MemberSignature Language="ILAsm" Value=".field public static literal int32 UserCancelled = (1)" />
+      <MemberType>Field</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>0.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Int32</ReturnType>
+      </ReturnValue>
+      <MemberValue>1</MemberValue>
+      <Docs>
+        <summary>
+             The user canceled the transaction.
+             </summary>
+        <returns>The user cancelled - 1</returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+  </Members>
+</Type>

@@ -1,0 +1,75 @@
+<Type Name="Billing" FullName="Xamarin.InAppBilling.Billing">
+  <TypeSignature Language="C#" Value="public static class Billing" />
+  <TypeSignature Language="ILAsm" Value=".class public auto ansi abstract sealed beforefieldinit Billing extends System.Object" />
+  <AssemblyInfo>
+    <AssemblyName>Xamarin.InAppBilling</AssemblyName>
+    <AssemblyVersion>0.0.0.0</AssemblyVersion>
+  </AssemblyInfo>
+  <Base>
+    <BaseTypeName>System.Object</BaseTypeName>
+  </Base>
+  <Interfaces />
+  <Docs>
+    <summary>
+             Returns information about the Google Play In-App Billing API used in the <c>Xamarin.Android.InAppBilling</c> component.
+             </summary>
+    <remarks>To be added.</remarks>
+  </Docs>
+  <Members>
+    <Member MemberName="APIVersion">
+      <MemberSignature Language="C#" Value="public const int APIVersion = 3;" />
+      <MemberSignature Language="ILAsm" Value=".field public static literal int32 APIVersion = (3)" />
+      <MemberType>Field</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>0.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Int32</ReturnType>
+      </ReturnValue>
+      <MemberValue>3</MemberValue>
+      <Docs>
+        <summary>
+             Gets the API version.
+             </summary>
+        <returns>3</returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="ItemIdList">
+      <MemberSignature Language="C#" Value="public const string ItemIdList;" />
+      <MemberSignature Language="ILAsm" Value=".field public static literal string ItemIdList" />
+      <MemberType>Field</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>0.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.String</ReturnType>
+      </ReturnValue>
+      <Docs>
+        <summary>
+             Gets the item identifier list.
+             </summary>
+        <returns>ITEM_ID_LIST</returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="SkuDetailsList">
+      <MemberSignature Language="C#" Value="public const string SkuDetailsList;" />
+      <MemberSignature Language="ILAsm" Value=".field public static literal string SkuDetailsList" />
+      <MemberType>Field</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>0.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.String</ReturnType>
+      </ReturnValue>
+      <Docs>
+        <summary>
+             Gets the sku details list.
+             </summary>
+        <returns>DETAILS_LIST</returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+  </Members>
+</Type>

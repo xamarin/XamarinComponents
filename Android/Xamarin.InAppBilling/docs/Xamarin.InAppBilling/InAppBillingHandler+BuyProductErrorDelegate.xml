@@ -1,0 +1,26 @@
+<Type Name="InAppBillingHandler+BuyProductErrorDelegate" FullName="Xamarin.InAppBilling.InAppBillingHandler+BuyProductErrorDelegate">
+  <TypeSignature Language="C#" Value="public delegate void InAppBillingHandler.BuyProductErrorDelegate(int responseCode, string sku);" />
+  <TypeSignature Language="ILAsm" Value=".class nested public auto ansi sealed InAppBillingHandler/BuyProductErrorDelegate extends System.MulticastDelegate" />
+  <AssemblyInfo>
+    <AssemblyName>Xamarin.InAppBilling</AssemblyName>
+    <AssemblyVersion>0.0.0.0</AssemblyVersion>
+  </AssemblyInfo>
+  <Base>
+    <BaseTypeName>System.Delegate</BaseTypeName>
+  </Base>
+  <Parameters>
+    <Parameter Name="responseCode" Type="System.Int32" />
+    <Parameter Name="sku" Type="System.String" />
+  </Parameters>
+  <ReturnValue>
+    <ReturnType>System.Void</ReturnType>
+  </ReturnValue>
+  <Docs>
+    <param name="responseCode">To be added.</param>
+    <param name="sku">To be added.</param>
+    <summary>
+             Occurs when the user attempts to buy a product and there is an error.
+             </summary>
+    <remarks>To be added.</remarks>
+  </Docs>
+</Type>

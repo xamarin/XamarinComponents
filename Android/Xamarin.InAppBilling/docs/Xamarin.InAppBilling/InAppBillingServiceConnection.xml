@@ -1,0 +1,316 @@
+<Type Name="InAppBillingServiceConnection" FullName="Xamarin.InAppBilling.InAppBillingServiceConnection">
+  <TypeSignature Language="C#" Value="public class InAppBillingServiceConnection : Java.Lang.Object, Android.Content.IServiceConnection, IDisposable" />
+  <TypeSignature Language="ILAsm" Value=".class public auto ansi beforefieldinit InAppBillingServiceConnection extends Java.Lang.Object implements class Android.Content.IServiceConnection, class Android.Runtime.IJavaObject, class System.IDisposable" />
+  <AssemblyInfo>
+    <AssemblyName>Xamarin.InAppBilling</AssemblyName>
+    <AssemblyVersion>0.0.0.0</AssemblyVersion>
+  </AssemblyInfo>
+  <Base>
+    <BaseTypeName>Java.Lang.Object</BaseTypeName>
+  </Base>
+  <Interfaces>
+    <Interface>
+      <InterfaceName>Android.Content.IServiceConnection</InterfaceName>
+    </Interface>
+    <Interface>
+      <InterfaceName>System.IDisposable</InterfaceName>
+    </Interface>
+  </Interfaces>
+  <Docs>
+    <summary>
+             The <see cref="T:Xamarin.InAppBilling.InAppBillingServiceConnection" /> class binds your <c>Activity</c> to the Google Play’s In-app Billing 
+             service to send In-app Billing requests to Google Play from your application. As part of the setup process, 
+             the <see cref="T:Xamarin.InAppBilling.InAppBillingServiceConnection" /> also checks if the In-app Billing Version 3 API is supported by Google Play. 
+             If the API version is not supported, or if an error occured while establishing the service binding, the listener is notified and passed an error message.
+             </summary>
+    <remarks>To be added.</remarks>
+  </Docs>
+  <Members>
+    <Member MemberName=".ctor">
+      <MemberSignature Language="C#" Value="public InAppBillingServiceConnection (Android.App.Activity activity, string publicKey);" />
+      <MemberSignature Language="ILAsm" Value=".method public hidebysig specialname rtspecialname instance void .ctor(class Android.App.Activity activity, string publicKey) cil managed" />
+      <MemberType>Constructor</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>0.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <Parameters>
+        <Parameter Name="activity" Type="Android.App.Activity" />
+        <Parameter Name="publicKey" Type="System.String" />
+      </Parameters>
+      <Docs>
+        <param name="activity">Activity.</param>
+        <param name="publicKey">Public key.</param>
+        <summary>
+             Initializes a new instance of the <see cref="T:Xamarin.InAppBilling.InAppBillingServiceConnection" /> class.
+             </summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="BillingHandler">
+      <MemberSignature Language="C#" Value="public Xamarin.InAppBilling.InAppBillingHandler BillingHandler { get; }" />
+      <MemberSignature Language="ILAsm" Value=".property instance class Xamarin.InAppBilling.InAppBillingHandler BillingHandler" />
+      <MemberType>Property</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>0.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>Xamarin.InAppBilling.InAppBillingHandler</ReturnType>
+      </ReturnValue>
+      <Docs>
+        <summary>
+             Gets the <see cref="T:Xamarin.InAppBilling.InAppBillingHandler" /> used to communicate with the Google Play Service
+             </summary>
+        <value>The billing handler.</value>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="Connect">
+      <MemberSignature Language="C#" Value="public void Connect ();" />
+      <MemberSignature Language="ILAsm" Value=".method public hidebysig instance void Connect() cil managed" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>0.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Void</ReturnType>
+      </ReturnValue>
+      <Parameters />
+      <Docs>
+        <summary>
+             Connect this instance to the Google Play service to support In-App Billing in your application
+             </summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="Connected">
+      <MemberSignature Language="C#" Value="public bool Connected { get; }" />
+      <MemberSignature Language="ILAsm" Value=".property instance bool Connected" />
+      <MemberType>Property</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>0.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Boolean</ReturnType>
+      </ReturnValue>
+      <Docs>
+        <summary>
+             Gets a value indicating whether this <see cref="T:Xamarin.InAppBilling.InAppBillingServiceConnection" /> is connected to the
+             Google Play service
+             </summary>
+        <value>
+          <c>true</c> if connected; otherwise, <c>false</c>.</value>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="Disconnect">
+      <MemberSignature Language="C#" Value="public void Disconnect ();" />
+      <MemberSignature Language="ILAsm" Value=".method public hidebysig instance void Disconnect() cil managed" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>0.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Void</ReturnType>
+      </ReturnValue>
+      <Parameters />
+      <Docs>
+        <summary>
+             Disconnects this instance from the Google Play service.
+             </summary>
+        <remarks>Important: Remember to unbind from the In-app Billing service when you are done with your activity. 
+             If you don’t unbind, the open service connection could cause your device’s performance to degrade. To unbind 
+             and free your system resources, call the <c>Disconnect</c> method when your Activity gets destroyed.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="OnConnected">
+      <MemberSignature Language="C#" Value="public event Xamarin.InAppBilling.InAppBillingServiceConnection.OnConnectedDelegate OnConnected;" />
+      <MemberSignature Language="ILAsm" Value=".event class Xamarin.InAppBilling.InAppBillingServiceConnection/OnConnectedDelegate OnConnected" />
+      <MemberType>Event</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>0.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>Xamarin.InAppBilling.InAppBillingServiceConnection+OnConnectedDelegate</ReturnType>
+      </ReturnValue>
+      <Docs>
+        <summary>
+             Occurs when on connected.
+             </summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="OnDisconnected">
+      <MemberSignature Language="C#" Value="public event Xamarin.InAppBilling.InAppBillingServiceConnection.OnDisconnectedDelegate OnDisconnected;" />
+      <MemberSignature Language="ILAsm" Value=".event class Xamarin.InAppBilling.InAppBillingServiceConnection/OnDisconnectedDelegate OnDisconnected" />
+      <MemberType>Event</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>0.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>Xamarin.InAppBilling.InAppBillingServiceConnection+OnDisconnectedDelegate</ReturnType>
+      </ReturnValue>
+      <Docs>
+        <summary>
+             Occurs when on disconnected.
+             </summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="OnInAppBillingError">
+      <MemberSignature Language="C#" Value="public event Xamarin.InAppBilling.InAppBillingServiceConnection.OnInAppBillingErrorDelegate OnInAppBillingError;" />
+      <MemberSignature Language="ILAsm" Value=".event class Xamarin.InAppBilling.InAppBillingServiceConnection/OnInAppBillingErrorDelegate OnInAppBillingError" />
+      <MemberType>Event</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>0.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>Xamarin.InAppBilling.InAppBillingServiceConnection+OnInAppBillingErrorDelegate</ReturnType>
+      </ReturnValue>
+      <Docs>
+        <summary>
+             Occurs when on in app billing error.
+             </summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="OnServiceConnected">
+      <MemberSignature Language="C#" Value="public void OnServiceConnected (Android.Content.ComponentName name, Android.OS.IBinder service);" />
+      <MemberSignature Language="ILAsm" Value=".method public hidebysig newslot virtual instance void OnServiceConnected(class Android.Content.ComponentName name, class Android.OS.IBinder service) cil managed" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>0.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Void</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="name" Type="Android.Content.ComponentName" />
+        <Parameter Name="service" Type="Android.OS.IBinder" />
+      </Parameters>
+      <Docs>
+        <param name="name">Name.</param>
+        <param name="service">Service.</param>
+        <summary>
+             Raises the service connected event.
+             </summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="OnServiceDisconnected">
+      <MemberSignature Language="C#" Value="public void OnServiceDisconnected (Android.Content.ComponentName name);" />
+      <MemberSignature Language="ILAsm" Value=".method public hidebysig newslot virtual instance void OnServiceDisconnected(class Android.Content.ComponentName name) cil managed" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>0.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Void</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="name" Type="Android.Content.ComponentName" />
+      </Parameters>
+      <Docs>
+        <param name="name">Name.</param>
+        <summary>
+             Raises the service disconnected event.
+             </summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="PublicKey">
+      <MemberSignature Language="C#" Value="public string PublicKey { get; set; }" />
+      <MemberSignature Language="ILAsm" Value=".property instance string PublicKey" />
+      <MemberType>Property</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>0.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.String</ReturnType>
+      </ReturnValue>
+      <Docs>
+        <summary>
+             Gets or sets the Google Play Service public key used for In-App Billing
+             </summary>
+        <value>The public key.</value>
+        <remarks>NOTE: The key will be encrypted when it is stored in memory.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="RaiseOnConnected">
+      <MemberSignature Language="C#" Value="protected void RaiseOnConnected ();" />
+      <MemberSignature Language="ILAsm" Value=".method familyhidebysig instance void RaiseOnConnected() cil managed" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>0.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Void</ReturnType>
+      </ReturnValue>
+      <Parameters />
+      <Docs>
+        <summary>
+             Raises the on connected event.
+             </summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="RaiseOnDisconnected">
+      <MemberSignature Language="C#" Value="protected virtual void RaiseOnDisconnected ();" />
+      <MemberSignature Language="ILAsm" Value=".method familyhidebysig newslot virtual instance void RaiseOnDisconnected() cil managed" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>0.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Void</ReturnType>
+      </ReturnValue>
+      <Parameters />
+      <Docs>
+        <summary>
+             Raises the on disconnected event.
+             </summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="RaiseOnInAppBillingError">
+      <MemberSignature Language="C#" Value="protected virtual void RaiseOnInAppBillingError (Xamarin.InAppBilling.InAppBillingErrorType error, string message);" />
+      <MemberSignature Language="ILAsm" Value=".method familyhidebysig newslot virtual instance void RaiseOnInAppBillingError(valuetype Xamarin.InAppBilling.InAppBillingErrorType error, string message) cil managed" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>0.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Void</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="error" Type="Xamarin.InAppBilling.InAppBillingErrorType" />
+        <Parameter Name="message" Type="System.String" />
+      </Parameters>
+      <Docs>
+        <param name="error">Error.</param>
+        <param name="message">Message.</param>
+        <summary>
+             Raises the on in app billing error.
+             </summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="Service">
+      <MemberSignature Language="C#" Value="public Com.Android.Vending.Billing.IInAppBillingService Service { get; }" />
+      <MemberSignature Language="ILAsm" Value=".property instance class Com.Android.Vending.Billing.IInAppBillingService Service" />
+      <MemberType>Property</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>0.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>Com.Android.Vending.Billing.IInAppBillingService</ReturnType>
+      </ReturnValue>
+      <Docs>
+        <summary>
+             Gets the Google Play <c>InAppBillingService</c> interface.
+             </summary>
+        <value>The <c>InAppBillingService</c> attached to this <see cref="T:Xamarin.InAppBilling.InAppBillingServiceConnection" /></value>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+  </Members>
+</Type>

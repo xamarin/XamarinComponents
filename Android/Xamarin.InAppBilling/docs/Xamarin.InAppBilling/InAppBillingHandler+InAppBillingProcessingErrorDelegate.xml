@@ -1,0 +1,24 @@
+<Type Name="InAppBillingHandler+InAppBillingProcessingErrorDelegate" FullName="Xamarin.InAppBilling.InAppBillingHandler+InAppBillingProcessingErrorDelegate">
+  <TypeSignature Language="C#" Value="public delegate void InAppBillingHandler.InAppBillingProcessingErrorDelegate(string message);" />
+  <TypeSignature Language="ILAsm" Value=".class nested public auto ansi sealed InAppBillingHandler/InAppBillingProcessingErrorDelegate extends System.MulticastDelegate" />
+  <AssemblyInfo>
+    <AssemblyName>Xamarin.InAppBilling</AssemblyName>
+    <AssemblyVersion>0.0.0.0</AssemblyVersion>
+  </AssemblyInfo>
+  <Base>
+    <BaseTypeName>System.Delegate</BaseTypeName>
+  </Base>
+  <Parameters>
+    <Parameter Name="message" Type="System.String" />
+  </Parameters>
+  <ReturnValue>
+    <ReturnType>System.Void</ReturnType>
+  </ReturnValue>
+  <Docs>
+    <param name="message">Message.</param>
+    <summary>
+             Occurs when there is an in app billing procesing error.
+             </summary>
+    <remarks>To be added.</remarks>
+  </Docs>
+</Type>

@@ -1,0 +1,17 @@
+<Type Name="Resource+Attribute" FullName="Xamarin.InAppBilling.Resource+Attribute">
+  <TypeSignature Language="C#" Value="public class Resource.Attribute" />
+  <TypeSignature Language="ILAsm" Value=".class nested public auto ansi Resource/Attribute extends System.Object" />
+  <AssemblyInfo>
+    <AssemblyName>Xamarin.InAppBilling</AssemblyName>
+    <AssemblyVersion>0.0.0.0</AssemblyVersion>
+  </AssemblyInfo>
+  <Base>
+    <BaseTypeName>System.Object</BaseTypeName>
+  </Base>
+  <Interfaces />
+  <Docs>
+    <summary>To be added.</summary>
+    <remarks>To be added.</remarks>
+  </Docs>
+  <Members />
+</Type>

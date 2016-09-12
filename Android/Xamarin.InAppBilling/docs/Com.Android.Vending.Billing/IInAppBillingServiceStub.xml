@@ -1,0 +1,232 @@
+<Type Name="IInAppBillingServiceStub" FullName="Com.Android.Vending.Billing.IInAppBillingServiceStub">
+  <TypeSignature Language="C#" Value="public abstract class IInAppBillingServiceStub : Android.OS.Binder, Android.OS.IInterface, Com.Android.Vending.Billing.IInAppBillingService, IDisposable" />
+  <TypeSignature Language="ILAsm" Value=".class public auto ansi abstract beforefieldinit IInAppBillingServiceStub extends Android.OS.Binder implements class Android.OS.IInterface, class Android.Runtime.IJavaObject, class Com.Android.Vending.Billing.IInAppBillingService, class System.IDisposable" />
+  <AssemblyInfo>
+    <AssemblyName>Xamarin.InAppBilling</AssemblyName>
+    <AssemblyVersion>0.0.0.0</AssemblyVersion>
+  </AssemblyInfo>
+  <Base>
+    <BaseTypeName>Android.OS.Binder</BaseTypeName>
+  </Base>
+  <Interfaces>
+    <Interface>
+      <InterfaceName>Android.OS.IInterface</InterfaceName>
+    </Interface>
+    <Interface>
+      <InterfaceName>Com.Android.Vending.Billing.IInAppBillingService</InterfaceName>
+    </Interface>
+    <Interface>
+      <InterfaceName>System.IDisposable</InterfaceName>
+    </Interface>
+  </Interfaces>
+  <Docs>
+    <summary>To be added.</summary>
+    <remarks>To be added.</remarks>
+  </Docs>
+  <Members>
+    <Member MemberName=".ctor">
+      <MemberSignature Language="C#" Value="public IInAppBillingServiceStub ();" />
+      <MemberSignature Language="ILAsm" Value=".method public hidebysig specialname rtspecialname instance void .ctor() cil managed" />
+      <MemberType>Constructor</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>0.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <Parameters />
+      <Docs>
+        <summary>To be added.</summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="AsBinder">
+      <MemberSignature Language="C#" Value="public Android.OS.IBinder AsBinder ();" />
+      <MemberSignature Language="ILAsm" Value=".method public hidebysig newslot virtual instance class Android.OS.IBinder AsBinder() cil managed" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>0.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>Android.OS.IBinder</ReturnType>
+      </ReturnValue>
+      <Parameters />
+      <Docs>
+        <summary>To be added.</summary>
+        <returns>To be added.</returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="AsInterface">
+      <MemberSignature Language="C#" Value="public static Com.Android.Vending.Billing.IInAppBillingService AsInterface (Android.OS.IBinder obj);" />
+      <MemberSignature Language="ILAsm" Value=".method public static hidebysig class Com.Android.Vending.Billing.IInAppBillingService AsInterface(class Android.OS.IBinder obj) cil managed" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>0.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>Com.Android.Vending.Billing.IInAppBillingService</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="obj" Type="Android.OS.IBinder" />
+      </Parameters>
+      <Docs>
+        <param name="obj">To be added.</param>
+        <summary>To be added.</summary>
+        <returns>To be added.</returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="ConsumePurchase">
+      <MemberSignature Language="C#" Value="public abstract int ConsumePurchase (int apiVersion, string packageName, string purchaseToken);" />
+      <MemberSignature Language="ILAsm" Value=".method public hidebysig newslot virtual instance int32 ConsumePurchase(int32 apiVersion, string packageName, string purchaseToken) cil managed" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>0.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Int32</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="apiVersion" Type="System.Int32" />
+        <Parameter Name="packageName" Type="System.String" />
+        <Parameter Name="purchaseToken" Type="System.String" />
+      </Parameters>
+      <Docs>
+        <param name="apiVersion">To be added.</param>
+        <param name="packageName">To be added.</param>
+        <param name="purchaseToken">To be added.</param>
+        <summary>To be added.</summary>
+        <returns>To be added.</returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="GetBuyIntent">
+      <MemberSignature Language="C#" Value="public abstract Android.OS.Bundle GetBuyIntent (int apiVersion, string packageName, string sku, string type, string developerPayload);" />
+      <MemberSignature Language="ILAsm" Value=".method public hidebysig newslot virtual instance class Android.OS.Bundle GetBuyIntent(int32 apiVersion, string packageName, string sku, string type, string developerPayload) cil managed" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>0.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>Android.OS.Bundle</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="apiVersion" Type="System.Int32" />
+        <Parameter Name="packageName" Type="System.String" />
+        <Parameter Name="sku" Type="System.String" />
+        <Parameter Name="type" Type="System.String" />
+        <Parameter Name="developerPayload" Type="System.String" />
+      </Parameters>
+      <Docs>
+        <param name="apiVersion">To be added.</param>
+        <param name="packageName">To be added.</param>
+        <param name="sku">To be added.</param>
+        <param name="type">To be added.</param>
+        <param name="developerPayload">To be added.</param>
+        <summary>To be added.</summary>
+        <returns>To be added.</returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="GetPurchases">
+      <MemberSignature Language="C#" Value="public abstract Android.OS.Bundle GetPurchases (int apiVersion, string packageName, string type, string continuationToken);" />
+      <MemberSignature Language="ILAsm" Value=".method public hidebysig newslot virtual instance class Android.OS.Bundle GetPurchases(int32 apiVersion, string packageName, string type, string continuationToken) cil managed" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>0.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>Android.OS.Bundle</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="apiVersion" Type="System.Int32" />
+        <Parameter Name="packageName" Type="System.String" />
+        <Parameter Name="type" Type="System.String" />
+        <Parameter Name="continuationToken" Type="System.String" />
+      </Parameters>
+      <Docs>
+        <param name="apiVersion">To be added.</param>
+        <param name="packageName">To be added.</param>
+        <param name="type">To be added.</param>
+        <param name="continuationToken">To be added.</param>
+        <summary>To be added.</summary>
+        <returns>To be added.</returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="GetSkuDetails">
+      <MemberSignature Language="C#" Value="public abstract Android.OS.Bundle GetSkuDetails (int apiVersion, string packageName, string type, Android.OS.Bundle skusBundle);" />
+      <MemberSignature Language="ILAsm" Value=".method public hidebysig newslot virtual instance class Android.OS.Bundle GetSkuDetails(int32 apiVersion, string packageName, string type, class Android.OS.Bundle skusBundle) cil managed" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>0.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>Android.OS.Bundle</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="apiVersion" Type="System.Int32" />
+        <Parameter Name="packageName" Type="System.String" />
+        <Parameter Name="type" Type="System.String" />
+        <Parameter Name="skusBundle" Type="Android.OS.Bundle" />
+      </Parameters>
+      <Docs>
+        <param name="apiVersion">To be added.</param>
+        <param name="packageName">To be added.</param>
+        <param name="type">To be added.</param>
+        <param name="skusBundle">To be added.</param>
+        <summary>To be added.</summary>
+        <returns>To be added.</returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="IsBillingSupported">
+      <MemberSignature Language="C#" Value="public abstract int IsBillingSupported (int apiVersion, string packageName, string type);" />
+      <MemberSignature Language="ILAsm" Value=".method public hidebysig newslot virtual instance int32 IsBillingSupported(int32 apiVersion, string packageName, string type) cil managed" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>0.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Int32</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="apiVersion" Type="System.Int32" />
+        <Parameter Name="packageName" Type="System.String" />
+        <Parameter Name="type" Type="System.String" />
+      </Parameters>
+      <Docs>
+        <param name="apiVersion">To be added.</param>
+        <param name="packageName">To be added.</param>
+        <param name="type">To be added.</param>
+        <summary>To be added.</summary>
+        <returns>To be added.</returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="OnTransact">
+      <MemberSignature Language="C#" Value="protected override bool OnTransact (int code, Android.OS.Parcel data, Android.OS.Parcel reply, int flags);" />
+      <MemberSignature Language="ILAsm" Value=".method familyhidebysig virtual instance bool OnTransact(int32 code, class Android.OS.Parcel data, class Android.OS.Parcel reply, int32 flags) cil managed" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>0.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Boolean</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="code" Type="System.Int32" />
+        <Parameter Name="data" Type="Android.OS.Parcel" />
+        <Parameter Name="reply" Type="Android.OS.Parcel" />
+        <Parameter Name="flags" Type="System.Int32" />
+      </Parameters>
+      <Docs>
+        <param name="code">To be added.</param>
+        <param name="data">To be added.</param>
+        <param name="reply">To be added.</param>
+        <param name="flags">To be added.</param>
+        <summary>To be added.</summary>
+        <returns>To be added.</returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+  </Members>
+</Type>

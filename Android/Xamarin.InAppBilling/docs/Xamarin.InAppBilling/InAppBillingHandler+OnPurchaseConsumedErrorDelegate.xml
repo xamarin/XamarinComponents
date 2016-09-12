@@ -1,0 +1,26 @@
+<Type Name="InAppBillingHandler+OnPurchaseConsumedErrorDelegate" FullName="Xamarin.InAppBilling.InAppBillingHandler+OnPurchaseConsumedErrorDelegate">
+  <TypeSignature Language="C#" Value="public delegate void InAppBillingHandler.OnPurchaseConsumedErrorDelegate(int responseCode, string token);" />
+  <TypeSignature Language="ILAsm" Value=".class nested public auto ansi sealed InAppBillingHandler/OnPurchaseConsumedErrorDelegate extends System.MulticastDelegate" />
+  <AssemblyInfo>
+    <AssemblyName>Xamarin.InAppBilling</AssemblyName>
+    <AssemblyVersion>0.0.0.0</AssemblyVersion>
+  </AssemblyInfo>
+  <Base>
+    <BaseTypeName>System.Delegate</BaseTypeName>
+  </Base>
+  <Parameters>
+    <Parameter Name="responseCode" Type="System.Int32" />
+    <Parameter Name="token" Type="System.String" />
+  </Parameters>
+  <ReturnValue>
+    <ReturnType>System.Void</ReturnType>
+  </ReturnValue>
+  <Docs>
+    <param name="responseCode">Response code.</param>
+    <param name="token">Token.</param>
+    <summary>
+             Occurs when there is an error consuming a product.
+             </summary>
+    <remarks>The <c>responseCode</c> will be a value from <see cref="T:Xamarin.InAppBilling.BillingResult" />.</remarks>
+  </Docs>
+</Type>

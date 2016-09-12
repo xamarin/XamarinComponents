@@ -1,0 +1,26 @@
+<Type Name="InAppBillingServiceConnection+OnInAppBillingErrorDelegate" FullName="Xamarin.InAppBilling.InAppBillingServiceConnection+OnInAppBillingErrorDelegate">
+  <TypeSignature Language="C#" Value="public delegate void InAppBillingServiceConnection.OnInAppBillingErrorDelegate(InAppBillingErrorType error, string message);" />
+  <TypeSignature Language="ILAsm" Value=".class nested public auto ansi sealed InAppBillingServiceConnection/OnInAppBillingErrorDelegate extends System.MulticastDelegate" />
+  <AssemblyInfo>
+    <AssemblyName>Xamarin.InAppBilling</AssemblyName>
+    <AssemblyVersion>0.0.0.0</AssemblyVersion>
+  </AssemblyInfo>
+  <Base>
+    <BaseTypeName>System.Delegate</BaseTypeName>
+  </Base>
+  <Parameters>
+    <Parameter Name="error" Type="Xamarin.InAppBilling.InAppBillingErrorType" />
+    <Parameter Name="message" Type="System.String" />
+  </Parameters>
+  <ReturnValue>
+    <ReturnType>System.Void</ReturnType>
+  </ReturnValue>
+  <Docs>
+    <param name="error">Error.</param>
+    <param name="message">Message.</param>
+    <summary>
+             Occurs when on in app billing error.
+             </summary>
+    <remarks>To be added.</remarks>
+  </Docs>
+</Type>
