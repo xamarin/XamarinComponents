@@ -1,5 +1,5 @@
 id: azure-messaging
-version: 1.2.5.0
+version: 1.2.5.1
 name: Azure Messaging
 publisher: Xamarin Inc.
 publisher-url: http://www.windowsazure.com/en-us/develop/mobile/
@@ -12,8 +12,9 @@ libraries:
   android: ../output/Xamarin.Azure.NotificationHubs.Android.dll
 is_shell: true
 packages:
-  android:
+  ios-unified:
     - Xamarin.Azure.NotificationHubs.iOS, Version=1.2.5.0
+  android:
     - Xamarin.Azure.NotificationHubs.Android, Version=0.4.0.0
 samples:
   - name: Android Sample
@@ -33,3 +34,4 @@ samples:
         packages:
           - Xamarin.Azure.NotificationHubs.iOS
 local-nuget-repo: ../output/
+no_build: true
