@@ -25,5 +25,5 @@ samples:
 monodocs: ../docs
 
 additional-files:
-  - source: "../Third-PartyNotices"
-    destination: "Third-PartyNotices"
+  - source: "../THIRD-PARTY-NOTICES"
+    destination: "THIRD-PARTY-NOTICES"

@@ -122,6 +122,10 @@
   BuildScript: ./Android/VectorCompat/build.cake
   TriggerPaths: [ Android/VectorCompat ]
   MacBuildTargets: [ samples, nuget, component ]
+- Name: Xamarin.InAppBilling
+  BuildScript: ./Android/Xamarin.InAppBilling/build.cake
+  TriggerPaths: [ Android/Xamarin.InAppBilling ]
+  MacBuildTargets: [ samples, component ]
 
 #######################################################
 # iOS
