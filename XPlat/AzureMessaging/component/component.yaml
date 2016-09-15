@@ -1,8 +1,9 @@
 id: azure-messaging
-version: 1.2.5.1
+version: 1.2.5.2
 name: Azure Messaging
 publisher: Xamarin Inc.
 publisher-url: http://www.windowsazure.com/en-us/develop/mobile/
+src-url: https://github.com/xamarin/XamarinComponents/tree/master/XPlat/AzureMessaging
 summary: Send Push Notifications to your iOS and Android apps
 icons:
   - icons/azure-messaging_512x512.png
