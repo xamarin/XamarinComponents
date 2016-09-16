@@ -63,7 +63,7 @@ namespace WindowsAzure.Messaging
 	[BaseType (typeof (NSObject))]
 	public partial interface SBNotificationHub 
 	{
-		[Static, Export ("Version")]
+		[Static, Export ("version")]
 		string Version { get; }
 
 		[Export ("initWithConnectionString:notificationHubPath:")]
