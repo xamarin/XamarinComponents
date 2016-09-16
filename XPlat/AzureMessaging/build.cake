@@ -9,7 +9,7 @@
 var TARGET = Argument ("t", Argument ("target", "Default"));
 
 var IOS_VERSION = "423aaba626e3eccdc4770bee8861a8ab8518563b";
-var IOS_NUGET_VERSION = "1.2.5.1";
+var IOS_NUGET_VERSION = "1.2.5.2";
 var IOS_URL = string.Format ("https://github.com/Azure/azure-notificationhubs/raw/{0}/iOS/bin/WindowsAzureMessaging.framework.zip", IOS_VERSION);
 
 var ANDROID_VERSION = "0.4";

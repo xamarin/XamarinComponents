@@ -14,7 +14,7 @@ libraries:
 is_shell: true
 packages:
   ios-unified:
-    - Xamarin.Azure.NotificationHubs.iOS, Version=1.2.5.1
+    - Xamarin.Azure.NotificationHubs.iOS, Version=1.2.5.2
   android:
     - Xamarin.Azure.NotificationHubs.Android, Version=0.4.0.0
 samples:
