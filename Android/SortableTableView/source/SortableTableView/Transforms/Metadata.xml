@@ -7,9 +7,7 @@
   <attr path="/api/package[@name='de.codecrafters.tableview.toolkit']" name="managedName">CodeCrafters.TableViews.Toolkit</attr>
 
   <attr path="/api/package[@name='de.codecrafters.tableview']/class[@name='TableView']/method[@name='addDataClickListener']" name="managedName">AddDataClickListener</attr>
-  <attr path="/api/package[@name='de.codecrafters.tableview']/class[@name='TableView']/method[@name='removeTableDataClickListener']" name="managedName">RemoveDataClickListener</attr>
   <attr path="/api/package[@name='de.codecrafters.tableview']/class[@name='TableView']/method[@name='addHeaderClickListener']" name="managedName">AddHeaderClickListener</attr>
-  <attr path="/api/package[@name='de.codecrafters.tableview']/class[@name='TableView']/method[@name='removeHeaderListener']" name="managedName">RemoveHeaderClickListener</attr>
 
   <attr path="/api/package[@name='de.codecrafters.tableview.listeners']/interface[@name='TableDataClickListener']/method[@name='onDataClicked']/parameter[1]" name="managedName">rowIndex</attr>
   <attr path="/api/package[@name='de.codecrafters.tableview.listeners']/interface[@name='TableDataClickListener']/method[@name='onDataClicked']/parameter[2]" name="managedName">clickedData</attr>
