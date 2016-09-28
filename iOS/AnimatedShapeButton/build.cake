@@ -14,17 +14,12 @@ var buildSpec = new BuildSpec () {
 					FromFile = "./source/AnimatedShapeButton/bin/Release/AnimatedShapeButton.dll",
 					ToDirectory = "./output/unified/"
 				},
-				new OutputFileCopy {
-					FromFile = "./source/AnimatedShapeButton-classic/bin/Release/AnimatedShapeButton.dll",
-					ToDirectory = "./output/classic/"
-				}
 			}
 		},
 	},
 
 	Samples = new ISolutionBuilder [] {
 		new IOSSolutionBuilder { SolutionPath = "./samples/AnimatedShapeButtonSample/AnimatedShapeButtonSample.sln", BuildsOn = BuildPlatforms.Mac },
-		new IOSSolutionBuilder { SolutionPath = "./samples/AnimatedShapeButtonSample-Classic/AnimatedShapeButtonSample-Classic.sln", BuildsOn = BuildPlatforms.Mac },
 	},
 
 	Components = new [] {
