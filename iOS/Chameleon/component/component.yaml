@@ -9,10 +9,8 @@ icons:
   - icons/Chameleon_128x128.png
   - icons/Chameleon_512x512.png
 libraries:
-  ios: ../output/classic/Chameleon.dll
   ios-unified: ../output/unified/Chameleon.dll
 samples:
   - name: "Chameleon Sample"
     path:  ../samples/ChameleonSample.sln
 no_build: true
- 
