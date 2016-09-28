@@ -14,10 +14,6 @@ var buildSpec = new BuildSpec () {
 					FromFile = "./source/AMScrollingNavbar/bin/Release/AMScrollingNavbar.dll",
 					ToDirectory = "./output/unified/"
 				},
-				new OutputFileCopy {
-					FromFile = "./source/AMScrollingNavbar-classic/bin/Release/AMScrollingNavbar.dll",
-					ToDirectory = "./output/classic/"
-				}
 			}
 		},
 	},

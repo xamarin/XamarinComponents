@@ -12,7 +12,6 @@ icons:
   - ../images/icon_128x128.png
 
 libraries:
-  ios: ../output/classic/AMScrollingNavbar.dll
   ios-unified: ../output/unified/AMScrollingNavbar.dll
 
 samples:

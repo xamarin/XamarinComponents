@@ -7,8 +7,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AMScrollingNavbar", "source
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AMScrollingNavbarSample", "samples\AMScrollingNavbarSample\AMScrollingNavbarSample\AMScrollingNavbarSample.csproj", "{801986EA-CF6B-4128-8758-8864898719CD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AMScrollingNavbar-classic", "source\AMScrollingNavbar-classic\AMScrollingNavbar-classic.csproj", "{82E99AED-4239-466C-A839-E17CFAAC48DC}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|iPhoneSimulator = Debug|iPhoneSimulator
@@ -43,18 +41,6 @@ Global
 		{82E99AED-4239-466C-A839-E17CFAAC48DB}.Release|iPhone.Build.0 = Release|Any CPU
 		{82E99AED-4239-466C-A839-E17CFAAC48DB}.Release|iPhoneSimulator.ActiveCfg = Release|Any CPU
 		{82E99AED-4239-466C-A839-E17CFAAC48DB}.Release|iPhoneSimulator.Build.0 = Release|Any CPU
-		{82E99AED-4239-466C-A839-E17CFAAC48DC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{82E99AED-4239-466C-A839-E17CFAAC48DC}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{82E99AED-4239-466C-A839-E17CFAAC48DC}.Debug|iPhone.ActiveCfg = Debug|Any CPU
-		{82E99AED-4239-466C-A839-E17CFAAC48DC}.Debug|iPhone.Build.0 = Debug|Any CPU
-		{82E99AED-4239-466C-A839-E17CFAAC48DC}.Debug|iPhoneSimulator.ActiveCfg = Debug|Any CPU
-		{82E99AED-4239-466C-A839-E17CFAAC48DC}.Debug|iPhoneSimulator.Build.0 = Debug|Any CPU
-		{82E99AED-4239-466C-A839-E17CFAAC48DC}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{82E99AED-4239-466C-A839-E17CFAAC48DC}.Release|Any CPU.Build.0 = Release|Any CPU
-		{82E99AED-4239-466C-A839-E17CFAAC48DC}.Release|iPhone.ActiveCfg = Release|Any CPU
-		{82E99AED-4239-466C-A839-E17CFAAC48DC}.Release|iPhone.Build.0 = Release|Any CPU
-		{82E99AED-4239-466C-A839-E17CFAAC48DC}.Release|iPhoneSimulator.ActiveCfg = Release|Any CPU
-		{82E99AED-4239-466C-A839-E17CFAAC48DC}.Release|iPhoneSimulator.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
