@@ -22,16 +22,12 @@ var buildSpec = new BuildSpec () {
 					FromFile = "./source/AMViralSwitch/bin/unified/Release/AMViralSwitch.dll",
 					ToDirectory = "./output/unified/"
 				},
-				new OutputFileCopy {
-					FromFile = "./source/AMViralSwitch/bin/classic/Release/AMViralSwitch.dll",
-					ToDirectory = "./output/classic/"
-				}
 			}
 		},
 	},
 
 	Samples = new ISolutionBuilder [] {
-		new IOSSolutionBuilder { SolutionPath = "./samples/AMViralSwitchSample.sln", BuildsOn = BuildPlatforms.Mac},
+		new IOSSolutionBuilder { SolutionPath = "./samples/AMViralSwitchSample.sln", Configuration = "Release|iPhone", BuildsOn = BuildPlatforms.Mac},
 	},
 
 	Components = new [] {

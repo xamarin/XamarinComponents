@@ -9,7 +9,6 @@ icons:
   - icons/AMViralSwitch_128x128.png
   - icons/AMViralSwitch_512x512.png
 libraries:
-  ios: ../output/classic/AMViralSwitch.dll
   ios-unified: ../output/unified/AMViralSwitch.dll
 samples:
   - name: "AMViralSwitch Sample"
