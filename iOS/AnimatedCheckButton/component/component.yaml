@@ -13,7 +13,6 @@ icons:
   - ../images/icon_512x512.png
 
 libraries:
-  ios: ../output/classic/AnimatedCheckButton.dll
   ios-unified: ../output/unified/AnimatedCheckButton.dll
 
 samples:
@@ -22,10 +21,5 @@ samples:
     configuration: "Release|iPhone"
     removeFiles:
      - AnimatedCheckButtonSample/Makefile
-  - name: "Classic API Sample"
-    path: ../samples/AnimatedCheckButtonSample-Classic/AnimatedCheckButtonSample-Classic.sln
-    configuration: "Release|iPhone"
-    removeFiles:
-     - AnimatedCheckButtonSample-Classic/Makefile
 
 monodoc: ../docs/
