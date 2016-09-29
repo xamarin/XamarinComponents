@@ -39,12 +39,24 @@
     <Folder Include="Resources\" />
   </ItemGroup>
   <ItemGroup>
-    <ObjcBindingNativeLibrary Include="..\..\externals\ios\Pods\GVRSDK\Libraries\libCardboardSDK.a" />
+    <ObjcBindingNativeLibrary Include="..\..\externals\ios\Pods\GVRSDK\Libraries\libCardboardSDK_armv7.a" />
+    <ObjcBindingNativeLibrary Include="..\..\externals\ios\Pods\GVRSDK\Libraries\libCardboardSDK_arm64.a" />
+    <ObjcBindingNativeLibrary Include="..\..\externals\ios\Pods\GVRSDK\Libraries\libCardboardSDK_i386.a" />
+    <ObjcBindingNativeLibrary Include="..\..\externals\ios\Pods\GVRSDK\Libraries\libCardboardSDK_x86_64.a" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="libCardboardSDK.linkwith.cs">
-      <DependentUpon>libCardboardSDK.a</DependentUpon>
+    <Compile Include="libCardboardSDK_armv7.linkwith.cs">
+      <DependentUpon>libCardboardSDK_armv7.a</DependentUpon>
+    </Compile>
+    <Compile Include="libCardboardSDK_arm64.linkwith.cs">
+      <DependentUpon>libCardboardSDK_arm64.a</DependentUpon>
+    </Compile>
+    <Compile Include="libCardboardSDK_i386.linkwith.cs">
+      <DependentUpon>libCardboardSDK_i386.a</DependentUpon>
+    </Compile>
+    <Compile Include="libCardboardSDK_x86_64.linkwith.cs">
+      <DependentUpon>libCardboardSDK_x86_64.a</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -442,6 +454,9 @@
     <BundleResource Include="..\..\externals\ios\Pods\GVRSDK\Resources\GoogleKitCore.bundle\Resources\lt.lproj\GoogleKitCore.strings">
       <Link>Resources\GoogleKitCore.bundle\Resources\lt.lproj\GoogleKitCore.strings</Link>
     </BundleResource>
+    <BundleResource Include="..\..\externals\ios\Pods\GVRSDK\Resources\GoogleKitCore.bundle\Resources\lv.lproj\GoogleKitCore.strings">
+      <Link>Resources\GoogleKitCore.bundle\Resources\lv.lproj\GoogleKitCore.strings</Link>
+    </BundleResource>
     <BundleResource Include="..\..\externals\ios\Pods\GVRSDK\Resources\GoogleKitCore.bundle\Resources\mn.lproj\GoogleKitCore.strings">
       <Link>Resources\GoogleKitCore.bundle\Resources\mn.lproj\GoogleKitCore.strings</Link>
     </BundleResource>
@@ -838,6 +853,9 @@
     <BundleResource Include="..\..\externals\ios\Pods\GVRSDK\Resources\GoogleKitDialogs.bundle\Resources\lt.lproj\GoogleKitDialogs.strings">
       <Link>Resources\GoogleKitDialogs.bundle\Resources\lt.lproj\GoogleKitDialogs.strings</Link>
     </BundleResource>
+    <BundleResource Include="..\..\externals\ios\Pods\GVRSDK\Resources\GoogleKitDialogs.bundle\Resources\lv.lproj\GoogleKitDialogs.strings">
+      <Link>Resources\GoogleKitDialogs.bundle\Resources\lv.lproj\GoogleKitDialogs.strings</Link>
+    </BundleResource>
     <BundleResource Include="..\..\externals\ios\Pods\GVRSDK\Resources\GoogleKitDialogs.bundle\Resources\mn.lproj\GoogleKitDialogs.strings">
       <Link>Resources\GoogleKitDialogs.bundle\Resources\mn.lproj\GoogleKitDialogs.strings</Link>
     </BundleResource>
@@ -1002,6 +1020,9 @@
     </BundleResource>
     <BundleResource Include="..\..\externals\ios\Pods\GVRSDK\Resources\GoogleKitHUD.bundle\Resources\lt.lproj\GoogleKitHUD.strings">
       <Link>Resources\GoogleKitHUD.bundle\Resources\lt.lproj\GoogleKitHUD.strings</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\externals\ios\Pods\GVRSDK\Resources\GoogleKitHUD.bundle\Resources\lv.lproj\GoogleKitHUD.strings">
+      <Link>Resources\GoogleKitHUD.bundle\Resources\lv.lproj\GoogleKitHUD.strings</Link>
     </BundleResource>
     <BundleResource Include="..\..\externals\ios\Pods\GVRSDK\Resources\GoogleKitHUD.bundle\Resources\mn.lproj\GoogleKitHUD.strings">
       <Link>Resources\GoogleKitHUD.bundle\Resources\mn.lproj\GoogleKitHUD.strings</Link>
