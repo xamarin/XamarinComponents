@@ -74,6 +74,7 @@ We are continuously monitoring and adding new Plugins all the time, so be sure t
 |Mono.Data.Sqlite|Add Mono.Data.Sqlite to any Xamarin or Windows .NET app.|[NuGet](https://www.nuget.org/packages/Mono.Data.Sqlite.Portable)|[GitHub](https://github.com/mattleibow/Mono.Data.Sqlite)|[@mattleibow](https://twitter.com/mattleibow)|
 |Portable Razor|Lightweight implemenation of ASP.NET MVC APIs for mobile.|[NuGet](https://www.nuget.org/packages/PortableRazor/)|[GitHub](https://github.com/xamarin/PortableRazor)|[@JosephHill](http://www.twitter.com/josephhill)|
 |Secure Storage|Provides Secure storage for key value pairs Data|[NuGet](http://www.nuget.org/packages/sameerIOTApps.Plugin.SecureStorage/)|[GitHub](https://github.com/sameerkapps/SecureStorage)|[@sameerIOTApps](https://twitter.com/sameerIOTApps)|
+|Google Analytics|Library for Xamarin, which enables a handy use of Google Analytics in your applications.|[NuGet](https://www.nuget.org/packages/ksemenenko.GoogleAnalytics/)|[GitHub](https://github.com/KSemenenko/GoogleAnalyticsForXamarinForms)|[@ksemenenko](http://www.twitter.com/ksemenenk0)|
 
 
 ### Submit Your Ideas
