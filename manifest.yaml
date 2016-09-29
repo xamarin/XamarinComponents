@@ -300,10 +300,10 @@
   BuildScript: ./XPlat/CardIO/iOS/build.cake
   TriggerPaths: [ XPlat/CardIO/iOS ]
   MacBuildTargets: [ samples, component ]
-- Name: Mapbox
-  BuildScript: ./XPlat/Mapbox/build.cake
-  TriggerPaths: [ XPlat/Mapbox ]
-  MacBuildTargets: [ samples, component ]
+# - Name: Mapbox
+#   BuildScript: ./XPlat/Mapbox/build.cake
+#   TriggerPaths: [ XPlat/Mapbox ]
+#   MacBuildTargets: [ samples, component ]
 - Name: EstimoteAndroid
   BuildScript: ./XPlat/Estimote/Android/build.cake
   TriggerPaths: [ XPlat/Estimote/Android ]
