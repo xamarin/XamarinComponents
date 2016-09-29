@@ -30,8 +30,8 @@ var buildSpec = new BuildSpec {
 	},
 
 	Samples = new [] {
-		new IOSSolutionBuilder { SolutionPath = "./samples/BeaconExample.sln" },
-		new IOSSolutionBuilder { SolutionPath = "./samples/NearableExample.sln" }
+		new IOSSolutionBuilder { SolutionPath = "./samples/BeaconExample.sln", Configuration = "Release|iPhone" },
+		new IOSSolutionBuilder { SolutionPath = "./samples/NearableExample.sln", Configuration = "Release|iPhone" }
 	},
 
 	NuGets  = new [] {

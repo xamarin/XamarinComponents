@@ -49,7 +49,7 @@ var buildSpec = new BuildSpec {
 	},
 
 	Samples = new [] {
-		new IOSSolutionBuilder { SolutionPath = "./iOS/samples/MapboxSampleiOS.sln" },	
+		new IOSSolutionBuilder { SolutionPath = "./iOS/samples/MapboxSampleiOS.sln", Configuration = "Release|iPhone" },
 		new DefaultSolutionBuilder { SolutionPath = "./Android/samples/MapboxSampleAndroid.sln" }
 	},
 
