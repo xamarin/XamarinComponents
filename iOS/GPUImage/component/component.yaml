@@ -9,7 +9,6 @@ icons:
   - icons/GPUImage_128x128.png
   - icons/GPUImage_512x512.png
 libraries:
-  ios: ../output/classic/GPUImage.dll
   ios-unified: ../output/unified/GPUImage.dll
 samples:
   - name: "GPUImage Sample"
@@ -17,5 +16,4 @@ samples:
 no_build: true
 is_shell: true
 packages:
-  ios: GPUImage, Version=0.1.7.1
   ios-unified: GPUImage, Version=0.1.7.1

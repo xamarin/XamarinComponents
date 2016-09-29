@@ -9,7 +9,6 @@ icons:
   - icons/ZipArchive_128x128.png
   - icons/ZipArchive_512x512.png
 libraries:
-  ios: ../output/classic/ZipArchive.dll
   ios-unified: ../output/unified/ZipArchive.dll
 samples:
   - name: "Zip Archive Sample"

@@ -14,17 +14,12 @@ var buildSpec = new BuildSpec () {
 					FromFile = "./source/MBAlertView/bin/unified/Release/AlertView.dll",
 					ToDirectory = "./output/unified/"
 				},
-				new OutputFileCopy {
-					FromFile = "./source/MBAlertView/bin/classic/Release/AlertView.dll",
-					ToDirectory = "./output/classic/"
-				}
 			}
 		},	
 	},
 
 	Samples = new ISolutionBuilder [] {
-		new IOSSolutionBuilder { SolutionPath = "./samples/MBAlertViewDemo/MBAlertViewDemo.sln", BuildsOn = BuildPlatforms.Mac },
-		new IOSSolutionBuilder { SolutionPath = "./samples/MBAlertViewDemo/MBAlertViewDemo-classic.sln", BuildsOn = BuildPlatforms.Mac },
+		new IOSSolutionBuilder { SolutionPath = "./samples/MBAlertViewDemo/MBAlertViewDemo.sln", Configuration = "Release|iPhone", BuildsOn = BuildPlatforms.Mac },
 	},
 
 	Components = new [] {
@@ -35,7 +30,7 @@ var buildSpec = new BuildSpec () {
 Task ("externals").IsDependentOn ("externals-base").Does (() =>
 {
 	RunMake ("./externals/", "all");
-	BuildXCodeFatLibrary ("MBAlertView.xcodeproj", "MBAlertView", null, null, null);
+	BuildXCodeFatLibrary ("MBAlertView.xcodeproj", "MBAlertView", null, null, null, null);
 });
 
 Task ("clean").IsDependentOn ("clean-base").Does (() =>

@@ -7,7 +7,6 @@ src-url: https://github.com/xamarin/XamarinComponents/tree/master/iOS/SWTableVie
 summary: An easy-to-use UITableViewCell subclass that implements a swipeable content view which exposes utility buttons (similar to iOS 7 Mail Application).
 
 libraries:
-  ios: ../output/classic/SWTableViewCell.dll
   ios-unified: ../output/unified/SWTableViewCell.dll
 
 samples:
@@ -20,7 +19,7 @@ monodoc: docs/
 icons:
   - icons/swtableviewcell_128x128.png
   - icons/swtableviewcell_512x512.png
-  
+
 screenshots:
   - screenshots/screenshot2.png
   - screenshots/screenshot3.png

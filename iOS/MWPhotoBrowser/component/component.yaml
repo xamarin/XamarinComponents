@@ -9,17 +9,12 @@ icons:
   - ../images/icon_128x128.png
   - ../images/icon_512x512.png
 libraries:
-  ios: ../output/classic/MWPhotoBrowser.dll
   ios-unified: ../output/unified/MWPhotoBrowser.dll
 samples:
   - name: "Photo Browser Sample"
     path:  ../samples/MWPhotoBrowserSample.sln
 no_build: true
 packages:
-  ios: 
-   - DACircularProgress, Version=2.3.1.0
-   - mbprogresshud, Version=0.9.1.1
-   - Xamarin.SDWebImage, Version=3.7.3.3
   ios-unified: 
    - DACircularProgress, Version=2.3.1.0
    - mbprogresshud, Version=0.9.1.1

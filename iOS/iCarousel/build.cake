@@ -22,17 +22,12 @@ var buildSpec = new BuildSpec () {
 					FromFile = "./source/iCarousel/bin/unified/Release/iCarousel.dll",
 					ToDirectory = "./output/unified/"
 				},
-				new OutputFileCopy {
-					FromFile = "./source/iCarousel/bin/classic/Release/iCarousel.dll",
-					ToDirectory = "./output/classic/"
-				}
 			}
 		},	
 	},
 
 	Samples = new ISolutionBuilder [] {
-		new IOSSolutionBuilder { SolutionPath = "./samples/iCarouselSamples/iCarouselSamples.sln", BuildsOn = BuildPlatforms.Mac },
-		new IOSSolutionBuilder { SolutionPath = "./samples/iCarouselSamples/iCarouselSamples-Classic.sln", BuildsOn = BuildPlatforms.Mac },
+		new IOSSolutionBuilder { SolutionPath = "./samples/iCarouselSamples/iCarouselSamples.sln", Configuration = "Release|iPhone", BuildsOn = BuildPlatforms.Mac },
 	},
 
 	Components = new [] {

@@ -9,7 +9,6 @@ icons:
   - icons/FXBlurView_128x128.png
   - icons/FXBlurView_512x512.png
 libraries:
-  ios: ../output/classic/FXBlurView.dll
   ios-unified: ../output/unified/FXBlurView.dll
 samples:
   - name: "FXBlurView Sample"

@@ -13,7 +13,6 @@ icons:
   - ../images/icon_512x512.png
 
 libraries:
-  ios: ../output/classic/PullToBounce.dll
   ios-unified: ../output/unified/PullToBounce.dll
 
 samples:
@@ -22,9 +21,6 @@ samples:
     configuration: "Release"
   - name: "Table View Controller Sample"
     path: ../samples/PullToBounceTableViewControllerSample/PullToBounceTableViewControllerSample.sln
-    configuration: "Release"
-  - name: "Classic API Sample"
-    path: ../samples/PullToBounceSample-Classic/PullToBounceSample-Classic.sln
     configuration: "Release"
 
 monodoc: ../docs/

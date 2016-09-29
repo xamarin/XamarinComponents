@@ -8,7 +8,6 @@ src-url: https://github.com/xamarin/XamarinComponents/tree/master/iOS/Masonry
 icons:
   - icons/Masonry_128x128.png
 libraries:
-  ios: ../output/classic/Masonry.dll
   ios-unified: ../output/unified/Masonry.dll
 samples:
   - name: "iOS Sample"
@@ -17,5 +16,4 @@ no_build: true
 
 is_shell: true
 packages:
-  ios: Masonry, Version=0.6.4.0
   ios-unified: Masonry, Version=0.6.4.0

@@ -13,19 +13,14 @@ var buildSpec = new BuildSpec () {
 					FromFile = "./source/SidePanels/bin/Release/SidePanels.dll",
 					ToDirectory = "./output/unified/"
 				},
-				new OutputFileCopy {
-					FromFile = "./source/SidePanels-classic/bin/Release/SidePanels.dll",
-					ToDirectory = "./output/classic/"
-				}
 			}
 		},
 	},
 
 	Samples = new ISolutionBuilder [] {
-		new IOSSolutionBuilder { SolutionPath = "./samples/JASidePanelsSample/JASidePanelsSample.sln", BuildsOn = BuildPlatforms.Mac },
-		new IOSSolutionBuilder { SolutionPath = "./samples/SidePanelsClassicSample/SidePanelsClassicSample.sln", BuildsOn = BuildPlatforms.Mac },
-		new IOSSolutionBuilder { SolutionPath = "./samples/SidePanelsCodeSample/SidePanelsCodeSample.sln", BuildsOn = BuildPlatforms.Mac },
-		new IOSSolutionBuilder { SolutionPath = "./samples/SidePanelsSample/SidePanelsSample.sln", BuildsOn = BuildPlatforms.Mac },
+		new IOSSolutionBuilder { SolutionPath = "./samples/JASidePanelsSample/JASidePanelsSample.sln", Configuration = "Release|iPhone", BuildsOn = BuildPlatforms.Mac },
+		new IOSSolutionBuilder { SolutionPath = "./samples/SidePanelsCodeSample/SidePanelsCodeSample.sln", Configuration = "Release|iPhone", BuildsOn = BuildPlatforms.Mac },
+		new IOSSolutionBuilder { SolutionPath = "./samples/SidePanelsSample/SidePanelsSample.sln", Configuration = "Release|iPhone", BuildsOn = BuildPlatforms.Mac },
 	},
 
 	Components = new [] {

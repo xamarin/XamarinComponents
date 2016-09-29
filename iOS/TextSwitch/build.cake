@@ -14,17 +14,12 @@ var buildSpec = new BuildSpec () {
 					FromFile = "./source/TextSwitch/bin/Release/TextSwitch.dll",
 					ToDirectory = "./output/unified/"
 				},
-				new OutputFileCopy {
-					FromFile = "./source/TextSwitch-classic/bin/Release/TextSwitch.dll",
-					ToDirectory = "./output/classic/"
-				}
 			}
 		},	
 	},
 
 	Samples = new ISolutionBuilder [] {
-		new IOSSolutionBuilder { SolutionPath = "./samples/TextSwitchSample/TextSwitchSample.sln", BuildsOn = BuildPlatforms.Mac },
-		new IOSSolutionBuilder { SolutionPath = "./samples/TextSwitchSample-Classic/TextSwitchSample-Classic.sln", BuildsOn = BuildPlatforms.Mac },
+		new IOSSolutionBuilder { SolutionPath = "./samples/TextSwitchSample/TextSwitchSample.sln", Configuration = "Release|iPhone", BuildsOn = BuildPlatforms.Mac },
 	},
 
 	Components = new [] {

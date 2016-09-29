@@ -8,16 +8,11 @@ summary: A translucent, HUD-style dialog that shows a progress indicator and a s
 no_build: true
 libraries:
   ios-unified: ../output/unified/MBProgressHUD.dll
-  ios: ../output/classic/MBProgressHUD.dll
 samples:
   - name: "iOS Unified Sample"
     path: ../samples/MBProgressHUDDemo/MBProgressHUDDemo.sln
     removeFiles:
       - MBProgressHUDDemo/MBProgressHUDDemo-classic.csproj
-  - name: "iOS Classic Sample"
-    path: ../samples/MBProgressHUDDemo/MBProgressHUDDemo-classic.sln
-    removeFiles:
-      - MBProgressHUDDemo/MBProgressHUDDemo.csproj
 monodoc: docs/
 icons:
   - icons/mbprogresshud_128x128.png
@@ -27,4 +22,3 @@ screenshots:
 is_shell: true
 packages:
   ios-unified: mbprogresshud, Version=0.9.2.0
-  ios: mbprogresshud, Version=0.9.2.0

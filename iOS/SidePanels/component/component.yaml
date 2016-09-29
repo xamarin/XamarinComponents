@@ -13,7 +13,6 @@ icons:
   - ../images/sidepanels_512x512.png
 
 libraries:
-  ios: ../output/classic/SidePanels.dll
   ios-unified: ../output/unified/SidePanels.dll
 
 samples:
@@ -22,9 +21,6 @@ samples:
     configuration: "Release|iPhone"
   - name: "Code Sample"
     path: ../samples/SidePanelsCodeSample/SidePanelsCodeSample.sln
-    configuration: "Release|iPhone"
-  - name: "Classic API Sample"
-    path: ../samples/SidePanelsClassicSample/SidePanelsClassicSample.sln
     configuration: "Release|iPhone"
   - name: "JASidePanel Compatibility Sample"
     path: ../samples/JASidePanelsSample/JASidePanelsSample.sln

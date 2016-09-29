@@ -14,17 +14,12 @@ var buildSpec = new BuildSpec () {
 					FromFile = "./source/TransitionSubmit/bin/Release/TransitionSubmit.dll",
 					ToDirectory = "./output/unified/"
 				},
-				new OutputFileCopy {
-					FromFile = "./source/TransitionSubmit-classic/bin/Release/TransitionSubmit.dll",
-					ToDirectory = "./output/classic/"
-				}
 			}
 		},	
 	},
 
 	Samples = new ISolutionBuilder [] {
-		new IOSSolutionBuilder { SolutionPath = "./samples/TransitionSubmitSample/TransitionSubmitSample.sln", BuildsOn = BuildPlatforms.Mac },
-		new IOSSolutionBuilder { SolutionPath = "./samples/TransitionSubmitSample-Classic/TransitionSubmitSample-Classic.sln", BuildsOn = BuildPlatforms.Mac },
+		new IOSSolutionBuilder { SolutionPath = "./samples/TransitionSubmitSample/TransitionSubmitSample.sln", Configuration = "Release|iPhone", BuildsOn = BuildPlatforms.Mac },
 	},
 
 	Components = new [] {

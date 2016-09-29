@@ -13,18 +13,13 @@ var buildSpec = new BuildSpec () {
 					FromFile = "./source/PullToBounce/bin/Release/PullToBounce.dll",
 					ToDirectory = "./output/unified/"
 				},
-				new OutputFileCopy {
-					FromFile = "./source/PullToBounce-classic/bin/Release/PullToBounce.dll",
-					ToDirectory = "./output/classic/"
-				}
 			}
 		},	
 	},
 
 	Samples = new ISolutionBuilder [] {
-		new IOSSolutionBuilder { SolutionPath = "./samples/PullToBounceSample/PullToBounceSample.sln", BuildsOn = BuildPlatforms.Mac },
-		new IOSSolutionBuilder { SolutionPath = "./samples/PullToBounceTableViewControllerSample/PullToBounceTableViewControllerSample.sln", BuildsOn = BuildPlatforms.Mac },
-		new IOSSolutionBuilder { SolutionPath = "./samples/PullToBounceSample-Classic/PullToBounceSample-Classic.sln", BuildsOn = BuildPlatforms.Mac },
+		new IOSSolutionBuilder { SolutionPath = "./samples/PullToBounceSample/PullToBounceSample.sln", Configuration = "Release|iPhone", BuildsOn = BuildPlatforms.Mac },
+		new IOSSolutionBuilder { SolutionPath = "./samples/PullToBounceTableViewControllerSample/PullToBounceTableViewControllerSample.sln", Configuration = "Release|iPhone", BuildsOn = BuildPlatforms.Mac },
 	},
 
 	Components = new [] {

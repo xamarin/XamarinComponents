@@ -1,8 +1,6 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MBProgressHUD-classic", "MBProgressHUD\MBProgressHUD-classic.csproj", "{579C7FCC-25D7-446A-B75E-C1E21689D4CA}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MBProgressHUD", "MBProgressHUD\MBProgressHUD.csproj", "{579C7FCC-25D7-446A-B75E-C1E21689D4CF}"
 EndProject
 Global
@@ -15,8 +13,18 @@ Global
 		Release|iPhone = Release|iPhone
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{579C7FCC-25D7-446A-B75E-C1E21689D4CA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{579C7FCC-25D7-446A-B75E-C1E21689D4CF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{579C7FCC-25D7-446A-B75E-C1E21689D4CF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{579C7FCC-25D7-446A-B75E-C1E21689D4CF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{579C7FCC-25D7-446A-B75E-C1E21689D4CF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{579C7FCC-25D7-446A-B75E-C1E21689D4CF}.Debug|iPhoneSimulator.ActiveCfg = Debug|Any CPU
+		{579C7FCC-25D7-446A-B75E-C1E21689D4CF}.Debug|iPhoneSimulator.Build.0 = Debug|Any CPU
+		{579C7FCC-25D7-446A-B75E-C1E21689D4CF}.Release|iPhoneSimulator.ActiveCfg = Release|Any CPU
+		{579C7FCC-25D7-446A-B75E-C1E21689D4CF}.Release|iPhoneSimulator.Build.0 = Release|Any CPU
+		{579C7FCC-25D7-446A-B75E-C1E21689D4CF}.Debug|iPhone.ActiveCfg = Debug|Any CPU
+		{579C7FCC-25D7-446A-B75E-C1E21689D4CF}.Debug|iPhone.Build.0 = Debug|Any CPU
+		{579C7FCC-25D7-446A-B75E-C1E21689D4CF}.Release|iPhone.ActiveCfg = Release|Any CPU
+		{579C7FCC-25D7-446A-B75E-C1E21689D4CF}.Release|iPhone.Build.0 = Release|Any CPU
 		{579C7FCC-25D7-446A-B75E-C1E21689D4CA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{579C7FCC-25D7-446A-B75E-C1E21689D4CF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{579C7FCC-25D7-446A-B75E-C1E21689D4CA}.Debug|iPhone.ActiveCfg = Debug|Any CPU

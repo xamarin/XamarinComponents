@@ -9,7 +9,6 @@ icons:
   - icons/icon_128x128.png
   - icons/icon_512x512.png
 libraries:
-  ios: ../output/classic/SCCatWaitingHUD.dll
   ios-unified: ../output/unified/SCCatWaitingHUD.dll
 samples:
   - name: "SCCatWaitingHUD Sample"

@@ -13,15 +13,11 @@ icons:
   - ../images/icon_512x512.png
 
 libraries:
-  ios: ../output/classic/Shimmer.dll
   ios-unified: ../output/unified/Shimmer.dll
 
 samples:
   - name: "Storyboard Sample"
     path: ../samples/ShimmerSample/ShimmerSample.sln
-    configuration: "Release|iPhone"
-  - name: "Classic API Sample"
-    path: ../samples/ShimmerSample-Classic/ShimmerSample-Classic.sln
     configuration: "Release|iPhone"
 
 monodoc: ../docs/

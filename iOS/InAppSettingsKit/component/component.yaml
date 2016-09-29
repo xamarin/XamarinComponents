@@ -9,7 +9,6 @@ icons:
   - icons/InAppSettingsKit_128x128.png
   - icons/InAppSettingsKit_512x512.png
 libraries:
-  ios: ../output/classic/InAppSettingsKit.dll
   ios-unified: ../output/unified/InAppSettingsKit.dll
 samples:
   - name: "InAppSettingsKit Sample"

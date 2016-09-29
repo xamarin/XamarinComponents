@@ -3,6 +3,14 @@
 
 var TARGET = Argument ("t", Argument ("target", "Default"));
 
+var IOS_PODS = new List<string> {
+	"platform :ios, '4.3'",
+	"install! 'cocoapods', :integrate_targets => false",
+	"target 'Xamarin' do",
+	"pod 'FXBlurView', '1.6.4'",
+	"end",
+};
+
 var buildSpec = new BuildSpec () {
 	Libs = new ISolutionBuilder [] {
 		new IOSSolutionBuilder {
@@ -14,16 +22,12 @@ var buildSpec = new BuildSpec () {
 					FromFile = "./source/FXBlurView/bin/unified/Release/FXBlurView.dll",
 					ToDirectory = "./output/unified/"
 				},
-				new OutputFileCopy {
-					FromFile = "./source/FXBlurView/bin/classic/Release/FXBlurView.dll",
-					ToDirectory = "./output/classic/"
-				}
 			}
 		},	
 	},
 
 	Samples = new ISolutionBuilder [] {
-		new IOSSolutionBuilder { SolutionPath = "./samples/FXBlurViewSample.sln", BuildsOn = BuildPlatforms.Mac },
+		new IOSSolutionBuilder { SolutionPath = "./samples/FXBlurViewSample.sln", Configuration = "Release|iPhone", BuildsOn = BuildPlatforms.Mac },
 	},
 
 	Components = new [] {
@@ -33,14 +37,16 @@ var buildSpec = new BuildSpec () {
 
 Task ("externals").IsDependentOn ("externals-base").Does (() =>
 {
-	CreatePodfile ("./externals/", "ios", "4.3", new Dictionary<string, string> {
-        { "FXBlurView", "1.6.4" }
-	});
-	if (!FileExists ("./externals/Podfile.lock")) {
-		CocoaPodInstall ("./externals/", new CocoaPodInstallSettings { NoIntegrate = true });
-	}
+	EnsureDirectoryExists ("./externals");
 
-	BuildXCodeFatLibrary ("Pods/Pods.xcodeproj", "FXBlurView", null, null, null);
+	if (CocoaPodVersion () < new System.Version (1, 0))
+		IOS_PODS.RemoveAt (1);
+
+	FileWriteLines ("./externals/Podfile", IOS_PODS.ToArray ());
+
+	CocoaPodInstall ("./externals", new CocoaPodInstallSettings { NoIntegrate = true });
+
+	BuildXCodeFatLibrary ("./Pods/Pods.xcodeproj", "FXBlurView", "FXBlurView", null, null, "FXBlurView");
 });
 
 Task ("clean").IsDependentOn ("clean-base").Does (() =>

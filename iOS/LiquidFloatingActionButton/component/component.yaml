@@ -13,16 +13,11 @@ icons:
   - ../images/icon_512x512.png
 
 libraries:
-  ios: ../output/classic/LiquidFloatingActionButton.dll
   ios-unified: ../output/unified/LiquidFloatingActionButton.dll
 
 samples:
   - name: "Storyboard Sample"
     path: ../samples/LiquidFloatingActionButtonSample/LiquidFloatingActionButtonSample.sln
     configuration: "Release|iPhone"    
-  - name: "Classic API Sample"
-    path: ../samples/LiquidFloatingActionButtonSample-Classic/LiquidFloatingActionButtonSample-Classic.sln
-    configuration: "Release|iPhone"
 
 monodoc: ../docs/
- 

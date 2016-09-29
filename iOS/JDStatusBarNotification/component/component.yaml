@@ -8,7 +8,6 @@ summary: Easy, customizable notifications displayed on top of the statusbar. Wit
 icons:
   - icons/JDStatusBarNotification_128x128.png
 libraries:
-  ios: ../output/classic/JDStatusBarNotification.dll
   ios-unified: ../output/unified/JDStatusBarNotification.dll
 samples:
   - name: "JDStatusBarNotification Sample"

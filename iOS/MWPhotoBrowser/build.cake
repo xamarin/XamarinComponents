@@ -17,16 +17,12 @@ var buildSpec = new BuildSpec () {
 					FromFile = "./source/MWPhotoBrowser/bin/unified/Release/MWPhotoBrowser.dll",
 					ToDirectory = "./output/unified/"
 				},
-				new OutputFileCopy {
-					FromFile = "./source/MWPhotoBrowser/bin/classic/Release/MWPhotoBrowser.dll",
-					ToDirectory = "./output/classic/"
-				}
 			}
 		},	
 	},
 
 	Samples = new ISolutionBuilder [] {
-		new IOSSolutionBuilder { SolutionPath = "./samples/MWPhotoBrowserSample.sln", BuildsOn = BuildPlatforms.Mac },	
+		new IOSSolutionBuilder { SolutionPath = "./samples/MWPhotoBrowserSample.sln", Configuration = "Release|iPhone", BuildsOn = BuildPlatforms.Mac },	
 	},
 
 	Components = new [] {

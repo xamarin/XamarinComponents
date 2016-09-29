@@ -3,6 +3,14 @@
 
 var TARGET = Argument ("t", Argument ("target", "Default"));
 
+var IOS_PODS = new List<string> {
+	"platform :ios, '8.0'",
+	"install! 'cocoapods', :integrate_targets => false",
+	"target 'Xamarin' do",
+	"pod 'SCCatWaitingHUD', '0.1.6'",
+	"end",
+};
+
 var buildSpec = new BuildSpec () {
 	Libs = new ISolutionBuilder [] {
 		new IOSSolutionBuilder {
@@ -14,16 +22,12 @@ var buildSpec = new BuildSpec () {
 					FromFile = "./source/SCCatWaitingHUD/bin/unified/Release/SCCatWaitingHUD.dll",
 					ToDirectory = "./output/unified/"
 				},
-				new OutputFileCopy {
-					FromFile = "./source/SCCatWaitingHUD/bin/classic/Release/SCCatWaitingHUD.dll",
-					ToDirectory = "./output/classic/"
-				}
 			}
 		},	
 	},
 
 	Samples = new ISolutionBuilder [] {
-		new IOSSolutionBuilder { SolutionPath = "./samples/SCCatWaitingHUDSample.sln", BuildsOn = BuildPlatforms.Mac },
+		new IOSSolutionBuilder { SolutionPath = "./samples/SCCatWaitingHUDSample.sln", Configuration = "Release|iPhone", BuildsOn = BuildPlatforms.Mac },
 	},
 
 	Components = new [] {
@@ -33,15 +37,16 @@ var buildSpec = new BuildSpec () {
 
 Task ("externals").IsDependentOn ("externals-base").Does (() =>
 {
-	CreatePodfile ("./externals/", "ios", "8.0", new Dictionary<string, string> {
-        { "SCCatWaitingHUD", "0.1.6" }
-	});
-	if (!FileExists ("./externals/Podfile.lock")) {
-		CocoaPodInstall ("./externals/", new CocoaPodInstallSettings { NoIntegrate = true });
-	}
+	EnsureDirectoryExists ("./externals");
 
-	BuildXCodeFatLibrary ("Pods/Pods.xcodeproj", "SCCatWaitingHUD", null, null, null);
-	//BuildXCode ("./Pods/Pods.xcodeproj", "Pods", "Pods-SCCatWaitingHUD", "libSCCatWaitingHUD.a");
+	if (CocoaPodVersion () < new System.Version (1, 0))
+		IOS_PODS.RemoveAt (1);
+
+	FileWriteLines ("./externals/Podfile", IOS_PODS.ToArray ());
+
+	CocoaPodInstall ("./externals", new CocoaPodInstallSettings { NoIntegrate = true });
+
+	BuildXCodeFatLibrary ("./Pods/Pods.xcodeproj", "SCCatWaitingHUD", "SCCatWaitingHUD", null, null, "SCCatWaitingHUD");
 });
 
 Task ("clean").IsDependentOn ("clean-base").Does (() =>

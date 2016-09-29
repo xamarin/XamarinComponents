@@ -3,6 +3,14 @@
 
 var TARGET = Argument ("t", Argument ("target", "Default"));
 
+var IOS_PODS = new List<string> {
+	"platform :ios, '7.0'",
+	"install! 'cocoapods', :integrate_targets => false",
+	"target 'Xamarin' do",
+	"pod 'TPKeyboardAvoiding', '1.2.11'",
+	"end",
+};
+
 var buildSpec = new BuildSpec () {
 	Libs = new ISolutionBuilder [] {
 		new IOSSolutionBuilder {
@@ -13,16 +21,12 @@ var buildSpec = new BuildSpec () {
 					FromFile = "./source/TPKeyboardAvoiding/bin/unified/Release/TPKeyboardAvoiding.dll",
 					ToDirectory = "./output/unified/"
 				},
-				new OutputFileCopy {
-					FromFile = "./source/TPKeyboardAvoiding/bin/classic/Release/TPKeyboardAvoiding.dll",
-					ToDirectory = "./output/classic/"
-				}
 			}
 		},
 	},
 
 	Samples = new ISolutionBuilder [] {
-		new IOSSolutionBuilder { SolutionPath = "./samples/TPKeyboardAvoidingSample.sln" },	
+		new IOSSolutionBuilder { SolutionPath = "./samples/TPKeyboardAvoidingSample.sln", Configuration = "Release|iPhone" },	
 	},
 
 	Components = new [] {
@@ -32,14 +36,16 @@ var buildSpec = new BuildSpec () {
 
 Task ("externals").IsDependentOn ("externals-base").Does (() =>
 {
-	CreatePodfile ("./externals/", "ios", "7.0", new Dictionary<string, string> {
-        { "TPKeyboardAvoiding", "1.2.11" }
-	});
-	if (!FileExists ("./externals/Podfile.lock")) {
-		CocoaPodInstall ("./externals/", new CocoaPodInstallSettings { NoIntegrate = true });
-	}
+	EnsureDirectoryExists ("./externals");
 
-	BuildXCodeFatLibrary ("Pods/Pods.xcodeproj", "TPKeyboardAvoiding", null, null, null);
+	if (CocoaPodVersion () < new System.Version (1, 0))
+		IOS_PODS.RemoveAt (1);
+
+	FileWriteLines ("./externals/Podfile", IOS_PODS.ToArray ());
+
+	CocoaPodInstall ("./externals", new CocoaPodInstallSettings { NoIntegrate = true });
+
+	BuildXCodeFatLibrary ("./Pods/Pods.xcodeproj", "TPKeyboardAvoiding", "TPKeyboardAvoiding", null, null, "TPKeyboardAvoiding");
 });
 
 Task ("clean").IsDependentOn ("clean-base").Does (() =>
