@@ -28,5 +28,9 @@
 	</array>
 	<key>CFBundleIdentifier</key>
 	<string>io.card.sample</string>
+	<key>CFBundleName</key>
+	<string>CardIOSampleiOS</string>
+	<key>NSCameraUsageDescription</key>
+	<string>Scanning Credit Cards</string>
 </dict>
 </plist>
