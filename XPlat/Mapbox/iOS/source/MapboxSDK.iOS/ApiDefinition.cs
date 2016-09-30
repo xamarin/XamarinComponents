@@ -9,42 +9,62 @@ using UIKit;
 namespace Mapbox
 {
     [Static]
-    //[Verify (ConstantsInterfaceAssociation)]
     partial interface Constants
     {
+        // extern double MapboxVersionNumber;
+        [Field ("MapboxVersionNumber", "__Internal")]
+        double MapboxVersionNumber { get; }
+
         // extern NSString *const _Nonnull MGLErrorDomain;
         [Field ("MGLErrorDomain", "__Internal")]
         NSString ErrorDomain { get; }
-
-        // extern const MGLCoordinateSpan MGLCoordinateSpanZero;
-        //[Field ("MGLCoordinateSpanZero", "__Internal")]
-        //CoordinateSpan CoordinateSpanZero { get; }
-
-        [Field ("MGLOfflinePackProgressChangedNotification", "__Internal")]
-        NSString OfflinePackProgressChangedNotification { get; }
-
-        [Field ("MGLOfflinePackErrorNotification", "__Internal")]
-        NSString OfflinePackErrorNotification { get; }
-
-        [Field ("MGLOfflinePackMaximumMapboxTilesReachedNotification", "__Internal")]
-        NSString OfflinePackMaximumMapboxTilesReachedNotification { get; }
-
-        [Field ("MGLOfflinePackStateUserInfoKey", "__Internal")]
-        NSString OfflinePackStateUserInfoKey { get; }
-
-        [Field ("MGLOfflinePackProgressUserInfoKey", "__Internal")]
-        NSString OfflinePackProgressUserInfoKey { get; }
-
-        [Field ("MGLOfflinePackErrorUserInfoKey", "__Internal")]
-        NSString OfflinePackErrorUserInfoKey { get; }
-
-        [Field ("MGLOfflinePackMaximumCountUserInfoKey", "__Internal")]
-        NSString OfflinePackMaximumCountUserInfoKey { get; }
     }
 
-    delegate void OfflinePackAdditionCompletion (OfflinePack pack, NSError error);
+    [Static]
+    partial interface OfflinePackConstants
+    {
+        [Field ("MGLOfflinePackProgressChangedNotification", "__Internal")]
+        NSString ProgressChangedNotification { get; }
 
-    delegate void OfflinePackRemovalCompletion (NSError error);
+        [Field ("MGLOfflinePackErrorNotification", "__Internal")]
+        NSString ErrorNotification { get; }
+
+        [Field ("MGLOfflinePackMaximumMapboxTilesReachedNotification", "__Internal")]
+        NSString MaximumMapboxTilesReachedNotification { get; }
+
+        [Field ("MGLOfflinePackStateUserInfoKey", "__Internal")]
+        NSString StateUserInfoKey { get; }
+
+        [Field ("MGLOfflinePackProgressUserInfoKey", "__Internal")]
+        NSString ProgressUserInfoKey { get; }
+
+        [Field ("MGLOfflinePackErrorUserInfoKey", "__Internal")]
+        NSString ErrorUserInfoKey { get; }
+
+        [Field ("MGLOfflinePackMaximumCountUserInfoKey", "__Internal")]
+        NSString MaximumCountUserInfoKey { get; }
+    }
+
+    [Static]
+    //[Verify (ConstantsInterfaceAssociation)]
+    partial interface MapViewDecelerationRateConstants
+    {
+        // extern const CGFloat MGLMapViewDecelerationRateNormal;
+        [Field ("MGLMapViewDecelerationRateNormal", "__Internal")]
+        nfloat Normal { get; }
+
+        // extern const CGFloat MGLMapViewDecelerationRateFast;
+        [Field ("MGLMapViewDecelerationRateFast", "__Internal")]
+        nfloat Fast { get; }
+
+        // extern const CGFloat MGLMapViewDecelerationRateImmediate;
+        [Field ("MGLMapViewDecelerationRateImmediate", "__Internal")]
+        nfloat Immediate { get; }
+    }
+
+    delegate void OfflinePackAdditionCompletion ([NullAllowed] OfflinePack pack, [NullAllowed] NSError error);
+
+    delegate void OfflinePackRemovalCompletion ([NullAllowed] NSError error);
 
 
     // @interface MGLAccountManager : NSObject
@@ -57,21 +77,21 @@ namespace Mapbox
         [NullAllowed, Export ("accessToken")]
         string AccessToken { [NullAllowed, Export ("accessToken")]get; [NullAllowed, Export ("setAccessToken:")]set; }
 
-        // +(BOOL)mapboxMetricsEnabledSettingShownInApp;
-        // +(void)setMapboxMetricsEnabledSettingShownInApp:(BOOL)showsOptOut __attribute__((unavailable("Set MGLMapboxMetricsEnabledSettingShownInApp in Info.plist.")));
+        // +(BOOL)mapboxMetricsEnabledSettingShownInApp __attribute__((deprecated("Telemetry settings are now always shown in the ℹ️ menu.")));
         [Static]
         [Export ("mapboxMetricsEnabledSettingShownInApp")]
-        bool MetricsEnabledSettingShownInApp { get; set; }
+        bool MetricsEnabledSettingShownInApp { get; }
     }
 
     interface IAnnotation { }
 
     // @protocol MGLAnnotation <NSObject>
-    [Protocol]
+    [Protocol, Model]
     [BaseType (typeof (NSObject), Name = "MGLAnnotation")]
     interface Annotation
     {
         // @required @property (readonly, nonatomic) CLLocationCoordinate2D coordinate;
+        [Abstract]
         [Export ("coordinate")]
         CLLocationCoordinate2D Coordinate { get; }
 
@@ -88,6 +108,11 @@ namespace Mapbox
     [BaseType (typeof (NSObject), Name = "MGLAnnotationImage")]
     interface AnnotationImage
     {
+        // +(instancetype _Nonnull)annotationImageWithImage:(UIImage * _Nonnull)image reuseIdentifier:(NSString * _Nonnull)reuseIdentifier;
+        [Static]
+        [Export ("annotationImageWithImage:reuseIdentifier:")]
+        AnnotationImage Create (UIImage image, string reuseIdentifier);
+
         // @property (readonly, nonatomic) UIImage * _Nonnull image;
         [Export ("image")]
         UIImage Image { get; }
@@ -98,11 +123,6 @@ namespace Mapbox
 
         [Export ("enabled")]
         bool Enabled { [Bind ("isEnabled")] get; set; }
-
-        // +(instancetype _Nonnull)annotationImageWithImage:(UIImage * _Nonnull)image reuseIdentifier:(NSString * _Nonnull)reuseIdentifier;
-        [Static]
-        [Export ("annotationImageWithImage:reuseIdentifier:")]
-        AnnotationImage Create (UIImage image, string reuseIdentifier);
     }
 
 
@@ -110,54 +130,54 @@ namespace Mapbox
     [BaseType (typeof (UIView), Name = "MGLAnnotationView")]
     interface AnnotationView
     {
-        // - (instancetype)initWithReuseIdentifier:(nullable NSString *)reuseIdentifier;
+        // -(instancetype _Nonnull)initWithReuseIdentifier:(NSString * _Nullable)reuseIdentifier;
         [Export ("initWithReuseIdentifier:")]
-        IntPtr Constructor (string reuseIdentifier);
+        IntPtr Constructor ([NullAllowed] string reuseIdentifier);
 
-        // - (void)prepareForReuse;
+        // -(void)prepareForReuse;
         [Export ("prepareForReuse")]
         void PrepareForReuse ();
 
-        // @property (nonatomic, readonly, nullable) id<MGLAnnotation> annotation;
-        [Export ("annotation")]
+        // @property (readonly, nonatomic) id<MGLAnnotation> _Nullable annotation;
+        [NullAllowed, Export ("annotation")]
         Annotation Annotation { get; }
 
-        // @property (nonatomic, readonly, nullable) NSString* reuseIdentifier;
-        [Export ("reuseIdentifier")]
+        // @property (readonly, nonatomic) NSString * _Nullable reuseIdentifier;
+        [NullAllowed, Export ("reuseIdentifier")]
         string ReuseIdentifier { get; }
 
         // @property (nonatomic) CGVector centerOffset;
-        [Export ("centerOffset")]
+        [Export ("centerOffset", ArgumentSemantic.Assign)]
         CGVector CenterOffset { get; set; }
 
-        // @property (nonatomic, assign) BOOL scalesWithViewingDistance;
-        [Export ("scalesWithViewingDistance", ArgumentSemantic.Assign)]
+        // @property (assign, nonatomic) BOOL scalesWithViewingDistance;
+        [Export ("scalesWithViewingDistance")]
         bool ScalesWithViewingDistance { get; set; }
 
-        // @property (nonatomic, assign, getter= isSelected) BOOL selected;
-        [Export ("selected", ArgumentSemantic.Assign)]
-        bool Selected { [Bind ("isSelected")]get; set; }
+        // @property (getter = isSelected, assign, nonatomic) BOOL selected;
+        [Export ("selected")]
+        bool Selected { [Bind ("isSelected")] get; set; }
 
-        // - (void)setSelected:(BOOL)selected animated:(BOOL)animated;
+        // -(void)setSelected:(BOOL)selected animated:(BOOL)animated;
         [Export ("setSelected:animated:")]
         void SetSelected (bool selected, bool animated);
 
-        // @property (nonatomic, assign, getter= isEnabled) BOOL enabled;
-        [Export ("enabled", ArgumentSemantic.Assign)]
+        // @property (getter = isEnabled, assign, nonatomic) BOOL enabled;
+        [Export ("enabled")]
         bool Enabled { [Bind ("isEnabled")] get; set; }
 
-        //@property (nonatomic, assign, getter= isDraggable) BOOL draggable;
-        [Export ("draggable", ArgumentSemantic.Assign)]
+        // @property (getter = isDraggable, assign, nonatomic) BOOL draggable;
+        [Export ("draggable")]
         bool Draggable { [Bind ("isDraggable")] get; set; }
 
-        // @property (nonatomic, readonly) MGLAnnotationViewDragState dragState;
+        // @property (readonly, nonatomic) MGLAnnotationViewDragState dragState;
         [Export ("dragState")]
         AnnotationViewDragState DragState { get; }
 
-        // - (void)setDragState:(MGLAnnotationViewDragState)dragState animated:(BOOL)animated NS_REQUIRES_SUPER;
+        // -(void)setDragState:(MGLAnnotationViewDragState)dragState animated:(BOOL)animated __attribute__((objc_requires_super));
         [Export ("setDragState:animated:")]
+        //[RequiresSuper]
         void SetDragState (AnnotationViewDragState dragState, bool animated);
-
     }
 
 
@@ -172,6 +192,92 @@ namespace Mapbox
         // -(instancetype _Nonnull)initWithFrame:(CGRect)frame styleURL:(NSURL * _Nullable)styleURL;
         [Export ("initWithFrame:styleURL:")]
         IntPtr Constructor (CGRect frame, [NullAllowed] NSUrl styleURL);
+
+        // @property (nonatomic, weak) id<MGLMapViewDelegate> _Nullable delegate __attribute__((iboutlet));
+        [NullAllowed, Export ("delegate", ArgumentSemantic.Weak)]
+        IMapViewDelegate Delegate { get; set; }
+
+        // @property (readonly, nonatomic) NSArray<NSURL *> * _Nonnull bundledStyleURLs __attribute__((deprecated("Call the relevant class method of MGLStyle for the URL of a particular default style.")));
+        [Obsolete ("Call the relevant class method of Style for the URL of a particular default style.")]
+        [Export ("bundledStyleURLs")]
+        NSUrl [] BundledStyleURLs { get; }
+
+        // @property (nonatomic) NSURL * _Null_unspecified styleURL;
+        [Export ("styleURL", ArgumentSemantic.Assign)]
+        [NullAllowed]
+        NSUrl StyleURL { get; set; }
+
+        // -(void)reloadStyle:(id _Nonnull)sender __attribute__((ibaction));
+        [Export ("reloadStyle:")]
+        void ReloadStyle (NSObject sender);
+
+        // @property (readonly, nonatomic) UIImageView * _Nonnull compassView;
+        [Export ("compassView")]
+        UIImageView CompassView { get; }
+
+        // @property (readonly, nonatomic) UIImageView * _Nonnull logoView;
+        [Export ("logoView")]
+        UIImageView LogoView { get; }
+
+        // @property (readonly, nonatomic) UIButton * _Nonnull attributionButton;
+        [Export ("attributionButton")]
+        UIButton AttributionButton { get; }
+
+        // @property (nonatomic) NSArray<NSString *> * _Nonnull styleClasses;
+        [Export ("styleClasses", ArgumentSemantic.Assign)]
+        string [] StyleClasses { get; set; }
+
+        // -(BOOL)hasStyleClass:(NSString * _Nonnull)styleClass;
+        [Export ("hasStyleClass:")]
+        bool HasStyleClass (string styleClass);
+
+        // -(void)addStyleClass:(NSString * _Nonnull)styleClass;
+        [Export ("addStyleClass:")]
+        void AddStyleClass (string styleClass);
+
+        // -(void)removeStyleClass:(NSString * _Nonnull)styleClass;
+        [Export ("removeStyleClass:")]
+        void RemoveStyleClass (string styleClass);
+
+        // @property (assign, nonatomic) BOOL showsUserLocation;
+        [Export ("showsUserLocation")]
+        bool ShowsUserLocation { get; set; }
+
+        // @property (readonly, getter = isUserLocationVisible, assign, nonatomic) BOOL userLocationVisible;
+        [Export ("userLocationVisible")]
+        bool UserLocationVisible { [Bind ("isUserLocationVisible")] get; }
+
+        // @property (readonly, nonatomic) MGLUserLocation * _Nullable userLocation;
+        [NullAllowed, Export ("userLocation")]
+        UserLocation UserLocation { get; }
+
+        // @property (assign, nonatomic) MGLUserTrackingMode userTrackingMode;
+        [Export ("userTrackingMode", ArgumentSemantic.Assign)]
+        UserTrackingMode UserTrackingMode { get; set; }
+
+        // -(void)setUserTrackingMode:(MGLUserTrackingMode)mode animated:(BOOL)animated;
+        [Export ("setUserTrackingMode:animated:")]
+        void SetUserTrackingMode (UserTrackingMode mode, bool animated);
+
+        // @property (assign, nonatomic) MGLAnnotationVerticalAlignment userLocationVerticalAlignment;
+        [Export ("userLocationVerticalAlignment", ArgumentSemantic.Assign)]
+        AnnotationVerticalAlignment UserLocationVerticalAlignment { get; set; }
+
+        // -(void)setUserLocationVerticalAlignment:(MGLAnnotationVerticalAlignment)alignment animated:(BOOL)animated;
+        [Export ("setUserLocationVerticalAlignment:animated:")]
+        void SetUserLocationVerticalAlignment (AnnotationVerticalAlignment alignment, bool animated);
+
+        // @property (assign, nonatomic) BOOL displayHeadingCalibration;
+        [Export ("displayHeadingCalibration")]
+        bool DisplayHeadingCalibration { get; set; }
+
+        // @property (assign, nonatomic) CLLocationCoordinate2D targetCoordinate;
+        [Export ("targetCoordinate", ArgumentSemantic.Assign)]
+        CLLocationCoordinate2D TargetCoordinate { get; set; }
+
+        // -(void)setTargetCoordinate:(CLLocationCoordinate2D)targetCoordinate animated:(BOOL)animated;
+        [Export ("setTargetCoordinate:animated:")]
+        void SetTargetCoordinate (CLLocationCoordinate2D targetCoordinate, bool animated);
 
         // @property (getter = isZoomEnabled, nonatomic) BOOL zoomEnabled;
         [Export ("zoomEnabled")]
@@ -193,27 +299,6 @@ namespace Mapbox
         [Export ("decelerationRate")]
         nfloat DecelerationRate { get; set; }
 
-        // @property (readonly, nonatomic) UIImageView * _Nonnull compassView;
-        [Export ("compassView")]
-        UIImageView CompassView { get; }
-
-        // @property (readonly, nonatomic) UIImageView * _Nonnull logoView;
-        [Export ("logoView")]
-        UIImageView LogoView { get; }
-
-        // @property (readonly, nonatomic) UIButton * _Nonnull attributionButton;
-        [Export ("attributionButton")]
-        UIButton AttributionButton { get; }
-
-        //[Wrap ("WeakDelegate")]
-        [Export ("delegate", ArgumentSemantic.Weak)]
-        [NullAllowed]
-        IMapViewDelegate Delegate { get; set; }
-
-        //// @property (nonatomic, weak) id<MGLMapViewDelegate> _Nullable delegate __attribute__((iboutlet));
-        //[NullAllowed, Export ("delegate", ArgumentSemantic.Weak)]
-        //NSObject WeakDelegate { get; set; }
-
         // @property (nonatomic) CLLocationCoordinate2D centerCoordinate;
         [Export ("centerCoordinate", ArgumentSemantic.Assign)]
         CLLocationCoordinate2D CenterCoordinate { get; set; }
@@ -230,13 +315,17 @@ namespace Mapbox
         [Export ("setCenterCoordinate:zoomLevel:direction:animated:")]
         void SetCenterCoordinate (CLLocationCoordinate2D centerCoordinate, double zoomLevel, double direction, bool animated);
 
-        // - (void)setCenterCoordinate:(CLLocationCoordinate2D)centerCoordinate zoomLevel:(double)zoomLevel direction:(CLLocationDirection)direction animated:(BOOL)animated completionHandler:(nullable void (^)(void))completion;
+        // -(void)setCenterCoordinate:(CLLocationCoordinate2D)centerCoordinate zoomLevel:(double)zoomLevel direction:(CLLocationDirection)direction animated:(BOOL)animated completionHandler:(void (^ _Nullable)(void))completion;
         [Export ("setCenterCoordinate:zoomLevel:direction:animated:completionHandler:")]
-        void SetCenterCoordinate (CLLocationCoordinate2D centerCoordinate, double zoomLevel, double direction, bool animated, [NullAllowed]Action completionHandler);
+        void SetCenterCoordinate (CLLocationCoordinate2D centerCoordinate, double zoomLevel, double direction, bool animated, [NullAllowed] Action completion);
 
         // @property (nonatomic) double zoomLevel;
         [Export ("zoomLevel")]
         double ZoomLevel { get; set; }
+
+        // -(void)setZoomLevel:(double)zoomLevel animated:(BOOL)animated;
+        [Export ("setZoomLevel:animated:")]
+        void SetZoomLevel (double zoomLevel, bool animated);
 
         // @property (nonatomic) double minimumZoomLevel;
         [Export ("minimumZoomLevel")]
@@ -246,9 +335,17 @@ namespace Mapbox
         [Export ("maximumZoomLevel")]
         double MaximumZoomLevel { get; set; }
 
-        // -(void)setZoomLevel:(double)zoomLevel animated:(BOOL)animated;
-        [Export ("setZoomLevel:animated:")]
-        void SetZoomLevel (double zoomLevel, bool animated);
+        // @property (nonatomic) CLLocationDirection direction;
+        [Export ("direction")]
+        double Direction { get; set; }
+
+        // -(void)setDirection:(CLLocationDirection)direction animated:(BOOL)animated;
+        [Export ("setDirection:animated:")]
+        void SetDirection (double direction, bool animated);
+
+        // -(void)resetNorth __attribute__((ibaction));
+        [Export ("resetNorth")]
+        void ResetNorth ();
 
         // @property (nonatomic) MGLCoordinateBounds visibleCoordinateBounds;
         [Export ("visibleCoordinateBounds", ArgumentSemantic.Assign)]
@@ -266,29 +363,17 @@ namespace Mapbox
         [Export ("setVisibleCoordinates:count:edgePadding:animated:")]
         void SetVisibleCoordinates (IntPtr coordinates, nuint count, UIEdgeInsets insets, bool animated);
 
-        // - (void)setVisibleCoordinates:(CLLocationCoordinate2D *)coordinates count:(NSUInteger)count edgePadding:(UIEdgeInsets)insets direction:(CLLocationDirection)direction duration:(NSTimeInterval)duration animationTimingFunction:(nullable CAMediaTimingFunction *)function completionHandler:(nullable void (^)(void))completion;
+        // -(void)setVisibleCoordinates:(CLLocationCoordinate2D * _Nonnull)coordinates count:(NSUInteger)count edgePadding:(UIEdgeInsets)insets direction:(CLLocationDirection)direction duration:(NSTimeInterval)duration animationTimingFunction:(CAMediaTimingFunction * _Nullable)function completionHandler:(void (^ _Nullable)(void))completion;
         [Export ("setVisibleCoordinates:count:edgePadding:direction:duration:animationTimingFunction:completionHandler:")]
-        void SetVisibleCoordinates (IntPtr coordinates, nuint count, UIEdgeInsets insets, double direction, double duration, [NullAllowed] CAMediaTimingFunction animationTimingFunction, [NullAllowed] Action completion);
+        void SetVisibleCoordinates (IntPtr coordinates, nuint count, UIEdgeInsets insets, double direction, double duration, [NullAllowed] CAMediaTimingFunction function, [NullAllowed] Action completion);
 
         // -(void)showAnnotations:(NSArray<id<MGLAnnotation>> * _Nonnull)annotations animated:(BOOL)animated;
         [Export ("showAnnotations:animated:")]
         void ShowAnnotations (IAnnotation [] annotations, bool animated);
 
-        // - (void)showAnnotations:(NS_ARRAY_OF(id <MGLAnnotation>) *)annotations edgePadding:(UIEdgeInsets)insets animated:(BOOL)animated;
+        // -(void)showAnnotations:(NSArray<id<MGLAnnotation>> * _Nonnull)annotations edgePadding:(UIEdgeInsets)insets animated:(BOOL)animated;
         [Export ("showAnnotations:edgePadding:animated:")]
         void ShowAnnotations (IAnnotation [] annotations, UIEdgeInsets insets, bool animated);
-
-        // @property (nonatomic) CLLocationDirection direction;
-        [Export ("direction")]
-        double Direction { get; set; }
-
-        // -(void)setDirection:(CLLocationDirection)direction animated:(BOOL)animated;
-        [Export ("setDirection:animated:")]
-        void SetDirection (double direction, bool animated);
-
-        // -(void)resetNorth __attribute__((ibaction));
-        [Export ("resetNorth")]
-        void ResetNorth ();
 
         // @property (copy, nonatomic) MGLMapCamera * _Nonnull camera;
         [Export ("camera", ArgumentSemantic.Copy)]
@@ -302,40 +387,39 @@ namespace Mapbox
         [Export ("setCamera:withDuration:animationTimingFunction:")]
         void SetCamera (MapCamera camera, double duration, [NullAllowed] CAMediaTimingFunction function);
 
-        // - (void)setCamera:(MGLMapCamera *)camera withDuration:(NSTimeInterval)duration animationTimingFunction:(nullable CAMediaTimingFunction *)function completionHandler:(nullable void (^)(void))completion;
+        // -(void)setCamera:(MGLMapCamera * _Nonnull)camera withDuration:(NSTimeInterval)duration animationTimingFunction:(CAMediaTimingFunction * _Nullable)function completionHandler:(void (^ _Nullable)(void))completion;
         [Export ("setCamera:withDuration:animationTimingFunction:completionHandler:")]
         void SetCamera (MapCamera camera, double duration, [NullAllowed] CAMediaTimingFunction function, [NullAllowed] Action completion);
 
-        // - (void)flyToCamera:(MGLMapCamera *)camera completionHandler:(nullable void (^)(void))completion;
+        // -(void)flyToCamera:(MGLMapCamera * _Nonnull)camera completionHandler:(void (^ _Nullable)(void))completion;
         [Export ("flyToCamera:completionHandler:")]
-        void FlyToCamera (MapCamera camera, [NullAllowed]Action completion);
+        void FlyToCamera (MapCamera camera, [NullAllowed] Action completion);
 
-        // - (void)flyToCamera:(MGLMapCamera*)camera withDuration:(NSTimeInterval)duration completionHandler:(nullable void (^)(void))completion;
+        // -(void)flyToCamera:(MGLMapCamera * _Nonnull)camera withDuration:(NSTimeInterval)duration completionHandler:(void (^ _Nullable)(void))completion;
         [Export ("flyToCamera:withDuration:completionHandler:")]
         void FlyToCamera (MapCamera camera, double duration, [NullAllowed] Action completion);
 
-        // - (void)flyToCamera:(MGLMapCamera *)camera withDuration:(NSTimeInterval)duration peakAltitude:(CLLocationDistance)peakAltitude completionHandler:(nullable void (^)(void))completion;
+        // -(void)flyToCamera:(MGLMapCamera * _Nonnull)camera withDuration:(NSTimeInterval)duration peakAltitude:(CLLocationDistance)peakAltitude completionHandler:(void (^ _Nullable)(void))completion;
         [Export ("flyToCamera:withDuration:peakAltitude:completionHandler:")]
         void FlyToCamera (MapCamera camera, double duration, double peakAltitude, [NullAllowed] Action completion);
 
-
-        // - (MGLMapCamera*)cameraThatFitsCoordinateBounds:(MGLCoordinateBounds)bounds;
+        // -(MGLMapCamera * _Nonnull)cameraThatFitsCoordinateBounds:(MGLCoordinateBounds)bounds;
         [Export ("cameraThatFitsCoordinateBounds:")]
         MapCamera GetCameraThatFits (CoordinateBounds bounds);
 
-        // - (MGLMapCamera*)cameraThatFitsCoordinateBounds:(MGLCoordinateBounds)bounds edgePadding:(UIEdgeInsets)insets;
+        // -(MGLMapCamera * _Nonnull)cameraThatFitsCoordinateBounds:(MGLCoordinateBounds)bounds edgePadding:(UIEdgeInsets)insets;
         [Export ("cameraThatFitsCoordinateBounds:edgePadding:")]
         MapCamera GetCameraThatFits (CoordinateBounds bounds, UIEdgeInsets insets);
 
-        // - (CGPoint)anchorPointForGesture:(UIGestureRecognizer*)gesture;
+        // -(CGPoint)anchorPointForGesture:(UIGestureRecognizer * _Nonnull)gesture;
         [Export ("anchorPointForGesture:")]
         CGPoint GetAnchorPoint (UIGestureRecognizer gesture);
 
-        // @property (nonatomic, assign) UIEdgeInsets contentInset;
+        // @property (assign, nonatomic) UIEdgeInsets contentInset;
         [Export ("contentInset", ArgumentSemantic.Assign)]
         UIEdgeInsets ContentInset { get; set; }
 
-        // - (void)setContentInset:(UIEdgeInsets)contentInset animated:(BOOL)animated;
+        // -(void)setContentInset:(UIEdgeInsets)contentInset animated:(BOOL)animated;
         [Export ("setContentInset:animated:")]
         void SetContentInset (UIEdgeInsets contentInset, bool animated);
 
@@ -347,53 +431,22 @@ namespace Mapbox
         [Export ("convertCoordinate:toPointToView:")]
         CGPoint ConvertCoordinate (CLLocationCoordinate2D coordinate, [NullAllowed] UIView view);
 
-        // - (MGLCoordinateBounds)convertRect:(CGRect)rect toCoordinateBoundsFromView:(nullable UIView *)view;
+        // -(MGLCoordinateBounds)convertRect:(CGRect)rect toCoordinateBoundsFromView:(UIView * _Nullable)view;
         [Export ("convertRect:toCoordinateBoundsFromView:")]
         CoordinateBounds ConvertRectToCoordinateBounds (CGRect rect, [NullAllowed] UIView view);
 
-        // - (CGRect)convertCoordinateBounds:(MGLCoordinateBounds)bounds toRectToView:(nullable UIView *)view;
+        // -(CGRect)convertCoordinateBounds:(MGLCoordinateBounds)bounds toRectToView:(UIView * _Nullable)view;
         [Export ("convertCoordinateBounds:toRectToView:")]
-        CGRect ConvertCoordinateBoundsToRect (CoordinateBounds bonds, [NullAllowed] UIView view);
+        CGRect ConvertCoordinateBoundsToRect (CoordinateBounds bounds, [NullAllowed] UIView view);
 
-        // -(CLLocationDistance)metersPerPixelAtLatitude:(CLLocationDegrees)latitude;
-        [Obsolete ("Use MetersPerPointAtLatitude instead")]
-        [Export ("metersPerPixelAtLatitude:")]
-        double MetersPerPixelAtLatitude (double latitude);
-
-        // - (CLLocationDistance)metersPerPointAtLatitude:(CLLocationDegrees)latitude;
+        // -(CLLocationDistance)metersPerPointAtLatitude:(CLLocationDegrees)latitude;
         [Export ("metersPerPointAtLatitude:")]
         double MetersPerPointAtLatitude (double latitude);
 
-
-        // @property (nonatomic) NSString * _Nullable styleID;
-        //[NullAllowed, Export ("styleID")]
-        //string StyleID { get; set; }
-
-        // @property (readonly, nonatomic) NSArray<NSURL *> * _Nonnull bundledStyleURLs;
-        [Obsolete ("Call the relevant class method of Style for the URL of a particular default style.")]
-        [Export ("bundledStyleURLs")]
-        NSUrl[] BundledStyleURLs { get; }
-
-        // @property (nonatomic) NSURL * _Null_unspecified styleURL;
-        [Export ("styleURL", ArgumentSemantic.Assign)]
-        [NullAllowed]
-        NSUrl StyleURL { get; set; }
-
-        // @property (nonatomic) NSArray<NSString *> * _Nonnull styleClasses;
-        [Export ("styleClasses", ArgumentSemantic.Assign)]
-        string [] StyleClasses { get; set; }
-
-        // -(BOOL)hasStyleClass:(NSString * _Nonnull)styleClass;
-        [Export ("hasStyleClass:")]
-        bool HasStyleClass (string styleClass);
-
-        // -(void)addStyleClass:(NSString * _Nonnull)styleClass;
-        [Export ("addStyleClass:")]
-        void AddStyleClass (string styleClass);
-
-        // -(void)removeStyleClass:(NSString * _Nonnull)styleClass;
-        [Export ("removeStyleClass:")]
-        void RemoveStyleClass (string styleClass);
+        // -(CLLocationDistance)metersPerPixelAtLatitude:(CLLocationDegrees)latitude __attribute__((deprecated("Use -metersPerPointAtLatitude:.")));
+        [Obsolete ("Use MetersPerPointAtLatitude instead")]
+        [Export ("metersPerPixelAtLatitude:")]
+        double MetersPerPixelAtLatitude (double latitude);
 
         // @property (readonly, nonatomic) NSArray<id<MGLAnnotation>> * _Nullable annotations;
         [NullAllowed, Export ("annotations")]
@@ -415,21 +468,18 @@ namespace Mapbox
         [Export ("removeAnnotations:")]
         void RemoveAnnotations (IAnnotation [] annotations);
 
-        // - (nullable MGLAnnotationView *)viewForAnnotation:(id<MGLAnnotation>)annotation;
-        [return: NullAllowed]
+        // -(MGLAnnotationView * _Nullable)viewForAnnotation:(id<MGLAnnotation> _Nonnull)annotation;
         [Export ("viewForAnnotation:")]
-        AnnotationView GetView (IAnnotation annotation);
-
-        // -(MGLAnnotationImage * _Nullable)dequeueReusableAnnotationImageWithIdentifier:(NSString * _Nonnull)identifier;
-        [Export ("dequeueReusableAnnotationImageWithIdentifier:")]
         [return: NullAllowed]
+        AnnotationView ViewForAnnotation (IAnnotation annotation);
+
+        // -(__kindof MGLAnnotationImage * _Nullable)dequeueReusableAnnotationImageWithIdentifier:(NSString * _Nonnull)identifier;
+        [Export ("dequeueReusableAnnotationImageWithIdentifier:")]
         AnnotationImage DequeueReusableAnnotationImage (string identifier);
 
-        // - (nullable __kindof MGLAnnotationView *)dequeueReusableAnnotationViewWithIdentifier:(NSString *)identifier;
+        // -(__kindof MGLAnnotationView * _Nullable)dequeueReusableAnnotationViewWithIdentifier:(NSString * _Nonnull)identifier;
         [Export ("dequeueReusableAnnotationViewWithIdentifier:")]
-        [return: NullAllowed]
         AnnotationView DequeueReusableAnnotationView (string identifier);
-
 
         // @property (copy, nonatomic) NSArray<id<MGLAnnotation>> * _Nonnull selectedAnnotations;
         [Export ("selectedAnnotations", ArgumentSemantic.Copy)]
@@ -439,9 +489,9 @@ namespace Mapbox
         [Export ("selectAnnotation:animated:")]
         void SelectAnnotation (IAnnotation annotation, bool animated);
 
-        // -(void)deselectAnnotation:(id<MGLAnnotation> _Nonnull)annotation animated:(BOOL)animated;
+        // -(void)deselectAnnotation:(id<MGLAnnotation> _Nullable)annotation animated:(BOOL)animated;
         [Export ("deselectAnnotation:animated:")]
-        void DeselectAnnotation (IAnnotation annotation, bool animated);
+        void DeselectAnnotation ([NullAllowed] IAnnotation annotation, bool animated);
 
         // -(void)addOverlay:(id<MGLOverlay> _Nonnull)overlay;
         [Export ("addOverlay:")]
@@ -459,61 +509,37 @@ namespace Mapbox
         [Export ("removeOverlays:")]
         void RemoveOverlays (IOverlay [] overlays);
 
-        // @property (assign, nonatomic) BOOL showsUserLocation;
-        [Export ("showsUserLocation")]
-        bool ShowsUserLocation { get; set; }
+        // -(NSArray<id<MGLFeature>> * _Nonnull)visibleFeaturesAtPoint:(CGPoint)point;
+        [Export ("visibleFeaturesAtPoint:")]
+        Feature [] GetVisibleFeaturesAtPoint (CGPoint point);
 
-        // @property (readonly, getter = isUserLocationVisible, assign, nonatomic) BOOL userLocationVisible;
-        [Export ("userLocationVisible")]
-        bool UserLocationVisible { [Bind ("isUserLocationVisible")] get; }
+        // -(NSArray<id<MGLFeature>> * _Nonnull)visibleFeaturesAtPoint:(CGPoint)point inStyleLayersWithIdentifiers:(NSSet<NSString *> * _Nullable)styleLayerIdentifiers;
+        [Export ("visibleFeaturesAtPoint:inStyleLayersWithIdentifiers:")]
+        Feature [] GetVisibleFeaturesAtPoint (CGPoint point, [NullAllowed] string [] styleLayerIdentifiers);
 
-        // @property (readonly, nonatomic) MGLUserLocation * _Nullable userLocation;
-        [NullAllowed, Export ("userLocation")]
-        UserLocation UserLocation { get; }
+        // -(NSArray<id<MGLFeature>> * _Nonnull)visibleFeaturesInRect:(CGRect)rect;
+        [Export ("visibleFeaturesInRect:")]
+        Feature [] GetVisibleFeaturesInRect (CGRect rect);
 
-        // @property (assign, nonatomic) MGLUserTrackingMode userTrackingMode;
-        [Export ("userTrackingMode", ArgumentSemantic.Assign)]
-        UserTrackingMode UserTrackingMode { get; set; }
+        // -(NSArray<id<MGLFeature>> * _Nonnull)visibleFeaturesInRect:(CGRect)rect inStyleLayersWithIdentifiers:(NSSet<NSString *> * _Nullable)styleLayerIdentifiers;
+        [Export ("visibleFeaturesInRect:inStyleLayersWithIdentifiers:")]
+        Feature [] GetVisibleFeaturesInRect (CGRect rect, [NullAllowed] string [] styleLayerIdentifiers);
 
-        //- (void)setUserTrackingMode:(MGLUserTrackingMode)mode animated:(BOOL)animated;
-        [Export ("setUserTrackingMode:animated:")]
-        void SetUserTrackingMode (UserTrackingMode mode, bool animated);
+        // @property (nonatomic) MGLMapDebugMaskOptions debugMask;
+        [Export ("debugMask", ArgumentSemantic.Assign)]
+        DebugMaskOptions DebugMask { get; set; }
 
-        // @property (nonatomic, assign) MGLAnnotationVerticalAlignment userLocationVerticalAlignment;
-        [Export ("userLocationVerticalAlignment", ArgumentSemantic.Assign)]
-        AnnotationVerticalAlignment UserLocationVerticalAlignment { get; set; }
-
-        // - (void)setUserLocationVerticalAlignment:(MGLAnnotationVerticalAlignment)alignment animated:(BOOL)animated;
-        [Export ("setUserLocationVerticalAlignment:animated:")]
-        void SetUserLocationVerticalAlignment (AnnotationVerticalAlignment alignment, bool animated);
-
-        // @property (nonatomic, assign) CLLocationCoordinate2D targetCoordinate;
-        [Export ("targetCoordinate", ArgumentSemantic.Assign)]
-        CLLocationCoordinate2D TargetCoordinate { get; set; }
-
-        // - (void)setTargetCoordinate:(CLLocationCoordinate2D)targetCoordinate animated:(BOOL)animated;
-        [Export ("setTargetCoordinate:animated:")]
-        void SetTargetCoordinate (CLLocationCoordinate2D targetCoordinate, bool animated);
-
-        // @property (assign, nonatomic) BOOL displayHeadingCalibration;
-        [Export ("displayHeadingCalibration")]
-        bool DisplayHeadingCalibration { get; set; }
-
-        // @property (getter = isDebugActive, nonatomic) BOOL debugActive;
-        [Obsolete ("Use DebugMask and SetDebugMask instead")]
+        // @property (getter = isDebugActive, nonatomic) BOOL debugActive __attribute__((deprecated("Use -debugMask and -setDebugMask:.")));
+        [Obsolete ("Use DebugMask instead")]
         [Export ("debugActive")]
         bool DebugActive { [Bind ("isDebugActive")] get; set; }
 
-        // -(void)toggleDebug;
+        // -(void)toggleDebug __attribute__((deprecated("Use -setDebugMask:.")));
         [Obsolete ("Use DebugMask instead")]
         [Export ("toggleDebug")]
         void ToggleDebug ();
 
-        // @property (nonatomic) MGLMapDebugMaskOptions debugMask;
-        [Export ("debugMask")]
-        DebugMaskOptions DebugMask { get; set; }
-
-        // -(void)emptyMemoryCache;
+        // -(void)emptyMemoryCache __attribute__((deprecated("")));
         [Export ("emptyMemoryCache")]
         void EmptyMemoryCache ();
 
@@ -521,21 +547,31 @@ namespace Mapbox
         [Export ("resetPosition")]
         void ResetPosition ();
 
-        // - (NS_ARRAY_OF (id<MGLFeature>) *)visibleFeaturesAtPoint:(CGPoint)point NS_SWIFT_NAME (visibleFeatures(at:));
-        [Export ("visibleFeaturesAtPoint:")]
-        Feature [] GetVisibleFeaturesAtPoint (CGPoint point);
+        // Adding the code for MGLMapView_IBAdditions here
 
-        // - (NS_ARRAY_OF (id<MGLFeature>) *)visibleFeaturesAtPoint:(CGPoint)point inStyleLayersWithIdentifiers:(nullable NS_SET_OF (NSString*) *)styleLayerIdentifiers NS_SWIFT_NAME (visibleFeatures(at:styleLayerIdentifiers:));
-        [Export ("visibleFeaturesAtPoint:inStyleLayersWithIdentifiers:")]
-        Feature [] GetVisibleFeaturesAtPoint (CGPoint point, string[] styleLayerIdentifiers);
+        // @property (nonatomic) double latitude;
+        [Export ("latitude")]
+        double Latitude { get; set; }
 
-        // - (NS_ARRAY_OF (id<MGLFeature>) *)visibleFeaturesInRect:(CGRect)rect NS_SWIFT_NAME (visibleFeatures(in:));
-        [Export ("visibleFeaturesInRect:")]
-        Feature [] GetVisibleFeaturesInRect (CGRect rect);
+        // @property (nonatomic) double longitude;
+        [Export ("longitude")]
+        double Longitude { get; set; }
 
-        // - (NS_ARRAY_OF (id<MGLFeature>) *)visibleFeaturesInRect:(CGRect)rect inStyleLayersWithIdentifiers:(nullable NS_SET_OF (NSString*) *)styleLayerIdentifiers NS_SWIFT_NAME (visibleFeatures(in:styleLayerIdentifiers:));
-        [Export ("visibleFeaturesInRect:inStyleLayersWithIdentifiers:")]
-        Feature [] GetVisibleFeaturesInRect (CGRect rect, string [] styleLayerIdentifiers);
+        // @property (nonatomic) BOOL allowsZooming;
+        [Export ("allowsZooming")]
+        bool AllowsZooming { get; set; }
+
+        // @property (nonatomic) BOOL allowsScrolling;
+        [Export ("allowsScrolling")]
+        bool AllowsScrolling { get; set; }
+
+        // @property (nonatomic) BOOL allowsRotating;
+        [Export ("allowsRotating")]
+        bool AllowsRotating { get; set; }
+
+        // @property (nonatomic) BOOL allowsTilting;
+        [Export ("allowsTilting")]
+        bool AllowsTilting { get; set; }
     }
 
     interface IMapViewDelegate { }
@@ -545,46 +581,6 @@ namespace Mapbox
     [BaseType (typeof (NSObject), Name = "MGLMapViewDelegate")]
     interface MapViewDelegate
     {
-        // @optional -(MGLAnnotationImage * _Nullable)mapView:(MGLMapView * _Nonnull)mapView imageForAnnotation:(id<MGLAnnotation> _Nonnull)annotation;
-        [Export ("mapView:imageForAnnotation:")]
-        [return: NullAllowed]
-        AnnotationImage GetImage (MapView mapView, IAnnotation annotation);
-
-        // @optional -(CGFloat)mapView:(MGLMapView * _Nonnull)mapView alphaForShapeAnnotation:(MGLShape * _Nonnull)annotation;
-        [Export ("mapView:alphaForShapeAnnotation:")]
-        nfloat GetAlpha (MapView mapView, Shape annotation);
-
-        // @optional -(UIColor * _Nonnull)mapView:(MGLMapView * _Nonnull)mapView strokeColorForShapeAnnotation:(MGLShape * _Nonnull)annotation;
-        [Export ("mapView:strokeColorForShapeAnnotation:")]
-        UIColor GetStrokeColor (MapView mapView, Shape annotation);
-
-        // @optional -(UIColor * _Nonnull)mapView:(MGLMapView * _Nonnull)mapView fillColorForPolygonAnnotation:(MGLPolygon * _Nonnull)annotation;
-        [Export ("mapView:fillColorForPolygonAnnotation:")]
-        UIColor GetFillColor (MapView mapView, Polygon annotation);
-
-        // @optional -(CGFloat)mapView:(MGLMapView * _Nonnull)mapView lineWidthForPolylineAnnotation:(MGLPolyline * _Nonnull)annotation;
-        [Export ("mapView:lineWidthForPolylineAnnotation:")]
-        nfloat GetLineWidth (MapView mapView, Polyline annotation);
-
-        // @optional -(BOOL)mapView:(MGLMapView * _Nonnull)mapView annotationCanShowCallout:(id<MGLAnnotation> _Nonnull)annotation;
-        [Export ("mapView:annotationCanShowCallout:")]
-        bool CanShowCallout (MapView mapView, IAnnotation annotation);
-
-        // - (nullable UIView <MGLCalloutView> *)mapView:(MGLMapView *)mapView calloutViewForAnnotation:(id <MGLAnnotation>)annotation;
-        [Export ("mapView:calloutViewForAnnotation:")]
-        [return: NullAllowed]
-        ICalloutView GetCalloutView (MapView mapView, IAnnotation annotation);
-
-        // @optional -(UIView * _Nullable)mapView:(MGLMapView * _Nonnull)mapView leftCalloutAccessoryViewForAnnotation:(id<MGLAnnotation> _Nonnull)annotation;
-        [Export ("mapView:leftCalloutAccessoryViewForAnnotation:")]
-        [return: NullAllowed]
-        UIView LeftCalloutAccessoryView (MapView mapView, IAnnotation annotation);
-
-        // @optional -(UIView * _Nullable)mapView:(MGLMapView * _Nonnull)mapView rightCalloutAccessoryViewForAnnotation:(id<MGLAnnotation> _Nonnull)annotation;
-        [Export ("mapView:rightCalloutAccessoryViewForAnnotation:")]
-        [return: NullAllowed]
-        UIView RightCalloutAccessoryView (MapView mapView, IAnnotation annotation);
-
         // @optional -(void)mapView:(MGLMapView * _Nonnull)mapView regionWillChangeAnimated:(BOOL)animated;
         [Export ("mapView:regionWillChangeAnimated:")]
         void RegionWillChange (MapView mapView, bool animated);
@@ -645,13 +641,35 @@ namespace Mapbox
         [Export ("mapView:didChangeUserTrackingMode:animated:")]
         void DidChangeUserTrackingMode (MapView mapView, UserTrackingMode mode, bool animated);
 
-        // @optional -(void)mapView:(MGLMapView * _Nonnull)mapView annotation:(id<MGLAnnotation> _Nonnull)annotation calloutAccessoryControlTapped:(UIControl * _Nonnull)control;
-        [Export ("mapView:annotation:calloutAccessoryControlTapped:")]
-        void CalloutAccessoryControlTapped (MapView mapView, IAnnotation annotation, UIControl control);
+        // @optional -(MGLAnnotationImage * _Nullable)mapView:(MGLMapView * _Nonnull)mapView imageForAnnotation:(id<MGLAnnotation> _Nonnull)annotation;
+        [Export ("mapView:imageForAnnotation:")]
+        [return: NullAllowed]
+        AnnotationImage GetImage (MapView mapView, IAnnotation annotation);
 
-        // - (void)mapView:(MGLMapView *)mapView tapOnCalloutForAnnotation:(id <MGLAnnotation>)annotation;
-        [Export ("mapView:tapOnCalloutForAnnotation:")]
-        void TapOnCallout (MapView mapView, IAnnotation annotation);
+        // @optional -(CGFloat)mapView:(MGLMapView * _Nonnull)mapView alphaForShapeAnnotation:(MGLShape * _Nonnull)annotation;
+        [Export ("mapView:alphaForShapeAnnotation:")]
+        nfloat GetAlpha (MapView mapView, Shape annotation);
+
+        // @optional -(UIColor * _Nonnull)mapView:(MGLMapView * _Nonnull)mapView strokeColorForShapeAnnotation:(MGLShape * _Nonnull)annotation;
+        [Export ("mapView:strokeColorForShapeAnnotation:")]
+        UIColor GetStrokeColor (MapView mapView, Shape annotation);
+
+        // @optional -(UIColor * _Nonnull)mapView:(MGLMapView * _Nonnull)mapView fillColorForPolygonAnnotation:(MGLPolygon * _Nonnull)annotation;
+        [Export ("mapView:fillColorForPolygonAnnotation:")]
+        UIColor GetFillColor (MapView mapView, Polygon annotation);
+
+        // @optional -(CGFloat)mapView:(MGLMapView * _Nonnull)mapView lineWidthForPolylineAnnotation:(MGLPolyline * _Nonnull)annotation;
+        [Export ("mapView:lineWidthForPolylineAnnotation:")]
+        nfloat GetLineWidth (MapView mapView, Polyline annotation);
+
+        // @optional -(MGLAnnotationView * _Nullable)mapView:(MGLMapView * _Nonnull)mapView viewForAnnotation:(id<MGLAnnotation> _Nonnull)annotation;
+        [Export ("mapView:viewForAnnotation:")]
+        [return: NullAllowed]
+        AnnotationView GetAnnotationView (MapView mapView, IAnnotation annotation);
+
+        // @optional -(void)mapView:(MGLMapView * _Nonnull)mapView didAddAnnotationViews:(NSArray<MGLAnnotationView *> * _Nonnull)annotationViews;
+        [Export ("mapView:didAddAnnotationViews:")]
+        void DidAddAnnotationViews (MapView mapView, AnnotationView [] annotationViews);
 
         // @optional -(void)mapView:(MGLMapView * _Nonnull)mapView didSelectAnnotation:(id<MGLAnnotation> _Nonnull)annotation;
         [Export ("mapView:didSelectAnnotation:")]
@@ -661,21 +679,40 @@ namespace Mapbox
         [Export ("mapView:didDeselectAnnotation:")]
         void DidDeselectAnnotation (MapView mapView, IAnnotation annotation);
 
-        // - (nullable MGLAnnotationView *)mapView:(MGLMapView*)mapView viewForAnnotation:(id<MGLAnnotation>)annotation;
-        [Export ("mapView:viewForAnnotation:")]
-        AnnotationView GetAnnotationView (MapView mapView, IAnnotation annotation);
-
-        // - (void)mapView:(MGLMapView*)mapView didAddAnnotationViews:(NS_ARRAY_OF (MGLAnnotationView*) *)annotationViews;
-        [Export ("mapView:didAddAnnotationViews:")]
-        void DidAddAnnotationViews (MapView mapView, AnnotationView [] annotationViews);
-
-        // - (void)mapView:(MGLMapView*)mapView didSelectAnnotationView:(MGLAnnotationView*)annotationView;
+        // @optional -(void)mapView:(MGLMapView * _Nonnull)mapView didSelectAnnotationView:(MGLAnnotationView * _Nonnull)annotationView;
         [Export ("mapView:didSelectAnnotationView:")]
         void DidSelectAnnotationView (MapView mapView, AnnotationView annotationView);
 
-        // - (void)mapView:(MGLMapView*)mapView didDeselectAnnotationView:(MGLAnnotationView*)annotationView;
+        // @optional -(void)mapView:(MGLMapView * _Nonnull)mapView didDeselectAnnotationView:(MGLAnnotationView * _Nonnull)annotationView;
         [Export ("mapView:didDeselectAnnotationView:")]
         void DidDeselectAnnotationView (MapView mapView, AnnotationView annotationView);
+
+        // @optional -(BOOL)mapView:(MGLMapView * _Nonnull)mapView annotationCanShowCallout:(id<MGLAnnotation> _Nonnull)annotation;
+        [Export ("mapView:annotationCanShowCallout:")]
+        bool CanShowCallout (MapView mapView, IAnnotation annotation);
+
+        // @optional -(UIView<MGLCalloutView> * _Nullable)mapView:(MGLMapView * _Nonnull)mapView calloutViewForAnnotation:(id<MGLAnnotation> _Nonnull)annotation;
+        [Export ("mapView:calloutViewForAnnotation:")]
+        [return: NullAllowed]
+        ICalloutView GetCalloutView (MapView mapView, IAnnotation annotation);
+
+        // @optional -(UIView * _Nullable)mapView:(MGLMapView * _Nonnull)mapView leftCalloutAccessoryViewForAnnotation:(id<MGLAnnotation> _Nonnull)annotation;
+        [Export ("mapView:leftCalloutAccessoryViewForAnnotation:")]
+        [return: NullAllowed]
+        UIView LeftCalloutAccessoryView (MapView mapView, IAnnotation annotation);
+
+        // @optional -(UIView * _Nullable)mapView:(MGLMapView * _Nonnull)mapView rightCalloutAccessoryViewForAnnotation:(id<MGLAnnotation> _Nonnull)annotation;
+        [Export ("mapView:rightCalloutAccessoryViewForAnnotation:")]
+        [return: NullAllowed]
+        UIView RightCalloutAccessoryView (MapView mapView, IAnnotation annotation);
+
+        // @optional -(void)mapView:(MGLMapView * _Nonnull)mapView annotation:(id<MGLAnnotation> _Nonnull)annotation calloutAccessoryControlTapped:(UIControl * _Nonnull)control;
+        [Export ("mapView:annotation:calloutAccessoryControlTapped:")]
+        void CalloutAccessoryControlTapped (MapView mapView, IAnnotation annotation, UIControl control);
+
+        // @optional -(void)mapView:(MGLMapView * _Nonnull)mapView tapOnCalloutForAnnotation:(id<MGLAnnotation> _Nonnull)annotation;
+        [Export ("mapView:tapOnCalloutForAnnotation:")]
+        void TapOnCallout (MapView mapView, IAnnotation annotation);
     }
 
     // @interface MGLShape : NSObject <MGLAnnotation>
@@ -716,14 +753,15 @@ namespace Mapbox
     interface IOverlay { }
 
     // @protocol MGLOverlay <MGLAnnotation>
-    [Protocol]
+    [Protocol, Model]
     [BaseType (typeof (Annotation), Name = "MGLOverlay")]
     interface Overlay
     {
         // @required @property (readonly, nonatomic) CLLocationCoordinate2D coordinate;
-        [Abstract]
-        [Export ("coordinate")]
-        CLLocationCoordinate2D Coordinate { get; }
+        // This is in the base protocol.  Should be fine to remove.
+        //[Abstract]
+        //[Export ("coordinate")]
+        //CLLocationCoordinate2D Coordinate { get; }
 
         // @required @property (readonly, nonatomic) MGLCoordinateBounds overlayBounds;
         [Abstract]
@@ -749,6 +787,10 @@ namespace Mapbox
     [BaseType (typeof (MultiPoint), Name = "MGLPolygon")]
     interface Polygon : Overlay
     {
+        // @property (nonatomic, nullable, readonly) NS_ARRAY_OF (MGLPolygon*) *interiorPolygons;
+        [Export ("interiorPolygons")]
+        Polygon [] InteriorPolygons { get; }
+
         // Need to manually do this since it's an array of coordinates which are a value type
         // and cannot be converted to NSArray, see Additions.cs
         // +(instancetype _Nonnull)polygonWithCoordinates:(CLLocationCoordinate2D * _Nonnull)coords count:(NSUInteger)count;
@@ -762,23 +804,19 @@ namespace Mapbox
         [Static]
         [Export ("polygonWithCoordinates:count:interiorPolygons:")]
         Polygon WithCoordinates (IntPtr coords, nuint count, [NullAllowed]Polygon [] interiorPolygons);
-
-        // @property (nonatomic, nullable, readonly) NS_ARRAY_OF (MGLPolygon*) *interiorPolygons;
-        [Export ("interiorPolygons")]
-        Polygon [] InteriorPolygons { get; }
     }
 
     [BaseType (typeof (Shape), Name = "MGLMultiPolygon")]
     interface MultiPolygon : Overlay
     {
-        // + (instancetype)multiPolygonWithPolygons:(NS_ARRAY_OF (MGLPolygon*) *)polygons;
-        [Static]
-        [Export ("multiPolygonWithPolygons:")]
-        MultiPolygon WithPolygons (Polygon [] polygons);
-
         // @property (nonatomic, copy, readonly) NS_ARRAY_OF (MGLPolygon*) *polygons;
         [Export ("polygons", ArgumentSemantic.Copy)]
         Polygon [] Polygons { get; }
+
+        // +(instancetype)multiPolygonWithPolygons:(NS_ARRAY_OF (MGLPolygon*) *)polygons;
+        [Static]
+        [Export ("multiPolygonWithPolygons:")]
+        MultiPolygon WithPolygons (Polygon [] polygons);
     }
 
     // @interface MGLPolyline : MGLMultiPoint <MGLOverlay>
@@ -795,13 +833,13 @@ namespace Mapbox
     interface MultiPolyline : Overlay
     {
         // + (instancetype)multiPolylineWithPolylines:(NS_ARRAY_OF(MGLPolyline *) *)polylines;
+        [Export ("polylines", ArgumentSemantic.Copy)]
+        Polyline [] Polylines { get; }
+
+        // + (instancetype)multiPolylineWithPolylines:(NS_ARRAY_OF(MGLPolyline *) *)polylines;
         [Static]
         [Export ("multiPolylineWithPolylines:")]
         MultiPolygon WithPolylines (Polyline [] polylines);
-
-        // + (instancetype)multiPolylineWithPolylines:(NS_ARRAY_OF(MGLPolyline *) *)polylines;
-        [Export ("polylines", ArgumentSemantic.Copy)]
-        Polyline [] Polylines { get; }
     }
 
     // @interface MGLUserLocation : NSObject <MGLAnnotation>
@@ -869,125 +907,72 @@ namespace Mapbox
     [BaseType (typeof (NSObject), Name = "MGLStyle")]
     interface Style
     {
-        /** Returns the Streets style URL.
-*   Mapbox Streets is a complete base map, perfect for incorporating your own data. */
-        //+ (NSURL *)streetsStyleURL;
+        // +(NSURL * _Nonnull)streetsStyleURL __attribute__((deprecated("Use -streetsStyleURLWithVersion:.")));
         [Obsolete ("Use StreetsStyle (version) method instead")]
         [Static]
         [Export ("streetsStyleURL")]
         NSUrl Streets { get; }
 
-        /** Returns the Emerald style URL.
-*   Emerald is a versatile style with emphasis on road networks and public transportation. */
-        //+ (NSURL *)emeraldStyleURL;
+        // +(NSURL * _Nonnull)streetsStyleURLWithVersion:(NSInteger)version;
+        [Static]
+        [Export ("streetsStyleURLWithVersion:")]
+        NSUrl StreetsStyle (nint version);
+
+        // +(NSURL * _Nonnull)emeraldStyleURL __attribute__((deprecated("Create an NSURL object with the string “mapbox://styles/mapbox/emerald-v8”.")));
         [Obsolete ("Create an NSURL object with the string 'mapbox://styles/mapbox/emerald-v8' instead.")]
         [Static]
         [Export ("emeraldStyleURL")]
         NSUrl Emerald { get; }
 
-        /** Returns the Light style URL.
-*   Light is a subtle, light-colored backdrop for data visualizations. */
-        //        + (NSURL *)lightStyleURL;
+        // +(NSURL * _Nonnull)outdoorsStyleURLWithVersion:(NSInteger)version;
+        [Static]
+        [Export ("outdoorsStyleURLWithVersion:")]
+        NSUrl OutdoorsStyle (nint version);
+
+        // +(NSURL * _Nonnull)lightStyleURL __attribute__((deprecated("Use -lightStyleURLWithVersion:.")));
         [Obsolete ("Use LightStyle (version) method instead")]
         [Static]
         [Export ("lightStyleURL")]
         NSUrl Light { get; }
 
-        /** Returns the Dark style URL.
-*   Dark is a subtle, dark-colored backdrop for data visualizations. */
-        //+ (NSURL *)darkStyleURL;
+        // +(NSURL * _Nonnull)lightStyleURLWithVersion:(NSInteger)version;
+        [Static]
+        [Export ("lightStyleURLWithVersion:")]
+        NSUrl LightStyle (nint version);
+
+        // +(NSURL * _Nonnull)darkStyleURL __attribute__((deprecated("Use -darkStyleURLWithVersion:.")));
         [Obsolete ("Use DarkStyle (version) method instead")]
         [Static]
         [Export ("darkStyleURL")]
         NSUrl Dark { get; }
 
-        /** Returns the Satellite style URL.
-*   Mapbox Satellite is a beautiful global satellite and aerial imagery layer. */
-        //+ (NSURL *)satelliteStyleURL;
+        // +(NSURL * _Nonnull)darkStyleURLWithVersion:(NSInteger)version;
+        [Static]
+        [Export ("darkStyleURLWithVersion:")]
+        NSUrl DarkStyle (nint version);
+
+        // +(NSURL * _Nonnull)satelliteStyleURL __attribute__((deprecated("Use -satelliteStyleURLWithVersion:.")));
         [Obsolete ("Use SatelliteStyle (version) method instead")]
         [Static]
         [Export ("satelliteStyleURL")]
         NSUrl Satellite { get; }
 
-        /** Returns the Hybrid style URL.
-*   Hybrid combines the global satellite and aerial imagery of Mapbox Satellite with unobtrusive labels. */
-        //+ (NSURL *)hybridStyleURL;
+        // +(NSURL * _Nonnull)satelliteStyleURLWithVersion:(NSInteger)version;
+        [Static]
+        [Export ("satelliteStyleURLWithVersion:")]
+        NSUrl SatelliteStyle (nint version);
+
+        // +(NSURL * _Nonnull)hybridStyleURL __attribute__((deprecated("Use -satelliteStreetsStyleURLWithVersion:.")));
         [Obsolete ("Use SatelliteStreetsStyle (version) method instead")]
         [Static]
         [Export ("hybridStyleURL")]
         NSUrl Hybrid { get; }
 
-
-        // + (NSURL*)streetsStyleURLWithVersion:(NSInteger)version;
-        [Static]
-        [Export ("streetsStyleURLWithVersion:")]
-        NSUrl StreetsStyle (nint version);
-
-        // + (NSURL*)outdoorsStyleURLWithVersion:(NSInteger)version;
-        [Static]
-        [Export ("outdoorsStyleURLWithVersion:")]
-        NSUrl OutdoorsStyle (nint version);
-
-        // + (NSURL*)lightStyleURLWithVersion:(NSInteger)version;
-        [Static]
-        [Export ("lightStyleURLWithVersion:")]
-        NSUrl LightStyle (nint version);
-
-        // + (NSURL*)darkStyleURLWithVersion:(NSInteger)version;
-        [Static]
-        [Export ("darkStyleURLWithVersion:")]
-        NSUrl DarkStyle (nint version);
-
-        // + (NSURL*)satelliteStyleURLWithVersion:(NSInteger)version;
-        [Static]
-        [Export ("satelliteStyleURLWithVersion:")]
-        NSUrl SatelliteStyle (nint version);
-
-        // + (NSURL*)satelliteStreetsStyleURLWithVersion:(NSInteger)version;
+        // +(NSURL * _Nonnull)satelliteStreetsStyleURLWithVersion:(NSInteger)version;
         [Static]
         [Export ("satelliteStreetsStyleURLWithVersion:")]
         NSUrl SatelliteStreetsStyle (nint version);
-
-        //        - (instancetype)init NS_UNAVAILABLE;
     }
-
-    //    // @interface IBAdditions (MGLMapView)
-    //    [Category]
-    //    [BaseType (typeof(MapView), Name="MGLMapView_IBAdditions")]
-    //    interface MapView_IBAdditions
-    //    {
-    //        // @property (nonatomic) NSString * _Nullable styleID;
-    //        [NullAllowed, Export ("styleID")]
-    //        string StyleID { get; set; }
-    //
-    //        // @property (nonatomic) double latitude;
-    //        [Export ("latitude")]
-    //        double Latitude { get; set; }
-    //
-    //        // @property (nonatomic) double longitude;
-    //        [Export ("longitude")]
-    //        double Longitude { get; set; }
-    //
-    //        // @property (nonatomic) double zoomLevel;
-    //        [Export ("zoomLevel")]
-    //        double ZoomLevel { get; set; }
-    //
-    //        // @property (nonatomic) BOOL allowsZooming;
-    //        [Export ("allowsZooming")]
-    //        bool AllowsZooming { get; set; }
-    //
-    //        // @property (nonatomic) BOOL allowsScrolling;
-    //        [Export ("allowsScrolling")]
-    //        bool AllowsScrolling { get; set; }
-    //
-    //        // @property (nonatomic) BOOL allowsRotating;
-    //        [Export ("allowsRotating")]
-    //        bool AllowsRotating { get; set; }
-    //
-    //        // @property (nonatomic) BOOL showsUserLocation;
-    //        [Export ("showsUserLocation")]
-    //        bool ShowsUserLocation { get; set; }
-    //    }
 
     interface ICalloutView { }
 
@@ -1052,7 +1037,7 @@ namespace Mapbox
 
     interface IOfflineRegion { }
 
-    [Protocol]
+    [Protocol, Model]
     [BaseType (typeof (NSObject), Name = "MGLOfflineRegion")]
     interface OfflineRegion
     {
@@ -1111,19 +1096,6 @@ namespace Mapbox
         [Export ("requestProgress")]
         void RequestProgress ();
     }
-
-
-    // Removed in 3.3.3
-    //[Category, BaseType (typeof (NSValue))]
-    //partial interface MGLOfflinePackAdditions_NSValue
-    //{
-    //    [Export ("valueWithMGLOfflinePackProgress:")]
-    //    NSValue FromOfflinePackProgress (OfflinePackProgress progress);
-
-    //    //[Export ("MGLOfflinePackProgressValue")]
-    //    //OfflinePackProgress OfflinePackProgressValue { get; }
-    //}
-
 
     [BaseType (typeof (NSObject), Name = "MGLOfflineStorage")]
     interface OfflineStorage
@@ -1222,13 +1194,13 @@ namespace Mapbox
     interface IFeature { }
 
     // @protocol MGLFeature<MGLAnnotation>
-    [Protocol]
+    [Protocol, Model]
     [BaseType (typeof (NSObject), Name = "MGLFeature")]
     interface Feature : Annotation
     {
         // @property (nonatomic, copy, nullable, readonly) id identifier;
         [Export ("identifier", ArgumentSemantic.Copy)]
-        IntPtr Identifier { [return: NullAllowed] get; }
+        NSObject Identifier { [return: NullAllowed] get; }
 
         // @property (nonatomic, copy, readonly) NS_DICTIONARY_OF (NSString*, id) * attributes;
         [Export ("attributes", ArgumentSemantic.Copy)]
@@ -1237,7 +1209,7 @@ namespace Mapbox
         // - (nullable id)attributeForKey:(NSString*)key;
         [Export ("attributeForKey:")]
         [return: NullAllowed]
-        IntPtr GetAttribute (string key);
+        NSObject GetAttribute (string key);
     }
 
     // @interface MGLPointFeature : MGLPointAnnotation<MGLFeature>
@@ -1303,7 +1275,7 @@ namespace Mapbox
         // + (instancetype)valueWithMGLCoordinate:(CLLocationCoordinate2D)coordinate;
         [Static]
         [Export ("valueWithMGLCoordinate:")]
-        IntPtr GetValue (CLLocationCoordinate2D coordinate);
+        NSValue GetValue (CLLocationCoordinate2D coordinate);
 
         // @property (readonly) CLLocationCoordinate2D MGLCoordinateValue;
         [Static]
@@ -1313,7 +1285,7 @@ namespace Mapbox
         // + (instancetype)valueWithMGLCoordinateSpan:(MGLCoordinateSpan)span;
         [Static]
         [Export ("valueWithMGLCoordinateSpan:")]
-        IntPtr GetValue (CoordinateSpan span);
+        NSValue GetValue (CoordinateSpan span);
 
         //@property (readonly) MGLCoordinateSpan MGLCoordinateSpanValue;
         [Static]
@@ -1323,7 +1295,7 @@ namespace Mapbox
         // + (instancetype)valueWithMGLCoordinateBounds:(MGLCoordinateBounds)bounds;
         [Static]
         [Export ("valueWithMGLCoordinateBounds:")]
-        IntPtr GetValue (CoordinateBounds bounds);
+        NSValue GetValue (CoordinateBounds bounds);
 
         // @property (readonly) MGLCoordinateBounds MGLCoordinateBoundsValue;
         [Static]
@@ -1340,6 +1312,33 @@ namespace Mapbox
         [Export ("MGLOfflinePackProgressValue")]
         OfflinePackProgress OfflinePackProgressValue { get; }
 
+    }
+
+    // typedef void (^MGLCustomStyleLayerPreparationHandler)();
+    delegate void CustomStyleLayerPreparationHandler ();
+
+    // typedef void (^MGLCustomStyleLayerDrawingHandler)(CGSize, CLLocationCoordinate2D, double, CLLocationDirection, CGFloat, CGFloat);
+    delegate void CustomStyleLayerDrawingHandler (CGSize arg0, CLLocationCoordinate2D arg1, double arg2, double arg3, nfloat arg4, nfloat arg5);
+
+    // typedef void (^MGLCustomStyleLayerCompletionHandler)();
+    delegate void CustomStyleLayerCompletionHandler ();
+
+    // @interface MGLCustomStyleLayerAdditions (MGLMapView)
+    [Category]
+    [BaseType (typeof (MapView))]
+    interface MGLMapView_MGLCustomStyleLayerAdditions
+    {
+        // -(void)insertCustomStyleLayerWithIdentifier:(NSString * _Nonnull)identifier preparationHandler:(MGLCustomStyleLayerPreparationHandler _Nonnull)preparation drawingHandler:(MGLCustomStyleLayerDrawingHandler _Nonnull)drawing completionHandler:(MGLCustomStyleLayerCompletionHandler _Nonnull)completion belowStyleLayerWithIdentifier:(NSString * _Nullable)otherIdentifier;
+        [Export ("insertCustomStyleLayerWithIdentifier:preparationHandler:drawingHandler:completionHandler:belowStyleLayerWithIdentifier:")]
+        void InsertCustomStyleLayerWithIdentifier (string identifier, CustomStyleLayerPreparationHandler preparation, CustomStyleLayerDrawingHandler drawing, CustomStyleLayerCompletionHandler completion, [NullAllowed] string otherIdentifier);
+
+        // -(void)removeCustomStyleLayerWithIdentifier:(NSString * _Nonnull)identifier;
+        [Export ("removeCustomStyleLayerWithIdentifier:")]
+        void RemoveCustomStyleLayerWithIdentifier (string identifier);
+
+        // -(void)setCustomStyleLayersNeedDisplay;
+        [Export ("setCustomStyleLayersNeedDisplay")]
+        void SetCustomStyleLayersNeedDisplay ();
     }
 
 }

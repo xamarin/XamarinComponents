@@ -6,7 +6,7 @@ var TARGET = Argument ("t", Argument ("target", "Default"));
 var ANDROID_VERSION = "4.1.1";
 var ANDROID_NUGET_VERSION = "4.1.1.0";
 var IOS_VERSION = "3.3.4";
-var IOS_NUGET_VERSION = "3.3.4";
+var IOS_NUGET_VERSION = "3.3.4.1";
 
 var MAPBOX_VERSION = "4.1.1";
 var LOST_VERSION = "1.1.0";
@@ -18,7 +18,7 @@ var PODFILE = new List<string> {
 	"platform :ios, '8.0'",
 	"install! 'cocoapods', :integrate_targets => false",
 	"target 'Xamarin' do",
-	"  pod 'Mapbox-iOS-SDK', '3.2.3'",
+	string.Format ("  pod 'Mapbox-iOS-SDK', '{0}'", IOS_VERSION),
 	"  use_frameworks!",
 	"end",
 };
