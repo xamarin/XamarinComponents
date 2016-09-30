@@ -62,6 +62,7 @@ We are continuously monitoring and adding new Plugins all the time, so be sure t
 |Name|Description|NuGet|Docs & Source|Creator|
 | ------------------- | --------------------------------- | :-----------: | :-----------: |-------------------- |
 |Badge|Easily update application badges.|[NuGet](https://www.nuget.org/packages/Xam.Plugin.Badge/)|[GitHub](https://github.com/sbondini/Xamarin.Badge)|[@Saveliy_Bondini](http://www.twitter.com/saveliy_bondini)|
+|Bluetooth LE|Communicate with Bluetooth LE Devices.|[NuGet](https://www.nuget.org/packages/Plugin.BLE)|[GitHub](https://github.com/xabre/xamarin-bluetooth-le)| [@secelead](https://twitter.com/secelead) & [@stuebe2k14](https://twitter.com/stuebe2k14)|
 |iBeacon & Estimote|Range and monitor Bluetooth beacons.|[NuGet](https://www.nuget.org/packages/Estimotes.Xplat/)|[GitHub](https://github.com/aritchie/estimotes-xplat)|[@allanritchie911](https://twitter.com/allanritchie911)|
 |Contacts|Access contacts.|[NuGet](https://www.nuget.org/packages/Xam.Plugin.Contacts/)|[GitHub](https://github.com/jamesmontemagno/Xamarin.Plugins/tree/master/Contacts)|[@JamesMontemagno](http://www.twitter.com/jamesmontemagno)|
 |CrossDownloadManager|Library to download files in the background.|[NuGet](https://www.nuget.org/packages/Xam.Plugins.DownloadManager/)|[GitHub](https://github.com/SimonSimCity/Xamarin-CrossDownloadManager)|[@simonsimcity](https://github.com/SimonSimCity)|
