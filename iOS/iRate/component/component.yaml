@@ -11,14 +11,8 @@ icons:
 screenshots:
   - screenshots/screenshot1.png
 libraries:
-  ios: ../output/classic/MTiRate.dll
   ios-unified: ../output/unified/MTiRate.dll
 samples:
-  - name: "iOS Classic Sample"
-    path: ../samples/iRateDemo/iRateDemo-Classic.sln
-    configuration: "Release|iPhone"
-    removeFiles: 
-      - iRateDemo.csproj
   - name: "iOS Unified Sample"
     path: ../samples/iRateDemo/iRateDemo.sln
     configuration: "Release|iPhone"

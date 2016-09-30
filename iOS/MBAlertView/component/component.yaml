@@ -7,12 +7,8 @@ src-url: https://github.com/xamarin/XamarinComponents/tree/master/iOS/MBAlertVie
 summary: A simple overlay-style dialog and HUD library for iOS.
 no_build: true
 libraries:
-  ios: ../output/classic/AlertView.dll
   ios-unified: ../output/unified/AlertView.dll
 samples:
-  - name: "iOS Classic Sample"
-    path: ../samples/MBAlertViewDemo/MBAlertViewDemo-classic.sln
-    configuration: "Release|iPhone"
   - name: "iOS Unified Sample"
     path: ../samples/MBAlertViewDemo/MBAlertViewDemo.sln
     configuration: "Release|iPhone"

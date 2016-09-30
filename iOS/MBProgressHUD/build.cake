@@ -3,6 +3,14 @@
 
 var TARGET = Argument ("t", Argument ("target", "Default"));
 
+var IOS_PODS = new List<string> {
+	"platform :ios, '5.0'",
+	"install! 'cocoapods', :integrate_targets => false",
+	"target 'Xamarin' do",
+	"pod 'MBProgressHUD', '0.9.2'",
+	"end",
+};
+
 var buildSpec = new BuildSpec () {
 	Libs = new ISolutionBuilder [] {
 		new IOSSolutionBuilder {
@@ -14,17 +22,12 @@ var buildSpec = new BuildSpec () {
 					FromFile = "./source/MBProgressHUD/bin/unified/Release/MBProgressHUD.dll",
 					ToDirectory = "./output/unified/"
 				},
-				new OutputFileCopy {
-					FromFile = "./source/MBProgressHUD/bin/classic/Release/MBProgressHUD.dll",
-					ToDirectory = "./output/classic/"
-				}
 			}
 		},	
 	},
 
 	Samples = new ISolutionBuilder [] {
-		new IOSSolutionBuilder { SolutionPath = "./samples/MBProgressHUDDemo/MBProgressHUDDemo.sln", BuildsOn = BuildPlatforms.Mac },
-		new IOSSolutionBuilder { SolutionPath = "./samples/MBProgressHUDDemo/MBProgressHUDDemo-classic.sln", BuildsOn = BuildPlatforms.Mac },
+		new IOSSolutionBuilder { SolutionPath = "./samples/MBProgressHUDDemo/MBProgressHUDDemo.sln", Configuration = "Release|iPhone", BuildsOn = BuildPlatforms.Mac },
 	},
 
 	NuGets = new [] {
@@ -38,17 +41,16 @@ var buildSpec = new BuildSpec () {
 
 Task ("externals").IsDependentOn ("externals-base").Does (() =>
 {
-    // IMPORTANT NOTE: Support for iOS 6 is still required, so ensure that
-	// the iOS version is 6.0 or lower. Until the library officially drops
-	// support fo the old OS.
-	CreatePodfile ("./externals/", "ios", "5.0", new Dictionary<string, string> {
-        { "MBProgressHUD", "0.9.2" }
-	});
-	if (!FileExists ("./externals/Podfile.lock")) {
-		CocoaPodInstall ("./externals/", new CocoaPodInstallSettings { NoIntegrate = true });
-	}
+	EnsureDirectoryExists ("./externals");
 
-	BuildXCodeFatLibrary ("Pods/Pods.xcodeproj", "MBProgressHUD", null, null, null);
+	if (CocoaPodVersion () < new System.Version (1, 0))
+		IOS_PODS.RemoveAt (1);
+
+	FileWriteLines ("./externals/Podfile", IOS_PODS.ToArray ());
+
+	CocoaPodInstall ("./externals", new CocoaPodInstallSettings { NoIntegrate = true });
+
+	BuildXCodeFatLibrary ("./Pods/Pods.xcodeproj", "MBProgressHUD", "MBProgressHUD", null, null, "MBProgressHUD");
 });
 
 Task ("clean").IsDependentOn ("clean-base").Does (() =>

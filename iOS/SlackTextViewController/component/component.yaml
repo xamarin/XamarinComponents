@@ -8,7 +8,6 @@ summary: A drop-in UIViewController subclass with a growing text input view and 
 icons:
   - icons/SlackTextViewController_128x128.png
 libraries:
-  ios: ../output/classic/SlackTextViewController.dll
   ios-unified: ../output/unified/SlackTextViewController.dll
 samples:
   - name: "iOS Sample"

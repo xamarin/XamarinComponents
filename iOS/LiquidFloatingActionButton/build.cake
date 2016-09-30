@@ -14,17 +14,12 @@ var buildSpec = new BuildSpec () {
 					FromFile = "./source/LiquidFloatingActionButton/bin/Release/LiquidFloatingActionButton.dll",
 					ToDirectory = "./output/unified/"
 				},
-				new OutputFileCopy {
-					FromFile = "./source/LiquidFloatingActionButton-classic/bin/Release/LiquidFloatingActionButton.dll",
-					ToDirectory = "./output/classic/"
-				}
 			}
 		},	
 	},
 
 	Samples = new ISolutionBuilder [] {
-		new IOSSolutionBuilder { SolutionPath = "./samples/LiquidFloatingActionButtonSample/LiquidFloatingActionButtonSample.sln", BuildsOn = BuildPlatforms.Mac },
-		new IOSSolutionBuilder { SolutionPath = "./samples/LiquidFloatingActionButtonSample-Classic/LiquidFloatingActionButtonSample-Classic.sln", BuildsOn = BuildPlatforms.Mac},
+		new IOSSolutionBuilder { SolutionPath = "./samples/LiquidFloatingActionButtonSample/LiquidFloatingActionButtonSample.sln", Configuration = "Release|iPhone", BuildsOn = BuildPlatforms.Mac },
 	},
 
 	Components = new [] {

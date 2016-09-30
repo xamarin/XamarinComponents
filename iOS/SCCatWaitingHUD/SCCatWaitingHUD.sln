@@ -3,8 +3,6 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SCCatWaitingHUD", "source\SCCatWaitingHUD\SCCatWaitingHUD.csproj", "{E6CE97B8-FA59-47F5-99D6-99BF1DF1FCE1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SCCatWaitingHUD-classic", "source\SCCatWaitingHUD\SCCatWaitingHUD-classic.csproj", "{E6CE97B8-FA59-47F5-99D6-99BF1DF1FCEA}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SCCatWaitingHUDSample", "samples\SCCatWaitingHUDSample\SCCatWaitingHUDSample.csproj", "{424FB004-7068-44D5-880E-CB76B7B8A653}"
 EndProject
 Global
@@ -41,17 +39,5 @@ Global
 		{E6CE97B8-FA59-47F5-99D6-99BF1DF1FCE1}.Release|iPhone.Build.0 = Release|Any CPU
 		{E6CE97B8-FA59-47F5-99D6-99BF1DF1FCE1}.Release|iPhoneSimulator.ActiveCfg = Release|Any CPU
 		{E6CE97B8-FA59-47F5-99D6-99BF1DF1FCE1}.Release|iPhoneSimulator.Build.0 = Release|Any CPU
-		{E6CE97B8-FA59-47F5-99D6-99BF1DF1FCEA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{E6CE97B8-FA59-47F5-99D6-99BF1DF1FCEA}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{E6CE97B8-FA59-47F5-99D6-99BF1DF1FCEA}.Debug|iPhone.ActiveCfg = Debug|Any CPU
-		{E6CE97B8-FA59-47F5-99D6-99BF1DF1FCEA}.Debug|iPhone.Build.0 = Debug|Any CPU
-		{E6CE97B8-FA59-47F5-99D6-99BF1DF1FCEA}.Debug|iPhoneSimulator.ActiveCfg = Debug|Any CPU
-		{E6CE97B8-FA59-47F5-99D6-99BF1DF1FCEA}.Debug|iPhoneSimulator.Build.0 = Debug|Any CPU
-		{E6CE97B8-FA59-47F5-99D6-99BF1DF1FCEA}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{E6CE97B8-FA59-47F5-99D6-99BF1DF1FCEA}.Release|Any CPU.Build.0 = Release|Any CPU
-		{E6CE97B8-FA59-47F5-99D6-99BF1DF1FCEA}.Release|iPhone.ActiveCfg = Release|Any CPU
-		{E6CE97B8-FA59-47F5-99D6-99BF1DF1FCEA}.Release|iPhone.Build.0 = Release|Any CPU
-		{E6CE97B8-FA59-47F5-99D6-99BF1DF1FCEA}.Release|iPhoneSimulator.ActiveCfg = Release|Any CPU
-		{E6CE97B8-FA59-47F5-99D6-99BF1DF1FCEA}.Release|iPhoneSimulator.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

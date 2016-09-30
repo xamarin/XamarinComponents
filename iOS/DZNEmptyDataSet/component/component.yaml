@@ -9,7 +9,6 @@ icons:
   - icons/DZNEmptyDataSet_128x128.png
   - icons/DZNEmptyDataSet_512x512.png
 libraries:
-  ios: ../output/classic/DZNEmptyDataSet.dll
   ios-unified: ../output/unified/DZNEmptyDataSet.dll
 samples:
   - name: "DZNEmptyDataSet Sample"

@@ -3,8 +3,6 @@ Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MTiRate", "MTiRate.csproj", "{73B16F2C-F815-4E1B-A1A2-4B79AFCBE533}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MTiRate-Classic", "MTiRate-Classic.csproj", "{D8BF1C97-9848-44A6-B3FC-970297F5ABDA}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,10 +13,5 @@ Global
 		{73B16F2C-F815-4E1B-A1A2-4B79AFCBE533}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{73B16F2C-F815-4E1B-A1A2-4B79AFCBE533}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{73B16F2C-F815-4E1B-A1A2-4B79AFCBE533}.Release|Any CPU.Build.0 = Release|Any CPU
-		{D8BF1C97-9848-44A6-B3FC-970297F5ABDA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{D8BF1C97-9848-44A6-B3FC-970297F5ABDA}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{D8BF1C97-9848-44A6-B3FC-970297F5ABDA}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{D8BF1C97-9848-44A6-B3FC-970297F5ABDA}.Release|Any CPU.Build.0 = Release|Any CPU
-		
 	EndGlobalSection
 EndGlobal

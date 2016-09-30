@@ -13,16 +13,11 @@ icons:
   - ../images/icon_512x512.png
 
 libraries:
-  ios: ../output/classic/VideoSplash.dll
   ios-unified: ../output/unified/VideoSplash.dll
 
 samples:
   - name: "Storyboard Sample"
     path: ../samples/VideoSplashSample/VideoSplashSample.sln
     configuration: "Release|iPhone"
-  - name: "Classic API Sample"
-    path: ../samples/VideoSplashSample-Classic/VideoSplashSample-Classic.sln
-    configuration: "Release|iPhone"
 
 monodoc: ../docs/
- 

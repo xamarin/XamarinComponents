@@ -17,16 +17,12 @@ var buildSpec = new BuildSpec () {
 					FromFile = "./source/DACircularProgress/bin/unified/Release/DACircularProgress.dll",
 					ToDirectory = "./output/unified/"
 				},
-				new OutputFileCopy {
-					FromFile = "./source/DACircularProgress/bin/classic/Release/DACircularProgress.dll",
-					ToDirectory = "./output/classic/"
-				}
 			}
 		},	
 	},
 
 	Samples = new ISolutionBuilder [] {
-		new IOSSolutionBuilder { SolutionPath = "./samples/DACircularProgressSample.sln", BuildsOn = BuildPlatforms.Mac, },
+		new IOSSolutionBuilder { SolutionPath = "./samples/DACircularProgressSample.sln", Configuration = "Release|iPhone", BuildsOn = BuildPlatforms.Mac, },
 	},
 
 	NuGets = new [] {

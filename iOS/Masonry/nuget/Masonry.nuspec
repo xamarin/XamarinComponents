@@ -14,6 +14,5 @@
   </metadata>
   <files>
     <file src="output/unified/Masonry.dll" target="lib/Xamarin.iOS" />
-    <file src="output/classic/Masonry.dll" target="lib/MonoTouch" />
   </files>
 </package>

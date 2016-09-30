@@ -20,8 +20,8 @@ var buildSpec = new BuildSpec {
 	},
 
 	Samples = new [] {
-		new IOSSolutionBuilder { SolutionPath = "./samples/ShopifyiOSSample.sln" },
-		new IOSSolutionBuilder { SolutionPath = "./samples/ShopifyiOSAsyncSample.sln" },
+		new IOSSolutionBuilder { SolutionPath = "./samples/ShopifyiOSSample.sln", Configuration = "Release|iPhone" },
+		new IOSSolutionBuilder { SolutionPath = "./samples/ShopifyiOSAsyncSample.sln", Configuration = "Release|iPhone" },
 	},
 
 	NuGets = new [] {

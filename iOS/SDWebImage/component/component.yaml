@@ -9,31 +9,16 @@ icons:
  - icons/sdwebimage_128x128.png
  - icons/sdwebimage_512x512.png
 libraries:
-  ios:
-    - ../output/classic/SDWebImage.dll
   ios-unified:
     - ../output/unified/SDWebImage.dll
 samples:
-  - name: "iOS Classic Sample Load Image"
-    path: "../samples/SDWebImageSimpleSample/SDWebImageSimpleSample-Classic.sln"
-    removeFiles:
-      - SDWebImageSimpleSample/SDWebImageSimpleSample.csproj
   - name: "iOS Unified Sample Load Image"
     path: "../samples/SDWebImageSimpleSample/SDWebImageSimpleSample.sln"
     removeFiles:
-      - SDWebImageSimpleSample/SDWebImageSimpleSample-Classic.csproj
-  - name: "iOS Classic Sample MTD"
-    path: "../samples/SDWebImageMTDialogSample/SDWebImageMTDialogSample-Classic.sln"
-    removeFiles:
-      - SDWebImageMTDialogSample/SDWebImageMTDialogSample.csproj
   - name: "iOS Unified Sample MTD"
     path: "../samples/SDWebImageMTDialogSample/SDWebImageMTDialogSample.sln"
     removeFiles:
       - SDWebImageMTDialogSample/SDWebImageMTDialogSample-Classic.csproj
-  - name: "iOS Classic Sample TableView"
-    path: "../samples/SDWebImageSample/SDWebImageSample-Classic.sln"
-    removeFiles:
-      - SDWebImageSample/SDWebImageSample.csproj
   - name: "iOS Unified Sample TableView"
     path: "../samples/SDWebImageSample/SDWebImageSample.sln"
     removeFiles:
@@ -43,5 +28,4 @@ samples:
 no_build: true
 is_shell: true
 packages:
-  ios: Xamarin.SDWebImage, Version=3.7.5
   ios-unified: Xamarin.SDWebImage, Version=3.7.5

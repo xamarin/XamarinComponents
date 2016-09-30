@@ -20,7 +20,7 @@ var buildSpec = new BuildSpec {
 	},
 
 	Samples = new [] {
-		new IOSSolutionBuilder { SolutionPath = "./samples/CardIOSampleiOS.sln" },
+		new IOSSolutionBuilder { SolutionPath = "./samples/CardIOSampleiOS.sln", Configuration = "Release|iPhone" },
 	},
 
 	Components = new [] {

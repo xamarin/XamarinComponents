@@ -1,2 +1,5 @@
 platform :ios, '6.0'
-pod 'DACircularProgress', '2.3.1'
+install! 'cocoapods', :integrate_targets => false
+target 'Xamarin' do
+	pod 'DACircularProgress', '2.3.1'
+end

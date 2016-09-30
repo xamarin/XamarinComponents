@@ -40,7 +40,6 @@
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Additions.cs" />
-    <Compile Include="LinkWith.cs" />
   </ItemGroup>
   <ItemGroup>
     <ObjcBindingApiDefinition Include="ApiDefinition.cs" />
@@ -50,6 +49,9 @@
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.ObjCBinding.CSharp.targets" />
   <ItemGroup>
-    <ObjcBindingNativeFramework Include="..\..\..\externals\ios\Pods\Mapbox-iOS-SDK\dynamic\Mapbox.framework" />
+    <NativeReference Include="..\..\..\externals\ios\Pods\Mapbox-iOS-SDK\dynamic\Mapbox.framework">
+      <Kind>Framework</Kind>
+      <SmartLink>False</SmartLink>
+    </NativeReference>
   </ItemGroup>
 </Project>

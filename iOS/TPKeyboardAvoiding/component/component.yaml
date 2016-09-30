@@ -9,7 +9,6 @@ icons:
   - icons/TPKeyboardAvoiding_128x128.png
   - icons/TPKeyboardAvoiding_512x512.png
 libraries:
-  ios: ../output/classic/TPKeyboardAvoiding.dll
   ios-unified: ../output/unified/TPKeyboardAvoiding.dll
 samples:
   - name: "TPKeyboardAvoiding Sample"

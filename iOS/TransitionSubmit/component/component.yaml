@@ -13,15 +13,11 @@ icons:
   - ../images/icon_512x512.png
 
 libraries:
-  ios: ../output/classic/TransitionSubmit.dll
   ios-unified: ../output/unified/TransitionSubmit.dll
 
 samples:
   - name: "Storyboard Sample"
     path: ../samples/TransitionSubmitSample/TransitionSubmitSample.sln
-    configuration: "Release|iPhone"
-  - name: "Classic API Sample"
-    path: ../samples/TransitionSubmitSample-Classic/TransitionSubmitSample-Classic.sln
     configuration: "Release|iPhone"
 
 monodoc: ../docs/

@@ -3,8 +3,6 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "iCarousel", "iCarousel\iCarousel.csproj", "{3565E10C-89B7-45C6-A412-C307BD8CAD0F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "iCarousel-Classic", "iCarousel\iCarousel-Classic.csproj", "{3565E10C-89B7-45C6-A412-C307BD8CAD0A}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,19 +25,5 @@ Global
 		{3565E10C-89B7-45C6-A412-C307BD8CAD0F}.Release|iPhone.Build.0 = Release|Any CPU
 		{3565E10C-89B7-45C6-A412-C307BD8CAD0F}.Release|iPhoneSimulator.ActiveCfg = Release|Any CPU
 		{3565E10C-89B7-45C6-A412-C307BD8CAD0F}.Release|iPhoneSimulator.Build.0 = Release|Any CPU
-		{3565E10C-89B7-45C6-A412-C307BD8CAD0A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{3565E10C-89B7-45C6-A412-C307BD8CAD0A}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{3565E10C-89B7-45C6-A412-C307BD8CAD0A}.Debug|iPhone.ActiveCfg = Debug|Any CPU
-		{3565E10C-89B7-45C6-A412-C307BD8CAD0A}.Debug|iPhone.Build.0 = Debug|Any CPU
-		{3565E10C-89B7-45C6-A412-C307BD8CAD0A}.Debug|iPhoneSimulator.ActiveCfg = Debug|Any CPU
-		{3565E10C-89B7-45C6-A412-C307BD8CAD0A}.Debug|iPhoneSimulator.Build.0 = Debug|Any CPU
-		{3565E10C-89B7-45C6-A412-C307BD8CAD0A}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{3565E10C-89B7-45C6-A412-C307BD8CAD0A}.Release|Any CPU.Build.0 = Release|Any CPU
-		{3565E10C-89B7-45C6-A412-C307BD8CAD0A}.Release|iPhone.ActiveCfg = Release|Any CPU
-		{3565E10C-89B7-45C6-A412-C307BD8CAD0A}.Release|iPhone.Build.0 = Release|Any CPU
-		{3565E10C-89B7-45C6-A412-C307BD8CAD0A}.Release|iPhoneSimulator.ActiveCfg = Release|Any CPU
-		{3565E10C-89B7-45C6-A412-C307BD8CAD0A}.Release|iPhoneSimulator.Build.0 = Release|Any CPU
-	EndGlobalSection
-	GlobalSection(MonoDevelopProperties) = preSolution
 	EndGlobalSection
 EndGlobal

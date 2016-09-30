@@ -13,7 +13,6 @@ icons:
   - ../images/icon_512x512.png
 
 libraries:
-  ios: ../output/classic/AnimatedShapeButton.dll
   ios-unified: ../output/unified/AnimatedShapeButton.dll
 
 samples:
@@ -22,10 +21,5 @@ samples:
     configuration: "Release|iPhone"
     removeFiles:
      - AnimatedShapeButtonSample/Makefile
-  - name: "Classic API Sample"
-    path: ../samples/AnimatedShapeButtonSample-Classic/AnimatedShapeButtonSample-Classic.sln
-    configuration: "Release|iPhone"
-    removeFiles:
-     - AnimatedShapeButtonSample-Classic/Makefile
 
 monodoc: ../docs/

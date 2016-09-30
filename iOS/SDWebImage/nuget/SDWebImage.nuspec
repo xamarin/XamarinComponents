@@ -14,6 +14,5 @@
   </metadata>
   <files>
     <file src="output/unified/SDWebImage.dll" target="lib/Xamarin.iOS" />
-    <file src="output/classic/SDWebImage.dll" target="lib/MonoTouch" />
   </files>
 </package>

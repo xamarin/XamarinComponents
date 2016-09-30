@@ -14,15 +14,11 @@ var buildSpec = new BuildSpec () {
 					FromFile = "./source/AMScrollingNavbar/bin/Release/AMScrollingNavbar.dll",
 					ToDirectory = "./output/unified/"
 				},
-				new OutputFileCopy {
-					FromFile = "./source/AMScrollingNavbar-classic/bin/Release/AMScrollingNavbar.dll",
-					ToDirectory = "./output/classic/"
-				}
 			}
 		},
 	},
 	Samples = new ISolutionBuilder [] {
-		new IOSSolutionBuilder { SolutionPath = "./samples/AMScrollingNavbarSample/AMScrollingNavbarSample.sln", Configuration = "Release", BuildsOn = BuildPlatforms.Mac },
+		new IOSSolutionBuilder { SolutionPath = "./samples/AMScrollingNavbarSample/AMScrollingNavbarSample.sln", Configuration = "Release|iPhone", BuildsOn = BuildPlatforms.Mac },
 	},
 
 	Components = new [] {
