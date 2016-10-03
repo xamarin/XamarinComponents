@@ -64,6 +64,7 @@ Browse through the most popular plugins out there today!
 |User Dialogs|Message box style dialogs.|[NuGet](https://www.nuget.org/packages/Acr.UserDialogs/)|[GitHub](https://github.com/aritchie/userdialogs)|[@allanritchie911](https://twitter.com/allanritchie911)|
 |Version Tracking|Track which versions of your app a user has previously installed.|[NuGet](https://www.nuget.org/packages/Plugin.VersionTracking/1.0.1)|[GitHub](https://github.com/colbylwilliams/VersionTrackingPlugin)|[@ColbyLWilliams](https://twitter.com/colbylwilliams)|
 |Vibrate|Vibrate any device.|[NuGet](https://www.nuget.org/packages/Xam.Plugins.Vibrate/)|[GitHub](https://github.com/jamesmontemagno/Xamarin.Plugins/tree/master/Vibrate)|[@JamesMontemagno](http://www.twitter.com/jamesmontemagno)|
+|Toasts|A simple way of showing some notifications inside your Xamarin or Windows application. |[NuGet](https://www.nuget.org/packages/Toasts.Forms.Plugin)|[GitHub](https://github.com/EgorBo/Toasts.Forms.Plugin)|[@EgorBo](https://twitter.com/EgorBo)|
 
 
 ### Submit Your Ideas
