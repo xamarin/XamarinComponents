@@ -269,6 +269,33 @@ namespace Card.IO
         CardIOPaymentViewControllerDelegate PaymentDelegate { get; set; }
     }
 
+    /// Methods with names that do not conflict with Apple's private APIs.
+    // @interface CardIOPaymentViewController (NonConflictingAPINames)
+    [Category, BaseType (typeof (CardIOPaymentViewController))]
+    interface CardIOPaymentViewController_NonConflictingAPINames
+    {
+        // @property (nonatomic, assign, readwrite) BOOL keepStatusBarStyleForCardIO;
+        [Export ("keepStatusBarStyleForCardIO")]
+        bool GetKeepStatusBarStyleForCardIO ();
+
+        [Export ("setKeepStatusBarStyleForCardIO:")]
+        void SetKeepStatusBarStyleForCardIO (bool keep);
+
+        // @property (nonatomic, assign, readwrite) UIBarStyle navigationBarStyleForCardIO;
+        [Export ("navigationBarStyleForCardIO")]
+        UIBarStyle GetNavigationBarStyleForCardIO ();
+
+        [Export ("setNavigationBarStyleForCardIO:")]
+        void SetNavigationBarStyleForCardIO (UIBarStyle navigationBarStyle);
+
+        // @property (nonatomic, retain, readwrite) UIColor* navigationBarTintColorForCardIO;
+        [Export ("navigationBarTintColorForCardIO", ArgumentSemantic.Retain)]
+        UIColor NavigationBarTintColorForCardIO ();
+
+        [Export ("setNavigationBarTintColorForCardIO:")]
+        void SetNavigationBarTintColorForCardIO (UIColor tintColor);
+    }
+
     // @interface CardIOUtilities : NSObject
     [BaseType (typeof (NSObject), Name="CardIOUtilities")]
     interface Utilities {
@@ -288,6 +315,18 @@ namespace Card.IO
         // +(UIImageView *)blurredScreenImageView;
         [Static, Export ("blurredScreenImageView")]
         UIImageView BlurredScreenImageView ();
+
+
+        // Methods with names that do not conflict with Apple's private APIs.
+        //@interface CardIOUtilities (NonConflictingAPINames)
+
+        // + (NSString*)cardIOLibraryVersion;
+        [Static, Export ("cardIOLibraryVersion")]
+        string CardIOLibraryVersion { get; }
+
+        // + (void)preloadCardIO;
+        [Static, Export ("preloadCardIO")]
+        void PreloadCardIO ();
     }
 }
 

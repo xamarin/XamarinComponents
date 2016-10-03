@@ -28,3 +28,10 @@ public void UserDidProvideCreditCardInfo (CreditCardInfo cardInfo, CardIOPayment
     paymentViewController.DismissViewController(true, null);        
 }
 ```
+
+### iOS 10+ Requires NSCameraUsageDescription
+
+Starting in iOS 10, Apple requires that if your app wants to access the camera, your `Info.plist` must specify the reason you wish to access it, which will be displayed to the user when they are prompted to allow or deny your app permission to use the camera.
+
+This means your `Info.plist` file should contain a string item with a key of `NSCameraUsageDescription` and a value containing a description of why you want to use the camera, to show the user.
+

@@ -1,30 +1,4 @@
 ﻿<metadata>
-	<!--
-  This sample removes the class: android.support.v4.content.AsyncTaskLoader.LoadTask:
-  <remove-node path="/api/package[@name='android.support.v4.content']/class[@name='AsyncTaskLoader.LoadTask']" />
-  
-  This sample removes the method: android.support.v4.content.CursorLoader.loadInBackground:
-  <remove-node path="/api/package[@name='android.support.v4.content']/class[@name='CursorLoader']/method[@name='loadInBackground']" />
-  -->
-<!--  <remove-node path="/api/package[@name='io.card.payment']/class[@name='A']" />
-  <remove-node path="/api/package[@name='io.card.payment']/class[@name='B']" />
-  <remove-node path="/api/package[@name='io.card.payment']/class[@name='C']" />
-  <remove-node path="/api/package[@name='io.card.payment']/class[@name='D']" />
-  <remove-node path="/api/package[@name='io.card.payment']/class[@name='E']" />
-  <remove-node path="/api/package[@name='io.card.payment']/class[@name='F']" />
-  <remove-node path="/api/package[@name='io.card.payment']/class[@name='G']" />
-  <remove-node path="/api/package[@name='io.card.payment']/class[@name='H']" />
-  <remove-node path="/api/package[@name='io.card.payment']/class[@name='I']" />
-  <remove-node path="/api/package[@name='io.card.payment']/class[@name='J']" />
-  <remove-node path="/api/package[@name='io.card.payment']/class[@name='K']" />
-  <remove-node path="/api/package[@name='io.card.payment']/class[@name='L']" />
-  <remove-node path="/api/package[@name='io.card.payment']/class[@name='M']" />
-  <remove-node path="/api/package[@name='io.card.payment']/class[@name='N']" />
-
-
-  <attr path="/api/package[@name='io.card.payment']/interface[@name='P']" name="visibility">public</attr>
-  <attr path="/api/package[@name='io.card.payment']/interface[@name='P']" name="name">Nifc</attr>-->
-
   <attr path="/api/package[@name='io.card.payment']/class[@name='CardIOActivity']" name="visibility">public</attr>
 
   <attr path="/api/package[@name='io.card.payment']" name="managedName">Card.IO</attr>
