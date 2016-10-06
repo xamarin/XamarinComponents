@@ -39,10 +39,23 @@ using Android.App;
     Version = __GvrConsts.Version)]
 
 [assembly: Android.NativeLibraryReferenceAttribute ("jni/armeabi-v7a/libpanorenderer.so",
-    SourceUrl = __GvrConsts.Url,
-    EmbeddedArchive = __Consts.AarPath,
-    Version = __GvrConsts.Version,
-    PackageName = __Consts.PackageName)]
+	SourceUrl = __GvrConsts.Url,
+	EmbeddedArchive = __Consts.AarPath,
+	Version = __GvrConsts.Version,
+	PackageName = __Consts.PackageName)]
+
+[assembly: Android.NativeLibraryReferenceAttribute ("jni/arm64-v8a/libpanorenderer.so",
+	SourceUrl = __GvrConsts.Url,
+	EmbeddedArchive = __Consts.AarPath,
+	Version = __GvrConsts.Version,
+	PackageName = __Consts.PackageName)]
+
+[assembly: Android.NativeLibraryReferenceAttribute ("jni/x86/libpanorenderer.so",
+	SourceUrl = __GvrConsts.Url,
+	EmbeddedArchive = __Consts.AarPath,
+	Version = __GvrConsts.Version,
+	PackageName = __Consts.PackageName)]
+
 
 static class __Consts
 {

@@ -1,0 +1,38 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<metadata>
+	<!--
+  This sample removes the class: android.support.v4.content.AsyncTaskLoader.LoadTask:
+  <remove-node path="/api/package[@name='android.support.v4.content']/class[@name='AsyncTaskLoader.LoadTask']" />
+  
+  This sample removes the method: android.support.v4.content.CursorLoader.loadInBackground:
+  <remove-node path="/api/package[@name='android.support.v4.content']/class[@name='CursorLoader']/method[@name='loadInBackground']" />
+  -->
+	<attr path="/api/package[@name='com.google.protobuf.nano']" name="managedName">Google.Protobuf.Nano</attr>
+
+	<!-- Remove the method in the base class to get rid of
+	     Error CS0533: `Subclass.MergeFrom(Google.Protobuf.Nano.CodedInputByteBufferNano)' hides inherited abstract member `Google.Protobuf.Nano.MessageNano.MergeFrom(Google.Protobuf.Nano.CodedInputByteBufferNano)'
+	-->
+	<remove-node path="/api/package[@name='com.google.protobuf.nano']/class[@name='MessageNano']/method[@name='mergeFrom' and count(parameter)=1 and parameter[1][@type='com.google.protobuf.nano.CodedInputByteBufferNano']]" />
+
+	<!-- Rename classes which have the same name as properties. -->
+
+	<!-- Remove the duplicate getter/setter methods -->
+	<attr path="/api/package[@name='com.google.protobuf.nano']/class[@name='MessageNano']/method[@name='getCachedSize']" name="propertyName"></attr>
+	
+	<!-- Fixed visibility.
+	     Warning CS0628: `Somehting': new protected member declared in sealed class
+	-->
+	<attr path="/api/package[@name='com.google.protobuf.nano']/class[@name='InternalNano']/field[@name='UTF_8']" name="visibility">public</attr>
+	<attr path="/api/package[@name='com.google.protobuf.nano']/class[@name='InternalNano']/field[@name='ISO_8859_1']" name="visibility">public</attr>
+
+	<!-- Remove inherited class to get rid of the following warning. (No time to debug)
+	     Warning CS0108: `Google.Protobuf.Nano.Extension.PrimitiveExtension.id_computeSingularSerializedSize_Ljava_lang_Object_' hides inherited member `Google.Protobuf.Nano.Extension.id_computeSingularSerializedSize_Ljava_lang_Object_'. Use the new keyword if hiding was intended
+	-->
+	<remove-node path="/api/package[@name='com.google.protobuf.nano']/class[@name='Extension.PrimitiveExtension']" />
+	
+	<!-- Fix visibility when overriding `Java.Lang.Object.Clone()' -->
+	<attr path="/api/package[@name='com.google.protobuf.nano']/class[@name='FieldArray']/method[@name='clone' and count(parameter)=0]" name="managedReturn">Java.Lang.Object</attr>
+	<attr path="/api/package[@name='com.google.protobuf.nano']/class[@name='FieldArray']/method[@name='clone' and count(parameter)=0]" name="visibility">protected</attr>
+	<attr path="/api/package[@name='com.google.protobuf.nano']/class[@name='MessageNano']/method[@name='clone' and count(parameter)=0]" name="managedReturn">Java.Lang.Object</attr>
+	<attr path="/api/package[@name='com.google.protobuf.nano']/class[@name='MessageNano']/method[@name='clone' and count(parameter)=0]" name="visibility">protected</attr>
+</metadata>

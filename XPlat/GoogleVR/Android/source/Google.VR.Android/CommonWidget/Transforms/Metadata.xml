@@ -1,4 +1,10 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <metadata>
 	<attr path="/api/package[@name='com.google.vr.sdk.widgets.common']" name="managedName">Google.VR.SDK.Widgets.Common</attr>
+
+	<!-- com.google.vr.sdk.widgets.common.TrackingSensorsHelper has a property 'showStereoModeButtonForTesting' and a method 'showStereoModeButtonForTesting()'.
+	     Rename the property.
+	-->
+	<attr path="/api/package[@name='com.google.vr.sdk.widgets.common']/class[@name='TrackingSensorsHelper']/field[@name='showStereoModeButtonForTesting']" name="managedName">_ShowStereoModeButtonForTesting</attr>
+
 </metadata>

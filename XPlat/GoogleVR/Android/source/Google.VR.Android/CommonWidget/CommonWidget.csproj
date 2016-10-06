@@ -8,7 +8,7 @@
     <OutputType>Library</OutputType>
     <RootNamespace>CommonWidget</RootNamespace>
     <AssemblyName>Xamarin.Google.VR.Android.CommonWidget</AssemblyName>
-    <TargetFrameworkVersion>v4.4</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v5.1</TargetFrameworkVersion>
     <MonoAndroidResourcePrefix>Resources</MonoAndroidResourcePrefix>
     <MonoAndroidAssetsPrefix>Assets</MonoAndroidAssetsPrefix>
     <AndroidUseLatestPlatformSdk>false</AndroidUseLatestPlatformSdk>
@@ -56,9 +56,9 @@
     <TransformFile Include="Transforms\Metadata.xml" />
   </ItemGroup>
   <ItemGroup>
-    <InputJar Include="..\..\..\externals\android\libraries\commonwidget\classes.jar">
+    <EmbeddedJar Include="..\..\..\externals\android\libraries\commonwidget\classes.jar">
       <Link>Jars\classes.jar</Link>
-    </InputJar>
+    </EmbeddedJar>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.Bindings.targets" />
 </Project>

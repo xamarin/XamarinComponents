@@ -1,20 +1,178 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <metadata>
-	<attr path="/api/package[@name='com.google.protobuf.nano']" name="managedName">Google.Protobuf.Nano</attr>
+	<attr path="/api/package[@name='com.google.vr.audio']" name="managedName">Google.VR.Audio</attr>
 	<attr path="/api/package[@name='com.google.vr.cardboard']" name="managedName">Google.VR.Cardboard</attr>
 	<attr path="/api/package[@name='com.google.vr.cardboard.annotations']" name="managedName">Google.VR.Cardboard.Annotations</attr>
 	<attr path="/api/package[@name='com.google.vr.internal.controller']" name="managedName">Google.VR.Internal.Controller</attr>
 	<attr path="/api/package[@name='com.google.vr.ndk.base']" name="managedName">Google.VR.NDK.Base</attr>
-	<attr path="/api/package[@name='com.google.vr.ndk.base.proto.nano']" name="managedName">Google.VR.NDK.Base.Proto.Nano</attr>
+	<attr path="/api/package[@name='com.google.vr.vrcore.base.api']" name="managedName">Google.VR.VrCore.Base.Api</attr>
+	<attr path="/api/package[@name='com.google.vr.vrcore.common.api']" name="managedName">Google.VR.VrCore.Common.Api</attr>
 	<attr path="/api/package[@name='com.google.vr.vrcore.controller.api']" name="managedName">Google.VR.VrCore.Controller.Api</attr>
+	<attr path="/api/package[@name='com.google.vr.vrcore.library.api']" name="managedName">Google.VR.VrCore.Library.Api</attr>
+	<attr path="/api/package[@name='com.google.vr.vrcore.logging.api']" name="managedName">Google.VR.VrCore.Logging.Api</attr>
+	<attr path="/api/package[@name='com.google.vr.vrcore.nano']" name="managedName">Google.VR.VrCore.Nano</attr>
+	<attr path="/api/package[@name='com.google.vr.vrcore.performance.api']" name="managedName">Google.VR.VrCore.Performance.Api</attr>
+	<attr path="/api/package[@name='com.google.vr.vrcore.proto.nano']" name="managedName">Google.VR.VrCore.Proto.Nano</attr>
 	<attr path="/api/package[@name='com.google.vrtoolkit.cardboard']" name="managedName">Google.VRToolkit.Cardboard</attr>
 	<attr path="/api/package[@name='com.google.vrtoolkit.cardboard.proto.nano']" name="managedName">Google.VRToolkit.Cardboard.Proto.Nano</attr>
 
-	<remove-node path="/api/package[@name='com.google.vr.ndk.base.proto.nano']/class[@name='GvrApiData.RenderTextureParamsListData']" />
-	<remove-node path="/api/package[@name='com.google.vr.ndk.base.proto.nano']/class[@name='GvrApiData.RenderTextureParamsListData.RenderTextureParamsData']" />
-	<remove-node path="/api/package[@name='com.google.vrtoolkit.cardboard.proto.nano']/class[@name='CardboardDevice.CardboardInternalParams']" />
+	<attr path="/api/package[@name='com.google.common.logging.nano']" name="managedName">Google.Common.Logging.Nano</attr>
 
 
-	<attr path="/api/package[@name='com.google.vrtoolkit.cardboard.proto.nano']/class[@name='CardboardDevice.DeviceParams']/method[@name='mergeFrom' and count(parameter)=1 and parameter[1][@type='com.google.protobuf.nano.CodedInputByteBufferNano']]" name="managedReturn">Google.Protobuf.Nano.MessageNano</attr>
-	<attr path="/api/package[@name='com.google.vrtoolkit.cardboard.proto.nano']/class[@name='Phone.PhoneParams']/method[@name='mergeFrom' and count(parameter)=1 and parameter[1][@type='com.google.protobuf.nano.CodedInputByteBufferNano']]" name="managedReturn">Google.Protobuf.Nano.MessageNano</attr>
+	<!-- Fix visibility when overriding `Java.Lang.Object.Clone()'. -->
+	<!--
+	<attr path="/api/package[@name='com.google.vr.vrcore.nano']/class[@name='SdkConfiguration.SdkConfigurationParams']/method[@name='clone' and count(parameter)=0]" name="managedReturn">Java.Lang.Object</attr>
+	<attr path="/api/package[@name='com.google.vr.vrcore.nano']/class[@name='SdkConfiguration.SdkConfigurationParams']/method[@name='clone' and count(parameter)=0]" name="visibility">protected</attr>
+	<attr path="/api/package[@name='com.google.vr.vrcore.nano']/class[@name='SdkConfiguration.SdkConfigurationRequest']/method[@name='clone' and count(parameter)=0]" name="managedReturn">Java.Lang.Object</attr>
+	<attr path="/api/package[@name='com.google.vr.vrcore.nano']/class[@name='SdkConfiguration.SdkConfigurationRequest']/method[@name='clone' and count(parameter)=0]" name="visibility">protected</attr>
+	<attr path="/api/package[@name='com.google.vr.vrcore.proto.nano']/class[@name='Nfc.NfcParams']/method[@name='clone' and count(parameter)=0]" name="managedReturn">Java.Lang.Object</attr>
+	<attr path="/api/package[@name='com.google.vr.vrcore.proto.nano']/class[@name='Nfc.NfcParams']/method[@name='clone' and count(parameter)=0]" name="visibility">protected</attr>
+	<attr path="/api/package[@name='com.google.vrtoolkit.cardboard.proto.nano']/class[@name='CardboardDevice.CardboardInternalParams']/method[@name='clone' and count(parameter)=0]" name="managedReturn">Java.Lang.Object</attr>
+	<attr path="/api/package[@name='com.google.vrtoolkit.cardboard.proto.nano']/class[@name='CardboardDevice.CardboardInternalParams']/method[@name='clone' and count(parameter)=0]" name="visibility">protected</attr>
+	<attr path="/api/package[@name='com.google.vrtoolkit.cardboard.proto.nano']/class[@name='CardboardDevice.DaydreamInternalParams']/method[@name='clone' and count(parameter)=0]" name="managedReturn">Java.Lang.Object</attr>
+	<attr path="/api/package[@name='com.google.vrtoolkit.cardboard.proto.nano']/class[@name='CardboardDevice.DaydreamInternalParams']/method[@name='clone' and count(parameter)=0]" name="visibility">protected</attr>
+	<attr path="/api/package[@name='com.google.vrtoolkit.cardboard.proto.nano']/class[@name='CardboardDevice.DeviceParams']/method[@name='clone' and count(parameter)=0]" name="managedReturn">Java.Lang.Object</attr>
+	<attr path="/api/package[@name='com.google.vrtoolkit.cardboard.proto.nano']/class[@name='CardboardDevice.DeviceParams']/method[@name='clone' and count(parameter)=0]" name="visibility">protected</attr>
+	<attr path="/api/package[@name='com.google.vrtoolkit.cardboard.proto.nano']/class[@name='CardboardDevice.ScreenAlignmentMarker']/method[@name='clone' and count(parameter)=0]" name="managedReturn">Java.Lang.Object</attr>
+	<attr path="/api/package[@name='com.google.vrtoolkit.cardboard.proto.nano']/class[@name='CardboardDevice.ScreenAlignmentMarker']/method[@name='clone' and count(parameter)=0]" name="visibility">protected</attr>
+	<attr path="/api/package[@name='com.google.vrtoolkit.cardboard.proto.nano']/class[@name='Phone.PhoneParams']/method[@name='clone' and count(parameter)=0]" name="managedReturn">Java.Lang.Object</attr>
+	<attr path="/api/package[@name='com.google.vrtoolkit.cardboard.proto.nano']/class[@name='Phone.PhoneParams']/method[@name='clone' and count(parameter)=0]" name="visibility">protected</attr>
+	<attr path="/api/package[@name='com.google.vrtoolkit.cardboard.proto.nano']/class[@name='Preferences.DeveloperPrefs']/method[@name='clone' and count(parameter)=0]" name="managedReturn">Java.Lang.Object</attr>
+	<attr path="/api/package[@name='com.google.vrtoolkit.cardboard.proto.nano']/class[@name='Preferences.DeveloperPrefs']/method[@name='clone' and count(parameter)=0]" name="visibility">protected</attr>
+	<attr path="/api/package[@name='com.google.vrtoolkit.cardboard.proto.nano']/class[@name='Preferences.UserPrefs']/method[@name='clone' and count(parameter)=0]" name="managedReturn">Java.Lang.Object</attr>
+	<attr path="/api/package[@name='com.google.vrtoolkit.cardboard.proto.nano']/class[@name='Preferences.UserPrefs']/method[@name='clone' and count(parameter)=0]" name="visibility">protected</attr>
+	<attr path="/api/package[@name='com.google.vrtoolkit.cardboard.proto.nano']/class[@name='Session.TrackerState']/method[@name='clone' and count(parameter)=0]" name="managedReturn">Java.Lang.Object</attr>
+	<attr path="/api/package[@name='com.google.vrtoolkit.cardboard.proto.nano']/class[@name='Session.TrackerState']/method[@name='clone' and count(parameter)=0]" name="visibility">protected</attr>
+	-->
+	<remove-node path="/api/package[@name='com.google.vr.vrcore.nano']/class[@name='SdkConfiguration.SdkConfigurationParams']/method[@name='clone' and count(parameter)=0]" />
+	<remove-node path="/api/package[@name='com.google.vr.vrcore.nano']/class[@name='SdkConfiguration.SdkConfigurationRequest']/method[@name='clone' and count(parameter)=0]" />
+	<remove-node path="/api/package[@name='com.google.vr.vrcore.proto.nano']/class[@name='Nfc.NfcParams']/method[@name='clone' and count(parameter)=0]" />
+	<remove-node path="/api/package[@name='com.google.vrtoolkit.cardboard.proto.nano']/class[@name='CardboardDevice.CardboardInternalParams']/method[@name='clone' and count(parameter)=0]" />
+	<remove-node path="/api/package[@name='com.google.vrtoolkit.cardboard.proto.nano']/class[@name='CardboardDevice.DaydreamInternalParams']/method[@name='clone' and count(parameter)=0]" />
+	<remove-node path="/api/package[@name='com.google.vrtoolkit.cardboard.proto.nano']/class[@name='CardboardDevice.DeviceParams']/method[@name='clone' and count(parameter)=0]" />
+	<remove-node path="/api/package[@name='com.google.vrtoolkit.cardboard.proto.nano']/class[@name='CardboardDevice.ScreenAlignmentMarker']/method[@name='clone' and count(parameter)=0]" />
+	<remove-node path="/api/package[@name='com.google.vrtoolkit.cardboard.proto.nano']/class[@name='Phone.PhoneParams']/method[@name='clone' and count(parameter)=0]" />
+	<remove-node path="/api/package[@name='com.google.vrtoolkit.cardboard.proto.nano']/class[@name='Preferences.DeveloperPrefs']/method[@name='clone' and count(parameter)=0]" />
+	<remove-node path="/api/package[@name='com.google.vrtoolkit.cardboard.proto.nano']/class[@name='Preferences.UserPrefs']/method[@name='clone' and count(parameter)=0]" />
+	<remove-node path="/api/package[@name='com.google.vrtoolkit.cardboard.proto.nano']/class[@name='Session.TrackerState']/method[@name='clone' and count(parameter)=0]" />
+
+	<!-- Fix visibility when overriding `Android.OS.Binder.OnTransact(int, Android.OS.Parcel, Android.OS.Parcel, int)' -->
+	<attr path="/api/package[@name='com.google.vr.vrcore.common.api']/class[@name='IDaydreamListener.Stub']/method[@name='onTransact' and count(parameter)=4 and parameter[1][@type='int'] and parameter[2][@type='android.os.Parcel'] and parameter[3][@type='android.os.Parcel'] and parameter[4][@type='int']]" name="visibility">protected</attr>
+	<attr path="/api/package[@name='com.google.vr.vrcore.common.api']/class[@name='IDaydreamManager.Stub']/method[@name='onTransact' and count(parameter)=4 and parameter[1][@type='int'] and parameter[2][@type='android.os.Parcel'] and parameter[3][@type='android.os.Parcel'] and parameter[4][@type='int']]" name="visibility">protected</attr>
+	<attr path="/api/package[@name='com.google.vr.vrcore.common.api']/class[@name='ITransitionCallbacks.Stub']/method[@name='onTransact' and count(parameter)=4 and parameter[1][@type='int'] and parameter[2][@type='android.os.Parcel'] and parameter[3][@type='android.os.Parcel'] and parameter[4][@type='int']]" name="visibility">protected</attr>
+	<attr path="/api/package[@name='com.google.vr.vrcore.common.api']/class[@name='IVrCoreSdkService.Stub']/method[@name='onTransact' and count(parameter)=4 and parameter[1][@type='int'] and parameter[2][@type='android.os.Parcel'] and parameter[3][@type='android.os.Parcel'] and parameter[4][@type='int']]" name="visibility">protected</attr>
+	<attr path="/api/package[@name='com.google.vr.vrcore.controller.api']/class[@name='IControllerListener.Stub']/method[@name='onTransact' and count(parameter)=4 and parameter[1][@type='int'] and parameter[2][@type='android.os.Parcel'] and parameter[3][@type='android.os.Parcel'] and parameter[4][@type='int']]" name="visibility">protected</attr>
+	<attr path="/api/package[@name='com.google.vr.vrcore.controller.api']/class[@name='IControllerService.Stub']/method[@name='onTransact' and count(parameter)=4 and parameter[1][@type='int'] and parameter[2][@type='android.os.Parcel'] and parameter[3][@type='android.os.Parcel'] and parameter[4][@type='int']]" name="visibility">protected</attr>
+	<attr path="/api/package[@name='com.google.vr.vrcore.library.api']/class[@name='IObjectWrapper.Stub']/method[@name='onTransact' and count(parameter)=4 and parameter[1][@type='int'] and parameter[2][@type='android.os.Parcel'] and parameter[3][@type='android.os.Parcel'] and parameter[4][@type='int']]" name="visibility">protected</attr>
+	<attr path="/api/package[@name='com.google.vr.vrcore.library.api']/class[@name='IVrCreator.Stub']/method[@name='onTransact' and count(parameter)=4 and parameter[1][@type='int'] and parameter[2][@type='android.os.Parcel'] and parameter[3][@type='android.os.Parcel'] and parameter[4][@type='int']]" name="visibility">protected</attr>
+	<attr path="/api/package[@name='com.google.vr.vrcore.library.api']/class[@name='IVrNativeLibraryLoader.Stub']/method[@name='onTransact' and count(parameter)=4 and parameter[1][@type='int'] and parameter[2][@type='android.os.Parcel'] and parameter[3][@type='android.os.Parcel'] and parameter[4][@type='int']]" name="visibility">protected</attr>
+	<attr path="/api/package[@name='com.google.vr.vrcore.logging.api']/class[@name='IVrCoreLoggingService.Stub']/method[@name='onTransact' and count(parameter)=4 and parameter[1][@type='int'] and parameter[2][@type='android.os.Parcel'] and parameter[3][@type='android.os.Parcel'] and parameter[4][@type='int']]" name="visibility">protected</attr>
+	<attr path="/api/package[@name='com.google.vr.vrcore.performance.api']/class[@name='IPerformanceService.Stub']/method[@name='onTransact' and count(parameter)=4 and parameter[1][@type='int'] and parameter[2][@type='android.os.Parcel'] and parameter[3][@type='android.os.Parcel'] and parameter[4][@type='int']]" name="visibility">protected</attr>
+
+	<!-- Remove obsolete members
+	     Warning CS0618: `Google.VR.Cardboard.IUsedByNative' is obsolete: `This class is obsoleted in this android platform'
+	-->
+	<remove-node path="/api/package[@name='com.google.vr.cardboard']/interface[@name='UsedByNative']" />
+
+	<!-- Rename classes which have the same name as properties. -->
+	<attr path="/api/package[@name='com.google.common.logging.nano']/class[@name='Vr.VREvent.Application']" name="managedName">CApplication</attr>
+	<attr path="/api/package[@name='com.google.common.logging.nano']/class[@name='Vr.VREvent.AudioStats']" name="managedName">CAudioStats</attr>
+	<attr path="/api/package[@name='com.google.common.logging.nano']/class[@name='Vr.VREvent.Cyclops']" name="managedName">CCyclops</attr>
+	<attr path="/api/package[@name='com.google.common.logging.nano']/class[@name='Vr.VREvent.Cyclops.Capture']" name="managedName">CCapture</attr>
+	<attr path="/api/package[@name='com.google.common.logging.nano']/class[@name='Vr.VREvent.Cyclops.Share']" name="managedName">CShare</attr>
+	<attr path="/api/package[@name='com.google.common.logging.nano']/class[@name='Vr.VREvent.Cyclops.ShareStart']" name="managedName">CShareStart</attr>
+	<attr path="/api/package[@name='com.google.common.logging.nano']/class[@name='Vr.VREvent.Cyclops.View']" name="managedName">CView</attr>
+	<attr path="/api/package[@name='com.google.common.logging.nano']/class[@name='Vr.VREvent.EarthVr']" name="managedName">CEarthVr</attr>
+	<attr path="/api/package[@name='com.google.common.logging.nano']/class[@name='Vr.VREvent.EarthVr.AppState']" name="managedName">CAppState</attr>
+	<attr path="/api/package[@name='com.google.common.logging.nano']/class[@name='Vr.VREvent.EarthVr.Menu']" name="managedName">CMenu</attr>
+	<attr path="/api/package[@name='com.google.common.logging.nano']/class[@name='Vr.VREvent.EarthVr.Preferences']" name="managedName">CPreferences</attr>
+	<attr path="/api/package[@name='com.google.common.logging.nano']/class[@name='Vr.VREvent.EarthVr.Tour']" name="managedName">CTour</attr>
+	<attr path="/api/package[@name='com.google.common.logging.nano']/class[@name='Vr.VREvent.EarthVr.Tutorial']" name="managedName">CTutorial</attr>
+	<attr path="/api/package[@name='com.google.common.logging.nano']/class[@name='Vr.VREvent.EarthVr.View']" name="managedName">CView</attr>
+	<attr path="/api/package[@name='com.google.common.logging.nano']/class[@name='Vr.VREvent.EmbedVrWidget']" name="managedName">CEmbedVrWidget</attr>
+	<attr path="/api/package[@name='com.google.common.logging.nano']/class[@name='Vr.VREvent.EmbedVrWidget.Pano']" name="managedName">CPano</attr>
+	<attr path="/api/package[@name='com.google.common.logging.nano']/class[@name='Vr.VREvent.EmbedVrWidget.Video']" name="managedName">CVideo</attr>
+	<attr path="/api/package[@name='com.google.common.logging.nano']/class[@name='Vr.VREvent.HeadMount']" name="managedName">CHeadMount</attr>
+	<attr path="/api/package[@name='com.google.common.logging.nano']/class[@name='Vr.VREvent.Keyboard']" name="managedName">CKeyboard</attr>
+	<attr path="/api/package[@name='com.google.common.logging.nano']/class[@name='Vr.VREvent.Launcher']" name="managedName">CLauncher</attr>
+	<attr path="/api/package[@name='com.google.common.logging.nano']/class[@name='Vr.VREvent.PerformanceStats']" name="managedName">CPerformanceStats</attr>
+	<attr path="/api/package[@name='com.google.common.logging.nano']/class[@name='Vr.VREvent.QrCodeScan']" name="managedName">CQrCodeScan</attr>
+	<attr path="/api/package[@name='com.google.common.logging.nano']/class[@name='Vr.VREvent.SensorStats']" name="managedName">CSensorStats</attr>
+	<attr path="/api/package[@name='com.google.common.logging.nano']/class[@name='Vr.VREvent.SensorStats.GyroscopeStats']" name="managedName">CGyroscopeStats</attr>
+	<attr path="/api/package[@name='com.google.common.logging.nano']/class[@name='Vr.VREvent.TimeSeriesData.TimeIntervalData']" name="managedName">CTimeIntervalData</attr>
+	<attr path="/api/package[@name='com.google.common.logging.nano']/class[@name='Vr.VREvent.VrCore']" name="managedName">CVrCore</attr>
+	<attr path="/api/package[@name='com.google.common.logging.nano']/class[@name='Vr.VREvent.VrCore.Controller']" name="managedName">CController</attr>
+
+	<!-- Rename enumerations which have the same name as properties. -->
+	<attr path="/api/package[@name='com.google.common.logging.nano']/interface[@name='Vr.VREvent.AudioStats.RenderingMode']" name="managedName">RenderingModeEnum</attr>
+	<attr path="/api/package[@name='com.google.common.logging.nano']/interface[@name='Vr.VREvent.Cyclops.Capture.Outcome']" name="managedName">OutcomeEnum</attr>
+	<attr path="/api/package[@name='com.google.common.logging.nano']/interface[@name='Vr.VREvent.Cyclops.Share.Type']" name="managedName">TypeEnum</attr>
+	<attr path="/api/package[@name='com.google.common.logging.nano']/interface[@name='Vr.VREvent.Cyclops.ShareStart.OriginScreen']" name="managedName">OriginScreenEnum</attr>
+	<attr path="/api/package[@name='com.google.common.logging.nano']/interface[@name='Vr.VREvent.Cyclops.View.Orientation']" name="managedName">OrientationEnum</attr>
+	<attr path="/api/package[@name='com.google.common.logging.nano']/interface[@name='Vr.VREvent.EarthVr.Actor.ControllerState.Role']" name="managedName">ActorRoleEnum</attr>
+	<attr path="/api/package[@name='com.google.common.logging.nano']/interface[@name='Vr.VREvent.EarthVr.ControllerState.Role']" name="managedName">RoleEnum</attr>
+	<attr path="/api/package[@name='com.google.common.logging.nano']/interface[@name='Vr.VREvent.EarthVr.Preferences.ComfortModeState']" name="managedName">ComfortModeStateEnum</attr>
+	<attr path="/api/package[@name='com.google.common.logging.nano']/interface[@name='Vr.VREvent.EarthVr.Preferences.LabelsState']" name="managedName">LabelsStateEnum</attr>
+	<attr path="/api/package[@name='com.google.common.logging.nano']/interface[@name='Vr.VREvent.EarthVr.Preferences.StartConfiguration']" name="managedName">StartConfigurationEnum</attr>
+	<attr path="/api/package[@name='com.google.common.logging.nano']/interface[@name='Vr.VREvent.EarthVr.View.Mode']" name="managedName">ModeEnum</attr>
+	<attr path="/api/package[@name='com.google.common.logging.nano']/interface[@name='Vr.VREvent.EmbedVrWidget.ViewMode']" name="managedName">ViewModeEnum</attr>
+	<attr path="/api/package[@name='com.google.common.logging.nano']/interface[@name='Vr.VREvent.Launcher.NavItem']" name="managedName">NavItemEnum</attr>
+	<attr path="/api/package[@name='com.google.common.logging.nano']/interface[@name='Vr.VREvent.QrCodeScan.Status']" name="managedName">StatusEnum</attr>
+	<attr path="/api/package[@name='com.google.common.logging.nano']/interface[@name='Vr.VREvent.VrCore.ErrorCode']" name="managedName">ErrorCodeEnum</attr>
+	<attr path="/api/package[@name='com.google.common.logging.nano']/interface[@name='Vr.VREvent.VrCore.Permission']" name="managedName">PermissionEnum</attr>
+
+	<!-- Fix a bad resolve of binding generator.
+	     Error CS0234: The type or namespace name `CEarthVr' does not exist in the namespace `Google.Common.Logging.Nano'. Are you missing an assembly reference?
+	-->
+	<!--
+	<attr path="/api/package[@name='com.google.common.logging.nano']/class[@name='Vr.VREvent.EarthVr.Actor']/field[@name='controllerStates']" name="managedReturn">IList&lt;Google.Common.Logging.Nano.VrVREvent.CEarthVr.Actor.ControllerState&gt;</attr>
+	<attr path="/api/package[@name='com.google.common.logging.nano']/class[@name='Vr.VREvent.EarthVr.Actor.ControllerState']/method[@name='emptyArray' and count(parameter)=0]" name="managedReturn">Google.Common.Logging.Nano.VrVREvent.CEarthVr.Actor.ControllerState</attr>
+	-->
+	<remove-node path="/api/package[@name='com.google.common.logging.nano']/class[@name='Vr.VREvent.EarthVr.Actor']/field[@name='controllerStates']" />
+	<remove-node path="/api/package[@name='com.google.common.logging.nano']/class[@name='Vr.VREvent.EarthVr.Actor.ControllerState']/method[@name='emptyArray' and count(parameter)=0]" />
+	<attr path="/api/package[@name='com.google.common.logging.nano']/class[@name='Vr.VREvent.EarthVr.Actor.ControllerState']/method[@name='clear' and count(parameter)=0]" name="managedReturn">Google.Common.Logging.Nano.VrVREvent.CEarthVr.Actor.ControllerState</attr>
+	<attr path="/api/package[@name='com.google.common.logging.nano']/class[@name='Vr.VREvent.EarthVr.Actor.ControllerState']/method[@name='mergeFrom' and count(parameter)=1 and parameter[1][@type='com.google.protobuf.nano.CodedInputByteBufferNano']]" name="managedReturn">Google.Common.Logging.Nano.VrVREvent.CEarthVr.Actor.ControllerState</attr>
+	<attr path="/api/package[@name='com.google.common.logging.nano']/class[@name='Vr.VREvent.EarthVr.Actor.ControllerState']/method[@name='parseFrom' and count(parameter)=1 and parameter[1][@type='byte[]']]" name="managedReturn">Google.Common.Logging.Nano.VrVREvent.CEarthVr.Actor.ControllerState</attr>
+	<attr path="/api/package[@name='com.google.common.logging.nano']/class[@name='Vr.VREvent.EarthVr.Actor.ControllerState']/method[@name='parseFrom' and count(parameter)=1 and parameter[1][@type='com.google.protobuf.nano.CodedInputByteBufferNano']]" name="managedReturn">Google.Common.Logging.Nano.VrVREvent.CEarthVr.Actor.ControllerState</attr>
+
+	<!-- Hide them for now -->
+	<!--
+	<remove-node path="/api/package[@name='com.google.common.logging.nano']/class[@name='Vr.VREvent']/method[@name='mergeFrom' and count(parameter)=1 and parameter[1][@type='com.google.protobuf.nano.CodedInputByteBufferNano']]" />
+	<remove-node path="/api/package[@name='com.google.common.logging.nano']/class[@name='Vr.VREvent.Application']/method[@name='mergeFrom' and count(parameter)=1 and parameter[1][@type='com.google.protobuf.nano.CodedInputByteBufferNano']]" />
+	<remove-node path="/api/package[@name='com.google.common.logging.nano']/class[@name='Vr.VREvent.AudioStats']/method[@name='mergeFrom' and count(parameter)=1 and parameter[1][@type='com.google.protobuf.nano.CodedInputByteBufferNano']]" />
+	<remove-node path="/api/package[@name='com.google.common.logging.nano']/class[@name='Vr.VREvent.Cyclops']/method[@name='mergeFrom' and count(parameter)=1 and parameter[1][@type='com.google.protobuf.nano.CodedInputByteBufferNano']]" />
+	<remove-node path="/api/package[@name='com.google.common.logging.nano']/class[@name='Vr.VREvent.Cyclops.Capture']/method[@name='mergeFrom' and count(parameter)=1 and parameter[1][@type='com.google.protobuf.nano.CodedInputByteBufferNano']]" />
+	<remove-node path="/api/package[@name='com.google.common.logging.nano']/class[@name='Vr.VREvent.Cyclops.Share']/method[@name='mergeFrom' and count(parameter)=1 and parameter[1][@type='com.google.protobuf.nano.CodedInputByteBufferNano']]" />
+	<remove-node path="/api/package[@name='com.google.common.logging.nano']/class[@name='Vr.VREvent.Cyclops.ShareStart']/method[@name='mergeFrom' and count(parameter)=1 and parameter[1][@type='com.google.protobuf.nano.CodedInputByteBufferNano']]" />
+	<remove-node path="/api/package[@name='com.google.common.logging.nano']/class[@name='Vr.VREvent.Cyclops.View']/method[@name='mergeFrom' and count(parameter)=1 and parameter[1][@type='com.google.protobuf.nano.CodedInputByteBufferNano']]" />
+	<remove-node path="/api/package[@name='com.google.common.logging.nano']/class[@name='Vr.VREvent.DoublePrecisionTransform']/method[@name='mergeFrom' and count(parameter)=1 and parameter[1][@type='com.google.protobuf.nano.CodedInputByteBufferNano']]" />
+	<remove-node path="/api/package[@name='com.google.common.logging.nano']/class[@name='Vr.VREvent.EarthVr']/method[@name='mergeFrom' and count(parameter)=1 and parameter[1][@type='com.google.protobuf.nano.CodedInputByteBufferNano']]" />
+	<remove-node path="/api/package[@name='com.google.common.logging.nano']/class[@name='Vr.VREvent.EarthVr.Actor']/method[@name='mergeFrom' and count(parameter)=1 and parameter[1][@type='com.google.protobuf.nano.CodedInputByteBufferNano']]" />
+	<remove-node path="/api/package[@name='com.google.common.logging.nano']/class[@name='Vr.VREvent.EarthVr.AppState']/method[@name='mergeFrom' and count(parameter)=1 and parameter[1][@type='com.google.protobuf.nano.CodedInputByteBufferNano']]" />
+	<remove-node path="/api/package[@name='com.google.common.logging.nano']/class[@name='Vr.VREvent.EarthVr.ControllerState']/method[@name='mergeFrom' and count(parameter)=1 and parameter[1][@type='com.google.protobuf.nano.CodedInputByteBufferNano']]" />
+	<remove-node path="/api/package[@name='com.google.common.logging.nano']/class[@name='Vr.VREvent.EarthVr.Menu']/method[@name='mergeFrom' and count(parameter)=1 and parameter[1][@type='com.google.protobuf.nano.CodedInputByteBufferNano']]" />
+	<remove-node path="/api/package[@name='com.google.common.logging.nano']/class[@name='Vr.VREvent.EarthVr.Preferences']/method[@name='mergeFrom' and count(parameter)=1 and parameter[1][@type='com.google.protobuf.nano.CodedInputByteBufferNano']]" />
+	<remove-node path="/api/package[@name='com.google.common.logging.nano']/class[@name='Vr.VREvent.EarthVr.Tour']/method[@name='mergeFrom' and count(parameter)=1 and parameter[1][@type='com.google.protobuf.nano.CodedInputByteBufferNano']]" />
+	<remove-node path="/api/package[@name='com.google.common.logging.nano']/class[@name='Vr.VREvent.EarthVr.Tutorial']/method[@name='mergeFrom' and count(parameter)=1 and parameter[1][@type='com.google.protobuf.nano.CodedInputByteBufferNano']]" />
+	<remove-node path="/api/package[@name='com.google.common.logging.nano']/class[@name='Vr.VREvent.EarthVr.View']/method[@name='mergeFrom' and count(parameter)=1 and parameter[1][@type='com.google.protobuf.nano.CodedInputByteBufferNano']]" />
+	<remove-node path="/api/package[@name='com.google.common.logging.nano']/class[@name='Vr.VREvent.EmbedVrWidget']/method[@name='mergeFrom' and count(parameter)=1 and parameter[1][@type='com.google.protobuf.nano.CodedInputByteBufferNano']]" />
+	<remove-node path="/api/package[@name='com.google.common.logging.nano']/class[@name='Vr.VREvent.EmbedVrWidget.Pano']/method[@name='mergeFrom' and count(parameter)=1 and parameter[1][@type='com.google.protobuf.nano.CodedInputByteBufferNano']]" />
+	<remove-node path="/api/package[@name='com.google.common.logging.nano']/class[@name='Vr.VREvent.EmbedVrWidget.Video']/method[@name='mergeFrom' and count(parameter)=1 and parameter[1][@type='com.google.protobuf.nano.CodedInputByteBufferNano']]" />
+	<remove-node path="/api/package[@name='com.google.common.logging.nano']/class[@name='Vr.VREvent.HeadMount']/method[@name='mergeFrom' and count(parameter)=1 and parameter[1][@type='com.google.protobuf.nano.CodedInputByteBufferNano']]" />
+	<remove-node path="/api/package[@name='com.google.common.logging.nano']/class[@name='Vr.VREvent.HistogramBucket']/method[@name='mergeFrom' and count(parameter)=1 and parameter[1][@type='com.google.protobuf.nano.CodedInputByteBufferNano']]" />
+	<remove-node path="/api/package[@name='com.google.common.logging.nano']/class[@name='Vr.VREvent.Keyboard']/method[@name='mergeFrom' and count(parameter)=1 and parameter[1][@type='com.google.protobuf.nano.CodedInputByteBufferNano']]" />
+	<remove-node path="/api/package[@name='com.google.common.logging.nano']/class[@name='Vr.VREvent.Keyboard.KeyboardEvent']/method[@name='mergeFrom' and count(parameter)=1 and parameter[1][@type='com.google.protobuf.nano.CodedInputByteBufferNano']]" />
+	<remove-node path="/api/package[@name='com.google.common.logging.nano']/class[@name='Vr.VREvent.Keyboard.KeyboardTextEntry']/method[@name='mergeFrom' and count(parameter)=1 and parameter[1][@type='com.google.protobuf.nano.CodedInputByteBufferNano']]" />
+	<remove-node path="/api/package[@name='com.google.common.logging.nano']/class[@name='Vr.VREvent.Launcher']/method[@name='mergeFrom' and count(parameter)=1 and parameter[1][@type='com.google.protobuf.nano.CodedInputByteBufferNano']]" />
+	<remove-node path="/api/package[@name='com.google.common.logging.nano']/class[@name='Vr.VREvent.PerformanceStats']/method[@name='mergeFrom' and count(parameter)=1 and parameter[1][@type='com.google.protobuf.nano.CodedInputByteBufferNano']]" />
+	<remove-node path="/api/package[@name='com.google.common.logging.nano']/class[@name='Vr.VREvent.QrCodeScan']/method[@name='mergeFrom' and count(parameter)=1 and parameter[1][@type='com.google.protobuf.nano.CodedInputByteBufferNano']]" />
+	<remove-node path="/api/package[@name='com.google.common.logging.nano']/class[@name='Vr.VREvent.SensorStats']/method[@name='mergeFrom' and count(parameter)=1 and parameter[1][@type='com.google.protobuf.nano.CodedInputByteBufferNano']]" />
+	<remove-node path="/api/package[@name='com.google.common.logging.nano']/class[@name='Vr.VREvent.SensorStats.GyroscopeStats']/method[@name='mergeFrom' and count(parameter)=1 and parameter[1][@type='com.google.protobuf.nano.CodedInputByteBufferNano']]" />
+	<remove-node path="/api/package[@name='com.google.common.logging.nano']/class[@name='Vr.VREvent.SensorStats.Vector3']/method[@name='mergeFrom' and count(parameter)=1 and parameter[1][@type='com.google.protobuf.nano.CodedInputByteBufferNano']]" />
+	<remove-node path="/api/package[@name='com.google.common.logging.nano']/class[@name='Vr.VREvent.TimeSeriesData']/method[@name='mergeFrom' and count(parameter)=1 and parameter[1][@type='com.google.protobuf.nano.CodedInputByteBufferNano']]" />
+	<remove-node path="/api/package[@name='com.google.common.logging.nano']/class[@name='Vr.VREvent.TimeSeriesData.TimeIntervalData']/method[@name='mergeFrom' and count(parameter)=1 and parameter[1][@type='com.google.protobuf.nano.CodedInputByteBufferNano']]" />
+	<remove-node path="/api/package[@name='com.google.common.logging.nano']/class[@name='Vr.VREvent.Transform']/method[@name='mergeFrom' and count(parameter)=1 and parameter[1][@type='com.google.protobuf.nano.CodedInputByteBufferNano']]" />
+	<remove-node path="/api/package[@name='com.google.common.logging.nano']/class[@name='Vr.VREvent.VrCore']/method[@name='mergeFrom' and count(parameter)=1 and parameter[1][@type='com.google.protobuf.nano.CodedInputByteBufferNano']]" />
+	<remove-node path="/api/package[@name='com.google.common.logging.nano']/class[@name='Vr.VREvent.VrCore.Controller']/method[@name='mergeFrom' and count(parameter)=1 and parameter[1][@type='com.google.protobuf.nano.CodedInputByteBufferNano']]" />
+	-->
 </metadata>
