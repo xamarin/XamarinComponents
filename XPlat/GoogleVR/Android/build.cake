@@ -3,9 +3,15 @@
 
 var TARGET = Argument ("t", Argument ("target", "Default"));
 
-var ANDROID_VERSION = "0954a01934199b8536755f06688d98e3d2a958e4";
-var ANDROID_NUGET_VERSION = "0.8.0-beta1";
+var ANDROID_VERSION = "25e7e14413229d4644a66be77e8f8ddeb3f91fe7";
+var ANDROID_NUGET_VERSION = "1.0.0";
 var ANDROID_URL = string.Format ("https://github.com/googlevr/gvr-android-sdk/archive/{0}.zip", ANDROID_VERSION);
+
+var PROTOBUF_NANO_VERSION = "3.1.0";
+var PROTOBUF_NANO_URL = string.Format ("https://bintray.com/bintray/jcenter/download_file?file_path=com%2Fgoogle%2Fprotobuf%2Fnano%2Fprotobuf-javanano%2F{0}%2Fprotobuf-javanano-{0}.jar", PROTOBUF_NANO_VERSION);
+
+var EXOPLAYER_VERSION = "r1.5.2";
+var EXOPLAYER_URL = string.Format ("https://bintray.com/google/exoplayer/download_file?file_path=com%2Fgoogle%2Fandroid%2Fexoplayer%2Fexoplayer%2F{0}%2Fexoplayer-{0}.aar", EXOPLAYER_VERSION);
 
 var buildSpec = new BuildSpec {
 
@@ -13,6 +19,8 @@ var buildSpec = new BuildSpec {
 		new DefaultSolutionBuilder {
 			SolutionPath = "./source/Google.VR.Android.sln",
 			OutputFiles = new [] { 
+				new OutputFileCopy { FromFile = "./source/Google.VR.Android/Protobuf.Nano/bin/Release/Xamarin.Google.Protobuf.Nano.dll" },
+				new OutputFileCopy { FromFile = "./source/Google.VR.Android/ExoPlayer/bin/Release/Xamarin.Google.Android.ExoPlayer.dll" },
 				new OutputFileCopy { FromFile = "./source/Google.VR.Android/Audio/bin/Release/Xamarin.Google.VR.Android.Audio.dll" },
 				new OutputFileCopy { FromFile = "./source/Google.VR.Android/Base/bin/Release/Xamarin.Google.VR.Android.Base.dll" },
 				new OutputFileCopy { FromFile = "./source/Google.VR.Android/Common/bin/Release/Xamarin.Google.VR.Android.Common.dll" },
@@ -52,6 +60,12 @@ Task ("externals")
 	Unzip ("./externals/android/libraries/panowidget/panowidget.aar", "./externals/android/libraries/panowidget");
 	Unzip ("./externals/android/libraries/videowidget/videowidget.aar", "./externals/android/libraries/videowidget");
 
+	EnsureDirectoryExists ("./externals/android/libraries/protobuf-javanano");
+	DownloadFile (PROTOBUF_NANO_URL, "./externals/android/libraries/protobuf-javanano/classes.jar");
+
+	EnsureDirectoryExists ("./externals/android/libraries/exoplayer");
+	DownloadFile (EXOPLAYER_URL, "./externals/android/libraries/exoplayer/exoplayer.aar");
+	Unzip ("./externals/android/libraries/exoplayer/exoplayer.aar", "./externals/android/libraries/exoplayer");
 });
 
 Task ("clean").IsDependentOn ("clean-base").Does (() => 
