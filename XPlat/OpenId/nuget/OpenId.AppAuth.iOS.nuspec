@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2013/05/nuspec.xsd">
+  <metadata>
+    <id>OpenId.AppAuth.iOS</id>
+    <title>OpenID AppAuth (OAuth Client) for iOS</title>
+    <version>$version$</version>
+    <authors>Xamarin</authors>
+    <owners>Xamarin</owners>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <summary>AppAuth for iOS is a client SDK for communicating with OAuth 2.0 and OpenID Connect providers.</summary>
+    <description>AppAuth for iOS is a client SDK for communicating with OAuth 2.0 and OpenID Connect providers. 
+It strives to directly map the requests and responses of those specifications, while following the idiomatic style of the implementation language. 
+In addition to mapping the raw protocol flows, convenience methods are available to assist with common tasks like performing an action with fresh tokens.
+    </description>
+    <copyright>Copyright © Xamarin. All Rights Reserved.</copyright>
+    <licenseUrl>https://github.com/xamarin/XamarinComponents/blob/master/XPlat/OpenId/iOS/component/License.md</licenseUrl>
+    <iconUrl>https://github.com/xamarin/XamarinComponents/raw/master/XPlat/OpenId/images/logo_1024x1024.png</iconUrl>
+  </metadata>
+  <files>
+    <file src="output/OpenId.AppAuth.iOS.dll" target="lib/Xamarin.iOS10" />
+  </files>
+</package>
