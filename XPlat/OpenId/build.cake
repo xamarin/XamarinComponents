@@ -3,13 +3,12 @@
 
 var TARGET = Argument ("t", Argument ("target", "Default"));
 
-// var ANDROID_VERSION = "4.1.1";
-// var ANDROID_NUGET_VERSION = "4.1.1.0";
+var ANDROID_VERSION = "0.3.0";
+var ANDROID_NUGET_VERSION = "0.3.0";
 var IOS_VERSION = "0.4.2";
 var IOS_NUGET_VERSION = "0.4.2";
 
-// var MAPBOX_VERSION = "4.1.1";
-// var MAPBOX_ANDROID = string.Format ("http://search.maven.org/remotecontent?filepath=com/mapbox/mapboxsdk/mapbox-android-sdk/{0}/mapbox-android-sdk-{0}.aar", MAPBOX_VERSION);
+var AAR_URL = string.Format ("https://bintray.com/openid/net.openid/download_file?file_path=net%2Fopenid%2Fappauth%2F{0}%2Fappauth-{0}.aar", ANDROID_VERSION);
 
 var PODFILE = new List<string> {
 	"platform :ios, '8.0'",
@@ -55,19 +54,14 @@ var buildSpec = new BuildSpec {
 	}
 };
 
-// Task ("externals-android")
-// 	.WithCriteria (!FileExists ("./externals/android/mapbox-android-sdk.aar"))
-// 	.Does (() => 
-// {
-// 	EnsureDirectoryExists ("./externals/android");
+Task ("externals-android")
+	.WithCriteria (!FileExists ("./externals/android/appauth.aar"))
+	.Does (() => 
+{
+	EnsureDirectoryExists ("./externals/android");
 
-// 	DownloadFile (MAPBOX_ANDROID, "./externals/android/temp.aar");
-
-// 	Unzip ("./externals/android/temp.aar", "./externals/android/temp");
-// 	DeleteDirectory ("./externals/android/temp/jni/mips", true);
-// 	Zip ("./externals/android/temp", "./externals/android/mapbox-android-sdk.aar");
-// 	DeleteDirectory ("./externals/android/temp", true);
-// });
+	DownloadFile (AAR_URL, "./externals/android/appauth.aar");
+});
 Task ("externals-ios")
 	.WithCriteria (!FileExists ("./externals/ios/libAppAuth.a"))
 	.Does (() => 
@@ -103,7 +97,7 @@ Task ("externals-ios")
 		"./externals/ios/build/Release-iphonesimulator/AppAuth/libAppAuth.a");
 });
 Task ("externals")
-	// .IsDependentOn ("externals-android")
+	.IsDependentOn ("externals-android")
 	.IsDependentOn ("externals-ios");
 
 Task ("clean").IsDependentOn ("clean-base").Does (() => 

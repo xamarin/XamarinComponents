@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<metadata>
+	<!-- namespace -->
+	<attr path="/api/package[@name='net.openid.appauth']" name="managedName">OpenId.AppAuth</attr>
+	<!-- nested classes -->
+	<attr path="/api/package[@name='net.openid.appauth']/class[@name='AuthorizationRequest.Display']" name="managedName">Displays</attr>
+	<attr path="/api/package[@name='net.openid.appauth']/class[@name='AuthorizationRequest.Prompt']" name="managedName">Prompts</attr>
+	<attr path="/api/package[@name='net.openid.appauth']/class[@name='AuthorizationRequest.ResponseMode']" name="managedName">ResponseModes</attr>
+	<attr path="/api/package[@name='net.openid.appauth']/class[@name='AuthorizationRequest.Scope']" name="managedName">Scopes</attr>
+	<!-- tweaks -->
+	<attr path="/api/package[@name='net.openid.appauth']/class[@name='AuthorizationServiceDiscovery']/method[@name='requireRequestUriRegistration']" name="managedName">GetRequireRequestUriRegistration</attr>
+	<attr path="/api/package[@name='net.openid.appauth']/interface[@name='AuthState.AuthStateAction']/method[@name='execute']/parameter[1]" name="managedName">accessToken</attr>
+	<attr path="/api/package[@name='net.openid.appauth']/interface[@name='AuthState.AuthStateAction']/method[@name='execute']/parameter[2]" name="managedName">idToken</attr>
+	<attr path="/api/package[@name='net.openid.appauth']/interface[@name='AuthState.AuthStateAction']/method[@name='execute']/parameter[3]" name="managedName">ex</attr>
+	<!-- private types -->
+	<remove-node path="/api/package[@name='net.openid.appauth']/class[@visibility='private']" />
+</metadata>
