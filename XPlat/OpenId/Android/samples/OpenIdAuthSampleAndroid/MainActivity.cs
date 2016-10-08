@@ -17,6 +17,14 @@ namespace OpenIdAuthSampleAndroid
 		WindowSoftInputMode = SoftInput.StateHidden)]
 	public class MainActivity : AppCompatActivity
 	{
+		private static string DiscoveryEndpoint = "https://accounts.google.com/.well-known/openid-configuration";
+		private static string ClientId = "60322915503-t6s4kgg8jf7bfos910agh9qb9fa5jvju.apps.googleusercontent.com";
+		private static string RedirectUri = "com.googleusercontent.apps.60322915503-t6s4kgg8jf7bfos910agh9qb9fa5jvju:/oauth2redirect";
+
+		private static string AuthEndpoint = null; // auth endpoint is discovered
+		private static string TokenEndpoint = null; // token endpoint is discovered
+		private static string RegistrationEndpoint = null; // dynamic registration not supported
+		
 		private AuthorizationService mAuthService;
 
 		protected override void OnCreate(Bundle savedInstanceState)
@@ -26,55 +34,44 @@ namespace OpenIdAuthSampleAndroid
 			SetContentView(Resource.Layout.activity_main);
 
 			mAuthService = new AuthorizationService(this);
-			var idpButtonContainer = FindViewById<ViewGroup>(Resource.Id.idp_button_container);
-			var providers = IdentityProvider.GetEnabledProviders(this);
 
-			FindViewById(Resource.Id.sign_in_container).Visibility = providers.Count == 0 ? ViewStates.Gone : ViewStates.Visible;
-			FindViewById(Resource.Id.no_idps_configured).Visibility = providers.Count == 0 ? ViewStates.Visible : ViewStates.Gone;
-
-			foreach (var idp in providers)
+			var idpButton = FindViewById<Button>(Resource.Id.idpButton);
+			idpButton.Click += async delegate
 			{
-				var idpButton = new FrameLayout(this);
-				idpButton.SetBackgroundResource(idp.buttonImageRes);
-				idpButton.ContentDescription = Resources.GetString(idp.buttonContentDescriptionRes);
-				idpButton.LayoutParameters = new LinearLayout.LayoutParams(
-					LinearLayout.LayoutParams.MatchParent,
-					LinearLayout.LayoutParams.WrapContent);
-				idpButton.Click += async delegate
+				Console.WriteLine("initiating auth...");
+
+				try
 				{
-					Console.WriteLine("initiating auth for " + idp.name);
-
-					try
+					AuthorizationServiceConfiguration serviceConfiguration;
+					if (DiscoveryEndpoint != null)
 					{
-						var serviceConfiguration = await idp.retrieveConfigAsync(this);
-
-						Console.WriteLine("$configuration retrieved for {idp.name}, proceeding");
-						if (idp.getClientId() == null)
-						{
-							// Do dynamic client registration if no client_id
-							makeRegistrationRequest(serviceConfiguration, idp);
-						}
-						else {
-							makeAuthRequest(serviceConfiguration, idp, new AuthState());
-						}
+						serviceConfiguration = await AuthorizationServiceConfiguration.FetchFromUrlAsync(
+							Android.Net.Uri.Parse(DiscoveryEndpoint));
 					}
-					catch (AuthorizationException ex)
+					else
 					{
-						Console.WriteLine("Failed to retrieve configuration for " + idp.name, ex);
+						serviceConfiguration = new AuthorizationServiceConfiguration(
+							Android.Net.Uri.Parse(AuthEndpoint), 
+							Android.Net.Uri.Parse(TokenEndpoint),
+							Android.Net.Uri.Parse(RegistrationEndpoint));
 					}
-				};
 
-				var label = new TextView(this);
-				label.Text = idp.name;
-				label.SetTextColor(getColorCompat(idp.buttonTextColorRes));
-				label.LayoutParameters = new FrameLayout.LayoutParams(
-					FrameLayout.LayoutParams.WrapContent,
-					FrameLayout.LayoutParams.WrapContent,
-					GravityFlags.Center);
-				idpButton.AddView(label);
-
-				idpButtonContainer.AddView(idpButton);
-			}
+					Console.WriteLine("configuration retrieved, proceeding");
+					if (ClientId == null)
+					{
+						// Do dynamic client registration if no client_id
+						makeRegistrationRequest(serviceConfiguration);
+					}
+					else
+					{
+						makeAuthRequest(serviceConfiguration, new AuthState());
+					}
+				}
+				catch (AuthorizationException ex)
+				{
+					Console.WriteLine("Failed to retrieve configuration:" + ex);
+				}
+			};
 		}
 
 		protected override void OnDestroy()
@@ -84,10 +81,10 @@ namespace OpenIdAuthSampleAndroid
 			mAuthService.Dispose();
 		}
 
-		private void makeAuthRequest(AuthorizationServiceConfiguration serviceConfig, IdentityProvider idp, AuthState authState)
+		private void makeAuthRequest(AuthorizationServiceConfiguration serviceConfig, AuthState authState)
 		{
-			var authRequest = new AuthorizationRequest.Builder(serviceConfig, idp.getClientId(), ResponseTypeValues.Code, idp.getRedirectUri())
-				.SetScope(idp.getScope())
+			var authRequest = new AuthorizationRequest.Builder(serviceConfig, ClientId, ResponseTypeValues.Code, Android.Net.Uri.Parse(RedirectUri))
+				.SetScope("openid profile email")
 				.Build();
 
 			Console.WriteLine("Making auth request to " + serviceConfig.AuthorizationEndpoint);
@@ -97,9 +94,9 @@ namespace OpenIdAuthSampleAndroid
 				mAuthService.CreateCustomTabsIntentBuilder().SetToolbarColor(getColorCompat(Resource.Color.colorAccent)).Build());
 		}
 
-		private async void makeRegistrationRequest(AuthorizationServiceConfiguration serviceConfig, IdentityProvider idp)
+		private async void makeRegistrationRequest(AuthorizationServiceConfiguration serviceConfig)
 		{
-			var registrationRequest = new RegistrationRequest.Builder(serviceConfig, new[] { idp.getRedirectUri() })
+			var registrationRequest = new RegistrationRequest.Builder(serviceConfig, new[] { Android.Net.Uri.Parse(RedirectUri) })
 				.SetTokenEndpointAuthenticationMethod(ClientSecretBasic.Name)
 				.Build();
 
@@ -112,10 +109,10 @@ namespace OpenIdAuthSampleAndroid
 
 				if (registrationResponse != null)
 				{
-					idp.setClientId(registrationResponse.ClientId);
+					ClientId = registrationResponse.ClientId;
 					Console.WriteLine("Registration request complete successfully");
 					// Continue with the authentication
-					makeAuthRequest(registrationResponse.Request.Configuration, idp, new AuthState((registrationResponse)));
+					makeAuthRequest(registrationResponse.Request.Configuration, new AuthState((registrationResponse)));
 				}
 			}
 			catch (AuthorizationException ex)

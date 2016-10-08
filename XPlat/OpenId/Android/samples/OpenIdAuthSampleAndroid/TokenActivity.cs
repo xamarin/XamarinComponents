@@ -30,8 +30,6 @@ namespace OpenIdAuthSampleAndroid
 		private static string EXTRA_AUTH_SERVICE_DISCOVERY = "authServiceDiscovery";
 		private static string EXTRA_AUTH_STATE = "authState";
 
-		private static int BUFFER_SIZE = 1024;
-
 		private AuthState mAuthState;
 		private AuthorizationService mAuthService;
 		private JSONObject mUserInfoJson;
@@ -81,12 +79,11 @@ namespace OpenIdAuthSampleAndroid
 				if (response != null)
 				{
 					Console.WriteLine("Received AuthorizationResponse.");
-					showSnackbar(Resource.String.exchange_notification);
 					exchangeAuthorizationCode(response);
 				}
-				else {
+				else
+				{
 					Console.WriteLine("Authorization failed: " + ex);
-					showSnackbar(Resource.String.authorization_failed);
 				}
 			}
 
@@ -129,7 +126,6 @@ namespace OpenIdAuthSampleAndroid
 		{
 			Console.WriteLine("Token request complete");
 			mAuthState.Update(tokenResponse, authException);
-			showSnackbar(tokenResponse != null ? Resource.String.exchange_complete : Resource.String.refresh_failed);
 			refreshUi();
 		}
 
@@ -282,11 +278,6 @@ namespace OpenIdAuthSampleAndroid
 					Console.WriteLine("Failed to parse userinfo response: " + jsonEx);
 				}
 			});
-		}
-
-		private void showSnackbar(int messageId)
-		{
-			Snackbar.Make(FindViewById(Resource.Id.coordinator), Resources.GetString(messageId), Snackbar.LengthShort).Show();
 		}
 
 		public static PendingIntent createPostAuthorizationIntent(Context context, AuthorizationRequest request, AuthorizationServiceDiscovery discoveryDoc, AuthState authState)
