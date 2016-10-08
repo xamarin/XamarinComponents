@@ -14,7 +14,7 @@ namespace OpenIdAuthSampleiOS
 		// The authorization state. This is the AppAuth object that you should keep around and
 		// serialize to disk.
 		private OIDAuthState _authState;
-		public OIDAuthState authState
+		public OIDAuthState AuthState
 		{
 			get { return _authState; }
 			set
@@ -26,7 +26,7 @@ namespace OpenIdAuthSampleiOS
 					{
 						_authState.WeakStateChangeDelegate = this;
 					}
-					stateChanged();
+					StateChanged();
 				}
 			}
 		}
@@ -52,8 +52,8 @@ namespace OpenIdAuthSampleiOS
 		{
 			base.ViewDidLoad();
 
-			loadState();
-			updateUI();
+			LoadState();
+			UpdateUi();
 		}
 
 		// Authorization code flow using OIDAuthState automatic code exchanges.
@@ -81,12 +81,12 @@ namespace OpenIdAuthSampleiOS
 				{
 					if (authState != null)
 					{
-						this.authState = authState;
+						AuthState = authState;
 						Console.WriteLine($"Got authorization tokens. Access token: {authState.LastTokenResponse.AccessToken}");
 					}
 					else {
 						Console.WriteLine($"Authorization error: {error.LocalizedDescription}");
-						this.authState = null;
+						AuthState = null;
 					}
 				});
 			}
@@ -94,7 +94,7 @@ namespace OpenIdAuthSampleiOS
 			{
 
 				Console.WriteLine($"Error retrieving discovery document: {ex}");
-				authState = null;
+				AuthState = null;
 			}
 		}
 
@@ -123,7 +123,7 @@ namespace OpenIdAuthSampleiOS
 					if (authorizationResponse != null)
 					{
 						OIDAuthState authState = new OIDAuthState(authorizationResponse);
-						this.authState = authState;
+						AuthState = authState;
 
 						Console.WriteLine($"Authorization response with code: {authorizationResponse.AuthorizationCode}");
 						// could just call [self tokenExchange:nil] directly, but will let the user initiate it.
@@ -137,7 +137,7 @@ namespace OpenIdAuthSampleiOS
 			catch (Exception ex)
 			{
 				Console.WriteLine($"Error retrieving discovery document: {ex}");
-				authState = null;
+				AuthState = null;
 			}
 		}
 
@@ -145,7 +145,7 @@ namespace OpenIdAuthSampleiOS
 		async partial void CodeExchange(UIButton sender)
 		{
 			// performs code exchange request
-			OIDTokenRequest tokenExchangeRequest = authState.LastAuthorizationResponse.CreateTokenExchangeRequest();
+			OIDTokenRequest tokenExchangeRequest = AuthState.LastAuthorizationResponse.CreateTokenExchangeRequest();
 
 			Console.WriteLine($"Performing authorization code exchange with request: {tokenExchangeRequest}");
 
@@ -154,32 +154,32 @@ namespace OpenIdAuthSampleiOS
 				var tokenResponse = await OIDAuthorizationService.PerformTokenRequestAsync(tokenExchangeRequest);
 				Console.WriteLine($"Received token response with accessToken: {tokenResponse.AccessToken}");
 
-				authState.Update(tokenResponse, null);
+				AuthState.Update(tokenResponse, null);
 			}
 			catch (NSErrorException ex)
 			{
-				authState.Update(ex.Error);
+				AuthState.Update(ex.Error);
 
 				Console.WriteLine($"Token exchange error: {ex}");
-				authState = null;
+				AuthState = null;
 			}
 		}
 
 		// Performs a Userinfo API call using OIDAuthState.withFreshTokensPerformAction.
 		partial void Userinfo(UIButton sender)
 		{
-			var userinfoEndpoint = authState.LastAuthorizationResponse.Request.Configuration.DiscoveryDocument.UserinfoEndpoint;
+			var userinfoEndpoint = AuthState.LastAuthorizationResponse.Request.Configuration.DiscoveryDocument.UserinfoEndpoint;
 			if (userinfoEndpoint == null)
 			{
 				Console.WriteLine($"Userinfo endpoint not declared in discovery document");
 				return;
 			}
 
-			var currentAccessToken = authState.LastTokenResponse.AccessToken;
+			var currentAccessToken = AuthState.LastTokenResponse.AccessToken;
 
 			Console.WriteLine($"Performing userinfo request");
 
-			authState.PerformWithFreshTokens(async (accessToken, idToken, error) =>
+			AuthState.PerformWithFreshTokens(async (accessToken, idToken, error) =>
 			{
 				if (error != null)
 				{
@@ -221,7 +221,7 @@ namespace OpenIdAuthSampleiOS
 						// "401 Unauthorized" generally indicates there is an issue with the authorization
 						// grant. Puts OIDAuthState into an error state.
 						var authError = OIDErrorUtilities.CreateResourceServerAuthorizationError(0, data, error);
-						authState.Update(authError);
+						AuthState.Update(authError);
 						// log error
 						Console.WriteLine($"Authorization Error ({authError}). Response: {content}");
 					}
@@ -237,16 +237,16 @@ namespace OpenIdAuthSampleiOS
 		// Nils the OIDAuthState object.
 		partial void ClearAuthState(UIButton sender)
 		{
-			authState = null;
+			AuthState = null;
 		}
 
 		// Saves the OIDAuthState to NSUSerDefaults.
-		private void saveState()
+		private void SaveState()
 		{
 			// for production usage consider using the OS Keychain instead
-			if (authState != null)
+			if (AuthState != null)
 			{
-				var archivedAuthState = NSKeyedArchiver.ArchivedDataWithRootObject(authState);
+				var archivedAuthState = NSKeyedArchiver.ArchivedDataWithRootObject(AuthState);
 				NSUserDefaults.StandardUserDefaults[kAppAuthExampleAuthStateKey] = archivedAuthState;
 			}
 			else
@@ -257,32 +257,33 @@ namespace OpenIdAuthSampleiOS
 		}
 
 		// Loads the OIDAuthState from NSUSerDefaults.
-		private void loadState()
+		private void LoadState()
 		{
 			// loads OIDAuthState from NSUSerDefaults
 			var archivedAuthState = (NSData)NSUserDefaults.StandardUserDefaults[kAppAuthExampleAuthStateKey];
 			if (archivedAuthState != null)
 			{
-				authState = (OIDAuthState)NSKeyedUnarchiver.UnarchiveObject(archivedAuthState);
+				AuthState = (OIDAuthState)NSKeyedUnarchiver.UnarchiveObject(archivedAuthState);
 			}
 		}
 
 		// Refreshes UI, typically called after the auth state changed
-		private void updateUI()
+		private void UpdateUi()
 		{
-			userinfoButton.Enabled = authState?.IsAuthorized == true;
-			clearAuthStateButton.Enabled = authState != null;
-			codeExchangeButton.Enabled = authState?.LastAuthorizationResponse?.AuthorizationCode != null && authState?.LastTokenResponse == null;
+			userinfoButton.Enabled = AuthState?.IsAuthorized == true;
+			clearAuthStateButton.Enabled = AuthState != null;
+			codeExchangeButton.Enabled = AuthState?.LastAuthorizationResponse?.AuthorizationCode != null && AuthState?.LastTokenResponse == null;
 
 			// dynamically changes authorize button text depending on authorized state
-			if (authState == null)
+			if (AuthState == null)
 			{
 				authAutoButton.SetTitle("Authorize", UIControlState.Normal);
 				authAutoButton.SetTitle("Authorize", UIControlState.Highlighted);
 				authManual.SetTitle("Authorize (Manual)", UIControlState.Normal);
 				authManual.SetTitle("Authorize (Manual)", UIControlState.Highlighted);
 			}
-			else {
+			else
+			{
 				authAutoButton.SetTitle("Re-authorize", UIControlState.Normal);
 				authAutoButton.SetTitle("Re-authorize", UIControlState.Highlighted);
 				authManual.SetTitle("Re-authorize (Manual)", UIControlState.Normal);
@@ -290,15 +291,15 @@ namespace OpenIdAuthSampleiOS
 			}
 		}
 
-		private void stateChanged()
+		private void StateChanged()
 		{
-			saveState();
-			updateUI();
+			SaveState();
+			UpdateUi();
 		}
 
 		void IOIDAuthStateChangeDelegate.DidChangeState(OIDAuthState state)
 		{
-			stateChanged();
+			StateChanged();
 		}
 
 		void IOIDAuthStateErrorDelegate.DidEncounterAuthorizationError(OIDAuthState state, NSError error)
