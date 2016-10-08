@@ -5,7 +5,6 @@ using System.Threading.Tasks;
 using Android.App;
 using Android.Content;
 using Android.OS;
-using Android.Support.Design.Widget;
 using Android.Support.V7.App;
 using Android.Views;
 using Android.Widget;
@@ -30,9 +29,9 @@ namespace OpenIdAuthSampleAndroid
 		private static string EXTRA_AUTH_SERVICE_DISCOVERY = "authServiceDiscovery";
 		private static string EXTRA_AUTH_STATE = "authState";
 
-		private AuthState mAuthState;
-		private AuthorizationService mAuthService;
-		private JSONObject mUserInfoJson;
+		private AuthState authState;
+		private AuthorizationService authService;
+		private JSONObject userInfoJson;
 
 		protected override void OnCreate(Bundle savedInstanceState)
 		{
@@ -40,7 +39,7 @@ namespace OpenIdAuthSampleAndroid
 
 			SetContentView(Resource.Layout.activity_token);
 
-			mAuthService = new AuthorizationService(this);
+			authService = new AuthorizationService(this);
 
 			if (savedInstanceState != null)
 			{
@@ -48,7 +47,7 @@ namespace OpenIdAuthSampleAndroid
 				{
 					try
 					{
-						mAuthState = AuthState.JsonDeserialize(savedInstanceState.GetString(KEY_AUTH_STATE));
+						authState = AuthState.JsonDeserialize(savedInstanceState.GetString(KEY_AUTH_STATE));
 					}
 					catch (JSONException ex)
 					{
@@ -60,7 +59,7 @@ namespace OpenIdAuthSampleAndroid
 				{
 					try
 					{
-						mUserInfoJson = new JSONObject(savedInstanceState.GetString(KEY_USER_INFO));
+						userInfoJson = new JSONObject(savedInstanceState.GetString(KEY_USER_INFO));
 					}
 					catch (JSONException ex)
 					{
@@ -69,17 +68,17 @@ namespace OpenIdAuthSampleAndroid
 				}
 			}
 
-			if (mAuthState == null)
+			if (authState == null)
 			{
-				mAuthState = getAuthStateFromIntent(Intent);
+				authState = GetAuthStateFromIntent(Intent);
 				AuthorizationResponse response = AuthorizationResponse.FromIntent(Intent);
 				AuthorizationException ex = AuthorizationException.FromIntent(Intent);
-				mAuthState.Update(response, ex);
+				authState.Update(response, ex);
 
 				if (response != null)
 				{
 					Console.WriteLine("Received AuthorizationResponse.");
-					exchangeAuthorizationCode(response);
+					PerformTokenRequest(response.CreateTokenExchangeRequest());
 				}
 				else
 				{
@@ -87,31 +86,31 @@ namespace OpenIdAuthSampleAndroid
 				}
 			}
 
-			refreshUi();
+			RefreshUi();
 
 			var refreshTokenButton = FindViewById<Button>(Resource.Id.refresh_token);
 			refreshTokenButton.Click += delegate
 			{
-				refreshAccessToken();
+				PerformTokenRequest(authState.CreateTokenRefreshRequest());
 			};
 
 			var viewProfileButton = FindViewById<Button>(Resource.Id.view_profile);
 			viewProfileButton.Click += delegate
 			{
-				Task.Run(() => fetchUserInfo());
+				Task.Run(() => FetchUserInfo());
 			};
 		}
 
-		protected override void OnSaveInstanceState(Bundle state)
+		protected override void OnSaveInstanceState(Bundle outState)
 		{
-			if (mAuthState != null)
+			if (authState != null)
 			{
-				state.PutString(KEY_AUTH_STATE, mAuthState.JsonSerializeString());
+				outState.PutString(KEY_AUTH_STATE, authState.JsonSerializeString());
 			}
 
-			if (mUserInfoJson != null)
+			if (userInfoJson != null)
 			{
-				state.PutString(KEY_USER_INFO, mUserInfoJson.ToString());
+				outState.PutString(KEY_USER_INFO, userInfoJson.ToString());
 			}
 		}
 
@@ -119,35 +118,35 @@ namespace OpenIdAuthSampleAndroid
 		{
 			base.OnDestroy();
 
-			mAuthService.Dispose();
+			authService.Dispose();
 		}
 
-		private void receivedTokenResponse(TokenResponse tokenResponse, AuthorizationException authException)
+		private void ReceivedTokenResponse(TokenResponse tokenResponse, AuthorizationException authException)
 		{
 			Console.WriteLine("Token request complete");
-			mAuthState.Update(tokenResponse, authException);
-			refreshUi();
+			authState.Update(tokenResponse, authException);
+			RefreshUi();
 		}
 
-		private void refreshUi()
+		private void RefreshUi()
 		{
 			var refreshTokenInfoView = FindViewById<TextView>(Resource.Id.refresh_token_info);
 			var accessTokenInfoView = FindViewById<TextView>(Resource.Id.access_token_info);
 			var idTokenInfoView = FindViewById<TextView>(Resource.Id.id_token_info);
 			var refreshTokenButton = FindViewById<Button>(Resource.Id.refresh_token);
 
-			if (mAuthState.IsAuthorized)
+			if (authState.IsAuthorized)
 			{
-				refreshTokenInfoView.SetText(mAuthState.RefreshToken == null ? Resource.String.no_refresh_token_returned : Resource.String.refresh_token_returned);
-				idTokenInfoView.SetText(mAuthState.IdToken == null ? Resource.String.no_id_token_returned : Resource.String.id_token_returned);
+				refreshTokenInfoView.SetText(authState.RefreshToken == null ? Resource.String.no_refresh_token_returned : Resource.String.refresh_token_returned);
+				idTokenInfoView.SetText(authState.IdToken == null ? Resource.String.no_id_token_returned : Resource.String.id_token_returned);
 
-				if (mAuthState.AccessToken == null)
+				if (authState.AccessToken == null)
 				{
 					accessTokenInfoView.SetText(Resource.String.no_access_token_returned);
 				}
 				else
 				{
-					var expiresAt = mAuthState.AccessTokenExpirationTime;
+					var expiresAt = authState.AccessTokenExpirationTime;
 					string expiryStr;
 					if (expiresAt == null)
 					{
@@ -161,12 +160,12 @@ namespace OpenIdAuthSampleAndroid
 				}
 			}
 
-			refreshTokenButton.Visibility = mAuthState.RefreshToken != null ? ViewStates.Visible : ViewStates.Gone;
+			refreshTokenButton.Visibility = authState.RefreshToken != null ? ViewStates.Visible : ViewStates.Gone;
 
 			var viewProfileButton = FindViewById<Button>(Resource.Id.view_profile);
 
-			AuthorizationServiceDiscovery discoveryDoc = getDiscoveryDocFromIntent(Intent);
-			if (!mAuthState.IsAuthorized || discoveryDoc == null || discoveryDoc.UserinfoEndpoint == null)
+			AuthorizationServiceDiscovery discoveryDoc = GetDiscoveryDocFromIntent(Intent);
+			if (!authState.IsAuthorized || discoveryDoc == null || discoveryDoc.UserinfoEndpoint == null)
 			{
 				viewProfileButton.Visibility = ViewStates.Gone;
 			}
@@ -176,7 +175,7 @@ namespace OpenIdAuthSampleAndroid
 			}
 
 			var userInfoCard = FindViewById(Resource.Id.userinfo_card);
-			if (mUserInfoJson == null)
+			if (userInfoJson == null)
 			{
 				userInfoCard.Visibility = ViewStates.Invisible;
 			}
@@ -185,19 +184,13 @@ namespace OpenIdAuthSampleAndroid
 				try
 				{
 					string name = "???";
-					if (mUserInfoJson.Has("name"))
+					if (userInfoJson.Has("name"))
 					{
-						name = mUserInfoJson.GetString("name");
+						name = userInfoJson.GetString("name");
 					}
 					FindViewById<TextView>(Resource.Id.userinfo_name).Text = name;
 
-					if (mUserInfoJson.Has("picture"))
-					{
-						var uri = Android.Net.Uri.Parse(mUserInfoJson.GetString("picture"));
-						FindViewById<ImageView>(Resource.Id.userinfo_profile).SetImageURI(uri);
-					}
-
-					FindViewById<TextView>(Resource.Id.userinfo_json).Text = mUserInfoJson.ToString(2);
+					FindViewById<TextView>(Resource.Id.userinfo_json).Text = userInfoJson.ToString(2);
 
 					userInfoCard.Visibility = ViewStates.Visible;
 				}
@@ -208,22 +201,12 @@ namespace OpenIdAuthSampleAndroid
 			}
 		}
 
-		private void refreshAccessToken()
-		{
-			performTokenRequest(mAuthState.CreateTokenRefreshRequest());
-		}
-
-		private void exchangeAuthorizationCode(AuthorizationResponse authorizationResponse)
-		{
-			performTokenRequest(authorizationResponse.CreateTokenExchangeRequest());
-		}
-
-		private async void performTokenRequest(TokenRequest request)
+		private void PerformTokenRequest(TokenRequest request)
 		{
 			IClientAuthentication clientAuthentication;
 			try
 			{
-				clientAuthentication = mAuthState.ClientAuthentication;
+				clientAuthentication = authState.ClientAuthentication;
 			}
 			catch (ClientAuthenticationUnsupportedAuthenticationMethod ex)
 			{
@@ -231,17 +214,17 @@ namespace OpenIdAuthSampleAndroid
 				return;
 			}
 
-			mAuthService.PerformTokenRequest(request, receivedTokenResponse);
+			authService.PerformTokenRequest(request, ReceivedTokenResponse);
 		}
 
-		private void fetchUserInfo()
+		private void FetchUserInfo()
 		{
-			if (mAuthState.AuthorizationServiceConfiguration == null)
+			if (authState.AuthorizationServiceConfiguration == null)
 			{
 				Console.WriteLine("Cannot make userInfo request without service configuration");
 			}
 
-			mAuthState.PerformActionWithFreshTokens(mAuthService, async (accessToken, idToken, ex) =>
+			authState.PerformActionWithFreshTokens(authService, async (accessToken, idToken, ex) =>
 			{
 				if (ex != null)
 				{
@@ -249,7 +232,7 @@ namespace OpenIdAuthSampleAndroid
 					return;
 				}
 
-				AuthorizationServiceDiscovery discoveryDoc = getDiscoveryDocFromIntent(Intent);
+				AuthorizationServiceDiscovery discoveryDoc = GetDiscoveryDocFromIntent(Intent);
 				if (discoveryDoc == null)
 				{
 					throw new InvalidOperationException("no available discovery doc");
@@ -264,8 +247,8 @@ namespace OpenIdAuthSampleAndroid
 
 						new Handler(MainLooper).Post(() =>
 						{
-							mUserInfoJson = new JSONObject(response);
-							refreshUi();
+							userInfoJson = new JSONObject(response);
+							RefreshUi();
 						});
 					}
 				}
@@ -280,7 +263,7 @@ namespace OpenIdAuthSampleAndroid
 			});
 		}
 
-		public static PendingIntent createPostAuthorizationIntent(Context context, AuthorizationRequest request, AuthorizationServiceDiscovery discoveryDoc, AuthState authState)
+		public static PendingIntent CreatePostAuthorizationIntent(Context context, AuthorizationRequest request, AuthorizationServiceDiscovery discoveryDoc, AuthState authState)
 		{
 			var intent = new Intent(context, typeof(TokenActivity));
 			intent.PutExtra(EXTRA_AUTH_STATE, authState.JsonSerializeString());
@@ -292,7 +275,7 @@ namespace OpenIdAuthSampleAndroid
 			return PendingIntent.GetActivity(context, request.GetHashCode(), intent, 0);
 		}
 
-		private static AuthorizationServiceDiscovery getDiscoveryDocFromIntent(Intent intent)
+		private static AuthorizationServiceDiscovery GetDiscoveryDocFromIntent(Intent intent)
 		{
 			if (!intent.HasExtra(EXTRA_AUTH_SERVICE_DISCOVERY))
 			{
@@ -314,7 +297,7 @@ namespace OpenIdAuthSampleAndroid
 			}
 		}
 
-		private static AuthState getAuthStateFromIntent(Intent intent)
+		private static AuthState GetAuthStateFromIntent(Intent intent)
 		{
 			if (!intent.HasExtra(EXTRA_AUTH_STATE))
 			{
@@ -327,7 +310,7 @@ namespace OpenIdAuthSampleAndroid
 			}
 			catch (JSONException ex)
 			{
-				Console.WriteLine("Malformed AuthState JSON saved", ex);
+				Console.WriteLine("Malformed AuthState JSON saved: " + ex);
 				throw new InvalidOperationException("The AuthState instance is missing in the intent.", ex);
 			}
 		}

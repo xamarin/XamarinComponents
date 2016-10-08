@@ -34,12 +34,6 @@
                 android:layout_marginTop="@dimen/section_margin"
                 android:layout_marginBottom="8dp"
                 android:orientation="vertical">
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:text="@string/auth_header"
-                    style="@style/Base.TextAppearance.AppCompat.Subhead" />
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"

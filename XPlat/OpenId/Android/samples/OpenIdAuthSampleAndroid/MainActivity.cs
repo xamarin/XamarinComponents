@@ -1,6 +1,5 @@
 ﻿using System;
 using Android.App;
-using Android.Graphics;
 using Android.OS;
 using Android.Support.V7.App;
 using Android.Views;
@@ -25,7 +24,7 @@ namespace OpenIdAuthSampleAndroid
 		private static string TokenEndpoint = null; // token endpoint is discovered
 		private static string RegistrationEndpoint = null; // dynamic registration not supported
 		
-		private AuthorizationService mAuthService;
+		private AuthorizationService authService;
 
 		protected override void OnCreate(Bundle savedInstanceState)
 		{
@@ -33,7 +32,7 @@ namespace OpenIdAuthSampleAndroid
 
 			SetContentView(Resource.Layout.activity_main);
 
-			mAuthService = new AuthorizationService(this);
+			authService = new AuthorizationService(this);
 
 			var idpButton = FindViewById<Button>(Resource.Id.idpButton);
 			idpButton.Click += async delegate
@@ -60,11 +59,11 @@ namespace OpenIdAuthSampleAndroid
 					if (ClientId == null)
 					{
 						// Do dynamic client registration if no client_id
-						makeRegistrationRequest(serviceConfiguration);
+						MakeRegistrationRequest(serviceConfiguration);
 					}
 					else
 					{
-						makeAuthRequest(serviceConfiguration, new AuthState());
+						MakeAuthRequest(serviceConfiguration, new AuthState());
 					}
 				}
 				catch (AuthorizationException ex)
@@ -78,23 +77,23 @@ namespace OpenIdAuthSampleAndroid
 		{
 			base.OnDestroy();
 
-			mAuthService.Dispose();
+			authService.Dispose();
 		}
 
-		private void makeAuthRequest(AuthorizationServiceConfiguration serviceConfig, AuthState authState)
+		private void MakeAuthRequest(AuthorizationServiceConfiguration serviceConfig, AuthState authState)
 		{
 			var authRequest = new AuthorizationRequest.Builder(serviceConfig, ClientId, ResponseTypeValues.Code, Android.Net.Uri.Parse(RedirectUri))
 				.SetScope("openid profile email")
 				.Build();
 
 			Console.WriteLine("Making auth request to " + serviceConfig.AuthorizationEndpoint);
-			mAuthService.PerformAuthorizationRequest(
+			authService.PerformAuthorizationRequest(
 				authRequest,
-				TokenActivity.createPostAuthorizationIntent(this, authRequest, serviceConfig.DiscoveryDoc, authState),
-				mAuthService.CreateCustomTabsIntentBuilder().SetToolbarColor(getColorCompat(Resource.Color.colorAccent)).Build());
+				TokenActivity.CreatePostAuthorizationIntent(this, authRequest, serviceConfig.DiscoveryDoc, authState),
+				authService.CreateCustomTabsIntentBuilder().SetToolbarColor(Resources.GetColor(Resource.Color.colorAccent)).Build());
 		}
 
-		private async void makeRegistrationRequest(AuthorizationServiceConfiguration serviceConfig)
+		private async void MakeRegistrationRequest(AuthorizationServiceConfiguration serviceConfig)
 		{
 			var registrationRequest = new RegistrationRequest.Builder(serviceConfig, new[] { Android.Net.Uri.Parse(RedirectUri) })
 				.SetTokenEndpointAuthenticationMethod(ClientSecretBasic.Name)
@@ -104,7 +103,7 @@ namespace OpenIdAuthSampleAndroid
 
 			try
 			{
-				var registrationResponse = await mAuthService.PerformRegistrationRequestAsync(registrationRequest);
+				var registrationResponse = await authService.PerformRegistrationRequestAsync(registrationRequest);
 				Console.WriteLine("Registration request complete");
 
 				if (registrationResponse != null)
@@ -112,24 +111,12 @@ namespace OpenIdAuthSampleAndroid
 					ClientId = registrationResponse.ClientId;
 					Console.WriteLine("Registration request complete successfully");
 					// Continue with the authentication
-					makeAuthRequest(registrationResponse.Request.Configuration, new AuthState((registrationResponse)));
+					MakeAuthRequest(registrationResponse.Request.Configuration, new AuthState((registrationResponse)));
 				}
 			}
 			catch (AuthorizationException ex)
 			{
 				Console.WriteLine("Registration request had an error: " + ex);
-			}
-		}
-
-		private Color getColorCompat(int color)
-		{
-			if (Build.VERSION.SdkInt >= BuildVersionCodes.M)
-			{
-				return new Color(GetColor(color));
-			}
-			else
-			{
-				return Resources.GetColor(color);
 			}
 		}
 	}
