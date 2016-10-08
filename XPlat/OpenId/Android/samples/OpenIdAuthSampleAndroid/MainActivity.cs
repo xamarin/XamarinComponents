@@ -17,8 +17,8 @@ namespace OpenIdAuthSampleAndroid
 	public class MainActivity : AppCompatActivity
 	{
 		private static string DiscoveryEndpoint = "https://accounts.google.com/.well-known/openid-configuration";
-		private static string ClientId = "60322915503-t6s4kgg8jf7bfos910agh9qb9fa5jvju.apps.googleusercontent.com";
-		private static string RedirectUri = "com.googleusercontent.apps.60322915503-t6s4kgg8jf7bfos910agh9qb9fa5jvju:/oauth2redirect";
+		private static string ClientId = "YOUR_APP_ID.apps.googleusercontent.com";
+		private static string RedirectUri = "com.googleusercontent.apps.YOUR_APP_ID:/oauth2redirect";
 
 		private static string AuthEndpoint = null; // auth endpoint is discovered
 		private static string TokenEndpoint = null; // token endpoint is discovered

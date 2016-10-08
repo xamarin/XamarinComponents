@@ -42,7 +42,7 @@
 			<string>Editor</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
-				<string>com.googleusercontent.apps.60322915503-t6s4kgg8jf7bfos910agh9qb9fa5jvju</string>
+				<string>com.googleusercontent.apps.YOUR_APP_ID</string>
 			</array>
 		</dict>
 	</array>

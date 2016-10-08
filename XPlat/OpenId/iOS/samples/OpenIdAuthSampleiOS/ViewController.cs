@@ -35,10 +35,10 @@ namespace OpenIdAuthSampleiOS
 		public const string kIssuer = @"https://accounts.google.com";
 
 		// The OAuth client ID.
-		public const string kClientID = "60322915503-t6s4kgg8jf7bfos910agh9qb9fa5jvju.apps.googleusercontent.com";
+		public const string kClientID = "YOUR_APP_ID.apps.googleusercontent.com";
 
 		// The OAuth redirect URI for the client kClientID.
-		public const string kRedirectURI = "com.googleusercontent.apps.60322915503-t6s4kgg8jf7bfos910agh9qb9fa5jvju:/oauthredirect";
+		public const string kRedirectURI = "com.googleusercontent.apps.YOUR_APP_ID:/oauthredirect";
 
 		// NSCoding key for the authState property.
 		public static NSString kAppAuthExampleAuthStateKey = (NSString)"authState";
