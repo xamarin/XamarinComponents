@@ -28,30 +28,30 @@ var buildSpec = new BuildSpec {
 				}
 			}
 		},
-		// new DefaultSolutionBuilder {
-		// 	SolutionPath = "./Android/source/MapboxSDK.Android.sln",
-		// 	OutputFiles = new [] { 
-		// 		new OutputFileCopy {
-		// 			FromFile = "./Android/source/MapboxSDK.Android/bin/Release/MapboxSDK.Android.dll",
-		// 		}
-		// 	}
-		// }
+		new DefaultSolutionBuilder {
+			SolutionPath = "./Android/source/OpenId.AppAuth.Android.sln",
+			OutputFiles = new [] { 
+				new OutputFileCopy {
+					FromFile = "./Android/source/OpenId.AppAuth.Android/bin/Release/OpenId.AppAuth.Android.dll",
+				}
+			}
+		}
 	},
 
 	NuGets = new [] {
-		// new NuGetInfo { NuSpec = "./nuget/Xamarin.MapboxSDK.Android.nuspec", Version = ANDROID_NUGET_VERSION },
+		new NuGetInfo { NuSpec = "./nuget/OpenId.AppAuth.Android.nuspec", Version = ANDROID_NUGET_VERSION },
 		new NuGetInfo { NuSpec = "./nuget/OpenId.AppAuth.iOS.nuspec", Version = IOS_NUGET_VERSION },
 	},
 
 	Samples = new [] {
 		new IOSSolutionBuilder { SolutionPath = "./iOS/samples/OpenIdAuthSampleiOS.sln", Configuration = "Release|iPhone" },
-		// new DefaultSolutionBuilder { SolutionPath = "./Android/samples/MapboxSampleAndroid.sln" }
+		new DefaultSolutionBuilder { SolutionPath = "./Android/samples/OpenIdAuthSampleAndroid.sln" }
 	},
 
-	Components = new [] {
-		new Component { ManifestDirectory = "./iOS/component" }
-		// new Component { ManifestDirectory = "./Android/component" }
-	}
+	// Components = new [] {
+	// 	new Component { ManifestDirectory = "./iOS/component" }
+	// 	new Component { ManifestDirectory = "./Android/component" }
+	// }
 };
 
 Task ("externals-android")
