@@ -49,11 +49,11 @@
   <ItemGroup>
     <ObjcBindingCoreSource Include="Source.enums.cs" />
   </ItemGroup>
-  <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.ObjCBinding.CSharp.targets" />
   <ItemGroup>
-    <NativeReference Include="..\externals\Pods\EstimoteSDK\EstimoteSDK\EstimoteSDK.framework">
+    <NativeReference Include="..\..\externals\Pods\EstimoteSDK\EstimoteSDK\EstimoteSDK.framework">
       <Kind>Framework</Kind>
       <SmartLink>False</SmartLink>
     </NativeReference>
   </ItemGroup>
+  <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.ObjCBinding.CSharp.targets" />
 </Project>
