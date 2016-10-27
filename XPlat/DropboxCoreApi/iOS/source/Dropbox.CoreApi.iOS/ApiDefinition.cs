@@ -7,6 +7,64 @@ using CoreGraphics;
 
 namespace Dropbox.CoreApi.iOS
 {
+	// @interface DBQuota : NSObject <NSCoding>
+	[BaseType(typeof(NSObject))]
+	interface DBQuota : INSCoding
+	{
+		// -(id)initWithDictionary:(NSDictionary *)dict;
+		[Export("initWithDictionary:")]
+		IntPtr Constructor(NSDictionary dict);
+
+		// @property (readonly, nonatomic) long long normalConsumedBytes;
+		[Export("normalConsumedBytes")]
+		long NormalConsumedBytes { get; }
+
+		// @property (readonly, nonatomic) long long sharedConsumedBytes;
+		[Export("sharedConsumedBytes")]
+		long SharedConsumedBytes { get; }
+
+		// @property (readonly, nonatomic) long long totalConsumedBytes;
+		[Export("totalConsumedBytes")]
+		long TotalConsumedBytes { get; }
+
+		// @property (readonly, nonatomic) long long totalBytes;
+		[Export("totalBytes")]
+		long TotalBytes { get; }
+	}
+
+	// @interface DBAccountInfo : NSObject <NSCoding>
+	[BaseType(typeof(NSObject))]
+	interface DBAccountInfo : INSCoding
+	{
+		// -(id)initWithDictionary:(NSDictionary *)dict;
+		[Export("initWithDictionary:")]
+		IntPtr Constructor(NSDictionary dict);
+
+		// @property (readonly, nonatomic) NSString * email;
+		[Export("email")]
+		string Email { get; }
+
+		// @property (readonly, nonatomic) NSString * country;
+		[Export("country")]
+		string Country { get; }
+
+		// @property (readonly, nonatomic) NSString * displayName;
+		[Export("displayName")]
+		string DisplayName { get; }
+
+		// @property (readonly, nonatomic) DBQuota * quota;
+		[Export("quota")]
+		DBQuota Quota { get; }
+
+		// @property (readonly, nonatomic) NSString * userId;
+		[Export("userId")]
+		string UserId { get; }
+
+		// @property (readonly, nonatomic) NSString * referralLink;
+		[Export("referralLink")]
+		string ReferralLink { get; }
+	}
+
 	// @interface DBAccountInfo : NSObject <NSCoding>
 	[DisableDefaultCtor]
 	[BaseType (typeof(NSObject), Name = "DBAccountInfo")]
@@ -1550,9 +1608,6 @@ namespace Dropbox.CoreApi.iOS.MPOAuth
 		string JsonRepresentation ();
 	}
 
-	// @interface NSString (NSString_DBJSON)
-	// @interface NSString (Dropbox)
-	// @interface NSString (MPURLEscapingAdditions)
 	[Category]
 	[BaseType (typeof(NSString))]
 	interface NSString_Extension
@@ -1578,9 +1633,6 @@ namespace Dropbox.CoreApi.iOS.MPOAuth
 		string StringByAddingUriPercentEscapes (NSStringEncoding encoding);
 	}
 
-	// @interface NSURL (MPURLEscapingAdditions)
-	// @interface NSURL (MPURLParameterAdditions)
-	// @interface NSURLResponse (EncodingAdditions)
 	[Category]
 	[BaseType (typeof(NSUrl))]
 	interface NSUrl_Extension
