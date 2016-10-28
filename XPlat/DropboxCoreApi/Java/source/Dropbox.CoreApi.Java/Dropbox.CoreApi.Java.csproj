@@ -53,10 +53,10 @@
     <TransformFile Include="Transforms\Metadata.xml" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedJar Include="..\..\..\externals\dropbox-java-sdk-1.8.2\lib\dropbox-core-sdk-1.8.2.jar">
+    <EmbeddedJar Include="..\..\externals\dropbox-core-sdk-1.8.2.jar">
       <Link>Jars\dropbox-core-sdk-1.8.2.jar</Link>
     </EmbeddedJar>
-    <EmbeddedJar Include="..\..\..\externals\dropbox-java-sdk-1.8.2\lib\jackson-core-2.6.1.jar">
+    <EmbeddedJar Include="..\..\externals\jackson-core-2.6.1.jar">
       <Link>Jars\jackson-core-2.6.1.jar</Link>
     </EmbeddedJar>
   </ItemGroup>
