@@ -1,0 +1,66 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<metadata>
+	<!--
+  This sample removes the class: android.support.v4.content.AsyncTaskLoader.LoadTask:
+  <remove-node path="/api/package[@name='android.support.v4.content']/class[@name='AsyncTaskLoader.LoadTask']" />
+  
+  This sample removes the method: android.support.v4.content.CursorLoader.loadInBackground:
+  <remove-node path="/api/package[@name='android.support.v4.content']/class[@name='CursorLoader']/method[@name='loadInBackground']" />
+  -->
+	<attr path="/api/package[@name='com.fasterxml.jackson.core.sym']/class[@name='Name']/field[@name='_name']" name="managedName">_Name</attr>
+	<remove-node path="/api/package[@name='com.fasterxml.jackson.core.base']/class[@name='GeneratorBase']/method[@name='getOutputContext' and count(parameter)=0]" />
+	<remove-node path="/api/package[@name='com.fasterxml.jackson.core.base']/class[@name='ParserBase']/method[@name='getParsingContext' and count(parameter)=0]" />
+	<remove-node path="/api/package[@name='com.fasterxml.jackson.core.filter']/class[@name='TokenFilterContext']/method[@name='getParent' and count(parameter)=0]" />
+	<remove-node path="/api/package[@name='com.fasterxml.jackson.core.json']/class[@name='JsonReadContext']/method[@name='getParent' and count(parameter)=0]" />
+	<remove-node path="/api/package[@name='com.fasterxml.jackson.core.json']/class[@name='JsonWriteContext']/method[@name='getParent' and count(parameter)=0]" />
+	<remove-node path="/api/package[@name='com.fasterxml.jackson.core']/class[@name='ObjectCodec']/method[@name='readTree' and count(parameter)=1 and parameter[1][@type='com.fasterxml.jackson.core.JsonParser']]" />
+	<remove-node path="/api/package[@name='com.dropbox.core']/class[@name='DbxDelta.Entry.Reader']/method[@name='read' and count(parameter)=1 and parameter[1][@type='com.fasterxml.jackson.core.JsonParser']]" />
+	<remove-node path="/api/package[@name='com.fasterxml.jackson.core']/class[@name='ObjectCodec']/method[@name='treeAsTokens' and count(parameter)=1 and parameter[1][@type='com.fasterxml.jackson.core.TreeNode']]" />
+	<remove-node path="/api/package[@name='com.dropbox.core']/class[@name='DbxDelta.Reader']/method[@name='read' and count(parameter)=1 and parameter[1][@type='com.fasterxml.jackson.core.JsonParser']]" />
+	<remove-node path="/api/package[@name='com.dropbox.core']/class[@name='DbxDeltaC.Entry.Reader']/method[@name='read' and count(parameter)=1 and parameter[1][@type='com.fasterxml.jackson.core.JsonParser']]" />
+	<remove-node path="/api/package[@name='com.dropbox.core']/class[@name='DbxEntry.WithChildrenC.Reader']/method[@name='read' and count(parameter)=1 and parameter[1][@type='com.fasterxml.jackson.core.JsonParser']]" />
+	<remove-node path="/api/package[@name='com.dropbox.core']/class[@name='DbxDeltaC.Reader']/method[@name='read' and count(parameter)=1 and parameter[1][@type='com.fasterxml.jackson.core.JsonParser']]" />
+	<remove-node path="/api/package[@name='com.dropbox.core']/class[@name='DbxEntry.WithChildrenC.ReaderMaybeDeleted']/method[@name='read' and count(parameter)=1 and parameter[1][@type='com.fasterxml.jackson.core.JsonParser']]" />
+	<remove-node path="/api/package[@name='com.dropbox.core.util']/class[@name='Collector.ArrayListCollector']/method[@name='finish' and count(parameter)=0]" />
+	<remove-node path="/api/package[@name='com.fasterxml.jackson.core.base']/class[@name='GeneratorBase']/field[@name='WRITE_BOOLEAN']" />
+	<remove-node path="/api/package[@name='com.fasterxml.jackson.core.base']/class[@name='GeneratorBase']/field[@name='WRITE_NULL']" />
+	<remove-node path="/api/package[@name='com.fasterxml.jackson.core.base']/class[@name='GeneratorBase']/field[@name='WRITE_NULL']" />
+	<remove-node path="/api/package[@name='com.fasterxml.jackson.core.base']/class[@name='GeneratorBase']/field[@name='WRITE_NUMBER']" />
+	<remove-node path="/api/package[@name='com.fasterxml.jackson.core.base']/class[@name='GeneratorBase']/field[@name='WRITE_RAW']" />
+	<remove-node path="/api/package[@name='com.fasterxml.jackson.core.base']/class[@name='GeneratorBase']/method[@name='flush' and count(parameter)=0]" />
+	<remove-node path="/api/package[@name='com.fasterxml.jackson.core.base']/class[@name='ParserMinimalBase']/method[@name='close' and count(parameter)=0]" />
+	<remove-node path="/api/package[@name='com.fasterxml.jackson.core.base']/class[@name='ParserMinimalBase']/method[@name='getTextCharacters' and count(parameter)=0]" />
+	<remove-node path="/api/package[@name='com.fasterxml.jackson.core.base']/class[@name='ParserMinimalBase']/method[@name='nextToken' and count(parameter)=0]" />
+	<remove-node path="/api/package[@name='com.fasterxml.jackson.core.base']/class[@name='ParserMinimalBase']/method[@name='getBinaryValue' and count(parameter)=1 and parameter[1][@type='com.fasterxml.jackson.core.Base64Variant']]" />
+	<remove-node path="/api/package[@name='com.fasterxml.jackson.core.base']/class[@name='ParserBase']/field[@name='_nextToken']" />
+	<remove-node path="/api/package[@name='com.fasterxml.jackson.core']/class[@name='ObjectCodec']/method[@name='createArrayNode' and count(parameter)=0]" />
+	<remove-node path="/api/package[@name='com.fasterxml.jackson.core']/class[@name='ObjectCodec']/method[@name='createObjectNode' and count(parameter)=0]" />
+	<remove-node path="/api/package[@name='com.fasterxml.jackson.core']/class[@name='JsonFactory']/method[@name='_decorate' and count(parameter)=2 and parameter[1][@type='java.io.OutputStream'] and parameter[2][@type='com.fasterxml.jackson.core.io.IOContext']]" />
+	<remove-node path="/api/package[@name='com.fasterxml.jackson.core.base']/class[@name='ParserMinimalBase']/method[@name='overrideCurrentName' and count(parameter)=1 and parameter[1][@type='java.lang.String']]" />
+	<remove-node path="/api/package[@name='com.fasterxml.jackson.core']/class[@name='ObjectCodec']/method[@name='writeTree' and count(parameter)=2 and parameter[1][@type='com.fasterxml.jackson.core.JsonGenerator'] and parameter[2][@type='com.fasterxml.jackson.core.TreeNode']]" />
+	<remove-node path="/api/package[@name='com.dropbox.core.util']/class[@name='Maybe.Just']/method[@name='getJust' and count(parameter)=0]" />
+	<remove-node path="/api/package[@name='com.dropbox.core']/class[@name='DbxDelta.Entry.Reader']" />
+	<remove-node path="/api/package[@name='com.dropbox.core']/class[@name='DbxDelta.Reader']" />
+	<remove-node path="/api/package[@name='com.dropbox.core']/class[@name='DbxDeltaC.Entry.Reader']" />
+	<remove-node path="/api/package[@name='com.dropbox.core']/class[@name='DbxDeltaC.Reader']" />
+	<remove-node path="/api/package[@name='com.dropbox.core']/class[@name='DbxEntry.WithChildrenC.Reader']" />
+	<remove-node path="/api/package[@name='com.dropbox.core']/class[@name='DbxEntry.WithChildrenC.ReaderMaybeDeleted']" />
+	<remove-node path="/api/package[@name='com.dropbox.core.http']/class[@name='StandardHttpRequestor']" />
+	<remove-node path="/api/package[@name='com.dropbox.core.util']/class[@name='Collector.ArrayListCollector']" />
+	<remove-node path="/api/package[@name='com.dropbox.core.util']/class[@name='Maybe.Just']" />
+	<remove-node path="/api/package[@name='com.dropbox.core.util']/class[@name='Maybe.Nothing']" />
+	<remove-node path="/api/package[@name='com.fasterxml.jackson.core.filter']/class[@name='TokenFilterContext']" />
+	<remove-node path="/api/package[@name='com.fasterxml.jackson.core.json']/class[@name='JsonReadContext']" />
+	<remove-node path="/api/package[@name='com.fasterxml.jackson.core.json']/class[@name='JsonWriteContext']" />
+	<remove-node path="/api/package[@name='com.fasterxml.jackson.core.json']/class[@name='ReaderBasedJsonParser']" />
+	<remove-node path="/api/package[@name='com.fasterxml.jackson.core.json']/class[@name='UTF8JsonGenerator']" />
+	<remove-node path="/api/package[@name='com.fasterxml.jackson.core.json']/class[@name='UTF8StreamJsonParser']" />
+	<remove-node path="/api/package[@name='com.fasterxml.jackson.core.json']/class[@name='WriterBasedJsonGenerator']" />
+	<remove-node path="/api/package[@name='com.fasterxml.jackson.core']/class[@name='Version']" />
+	<add-node path="/api/package[@name='com.fasterxml.jackson.core.base']/class[@name='GeneratorBase']/method[@name='getOutputContext' and count(parameter)=0]" />
+	<add-node path="/api/package[@name='com.fasterxml.jackson.core.base']/class[@name='ParserBase']/method[@name='getParsingContext' and count(parameter)=0]" />
+	<add-node path="/api/package[@name='com.fasterxml.jackson.core.filter']/class[@name='TokenFilterContext']/method[@name='getParent' and count(parameter)=0]" />
+	<add-node path="/api/package[@name='com.fasterxml.jackson.core.json']/class[@name='JsonReadContext']/method[@name='getParent' and count(parameter)=0]" />
+	<add-node path="/api/package[@name='com.fasterxml.jackson.core.json']/class[@name='JsonWriteContext']/method[@name='getParent' and count(parameter)=0]" />
+
+</metadata>
