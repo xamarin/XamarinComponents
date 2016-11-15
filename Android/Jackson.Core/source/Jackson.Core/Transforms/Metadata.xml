@@ -1,0 +1,75 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<metadata>
+	<attr path="/api/package[@name='com.fasterxml.jackson.core.sym']/class[@name='Name']/field[@name='_name']"
+		name="managedName">NameProperty</attr>
+
+	<attr path="/api/package[@name='com.fasterxml.jackson.core.base']/class[@name='GeneratorBase']/field[@name='WRITE_BOOLEAN']"
+		name="managedName">WriteBooleanValue</attr>
+
+	<attr path="/api/package[@name='com.fasterxml.jackson.core.base']/class[@name='GeneratorBase']/field[@name='WRITE_NULL']"
+		name="managedName">WriteNullValue</attr>
+
+	<attr path="/api/package[@name='com.fasterxml.jackson.core.base']/class[@name='GeneratorBase']/field[@name='WRITE_NUMBER']"
+		name="managedName">WriteNumberValue</attr>
+
+	<attr path="/api/package[@name='com.fasterxml.jackson.core.base']/class[@name='GeneratorBase']/field[@name='WRITE_RAW']"
+		name="managedName">WriteRawValue</attr>
+
+	<attr path="/api/package[@name='com.fasterxml.jackson.core.base']/class[@name='GeneratorBase']/method[@name='getOutputContext' and count(parameter)=0]"
+		name="managedReturn">FasterXml.Jackson.Core.JsonStreamContext</attr>
+
+	<remove-node path="/api/package[@name='com.fasterxml.jackson.core.base']/class[@name='GeneratorBase']/method[@name='flush' and count(parameter)=0]" />
+
+	<remove-node path="/api/package[@name='com.fasterxml.jackson.core.base']/class[@name='ParserMinimalBase']/method[@name='close' and count(parameter)=0]" />
+
+	<remove-node path="/api/package[@name='com.fasterxml.jackson.core.base']/class[@name='ParserMinimalBase']/method[@name='getBinaryValue' and count(parameter)=1 and parameter[1][@type='com.fasterxml.jackson.core.Base64Variant']]" />
+
+	<remove-node path="/api/package[@name='com.fasterxml.jackson.core.base']/class[@name='ParserMinimalBase']/method[@name='getTextCharacters' and count(parameter)=0]" />
+
+	<remove-node path="/api/package[@name='com.fasterxml.jackson.core.base']/class[@name='ParserMinimalBase']/method[@name='nextToken' and count(parameter)=0]" />
+
+	<remove-node path="/api/package[@name='com.fasterxml.jackson.core.base']/class[@name='ParserMinimalBase']/method[@name='overrideCurrentName' and count(parameter)=1 and parameter[1][@type='java.lang.String']]" />
+
+	<attr path="/api/package[@name='com.fasterxml.jackson.core.base']/class[@name='ParserBase']/field[@name='_nextToken']"
+		name="managedName">NextTokenProperty</attr>
+
+	<attr path="/api/package[@name='com.fasterxml.jackson.core.base']/class[@name='ParserBase']/method[@name='getParsingContext' and count(parameter)=0]"
+		name="managedReturn">FasterXml.Jackson.Core.JsonStreamContext</attr>
+
+	<attr path="/api/package[@name='com.fasterxml.jackson.core.filter']/class[@name='TokenFilterContext']/method[@name='getParent' and count(parameter)=0]"
+		name="managedReturn">FasterXml.Jackson.Core.JsonStreamContext</attr>
+
+	<attr path="/api/package[@name='com.fasterxml.jackson.core.json']/class[@name='JsonReadContext']/method[@name='getParent' and count(parameter)=0]"
+		name="managedReturn">FasterXml.Jackson.Core.JsonStreamContext</attr>
+
+	<attr path="/api/package[@name='com.fasterxml.jackson.core.json']/class[@name='JsonWriteContext']/method[@name='getParent' and count(parameter)=0]"
+		name="managedReturn">FasterXml.Jackson.Core.JsonStreamContext</attr>
+
+	<remove-node path="/api/package[@name='com.fasterxml.jackson.core']/class[@name='JsonFactory']/method[@name='_decorate' and count(parameter)=2 and parameter[1][@type='java.io.OutputStream'] and parameter[2][@type='com.fasterxml.jackson.core.io.IOContext']]" />
+
+	<remove-node path="/api/package[@name='com.fasterxml.jackson.core']/class[@name='ObjectCodec']/method[@name='createArrayNode' and count(parameter)=0]" />
+
+	<remove-node path="/api/package[@name='com.fasterxml.jackson.core']/class[@name='ObjectCodec']/method[@name='createObjectNode' and count(parameter)=0]" />
+
+	<remove-node path="/api/package[@name='com.fasterxml.jackson.core']/class[@name='ObjectCodec']/method[@name='readTree' and count(parameter)=1 and parameter[1][@type='com.fasterxml.jackson.core.JsonParser']]" />
+
+	<remove-node path="/api/package[@name='com.fasterxml.jackson.core']/class[@name='ObjectCodec']/method[@name='treeAsTokens' and count(parameter)=1 and parameter[1][@type='com.fasterxml.jackson.core.TreeNode']]" />
+
+	<remove-node path="/api/package[@name='com.fasterxml.jackson.core']/class[@name='ObjectCodec']/method[@name='writeTree' and count(parameter)=2 and parameter[1][@type='com.fasterxml.jackson.core.JsonGenerator'] and parameter[2][@type='com.fasterxml.jackson.core.TreeNode']]" />
+
+	<remove-node path="/api/package[@name='com.fasterxml.jackson.core.sym']/class[@name='BytesToNameCanonicalizer']/field[@name='_collList']" />
+
+	<remove-node path="/api/package[@name='com.fasterxml.jackson.core']/class[@name='JsonProcessingException']/method[@name='getMessage' and count(parameter)=0]" />
+
+
+	<attr path="/api/package[@name='com.fasterxml.jackson.core']" name="managedName">FasterXml.Jackson.Core</attr>
+	<attr path="/api/package[@name='com.fasterxml.jackson.core.base']" name="managedName">FasterXml.Jackson.Core.Base</attr>
+	<attr path="/api/package[@name='com.fasterxml.jackson.core.filter']" name="managedName">FasterXml.Jackson.Core.Filter</attr>
+	<attr path="/api/package[@name='com.fasterxml.jackson.core.format']" name="managedName">FasterXml.Jackson.Core.Format</attr>
+	<attr path="/api/package[@name='com.fasterxml.jackson.core.io']" name="managedName">FasterXml.Jackson.Core.IO</attr>
+	<attr path="/api/package[@name='com.fasterxml.jackson.core.json']" name="managedName">FasterXml.Jackson.Core.Json</attr>
+	<attr path="/api/package[@name='com.fasterxml.jackson.core.sym']" name="managedName">FasterXml.Jackson.Core.Sym</attr>
+	<attr path="/api/package[@name='com.fasterxml.jackson.core.type']" name="managedName">FasterXml.Jackson.Core.Type</attr>
+	<attr path="/api/package[@name='com.fasterxml.jackson.core.util']" name="managedName">FasterXml.Jackson.Core.Util</attr>
+	
+</metadata>
