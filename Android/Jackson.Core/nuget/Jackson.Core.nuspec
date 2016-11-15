@@ -3,7 +3,7 @@
   <metadata>
     <id>Jackson.Core</id>
     <title>Jackson Core for Xamarin Android</title>
-    <version>2.6.1</version>
+    <version>2.7.4</version>
     <authors>Xamarin Inc.</authors>
     <owners>Xamarin Inc.</owners>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
