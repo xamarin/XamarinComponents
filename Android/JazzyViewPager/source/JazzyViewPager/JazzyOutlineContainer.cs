@@ -11,7 +11,6 @@ namespace Jazzy
     {
         private Paint outlinePaint;
         private long startTime;
-        private const long AnimationDuration = 500;
         private const long FrameDuration = 1000 / 60;
         private readonly IInterpolator interpolator = new OutlineInterpolator();
 
@@ -36,6 +35,7 @@ namespace Jazzy
         private void Init()
         {
             IsRunning = false;
+            AnimationDuration = 500;
             OutlineAlpha = 1.0f;
             outlinePaint = new Paint();
             outlinePaint.AntiAlias = true;
@@ -49,6 +49,8 @@ namespace Jazzy
         public bool IsRunning { get; set; }
 
         public float OutlineAlpha { get; set; }
+
+        public long AnimationDuration { get; set; }
 
         public void Start()
         {
