@@ -53,8 +53,8 @@
     <Folder Include="Additions\" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedJar Include="..\..\externals\jakewharton.timber.jar">
-      <Link>Jars\jakewharton.timber.jar</Link>
-    </EmbeddedJar>
+    <LibraryProjectZip Include="..\..\externals\jakewharton.timber.aar">
+      <Link>Jars\jakewharton.timber.aar</Link>
+    </LibraryProjectZip>
   </ItemGroup>
 </Project>

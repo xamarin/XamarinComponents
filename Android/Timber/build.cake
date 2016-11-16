@@ -3,9 +3,9 @@
 
 var TARGET = Argument ("t", Argument ("target", "Default"));
 
-var ANDROID_VERSION = "3.1.0";
-var ANDROID_URL = string.Format ("http://search.maven.org/remotecontent?filepath=com/jakewharton/timber/timber/{0}/timber-{0}.jar", ANDROID_VERSION);
-var ANDROID_FILE = "jakewharton.timber.jar";
+var ANDROID_VERSION = "4.3.1";
+var ANDROID_URL = string.Format ("http://search.maven.org/remotecontent?filepath=com/jakewharton/timber/timber/{0}/timber-{0}.aar", ANDROID_VERSION);
+var ANDROID_FILE = "jakewharton.timber.aar";
 
 var buildSpec = new BuildSpec () {
 	Libs = new ISolutionBuilder [] {
