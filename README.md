@@ -66,7 +66,7 @@ Browse through the most popular plugins out there today!
 |User Dialogs|Message box style dialogs.|[NuGet](https://www.nuget.org/packages/Acr.UserDialogs/)|[GitHub](https://github.com/aritchie/userdialogs)|[@allanritchie911](https://twitter.com/allanritchie911)|
 |Version Tracking|Track which versions of your app a user has previously installed.|[NuGet](https://www.nuget.org/packages/Plugin.VersionTracking/1.0.1)|[GitHub](https://github.com/colbylwilliams/VersionTrackingPlugin)|[@ColbyLWilliams](https://twitter.com/colbylwilliams)|
 |Vibrate|Vibrate any device.|[NuGet](https://www.nuget.org/packages/Xam.Plugins.Vibrate/)|[GitHub](https://github.com/jamesmontemagno/VibratePlugin)|[@JamesMontemagno](http://www.twitter.com/jamesmontemagno)|
-
+|Contacts|Use contacts in any device.|[NuGet](https://www.nuget.org/packages/Xam.Plugin.Contacts/)|[GitHub](https://github.com/jamesmontemagno/ContactsPlugin)|[@JamesMontemagno](http://www.twitter.com/jamesmontemagno)|
 
 ### Submit Your Ideas
 We want to hear any and all ideas that you have for potential plugins. Browse through the current issues and see what other developers are interested in or submit your very own. Interested in helping work on a plugin? Simply comment on a plugin that you will start development, create a GitHub repo, and get coding!
