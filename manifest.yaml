@@ -58,6 +58,10 @@
   BuildScript: ./Android/GoogleGson/build.cake
   TriggerPaths: [ Android/GoogleGson ]
   MacBuildTargets: [ samples, nuget ]
+- Name: JacksonCore
+  BuildScript: ./Android/Jackson.Core/build.cake
+  TriggerPaths: [ Android/Jackson.Core ]
+  MacBuildTargets: [ nuget ]
 - Name: JazzyViewPager
   BuildScript: ./Android/JazzyViewPager/build.cake
   TriggerPaths: [ Android/JazzyViewPager ]
