@@ -2,7 +2,7 @@
 <package >
   <metadata>
     <id>Xamarin.JakeWharton.Timber</id>
-    <title>Timber</title>
+    <title>Timber for Xamarin.Android</title>
     <version>$version$</version>
     <authors>Xamarin Inc.</authors>
     <owners>Xamarin Inc.</owners>
