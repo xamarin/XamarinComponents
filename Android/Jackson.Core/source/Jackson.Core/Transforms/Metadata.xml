@@ -57,8 +57,6 @@
 
 	<remove-node path="/api/package[@name='com.fasterxml.jackson.core']/class[@name='ObjectCodec']/method[@name='writeTree' and count(parameter)=2 and parameter[1][@type='com.fasterxml.jackson.core.JsonGenerator'] and parameter[2][@type='com.fasterxml.jackson.core.TreeNode']]" />
 
-	<remove-node path="/api/package[@name='com.fasterxml.jackson.core.sym']/class[@name='BytesToNameCanonicalizer']/field[@name='_collList']" />
-
 	<remove-node path="/api/package[@name='com.fasterxml.jackson.core']/class[@name='JsonProcessingException']/method[@name='getMessage' and count(parameter)=0]" />
 
 

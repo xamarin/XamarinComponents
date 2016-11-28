@@ -2,7 +2,7 @@
 
 var TARGET = Argument ("t", Argument ("target", "Default"));
 
-var JS_VERSION = "2.6.1";
+var JS_VERSION = "2.7.4";
 var JS_URL = string.Format ("http://search.maven.org/remotecontent?filepath=com/fasterxml/jackson/core/jackson-core/{0}/jackson-core-{0}.jar", JS_VERSION);
 
 var JAR_JS_FILE = string.Format ("./externals/jackson-core-{0}.jar", JS_VERSION);
