@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<package >
+  <metadata>
+    <id>Xamarin.JakeWharton.Timber</id>
+    <title>Timber</title>
+    <version>$version$</version>
+    <authors>Xamarin Inc.</authors>
+    <owners>Xamarin Inc.</owners>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>A logger with a small, extensible API which provides utility on top of Android's normal Log class.</description>
+    <copyright>Copyright (c) 2016 Xamarin Inc</copyright>
+    <iconUrl>https://github.com/xamarin/XamarinComponents/raw/master/Android/Timber/images/logo-square_256.png</iconUrl>
+    <projectUrl>https://github.com/xamarin/XamarinComponents/tree/master/Android/Timber</projectUrl>
+    <licenseUrl>https://github.com/xamarin/XamarinComponents/blob/master/Android/Timber/License.md</licenseUrl>
+  </metadata>
+  <files>  
+    <file src="output/Timber.dll" target="lib/MonoAndroid10" />
+    <file src="External-Dependency-Info" target="THIRD-PARTY-NOTICES" />
+  </files>
+</package>

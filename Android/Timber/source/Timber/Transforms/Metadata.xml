@@ -1,0 +1,9 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<metadata>
+	<attr path="/api/package[@name='timber.log']" name="managedName">TimberLog</attr>
+
+	<attr path="/api/package[@name='timber.log']/class[@name='Timber.Tree']/method[@name='log']/parameter[1]" name="managedName">priority</attr>
+	<attr path="/api/package[@name='timber.log']/class[@name='Timber.Tree']/method[@name='log']/parameter[2]" name="managedName">tag</attr>
+	<attr path="/api/package[@name='timber.log']/class[@name='Timber.Tree']/method[@name='log']/parameter[3]" name="managedName">message</attr>
+	<attr path="/api/package[@name='timber.log']/class[@name='Timber.Tree']/method[@name='log']/parameter[4]" name="managedName">t</attr>
+</metadata>

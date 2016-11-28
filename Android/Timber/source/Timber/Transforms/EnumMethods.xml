@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<enum-method-mappings>
+	<mapping jni-class="timber/log/Timber.Tree">
+		<method jni-name="log" parameter="p0" clr-enum-type="Android.Util.LogPriority" />
+		<method jni-name="isLoggable" parameter="priority" clr-enum-type="Android.Util.LogPriority" />
+	</mapping>
+	<mapping jni-class="timber/log/Timber.DebugTree">
+		<method jni-name="log" parameter="priority" clr-enum-type="Android.Util.LogPriority" />
+	</mapping>
+</enum-method-mappings>

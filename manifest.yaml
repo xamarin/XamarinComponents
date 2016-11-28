@@ -46,6 +46,10 @@
   BuildScript: ./Android/ElasticProgressBar/build.cake
   TriggerPaths: [ Android/ElasticProgressBar ]
   MacBuildTargets: [ samples, component ]
+- Name: Timber
+  BuildScript: ./Android/Timber/build.cake
+  TriggerPaths: [ Android/Timber ]
+  MacBuildTargets: [ samples, nuget ]
 - Name: Explosions
   BuildScript: ./Android/Explosions/build.cake
   TriggerPaths: [ Android/Explosions ]
