@@ -33,6 +33,7 @@ namespace Jazzy
             SetClipChildren(false);
 
             PagingEnabled = true;
+            AnimationDuration = 500;
             OutlineColor = Color.White;
             OutlineEnabled = false;
             TransitionEffect = JazzyEffects.Standard;
@@ -43,6 +44,8 @@ namespace Jazzy
             OutlineColor = ta.GetColor(Resource.Styleable.JazzyViewPager_outlineColor, Color.White);
             ta.Recycle();
         }
+
+        public long AnimationDuration { get; set; }
 
         public IJazzyEffect TransitionEffect { get; set; }
 
@@ -117,7 +120,7 @@ namespace Jazzy
                 return child;
             }
 
-            var outline = new JazzyOutlineContainer(Context);
+            var outline = new JazzyOutlineContainer(Context) { AnimationDuration = AnimationDuration };
             outline.LayoutParameters = GenerateDefaultLayoutParams();
             child.LayoutParameters = new JazzyOutlineContainer.LayoutParams(LayoutParams.MatchParent, LayoutParams.MatchParent);
             outline.AddView(child);
