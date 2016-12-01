@@ -5,6 +5,8 @@ publisher: Xamarin Inc
 publisher-url: https://xamarin.com
 src-url: https://github.com/xamarin/XamarinComponents/tree/master/iOS/iRate
 summary: Asks users to rate your app after they've used it for a while.
+license: ../License.md
+
 icons:
   - icons/irate_128x128.png
   - icons/irate_512x512.png
@@ -19,3 +21,7 @@ samples:
     removeFiles: 
       - iRateDemo-Classic.csproj
 no_build: true
+
+additional-files:
+  - source: "../External-Dependency-Info"
+    destination: "THIRD-PARTY-NOTICES"
