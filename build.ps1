@@ -89,7 +89,7 @@ if (!(Test-Path $PACKAGES_CONFIG)) {
         }
     } else {
         Write-Verbose -Message "using local cake.packages.config..."
-        CopyItem $CAKE_PACKAGES_CONFIG $PACKAGES_CONFIG
+        Copy-Item $CAKE_PACKAGES_CONFIG $PACKAGES_CONFIG
     }
 }
 
