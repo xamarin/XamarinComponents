@@ -18,7 +18,7 @@ var buildSpec = new BuildSpec () {
 			SolutionPath = "./Android.Things.sln",
 			OutputFiles = new [] { 
 				new OutputFileCopy {
-					FromFile = "./src/bin/Release/Xamarin.Android.Things.dll",
+					FromFile = "./source/bin/Release/Xamarin.Android.Things.dll",
 				}
 			}
 		}
