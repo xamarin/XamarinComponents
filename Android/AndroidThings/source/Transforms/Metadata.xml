@@ -1,0 +1,9 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<metadata>
+	<attr path="/api/package[@name='com.google.android.things']" name="managedName">Android.Things</attr>
+	<attr path="/api/package[@name='com.google.android.things.pio']" name="managedName">Android.Things.Pio</attr>
+	<attr path="/api/package[@name='com.google.android.things.userdriver']" name="managedName">Android.Things.UserDriver</attr>
+
+	<!-- obj/Debug/generated/src/Com.Google.Android.Things.Pio.GpioDriver.cs(74,24): error CS0533: `Com.Google.Android.Things.Pio.GpioDriver.Close()' hides inherited abstract member `Com.Google.Android.Things.Pio.Gpio.Close() -->
+	<remove-node path="/api/package[@name='com.google.android.things.pio']/class[@name='GpioDriver']/method[@name='close' and count(parameter)=0]" />
+</metadata>
