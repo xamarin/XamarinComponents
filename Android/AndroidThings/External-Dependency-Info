@@ -1,0 +1,23 @@
+THIRD-PARTY SOFTWARE NOTICES AND INFORMATION
+Do not translate or localize
+
+Xamarin Components for Google's Android Things Support Library incorporates 
+third party material from the projects listed below. The original copyright 
+notice and the license under which Microsoft received such third party 
+material are set forth below.  Microsoft reserves all other rights not 
+expressly granted, whether by implication, estoppel or otherwise.
+
+########################################
+# Google Android Things Support Library
+# https://bintray.com/google/androidthings/androidthings-supportlibrary
+########################################
+
+This copy of Google's Android Things Support Library is licensed under the
+Apache (Software) License, version 2.0 ("the License").
+See the License for details about distribution rights, and the
+specific rights regarding derivate works.
+
+You may obtain a copy of the License at:
+
+http://www.apache.org/licenses/LICENSE-2.0
+
