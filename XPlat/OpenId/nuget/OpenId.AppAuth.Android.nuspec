@@ -18,5 +18,6 @@ In addition to mapping the raw protocol flows, convenience methods are available
   </metadata>
   <files>
     <file src="output/OpenId.AppAuth.Android.dll" target="lib/MonoAndroid" />
+    <file src="External-Dependency-Info" target="THIRD-PARTY-NOTICES" />
   </files>
 </package>
