@@ -11,7 +11,7 @@ namespace OpenIdAuthSampleiOS
 		public override UIWindow Window { get; set; }
 
 		// The authorization flow session which receives the return URL from SFSafariViewController.
-		public IOIDAuthorizationFlowSession CurrentAuthorizationFlow { get; set; }
+		public IAuthorizationFlowSession CurrentAuthorizationFlow { get; set; }
 
 		public override bool FinishedLaunching(UIApplication application, NSDictionary launchOptions)
 		{

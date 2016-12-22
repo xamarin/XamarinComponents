@@ -4,7 +4,7 @@ using ObjCRuntime;
 namespace OpenId.AppAuth
 {
 	[Native]
-	public enum OIDErrorCode : long
+	public enum ErrorCode : long
 	{
 		InvalidDiscoveryDocument = -2,
 		UserCanceledAuthorizationFlow = -3,
@@ -18,7 +18,7 @@ namespace OpenId.AppAuth
 	}
 
 	[Native]
-	public enum OIDErrorCodeOAuth : long
+	public enum ErrorCodeOAuth : long
 	{
 		InvalidRequest = -2,
 		UnauthorizedClient = -3,
@@ -35,29 +35,29 @@ namespace OpenId.AppAuth
 	}
 
 	[Native]
-	public enum OIDErrorCodeOAuthAuthorization : long
+	public enum ErrorCodeOAuthAuthorization : long
 	{
-		InvalidRequest = OIDErrorCodeOAuth.InvalidRequest,
-		UnauthorizedClient = OIDErrorCodeOAuth.UnauthorizedClient,
-		AccessDenied = OIDErrorCodeOAuth.AccessDenied,
-		UnsupportedResponseType = OIDErrorCodeOAuth.UnsupportedResponseType,
-		AuthorizationInvalidScope = OIDErrorCodeOAuth.InvalidScope,
-		ServerError = OIDErrorCodeOAuth.ServerError,
-		TemporarilyUnavailable = OIDErrorCodeOAuth.TemporarilyUnavailable,
-		ClientError = OIDErrorCodeOAuth.ClientError,
-		Other = OIDErrorCodeOAuth.Other
+		InvalidRequest = ErrorCodeOAuth.InvalidRequest,
+		UnauthorizedClient = ErrorCodeOAuth.UnauthorizedClient,
+		AccessDenied = ErrorCodeOAuth.AccessDenied,
+		UnsupportedResponseType = ErrorCodeOAuth.UnsupportedResponseType,
+		AuthorizationInvalidScope = ErrorCodeOAuth.InvalidScope,
+		ServerError = ErrorCodeOAuth.ServerError,
+		TemporarilyUnavailable = ErrorCodeOAuth.TemporarilyUnavailable,
+		ClientError = ErrorCodeOAuth.ClientError,
+		Other = ErrorCodeOAuth.Other
 	}
 
 	[Native]
-	public enum OIDErrorCodeOAuthToken : long
+	public enum ErrorCodeOAuthToken : long
 	{
-		InvalidRequest = OIDErrorCodeOAuth.InvalidRequest,
-		InvalidClient = OIDErrorCodeOAuth.InvalidClient,
-		InvalidGrant = OIDErrorCodeOAuth.InvalidGrant,
-		UnauthorizedClient = OIDErrorCodeOAuth.UnauthorizedClient,
-		UnsupportedGrantType = OIDErrorCodeOAuth.UnsupportedGrantType,
-		InvalidScope = OIDErrorCodeOAuth.InvalidScope,
-		ClientError = OIDErrorCodeOAuth.ClientError,
-		Other = OIDErrorCodeOAuth.Other
+		InvalidRequest = ErrorCodeOAuth.InvalidRequest,
+		InvalidClient = ErrorCodeOAuth.InvalidClient,
+		InvalidGrant = ErrorCodeOAuth.InvalidGrant,
+		UnauthorizedClient = ErrorCodeOAuth.UnauthorizedClient,
+		UnsupportedGrantType = ErrorCodeOAuth.UnsupportedGrantType,
+		InvalidScope = ErrorCodeOAuth.InvalidScope,
+		ClientError = ErrorCodeOAuth.ClientError,
+		Other = ErrorCodeOAuth.Other
 	}
 }

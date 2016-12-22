@@ -9,12 +9,12 @@ using OpenId.AppAuth;
 
 namespace OpenIdAuthSampleiOS
 {
-	public partial class ViewController : UIViewController, IOIDAuthStateChangeDelegate, IOIDAuthStateErrorDelegate
+	public partial class ViewController : UIViewController, IAuthStateChangeDelegate, IAuthStateErrorDelegate
 	{
 		// The authorization state. This is the AppAuth object that you should keep around and
 		// serialize to disk.
-		private OIDAuthState _authState;
-		public OIDAuthState AuthState
+		private AuthState _authState;
+		public AuthState AuthState
 		{
 			get { return _authState; }
 			set
@@ -24,7 +24,7 @@ namespace OpenIdAuthSampleiOS
 					_authState = value;
 					if (_authState != null)
 					{
-						_authState.WeakStateChangeDelegate = this;
+						_authState.StateChangeDelegate = this;
 					}
 					StateChanged();
 				}
@@ -67,17 +67,17 @@ namespace OpenIdAuthSampleiOS
 			try
 			{
 				// discovers endpoints
-				var configuration = await OIDAuthorizationService.DiscoverServiceConfigurationForIssuerAsync(issuer);
+				var configuration = await AuthorizationService.DiscoverServiceConfigurationForIssuerAsync(issuer);
 
 				Console.WriteLine($"Got configuration: {configuration}");
 
 				// builds authentication request
-				var request = new OIDAuthorizationRequest(configuration, kClientID, new string[] { OIDScope.OpenID, OIDScope.Profile }, redirectURI, OIDResponseType.Code, null);
+				var request = new AuthorizationRequest(configuration, kClientID, new string[] { Scope.OpenId, Scope.Profile }, redirectURI, ResponseType.Code, null);
 				// performs authentication request
 				var appDelegate = (AppDelegate)UIApplication.SharedApplication.Delegate;
 				Console.WriteLine($"Initiating authorization request with scope: {request.Scope}");
 
-				appDelegate.CurrentAuthorizationFlow = OIDAuthState.PresentAuthorizationRequest(request, this, (authState, error) =>
+				appDelegate.CurrentAuthorizationFlow = AuthState.PresentAuthorizationRequest(request, this, (authState, error) =>
 				{
 					if (authState != null)
 					{
@@ -109,20 +109,20 @@ namespace OpenIdAuthSampleiOS
 			try
 			{
 				// discovers endpoints
-				var configuration = await OIDAuthorizationService.DiscoverServiceConfigurationForIssuerAsync(issuer);
+				var configuration = await AuthorizationService.DiscoverServiceConfigurationForIssuerAsync(issuer);
 
 				Console.WriteLine($"Got configuration: {configuration}");
 
 				// builds authentication request
-				OIDAuthorizationRequest request = new OIDAuthorizationRequest(configuration, kClientID, new string[] { OIDScope.OpenID, OIDScope.Profile }, redirectURI, OIDResponseType.Code, null);
+				AuthorizationRequest request = new AuthorizationRequest(configuration, kClientID, new string[] { Scope.OpenId, Scope.Profile }, redirectURI, ResponseType.Code, null);
 				// performs authentication request
 				var appDelegate = (AppDelegate)UIApplication.SharedApplication.Delegate;
 				Console.WriteLine($"Initiating authorization request: {request}");
-				appDelegate.CurrentAuthorizationFlow = OIDAuthorizationService.PresentAuthorizationRequest(request, this, (authorizationResponse, error) =>
+				appDelegate.CurrentAuthorizationFlow = AuthorizationService.PresentAuthorizationRequest(request, this, (authorizationResponse, error) =>
 				{
 					if (authorizationResponse != null)
 					{
-						OIDAuthState authState = new OIDAuthState(authorizationResponse);
+						AuthState authState = new AuthState(authorizationResponse);
 						AuthState = authState;
 
 						Console.WriteLine($"Authorization response with code: {authorizationResponse.AuthorizationCode}");
@@ -145,13 +145,13 @@ namespace OpenIdAuthSampleiOS
 		async partial void CodeExchange(UIButton sender)
 		{
 			// performs code exchange request
-			OIDTokenRequest tokenExchangeRequest = AuthState.LastAuthorizationResponse.CreateTokenExchangeRequest();
+			TokenRequest tokenExchangeRequest = AuthState.LastAuthorizationResponse.CreateTokenExchangeRequest();
 
 			Console.WriteLine($"Performing authorization code exchange with request: {tokenExchangeRequest}");
 
 			try
 			{
-				var tokenResponse = await OIDAuthorizationService.PerformTokenRequestAsync(tokenExchangeRequest);
+				var tokenResponse = await AuthorizationService.PerformTokenRequestAsync(tokenExchangeRequest);
 				Console.WriteLine($"Received token response with accessToken: {tokenResponse.AccessToken}");
 
 				AuthState.Update(tokenResponse, null);
@@ -220,7 +220,7 @@ namespace OpenIdAuthSampleiOS
 					{
 						// "401 Unauthorized" generally indicates there is an issue with the authorization
 						// grant. Puts OIDAuthState into an error state.
-						var authError = OIDErrorUtilities.CreateResourceServerAuthorizationError(0, data, error);
+						var authError = ErrorUtilities.CreateResourceServerAuthorizationError(0, data, error);
 						AuthState.Update(authError);
 						// log error
 						Console.WriteLine($"Authorization Error ({authError}). Response: {content}");
@@ -263,7 +263,7 @@ namespace OpenIdAuthSampleiOS
 			var archivedAuthState = (NSData)NSUserDefaults.StandardUserDefaults[kAppAuthExampleAuthStateKey];
 			if (archivedAuthState != null)
 			{
-				AuthState = (OIDAuthState)NSKeyedUnarchiver.UnarchiveObject(archivedAuthState);
+				AuthState = (AuthState)NSKeyedUnarchiver.UnarchiveObject(archivedAuthState);
 			}
 		}
 
@@ -297,12 +297,12 @@ namespace OpenIdAuthSampleiOS
 			UpdateUi();
 		}
 
-		void IOIDAuthStateChangeDelegate.DidChangeState(OIDAuthState state)
+		void IAuthStateChangeDelegate.DidChangeState(AuthState state)
 		{
 			StateChanged();
 		}
 
-		void IOIDAuthStateErrorDelegate.DidEncounterAuthorizationError(OIDAuthState state, NSError error)
+		void IAuthStateErrorDelegate.DidEncounterAuthorizationError(AuthState state, NSError error)
 		{
 			Console.WriteLine($"Received authorization error: {error}.");
 		}

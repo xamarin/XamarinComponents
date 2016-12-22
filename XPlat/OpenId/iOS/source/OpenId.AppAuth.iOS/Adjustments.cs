@@ -2,21 +2,21 @@
 
 namespace OpenId.AppAuth
 {
-	partial class OIDAuthState
+	partial class AuthState
 	{
-		public static IOIDAuthorizationFlowSession PresentAuthorizationRequest(OIDAuthorizationRequest authorizationRequest, UIViewController presentingViewController, OIDAuthStateAuthorizationCallback callback)
+		public static IAuthorizationFlowSession PresentAuthorizationRequest(AuthorizationRequest authorizationRequest, UIViewController presentingViewController, AuthStateAuthorizationCallback callback)
 		{
-			var coordinator = new OIDAuthorizationUICoordinatorIOS(presentingViewController);
-			return OIDAuthState.PresentAuthorizationRequest(authorizationRequest, coordinator, callback);
+			var coordinator = new AuthorizationUICoordinatorIOS(presentingViewController);
+			return AuthState.PresentAuthorizationRequest(authorizationRequest, coordinator, callback);
 		}
 	}
 
-	partial class OIDAuthorizationService
+	partial class AuthorizationService
 	{
-		public static IOIDAuthorizationFlowSession PresentAuthorizationRequest(OIDAuthorizationRequest request, UIViewController presentingViewController, OIDAuthorizationCallback callback)
+		public static IAuthorizationFlowSession PresentAuthorizationRequest(AuthorizationRequest request, UIViewController presentingViewController, AuthorizationCallback callback)
 		{
-			var coordinator = new OIDAuthorizationUICoordinatorIOS(presentingViewController);
-			return OIDAuthorizationService.PresentAuthorizationRequest(request, coordinator, callback);
+			var coordinator = new AuthorizationUICoordinatorIOS(presentingViewController);
+			return AuthorizationService.PresentAuthorizationRequest(request, coordinator, callback);
 		}
 	}
 }
