@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6211" systemVersion="14A298i" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="13">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6204"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="12">
+            <objects>
+                <navigationController id="13" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="15">
+                        <rect key="frame" x="0.0" y="20" width="600" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue id="984" destination="22" kind="relationship" relationship="rootViewController"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="16" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-403" y="112"/>
+        </scene>
+        <scene sceneID="21">
+            <objects>
+                <viewController id="22" sceneMemberID="viewController" customClass="ViewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="19"/>
+                        <viewControllerLayoutGuide type="bottom" id="20"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="23">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="986" translatesAutoresizingMaskIntoConstraints="NO">
+                                <rect key="frame" x="20" y="110.5" width="560" height="30"/>
+                                <state key="normal" title="Authorize (Auto)">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="AuthWithAutoCodeExchange:" destination="22" id="1035" eventType="touchUpInside"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="987" translatesAutoresizingMaskIntoConstraints="NO">
+                                <rect key="frame" x="20" y="174" width="277" height="30"/>
+                                <state key="normal" title="Authorize (Manual)">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="AuthNoCodeExchange:" destination="22" id="1036" eventType="touchUpInside"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="988" translatesAutoresizingMaskIntoConstraints="NO">
+                                <rect key="frame" x="303" y="174" width="277" height="30"/>
+                                <state key="normal" title="Code exchange">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="CodeExchange:" destination="22" id="1039" eventType="touchUpInside"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="989" translatesAutoresizingMaskIntoConstraints="NO">
+                                <rect key="frame" x="20" y="236.5" width="560" height="30"/>
+                                <state key="normal" title="API Call (UserInfo)">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="Userinfo:" destination="22" id="1040" eventType="touchUpInside"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="990" translatesAutoresizingMaskIntoConstraints="NO">
+                                <rect key="frame" x="20" y="299" width="560" height="30"/>
+                                <state key="normal" title="Clear AuthState">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="ClearAuthState:" destination="22" id="1041" eventType="touchUpInside"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1. Authorize" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="991" translatesAutoresizingMaskIntoConstraints="NO">
+                                <rect key="frame" x="20" y="84" width="560" height="20.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="or" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="992" translatesAutoresizingMaskIntoConstraints="NO">
+                                <rect key="frame" x="20" y="147.5" width="560" height="20.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2. Action" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="993" translatesAutoresizingMaskIntoConstraints="NO">
+                                <rect key="frame" x="20" y="210" width="560" height="20.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="3. Clean" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="994" translatesAutoresizingMaskIntoConstraints="NO">
+                                <rect key="frame" x="20" y="272.5" width="560" height="20.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <constraints>
+                            <constraint id="997" firstItem="991" firstAttribute="top" secondItem="19" secondAttribute="bottom" constant="20"/>
+                            <constraint id="998" firstItem="991" firstAttribute="leading" secondItem="23" secondAttribute="leading" constant="20"/>
+                            <constraint id="999" firstItem="23" firstAttribute="trailing" secondItem="991" secondAttribute="trailing" constant="20"/>
+                            <constraint id="1000" firstItem="986" firstAttribute="leading" secondItem="23" secondAttribute="leading" constant="20"/>
+                            <constraint id="1001" firstItem="986" firstAttribute="top" secondItem="991" secondAttribute="bottom" constant="6"/>
+                            <constraint id="1002" firstItem="23" firstAttribute="trailing" secondItem="986" secondAttribute="trailing" constant="20"/>
+                            <constraint id="1003" firstItem="992" firstAttribute="top" secondItem="986" secondAttribute="bottom" constant="7"/>
+                            <constraint id="1005" firstItem="23" firstAttribute="trailing" secondItem="992" secondAttribute="trailing" constant="20"/>
+                            <constraint id="1006" firstItem="992" firstAttribute="leading" secondItem="23" secondAttribute="leading" constant="20"/>
+                            <constraint id="1007" firstItem="987" firstAttribute="leading" secondItem="23" secondAttribute="leading" constant="20"/>
+                            <constraint id="1008" firstItem="23" firstAttribute="trailing" secondItem="988" secondAttribute="trailing" constant="20"/>
+                            <constraint id="1009" firstItem="988" firstAttribute="leading" secondItem="987" secondAttribute="trailing" constant="6"/>
+                            <constraint id="1010" firstItem="988" firstAttribute="width" secondItem="987" secondAttribute="width"/>
+                            <constraint id="1011" firstItem="987" firstAttribute="top" secondItem="992" secondAttribute="bottom" constant="6"/>
+                            <constraint id="1012" firstItem="988" firstAttribute="top" secondItem="992" secondAttribute="bottom" constant="6"/>
+                            <constraint id="1013" firstItem="993" firstAttribute="leading" secondItem="23" secondAttribute="leading" constant="20"/>
+                            <constraint id="1014" firstItem="23" firstAttribute="trailing" secondItem="993" secondAttribute="trailing" constant="20"/>
+                            <constraint id="1015" firstItem="993" firstAttribute="top" secondItem="987" secondAttribute="bottom" constant="6"/>
+                            <constraint id="1016" firstItem="989" firstAttribute="leading" secondItem="23" secondAttribute="leading" constant="20"/>
+                            <constraint id="1017" firstItem="23" firstAttribute="trailing" secondItem="989" secondAttribute="trailing" constant="20"/>
+                            <constraint id="1018" firstItem="989" firstAttribute="top" secondItem="993" secondAttribute="bottom" constant="6"/>
+                            <constraint id="1019" firstItem="994" firstAttribute="top" secondItem="989" secondAttribute="bottom" constant="6"/>
+                            <constraint id="1020" firstItem="994" firstAttribute="leading" secondItem="23" secondAttribute="leading" constant="20"/>
+                            <constraint id="1021" firstItem="23" firstAttribute="trailing" secondItem="994" secondAttribute="trailing" constant="20"/>
+                            <constraint id="1022" firstItem="990" firstAttribute="top" secondItem="994" secondAttribute="bottom" constant="6"/>
+                            <constraint id="1023" firstItem="990" firstAttribute="leading" secondItem="23" secondAttribute="leading" constant="20"/>
+                            <constraint id="1024" firstItem="23" firstAttribute="trailing" secondItem="990" secondAttribute="trailing" constant="20"/>
+                        </constraints>
+                    </view>
+                    <navigationItem id="983" key="navigationItem" title="OpenID AppAuth"/>
+                    <connections>
+                        <outlet property="authAutoButton" destination="986" id="name-outlet-986"/>
+                        <outlet property="authManual" destination="987" id="name-outlet-987"/>
+                        <outlet property="userinfoButton" destination="989" id="name-outlet-989"/>
+                        <outlet property="clearAuthStateButton" destination="990" id="name-outlet-990"/>
+                        <outlet property="codeExchangeButton" destination="988" id="name-outlet-988"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="24" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="319" y="110"/>
+        </scene>
+    </scenes>
+</document>
