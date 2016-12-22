@@ -1,0 +1,40 @@
+version: 0.3.0
+name: OpenID AppAuth (OAuth Client)
+id: OpenID.AppAuth
+publisher: Xamarin Inc.
+publisher-url: http://xamarin.com
+summary: AppAuth  is a client SDK for communicating with OAuth 2.0 and OpenID Connect providers.
+license: ../License.md
+details: Details.md
+getting-started: GettingStarted.md
+icons:
+  - ../images/logo_128x128.png
+  - ../images/logo_512x512.png
+packages:
+  ios-unified:
+    - Xamarin.OpenId.AppAuth.iOS, Version=0.4.2
+  android:
+    - Xamarin.OpenId.AppAuth.Android, Version=0.3.0
+libraries:
+  android: ../output/OpenId.AppAuth.Android.dll
+  ios-unified: ../output/OpenId.AppAuth.iOS.dll
+samples:
+  - name: "Android Sample"
+    path:  ../Android/samples/OpenIdAuthSampleAndroid.sln
+    removeProjects:
+      - OpenId.AppAuth.Android
+    installNuGets:
+      - project: OpenIdAuthSampleAndroid
+        packages:
+          - Xamarin.OpenId.AppAuth.Android
+  - name: "iOS Sample"
+    path:  ../iOS/samples/OpenIdAuthSampleiOS.sln
+    removeProjects:
+      - OpenId.AppAuth.iOS
+    installNuGets:
+      - project: OpenIdAuthSampleiOS
+        packages:
+          - Xamarin.OpenId.AppAuth.iOS
+local-nuget-repo: ../output
+no_build: true
+

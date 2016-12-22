@@ -48,10 +48,9 @@ var buildSpec = new BuildSpec {
 		new DefaultSolutionBuilder { SolutionPath = "./Android/samples/OpenIdAuthSampleAndroid.sln" }
 	},
 
-	// Components = new [] {
-	// 	new Component { ManifestDirectory = "./iOS/component" }
-	// 	new Component { ManifestDirectory = "./Android/component" }
-	// }
+	Components = new [] {
+		new Component { ManifestDirectory = "./component" }
+	}
 };
 
 Task ("externals-android")
