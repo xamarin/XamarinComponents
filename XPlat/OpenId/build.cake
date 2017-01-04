@@ -4,9 +4,9 @@
 var TARGET = Argument ("t", Argument ("target", "Default"));
 
 var ANDROID_VERSION = "0.4.1";
-var ANDROID_NUGET_VERSION = "0.4.1";
-var IOS_VERSION = "0.4.2";
-var IOS_NUGET_VERSION = "0.4.2";
+var ANDROID_NUGET_VERSION = "0.4.1.1";
+var IOS_VERSION = "0.5.0";
+var IOS_NUGET_VERSION = "0.5.0";
 
 var AAR_URL = string.Format ("https://bintray.com/openid/net.openid/download_file?file_path=net%2Fopenid%2Fappauth%2F{0}%2Fappauth-{0}.aar", ANDROID_VERSION);
 
