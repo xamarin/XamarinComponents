@@ -15,6 +15,6 @@
   </metadata>
   <files>  
     <file src="output/Timber.dll" target="lib/MonoAndroid10" />
-    <file src="External-Dependency-Info" target="THIRD-PARTY-NOTICES" />
+    <file src="External-Dependency-Info.txt" target="THIRD-PARTY-NOTICES.txt" />
   </files>
 </package>

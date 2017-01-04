@@ -4,6 +4,7 @@
 var TARGET = Argument ("t", Argument ("target", "Default"));
 
 var ANDROID_VERSION = "4.3.1";
+var ANDROID_NUGET_VERSION = "4.3.1.1";
 var ANDROID_URL = string.Format ("http://search.maven.org/remotecontent?filepath=com/jakewharton/timber/timber/{0}/timber-{0}.aar", ANDROID_VERSION);
 var ANDROID_FILE = "jakewharton.timber.aar";
 
@@ -24,7 +25,7 @@ var buildSpec = new BuildSpec () {
 	},
 
 	NuGets = new [] {
-		new NuGetInfo { NuSpec = "./nuget/Xamarin.JakeWharton.Timber.nuspec", Version = ANDROID_VERSION },
+		new NuGetInfo { NuSpec = "./nuget/Xamarin.JakeWharton.Timber.nuspec", Version = ANDROID_NUGET_VERSION },
 	},
 };
 
