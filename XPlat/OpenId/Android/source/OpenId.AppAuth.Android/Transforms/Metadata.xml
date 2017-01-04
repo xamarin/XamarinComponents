@@ -2,6 +2,8 @@
 <metadata>
 	<!-- namespace -->
 	<attr path="/api/package[@name='net.openid.appauth']" name="managedName">OpenId.AppAuth</attr>
+	<attr path="/api/package[@name='net.openid.appauth.browser']" name="managedName">OpenId.AppAuth.Browser</attr>
+	<attr path="/api/package[@name='net.openid.appauth.connectivity']" name="managedName">OpenId.AppAuth.Connectivity</attr>
 	<!-- nested classes -->
 	<attr path="/api/package[@name='net.openid.appauth']/class[@name='AuthorizationRequest.Display']" name="managedName">Displays</attr>
 	<attr path="/api/package[@name='net.openid.appauth']/class[@name='AuthorizationRequest.Prompt']" name="managedName">Prompts</attr>
@@ -12,6 +14,12 @@
 	<attr path="/api/package[@name='net.openid.appauth']/interface[@name='AuthState.AuthStateAction']/method[@name='execute']/parameter[1]" name="managedName">accessToken</attr>
 	<attr path="/api/package[@name='net.openid.appauth']/interface[@name='AuthState.AuthStateAction']/method[@name='execute']/parameter[2]" name="managedName">idToken</attr>
 	<attr path="/api/package[@name='net.openid.appauth']/interface[@name='AuthState.AuthStateAction']/method[@name='execute']/parameter[3]" name="managedName">ex</attr>
+	<attr path="/api/package[@name='net.openid.appauth']/interface[@name='ClientAuthentication']/method[@name='getRequestHeaders']/parameter[1]" name="managedName">clientId</attr>
+	<attr path="/api/package[@name='net.openid.appauth']/interface[@name='ClientAuthentication']/method[@name='getRequestParameters']/parameter[1]" name="managedName">clientId</attr>
+	<attr path="/api/package[@name='net.openid.appauth.browser']/interface[@name='BrowserMatcher']/method[@name='matches']/parameter[1]" name="managedName">descriptor</attr>
+	<attr path="/api/package[@name='net.openid.appauth.connectivity']/interface[@name='ConnectionBuilder']/method[@name='openConnection']/parameter[1]" name="managedName">uri</attr>
+	<!-- fixes -->
+	<attr path="/api/package[@name='net.openid.appauth.browser']/class[@name='DelimitedVersion']/method[@name='compareTo']/parameter[1]" name="managedType">Java.Lang.Object</attr>
 	<!-- private types -->
 	<remove-node path="/api/package[@name='net.openid.appauth']/class[@visibility='private']" />
 </metadata>
