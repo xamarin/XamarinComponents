@@ -10,6 +10,10 @@
   BuildScript: ./Android/AndroidSwipeLayout/build.cake
   TriggerPaths: [ Android/AndroidSwipeLayout ]
   MacBuildTargets: [ samples, component ]
+- Name: AndroidThings
+  BuildScript: ./Android/AndroidThings/build.cake
+  TriggerPaths: [ Android/AndroidThings ]
+  MacBuildTargets: [ nuget ]
 - Name: AndroidViewAnimations
   BuildScript: ./Android/AndroidViewAnimations/build.cake
   TriggerPaths: [ Android/AndroidViewAnimations ]
