@@ -38,8 +38,8 @@ samples:
 local-nuget-repo: ../output
 
 additional-files:
-  - source: "../External-Dependency-Info"
-    destination: "THIRD-PARTY-NOTICES"
+  - source: "../External-Dependency-Info.txt"
+    destination: "THIRD-PARTY-NOTICES.txt"
 
 no_build: true
 
