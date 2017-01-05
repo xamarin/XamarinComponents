@@ -1,0 +1,26 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LoginScreen.Android", "LoginScreen.Android\LoginScreen.Android.csproj", "{2AB720C2-2E18-4571-965D-1E72E661D498}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LoginScreen.iOS", "LoginScreen.iOS\LoginScreen.iOS.csproj", "{CDBA8DEF-C80D-4341-AC8B-400F72DA74CA}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{2AB720C2-2E18-4571-965D-1E72E661D498}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2AB720C2-2E18-4571-965D-1E72E661D498}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2AB720C2-2E18-4571-965D-1E72E661D498}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2AB720C2-2E18-4571-965D-1E72E661D498}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CDBA8DEF-C80D-4341-AC8B-400F72DA74CA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CDBA8DEF-C80D-4341-AC8B-400F72DA74CA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CDBA8DEF-C80D-4341-AC8B-400F72DA74CA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CDBA8DEF-C80D-4341-AC8B-400F72DA74CA}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(MonoDevelopProperties) = preSolution
+		StartupItem = LoginScreen.iOS\LoginScreen.iOS-Classic.csproj
+	EndGlobalSection
+EndGlobal

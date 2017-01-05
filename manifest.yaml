@@ -316,6 +316,10 @@
   BuildScript: ./XPlat/CardIO/iOS/build.cake
   TriggerPaths: [ XPlat/CardIO/iOS ]
   MacBuildTargets: [ samples, component ]
+- Name: LoginScreen
+  BuildScript: ./XPlat/LoginScreen/build.cake
+  TriggerPaths: [ XPlat/LoginScreen ]
+  MacBuildTargets: [ samples, nuget, component ]
 - Name: Mapbox
   BuildScript: ./XPlat/Mapbox/build.cake
   TriggerPaths: [ XPlat/Mapbox ]

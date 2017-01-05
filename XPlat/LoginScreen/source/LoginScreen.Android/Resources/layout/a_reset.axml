@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	android:id="@+id/rootLayout"
+    android:background="#E7EDF4"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:descendantFocusability="beforeDescendants"
+	android:focusableInTouchMode="true" >
+    
+	<LinearLayout
+	    android:layout_width="wrap_content"
+	    android:layout_height="wrap_content"
+   		android:background="@drawable/bg_login"
+		android:layout_centerInParent="true"    
+	    android:orientation="vertical" >
+	    
+		<LinearLayout
+			android:id="@+id/titleLayout"
+	    	android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+		    android:layout_marginTop="10dp"
+		    android:paddingLeft="15dp"	
+	    	android:orientation="horizontal" >    
+	    
+			<TextView  
+			    android:id="@+id/resetText"
+			    android:textSize="20dp"
+			    android:textColor="#19A5D7"
+			    android:layout_width="wrap_content"
+			    android:layout_height="wrap_content" />
+		    
+		    <TextView  
+			    android:id="@+id/fake"
+			    android:textSize="20dp"
+			    android:layout_width="wrap_content"
+			    android:layout_height="wrap_content"
+			    android:text="fapfapfapfapfapfapfapfap"
+			    android:visibility="invisible" />		    
+		    
+	    </LinearLayout>	    
+
+		<ImageView  
+		    android:layout_width="fill_parent"
+		    android:layout_height="wrap_content"
+		    android:layout_marginTop="10dp"
+		    android:scaleType="fitXY"
+		    android:src="@drawable/divider_top" />
+	    
+		<EditText  
+		    android:id="@+id/emailEdit"
+		    android:layout_width="fill_parent"
+		    android:layout_height="wrap_content"
+		    android:layout_marginTop="10dp"
+		    android:layout_marginLeft="30dp"
+		    android:layout_marginRight="30dp"	    	    
+		    android:background="@drawable/edittext_bg_selector"
+		    android:paddingRight="10dp"
+		    android:paddingLeft="10dp"	    
+		    android:textSize="16dp"
+		   	android:textColor="@drawable/edittext_textcolor_selector"
+		    android:textColorHint="@drawable/edittext_textcolor_selector"
+		    android:inputType="textEmailAddress|textNoSuggestions" 
+		    android:textCursorDrawable="@null" />
+
+	    <Button  
+		    android:id="@+id/resetButton"
+		    android:layout_width="fill_parent" 
+		    android:layout_height="wrap_content"
+		    android:layout_marginTop="10dp"
+		    android:layout_marginLeft="30dp"
+		    android:layout_marginRight="30dp"
+		    android:layout_marginBottom="20dp"		    
+		    android:textSize="16dp"
+		    android:textColor="#FFFFFF"	        
+		    android:textStyle="bold"
+		    android:background="@drawable/button_reset_selector" />
+		    
+	</LinearLayout>
+
+</RelativeLayout>

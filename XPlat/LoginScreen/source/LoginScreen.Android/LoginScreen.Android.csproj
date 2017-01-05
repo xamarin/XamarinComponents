@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{2AB720C2-2E18-4571-965D-1E72E661D498}</ProjectGuid>
+    <ProjectTypeGuids>{EFBA0AD7-5A72-4C68-AF49-83D382785DCF};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <RootNamespace>LoginScreen</RootNamespace>
+    <MonoAndroidResourcePrefix>Resources</MonoAndroidResourcePrefix>
+    <AssemblyName>Xamarin.Controls.LoginScreen.Android</AssemblyName>
+    <MonoAndroidAssetsPrefix>Assets</MonoAndroidAssetsPrefix>
+    <AndroidResgenFile>Resources\Resource.designer.cs</AndroidResgenFile>
+    <AndroidResgenClass>Resource</AndroidResgenClass>
+    <TargetFrameworkVersion>v4.0.3</TargetFrameworkVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>True</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>False</Optimize>
+    <OutputPath>bin\Debug</OutputPath>
+    <DefineConstants>DEBUG;</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <ConsolePause>False</ConsolePause>
+    <AndroidLinkMode>None</AndroidLinkMode>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>none</DebugType>
+    <Optimize>True</Optimize>
+    <OutputPath>bin\Release</OutputPath>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <ConsolePause>False</ConsolePause>
+    <AndroidUseSharedRuntime>False</AndroidUseSharedRuntime>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Core" />
+    <Reference Include="Mono.Android" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Resources\Resource.designer.cs" />
+    <Compile Include="Activities\LoginActivity.cs" />
+    <Compile Include="Activities\RegisterActivity.cs" />
+    <Compile Include="Activities\ResetActivity.cs" />
+    <Compile Include="..\LoginScreen.Common\ICredentialsProvider.cs">
+      <Link>ICredentialsProvider.cs</Link>
+    </Compile>
+    <Compile Include="..\LoginScreen.Common\ILoginScreenMessages.cs">
+      <Link>ILoginScreenMessages.cs</Link>
+    </Compile>
+    <Compile Include="..\LoginScreen.Common\LoginScreenFaultDetails.cs">
+      <Link>LoginScreenFaultDetails.cs</Link>
+    </Compile>
+    <Compile Include="..\LoginScreen.Common\DefaultLoginScreenMessages.cs">
+      <Link>DefaultLoginScreenMessages.cs</Link>
+    </Compile>
+    <Compile Include="Activities\BaseActivity.cs" />
+    <Compile Include="..\LoginScreen.Common\LoginScreenControl.cs">
+      <Link>LoginScreenControl.Default.cs</Link>
+    </Compile>
+    <Compile Include="LoginScreenControl.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\AboutResources.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\values\Strings.xml" />
+    <AndroidResource Include="Resources\drawable\Icon.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\textfield.9.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\textfield_active.9.png" />
+    <AndroidResource Include="Resources\drawable\edittext_bg_selector.xml" />
+    <AndroidResource Include="Resources\drawable-xhdpi\image_password.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\image_password_active.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\image_username.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\image_username_active.png" />
+    <AndroidResource Include="Resources\drawable\username_right_selector.xml" />
+    <AndroidResource Include="Resources\drawable\password_right_selector.xml" />
+    <AndroidResource Include="Resources\drawable-xhdpi\button_login.9.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\button_register.9.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\button_reset.9.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\divider_top.9.png" />
+    <AndroidResource Include="Resources\drawable\edittext_textcolor_selector.xml" />
+    <AndroidResource Include="Resources\drawable-xhdpi\arrow.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\divider_bottom.9.png" />
+    <AndroidResource Include="Resources\layout-normal-ldpi\a_login.axml" />
+    <AndroidResource Include="Resources\layout-normal-mdpi\a_login.axml" />
+    <AndroidResource Include="Resources\layout-small-ldpi\a_login.axml" />
+    <AndroidResource Include="Resources\layout-small-mdpi\a_login.axml" />
+    <AndroidResource Include="Resources\layout-large\a_login.axml" />
+    <AndroidResource Include="Resources\layout-large\a_register.axml" />
+    <AndroidResource Include="Resources\layout-large\a_reset.axml" />
+    <AndroidResource Include="Resources\layout-normal-hdpi\a_login.axml" />
+    <AndroidResource Include="Resources\layout-normal-hdpi\a_register.axml" />
+    <AndroidResource Include="Resources\layout-normal-hdpi\a_reset.axml" />
+    <AndroidResource Include="Resources\layout-normal-xhdpi\a_login.axml" />
+    <AndroidResource Include="Resources\layout-normal-xhdpi\a_register.axml" />
+    <AndroidResource Include="Resources\layout-normal-xhdpi\a_reset.axml" />
+    <AndroidResource Include="Resources\layout-small-hdpi\a_login.axml" />
+    <AndroidResource Include="Resources\layout-small-hdpi\a_register.axml" />
+    <AndroidResource Include="Resources\layout-small-hdpi\a_reset.axml" />
+    <AndroidResource Include="Resources\layout-small-xhdpi\a_login.axml" />
+    <AndroidResource Include="Resources\layout-small-xhdpi\a_register.axml" />
+    <AndroidResource Include="Resources\layout-small-xhdpi\a_reset.axml" />
+    <AndroidResource Include="Resources\layout-xlarge\a_login.axml" />
+    <AndroidResource Include="Resources\layout-xlarge\a_register.axml" />
+    <AndroidResource Include="Resources\layout-xlarge\a_reset.axml" />
+    <AndroidResource Include="Resources\drawable-xhdpi\button_login_pressed.9.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\button_register_pressed.9.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\button_reset_pressed.9.png" />
+    <AndroidResource Include="Resources\drawable\button_login_selector.xml" />
+    <AndroidResource Include="Resources\drawable\button_reset_selector.xml" />
+    <AndroidResource Include="Resources\drawable\button_register_selector.xml" />
+    <AndroidResource Include="Resources\drawable-xhdpi\alert.9.png" />
+    <AndroidResource Include="Resources\layout-large\a_validationerror.axml" />
+    <AndroidResource Include="Resources\drawable-xhdpi\bg_login.9.png" />
+    <AndroidResource Include="Resources\layout-small-ldpi\a_register.axml" />
+    <AndroidResource Include="Resources\layout-small-ldpi\a_reset.axml" />
+    <AndroidResource Include="Resources\layout-small-ldpi\a_validationerror.axml" />
+    <AndroidResource Include="Resources\layout-normal-hdpi\a_validationerror.axml" />
+    <AndroidResource Include="Resources\layout-normal-ldpi\a_register.axml" />
+    <AndroidResource Include="Resources\layout-normal-ldpi\a_reset.axml" />
+    <AndroidResource Include="Resources\layout-normal-ldpi\a_validationerror.axml" />
+    <AndroidResource Include="Resources\layout-normal-mdpi\a_register.axml" />
+    <AndroidResource Include="Resources\layout-normal-mdpi\a_reset.axml" />
+    <AndroidResource Include="Resources\layout-normal-mdpi\a_validationerror.axml" />
+    <AndroidResource Include="Resources\layout-normal-xhdpi\a_validationerror.axml" />
+    <AndroidResource Include="Resources\layout-small-mdpi\a_register.axml" />
+    <AndroidResource Include="Resources\layout-small-mdpi\a_reset.axml" />
+    <AndroidResource Include="Resources\layout-small-mdpi\a_validationerror.axml" />
+    <AndroidResource Include="Resources\layout-small-xhdpi\a_validationerror.axml" />
+    <AndroidResource Include="Resources\layout-xlarge\a_validationerror.axml" />
+    <AndroidResource Include="Resources\layout-small-hdpi\a_validationerror.axml" />
+  </ItemGroup>
+  <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
+  <ItemGroup>
+    <Folder Include="Resources\drawable\" />
+    <Folder Include="Resources\drawable-xhdpi\" />
+    <Folder Include="Activities\" />
+  </ItemGroup>
+</Project>
