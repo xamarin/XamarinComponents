@@ -1,0 +1,122 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{CDBA8DEF-C80D-4341-AC8B-400F72DA74CA}</ProjectGuid>
+    <ProjectTypeGuids>{FEACFBD2-3405-455C-9665-78FE426C6842};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <RootNamespace>LoginScreen</RootNamespace>
+    <AssemblyName>Xamarin.Controls.LoginScreen.iOS</AssemblyName>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>True</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>False</Optimize>
+    <OutputPath>bin\unified\Debug</OutputPath>
+    <IntermediateOutputPath>obj\unified\Debug</IntermediateOutputPath>
+    <DefineConstants>DEBUG;</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <ConsolePause>False</ConsolePause>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>none</DebugType>
+    <Optimize>True</Optimize>
+    <OutputPath>bin\unified\Release</OutputPath>
+    <IntermediateOutputPath>obj\unified\Release</IntermediateOutputPath>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <ConsolePause>False</ConsolePause>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Core" />
+    <Reference Include="Xamarin.iOS" />
+  </ItemGroup>
+  <!--  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />-->
+  <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
+  <ItemGroup>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Views\BubbleView.cs" />
+    <Compile Include="..\LoginScreen.Common\LoginScreenFaultDetails.cs">
+      <Link>LoginScreenFaultDetails.cs</Link>
+    </Compile>
+    <Compile Include="..\LoginScreen.Common\ICredentialsProvider.cs">
+      <Link>ICredentialsProvider.cs</Link>
+    </Compile>
+    <Compile Include="..\LoginScreen.Common\ILoginScreenMessages.cs">
+      <Link>ILoginScreenMessages.cs</Link>
+    </Compile>
+    <Compile Include="ViewControllers\BaseViewController.cs" />
+    <Compile Include="Views\LoginFormView.cs" />
+    <Compile Include="Views\BaseFormView.cs" />
+    <Compile Include="ViewControllers\RegistrationViewController.cs" />
+    <Compile Include="Views\RegistrationFormView.cs" />
+    <Compile Include="ViewControllers\ResetPasswordViewController.cs" />
+    <Compile Include="Views\ResetPasswordFormView.cs" />
+    <Compile Include="ViewControllers\LoginViewController.cs" />
+    <Compile Include="Utils\Fonts.cs" />
+    <Compile Include="Utils\UIKitExtensions.cs" />
+    <Compile Include="..\LoginScreen.Common\DefaultLoginScreenMessages.cs">
+      <Link>DefaultLoginScreenMessages.cs</Link>
+    </Compile>
+    <Compile Include="Views\CustomTextField.cs" />
+    <Compile Include="ViewControllers\CustomNavigationController.cs" />
+    <Compile Include="Utils\AutorotateHelper.cs" />
+    <Compile Include="..\LoginScreen.Common\LoginScreenControl.cs">
+      <Link>LoginScreenControl.Default.cs</Link>
+    </Compile>
+    <Compile Include="LoginScreenControl.cs" />
+  </ItemGroup>
+  <ProjectExtensions>
+    <MonoDevelop>
+      <Properties>
+        <Policies>
+          <TextStylePolicy inheritsSet="Mono" inheritsScope="text/plain" scope="text/x-csharp" />
+          <CSharpFormattingPolicy inheritsSet="Mono" inheritsScope="text/x-csharp" scope="text/x-csharp" />
+        </Policies>
+      </Properties>
+    </MonoDevelop>
+  </ProjectExtensions>
+  <ItemGroup>
+    <Folder Include="Images\" />
+    <Folder Include="Views\" />
+    <Folder Include="ViewControllers\" />
+    <Folder Include="Utils\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Images\register-button.png" />
+    <Content Include="Images\register-button%402x.png" />
+    <Content Include="Images\divider-line.png" />
+    <Content Include="Images\divider-line%402x.png" />
+    <Content Include="Images\arrow-right.png" />
+    <Content Include="Images\arrow-right%402x.png" />
+    <Content Include="Images\login-button.png" />
+    <Content Include="Images\login-button%402x.png" />
+    <Content Include="Images\textfield%402x.png" />
+    <Content Include="Images\textfield.png" />
+    <Content Include="Images\password-icon.png" />
+    <Content Include="Images\password-icon%402x.png" />
+    <Content Include="Images\username-icon.png" />
+    <Content Include="Images\username-icon%402x.png" />
+    <Content Include="Images\alert.png" />
+    <Content Include="Images\alert%402x.png" />
+    <Content Include="Images\reset-button.png" />
+    <Content Include="Images\reset-button%402x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Images\backarrow_pressed.png" />
+    <BundleResource Include="Images\backarrow_pressed%402x.png" />
+    <BundleResource Include="Images\backarrow.png" />
+    <BundleResource Include="Images\backarrow%402x.png" />
+    <BundleResource Include="Images\titledivider.png" />
+    <BundleResource Include="Images\titledivider%402x.png" />
+    <BundleResource Include="Images\background.png" />
+    <BundleResource Include="Images\background%402x.png" />
+  </ItemGroup>
+</Project>

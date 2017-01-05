@@ -1,0 +1,18 @@
+name: Login Screen
+id: loginscreen
+version: 1.5
+summary: Allows you to add login, registration and reset password features to your iOS and Android applications.
+publisher: Xamarin
+publisher-url: http://Xamarin.com/
+icons:
+  - icons/loginscreen_128x128.png
+license: ../License.md
+screenshots:
+  - screenshots/00.png
+libraries:
+  ios-unified: ../output/Xamarin.Controls.LoginScreen.iOS.dll
+  android: ../output/Xamarin.Controls.LoginScreen.Android.dll
+samples:
+  "iOS Sample": ../samples/LoginScreen.iOS.Sample/LoginScreen.iOS.Sample.sln
+  "Android Sample": ../samples/LoginScreen.Android.Sample/LoginScreen.Android.Sample.sln
+no_build: true
