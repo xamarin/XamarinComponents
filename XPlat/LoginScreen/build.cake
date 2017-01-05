@@ -23,6 +23,10 @@ var buildSpec = new BuildSpec {
 		new DefaultSolutionBuilder { SolutionPath = "./samples/LoginScreen.Android.Sample/LoginScreen.Android.Sample.sln" }
 	},
 
+	NuGets = new [] {
+		new NuGetInfo { NuSpec = "./nuget/Xamarin.LoginScreen.nuspec" },
+	},
+
 	Components = new [] {
 		new Component { ManifestDirectory = "./component" }
 	}

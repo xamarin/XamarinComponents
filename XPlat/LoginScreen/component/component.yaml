@@ -12,7 +12,28 @@ screenshots:
 libraries:
   ios-unified: ../output/Xamarin.Controls.LoginScreen.iOS.dll
   android: ../output/Xamarin.Controls.LoginScreen.Android.dll
+is_shell: true
+packages:
+  ios-unified:
+    - Xamarin.LoginScreen, Version=1.5
+  android:
+    - Xamarin.LoginScreen, Version=1.5
 samples:
-  "iOS Sample": ../samples/LoginScreen.iOS.Sample/LoginScreen.iOS.Sample.sln
-  "Android Sample": ../samples/LoginScreen.Android.Sample/LoginScreen.Android.Sample.sln
+  - name: "iOS Sample"
+    path: ../samples/LoginScreen.iOS.Sample/LoginScreen.iOS.Sample.sln
+    removeProjects:
+      LoginScreen.iOS
+    installNuGets:
+      - project: LoginScreen.iOS.Sample
+        packages:
+          - Xamarin.LoginScreen
+  - name: "Android Sample"
+    path: ../samples/LoginScreen.Android.Sample/LoginScreen.Android.Sample.sln
+    removeProjects:
+      LoginScreen.Android
+    installNuGets:
+      - project: LoginScreen.Android.Sample
+        packages:
+          - Xamarin.LoginScreen
+local-nuget-repo: ../output/
 no_build: true
