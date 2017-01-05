@@ -74,9 +74,13 @@ namespace OpenId.AppAuth
 		[Export("updateWithAuthorizationError:")]
 		void Update(NSError authorizationError);
 
-		// -(void)withFreshTokensPerformAction:(OIDAuthStateAction _Nonnull)action;
-		[Export("withFreshTokensPerformAction:")]
+		// -(void)performActionWithFreshTokens:(OIDAuthStateAction _Nonnull)action;
+		[Export("performActionWithFreshTokens:")]
 		void PerformWithFreshTokens(AuthStateAction action);
+
+		// - (void)performActionWithFreshTokens:(OIDAuthStateAction)action additionalRefreshParameters:(nullable NSDictionary<NSString *, NSString *> *)additionalParameters;
+		[Export("performActionWithFreshTokens:additionalRefreshParameters:")]
+		void PerformWithFreshTokens(AuthStateAction action, [NullAllowed] NSDictionary<NSString, NSString> additionalParameters);
 
 		// -(void)setNeedsTokenRefresh;
 		[Export("setNeedsTokenRefresh")]
