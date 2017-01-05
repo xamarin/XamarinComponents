@@ -14,7 +14,8 @@ namespace OpenId.AppAuth
 		JSONDeserializationError = -7,
 		TokenResponseConstructionError = -8,
 		SafariOpenError = -9,
-		BrowserOpenError = -10
+		BrowserOpenError = -10,
+		TokenRefreshError = -11,
 	}
 
 	[Native]

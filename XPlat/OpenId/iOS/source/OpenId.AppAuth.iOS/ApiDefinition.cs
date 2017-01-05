@@ -3,6 +3,7 @@
 using UIKit;
 using Foundation;
 using ObjCRuntime;
+using SafariServices;
 
 namespace OpenId.AppAuth
 {
@@ -207,8 +208,8 @@ namespace OpenId.AppAuth
 		[NullAllowed, Export("scope")]
 		string Scope { get; }
 
-		// @property (readonly, nonatomic) NSURL * _Nonnull redirectURL;
-		[Export("redirectURL")]
+		// @property (readonly, nonatomic, nullable) NSURL * _Nullable redirectURL;
+		[NullAllowed, Export("redirectURL")]
 		NSUrl RedirectUrl { get; }
 
 		// @property (readonly, nonatomic) NSString * _Nullable state;
@@ -242,7 +243,7 @@ namespace OpenId.AppAuth
 		// -(instancetype _Nonnull)initWithConfiguration:(OIDServiceConfiguration * _Nonnull)configuration clientId:(NSString * _Nonnull)clientID clientSecret:(NSString * _Nullable)clientSecret scope:(NSString * _Nullable)scope redirectURL:(NSURL * _Nonnull)redirectURL responseType:(NSString * _Nonnull)responseType state:(NSString * _Nullable)state codeVerifier:(NSString * _Nullable)codeVerifier codeChallenge:(NSString * _Nullable)codeChallenge codeChallengeMethod:(NSString * _Nullable)codeChallengeMethod additionalParameters:(NSDictionary<NSString *,NSString *> * _Nullable)additionalParameters __attribute__((objc_designated_initializer));
 		[Export("initWithConfiguration:clientId:clientSecret:scope:redirectURL:responseType:state:codeVerifier:codeChallenge:codeChallengeMethod:additionalParameters:")]
 		[DesignatedInitializer]
-		IntPtr Constructor(ServiceConfiguration configuration, string clientID, [NullAllowed] string clientSecret, [NullAllowed] string scope, NSUrl redirectURL, string responseType, [NullAllowed] string state, [NullAllowed] string codeVerifier, [NullAllowed] string codeChallenge, [NullAllowed] string codeChallengeMethod, [NullAllowed] NSDictionary<NSString, NSString> additionalParameters);
+		IntPtr Constructor(ServiceConfiguration configuration, string clientID, [NullAllowed] string clientSecret, [NullAllowed] string scope, [NullAllowed] NSUrl redirectURL, string responseType, [NullAllowed] string state, [NullAllowed] string codeVerifier, [NullAllowed] string codeChallenge, [NullAllowed] string codeChallengeMethod, [NullAllowed] NSDictionary<NSString, NSString> additionalParameters);
 
 		// -(NSURL * _Nonnull)authorizationRequestURL;
 		[Export("authorizationRequestURL")]
@@ -822,11 +823,27 @@ namespace OpenId.AppAuth
 		void DismissAuthorization(bool animated, Action completion);
 	}
 
+	// @protocol OIDSafariViewControllerFactory
+	[Protocol, Model]
+	[BaseType(typeof(NSObject), Name = "OIDSafariViewControllerFactory")]
+	interface SafariViewControllerFactory
+	{
+		// @required -(SFSafariViewController * _Nonnull)safariViewControllerWithURL:(NSURL * _Nonnull)URL;
+		[Abstract]
+		[Export("safariViewControllerWithURL:")]
+		SFSafariViewController CreateSafariViewController(NSUrl url);
+	}
+
 	// @interface OIDAuthorizationUICoordinatorIOS : NSObject <OIDAuthorizationUICoordinator>
 	[BaseType(typeof(NSObject), Name="OIDAuthorizationUICoordinatorIOS")]
 	[DisableDefaultCtor]
 	interface AuthorizationUICoordinatorIOS : AuthorizationUICoordinator
 	{
+		// +(void)setSafariViewControllerFactory:(id<OIDSafariViewControllerFactory> _Nonnull)factory;
+		[Static]
+		[Export("setSafariViewControllerFactory:")]
+		void SetSafariViewControllerFactory(SafariViewControllerFactory factory);
+
 		// -(instancetype _Nullable)initWithPresentingViewController:(UIViewController * _Nonnull)parentViewController __attribute__((objc_designated_initializer));
 		[Export("initWithPresentingViewController:")]
 		[DesignatedInitializer]
