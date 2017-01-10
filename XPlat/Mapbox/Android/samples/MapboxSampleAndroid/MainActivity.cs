@@ -33,9 +33,10 @@ namespace MapboxSampleAndroid
 
             SetContentView (Resource.Layout.Main);
 
+            Mapbox.MapboxAccountManager.Start(this, GetString(Resource.String.mapboxAccessToken));
+
             mapView = FindViewById<MapView> (Resource.Id.mapview);
-            mapView.AccessToken = GetString (Resource.String.mapboxAccessToken);
-            mapView.StyleUrl = Mapbox.Constants.Style.Emerald;
+            mapView.StyleUrl = Mapbox.Constants.Style.Light;
             mapView.OnCreate (bundle);
 
             // Get the map instance
