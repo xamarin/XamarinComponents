@@ -1,7 +1,7 @@
 
 #load "../../common.cake"
 
-var TARGET = Argument ("t", Argument ("target", "Default"));
+var TARGET = Argument ("t", Argument ("target", "externals"));
 
 var JAR_VERSION = "1.2.0";
 var JAR_URL = string.Format ("http://search.maven.org/remotecontent?filepath=com/daimajia/swipelayout/library/{0}/library-{0}.aar", JAR_VERSION);
