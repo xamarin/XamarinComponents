@@ -49,6 +49,7 @@ var buildSpec = new BuildSpec {
 				new OutputFileCopy {
 					FromFile = "./Android/source/MapboxSDK.Android/bin/Release/MapboxSDK.Android.dll",
 					FromFile = "./Android/source/MapboxSDK.JavaServices/bin/Release/MapboxSDK.JavaServices.dll",
+					FromFile = "./Android/source/MapboxSDK.AndroidServices/bin/Release/MapboxSDK.AndroidServices.dll",
 				}
 			}
 		}
@@ -57,6 +58,7 @@ var buildSpec = new BuildSpec {
 	NuGets = new [] {
 		new NuGetInfo { NuSpec = "./nuget/Xamarin.MapboxSDK.Android.nuspec", Version = ANDROID_NUGET_VERSION },
 		new NuGetInfo { NuSpec = "./nuget/Xamarin.MapboxSDK.JavaServices.nuspec", Version = JAVASERVICES_NUGET_VERSION },
+		new NuGetInfo { NuSpec = "./nuget/Xamarin.MapboxSDK.AndroidServices.nuspec", Version = JAVASERVICES_NUGET_VERSION },
 		new NuGetInfo { NuSpec = "./nuget/Xamarin.MapboxSDK.iOS.nuspec", Version = IOS_NUGET_VERSION },
 	},
 
