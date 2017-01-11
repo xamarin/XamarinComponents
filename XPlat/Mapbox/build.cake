@@ -48,7 +48,11 @@ var buildSpec = new BuildSpec {
 			OutputFiles = new [] { 
 				new OutputFileCopy {
 					FromFile = "./Android/source/MapboxSDK.Android/bin/Release/MapboxSDK.Android.dll",
+				},
+				new OutputFileCopy {
 					FromFile = "./Android/source/MapboxSDK.JavaServices/bin/Release/MapboxSDK.JavaServices.dll",
+				},
+				new OutputFileCopy {
 					FromFile = "./Android/source/MapboxSDK.AndroidServices/bin/Release/MapboxSDK.AndroidServices.dll",
 				}
 			}
