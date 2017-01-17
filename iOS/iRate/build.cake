@@ -22,6 +22,10 @@ var buildSpec = new BuildSpec () {
 		new IOSSolutionBuilder { SolutionPath = "./samples/iRateDemo/iRateDemo.sln", Configuration = "Release|iPhone", BuildsOn = BuildPlatforms.Mac },
 	},
 
+	NuGets = new [] {
+		new NuGetInfo { NuSpec = "./nuget/Xamarin.iRate.nuspec", BuildsOn = BuildPlatforms.Mac },
+	},
+
 	Components = new [] {
 		new Component {ManifestDirectory = "./component", BuildsOn = BuildPlatforms.Mac},
 	},
