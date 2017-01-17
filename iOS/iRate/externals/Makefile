@@ -2,7 +2,7 @@
 XCODEBUILD=/Applications/Xcode.app/Contents/Developer/usr/bin/xcodebuild
 LIPO=lipo
 
-GIT_REPO_VERSION=1.11.4
+GIT_REPO_VERSION=1.11.7
 
 PROJECT_ROOT=./iRateLib
 PROJECT=$(PROJECT_ROOT)/iRateLib.xcodeproj

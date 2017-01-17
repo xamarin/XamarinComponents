@@ -1,4 +1,4 @@
-version: 1.11.4.3
+version: 1.11.7
 name: iRate Rating Prompt
 id: irate
 publisher: Xamarin Inc
@@ -28,7 +28,7 @@ samples:
           - Xamarin.iRate
 is_shell: true
 packages:
-  ios-unified: Xamarin.iRate, Version=1.11.4.3
+  ios-unified: Xamarin.iRate, Version=1.11.7
 no_build: true
 
 local-nuget-repo: ../output
