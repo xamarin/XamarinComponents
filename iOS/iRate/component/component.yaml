@@ -1,4 +1,4 @@
-version: 1.11.4.2
+version: 1.11.4.3
 name: iRate Rating Prompt
 id: irate
 publisher: Xamarin Inc
@@ -20,8 +20,19 @@ samples:
     configuration: "Release|iPhone"
     removeFiles: 
       - iRateDemo-Classic.csproj
+    removeProjects:
+      - MTiRate
+    installNuGets:
+      - project: iRateDemo
+        packages:
+          - Xamarin.iRate
+is_shell: true
+packages:
+  ios-unified: Xamarin.iRate, Version=1.11.4.3
 no_build: true
 
+local-nuget-repo: ../output
+
 additional-files:
-  - source: "../External-Dependency-Info"
-    destination: "THIRD-PARTY-NOTICES"
+  - source: "../External-Dependency-Info.txt"
+    destination: "THIRD-PARTY-NOTICES.txt"
