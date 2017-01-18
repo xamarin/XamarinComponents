@@ -1,0 +1,33 @@
+
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AdvancedColorPickerDemo", "AdvancedColorPickerDemo\AdvancedColorPickerDemo.csproj", "{97A8A4C3-7E12-4D7B-9338-486BD7A947E1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AdvancedColorPicker", "..\..\source\AdvancedColorPicker\AdvancedColorPicker.csproj", "{C449ABD5-399D-435F-A6BD-5EDD3603265A}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|iPhoneSimulator = Debug|iPhoneSimulator
+		Release|iPhone = Release|iPhone
+		Release|iPhoneSimulator = Release|iPhoneSimulator
+		Debug|iPhone = Debug|iPhone
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{97A8A4C3-7E12-4D7B-9338-486BD7A947E1}.Debug|iPhoneSimulator.ActiveCfg = Debug|iPhoneSimulator
+		{97A8A4C3-7E12-4D7B-9338-486BD7A947E1}.Debug|iPhoneSimulator.Build.0 = Debug|iPhoneSimulator
+		{97A8A4C3-7E12-4D7B-9338-486BD7A947E1}.Release|iPhone.ActiveCfg = Release|iPhone
+		{97A8A4C3-7E12-4D7B-9338-486BD7A947E1}.Release|iPhone.Build.0 = Release|iPhone
+		{97A8A4C3-7E12-4D7B-9338-486BD7A947E1}.Release|iPhoneSimulator.ActiveCfg = Release|iPhoneSimulator
+		{97A8A4C3-7E12-4D7B-9338-486BD7A947E1}.Release|iPhoneSimulator.Build.0 = Release|iPhoneSimulator
+		{97A8A4C3-7E12-4D7B-9338-486BD7A947E1}.Debug|iPhone.ActiveCfg = Debug|iPhone
+		{97A8A4C3-7E12-4D7B-9338-486BD7A947E1}.Debug|iPhone.Build.0 = Debug|iPhone
+		{C449ABD5-399D-435F-A6BD-5EDD3603265A}.Debug|iPhoneSimulator.ActiveCfg = Debug|Any CPU
+		{C449ABD5-399D-435F-A6BD-5EDD3603265A}.Debug|iPhoneSimulator.Build.0 = Debug|Any CPU
+		{C449ABD5-399D-435F-A6BD-5EDD3603265A}.Release|iPhone.ActiveCfg = Release|Any CPU
+		{C449ABD5-399D-435F-A6BD-5EDD3603265A}.Release|iPhone.Build.0 = Release|Any CPU
+		{C449ABD5-399D-435F-A6BD-5EDD3603265A}.Release|iPhoneSimulator.ActiveCfg = Release|Any CPU
+		{C449ABD5-399D-435F-A6BD-5EDD3603265A}.Release|iPhoneSimulator.Build.0 = Release|Any CPU
+		{C449ABD5-399D-435F-A6BD-5EDD3603265A}.Debug|iPhone.ActiveCfg = Debug|Any CPU
+		{C449ABD5-399D-435F-A6BD-5EDD3603265A}.Debug|iPhone.Build.0 = Debug|Any CPU
+	EndGlobalSection
+EndGlobal
