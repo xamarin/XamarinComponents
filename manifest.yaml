@@ -155,6 +155,10 @@
   BuildScript: ./iOS/AnimatedShapeButton/build.cake
   TriggerPaths: [ iOS/AnimatedShapeButton ]
   MacBuildTargets: [ samples, component ]
+- Name: AdvancedColorPicker
+  BuildScript: ./iOS/AdvancedColorPicker/build.cake
+  TriggerPaths: [ iOS/AdvancedColorPicker ]
+  MacBuildTargets: [ samples, component ]
 - Name: Chameleon
   BuildScript: ./iOS/Chameleon/build.cake
   TriggerPaths: [ iOS/Chameleon ]
