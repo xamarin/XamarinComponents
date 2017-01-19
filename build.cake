@@ -1,3 +1,4 @@
+#addin nuget:?package=Cake.Xamarin.Build&version=1.1.8
 #addin nuget:?package=Cake.FileHelpers&version=1.0.3.2
 #addin nuget:?package=Cake.Yaml&version=1.0.3
 #addin nuget:?package=Cake.Json&version=1.0.2
@@ -26,10 +27,10 @@ foreach (var ev in ENV_VARS)
 
 CakeStealer.CakeContext = Context;
 
-// Print out git commit info
-Information ("Running on Windows: {0}", IsRunningOnWindows ());
-Information ("Running on Mac: {0}", IsRunningOnUnix ());
+// From Cake.Xamarin.Build, dumps out versions of things
+LogSystemInfo ();
 
+// Print out git commit info
 Information ("Git Path: {0}", GIT_PATH);
 Information ("Git Previous Commit: {0}", GIT_PREVIOUS_COMMIT);
 Information ("Git Commit: {0}", GIT_COMMIT);
