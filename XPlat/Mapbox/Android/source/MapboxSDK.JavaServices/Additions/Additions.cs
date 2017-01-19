@@ -1,6 +1,30 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using Android.Runtime;
+
+namespace Mapbox.Services.Commons
+{
+    internal class RetrofitCallbackHandler<TResponse> : Java.Lang.Object, Square.Retrofit2.ICallback where TResponse : Java.Lang.Object
+    {
+        TaskCompletionSource<TResponse> tcsResponse = new TaskCompletionSource<TResponse>();
+
+        public void OnFailure(Square.Retrofit2.ICall call, Java.Lang.Throwable error)
+        {
+            tcsResponse.TrySetException(new Exception(error.Message));
+        }
+
+        public void OnResponse(Square.Retrofit2.ICall call, Square.Retrofit2.Response response)
+        {
+            tcsResponse.TrySetResult(response.Body().JavaCast<TResponse>());
+        }
+
+        public Task<TResponse> GetResponseAsync()
+        {
+            return tcsResponse.Task;
+        }
+    }
+}
 
 namespace Mapbox.Services.Commons.GeoJson
 {
@@ -67,15 +91,24 @@ namespace Mapbox.Services.Directions.V4
     {
         public partial class Builder
         {
-            public Builder Build()
+            public MapboxDirections Build()
             {
-                return _Build().JavaCast<Builder>();
+                return _Build().JavaCast<MapboxDirections>();
             }
 
             public Builder SetAccessToken(string accessToken)
             {
                 return _SetAccessToken(accessToken).JavaCast<Builder>();
             }
+        }
+
+        public Task<Mapbox.Services.Directions.V4.Models.DirectionsResponse> ExecuteCallAsync()
+        {
+            var cb = new Mapbox.Services.Commons.RetrofitCallbackHandler<Mapbox.Services.Directions.V4.Models.DirectionsResponse>();
+
+            EnqueueCall(cb);
+
+            return cb.GetResponseAsync();
         }
     }
 }
@@ -86,10 +119,24 @@ namespace Mapbox.Services.Directions.V5
     {
         public partial class Builder
         {
-            public Builder Build()
+            public MapboxDirections Build()
             {
-                return _Build().JavaCast<Builder>();
+                return _Build().JavaCast<MapboxDirections>();
             }
+
+            public Builder SetAccessToken(string accessToken)
+            {
+                return _SetAccessToken(accessToken).JavaCast<Builder>();
+            }
+        }
+
+        public Task<Mapbox.Services.Directions.V5.Models.DirectionsResponse> ExecuteCallAsync()
+        {
+            var cb = new Mapbox.Services.Commons.RetrofitCallbackHandler<Mapbox.Services.Directions.V5.Models.DirectionsResponse>();
+
+            EnqueueCall(cb);
+
+            return cb.GetResponseAsync();
         }
     }
 }
@@ -100,15 +147,24 @@ namespace Mapbox.Services.GeoCoding.V5
     {
         public partial class Builder
         {
-            public Builder Build()
+            public MapboxGeocoding Build()
             {
-                return _Build().JavaCast<Builder>();
+                return _Build().JavaCast<MapboxGeocoding>();
             }
 
             public Builder SetAccessToken(string accessToken)
             {
                 return _SetAccessToken(accessToken).JavaCast<Builder>();
             }
+        }
+
+        public Task<Mapbox.Services.GeoCoding.V5.Models.GeocodingResponse> ExecuteCallAsync()
+        {
+            var cb = new Mapbox.Services.Commons.RetrofitCallbackHandler<Mapbox.Services.GeoCoding.V5.Models.GeocodingResponse>();
+
+            EnqueueCall(cb);
+
+            return cb.GetResponseAsync();
         }
     }
 }
@@ -119,9 +175,9 @@ namespace Mapbox.Services.StaticImage.V1
     {
         public partial class Builder
         {
-            public Builder Build()
+            public MapboxStaticImage Build()
             {
-                return _Build().JavaCast<Builder>();
+                return _Build().JavaCast<MapboxStaticImage>();
             }
 
             public Builder SetAccessToken(string accessToken)
@@ -147,6 +203,15 @@ namespace Mapbox.Services.MapMatching.V4
             {
                 return SetAccessToken(accessToken);
             }
+        }
+
+        public Task<Mapbox.Services.MapMatching.V4.Models.MapMatchingResponse> ExecuteCallAsync()
+        {
+            var cb = new Mapbox.Services.Commons.RetrofitCallbackHandler<Mapbox.Services.MapMatching.V4.Models.MapMatchingResponse>();
+
+            EnqueueCall(cb);
+
+            return cb.GetResponseAsync();
         }
     }
 }
