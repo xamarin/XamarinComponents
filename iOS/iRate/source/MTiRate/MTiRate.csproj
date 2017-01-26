@@ -41,7 +41,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Resources\" />
-    <Folder Include="Resources\iRate.bundle\" />
   </ItemGroup>
   <ItemGroup>
     <ObjcBindingApiDefinition Include="ApiDefinition.cs" />
@@ -91,6 +90,9 @@
     </BundleResource>
     <BundleResource Include="..\..\externals\iRateLib\iRate\iRate\iRate.bundle\fa.lproj\Localizable.strings">
       <Link>Resources\iRate.bundle\fa.lproj\Localizable.strings</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\externals\iRateLib\iRate\iRate\iRate.bundle\fi.lproj\Localizable.strings">
+      <Link>Resources\iRate.bundle\fi.lproj\Localizable.strings</Link>
     </BundleResource>
     <BundleResource Include="..\..\externals\iRateLib\iRate\iRate\iRate.bundle\fr.lproj\Localizable.strings">
       <Link>Resources\iRate.bundle\fr.lproj\Localizable.strings</Link>
@@ -169,6 +171,9 @@
     </BundleResource>
     <BundleResource Include="..\..\externals\iRateLib\iRate\iRate\iRate.bundle\zh-Hant.lproj\Localizable.strings">
       <Link>Resources\iRate.bundle\zh-Hant.lproj\Localizable.strings</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\externals\iRateLib\iRate\iRate\iRate.bundle\zh-TW.lproj\Localizable.strings">
+      <Link>Resources\iRate.bundle\zh-TW.lproj\Localizable.strings</Link>
     </BundleResource>
   </ItemGroup>
 </Project>

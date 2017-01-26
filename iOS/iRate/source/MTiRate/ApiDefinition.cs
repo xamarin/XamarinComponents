@@ -306,6 +306,10 @@ namespace MTiRate
 		// -(void)logEvent:(BOOL)deferPrompt;
 		[Export ("logEvent:")]
 		void LogEvent (bool deferPrompt);
+
+		// -(void)remindLater;
+		[Export ("remindLater")]
+		void RemindLater ();
 	}
 
 }

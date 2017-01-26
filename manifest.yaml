@@ -190,7 +190,7 @@
 - Name: iRate
   BuildScript: ./iOS/iRate/build.cake
   TriggerPaths: [ iOS/iRate ]
-  MacBuildTargets: [ samples, component ]
+  MacBuildTargets: [ samples, nuget, component ]
 - Name: JDStatusBarNotification
   BuildScript: ./iOS/JDStatusBarNotification/build.cake
   TriggerPaths: [ iOS/JDStatusBarNotification ]

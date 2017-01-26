@@ -1,10 +1,12 @@
-version: 1.11.4.2
+version: 1.11.7
 name: iRate Rating Prompt
 id: irate
 publisher: Xamarin Inc
 publisher-url: https://xamarin.com
 src-url: https://github.com/xamarin/XamarinComponents/tree/master/iOS/iRate
 summary: Asks users to rate your app after they've used it for a while.
+license: ../License.md
+
 icons:
   - icons/irate_128x128.png
   - icons/irate_512x512.png
@@ -18,4 +20,19 @@ samples:
     configuration: "Release|iPhone"
     removeFiles: 
       - iRateDemo-Classic.csproj
+    removeProjects:
+      - MTiRate
+    installNuGets:
+      - project: iRateDemo
+        packages:
+          - Xamarin.iRate
+is_shell: true
+packages:
+  ios-unified: Xamarin.iRate, Version=1.11.7
 no_build: true
+
+local-nuget-repo: ../output
+
+additional-files:
+  - source: "../External-Dependency-Info.txt"
+    destination: "THIRD-PARTY-NOTICES.txt"
