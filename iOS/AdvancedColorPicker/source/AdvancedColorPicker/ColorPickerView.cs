@@ -118,7 +118,7 @@ namespace AdvancedColorPicker
 			set
 			{
 				nfloat hue = 0, brightness = 0, saturation = 0, alpha = 0;
-				value.GetHSBA(out hue, out saturation, out brightness, out alpha);
+				value?.GetHSBA(out hue, out saturation, out brightness, out alpha);
 				huePicker.Hue = hue;
 				satbrightPicker.Hue = hue;
 				satbrightPicker.Brightness = brightness;
