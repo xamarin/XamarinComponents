@@ -16,7 +16,7 @@
     <AndroidResgenFile>Resources\Resource.Designer.cs</AndroidResgenFile>
     <GenerateSerializationAssemblies>Off</GenerateSerializationAssemblies>
     <AndroidUseLatestPlatformSdk>True</AndroidUseLatestPlatformSdk>
-    <TargetFrameworkVersion>v7.0</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v7.1</TargetFrameworkVersion>
     <AndroidManifest>Properties\AndroidManifest.xml</AndroidManifest>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
@@ -90,7 +90,7 @@
     <AndroidResource Include="Resources\drawable\ic_sunny.xml" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\..\GitHub\XamarinComponents\Android\AndroidThingsContribDrivers\source\Apa102\Apa102.csproj">
+    <ProjectReference Include="..\..\..\source\Apa102\Apa102.csproj">
       <Project>{a06ce566-9cf9-4bc9-a311-03bb9eb28ee9}</Project>
       <Name>Apa102</Name>
     </ProjectReference>
