@@ -1,4 +1,4 @@
-version: 5.4.2.0
+version: 5.5.0.0
 name: Card.io for Android
 id: cardioandroid
 publisher: Xamarin Inc.
@@ -7,6 +7,10 @@ icons:
   - ./icons/card-io_128x128.png
   - ./icons/card-io_512x512.png
 summary: Credit card scanning for mobile apps
+is_shell: true
+packages:
+  android:
+    - Xamarin.CardIO.Android, Version=5.5.0
 libraries:
   android: ../output/Card.IO.Android.dll
 samples:

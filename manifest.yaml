@@ -311,7 +311,7 @@
 - Name: CardIOAndroid
   BuildScript: ./XPlat/CardIO/Android/build.cake
   TriggerPaths: [ XPlat/CardIO/Android ]
-  MacBuildTargets: [ samples, component ]
+  MacBuildTargets: [ samples, nuget, component ]
 - Name: CardIOiOS
   BuildScript: ./XPlat/CardIO/iOS/build.cake
   TriggerPaths: [ XPlat/CardIO/iOS ]
