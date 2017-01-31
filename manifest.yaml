@@ -315,7 +315,7 @@
 - Name: CardIOiOS
   BuildScript: ./XPlat/CardIO/iOS/build.cake
   TriggerPaths: [ XPlat/CardIO/iOS ]
-  MacBuildTargets: [ samples, component ]
+  MacBuildTargets: [ samples, nuget, component ]
 - Name: LoginScreen
   BuildScript: ./XPlat/LoginScreen/build.cake
   TriggerPaths: [ XPlat/LoginScreen ]

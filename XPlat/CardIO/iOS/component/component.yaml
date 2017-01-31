@@ -8,6 +8,10 @@ icons:
   - ./icons/card-io_128x128.png
   - ./icons/card-io_512x512.png
 summary: Credit card scanning for mobile apps
+is_shell: true
+packages:
+  ios-unified:
+    - Xamarin.CardIO.iOS, Version=5.4.1
 libraries:
   ios-unified: ../output/Card.IO.dll
 samples:

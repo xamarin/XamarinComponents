@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
+    <metadata>
+        <id>Xamarin.CardIO.iOS</id>
+        <version>$version$</version>
+        <title>Card.IO for Xamarin.iOS</title>
+        <authors>Xamarin</authors>
+        <owners>Xamarin</owners>
+        <licenseUrl>https://github.com/xamarin/XamarinComponents/blob/master/XPlat/CardIO/iOS/LICENSE.md</licenseUrl>
+        <requireLicenseAcceptance>false</requireLicenseAcceptance>
+        <description>Credit card scanning for mobile apps</description>
+        <copyright>Copyright 2017 Xamarin</copyright>
+        <language>en-US</language>
+        <iconUrl>https://raw.githubusercontent.com/xamarin/XamarinComponents/master/XPlat/CardIO/iOS/component/icons/card-io_128x128.png</iconUrl>
+        <tags>Xamarin Xamarin.iOS Card.IO</tags>
+    </metadata>
+    <files>
+        <file src="output/Card.IO.dll" target="lib/Xamarin.iOS10" />
+        <file src="External-Dependency-Info.txt" target="THIRD-PARTY-NOTICES.txt" />
+    </files>
+</package>
