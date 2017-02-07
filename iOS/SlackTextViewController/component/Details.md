@@ -1,8 +1,4 @@
 
-<iframe src="https://appetize.io/embed/9aeh35416gxjjvxf24ypz19vp8?device=iphone5s&scale=75&autoplay=true&orientation=portrait&deviceColor=black" 
-        width="274px" height="587px" frameborder="0" scrolling="no"
-        style="float:right;margin-left:1em;">&nbsp;</iframe>
-
 **SlackTextViewController** is a drop-in UIViewController subclass with a growing 
 text input view and other useful messaging features. Meant to be a replacement for 
 `UITableViewController` & `UICollectionViewController`.
