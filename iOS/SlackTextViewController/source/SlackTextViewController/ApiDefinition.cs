@@ -45,7 +45,7 @@ namespace SlackHQ
 
 		// @optional -(NSString *)wordAtRange:(NSRange)range rangeInText:(NSRangePointer)rangePointer;
 		[Export("wordAtRange:rangeInText:")]
-		string WordAt (NSRange range, ref NSRange rangePointer);
+		string WordAt (NSRange range, ref NSRange rangeInText);
 	}
 
 	// @interface SLKTextInputbar : UIToolbar
