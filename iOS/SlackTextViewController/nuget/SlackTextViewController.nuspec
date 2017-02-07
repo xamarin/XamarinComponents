@@ -11,6 +11,7 @@
     <copyright>Copyright 2017 Xamarin Inc</copyright>
     <projectUrl>https://components.xamarin.com/view/SlackTextViewController</projectUrl>
     <licenseUrl>https://components.xamarin.com/license/SlackTextViewController</licenseUrl>
+    <iconUrl>https://github.com/xamarin/XamarinComponents/raw/master/iOS/SlackTextViewController/component/icons/SlackTextViewController_128x128.png</iconUrl>
   </metadata>
   <files>
     <file src="output/unified/SlackTextViewController.dll" target="lib/Xamarin.iOS" />
