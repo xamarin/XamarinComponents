@@ -45,6 +45,11 @@ namespace SlackHQ
 
 //	static class CFunctions
 //	{
+//		// CGFloat SLKPointSizeDifferenceForCategory (NSString *category) __attribute__((unused));
+//		[DllImport ("__Internal")]
+//		[Verify (PlatformInvoke)]
+//		static extern nfloat SLKPointSizeDifferenceForCategory (NSString category);
+//
 //		// CGRect SLKKeyWindowBounds ();
 //		[DllImport ("__Internal")]
 //		[Verify (PlatformInvoke)]
