@@ -324,6 +324,10 @@
   BuildScript: ./XPlat/Mapbox/build.cake
   TriggerPaths: [ XPlat/Mapbox ]
   MacBuildTargets: [ samples, component ]
+- Name: Gigya
+  BuildScript: ./XPlat/Gigya/build.cake
+  TriggerPaths: [ XPlat/Gigya ]
+  MacBuildTargets: [ component, samples ]
 - Name: EstimoteAndroid
   BuildScript: ./XPlat/Estimote/Android/build.cake
   TriggerPaths: [ XPlat/Estimote/Android ]
