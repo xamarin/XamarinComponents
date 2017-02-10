@@ -42,7 +42,7 @@
     <ObjcBindingCoreSource Include="Structs.cs" />
   </ItemGroup>
   <ItemGroup>
-    <NativeReference Include="..\..\..\externals\ios\sdk\GigyaSDK.framework\Versions\A\GigyaSDK">
+    <NativeReference Include="..\..\..\externals\ios\GigyaSDK">
       <Kind>Static</Kind>
       <ForceLoad>True</ForceLoad>
       <Frameworks>Social Security CoreGraphics</Frameworks>

@@ -21,14 +21,14 @@ var buildSpec = new BuildSpec {
 				}
 			}
 		},
-		new DefaultSolutionBuilder {
-			SolutionPath = "./Android/source/GigyaSDK.Android.sln",
-			OutputFiles = new [] { 
-				new OutputFileCopy {
-					FromFile = "./Android/source/GigyaSDK.Android/bin/Release/GigyaSDK.Android.dll",
-				}
-			}
-		}
+		// new DefaultSolutionBuilder {
+		// 	SolutionPath = "./Android/source/GigyaSDK.Android.sln",
+		// 	OutputFiles = new [] { 
+		// 		new OutputFileCopy {
+		// 			FromFile = "./Android/source/GigyaSDK.Android/bin/Release/GigyaSDK.Android.dll",
+		// 		}
+		// 	}
+		// }
 	},
 
 	// NuGets = new [] {
@@ -38,7 +38,7 @@ var buildSpec = new BuildSpec {
 
 	Samples = new [] {
 		new IOSSolutionBuilder { SolutionPath = "./iOS/samples/GigyaSDKSampleiOS.sln", Configuration = "Release|iPhone" },
-		new DefaultSolutionBuilder { SolutionPath = "./Android/samples/GigyaSDKSampleAndroid.sln" }
+		// new DefaultSolutionBuilder { SolutionPath = "./Android/samples/GigyaSDKSampleAndroid.sln" }
 	},
 
 	// Components = new [] {
@@ -57,15 +57,14 @@ Task ("externals-android")
 	CopyFile ("./externals/android/sdk/gigya-sdk-" + ANDROID_VERSION + ".jar", "./externals/android/gigya.jar");
 });
 Task ("externals-ios")
-	// .WithCriteria (!DirectoryExists ("./externals/ios/Pods/Mapbox-iOS-SDK"))
+	.WithCriteria (!FileExists ("./externals/ios/GigyaSDK"))
 	.Does (() => 
 {
 	EnsureDirectoryExists ("./externals/ios");
 
-	// DownloadFile (IOS_SDK_URL, "./externals/ios/sdk.zip");
+	DownloadFile (IOS_SDK_URL, "./externals/ios/sdk.zip");
 	Unzip ("./externals/ios/sdk.zip", "./externals/ios/sdk");
-
-	throw new Exception("DIE");
+	CopyFile ("./externals/ios/sdk/GigyaSDK.framework/Versions/A/GigyaSDK", "./externals/ios/GigyaSDK");
 });
 Task ("externals").IsDependentOn ("externals-android").IsDependentOn ("externals-ios");
 
