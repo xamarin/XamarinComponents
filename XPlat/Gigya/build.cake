@@ -21,14 +21,14 @@ var buildSpec = new BuildSpec {
 				}
 			}
 		},
-		// new DefaultSolutionBuilder {
-		// 	SolutionPath = "./Android/source/GigyaSDK.Android.sln",
-		// 	OutputFiles = new [] { 
-		// 		new OutputFileCopy {
-		// 			FromFile = "./Android/source/GigyaSDK.Android/bin/Release/GigyaSDK.Android.dll",
-		// 		}
-		// 	}
-		// }
+		new DefaultSolutionBuilder {
+			SolutionPath = "./Android/source/GigyaSDK.Android.sln",
+			OutputFiles = new [] { 
+				new OutputFileCopy {
+					FromFile = "./Android/source/GigyaSDK.Android/bin/Release/GigyaSDK.Android.dll",
+				}
+			}
+		}
 	},
 
 	// NuGets = new [] {
@@ -55,6 +55,11 @@ Task ("externals-android")
 	DownloadFile (ANDROID_SDK_URL, "./externals/android/sdk.zip");
 	Unzip ("./externals/android/sdk.zip", "./externals/android/sdk");
 	CopyFile ("./externals/android/sdk/gigya-sdk-" + ANDROID_VERSION + ".jar", "./externals/android/gigya.jar");
+
+	// depends on:
+	//  - package id="Xamarin.Facebook.Android" version="4.16.1"
+	//  - package id="Xamarin.GooglePlayServices.Auth" version="32.961.0"
+	//  - package id="Xamarin.Android.Support.v4" version="24.2.1"
 });
 Task ("externals-ios")
 	.WithCriteria (!FileExists ("./externals/ios/GigyaSDK"))
