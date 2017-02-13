@@ -28,3 +28,9 @@ icons:
 samples: 
   - name: iOS Sample
     path: ../samples/AdvancedColorPickerDemo/AdvancedColorPickerDemo.sln
+    removeProjects:
+      - AdvancedColorPicker
+    installNuGets:
+      - project: AdvancedColorPickerDemo
+        packages:
+          - AdvancedColorPicker
