@@ -36,8 +36,22 @@ libraries:
 samples:
   - name: "Android Sample"
     path:  ../Android/samples/MapboxSampleAndroid.sln
+    removeProjects:
+      - MapboxSDK.Android
+      - MapboxSDK.JavaServices
+    installNuGets:
+      - project: MapboxSampleAndroid
+        packages:
+          - Xamarin.MapboxSDK.Android
+          - Xamarin.MapboxSDK.JavaServices
   - name: "iOS Sample"
     path:  ../iOS/samples/MapboxSampleiOS.sln
+    removeProjects:
+      - MapboxSDK.iOS
+    installNuGets:
+      - project: MapBoxSampleiOS
+        packages:
+          - Xamarin.MapboxSDK.iOS
 
 additional-files:
   - source: "../External-Dependency-Info.txt"
