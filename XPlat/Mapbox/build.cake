@@ -3,14 +3,14 @@
 
 var TARGET = Argument ("t", Argument ("target", "Default"));
 
-var ANDROID_VERSION = "4.2.1";
-var ANDROID_NUGET_VERSION = "4.2.1";
+var ANDROID_VERSION = "4.2.2";
+var ANDROID_NUGET_VERSION = "4.2.2";
 var JAVASERVICES_NUGET_VERSION = "1.3.1";
 
 var IOS_VERSION = "3.3.7";
 var IOS_NUGET_VERSION = "3.3.7";
 
-var MAPBOX_VERSION = "4.2.1";
+var MAPBOX_VERSION = "4.2.2";
 var MAPBOX_ANDROID_SERVICES_VERSION = "1.3.1";
 var MAPBOX_JAVA_SERVICES_VERSION = "1.3.1";
 var LOST_VERSION = "1.1.1";
