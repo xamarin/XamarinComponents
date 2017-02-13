@@ -9,7 +9,7 @@ version: 2.0.1
 src-url: https://github.com/xamarin/XamarinComponents/tree/master/iOS/AdvancedColorPicker
 
 details: Details.md
-license: License.md
+license: ../License.md
 getting-started: GettingStarted.md
 
 no_build: true
