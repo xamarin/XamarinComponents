@@ -38,7 +38,7 @@ var buildSpec = new BuildSpec {
 
 	Samples = new [] {
 		new IOSSolutionBuilder { SolutionPath = "./iOS/samples/GigyaSDKSampleiOS.sln", Configuration = "Release|iPhone" },
-		// new DefaultSolutionBuilder { SolutionPath = "./Android/samples/GigyaSDKSampleAndroid.sln" }
+		new DefaultSolutionBuilder { SolutionPath = "./Android/samples/GigyaSDKSampleAndroid.sln" }
 	},
 
 	// Components = new [] {
