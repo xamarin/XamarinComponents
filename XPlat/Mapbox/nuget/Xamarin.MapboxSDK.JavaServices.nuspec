@@ -13,7 +13,8 @@
       Mapbox is built on vector maps, an advanced approach to mapping where data is delivered to the device and precisely rendered in real-time. The result is smooth, fast maps.
     </description>
     <copyright>Copyright © Xamarin. All Rights Reserved.</copyright>
-    <licenseUrl>https://github.com/xamarin/XamarinComponents/blob/master/XPlat/Mapbox/component/License.md</licenseUrl>
+    <projectUrl>https://components.xamarin.com/view/mapboxsdk</projectUrl>
+    <licenseUrl>https://components.xamarin.com/license/mapboxsdk</licenseUrl>
     <iconUrl>http://xamarin-component-icons.s3.amazonaws.com/Xamarin.MapboxSDK.Android.png</iconUrl>
     <dependencies>
       <dependency id="Square.OkHttp3" version="3.4.1.1" />
@@ -26,6 +27,6 @@
 
     <!-- Android -->
     <file src="output/MapboxSDK.JavaServices.dll" target="lib/MonoAndroid403" />
-    
+    <file src="External-Dependency-Info.txt" target="THIRD-PARTY-NOTICES.txt" />
   </files>
 </package>

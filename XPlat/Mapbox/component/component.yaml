@@ -4,7 +4,7 @@ id: mapboxsdk
 publisher: Xamarin Inc.
 publisher-url: http://xamarin.com
 summary: Build the map your application deserves.
-license: License.md
+license: ../License.md
 details: Details.md
 getting-started: GettingStarted.md
 icons:
@@ -38,5 +38,11 @@ samples:
     path:  ../Android/samples/MapboxSampleAndroid.sln
   - name: "iOS Sample"
     path:  ../iOS/samples/MapboxSampleiOS.sln
+
+additional-files:
+  - source: "../External-Dependency-Info.txt"
+    destination: "THIRD-PARTY-NOTICES.txt"
+
+local-nuget-repo: ../output/
 no_build: true
 is_shell: true
