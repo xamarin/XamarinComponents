@@ -17,6 +17,7 @@
     <AssemblyName>MapBoxSampleAndroid</AssemblyName>
     <TargetFrameworkVersion>v5.1</TargetFrameworkVersion>
     <AndroidSupportedAbis>armeabi;armeabi-v7a;x86;arm64-v8a;x86_64</AndroidSupportedAbis>
+    <AndroidTlsProvider></AndroidTlsProvider>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -67,6 +68,12 @@
     <Reference Include="Xamarin.Android.Support.Design">
       <HintPath>..\packages\Xamarin.Android.Support.Design.23.4.0.1\lib\MonoAndroid43\Xamarin.Android.Support.Design.dll</HintPath>
     </Reference>
+    <Reference Include="GoogleGson">
+      <HintPath>..\packages\GoogleGson.2.6.1.0\lib\MonoAndroid\GoogleGson.dll</HintPath>
+    </Reference>
+    <Reference Include="Square.Retrofit2">
+      <HintPath>..\packages\Square.Retrofit2.2.1.0.0\lib\MonoAndroid\Square.Retrofit2.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="MainActivity.cs" />
@@ -95,6 +102,10 @@
     <ProjectReference Include="..\..\source\MapboxSDK.Android\MapboxSDK.Android.csproj">
       <Project>{6CA62553-48DB-4DA6-ACEC-946F86729047}</Project>
       <Name>MapboxSDK.Android</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\source\MapboxSDK.JavaServices\MapboxSDK.JavaServices.csproj">
+      <Project>{BD69C1C5-9545-4202-9001-AA2D497814A7}</Project>
+      <Name>MapboxSDK.JavaServices</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />

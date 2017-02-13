@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+<package>
+  <metadata>
+    <id>Xamarin.MapboxSDK.JavaServices</id>
+    <title>Mapbox SDK JavaServices for Xamarin.Android</title>
+    <version>$version$</version>
+    <authors>Xamarin</authors>
+    <owners>Xamarin</owners>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <summary>Mapbox SDK JavaServices</summary>
+    <description>
+      Mapbox SDK JavaServices
+      Mapbox is built on vector maps, an advanced approach to mapping where data is delivered to the device and precisely rendered in real-time. The result is smooth, fast maps.
+    </description>
+    <copyright>Copyright © Xamarin. All Rights Reserved.</copyright>
+    <licenseUrl>https://github.com/xamarin/XamarinComponents/blob/master/XPlat/Mapbox/component/License.md</licenseUrl>
+    <iconUrl>http://xamarin-component-icons.s3.amazonaws.com/Xamarin.MapboxSDK.Android.png</iconUrl>
+    <dependencies>
+      <dependency id="Square.OkHttp3" version="3.4.1.1" />
+      <dependency id="Square.OkIO" version="1.6.0.0" />
+      <dependency id="GoogleGson" version="2.6.1.0" />
+      <dependency id="Square.Retrofit2" version="2.1.0.0" />
+    </dependencies>
+  </metadata>
+  <files>
+
+    <!-- Android -->
+    <file src="output/MapboxSDK.JavaServices.dll" target="lib/MonoAndroid403" />
+    
+  </files>
+</package>

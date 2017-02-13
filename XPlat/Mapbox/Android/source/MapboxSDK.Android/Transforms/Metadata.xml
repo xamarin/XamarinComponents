@@ -18,8 +18,11 @@
 	<attr path="/api/package[@name='com.mapbox.mapboxsdk.location']" name="managedName">Mapbox.Location</attr>
 	<attr path="/api/package[@name='com.mapbox.mapboxsdk.maps']" name="managedName">Mapbox.Maps</attr>
 	<attr path="/api/package[@name='com.mapbox.mapboxsdk.maps.widgets']" name="managedName">Mapbox.Maps.Widgets</attr>
+	<attr path="/api/package[@name='com.mapbox.mapboxsdk.net']" name="managedName">Mapbox.Net</attr>
 	<attr path="/api/package[@name='com.mapbox.mapboxsdk.offline']" name="managedName">Mapbox.Offline</attr>
 	<attr path="/api/package[@name='com.mapbox.mapboxsdk.telemetry']" name="managedName">Mapbox.Telemetry</attr>
+	<attr path="/api/package[@name='com.mapbox.mapboxsdk.style.layers']" name="managedName">Mapbox.Style.Layers</attr>
+	<attr path="/api/package[@name='com.mapbox.mapboxsdk.style.sources']" name="managedName">Mapbox.Style.Sources</attr>
 
 	<attr path="/api/package[@name='com.almeros.android.multitouch.gesturedetectors']" name="managedName">Mapbox.MultiTouch.GestureDetectors</attr>
 
