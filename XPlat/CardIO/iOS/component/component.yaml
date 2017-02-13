@@ -19,6 +19,13 @@ samples:
   - name: "iOS Sample"
     path: ../samples/CardIOSampleiOS.sln
     configuration: "Release|iPhone"
+    removeProjects:
+      - Card.IO.iOS
+    installNuGets:
+      - project: CardIOSampleiOS
+        packages:
+          - Xamarin.CardIO.iOS
+local-nuget-repo: ../output/
 no_build: true
 
 additional-files:

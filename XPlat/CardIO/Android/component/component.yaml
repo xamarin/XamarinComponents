@@ -18,7 +18,14 @@ libraries:
 samples:
   - name: "Android Sample"
     path: ../samples/CardIOSampleAndroid.sln
+    removeProjects:
+      - Card.IO.Android
+    installNuGets:
+      - project: CardIOSampleAndroid
+        packages:
+          - Xamarin.CardIO.Android
 no_build: true
+local-nuget-repo: ../output/
 
 additional-files:
   - source: "../External-Dependency-Info.txt"
