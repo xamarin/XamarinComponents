@@ -1,0 +1,72 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<metadata>
+	<!--
+  This sample removes the class: android.support.v4.content.AsyncTaskLoader.LoadTask:
+  <remove-node path="/api/package[@name='android.support.v4.content']/class[@name='AsyncTaskLoader.LoadTask']" />
+  
+  This sample removes the method: android.support.v4.content.CursorLoader.loadInBackground:
+  <remove-node path="/api/package[@name='android.support.v4.content']/class[@name='CursorLoader']/method[@name='loadInBackground']" />
+  -->
+	<attr path="/api/package[@name='com.mapbox.services']" name="managedName">Mapbox.Services</attr>
+	<attr path="/api/package[@name='com.mapbox.services.commons']" name="managedName">Mapbox.Services.Commons</attr>
+	<attr path="/api/package[@name='com.mapbox.services.commons.geojson']" name="managedName">Mapbox.Services.Commons.GeoJson</attr>
+	<attr path="/api/package[@name='com.mapbox.services.commons.geojson.custom']" name="managedName">Mapbox.Services.Commons.GeoJson.Custom</attr>
+	<attr path="/api/package[@name='com.mapbox.services.commons.models']" name="managedName">Mapbox.Services.Commons.Models</attr>
+	<attr path="/api/package[@name='com.mapbox.services.commons.tidy']" name="managedName">Mapbox.Services.Commons.Tidying</attr>
+	<attr path="/api/package[@name='com.mapbox.services.commons.turf']" name="managedName">Mapbox.Services.Commons.Turf</attr>
+	<attr path="/api/package[@name='com.mapbox.services.commons.turf.models']" name="managedName">Mapbox.Services.Commons.Turf.Models</attr>
+	<attr path="/api/package[@name='com.mapbox.services.commons.utils']" name="managedName">Mapbox.Services.Commons.Utils</attr>
+	<attr path="/api/package[@name='com.mapbox.services.directions']" name="managedName">Mapbox.Services.Directions</attr>
+	<attr path="/api/package[@name='com.mapbox.services.directions.v4']" name="managedName">Mapbox.Services.Directions.V4</attr>
+	<attr path="/api/package[@name='com.mapbox.services.directions.v4.models']" name="managedName">Mapbox.Services.Directions.V4.Models</attr>
+	<attr path="/api/package[@name='com.mapbox.services.directions.v5']" name="managedName">Mapbox.Services.Directions.V5</attr>
+	<attr path="/api/package[@name='com.mapbox.services.directions.v5.models']" name="managedName">Mapbox.Services.Directions.V5.Models</attr>
+	<attr path="/api/package[@name='com.mapbox.services.geocoding.v5']" name="managedName">Mapbox.Services.GeoCoding.V5</attr>
+	<attr path="/api/package[@name='com.mapbox.services.geocoding.v5.gson']" name="managedName">Mapbox.Services.GeoCoding.V5.Gson</attr>
+	<attr path="/api/package[@name='com.mapbox.services.geocoding.v5.models']" name="managedName">Mapbox.Services.GeoCoding.V5.Models</attr>
+	<attr path="/api/package[@name='com.mapbox.services.mapmatching.v4']" name="managedName">Mapbox.Services.MapMatching.V4</attr>
+	<attr path="/api/package[@name='com.mapbox.services.mapmatching.v4.gson']" name="managedName">Mapbox.Services.MapMatching.V4.Gson</attr>
+	<attr path="/api/package[@name='com.mapbox.services.mapmatching.v4.models']" name="managedName">Mapbox.Services.MapMatching.V4.Models</attr>
+	<attr path="/api/package[@name='com.mapbox.services.navigation.v5']" name="managedName">Mapbox.Services.Navigation.V5</attr>
+	<attr path="/api/package[@name='com.mapbox.services.staticimage.v1']" name="managedName">Mapbox.Services.StaticImage.V1</attr>
+
+	<attr path="/api/package[@name='com.mapbox.services.geocoding.v5.gson']/class[@name='CarmenGeometryDeserializer']/method[@name='deserialize' and count(parameter)=3 and parameter[1][@type='com.google.gson.JsonElement'] and parameter[2][@type='java.lang.reflect.Type'] and parameter[3][@type='com.google.gson.JsonDeserializationContext']]" name="managedReturn">Java.Lang.Object</attr>
+	<attr path="/api/package[@name='com.mapbox.services.mapmatching.v4.gson']/class[@name='MapMatchingGeometryDeserializer']/method[@name='deserialize' and count(parameter)=3 and parameter[1][@type='com.google.gson.JsonElement'] and parameter[2][@type='java.lang.reflect.Type'] and parameter[3][@type='com.google.gson.JsonDeserializationContext']]" name="managedReturn">Java.Lang.Object</attr>
+	<attr path="/api/package[@name='com.mapbox.services.commons.geojson.custom']/class[@name='GeometryDeserializer']/method[@name='deserialize' and count(parameter)=3 and parameter[1][@type='com.google.gson.JsonElement'] and parameter[2][@type='java.lang.reflect.Type'] and parameter[3][@type='com.google.gson.JsonDeserializationContext']]" name="managedReturn">Java.Lang.Object</attr>
+	<attr path="/api/package[@name='com.mapbox.services.commons.geojson.custom']/class[@name='PositionDeserializer']/method[@name='deserialize' and count(parameter)=3 and parameter[1][@type='com.google.gson.JsonElement'] and parameter[2][@type='java.lang.reflect.Type'] and parameter[3][@type='com.google.gson.JsonDeserializationContext']]" name="managedReturn">Java.Lang.Object</attr>
+
+	<attr path="/api/package[@name='com.mapbox.services.commons.geojson.custom']/class[@name='PositionSerializer']/method[@name='serialize' and count(parameter)=3 and parameter[1][@type='com.mapbox.services.commons.models.Position'] and parameter[2][@type='java.lang.reflect.Type'] and parameter[3][@type='com.google.gson.JsonSerializationContext']]/parameter[1]" name="managedType">Java.Lang.Object</attr>
+
+
+	<attr path="/api/package[@name='com.mapbox.services.commons.geojson']/interface[@name='Geometry']/method[@name='getCoordinates' and count(parameter)=0]" name="propertyName">CoordinatesRaw</attr>
+	<attr path="/api/package[@name='com.mapbox.services.commons.geojson']/interface[@name='Geometry']/method[@name='setCoordinates' and count(parameter)=1]" name="propertyName">CoordinatesRaw</attr>
+
+
+	<attr path="/api/package[@name='com.mapbox.services.commons']/class[@name='MapboxBuilder']/method[@name='build' and count(parameter)=0]" name="managedName">_Build</attr>
+	<attr path="/api/package[@name='com.mapbox.services.directions']/class[@name='MapboxDirections.Builder']/method[@name='build' and count(parameter)=0]" name="managedName">_Build</attr>
+	<attr path="/api/package[@name='com.mapbox.services.directions.v4']/class[@name='MapboxDirections.Builder']/method[@name='build' and count(parameter)=0]" name="managedReturn">Java.Lang.Object</attr>
+	<attr path="/api/package[@name='com.mapbox.services.directions.v4']/class[@name='MapboxDirections.Builder']/method[@name='build' and count(parameter)=0]" name="managedName">_Build</attr>
+	<attr path="/api/package[@name='com.mapbox.services.directions.v5']/class[@name='MapboxDirections.Builder']/method[@name='build' and count(parameter)=0]" name="managedReturn">Java.Lang.Object</attr>
+	<attr path="/api/package[@name='com.mapbox.services.directions.v5']/class[@name='MapboxDirections.Builder']/method[@name='build' and count(parameter)=0]" name="managedName">_Build</attr>
+	<attr path="/api/package[@name='com.mapbox.services.geocoding.v5']/class[@name='MapboxGeocoding.Builder']/method[@name='build' and count(parameter)=0]" name="managedReturn">Java.Lang.Object</attr>
+	<attr path="/api/package[@name='com.mapbox.services.geocoding.v5']/class[@name='MapboxGeocoding.Builder']/method[@name='build' and count(parameter)=0]" name="managedName">_Build</attr>
+	<attr path="/api/package[@name='com.mapbox.services.staticimage.v1']/class[@name='MapboxStaticImage.Builder']/method[@name='build' and count(parameter)=0]" name="managedReturn">Java.Lang.Object</attr>
+	<attr path="/api/package[@name='com.mapbox.services.staticimage.v1']/class[@name='MapboxStaticImage.Builder']/method[@name='build' and count(parameter)=0]" name="managedName">_Build</attr>
+
+	<attr path="/api/package[@name='com.mapbox.services.commons']/class[@name='MapboxBuilder']/method[@name='setAccessToken' and count(parameter)=1 and parameter[1][@type='java.lang.String']]" name="managedName">_SetAccessToken</attr>
+	<attr path="/api/package[@name='com.mapbox.services.directions']/class[@name='MapboxDirections.Builder']/method[@name='setAccessToken' and count(parameter)=1 and parameter[1][@type='java.lang.String']]" name="managedName">_SetAccessToken</attr>
+	
+	<attr path="/api/package[@name='com.mapbox.services.directions.v4']/class[@name='MapboxDirections.Builder']/method[@name='setAccessToken' and count(parameter)=1 and parameter[1][@type='java.lang.String']]" name="managedReturn">Mapbox.Services.Commons.MapboxBuilder</attr>
+	<attr path="/api/package[@name='com.mapbox.services.directions.v4']/class[@name='MapboxDirections.Builder']/method[@name='setAccessToken' and count(parameter)=1 and parameter[1][@type='java.lang.String']]" name="managedName">_SetAccessToken</attr>
+	<attr path="/api/package[@name='com.mapbox.services.directions.v5']/class[@name='MapboxDirections.Builder']/method[@name='setAccessToken' and count(parameter)=1 and parameter[1][@type='java.lang.String']]" name="managedReturn">Mapbox.Services.Commons.MapboxBuilder</attr>
+	<attr path="/api/package[@name='com.mapbox.services.directions.v5']/class[@name='MapboxDirections.Builder']/method[@name='setAccessToken' and count(parameter)=1 and parameter[1][@type='java.lang.String']]" name="managedName">_SetAccessToken</attr>
+	<attr path="/api/package[@name='com.mapbox.services.geocoding.v5']/class[@name='MapboxGeocoding.Builder']/method[@name='setAccessToken' and count(parameter)=1 and parameter[1][@type='java.lang.String']]" name="managedReturn">Mapbox.Services.Commons.MapboxBuilder</attr>
+	<attr path="/api/package[@name='com.mapbox.services.geocoding.v5']/class[@name='MapboxGeocoding.Builder']/method[@name='setAccessToken' and count(parameter)=1 and parameter[1][@type='java.lang.String']]" name="managedName">_SetAccessToken</attr>
+	<attr path="/api/package[@name='com.mapbox.services.staticimage.v1']/class[@name='MapboxStaticImage.Builder']/method[@name='setAccessToken' and count(parameter)=1 and parameter[1][@type='java.lang.String']]" name="managedReturn">Mapbox.Services.Commons.MapboxBuilder</attr>
+	<attr path="/api/package[@name='com.mapbox.services.staticimage.v1']/class[@name='MapboxStaticImage.Builder']/method[@name='setAccessToken' and count(parameter)=1 and parameter[1][@type='java.lang.String']]" name="managedName">_SetAccessToken</attr>
+	
+	<!-- attr pafth="/api/package[@name='com.mapbox.services.commons.geojson']/class[@name='MultiLineString']/method[@name='getCoordinates' and count(parameter)=0]" name="propertyName">CoordinatesRaw</attr>
+	<attr path="/api/package[@name='com.mapbox.services.commons.geojson']/class[@name='MultiLineString']/method[@name='getCoordinates' and count(parameter)=0]" name="managedReturn">Java.Lang.Object</attr>
+	<attr path="/api/package[@name='com.mapbox.services.commons.geojson']/class[@name='MultiLineString']/method[@name='setCoordinates' and count(parameter)=1]" name="propertyName">CoordinatesRaw</attr>
+	<attr path="/api/package[@name='com.mapbox.services.commons.geojson']/class[@name='MultiLineString']/method[@name='setCoordinates' and count(parameter)=1]/parameter[1]" name="managedType">Java.Lang.Object</attr>-->
+</metadata>
