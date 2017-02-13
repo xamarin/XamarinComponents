@@ -10,6 +10,11 @@ using Mapbox.Maps;
 using Mapbox.Annotations;
 using Mapbox.Geometry;
 using Mapbox.Camera;
+using Mapbox.Services.Directions.V5.Models;
+using Mapbox.Services.Commons.GeoJson;
+using System.Collections.Generic;
+using Mapbox.Services;
+using System.Linq;
 
 [assembly: UsesPermission (Android.Manifest.Permission.AccessNetworkState)]
 [assembly: UsesPermission (Android.Manifest.Permission.Internet)]
@@ -33,9 +38,10 @@ namespace MapboxSampleAndroid
 
             SetContentView (Resource.Layout.Main);
 
+            Mapbox.MapboxAccountManager.Start(this, GetString(Resource.String.mapboxAccessToken));
+
             mapView = FindViewById<MapView> (Resource.Id.mapview);
-            mapView.AccessToken = GetString (Resource.String.mapboxAccessToken);
-            mapView.StyleUrl = Mapbox.Constants.Style.Emerald;
+            mapView.StyleUrl = Mapbox.Constants.Style.Light;
             mapView.OnCreate (bundle);
 
             // Get the map instance
@@ -50,13 +56,58 @@ namespace MapboxSampleAndroid
             map.AddMarker (new MarkerOptions ()
                            .SetTitle ("Test Marker")
                            .SetPosition (new LatLng (41.885, -87.679)));
-            
+
+            var origin = Mapbox.Services.Commons.Models.Position.FromCoordinates(-87.611331, 41.718542);
+            var destination = Mapbox.Services.Commons.Models.Position.FromCoordinates(-87.598800, 41.788592);
+
+            // Add origin and destination to the map
+            map.AddMarker(new MarkerOptions()
+               .SetPosition(new LatLng(origin.Latitude, origin.Longitude))
+               .SetTitle("Chicago State University"));
+            map.AddMarker(new MarkerOptions()
+               .SetPosition(new LatLng(destination.Latitude, destination.Longitude))
+               .SetTitle("University of Chicago"));
+
             var position = new CameraPosition.Builder ()
                                 .Target (new LatLng (41.885, -87.679)) // Sets the new camera position
-                                .Zoom (11) // Sets the zoom
+                                .Zoom (9) // Sets the zoom
                                 .Build (); // Creates a CameraPosition from the builder
             map.AnimateCamera (CameraUpdateFactory.NewCameraPosition (position), 3000);
+
+
+            var mdb = new Mapbox.Services.Directions.V5.MapboxDirections.Builder()
+                                .SetAccessToken (Mapbox.MapboxAccountManager.Instance.AccessToken)
+                                .SetOrigin(origin)
+                                .SetDestination(destination)
+                                .SetProfile (Mapbox.Services.Directions.V5.DirectionsCriteria.ProfileDriving)
+                                .Build();
+
+            var directionsResponse = await mdb.ExecuteCallAsync();
+            var route = directionsResponse?.Routes?.FirstOrDefault();
+            if (route != null)
+                drawRoute(route);
         }
+
+        void drawRoute(DirectionsRoute route)
+        {
+            // Convert LineString coordinates into LatLng[]
+            var lineString = LineString.FromPolyline(route.Geometry, Constants.OsrmPrecisionV5);
+            var coordinates = lineString.Coordinates;
+            LatLng[] points = new LatLng[coordinates.Count];
+            for (int i = 0; i < coordinates.Count; i++)
+            {
+                points[i] = new LatLng(
+                  coordinates[i].Latitude,
+                  coordinates[i].Longitude);
+            }
+
+            // Draw Points on MapView
+            map.AddPolyline(new PolylineOptions()
+              .Add(points)
+              .SetColor(Android.Graphics.Color.Red)
+              .SetWidth(5));
+        }
+
 
         protected override void OnPause ()
         {            

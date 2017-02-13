@@ -1,34 +1,30 @@
 <?xml version="1.0"?>
 <package>
   <metadata>
-    <id>Xamarin.MapboxSDK.Android</id>
-    <title>Mapbox SDK for Xamarin.Android</title>
+    <id>Xamarin.MapboxSDK.AndroidServices</id>
+    <title>Mapbox SDK AndroidServices for Xamarin.Android</title>
     <version>$version$</version>
     <authors>Xamarin</authors>
     <owners>Xamarin</owners>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
-    <summary>Add smooth and fast vector maps to your Xamarin.Android app!</summary>
+    <summary>Mapbox SDK AndroidServices</summary>
     <description>
+      Mapbox SDK AndroidServices
       Mapbox is built on vector maps, an advanced approach to mapping where data is delivered to the device and precisely rendered in real-time. The result is smooth, fast maps.
     </description>
     <copyright>Copyright © Xamarin. All Rights Reserved.</copyright>
     <licenseUrl>https://github.com/xamarin/XamarinComponents/blob/master/XPlat/Mapbox/component/License.md</licenseUrl>
     <iconUrl>http://xamarin-component-icons.s3.amazonaws.com/Xamarin.MapboxSDK.Android.png</iconUrl>
     <dependencies>
-      <dependency id="Square.OkHttp3" version="3.4.1.1"/>
-      <dependency id="Square.OkIO" version="1.6.0.0"/>
       <dependency id="Xamarin.Android.Support.Design" version="23.4.0.1"/>
       <dependency id="Xamarin.Android.Support.v7.AppCompat" version="23.4.0.1"/>
-      <dependency id="Xamarin.Android.Support.v7.RecyclerView" version="23.4.0.1"/>
-      <dependency id="Xamarin.Android.Support.v4" version="23.4.0.1"/>
-      <dependency id="Xamarin.Android.Support.Vector.Drawable" version="23.4.0.1"/>
-      <dependency id="Xamarin.Android.Support.Animated.Vector.Drawable" version="23.4.0.1"/>
+      <dependency id="Xamarin.MapboxSDK.JavaServices" version="$version$" />
     </dependencies>
   </metadata>
   <files>
 
     <!-- Android -->
-    <file src="output/MapboxSDK.Android.dll" target="lib/MonoAndroid51" />
+    <file src="output/MapboxSDK.AndroidServices.dll" target="lib/MonoAndroid43" />
     
   </files>
 </package>
