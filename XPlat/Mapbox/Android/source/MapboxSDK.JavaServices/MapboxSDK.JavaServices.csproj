@@ -45,7 +45,7 @@
       <HintPath>..\packages\GoogleGson.2.6.1.0\lib\MonoAndroid\GoogleGson.dll</HintPath>
     </Reference>
     <Reference Include="Square.Retrofit2">
-      <HintPath>..\packages\Square.Retrofit2.2.1.0.0\lib\MonoAndroid\Square.Retrofit2.dll</HintPath>
+      <HintPath>..\packages\Square.Retrofit2.2.1.0\lib\MonoAndroid\Square.Retrofit2.dll</HintPath>
     </Reference>
     <Reference Include="Square.OkIO">
       <HintPath>..\packages\Square.OkIO.1.6.0.0\lib\MonoAndroid\Square.OkIO.dll</HintPath>
