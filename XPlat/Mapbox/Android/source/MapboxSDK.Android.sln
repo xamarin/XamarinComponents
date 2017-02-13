@@ -3,6 +3,10 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MapboxSDK.Android", "MapboxSDK.Android\MapboxSDK.Android.csproj", "{6CA62553-48DB-4DA6-ACEC-946F86729047}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MapboxSDK.JavaServices", "MapboxSDK.JavaServices\MapboxSDK.JavaServices.csproj", "{BD69C1C5-9545-4202-9001-AA2D497814A7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MapboxSDK.AndroidServices", "MapboxSDK.AndroidServices\MapboxSDK.AndroidServices.csproj", "{E6FECCEC-898F-419A-8512-98C22F69C9C0}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -13,5 +17,13 @@ Global
 		{6CA62553-48DB-4DA6-ACEC-946F86729047}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6CA62553-48DB-4DA6-ACEC-946F86729047}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6CA62553-48DB-4DA6-ACEC-946F86729047}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BD69C1C5-9545-4202-9001-AA2D497814A7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BD69C1C5-9545-4202-9001-AA2D497814A7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BD69C1C5-9545-4202-9001-AA2D497814A7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BD69C1C5-9545-4202-9001-AA2D497814A7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E6FECCEC-898F-419A-8512-98C22F69C9C0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E6FECCEC-898F-419A-8512-98C22F69C9C0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E6FECCEC-898F-419A-8512-98C22F69C9C0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E6FECCEC-898F-419A-8512-98C22F69C9C0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
