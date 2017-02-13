@@ -3,9 +3,11 @@ name: Card.io for Android
 id: cardioandroid
 publisher: Xamarin Inc.
 publisher-url: http://xamarin.com
+src-url: https://github.com/xamarin/XamarinComponents/tree/master/XPlat/CardIO/Android
 icons: 
   - ./icons/card-io_128x128.png
   - ./icons/card-io_512x512.png
+license: ../License.md
 summary: Credit card scanning for mobile apps
 is_shell: true
 packages:
@@ -17,3 +19,7 @@ samples:
   - name: "Android Sample"
     path: ../samples/CardIOSampleAndroid.sln
 no_build: true
+
+additional-files:
+  - source: "../External-Dependency-Info.txt"
+    destination: "THIRD-PARTY-NOTICES.txt"
