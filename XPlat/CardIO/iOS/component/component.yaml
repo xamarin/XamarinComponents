@@ -1,17 +1,33 @@
-version: 5.4.1.0
+version: 5.4.1.1
 name: Card.io for iOS
 id: cardioios
 publisher: Xamarin Inc
 publisher-url: https://xamarin.com
-src-url: https://github.com/card-io/card.io-iOS-SDK
+src-url: https://github.com/xamarin/XamarinComponents/tree/master/XPlat/CardIO/iOS
+license: ../License.md
 icons: 
   - ./icons/card-io_128x128.png
   - ./icons/card-io_512x512.png
 summary: Credit card scanning for mobile apps
+is_shell: true
+packages:
+  ios-unified:
+    - Xamarin.CardIO.iOS, Version=5.4.1
 libraries:
   ios-unified: ../output/Card.IO.dll
 samples:
   - name: "iOS Sample"
     path: ../samples/CardIOSampleiOS.sln
     configuration: "Release|iPhone"
+    removeProjects:
+      - Card.IO.iOS
+    installNuGets:
+      - project: CardIOSampleiOS
+        packages:
+          - Xamarin.CardIO.iOS
+local-nuget-repo: ../output/
 no_build: true
+
+additional-files:
+  - source: "../External-Dependency-Info.txt"
+    destination: "THIRD-PARTY-NOTICES.txt"
