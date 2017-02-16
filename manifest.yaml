@@ -348,3 +348,13 @@
   BuildScript: ./XPlat/Shopify/iOS/build.cake
   TriggerPaths: [ XPlat/Shopify/iOS ]
   MacBuildTargets: [ samples, component ]
+
+
+#######################################################
+# Utilities
+#######################################################
+
+- Name: Xamarin.Build.Download
+  BuildScript: ./Util/Xamarin.Build.Download/build.cake
+  TriggerPaths: [ Util/Xamarin.Build.Download ]
+  MacBuildTargets: [ nuget ]

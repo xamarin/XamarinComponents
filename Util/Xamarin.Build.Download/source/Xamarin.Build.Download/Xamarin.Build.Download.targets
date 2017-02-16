@@ -1,0 +1,125 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+	<UsingTask TaskName="Xamarin.Build.Download.XamarinDownloadArchives" AssemblyFile="Xamarin.Build.Download.dll" />
+	<UsingTask TaskName="Xamarin.Build.Download.XamarinDownloadPartialZips" AssemblyFile="Xamarin.Build.Download.dll" />
+	<UsingTask TaskName="Xamarin.Build.Download.XamarinBuildGetArchivesToDownload" AssemblyFile="Xamarin.Build.Download.dll" />
+	<UsingTask TaskName="Xamarin.Build.Download.XamarinBuildiOSResourceRestore" AssemblyFile="Xamarin.Build.Download.dll" />
+	<UsingTask TaskName="Xamarin.Build.Download.XamarinBuildAndroidResourceRestore" AssemblyFile="Xamarin.Build.Download.dll" />
+	<UsingTask TaskName="Xamarin.Build.Download.XamarinBuildAndroidAarRestore" AssemblyFile="Xamarin.Build.Download.dll" />
+
+	<PropertyGroup>
+		<XamarinBuildDownloadDir Condition="'$(XamarinBuildDownloadDir)' != '' and !HasTrailingSlash('$(XamarinBuildDownloadDir)')">$(XamarinBuildDownloadDir)\</XamarinBuildDownloadDir>
+	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(TargetFrameworkIdentifier)'=='Xamarin.iOS' And ('$(OutputType)' != 'Library' OR '$(IsAppExtension)'=='True')">
+		<_XamarinBuildDownloadMasterBeforeTargets>_UnpackLibraryResources</_XamarinBuildDownloadMasterBeforeTargets>
+		<_XamarinBuildDownloadMasterDependsOnTargets>_XamarinBuildDownload;_XamariniOSBuildResourceRestore</_XamarinBuildDownloadMasterDependsOnTargets>
+	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(TargetFrameworkIdentifier)'=='MonoAndroid'">
+		<_XamarinBuildDownloadMasterBeforeTargets>_ResolveLibraryProjectImports</_XamarinBuildDownloadMasterBeforeTargets>
+		<_XamarinBuildDownloadMasterDependsOnTargets>_XamarinBuildDownload;_XamarinAndroidBuildResourceRestore;_XamarinAndroidBuildAarRestore</_XamarinBuildDownloadMasterDependsOnTargets>
+	</PropertyGroup>
+
+	<!--
+	In XS, props files are not inserted in the correct place (https://bugzilla.xamarin.com/show_bug.cgi?id=19054)
+	so targets files cannot reference $(XamarinBuildDownloadDir) when registering items.
+	This is a workaround: it provides a point to register targets that can insert the items.
+	-->
+	<Target Name="_XamarinBuildAddDownloadedItems" DependsOnTargets="@(XamarinBuildRestoreResources)" />
+
+	<Target
+			Name="_XamarinBuildDownload"
+			DependsOnTargets="_XamarinBuildAddDownloadedItems;_XamarinBuildDownloadCore;_XamarinBuildDownloadPartialZipsCore"
+		/>
+
+	<Target Name="_XamarinBuildDownloadCore"
+			Condition="'@(XamarinBuildDownload)'!=''">
+		<XamarinDownloadArchives
+			Archives="@(XamarinBuildDownload)"
+			DestinationBase="$(XamarinBuildDownloadDir)"
+			CacheDirectory="$(XamarinBuildDownloadDir)"
+			/>
+	</Target>
+
+	<Target Name="_XamarinBuildDownloadPartialZipsCore"
+			Condition="'@(XamarinBuildDownloadPartialZip)'!=''">
+		<XamarinDownloadPartialZips
+			Parts="@(XamarinBuildDownloadPartialZip)"
+			CacheDirectory="$(XamarinBuildDownloadDir)"
+			/>
+	</Target>
+
+	<Target Name="_XamariniOSBuildResourceRestore"
+			DependsOnTargets="_XamarinBuildDownload"
+			Condition="'@(RestoreAssemblyResource)'!=''"
+			>
+		<XamarinBuildiOSResourceRestore
+			IntermediateOutputPath="$(IntermediateOutputPath)"
+			InputReferencePaths="@(ReferencePath)"
+			ThrowOnMissingAssembly="$(XamarinBuildResourceMergeThrowOnMissingAssembly)"
+			RestoreAssemblyResources="@(RestoreAssemblyResource)">
+			<Output TaskParameter="RemovedReferencePaths" ItemName="_ResourceRestoreRemovedReferencePaths" />
+			<Output TaskParameter="ChangedReferencePaths" ItemName="ReferencePath" />
+			<Output TaskParameter="ChangedReferencePaths" ItemName="FileWrites" />
+		</XamarinBuildiOSResourceRestore>
+		<ItemGroup>
+			<ReferencePath Remove="@(_ResourceRestoreRemovedReferencePaths)" />
+		</ItemGroup>
+	</Target>
+
+
+	<Target Name="_XamarinAndroidBuildResourceRestore"
+			DependsOnTargets="_XamarinBuildDownload"
+			Condition="'@(RestoreAssemblyResource)'!=''"
+			>
+		<XamarinBuildAndroidResourceRestore
+			TargetFrameworkVerison="$(TargetFrameworkVersion)"
+			IntermediateOutputPath="$(IntermediateOutputPath)"
+			ThrowOnMissingAssembly="$(XamarinBuildResourceMergeThrowOnMissingAssembly)"
+			InputReferencePaths="@(ReferencePath)"
+			RestoreAssemblyResources="@(RestoreAssemblyResource)">
+			<Output TaskParameter="RemovedReferencePaths" ItemName="_ResourceRestoreRemovedReferencePaths" />
+			<Output TaskParameter="ChangedReferencePaths" ItemName="ReferencePath" />
+			<Output TaskParameter="ChangedReferencePaths" ItemName="FileWrites" />
+		</XamarinBuildAndroidResourceRestore>
+		<ItemGroup>
+			<ReferencePath Remove="@(_ResourceRestoreRemovedReferencePaths)" />
+		</ItemGroup>
+	</Target>
+
+	<Target Name="_XamarinAndroidBuildAarRestore"
+			DependsOnTargets="_XamarinBuildDownload"
+			Condition="'@(XamarinBuildDownloadRestoreAssemblyAar)'!=''"
+			>
+		<XamarinBuildAndroidAarRestore
+			TargetFrameworkVerison="$(TargetFrameworkVersion)"
+			IntermediateOutputPath="$(IntermediateOutputPath)"
+			ThrowOnMissingAssembly="$(XamarinBuildResourceMergeThrowOnMissingAssembly)"
+			InputReferencePaths="@(ReferencePath)"
+			RestoreAssemblyResources="@(XamarinBuildDownloadRestoreAssemblyAar)">
+			<Output TaskParameter="RemovedReferencePaths" ItemName="_ResourceRestoreRemovedReferencePaths" />
+			<Output TaskParameter="ChangedReferencePaths" ItemName="ReferencePath" />
+			<Output TaskParameter="ChangedReferencePaths" ItemName="FileWrites" />
+		</XamarinBuildAndroidAarRestore>
+		<ItemGroup>
+			<ReferencePath Remove="@(_ResourceRestoreRemovedReferencePaths)" />
+			<ReferenceDependencyPaths Remove="@(_ResourceRestoreRemovedReferencePaths)" />
+		</ItemGroup>
+	</Target>
+
+	<Target Name="_XamarinBuildDownloadMasterTarget"
+			Condition="'$(_XamarinBuildDownloadMasterDependsOnTargets)'!=''"
+			BeforeTargets="$(_XamarinBuildDownloadMasterBeforeTargets)"
+			DependsOnTargets="$(_XamarinBuildDownloadMasterDependsOnTargets)" />
+	
+	<Target Name="XamarinBuildDownloadGetItemsToDownload" Returns="@(XamarinBuildDownloadItemToDownload)">
+		<XamarinBuildGetArchivesToDownload
+			Archives="@(XamarinBuildDownload)"
+			PartialZipDownloads="@(XamarinBuildDownloadPartialZip)"
+			DestinationBase="$(XamarinBuildDownloadDir)"
+			CacheDirectory="$(XamarinBuildDownloadDir)">
+			<Output TaskParameter="ArchivesToDownload" ItemName="XamarinBuildDownloadItemToDownload" />
+		</XamarinBuildGetArchivesToDownload>
+	</Target>
+</Project>
