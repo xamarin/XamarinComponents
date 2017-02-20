@@ -3,7 +3,7 @@
 
 var TARGET = Argument ("t", Argument ("target", "Default"));
 
-var SDK_VERSION = "1.3.13";
+var SDK_VERSION = "1.3.14";
 var SDK_URL = string.Format ("https://www.dropboxstatic.com/static/developers/dropbox-ios-sdk-{0}.zip", SDK_VERSION);
 var SDK_ZIP = string.Format ("./externals/dropbox-ios-sdk-{0}.zip", SDK_VERSION);
 var SDK_PATH = string.Format ("./externals/dropbox-ios-sdk-{0}", SDK_VERSION);
