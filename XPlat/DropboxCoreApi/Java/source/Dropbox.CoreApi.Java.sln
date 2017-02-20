@@ -1,0 +1,17 @@
+
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dropbox.CoreApi.Java", "Dropbox.CoreApi.Java\Dropbox.CoreApi.Java.csproj", "{07D5B2E2-8053-4CA3-B707-D2159E52531C}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{07D5B2E2-8053-4CA3-B707-D2159E52531C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{07D5B2E2-8053-4CA3-B707-D2159E52531C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{07D5B2E2-8053-4CA3-B707-D2159E52531C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{07D5B2E2-8053-4CA3-B707-D2159E52531C}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal

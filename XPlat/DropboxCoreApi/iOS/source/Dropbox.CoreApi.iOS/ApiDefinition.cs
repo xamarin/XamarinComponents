@@ -7,6 +7,7 @@ using CoreGraphics;
 
 namespace Dropbox.CoreApi.iOS
 {
+	
 	// @interface DBAccountInfo : NSObject <NSCoding>
 	[DisableDefaultCtor]
 	[BaseType (typeof(NSObject), Name = "DBAccountInfo")]
@@ -1550,9 +1551,6 @@ namespace Dropbox.CoreApi.iOS.MPOAuth
 		string JsonRepresentation ();
 	}
 
-	// @interface NSString (NSString_DBJSON)
-	// @interface NSString (Dropbox)
-	// @interface NSString (MPURLEscapingAdditions)
 	[Category]
 	[BaseType (typeof(NSString))]
 	interface NSString_Extension
@@ -1578,9 +1576,6 @@ namespace Dropbox.CoreApi.iOS.MPOAuth
 		string StringByAddingUriPercentEscapes (NSStringEncoding encoding);
 	}
 
-	// @interface NSURL (MPURLEscapingAdditions)
-	// @interface NSURL (MPURLParameterAdditions)
-	// @interface NSURLResponse (EncodingAdditions)
 	[Category]
 	[BaseType (typeof(NSUrl))]
 	interface NSUrl_Extension
