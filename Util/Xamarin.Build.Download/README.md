@@ -29,7 +29,7 @@ be inferred from the filename. Valid values are `Zip` or `Tgz`.
 Other NuGets may download the same library, and should use the same key to prevent it being downloaded and
 unpacked multiple times.
 
-Define a new build target with a name unique to your NuGet. It shoudl insert items into the build process that refer
+Define a new build target with a name unique to your NuGet. It should insert items into the build process that refer
 to files from the unpacked archive, which will be in subdirectories of the `$(XamarinBuildDownloadDir)` directory
 corresponding to the `Id` metadata for each archive:
 
@@ -90,3 +90,4 @@ In this example, the download is only performed if the project is a Xamarin.iOS 
 * Implement download cache pruning
 * Reference counting for cleaning up old unpacked archives
 * Remove iOSReferenceMerge once Xamarin.iOS supports all the NativeReference metadata
+
