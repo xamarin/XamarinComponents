@@ -35,10 +35,16 @@
 
 	<Target Name="_XamarinBuildDownloadCore"
 			Condition="'@(XamarinBuildDownload)'!=''">
+
+		<PropertyGroup>
+			<XamarinBuildDownloadUser7ZipPath Condition="'$(OS)'!='Unix' and '$(XamarinBuildDownloadUser7ZipPath)'==''">$(VsInstallRoot)\Common7\IDE\Extensions\Xamarin.VisualStudio\7-Zip\7z.exe</XamarinBuildDownloadUser7ZipPath>
+		</PropertyGroup>
+
 		<XamarinDownloadArchives
 			Archives="@(XamarinBuildDownload)"
 			DestinationBase="$(XamarinBuildDownloadDir)"
 			CacheDirectory="$(XamarinBuildDownloadDir)"
+			User7ZipPath="$(XamarinBuildDownloadUser7ZipPath)"
 			/>
 	</Target>
 
