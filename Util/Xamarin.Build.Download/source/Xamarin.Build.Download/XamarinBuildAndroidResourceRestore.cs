@@ -23,10 +23,18 @@ namespace Xamarin.Build.Download
 					"/Library/Frameworks/Xamarin.Android.framework/Versions/Current/lib/xbuild-frameworks/MonoAndroid/" + this.TargetFrameworkVerison
 				);
 			} else {
-				resolver.AddSearchDirectory (Path.Combine (
-					Environment.GetFolderPath (Environment.SpecialFolder.ProgramFilesX86),
-					@"Reference Assemblies\Microsoft\Framework\MonoAndroid\" + this.TargetFrameworkVerison
-				));
+
+				if (!string.IsNullOrEmpty (VsInstallRoot) && Directory.Exists (VsInstallRoot)) {
+					resolver.AddSearchDirectory (Path.Combine (
+						VsInstallRoot,
+						@"Common7\IDE\ReferenceAssemblies\Microsoft\Framework\MonoAndroid\" + this.TargetFrameworkVerison
+						));
+				} else {
+					resolver.AddSearchDirectory (Path.Combine (
+						Environment.GetFolderPath (Environment.SpecialFolder.ProgramFilesX86),
+						@"Reference Assemblies\Microsoft\Framework\MonoAndroid\" + this.TargetFrameworkVerison
+					));
+				}
 			}
 			return resolver;
 		}

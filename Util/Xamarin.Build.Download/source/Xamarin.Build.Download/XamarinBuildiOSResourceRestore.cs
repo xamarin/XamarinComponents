@@ -20,10 +20,18 @@ namespace Xamarin.Build.Download
 					"/Library/Frameworks/Xamarin.iOS.framework/Versions/Current/lib/mono/Xamarin.iOS"
 				);
 			} else {
-				resolver.AddSearchDirectory (Path.Combine (
-					Environment.GetFolderPath(Environment.SpecialFolder.ProgramFilesX86),
-					@"Reference Assemblies\Microsoft\Framework\Xamarin.iOS\v1.0"
-				));
+
+				if (!string.IsNullOrEmpty (VsInstallRoot) && Directory.Exists (VsInstallRoot)) {
+					resolver.AddSearchDirectory (Path.Combine (
+						VsInstallRoot,
+						@"Common7\IDE\ReferenceAssemblies\Microsoft\Framework\Xamarin.iOS\v1.0"
+					));
+				} else {
+					resolver.AddSearchDirectory (Path.Combine (
+						Environment.GetFolderPath (Environment.SpecialFolder.ProgramFilesX86),
+						@"Reference Assemblies\Microsoft\Framework\Xamarin.iOS\v1.0"
+					));
+				}
 			}
 			return resolver;
 		}

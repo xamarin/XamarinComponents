@@ -64,7 +64,8 @@
 			IntermediateOutputPath="$(IntermediateOutputPath)"
 			InputReferencePaths="@(ReferencePath)"
 			ThrowOnMissingAssembly="$(XamarinBuildResourceMergeThrowOnMissingAssembly)"
-			RestoreAssemblyResources="@(RestoreAssemblyResource)">
+			RestoreAssemblyResources="@(RestoreAssemblyResource)"
+			VsInstallRoot="$(VsInstallRoot)">
 			<Output TaskParameter="RemovedReferencePaths" ItemName="_ResourceRestoreRemovedReferencePaths" />
 			<Output TaskParameter="ChangedReferencePaths" ItemName="ReferencePath" />
 			<Output TaskParameter="ChangedReferencePaths" ItemName="FileWrites" />
@@ -84,7 +85,8 @@
 			IntermediateOutputPath="$(IntermediateOutputPath)"
 			ThrowOnMissingAssembly="$(XamarinBuildResourceMergeThrowOnMissingAssembly)"
 			InputReferencePaths="@(ReferencePath)"
-			RestoreAssemblyResources="@(RestoreAssemblyResource)">
+			RestoreAssemblyResources="@(RestoreAssemblyResource)"
+			VsInstallRoot="$(VsInstallRoot)">
 			<Output TaskParameter="RemovedReferencePaths" ItemName="_ResourceRestoreRemovedReferencePaths" />
 			<Output TaskParameter="ChangedReferencePaths" ItemName="ReferencePath" />
 			<Output TaskParameter="ChangedReferencePaths" ItemName="FileWrites" />
@@ -103,7 +105,8 @@
 			IntermediateOutputPath="$(IntermediateOutputPath)"
 			ThrowOnMissingAssembly="$(XamarinBuildResourceMergeThrowOnMissingAssembly)"
 			InputReferencePaths="@(ReferencePath)"
-			RestoreAssemblyResources="@(XamarinBuildDownloadRestoreAssemblyAar)">
+			RestoreAssemblyResources="@(XamarinBuildDownloadRestoreAssemblyAar)"
+			VsInstallRoot="$(VsInstallRoot)">
 			<Output TaskParameter="RemovedReferencePaths" ItemName="_ResourceRestoreRemovedReferencePaths" />
 			<Output TaskParameter="ChangedReferencePaths" ItemName="ReferencePath" />
 			<Output TaskParameter="ChangedReferencePaths" ItemName="FileWrites" />
