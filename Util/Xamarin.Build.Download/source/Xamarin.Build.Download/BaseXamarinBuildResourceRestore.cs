@@ -21,6 +21,8 @@ namespace Xamarin.Build.Download
 		[Required]
 		public ITaskItem [] RestoreAssemblyResources { get; set; }
 
+		public string VsInstallRoot { get; set; }
+
 		public bool ThrowOnMissingAssembly { get; set; } = true;
 
 		[Output]

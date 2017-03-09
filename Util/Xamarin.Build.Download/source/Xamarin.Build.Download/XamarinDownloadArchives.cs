@@ -23,6 +23,8 @@ namespace Xamarin.Build.Download
 
 		public string CacheDirectory { get; set; }
 
+		public string User7ZipPath { get; set; }
+
 		DownloadUtils downloadUtils;
 
 		public override bool Execute ()
@@ -246,13 +248,13 @@ namespace Xamarin.Build.Download
 			switch (kind) {
 			case ArchiveKind.Tgz:
 				if (Platform.IsWindows)
-					args = Build7ZipExtractionArgs (file, contentDir);
+					args = Build7ZipExtractionArgs (file, contentDir, User7ZipPath);
 				else
 					args = BuildTgzExtractionArgs (file, contentDir);
 				break;
 				case ArchiveKind.Zip:
 				if (Platform.IsWindows)
-					args = Build7ZipExtractionArgs (file, contentDir);
+					args = Build7ZipExtractionArgs (file, contentDir, User7ZipPath);
 				else
 					args = BuildZipExtractionArgs (file, contentDir);
 				break;
@@ -265,9 +267,9 @@ namespace Xamarin.Build.Download
 			};
 		}
 
-		static ProcessArgumentBuilder Build7ZipExtractionArgs (string file, string contentDir)
+		static ProcessArgumentBuilder Build7ZipExtractionArgs (string file, string contentDir, string user7ZipPath)
 		{
-			var args = new ProcessArgumentBuilder (Get7ZipPath ());
+			var args = new ProcessArgumentBuilder (Get7ZipPath (user7ZipPath));
 			//if it's a tgz, we have a two-step extraction. for the gzipped layer, extract without paths
 			if (file.EndsWith (".gz", StringComparison.OrdinalIgnoreCase) || file.EndsWith (".tgz", StringComparison.OrdinalIgnoreCase))
 				args.Add ("e");
@@ -278,8 +280,11 @@ namespace Xamarin.Build.Download
 			return args;
 		}
 
-		static string Get7ZipPath ()
+		static string Get7ZipPath (string user7ZipPath)
 		{
+			if (!string.IsNullOrEmpty (user7ZipPath) && File.Exists (user7ZipPath))
+				return user7ZipPath;
+
 			using (var topKey = Registry.LocalMachine.OpenSubKey (@"SOFTWARE\Xamarin\XamarinVS"))
 			{
 				string version;
