@@ -2043,6 +2043,18 @@ namespace TwitterImagePipeline
 		bool CanLog(TIPLogLevel level);
 	}
 
+	[BaseType(typeof(NSObject), Name = "TIPSimpleLogger")]
+	interface TIPSimpleLogger : TIPLogger
+	{
+		[Sealed]
+		[Export("tip_logWithLevel:file:function:line:format:", IsVariadic = true)]
+		void Log(TIPLogLevel level, string file, string function, int line, string format, IntPtr varArgs);
+
+		[Abstract]
+		[Export("tip_logWithLevel:file:function:line:message:")]
+		void Log(TIPLogLevel level, string file, string function, int line, string message);
+	}
+
 	// @interface TIPAdditions (UIImage)
 	[Category]
 	[BaseType(typeof(UIImage))]

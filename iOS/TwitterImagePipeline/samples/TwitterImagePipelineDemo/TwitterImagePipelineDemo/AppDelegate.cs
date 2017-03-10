@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 using Foundation;
 using UIKit;
 
@@ -23,7 +24,9 @@ namespace TwitterImagePipelineDemo
 
 		public override bool FinishedLaunching(UIApplication app, NSDictionary options)
 		{
-			//TIPGlobalConfiguration.SharedInstance.Logger = new Logger();
+#if DEBUG // the logger should be removed for release builds
+			TIPGlobalConfiguration.SharedInstance.Logger = new Logger();
+#endif
 			TIPGlobalConfiguration.SharedInstance.SerializeCGContextAccess = true;
 			TIPGlobalConfiguration.SharedInstance.ClearMemoryCachesOnApplicationBackgroundEnabled = true;
 			TIPGlobalConfiguration.SharedInstance.AddImagePipelineObserver(new Observer());
@@ -114,34 +117,34 @@ namespace TwitterImagePipelineDemo
 		}
 	}
 
-	//public class Logger : TIPLogger
-	//{
-	//	public override void Log(TIPLogLevel level, string file, string function, int line, string format, IntPtr varArgs)
-	//	{
-	//		var message = format + " " + varArgs;
+	public class Logger : TIPSimpleLogger
+	{
+		public override void Log(TIPLogLevel level, string file, string function, int line, string message)
+		{
+			string levelString = null;
+			switch (level)
+			{
+				case TIPLogLevel.Emergency:
+				case TIPLogLevel.Alert:
+				case TIPLogLevel.Critical:
+				case TIPLogLevel.Error:
+					levelString = "ERR";
+					break;
+				case TIPLogLevel.Warning:
+					levelString = "WRN";
+					break;
+				case TIPLogLevel.Notice:
+				case TIPLogLevel.Information:
+					levelString = "INF";
+					break;
+				case TIPLogLevel.Debug:
+					levelString = "DBG";
+					break;
+			}
 
-	//		string levelString = null;
-	//		switch (level)
-	//		{
-	//			case TIPLogLevel.Emergency:
-	//			case TIPLogLevel.Alert:
-	//			case TIPLogLevel.Critical:
-	//			case TIPLogLevel.Error:
-	//				levelString = "ERR";
-	//				break;
-	//			case TIPLogLevel.Warning:
-	//				levelString = "WRN";
-	//				break;
-	//			case TIPLogLevel.Notice:
-	//			case TIPLogLevel.Information:
-	//				levelString = "INF";
-	//				break;
-	//			case TIPLogLevel.Debug:
-	//				levelString = "DBG";
-	//				break;
-	//		}
+			Debug.WriteLine($"[{levelString}]: {message}");
+		}
 
-	//		Debug.WriteLine($"[{levelString}]: {message}");
-	//	}
-	//}
+		public override bool CanLog(TIPLogLevel level) => true; // we want everything!
+	}
 }
