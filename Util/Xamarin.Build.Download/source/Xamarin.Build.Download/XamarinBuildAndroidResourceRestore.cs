@@ -15,6 +15,8 @@ namespace Xamarin.Build.Download
 		[Required]
 		public string TargetFrameworkVerison { get; set; }
 
+		public override bool OverwiteSourceAssembly { get; set; } = true;
+
 		protected override IAssemblyResolver CreateAssemblyResolver ()
 		{
 			var resolver = new DefaultAssemblyResolver ();

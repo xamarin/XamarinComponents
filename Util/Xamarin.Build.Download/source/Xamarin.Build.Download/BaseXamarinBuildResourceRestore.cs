@@ -25,6 +25,8 @@ namespace Xamarin.Build.Download
 
 		public bool ThrowOnMissingAssembly { get; set; } = true;
 
+		public virtual bool  OverwiteSourceAssembly { get; set; } = false;
+
 		[Output]
 		public ITaskItem [] ChangedReferencePaths { get; set; }
 
@@ -75,10 +77,10 @@ namespace Xamarin.Build.Download
 				var mergedAsmPath = Path.Combine (outputDir, asmName.Name + ".dll");
 
 				var mergedFileInfo = new FileInfo (mergedAsmPath);
-				if (!mergedFileInfo.Exists || mergedFileInfo.LastWriteTime < File.GetLastWriteTime (originalAsmPath)) {
+				if (OverwiteSourceAssembly || !mergedFileInfo.Exists || mergedFileInfo.LastWriteTime < File.GetLastWriteTime (originalAsmPath)) {
 					if (resolver == null)
 						resolver = CreateAssemblyResolver ();
-					if (!MergeResources (resolver, originalAsmPath, mergedAsmPath, asm.Key, asm.Value))
+					if (!MergeResources (resolver, originalAsmPath, OverwiteSourceAssembly ? originalAsmPath : mergedAsmPath, asm.Key, asm.Value))
 						return false;
 				}
 
@@ -88,8 +90,13 @@ namespace Xamarin.Build.Download
 				changedReferencePaths.Add (newItem);
 			}
 
-			ChangedReferencePaths = changedReferencePaths.ToArray ();
-			RemovedReferencePaths = removedReferencePaths.ToArray ();
+			if (OverwiteSourceAssembly) {
+				ChangedReferencePaths = new ITaskItem [0];
+				RemovedReferencePaths = new ITaskItem [0];
+			} else {
+				ChangedReferencePaths = changedReferencePaths.ToArray ();
+				RemovedReferencePaths = removedReferencePaths.ToArray ();
+			}
 
 			return true;
 		}
@@ -126,7 +133,7 @@ namespace Xamarin.Build.Download
 				return true;
 			} catch (Exception ex) {
 				try {
-					File.Delete (mergedAsmPath);
+					if (originalAsmPath != mergedAsmPath) File.Delete (mergedAsmPath);
 				} catch { }
 				Log.LogErrorFromException (ex, true);
 				return false;
