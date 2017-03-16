@@ -104,9 +104,11 @@ namespace Xamarin.Build.Download
 		bool MergeResources (IAssemblyResolver resolver, string originalAsmPath, string mergedAsmPath, string assemblyName, List<ITaskItem> resourceItems)
 		{
 			var disposeList = new List<IDisposable> ();
+			var sameAssembly = originalAsmPath == mergedAsmPath;
 
 			try {
 				var asmDefinition = AssemblyDefinition.ReadAssembly (originalAsmPath, new ReaderParameters {AssemblyResolver = resolver});
+				var needToWrite = !sameAssembly;
 
 				foreach (var resourceItem in resourceItems) {
 					var logicalName = resourceItem.GetMetadata ("LogicalName");
@@ -127,13 +129,16 @@ namespace Xamarin.Build.Download
 
 					var erTemp = new EmbeddedResource (logicalName, ManifestResourceAttributes.Public, stream);
 					asmDefinition.MainModule.Resources.Add (erTemp);
+					needToWrite = true;
 				}
 
-				asmDefinition.Write (mergedAsmPath);
+				if (needToWrite)
+					asmDefinition.Write (mergedAsmPath);
+
 				return true;
 			} catch (Exception ex) {
 				try {
-					if (originalAsmPath != mergedAsmPath) File.Delete (mergedAsmPath);
+					if (!sameAssembly) File.Delete (mergedAsmPath);
 				} catch { }
 				Log.LogErrorFromException (ex, true);
 				return false;
