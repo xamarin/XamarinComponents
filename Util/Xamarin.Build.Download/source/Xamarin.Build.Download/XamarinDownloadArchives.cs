@@ -213,10 +213,7 @@ namespace Xamarin.Build.Download
 				if (returnCode == 0) {
 					//with 7zip, tgz just gets uncompressed to a tar. now extract the tar.
 					if (xbd.Kind == ArchiveKind.Tgz && Platform.IsWindows) {
-						var tarFile = GetTarFileName (xbd);
-						psi = CreateExtractionArgs (tarFile, xbd.DestinationDir, xbd.Kind);
-						returnCode = await ProcessUtils.StartProcess (psi, output, output, token);
-						File.Delete (tarFile);
+						returnCode = await ExtractTarOnWindows (xbd, output, token);
 						if (returnCode == 0)
 							return true;
 					} else {
@@ -242,19 +239,33 @@ namespace Xamarin.Build.Download
 			return false;
 		}
 
-		ProcessStartInfo CreateExtractionArgs (string file, string contentDir, ArchiveKind kind)
+		async Task<int> ExtractTarOnWindows (XamarinBuildDownload xbd, StringWriter output, CancellationToken token)
+		{
+			var tarFile = GetTarFileName (xbd);
+			var psi = CreateExtractionArgs (tarFile, xbd.DestinationDir, xbd.Kind, true);
+			var returnCode = await ProcessUtils.StartProcess (psi, output, output, token);
+			if (returnCode == 7) {
+				LogMessage ("7Zip command line parse did not work.  Trying without -snl-");
+				psi = CreateExtractionArgs (tarFile, xbd.DestinationDir, xbd.Kind, false);
+				returnCode = await ProcessUtils.StartProcess (psi, output, output, token);
+			}
+			File.Delete (tarFile);
+			return returnCode;
+		}
+
+		ProcessStartInfo CreateExtractionArgs (string file, string contentDir, ArchiveKind kind, bool ignoreTarSymLinks = false)
 		{
 			ProcessArgumentBuilder args = null;
 			switch (kind) {
 			case ArchiveKind.Tgz:
 				if (Platform.IsWindows)
-					args = Build7ZipExtractionArgs (file, contentDir, User7ZipPath);
+					args = Build7ZipExtractionArgs (file, contentDir, User7ZipPath, ignoreTarSymLinks);
 				else
 					args = BuildTgzExtractionArgs (file, contentDir);
 				break;
 				case ArchiveKind.Zip:
 				if (Platform.IsWindows)
-					args = Build7ZipExtractionArgs (file, contentDir, User7ZipPath);
+					args = Build7ZipExtractionArgs (file, contentDir, User7ZipPath, false);
 				else
 					args = BuildZipExtractionArgs (file, contentDir);
 				break;
@@ -267,7 +278,7 @@ namespace Xamarin.Build.Download
 			};
 		}
 
-		static ProcessArgumentBuilder Build7ZipExtractionArgs (string file, string contentDir, string user7ZipPath)
+		static ProcessArgumentBuilder Build7ZipExtractionArgs (string file, string contentDir, string user7ZipPath, bool ignoreTarSymLinks)
 		{
 			var args = new ProcessArgumentBuilder (Get7ZipPath (user7ZipPath));
 			//if it's a tgz, we have a two-step extraction. for the gzipped layer, extract without paths
@@ -275,6 +286,12 @@ namespace Xamarin.Build.Download
 				args.Add ("e");
 			else
 				args.Add ("x");
+
+			// Symbolic Links give us problems.  You need to run as admin to extract them.
+			// Adding this flag will ignore links
+			if (ignoreTarSymLinks)
+				args.Add ("-snl-");
+
 			args.AddQuoted ("-o" + contentDir);
 			args.AddQuoted (file);
 			return args;
