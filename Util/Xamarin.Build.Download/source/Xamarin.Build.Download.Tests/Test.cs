@@ -669,5 +669,74 @@ namespace NativeLibraryDownloaderTests
 			Assert.IsTrue (itemToDownload.Count == 2);
 			Assert.IsTrue (itemToDownload.First ().GetMetadata ("Url").EvaluatedValue == itemUrl);
 		}
+
+
+		[Test]
+		public void TestAndroidAarResourceMergeModifyInPlaceAndStampFile ()
+		{
+			var engine = new ProjectCollection ();
+			var prel = ProjectRootElement.Create (Path.Combine (TempDir, "project.csproj"), engine);
+
+			var intermediateDir = Path.Combine (TempDir, "obj");
+
+			var asm = AssemblyDefinition.CreateAssembly (
+				new AssemblyNameDefinition ("Xamarin.Android.Support.v7.CardView", new System.Version (1, 0, 0, 0)),
+				"Main",
+				ModuleKind.Dll
+			);
+			var dll = Path.Combine (TempDir, "Xamarin.Android.Support.v7.CardView.dll");
+			asm.Write (dll);
+			prel.AddItem ("ReferencePath", dll);
+
+			var originalAsmDate = File.GetLastWriteTimeUtc (dll);
+
+
+			var unpackDir = GetTempPath ("unpacked");
+			prel.SetProperty ("XamarinBuildDownloadDir", unpackDir);
+			prel.SetProperty ("TargetFrameworkIdentifier", "MonoAndroid");
+			prel.SetProperty ("TargetFrameworkVersion", "v7.0");
+			prel.SetProperty ("OutputType", "Exe");
+			prel.SetProperty ("IntermediateOutputPath", intermediateDir);
+
+			prel.AddItem (
+				"XamarinBuildDownloadPartialZip", "androidsupport-25.0.0/cardview.v7", new Dictionary<string, string> {
+					{ "Url", "https://dl-ssl.google.com/android/repository/android_m2repository_r40.zip" },
+					{ "ToFile", "cardview.v7.aar" },
+					{ "RangeStart", "196438127" },
+					{ "RangeEnd", "196460160" },
+					{ "Md5", "b44eb88f7cc621ae616744c6646f5b64" }
+				});
+
+
+			const string resourceName = "__AndroidLibraryProjects__.zip";
+			var aarPath = "$(XamarinBuildDownloadDir)androidsupport-25.0.0\\cardview.v7\\cardview.v7.aar";
+
+			prel.AddItem (
+				"XamarinBuildDownloadRestoreAssemblyAar",
+				aarPath,
+				new Dictionary<string, string> {
+					{ "AssemblyName", "Xamarin.Android.Support.v7.CardView, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" },
+					{ "LogicalName", resourceName }
+				}
+			);
+
+			AddCoreTargets (prel);
+
+			var project = new ProjectInstance (prel);
+			var log = new MSBuildTestLogger ();
+
+			//var success = BuildProject (engine, project, "_XamarinBuildDownload", log);
+			var success = BuildProject (engine, project, "_XamarinAndroidBuildAarRestore", log);
+
+//			AssertNoMessagesOrWarnings (log);
+			Assert.IsTrue (success);
+			//Assert.IsTrue (File.Exists (Path.Combine (unpackDir, "androidsupport-25.0.1", "cardview.v7", "cardview.v7.aar")));
+
+			success = BuildProject (engine, project, "_XamarinAndroidBuildAarRestore", log);
+
+			Assert.IsTrue (File.Exists (Path.Combine (intermediateDir, "XbdMerge", "Xamarin.Android.Support.v7.CardView.dll.stamp")));
+
+			Assert.IsTrue (File.GetLastWriteTimeUtc (dll) > originalAsmDate);
+		}
 	}
 }

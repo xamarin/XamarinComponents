@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -14,6 +14,8 @@ namespace Xamarin.Build.Download
 	{
 		[Required]
 		public string TargetFrameworkVerison { get; set; }
+
+		public override bool OverwriteSourceAssembly { get; set; } = true;
 
 		protected override IAssemblyResolver CreateAssemblyResolver ()
 		{
