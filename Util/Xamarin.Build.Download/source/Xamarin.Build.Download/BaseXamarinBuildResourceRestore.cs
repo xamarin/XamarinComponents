@@ -56,8 +56,6 @@ namespace Xamarin.Build.Download
 			var outputDir = MergeOutputDir;
 			Directory.CreateDirectory (outputDir);
 
-			additionalFileWrites.Add (new TaskItem (outputDir));
-
 			var restoreMap = BuildRestoreMap (RestoreAssemblyResources);
 			if (restoreMap == null) {
 				return false;
