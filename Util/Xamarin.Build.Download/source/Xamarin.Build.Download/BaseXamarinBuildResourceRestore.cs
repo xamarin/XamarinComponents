@@ -86,6 +86,7 @@ namespace Xamarin.Build.Download
 				var stampAsmPath = intermediateAsmPath + ".stamp";
 
 				if (File.Exists (stampAsmPath)) {
+					additionalFileWrites.Add (new TaskItem (stampAsmPath));
 					Log.LogMessage ("Reference has already had resources merged, skipping due to: {0}", stampAsmPath);
 					continue;
 				}
