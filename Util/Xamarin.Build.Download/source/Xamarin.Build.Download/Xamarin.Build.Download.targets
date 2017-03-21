@@ -69,6 +69,7 @@
 			<Output TaskParameter="RemovedReferencePaths" ItemName="_ResourceRestoreRemovedReferencePaths" />
 			<Output TaskParameter="ChangedReferencePaths" ItemName="ReferencePath" />
 			<Output TaskParameter="ChangedReferencePaths" ItemName="FileWrites" />
+			<Output TaskParameter="AdditionalFileWrites" ItemName="FileWrites" />
 		</XamarinBuildiOSResourceRestore>
 		<ItemGroup>
 			<ReferencePath Remove="@(_ResourceRestoreRemovedReferencePaths)" />
@@ -90,6 +91,7 @@
 			<Output TaskParameter="RemovedReferencePaths" ItemName="_ResourceRestoreRemovedReferencePaths" />
 			<Output TaskParameter="ChangedReferencePaths" ItemName="ReferencePath" />
 			<Output TaskParameter="ChangedReferencePaths" ItemName="FileWrites" />
+			<Output TaskParameter="AdditionalFileWrites" ItemName="FileWrites" />
 		</XamarinBuildAndroidResourceRestore>
 		<ItemGroup>
 			<ReferencePath Remove="@(_ResourceRestoreRemovedReferencePaths)" />
@@ -110,6 +112,7 @@
 			<Output TaskParameter="RemovedReferencePaths" ItemName="_ResourceRestoreRemovedReferencePaths" />
 			<Output TaskParameter="ChangedReferencePaths" ItemName="ReferencePath" />
 			<Output TaskParameter="ChangedReferencePaths" ItemName="FileWrites" />
+			<Output TaskParameter="AdditionalFileWrites" ItemName="FileWrites" />
 		</XamarinBuildAndroidAarRestore>
 		<ItemGroup>
 			<ReferencePath Remove="@(_ResourceRestoreRemovedReferencePaths)" />

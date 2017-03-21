@@ -25,13 +25,16 @@ namespace Xamarin.Build.Download
 
 		public bool ThrowOnMissingAssembly { get; set; } = true;
 
-		public virtual bool  OverwiteSourceAssembly { get; set; } = false;
+		public virtual bool  OverwriteSourceAssembly { get; set; } = false;
 
 		[Output]
 		public ITaskItem [] ChangedReferencePaths { get; set; }
 
 		[Output]
 		public ITaskItem [] RemovedReferencePaths { get; set; }
+
+		[Output]
+		public ITaskItem [] AdditionalFileWrites { get; set; }
 
 		protected virtual string MergeOutputDir {
 			get {
@@ -48,8 +51,12 @@ namespace Xamarin.Build.Download
 
 		public override bool Execute ()
 		{
+			var additionalFileWrites = new List<ITaskItem> ();
+
 			var outputDir = MergeOutputDir;
 			Directory.CreateDirectory (outputDir);
+
+			additionalFileWrites.Add (new TaskItem (outputDir));
 
 			var restoreMap = BuildRestoreMap (RestoreAssemblyResources);
 			if (restoreMap == null) {
@@ -71,32 +78,43 @@ namespace Xamarin.Build.Download
 						continue;
 				}
 
-				var originalAsmPath = item.GetMetadata ("FullPath");
 
 				//TODO: collision avoidance. AssemblyName MD5? NuGet package ID?
-				var mergedAsmPath = Path.Combine (outputDir, asmName.Name + ".dll");
+				var originalAsmPath = item.GetMetadata ("FullPath");
+				var intermediateAsmPath = Path.Combine (outputDir, asmName.Name + ".dll");
+				var outputAsmPath = OverwriteSourceAssembly ? originalAsmPath : intermediateAsmPath;
+				var stampAsmPath = intermediateAsmPath + ".stamp";
 
-				var mergedFileInfo = new FileInfo (mergedAsmPath);
-				if (OverwiteSourceAssembly || !mergedFileInfo.Exists || mergedFileInfo.LastWriteTime < File.GetLastWriteTime (originalAsmPath)) {
+				if (File.Exists (stampAsmPath)) {
+					Log.LogMessage ("Reference has already had resources merged, skipping due to: {0}", stampAsmPath);
+					continue;
+				}
+				
+				if (OverwriteSourceAssembly || !File.Exists(intermediateAsmPath) || File.GetLastWriteTime (intermediateAsmPath) < File.GetLastWriteTime (originalAsmPath)) {
 					if (resolver == null)
 						resolver = CreateAssemblyResolver ();
-					if (!MergeResources (resolver, originalAsmPath, OverwiteSourceAssembly ? originalAsmPath : mergedAsmPath, asm.Key, asm.Value))
+					if (!MergeResources (resolver, originalAsmPath, outputAsmPath, asm.Key, asm.Value))
 						return false;
+
+					File.WriteAllText (stampAsmPath, string.Empty);
+					additionalFileWrites.Add (new TaskItem (stampAsmPath));
 				}
 
 				removedReferencePaths.Add (item);
-				var newItem = new TaskItem (mergedAsmPath);
+				var newItem = new TaskItem (intermediateAsmPath);
 				item.CopyMetadataTo (newItem);
 				changedReferencePaths.Add (newItem);
 			}
 
-			if (OverwiteSourceAssembly) {
+			if (OverwriteSourceAssembly) {
 				ChangedReferencePaths = new ITaskItem [0];
 				RemovedReferencePaths = new ITaskItem [0];
 			} else {
 				ChangedReferencePaths = changedReferencePaths.ToArray ();
 				RemovedReferencePaths = removedReferencePaths.ToArray ();
 			}
+
+			AdditionalFileWrites = additionalFileWrites.ToArray ();
 
 			return true;
 		}
