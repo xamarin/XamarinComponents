@@ -21,6 +21,14 @@
 		<_XamarinBuildDownloadMasterDependsOnTargets>_XamarinBuildDownload;_XamarinAndroidBuildResourceRestore;_XamarinAndroidBuildAarRestore</_XamarinBuildDownloadMasterDependsOnTargets>
 	</PropertyGroup>
 
+	<PropertyGroup>
+		<CleanDependsOn>
+			$(CleanDependsOn);
+			_CleanXbdMerge;
+		</CleanDependsOn>
+	</PropertyGroup>
+
+
 	<!--
 	In XS, props files are not inserted in the correct place (https://bugzilla.xamarin.com/show_bug.cgi?id=19054)
 	so targets files cannot reference $(XamarinBuildDownloadDir) when registering items.
@@ -133,5 +141,10 @@
 			CacheDirectory="$(XamarinBuildDownloadDir)">
 			<Output TaskParameter="ArchivesToDownload" ItemName="XamarinBuildDownloadItemToDownload" />
 		</XamarinBuildGetArchivesToDownload>
+	</Target>
+
+
+	<Target Name="_CleanXbdMerge">
+		<RemoveDir Directories="$(IntermediateOutputPath)XbdMerge" Condition="Exists ('$(IntermediateOutputPath)XbdMerge')" />
 	</Target>
 </Project>
