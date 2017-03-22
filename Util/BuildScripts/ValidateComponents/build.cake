@@ -36,7 +36,7 @@ var XTC_SERIES = EnvironmentVariable ("XTC_SERIES") ?? "Master";
 var XTC_LOCALE = EnvironmentVariable ("XTC_LOCALE") ?? "en_US";
 var LOCAL_DEVICES = (EnvironmentVariable ("LOCAL_DEVICES") ?? "").Split (',',';');
 
-var NUGET_FEEDS = Argument ("nuget_feeds", EnvironmentVariable ("NUGET_FEEDS") ?? "").Split (',',';');
+var NUGET_SOURCES = Argument ("nuget_sources", EnvironmentVariable ("NUGET_SOURCES") ?? "").Split (',',';');
 
 Task ("Default").Does (() => {
     // Clean up and recreate the temp dir
@@ -75,8 +75,8 @@ Task ("Default").Does (() => {
             Information ("Sample: {0}", sampleSln);
 			
             var nugetRestoreSettings = new NuGetRestoreSettings ();
-            if (NUGET_FEEDS != null && NUGET_FEEDS.Length > 0)
-                nugetRestoreSettings.Source = NUGET_FEEDS;
+            if (NUGET_SOURCES != null && NUGET_SOURCES.Length > 0)
+                nugetRestoreSettings.Source = NUGET_SOURCES;
 
 			NuGetRestore (sampleSln, nugetRestoreSettings);
 
