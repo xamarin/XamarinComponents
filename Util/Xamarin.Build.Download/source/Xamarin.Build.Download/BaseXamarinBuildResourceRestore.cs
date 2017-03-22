@@ -56,8 +56,6 @@ namespace Xamarin.Build.Download
 			var outputDir = MergeOutputDir;
 			Directory.CreateDirectory (outputDir);
 
-			additionalFileWrites.Add (new TaskItem (outputDir));
-
 			var restoreMap = BuildRestoreMap (RestoreAssemblyResources);
 			if (restoreMap == null) {
 				return false;
@@ -86,6 +84,7 @@ namespace Xamarin.Build.Download
 				var stampAsmPath = intermediateAsmPath + ".stamp";
 
 				if (File.Exists (stampAsmPath)) {
+					additionalFileWrites.Add (new TaskItem (stampAsmPath));
 					Log.LogMessage ("Reference has already had resources merged, skipping due to: {0}", stampAsmPath);
 					continue;
 				}
