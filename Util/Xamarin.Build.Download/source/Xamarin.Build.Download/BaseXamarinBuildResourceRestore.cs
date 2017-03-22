@@ -86,10 +86,8 @@ namespace Xamarin.Build.Download
 				if (File.Exists (stampAsmPath)) {
 					additionalFileWrites.Add (new TaskItem (stampAsmPath));
 					Log.LogMessage ("Reference has already had resources merged, skipping due to: {0}", stampAsmPath);
-					continue;
-				}
-				
-				if (OverwriteSourceAssembly || !File.Exists(intermediateAsmPath) || File.GetLastWriteTime (intermediateAsmPath) < File.GetLastWriteTime (originalAsmPath)) {
+
+				} else if (OverwriteSourceAssembly || !File.Exists(intermediateAsmPath) || File.GetLastWriteTime (intermediateAsmPath) < File.GetLastWriteTime (originalAsmPath)) {
 					if (resolver == null)
 						resolver = CreateAssemblyResolver ();
 					if (!MergeResources (resolver, originalAsmPath, outputAsmPath, asm.Key, asm.Value))
