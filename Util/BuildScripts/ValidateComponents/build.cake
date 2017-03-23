@@ -62,10 +62,9 @@ Task ("Default").Does (() => {
         // .xam files are just zip files, unzip to work with it
 		Unzip (xamFile, temp);
 
-        // Get the path to the extracted contents
-		//var componentPath = new DirectoryPath (temp + "/" + xamFile.GetFilenameWithoutExtension ());
-        // Switch to using a number for the temp directory to save some characters and avoid MAX_PATH issues
+        // The unzipped temp dir will probably have a long name, so let's shorten it to avoid MAX_PATH issues on windows
         var componentPath = new DirectoryPath (temp + "/" + tempProjNum);
+        MoveDirectory (temp + "/" + xamFile.GetFilenameWithoutExtension (), componentPath);
 
         // Ensure a manifest exists for the component
 		if (!FileExists (componentPath + "/component/Manifest.xml"))
