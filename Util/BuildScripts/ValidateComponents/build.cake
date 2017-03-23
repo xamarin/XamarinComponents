@@ -51,15 +51,21 @@ Task ("Default").Does (() => {
     // We want to keep track of all the apps we need to validate
 	var appInfos = new List<AppInfo> ();
 
+    var tempProjNum = 0;
+
     // Inspect each .xam file we find
 	foreach (var xamFile in xamFiles) {
+        tempProjNum++;
+
 		Information ("{0}", xamFile);
 
         // .xam files are just zip files, unzip to work with it
 		Unzip (xamFile, temp);
 
         // Get the path to the extracted contents
-		var componentPath = new DirectoryPath (temp + "/" + xamFile.GetFilenameWithoutExtension ());
+		//var componentPath = new DirectoryPath (temp + "/" + xamFile.GetFilenameWithoutExtension ());
+        // Switch to using a number for the temp directory to save some characters and avoid MAX_PATH issues
+        var componentPath = new DirectoryPath (temp + "/" + tempProjNum);
 
         // Ensure a manifest exists for the component
 		if (!FileExists (componentPath + "/component/Manifest.xml"))
