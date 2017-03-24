@@ -9,7 +9,6 @@ namespace TwitterImagePipelineDemo
 {
 	public class InspectorViewController : UITableViewController
 	{
-		private UITableView tableView;
 		private NSUuid inspectionUuid;
 		private NSDictionary<NSString, TIPImagePipelineInspectionResult> results;
 		private string[] pipelines;
@@ -17,14 +16,6 @@ namespace TwitterImagePipelineDemo
 		public InspectorViewController()
 		{
 			NavigationItem.Title = "Cache Inspector";
-		}
-
-		protected override void Dispose(bool disposing)
-		{
-			tableView.DataSource = null;
-			tableView.Delegate = null;
-
-			base.Dispose(disposing);
 		}
 
 		public override async void ViewWillAppear(bool animated)

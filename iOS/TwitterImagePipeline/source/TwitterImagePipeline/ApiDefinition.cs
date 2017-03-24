@@ -945,10 +945,11 @@ namespace TwitterImagePipeline
 	// @interface TIPStubbingSupport (NSHTTPURLResponse)
 	[Category]
 	[BaseType(typeof(NSHttpUrlResponse))]
-	interface NSHttpUrlResponseTIPStubbingSupport
+	interface TIPNSHttpUrlResponse
 	{
 		// +(instancetype _Nonnull)tip_responseWithRequestURL:(NSURL * _Nonnull)requestURL dataLength:(NSUInteger)dataLength responseMIMEType:(NSString * _Nullable)MIMEType;
 		[Static]
+		[Internal]
 		[Export("tip_responseWithRequestURL:dataLength:responseMIMEType:")]
 		NSHttpUrlResponse ResponseWithRequest(NSUrl requestUrl, nuint dataLength, [NullAllowed] string MIMEType);
 	}

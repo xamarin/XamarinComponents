@@ -8,6 +8,14 @@ using UIKit;
 
 namespace TwitterImagePipeline
 {
+	partial class TIPNSHttpUrlResponse
+	{
+		public static NSHttpUrlResponse ResponseWithRequest(NSUrl requestUrl, nuint dataLength, string MIMEType)
+		{
+			return ResponseWithRequest(((NSHttpUrlResponse)null), requestUrl, dataLength, MIMEType);
+		}
+	}
+
 	partial class TIPGlobalConfigurationInspect
 	{
 		public static Task<NSDictionary<NSString, TIPImagePipelineInspectionResult>> InspectAsync(this TIPGlobalConfiguration This)

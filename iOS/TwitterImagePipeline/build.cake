@@ -54,7 +54,7 @@ Task ("externals").IsDependentOn ("externals-base").Does (() =>
 
 	CocoaPodInstall ("./externals", new CocoaPodInstallSettings { NoIntegrate = true });
 
-	// inject our special logger
+	// inject our special logger somewhere
 	var loggerFile = "./externals/Pods/TwitterImagePipeline/TwitterImagePipeline/TIPLogger.h";
 	var simpleLoggerFile = "./native/TIPSimpleLogger.h";
 	if (!FileExists(loggerFile) || FindTextInFiles (loggerFile, "TIPSimpleLogger").Length == 0) {
@@ -62,6 +62,14 @@ Task ("externals").IsDependentOn ("externals-base").Does (() =>
 		StartProcess ("chmod", new ProcessSettings { Arguments = "+w " + loggerFile });
 		var simpleLoggerContents = FileReadText (simpleLoggerFile);
 		FileAppendText (loggerFile, simpleLoggerContents);
+	}
+	var loggerImpl = "./externals/Pods/TwitterImagePipeline/TwitterImagePipeline/TIPGlobalConfiguration.m";
+	var simpleLoggerImpl = "./native/TIPSimpleLogger.m";
+	if (!FileExists(loggerImpl) || FindTextInFiles (loggerImpl, "TIPSimpleLogger").Length == 0) {
+		// we might not have write permissions
+		StartProcess ("chmod", new ProcessSettings { Arguments = "+w " + loggerImpl });
+		var simpleLoggerContents = FileReadText (simpleLoggerImpl);
+		FileAppendText (loggerImpl, simpleLoggerContents);
 	}
 
 	BuildXCodeFatLibrary ("./Pods/Pods.xcodeproj", "TwitterImagePipeline", "TwitterImagePipeline", null, null, "TwitterImagePipeline");
