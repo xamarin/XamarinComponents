@@ -1494,26 +1494,26 @@ namespace Mapbox
     {
     }
 
-    // @interface PointCollectionFeature : MGLPointCollection <MGLFeature>
-    [BaseType(typeof(NSObject), Name = "MGLPointCollection")]
+    // @interface MGLPointCollectionFeature : MGLPointCollection <MGLFeature>
+    [BaseType(typeof(NSObject), Name = "MGLPointCollectionFeature")]
     interface PointCollectionFeature : Feature
     {
     }
 
-    // @interface MultiPolylineFeature : MGLMultiPolyline <MGLFeature>
-    [BaseType(typeof(NSObject), Name = "MGLMultiPolyline")]
+    // @interface MGLMultiPolylineFeature : MGLMultiPolyline <MGLFeature>
+    [BaseType(typeof(NSObject), Name = "MGLMultiPolylineFeature")]
     interface MultiPolylineFeature : Feature
     {
     }
 
-    // @interface MultiPolygonFeature : MGLMultiPolygon <MGLFeature>
-    [BaseType(typeof(NSObject), Name = "MGLMultiPolygon")]
+    // @interface MGLMultiPolygonFeature : MGLMultiPolygon <MGLFeature>
+    [BaseType(typeof(NSObject), Name = "MGLMultiPolygonFeature")]
     interface MultiPolygonFeature : Feature
     {
     }
 
     //@interface MGLShapeCollectionFeature : MGLShapeCollection<MGLFeature>
-    [BaseType(typeof(NSObject), Name = "MGLShapeCollection")]
+    [BaseType(typeof(NSObject), Name = "MGLShapeCollectionFeature")]
     interface ShapeCollectionFeature : Feature
     {
         // @property (readonly, copy, nonatomic) NSArray<MGLShape<MGLFeature> *> * _Nonnull shapes;
