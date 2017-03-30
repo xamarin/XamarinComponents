@@ -99,7 +99,7 @@ namespace Mapbox
         bool MetricsEnabledSettingShownInApp { get; }
     }
 
-	interface IAnnotation { }
+    interface IAnnotation { }
 
     // @protocol MGLAnnotation <NSObject>
     [Protocol, Model]
@@ -622,7 +622,7 @@ namespace Mapbox
         bool AllowsTilting { get; set; }
     }
 
-	interface IMapViewDelegate { }
+    interface IMapViewDelegate { }
 
     // @protocol MGLMapViewDelegate <NSObject>
     [Protocol, Model]
@@ -853,12 +853,12 @@ namespace Mapbox
         IntPtr Zero { get; }
     }
 
-	interface IOverlay { }
+    interface IOverlay { }
 
     // @protocol MGLOverlay <MGLAnnotation>
     [Protocol, Model]
     [BaseType (typeof (Annotation), Name = "MGLOverlay")]
-	interface Overlay
+    interface Overlay
     {
         // @required @property (readonly, nonatomic) CLLocationCoordinate2D coordinate;
         //[Abstract]
@@ -1166,7 +1166,7 @@ namespace Mapbox
         void RemoveImageForName (string name);
     }
 
-	interface ICalloutView { }
+    interface ICalloutView { }
 
     // @protocol MGLCalloutView <NSObject>
     [Protocol (Name = "MGLCalloutView"), Model]
@@ -1213,7 +1213,7 @@ namespace Mapbox
         bool DismissesAutomatically { get; }
     }
 
-	interface ICalloutViewDelegate { }
+    interface ICalloutViewDelegate { }
 
     // @protocol MGLCalloutViewDelegate <NSObject>
     [Protocol, Model]
@@ -1238,15 +1238,15 @@ namespace Mapbox
 
     }
 
-	interface IOfflineRegion { }
+    interface IOfflineRegion { }
 
-	// @protocol MGLOfflineRegion <NSObject>
-	[Protocol, Model]
-	[BaseType(typeof(NSObject), Name = "MGLOfflineRegion")]
-	interface OfflineRegion
-	{
+    // @protocol MGLOfflineRegion <NSObject>
+    [Protocol, Model]
+    [BaseType(typeof(NSObject), Name = "MGLOfflineRegion")]
+    interface OfflineRegion
+    {
 
-	}
+    }
 
     // @interface TilePyramidOfflineRegion : NSObject <MGLOfflineRegion, NSSecureCoding, NSCopying>
     [BaseType (typeof (NSObject), Name = "MGLTilePyramidOfflineRegion")]
@@ -1276,8 +1276,8 @@ namespace Mapbox
     }
 
     // @interface PointCollection : MGLShape <MGLOverlay>
-	[BaseType(typeof(NSObject), Name = "MGLShape")]
-	interface PointCollection : Overlay, Annotation
+    [BaseType(typeof(NSObject), Name = "MGLShape")]
+    interface PointCollection : Overlay, Annotation
     {
         // +(instancetype)pointCollectionWithCoordinates:(const CLLocationCoordinate2D *)coords count:(NSUInteger)count;
         [Static]
@@ -1298,7 +1298,7 @@ namespace Mapbox
     }
 
     // @interface ShapeCollection : MGLShape
-	[BaseType(typeof(NSObject), Name = "MGLShape")]
+    [BaseType(typeof(NSObject), Name = "MGLShape")]
     interface ShapeCollection
     {
         // @property (readonly, copy, nonatomic) NSArray<MGLShape *> * _Nonnull shapes;
@@ -1445,7 +1445,7 @@ namespace Mapbox
         bool GetObjectValue ([NullAllowed] out NSObject obj, string @string, [NullAllowed] out string error);
     }
 
-	interface IFeature { }
+    interface IFeature { }
 
     // @protocol MGLFeature <MGLAnnotation>
     [Protocol, Model]
@@ -1494,25 +1494,25 @@ namespace Mapbox
     }
 
     // @interface PointCollectionFeature : MGLPointCollection <MGLFeature>
-	[BaseType(typeof(NSObject), Name = "MGLPointCollection")]
+    [BaseType(typeof(NSObject), Name = "MGLPointCollection")]
     interface PointCollectionFeature : Feature
     {
     }
 
     // @interface MultiPolylineFeature : MGLMultiPolyline <MGLFeature>
-	[BaseType(typeof(NSObject), Name = "MGLMultiPolyline")]
+    [BaseType(typeof(NSObject), Name = "MGLMultiPolyline")]
     interface MultiPolylineFeature : Feature
     {
     }
 
     // @interface MultiPolygonFeature : MGLMultiPolygon <MGLFeature>
-	[BaseType(typeof(NSObject), Name = "MGLMultiPolygon")]
+    [BaseType(typeof(NSObject), Name = "MGLMultiPolygon")]
     interface MultiPolygonFeature : Feature
     {
     }
 
     //@interface MGLShapeCollectionFeature : MGLShapeCollection<MGLFeature>
-	[BaseType(typeof(NSObject), Name = "MGLShapeCollection")]
+    [BaseType(typeof(NSObject), Name = "MGLShapeCollection")]
     interface ShapeCollectionFeature : Feature
     {
         // @property (readonly, copy, nonatomic) NSArray<MGLShape<MGLFeature> *> * _Nonnull shapes;
@@ -1525,7 +1525,7 @@ namespace Mapbox
         ShapeCollectionFeature WithShapes (IFeature[] shapes);
     }
 
-	interface IOfflineStorageDelegate { }
+    interface IOfflineStorageDelegate { }
 
     // @protocol MGLOfflineStorageDelegate <NSObject>
     [Protocol, Model]
@@ -1565,7 +1565,7 @@ namespace Mapbox
     }
 
     // @interface ForegroundStyleLayer : MGLStyleLayer
-	[BaseType(typeof(StyleLayer), Name = "MGLForegroundStyleLayer")]
+    [BaseType(typeof(StyleLayer), Name = "MGLForegroundStyleLayer")]
     [DisableDefaultCtor]
     interface ForegroundStyleLayer
     {
@@ -1580,7 +1580,7 @@ namespace Mapbox
     }
 
     // @interface VectorStyleLayer : MGLForegroundStyleLayer
-	[BaseType(typeof(ForegroundStyleLayer), Name = "MGLForegroundStyleLayer")]
+    [BaseType(typeof(ForegroundStyleLayer), Name = "MGLForegroundStyleLayer")]
     interface VectorStyleLayer
     {
         // @property (nonatomic) NSString * _Nullable sourceLayerIdentifier;
@@ -1605,9 +1605,9 @@ namespace Mapbox
         NSString DefaultValue { get; }
     }
 
-	// @interface NSValue (MGLAdditions)
-	[Category]
-	[BaseType(typeof(NSValue))]
+    // @interface NSValue (MGLAdditions)
+    [Category]
+    [BaseType(typeof(NSValue))]
     interface Additions_NSValue
     {
         // +(instancetype _Nonnull)valueWithMGLCoordinate:(CLLocationCoordinate2D)coordinate;
@@ -1663,7 +1663,7 @@ namespace Mapbox
 
     // audit-objc-generics: @interface StyleValue<T> : NSObject
     [BaseType (typeof(NSObject))]
-	interface StyleValue : INSObjectProtocol
+    interface StyleValue : INSObjectProtocol
     {
         // +(instancetype _Nonnull)valueWithRawValue:(T _Nonnull)rawValue;
         [Static]
@@ -1697,7 +1697,7 @@ namespace Mapbox
     }
 
     // audit-objc-generics: @interface ConstantStyleValue<T> : MGLStyleValue
-	[BaseType(typeof(StyleValue), Name = "MGLConstantStyleValue")]
+    [BaseType(typeof(StyleValue), Name = "MGLConstantStyleValue")]
     [DisableDefaultCtor]
     interface ConstantStyleValue
     {
@@ -1717,7 +1717,7 @@ namespace Mapbox
     }
 
     // audit-objc-generics: @interface StyleFunction<T> : MGLStyleValue
-	[BaseType(typeof(StyleValue), Name = "MGLStyleFunction")]
+    [BaseType(typeof(StyleValue), Name = "MGLStyleFunction")]
     interface StyleFunction
     {
         // +(instancetype _Nonnull)functionWithStops:(NSDictionary<NSNumber *,MGLStyleValue<T> *> * _Nonnull)stops __attribute__((deprecated("Use +[MGLStyleValue valueWithInterpolationMode:cameraStops:options:]")));
@@ -1748,7 +1748,7 @@ namespace Mapbox
     }
 
     // audit-objc-generics: @interface CameraStyleFunction<T> : MGLStyleFunction
-	[BaseType(typeof(StyleFunction), Name = "MGLCameraStyleFunction")]
+    [BaseType(typeof(StyleFunction), Name = "MGLCameraStyleFunction")]
     interface CameraStyleFunction
     {
         // +(instancetype _Nonnull)functionWithInterpolationMode:(MGLInterpolationMode)interpolationMode stops:(NSDictionary<id,MGLStyleValue<T> *> * _Nonnull)stops options:(NSDictionary<MGLStyleFunctionOption,id> * _Nullable)options;
@@ -1762,8 +1762,8 @@ namespace Mapbox
     }
 
     // audit-objc-generics: @interface SourceStyleFunction<T> : MGLStyleFunction
-	[BaseType(typeof(StyleFunction), Name = "MGLSourceStyleFunction")]
-	interface SourceStyleFunction
+    [BaseType(typeof(StyleFunction), Name = "MGLSourceStyleFunction")]
+    interface SourceStyleFunction
     {
         // +(instancetype _Nonnull)functionWithInterpolationMode:(MGLInterpolationMode)interpolationMode stops:(NSDictionary<id,MGLStyleValue<T> *> * _Nullable)stops attributeName:(NSString * _Nonnull)attributeName options:(NSDictionary<MGLStyleFunctionOption,id> * _Nullable)options;
         [Static]
@@ -1784,8 +1784,8 @@ namespace Mapbox
     }
 
     // audit-objc-generics: @interface CompositeStyleFunction<T> : MGLStyleFunction
-	[BaseType(typeof(StyleFunction), Name = "MGLCompositeStyleFunction")]
-	interface CompositeStyleFunction
+    [BaseType(typeof(StyleFunction), Name = "MGLCompositeStyleFunction")]
+    interface CompositeStyleFunction
     {
         // +(instancetype _Nonnull)functionWithInterpolationMode:(MGLInterpolationMode)interpolationMode stops:(NSDictionary<id,NSDictionary<id,MGLStyleValue<T> *> *> * _Nonnull)stops attributeName:(NSString * _Nonnull)attributeName options:(NSDictionary<MGLStyleFunctionOption,id> * _Nullable)options;
         [Static]
@@ -1806,8 +1806,8 @@ namespace Mapbox
     }
 
     // @interface FillStyleLayer : MGLVectorStyleLayer
-	[BaseType(typeof(VectorStyleLayer), Name = "MGLFillStyleLayer")]
-	interface FillStyleLayer
+    [BaseType(typeof(VectorStyleLayer), Name = "MGLFillStyleLayer")]
+    interface FillStyleLayer
     {
         // @property (getter = isFillAntialiased, nonatomic) MGLStyleValue<NSNumber *> * _Null_unspecified fillAntialiased;
         [Export ("fillAntialiased", ArgumentSemantic.Assign)]
@@ -1875,7 +1875,7 @@ namespace Mapbox
     }
 
     // @interface LineStyleLayer : MGLVectorStyleLayer
-	[BaseType(typeof(VectorStyleLayer), Name = "MGLLineStyleLayer")]
+    [BaseType(typeof(VectorStyleLayer), Name = "MGLLineStyleLayer")]
     interface LineStyleLayer
     {
         // @property (nonatomic) MGLStyleValue<NSValue *> * _Null_unspecified lineCap;
@@ -2008,7 +2008,7 @@ namespace Mapbox
     }
 
     // @interface SymbolStyleLayer : MGLVectorStyleLayer
-	[BaseType(typeof(VectorStyleLayer), Name = "MGLSymbolStyleLayer")]
+    [BaseType(typeof(VectorStyleLayer), Name = "MGLSymbolStyleLayer")]
     interface SymbolStyleLayer
     {
         // @property (nonatomic) MGLStyleValue<NSNumber *> * _Null_unspecified iconAllowsOverlap;
@@ -2359,7 +2359,7 @@ namespace Mapbox
     }
 
     // @interface RasterStyleLayer : MGLForegroundStyleLayer
-	[BaseType(typeof(ForegroundStyleLayer), Name = "MGLRasterStyleLayer")]
+    [BaseType(typeof(ForegroundStyleLayer), Name = "MGLRasterStyleLayer")]
     interface RasterStyleLayer
     {
         // @property (nonatomic) MGLStyleValue<NSNumber *> * _Null_unspecified maximumRasterBrightness;
@@ -2420,7 +2420,7 @@ namespace Mapbox
     }
 
     // @interface CircleStyleLayer : MGLVectorStyleLayer
-	[BaseType(typeof(VectorStyleLayer), Name = "MGLCircleStyleLayer")]
+    [BaseType(typeof(VectorStyleLayer), Name = "MGLCircleStyleLayer")]
     interface CircleStyleLayer
     {
         // @property (nonatomic) MGLStyleValue<NSNumber *> * _Null_unspecified circleBlur;
@@ -2523,7 +2523,7 @@ namespace Mapbox
     }
 
     // @interface BackgroundStyleLayer : MGLStyleLayer
-	[BaseType(typeof(StyleLayer), Name = "MGLBackgroundStyleLayer")]
+    [BaseType(typeof(StyleLayer), Name = "MGLBackgroundStyleLayer")]
     interface BackgroundStyleLayer
     {
         // -(instancetype _Nonnull)initWithIdentifier:(NSString * _Nonnull)identifier __attribute__((objc_designated_initializer));
@@ -2557,7 +2557,7 @@ namespace Mapbox
     }
 
     // @interface OpenGLStyleLayer : MGLStyleLayer
-	[BaseType(typeof(StyleLayer), Name = "MGLOpenGLStyleLayer")]
+    [BaseType(typeof(StyleLayer), Name = "MGLOpenGLStyleLayer")]
     interface OpenGLStyleLayer
     {
         // @property (readonly, nonatomic, weak) MGLMapView * _Nullable mapView;
@@ -2625,7 +2625,7 @@ namespace Mapbox
     }
 
     // @interface TileSource : MGLSource
-	[BaseType(typeof(Source), Name = "MGLTileSource")]
+    [BaseType(typeof(Source), Name = "MGLTileSource")]
     [DisableDefaultCtor]
     interface TileSource
     {
