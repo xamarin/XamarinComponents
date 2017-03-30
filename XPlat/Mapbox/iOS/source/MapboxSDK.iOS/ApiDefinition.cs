@@ -209,9 +209,9 @@ namespace Mapbox
         [Export ("initWithFrame:styleURL:")]
         IntPtr Constructor (CGRect frame, [NullAllowed] NSUrl styleURL);
 
-		// @property (nonatomic, weak) id<MGLMapViewDelegate> _Nullable delegate __attribute__((iboutlet));
-		[NullAllowed, Export("delegate", ArgumentSemantic.Weak)]
-		IMapViewDelegate Delegate { get; set; }
+        // @property (nonatomic, weak) id<MGLMapViewDelegate> _Nullable delegate __attribute__((iboutlet));
+        [NullAllowed, Export("delegate", ArgumentSemantic.Weak)]
+        IMapViewDelegate Delegate { get; set; }
 
         //[Wrap ("WeakDelegate")]
         //[NullAllowed]
@@ -595,10 +595,10 @@ namespace Mapbox
         [Export ("emptyMemoryCache")]
         void EmptyMemoryCache ();
 
-		// Adding the code for MGLMapView_IBAdditions here
+        // Adding the code for MGLMapView_IBAdditions here
 
-		// @property (nonatomic) double latitude;
-		[Export ("latitude")]
+        // @property (nonatomic) double latitude;
+        [Export ("latitude")]
         double Latitude { get; set; }
 
         // @property (nonatomic) double longitude;
@@ -1012,7 +1012,7 @@ namespace Mapbox
     interface Style
     {
         // +(NSURL * _Nonnull)streetsStyleURL __attribute__((deprecated("Use -streetsStyleURLWithVersion:.")));
-		[Obsolete ("Use StreetsStyle (version) method instead")]
+        [Obsolete ("Use StreetsStyle (version) method instead")]
         [Static]
         [Export ("streetsStyleURL")]
         //[Verify (MethodToProperty)]
@@ -1024,7 +1024,7 @@ namespace Mapbox
         NSUrl StreetsStyle (nint version);
 
         // +(NSURL * _Nonnull)emeraldStyleURL __attribute__((deprecated("Create an NSURL object with the string “mapbox://styles/mapbox/emerald-v8”.")));
-		[Obsolete ("Create an NSURL object with the string 'mapbox://styles/mapbox/emerald-v8' instead.")]
+        [Obsolete ("Create an NSURL object with the string 'mapbox://styles/mapbox/emerald-v8' instead.")]
         [Static]
         [Export ("emeraldStyleURL")]
         //[Verify (MethodToProperty)]
@@ -1188,11 +1188,11 @@ namespace Mapbox
         [Export ("rightAccessoryView", ArgumentSemantic.Strong)]
         UIView RightAccessoryView { get; set; }
 
-		// @required @property (nonatomic, weak) id<MGLCalloutViewDelegate> _Nullable delegate;
-		[Abstract]
-		[NullAllowed]
-		[Export("delegate", ArgumentSemantic.Weak)]
-		ICalloutViewDelegate Delegate { get; set; }
+        // @required @property (nonatomic, weak) id<MGLCalloutViewDelegate> _Nullable delegate;
+        [Abstract]
+        [NullAllowed]
+        [Export("delegate", ArgumentSemantic.Weak)]
+        ICalloutViewDelegate Delegate { get; set; }
 
         // @required -(void)presentCalloutFromRect:(CGRect)rect inView:(UIView * _Nonnull)view constrainedToView:(UIView * _Nonnull)constrainedView animated:(BOOL)animated;
         [Abstract]
@@ -1288,8 +1288,8 @@ namespace Mapbox
         [Export ("coordinates")]
         unsafe CLLocationCoordinate2D Coordinates { get; }
 
-		// @property (readonly, nonatomic) NSUInteger pointCount;
-		[Export ("pointCount")]
+        // @property (readonly, nonatomic) NSUInteger pointCount;
+        [Export ("pointCount")]
         nuint PointCount { get; }
 
         // -(void)getCoordinates:(CLLocationCoordinate2D *)coords range:(NSRange)range;
@@ -1616,8 +1616,8 @@ namespace Mapbox
         NSValue GetValue (CLLocationCoordinate2D coordinate);
 
         // @property (readonly) CLLocationCoordinate2D MGLCoordinateValue;
-		[Static]
-		[Export ("MGLCoordinateValue")]
+        [Static]
+        [Export ("MGLCoordinateValue")]
         CLLocationCoordinate2D CoordinateValue { get; }
 
         // +(instancetype _Nonnull)valueWithMGLCoordinateSpan:(MGLCoordinateSpan)span;
@@ -1626,8 +1626,8 @@ namespace Mapbox
         NSValue GetValue (CoordinateSpan span);
 
         // @property (readonly) MGLCoordinateSpan MGLCoordinateSpanValue;
-		[Static]
-		[Export ("MGLCoordinateSpanValue")]
+        [Static]
+        [Export ("MGLCoordinateSpanValue")]
         CoordinateSpan CoordinateSpanValue { get; }
 
         // +(instancetype _Nonnull)valueWithMGLCoordinateBounds:(MGLCoordinateBounds)bounds;
@@ -1635,10 +1635,10 @@ namespace Mapbox
         [Export ("valueWithMGLCoordinateBounds:")]
         NSValue GetValue (CoordinateBounds bounds);
 
-		// @property (readonly) MGLCoordinateBounds MGLCoordinateBoundsValue;
-		[Static]
-		[Export("MGLCoordinateBoundsValue")]
-		CoordinateBounds CoordinateBoundsValue { get; }
+        // @property (readonly) MGLCoordinateBounds MGLCoordinateBoundsValue;
+        [Static]
+        [Export("MGLCoordinateBoundsValue")]
+        CoordinateBounds CoordinateBoundsValue { get; }
 
         // +(NSValue * _Nonnull)valueWithMGLOfflinePackProgress:(MGLOfflinePackProgress)progress;
         [Static]
@@ -1646,8 +1646,8 @@ namespace Mapbox
         NSValue GetValue (OfflinePackProgress progress);
 
         // @property (readonly) MGLOfflinePackProgress MGLOfflinePackProgressValue;
-		[Static]
-		[Export ("MGLOfflinePackProgressValue")]
+        [Static]
+        [Export ("MGLOfflinePackProgressValue")]
         OfflinePackProgress OfflinePackProgressValue { get; }
 
         // +(NSValue * _Nonnull)valueWithMGLTransition:(MGLTransition)transition;
@@ -1656,8 +1656,8 @@ namespace Mapbox
         NSValue ValueWithMGLTransition (Transition transition);
 
         // @property (readonly) MGLTransition MGLTransitionValue;
-		[Static]
-		[Export ("MGLTransitionValue")]
+        [Static]
+        [Export ("MGLTransitionValue")]
         Transition MGLTransitionValue { get; }
     }
 
@@ -1869,8 +1869,8 @@ namespace Mapbox
         NSValue ValueWithMGLFillTranslationAnchor (FillTranslationAnchor fillTranslationAnchor);
 
         // @property (readonly) MGLFillTranslationAnchor MGLFillTranslationAnchorValue;
-		[Static]
-		[Export ("MGLFillTranslationAnchorValue")]
+        [Static]
+        [Export ("MGLFillTranslationAnchorValue")]
         FillTranslationAnchor MGLFillTranslationAnchorValue { get; }
     }
 
@@ -1982,8 +1982,8 @@ namespace Mapbox
         NSValue ValueWithMGLLineCap (LineCap lineCap);
 
         // @property (readonly) MGLLineCap MGLLineCapValue;
-		[Static]
-		[Export ("MGLLineCapValue")]
+        [Static]
+        [Export ("MGLLineCapValue")]
         LineCap MGLLineCapValue { get; }
 
         // +(instancetype _Nonnull)valueWithMGLLineJoin:(MGLLineJoin)lineJoin;
@@ -1992,8 +1992,8 @@ namespace Mapbox
         NSValue ValueWithMGLLineJoin (LineJoin lineJoin);
 
         // @property (readonly) MGLLineJoin MGLLineJoinValue;
-		[Static]
-		[Export ("MGLLineJoinValue")]
+        [Static]
+        [Export ("MGLLineJoinValue")]
         LineJoin MGLLineJoinValue { get; }
 
         // +(instancetype _Nonnull)valueWithMGLLineTranslationAnchor:(MGLLineTranslationAnchor)lineTranslationAnchor;
@@ -2002,8 +2002,8 @@ namespace Mapbox
         NSValue ValueWithMGLLineTranslationAnchor (LineTranslationAnchor lineTranslationAnchor);
 
         // @property (readonly) MGLLineTranslationAnchor MGLLineTranslationAnchorValue;
-		[Static]
-		[Export ("MGLLineTranslationAnchorValue")]
+        [Static]
+        [Export ("MGLLineTranslationAnchorValue")]
         LineTranslationAnchor MGLLineTranslationAnchorValue { get; }
     }
 
@@ -2263,8 +2263,8 @@ namespace Mapbox
         NSValue ValueWithMGLIconRotationAlignment (IconRotationAlignment iconRotationAlignment);
 
         // @property (readonly) MGLIconRotationAlignment MGLIconRotationAlignmentValue;
-		[Static]
-		[Export ("MGLIconRotationAlignmentValue")]
+        [Static]
+        [Export ("MGLIconRotationAlignmentValue")]
         IconRotationAlignment MGLIconRotationAlignmentValue { get; }
 
         // +(instancetype _Nonnull)valueWithMGLIconTextFit:(MGLIconTextFit)iconTextFit;
@@ -2273,8 +2273,8 @@ namespace Mapbox
         NSValue ValueWithMGLIconTextFit (IconTextFit iconTextFit);
 
         // @property (readonly) MGLIconTextFit MGLIconTextFitValue;
-		[Static]
-		[Export ("MGLIconTextFitValue")]
+        [Static]
+        [Export ("MGLIconTextFitValue")]
         IconTextFit MGLIconTextFitValue { get; }
 
         // +(instancetype _Nonnull)valueWithMGLSymbolPlacement:(MGLSymbolPlacement)symbolPlacement;
@@ -2283,8 +2283,8 @@ namespace Mapbox
         NSValue ValueWithMGLSymbolPlacement (SymbolPlacement symbolPlacement);
 
         // @property (readonly) MGLSymbolPlacement MGLSymbolPlacementValue;
-		[Static]
-		[Export ("MGLSymbolPlacementValue")]
+        [Static]
+        [Export ("MGLSymbolPlacementValue")]
         SymbolPlacement MGLSymbolPlacementValue { get; }
 
         // +(instancetype _Nonnull)valueWithMGLTextAnchor:(MGLTextAnchor)textAnchor;
@@ -2293,8 +2293,8 @@ namespace Mapbox
         NSValue ValueWithMGLTextAnchor (TextAnchor textAnchor);
 
         // @property (readonly) MGLTextAnchor MGLTextAnchorValue;
-		[Static]
-		[Export ("MGLTextAnchorValue")]
+        [Static]
+        [Export ("MGLTextAnchorValue")]
         TextAnchor MGLTextAnchorValue { get; }
 
         // +(instancetype _Nonnull)valueWithMGLTextJustification:(MGLTextJustification)textJustification;
@@ -2303,8 +2303,8 @@ namespace Mapbox
         NSValue ValueWithMGLTextJustification (TextJustification textJustification);
 
         // @property (readonly) MGLTextJustification MGLTextJustificationValue;
-		[Static]
-		[Export ("MGLTextJustificationValue")]
+        [Static]
+        [Export ("MGLTextJustificationValue")]
         TextJustification MGLTextJustificationValue { get; }
 
         // +(instancetype _Nonnull)valueWithMGLTextPitchAlignment:(MGLTextPitchAlignment)textPitchAlignment;
@@ -2313,8 +2313,8 @@ namespace Mapbox
         NSValue ValueWithMGLTextPitchAlignment (TextPitchAlignment textPitchAlignment);
 
         // @property (readonly) MGLTextPitchAlignment MGLTextPitchAlignmentValue;
-		[Static]
-		[Export ("MGLTextPitchAlignmentValue")]
+        [Static]
+        [Export ("MGLTextPitchAlignmentValue")]
         TextPitchAlignment MGLTextPitchAlignmentValue { get; }
 
         // +(instancetype _Nonnull)valueWithMGLTextRotationAlignment:(MGLTextRotationAlignment)textRotationAlignment;
@@ -2323,8 +2323,8 @@ namespace Mapbox
         NSValue ValueWithMGLTextRotationAlignment (TextRotationAlignment textRotationAlignment);
 
         // @property (readonly) MGLTextRotationAlignment MGLTextRotationAlignmentValue;
-		[Static]
-		[Export ("MGLTextRotationAlignmentValue")]
+        [Static]
+        [Export ("MGLTextRotationAlignmentValue")]
         TextRotationAlignment MGLTextRotationAlignmentValue { get; }
 
         // +(instancetype _Nonnull)valueWithMGLTextTransform:(MGLTextTransform)textTransform;
@@ -2333,8 +2333,8 @@ namespace Mapbox
         NSValue ValueWithMGLTextTransform (TextTransform textTransform);
 
         // @property (readonly) MGLTextTransform MGLTextTransformValue;
-		[Static]
-		[Export ("MGLTextTransformValue")]
+        [Static]
+        [Export ("MGLTextTransformValue")]
         TextTransform MGLTextTransformValue { get; }
 
         // +(instancetype _Nonnull)valueWithMGLIconTranslationAnchor:(MGLIconTranslationAnchor)iconTranslationAnchor;
@@ -2343,8 +2343,8 @@ namespace Mapbox
         NSValue ValueWithMGLIconTranslationAnchor (IconTranslationAnchor iconTranslationAnchor);
 
         // @property (readonly) MGLIconTranslationAnchor MGLIconTranslationAnchorValue;
-		[Static]
-		[Export ("MGLIconTranslationAnchorValue")]
+        [Static]
+        [Export ("MGLIconTranslationAnchorValue")]
         IconTranslationAnchor MGLIconTranslationAnchorValue { get; }
 
         // +(instancetype _Nonnull)valueWithMGLTextTranslationAnchor:(MGLTextTranslationAnchor)textTranslationAnchor;
@@ -2353,8 +2353,8 @@ namespace Mapbox
         NSValue ValueWithMGLTextTranslationAnchor (TextTranslationAnchor textTranslationAnchor);
 
         // @property (readonly) MGLTextTranslationAnchor MGLTextTranslationAnchorValue;
-		[Static]
-		[Export ("MGLTextTranslationAnchorValue")]
+        [Static]
+        [Export ("MGLTextTranslationAnchorValue")]
         TextTranslationAnchor MGLTextTranslationAnchorValue { get; }
     }
 
@@ -2507,8 +2507,8 @@ namespace Mapbox
         NSValue ValueWithMGLCircleScaleAlignment (CircleScaleAlignment circleScaleAlignment);
 
         // @property (readonly) MGLCircleScaleAlignment MGLCircleScaleAlignmentValue;
-		[Static]
-		[Export ("MGLCircleScaleAlignmentValue")]
+        [Static]
+        [Export ("MGLCircleScaleAlignmentValue")]
         CircleScaleAlignment MGLCircleScaleAlignmentValue { get; }
 
         // +(instancetype _Nonnull)valueWithMGLCircleTranslationAnchor:(MGLCircleTranslationAnchor)circleTranslationAnchor;
@@ -2517,8 +2517,8 @@ namespace Mapbox
         NSValue ValueWithMGLCircleTranslationAnchor (CircleTranslationAnchor circleTranslationAnchor);
 
         // @property (readonly) MGLCircleTranslationAnchor MGLCircleTranslationAnchorValue;
-		[Static]
-		[Export ("MGLCircleTranslationAnchorValue")]
+        [Static]
+        [Export ("MGLCircleTranslationAnchorValue")]
         CircleTranslationAnchor MGLCircleTranslationAnchorValue { get; }
     }
 
@@ -2619,9 +2619,9 @@ namespace Mapbox
         [Field ("MGLTileSourceOptionTileCoordinateSystem", "__Internal")]
         NSString TileCoordinateSystem { get; }
 
-		// extern const MGLTileSourceOption _Nonnull MGLTileSourceOptionTileSize __attribute__((visibility("default")));
-		[Field("MGLTileSourceOptionTileSize", "__Internal")]
-		NSString TileSize { get; }
+        // extern const MGLTileSourceOption _Nonnull MGLTileSourceOptionTileSize __attribute__((visibility("default")));
+        [Field("MGLTileSourceOptionTileSize", "__Internal")]
+        NSString TileSize { get; }
     }
 
     // @interface TileSource : MGLSource
