@@ -156,7 +156,7 @@ namespace Mapbox
 
         // @property (nonatomic) id<MGLAnnotation> _Nullable annotation;
         [NullAllowed, Export ("annotation", ArgumentSemantic.Assign)]
-        IAnnotation Annotation { get; set; }
+        Annotation Annotation { get; set; }
 
         // @property (readonly, nonatomic) NSString * _Nullable reuseIdentifier;
         [NullAllowed, Export ("reuseIdentifier")]
@@ -555,27 +555,27 @@ namespace Mapbox
 
         // -(NSArray<id<MGLFeature>> * _Nonnull)visibleFeaturesAtPoint:(CGPoint)point;
         [Export ("visibleFeaturesAtPoint:")]
-        IFeature[] GetVisibleFeaturesAtPoint (CGPoint point);
+        Feature[] GetVisibleFeaturesAtPoint (CGPoint point);
 
         // -(NSArray<id<MGLFeature>> * _Nonnull)visibleFeaturesAtPoint:(CGPoint)point inStyleLayersWithIdentifiers:(NSSet<NSString *> * _Nullable)styleLayerIdentifiers;
         [Export ("visibleFeaturesAtPoint:inStyleLayersWithIdentifiers:")]
-        IFeature[] GetVisibleFeaturesAtPoint (CGPoint point, [NullAllowed] NSSet<NSString> styleLayerIdentifiers);
+        Feature[] GetVisibleFeaturesAtPoint (CGPoint point, [NullAllowed] NSSet<NSString> styleLayerIdentifiers);
 
         // -(NSArray<id<MGLFeature>> * _Nonnull)visibleFeaturesAtPoint:(CGPoint)point inStyleLayersWithIdentifiers:(NSSet<NSString *> * _Nullable)styleLayerIdentifiers predicate:(NSPredicate * _Nullable)predicate;
         [Export ("visibleFeaturesAtPoint:inStyleLayersWithIdentifiers:predicate:")]
-        IFeature[] GetVisibleFeaturesAtPoint (CGPoint point, [NullAllowed] NSSet<NSString> styleLayerIdentifiers, [NullAllowed] NSPredicate predicate);
+        Feature[] GetVisibleFeaturesAtPoint (CGPoint point, [NullAllowed] NSSet<NSString> styleLayerIdentifiers, [NullAllowed] NSPredicate predicate);
 
         // -(NSArray<id<MGLFeature>> * _Nonnull)visibleFeaturesInRect:(CGRect)rect;
         [Export ("visibleFeaturesInRect:")]
-        IFeature[] GetVisibleFeaturesInRect (CGRect rect);
+        Feature[] GetVisibleFeaturesInRect (CGRect rect);
 
         // -(NSArray<id<MGLFeature>> * _Nonnull)visibleFeaturesInRect:(CGRect)rect inStyleLayersWithIdentifiers:(NSSet<NSString *> * _Nullable)styleLayerIdentifiers;
         [Export ("visibleFeaturesInRect:inStyleLayersWithIdentifiers:")]
-        IFeature[] GetVisibleFeaturesInRect (CGRect rect, [NullAllowed] NSSet<NSString> styleLayerIdentifiers);
+        Feature[] GetVisibleFeaturesInRect (CGRect rect, [NullAllowed] NSSet<NSString> styleLayerIdentifiers);
 
         // -(NSArray<id<MGLFeature>> * _Nonnull)visibleFeaturesInRect:(CGRect)rect inStyleLayersWithIdentifiers:(NSSet<NSString *> * _Nullable)styleLayerIdentifiers predicate:(NSPredicate * _Nullable)predicate;
         [Export ("visibleFeaturesInRect:inStyleLayersWithIdentifiers:predicate:")]
-        IFeature[] GetVisibleFeaturesInRect (CGRect rect, [NullAllowed] NSSet<NSString> styleLayerIdentifiers, [NullAllowed] NSPredicate predicate);
+        Feature[] GetVisibleFeaturesInRect (CGRect rect, [NullAllowed] NSSet<NSString> styleLayerIdentifiers, [NullAllowed] NSPredicate predicate);
 
         // @property (nonatomic) MGLMapDebugMaskOptions debugMask;
         [Export ("debugMask", ArgumentSemantic.Assign)]
@@ -1016,7 +1016,7 @@ namespace Mapbox
         [Static]
         [Export ("streetsStyleURL")]
         //[Verify (MethodToProperty)]
-        NSUrl StreetsStyleURL { get; }
+        NSUrl Streets { get; }
 
         // +(NSURL * _Nonnull)streetsStyleURLWithVersion:(NSInteger)version;
         [Static]
@@ -1048,6 +1048,7 @@ namespace Mapbox
         NSUrl LightStyle (nint version);
 
         // +(NSURL * _Nonnull)darkStyleURL __attribute__((deprecated("Use -darkStyleURLWithVersion:.")));
+        [Obsolete ("Use DarkStyle (version) method instead")]
         [Static]
         [Export ("darkStyleURL")]
         //[Verify (MethodToProperty)]
@@ -1351,7 +1352,7 @@ namespace Mapbox
         // +(instancetype _Nonnull)sharedOfflineStorage;
         [Static]
         [Export ("sharedOfflineStorage")]
-        OfflineStorage Shared ();
+        OfflineStorage Shared { get; }
 
         [Wrap ("WeakDelegate")]
         [NullAllowed]
@@ -1367,7 +1368,7 @@ namespace Mapbox
 
         // -(void)addPackForRegion:(id<MGLOfflineRegion> _Nonnull)region withContext:(NSData * _Nonnull)context completionHandler:(MGLOfflinePackAdditionCompletionHandler _Nullable)completion;
         [Export ("addPackForRegion:withContext:completionHandler:")]
-        void AddPack (IOfflineRegion region, NSData context, [NullAllowed] OfflinePackAdditionCompletion completion);
+        void AddPack (IOfflineRegion region, NSData context, [NullAllowed] OfflinePackAdditionCompletion completionHandler);
 
         // -(void)removePack:(MGLOfflinePack * _Nonnull)pack withCompletionHandler:(MGLOfflinePackRemovalCompletionHandler _Nullable)completion;
         [Export ("removePack:withCompletionHandler:")]
@@ -1420,7 +1421,7 @@ namespace Mapbox
         bool GetObjectValue ([NullAllowed] out NSObject obj, string @string, [NullAllowed] out string error);
     }
 
-        // @interface CoordinateFormatter : NSFormatter
+    // @interface CoordinateFormatter : NSFormatter
     [BaseType (typeof(NSFormatter))]
     interface CoordinateFormatter
     {
@@ -1487,7 +1488,7 @@ namespace Mapbox
     {
     }
 
-    // @interface PolygonFeature : MGLPolygon <MGLFeature>
+    // @interface MGLPolygonFeature : MGLPolygon <MGLFeature>
     [BaseType (typeof (NSObject), Name = "MGLPolygonFeature")]
     interface PolygonFeature : Feature
     {
@@ -1517,12 +1518,12 @@ namespace Mapbox
     {
         // @property (readonly, copy, nonatomic) NSArray<MGLShape<MGLFeature> *> * _Nonnull shapes;
         [Export ("shapes", ArgumentSemantic.Copy)]
-        IFeature[] Shapes { get; }
+        Feature[] Shapes { get; }
 
         // +(instancetype _Nonnull)shapeCollectionWithShapes:(NSArray<MGLShape<MGLFeature> *> * _Nonnull)shapes;
         [Static]
         [Export ("shapeCollectionWithShapes:")]
-        ShapeCollectionFeature WithShapes (IFeature[] shapes);
+        ShapeCollectionFeature WithShapes (Feature[] shapes);
     }
 
     interface IOfflineStorageDelegate { }
