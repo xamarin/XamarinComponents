@@ -29,7 +29,8 @@ namespace Mapbox
     {
         public static Polygon WithCoordinates (CLLocationCoordinate2D[] coords, nuint count)
         {
-            return WithCoordinates (GetPointer (coords), count);
+			return WithCoordinates(coords, count);
+            //return WithCoordinates (GetPointer (coords), count);
         }
 
         internal static IntPtr GetPointer (CLLocationCoordinate2D[] coordinates)
@@ -43,7 +44,8 @@ namespace Mapbox
     {
         public static Polyline WithCoordinates (CLLocationCoordinate2D[] coords, nuint count)
         {
-            return WithCoordinates (GetPointer (coords), count);
+			return WithCoordinates(coords, count);
+			//return WithCoordinates(GetPointer(coords), count);
         }
 
         internal static IntPtr GetPointer (CLLocationCoordinate2D[] coordinates)
@@ -66,8 +68,9 @@ namespace Mapbox
 
         public void SetVisibleCoordinates (CLLocationCoordinate2D[] coordinates, nuint count, UIEdgeInsets insets, bool animated)
         {
-            SetVisibleCoordinates (GetPointer (coordinates), count, insets, animated);
-        }
+			//SetVisibleCoordinates(GetPointer(coordinates), count, insets, animated);
+            SetVisibleCoordinates (coordinates, count, insets, animated);
+      }
 
         internal static IntPtr GetPointer (CLLocationCoordinate2D[] coordinates)
         {

@@ -32,14 +32,26 @@ namespace Mapbox
         [Field ("MGLOfflinePackMaximumMapboxTilesReachedNotification", "__Internal")]
         NSString MaximumMapboxTilesReachedNotification { get; }
 
+        [Field ("MGLOfflinePackUserInfoKeyState", "__Internal")]
+        NSString UserInfoKeyState { get; }
+
         [Field ("MGLOfflinePackStateUserInfoKey", "__Internal")]
         NSString StateUserInfoKey { get; }
+
+        [Field ("MGLOfflinePackUserInfoKeyProgress", "__Internal")]
+        NSString UserInfoKeyProgress { get; }
 
         [Field ("MGLOfflinePackProgressUserInfoKey", "__Internal")]
         NSString ProgressUserInfoKey { get; }
 
+        [Field ("MGLOfflinePackUserInfoKeyError", "__Internal")]
+        NSString UserInfoKeyError { get; }
+
         [Field ("MGLOfflinePackErrorUserInfoKey", "__Internal")]
         NSString ErrorUserInfoKey { get; }
+
+        [Field ("MGLOfflinePackUserInfoKeyMaximumCount", "__Internal")]
+        NSString UserInfoKeyMaximumCount { get; }
 
         [Field ("MGLOfflinePackMaximumCountUserInfoKey", "__Internal")]
         NSString MaximumCountUserInfoKey { get; }
@@ -62,8 +74,10 @@ namespace Mapbox
         nfloat Immediate { get; }
     }
 
+    // typedef void (^MGLOfflinePackAdditionCompletionHandler)(MGLOfflinePack * _Nullable, NSError * _Nullable);
     delegate void OfflinePackAdditionCompletion ([NullAllowed] OfflinePack pack, [NullAllowed] NSError error);
 
+    // typedef void (^MGLOfflinePackRemovalCompletionHandler)(NSError * _Nullable);
     delegate void OfflinePackRemovalCompletion ([NullAllowed] NSError error);
 
 
@@ -75,15 +89,17 @@ namespace Mapbox
         // +(void)setAccessToken:(NSString * _Nullable)accessToken;
         [Static]
         [NullAllowed, Export ("accessToken")]
+        //[Verify (MethodToProperty)]
         string AccessToken { [NullAllowed, Export ("accessToken")]get; [NullAllowed, Export ("setAccessToken:")]set; }
 
         // +(BOOL)mapboxMetricsEnabledSettingShownInApp __attribute__((deprecated("Telemetry settings are now always shown in the ℹ️ menu.")));
         [Static]
         [Export ("mapboxMetricsEnabledSettingShownInApp")]
+        //[Verify (MethodToProperty)]
         bool MetricsEnabledSettingShownInApp { get; }
     }
 
-    interface IAnnotation { }
+	interface IAnnotation { }
 
     // @protocol MGLAnnotation <NSObject>
     [Protocol, Model]
@@ -104,31 +120,31 @@ namespace Mapbox
         string Subtitle { get; }
     }
 
-    // @interface MGLAnnotationImage : NSObject
+    // @interface MGLAnnotationImage : NSObject <NSSecureCoding>
     [BaseType (typeof (NSObject), Name = "MGLAnnotationImage")]
-    interface AnnotationImage
+    interface AnnotationImage : INSSecureCoding
     {
         // +(instancetype _Nonnull)annotationImageWithImage:(UIImage * _Nonnull)image reuseIdentifier:(NSString * _Nonnull)reuseIdentifier;
         [Static]
         [Export ("annotationImageWithImage:reuseIdentifier:")]
         AnnotationImage Create (UIImage image, string reuseIdentifier);
 
-        // @property (readonly, nonatomic) UIImage * _Nonnull image;
-        [Export ("image")]
-        UIImage Image { get; }
+        // @property (nonatomic, strong) UIImage * _Nullable image;
+        [NullAllowed, Export ("image", ArgumentSemantic.Strong)]
+        UIImage Image { get; set; }
 
         // @property (readonly, nonatomic) NSString * _Nonnull reuseIdentifier;
         [Export ("reuseIdentifier")]
         string ReuseIdentifier { get; }
 
+        // @property (getter = isEnabled, nonatomic) BOOL enabled;
         [Export ("enabled")]
         bool Enabled { [Bind ("isEnabled")] get; set; }
     }
 
-
-    // @interface MGLAnnotationView : UIView
+    // @interface MGLAnnotationView : UIView <NSSecureCoding>
     [BaseType (typeof (UIView), Name = "MGLAnnotationView")]
-    interface AnnotationView
+    interface AnnotationView : INSSecureCoding
     {
         // -(instancetype _Nonnull)initWithReuseIdentifier:(NSString * _Nullable)reuseIdentifier;
         [Export ("initWithReuseIdentifier:")]
@@ -138,9 +154,9 @@ namespace Mapbox
         [Export ("prepareForReuse")]
         void PrepareForReuse ();
 
-        // @property (readonly, nonatomic) id<MGLAnnotation> _Nullable annotation;
-        [NullAllowed, Export ("annotation")]
-        Annotation Annotation { get; }
+        // @property (nonatomic) id<MGLAnnotation> _Nullable annotation;
+        [NullAllowed, Export ("annotation", ArgumentSemantic.Assign)]
+        IAnnotation Annotation { get; set; }
 
         // @property (readonly, nonatomic) NSString * _Nullable reuseIdentifier;
         [NullAllowed, Export ("reuseIdentifier")]
@@ -193,18 +209,29 @@ namespace Mapbox
         [Export ("initWithFrame:styleURL:")]
         IntPtr Constructor (CGRect frame, [NullAllowed] NSUrl styleURL);
 
-        // @property (nonatomic, weak) id<MGLMapViewDelegate> _Nullable delegate __attribute__((iboutlet));
-        [NullAllowed, Export ("delegate", ArgumentSemantic.Weak)]
-        IMapViewDelegate Delegate { get; set; }
+		// @property (nonatomic, weak) id<MGLMapViewDelegate> _Nullable delegate __attribute__((iboutlet));
+		[NullAllowed, Export("delegate", ArgumentSemantic.Weak)]
+		IMapViewDelegate Delegate { get; set; }
+
+        //[Wrap ("WeakDelegate")]
+        //[NullAllowed]
+        //IMapViewDelegate Delegate { get; set; }
+
+        //// @property (nonatomic, weak) id<MGLMapViewDelegate> _Nullable delegate __attribute__((iboutlet));
+        //[NullAllowed, Export ("delegate", ArgumentSemantic.Weak)]
+        //NSObject WeakDelegate { get; set; }
+
+        // @property (readonly, nonatomic) MGLStyle * _Nullable style;
+        [NullAllowed, Export ("style")]
+        Style Style { get; }
 
         // @property (readonly, nonatomic) NSArray<NSURL *> * _Nonnull bundledStyleURLs __attribute__((deprecated("Call the relevant class method of MGLStyle for the URL of a particular default style.")));
         [Obsolete ("Call the relevant class method of Style for the URL of a particular default style.")]
         [Export ("bundledStyleURLs")]
-        NSUrl [] BundledStyleURLs { get; }
+        NSUrl[] BundledStyleURLs { get; }
 
         // @property (nonatomic) NSURL * _Null_unspecified styleURL;
         [Export ("styleURL", ArgumentSemantic.Assign)]
-        [NullAllowed]
         NSUrl StyleURL { get; set; }
 
         // -(void)reloadStyle:(id _Nonnull)sender __attribute__((ibaction));
@@ -223,19 +250,23 @@ namespace Mapbox
         [Export ("attributionButton")]
         UIButton AttributionButton { get; }
 
-        // @property (nonatomic) NSArray<NSString *> * _Nonnull styleClasses;
+        // @property (nonatomic) NSArray<NSString *> * _Nonnull styleClasses __attribute__((deprecated("Use style.styleClasses.")));
+        [Obsolete ("Use Style.StyleClasses")]
         [Export ("styleClasses", ArgumentSemantic.Assign)]
-        string [] StyleClasses { get; set; }
+        string[] StyleClasses { get; set; }
 
-        // -(BOOL)hasStyleClass:(NSString * _Nonnull)styleClass;
+        // -(BOOL)hasStyleClass:(NSString * _Nonnull)styleClass __attribute__((deprecated("Use style.hasStyleClass:.")));
+        [Obsolete ("Use Style.HasStyleClass")]
         [Export ("hasStyleClass:")]
         bool HasStyleClass (string styleClass);
 
-        // -(void)addStyleClass:(NSString * _Nonnull)styleClass;
+        // -(void)addStyleClass:(NSString * _Nonnull)styleClass __attribute__((deprecated("Use style.addStyleClass:.")));
+        [Obsolete ("Use Style.addStyleClass")]
         [Export ("addStyleClass:")]
         void AddStyleClass (string styleClass);
 
-        // -(void)removeStyleClass:(NSString * _Nonnull)styleClass;
+        // -(void)removeStyleClass:(NSString * _Nonnull)styleClass __attribute__((deprecated("Use style.removeStyleClass:.")));
+        [Obsolete ("Use Style.RemoveStyleClass")]
         [Export ("removeStyleClass:")]
         void RemoveStyleClass (string styleClass);
 
@@ -347,6 +378,10 @@ namespace Mapbox
         [Export ("resetNorth")]
         void ResetNorth ();
 
+        // -(void)resetPosition __attribute__((ibaction));
+        [Export ("resetPosition")]
+        void ResetPosition ();
+
         // @property (nonatomic) MGLCoordinateBounds visibleCoordinateBounds;
         [Export ("visibleCoordinateBounds", ArgumentSemantic.Assign)]
         CoordinateBounds VisibleCoordinateBounds { get; set; }
@@ -359,21 +394,21 @@ namespace Mapbox
         [Export ("setVisibleCoordinateBounds:edgePadding:animated:")]
         void SetVisibleCoordinateBounds (CoordinateBounds bounds, UIEdgeInsets insets, bool animated);
 
-        // -(void)setVisibleCoordinates:(CLLocationCoordinate2D * _Nonnull)coordinates count:(NSUInteger)count edgePadding:(UIEdgeInsets)insets animated:(BOOL)animated;
+        // -(void)setVisibleCoordinates:(const CLLocationCoordinate2D * _Nonnull)coordinates count:(NSUInteger)count edgePadding:(UIEdgeInsets)insets animated:(BOOL)animated;
         [Export ("setVisibleCoordinates:count:edgePadding:animated:")]
-        void SetVisibleCoordinates (IntPtr coordinates, nuint count, UIEdgeInsets insets, bool animated);
+        unsafe void SetVisibleCoordinates (CLLocationCoordinate2D coordinates, nuint count, UIEdgeInsets insets, bool animated);
 
-        // -(void)setVisibleCoordinates:(CLLocationCoordinate2D * _Nonnull)coordinates count:(NSUInteger)count edgePadding:(UIEdgeInsets)insets direction:(CLLocationDirection)direction duration:(NSTimeInterval)duration animationTimingFunction:(CAMediaTimingFunction * _Nullable)function completionHandler:(void (^ _Nullable)(void))completion;
+        // -(void)setVisibleCoordinates:(const CLLocationCoordinate2D * _Nonnull)coordinates count:(NSUInteger)count edgePadding:(UIEdgeInsets)insets direction:(CLLocationDirection)direction duration:(NSTimeInterval)duration animationTimingFunction:(CAMediaTimingFunction * _Nullable)function completionHandler:(void (^ _Nullable)(void))completion;
         [Export ("setVisibleCoordinates:count:edgePadding:direction:duration:animationTimingFunction:completionHandler:")]
-        void SetVisibleCoordinates (IntPtr coordinates, nuint count, UIEdgeInsets insets, double direction, double duration, [NullAllowed] CAMediaTimingFunction function, [NullAllowed] Action completion);
+        unsafe void SetVisibleCoordinates (CLLocationCoordinate2D coordinates, nuint count, UIEdgeInsets insets, double direction, double duration, [NullAllowed] CAMediaTimingFunction function, [NullAllowed] Action completion);
 
         // -(void)showAnnotations:(NSArray<id<MGLAnnotation>> * _Nonnull)annotations animated:(BOOL)animated;
         [Export ("showAnnotations:animated:")]
-        void ShowAnnotations (IAnnotation [] annotations, bool animated);
+        void ShowAnnotations (IAnnotation[] annotations, bool animated);
 
         // -(void)showAnnotations:(NSArray<id<MGLAnnotation>> * _Nonnull)annotations edgePadding:(UIEdgeInsets)insets animated:(BOOL)animated;
         [Export ("showAnnotations:edgePadding:animated:")]
-        void ShowAnnotations (IAnnotation [] annotations, UIEdgeInsets insets, bool animated);
+        void ShowAnnotations (IAnnotation[] annotations, UIEdgeInsets insets, bool animated);
 
         // @property (copy, nonatomic) MGLMapCamera * _Nonnull camera;
         [Export ("camera", ArgumentSemantic.Copy)]
@@ -433,11 +468,11 @@ namespace Mapbox
 
         // -(MGLCoordinateBounds)convertRect:(CGRect)rect toCoordinateBoundsFromView:(UIView * _Nullable)view;
         [Export ("convertRect:toCoordinateBoundsFromView:")]
-        CoordinateBounds ConvertRectToCoordinateBounds (CGRect rect, [NullAllowed] UIView view);
+        CoordinateBounds ConvertRect (CGRect rect, [NullAllowed] UIView view);
 
         // -(CGRect)convertCoordinateBounds:(MGLCoordinateBounds)bounds toRectToView:(UIView * _Nullable)view;
         [Export ("convertCoordinateBounds:toRectToView:")]
-        CGRect ConvertCoordinateBoundsToRect (CoordinateBounds bounds, [NullAllowed] UIView view);
+        CGRect ConvertCoordinateBounds (CoordinateBounds bounds, [NullAllowed] UIView view);
 
         // -(CLLocationDistance)metersPerPointAtLatitude:(CLLocationDegrees)latitude;
         [Export ("metersPerPointAtLatitude:")]
@@ -450,7 +485,11 @@ namespace Mapbox
 
         // @property (readonly, nonatomic) NSArray<id<MGLAnnotation>> * _Nullable annotations;
         [NullAllowed, Export ("annotations")]
-        IAnnotation [] Annotations { get; }
+        IAnnotation[] Annotations { get; }
+
+        // @property (readonly, nonatomic) NSArray<id<MGLAnnotation>> * _Nullable visibleAnnotations;
+        [NullAllowed, Export ("visibleAnnotations")]
+        IAnnotation[] VisibleAnnotations { get; }
 
         // -(void)addAnnotation:(id<MGLAnnotation> _Nonnull)annotation;
         [Export ("addAnnotation:")]
@@ -458,7 +497,7 @@ namespace Mapbox
 
         // -(void)addAnnotations:(NSArray<id<MGLAnnotation>> * _Nonnull)annotations;
         [Export ("addAnnotations:")]
-        void AddAnnotations (IAnnotation [] annotations);
+        void AddAnnotations (IAnnotation[] annotations);
 
         // -(void)removeAnnotation:(id<MGLAnnotation> _Nonnull)annotation;
         [Export ("removeAnnotation:")]
@@ -466,7 +505,7 @@ namespace Mapbox
 
         // -(void)removeAnnotations:(NSArray<id<MGLAnnotation>> * _Nonnull)annotations;
         [Export ("removeAnnotations:")]
-        void RemoveAnnotations (IAnnotation [] annotations);
+        void RemoveAnnotations (IAnnotation[] annotations);
 
         // -(MGLAnnotationView * _Nullable)viewForAnnotation:(id<MGLAnnotation> _Nonnull)annotation;
         [Export ("viewForAnnotation:")]
@@ -479,11 +518,16 @@ namespace Mapbox
 
         // -(__kindof MGLAnnotationView * _Nullable)dequeueReusableAnnotationViewWithIdentifier:(NSString * _Nonnull)identifier;
         [Export ("dequeueReusableAnnotationViewWithIdentifier:")]
-        AnnotationView DequeueReusableAnnotationView (string identifier);
+        AnnotationView DequeueReusableAnnotation (string identifier);
+
+        // -(NSArray<id<MGLAnnotation>> * _Nullable)visibleAnnotationsInRect:(CGRect)rect;
+        [Export ("visibleAnnotationsInRect:")]
+        [return: NullAllowed]
+        IAnnotation[] VisibleAnnotationsInRect (CGRect rect);
 
         // @property (copy, nonatomic) NSArray<id<MGLAnnotation>> * _Nonnull selectedAnnotations;
         [Export ("selectedAnnotations", ArgumentSemantic.Copy)]
-        IAnnotation [] SelectedAnnotations { get; set; }
+        IAnnotation[] SelectedAnnotations { get; set; }
 
         // -(void)selectAnnotation:(id<MGLAnnotation> _Nonnull)annotation animated:(BOOL)animated;
         [Export ("selectAnnotation:animated:")]
@@ -499,7 +543,7 @@ namespace Mapbox
 
         // -(void)addOverlays:(NSArray<id<MGLOverlay>> * _Nonnull)overlays;
         [Export ("addOverlays:")]
-        void AddOverlays (IOverlay [] overlays);
+        void AddOverlays (IOverlay[] overlays);
 
         // -(void)removeOverlay:(id<MGLOverlay> _Nonnull)overlay;
         [Export ("removeOverlay:")]
@@ -507,23 +551,31 @@ namespace Mapbox
 
         // -(void)removeOverlays:(NSArray<id<MGLOverlay>> * _Nonnull)overlays;
         [Export ("removeOverlays:")]
-        void RemoveOverlays (IOverlay [] overlays);
+        void RemoveOverlays (IOverlay[] overlays);
 
         // -(NSArray<id<MGLFeature>> * _Nonnull)visibleFeaturesAtPoint:(CGPoint)point;
         [Export ("visibleFeaturesAtPoint:")]
-        Feature [] GetVisibleFeaturesAtPoint (CGPoint point);
+        IFeature[] GetVisibleFeaturesAtPoint (CGPoint point);
 
         // -(NSArray<id<MGLFeature>> * _Nonnull)visibleFeaturesAtPoint:(CGPoint)point inStyleLayersWithIdentifiers:(NSSet<NSString *> * _Nullable)styleLayerIdentifiers;
         [Export ("visibleFeaturesAtPoint:inStyleLayersWithIdentifiers:")]
-        Feature [] GetVisibleFeaturesAtPoint (CGPoint point, [NullAllowed] string [] styleLayerIdentifiers);
+        IFeature[] GetVisibleFeaturesAtPoint (CGPoint point, [NullAllowed] NSSet<NSString> styleLayerIdentifiers);
+
+        // -(NSArray<id<MGLFeature>> * _Nonnull)visibleFeaturesAtPoint:(CGPoint)point inStyleLayersWithIdentifiers:(NSSet<NSString *> * _Nullable)styleLayerIdentifiers predicate:(NSPredicate * _Nullable)predicate;
+        [Export ("visibleFeaturesAtPoint:inStyleLayersWithIdentifiers:predicate:")]
+        IFeature[] GetVisibleFeaturesAtPoint (CGPoint point, [NullAllowed] NSSet<NSString> styleLayerIdentifiers, [NullAllowed] NSPredicate predicate);
 
         // -(NSArray<id<MGLFeature>> * _Nonnull)visibleFeaturesInRect:(CGRect)rect;
         [Export ("visibleFeaturesInRect:")]
-        Feature [] GetVisibleFeaturesInRect (CGRect rect);
+        IFeature[] GetVisibleFeaturesInRect (CGRect rect);
 
         // -(NSArray<id<MGLFeature>> * _Nonnull)visibleFeaturesInRect:(CGRect)rect inStyleLayersWithIdentifiers:(NSSet<NSString *> * _Nullable)styleLayerIdentifiers;
         [Export ("visibleFeaturesInRect:inStyleLayersWithIdentifiers:")]
-        Feature [] GetVisibleFeaturesInRect (CGRect rect, [NullAllowed] string [] styleLayerIdentifiers);
+        IFeature[] GetVisibleFeaturesInRect (CGRect rect, [NullAllowed] NSSet<NSString> styleLayerIdentifiers);
+
+        // -(NSArray<id<MGLFeature>> * _Nonnull)visibleFeaturesInRect:(CGRect)rect inStyleLayersWithIdentifiers:(NSSet<NSString *> * _Nullable)styleLayerIdentifiers predicate:(NSPredicate * _Nullable)predicate;
+        [Export ("visibleFeaturesInRect:inStyleLayersWithIdentifiers:predicate:")]
+        IFeature[] GetVisibleFeaturesInRect (CGRect rect, [NullAllowed] NSSet<NSString> styleLayerIdentifiers, [NullAllowed] NSPredicate predicate);
 
         // @property (nonatomic) MGLMapDebugMaskOptions debugMask;
         [Export ("debugMask", ArgumentSemantic.Assign)]
@@ -543,14 +595,10 @@ namespace Mapbox
         [Export ("emptyMemoryCache")]
         void EmptyMemoryCache ();
 
-        // -(void)resetPosition;
-        [Export ("resetPosition")]
-        void ResetPosition ();
+		// Adding the code for MGLMapView_IBAdditions here
 
-        // Adding the code for MGLMapView_IBAdditions here
-
-        // @property (nonatomic) double latitude;
-        [Export ("latitude")]
+		// @property (nonatomic) double latitude;
+		[Export ("latitude")]
         double Latitude { get; set; }
 
         // @property (nonatomic) double longitude;
@@ -574,7 +622,7 @@ namespace Mapbox
         bool AllowsTilting { get; set; }
     }
 
-    interface IMapViewDelegate { }
+	interface IMapViewDelegate { }
 
     // @protocol MGLMapViewDelegate <NSObject>
     [Protocol, Model]
@@ -592,6 +640,10 @@ namespace Mapbox
         // @optional -(void)mapView:(MGLMapView * _Nonnull)mapView regionDidChangeAnimated:(BOOL)animated;
         [Export ("mapView:regionDidChangeAnimated:")]
         void RegionDidChange (MapView mapView, bool animated);
+
+        // @optional -(BOOL)mapView:(MGLMapView * _Nonnull)mapView shouldChangeFromCamera:(MGLMapCamera * _Nonnull)oldCamera toCamera:(MGLMapCamera * _Nonnull)newCamera;
+        [Export ("mapView:shouldChangeFromCamera:toCamera:")]
+        bool ShouldChange (MapView mapView, MapCamera oldCamera, MapCamera newCamera);
 
         // @optional -(void)mapViewWillStartLoadingMap:(MGLMapView * _Nonnull)mapView;
         [Export ("mapViewWillStartLoadingMap:")]
@@ -620,6 +672,10 @@ namespace Mapbox
         // @optional -(void)mapViewDidFinishRenderingFrame:(MGLMapView * _Nonnull)mapView fullyRendered:(BOOL)fullyRendered;
         [Export ("mapViewDidFinishRenderingFrame:fullyRendered:")]
         void DidFinishRenderingFrame (MapView mapView, bool fullyRendered);
+
+        // @optional -(void)mapView:(MGLMapView * _Nonnull)mapView didFinishLoadingStyle:(MGLStyle * _Nonnull)style;
+        [Export ("mapView:didFinishLoadingStyle:")]
+        void DidFinishLoadingStyle (MapView mapView, Style style);
 
         // @optional -(void)mapViewWillStartLocatingUser:(MGLMapView * _Nonnull)mapView;
         [Export ("mapViewWillStartLocatingUser:")]
@@ -669,7 +725,7 @@ namespace Mapbox
 
         // @optional -(void)mapView:(MGLMapView * _Nonnull)mapView didAddAnnotationViews:(NSArray<MGLAnnotationView *> * _Nonnull)annotationViews;
         [Export ("mapView:didAddAnnotationViews:")]
-        void DidAddAnnotationViews (MapView mapView, AnnotationView [] annotationViews);
+        void DidAddAnnotationViews (MapView mapView, AnnotationView[] annotationViews);
 
         // @optional -(void)mapView:(MGLMapView * _Nonnull)mapView didSelectAnnotation:(id<MGLAnnotation> _Nonnull)annotation;
         [Export ("mapView:didSelectAnnotation:")]
@@ -715,10 +771,16 @@ namespace Mapbox
         void TapOnCallout (MapView mapView, IAnnotation annotation);
     }
 
-    // @interface MGLShape : NSObject <MGLAnnotation>
+    // @interface MGLShape : NSObject <MGLAnnotation, NSSecureCoding>
     [BaseType (typeof (NSObject), Name = "MGLShape")]
-    interface Shape : Annotation
+    interface Shape : Annotation, INSSecureCoding
     {
+        // +(MGLShape * _Nullable)shapeWithData:(NSData * _Nonnull)data encoding:(NSStringEncoding)encoding error:(NSError * _Nullable * _Nullable)outError;
+        [Static]
+        [Export ("shapeWithData:encoding:error:")]
+        [return: NullAllowed]
+        Shape ShapeWithData (NSData data, nuint encoding, [NullAllowed] out NSError outError);
+
         // @property (copy, nonatomic) NSString * _Nullable title;
         [NullAllowed, Export ("title")]
         string Title { get; set; }
@@ -727,19 +789,27 @@ namespace Mapbox
         [NullAllowed, Export ("subtitle")]
         string Subtitle { get; set; }
 
-        // ONLY FOR NON-iOS (OSX) if we ever bind for that
-        // @property (nonatomic, copy, nullable) NSString *toolTip;
-        //[NullAllowed, Export ("toolTip")]
-        //string ToolTip { get; set; }
+        // -(NSData * _Nonnull)geoJSONDataUsingEncoding:(NSStringEncoding)encoding;
+        [Export ("geoJSONDataUsingEncoding:")]
+        NSData GeoJSONDataUsingEncoding (nuint encoding);
+    }
+
+    // @interface DistanceFormatter : NSLengthFormatter
+    [BaseType (typeof(NSLengthFormatter))]
+    interface DistanceFormatter
+    {
+        // -(NSString * _Nonnull)stringFromDistance:(CLLocationDistance)distance;
+        [Export ("stringFromDistance:")]
+        string StringFromDistance (double distance);
     }
 
     // @interface MGLMultiPoint : MGLShape
     [BaseType (typeof (Shape), Name = "MGLMultiPoint")]
     interface MultiPoint
     {
-        // @property (nonatomic, readonly) CLLocationCoordinate2D* coordinates NS_RETURNS_INNER_POINTER;
+        // @property (readonly, nonatomic) CLLocationCoordinate2D * _Nonnull coordinates __attribute__((objc_returns_inner_pointer));
         [Export ("coordinates")]
-        IntPtr Coordinates { get; }
+        unsafe CLLocationCoordinate2D Coordinates { get; }
 
         // @property (readonly, nonatomic) NSUInteger pointCount;
         [Export ("pointCount")]
@@ -747,18 +817,50 @@ namespace Mapbox
 
         // -(void)getCoordinates:(CLLocationCoordinate2D * _Nonnull)coords range:(NSRange)range;
         [Export ("getCoordinates:range:")]
-        void GetCoordinates (IntPtr coordsStructArrayPointer, NSRange range);
+        unsafe void GetCoordinates (CLLocationCoordinate2D coords, NSRange range);
+
+        // -(void)setCoordinates:(CLLocationCoordinate2D * _Nonnull)coords count:(NSUInteger)count;
+        [Export ("setCoordinates:count:")]
+        unsafe void SetCoordinates (CLLocationCoordinate2D coords, nuint count);
+
+        // -(void)insertCoordinates:(const CLLocationCoordinate2D * _Nonnull)coords count:(NSUInteger)count atIndex:(NSUInteger)index;
+        [Export ("insertCoordinates:count:atIndex:")]
+        unsafe void InsertCoordinates (CLLocationCoordinate2D coords, nuint count, nuint index);
+
+        // -(void)appendCoordinates:(const CLLocationCoordinate2D * _Nonnull)coords count:(NSUInteger)count;
+        [Export ("appendCoordinates:count:")]
+        unsafe void AppendCoordinates (CLLocationCoordinate2D coords, nuint count);
+
+        // -(void)replaceCoordinatesInRange:(NSRange)range withCoordinates:(const CLLocationCoordinate2D * _Nonnull)coords;
+        [Export ("replaceCoordinatesInRange:withCoordinates:")]
+        unsafe void ReplaceCoordinatesInRange (NSRange range, CLLocationCoordinate2D coords);
+
+        // -(void)replaceCoordinatesInRange:(NSRange)range withCoordinates:(const CLLocationCoordinate2D * _Nonnull)coords count:(NSUInteger)count;
+        [Export ("replaceCoordinatesInRange:withCoordinates:count:")]
+        unsafe void ReplaceCoordinatesInRange (NSRange range, CLLocationCoordinate2D coords, nuint count);
+
+        // -(void)removeCoordinatesInRange:(NSRange)range;
+        [Export ("removeCoordinatesInRange:")]
+        void RemoveCoordinatesInRange (NSRange range);
     }
 
-    interface IOverlay { }
+    [Static]
+    //[Verify (ConstantsInterfaceAssociation)]
+    partial interface CoordinateSpanConstants
+    {
+        // extern const MGLCoordinateSpan MGLCoordinateSpanZero __attribute__((visibility("default")));
+        [Field ("MGLCoordinateSpanZero", "__Internal")]
+        IntPtr Zero { get; }
+    }
+
+	interface IOverlay { }
 
     // @protocol MGLOverlay <MGLAnnotation>
     [Protocol, Model]
     [BaseType (typeof (Annotation), Name = "MGLOverlay")]
-    interface Overlay
+	interface Overlay
     {
         // @required @property (readonly, nonatomic) CLLocationCoordinate2D coordinate;
-        // This is in the base protocol.  Should be fine to remove.
         //[Abstract]
         //[Export ("coordinate")]
         //CLLocationCoordinate2D Coordinate { get; }
@@ -787,64 +889,62 @@ namespace Mapbox
     [BaseType (typeof (MultiPoint), Name = "MGLPolygon")]
     interface Polygon : Overlay
     {
-        // @property (nonatomic, nullable, readonly) NS_ARRAY_OF (MGLPolygon*) *interiorPolygons;
-        [Export ("interiorPolygons")]
-        Polygon [] InteriorPolygons { get; }
+        // @property (readonly, nonatomic) NSArray<MGLPolygon *> * _Nullable interiorPolygons;
+        [NullAllowed, Export ("interiorPolygons")]
+        Polygon[] InteriorPolygons { get; }
 
-        // Need to manually do this since it's an array of coordinates which are a value type
-        // and cannot be converted to NSArray, see Additions.cs
-        // +(instancetype _Nonnull)polygonWithCoordinates:(CLLocationCoordinate2D * _Nonnull)coords count:(NSUInteger)count;
+        // +(instancetype _Nonnull)polygonWithCoordinates:(const CLLocationCoordinate2D * _Nonnull)coords count:(NSUInteger)count;
         [Static]
         [Export ("polygonWithCoordinates:count:")]
-        Polygon WithCoordinates (IntPtr coords, nuint count);
+        unsafe Polygon WithCoordinates (CLLocationCoordinate2D coords, nuint count);
 
-        // Need to manually do this since it's an array of coordinates which are a value type
-        // and cannot be converted to NSArray, see Additions.cs
-        // + (instancetype)polygonWithCoordinates:(CLLocationCoordinate2D*)coords count:(NSUInteger)count interiorPolygons:(nullable NS_ARRAY_OF (MGLPolygon*) *)interiorPolygons;
+        // +(instancetype _Nonnull)polygonWithCoordinates:(const CLLocationCoordinate2D * _Nonnull)coords count:(NSUInteger)count interiorPolygons:(NSArray<MGLPolygon *> * _Nullable)interiorPolygons;
         [Static]
         [Export ("polygonWithCoordinates:count:interiorPolygons:")]
-        Polygon WithCoordinates (IntPtr coords, nuint count, [NullAllowed]Polygon [] interiorPolygons);
+        unsafe Polygon WithCoordinates (CLLocationCoordinate2D coords, nuint count, [NullAllowed] Polygon[] interiorPolygons);
     }
 
+    // @interface MultiPolygon : MGLShape <MGLOverlay>
     [BaseType (typeof (Shape), Name = "MGLMultiPolygon")]
     interface MultiPolygon : Overlay
     {
-        // @property (nonatomic, copy, readonly) NS_ARRAY_OF (MGLPolygon*) *polygons;
+        // @property (readonly, copy, nonatomic) NSArray<MGLPolygon *> * _Nonnull polygons;
         [Export ("polygons", ArgumentSemantic.Copy)]
-        Polygon [] Polygons { get; }
+        Polygon[] Polygons { get; }
 
-        // +(instancetype)multiPolygonWithPolygons:(NS_ARRAY_OF (MGLPolygon*) *)polygons;
+        // +(instancetype _Nonnull)multiPolygonWithPolygons:(NSArray<MGLPolygon *> * _Nonnull)polygons;
         [Static]
         [Export ("multiPolygonWithPolygons:")]
-        MultiPolygon WithPolygons (Polygon [] polygons);
+        MultiPolygon WithPolygons (Polygon[] polygons);
     }
 
     // @interface MGLPolyline : MGLMultiPoint <MGLOverlay>
     [BaseType (typeof (MultiPoint), Name = "MGLPolyline")]
     interface Polyline : Overlay
     {
-        // +(instancetype _Nonnull)polylineWithCoordinates:(CLLocationCoordinate2D * _Nonnull)coords count:(NSUInteger)count;
+        // +(instancetype _Nonnull)polylineWithCoordinates:(const CLLocationCoordinate2D * _Nonnull)coords count:(NSUInteger)count;
         [Static]
         [Export ("polylineWithCoordinates:count:")]
-        Polyline WithCoordinates (IntPtr coords, nuint count);
+        unsafe Polyline WithCoordinates (CLLocationCoordinate2D coords, nuint count);
     }
 
+    // @interface MultiPolyline : MGLShape <MGLOverlay>
     [BaseType (typeof (Shape), Name = "MGLMultiPolyline")]
     interface MultiPolyline : Overlay
     {
-        // + (instancetype)multiPolylineWithPolylines:(NS_ARRAY_OF(MGLPolyline *) *)polylines;
+        // @property (readonly, copy, nonatomic) NSArray<MGLPolyline *> * _Nonnull polylines;
         [Export ("polylines", ArgumentSemantic.Copy)]
-        Polyline [] Polylines { get; }
+        Polyline[] Polylines { get; }
 
-        // + (instancetype)multiPolylineWithPolylines:(NS_ARRAY_OF(MGLPolyline *) *)polylines;
+        // +(instancetype _Nonnull)multiPolylineWithPolylines:(NSArray<MGLPolyline *> * _Nonnull)polylines;
         [Static]
         [Export ("multiPolylineWithPolylines:")]
-        MultiPolygon WithPolylines (Polyline [] polylines);
+        MultiPolyline WithPolylines (Polyline[] polylines);
     }
 
-    // @interface MGLUserLocation : NSObject <MGLAnnotation>
+    // @interface MGLUserLocation : NSObject <MGLAnnotation, NSSecureCoding>
     [BaseType (typeof (NSObject), Name = "MGLUserLocation")]
-    interface UserLocation : Annotation
+    interface UserLocation : Annotation, INSSecureCoding
     {
         // @property (readonly, nonatomic) CLLocation * _Nullable location;
         [NullAllowed, Export ("location")]
@@ -901,17 +1001,22 @@ namespace Mapbox
         [Static]
         [Export ("cameraLookingAtCenterCoordinate:fromDistance:pitch:heading:")]
         MapCamera CameraLookingAtCenterCoordinate (CLLocationCoordinate2D centerCoordinate, double distance, nfloat pitch, double heading);
+
+        // -(BOOL)isEqualToMapCamera:(MGLMapCamera * _Nonnull)otherCamera;
+        [Export ("isEqualToMapCamera:")]
+        bool IsEqualToMapCamera (MapCamera otherCamera);
     }
 
-    [DisableDefaultCtor]
+    // @interface Style : NSObject
     [BaseType (typeof (NSObject), Name = "MGLStyle")]
     interface Style
     {
         // +(NSURL * _Nonnull)streetsStyleURL __attribute__((deprecated("Use -streetsStyleURLWithVersion:.")));
-        [Obsolete ("Use StreetsStyle (version) method instead")]
+		[Obsolete ("Use StreetsStyle (version) method instead")]
         [Static]
         [Export ("streetsStyleURL")]
-        NSUrl Streets { get; }
+        //[Verify (MethodToProperty)]
+        NSUrl StreetsStyleURL { get; }
 
         // +(NSURL * _Nonnull)streetsStyleURLWithVersion:(NSInteger)version;
         [Static]
@@ -919,9 +1024,10 @@ namespace Mapbox
         NSUrl StreetsStyle (nint version);
 
         // +(NSURL * _Nonnull)emeraldStyleURL __attribute__((deprecated("Create an NSURL object with the string “mapbox://styles/mapbox/emerald-v8”.")));
-        [Obsolete ("Create an NSURL object with the string 'mapbox://styles/mapbox/emerald-v8' instead.")]
+		[Obsolete ("Create an NSURL object with the string 'mapbox://styles/mapbox/emerald-v8' instead.")]
         [Static]
         [Export ("emeraldStyleURL")]
+        //[Verify (MethodToProperty)]
         NSUrl Emerald { get; }
 
         // +(NSURL * _Nonnull)outdoorsStyleURLWithVersion:(NSInteger)version;
@@ -933,6 +1039,7 @@ namespace Mapbox
         [Obsolete ("Use LightStyle (version) method instead")]
         [Static]
         [Export ("lightStyleURL")]
+        //[Verify (MethodToProperty)]
         NSUrl Light { get; }
 
         // +(NSURL * _Nonnull)lightStyleURLWithVersion:(NSInteger)version;
@@ -941,9 +1048,9 @@ namespace Mapbox
         NSUrl LightStyle (nint version);
 
         // +(NSURL * _Nonnull)darkStyleURL __attribute__((deprecated("Use -darkStyleURLWithVersion:.")));
-        [Obsolete ("Use DarkStyle (version) method instead")]
         [Static]
         [Export ("darkStyleURL")]
+        //[Verify (MethodToProperty)]
         NSUrl Dark { get; }
 
         // +(NSURL * _Nonnull)darkStyleURLWithVersion:(NSInteger)version;
@@ -955,6 +1062,7 @@ namespace Mapbox
         [Obsolete ("Use SatelliteStyle (version) method instead")]
         [Static]
         [Export ("satelliteStyleURL")]
+        //[Verify (MethodToProperty)]
         NSUrl Satellite { get; }
 
         // +(NSURL * _Nonnull)satelliteStyleURLWithVersion:(NSInteger)version;
@@ -966,169 +1074,316 @@ namespace Mapbox
         [Obsolete ("Use SatelliteStreetsStyle (version) method instead")]
         [Static]
         [Export ("hybridStyleURL")]
+        //[Verify (MethodToProperty)]
         NSUrl Hybrid { get; }
 
         // +(NSURL * _Nonnull)satelliteStreetsStyleURLWithVersion:(NSInteger)version;
         [Static]
         [Export ("satelliteStreetsStyleURLWithVersion:")]
         NSUrl SatelliteStreetsStyle (nint version);
+
+        // @property (readonly, copy) NSString * _Nullable name;
+        [NullAllowed, Export ("name")]
+        string Name { get; }
+
+        // @property (nonatomic, strong) NSSet<__kindof MGLSource *> * _Nonnull sources;
+        [Export ("sources", ArgumentSemantic.Strong)]
+        Source[] Sources { get; set; }
+
+        // @property (nonatomic) MGLTransition transition;
+        [Export ("transition", ArgumentSemantic.Assign)]
+        Transition Transition { get; set; }
+
+        // -(MGLSource * _Nullable)sourceWithIdentifier:(NSString * _Nonnull)identifier;
+        [Export ("sourceWithIdentifier:")]
+        [return: NullAllowed]
+        Source SourceWithIdentifier (string identifier);
+
+        // -(void)addSource:(MGLSource * _Nonnull)source;
+        [Export ("addSource:")]
+        void AddSource (Source source);
+
+        // -(void)removeSource:(MGLSource * _Nonnull)source;
+        [Export ("removeSource:")]
+        void RemoveSource (Source source);
+
+        // @property (nonatomic, strong) NSArray<__kindof MGLStyleLayer *> * _Nonnull layers;
+        [Export ("layers", ArgumentSemantic.Strong)]
+        StyleLayer[] Layers { get; set; }
+
+        // -(MGLStyleLayer * _Nullable)layerWithIdentifier:(NSString * _Nonnull)identifier;
+        [Export ("layerWithIdentifier:")]
+        [return: NullAllowed]
+        StyleLayer LayerWithIdentifier (string identifier);
+
+        // -(void)addLayer:(MGLStyleLayer * _Nonnull)layer;
+        [Export ("addLayer:")]
+        void AddLayer (StyleLayer layer);
+
+        // -(void)insertLayer:(MGLStyleLayer * _Nonnull)layer atIndex:(NSUInteger)index;
+        [Export ("insertLayer:atIndex:")]
+        void InsertLayer (StyleLayer layer, nuint index);
+
+        // -(void)insertLayer:(MGLStyleLayer * _Nonnull)layer belowLayer:(MGLStyleLayer * _Nonnull)sibling;
+        [Export ("insertLayer:belowLayer:")]
+        void InsertLayerBelow (StyleLayer layer, StyleLayer sibling);
+
+        // -(void)insertLayer:(MGLStyleLayer * _Nonnull)layer aboveLayer:(MGLStyleLayer * _Nonnull)sibling;
+        [Export ("insertLayer:aboveLayer:")]
+        void InsertLayerAbove (StyleLayer layer, StyleLayer sibling);
+
+        // -(void)removeLayer:(MGLStyleLayer * _Nonnull)layer;
+        [Export ("removeLayer:")]
+        void RemoveLayer (StyleLayer layer);
+
+        // @property (nonatomic) NSArray<NSString *> * _Nonnull styleClasses __attribute__((deprecated("This property will be removed in a future release.")));
+        [Export ("styleClasses", ArgumentSemantic.Assign)]
+        string[] StyleClasses { get; set; }
+
+        // -(BOOL)hasStyleClass:(NSString * _Nonnull)styleClass __attribute__((deprecated("This method will be removed in a future release.")));
+        [Export ("hasStyleClass:")]
+        bool HasStyleClass (string styleClass);
+
+        // -(void)addStyleClass:(NSString * _Nonnull)styleClass __attribute__((deprecated("This method will be removed in a future release.")));
+        [Export ("addStyleClass:")]
+        void AddStyleClass (string styleClass);
+
+        // -(void)removeStyleClass:(NSString * _Nonnull)styleClass __attribute__((deprecated("This method will be removed in a future release.")));
+        [Export ("removeStyleClass:")]
+        void RemoveStyleClass (string styleClass);
+
+        // -(UIImage * _Nullable)imageForName:(NSString * _Nonnull)name;
+        [Export ("imageForName:")]
+        [return: NullAllowed]
+        UIImage ImageForName (string name);
+
+        // -(void)setImage:(UIImage * _Nonnull)image forName:(NSString * _Nonnull)name;
+        [Export ("setImage:forName:")]
+        void SetImage (UIImage image, string name);
+
+        // -(void)removeImageForName:(NSString * _Nonnull)name;
+        [Export ("removeImageForName:")]
+        void RemoveImageForName (string name);
     }
 
-    interface ICalloutView { }
+	interface ICalloutView { }
 
-    [Protocol (Name = "MGLCalloutView")]
+    // @protocol MGLCalloutView <NSObject>
+    [Protocol (Name = "MGLCalloutView"), Model]
+    [BaseType (typeof(NSObject))]
     interface CalloutView
     {
-        // @property (nonatomic, strong) id <MGLAnnotation> representedObject;
+        // @required @property (nonatomic, strong) id<MGLAnnotation> _Nonnull representedObject;
         [Abstract]
         [Export ("representedObject", ArgumentSemantic.Strong)]
         IAnnotation RepresentedObject { get; set; }
 
-        // @property (nonatomic, strong) UIView *leftAccessoryView;
+        // @required @property (nonatomic, strong) UIView * _Nonnull leftAccessoryView;
         [Abstract]
         [Export ("leftAccessoryView", ArgumentSemantic.Strong)]
         UIView LeftAccessoryView { get; set; }
 
-        // @property (nonatomic, strong) UIView *rightAccessoryView;
+        // @required @property (nonatomic, strong) UIView * _Nonnull rightAccessoryView;
         [Abstract]
         [Export ("rightAccessoryView", ArgumentSemantic.Strong)]
         UIView RightAccessoryView { get; set; }
 
-        // @property (nonatomic, weak) id<MGLCalloutViewDelegate> delegate;
-        [Abstract]
-        [NullAllowed]
-        [Export ("delegate", ArgumentSemantic.Weak)]
-        ICalloutViewDelegate Delegate { get; set; }
+		// @required @property (nonatomic, weak) id<MGLCalloutViewDelegate> _Nullable delegate;
+		[Abstract]
+		[NullAllowed]
+		[Export("delegate", ArgumentSemantic.Weak)]
+		ICalloutViewDelegate Delegate { get; set; }
 
-        // - (void)presentCalloutFromRect:(CGRect)rect inView:(UIView *)view constrainedToView:(UIView *)constrainedView animated:(BOOL)animated;
+        // @required -(void)presentCalloutFromRect:(CGRect)rect inView:(UIView * _Nonnull)view constrainedToView:(UIView * _Nonnull)constrainedView animated:(BOOL)animated;
         [Abstract]
         [Export ("presentCalloutFromRect:inView:constrainedToView:animated:")]
-        void PresentCallout (CGRect fromRect, UIView inView, UIView constrainedToView, bool animated);
+        void PresentCallout (CGRect rect, UIView view, UIView constrainedView, bool animated);
 
-        // - (void)dismissCalloutAnimated:(BOOL)animated;
+        // @required -(void)dismissCalloutAnimated:(BOOL)animated;
         [Abstract]
         [Export ("dismissCalloutAnimated:")]
         void DismissCallout (bool animated);
+
+        // @optional @property (readonly, getter = isAnchoredToAnnotation, assign, nonatomic) BOOL anchoredToAnnotation;
+        [Export ("anchoredToAnnotation")]
+        bool AnchoredToAnnotation { [Bind ("isAnchoredToAnnotation")] get; }
+
+        // @optional @property (readonly, assign, nonatomic) BOOL dismissesAutomatically;
+        [Export ("dismissesAutomatically")]
+        bool DismissesAutomatically { get; }
     }
 
-    interface ICalloutViewDelegate { }
+	interface ICalloutViewDelegate { }
 
+    // @protocol MGLCalloutViewDelegate <NSObject>
     [Protocol, Model]
     [BaseType (typeof (NSObject), Name = "MGLCalloutViewDelegate")]
     interface CalloutViewDelegate
     {
-        // - (BOOL)calloutViewShouldHighlight:(UIView<MGLCalloutView> *)calloutView;
+        // @optional -(BOOL)calloutViewShouldHighlight:(UIView<MGLCalloutView> * _Nonnull)calloutView;
         [Export ("calloutViewShouldHighlight:")]
         bool ShouldHighlight (ICalloutView calloutView);
 
-        // - (void)calloutViewTapped:(UIView<MGLCalloutView> *)calloutView;
+        // @optional -(void)calloutViewTapped:(UIView<MGLCalloutView> * _Nonnull)calloutView;
         [Export ("calloutViewTapped:")]
         void Tapped (ICalloutView calloutView);
 
-        // - (void)calloutViewWillAppear:(UIView<MGLCalloutView>*)calloutView;
+        // @optional -(void)calloutViewWillAppear:(UIView<MGLCalloutView> * _Nonnull)calloutView;
         [Export ("calloutViewWillAppear:")]
         void WillAppear (ICalloutView calloutView);
 
-        // - (void)calloutViewDidAppear:(UIView<MGLCalloutView>*)calloutView;
+        // @optional -(void)calloutViewDidAppear:(UIView<MGLCalloutView> * _Nonnull)calloutView;
         [Export ("calloutViewDidAppear:")]
         void DidAppear (ICalloutView calloutView);
 
     }
 
-    interface IOfflineRegion { }
+	interface IOfflineRegion { }
 
-    [Protocol, Model]
-    [BaseType (typeof (NSObject), Name = "MGLOfflineRegion")]
-    interface OfflineRegion
-    {
+	// @protocol MGLOfflineRegion <NSObject>
+	[Protocol, Model]
+	[BaseType(typeof(NSObject), Name = "MGLOfflineRegion")]
+	interface OfflineRegion
+	{
 
-    }
+	}
 
-    [DisableDefaultCtor]
+    // @interface TilePyramidOfflineRegion : NSObject <MGLOfflineRegion, NSSecureCoding, NSCopying>
     [BaseType (typeof (NSObject), Name = "MGLTilePyramidOfflineRegion")]
+    [DisableDefaultCtor]
     interface TilePyramidOfflineRegion : OfflineRegion, INSSecureCoding, INSCopying
     {
-        // @property (nonatomic, readonly) NSURL *styleURL;
+        // @property (readonly, nonatomic) NSURL * _Nonnull styleURL;
         [Export ("styleURL")]
         NSUrl StyleUrl { get; }
 
+        // @property (readonly, nonatomic) MGLCoordinateBounds bounds;
         [Export ("bounds")]
         CoordinateBounds Bounds { get; }
 
+        // @property (readonly, nonatomic) double minimumZoomLevel;
         [Export ("minimumZoomLevel")]
         double MinimumZoomLevel { get; }
 
+        // @property (readonly, nonatomic) double maximumZoomLevel;
         [Export ("maximumZoomLevel")]
         double MaximumZoomLevel { get; }
 
-        // - (instancetype)initWithStyleURL:(nullable NSURL *)styleURL bounds:(MGLCoordinateBounds)bounds fromZoomLevel:(double)minimumZoomLevel toZoomLevel:(double)maximumZoomLevel NS_DESIGNATED_INITIALIZER;
+        // -(instancetype _Nonnull)initWithStyleURL:(NSURL * _Nullable)styleURL bounds:(MGLCoordinateBounds)bounds fromZoomLevel:(double)minimumZoomLevel toZoomLevel:(double)maximumZoomLevel __attribute__((objc_designated_initializer));
         [Export ("initWithStyleURL:bounds:fromZoomLevel:toZoomLevel:")]
-        IntPtr Constructor ([NullAllowed]NSUrl styleUrl, CoordinateBounds bounds, double minZoomLevel, double maxZoomLevel);
+        [DesignatedInitializer]
+        IntPtr Constructor ([NullAllowed] NSUrl styleURL, CoordinateBounds bounds, double minimumZoomLevel, double maximumZoomLevel);
     }
 
+    // @interface PointCollection : MGLShape <MGLOverlay>
+	[BaseType(typeof(NSObject), Name = "MGLShape")]
+	interface PointCollection : Overlay, Annotation
+    {
+        // +(instancetype)pointCollectionWithCoordinates:(const CLLocationCoordinate2D *)coords count:(NSUInteger)count;
+        [Static]
+        [Export ("pointCollectionWithCoordinates:count:")]
+        unsafe PointCollection PointCollectionWithCoordinates (CLLocationCoordinate2D coords, nuint count);
+
+        // @property (readonly, nonatomic) CLLocationCoordinate2D * coordinates __attribute__((objc_returns_inner_pointer));
+        [Export ("coordinates")]
+        unsafe CLLocationCoordinate2D Coordinates { get; }
+
+		// @property (readonly, nonatomic) NSUInteger pointCount;
+		[Export ("pointCount")]
+        nuint PointCount { get; }
+
+        // -(void)getCoordinates:(CLLocationCoordinate2D *)coords range:(NSRange)range;
+        [Export ("getCoordinates:range:")]
+        unsafe void GetCoordinates (CLLocationCoordinate2D coords, NSRange range);
+    }
+
+    // @interface ShapeCollection : MGLShape
+	[BaseType(typeof(NSObject), Name = "MGLShape")]
+    interface ShapeCollection
+    {
+        // @property (readonly, copy, nonatomic) NSArray<MGLShape *> * _Nonnull shapes;
+        [Export ("shapes", ArgumentSemantic.Copy)]
+        Shape[] Shapes { get; }
+
+        // +(instancetype _Nonnull)shapeCollectionWithShapes:(NSArray<MGLShape *> * _Nonnull)shapes;
+        [Static]
+        [Export ("shapeCollectionWithShapes:")]
+        ShapeCollection ShapeCollectionWithShapes (Shape[] shapes);
+    }
+
+    // @interface OfflinePack : NSObject
     [BaseType (typeof (NSObject), Name = "MGLOfflinePack")]
     interface OfflinePack
     {
+        // @property (readonly, nonatomic) id<MGLOfflineRegion> _Nonnull region;
         [Export ("region")]
         IOfflineRegion Region { get; }
 
-        // @property (nonatomic, readonly) NSData *context;
+        // @property (readonly, nonatomic) NSData * _Nonnull context;
         [Export ("context")]
         NSData Context { get; }
 
-        // @property (nonatomic, readonly) MGLOfflinePackState state;
+        // @property (readonly, nonatomic) MGLOfflinePackState state;
         [Export ("state")]
         OfflinePackState State { get; }
 
-        // @property (nonatomic, readonly) MGLOfflinePackProgress progress;
+        // @property (readonly, nonatomic) MGLOfflinePackProgress progress;
         [Export ("progress")]
         OfflinePackProgress Progress { get; }
 
-        // - (void)resume;
+        // -(void)resume;
         [Export ("resume")]
         void Resume ();
 
-        // - (void)suspend;
+        // -(void)suspend;
         [Export ("suspend")]
         void Suspend ();
 
-        // - (void)requestProgress;
+        // -(void)requestProgress;
         [Export ("requestProgress")]
         void RequestProgress ();
     }
 
+    // @interface OfflineStorage : NSObject
     [BaseType (typeof (NSObject), Name = "MGLOfflineStorage")]
     interface OfflineStorage
     {
+        // +(instancetype _Nonnull)sharedOfflineStorage;
         [Static]
         [Export ("sharedOfflineStorage")]
-        OfflineStorage Shared { get; }
+        OfflineStorage Shared ();
 
-        // @property (nonatomic, strong, readonly, nullable) NS_ARRAY_OF(MGLOfflinePack *) *packs;
+        [Wrap ("WeakDelegate")]
         [NullAllowed]
-        [Export ("packs", ArgumentSemantic.Strong)]
-        OfflinePack [] Packs { get; }
+        OfflineStorageDelegate Delegate { get; set; }
 
-        // - (void)addPackForRegion:(id <MGLOfflineRegion>)region withContext:(NSData *)context completionHandler:(nullable MGLOfflinePackAdditionCompletionHandler)completion;
+        // @property (nonatomic, weak) id<MGLOfflineStorageDelegate> _Nullable delegate __attribute__((iboutlet));
+        [NullAllowed, Export ("delegate", ArgumentSemantic.Weak)]
+        NSObject WeakDelegate { get; set; }
+
+        // @property (readonly, nonatomic, strong) NSArray<MGLOfflinePack *> * _Nullable packs;
+        [NullAllowed, Export ("packs", ArgumentSemantic.Strong)]
+        OfflinePack[] Packs { get; }
+
+        // -(void)addPackForRegion:(id<MGLOfflineRegion> _Nonnull)region withContext:(NSData * _Nonnull)context completionHandler:(MGLOfflinePackAdditionCompletionHandler _Nullable)completion;
         [Export ("addPackForRegion:withContext:completionHandler:")]
-        void AddPack (IOfflineRegion region, NSData context, [NullAllowed]OfflinePackAdditionCompletion completionHandler);
+        void AddPack (IOfflineRegion region, NSData context, [NullAllowed] OfflinePackAdditionCompletion completion);
 
-        // - (void)removePack:(MGLOfflinePack *)pack withCompletionHandler:(nullable MGLOfflinePackRemovalCompletionHandler)completion;
+        // -(void)removePack:(MGLOfflinePack * _Nonnull)pack withCompletionHandler:(MGLOfflinePackRemovalCompletionHandler _Nullable)completion;
         [Export ("removePack:withCompletionHandler:")]
-        void RemovePack (OfflinePack pack, [NullAllowed]OfflinePackRemovalCompletion completionHandler);
+        void RemovePack (OfflinePack pack, [NullAllowed] OfflinePackRemovalCompletion completionHandler);
 
-        // - (void)reloadPacks;
+        // -(void)reloadPacks;
         [Export ("reloadPacks")]
         void ReloadPacks ();
 
-        // - (void)setMaximumAllowedMapboxTiles:(uint64_t)maximumCount;
+        // -(void)setMaximumAllowedMapboxTiles:(uint64_t)maximumCount;
         [Export ("setMaximumAllowedMapboxTiles:")]
-        void SetMaxAllowedMapboxTiles (ulong maximumCount);
+        void SetMaximumAllowedMapboxTiles (ulong maximumCount);
 
-        // @property (nonatomic, readonly) unsigned long long countOfBytesCompleted;
+        // @property (readonly, nonatomic) unsigned long long countOfBytesCompleted;
         [Export ("countOfBytesCompleted")]
         ulong CountOfBytesCompleted { get; }
-
     }
 
     // @interface MGLClockDirectionFormatter : NSFormatter
@@ -1136,17 +1391,16 @@ namespace Mapbox
     interface ClockDirectionFormatter
     {
         // @property (nonatomic) NSFormattingUnitStyle unitStyle;
-        [Export ("unitStyle")]
+        [Export ("unitStyle", ArgumentSemantic.Assign)]
         NSFormattingUnitStyle UnitStyle { get; set; }
 
-        // - (NSString*)stringFromDirection:(CLLocationDirection)direction;
+        // -(NSString * _Nonnull)stringFromDirection:(CLLocationDirection)direction;
         [Export ("stringFromDirection:")]
         string StringFromDirection (double direction);
 
-        // TODO:
-        // - (BOOL)getObjectValue:(out id __nullable * __nullable)obj forString:(NSString*)string errorDescription:(out NSString* __nullable * __nullable)error;
+        // -(BOOL)getObjectValue:(id  _Nullable * _Nullable)obj forString:(NSString * _Nonnull)string errorDescription:(NSString * _Nullable * _Nullable)error;
         [Export ("getObjectValue:forString:errorDescription:")]
-        bool GetObjectValue (out NSObject obj, string str, out NSString error);
+        bool GetObjectValue ([NullAllowed] out NSObject obj, string @string, [NullAllowed] out string error);
     }
 
     // @interface MGLCompassDirectionFormatter : NSFormatter
@@ -1154,20 +1408,20 @@ namespace Mapbox
     interface CompassDirectionFormatter
     {
         // @property (nonatomic) NSFormattingUnitStyle unitStyle;
-        [Export ("unitStyle")]
+        [Export ("unitStyle", ArgumentSemantic.Assign)]
         NSFormattingUnitStyle UnitStyle { get; set; }
 
-        // - (NSString*)stringFromDirection:(CLLocationDirection)direction;
+        // -(NSString * _Nonnull)stringFromDirection:(CLLocationDirection)direction;
         [Export ("stringFromDirection:")]
         string StringFromDirection (double direction);
 
-        // - (BOOL)getObjectValue:(out id __nullable * __nullable)obj forString:(NSString*)string errorDescription:(out NSString* __nullable * __nullable)error;
+        // -(BOOL)getObjectValue:(id  _Nullable * _Nullable)obj forString:(NSString * _Nonnull)string errorDescription:(NSString * _Nullable * _Nullable)error;
         [Export ("getObjectValue:forString:errorDescription:")]
-        bool GetObjectValue (out NSObject obj, string str, out NSString error);
+        bool GetObjectValue ([NullAllowed] out NSObject obj, string @string, [NullAllowed] out string error);
     }
 
-    // @interface MGLCoordinateFormatter : NSFormatter
-    [BaseType (typeof (NSFormatter), Name = "MGLCoordinateFormatter")]
+        // @interface CoordinateFormatter : NSFormatter
+    [BaseType (typeof(NSFormatter))]
     interface CoordinateFormatter
     {
         // @property (nonatomic) BOOL allowsMinutes;
@@ -1179,37 +1433,46 @@ namespace Mapbox
         bool AllowsSeconds { get; set; }
 
         // @property (nonatomic) NSFormattingUnitStyle unitStyle;
-        [Export ("unitStyle")]
+        [Export ("unitStyle", ArgumentSemantic.Assign)]
         NSFormattingUnitStyle UnitStyle { get; set; }
 
-        // - (NSString*)stringFromDirection:(CLLocationDirection)direction;
-        [Export ("stringFromDirection:")]
-        string StringFromDirection (double direction);
+        // -(NSString * _Nonnull)stringFromCoordinate:(CLLocationCoordinate2D)coordinate;
+        [Export ("stringFromCoordinate:")]
+        string StringFromCoordinate (CLLocationCoordinate2D coordinate);
 
-        // - (BOOL)getObjectValue:(out id __nullable * __nullable)obj forString:(NSString*)string errorDescription:(out NSString* __nullable * __nullable)error;
+        // -(BOOL)getObjectValue:(id  _Nullable * _Nullable)obj forString:(NSString * _Nonnull)string errorDescription:(NSString * _Nullable * _Nullable)error;
         [Export ("getObjectValue:forString:errorDescription:")]
-        bool GetObjectValue (out NSObject obj, string str, out NSString error);
+        bool GetObjectValue ([NullAllowed] out NSObject obj, string @string, [NullAllowed] out string error);
     }
 
-    interface IFeature { }
+	interface IFeature { }
 
-    // @protocol MGLFeature<MGLAnnotation>
+    // @protocol MGLFeature <MGLAnnotation>
     [Protocol, Model]
     [BaseType (typeof (NSObject), Name = "MGLFeature")]
     interface Feature : Annotation
     {
-        // @property (nonatomic, copy, nullable, readonly) id identifier;
-        [Export ("identifier", ArgumentSemantic.Copy)]
-        NSObject Identifier { [return: NullAllowed] get; }
+        // @required @property (copy, nonatomic) id _Nullable identifier;
+        [Abstract]
+        [NullAllowed, Export ("identifier", ArgumentSemantic.Copy)]
+        NSObject Identifier { get; set; }
 
-        // @property (nonatomic, copy, readonly) NS_DICTIONARY_OF (NSString*, id) * attributes;
+        // @required @property (copy, nonatomic) NSDictionary<NSString *,id> * _Nonnull attributes;
+        [Abstract]
         [Export ("attributes", ArgumentSemantic.Copy)]
-        NSDictionary Attributes { get; }
+        NSDictionary<NSString, NSObject> Attributes { get; set; }
 
-        // - (nullable id)attributeForKey:(NSString*)key;
+        // @required -(id _Nullable)attributeForKey:(NSString * _Nonnull)key;
+        [Abstract]
         [Export ("attributeForKey:")]
         [return: NullAllowed]
         NSObject GetAttribute (string key);
+
+        // @required -(NSDictionary<NSString *,id> * _Nonnull)geoJSONDictionary;
+        [Abstract]
+        [Export ("geoJSONDictionary")]
+        //[Verify (MethodToProperty)]
+        NSDictionary<NSString, NSObject> GeoJSONDictionary { get; }
     }
 
     // @interface MGLPointFeature : MGLPointAnnotation<MGLFeature>
@@ -1224,121 +1487,1313 @@ namespace Mapbox
     {
     }
 
-    // @interface MGLPolygonFeature : MGLPolygon<MGLFeature>
+    // @interface PolygonFeature : MGLPolygon <MGLFeature>
     [BaseType (typeof (NSObject), Name = "MGLPolygonFeature")]
     interface PolygonFeature : Feature
     {
     }
 
-    // @interface MGLMultiPointFeature : MGLMultiPoint<MGLFeature>
-    [BaseType (typeof (NSObject), Name = "MGLMultiPointFeature")]
-    interface MultiPointFeature : Feature
+    // @interface PointCollectionFeature : MGLPointCollection <MGLFeature>
+	[BaseType(typeof(NSObject), Name = "MGLPointCollection")]
+    interface PointCollectionFeature : Feature
     {
     }
 
-    // @interface MGLMultiPolylineFeature : MGLMultiPolyline<MGLFeature>
-    [BaseType (typeof (NSObject), Name = "MGLMultiPolylineFeature")]
+    // @interface MultiPolylineFeature : MGLMultiPolyline <MGLFeature>
+	[BaseType(typeof(NSObject), Name = "MGLMultiPolyline")]
     interface MultiPolylineFeature : Feature
     {
     }
 
-    // @interface MGLMultiPolygonFeature : MGLMultiPolygon<MGLFeature>
-    [BaseType (typeof (NSObject), Name = "MGLMultiPolygonFeature")]
+    // @interface MultiPolygonFeature : MGLMultiPolygon <MGLFeature>
+	[BaseType(typeof(NSObject), Name = "MGLMultiPolygon")]
     interface MultiPolygonFeature : Feature
     {
     }
 
     //@interface MGLShapeCollectionFeature : MGLShapeCollection<MGLFeature>
-    [BaseType (typeof (NSObject), Name = "MGLShapeCollectionFeature")]
+	[BaseType(typeof(NSObject), Name = "MGLShapeCollection")]
     interface ShapeCollectionFeature : Feature
     {
-    }
-
-    // @interface MGLShapeCollection : MGLShape
-    [BaseType (typeof (Shape), Name="MGLShapeCollection")]
-    interface ShapeCollection
-    {
-        // @property (nonatomic, copy, readonly) NS_ARRAY_OF (MGLShape*) * shapes;
+        // @property (readonly, copy, nonatomic) NSArray<MGLShape<MGLFeature> *> * _Nonnull shapes;
         [Export ("shapes", ArgumentSemantic.Copy)]
-        Shape [] Shapes { get; }
+        IFeature[] Shapes { get; }
 
-        // + (instancetype)shapeCollectionWithShapes:(NS_ARRAY_OF (MGLShape*) *)shapes;
+        // +(instancetype _Nonnull)shapeCollectionWithShapes:(NSArray<MGLShape<MGLFeature> *> * _Nonnull)shapes;
         [Static]
         [Export ("shapeCollectionWithShapes:")]
-        ShapeCollection WithShapes (Shape [] shapes);
+        ShapeCollectionFeature WithShapes (IFeature[] shapes);
     }
 
-    // @interface NSValue (MGLAdditions)
-    [Category, BaseType (typeof (NSValue))]
-    partial interface Additions_NSValue
+	interface IOfflineStorageDelegate { }
+
+    // @protocol MGLOfflineStorageDelegate <NSObject>
+    [Protocol, Model]
+    [BaseType (typeof(NSObject))]
+    interface OfflineStorageDelegate
     {
-        // + (instancetype)valueWithMGLCoordinate:(CLLocationCoordinate2D)coordinate;
+        // @required -(NSURL * _Nonnull)offlineStorage:(MGLOfflineStorage * _Nonnull)storage URLForResourceOfKind:(MGLResourceKind)kind withURL:(NSURL * _Nonnull)url;
+        [Abstract]
+        [Export ("offlineStorage:URLForResourceOfKind:withURL:")]
+        NSUrl URLForResourceOfKind (OfflineStorage storage, ResourceKind kind, NSUrl url);
+    }
+
+    // @interface StyleLayer : NSObject
+    [BaseType (typeof(NSObject))]
+    [DisableDefaultCtor]
+    interface StyleLayer
+    {
+        // -(instancetype _Nonnull)initWithIdentifier:(NSString * _Nonnull)identifier;
+        [Export ("initWithIdentifier:")]
+        IntPtr Constructor (string identifier);
+
+        // @property (readonly, copy, nonatomic) NSString * _Nonnull identifier;
+        [Export ("identifier")]
+        string Identifier { get; }
+
+        // @property (getter = isVisible, assign, nonatomic) BOOL visible;
+        [Export ("visible")]
+        bool Visible { [Bind ("isVisible")] get; set; }
+
+        // @property (assign, nonatomic) float maximumZoomLevel;
+        [Export ("maximumZoomLevel")]
+        float MaximumZoomLevel { get; set; }
+
+        // @property (assign, nonatomic) float minimumZoomLevel;
+        [Export ("minimumZoomLevel")]
+        float MinimumZoomLevel { get; set; }
+    }
+
+    // @interface ForegroundStyleLayer : MGLStyleLayer
+	[BaseType(typeof(StyleLayer), Name = "MGLForegroundStyleLayer")]
+    [DisableDefaultCtor]
+    interface ForegroundStyleLayer
+    {
+        // -(instancetype _Nonnull)initWithIdentifier:(NSString * _Nonnull)identifier source:(MGLSource * _Nonnull)source __attribute__((objc_designated_initializer));
+        [Export ("initWithIdentifier:source:")]
+        [DesignatedInitializer]
+        IntPtr Constructor (string identifier, Source source);
+
+        // @property (readonly, nonatomic) NSString * _Nullable sourceIdentifier;
+        [NullAllowed, Export ("sourceIdentifier")]
+        string SourceIdentifier { get; }
+    }
+
+    // @interface VectorStyleLayer : MGLForegroundStyleLayer
+	[BaseType(typeof(ForegroundStyleLayer), Name = "MGLForegroundStyleLayer")]
+    interface VectorStyleLayer
+    {
+        // @property (nonatomic) NSString * _Nullable sourceLayerIdentifier;
+        [NullAllowed, Export ("sourceLayerIdentifier")]
+        string SourceLayerIdentifier { get; set; }
+
+        // @property (nonatomic) NSPredicate * _Nullable predicate;
+        [NullAllowed, Export ("predicate", ArgumentSemantic.Assign)]
+        NSPredicate Predicate { get; set; }
+    }
+
+    [Static]
+    ////[Verify (ConstantsInterfaceAssociation)]
+    partial interface StyleFunctionOptionConstants
+    {
+        // extern const MGLStyleFunctionOption _Nonnull MGLStyleFunctionOptionInterpolationBase __attribute__((visibility("default")));
+        [Field ("MGLStyleFunctionOptionInterpolationBase", "__Internal")]
+        NSString InterpolationBase { get; }
+
+        // extern const MGLStyleFunctionOption _Nonnull MGLStyleFunctionOptionDefaultValue __attribute__((visibility("default")));
+        [Field ("MGLStyleFunctionOptionDefaultValue", "__Internal")]
+        NSString DefaultValue { get; }
+    }
+
+	// @interface NSValue (MGLAdditions)
+	[Category]
+	[BaseType(typeof(NSValue))]
+    interface Additions_NSValue
+    {
+        // +(instancetype _Nonnull)valueWithMGLCoordinate:(CLLocationCoordinate2D)coordinate;
         [Static]
         [Export ("valueWithMGLCoordinate:")]
         NSValue GetValue (CLLocationCoordinate2D coordinate);
 
         // @property (readonly) CLLocationCoordinate2D MGLCoordinateValue;
-        [Static]
-        [Export ("MGLCoordinateValue")]
+		[Static]
+		[Export ("MGLCoordinateValue")]
         CLLocationCoordinate2D CoordinateValue { get; }
 
-        // + (instancetype)valueWithMGLCoordinateSpan:(MGLCoordinateSpan)span;
+        // +(instancetype _Nonnull)valueWithMGLCoordinateSpan:(MGLCoordinateSpan)span;
         [Static]
         [Export ("valueWithMGLCoordinateSpan:")]
         NSValue GetValue (CoordinateSpan span);
 
-        //@property (readonly) MGLCoordinateSpan MGLCoordinateSpanValue;
-        [Static]
-        [Export ("MGLCoordinateSpanValue")]
+        // @property (readonly) MGLCoordinateSpan MGLCoordinateSpanValue;
+		[Static]
+		[Export ("MGLCoordinateSpanValue")]
         CoordinateSpan CoordinateSpanValue { get; }
 
-        // + (instancetype)valueWithMGLCoordinateBounds:(MGLCoordinateBounds)bounds;
+        // +(instancetype _Nonnull)valueWithMGLCoordinateBounds:(MGLCoordinateBounds)bounds;
         [Static]
         [Export ("valueWithMGLCoordinateBounds:")]
         NSValue GetValue (CoordinateBounds bounds);
 
-        // @property (readonly) MGLCoordinateBounds MGLCoordinateBoundsValue;
-        [Static]
-        [Export ("MGLCoordinateBoundsValue")]
-        CoordinateBounds CoordinateBoundsValue { get; }
+		// @property (readonly) MGLCoordinateBounds MGLCoordinateBoundsValue;
+		[Static]
+		[Export("MGLCoordinateBoundsValue")]
+		CoordinateBounds CoordinateBoundsValue { get; }
 
-        // + (NSValue*)valueWithMGLOfflinePackProgress:(MGLOfflinePackProgress)progress;
+        // +(NSValue * _Nonnull)valueWithMGLOfflinePackProgress:(MGLOfflinePackProgress)progress;
         [Static]
         [Export ("valueWithMGLOfflinePackProgress:")]
         NSValue GetValue (OfflinePackProgress progress);
 
         // @property (readonly) MGLOfflinePackProgress MGLOfflinePackProgressValue;
-        [Static]
-        [Export ("MGLOfflinePackProgressValue")]
+		[Static]
+		[Export ("MGLOfflinePackProgressValue")]
         OfflinePackProgress OfflinePackProgressValue { get; }
 
+        // +(NSValue * _Nonnull)valueWithMGLTransition:(MGLTransition)transition;
+        [Static]
+        [Export ("valueWithMGLTransition:")]
+        NSValue ValueWithMGLTransition (Transition transition);
+
+        // @property (readonly) MGLTransition MGLTransitionValue;
+		[Static]
+		[Export ("MGLTransitionValue")]
+        Transition MGLTransitionValue { get; }
     }
 
-    // typedef void (^MGLCustomStyleLayerPreparationHandler)();
-    delegate void CustomStyleLayerPreparationHandler ();
+    // audit-objc-generics: @interface StyleValue<T> : NSObject
+    [BaseType (typeof(NSObject))]
+	interface StyleValue : INSObjectProtocol
+    {
+        // +(instancetype _Nonnull)valueWithRawValue:(T _Nonnull)rawValue;
+        [Static]
+        [Export ("valueWithRawValue:")]
+        StyleValue ValueWithRawValue (NSObject rawValue);
 
-    // typedef void (^MGLCustomStyleLayerDrawingHandler)(CGSize, CLLocationCoordinate2D, double, CLLocationDirection, CGFloat, CGFloat);
-    delegate void CustomStyleLayerDrawingHandler (CGSize arg0, CLLocationCoordinate2D arg1, double arg2, double arg3, nfloat arg4, nfloat arg5);
+        // +(instancetype _Nonnull)valueWithStops:(NSDictionary<NSNumber *,MGLStyleValue<T> *> * _Nonnull)stops __attribute__((deprecated("Use +[MGLStyleValue valueWithInterpolationMode:cameraStops:options:]")));
+        [Static]
+        [Export ("valueWithStops:")]
+        StyleValue ValueWithStops (NSDictionary<NSNumber, StyleValue> stops);
 
-    // typedef void (^MGLCustomStyleLayerCompletionHandler)();
-    delegate void CustomStyleLayerCompletionHandler ();
+        // +(instancetype _Nonnull)valueWithInterpolationBase:(CGFloat)interpolationBase stops:(NSDictionary<NSNumber *,MGLStyleValue<T> *> * _Nonnull)stops __attribute__((deprecated("Use +[MGLStyleValue valueWithInterpolationMode:cameraStops:options:]")));
+        [Static]
+        [Export ("valueWithInterpolationBase:stops:")]
+        StyleValue ValueWithInterpolationBase (nfloat interpolationBase, NSDictionary<NSNumber, StyleValue> stops);
+
+        // +(instancetype _Nonnull)valueWithInterpolationMode:(MGLInterpolationMode)interpolationMode cameraStops:(NSDictionary<id,MGLStyleValue<T> *> * _Nonnull)cameraStops options:(NSDictionary<MGLStyleFunctionOption,id> * _Nullable)options;
+        [Static]
+        [Export ("valueWithInterpolationMode:cameraStops:options:")]
+        StyleValue ValueWithInterpolationMode (InterpolationMode interpolationMode, NSDictionary<NSObject, StyleValue> cameraStops, [NullAllowed] NSDictionary<NSString, NSObject> options);
+
+        // +(instancetype _Nonnull)valueWithInterpolationMode:(MGLInterpolationMode)interpolationMode sourceStops:(NSDictionary<id,MGLStyleValue<T> *> * _Nullable)sourceStops attributeName:(NSString * _Nonnull)attributeName options:(NSDictionary<MGLStyleFunctionOption,id> * _Nullable)options;
+        [Static]
+        [Export ("valueWithInterpolationMode:sourceStops:attributeName:options:")]
+        StyleValue ValueWithInterpolationMode (InterpolationMode interpolationMode, [NullAllowed] NSDictionary<NSObject, StyleValue> sourceStops, string attributeName, [NullAllowed] NSDictionary<NSString, NSObject> options);
+
+        // +(instancetype _Nonnull)valueWithInterpolationMode:(MGLInterpolationMode)interpolationMode compositeStops:(NSDictionary<id,NSDictionary<id,MGLStyleValue<T> *> *> * _Nonnull)compositeStops attributeName:(NSString * _Nonnull)attributeName options:(NSDictionary<MGLStyleFunctionOption,id> * _Nullable)options;
+        [Static]
+        [Export ("valueWithInterpolationMode:compositeStops:attributeName:options:")]
+        StyleValue ValueWithInterpolationMode (InterpolationMode interpolationMode, NSDictionary<NSObject, NSDictionary<NSObject, StyleValue>> compositeStops, string attributeName, [NullAllowed] NSDictionary<NSString, NSObject> options);
+    }
+
+    // audit-objc-generics: @interface ConstantStyleValue<T> : MGLStyleValue
+	[BaseType(typeof(StyleValue), Name = "MGLConstantStyleValue")]
+    [DisableDefaultCtor]
+    interface ConstantStyleValue
+    {
+        // +(instancetype _Nonnull)valueWithRawValue:(T _Nonnull)rawValue;
+        [Static]
+        [Export ("valueWithRawValue:")]
+        ConstantStyleValue ValueWithRawValue (NSObject rawValue);
+
+        // -(instancetype _Nonnull)initWithRawValue:(T _Nonnull)rawValue __attribute__((objc_designated_initializer));
+        [Export ("initWithRawValue:")]
+        [DesignatedInitializer]
+        IntPtr Constructor (NSObject rawValue);
+
+        // @property (nonatomic) T _Nonnull rawValue;
+        [Export ("rawValue", ArgumentSemantic.Assign)]
+        NSObject RawValue { get; set; }
+    }
+
+    // audit-objc-generics: @interface StyleFunction<T> : MGLStyleValue
+	[BaseType(typeof(StyleValue), Name = "MGLStyleFunction")]
+    interface StyleFunction
+    {
+        // +(instancetype _Nonnull)functionWithStops:(NSDictionary<NSNumber *,MGLStyleValue<T> *> * _Nonnull)stops __attribute__((deprecated("Use +[MGLStyleValue valueWithInterpolationMode:cameraStops:options:]")));
+        [Static]
+        [Export ("functionWithStops:")]
+        StyleFunction FunctionWithStops (NSDictionary<NSNumber, StyleValue> stops);
+
+        // +(instancetype _Nonnull)functionWithInterpolationBase:(CGFloat)interpolationBase stops:(NSDictionary<NSNumber *,MGLStyleValue<T> *> * _Nonnull)stops __attribute__((deprecated("Use +[MGLStyleValue valueWithInterpolationMode:cameraStops:options:]")));
+        [Static]
+        [Export ("functionWithInterpolationBase:stops:")]
+        StyleFunction FunctionWithInterpolationBase (nfloat interpolationBase, NSDictionary<NSNumber, StyleValue> stops);
+
+        // -(instancetype _Nonnull)initWithInterpolationBase:(CGFloat)interpolationBase stops:(NSDictionary<NSNumber *,MGLStyleValue<T> *> * _Nonnull)stops __attribute__((deprecated("Use +[MGLStyleValue valueWithInterpolationMode:cameraStops:options:]")));
+        [Export ("initWithInterpolationBase:stops:")]
+        IntPtr Constructor (nfloat interpolationBase, NSDictionary<NSNumber, StyleValue> stops);
+
+        // @property (nonatomic) MGLInterpolationMode interpolationMode;
+        [Export ("interpolationMode", ArgumentSemantic.Assign)]
+        InterpolationMode InterpolationMode { get; set; }
+
+        // @property (copy, nonatomic) NSDictionary * _Nullable stops;
+        [NullAllowed, Export ("stops", ArgumentSemantic.Copy)]
+        NSDictionary Stops { get; set; }
+
+        // @property (nonatomic) CGFloat interpolationBase;
+        [Export ("interpolationBase")]
+        nfloat InterpolationBase { get; set; }
+    }
+
+    // audit-objc-generics: @interface CameraStyleFunction<T> : MGLStyleFunction
+	[BaseType(typeof(StyleFunction), Name = "MGLCameraStyleFunction")]
+    interface CameraStyleFunction
+    {
+        // +(instancetype _Nonnull)functionWithInterpolationMode:(MGLInterpolationMode)interpolationMode stops:(NSDictionary<id,MGLStyleValue<T> *> * _Nonnull)stops options:(NSDictionary<MGLStyleFunctionOption,id> * _Nullable)options;
+        [Static]
+        [Export ("functionWithInterpolationMode:stops:options:")]
+        CameraStyleFunction FunctionWithInterpolationMode (InterpolationMode interpolationMode, NSDictionary<NSObject, StyleValue> stops, [NullAllowed] NSDictionary<NSString, NSObject> options);
+
+        // @property (copy, nonatomic) NSDictionary<id,MGLStyleValue<T> *> * _Nonnull stops;
+        [Export ("stops", ArgumentSemantic.Copy)]
+        NSDictionary<NSObject, StyleValue> Stops { get; set; }
+    }
+
+    // audit-objc-generics: @interface SourceStyleFunction<T> : MGLStyleFunction
+	[BaseType(typeof(StyleFunction), Name = "MGLSourceStyleFunction")]
+	interface SourceStyleFunction
+    {
+        // +(instancetype _Nonnull)functionWithInterpolationMode:(MGLInterpolationMode)interpolationMode stops:(NSDictionary<id,MGLStyleValue<T> *> * _Nullable)stops attributeName:(NSString * _Nonnull)attributeName options:(NSDictionary<MGLStyleFunctionOption,id> * _Nullable)options;
+        [Static]
+        [Export ("functionWithInterpolationMode:stops:attributeName:options:")]
+        SourceStyleFunction FunctionWithInterpolationMode (InterpolationMode interpolationMode, [NullAllowed] NSDictionary<NSObject, StyleValue> stops, string attributeName, [NullAllowed] NSDictionary<NSString, NSObject> options);
+
+        // @property (copy, nonatomic) NSString * _Nonnull attributeName;
+        [Export ("attributeName")]
+        string AttributeName { get; set; }
+
+        // @property (copy, nonatomic) NSDictionary<id,MGLStyleValue<T> *> * _Nullable stops;
+        [NullAllowed, Export ("stops", ArgumentSemantic.Copy)]
+        NSDictionary<NSObject, StyleValue> Stops { get; set; }
+
+        // @property (nonatomic) MGLStyleValue<T> * _Nullable defaultValue;
+        [NullAllowed, Export ("defaultValue", ArgumentSemantic.Assign)]
+        StyleValue DefaultValue { get; set; }
+    }
+
+    // audit-objc-generics: @interface CompositeStyleFunction<T> : MGLStyleFunction
+	[BaseType(typeof(StyleFunction), Name = "MGLCompositeStyleFunction")]
+	interface CompositeStyleFunction
+    {
+        // +(instancetype _Nonnull)functionWithInterpolationMode:(MGLInterpolationMode)interpolationMode stops:(NSDictionary<id,NSDictionary<id,MGLStyleValue<T> *> *> * _Nonnull)stops attributeName:(NSString * _Nonnull)attributeName options:(NSDictionary<MGLStyleFunctionOption,id> * _Nullable)options;
+        [Static]
+        [Export ("functionWithInterpolationMode:stops:attributeName:options:")]
+        CompositeStyleFunction FunctionWithInterpolationMode (InterpolationMode interpolationMode, NSDictionary<NSObject, NSDictionary<NSObject, StyleValue>> stops, string attributeName, [NullAllowed] NSDictionary<NSString, NSObject> options);
+
+        // @property (copy, nonatomic) NSString * _Nonnull attributeName;
+        [Export ("attributeName")]
+        string AttributeName { get; set; }
+
+        // @property (copy, nonatomic) NSDictionary<id,NSDictionary<id,MGLStyleValue<T> *> *> * _Nonnull stops;
+        [Export ("stops", ArgumentSemantic.Copy)]
+        NSDictionary<NSObject, NSDictionary<NSObject, StyleValue>> Stops { get; set; }
+
+        // @property (nonatomic) MGLStyleValue<T> * _Nullable defaultValue;
+        [NullAllowed, Export ("defaultValue", ArgumentSemantic.Assign)]
+        StyleValue DefaultValue { get; set; }
+    }
+
+    // @interface FillStyleLayer : MGLVectorStyleLayer
+	[BaseType(typeof(VectorStyleLayer), Name = "MGLFillStyleLayer")]
+	interface FillStyleLayer
+    {
+        // @property (getter = isFillAntialiased, nonatomic) MGLStyleValue<NSNumber *> * _Null_unspecified fillAntialiased;
+        [Export ("fillAntialiased", ArgumentSemantic.Assign)]
+        StyleValue FillAntialiased { [Bind ("isFillAntialiased")] get; set; }
+
+        // @property (nonatomic) MGLStyleValue<UIColor *> * _Null_unspecified fillColor;
+        [Export ("fillColor", ArgumentSemantic.Assign)]
+        StyleValue FillColor { get; set; }
+
+        // @property (nonatomic) MGLTransition fillColorTransition;
+        [Export ("fillColorTransition", ArgumentSemantic.Assign)]
+        Transition FillColorTransition { get; set; }
+
+        // @property (nonatomic) MGLStyleValue<NSNumber *> * _Null_unspecified fillOpacity;
+        [Export ("fillOpacity", ArgumentSemantic.Assign)]
+        StyleValue FillOpacity { get; set; }
+
+        // @property (nonatomic) MGLTransition fillOpacityTransition;
+        [Export ("fillOpacityTransition", ArgumentSemantic.Assign)]
+        Transition FillOpacityTransition { get; set; }
+
+        // @property (nonatomic) MGLStyleValue<UIColor *> * _Null_unspecified fillOutlineColor;
+        [Export ("fillOutlineColor", ArgumentSemantic.Assign)]
+        StyleValue FillOutlineColor { get; set; }
+
+        // @property (nonatomic) MGLTransition fillOutlineColorTransition;
+        [Export ("fillOutlineColorTransition", ArgumentSemantic.Assign)]
+        Transition FillOutlineColorTransition { get; set; }
+
+        // @property (nonatomic) MGLStyleValue<NSString *> * _Null_unspecified fillPattern;
+        [Export ("fillPattern", ArgumentSemantic.Assign)]
+        StyleValue FillPattern { get; set; }
+
+        // @property (nonatomic) MGLTransition fillPatternTransition;
+        [Export ("fillPatternTransition", ArgumentSemantic.Assign)]
+        Transition FillPatternTransition { get; set; }
+
+        // @property (nonatomic) MGLStyleValue<NSValue *> * _Null_unspecified fillTranslation;
+        [Export ("fillTranslation", ArgumentSemantic.Assign)]
+        StyleValue FillTranslation { get; set; }
+
+        // @property (nonatomic) MGLTransition fillTranslationTransition;
+        [Export ("fillTranslationTransition", ArgumentSemantic.Assign)]
+        Transition FillTranslationTransition { get; set; }
+
+        // @property (nonatomic) MGLStyleValue<NSValue *> * _Null_unspecified fillTranslationAnchor;
+        [Export ("fillTranslationAnchor", ArgumentSemantic.Assign)]
+        StyleValue FillTranslationAnchor { get; set; }
+    }
+
+    // @interface FillStyleLayerAdditions (NSValue)
+    [Category]
+    [BaseType (typeof(NSValue))]
+    interface NSValue_MGLFillStyleLayerAdditions
+    {
+        // +(instancetype _Nonnull)valueWithMGLFillTranslationAnchor:(MGLFillTranslationAnchor)fillTranslationAnchor;
+        [Static]
+        [Export ("valueWithMGLFillTranslationAnchor:")]
+        NSValue ValueWithMGLFillTranslationAnchor (FillTranslationAnchor fillTranslationAnchor);
+
+        // @property (readonly) MGLFillTranslationAnchor MGLFillTranslationAnchorValue;
+		[Static]
+		[Export ("MGLFillTranslationAnchorValue")]
+        FillTranslationAnchor MGLFillTranslationAnchorValue { get; }
+    }
+
+    // @interface LineStyleLayer : MGLVectorStyleLayer
+	[BaseType(typeof(VectorStyleLayer), Name = "MGLLineStyleLayer")]
+    interface LineStyleLayer
+    {
+        // @property (nonatomic) MGLStyleValue<NSValue *> * _Null_unspecified lineCap;
+        [Export ("lineCap", ArgumentSemantic.Assign)]
+        StyleValue LineCap { get; set; }
+
+        // @property (nonatomic) MGLStyleValue<NSValue *> * _Null_unspecified lineJoin;
+        [Export ("lineJoin", ArgumentSemantic.Assign)]
+        StyleValue LineJoin { get; set; }
+
+        // @property (nonatomic) MGLStyleValue<NSNumber *> * _Null_unspecified lineMiterLimit;
+        [Export ("lineMiterLimit", ArgumentSemantic.Assign)]
+        StyleValue LineMiterLimit { get; set; }
+
+        // @property (nonatomic) MGLStyleValue<NSNumber *> * _Null_unspecified lineRoundLimit;
+        [Export ("lineRoundLimit", ArgumentSemantic.Assign)]
+        StyleValue LineRoundLimit { get; set; }
+
+        // @property (nonatomic) MGLStyleValue<NSNumber *> * _Null_unspecified lineBlur;
+        [Export ("lineBlur", ArgumentSemantic.Assign)]
+        StyleValue LineBlur { get; set; }
+
+        // @property (nonatomic) MGLTransition lineBlurTransition;
+        [Export ("lineBlurTransition", ArgumentSemantic.Assign)]
+        Transition LineBlurTransition { get; set; }
+
+        // @property (nonatomic) MGLStyleValue<UIColor *> * _Null_unspecified lineColor;
+        [Export ("lineColor", ArgumentSemantic.Assign)]
+        StyleValue LineColor { get; set; }
+
+        // @property (nonatomic) MGLTransition lineColorTransition;
+        [Export ("lineColorTransition", ArgumentSemantic.Assign)]
+        Transition LineColorTransition { get; set; }
+
+        // @property (nonatomic) MGLStyleValue<NSArray<NSNumber *> *> * _Null_unspecified lineDashPattern;
+        [Export ("lineDashPattern", ArgumentSemantic.Assign)]
+        StyleValue LineDashPattern { get; set; }
+
+        // @property (nonatomic) MGLTransition lineDashPatternTransition;
+        [Export ("lineDashPatternTransition", ArgumentSemantic.Assign)]
+        Transition LineDashPatternTransition { get; set; }
+
+        // @property (nonatomic) MGLStyleValue<NSNumber *> * _Null_unspecified lineGapWidth;
+        [Export ("lineGapWidth", ArgumentSemantic.Assign)]
+        StyleValue LineGapWidth { get; set; }
+
+        // @property (nonatomic) MGLTransition lineGapWidthTransition;
+        [Export ("lineGapWidthTransition", ArgumentSemantic.Assign)]
+        Transition LineGapWidthTransition { get; set; }
+
+        // @property (nonatomic) MGLStyleValue<NSNumber *> * _Null_unspecified lineOffset;
+        [Export ("lineOffset", ArgumentSemantic.Assign)]
+        StyleValue LineOffset { get; set; }
+
+        // @property (nonatomic) MGLTransition lineOffsetTransition;
+        [Export ("lineOffsetTransition", ArgumentSemantic.Assign)]
+        Transition LineOffsetTransition { get; set; }
+
+        // @property (nonatomic) MGLStyleValue<NSNumber *> * _Null_unspecified lineOpacity;
+        [Export ("lineOpacity", ArgumentSemantic.Assign)]
+        StyleValue LineOpacity { get; set; }
+
+        // @property (nonatomic) MGLTransition lineOpacityTransition;
+        [Export ("lineOpacityTransition", ArgumentSemantic.Assign)]
+        Transition LineOpacityTransition { get; set; }
+
+        // @property (nonatomic) MGLStyleValue<NSString *> * _Null_unspecified linePattern;
+        [Export ("linePattern", ArgumentSemantic.Assign)]
+        StyleValue LinePattern { get; set; }
+
+        // @property (nonatomic) MGLTransition linePatternTransition;
+        [Export ("linePatternTransition", ArgumentSemantic.Assign)]
+        Transition LinePatternTransition { get; set; }
+
+        // @property (nonatomic) MGLStyleValue<NSValue *> * _Null_unspecified lineTranslation;
+        [Export ("lineTranslation", ArgumentSemantic.Assign)]
+        StyleValue LineTranslation { get; set; }
+
+        // @property (nonatomic) MGLTransition lineTranslationTransition;
+        [Export ("lineTranslationTransition", ArgumentSemantic.Assign)]
+        Transition LineTranslationTransition { get; set; }
+
+        // @property (nonatomic) MGLStyleValue<NSValue *> * _Null_unspecified lineTranslationAnchor;
+        [Export ("lineTranslationAnchor", ArgumentSemantic.Assign)]
+        StyleValue LineTranslationAnchor { get; set; }
+
+        // @property (nonatomic) MGLStyleValue<NSNumber *> * _Null_unspecified lineWidth;
+        [Export ("lineWidth", ArgumentSemantic.Assign)]
+        StyleValue LineWidth { get; set; }
+
+        // @property (nonatomic) MGLTransition lineWidthTransition;
+        [Export ("lineWidthTransition", ArgumentSemantic.Assign)]
+        Transition LineWidthTransition { get; set; }
+    }
+
+    // @interface LineStyleLayerAdditions (NSValue)
+    [Category]
+    [BaseType (typeof(NSValue))]
+    interface NSValue_MGLLineStyleLayerAdditions
+    {
+        // +(instancetype _Nonnull)valueWithMGLLineCap:(MGLLineCap)lineCap;
+        [Static]
+        [Export ("valueWithMGLLineCap:")]
+        NSValue ValueWithMGLLineCap (LineCap lineCap);
+
+        // @property (readonly) MGLLineCap MGLLineCapValue;
+		[Static]
+		[Export ("MGLLineCapValue")]
+        LineCap MGLLineCapValue { get; }
+
+        // +(instancetype _Nonnull)valueWithMGLLineJoin:(MGLLineJoin)lineJoin;
+        [Static]
+        [Export ("valueWithMGLLineJoin:")]
+        NSValue ValueWithMGLLineJoin (LineJoin lineJoin);
+
+        // @property (readonly) MGLLineJoin MGLLineJoinValue;
+		[Static]
+		[Export ("MGLLineJoinValue")]
+        LineJoin MGLLineJoinValue { get; }
+
+        // +(instancetype _Nonnull)valueWithMGLLineTranslationAnchor:(MGLLineTranslationAnchor)lineTranslationAnchor;
+        [Static]
+        [Export ("valueWithMGLLineTranslationAnchor:")]
+        NSValue ValueWithMGLLineTranslationAnchor (LineTranslationAnchor lineTranslationAnchor);
+
+        // @property (readonly) MGLLineTranslationAnchor MGLLineTranslationAnchorValue;
+		[Static]
+		[Export ("MGLLineTranslationAnchorValue")]
+        LineTranslationAnchor MGLLineTranslationAnchorValue { get; }
+    }
+
+    // @interface SymbolStyleLayer : MGLVectorStyleLayer
+	[BaseType(typeof(VectorStyleLayer), Name = "MGLSymbolStyleLayer")]
+    interface SymbolStyleLayer
+    {
+        // @property (nonatomic) MGLStyleValue<NSNumber *> * _Null_unspecified iconAllowsOverlap;
+        [Export ("iconAllowsOverlap", ArgumentSemantic.Assign)]
+        StyleValue IconAllowsOverlap { get; set; }
+
+        // @property (nonatomic) MGLStyleValue<NSNumber *> * _Null_unspecified iconIgnoresPlacement;
+        [Export ("iconIgnoresPlacement", ArgumentSemantic.Assign)]
+        StyleValue IconIgnoresPlacement { get; set; }
+
+        // @property (nonatomic) MGLStyleValue<NSString *> * _Null_unspecified iconImageName;
+        [Export ("iconImageName", ArgumentSemantic.Assign)]
+        StyleValue IconImageName { get; set; }
+
+        // @property (nonatomic) MGLStyleValue<NSValue *> * _Null_unspecified iconOffset;
+        [Export ("iconOffset", ArgumentSemantic.Assign)]
+        StyleValue IconOffset { get; set; }
+
+        // @property (getter = isIconOptional, nonatomic) MGLStyleValue<NSNumber *> * _Null_unspecified iconOptional;
+        [Export ("iconOptional", ArgumentSemantic.Assign)]
+        StyleValue IconOptional { [Bind ("isIconOptional")] get; set; }
+
+        // @property (nonatomic) MGLStyleValue<NSNumber *> * _Null_unspecified iconPadding;
+        [Export ("iconPadding", ArgumentSemantic.Assign)]
+        StyleValue IconPadding { get; set; }
+
+        // @property (nonatomic) MGLStyleValue<NSNumber *> * _Null_unspecified iconRotation;
+        [Export ("iconRotation", ArgumentSemantic.Assign)]
+        StyleValue IconRotation { get; set; }
+
+        // @property (nonatomic) MGLStyleValue<NSValue *> * _Null_unspecified iconRotationAlignment;
+        [Export ("iconRotationAlignment", ArgumentSemantic.Assign)]
+        StyleValue IconRotationAlignment { get; set; }
+
+        // @property (nonatomic) MGLStyleValue<NSNumber *> * _Null_unspecified iconScale;
+        [Export ("iconScale", ArgumentSemantic.Assign)]
+        StyleValue IconScale { get; set; }
+
+        // @property (nonatomic) MGLStyleValue<NSValue *> * _Null_unspecified iconTextFit;
+        [Export ("iconTextFit", ArgumentSemantic.Assign)]
+        StyleValue IconTextFit { get; set; }
+
+        // @property (nonatomic) MGLStyleValue<NSValue *> * _Null_unspecified iconTextFitPadding;
+        [Export ("iconTextFitPadding", ArgumentSemantic.Assign)]
+        StyleValue IconTextFitPadding { get; set; }
+
+        // @property (nonatomic) MGLStyleValue<NSNumber *> * _Null_unspecified keepsIconUpright;
+        [Export ("keepsIconUpright", ArgumentSemantic.Assign)]
+        StyleValue KeepsIconUpright { get; set; }
+
+        // @property (nonatomic) MGLStyleValue<NSNumber *> * _Null_unspecified keepsTextUpright;
+        [Export ("keepsTextUpright", ArgumentSemantic.Assign)]
+        StyleValue KeepsTextUpright { get; set; }
+
+        // @property (nonatomic) MGLStyleValue<NSNumber *> * _Null_unspecified maximumTextAngle;
+        [Export ("maximumTextAngle", ArgumentSemantic.Assign)]
+        StyleValue MaximumTextAngle { get; set; }
+
+        // @property (nonatomic) MGLStyleValue<NSNumber *> * _Null_unspecified maximumTextWidth;
+        [Export ("maximumTextWidth", ArgumentSemantic.Assign)]
+        StyleValue MaximumTextWidth { get; set; }
+
+        // @property (nonatomic) MGLStyleValue<NSNumber *> * _Null_unspecified symbolAvoidsEdges;
+        [Export ("symbolAvoidsEdges", ArgumentSemantic.Assign)]
+        StyleValue SymbolAvoidsEdges { get; set; }
+
+        // @property (nonatomic) MGLStyleValue<NSValue *> * _Null_unspecified symbolPlacement;
+        [Export ("symbolPlacement", ArgumentSemantic.Assign)]
+        StyleValue SymbolPlacement { get; set; }
+
+        // @property (nonatomic) MGLStyleValue<NSNumber *> * _Null_unspecified symbolSpacing;
+        [Export ("symbolSpacing", ArgumentSemantic.Assign)]
+        StyleValue SymbolSpacing { get; set; }
+
+        // @property (nonatomic) MGLStyleValue<NSString *> * _Null_unspecified text;
+        [Export ("text", ArgumentSemantic.Assign)]
+        StyleValue Text { get; set; }
+
+        // @property (nonatomic) MGLStyleValue<NSNumber *> * _Null_unspecified textAllowsOverlap;
+        [Export ("textAllowsOverlap", ArgumentSemantic.Assign)]
+        StyleValue TextAllowsOverlap { get; set; }
+
+        // @property (nonatomic) MGLStyleValue<NSValue *> * _Null_unspecified textAnchor;
+        [Export ("textAnchor", ArgumentSemantic.Assign)]
+        StyleValue TextAnchor { get; set; }
+
+        // @property (nonatomic) MGLStyleValue<NSArray<NSString *> *> * _Null_unspecified textFontNames;
+        [Export ("textFontNames", ArgumentSemantic.Assign)]
+        StyleValue TextFontNames { get; set; }
+
+        // @property (nonatomic) MGLStyleValue<NSNumber *> * _Null_unspecified textFontSize;
+        [Export ("textFontSize", ArgumentSemantic.Assign)]
+        StyleValue TextFontSize { get; set; }
+
+        // @property (nonatomic) MGLStyleValue<NSNumber *> * _Null_unspecified textIgnoresPlacement;
+        [Export ("textIgnoresPlacement", ArgumentSemantic.Assign)]
+        StyleValue TextIgnoresPlacement { get; set; }
+
+        // @property (nonatomic) MGLStyleValue<NSValue *> * _Null_unspecified textJustification;
+        [Export ("textJustification", ArgumentSemantic.Assign)]
+        StyleValue TextJustification { get; set; }
+
+        // @property (nonatomic) MGLStyleValue<NSNumber *> * _Null_unspecified textLetterSpacing;
+        [Export ("textLetterSpacing", ArgumentSemantic.Assign)]
+        StyleValue TextLetterSpacing { get; set; }
+
+        // @property (nonatomic) MGLStyleValue<NSNumber *> * _Null_unspecified textLineHeight;
+        [Export ("textLineHeight", ArgumentSemantic.Assign)]
+        StyleValue TextLineHeight { get; set; }
+
+        // @property (nonatomic) MGLStyleValue<NSValue *> * _Null_unspecified textOffset;
+        [Export ("textOffset", ArgumentSemantic.Assign)]
+        StyleValue TextOffset { get; set; }
+
+        // @property (getter = isTextOptional, nonatomic) MGLStyleValue<NSNumber *> * _Null_unspecified textOptional;
+        [Export ("textOptional", ArgumentSemantic.Assign)]
+        StyleValue TextOptional { [Bind ("isTextOptional")] get; set; }
+
+        // @property (nonatomic) MGLStyleValue<NSNumber *> * _Null_unspecified textPadding;
+        [Export ("textPadding", ArgumentSemantic.Assign)]
+        StyleValue TextPadding { get; set; }
+
+        // @property (nonatomic) MGLStyleValue<NSValue *> * _Null_unspecified textPitchAlignment;
+        [Export ("textPitchAlignment", ArgumentSemantic.Assign)]
+        StyleValue TextPitchAlignment { get; set; }
+
+        // @property (nonatomic) MGLStyleValue<NSNumber *> * _Null_unspecified textRotation;
+        [Export ("textRotation", ArgumentSemantic.Assign)]
+        StyleValue TextRotation { get; set; }
+
+        // @property (nonatomic) MGLStyleValue<NSValue *> * _Null_unspecified textRotationAlignment;
+        [Export ("textRotationAlignment", ArgumentSemantic.Assign)]
+        StyleValue TextRotationAlignment { get; set; }
+
+        // @property (nonatomic) MGLStyleValue<NSValue *> * _Null_unspecified textTransform;
+        [Export ("textTransform", ArgumentSemantic.Assign)]
+        StyleValue TextTransform { get; set; }
+
+        // @property (nonatomic) MGLStyleValue<UIColor *> * _Null_unspecified iconColor;
+        [Export ("iconColor", ArgumentSemantic.Assign)]
+        StyleValue IconColor { get; set; }
+
+        // @property (nonatomic) MGLTransition iconColorTransition;
+        [Export ("iconColorTransition", ArgumentSemantic.Assign)]
+        Transition IconColorTransition { get; set; }
+
+        // @property (nonatomic) MGLStyleValue<NSNumber *> * _Null_unspecified iconHaloBlur;
+        [Export ("iconHaloBlur", ArgumentSemantic.Assign)]
+        StyleValue IconHaloBlur { get; set; }
+
+        // @property (nonatomic) MGLTransition iconHaloBlurTransition;
+        [Export ("iconHaloBlurTransition", ArgumentSemantic.Assign)]
+        Transition IconHaloBlurTransition { get; set; }
+
+        // @property (nonatomic) MGLStyleValue<UIColor *> * _Null_unspecified iconHaloColor;
+        [Export ("iconHaloColor", ArgumentSemantic.Assign)]
+        StyleValue IconHaloColor { get; set; }
+
+        // @property (nonatomic) MGLTransition iconHaloColorTransition;
+        [Export ("iconHaloColorTransition", ArgumentSemantic.Assign)]
+        Transition IconHaloColorTransition { get; set; }
+
+        // @property (nonatomic) MGLStyleValue<NSNumber *> * _Null_unspecified iconHaloWidth;
+        [Export ("iconHaloWidth", ArgumentSemantic.Assign)]
+        StyleValue IconHaloWidth { get; set; }
+
+        // @property (nonatomic) MGLTransition iconHaloWidthTransition;
+        [Export ("iconHaloWidthTransition", ArgumentSemantic.Assign)]
+        Transition IconHaloWidthTransition { get; set; }
+
+        // @property (nonatomic) MGLStyleValue<NSNumber *> * _Null_unspecified iconOpacity;
+        [Export ("iconOpacity", ArgumentSemantic.Assign)]
+        StyleValue IconOpacity { get; set; }
+
+        // @property (nonatomic) MGLTransition iconOpacityTransition;
+        [Export ("iconOpacityTransition", ArgumentSemantic.Assign)]
+        Transition IconOpacityTransition { get; set; }
+
+        // @property (nonatomic) MGLStyleValue<NSValue *> * _Null_unspecified iconTranslation;
+        [Export ("iconTranslation", ArgumentSemantic.Assign)]
+        StyleValue IconTranslation { get; set; }
+
+        // @property (nonatomic) MGLTransition iconTranslationTransition;
+        [Export ("iconTranslationTransition", ArgumentSemantic.Assign)]
+        Transition IconTranslationTransition { get; set; }
+
+        // @property (nonatomic) MGLStyleValue<NSValue *> * _Null_unspecified iconTranslationAnchor;
+        [Export ("iconTranslationAnchor", ArgumentSemantic.Assign)]
+        StyleValue IconTranslationAnchor { get; set; }
+
+        // @property (nonatomic) MGLStyleValue<UIColor *> * _Null_unspecified textColor;
+        [Export ("textColor", ArgumentSemantic.Assign)]
+        StyleValue TextColor { get; set; }
+
+        // @property (nonatomic) MGLTransition textColorTransition;
+        [Export ("textColorTransition", ArgumentSemantic.Assign)]
+        Transition TextColorTransition { get; set; }
+
+        // @property (nonatomic) MGLStyleValue<NSNumber *> * _Null_unspecified textHaloBlur;
+        [Export ("textHaloBlur", ArgumentSemantic.Assign)]
+        StyleValue TextHaloBlur { get; set; }
+
+        // @property (nonatomic) MGLTransition textHaloBlurTransition;
+        [Export ("textHaloBlurTransition", ArgumentSemantic.Assign)]
+        Transition TextHaloBlurTransition { get; set; }
+
+        // @property (nonatomic) MGLStyleValue<UIColor *> * _Null_unspecified textHaloColor;
+        [Export ("textHaloColor", ArgumentSemantic.Assign)]
+        StyleValue TextHaloColor { get; set; }
+
+        // @property (nonatomic) MGLTransition textHaloColorTransition;
+        [Export ("textHaloColorTransition", ArgumentSemantic.Assign)]
+        Transition TextHaloColorTransition { get; set; }
+
+        // @property (nonatomic) MGLStyleValue<NSNumber *> * _Null_unspecified textHaloWidth;
+        [Export ("textHaloWidth", ArgumentSemantic.Assign)]
+        StyleValue TextHaloWidth { get; set; }
+
+        // @property (nonatomic) MGLTransition textHaloWidthTransition;
+        [Export ("textHaloWidthTransition", ArgumentSemantic.Assign)]
+        Transition TextHaloWidthTransition { get; set; }
+
+        // @property (nonatomic) MGLStyleValue<NSNumber *> * _Null_unspecified textOpacity;
+        [Export ("textOpacity", ArgumentSemantic.Assign)]
+        StyleValue TextOpacity { get; set; }
+
+        // @property (nonatomic) MGLTransition textOpacityTransition;
+        [Export ("textOpacityTransition", ArgumentSemantic.Assign)]
+        Transition TextOpacityTransition { get; set; }
+
+        // @property (nonatomic) MGLStyleValue<NSValue *> * _Null_unspecified textTranslation;
+        [Export ("textTranslation", ArgumentSemantic.Assign)]
+        StyleValue TextTranslation { get; set; }
+
+        // @property (nonatomic) MGLTransition textTranslationTransition;
+        [Export ("textTranslationTransition", ArgumentSemantic.Assign)]
+        Transition TextTranslationTransition { get; set; }
+
+        // @property (nonatomic) MGLStyleValue<NSValue *> * _Null_unspecified textTranslationAnchor;
+        [Export ("textTranslationAnchor", ArgumentSemantic.Assign)]
+        StyleValue TextTranslationAnchor { get; set; }
+    }
+
+    // @interface SymbolStyleLayerAdditions (NSValue)
+    [Category]
+    [BaseType (typeof(NSValue))]
+    interface NSValue_MGLSymbolStyleLayerAdditions
+    {
+        // +(instancetype _Nonnull)valueWithMGLIconRotationAlignment:(MGLIconRotationAlignment)iconRotationAlignment;
+        [Static]
+        [Export ("valueWithMGLIconRotationAlignment:")]
+        NSValue ValueWithMGLIconRotationAlignment (IconRotationAlignment iconRotationAlignment);
+
+        // @property (readonly) MGLIconRotationAlignment MGLIconRotationAlignmentValue;
+		[Static]
+		[Export ("MGLIconRotationAlignmentValue")]
+        IconRotationAlignment MGLIconRotationAlignmentValue { get; }
+
+        // +(instancetype _Nonnull)valueWithMGLIconTextFit:(MGLIconTextFit)iconTextFit;
+        [Static]
+        [Export ("valueWithMGLIconTextFit:")]
+        NSValue ValueWithMGLIconTextFit (IconTextFit iconTextFit);
+
+        // @property (readonly) MGLIconTextFit MGLIconTextFitValue;
+		[Static]
+		[Export ("MGLIconTextFitValue")]
+        IconTextFit MGLIconTextFitValue { get; }
+
+        // +(instancetype _Nonnull)valueWithMGLSymbolPlacement:(MGLSymbolPlacement)symbolPlacement;
+        [Static]
+        [Export ("valueWithMGLSymbolPlacement:")]
+        NSValue ValueWithMGLSymbolPlacement (SymbolPlacement symbolPlacement);
+
+        // @property (readonly) MGLSymbolPlacement MGLSymbolPlacementValue;
+		[Static]
+		[Export ("MGLSymbolPlacementValue")]
+        SymbolPlacement MGLSymbolPlacementValue { get; }
+
+        // +(instancetype _Nonnull)valueWithMGLTextAnchor:(MGLTextAnchor)textAnchor;
+        [Static]
+        [Export ("valueWithMGLTextAnchor:")]
+        NSValue ValueWithMGLTextAnchor (TextAnchor textAnchor);
+
+        // @property (readonly) MGLTextAnchor MGLTextAnchorValue;
+		[Static]
+		[Export ("MGLTextAnchorValue")]
+        TextAnchor MGLTextAnchorValue { get; }
+
+        // +(instancetype _Nonnull)valueWithMGLTextJustification:(MGLTextJustification)textJustification;
+        [Static]
+        [Export ("valueWithMGLTextJustification:")]
+        NSValue ValueWithMGLTextJustification (TextJustification textJustification);
+
+        // @property (readonly) MGLTextJustification MGLTextJustificationValue;
+		[Static]
+		[Export ("MGLTextJustificationValue")]
+        TextJustification MGLTextJustificationValue { get; }
+
+        // +(instancetype _Nonnull)valueWithMGLTextPitchAlignment:(MGLTextPitchAlignment)textPitchAlignment;
+        [Static]
+        [Export ("valueWithMGLTextPitchAlignment:")]
+        NSValue ValueWithMGLTextPitchAlignment (TextPitchAlignment textPitchAlignment);
+
+        // @property (readonly) MGLTextPitchAlignment MGLTextPitchAlignmentValue;
+		[Static]
+		[Export ("MGLTextPitchAlignmentValue")]
+        TextPitchAlignment MGLTextPitchAlignmentValue { get; }
+
+        // +(instancetype _Nonnull)valueWithMGLTextRotationAlignment:(MGLTextRotationAlignment)textRotationAlignment;
+        [Static]
+        [Export ("valueWithMGLTextRotationAlignment:")]
+        NSValue ValueWithMGLTextRotationAlignment (TextRotationAlignment textRotationAlignment);
+
+        // @property (readonly) MGLTextRotationAlignment MGLTextRotationAlignmentValue;
+		[Static]
+		[Export ("MGLTextRotationAlignmentValue")]
+        TextRotationAlignment MGLTextRotationAlignmentValue { get; }
+
+        // +(instancetype _Nonnull)valueWithMGLTextTransform:(MGLTextTransform)textTransform;
+        [Static]
+        [Export ("valueWithMGLTextTransform:")]
+        NSValue ValueWithMGLTextTransform (TextTransform textTransform);
+
+        // @property (readonly) MGLTextTransform MGLTextTransformValue;
+		[Static]
+		[Export ("MGLTextTransformValue")]
+        TextTransform MGLTextTransformValue { get; }
+
+        // +(instancetype _Nonnull)valueWithMGLIconTranslationAnchor:(MGLIconTranslationAnchor)iconTranslationAnchor;
+        [Static]
+        [Export ("valueWithMGLIconTranslationAnchor:")]
+        NSValue ValueWithMGLIconTranslationAnchor (IconTranslationAnchor iconTranslationAnchor);
+
+        // @property (readonly) MGLIconTranslationAnchor MGLIconTranslationAnchorValue;
+		[Static]
+		[Export ("MGLIconTranslationAnchorValue")]
+        IconTranslationAnchor MGLIconTranslationAnchorValue { get; }
+
+        // +(instancetype _Nonnull)valueWithMGLTextTranslationAnchor:(MGLTextTranslationAnchor)textTranslationAnchor;
+        [Static]
+        [Export ("valueWithMGLTextTranslationAnchor:")]
+        NSValue ValueWithMGLTextTranslationAnchor (TextTranslationAnchor textTranslationAnchor);
+
+        // @property (readonly) MGLTextTranslationAnchor MGLTextTranslationAnchorValue;
+		[Static]
+		[Export ("MGLTextTranslationAnchorValue")]
+        TextTranslationAnchor MGLTextTranslationAnchorValue { get; }
+    }
+
+    // @interface RasterStyleLayer : MGLForegroundStyleLayer
+	[BaseType(typeof(ForegroundStyleLayer), Name = "MGLRasterStyleLayer")]
+    interface RasterStyleLayer
+    {
+        // @property (nonatomic) MGLStyleValue<NSNumber *> * _Null_unspecified maximumRasterBrightness;
+        [Export ("maximumRasterBrightness", ArgumentSemantic.Assign)]
+        StyleValue MaximumRasterBrightness { get; set; }
+
+        // @property (nonatomic) MGLTransition maximumRasterBrightnessTransition;
+        [Export ("maximumRasterBrightnessTransition", ArgumentSemantic.Assign)]
+        Transition MaximumRasterBrightnessTransition { get; set; }
+
+        // @property (nonatomic) MGLStyleValue<NSNumber *> * _Null_unspecified minimumRasterBrightness;
+        [Export ("minimumRasterBrightness", ArgumentSemantic.Assign)]
+        StyleValue MinimumRasterBrightness { get; set; }
+
+        // @property (nonatomic) MGLTransition minimumRasterBrightnessTransition;
+        [Export ("minimumRasterBrightnessTransition", ArgumentSemantic.Assign)]
+        Transition MinimumRasterBrightnessTransition { get; set; }
+
+        // @property (nonatomic) MGLStyleValue<NSNumber *> * _Null_unspecified rasterContrast;
+        [Export ("rasterContrast", ArgumentSemantic.Assign)]
+        StyleValue RasterContrast { get; set; }
+
+        // @property (nonatomic) MGLTransition rasterContrastTransition;
+        [Export ("rasterContrastTransition", ArgumentSemantic.Assign)]
+        Transition RasterContrastTransition { get; set; }
+
+        // @property (nonatomic) MGLStyleValue<NSNumber *> * _Null_unspecified rasterFadeDuration;
+        [Export ("rasterFadeDuration", ArgumentSemantic.Assign)]
+        StyleValue RasterFadeDuration { get; set; }
+
+        // @property (nonatomic) MGLTransition rasterFadeDurationTransition;
+        [Export ("rasterFadeDurationTransition", ArgumentSemantic.Assign)]
+        Transition RasterFadeDurationTransition { get; set; }
+
+        // @property (nonatomic) MGLStyleValue<NSNumber *> * _Null_unspecified rasterHueRotation;
+        [Export ("rasterHueRotation", ArgumentSemantic.Assign)]
+        StyleValue RasterHueRotation { get; set; }
+
+        // @property (nonatomic) MGLTransition rasterHueRotationTransition;
+        [Export ("rasterHueRotationTransition", ArgumentSemantic.Assign)]
+        Transition RasterHueRotationTransition { get; set; }
+
+        // @property (nonatomic) MGLStyleValue<NSNumber *> * _Null_unspecified rasterOpacity;
+        [Export ("rasterOpacity", ArgumentSemantic.Assign)]
+        StyleValue RasterOpacity { get; set; }
+
+        // @property (nonatomic) MGLTransition rasterOpacityTransition;
+        [Export ("rasterOpacityTransition", ArgumentSemantic.Assign)]
+        Transition RasterOpacityTransition { get; set; }
+
+        // @property (nonatomic) MGLStyleValue<NSNumber *> * _Null_unspecified rasterSaturation;
+        [Export ("rasterSaturation", ArgumentSemantic.Assign)]
+        StyleValue RasterSaturation { get; set; }
+
+        // @property (nonatomic) MGLTransition rasterSaturationTransition;
+        [Export ("rasterSaturationTransition", ArgumentSemantic.Assign)]
+        Transition RasterSaturationTransition { get; set; }
+    }
+
+    // @interface CircleStyleLayer : MGLVectorStyleLayer
+	[BaseType(typeof(VectorStyleLayer), Name = "MGLCircleStyleLayer")]
+    interface CircleStyleLayer
+    {
+        // @property (nonatomic) MGLStyleValue<NSNumber *> * _Null_unspecified circleBlur;
+        [Export ("circleBlur", ArgumentSemantic.Assign)]
+        StyleValue CircleBlur { get; set; }
+
+        // @property (nonatomic) MGLTransition circleBlurTransition;
+        [Export ("circleBlurTransition", ArgumentSemantic.Assign)]
+        Transition CircleBlurTransition { get; set; }
+
+        // @property (nonatomic) MGLStyleValue<UIColor *> * _Null_unspecified circleColor;
+        [Export ("circleColor", ArgumentSemantic.Assign)]
+        StyleValue CircleColor { get; set; }
+
+        // @property (nonatomic) MGLTransition circleColorTransition;
+        [Export ("circleColorTransition", ArgumentSemantic.Assign)]
+        Transition CircleColorTransition { get; set; }
+
+        // @property (nonatomic) MGLStyleValue<NSNumber *> * _Null_unspecified circleOpacity;
+        [Export ("circleOpacity", ArgumentSemantic.Assign)]
+        StyleValue CircleOpacity { get; set; }
+
+        // @property (nonatomic) MGLTransition circleOpacityTransition;
+        [Export ("circleOpacityTransition", ArgumentSemantic.Assign)]
+        Transition CircleOpacityTransition { get; set; }
+
+        // @property (nonatomic) MGLStyleValue<NSNumber *> * _Null_unspecified circleRadius;
+        [Export ("circleRadius", ArgumentSemantic.Assign)]
+        StyleValue CircleRadius { get; set; }
+
+        // @property (nonatomic) MGLTransition circleRadiusTransition;
+        [Export ("circleRadiusTransition", ArgumentSemantic.Assign)]
+        Transition CircleRadiusTransition { get; set; }
+
+        // @property (nonatomic) MGLStyleValue<NSValue *> * _Null_unspecified circleScaleAlignment;
+        [Export ("circleScaleAlignment", ArgumentSemantic.Assign)]
+        StyleValue CircleScaleAlignment { get; set; }
+
+        // @property (nonatomic) MGLStyleValue<UIColor *> * _Null_unspecified circleStrokeColor;
+        [Export ("circleStrokeColor", ArgumentSemantic.Assign)]
+        StyleValue CircleStrokeColor { get; set; }
+
+        // @property (nonatomic) MGLTransition circleStrokeColorTransition;
+        [Export ("circleStrokeColorTransition", ArgumentSemantic.Assign)]
+        Transition CircleStrokeColorTransition { get; set; }
+
+        // @property (nonatomic) MGLStyleValue<NSNumber *> * _Null_unspecified circleStrokeOpacity;
+        [Export ("circleStrokeOpacity", ArgumentSemantic.Assign)]
+        StyleValue CircleStrokeOpacity { get; set; }
+
+        // @property (nonatomic) MGLTransition circleStrokeOpacityTransition;
+        [Export ("circleStrokeOpacityTransition", ArgumentSemantic.Assign)]
+        Transition CircleStrokeOpacityTransition { get; set; }
+
+        // @property (nonatomic) MGLStyleValue<NSNumber *> * _Null_unspecified circleStrokeWidth;
+        [Export ("circleStrokeWidth", ArgumentSemantic.Assign)]
+        StyleValue CircleStrokeWidth { get; set; }
+
+        // @property (nonatomic) MGLTransition circleStrokeWidthTransition;
+        [Export ("circleStrokeWidthTransition", ArgumentSemantic.Assign)]
+        Transition CircleStrokeWidthTransition { get; set; }
+
+        // @property (nonatomic) MGLStyleValue<NSValue *> * _Null_unspecified circleTranslation;
+        [Export ("circleTranslation", ArgumentSemantic.Assign)]
+        StyleValue CircleTranslation { get; set; }
+
+        // @property (nonatomic) MGLTransition circleTranslationTransition;
+        [Export ("circleTranslationTransition", ArgumentSemantic.Assign)]
+        Transition CircleTranslationTransition { get; set; }
+
+        // @property (nonatomic) MGLStyleValue<NSValue *> * _Null_unspecified circleTranslationAnchor;
+        [Export ("circleTranslationAnchor", ArgumentSemantic.Assign)]
+        StyleValue CircleTranslationAnchor { get; set; }
+    }
 
     // @interface MGLCustomStyleLayerAdditions (MGLMapView)
     [Category]
-    [BaseType (typeof (MapView))]
-    interface MGLMapView_MGLCustomStyleLayerAdditions
+    [BaseType (typeof(NSValue))]
+    interface NSValue_MGLCircleStyleLayerAdditions
     {
-        // -(void)insertCustomStyleLayerWithIdentifier:(NSString * _Nonnull)identifier preparationHandler:(MGLCustomStyleLayerPreparationHandler _Nonnull)preparation drawingHandler:(MGLCustomStyleLayerDrawingHandler _Nonnull)drawing completionHandler:(MGLCustomStyleLayerCompletionHandler _Nonnull)completion belowStyleLayerWithIdentifier:(NSString * _Nullable)otherIdentifier;
-        [Export ("insertCustomStyleLayerWithIdentifier:preparationHandler:drawingHandler:completionHandler:belowStyleLayerWithIdentifier:")]
-        void InsertCustomStyleLayerWithIdentifier (string identifier, CustomStyleLayerPreparationHandler preparation, CustomStyleLayerDrawingHandler drawing, CustomStyleLayerCompletionHandler completion, [NullAllowed] string otherIdentifier);
+        // +(instancetype _Nonnull)valueWithMGLCircleScaleAlignment:(MGLCircleScaleAlignment)circleScaleAlignment;
+        [Static]
+        [Export ("valueWithMGLCircleScaleAlignment:")]
+        NSValue ValueWithMGLCircleScaleAlignment (CircleScaleAlignment circleScaleAlignment);
 
-        // -(void)removeCustomStyleLayerWithIdentifier:(NSString * _Nonnull)identifier;
-        [Export ("removeCustomStyleLayerWithIdentifier:")]
-        void RemoveCustomStyleLayerWithIdentifier (string identifier);
+        // @property (readonly) MGLCircleScaleAlignment MGLCircleScaleAlignmentValue;
+		[Static]
+		[Export ("MGLCircleScaleAlignmentValue")]
+        CircleScaleAlignment MGLCircleScaleAlignmentValue { get; }
 
-        // -(void)setCustomStyleLayersNeedDisplay;
-        [Export ("setCustomStyleLayersNeedDisplay")]
-        void SetCustomStyleLayersNeedDisplay ();
+        // +(instancetype _Nonnull)valueWithMGLCircleTranslationAnchor:(MGLCircleTranslationAnchor)circleTranslationAnchor;
+        [Static]
+        [Export ("valueWithMGLCircleTranslationAnchor:")]
+        NSValue ValueWithMGLCircleTranslationAnchor (CircleTranslationAnchor circleTranslationAnchor);
+
+        // @property (readonly) MGLCircleTranslationAnchor MGLCircleTranslationAnchorValue;
+		[Static]
+		[Export ("MGLCircleTranslationAnchorValue")]
+        CircleTranslationAnchor MGLCircleTranslationAnchorValue { get; }
     }
+
+    // @interface BackgroundStyleLayer : MGLStyleLayer
+	[BaseType(typeof(StyleLayer), Name = "MGLBackgroundStyleLayer")]
+    interface BackgroundStyleLayer
+    {
+        // -(instancetype _Nonnull)initWithIdentifier:(NSString * _Nonnull)identifier __attribute__((objc_designated_initializer));
+        [Export ("initWithIdentifier:")]
+        [DesignatedInitializer]
+        IntPtr Constructor (string identifier);
+
+        // @property (nonatomic) MGLStyleValue<UIColor *> * _Null_unspecified backgroundColor;
+        [Export ("backgroundColor", ArgumentSemantic.Assign)]
+        StyleValue BackgroundColor { get; set; }
+
+        // @property (nonatomic) MGLTransition backgroundColorTransition;
+        [Export ("backgroundColorTransition", ArgumentSemantic.Assign)]
+        Transition BackgroundColorTransition { get; set; }
+
+        // @property (nonatomic) MGLStyleValue<NSNumber *> * _Null_unspecified backgroundOpacity;
+        [Export ("backgroundOpacity", ArgumentSemantic.Assign)]
+        StyleValue BackgroundOpacity { get; set; }
+
+        // @property (nonatomic) MGLTransition backgroundOpacityTransition;
+        [Export ("backgroundOpacityTransition", ArgumentSemantic.Assign)]
+        Transition BackgroundOpacityTransition { get; set; }
+
+        // @property (nonatomic) MGLStyleValue<NSString *> * _Null_unspecified backgroundPattern;
+        [Export ("backgroundPattern", ArgumentSemantic.Assign)]
+        StyleValue BackgroundPattern { get; set; }
+
+        // @property (nonatomic) MGLTransition backgroundPatternTransition;
+        [Export ("backgroundPatternTransition", ArgumentSemantic.Assign)]
+        Transition BackgroundPatternTransition { get; set; }
+    }
+
+    // @interface OpenGLStyleLayer : MGLStyleLayer
+	[BaseType(typeof(StyleLayer), Name = "MGLOpenGLStyleLayer")]
+    interface OpenGLStyleLayer
+    {
+        // @property (readonly, nonatomic, weak) MGLMapView * _Nullable mapView;
+        [NullAllowed, Export ("mapView", ArgumentSemantic.Weak)]
+        MapView MapView { get; }
+
+        // -(void)didMoveToMapView:(MGLMapView * _Nonnull)mapView;
+        [Export ("didMoveToMapView:")]
+        void DidMoveToMapView (MapView mapView);
+
+        // -(void)willMoveFromMapView:(MGLMapView * _Nonnull)mapView;
+        [Export ("willMoveFromMapView:")]
+        void WillMoveFromMapView (MapView mapView);
+
+        // -(void)drawInMapView:(MGLMapView * _Nonnull)mapView withContext:(MGLStyleLayerDrawingContext)context;
+        [Export ("drawInMapView:withContext:")]
+        void DrawInMapView (MapView mapView, StyleLayerDrawingContext context);
+
+        // -(void)setNeedsDisplay;
+        [Export ("setNeedsDisplay")]
+        void SetNeedsDisplay ();
+    }
+
+    // @interface Source : NSObject
+    [BaseType (typeof(NSObject))]
+    [DisableDefaultCtor]
+    interface Source
+    {
+        // -(instancetype _Nonnull)initWithIdentifier:(NSString * _Nonnull)identifier;
+        [Export ("initWithIdentifier:")]
+        IntPtr Constructor (string identifier);
+
+        // @property (copy, nonatomic) NSString * _Nonnull identifier;
+        [Export ("identifier")]
+        string Identifier { get; set; }
+    }
+
+    [Static]
+    ////[Verify (ConstantsInterfaceAssociation)]
+    partial interface TileSourceOptionConstants
+    {
+        // extern const MGLTileSourceOption _Nonnull MGLTileSourceOptionMinimumZoomLevel __attribute__((visibility("default")));
+        [Field ("MGLTileSourceOptionMinimumZoomLevel", "__Internal")]
+        NSString MinimumZoomLevel { get; }
+
+        // extern const MGLTileSourceOption _Nonnull MGLTileSourceOptionMaximumZoomLevel __attribute__((visibility("default")));
+        [Field ("MGLTileSourceOptionMaximumZoomLevel", "__Internal")]
+        NSString MaximumZoomLevel { get; }
+
+        // extern const MGLTileSourceOption _Nonnull MGLTileSourceOptionAttributionHTMLString __attribute__((visibility("default")));
+        [Field ("MGLTileSourceOptionAttributionHTMLString", "__Internal")]
+        NSString AttributionHTMLString { get; }
+
+        // extern const MGLTileSourceOption _Nonnull MGLTileSourceOptionAttributionInfos __attribute__((visibility("default")));
+        [Field ("MGLTileSourceOptionAttributionInfos", "__Internal")]
+        NSString AttributionInfos { get; }
+
+        // extern const MGLTileSourceOption _Nonnull MGLTileSourceOptionTileCoordinateSystem __attribute__((visibility("default")));
+        [Field ("MGLTileSourceOptionTileCoordinateSystem", "__Internal")]
+        NSString TileCoordinateSystem { get; }
+
+		// extern const MGLTileSourceOption _Nonnull MGLTileSourceOptionTileSize __attribute__((visibility("default")));
+		[Field("MGLTileSourceOptionTileSize", "__Internal")]
+		NSString TileSize { get; }
+    }
+
+    // @interface TileSource : MGLSource
+	[BaseType(typeof(Source), Name = "MGLTileSource")]
+    [DisableDefaultCtor]
+    interface TileSource
+    {
+        // -(instancetype _Nonnull)initWithIdentifier:(NSString * _Nonnull)identifier configurationURL:(NSURL * _Nonnull)configurationURL;
+        [Export ("initWithIdentifier:configurationURL:")]
+        IntPtr Constructor (string identifier, NSUrl configurationURL);
+
+        // -(instancetype _Nonnull)initWithIdentifier:(NSString * _Nonnull)identifier tileURLTemplates:(NSArray<NSString *> * _Nonnull)tileURLTemplates options:(NSDictionary<MGLTileSourceOption,id> * _Nullable)options;
+        [Export ("initWithIdentifier:tileURLTemplates:options:")]
+        IntPtr Constructor (string identifier, string[] tileURLTemplates, [NullAllowed] NSDictionary<NSString, NSObject> options);
+
+        // @property (readonly, copy, nonatomic) NSURL * _Nullable configurationURL;
+        [NullAllowed, Export ("configurationURL", ArgumentSemantic.Copy)]
+        NSUrl ConfigurationURL { get; }
+
+        // @property (readonly, copy, nonatomic) NSArray<MGLAttributionInfo *> * _Nonnull attributionInfos;
+        [Export ("attributionInfos", ArgumentSemantic.Copy)]
+        AttributionInfo[] AttributionInfos { get; }
+    }
+
+    // @interface VectorSource : MGLTileSource
+    [BaseType (typeof(TileSource), Name = "MGLVectorSource")]
+    interface VectorSource
+    {
+        // -(instancetype _Nonnull)initWithIdentifier:(NSString * _Nonnull)identifier configurationURL:(NSURL * _Nonnull)configurationURL __attribute__((objc_designated_initializer));
+        [Export ("initWithIdentifier:configurationURL:")]
+        [DesignatedInitializer]
+        IntPtr Constructor (string identifier, NSUrl configurationURL);
+
+        // -(instancetype _Nonnull)initWithIdentifier:(NSString * _Nonnull)identifier tileURLTemplates:(NSArray<NSString *> * _Nonnull)tileURLTemplates options:(NSDictionary<MGLTileSourceOption,id> * _Nullable)options __attribute__((objc_designated_initializer));
+        [Export ("initWithIdentifier:tileURLTemplates:options:")]
+        [DesignatedInitializer]
+        IntPtr Constructor (string identifier, string[] tileURLTemplates, [NullAllowed] NSDictionary<NSString, NSObject> options);
+
+        // -(NSArray<id<MGLFeature>> * _Nonnull)featuresInSourceLayersWithIdentifiers:(NSSet<NSString *> * _Nonnull)sourceLayerIdentifiers predicate:(NSPredicate * _Nullable)predicate;
+        [Export ("featuresInSourceLayersWithIdentifiers:predicate:")]
+        IFeature[] FeaturesInSourceLayersWithIdentifiers (NSSet<NSString> sourceLayerIdentifiers, [NullAllowed] NSPredicate predicate);
+    }
+
+    [Static]
+    //[Verify (ConstantsInterfaceAssociation)]
+    partial interface MGLShapeSourceOptionConstants
+    {
+        // extern const MGLShapeSourceOption _Nonnull MGLShapeSourceOptionClustered __attribute__((visibility("default")));
+        [Field ("MGLShapeSourceOptionClustered", "__Internal")]
+        NSString Clustered { get; }
+
+        // extern const MGLShapeSourceOption _Nonnull MGLShapeSourceOptionClusterRadius __attribute__((visibility("default")));
+        [Field ("MGLShapeSourceOptionClusterRadius", "__Internal")]
+        NSString ClusterRadius { get; }
+
+        // extern const MGLShapeSourceOption _Nonnull MGLShapeSourceOptionMaximumZoomLevelForClustering __attribute__((visibility("default")));
+        [Field ("MGLShapeSourceOptionMaximumZoomLevelForClustering", "__Internal")]
+        NSString MaximumZoomLevelForClustering { get; }
+
+        // extern const MGLShapeSourceOption _Nonnull MGLShapeSourceOptionMaximumZoomLevel __attribute__((visibility("default")));
+        [Field ("MGLShapeSourceOptionMaximumZoomLevel", "__Internal")]
+        NSString MaximumZoomLevel { get; }
+
+        // extern const MGLShapeSourceOption _Nonnull MGLShapeSourceOptionBuffer __attribute__((visibility("default")));
+        [Field ("MGLShapeSourceOptionBuffer", "__Internal")]
+        NSString Buffer { get; }
+
+        // extern const MGLShapeSourceOption _Nonnull MGLShapeSourceOptionSimplificationTolerance __attribute__((visibility("default")));
+        [Field ("MGLShapeSourceOptionSimplificationTolerance", "__Internal")]
+        NSString SimplificationTolerance { get; }
+    }
+
+    // @interface ShapeSource : MGLSource
+    [BaseType (typeof(Source), Name = "MGLShapeSource")]
+    interface ShapeSource
+    {
+        // -(instancetype _Nonnull)initWithIdentifier:(NSString * _Nonnull)identifier URL:(NSURL * _Nonnull)url options:(NSDictionary<MGLShapeSourceOption,id> * _Nullable)options __attribute__((objc_designated_initializer));
+        [Export ("initWithIdentifier:URL:options:")]
+        [DesignatedInitializer]
+        IntPtr Constructor (string identifier, NSUrl url, [NullAllowed] NSDictionary<NSString, NSObject> options);
+
+        // -(instancetype _Nonnull)initWithIdentifier:(NSString * _Nonnull)identifier shape:(MGLShape * _Nullable)shape options:(NSDictionary<MGLShapeSourceOption,id> * _Nullable)options __attribute__((objc_designated_initializer));
+        [Export ("initWithIdentifier:shape:options:")]
+        [DesignatedInitializer]
+        IntPtr Constructor (string identifier, [NullAllowed] Shape shape, [NullAllowed] NSDictionary<NSString, NSObject> options);
+
+        // -(instancetype _Nonnull)initWithIdentifier:(NSString * _Nonnull)identifier features:(NSArray<MGLShape<MGLFeature> *> * _Nonnull)features options:(NSDictionary<MGLShapeSourceOption,id> * _Nullable)options;
+        [Export ("initWithIdentifier:features:options:")]
+        IntPtr Constructor (string identifier, IFeature[] features, [NullAllowed] NSDictionary<NSString, NSObject> options);
+
+        // -(instancetype _Nonnull)initWithIdentifier:(NSString * _Nonnull)identifier shapes:(NSArray<MGLShape *> * _Nonnull)shapes options:(NSDictionary<MGLShapeSourceOption,id> * _Nullable)options;
+        [Export ("initWithIdentifier:shapes:options:")]
+        IntPtr Constructor (string identifier, Shape[] shapes, [NullAllowed] NSDictionary<NSString, NSObject> options);
+
+        // @property (copy, nonatomic) MGLShape * _Nullable shape;
+        [NullAllowed, Export ("shape", ArgumentSemantic.Copy)]
+        Shape Shape { get; set; }
+
+        // @property (copy, nonatomic) NSURL * _Nullable URL;
+        [NullAllowed, Export ("URL", ArgumentSemantic.Copy)]
+        NSUrl URL { get; set; }
+
+        // -(NSArray<id<MGLFeature>> * _Nonnull)featuresMatchingPredicate:(NSPredicate * _Nullable)predicate;
+        [Export ("featuresMatchingPredicate:")]
+        IFeature[] FeaturesMatchingPredicate ([NullAllowed] NSPredicate predicate);
+    }
+
+    // @interface RasterSource : MGLTileSource
+    [BaseType (typeof(TileSource), Name = "MGLRasterSource")]
+    interface RasterSource
+    {
+        // -(instancetype _Nonnull)initWithIdentifier:(NSString * _Nonnull)identifier configurationURL:(NSURL * _Nonnull)configurationURL;
+        [Export ("initWithIdentifier:configurationURL:")]
+        IntPtr Constructor (string identifier, NSUrl configurationURL);
+
+        // -(instancetype _Nonnull)initWithIdentifier:(NSString * _Nonnull)identifier configurationURL:(NSURL * _Nonnull)configurationURL tileSize:(CGFloat)tileSize __attribute__((objc_designated_initializer));
+        [Export ("initWithIdentifier:configurationURL:tileSize:")]
+        [DesignatedInitializer]
+        IntPtr Constructor (string identifier, NSUrl configurationURL, nfloat tileSize);
+
+        // -(instancetype _Nonnull)initWithIdentifier:(NSString * _Nonnull)identifier tileURLTemplates:(NSArray<NSString *> * _Nonnull)tileURLTemplates options:(NSDictionary<MGLTileSourceOption,id> * _Nullable)options __attribute__((objc_designated_initializer));
+        [Export ("initWithIdentifier:tileURLTemplates:options:")]
+        [DesignatedInitializer]
+        IntPtr Constructor (string identifier, string[] tileURLTemplates, [NullAllowed] NSDictionary<NSString, NSObject> options);
+    }
+
+    // @interface UserLocationAnnotationView : MGLAnnotationView
+    [BaseType (typeof(AnnotationView), Name = "MGLUserLocationAnnotationView")]
+    interface UserLocationAnnotationView
+    {
+        // @property (readonly, nonatomic, weak) MGLMapView * _Nullable mapView;
+        [NullAllowed, Export ("mapView", ArgumentSemantic.Weak)]
+        MapView MapView { get; }
+
+        // @property (readonly, nonatomic, weak) MGLUserLocation * _Nullable userLocation;
+        [NullAllowed, Export ("userLocation", ArgumentSemantic.Weak)]
+        UserLocation UserLocation { get; }
+
+        // @property (readonly, nonatomic, weak) CALayer * _Nullable hitTestLayer;
+        [NullAllowed, Export ("hitTestLayer", ArgumentSemantic.Weak)]
+        CALayer HitTestLayer { get; }
+
+        // -(void)update;
+        [Export ("update")]
+        void Update ();
+    }
+
+    // @interface AttributionInfo : NSObject
+    [BaseType (typeof(NSObject))]
+    interface AttributionInfo
+    {
+        // -(instancetype _Nonnull)initWithTitle:(NSAttributedString * _Nonnull)title URL:(NSURL * _Nullable)URL;
+        [Export ("initWithTitle:URL:")]
+        IntPtr Constructor (NSAttributedString title, [NullAllowed] NSUrl URL);
+
+        // @property (nonatomic) NSAttributedString * _Nonnull title;
+        [Export ("title", ArgumentSemantic.Assign)]
+        NSAttributedString Title { get; set; }
+
+        // @property (nonatomic) NSURL * _Nullable URL;
+        [NullAllowed, Export ("URL", ArgumentSemantic.Assign)]
+        NSUrl URL { get; set; }
+
+        // @property (getter = isFeedbackLink, nonatomic) BOOL feedbackLink;
+        [Export ("feedbackLink")]
+        bool FeedbackLink { [Bind ("isFeedbackLink")] get; set; }
+
+        // -(NSURL * _Nullable)feedbackURLAtCenterCoordinate:(CLLocationCoordinate2D)centerCoordinate zoomLevel:(double)zoomLevel;
+        [Export ("feedbackURLAtCenterCoordinate:zoomLevel:")]
+        [return: NullAllowed]
+        NSUrl FeedbackURLAtCenterCoordinate (CLLocationCoordinate2D centerCoordinate, double zoomLevel);
+    }
+
 
 }
