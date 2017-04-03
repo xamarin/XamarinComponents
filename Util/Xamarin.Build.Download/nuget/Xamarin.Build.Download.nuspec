@@ -7,7 +7,7 @@
     <authors>Xamarin Inc.</authors>
     <owners>Xamarin Inc.</owners>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
-    <description>Support for downloading and unpacking archives at when building MSBuild projects</description>
+    <description>Support for downloading and unpacking archives when building MSBuild projects</description>
     <copyright>Copyright 2016</copyright>
   </metadata>
   <files>
