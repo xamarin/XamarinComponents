@@ -198,7 +198,8 @@ namespace Mapbox
 
 
     // @interface MGLMapView : UIView
-    [BaseType (typeof (UIView), Name = "MGLMapView")]
+    [BaseType (typeof (UIView), Name = "MGLMapView",
+	 Delegates = new string[] { "WeakDelegate" })]
     interface MapView
     {
         // -(instancetype _Nonnull)initWithFrame:(CGRect)frame;
@@ -209,17 +210,17 @@ namespace Mapbox
         [Export ("initWithFrame:styleURL:")]
         IntPtr Constructor (CGRect frame, [NullAllowed] NSUrl styleURL);
 
-        // @property (nonatomic, weak) id<MGLMapViewDelegate> _Nullable delegate __attribute__((iboutlet));
-        [NullAllowed, Export("delegate", ArgumentSemantic.Weak)]
-        IMapViewDelegate Delegate { get; set; }
-
-        //[Wrap ("WeakDelegate")]
-        //[NullAllowed]
+        //// @property (nonatomic, weak) id<MGLMapViewDelegate> _Nullable delegate __attribute__((iboutlet));
+        //[NullAllowed, Export("delegate", ArgumentSemantic.Weak)]
         //IMapViewDelegate Delegate { get; set; }
 
-        //// @property (nonatomic, weak) id<MGLMapViewDelegate> _Nullable delegate __attribute__((iboutlet));
-        //[NullAllowed, Export ("delegate", ArgumentSemantic.Weak)]
-        //NSObject WeakDelegate { get; set; }
+        [Wrap ("WeakDelegate")]
+        [NullAllowed]
+        MapViewDelegate Delegate { get; set; }
+
+        // @property (nonatomic, weak) id<MGLMapViewDelegate> _Nullable delegate __attribute__((iboutlet));
+        [NullAllowed, Export ("delegate", ArgumentSemantic.Weak)]
+        NSObject WeakDelegate { get; set; }
 
         // @property (readonly, nonatomic) MGLStyle * _Nullable style;
         [NullAllowed, Export ("style")]
@@ -744,7 +745,7 @@ namespace Mapbox
         void DidDeselectAnnotationView (MapView mapView, AnnotationView annotationView);
 
         // @optional -(BOOL)mapView:(MGLMapView * _Nonnull)mapView annotationCanShowCallout:(id<MGLAnnotation> _Nonnull)annotation;
-        [Export ("mapView:annotationCanShowCallout:")]
+		[Export ("mapView:annotationCanShowCallout:"), DelegateName("CanShowCallout"), DefaultValue(null)]
         bool CanShowCallout (MapView mapView, IAnnotation annotation);
 
         // @optional -(UIView<MGLCalloutView> * _Nullable)mapView:(MGLMapView * _Nonnull)mapView calloutViewForAnnotation:(id<MGLAnnotation> _Nonnull)annotation;
@@ -763,7 +764,7 @@ namespace Mapbox
         UIView RightCalloutAccessoryView (MapView mapView, IAnnotation annotation);
 
         // @optional -(void)mapView:(MGLMapView * _Nonnull)mapView annotation:(id<MGLAnnotation> _Nonnull)annotation calloutAccessoryControlTapped:(UIControl * _Nonnull)control;
-        [Export ("mapView:annotation:calloutAccessoryControlTapped:")]
+        [Export ("mapView:annotation:calloutAccessoryControlTapped:"), EventArgs("UIControlTapped")]
         void CalloutAccessoryControlTapped (MapView mapView, IAnnotation annotation, UIControl control);
 
         // @optional -(void)mapView:(MGLMapView * _Nonnull)mapView tapOnCalloutForAnnotation:(id<MGLAnnotation> _Nonnull)annotation;
@@ -779,19 +780,19 @@ namespace Mapbox
         [Static]
         [Export ("shapeWithData:encoding:error:")]
         [return: NullAllowed]
-        Shape ShapeWithData (NSData data, nuint encoding, [NullAllowed] out NSError outError);
+        Shape ShapeWithData (NSData data, NSStringEncoding encoding, [NullAllowed] out NSError outError);
 
         // @property (copy, nonatomic) NSString * _Nullable title;
-        [NullAllowed, Export ("title")]
-        string Title { get; set; }
+        //[NullAllowed, Export ("title")]
+        //string Title { get; set; }
 
         // @property (copy, nonatomic) NSString * _Nullable subtitle;
-        [NullAllowed, Export ("subtitle")]
-        string Subtitle { get; set; }
+        //[NullAllowed, Export ("subtitle")]
+        //string Subtitle { get; set; }
 
         // -(NSData * _Nonnull)geoJSONDataUsingEncoding:(NSStringEncoding)encoding;
         [Export ("geoJSONDataUsingEncoding:")]
-        NSData GeoJSONDataUsingEncoding (nuint encoding);
+        NSData GeoJSONDataUsingEncoding (NSStringEncoding encoding);
     }
 
     // @interface DistanceFormatter : NSLengthFormatter
@@ -857,8 +858,8 @@ namespace Mapbox
 
     // @protocol MGLOverlay <MGLAnnotation>
     [Protocol, Model]
-    [BaseType (typeof (Annotation), Name = "MGLOverlay")]
-    interface Overlay
+	[BaseType (typeof (NSObject), Name = "MGLOverlay")]
+    interface Overlay : Annotation
     {
         // @required @property (readonly, nonatomic) CLLocationCoordinate2D coordinate;
         //[Abstract]
@@ -878,11 +879,11 @@ namespace Mapbox
 
     // @interface MGLPointAnnotation : MGLShape
     [BaseType (typeof (Shape), Name = "MGLPointAnnotation")]
-    interface PointAnnotation
+	interface PointAnnotation : Shape
     {
         // @property (assign, nonatomic) CLLocationCoordinate2D coordinate;
-        [Export ("coordinate", ArgumentSemantic.Assign)]
-        CLLocationCoordinate2D Coordinate { get; set; }
+        //[Export ("coordinate", ArgumentSemantic.Assign)]
+        //CLLocationCoordinate2D Coordinate { get; set; }
     }
 
     // @interface MGLPolygon : MGLMultiPoint <MGLOverlay>
@@ -959,12 +960,12 @@ namespace Mapbox
         CLHeading Heading { get; }
 
         // @property (copy, nonatomic) NSString * _Nonnull title;
-        [Export ("title")]
-        string Title { get; set; }
+        //[Export ("title")]
+        //string Title { get; set; }
 
         // @property (copy, nonatomic) NSString * _Nullable subtitle;
-        [NullAllowed, Export ("subtitle")]
-        string Subtitle { get; set; }
+        //[NullAllowed, Export ("subtitle")]
+        //string Subtitle { get; set; }
     }
 
     // @interface MGLMapCamera : NSObject <NSSecureCoding, NSCopying>
@@ -1277,7 +1278,7 @@ namespace Mapbox
     }
 
     // @interface PointCollection : MGLShape <MGLOverlay>
-    [BaseType(typeof(NSObject), Name = "MGLShape")]
+    [BaseType(typeof(Shape), Name = "MGLShape")]
     interface PointCollection : Overlay, Annotation
     {
         // +(instancetype)pointCollectionWithCoordinates:(const CLLocationCoordinate2D *)coords count:(NSUInteger)count;
@@ -1299,7 +1300,7 @@ namespace Mapbox
     }
 
     // @interface ShapeCollection : MGLShape
-    [BaseType(typeof(NSObject), Name = "MGLShape")]
+    [BaseType(typeof(Shape), Name = "MGLShapeCollection")]
     interface ShapeCollection
     {
         // @property (readonly, copy, nonatomic) NSArray<MGLShape *> * _Nonnull shapes;
@@ -1309,7 +1310,7 @@ namespace Mapbox
         // +(instancetype _Nonnull)shapeCollectionWithShapes:(NSArray<MGLShape *> * _Nonnull)shapes;
         [Static]
         [Export ("shapeCollectionWithShapes:")]
-        ShapeCollection ShapeCollectionWithShapes (Shape[] shapes);
+        ShapeCollection WithShapes (Shape[] shapes);
     }
 
     // @interface OfflinePack : NSObject
@@ -1477,53 +1478,58 @@ namespace Mapbox
     }
 
     // @interface MGLPointFeature : MGLPointAnnotation<MGLFeature>
-    [BaseType (typeof (NSObject), Name="MGLPointFeature")]
+    [BaseType (typeof (PointAnnotation), Name="MGLPointFeature")]
     interface PointFeature : Feature
     {
     }
 
     // @interface MGLPolylineFeature : MGLPolyline<MGLFeature>
-    [BaseType (typeof (NSObject), Name = "MGLPolylineFeature")]
+    [BaseType (typeof (Polyline), Name = "MGLPolylineFeature")]
     interface PolylineFeature : Feature
     {
     }
 
     // @interface MGLPolygonFeature : MGLPolygon <MGLFeature>
-    [BaseType (typeof (NSObject), Name = "MGLPolygonFeature")]
+    [BaseType (typeof (Polygon), Name = "MGLPolygonFeature")]
     interface PolygonFeature : Feature
     {
     }
 
     // @interface MGLPointCollectionFeature : MGLPointCollection <MGLFeature>
-    [BaseType(typeof(NSObject), Name = "MGLPointCollectionFeature")]
+    [BaseType(typeof(PointCollection), Name = "MGLPointCollectionFeature")]
     interface PointCollectionFeature : Feature
     {
     }
 
     // @interface MGLMultiPolylineFeature : MGLMultiPolyline <MGLFeature>
-    [BaseType(typeof(NSObject), Name = "MGLMultiPolylineFeature")]
+    [BaseType(typeof(MultiPolyline), Name = "MGLMultiPolylineFeature")]
     interface MultiPolylineFeature : Feature
     {
     }
 
     // @interface MGLMultiPolygonFeature : MGLMultiPolygon <MGLFeature>
-    [BaseType(typeof(NSObject), Name = "MGLMultiPolygonFeature")]
+    [BaseType(typeof(MultiPolygon), Name = "MGLMultiPolygonFeature")]
     interface MultiPolygonFeature : Feature
     {
     }
 
     //@interface MGLShapeCollectionFeature : MGLShapeCollection<MGLFeature>
-    [BaseType(typeof(NSObject), Name = "MGLShapeCollectionFeature")]
+    [BaseType(typeof(ShapeCollection), Name = "MGLShapeCollectionFeature")]
     interface ShapeCollectionFeature : Feature
     {
+		[Static]
+		[Export("shapeWithData:encoding:error:")]
+		[return: NullAllowed]
+		ShapeCollectionFeature ShapeWithData(NSData data, NSStringEncoding encoding, [NullAllowed] out NSError outError);
+
         // @property (readonly, copy, nonatomic) NSArray<MGLShape<MGLFeature> *> * _Nonnull shapes;
         [Export ("shapes", ArgumentSemantic.Copy)]
-        Feature[] Shapes { get; }
+        Shape[] Shapes { get; }
 
         // +(instancetype _Nonnull)shapeCollectionWithShapes:(NSArray<MGLShape<MGLFeature> *> * _Nonnull)shapes;
         [Static]
         [Export ("shapeCollectionWithShapes:")]
-        ShapeCollectionFeature WithShapes (Feature[] shapes);
+		ShapeCollectionFeature WithShapes (Shape[] shapes);
     }
 
     interface IOfflineStorageDelegate { }
@@ -1581,7 +1587,7 @@ namespace Mapbox
     }
 
     // @interface VectorStyleLayer : MGLForegroundStyleLayer
-    [BaseType(typeof(ForegroundStyleLayer), Name = "MGLForegroundStyleLayer")]
+    [BaseType(typeof(ForegroundStyleLayer), Name = "MGLVectorStyleLayer")]
     interface VectorStyleLayer
     {
         // @property (nonatomic) NSString * _Nullable sourceLayerIdentifier;
@@ -1810,6 +1816,11 @@ namespace Mapbox
     [BaseType(typeof(VectorStyleLayer), Name = "MGLFillStyleLayer")]
     interface FillStyleLayer
     {
+		// -(instancetype _Nonnull)initWithIdentifier:(NSString * _Nonnull)identifier source:(MGLSource * _Nonnull)source __attribute__((objc_designated_initializer));
+		[Export("initWithIdentifier:source:")]
+		[DesignatedInitializer]
+		IntPtr Constructor(string identifier, Source source);
+
         // @property (getter = isFillAntialiased, nonatomic) MGLStyleValue<NSNumber *> * _Null_unspecified fillAntialiased;
         [Export ("fillAntialiased", ArgumentSemantic.Assign)]
         StyleValue FillAntialiased { [Bind ("isFillAntialiased")] get; set; }
