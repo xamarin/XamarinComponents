@@ -5,6 +5,8 @@ using System.Collections.Generic;
 using System.IO;
 using System.IO.Compression;
 using System.Linq;
+using System.Xml;
+using System.Xml.Linq;
 using Microsoft.Build.Construction;
 using Microsoft.Build.Evaluation;
 using Microsoft.Build.Execution;
@@ -737,6 +739,92 @@ namespace NativeLibraryDownloaderTests
 			Assert.IsTrue (File.Exists (Path.Combine (intermediateDir, "XbdMerge", "Xamarin.Android.Support.v7.CardView.dll.stamp")));
 
 			Assert.IsTrue (File.GetLastWriteTimeUtc (dll) > originalAsmDate);
+		}
+
+
+		[Test]
+		public void TestAndroidAarManifestFixup ()
+		{
+			var engine = new ProjectCollection ();
+			var prel = ProjectRootElement.Create (Path.Combine (TempDir, "project.csproj"), engine);
+
+			var intermediateDir = Path.Combine (TempDir, "obj");
+
+			var asm = AssemblyDefinition.CreateAssembly (
+				new AssemblyNameDefinition ("Xamarin.GooglePlayServices.Auth", new System.Version (1, 0, 0, 0)),
+				"Main",
+				ModuleKind.Dll
+			);
+			var dll = Path.Combine (TempDir, "Xamarin.GooglePlayServices.Auth.dll");
+			asm.Write (dll);
+			prel.AddItem ("ReferencePath", dll);
+
+			var originalAsmDate = File.GetLastWriteTimeUtc (dll);
+
+
+			var unpackDir = GetTempPath ("unpacked");
+			prel.SetProperty ("XamarinBuildDownloadDir", unpackDir);
+			prel.SetProperty ("TargetFrameworkIdentifier", "MonoAndroid");
+			prel.SetProperty ("TargetFrameworkVersion", "v7.0");
+			prel.SetProperty ("OutputType", "Exe");
+			prel.SetProperty ("IntermediateOutputPath", intermediateDir);
+
+			prel.AddItem (
+				"XamarinBuildDownloadPartialZip", "playservices-10.2.1/playservicesauth", new Dictionary<string, string> {
+					{ "Url", "https://dl-ssl.google.com/android/repository/google_m2repository_gms_v9_1_rc07_wear_2_0_1_rc3.zip" },
+					{ "ToFile", "play-services-auth-10.2.1.aar" },
+					{ "RangeStart", "12694130" },
+					{ "RangeEnd", "12770642" },
+					{ "Md5", "f4d814a0a434c09577a9b5a9d62da1f6" }
+				});
+
+
+			const string resourceName = "__AndroidLibraryProjects__.zip";
+			var aarPath = "$(XamarinBuildDownloadDir)playservices-10.2.1\\playservicesauth\\play-services-auth-10.2.1.aar";
+
+			prel.AddItem (
+				"XamarinBuildDownloadRestoreAssemblyAar",
+				aarPath,
+				new Dictionary<string, string> {
+					{ "AssemblyName", "Xamarin.GooglePlayServices.Auth, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" },
+					{ "LogicalName", resourceName }
+				}
+			);
+
+			AddCoreTargets (prel);
+
+			var project = new ProjectInstance (prel);
+			var log = new MSBuildTestLogger ();
+
+			var success = BuildProject (engine, project, "_XamarinAndroidBuildAarRestore", log);
+
+			Assert.IsTrue (success);
+
+			//check the assembly has the processed resource
+			var processedAsm = AssemblyDefinition.ReadAssembly (dll);
+			var resource = processedAsm.MainModule.Resources.FirstOrDefault () as EmbeddedResource;
+			Assert.NotNull (resource);
+			Assert.AreEqual (resourceName, resource.Name);
+
+			// Check the embedded .aar to see if all the manifest entries were fixed up
+			using (var zip = new ZipArchive (resource.GetResourceStream ())) {
+
+				var manifestEntry = zip.Entries.FirstOrDefault (ze => ze.Name.EndsWith ("AndroidManifest.xml", StringComparison.OrdinalIgnoreCase));
+
+				Assert.IsNotNull (manifestEntry);
+
+				// android: namespace
+				XNamespace xns = "http://schemas.android.com/apk/res/android";
+
+				using (var xmlReader = System.Xml.XmlReader.Create (manifestEntry.Open ())) {
+					var xdoc = XDocument.Load (xmlReader);
+
+					var anyUnfixed = xdoc.Document.Descendants ()
+										.Any (elem => elem.Attribute (xns + "name")?.Value?.StartsWith (".", StringComparison.Ordinal) ?? false);
+
+					Assert.IsFalse (anyUnfixed);
+				}
+			}
 		}
 	}
 }
