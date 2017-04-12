@@ -69,10 +69,6 @@ Browse through the most popular plugins out there today!
 |Vibrate|Vibrate any device.|[NuGet](https://www.nuget.org/packages/Xam.Plugins.Vibrate/)|[GitHub](https://github.com/jamesmontemagno/VibratePlugin)|[@JamesMontemagno](http://www.twitter.com/jamesmontemagno)|
 
 
-### Submit Your Ideas
-We want to hear any and all ideas that you have for potential plugins. Browse through the current issues and see what other developers are interested in or submit your very own. Interested in helping work on a plugin? Simply comment on a plugin that you will start development, create a GitHub repo, and get coding!
-
-
 ### Create a Plugin for Xamarin
 If you are looking to create a plugin be sure to browse through NuGet first and ensure that the plugin doesn't exist. If one does join in on the fun and collaborate. If it doesn't and you want to start building a Plugin here are some tools and guidelines to get you started.
 
