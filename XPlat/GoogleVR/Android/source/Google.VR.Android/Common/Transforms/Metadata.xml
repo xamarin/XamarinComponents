@@ -10,6 +10,14 @@
 	<attr path="/api/package[@name='com.google.vrtoolkit.cardboard']" name="managedName">Google.VRToolkit.Cardboard</attr>
 	<attr path="/api/package[@name='com.google.vrtoolkit.cardboard.proto.nano']" name="managedName">Google.VRToolkit.Cardboard.Proto.Nano</attr>
 
+	<attr path="/api/package[@name='com.google.common.logging.nano']" name="managedName">Google.Common.Logging.Nano</attr>
+	<attr path="/api/package[@name='com.google.protobuf.nano.android']" name="managedName">Google.Protobuf.Nano.Android</attr>
+	<attr path="/api/package[@name='com.google.vr.vrcore.base.api']" name="managedName">Google.VR.Vrcore.Base.Api</attr>
+	<attr path="/api/package[@name='com.google.vr.vrcore.common.api']" name="managedName">Google.VR.Vrcore.Common.Api</attr>
+	<attr path="/api/package[@name='com.google.vr.vrcore.logging.api']" name="managedName">Google.VR.Vrcore.Logging.Api</attr>
+	<attr path="/api/package[@name='com.google.vr.vrcore.performance.api']" name="managedName">Google.VR.Vrcore.Performance.Api</attr>
+	<attr path="/api/package[@name='com.google.vr.vrcore.proto.nano']" name="managedName">Google.VR.Vrcore.Proto.Nano</attr>
+
 	<remove-node path="/api/package[@name='com.google.vr.ndk.base.proto.nano']/class[@name='GvrApiData.RenderTextureParamsListData']" />
 	<remove-node path="/api/package[@name='com.google.vr.ndk.base.proto.nano']/class[@name='GvrApiData.RenderTextureParamsListData.RenderTextureParamsData']" />
 	<remove-node path="/api/package[@name='com.google.vrtoolkit.cardboard.proto.nano']/class[@name='CardboardDevice.CardboardInternalParams']" />
@@ -17,4 +25,62 @@
 
 	<attr path="/api/package[@name='com.google.vrtoolkit.cardboard.proto.nano']/class[@name='CardboardDevice.DeviceParams']/method[@name='mergeFrom' and count(parameter)=1 and parameter[1][@type='com.google.protobuf.nano.CodedInputByteBufferNano']]" name="managedReturn">Google.Protobuf.Nano.MessageNano</attr>
 	<attr path="/api/package[@name='com.google.vrtoolkit.cardboard.proto.nano']/class[@name='Phone.PhoneParams']/method[@name='mergeFrom' and count(parameter)=1 and parameter[1][@type='com.google.protobuf.nano.CodedInputByteBufferNano']]" name="managedReturn">Google.Protobuf.Nano.MessageNano</attr>
+
+<!--	https://bugzilla.xamarin.com/show_bug.cgi?id=43440 Yuck-->
+	<attr path="/api/package[@name='com.google.common.logging.nano']/interface[@name='Vr.VREvent.AudioStats.RenderingMode']"
+		name="managedName">RRenderingMode</attr>
+	<attr path="/api/package[@name='com.google.common.logging.nano']/interface[@name='Vr.VREvent.Cyclops.Capture.Outcome']"
+		name="managedName">OOutcome</attr>
+	<attr path="/api/package[@name='com.google.common.logging.nano']/interface[@name='Vr.VREvent.Cyclops.Share.Type']"
+		name="managedName">TType</attr>
+	<attr path="/api/package[@name='com.google.common.logging.nano']/interface[@name='Vr.VREvent.Cyclops.ShareStart.OriginScreen']"
+		name="managedName">OOriginScreen</attr>
+	<attr path="/api/package[@name='com.google.common.logging.nano']/interface[@name='Vr.VREvent.Cyclops.View.Orientation']"
+		name="managedName">OOrientation</attr>
+	<attr path="/api/package[@name='com.google.common.logging.nano']/interface[@name='Vr.VREvent.EarthVr.ControllerState.Role']"
+		name="managedName">RRole</attr>
+	<attr path="/api/package[@name='com.google.common.logging.nano']/interface[@name='Vr.VREvent.EmbedVrWidget.ViewMode']"
+		name="managedName">VViewMode</attr>
+	<attr path="/api/package[@name='com.google.common.logging.nano']/interface[@name='Vr.VREvent.QrCodeScan.Status']"
+		name="managedName">SStatus</attr>
+	<attr path="/api/package[@name='com.google.common.logging.nano']/interface[@name='Vr.VREvent.VrCore.ErrorCode']"
+		name="managedName">EErrorCode</attr>
+	<attr path="/api/package[@name='com.google.common.logging.nano']/interface[@name='Vr.VREvent.VrCore.Permission']"
+		name="managedName">PPermission</attr>
+	<attr path="/api/package[@name='com.google.protobuf.nano']/interface[@name='DescriptorProtos.FieldDescriptorProto.Label']"
+		name="managedName">LLabel</attr>
+	<attr path="/api/package[@name='com.google.protobuf.nano']/interface[@name='DescriptorProtos.FieldDescriptorProto.Type']"
+		name="managedName">TType</attr>
+	<attr path="/api/package[@name='com.google.protobuf.nano']/interface[@name='DescriptorProtos.MethodOptions.LogLevel']"
+		name="managedName">LLogLevel</attr>
+	<attr path="/api/package[@name='com.google.protobuf.nano']/interface[@name='DescriptorProtos.MethodOptions.Protocol']"
+		name="managedName">PProtocol</attr>
+	<attr path="/api/package[@name='com.google.protobuf.nano']/interface[@name='DescriptorProtos.MethodOptions.SecurityLevel']"
+		name="managedName">SSecurityLevel</attr>
+	<attr path="/api/package[@name='com.google.protobuf.nano']/interface[@name='DescriptorProtos.StreamOptions.TokenUnit']"
+		name="managedName">TTokenUnit</attr>
+	<attr path="/api/package[@name='com.google.protobuf.nano']/class[@name='DescriptorProtos.UninterpretedOption.NamePart']/field[@name='namePart']"
+		name="managedName">NamePartValue</attr>
+
+	<attr path="/api/package[@name='com.google.common.logging.nano']/class/method[@name='mergeFrom' and count(parameter)=1 and parameter[1][@type='com.google.protobuf.nano.CodedInputByteBufferNano']]"
+		name="managedReturn">Google.Protobuf.Nano.MessageNano</attr>
+	<attr path="/api/package[@name='com.google.protobuf.nano']/class/method[@name='mergeFrom' and count(parameter)=1 and parameter[1][@type='com.google.protobuf.nano.CodedInputByteBufferNano']]"
+		name="managedReturn">Google.Protobuf.Nano.MessageNano</attr>
+	<attr path="/api/package[@name='com.google.vrtoolkit.cardboard.proto.nano']/class/method[@name='mergeFrom' and count(parameter)=1 and parameter[1][@type='com.google.protobuf.nano.CodedInputByteBufferNano']]"
+		name="managedReturn">Google.Protobuf.Nano.MessageNano</attr>
+	<attr path="/api/package[@name='com.google.vr.vrcore.proto.nano']/class/method[@name='mergeFrom' and count(parameter)=1 and parameter[1][@type='com.google.protobuf.nano.CodedInputByteBufferNano']]"
+		name="managedReturn">Google.Protobuf.Nano.MessageNano</attr>
+
+	<attr path="/api/package[@name='com.google.protobuf.nano.android']/class[@name='ParcelableMessageNanoCreator']/method[@name='createFromParcel' and count(parameter)=1 and parameter[1][@type='android.os.Parcel']]"
+		name="managedReturn">Java.Lang.Object</attr>
+	<attr path="/api/package[@name='com.google.protobuf.nano.android']/class[@name='ParcelableMessageNanoCreator']/method[@name='newArray' and count(parameter)=1 and parameter[1][@type='int']]"
+		name="managedReturn">Java.Lang.Object[]</attr>
+
+	<!-- We should try to put this back in the future.  There may just be a bug in the jar file with this version.
+	The error this fixes only shows when building the app -->
+	<remove-node path="/api/package[@name='com.google.vr.cardboard']/interface[@name='CardboardGLSurfaceView.DetachListener']" />
+	<remove-node path="/api/package[@name='com.google.vr.cardboard']/interface[@name='TransitionView.TransitionListener']" />
+	<remove-node path="/api/package[@name='com.google.vr.ndk.base']/interface[@name='GvrLayout.PresentationListener']" />
+		
+	
 </metadata>

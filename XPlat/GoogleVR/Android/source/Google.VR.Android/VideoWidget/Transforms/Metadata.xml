@@ -33,6 +33,7 @@
 	<attr path="/api/package[@name='com.google.vr.jump.preview.model']" name="managedName">Google.VR</attr>
 	<attr path="/api/package[@name='com.google.vr.sdk.widgets.video']" name="managedName">Google.VR.SDK.Widgets.Video</attr>
 	<attr path="/api/package[@name='com.google.vr.sdk.widgets.video.nano']" name="managedName">Google.VR.SDK.Widgets.Video.Nano</attr>
+	<attr path="/api/package[@name='com.google.vr.sdk.widgets.video.exoplayer']" name="managedName">Google.VR.Sdk.Widgets.Video.Exoplayer</attr>
 
 	<attr path="/api/package[@name='com.google.android.exoplayer.extractor.webm']/interface[@name='EbmlReaderOutput']" name="visibility">public</attr>
 	<attr path="/api/package[@name='com.google.android.exoplayer.extractor.mp4']/class[@name='DefaultSampleValues']" name="visibility">public</attr>
