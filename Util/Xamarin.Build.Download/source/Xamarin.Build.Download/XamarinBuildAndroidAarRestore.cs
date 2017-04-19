@@ -30,7 +30,7 @@ namespace Xamarin.Build.Download
 					// Calculate the new name with the aar directory prefix
 					var newName = entryName;
 					if (!entryName.StartsWith (AAR_DIR_PREFIX, StringComparison.InvariantCulture))
-						newName = AAR_DIR_PREFIX + Path.DirectorySeparatorChar + newName;
+						newName = AAR_DIR_PREFIX + "/" + newName;
 
 					// Open the old entry
 					var oldEntry = zipArchive.GetEntry (entryName);
