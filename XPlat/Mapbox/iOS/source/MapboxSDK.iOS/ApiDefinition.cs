@@ -211,16 +211,8 @@ namespace Mapbox
         IntPtr Constructor (CGRect frame, [NullAllowed] NSUrl styleURL);
 
         //// @property (nonatomic, weak) id<MGLMapViewDelegate> _Nullable delegate __attribute__((iboutlet));
-        //[NullAllowed, Export("delegate", ArgumentSemantic.Weak)]
-        //IMapViewDelegate Delegate { get; set; }
-
-        [Wrap ("WeakDelegate")]
-        [NullAllowed]
-        MapViewDelegate Delegate { get; set; }
-
-        // @property (nonatomic, weak) id<MGLMapViewDelegate> _Nullable delegate __attribute__((iboutlet));
-        [NullAllowed, Export ("delegate", ArgumentSemantic.Weak)]
-        NSObject WeakDelegate { get; set; }
+        [NullAllowed, Export("delegate", ArgumentSemantic.Weak)]
+        IMapViewDelegate Delegate { get; set; }
 
         // @property (readonly, nonatomic) MGLStyle * _Nullable style;
         [NullAllowed, Export ("style")]
@@ -1355,13 +1347,9 @@ namespace Mapbox
         [Export ("sharedOfflineStorage")]
         OfflineStorage Shared { get; }
 
-        [Wrap ("WeakDelegate")]
-        [NullAllowed]
-        OfflineStorageDelegate Delegate { get; set; }
-
         // @property (nonatomic, weak) id<MGLOfflineStorageDelegate> _Nullable delegate __attribute__((iboutlet));
         [NullAllowed, Export ("delegate", ArgumentSemantic.Weak)]
-        NSObject WeakDelegate { get; set; }
+		IOfflineStorageDelegate Delegate { get; set; }
 
         // @property (readonly, nonatomic, strong) NSArray<MGLOfflinePack *> * _Nullable packs;
         [NullAllowed, Export ("packs", ArgumentSemantic.Strong)]
