@@ -38,6 +38,12 @@ samples:
       - project: DataConverterSample
         packages:
           - Mono.DataConverter
+      - project: DataConverterSample.Droid
+        packages:
+          - Mono.DataConverter
+      - project: DataConverterSample.iOS
+        packages:
+          - Mono.DataConverter
 
 additional-files:
   - source: "../External-Dependency-Info.txt"
