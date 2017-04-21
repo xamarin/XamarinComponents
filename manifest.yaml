@@ -332,6 +332,10 @@
   BuildScript: ./XPlat/Mapbox/build.cake
   TriggerPaths: [ XPlat/Mapbox ]
   MacBuildTargets: [ samples, component ]
+- Name: Mono.Terminal
+  BuildScript: ./XPlat/Mono.Terminal/build.cake
+  TriggerPaths: [ XPlat/Mono.Terminal ]
+  MacBuildTargets: [ component, samples ]
 - Name: Gigya
   BuildScript: ./XPlat/Gigya/build.cake
   TriggerPaths: [ XPlat/Gigya ]
