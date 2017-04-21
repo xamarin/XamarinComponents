@@ -1,0 +1,26 @@
+<?xml version="1.0"?>
+<package>
+  <metadata>
+    <id>Mono.Options</id>
+    <title>Mono.Options</title>
+    <version>5.3.0</version>
+    <authors>Xamarin</authors>
+    <owners>Xamarin</owners>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <summary>A Getopt::Long-inspired option parsing library for C#.</summary>
+    <description>A Getopt::Long-inspired option parsing library for C#.</description>
+    <copyright>Copyright © Xamarin. All Rights Reserved.</copyright>
+    <licenseUrl>https://components.xamarin.com/license/mono.options</licenseUrl>
+    <iconUrl>https://xamarin-component-icons.s3.amazonaws.com/mono.options.png</iconUrl>
+    <projectUrl>https://components.xamarin.com/view/mono.options</projectUrl>
+  </metadata>
+  <files>
+    <file src="output/net4/Mono.Options.dll" target="lib/net4-client/Mono.Options.dll" />
+    <file src="output/netstandard/Mono.Options.dll" target="lib/netstandard1.3/Mono.Options.dll" />
+    <file src="output/pcl/Mono.Options.dll" target="lib/dnxcore/Mono.Options.dll" />
+    <file src="output/pcl/Mono.Options.dll" target="lib/portable-net45+netcore45+wpa81+wp8/Mono.Options.dll" />
+    <file src="output/pcl/Mono.Options.dll" target="lib/portable-net45+netcore45+wpa81+wp8+MonoAndroid+MonoTouch+XamariniOS+Xamarin.Mac/Mono.Options.dll" />
+
+    <file src="External-Dependency-Info.txt" target="THIRD-PARTY-NOTICES.txt" />
+  </files>
+</package>

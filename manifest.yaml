@@ -332,6 +332,10 @@
   BuildScript: ./XPlat/Gigya/build.cake
   TriggerPaths: [ XPlat/Gigya ]
   MacBuildTargets: [ component, samples ]
+- Name: Mono.Options
+  BuildScript: ./XPlat/Mono.Options/build.cake
+  TriggerPaths: [ XPlat/Mono.Options ]
+  MacBuildTargets: [ component, samples ]
 - Name: EstimoteAndroid
   BuildScript: ./XPlat/Estimote/Android/build.cake
   TriggerPaths: [ XPlat/Estimote/Android ]
