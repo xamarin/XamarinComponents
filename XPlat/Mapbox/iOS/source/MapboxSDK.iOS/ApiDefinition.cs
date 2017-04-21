@@ -109,15 +109,15 @@ namespace Mapbox
         // @required @property (readonly, nonatomic) CLLocationCoordinate2D coordinate;
         [Abstract]
         [Export ("coordinate")]
-        CLLocationCoordinate2D Coordinate { get; }
+        CLLocationCoordinate2D Coordinate { get; set; }
 
         // @optional @property (readonly, copy, nonatomic) NSString * _Nullable title;
         [NullAllowed, Export ("title")]
-        string Title { get; }
+		string Title { get; set; }
 
         // @optional @property (readonly, copy, nonatomic) NSString * _Nullable subtitle;
         [NullAllowed, Export ("subtitle")]
-        string Subtitle { get; }
+        string Subtitle { get; set; }
     }
 
     // @interface MGLAnnotationImage : NSObject <NSSecureCoding>
@@ -397,11 +397,11 @@ namespace Mapbox
 
         // -(void)setVisibleCoordinates:(const CLLocationCoordinate2D * _Nonnull)coordinates count:(NSUInteger)count edgePadding:(UIEdgeInsets)insets animated:(BOOL)animated;
         [Export ("setVisibleCoordinates:count:edgePadding:animated:")]
-        unsafe void SetVisibleCoordinates (CLLocationCoordinate2D coordinates, nuint count, UIEdgeInsets insets, bool animated);
+        unsafe void SetVisibleCoordinates (IntPtr coordinates, nuint count, UIEdgeInsets insets, bool animated);
 
         // -(void)setVisibleCoordinates:(const CLLocationCoordinate2D * _Nonnull)coordinates count:(NSUInteger)count edgePadding:(UIEdgeInsets)insets direction:(CLLocationDirection)direction duration:(NSTimeInterval)duration animationTimingFunction:(CAMediaTimingFunction * _Nullable)function completionHandler:(void (^ _Nullable)(void))completion;
         [Export ("setVisibleCoordinates:count:edgePadding:direction:duration:animationTimingFunction:completionHandler:")]
-        unsafe void SetVisibleCoordinates (CLLocationCoordinate2D coordinates, nuint count, UIEdgeInsets insets, double direction, double duration, [NullAllowed] CAMediaTimingFunction function, [NullAllowed] Action completion);
+        unsafe void SetVisibleCoordinates (IntPtr coordinates, nuint count, UIEdgeInsets insets, double direction, double duration, [NullAllowed] CAMediaTimingFunction function, [NullAllowed] Action completion);
 
         // -(void)showAnnotations:(NSArray<id<MGLAnnotation>> * _Nonnull)annotations animated:(BOOL)animated;
         [Export ("showAnnotations:animated:")]
@@ -780,7 +780,7 @@ namespace Mapbox
         [Static]
         [Export ("shapeWithData:encoding:error:")]
         [return: NullAllowed]
-        Shape ShapeWithData (NSData data, NSStringEncoding encoding, [NullAllowed] out NSError outError);
+        Shape WithData (NSData data, NSStringEncoding encoding, [NullAllowed] out NSError outError);
 
         // @property (copy, nonatomic) NSString * _Nullable title;
         //[NullAllowed, Export ("title")]
@@ -796,7 +796,7 @@ namespace Mapbox
     }
 
     // @interface DistanceFormatter : NSLengthFormatter
-    [BaseType (typeof(NSLengthFormatter))]
+    [BaseType (typeof(NSLengthFormatter), Name = "MGLDistanceFormatter")]
     interface DistanceFormatter
     {
         // -(NSString * _Nonnull)stringFromDistance:(CLLocationDistance)distance;
@@ -810,7 +810,7 @@ namespace Mapbox
     {
         // @property (readonly, nonatomic) CLLocationCoordinate2D * _Nonnull coordinates __attribute__((objc_returns_inner_pointer));
         [Export ("coordinates")]
-        unsafe CLLocationCoordinate2D Coordinates { get; }
+        unsafe IntPtr Coordinates { get; }
 
         // @property (readonly, nonatomic) NSUInteger pointCount;
         [Export ("pointCount")]
@@ -818,27 +818,27 @@ namespace Mapbox
 
         // -(void)getCoordinates:(CLLocationCoordinate2D * _Nonnull)coords range:(NSRange)range;
         [Export ("getCoordinates:range:")]
-        unsafe void GetCoordinates (CLLocationCoordinate2D coords, NSRange range);
+        unsafe void GetCoordinates (IntPtr coords, NSRange range);
 
         // -(void)setCoordinates:(CLLocationCoordinate2D * _Nonnull)coords count:(NSUInteger)count;
         [Export ("setCoordinates:count:")]
-        unsafe void SetCoordinates (CLLocationCoordinate2D coords, nuint count);
+        unsafe void SetCoordinates (IntPtr coords, nuint count);
 
         // -(void)insertCoordinates:(const CLLocationCoordinate2D * _Nonnull)coords count:(NSUInteger)count atIndex:(NSUInteger)index;
         [Export ("insertCoordinates:count:atIndex:")]
-        unsafe void InsertCoordinates (CLLocationCoordinate2D coords, nuint count, nuint index);
+        unsafe void InsertCoordinates (IntPtr coords, nuint count, nuint index);
 
         // -(void)appendCoordinates:(const CLLocationCoordinate2D * _Nonnull)coords count:(NSUInteger)count;
         [Export ("appendCoordinates:count:")]
-        unsafe void AppendCoordinates (CLLocationCoordinate2D coords, nuint count);
+        unsafe void AppendCoordinates (IntPtr coords, nuint count);
 
         // -(void)replaceCoordinatesInRange:(NSRange)range withCoordinates:(const CLLocationCoordinate2D * _Nonnull)coords;
         [Export ("replaceCoordinatesInRange:withCoordinates:")]
-        unsafe void ReplaceCoordinatesInRange (NSRange range, CLLocationCoordinate2D coords);
+        unsafe void ReplaceCoordinatesInRange (NSRange range, IntPtr coords);
 
         // -(void)replaceCoordinatesInRange:(NSRange)range withCoordinates:(const CLLocationCoordinate2D * _Nonnull)coords count:(NSUInteger)count;
         [Export ("replaceCoordinatesInRange:withCoordinates:count:")]
-        unsafe void ReplaceCoordinatesInRange (NSRange range, CLLocationCoordinate2D coords, nuint count);
+        unsafe void ReplaceCoordinatesInRange (NSRange range, IntPtr coords, nuint count);
 
         // -(void)removeCoordinatesInRange:(NSRange)range;
         [Export ("removeCoordinatesInRange:")]
@@ -897,12 +897,12 @@ namespace Mapbox
         // +(instancetype _Nonnull)polygonWithCoordinates:(const CLLocationCoordinate2D * _Nonnull)coords count:(NSUInteger)count;
         [Static]
         [Export ("polygonWithCoordinates:count:")]
-        unsafe Polygon WithCoordinates (CLLocationCoordinate2D coords, nuint count);
+        unsafe Polygon WithCoordinates (IntPtr coords, nuint count);
 
         // +(instancetype _Nonnull)polygonWithCoordinates:(const CLLocationCoordinate2D * _Nonnull)coords count:(NSUInteger)count interiorPolygons:(NSArray<MGLPolygon *> * _Nullable)interiorPolygons;
         [Static]
         [Export ("polygonWithCoordinates:count:interiorPolygons:")]
-        unsafe Polygon WithCoordinates (CLLocationCoordinate2D coords, nuint count, [NullAllowed] Polygon[] interiorPolygons);
+        unsafe Polygon WithCoordinates (IntPtr coords, nuint count, [NullAllowed] Polygon[] interiorPolygons);
     }
 
     // @interface MultiPolygon : MGLShape <MGLOverlay>
@@ -926,7 +926,7 @@ namespace Mapbox
         // +(instancetype _Nonnull)polylineWithCoordinates:(const CLLocationCoordinate2D * _Nonnull)coords count:(NSUInteger)count;
         [Static]
         [Export ("polylineWithCoordinates:count:")]
-        unsafe Polyline WithCoordinates (CLLocationCoordinate2D coords, nuint count);
+        unsafe Polyline WithCoordinates (IntPtr coords, nuint count);
     }
 
     // @interface MultiPolyline : MGLShape <MGLOverlay>
@@ -1278,7 +1278,7 @@ namespace Mapbox
     }
 
     // @interface PointCollection : MGLShape <MGLOverlay>
-    [BaseType(typeof(Shape), Name = "MGLShape")]
+    [BaseType(typeof(Shape), Name = "MGLPointCollection")]
     interface PointCollection : Overlay, Annotation
     {
         // +(instancetype)pointCollectionWithCoordinates:(const CLLocationCoordinate2D *)coords count:(NSUInteger)count;
@@ -1288,7 +1288,7 @@ namespace Mapbox
 
         // @property (readonly, nonatomic) CLLocationCoordinate2D * coordinates __attribute__((objc_returns_inner_pointer));
         [Export ("coordinates")]
-        unsafe CLLocationCoordinate2D Coordinates { get; }
+        unsafe IntPtr Coordinates { get; }
 
         // @property (readonly, nonatomic) NSUInteger pointCount;
         [Export ("pointCount")]
@@ -1296,7 +1296,7 @@ namespace Mapbox
 
         // -(void)getCoordinates:(CLLocationCoordinate2D *)coords range:(NSRange)range;
         [Export ("getCoordinates:range:")]
-        unsafe void GetCoordinates (CLLocationCoordinate2D coords, NSRange range);
+        unsafe void GetCoordinates (IntPtr coords, NSRange range);
     }
 
     // @interface ShapeCollection : MGLShape
@@ -1423,7 +1423,7 @@ namespace Mapbox
     }
 
     // @interface CoordinateFormatter : NSFormatter
-    [BaseType (typeof(NSFormatter))]
+    [BaseType (typeof(NSFormatter), Name = "MGLCoordinateFormatter")]
     interface CoordinateFormatter
     {
         // @property (nonatomic) BOOL allowsMinutes;
@@ -1517,11 +1517,6 @@ namespace Mapbox
     [BaseType(typeof(ShapeCollection), Name = "MGLShapeCollectionFeature")]
     interface ShapeCollectionFeature : Feature
     {
-		[Static]
-		[Export("shapeWithData:encoding:error:")]
-		[return: NullAllowed]
-		ShapeCollectionFeature ShapeWithData(NSData data, NSStringEncoding encoding, [NullAllowed] out NSError outError);
-
         // @property (readonly, copy, nonatomic) NSArray<MGLShape<MGLFeature> *> * _Nonnull shapes;
         [Export ("shapes", ArgumentSemantic.Copy)]
         Shape[] Shapes { get; }
@@ -1546,7 +1541,7 @@ namespace Mapbox
     }
 
     // @interface StyleLayer : NSObject
-    [BaseType (typeof(NSObject))]
+    [BaseType (typeof(NSObject), Name = "MGLStyleLayer")]
     [DisableDefaultCtor]
     interface StyleLayer
     {
@@ -1669,7 +1664,7 @@ namespace Mapbox
     }
 
     // audit-objc-generics: @interface StyleValue<T> : NSObject
-    [BaseType (typeof(NSObject))]
+    [BaseType (typeof(NSObject), Name = "MGLStyleValue")]
     interface StyleValue : INSObjectProtocol
     {
         // +(instancetype _Nonnull)valueWithRawValue:(T _Nonnull)rawValue;
@@ -1890,6 +1885,11 @@ namespace Mapbox
     [BaseType(typeof(VectorStyleLayer), Name = "MGLLineStyleLayer")]
     interface LineStyleLayer
     {
+		// -(instancetype _Nonnull)initWithIdentifier:(NSString * _Nonnull)identifier source:(MGLSource * _Nonnull)source __attribute__((objc_designated_initializer));
+		[Export("initWithIdentifier:source:")]
+		[DesignatedInitializer]
+		IntPtr Constructor(string identifier, Source source);
+
         // @property (nonatomic) MGLStyleValue<NSValue *> * _Null_unspecified lineCap;
         [Export ("lineCap", ArgumentSemantic.Assign)]
         StyleValue LineCap { get; set; }
@@ -2594,7 +2594,7 @@ namespace Mapbox
     }
 
     // @interface Source : NSObject
-    [BaseType (typeof(NSObject))]
+    [BaseType (typeof(NSObject), Name = "MGLSource")]
     [DisableDefaultCtor]
     interface Source
     {
@@ -2782,7 +2782,7 @@ namespace Mapbox
     }
 
     // @interface AttributionInfo : NSObject
-    [BaseType (typeof(NSObject))]
+    [BaseType (typeof(NSObject), Name = "MGLAttributionInfo")]
     interface AttributionInfo
     {
         // -(instancetype _Nonnull)initWithTitle:(NSAttributedString * _Nonnull)title URL:(NSURL * _Nullable)URL;
