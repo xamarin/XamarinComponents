@@ -93,6 +93,7 @@ namespace Mapbox
         string AccessToken { [NullAllowed, Export ("accessToken")]get; [NullAllowed, Export ("setAccessToken:")]set; }
 
         // +(BOOL)mapboxMetricsEnabledSettingShownInApp __attribute__((deprecated("Telemetry settings are now always shown in the ℹ️ menu.")));
+		[Obsolete("Telemetry settings are now always shown in the ℹ️ menu.")]
         [Static]
         [Export ("mapboxMetricsEnabledSettingShownInApp")]
         //[Verify (MethodToProperty)]
@@ -209,7 +210,7 @@ namespace Mapbox
         [Export ("initWithFrame:styleURL:")]
         IntPtr Constructor (CGRect frame, [NullAllowed] NSUrl styleURL);
 
-        //// @property (nonatomic, weak) id<MGLMapViewDelegate> _Nullable delegate __attribute__((iboutlet));
+        // @property (nonatomic, weak) id<MGLMapViewDelegate> _Nullable delegate __attribute__((iboutlet));
         [NullAllowed, Export("delegate", ArgumentSemantic.Weak)]
         IMapViewDelegate Delegate { get; set; }
 
@@ -1130,19 +1131,23 @@ namespace Mapbox
         void RemoveLayer (StyleLayer layer);
 
         // @property (nonatomic) NSArray<NSString *> * _Nonnull styleClasses __attribute__((deprecated("This property will be removed in a future release.")));
-        [Export ("styleClasses", ArgumentSemantic.Assign)]
+		[Obsolete("This property will be removed in a future release.")]
+		[Export ("styleClasses", ArgumentSemantic.Assign)]
         string[] StyleClasses { get; set; }
 
         // -(BOOL)hasStyleClass:(NSString * _Nonnull)styleClass __attribute__((deprecated("This method will be removed in a future release.")));
+		[Obsolete("This property will be removed in a future release.")]
         [Export ("hasStyleClass:")]
         bool HasStyleClass (string styleClass);
 
         // -(void)addStyleClass:(NSString * _Nonnull)styleClass __attribute__((deprecated("This method will be removed in a future release.")));
+		[Obsolete("This property will be removed in a future release.")]
         [Export ("addStyleClass:")]
         void AddStyleClass (string styleClass);
 
         // -(void)removeStyleClass:(NSString * _Nonnull)styleClass __attribute__((deprecated("This method will be removed in a future release.")));
-        [Export ("removeStyleClass:")]
+		[Obsolete("This property will be removed in a future release.")]
+		[Export ("removeStyleClass:")]
         void RemoveStyleClass (string styleClass);
 
         // -(UIImage * _Nullable)imageForName:(NSString * _Nonnull)name;
@@ -1651,6 +1656,7 @@ namespace Mapbox
         StyleValue ValueWithRawValue (NSObject rawValue);
 
         // +(instancetype _Nonnull)valueWithStops:(NSDictionary<NSNumber *,MGLStyleValue<T> *> * _Nonnull)stops __attribute__((deprecated("Use +[MGLStyleValue valueWithInterpolationMode:cameraStops:options:]")));
+		[Obsolete("Use StyleValue.ValueWithInterpolationMode() .")]
         [Static]
         [Export ("valueWithStops:")]
         StyleValue ValueWithStops (NSDictionary<NSNumber, StyleValue> stops);
@@ -1709,7 +1715,8 @@ namespace Mapbox
     interface StyleFunction
     {
         // +(instancetype _Nonnull)functionWithStops:(NSDictionary<NSNumber *,MGLStyleValue<T> *> * _Nonnull)stops __attribute__((deprecated("Use +[MGLStyleValue valueWithInterpolationMode:cameraStops:options:]")));
-        [Static]
+		[Obsolete("Use StyleValue.ValueWithInterpolationMode().")]
+		[Static]
         [Export ("functionWithStops:")]
         StyleFunction From (NSDictionary<NSNumber, StyleValue> stops);
 
@@ -1719,7 +1726,8 @@ namespace Mapbox
         StyleFunction From (nfloat interpolationBase, NSDictionary<NSNumber, StyleValue> stops);
 
         // -(instancetype _Nonnull)initWithInterpolationBase:(CGFloat)interpolationBase stops:(NSDictionary<NSNumber *,MGLStyleValue<T> *> * _Nonnull)stops __attribute__((deprecated("Use +[MGLStyleValue valueWithInterpolationMode:cameraStops:options:]")));
-        [Export ("initWithInterpolationBase:stops:")]
+		[Obsolete("Use StyleValue.ValueWithInterpolationMode().")]
+		[Export ("initWithInterpolationBase:stops:")]
         IntPtr Constructor (nfloat interpolationBase, NSDictionary<NSNumber, StyleValue> stops);
 
         // @property (nonatomic) MGLInterpolationMode interpolationMode;
