@@ -93,7 +93,7 @@ namespace Mapbox
         string AccessToken { [NullAllowed, Export ("accessToken")]get; [NullAllowed, Export ("setAccessToken:")]set; }
 
         // +(BOOL)mapboxMetricsEnabledSettingShownInApp __attribute__((deprecated("Telemetry settings are now always shown in the ℹ️ menu.")));
-		[Obsolete("Telemetry settings are now always shown in the ℹ️ menu.")]
+        [Obsolete("Telemetry settings are now always shown in the ℹ️ menu.")]
         [Static]
         [Export ("mapboxMetricsEnabledSettingShownInApp")]
         //[Verify (MethodToProperty)]
@@ -114,7 +114,7 @@ namespace Mapbox
 
         // @optional @property (readonly, copy, nonatomic) NSString * _Nullable title;
         [NullAllowed, Export ("title")]
-		string Title { get; set; }
+        string Title { get; set; }
 
         // @optional @property (readonly, copy, nonatomic) NSString * _Nullable subtitle;
         [NullAllowed, Export ("subtitle")]
@@ -465,7 +465,7 @@ namespace Mapbox
 
         // -(CGRect)convertCoordinateBounds:(MGLCoordinateBounds)bounds toRectToView:(UIView * _Nullable)view;
         [Export ("convertCoordinateBounds:toRectToView:")]
-		CGRect ConvertCoordinateBoundsToRect (CoordinateBounds bounds, [NullAllowed] UIView view);
+        CGRect ConvertCoordinateBoundsToRect (CoordinateBounds bounds, [NullAllowed] UIView view);
 
         // -(CLLocationDistance)metersPerPointAtLatitude:(CLLocationDegrees)latitude;
         [Export ("metersPerPointAtLatitude:")]
@@ -737,7 +737,7 @@ namespace Mapbox
         void DidDeselectAnnotationView (MapView mapView, AnnotationView annotationView);
 
         // @optional -(BOOL)mapView:(MGLMapView * _Nonnull)mapView annotationCanShowCallout:(id<MGLAnnotation> _Nonnull)annotation;
-		[Export ("mapView:annotationCanShowCallout:"), DelegateName("CanShowCallout"), DefaultValue(false)]
+        [Export ("mapView:annotationCanShowCallout:"), DelegateName("CanShowCallout"), DefaultValue(false)]
         bool CanShowCallout (MapView mapView, IAnnotation annotation);
 
         // @optional -(UIView<MGLCalloutView> * _Nullable)mapView:(MGLMapView * _Nonnull)mapView calloutViewForAnnotation:(id<MGLAnnotation> _Nonnull)annotation;
@@ -850,7 +850,7 @@ namespace Mapbox
 
     // @protocol MGLOverlay <MGLAnnotation>
     [Protocol, Model]
-	[BaseType (typeof (NSObject), Name = "MGLOverlay")]
+    [BaseType (typeof (NSObject), Name = "MGLOverlay")]
     interface Overlay : Annotation
     {
         // @required @property (readonly, nonatomic) CLLocationCoordinate2D coordinate;
@@ -871,7 +871,7 @@ namespace Mapbox
 
     // @interface MGLPointAnnotation : MGLShape
     [BaseType (typeof (Shape), Name = "MGLPointAnnotation")]
-	interface PointAnnotation : Shape
+    interface PointAnnotation : Shape
     {
         // @property (assign, nonatomic) CLLocationCoordinate2D coordinate;
         [Export ("coordinate", ArgumentSemantic.Assign)]
@@ -1131,23 +1131,23 @@ namespace Mapbox
         void RemoveLayer (StyleLayer layer);
 
         // @property (nonatomic) NSArray<NSString *> * _Nonnull styleClasses __attribute__((deprecated("This property will be removed in a future release.")));
-		[Obsolete("This property will be removed in a future release.")]
-		[Export ("styleClasses", ArgumentSemantic.Assign)]
+        [Obsolete("This property will be removed in a future release.")]
+        [Export ("styleClasses", ArgumentSemantic.Assign)]
         string[] StyleClasses { get; set; }
 
         // -(BOOL)hasStyleClass:(NSString * _Nonnull)styleClass __attribute__((deprecated("This method will be removed in a future release.")));
-		[Obsolete("This property will be removed in a future release.")]
+        [Obsolete("This property will be removed in a future release.")]
         [Export ("hasStyleClass:")]
         bool HasStyleClass (string styleClass);
 
         // -(void)addStyleClass:(NSString * _Nonnull)styleClass __attribute__((deprecated("This method will be removed in a future release.")));
-		[Obsolete("This property will be removed in a future release.")]
+        [Obsolete("This property will be removed in a future release.")]
         [Export ("addStyleClass:")]
         void AddStyleClass (string styleClass);
 
         // -(void)removeStyleClass:(NSString * _Nonnull)styleClass __attribute__((deprecated("This method will be removed in a future release.")));
-		[Obsolete("This property will be removed in a future release.")]
-		[Export ("removeStyleClass:")]
+        [Obsolete("This property will be removed in a future release.")]
+        [Export ("removeStyleClass:")]
         void RemoveStyleClass (string styleClass);
 
         // -(UIImage * _Nullable)imageForName:(NSString * _Nonnull)name;
@@ -1204,7 +1204,7 @@ namespace Mapbox
 
         // @optional @property (readonly, getter = isAnchoredToAnnotation, assign, nonatomic) BOOL anchoredToAnnotation;
         [Export ("anchoredToAnnotation")]
-		bool IsAnchoredToAnnotation { [Bind ("isAnchoredToAnnotation")] get; }
+        bool IsAnchoredToAnnotation { [Bind ("isAnchoredToAnnotation")] get; }
 
         // @optional @property (readonly, assign, nonatomic) BOOL dismissesAutomatically;
         [Export ("dismissesAutomatically")]
@@ -1275,13 +1275,13 @@ namespace Mapbox
 
     // @interface PointCollection : MGLShape <MGLOverlay>
     [BaseType(typeof(Shape), Name = "MGLPointCollection")]
-	[DisableDefaultCtor]
+    [DisableDefaultCtor]
     interface PointCollection : Overlay, Annotation
     {
         // +(instancetype)pointCollectionWithCoordinates:(const CLLocationCoordinate2D *)coords count:(NSUInteger)count;
         [Static]
         [Export ("pointCollectionWithCoordinates:count:")]
-		PointCollection From (IntPtr coords, nuint count);
+        PointCollection From (IntPtr coords, nuint count);
 
         // @property (readonly, nonatomic) CLLocationCoordinate2D * coordinates __attribute__((objc_returns_inner_pointer));
         [Export ("coordinates")]
@@ -1298,7 +1298,7 @@ namespace Mapbox
 
     // @interface ShapeCollection : MGLShape
     [BaseType(typeof(Shape), Name = "MGLShapeCollection")]
-	[DisableDefaultCtor]
+    [DisableDefaultCtor]
     interface ShapeCollection
     {
         // @property (readonly, copy, nonatomic) NSArray<MGLShape *> * _Nonnull shapes;
@@ -1355,7 +1355,7 @@ namespace Mapbox
 
         // @property (nonatomic, weak) id<MGLOfflineStorageDelegate> _Nullable delegate __attribute__((iboutlet));
         [NullAllowed, Export ("delegate", ArgumentSemantic.Weak)]
-		IOfflineStorageDelegate Delegate { get; set; }
+        IOfflineStorageDelegate Delegate { get; set; }
 
         // @property (readonly, nonatomic, strong) NSArray<MGLOfflinePack *> * _Nullable packs;
         [NullAllowed, Export ("packs", ArgumentSemantic.Strong)]
@@ -1375,7 +1375,7 @@ namespace Mapbox
 
         // -(void)setMaximumAllowedMapboxTiles:(uint64_t)maximumCount;
         [Export ("setMaximumAllowedMapboxTiles:")]
-		void SetMaxAllowedMapboxTiles (ulong maximumCount);
+        void SetMaxAllowedMapboxTiles (ulong maximumCount);
 
         // @property (readonly, nonatomic) unsigned long long countOfBytesCompleted;
         [Export ("countOfBytesCompleted")]
@@ -1396,7 +1396,7 @@ namespace Mapbox
 
         // -(BOOL)getObjectValue:(id  _Nullable * _Nullable)obj forString:(NSString * _Nonnull)string errorDescription:(NSString * _Nullable * _Nullable)error;
         [Export ("getObjectValue:forString:errorDescription:")]
-		bool GetObjectValue ([NullAllowed] out NSObject obj, string str, [NullAllowed] out NSString error);
+        bool GetObjectValue ([NullAllowed] out NSObject obj, string str, [NullAllowed] out NSString error);
     }
 
     // @interface MGLCompassDirectionFormatter : NSFormatter
@@ -1509,7 +1509,7 @@ namespace Mapbox
 
     //@interface MGLShapeCollectionFeature : MGLShapeCollection<MGLFeature>
     [BaseType(typeof(ShapeCollection), Name = "MGLShapeCollectionFeature")]
-	[DisableDefaultCtor]
+    [DisableDefaultCtor]
     interface ShapeCollectionFeature : Feature
     {
         // @property (readonly, copy, nonatomic) NSArray<MGLShape<MGLFeature> *> * _Nonnull shapes;
@@ -1519,14 +1519,14 @@ namespace Mapbox
         // +(instancetype _Nonnull)shapeCollectionWithShapes:(NSArray<MGLShape<MGLFeature> *> * _Nonnull)shapes;
         [Static]
         [Export ("shapeCollectionWithShapes:")]
-		ShapeCollectionFeature WithShapes (Shape[] shapes);
+        ShapeCollectionFeature WithShapes (Shape[] shapes);
     }
 
     interface IOfflineStorageDelegate { }
 
     // @protocol MGLOfflineStorageDelegate <NSObject>
     [Protocol, Model]
-	[BaseType (typeof(NSObject), Name = "MGLOfflineStorageDelegate")]
+    [BaseType (typeof(NSObject), Name = "MGLOfflineStorageDelegate")]
     interface OfflineStorageDelegate
     {
         // @required -(NSURL * _Nonnull)offlineStorage:(MGLOfflineStorage * _Nonnull)storage URLForResourceOfKind:(MGLResourceKind)kind withURL:(NSURL * _Nonnull)url;
@@ -1647,7 +1647,7 @@ namespace Mapbox
 
     // audit-objc-generics: @interface StyleValue<T> : NSObject
     [BaseType (typeof(NSObject), Name = "MGLStyleValue")]
-	[Advice("Common raw values include:\n\nNSNumber (for Boolean values and floating-point numbers)\nNSValue (for CGVector, NSEdgeInsets, UIEdgeInsets, and enumerations)\nNSString\nNSColor or UIColor\nNSArray")]
+    [Advice("Common raw values include:\n\nNSNumber (for Boolean values and floating-point numbers)\nNSValue (for CGVector, NSEdgeInsets, UIEdgeInsets, and enumerations)\nNSString\nNSColor or UIColor\nNSArray")]
     interface StyleValue : INSObjectProtocol
     {
         // +(instancetype _Nonnull)valueWithRawValue:(T _Nonnull)rawValue;
@@ -1656,7 +1656,7 @@ namespace Mapbox
         StyleValue ValueWithRawValue (NSObject rawValue);
 
         // +(instancetype _Nonnull)valueWithStops:(NSDictionary<NSNumber *,MGLStyleValue<T> *> * _Nonnull)stops __attribute__((deprecated("Use +[MGLStyleValue valueWithInterpolationMode:cameraStops:options:]")));
-		[Obsolete("Use StyleValue.ValueWithInterpolationMode() .")]
+        [Obsolete("Use StyleValue.ValueWithInterpolationMode() .")]
         [Static]
         [Export ("valueWithStops:")]
         StyleValue ValueWithStops (NSDictionary<NSNumber, StyleValue> stops);
@@ -1681,14 +1681,14 @@ namespace Mapbox
         [Export ("valueWithInterpolationMode:compositeStops:attributeName:options:")]
         StyleValue ValueWithInterpolationMode (InterpolationMode interpolationMode, NSDictionary<NSObject, NSDictionary<NSObject, StyleValue>> compositeStops, string attributeName, [NullAllowed] NSDictionary<NSString, NSObject> options);
 
-		// extern const MGLStyleFunctionOption _Nonnull MGLStyleFunctionOptionInterpolationBase __attribute__((visibility("default")));
-		[Field("MGLStyleFunctionOptionInterpolationBase", "__Internal")]
-		NSString InterpolationBase { get; }
+        // extern const MGLStyleFunctionOption _Nonnull MGLStyleFunctionOptionInterpolationBase __attribute__((visibility("default")));
+        [Field("MGLStyleFunctionOptionInterpolationBase", "__Internal")]
+        NSString InterpolationBase { get; }
 
-		// extern const MGLStyleFunctionOption _Nonnull MGLStyleFunctionOptionDefaultValue __attribute__((visibility("default")));
-		[Field("MGLStyleFunctionOptionDefaultValue", "__Internal")]
-		NSString DefaultValue { get; }
-	}
+        // extern const MGLStyleFunctionOption _Nonnull MGLStyleFunctionOptionDefaultValue __attribute__((visibility("default")));
+        [Field("MGLStyleFunctionOptionDefaultValue", "__Internal")]
+        NSString DefaultValue { get; }
+    }
 
     // audit-objc-generics: @interface ConstantStyleValue<T> : MGLStyleValue
     [BaseType(typeof(StyleValue), Name = "MGLConstantStyleValue")]
@@ -1715,8 +1715,8 @@ namespace Mapbox
     interface StyleFunction
     {
         // +(instancetype _Nonnull)functionWithStops:(NSDictionary<NSNumber *,MGLStyleValue<T> *> * _Nonnull)stops __attribute__((deprecated("Use +[MGLStyleValue valueWithInterpolationMode:cameraStops:options:]")));
-		[Obsolete("Use StyleValue.ValueWithInterpolationMode().")]
-		[Static]
+        [Obsolete("Use StyleValue.ValueWithInterpolationMode().")]
+        [Static]
         [Export ("functionWithStops:")]
         StyleFunction From (NSDictionary<NSNumber, StyleValue> stops);
 
@@ -1726,8 +1726,8 @@ namespace Mapbox
         StyleFunction From (nfloat interpolationBase, NSDictionary<NSNumber, StyleValue> stops);
 
         // -(instancetype _Nonnull)initWithInterpolationBase:(CGFloat)interpolationBase stops:(NSDictionary<NSNumber *,MGLStyleValue<T> *> * _Nonnull)stops __attribute__((deprecated("Use +[MGLStyleValue valueWithInterpolationMode:cameraStops:options:]")));
-		[Obsolete("Use StyleValue.ValueWithInterpolationMode().")]
-		[Export ("initWithInterpolationBase:stops:")]
+        [Obsolete("Use StyleValue.ValueWithInterpolationMode().")]
+        [Export ("initWithInterpolationBase:stops:")]
         IntPtr Constructor (nfloat interpolationBase, NSDictionary<NSNumber, StyleValue> stops);
 
         // @property (nonatomic) MGLInterpolationMode interpolationMode;
@@ -1805,10 +1805,10 @@ namespace Mapbox
     [BaseType(typeof(VectorStyleLayer), Name = "MGLFillStyleLayer")]
     interface FillStyleLayer
     {
-		// -(instancetype _Nonnull)initWithIdentifier:(NSString * _Nonnull)identifier source:(MGLSource * _Nonnull)source __attribute__((objc_designated_initializer));
-		[Export("initWithIdentifier:source:")]
-		[DesignatedInitializer]
-		IntPtr Constructor(string identifier, Source source);
+        // -(instancetype _Nonnull)initWithIdentifier:(NSString * _Nonnull)identifier source:(MGLSource * _Nonnull)source __attribute__((objc_designated_initializer));
+        [Export("initWithIdentifier:source:")]
+        [DesignatedInitializer]
+        IntPtr Constructor(string identifier, Source source);
 
         // @property (getter = isFillAntialiased, nonatomic) MGLStyleValue<NSNumber *> * _Null_unspecified fillAntialiased;
         [Export ("fillAntialiased", ArgumentSemantic.Assign)]
@@ -1879,10 +1879,10 @@ namespace Mapbox
     [BaseType(typeof(VectorStyleLayer), Name = "MGLLineStyleLayer")]
     interface LineStyleLayer
     {
-		// -(instancetype _Nonnull)initWithIdentifier:(NSString * _Nonnull)identifier source:(MGLSource * _Nonnull)source __attribute__((objc_designated_initializer));
-		[Export("initWithIdentifier:source:")]
-		[DesignatedInitializer]
-		IntPtr Constructor(string identifier, Source source);
+        // -(instancetype _Nonnull)initWithIdentifier:(NSString * _Nonnull)identifier source:(MGLSource * _Nonnull)source __attribute__((objc_designated_initializer));
+        [Export("initWithIdentifier:source:")]
+        [DesignatedInitializer]
+        IntPtr Constructor(string identifier, Source source);
 
         // @property (nonatomic) MGLStyleValue<NSValue *> * _Null_unspecified lineCap;
         [Export ("lineCap", ArgumentSemantic.Assign)]
@@ -2673,7 +2673,7 @@ namespace Mapbox
 
     [Static]
     //[Verify (ConstantsInterfaceAssociation)]
-	partial interface ShapeSourceOptionConstants
+    partial interface ShapeSourceOptionConstants
     {
         // extern const MGLShapeSourceOption _Nonnull MGLShapeSourceOptionClustered __attribute__((visibility("default")));
         [Field ("MGLShapeSourceOptionClustered", "__Internal")]
