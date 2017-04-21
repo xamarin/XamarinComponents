@@ -17,34 +17,28 @@ namespace FJDTestApp
 
         public override bool OnStartJob(IJobParameters jobParameters)
         {
-            // Beware: This runs on the main thread. 
-
             int position = jobParameters.Extras.GetInt(FibonacciPositionKey, DEFAULT_VALUE);
 
             LogMessage($"Starting FibonacciCalculatorJob::OnStartJob. Job tag {jobParameters.Tag}.");
-//            long result = Task.Run(() =>GetFibonacciNumberAt(position)).GetAwaiter().GetResult();
 
-            long result = GetFibonacciNumberAt(position);
-
-            LogMessage($"Finished FibonacciCalculatorJob::OnStartJob. The fibonacci number at {position} is {result}. Job tag {jobParameters.Tag}.");
-
-            // For some reason call this on the main thread will throw an exception
-
-            try
-            {
-                JobFinished(jobParameters, false);
-            }
-            catch (Exception e)
-            {
-                Log.Error(TAG, $"What?! {e.Message}" );
-            }
+            // Look for the Fibonacci number on a thread - don't bog down the main thread.
+            Task.Run(() => GetFibonacciNumberAt(position)).
+                ContinueWith(task =>
+                {
+                    // Have to call JobFinished when the thread is done. This lets the FJD know that
+                    // the work is done.
+                    JobFinished(jobParameters, false);                
+                    LogMessage(
+                        $"Finished FibonacciCalculatorJob::OnStartJob. The fibonacci number at {position} is {task.Result}. Job tag {jobParameters.Tag}.");
+                }, TaskScheduler.FromCurrentSynchronizationContext());
 
             LogMessage("Leaving FibonacciCalculatorJob::OnStartJob.");
-            // No more work to do.
-            return false;
+            
+
+            return false; // No more work to do, so return false.
         }
 
-        long  GetFibonacciNumberAt(int position)
+        long GetFibonacciNumberAt(int position)
         {
             long firstNumber = 0;
             long secondNumber = 1;
@@ -78,6 +72,7 @@ namespace FJDTestApp
             string currentTime = DateTime.Now.ToString("yy-MM-dd hh:mm:ss.FFF");
             Log.Debug(TAG, $"{currentTime} | TID #{Thread.CurrentThread.ManagedThreadId} | {message}");
         }
+
         public override bool OnStopJob(IJobParameters jobParameters)
         {
             Log.Debug(TAG, "FibonacciCalculatorJob::OnStopJob");
