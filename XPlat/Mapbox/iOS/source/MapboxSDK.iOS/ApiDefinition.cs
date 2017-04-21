@@ -198,8 +198,7 @@ namespace Mapbox
 
 
     // @interface MGLMapView : UIView
-    [BaseType (typeof (UIView), Name = "MGLMapView",
-	 Delegates = new string[] { "WeakDelegate" })]
+    [BaseType (typeof (UIView), Name = "MGLMapView")]
     interface MapView
     {
         // -(instancetype _Nonnull)initWithFrame:(CGRect)frame;
@@ -1653,6 +1652,7 @@ namespace Mapbox
 
     // audit-objc-generics: @interface StyleValue<T> : NSObject
     [BaseType (typeof(NSObject), Name = "MGLStyleValue")]
+	[Advice("Common raw values include:\n\nNSNumber (for Boolean values and floating-point numbers)\nNSValue (for CGVector, NSEdgeInsets, UIEdgeInsets, and enumerations)\nNSString\nNSColor or UIColor\nNSArray")]
     interface StyleValue : INSObjectProtocol
     {
         // +(instancetype _Nonnull)valueWithRawValue:(T _Nonnull)rawValue;
