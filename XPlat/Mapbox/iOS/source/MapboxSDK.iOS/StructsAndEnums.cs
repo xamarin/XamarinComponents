@@ -51,9 +51,9 @@ namespace Mapbox
 	[StructLayout (LayoutKind.Sequential)]
 	public struct Transition
 	{
-		public double duration;
+		public double Duration;
 
-		public double delay;
+		public double Delay;
 	}
 
     [Native]
@@ -96,7 +96,7 @@ namespace Mapbox
 		Tile,
 		Glyphs,
 		SpriteImage,
-		SpriteJSON
+		SpriteJson
 	}
 
 	[Native]
@@ -239,17 +239,17 @@ namespace Mapbox
 	[StructLayout (LayoutKind.Sequential)]
 	public struct StyleLayerDrawingContext
 	{
-		public CGSize size;
+		public CGSize Size;
 
-		public CLLocationCoordinate2D centerCoordinate;
+		public CLLocationCoordinate2D CenterCoordinate;
 
-		public double zoomLevel;
+		public double ZoomLevel;
 
-		public double direction;
+		public double Direction;
 
-		public nfloat pitch;
+		public nfloat Pitch;
 
-		public nfloat fieldOfView;
+		public nfloat FieldOfView;
 	}
 
     [Native]
