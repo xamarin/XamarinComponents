@@ -460,11 +460,11 @@ namespace Mapbox
 
         // -(MGLCoordinateBounds)convertRect:(CGRect)rect toCoordinateBoundsFromView:(UIView * _Nullable)view;
         [Export ("convertRect:toCoordinateBoundsFromView:")]
-        CoordinateBounds ConvertRect (CGRect rect, [NullAllowed] UIView view);
+        CoordinateBounds ConvertRectToCoordinateBounds (CGRect rect, [NullAllowed] UIView view);
 
         // -(CGRect)convertCoordinateBounds:(MGLCoordinateBounds)bounds toRectToView:(UIView * _Nullable)view;
         [Export ("convertCoordinateBounds:toRectToView:")]
-        CGRect ConvertCoordinateBounds (CoordinateBounds bounds, [NullAllowed] UIView view);
+		CGRect ConvertCoordinateBoundsToRect (CoordinateBounds bounds, [NullAllowed] UIView view);
 
         // -(CLLocationDistance)metersPerPointAtLatitude:(CLLocationDegrees)latitude;
         [Export ("metersPerPointAtLatitude:")]
@@ -510,12 +510,12 @@ namespace Mapbox
 
         // -(__kindof MGLAnnotationView * _Nullable)dequeueReusableAnnotationViewWithIdentifier:(NSString * _Nonnull)identifier;
         [Export ("dequeueReusableAnnotationViewWithIdentifier:")]
-        AnnotationView DequeueReusableAnnotation (string identifier);
+        AnnotationView DequeueReusableAnnotationView (string identifier);
 
         // -(NSArray<id<MGLAnnotation>> * _Nullable)visibleAnnotationsInRect:(CGRect)rect;
         [Export ("visibleAnnotationsInRect:")]
         [return: NullAllowed]
-        IAnnotation[] VisibleAnnotationsInRect (CGRect rect);
+        IAnnotation[] GetVisibleAnnotations (CGRect rect);
 
         // @property (copy, nonatomic) NSArray<id<MGLAnnotation>> * _Nonnull selectedAnnotations;
         [Export ("selectedAnnotations", ArgumentSemantic.Copy)]
@@ -551,11 +551,11 @@ namespace Mapbox
 
         // -(NSArray<id<MGLFeature>> * _Nonnull)visibleFeaturesAtPoint:(CGPoint)point inStyleLayersWithIdentifiers:(NSSet<NSString *> * _Nullable)styleLayerIdentifiers;
         [Export ("visibleFeaturesAtPoint:inStyleLayersWithIdentifiers:")]
-        Feature[] GetVisibleFeaturesAtPoint (CGPoint point, [NullAllowed] NSSet<NSString> styleLayerIdentifiers);
+        Feature[] GetVisibleFeaturesAtPoint (CGPoint point, [NullAllowed] string [] styleLayerIdentifiers);
 
         // -(NSArray<id<MGLFeature>> * _Nonnull)visibleFeaturesAtPoint:(CGPoint)point inStyleLayersWithIdentifiers:(NSSet<NSString *> * _Nullable)styleLayerIdentifiers predicate:(NSPredicate * _Nullable)predicate;
         [Export ("visibleFeaturesAtPoint:inStyleLayersWithIdentifiers:predicate:")]
-        Feature[] GetVisibleFeaturesAtPoint (CGPoint point, [NullAllowed] NSSet<NSString> styleLayerIdentifiers, [NullAllowed] NSPredicate predicate);
+        Feature[] GetVisibleFeaturesAtPoint (CGPoint point, [NullAllowed] string [] styleLayerIdentifiers, [NullAllowed] NSPredicate predicate);
 
         // -(NSArray<id<MGLFeature>> * _Nonnull)visibleFeaturesInRect:(CGRect)rect;
         [Export ("visibleFeaturesInRect:")]
@@ -563,11 +563,11 @@ namespace Mapbox
 
         // -(NSArray<id<MGLFeature>> * _Nonnull)visibleFeaturesInRect:(CGRect)rect inStyleLayersWithIdentifiers:(NSSet<NSString *> * _Nullable)styleLayerIdentifiers;
         [Export ("visibleFeaturesInRect:inStyleLayersWithIdentifiers:")]
-        Feature[] GetVisibleFeaturesInRect (CGRect rect, [NullAllowed] NSSet<NSString> styleLayerIdentifiers);
+        Feature[] GetVisibleFeaturesInRect (CGRect rect, [NullAllowed] string [] styleLayerIdentifiers);
 
         // -(NSArray<id<MGLFeature>> * _Nonnull)visibleFeaturesInRect:(CGRect)rect inStyleLayersWithIdentifiers:(NSSet<NSString *> * _Nullable)styleLayerIdentifiers predicate:(NSPredicate * _Nullable)predicate;
         [Export ("visibleFeaturesInRect:inStyleLayersWithIdentifiers:predicate:")]
-        Feature[] GetVisibleFeaturesInRect (CGRect rect, [NullAllowed] NSSet<NSString> styleLayerIdentifiers, [NullAllowed] NSPredicate predicate);
+        Feature[] GetVisibleFeaturesInRect (CGRect rect, [NullAllowed] string [] styleLayerIdentifiers, [NullAllowed] NSPredicate predicate);
 
         // @property (nonatomic) MGLMapDebugMaskOptions debugMask;
         [Export ("debugMask", ArgumentSemantic.Assign)]
