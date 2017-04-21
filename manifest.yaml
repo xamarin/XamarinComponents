@@ -320,6 +320,10 @@
   BuildScript: ./XPlat/CardIO/iOS/build.cake
   TriggerPaths: [ XPlat/CardIO/iOS ]
   MacBuildTargets: [ samples, nuget, component ]
+- Name: Mono.DataConverter
+  BuildScript: ./XPlat/Mono.DataConverter/build.cake
+  TriggerPaths: [ XPlat/Mono.DataConverter ]
+  MacBuildTargets: [ component, samples ]
 - Name: LoginScreen
   BuildScript: ./XPlat/LoginScreen/build.cake
   TriggerPaths: [ XPlat/LoginScreen ]
