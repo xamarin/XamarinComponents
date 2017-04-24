@@ -108,28 +108,18 @@ namespace FJDTestApp.JobForm
                 builder.SetConstraints(Constraint.OnUnmeteredNetwork);
             }
 
-
-            try
+            int scheduleResult = dispatcher.Schedule(builder.Build());
+            string message =
+                $"Scheduled new job `{tag}` for the service `{typeof(T).Name}`. SCHEDULE_RESULT = {scheduleResult}.";
+        
+            if (scheduleResult == FirebaseJobDispatcher.ScheduleResultSuccess)
             {
-                dispatcher.MustSchedule(builder.Build());
+                Log.Info(TAG, message);
             }
-            catch (Exception e)
+            else
             {
-                Log.Error(TAG, "WHat?!");
+                Log.Error(TAG, message);
             }
-
-            //            int scheduleResult = dispatcher.Schedule(builder.Build());
-            //            string message =
-            //                $"Scheduled new job `{tag}` for the service `{typeof(T).Name}`. SCHEDULE_RESULT = {scheduleResult}.";
-            //
-            //            if (scheduleResult == FirebaseJobDispatcher.ScheduleResultSuccess)
-            //            {
-            //                Log.Info(TAG, message);
-            //            }
-            //            else
-            //            {
-            //                Log.Error(TAG, message);
-            //            }
         }
 
         RetryStrategy BuildRetryStrategy(FirebaseJobDispatcher dispatcher)
