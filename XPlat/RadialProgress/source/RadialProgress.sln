@@ -1,0 +1,35 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RadialProgress.iOS", "RadialProgress.iOS\RadialProgress.iOS.csproj", "{957AF0CF-4765-4A55-B4EA-10415EE2ED93}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RadialProgress.Android", "RadialProgress.Android\RadialProgress.Android.csproj", "{5AAE427F-967B-4863-9326-4DED77173122}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{5AAE427F-967B-4863-9326-4DED77173122}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5AAE427F-967B-4863-9326-4DED77173122}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5AAE427F-967B-4863-9326-4DED77173122}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5AAE427F-967B-4863-9326-4DED77173122}.Release|Any CPU.Build.0 = Release|Any CPU
+		{957AF0CF-4765-4A55-B4EA-10415EE2ED93}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{957AF0CF-4765-4A55-B4EA-10415EE2ED93}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{957AF0CF-4765-4A55-B4EA-10415EE2ED93}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{957AF0CF-4765-4A55-B4EA-10415EE2ED93}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(MonoDevelopProperties) = preSolution
+		StartupItem = RadialProgress.iOS\RadialProgress.iOS.csproj
+		Policies = $0
+		$0.TextStylePolicy = $1
+		$1.inheritsSet = Mono
+		$1.inheritsScope = text/plain
+		$1.scope = text/x-csharp
+		$0.CSharpFormattingPolicy = $2
+		$2.inheritsSet = Mono
+		$2.inheritsScope = text/x-csharp
+		$2.scope = text/x-csharp
+	EndGlobalSection
+EndGlobal

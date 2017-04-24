@@ -352,6 +352,10 @@
   BuildScript: ./XPlat/Estimote/iOS/build.cake
   TriggerPaths: [ XPlat/Estimote/iOS ]
   MacBuildTargets: [ samples, component ]
+- Name: RadialProgress
+  BuildScript: ./XPlat/RadialProgress/build.cake
+  TriggerPaths: [ XPlat/RadialProgress ]
+  MacBuildTargets: [ samples, component ]
 - Name: ShopifyAndroid
   BuildScript: ./XPlat/Shopify/Android/build.cake
   TriggerPaths: [ XPlat/Shopify/Android ]
