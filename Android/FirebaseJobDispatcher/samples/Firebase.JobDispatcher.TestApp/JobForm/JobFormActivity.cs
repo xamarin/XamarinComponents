@@ -93,8 +93,8 @@ namespace FJDTestApp.JobForm
 
         void ScheduleButton_Click(object sender, EventArgs e)
         {
-            FirebaseJob.WithParametersFrom(this)
-                .Schedule<FibonacciCalculatorJob>(this);
+            JobFormScheduler.WithParametersFrom(this)
+                .SubmitJob<FibonacciCalculatorJob>(this);
             Finish();
         }
 
