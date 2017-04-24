@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <LinearLayout
+            android:id="@+id/job_form_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingBottom="@dimen/activity_vertical_margin"
+            android:paddingLeft="@dimen/activity_horizontal_margin"
+            android:paddingRight="@dimen/activity_horizontal_margin"
+            android:paddingTop="@dimen/activity_vertical_margin">
+            <EditText
+                android:id="@+id/tag_edittext"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:digits="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ_-"
+                android:hint="Job tag"
+                android:maxLength="100"
+                android:nextFocusDown="@+id/winStartField"
+                android:singleLine="true"
+                android:text="@string/default_job_name" />
+            <CheckBox
+                android:id="@+id/replace_current_checkbox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:checked="true"
+                android:text="Replace current" />
+            <CheckBox
+                android:id="@+id/persistent_checkbox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:checked="false"
+                android:text="Persistent" />
+            <CheckBox
+                android:id="@+id/recurring_checkbox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:checked="false"
+                android:text="Recurring" />
+            <android.support.v4.widget.Space
+                android:layout_width="match_parent"
+                android:layout_height="10dp" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Execution Window" />
+            <EditText
+                android:id="@+id/window_start_seconds_edittext"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="number"
+                android:hint="Window start (seconds)"
+                android:text="5" />
+            <EditText
+                android:id="@+id/window_end_seconds_edittext"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="number"
+                android:hint="Window end (seconds)"
+                android:text="30" />
+            <android.support.v4.widget.Space
+                android:layout_width="match_parent"
+                android:layout_height="10dp" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Constraints" />
+            <CheckBox
+                android:id="@+id/constrain_to_network_checkbox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:checked="false"
+                android:text="Only run with a valid network connection" />
+            <CheckBox
+                android:id="@+id/constrain_to_unmetered_network_checkbox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:checked="false"
+                android:text="Only run with an unmetered network connection" />
+            <CheckBox
+                android:id="@+id/only_when_charging_checkbox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:checked="false"
+                android:text="Only run when charging" />
+            <android.support.v4.widget.Space
+                android:layout_width="match_parent"
+                android:layout_height="10dp" />
+            <android.support.v4.widget.Space
+                android:layout_width="match_parent"
+                android:layout_height="10dp" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Backoff Strategy" />
+            <RadioGroup
+                android:id="@+id/backoff_strategy_radiogroup"
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:showDividers="none">
+                <RadioButton
+                    android:id="@+id/exponential_backoff_radiobutton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Exponential" />
+                <RadioButton
+                    android:id="@+id/linear_backoff_radiobutton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Linear" />
+            </RadioGroup>
+            <EditText
+                android:id="@+id/initial_backoff_seconds_edittext"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Initial backoff (seconds)"
+                android:inputType="number"
+                android:text="30" />
+            <EditText
+                android:id="@+id/maximum_backoff_seconds_edittext"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Maximum backoff (seconds)"
+                android:inputType="number"
+                android:text="500" />
+            <android.support.v7.widget.AppCompatButton
+                android:id="@+id/schedule_button"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="Schedule" />
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

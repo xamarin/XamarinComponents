@@ -50,6 +50,10 @@
   BuildScript: ./Android/ElasticProgressBar/build.cake
   TriggerPaths: [ Android/ElasticProgressBar ]
   MacBuildTargets: [ samples, component ]
+- Name: FirebaseJobDispatcher
+  BuildScript: ./Android/FirebaseJobDispatcher/build.cake
+  TriggerPaths: ./Android/FirebaseJobDispatcher
+  MacBuildTargets: [ samples, nuget ]
 - Name: Timber
   BuildScript: ./Android/Timber/build.cake
   TriggerPaths: [ Android/Timber ]
