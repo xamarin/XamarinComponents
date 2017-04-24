@@ -1,0 +1,70 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+
+<metadata>
+  <!-- Remove some APIs which aren't relative to this binding -->
+  <remove-node path="/api/package[@name='com.google.android.gms.gcm']/interface[@name='INetworkTaskCallback']" />
+  <remove-node path="/api/package[@name='com.firebase.jobdispatcher']/class[@name='ExternalReceiver']" />
+  <remove-node path="/api/package[@name='com.google.android.gms.gcm']/class[@name='INetworkTaskCallback.Stub']" />
+  <remove-node path="/api/package[@name='com.google.android.gms.gcm']/class[@name='INetworkTaskCallback.Stub.Proxy']" />
+
+  <!-- Normalize the namespaces for .NET -->
+  <attr path="/api/package[@name='com.firebase.jobdispatcher']" name="managedName">Firebase.JobDispatcher</attr>
+  <attr path="/api/package[@name='com.google.android.gms.gcm']" name="managedName">Android.Gms.Gcm</attr>
+
+  <add-node path="/api/package[@name='com.firebase.jobdispatcher']">
+    <class abstract="true" deprecated="not deprecated" extends="android.app.Service"
+           extends-generic-aware="android.app.Service" final="false" name="ExternalReceiver" static="false"
+           visibility="public">
+      <method abstract="false" deprecated="not deprecated" final="true" name="executeJob" native="false"
+              return="boolean" static="false" synchronized="false" visibility="protected">
+        <parameter name="p0" type="com.firebase.jobdispatcher.JobParameters">
+        </parameter>
+      </method>
+      <method abstract="true" deprecated="not deprecated" final="false" name="onJobFinished" native="false"
+              return="void" static="false" synchronized="false" visibility="protected">
+        <parameter name="p0" type="com.firebase.jobdispatcher.JobParameters">
+        </parameter>
+        <parameter name="p1" type="int">
+        </parameter>
+      </method>
+    </class>
+
+    <class abstract="false" deprecated="not deprecated" extends="java.lang.Object"
+           extends-generic-aware="java.lang.Object" final="true" name="Trigger" static="false" visibility="public">
+      <field deprecated="not deprecated" final="true" name="NOW" static="true" transient="false"
+             type="com.firebase.jobdispatcher.JobTrigger.ImmediateTrigger"
+             type-generic-aware="com.firebase.jobdispatcher.JobTrigger.ImmediateTrigger" visibility="public"
+             volatile="false">
+      </field>
+      <method abstract="false" deprecated="not deprecated" final="true" name="executionWindow" native="false"
+              return="com.firebase.jobdispatcher.JobTrigger.ExecutionWindowTrigger" static="true" synchronized="false"
+              visibility="public">
+        <parameter name="p0" type="int">
+        </parameter>
+        <parameter name="p1" type="int">
+        </parameter>
+      </method>
+    </class>
+    <class abstract="false" deprecated="not deprecated" extends="java.lang.Object"
+           extends-generic-aware="java.lang.Object" final="false" name="JobTrigger" static="false" visibility="public">
+    </class>
+    <class abstract="false" deprecated="not deprecated" extends="com.firebase.jobdispatcher.JobTrigger"
+           extends-generic-aware="com.firebase.jobdispatcher.JobTrigger" final="true"
+           name="JobTrigger.ExecutionWindowTrigger" static="true" visibility="public">
+      <constructor deprecated="not deprecated" final="false" name="ExecutionWindowTrigger" static="false"
+                   type="com.firebase.jobdispatcher.JobTrigger.ExecutionWindowTrigger" visibility="public">
+        <parameter name="p0" type="int">
+        </parameter>
+        <parameter name="p1" type="int">
+        </parameter>
+      </constructor>
+      <method abstract="false" deprecated="not deprecated" final="false" name="getWindowEnd" native="false"
+              return="int" static="false" synchronized="false" visibility="public">
+      </method>
+      <method abstract="false" deprecated="not deprecated" final="false" name="getWindowStart" native="false"
+              return="int" static="false" synchronized="false" visibility="public">
+      </method>
+    </class>
+
+  </add-node>
+</metadata>
