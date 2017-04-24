@@ -3,9 +3,10 @@
 <metadata>
   <!-- Remove some APIs which aren't relative to this binding -->
   <remove-node path="/api/package[@name='com.google.android.gms.gcm']/interface[@name='INetworkTaskCallback']" />
-  <remove-node path="/api/package[@name='com.firebase.jobdispatcher']/class[@name='ExternalReceiver']" />
   <remove-node path="/api/package[@name='com.google.android.gms.gcm']/class[@name='INetworkTaskCallback.Stub']" />
   <remove-node path="/api/package[@name='com.google.android.gms.gcm']/class[@name='INetworkTaskCallback.Stub.Proxy']" />
+  <remove-node path="/api/package[@name='com.firebase.jobdispatcher']/interface[@name='FirebaseJobDispatcher.ScheduleResult']" />
+  <remove-node path="/api/package[@name='com.firebase.jobdispatcher']/interface[@name='JobService.JobResult']" />
 
   <!-- Normalize the namespaces for .NET -->
   <attr path="/api/package[@name='com.firebase.jobdispatcher']" name="managedName">Firebase.JobDispatcher</attr>
@@ -48,15 +49,14 @@
     <class abstract="false" deprecated="not deprecated" extends="java.lang.Object"
            extends-generic-aware="java.lang.Object" final="false" name="JobTrigger" static="false" visibility="public">
     </class>
+
     <class abstract="false" deprecated="not deprecated" extends="com.firebase.jobdispatcher.JobTrigger"
            extends-generic-aware="com.firebase.jobdispatcher.JobTrigger" final="true"
            name="JobTrigger.ExecutionWindowTrigger" static="true" visibility="public">
       <constructor deprecated="not deprecated" final="false" name="ExecutionWindowTrigger" static="false"
                    type="com.firebase.jobdispatcher.JobTrigger.ExecutionWindowTrigger" visibility="public">
-        <parameter name="p0" type="int">
-        </parameter>
-        <parameter name="p1" type="int">
-        </parameter>
+        <parameter name="p0" type="int"></parameter>
+        <parameter name="p1" type="int"></parameter>
       </constructor>
       <method abstract="false" deprecated="not deprecated" final="false" name="getWindowEnd" native="false"
               return="int" static="false" synchronized="false" visibility="public">
@@ -67,4 +67,71 @@
     </class>
 
   </add-node>
+
+  <!-- Meaningful parameter names: DefaultJobValidator -->
+  <attr path="/api/package[@name='com.firebase.jobdispatcher']/class[@name='DefaultJobValidator']/method[@name='validate' and count(parameter)=1 and parameter[1][@type='com.firebase.jobdispatcher.JobParameters']]/parameter[@name='p0']" name="name">jobParameters</attr>
+  <attr path="/api/package[@name='com.firebase.jobdispatcher']/class[@name='DefaultJobValidator']/method[@name='validate' and count(parameter)=1 and parameter[1][@type='com.firebase.jobdispatcher.JobTrigger']]/parameter[@name='p0']" name="name">jobTrigger</attr>
+  <attr path="/api/package[@name='com.firebase.jobdispatcher']/class[@name='DefaultJobValidator']/method[@name='validate' and count(parameter)=1 and parameter[1][@type='com.firebase.jobdispatcher.RetryStrategy']]/parameter[@name='p0']" name="name">retryStrategy</attr>
+
+  <!-- Meaningful parameter names: ExternalReceiver -->
+  <attr path="/api/package[@name='com.firebase.jobdispatcher']/class[@name='ExternalReceiver']/method[@name='executeJob' and count(parameter)=1 and parameter[1][@type='com.firebase.jobdispatcher.JobParameters']]/parameter[@name='p0']" name="name">jobParameters</attr>
+  <attr path="/api/package[@name='com.firebase.jobdispatcher']/class[@name='ExternalReceiver']/method[@name='onJobFinished' and count(parameter)=2 and parameter[1][@type='com.firebase.jobdispatcher.JobParameters'] and parameter[2][@type='int']]/parameter[@name='p0']" name="name">jobParameters</attr>
+  <attr path="/api/package[@name='com.firebase.jobdispatcher']/class[@name='ExternalReceiver']/method[@name='onJobFinished' and count(parameter)=2 and parameter[1][@type='com.firebase.jobdispatcher.JobParameters'] and parameter[2][@type='int']]/parameter[@name='p0']" name="name">jobParameters</attr>
+
+  <!-- Meaningfule parameter names: FirebaseJobDispatcher -->
+  <attr path="/api/package[@name='com.firebase.jobdispatcher']/class[@name='FirebaseJobDispatcher']/constructor[@name='FirebaseJobDispatcher' and count(parameter)=1 and parameter[1][@type='com.firebase.jobdispatcher.Driver']]/parameter[@name='p0']" name="name">driver</attr>
+  <attr path="/api/package[@name='com.firebase.jobdispatcher']/class[@name='FirebaseJobDispatcher']/method[@name='cancel' and count(parameter)=1 and parameter[1][@type='java.lang.String']]/parameter[@name='p0']" name="name">tag</attr>
+  <attr path="/api/package[@name='com.firebase.jobdispatcher']/class[@name='FirebaseJobDispatcher']/method[@name='mustSchedule' and count(parameter)=1 and parameter[1][@type='com.firebase.jobdispatcher.Job']]/parameter[@name='p0']" name="name">job</attr>
+  <attr path="/api/package[@name='com.firebase.jobdispatcher']/class[@name='FirebaseJobDispatcher']/method[@name='newRetryStrategy' and count(parameter)=3 and parameter[1][@type='int'] and parameter[2][@type='int'] and parameter[3][@type='int']]/parameter[@name='p0']" name="name">policy</attr>
+  <attr path="/api/package[@name='com.firebase.jobdispatcher']/class[@name='FirebaseJobDispatcher']/method[@name='newRetryStrategy' and count(parameter)=3 and parameter[1][@type='int'] and parameter[2][@type='int'] and parameter[3][@type='int']]/parameter[@name='p1']" name="name">initialBackoff</attr>
+  <attr path="/api/package[@name='com.firebase.jobdispatcher']/class[@name='FirebaseJobDispatcher']/method[@name='newRetryStrategy' and count(parameter)=3 and parameter[1][@type='int'] and parameter[2][@type='int'] and parameter[3][@type='int']]/parameter[@name='p2']" name="name">maximumBackoff</attr>
+  <attr path="/api/package[@name='com.firebase.jobdispatcher']/class[@name='FirebaseJobDispatcher']/method[@name='schedule' and count(parameter)=1 and parameter[1][@type='com.firebase.jobdispatcher.Job']]/parameter[@name='p0']" name="name">job</attr>
+
+  <!-- Meaningful parameter names: GooglePlayDriver -->
+  <attr path="/api/package[@name='com.firebase.jobdispatcher']/class[@name='GooglePlayDriver']/constructor[@name='GooglePlayDriver' and count(parameter)=1 and parameter[1][@type='android.content.Context']]/parameter[@name='p0']" name="name">context</attr>
+  <attr path="/api/package[@name='com.firebase.jobdispatcher']/class[@name='GooglePlayDriver']/method[@name='cancel' and count(parameter)=1 and parameter[1][@type='java.lang.String']]/parameter[@name='p0']" name="name">tag</attr>
+  <attr path="/api/package[@name='com.firebase.jobdispatcher']/class[@name='FirebaseJobDispatcher']/method[@name='schedule' and count(parameter)=1 and parameter[1][@type='com.firebase.jobdispatcher.Job']]/parameter[@name='p0']" name="name">tag</attr>
+  <attr path="/api/package[@name='com.firebase.jobdispatcher']/class[@name='FirebaseJobDispatcher']/method[@name='schedule' and count(parameter)=1 and parameter[1][@type='com.firebase.jobdispatcher.Job']]/parameter[@name='p0']" name="name">job</attr>
+
+  <!-- Meaningful parameter names: IDriver -->
+  <attr path="/api/package[@name='com.firebase.jobdispatcher']/interface[@name='Driver']/method[@name='cancel' and count(parameter)=1 and parameter[1][@type='java.lang.String']]/parameter[@name='p0']" name="name">tag</attr>
+  <attr path="/api/package[@name='com.firebase.jobdispatcher']/interface[@name='Driver']/method[@name='schedule' and count(parameter)=1 and parameter[1][@type='com.firebase.jobdispatcher.Job']]/parameter[@name='p0']" name="name">job</attr>
+  
+  <!-- Meaninful parameter names: IJobValidator -->
+  <attr path="/api/package[@name='com.firebase.jobdispatcher']/interface[@name='JobValidator']/method[@name='validate' and count(parameter)=1 and parameter[1][@type='com.firebase.jobdispatcher.JobParameters']]/parameter[@name='p0']" name="name">jobParameters</attr>
+  <attr path="/api/package[@name='com.firebase.jobdispatcher']/interface[@name='JobValidator']/method[@name='validate' and count(parameter)=1 and parameter[1][@type='com.firebase.jobdispatcher.JobTrigger']]/parameter[@name='p0']" name="name">jobTrigger</attr>
+  <attr path="/api/package[@name='com.firebase.jobdispatcher']/interface[@name='JobValidator']/method[@name='validate' and count(parameter)=1 and parameter[1][@type='com.firebase.jobdispatcher.RetryStrategy']]/parameter[@name='p0']" name="name">retryStrategy</attr>
+  
+  <!-- Meaningful parameter names: Job.Builder -->
+  <attr path="/api/package[@name='com.firebase.jobdispatcher']/class[@name='Job.Builder']/method[@name='addConstraint' and count(parameter)=1 and parameter[1][@type='int']]/parameter[@name='p0']" name="name">constraintValue</attr>
+  <attr path="/api/package[@name='com.firebase.jobdispatcher']/class[@name='Job.Builder']/method[@name='setConstraints' and count(parameter)=1 and parameter[1][@type='int...']]/parameter[@name='p0']" name="name">constraintValues</attr>
+  <attr path="/api/package[@name='com.firebase.jobdispatcher']/class[@name='Job.Builder']/method[@name='setExtras' and count(parameter)=1 and parameter[1][@type='android.os.Bundle']]/parameter[@name='p0']" name="name">extras</attr>
+  <attr path="/api/package[@name='com.firebase.jobdispatcher']/class[@name='Job.Builder']/method[@name='setLifetime' and count(parameter)=1 and parameter[1][@type='int']]/parameter[@name='p0']" name="name">lifetimeValue</attr>
+  <attr path="/api/package[@name='com.firebase.jobdispatcher']/class[@name='Job.Builder']/method[@name='setRecurring' and count(parameter)=1 and parameter[1][@type='boolean']]/parameter[@name='p0']" name="name">isRecurring</attr>
+  <attr path="/api/package[@name='com.firebase.jobdispatcher']/class[@name='Job.Builder']/method[@name='setReplaceCurrent' and count(parameter)=1 and parameter[1][@type='boolean']]/parameter[@name='p0']" name="name">replaceCurrent</attr>
+  <attr path="/api/package[@name='com.firebase.jobdispatcher']/class[@name='Job.Builder']/method[@name='setRetryStrategy' and count(parameter)=1 and parameter[1][@type='com.firebase.jobdispatcher.RetryStrategy']]/parameter[@name='p0']" name="name">retryStrategy</attr>
+  <attr path="/api/package[@name='com.firebase.jobdispatcher']/class[@name='Job.Builder']/method[@name='setService' and count(parameter)=1 and parameter[1][@type='java.lang.Class&lt;? extends com.firebase.jobdispatcher.JobService&gt;']]/parameter[@name='p0']" name="name">javaClass</attr>
+  <attr path="/api/package[@name='com.firebase.jobdispatcher']/class[@name='Job.Builder']/method[@name='setTag' and count(parameter)=1 and parameter[1][@type='java.lang.String']]/parameter[@name='p0']" name="name">tag</attr>
+  <attr path="/api/package[@name='com.firebase.jobdispatcher']/class[@name='Job.Builder']/method[@name='setTrigger' and count(parameter)=1 and parameter[1][@type='com.firebase.jobdispatcher.JobTrigger']]/parameter[@name='p0']" name="name">jobTrigger</attr>
+
+  <!-- Meaningful parameter names: JobService -->
+  <attr path="/api/package[@name='com.firebase.jobdispatcher']/class[@name='JobService']/method[@name='jobFinished' and count(parameter)=2 and parameter[1][@type='com.firebase.jobdispatcher.JobParameters'] and parameter[2][@type='boolean']]/parameter[@name='p0']" name="name">jobParameters</attr>
+  <attr path="/api/package[@name='com.firebase.jobdispatcher']/class[@name='JobService']/method[@name='jobFinished' and count(parameter)=2 and parameter[1][@type='com.firebase.jobdispatcher.JobParameters'] and parameter[2][@type='boolean']]/parameter[@name='p1']" name="name">needsReschedule</attr>
+  <attr path="/api/package[@name='com.firebase.jobdispatcher']/class[@name='JobService']/method[@name='onBind' and count(parameter)=1 and parameter[1][@type='android.content.Intent']]/parameter[@name='p0']" name="name">intent</attr>
+  <attr path="/api/package[@name='com.firebase.jobdispatcher']/class[@name='JobService']/method[@name='onStart' and count(parameter)=2 and parameter[1][@type='android.content.Intent'] and parameter[2][@type='int']]/parameter[@name='p0']" name="name">intent</attr>
+  <attr path="/api/package[@name='com.firebase.jobdispatcher']/class[@name='JobService']/method[@name='onStart' and count(parameter)=2 and parameter[1][@type='android.content.Intent'] and parameter[2][@type='int']]/parameter[@name='p1']" name="name">startId</attr>
+  <attr path="/api/package[@name='com.firebase.jobdispatcher']/class[@name='JobService']/method[@name='onStartCommand' and count(parameter)=3 and parameter[1][@type='android.content.Intent'] and parameter[2][@type='int'] and parameter[3][@type='int']]/parameter[@name='p0']" name="name">intent</attr>
+  <attr path="/api/package[@name='com.firebase.jobdispatcher']/class[@name='JobService']/method[@name='onStartCommand' and count(parameter)=3 and parameter[1][@type='android.content.Intent'] and parameter[2][@type='int'] and parameter[3][@type='int']]/parameter[@name='p1']" name="flags">intent</attr>
+  <attr path="/api/package[@name='com.firebase.jobdispatcher']/class[@name='JobService']/method[@name='onStartCommand' and count(parameter)=3 and parameter[1][@type='android.content.Intent'] and parameter[2][@type='int'] and parameter[3][@type='int']]/parameter[@name='p2']" name="startId">intent</attr>
+  <attr path="/api/package[@name='com.firebase.jobdispatcher']/class[@name='JobService']/method[@name='onStartJob' and count(parameter)=1 and parameter[1][@type='com.firebase.jobdispatcher.JobParameters']]/parameter[@name='p0']" name="name">jobParameters</attr>
+  <attr path="/api/package[@name='com.firebase.jobdispatcher']/class[@name='JobService']/method[@name='onStopJob' and count(parameter)=1 and parameter[1][@type='com.firebase.jobdispatcher.JobParameters']]/parameter[@name='p0']" name="name">jobParameters</attr>
+  
+  <!-- Meaningful parameter names: JobTrigger -->
+  <attr path="/api/package[@name='com.firebase.jobdispatcher']/class[@name='JobTrigger.ExecutionWindowTrigger']/constructor[@name='JobTrigger.ExecutionWindowTrigger' and count(parameter)=2 and parameter[1][@type='int'] and parameter[2][@type='int']]/parameter[@name='p0']" name="name">windowStart</attr>
+  <attr path="/api/package[@name='com.firebase.jobdispatcher']/class[@name='JobTrigger.ExecutionWindowTrigger']/constructor[@name='JobTrigger.ExecutionWindowTrigger' and count(parameter)=2 and parameter[1][@type='int'] and parameter[2][@type='int']]/parameter[@name='p1']" name="name">windowEnd</attr>
+
+  <!-- Meaningful parameter names: Trigger -->
+  <attr path="/api/package[@name='com.firebase.jobdispatcher']/class[@name='Trigger']/method[@name='executionWindow' and count(parameter)=2 and parameter[1][@type='int'] and parameter[2][@type='int']]/parameter[@name='p0']" name="name">windowStart</attr>
+  <attr path="/api/package[@name='com.firebase.jobdispatcher']/class[@name='Trigger']/method[@name='executionWindow' and count(parameter)=2 and parameter[1][@type='int'] and parameter[2][@type='int']]/parameter[@name='p1']" name="name">windowEnd</attr>
+
 </metadata>
