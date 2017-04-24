@@ -8,12 +8,12 @@ using Exception = System.Exception;
 namespace FJDTestApp.JobForm
 {
     /// <summary>
-    ///     This is a helper class that will schedule a job the Firebase Job Dispatcher according to the the
+    ///     This class schedule a job the Firebase Job Dispatcher according to the the
     ///     values provided by a <code>IJobParametersView</code>.
     /// </summary>
-    class FirebaseJob
+    class JobFormScheduler
     {
-        static readonly string TAG = typeof(FirebaseJob).FullName;
+        static readonly string TAG = typeof(JobFormScheduler).FullName;
         bool constrainDeviceCharging;
 
         bool constrainOnAnyNetwork;
@@ -31,14 +31,14 @@ namespace FJDTestApp.JobForm
         int winStartSeconds;
 
         /// <summary>
-        /// Creates a FirebaseJob based on the triggers and constraints specified in
+        /// Creates a JobFormScheduler based on the triggers and constraints specified in
         /// the view.
         /// </summary>
         /// <param name="view"></param>
         /// <returns></returns>
-        internal static FirebaseJob WithParametersFrom(IJobParametersView view)
+        internal static JobFormScheduler WithParametersFrom(IJobParametersView view)
         {
-            var jf = new FirebaseJob
+            var jf = new JobFormScheduler
             {
                 winEndSeconds = view.WindowStartSeconds,
                 winStartSeconds = view.WindowStartSeconds,
@@ -63,11 +63,11 @@ namespace FJDTestApp.JobForm
         /// </summary>
         /// <param name="context">The context that is request the job.</param>
         /// <typeparam name="T">A <code>JobService</code> subclass.</typeparam>
-        internal void Schedule<T>(Context context) where T : JobService
+        internal void SubmitJob<T>(Context context) where T : JobService
         {
             if (!initialized)
             {
-                throw new InvalidOperationException("Must initialize the parameters with FirebaseJob.WithParametersFrom before trying to schedule the job!");
+                throw new InvalidOperationException("Must initialize the parameters with JobFormScheduler.WithParametersFrom before trying to schedule the job!");
             }
 
             FirebaseJobDispatcher dispatcher = context.CreatJobDispatcher();
