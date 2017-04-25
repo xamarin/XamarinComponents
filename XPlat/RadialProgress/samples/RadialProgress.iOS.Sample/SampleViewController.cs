@@ -51,8 +51,8 @@ namespace RadialProgress.iOS.Sample
 			AddBackground ();
 
 			// Add our different styles of RadialProgressViews
-            bigRadialProgressView = new RadialProgressView ();
-            bigRadialProgressView.LabelTextDelegate = (val) => Math.Floor(100-val*100).ToString().PadLeft(2, '0');
+			bigRadialProgressView = new RadialProgressView ();
+			bigRadialProgressView.LabelTextDelegate = (val) => Math.Floor(100-val*100).ToString().PadLeft(2, '0');
 			bigRadialProgressView.Center = new CGPoint (View.Center.X, View.Center.Y - 100);
 			bigRadialProgressView.AutoresizingMask = UIViewAutoresizing.FlexibleMargins;
 			View.AddSubview (bigRadialProgressView);
@@ -63,7 +63,7 @@ namespace RadialProgress.iOS.Sample
 			smallRadialProgressView.AutoresizingMask = UIViewAutoresizing.FlexibleMargins;
 			View.AddSubview (smallRadialProgressView);
 
-            tinyRadialProgressView = new RadialProgressView (progressType: RadialProgressViewStyle.Tiny);
+			tinyRadialProgressView = new RadialProgressView (progressType: RadialProgressViewStyle.Tiny);
 			tinyRadialProgressView.ProgressColor = UIColor.White;
 			tinyRadialProgressView.Center = new CGPoint (bigRadialProgressView.Frame.Right + (View.Frame.Width - bigRadialProgressView.Frame.Right) / 2, bigRadialProgressView.Center.Y);
 			tinyRadialProgressView.AutoresizingMask = UIViewAutoresizing.FlexibleMargins;

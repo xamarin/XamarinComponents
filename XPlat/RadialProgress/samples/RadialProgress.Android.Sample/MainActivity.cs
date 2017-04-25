@@ -29,7 +29,7 @@ namespace RadialProgress.Android.Sample
 			btn = FindViewById<Button> (Resource.Id.myButton);
 			btn.Click += HandleClick;
 
-            bigRadialProgress.LabelTextDelegate = (val) => Math.Floor(100-val).ToString().PadLeft(2, '0');
+			bigRadialProgress.LabelTextDelegate = (val) => Math.Floor(100-val).ToString().PadLeft(2, '0');
 
 			// Also you can add radial progress programmatically, if you want
 			// var radialProgress = new RadialProgress(this, 0, 100, RadialProgressViewStyle.Big);

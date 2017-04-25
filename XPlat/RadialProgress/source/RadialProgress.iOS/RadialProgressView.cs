@@ -67,11 +67,11 @@ namespace RadialProgress {
 			}
 		}
 
-        /// <summary>
-        /// Gets or sets the label text delegate. If null, default function will be used (in %%)
-        /// </summary>
-        /// <value>The label text delegate.</value>
-        public Func<nfloat, string> LabelTextDelegate { get; set; }
+		/// <summary>
+		/// Gets or sets the label text delegate. If null, default function will be used (in %%)
+		/// </summary>
+		/// <value>The label text delegate.</value>
+		public Func<nfloat, string> LabelTextDelegate { get; set; }
 		
 		/// <summary>
 		/// Gets or sets a value indicating whether label is hidden.
@@ -137,7 +137,7 @@ namespace RadialProgress {
 		public RadialProgressView (Func<nfloat, string> labelText = null, RadialProgressViewStyle progressType = RadialProgressViewStyle.Big)
 		{
 			this.progressType = progressType;
-            LabelTextDelegate = labelText;
+			LabelTextDelegate = labelText;
 			radialProgressLayer = GetRadialLayerByType (progressType);
 			Bounds = radialProgressLayer.BackBounds;
 			
@@ -227,7 +227,7 @@ namespace RadialProgress {
 			radialProgressLayer.SetNeedsDisplay ();
 			
 			if (!LabelHidden) {
-                percentageLabel.Text = (LabelTextDelegate == null) ? Math.Floor (percentage).ToString ().PadLeft (2, '0') : LabelTextDelegate(currentValue);
+				percentageLabel.Text = (LabelTextDelegate == null) ? Math.Floor (percentage).ToString ().PadLeft (2, '0') : LabelTextDelegate(currentValue);
 			}
 		}
 		

@@ -100,11 +100,11 @@ namespace RadialProgress
 			}
 		}
 
-        /// <summary>
-        /// Gets or sets the label text delegate. If null, default function will be used (in %%)
-        /// </summary>
-        /// <value>The label text delegate.</value>
-        public Func<float, string> LabelTextDelegate { get; set; }
+		/// <summary>
+		/// Gets or sets the label text delegate. If null, default function will be used (in %%)
+		/// </summary>
+		/// <value>The label text delegate.</value>
+		public Func<float, string> LabelTextDelegate { get; set; }
 
 		/// <summary>
 		/// Gets or sets the color of the progress indicator
@@ -134,22 +134,22 @@ namespace RadialProgress
 			get { return Value == MaxValue; }
 		}
 
-        public RadialProgressView (Context context, IAttributeSet attributes) : base(context, attributes)
+		public RadialProgressView (Context context, IAttributeSet attributes) : base(context, attributes)
 		{
 			var parser = new AttributesParser(attributes);
 			Init(parser.MinValue, parser.MaxValue, parser.Value, parser.ProgressType, parser.ProgressColor);
 			LabelHidden = parser.LabelHidden;
 		}
 
-        public RadialProgressView (Context context, float minValue = 0f, float maxValue = 1f, RadialProgressViewStyle progressType = RadialProgressViewStyle.Big, Func<float, string> labelTextFunc = null) : base(context)
+		public RadialProgressView (Context context, float minValue = 0f, float maxValue = 1f, RadialProgressViewStyle progressType = RadialProgressViewStyle.Big, Func<float, string> labelTextFunc = null) : base(context)
 		{
-            this.LabelTextDelegate = labelTextFunc;
+			this.LabelTextDelegate = labelTextFunc;
 			Init(minValue, maxValue, 0, progressType, DefaultColor);
 		}
 
-        public RadialProgressView (Context context, float minValue, float maxValue, RadialProgressViewStyle progressType, Color progressColor, Func<float, string> labelTextFunc = null) : base(context)
+		public RadialProgressView (Context context, float minValue, float maxValue, RadialProgressViewStyle progressType, Color progressColor, Func<float, string> labelTextFunc = null) : base(context)
 		{
-            this.LabelTextDelegate = labelTextFunc;
+			this.LabelTextDelegate = labelTextFunc;
 			Init(minValue, maxValue, 0, progressType, progressColor);
 		}
 
@@ -197,7 +197,7 @@ namespace RadialProgress
 			this.minValue = minValue;
 			this.maxValue = maxValue;
 			currentValue = value;
-            valueText = GetTextByValue(currentValue);
+			valueText = GetTextByValue(currentValue);
 			this.progressColor = progressColor;
 
 			cachedRectF = new RectF();
@@ -209,20 +209,20 @@ namespace RadialProgress
 
 		void OnCurrentValueChanged ()
 		{
-            valueText = GetTextByValue(currentValue);
+			valueText = GetTextByValue(currentValue);
 
 			PostInvalidate();
 		}
 
-        string GetTextByValue(float value)
-        {
-            if (LabelTextDelegate != null) {
-                return LabelTextDelegate(value);
-            } else {
-                return Math.Round (CalculatePercentage (currentValue)).ToString ();
-            }
-        }
-		              
+		string GetTextByValue(float value)
+		{
+			if (LabelTextDelegate != null) {
+				return LabelTextDelegate(value);
+			} else {
+				return Math.Round (CalculatePercentage (currentValue)).ToString ();
+			}
+		}
+
 		void InitPaints ()
 		{
 			textPaint = new Paint ();
