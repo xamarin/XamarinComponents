@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:id="@+id/rootLayout"
+    android:background="#ff3b3b3b">
+    <Button
+        android:id="@+id/myButton"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="Start"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="20dp" />
+    <radialprogress.RadialProgressView
+        android:id="@+id/bigProgress"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:layout_marginBottom="20dp"
+        progress_type="big"
+        min_value="0"
+        max_value="100"
+        android:layout_gravity="center" />
+    <LinearLayout
+        android:orientation="horizontal"
+        android:minWidth="25px"
+        android:minHeight="25px"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/linearLayout1"
+        android:layout_marginLeft="40dp"
+        android:layout_marginRight="40dp">
+        <radialprogress.RadialProgressView
+            android:id="@+id/smallProgress"
+            progress_type="small"
+            progress_color="#FF0000"
+            min_value="0"
+            max_value="100"
+            value="50"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_gravity="center"
+            android:layout_marginRight="50dp" />
+        <radialprogress.RadialProgressView
+            android:id="@+id/tinyProgress"
+            progress_type="tiny"
+            progress_color="#00FF00"
+            min_value="0"
+            max_value="100"
+            value="75"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginLeft="50dp"
+            android:layout_gravity="center" />
+    </LinearLayout>
+</LinearLayout>
