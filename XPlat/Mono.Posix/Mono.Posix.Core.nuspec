@@ -1,0 +1,44 @@
+<?xml version="1.0"?>
+<package >
+  <metadata>
+    <id>Mono.Posix.Core</id>
+    <version>$version$</version>
+    <authors>Xamarin Inc.</authors>
+    <owners>Xamarin Inc.</owners>
+    <licenseUrl>https://github.com/mono/mono/blob/master/LICENSE</licenseUrl>
+    <projectUrl>https://github.com/mono/mono/tree/master/mcs/class/Mono.Posix</projectUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>Provides functionality to access Posix/Unix features</description>
+    <copyright>Copyright 2017</copyright>
+  </metadata>
+  <files>
+    <file src="build/Mono.Posix.dll" target="lib/netstandard2.0" />
+
+    <file src="MonoPosixHelper/osx-10.7-universal/libMonoPosixHelper.dylib" target="runtimes/osx/native/libMonoPosixHelper.dylib"/>
+
+    <file src="MonoPosixHelper/debian-7-arm/libMonoPosixHelper.so" target="runtimes/debian-arm/native/libMonoPosixHelper.so"/>
+    <file src="MonoPosixHelper/debian-7-armel/libMonoPosixHelper.so" target="runtimes/debian-armel/native/libMonoPosixHelper.so"/>
+    <file src="MonoPosixHelper/debian-7-x64/libMonoPosixHelper.so" target="runtimes/debian-x64/native/libMonoPosixHelper.so"/>
+    <file src="MonoPosixHelper/debian-7-x86/libMonoPosixHelper.so" target="runtimes/debian-x86/native/libMonoPosixHelper.so"/>
+
+    <file src="MonoPosixHelper/debian-8-arm/libMonoPosixHelper.so" target="runtimes/debian.8-arm/native/libMonoPosixHelper.so"/>
+    <file src="MonoPosixHelper/debian-8-arm64/libMonoPosixHelper.so" target="runtimes/debian.8-arm64/native/libMonoPosixHelper.so"/>
+    <file src="MonoPosixHelper/debian-8-armel/libMonoPosixHelper.so" target="runtimes/debian.8-armel/native/libMonoPosixHelper.so"/>
+    <file src="MonoPosixHelper/debian-8-x64/libMonoPosixHelper.so" target="runtimes/debian.8-x64/native/libMonoPosixHelper.so"/>
+    <file src="MonoPosixHelper/debian-8-x86/libMonoPosixHelper.so" target="runtimes/debian.8-x86/native/libMonoPosixHelper.so"/>
+
+    <file src="MonoPosixHelper/ubuntu-12.04-arm/libMonoPosixHelper.so" target="runtimes/ubuntu-arm/native/libMonoPosixHelper.so"/>
+    <file src="MonoPosixHelper/ubuntu-12.04-x64/libMonoPosixHelper.so" target="runtimes/ubuntu-x64/native/libMonoPosixHelper.so"/>
+    <file src="MonoPosixHelper/ubuntu-12.04-x86/libMonoPosixHelper.so" target="runtimes/ubuntu-x86/native/libMonoPosixHelper.so"/>
+
+    <file src="MonoPosixHelper/ubuntu-14.04-arm/libMonoPosixHelper.so" target="runtimes/ubuntu.14.04-arm/native/libMonoPosixHelper.so"/>
+    <file src="MonoPosixHelper/ubuntu-14.04-arm64/libMonoPosixHelper.so" target="runtimes/ubuntu.14.04-arm64/native/libMonoPosixHelper.so"/>
+    <file src="MonoPosixHelper/ubuntu-14.04-x64/libMonoPosixHelper.so" target="runtimes/ubuntu.14.04-x64/native/libMonoPosixHelper.so"/>
+    <file src="MonoPosixHelper/ubuntu-14.04-x86/libMonoPosixHelper.so" target="runtimes/ubuntu.14.04-x86/native/libMonoPosixHelper.so"/>
+
+    <file src="MonoPosixHelper/ubuntu-16.04-arm/libMonoPosixHelper.so" target="runtimes/ubuntu.16.04-arm/native/libMonoPosixHelper.so"/>
+    <file src="MonoPosixHelper/ubuntu-16.04-arm64/libMonoPosixHelper.so" target="runtimes/ubuntu.16.04-arm64/native/libMonoPosixHelper.so"/>
+    <file src="MonoPosixHelper/ubuntu-16.04-x64/libMonoPosixHelper.so" target="runtimes/ubuntu.16.04-x64/native/libMonoPosixHelper.so"/>
+    <file src="MonoPosixHelper/ubuntu-16.04-x86/libMonoPosixHelper.so" target="runtimes/ubuntu.16.04-x86/native/libMonoPosixHelper.so"/>
+  </files>
+</package>

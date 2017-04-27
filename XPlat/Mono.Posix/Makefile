@@ -1,0 +1,66 @@
+MONO_VERSION=5.0.0.78
+MONOPOSIX_NUGET_VERSION=5.0.0.78-alpha1
+MONOPOSIXHELPER_JENKINSBUILD=8
+
+$(eval DOCKER_CONTAINER_NAME=MonoPosixBuild-$(shell uuidgen))
+
+DISTRO_LIST=debian-7-arm debian-7-armel debian-7-x64 debian-7-x86 debian-8-arm debian-8-arm64 debian-8-armel debian-8-ppc64el \
+ debian-8-x64 debian-8-x86 raspbian-8-arm ubuntu-12.04-arm ubuntu-12.04-x64 ubuntu-12.04-x86 ubuntu-14.04-arm \
+ ubuntu-14.04-arm64 ubuntu-14.04-ppc64el ubuntu-14.04-x64 ubuntu-14.04-x86 ubuntu-16.04-arm ubuntu-16.04-arm64 \
+ ubuntu-16.04-ppc64el ubuntu-16.04-x64 ubuntu-16.04-x86
+
+# all: build/Mono.Posix.dll
+all: build/Mono.Posix.Core.$(MONOPOSIX_NUGET_VERSION).nupkg
+
+# Fetch mono from Github using tagged version
+# Only extract what is needed
+mono-$(MONO_VERSION).zip:
+	curl -L -o $@ https://github.com/mono/mono/archive/mono-$(MONO_VERSION).zip
+	touch $@
+
+monorepo/mcs/class/Mono.Posix/Makefile: mono-$(MONO_VERSION).zip
+	unzip  mono-$(MONO_VERSION).zip 'mono-mono-$(MONO_VERSION)/mcs/class/Mono.Posix/*'
+	unzip  mono-$(MONO_VERSION).zip 'mono-mono-$(MONO_VERSION)/mcs/class/mono.pub'
+	unzip  mono-$(MONO_VERSION).zip 'mono-mono-$(MONO_VERSION)/mcs/build/common/*'
+	mv mono-mono-$(MONO_VERSION) monorepo
+	touch $@
+# MASSIVE HACK Just until I get a PR
+	cp -R monochanges/* monorepo/
+
+# using the nightly dotnetcore build for 2.0 preview to make Mono.Posix for netstandard 2.0
+build/Mono.Posix.dll: monorepo/mcs/class/Mono.Posix/Makefile
+	mkdir -p build
+	docker pull microsoft/dotnet-nightly:2.0-sdk
+	docker run --name $(DOCKER_CONTAINER_NAME) -v `pwd`:/hostdir  microsoft/dotnet-nightly:2.0-sdk sh /hostdir/dockerbuild.sh || (docker rm $(DOCKER_CONTAINER_NAME) && false)
+	docker rm $(DOCKER_CONTAINER_NAME)
+	cp monorepo/mcs/class/Mono.Posix/bin/Debug/netstandard2.0/Mono.Posix.dll build/
+
+# Fetch all of the libMonoPosixHelper.so files
+# Will be easier when this is all in Jenkins
+MonoPosixHelper/%/libMonoPosixHelper.so: DISTRO_NAME = $(@:MonoPosixHelper/%/libMonoPosixHelper.so=%)
+MonoPosixHelper/%/libMonoPosixHelper.so:
+	mkdir -p MonoPosixHelper/$(DISTRO_NAME)
+	curl -o MonoPosixHelper/$(DISTRO_NAME)/libMonoPosixHelper.so -L https://xamjenkinsartifact.blob.core.windows.net/ng-extract-libmonoposixhelper/$(MONOPOSIXHELPER_JENKINSBUILD)/results/$(DISTRO_NAME)/libMonoPosixHelper.so
+
+# Special Case the OSX fetch
+# Again will be easier when this is all in Jenkins
+MonoPosixHelper/osx-10.7-universal/libMonoPosixHelper.dylib:
+	mkdir -p MonoPosixHelper/osx-10.7-universal
+	curl -o MonoPosixHelper/osx-10.7-universal/libMonoPosixHelper.dylib -L https://xamjenkinsartifact.blob.core.windows.net/ng-extract-libmonoposixhelper/$(MONOPOSIXHELPER_JENKINSBUILD)/results/osx-10.7-universal/libMonoPosixHelper.dylib
+
+# Fetch a specific version of NuGet client
+tools/nuget.exe:
+	mkdir tools
+	curl -L -o $@ https://dist.nuget.org/win-x86-commandline/v4.1.0/nuget.exe
+
+# Pack the nuget
+build/Mono.Posix.Core.$(MONOPOSIX_NUGET_VERSION).nupkg: tools/nuget.exe \
+ build/Mono.Posix.dll \
+ $(addprefix MonoPosixHelper/, $(addsuffix /libMonoPosixHelper.so,$(DISTRO_LIST))) \
+ MonoPosixHelper/osx-10.7-universal/libMonoPosixHelper.dylib \
+ Mono.Posix.Core.nuspec
+	mono tools/nuget.exe pack -Version $(MONOPOSIX_NUGET_VERSION) -OutputDirectory build/  Mono.Posix.Core.nuspec
+
+clean: 
+	rm -rf mono-$(MONO_VERSION).zip monorepo build MonoPosixHelper tools
+
