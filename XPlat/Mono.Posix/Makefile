@@ -21,6 +21,7 @@ mono-$(MONO_VERSION).zip:
 monorepo/mcs/class/Mono.Posix/Makefile: mono-$(MONO_VERSION).zip
 	unzip  mono-$(MONO_VERSION).zip 'mono-mono-$(MONO_VERSION)/mcs/class/Mono.Posix/*'
 	unzip  mono-$(MONO_VERSION).zip 'mono-mono-$(MONO_VERSION)/mcs/class/mono.pub'
+	unzip  mono-$(MONO_VERSION).zip 'mono-mono-$(MONO_VERSION)/mcs/class/mono.snk'
 	unzip  mono-$(MONO_VERSION).zip 'mono-mono-$(MONO_VERSION)/mcs/build/common/*'
 	mv mono-mono-$(MONO_VERSION) monorepo
 	touch $@
@@ -34,6 +35,7 @@ build/Mono.Posix.dll: monorepo/mcs/class/Mono.Posix/Makefile
 	docker run --name $(DOCKER_CONTAINER_NAME) -v `pwd`:/hostdir  microsoft/dotnet-nightly:2.0-sdk sh /hostdir/dockerbuild.sh || (docker rm $(DOCKER_CONTAINER_NAME) && false)
 	docker rm $(DOCKER_CONTAINER_NAME)
 	cp monorepo/mcs/class/Mono.Posix/bin/Debug/netstandard2.0/Mono.Posix.dll build/
+	sn -R build/Mono.Posix.dll monorepo/mcs/class/mono.snk
 
 # Fetch all of the libMonoPosixHelper.so files
 # Will be easier when this is all in Jenkins
