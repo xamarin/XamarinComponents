@@ -1,6 +1,8 @@
 Mono.Posix for .Net Core
 ========================
 
+[![Components-Mono.Posix][7]][8]
+
 The purpose of this folder project is to prepare and package Mono.Posix for 
 .Net Core 2.0 as a NuGet.  The intention of these scripts is to help the 
 conversation with Release Engineering.  Depending on discussions with RE the files
@@ -29,7 +31,6 @@ Todo Items
    - Need to send a PR to mono repo for code changes and add csproj
    - Add build step to generate Consts.cs
  - Add unit test run
- - Investigate out signing/strong naming
  - add more arch builds for PosixHelper
  - Revisit package ID
  - Revisit all metadata in nuspec
@@ -41,3 +42,5 @@ Todo Items
 [4]: https://jenkins.mono-project.com/view/All/job/ng-extract-libmonoposixhelper/
 [5]: https://github.com/mono/mono/tree/master/mcs/class/Mono.Posix
 [6]: https://hub.docker.com/r/microsoft/dotnet-nightly/
+[7]: https://jenkins.mono-project.com/view/Components/job/Components-Mono.Posix/badge/icon
+[8]: https://jenkins.mono-project.com/view/Components/job/Components-Mono.Posix/badge/icon
