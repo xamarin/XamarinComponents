@@ -1,0 +1,6 @@
+MonoPosixHelper
+Test/TestResult.xml
+Test/packagesource/
+build/
+mono-source.zip
+monorepo/
