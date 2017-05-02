@@ -162,7 +162,7 @@ Task ("Update").IsDependentOn ("Init").Does (() => {
                 // Remove all the xpath patterns from this csproj
                 foreach (var xpathRemove in csprojXPathRemoves) {
                     try {
-                        Information ("    XPath: {0}", xpath);
+                        Information ("    XPath: {0}", xpathRemove);
                         // We XmlPoke the pattern with null to remove it
                         XmlPoke (csproj, xpathRemove, null, new XmlPokeSettings {
                             Namespaces = new Dictionary<string, string> { { "x", "http://schemas.microsoft.com/developer/msbuild/2003" } }
