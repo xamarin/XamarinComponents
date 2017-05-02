@@ -19,3 +19,5 @@ Notes:
  - Paket is used to install the desired versions of packages since it's able to modify the .csproj from the command line (including importing .props/.targets files) more easily than through nuget.
  - Windows is not currently supported with this build script.
  - It's assumed that the CI job will pull in nuget packages from a previously successful upstream build for the version of things we're testing and put them in `./output`
+ - NuGet 3.5.0 must currently be used.  There are errors in nuget restore about mismatched msbuild versions otherwise.  This is why the custom bootstrapper exists in this dir.
+ 
