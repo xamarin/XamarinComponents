@@ -1,8 +1,11 @@
 MONO_VERSION=5.0.0.78
+# MONOGIT_VERSION=mono-$(MONO_VERSION)
+MONOGIT_VERSION=4312802ba7a921d7dafc96902ebd1efa3b8ebc97
 MONOPOSIX_NUGET_VERSION=5.0.0.78-alpha1
 MONOPOSIXHELPER_JENKINSBUILD=8
 
-$(eval DOCKER_CONTAINER_NAME=MonoPosixBuild-$(shell uuidgen))
+$(eval DOCKER_BUILD_CONTAINER_NAME=MonoPosixBuild-$(shell uuidgen))
+$(eval DOCKER_TEST_CONTAINER_NAME=MonoPosixBuild-$(shell uuidgen))
 
 DISTRO_LIST=debian-7-arm debian-7-armel debian-7-x64 debian-7-x86 debian-8-arm debian-8-arm64 debian-8-armel debian-8-ppc64el \
  debian-8-x64 debian-8-x86 raspbian-8-arm ubuntu-12.04-arm ubuntu-12.04-x64 ubuntu-12.04-x86 ubuntu-14.04-arm \
@@ -14,16 +17,16 @@ all: build/Mono.Posix.Core.$(MONOPOSIX_NUGET_VERSION).nupkg
 
 # Fetch mono from Github using tagged version
 # Only extract what is needed
-mono-$(MONO_VERSION).zip:
-	curl -L -o $@ https://github.com/mono/mono/archive/mono-$(MONO_VERSION).zip
+mono-source.zip:
+	curl -L -o $@ https://github.com/mono/mono/archive/$(MONOGIT_VERSION).zip
 	touch $@
 
-monorepo/mcs/class/Mono.Posix/Makefile: mono-$(MONO_VERSION).zip
-	unzip  mono-$(MONO_VERSION).zip 'mono-mono-$(MONO_VERSION)/mcs/class/Mono.Posix/*'
-	unzip  mono-$(MONO_VERSION).zip 'mono-mono-$(MONO_VERSION)/mcs/class/mono.pub'
-	unzip  mono-$(MONO_VERSION).zip 'mono-mono-$(MONO_VERSION)/mcs/class/mono.snk'
-	unzip  mono-$(MONO_VERSION).zip 'mono-mono-$(MONO_VERSION)/mcs/build/common/*'
-	mv mono-mono-$(MONO_VERSION) monorepo
+monorepo/mcs/class/Mono.Posix/Makefile: mono-source.zip
+	unzip  mono-source.zip 'mono-$(MONOGIT_VERSION)/mcs/class/Mono.Posix/*'
+	unzip  mono-source.zip 'mono-$(MONOGIT_VERSION)/mcs/class/mono.pub'
+	unzip  mono-source.zip 'mono-$(MONOGIT_VERSION)/mcs/class/mono.snk'
+	unzip  mono-source.zip 'mono-$(MONOGIT_VERSION)/mcs/build/common/*'
+	mv mono-$(MONOGIT_VERSION) monorepo
 	touch $@
 # MASSIVE HACK Just until I get a PR
 	cp -R monochanges/* monorepo/
@@ -32,8 +35,8 @@ monorepo/mcs/class/Mono.Posix/Makefile: mono-$(MONO_VERSION).zip
 build/Mono.Posix.dll: monorepo/mcs/class/Mono.Posix/Makefile
 	mkdir -p build
 	docker pull microsoft/dotnet-nightly:2.0-sdk
-	docker run --name $(DOCKER_CONTAINER_NAME) -v `pwd`:/hostdir  microsoft/dotnet-nightly:2.0-sdk sh /hostdir/dockerbuild.sh || (docker rm $(DOCKER_CONTAINER_NAME) && false)
-	docker rm $(DOCKER_CONTAINER_NAME)
+	docker run --name $(DOCKER_BUILD_CONTAINER_NAME) -v `pwd`:/hostdir  microsoft/dotnet-nightly:2.0-sdk sh /hostdir/dockerbuild.sh || (docker rm $(DOCKER_BUILD_CONTAINER_NAME) && false)
+	docker rm $(DOCKER_BUILD_CONTAINER_NAME)
 	cp monorepo/mcs/class/Mono.Posix/bin/Debug/netstandard2.0/Mono.Posix.dll build/
 	sn -R build/Mono.Posix.dll monorepo/mcs/class/mono.snk
 
@@ -63,6 +66,16 @@ build/Mono.Posix.Core.$(MONOPOSIX_NUGET_VERSION).nupkg: tools/nuget.exe \
  Mono.Posix.Core.nuspec
 	mono tools/nuget.exe pack -Version $(MONOPOSIX_NUGET_VERSION) -OutputDirectory build/  Mono.Posix.Core.nuspec
 
+test: all
+	rm -rf Test/packagesource/
+	mkdir -p Test/packagesource
+	mono tools/nuget.exe add -Source Test/packagesource build/Mono.Posix.Core.$(MONOPOSIX_NUGET_VERSION).nupkg
+	docker run --name $(DOCKER_TEST_CONTAINER_NAME) -v `pwd`:/hostdir  microsoft/dotnet-nightly:2.0-sdk sh /hostdir/dockertest.sh $(MONOPOSIX_NUGET_VERSION) || (docker rm $(DOCKER_TEST_CONTAINER_NAME) && false)
+	docker rm $(DOCKER_TEST_CONTAINER_NAME)
+
 clean: 
-	rm -rf mono-$(MONO_VERSION).zip monorepo build MonoPosixHelper tools
+	rm -rf mono-source.zip monorepo build MonoPosixHelper tools Test/packagesource Test/TestResult.xml Test/bin Test/obj \
+	Mono.Posix.Test-netstandard_2_0.copy.csproj
+
+.PHONY: clean test all
 
