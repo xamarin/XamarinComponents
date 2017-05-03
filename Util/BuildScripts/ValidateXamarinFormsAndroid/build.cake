@@ -33,8 +33,9 @@ var PROJECT_REFS = new Dictionary<string, PkgChanges> {
             Add = new [] {
                 new Pkg ("Xamarin.Android.Support.v4", SUPPORT_VERSION),
                 new Pkg("Xamarin.GooglePlayServices.AppIndexing", GPS_VERSION),
+                new Pkg("Xamarin.Firebase.AppIndexing", GPS_VERSION),
             },
-            RemovePatterns = new [] { "Xamarin.Android.Support.", "Xamarin.GooglePlayServices.", "Xamarin.Build.Download" }
+            RemovePatterns = new [] { "Xamarin.Android.Support.", "Xamarin.GooglePlayServices.", "Xamarin.Firebase.", "Xamarin.Build.Download" }
         }
     },
     {
