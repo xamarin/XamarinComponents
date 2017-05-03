@@ -1592,33 +1592,28 @@ namespace Mapbox
 
 	// @interface NSValue (MGLAdditions)
 	[Category]
-	[BaseType(typeof(NSValue))]
+	[BaseType(typeof(NSValue), Name = "NSValue")]
 	interface Additions_NSValue
 	{
 		// @property (readonly) CLLocationCoordinate2D MGLCoordinateValue;
-		[Static]
 		[Export("MGLCoordinateValue")]
-		CLLocationCoordinate2D Coordinate { get; }
+		CLLocationCoordinate2D GetCoordinate();
 
 		// @property (readonly) MGLCoordinateSpan MGLCoordinateSpanValue;
-		[Static]
 		[Export("MGLCoordinateSpanValue")]
-		CoordinateSpan CoordinateSpan { get; }
+		CoordinateSpan GetCoordinateSpan();
 
 		// @property (readonly) MGLCoordinateBounds MGLCoordinateBoundsValue;
-		[Static]
 		[Export("MGLCoordinateBoundsValue")]
-		CoordinateBounds CoordinateBounds { get; }
+		CoordinateBounds GetCoordinateBounds();
 
 		// @property (readonly) MGLOfflinePackProgress MGLOfflinePackProgressValue;
-		[Static]
 		[Export("MGLOfflinePackProgressValue")]
-		OfflinePackProgress OfflinePackProgress { get; }
+		OfflinePackProgress GetOfflinePackProgress();
 
 		// @property (readonly) MGLTransition MGLTransitionValue;
-		[Static]
 		[Export("MGLTransitionValue")]
-		Transition Transition { get; }
+		Transition GetTransition();
 	}
 
     // @interface NSValue (MGLAdditions)
@@ -1872,9 +1867,8 @@ namespace Mapbox
 	interface NSValue_MGLFillStyleLayerAdditions
 	{
 		// @property (readonly) MGLFillTranslationAnchor MGLFillTranslationAnchorValue;
-		[Static]
 		[Export("MGLFillTranslationAnchorValue")]
-		FillTranslationAnchor FillTranslationAnchor { get; }
+		FillTranslationAnchor GetFillTranslationAnchor();
 	}
 
     // @interface FillStyleLayerAdditions (NSValue)
@@ -1995,20 +1989,17 @@ namespace Mapbox
     [BaseType (typeof(NSValue))]
     interface NSValue_MGLLineStyleLayerAdditions
     {
-        // @property (readonly) MGLLineCap MGLLineCapValue;
-        [Static]
-        [Export ("MGLLineCapValue")]
-        LineCap MGLLineCap { get; }
+		// @property (readonly) MGLLineCap MGLLineCapValue;
+		[Export("MGLLineCapValue")]
+		LineCap GetLineCap();
 
-        // @property (readonly) MGLLineJoin MGLLineJoinValue;
-        [Static]
-        [Export ("MGLLineJoinValue")]
-        LineJoin MGLLineJoin { get; }
+		// @property (readonly) MGLLineJoin MGLLineJoinValue;
+		[Export("MGLLineJoinValue")]
+		LineJoin GetLineJoin();
 
-        // @property (readonly) MGLLineTranslationAnchor MGLLineTranslationAnchorValue;
-        [Static]
-        [Export ("MGLLineTranslationAnchorValue")]
-        LineTranslationAnchor MGLLineTranslationAnchor { get; }
+		// @property (readonly) MGLLineTranslationAnchor MGLLineTranslationAnchorValue;
+		[Export("MGLLineTranslationAnchorValue")]
+		LineTranslationAnchor GetLineTranslationAnchor();
     }
 
 	// @interface LineStyleLayerAdditions (NSValue)
@@ -2283,54 +2274,44 @@ namespace Mapbox
     interface NSValue_MGLSymbolStyleLayerAdditions
     {
         // @property (readonly) MGLIconRotationAlignment MGLIconRotationAlignmentValue;
-        [Static]
         [Export ("MGLIconRotationAlignmentValue")]
-        IconRotationAlignment IconRotationAlignment { get; }
+        IconRotationAlignment GetIconRotationAlignment();
 
         // @property (readonly) MGLIconTextFit MGLIconTextFitValue;
-        [Static]
         [Export ("MGLIconTextFitValue")]
-        IconTextFit IconTextFit { get; }
+        IconTextFit GetIconTextFit();
 
         // @property (readonly) MGLSymbolPlacement MGLSymbolPlacementValue;
-        [Static]
         [Export ("MGLSymbolPlacementValue")]
-        SymbolPlacement SymbolPlacement { get; }
+        SymbolPlacement GetSymbolPlacement();
 
         // @property (readonly) MGLTextAnchor MGLTextAnchorValue;
-        [Static]
         [Export ("MGLTextAnchorValue")]
-        TextAnchor TextAnchor { get; }
+        TextAnchor GetTextAnchor();
 
         // @property (readonly) MGLTextJustification MGLTextJustificationValue;
-        [Static]
         [Export ("MGLTextJustificationValue")]
-        TextJustification TextJustification { get; }
+        TextJustification GetTextJustification();
 
         // @property (readonly) MGLTextPitchAlignment MGLTextPitchAlignmentValue;
-        [Static]
         [Export ("MGLTextPitchAlignmentValue")]
-        TextPitchAlignment TextPitchAlignment { get; }
+        TextPitchAlignment GetTextPitchAlignment();
 
         // @property (readonly) MGLTextRotationAlignment MGLTextRotationAlignmentValue;
-        [Static]
         [Export ("MGLTextRotationAlignmentValue")]
-        TextRotationAlignment TextRotationAlignment { get; }
+        TextRotationAlignment GetTextRotationAlignment();
 
         // @property (readonly) MGLTextTransform MGLTextTransformValue;
-        [Static]
         [Export ("MGLTextTransformValue")]
-        TextTransform TextTransform { get; }
+        TextTransform GetTextTransform();
 
         // @property (readonly) MGLIconTranslationAnchor MGLIconTranslationAnchorValue;
-        [Static]
         [Export ("MGLIconTranslationAnchorValue")]
-        IconTranslationAnchor IconTranslationAnchor { get; }
+        IconTranslationAnchor GetIconTranslationAnchor();
 
         // @property (readonly) MGLTextTranslationAnchor MGLTextTranslationAnchorValue;
-        [Static]
         [Export ("MGLTextTranslationAnchorValue")]
-        TextTranslationAnchor TextTranslationAnchor { get; }
+        TextTranslationAnchor GetTextTranslationAnchor();
     }
 
 	// @interface SymbolStyleLayerAdditions (NSValue)
@@ -2530,18 +2511,16 @@ namespace Mapbox
 
     // @interface MGLCustomStyleLayerAdditions (MGLMapView)
     [Category]
-    [BaseType (typeof(NSValue))]
+	[BaseType(typeof(NSValue), Name = "NSValue")]
     interface NSValue_MGLCircleStyleLayerAdditions
     {
-        // @property (readonly) MGLCircleScaleAlignment MGLCircleScaleAlignmentValue;
-        [Static]
-        [Export ("MGLCircleScaleAlignmentValue")]
-        CircleScaleAlignment CircleScaleAlignment { get; }
+		// @property (readonly) MGLCircleScaleAlignment MGLCircleScaleAlignmentValue;
+		[Export("MGLCircleScaleAlignmentValue")]
+		CircleScaleAlignment GetCircleScaleAlignment();
 
         // @property (readonly) MGLCircleTranslationAnchor MGLCircleTranslationAnchorValue;
-        [Static]
         [Export ("MGLCircleTranslationAnchorValue")]
-        CircleTranslationAnchor CircleTranslationAnchor { get; }
+        CircleTranslationAnchor GetCircleTranslationAnchor();
     }
 
 	// @interface MGLCustomStyleLayerAdditions (MGLMapView)
