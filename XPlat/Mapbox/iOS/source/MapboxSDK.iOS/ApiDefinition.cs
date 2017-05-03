@@ -1592,7 +1592,7 @@ namespace Mapbox
 
 	// @interface NSValue (MGLAdditions)
 	[Category]
-	[BaseType(typeof(NSValue), Name = "NSValue")]
+	[BaseType(typeof(NSValue))]
 	interface Additions_NSValue
 	{
 		// @property (readonly) CLLocationCoordinate2D MGLCoordinateValue;
@@ -1617,7 +1617,7 @@ namespace Mapbox
 	}
 
     // @interface NSValue (MGLAdditions)
-	[BaseType(typeof(NSValue), Name = "NSValue")]
+	[BaseType(typeof(NSValue))]
 	[DisableDefaultCtor]
     interface NSValueExt
     {
@@ -1872,7 +1872,7 @@ namespace Mapbox
 	}
 
     // @interface FillStyleLayerAdditions (NSValue)
-	[BaseType(typeof(NSValue), Name = "NSValue")]
+	[BaseType(typeof(NSValue))]
 	[DisableDefaultCtor]
     interface FillStyleLayerExt
     {
@@ -2003,7 +2003,7 @@ namespace Mapbox
     }
 
 	// @interface LineStyleLayerAdditions (NSValue)
-	[BaseType(typeof(NSValue), Name = "NSValue")]
+	[BaseType(typeof(NSValue))]
 	[DisableDefaultCtor]
 	interface MGLLineStyleLayerExt
 	{
@@ -2315,7 +2315,7 @@ namespace Mapbox
     }
 
 	// @interface SymbolStyleLayerAdditions (NSValue)
-	[BaseType(typeof(NSValue), Name = "NSValue")]
+	[BaseType(typeof(NSValue))]
 	[DisableDefaultCtor]
 	interface SymbolStyleLayerAdditionsExt
 	{
@@ -2511,7 +2511,7 @@ namespace Mapbox
 
     // @interface MGLCustomStyleLayerAdditions (MGLMapView)
     [Category]
-	[BaseType(typeof(NSValue), Name = "NSValue")]
+	[BaseType(typeof(NSValue))]
     interface NSValue_MGLCircleStyleLayerAdditions
     {
 		// @property (readonly) MGLCircleScaleAlignment MGLCircleScaleAlignmentValue;
@@ -2524,7 +2524,7 @@ namespace Mapbox
     }
 
 	// @interface MGLCustomStyleLayerAdditions (MGLMapView)
-	[BaseType(typeof(NSValue), Name = "NSValue")]
+	[BaseType(typeof(NSValue))]
 	[DisableDefaultCtor]
 	interface CircleStyleLayerExt
 	{
