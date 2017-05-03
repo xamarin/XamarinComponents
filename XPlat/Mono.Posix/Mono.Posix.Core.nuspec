@@ -12,33 +12,54 @@
     <copyright>Copyright 2017</copyright>
   </metadata>
   <files>
-    <file src="build/Mono.Posix.dll" target="lib/netstandard2.0" />
+    <file src="build/any/Mono.Posix.dll" target="lib/netstandard2.0" />
 
     <file src="MonoPosixHelper/osx-10.7-universal/libMonoPosixHelper.dylib" target="runtimes/osx/native/libMonoPosixHelper.dylib"/>
+    <file src="build/unix/Mono.Posix.dll" target="runtimes/osx/lib/netstandard2.0/Mono.Posix.dll"/>
 
     <file src="MonoPosixHelper/debian-7-arm/libMonoPosixHelper.so" target="runtimes/debian-arm/native/libMonoPosixHelper.so"/>
+    <file src="build/unix/Mono.Posix.dll" target="runtimes/debian-arm/lib/netstandard2.0/Mono.Posix.dll"/>
     <file src="MonoPosixHelper/debian-7-armel/libMonoPosixHelper.so" target="runtimes/debian-armel/native/libMonoPosixHelper.so"/>
+    <file src="build/unix/Mono.Posix.dll" target="runtimes/debian-armel/lib/netstandard2.0/Mono.Posix.dll"/>
     <file src="MonoPosixHelper/debian-7-x64/libMonoPosixHelper.so" target="runtimes/debian-x64/native/libMonoPosixHelper.so"/>
+    <file src="build/unix/Mono.Posix.dll" target="runtimes/debian-x64/lib/netstandard2.0/Mono.Posix.dll"/>
     <file src="MonoPosixHelper/debian-7-x86/libMonoPosixHelper.so" target="runtimes/debian-x86/native/libMonoPosixHelper.so"/>
+    <file src="build/unix/Mono.Posix.dll" target="runtimes/debian-x86/lib/netstandard2.0/Mono.Posix.dll"/>
 
     <file src="MonoPosixHelper/debian-8-arm/libMonoPosixHelper.so" target="runtimes/debian.8-arm/native/libMonoPosixHelper.so"/>
+    <file src="build/unix/Mono.Posix.dll" target="runtimes/debian.8-arm/lib/netstandard2.0/Mono.Posix.dll"/>
     <file src="MonoPosixHelper/debian-8-arm64/libMonoPosixHelper.so" target="runtimes/debian.8-arm64/native/libMonoPosixHelper.so"/>
+    <file src="build/unix/Mono.Posix.dll" target="runtimes/debian.8-arm64/lib/netstandard2.0/Mono.Posix.dll"/>
     <file src="MonoPosixHelper/debian-8-armel/libMonoPosixHelper.so" target="runtimes/debian.8-armel/native/libMonoPosixHelper.so"/>
+    <file src="build/unix/Mono.Posix.dll" target="runtimes/debian.8-armel/lib/netstandard2.0/Mono.Posix.dll"/>
     <file src="MonoPosixHelper/debian-8-x64/libMonoPosixHelper.so" target="runtimes/debian.8-x64/native/libMonoPosixHelper.so"/>
+    <file src="build/unix/Mono.Posix.dll" target="runtimes/debian.8-x64/lib/netstandard2.0/Mono.Posix.dll"/>
     <file src="MonoPosixHelper/debian-8-x86/libMonoPosixHelper.so" target="runtimes/debian.8-x86/native/libMonoPosixHelper.so"/>
+    <file src="build/unix/Mono.Posix.dll" target="runtimes/debian.8-x86/lib/netstandard2.0/Mono.Posix.dll"/>
 
     <file src="MonoPosixHelper/ubuntu-12.04-arm/libMonoPosixHelper.so" target="runtimes/ubuntu-arm/native/libMonoPosixHelper.so"/>
+    <file src="build/unix/Mono.Posix.dll" target="runtimes/ubuntu-arm/lib/netstandard2.0/Mono.Posix.dll"/>
     <file src="MonoPosixHelper/ubuntu-12.04-x64/libMonoPosixHelper.so" target="runtimes/ubuntu-x64/native/libMonoPosixHelper.so"/>
+    <file src="build/unix/Mono.Posix.dll" target="runtimes/ubuntu-x64/lib/netstandard2.0/Mono.Posix.dll"/>
     <file src="MonoPosixHelper/ubuntu-12.04-x86/libMonoPosixHelper.so" target="runtimes/ubuntu-x86/native/libMonoPosixHelper.so"/>
+    <file src="build/unix/Mono.Posix.dll" target="runtimes/ubuntu-x86/lib/netstandard2.0/Mono.Posix.dll"/>
 
     <file src="MonoPosixHelper/ubuntu-14.04-arm/libMonoPosixHelper.so" target="runtimes/ubuntu.14.04-arm/native/libMonoPosixHelper.so"/>
+    <file src="build/unix/Mono.Posix.dll" target="runtimes/ubuntu.14.04-arm/lib/netstandard2.0/Mono.Posix.dll"/>
     <file src="MonoPosixHelper/ubuntu-14.04-arm64/libMonoPosixHelper.so" target="runtimes/ubuntu.14.04-arm64/native/libMonoPosixHelper.so"/>
+    <file src="build/unix/Mono.Posix.dll" target="runtimes/ubuntu.14.04-arm64/lib/netstandard2.0/Mono.Posix.dll"/>
     <file src="MonoPosixHelper/ubuntu-14.04-x64/libMonoPosixHelper.so" target="runtimes/ubuntu.14.04-x64/native/libMonoPosixHelper.so"/>
+    <file src="build/unix/Mono.Posix.dll" target="runtimes/ubuntu.14.04-x64/lib/netstandard2.0/Mono.Posix.dll"/>
     <file src="MonoPosixHelper/ubuntu-14.04-x86/libMonoPosixHelper.so" target="runtimes/ubuntu.14.04-x86/native/libMonoPosixHelper.so"/>
+    <file src="build/unix/Mono.Posix.dll" target="runtimes/ubuntu.14.04-x86/lib/netstandard2.0/Mono.Posix.dll"/>
 
     <file src="MonoPosixHelper/ubuntu-16.04-arm/libMonoPosixHelper.so" target="runtimes/ubuntu.16.04-arm/native/libMonoPosixHelper.so"/>
+    <file src="build/unix/Mono.Posix.dll" target="runtimes/ubuntu.16.04-arm/lib/netstandard2.0/Mono.Posix.dll"/>
     <file src="MonoPosixHelper/ubuntu-16.04-arm64/libMonoPosixHelper.so" target="runtimes/ubuntu.16.04-arm64/native/libMonoPosixHelper.so"/>
+    <file src="build/unix/Mono.Posix.dll" target="runtimes/ubuntu.16.04-arm64/lib/netstandard2.0/Mono.Posix.dll"/>
     <file src="MonoPosixHelper/ubuntu-16.04-x64/libMonoPosixHelper.so" target="runtimes/ubuntu.16.04-x64/native/libMonoPosixHelper.so"/>
+    <file src="build/unix/Mono.Posix.dll" target="runtimes/ubuntu.16.04-x64/lib/netstandard2.0/Mono.Posix.dll"/>
     <file src="MonoPosixHelper/ubuntu-16.04-x86/libMonoPosixHelper.so" target="runtimes/ubuntu.16.04-x86/native/libMonoPosixHelper.so"/>
+    <file src="build/unix/Mono.Posix.dll" target="runtimes/ubuntu.16.04-x86/lib/netstandard2.0/Mono.Posix.dll"/>
   </files>
 </package>

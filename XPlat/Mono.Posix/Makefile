@@ -12,7 +12,6 @@ DISTRO_LIST=debian-7-arm debian-7-armel debian-7-x64 debian-7-x86 debian-8-arm d
  ubuntu-14.04-arm64 ubuntu-14.04-ppc64el ubuntu-14.04-x64 ubuntu-14.04-x86 ubuntu-16.04-arm ubuntu-16.04-arm64 \
  ubuntu-16.04-ppc64el ubuntu-16.04-x64 ubuntu-16.04-x86
 
-# all: build/Mono.Posix.dll
 all: build/Mono.Posix.Core.$(MONOPOSIX_NUGET_VERSION).nupkg
 
 # Fetch mono from Github using tagged version
@@ -32,13 +31,14 @@ monorepo/mcs/class/Mono.Posix/Makefile: mono-source.zip
 	cp -R monochanges/* monorepo/
 
 # using the nightly dotnetcore build for 2.0 preview to make Mono.Posix for netstandard 2.0
-build/Mono.Posix.dll: monorepo/mcs/class/Mono.Posix/Makefile
-	mkdir -p build
+build/unix/Mono.Posix.dll build/any/Mono.Posix.dll: monorepo/mcs/class/Mono.Posix/Makefile
+	mkdir -p build/any
+	mkdir -p build/unix
 	docker pull microsoft/dotnet-nightly:2.0-sdk
 	docker run --name $(DOCKER_BUILD_CONTAINER_NAME) -v `pwd`:/hostdir  microsoft/dotnet-nightly:2.0-sdk sh /hostdir/dockerbuild.sh || (docker rm $(DOCKER_BUILD_CONTAINER_NAME) && false)
 	docker rm $(DOCKER_BUILD_CONTAINER_NAME)
-	cp monorepo/mcs/class/Mono.Posix/bin/Debug/netstandard2.0/Mono.Posix.dll build/
-	sn -R build/Mono.Posix.dll monorepo/mcs/class/mono.snk
+	sn -R build/any/Mono.Posix.dll monorepo/mcs/class/mono.snk
+	sn -R build/unix/Mono.Posix.dll monorepo/mcs/class/mono.snk
 
 # Fetch all of the libMonoPosixHelper.so files
 # Will be easier when this is all in Jenkins
@@ -60,7 +60,8 @@ tools/nuget.exe:
 
 # Pack the nuget
 build/Mono.Posix.Core.$(MONOPOSIX_NUGET_VERSION).nupkg: tools/nuget.exe \
- build/Mono.Posix.dll \
+ build/any/Mono.Posix.dll \
+ build/unix/Mono.Posix.dll \
  $(addprefix MonoPosixHelper/, $(addsuffix /libMonoPosixHelper.so,$(DISTRO_LIST))) \
  MonoPosixHelper/osx-10.7-universal/libMonoPosixHelper.dylib \
  Mono.Posix.Core.nuspec
