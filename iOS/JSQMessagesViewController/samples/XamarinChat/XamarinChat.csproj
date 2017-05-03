@@ -111,6 +111,9 @@
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
   <ItemGroup>
     <BundleResource Include="Resources\XamarinLogo.png" />
+    <BundleResource Include="..\..\externals\ios\JSQMessagesViewController\JSQMessagesDemo\jsq_messages_sample.m4a">
+      <Link>Resources\jsq_messages_sample.m4a</Link>
+    </BundleResource>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\source\JSQMessagesViewController\JSQMessagesViewController.csproj">
