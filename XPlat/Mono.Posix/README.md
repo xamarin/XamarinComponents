@@ -27,10 +27,6 @@ The Makefile will fetch all of the Posix Helpers from [Jenkins Mono builds,][4] 
 Todo Items
 -----------------------
 
- - Remove the `monochanges` folder
-   - Need to send a PR to mono repo for code changes and add csproj
-   - Add build step to generate Consts.cs
- - Add unit test run
  - add more arch builds for PosixHelper
  - Revisit package ID
  - Revisit all metadata in nuspec
@@ -43,4 +39,4 @@ Todo Items
 [5]: https://github.com/mono/mono/tree/master/mcs/class/Mono.Posix
 [6]: https://hub.docker.com/r/microsoft/dotnet-nightly/
 [7]: https://jenkins.mono-project.com/view/Components/job/Components-Mono.Posix/badge/icon
-[8]: https://jenkins.mono-project.com/view/Components/job/Components-Mono.Posix/badge/icon
+[8]: https://jenkins.mono-project.com/view/Components/job/Components-Mono.Posix
