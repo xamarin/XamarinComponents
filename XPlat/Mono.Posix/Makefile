@@ -1,8 +1,12 @@
 MONO_VERSION=5.0.0.78
+MONO_GIT_REPO=bholmes/mono
 # MONOGIT_VERSION=mono-$(MONO_VERSION)
-MONOGIT_VERSION=4312802ba7a921d7dafc96902ebd1efa3b8ebc97
+MONOGIT_VERSION=2f27810d4b5049eccddc44f67e63951c3816045f
 MONOPOSIX_NUGET_VERSION=5.0.0.78-alpha1
 MONOPOSIXHELPER_JENKINSBUILD=8
+
+DOCKER_PULL_TARGET=microsoft/dotnet-nightly@sha256:5f3394a34f719508eeaa399617508757ba263121324ac621ce5fd1cc4eba1d79
+DOCKER_RUN_IMAGE=microsoft/dotnet-nightly:1a40a56d3491
 
 $(eval DOCKER_BUILD_CONTAINER_NAME=MonoPosixBuild-$(shell uuidgen))
 $(eval DOCKER_TEST_CONTAINER_NAME=MonoPosixBuild-$(shell uuidgen))
@@ -17,7 +21,7 @@ all: build/Mono.Posix.Core.$(MONOPOSIX_NUGET_VERSION).nupkg
 # Fetch mono from Github using tagged version
 # Only extract what is needed
 mono-source.zip:
-	curl -L -o $@ https://github.com/mono/mono/archive/$(MONOGIT_VERSION).zip
+	curl -L -o $@ https://github.com/$(MONO_GIT_REPO)/archive/$(MONOGIT_VERSION).zip
 	touch $@
 
 monorepo/mcs/class/Mono.Posix/Makefile: mono-source.zip
@@ -26,16 +30,15 @@ monorepo/mcs/class/Mono.Posix/Makefile: mono-source.zip
 	unzip  mono-source.zip 'mono-$(MONOGIT_VERSION)/mcs/class/mono.snk'
 	unzip  mono-source.zip 'mono-$(MONOGIT_VERSION)/mcs/build/common/*'
 	mv mono-$(MONOGIT_VERSION) monorepo
+	sed 's/@MONO_VERSION@/$(MONO_VERSION)/g'  monorepo/mcs/build/common/Consts.cs.in | sed 's/@MONO_CORLIB_VERSION@/0/g' > monorepo/mcs/build/common/Consts.cs
 	touch $@
-# MASSIVE HACK Just until I get a PR
-	cp -R monochanges/* monorepo/
 
 # using the nightly dotnetcore build for 2.0 preview to make Mono.Posix for netstandard 2.0
 build/unix/Mono.Posix.dll build/any/Mono.Posix.dll: monorepo/mcs/class/Mono.Posix/Makefile
 	mkdir -p build/any
 	mkdir -p build/unix
-	docker pull microsoft/dotnet-nightly:2.0-sdk
-	docker run --name $(DOCKER_BUILD_CONTAINER_NAME) -v `pwd`:/hostdir  microsoft/dotnet-nightly:2.0-sdk sh /hostdir/dockerbuild.sh || (docker rm $(DOCKER_BUILD_CONTAINER_NAME) && false)
+	docker pull $(DOCKER_PULL_TARGET)
+	docker run --name $(DOCKER_BUILD_CONTAINER_NAME) -v `pwd`:/hostdir  $(DOCKER_RUN_IMAGE) sh /hostdir/dockerbuild.sh || (docker rm $(DOCKER_BUILD_CONTAINER_NAME) && false)
 	docker rm $(DOCKER_BUILD_CONTAINER_NAME)
 	sn -R build/any/Mono.Posix.dll monorepo/mcs/class/mono.snk
 	sn -R build/unix/Mono.Posix.dll monorepo/mcs/class/mono.snk
@@ -71,7 +74,8 @@ test: all
 	rm -rf Test/packagesource/
 	mkdir -p Test/packagesource
 	mono tools/nuget.exe add -Source Test/packagesource build/Mono.Posix.Core.$(MONOPOSIX_NUGET_VERSION).nupkg
-	docker run --name $(DOCKER_TEST_CONTAINER_NAME) -v `pwd`:/hostdir  microsoft/dotnet-nightly:2.0-sdk sh /hostdir/dockertest.sh $(MONOPOSIX_NUGET_VERSION) || (docker rm $(DOCKER_TEST_CONTAINER_NAME) && false)
+	docker pull $(DOCKER_PULL_TARGET)
+	docker run --name $(DOCKER_TEST_CONTAINER_NAME) -v `pwd`:/hostdir  $(DOCKER_RUN_IMAGE) sh /hostdir/dockertest.sh $(MONOPOSIX_NUGET_VERSION) || (docker rm $(DOCKER_TEST_CONTAINER_NAME) && false)
 	docker rm $(DOCKER_TEST_CONTAINER_NAME)
 
 clean: 
