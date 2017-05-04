@@ -11,12 +11,12 @@ all :  $(JSQ_TARGET)/lib$(JSQ_TARGET).a ios/Resources/JSQMessagesViewController.
 
 ios/JSQSystemSoundPlayer/JSQSystemSoundPlayer/Classes/JSQSystemSoundPlayer.h :
 	mkdir -p ios
-	cd ios && git clone git@github.com:jessesquires/JSQSystemSoundPlayer.git
+	cd ios && git clone https://github.com/jessesquires/JSQSystemSoundPlayer.git
 	cd ios/JSQSystemSoundPlayer && git checkout 2.0.1
 
 ios/JSQMessagesViewController/JSQMessagesViewController/JSQMessages.h : ios/JSQSystemSoundPlayer/JSQSystemSoundPlayer/Classes/JSQSystemSoundPlayer.h 
 	mkdir -p ios
-	cd ios && git clone git@github.com:jessesquires/JSQMessagesViewController.git
+	cd ios && git clone https://github.com/jessesquires/JSQMessagesViewController.git
 	cd ios/JSQMessagesViewController && git checkout 7.3.4
 	mkdir ios/JSQMessagesViewController/JSQMessagesViewController/JSQSystemSoundPlayer
 	cp ios/JSQSystemSoundPlayer/JSQSystemSoundPlayer/Classes/* ios/JSQMessagesViewController/JSQMessagesViewController/JSQSystemSoundPlayer/
