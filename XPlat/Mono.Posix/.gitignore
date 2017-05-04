@@ -1,5 +1,6 @@
 MonoPosixHelper
 Test/TestResult.xml
+Test/TestResult-v2.xml
 Test/packagesource/
 build/
 mono-source.zip
