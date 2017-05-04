@@ -26,7 +26,7 @@ HDNotificationViewLib/lib$(TARGET).a: HDNotificationViewLib/lib$(TARGET)-i386.a 
 
 
 HDNotificationView/README.md:
-	git clone git@github.com:nhdang103/HDNotificationView.git
+	git clone https://github.com/nhdang103/HDNotificationView.git
 	cd HDNotificationView; git checkout 2aa88dd65a2e7e59f55fa148fa2dfb25e1aed2f6;
 	touch $@
 
