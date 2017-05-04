@@ -40,6 +40,9 @@ build/unix/Mono.Posix.dll build/any/Mono.Posix.dll: monorepo/mcs/class/Mono.Posi
 	docker pull $(DOCKER_PULL_TARGET)
 	docker run --name $(DOCKER_BUILD_CONTAINER_NAME) -v `pwd`:/hostdir  $(DOCKER_RUN_IMAGE) sh /hostdir/dockerbuild.sh || (docker rm $(DOCKER_BUILD_CONTAINER_NAME) && false)
 	docker rm $(DOCKER_BUILD_CONTAINER_NAME)
+	ls build
+	ls build/any
+	ls build/unix
 	sn -R build/any/Mono.Posix.dll monorepo/mcs/class/mono.snk
 	sn -R build/unix/Mono.Posix.dll monorepo/mcs/class/mono.snk
 
