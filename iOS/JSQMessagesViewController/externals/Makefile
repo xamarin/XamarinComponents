@@ -17,7 +17,7 @@ ios/JSQSystemSoundPlayer/JSQSystemSoundPlayer/Classes/JSQSystemSoundPlayer.h :
 ios/JSQMessagesViewController/JSQMessagesViewController/JSQMessages.h : ios/JSQSystemSoundPlayer/JSQSystemSoundPlayer/Classes/JSQSystemSoundPlayer.h 
 	mkdir -p ios
 	cd ios && git clone git@github.com:jessesquires/JSQMessagesViewController.git
-	cd ios/JSQMessagesViewController && git checkout 7.2.0
+	cd ios/JSQMessagesViewController && git checkout 7.3.4
 	mkdir ios/JSQMessagesViewController/JSQMessagesViewController/JSQSystemSoundPlayer
 	cp ios/JSQSystemSoundPlayer/JSQSystemSoundPlayer/Classes/* ios/JSQMessagesViewController/JSQMessagesViewController/JSQSystemSoundPlayer/
 	sed -i '' 's/#import <JSQSystemSoundPlayer\/JSQSystemSoundPlayer.h>/#import "JSQSystemSoundPlayer.h"/g' ios/JSQMessagesViewController/JSQMessagesViewController/Categories/JSQSystemSoundPlayer+JSQMessages.h

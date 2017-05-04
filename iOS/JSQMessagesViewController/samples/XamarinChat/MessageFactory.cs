@@ -27,10 +27,12 @@ namespace XamarinChat
 		public async Task <Message> CreateMessageAsync (User user)
 		{
 			var rnd = new Random ();
-			var choice = rnd.Next () % 3;
+			var choice = rnd.Next () % 4;
 
 			if (choice == 0)
-				return CreateMonkeyMessage (user);
+				return CreateMonkeyMessage(user);
+			else if (choice == 3)
+				return CreateAudioMessage(user);
 
 			return await CreateOverflowMessageAsync (choice == 2 ? "dogoverflow.com" : "catoverflow.com", user);
 		}
@@ -59,6 +61,15 @@ namespace XamarinChat
 			var photoItem = new PhotoMediaItem (image);
 			photoItem.AppliesMediaViewMaskAsOutgoing = false;
 			return Message.Create (user.Id, user.DisplayName, photoItem);
+		}
+
+		Message CreateAudioMessage(User user)
+		{
+			NSUrl localFileUrl = NSBundle.MainBundle.GetUrlForResource("jsq_messages_sample", "m4a");
+			var audioData = NSData.FromUrl(localFileUrl);
+			var audioItem = new AudioMediaItem(audioData);
+			audioItem.AudioViewAttributes.PauseButtonImage = UIImageExtensions.DefaultPauseImage;
+			return Message.Create(user.Id, user.DisplayName, audioItem);
 		}
 			
 		UIImage CreateAnimatedImage (byte [] data)

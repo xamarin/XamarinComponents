@@ -81,6 +81,8 @@ namespace JSQMessagesViewController
 
 		private static object __mt_DefaultPlayImage_var_static;
 
+		private static object __mt_DefaultPauseImage_var_static;
+
 		private static object __mt_DefaultAccessoryImage_var_static;
 
 		private static object __mt_BubbleRegularTaillessImage_var_static;
@@ -185,6 +187,20 @@ namespace JSQMessagesViewController
 				return nSObject;
 			}
 		}
+		
+		public static UIImage DefaultPauseImage
+		{
+			[Export("jsq_defaultPauseImage")]
+			get
+			{
+				UIImage nSObject = Runtime.GetNSObject<UIImage>(Messaging.IntPtr_objc_msgSend(UIImageExtensions.class_ptr, Selector.GetHandle("jsq_defaultPauseImage")));
+				if (!NSObject.IsNewRefcountEnabled()) 
+				{
+					UIImageExtensions.__mt_DefaultPauseImage_var_static = nSObject; 
+				}
+				return nSObject;
+			}
+		} 
 
 		public static UIImage DefaultTypingIndicatorImage {
 			[Export ("jsq_defaultTypingIndicatorImage")]
