@@ -3,6 +3,7 @@
 
 var NUGET_SOURCE_LIST = EnvironmentVariable ("NUGET_SOURCES") ?? "https://nuget.org/api/v2";
 var PAKET_SOURCE_LIST = EnvironmentVariable ("PAKET_SOURCES") ?? "./output,https://nuget.org/api/v2";
+var TREAT_WARNINGS_AS_ERRORS = (EnvironmentVariable ("TREAT_WARNINGS_AS_ERRORS") ?? "false").ToLower ().Equals ("true");
 
 var FRAMEWORK = "MonoAndroid70";
 var SUPPORT_VERSION = EnvironmentVariable ("ANDROID_SUPPORT_VERSION") ?? "25.3.1";
@@ -147,12 +148,14 @@ Task ("Update").IsDependentOn ("Init").Does (() => {
             Information ("Removing Package ID Pattern: {0}", removePackagePattern);
 
             // Build a list of xpath patterns to remove
-            var csprojXPathRemoves = new [] {
+            var csprojXPathRemoves = new List<string> {
                 "//x:Reference[starts-with(@Include, '" + removePackagePattern + "')]",
                 "//x:Import[contains(@Project, '" + removePackagePattern + "')]",
                 "//x:Target[@Name='EnsureNuGetPackageBuildImports']",
-                "//x:TreatWarningsAsErrors[text() = 'true']",
             };
+
+            if (!TREAT_WARNINGS_AS_ERRORS)
+                csprojXPathRemoves.Add ("//x:TreatWarningsAsErrors[text() = 'true']");
 
             // Get the .csproj files for the project directory
             var csprojFiles = GetFiles (kvp.Key + "/*.csproj");
