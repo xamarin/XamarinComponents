@@ -9,7 +9,6 @@
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>A library for scheduling background jobs in an Android app using a JobScheduler like API.</description>
     <copyright>Copyright (c) 2017 Xamarin Inc</copyright>
-    <iconUrl>https://github.com/xamarin/XamarinComponents/raw/master/Android/FirebaseJobDispatcher/images/logo-square_256.png</iconUrl>
     <projectUrl>https://github.com/xamarin/XamarinComponents/tree/master/Android/FirebaseJobDispatcher</projectUrl>
     <licenseUrl>https://github.com/xamarin/XamarinComponents/blob/master/Android/FirebaseJobDispatcher/License.md</licenseUrl>
   </metadata>
