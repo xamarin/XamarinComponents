@@ -5,6 +5,7 @@ using Android.OS;
 using Android.Support.Design.Widget;
 using Android.Support.V7.App;
 using Android.Support.V7.Widget;
+using FJDTestApp.JobForm;
 using FJDTestApp.Model;
 
 namespace FJDTestApp.JobList
@@ -37,7 +38,7 @@ namespace FJDTestApp.JobList
         protected override void OnResume()
         {
             base.OnResume();
-            TestAppApplication.JobHistoryStorage.OnChangeEvent += JobHistoryStorage_OnChangeEvent;
+            FJDTestApplication.JobHistoryStorage.OnChangeEvent += JobHistoryStorage_OnChangeEvent;
             jobHistoryAdapter.NotifyDataSetChanged();
         }
 
@@ -48,7 +49,7 @@ namespace FJDTestApp.JobList
 
         protected override void OnPause()
         {
-            TestAppApplication.JobHistoryStorage.OnChangeEvent -= JobHistoryStorage_OnChangeEvent;
+            FJDTestApplication.JobHistoryStorage.OnChangeEvent -= JobHistoryStorage_OnChangeEvent;
             base.OnPause();
         }
 

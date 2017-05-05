@@ -6,12 +6,12 @@ using FJDTestApp.Model;
 namespace FJDTestApp
 {
 	[Application]
-	public class TestAppApplication : Application
+	public class FJDTestApplication : Application
 	{
 		static volatile IJobHistoryStorage jobStorage;
 		static readonly object lockObject = new Object();
 
-		public TestAppApplication(IntPtr handle, JniHandleOwnership transfer) : base(handle, transfer)
+		public FJDTestApplication(IntPtr handle, JniHandleOwnership transfer) : base(handle, transfer)
 		{
 
 		}

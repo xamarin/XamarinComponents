@@ -24,7 +24,7 @@ namespace FJDTestApp.JobDetails
         IJobParameters GetCurrentJob()
         {
             int pos = CurrentJobParameter();
-            IJobParameters job = TestAppApplication.JobHistoryStorage.Get(pos).Job;
+            IJobParameters job = FJDTestApplication.JobHistoryStorage.Get(pos).Job;
             if (job == null)
             {
                 throw new ArgumentException($"No IJobParmeters at {pos}!");

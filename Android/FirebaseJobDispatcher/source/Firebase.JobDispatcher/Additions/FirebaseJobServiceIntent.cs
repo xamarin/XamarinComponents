@@ -1,4 +1,5 @@
 using System;
+// ReSharper disable CheckNamespace
 namespace Firebase.JobDispatcher
 {
 	/// <summary>
