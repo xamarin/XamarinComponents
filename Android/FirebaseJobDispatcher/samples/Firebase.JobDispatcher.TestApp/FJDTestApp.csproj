@@ -105,7 +105,7 @@
     <Compile Include="JobDetails\JobDetailActivity.cs" />
     <Compile Include="FibonacciCalculatorJob.cs" />
     <Compile Include="JobForm\JobFormActivity.cs" />
-    <Compile Include="JobForm\FirebaseJob.cs" />
+    <Compile Include="JobForm\JobFormScheduler.cs" />
     <Compile Include="JobForm\IJobParametersView.cs" />
   </ItemGroup>
   <ItemGroup>
