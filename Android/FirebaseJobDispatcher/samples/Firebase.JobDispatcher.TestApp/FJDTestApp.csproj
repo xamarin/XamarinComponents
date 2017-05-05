@@ -94,7 +94,7 @@
   <ItemGroup>
     <Compile Include="Resources\Resource.designer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="TestAppApplication.cs" />
+    <Compile Include="FJDTestApplication.cs" />
     <Compile Include="Model\IJobHistoryStorage.cs" />
     <Compile Include="Model\JobHistory.cs" />
     <Compile Include="Model\JobHistoryStoreChangedEventArgs.cs" />
@@ -103,7 +103,7 @@
     <Compile Include="JobList\JobHistoryViewHolder.cs" />
     <Compile Include="JobList\JobListActivity.cs" />
     <Compile Include="JobDetails\JobDetailActivity.cs" />
-    <Compile Include="DemoJob.cs" />
+    <Compile Include="FibonacciCalculatorJob.cs" />
     <Compile Include="JobForm\JobFormActivity.cs" />
     <Compile Include="JobForm\FirebaseJob.cs" />
     <Compile Include="JobForm\IJobParametersView.cs" />

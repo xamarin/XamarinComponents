@@ -8,11 +8,11 @@ namespace FJDTestApp.JobList
 {
     class JobHistoryAdapter : RecyclerView.Adapter
     {
-        public override int ItemCount => TestAppApplication.JobHistoryStorage.Count();
+        public override int ItemCount => FJDTestApplication.JobHistoryStorage.Count();
 
         public override void OnBindViewHolder(RecyclerView.ViewHolder holder, int position)
         {
-            JobHistory jh = TestAppApplication.JobHistoryStorage.Get(position);
+            JobHistory jh = FJDTestApplication.JobHistoryStorage.Get(position);
             var viewHolder = holder as JobHistoryViewHolder;
             Debug.Assert(viewHolder != null, "viewHolder != null");
             viewHolder.Display(jh);

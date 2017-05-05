@@ -3,7 +3,7 @@ using Android.App;
 using Android.OS;
 using Android.Widget;
 
-namespace FJDTestApp
+namespace FJDTestApp.JobForm
 {
     [Activity(Label = "JobFormActivity")]
     public class JobFormActivity : Activity, IJobParametersView
@@ -94,7 +94,7 @@ namespace FJDTestApp
         void ScheduleButton_Click(object sender, EventArgs e)
         {
             FirebaseJob.WithParametersFrom(this)
-                .Schedule<DemoJob>(this);
+                .Schedule<FibonacciCalculatorJob>(this);
             Finish();
         }
 

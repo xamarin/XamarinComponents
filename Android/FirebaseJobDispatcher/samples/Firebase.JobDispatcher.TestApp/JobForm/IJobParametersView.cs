@@ -1,4 +1,4 @@
-namespace FJDTestApp
+namespace FJDTestApp.JobForm
 {
     internal interface IJobParametersView
     {
