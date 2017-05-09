@@ -6,8 +6,10 @@ JSQ_PROJECT_ROOT=./ios/JSQMessagesViewControllerLib
 JSQ_PROJECT=$(JSQ_PROJECT_ROOT)/JSQMessagesViewControllerLib.xcodeproj
 JSQ_TARGET=JSQMessagesViewControllerLib
 
-all :  $(JSQ_TARGET)/lib$(JSQ_TARGET).a ios/Resources/JSQMessagesViewController.nib
+all :  $(JSQ_TARGET)/lib$(JSQ_TARGET).a ios/Resources/JSQMessagesViewController.nib ../samples/XamarinChat/Resources/jsq_messages_sample.m4a
 
+../samples/XamarinChat/Resources/jsq_messages_sample.m4a: ios/JSQMessagesViewController/JSQMessagesViewController/JSQMessages.h
+	cp ios/JSQMessagesViewController/JSQMessagesDemo/jsq_messages_sample.m4a ../samples/XamarinChat/Resources/jsq_messages_sample.m4a
 
 ios/JSQSystemSoundPlayer/JSQSystemSoundPlayer/Classes/JSQSystemSoundPlayer.h :
 	mkdir -p ios
@@ -58,4 +60,5 @@ ios/Resources/JSQMessagesViewController.nib  : ios/JSQMessagesViewController/JSQ
 	done
 
 clean :
-	rm -rf ios/JSQMessagesViewController ios/JSQSystemSoundPlayer iOS/Resources JSQMessagesViewControllerLib ios/JSQMessagesViewControllerLib/build
+	rm -rf ios/JSQMessagesViewController ios/JSQSystemSoundPlayer iOS/Resources JSQMessagesViewControllerLib \
+	ios/JSQMessagesViewControllerLib/build ../samples/XamarinChat/Resources/jsq_messages_sample.m4a
