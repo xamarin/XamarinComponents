@@ -12,7 +12,7 @@
     <copyright>Copyright 2017</copyright>
   </metadata>
   <files>
-    <file src="build/any/Mono.Posix.dll" target="lib/netstandard2.0" />
+    <file src="build/any/Mono.Posix.dll" target="ref/netstandard2.0" />
 
     <file src="MonoPosixHelper/osx-10.7-universal/libMonoPosixHelper.dylib" target="runtimes/osx/native/libMonoPosixHelper.dylib"/>
     <file src="build/unix/Mono.Posix.dll" target="runtimes/osx/lib/netstandard2.0/Mono.Posix.dll"/>
