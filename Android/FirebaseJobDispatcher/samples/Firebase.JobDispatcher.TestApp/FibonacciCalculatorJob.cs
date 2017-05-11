@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using Android.App;
 using Android.Util;
 using Firebase.JobDispatcher;
+using FJDTestApp.Model;
 
 namespace FJDTestApp
 {
@@ -25,11 +26,16 @@ namespace FJDTestApp
             Task.Run(() => GetFibonacciNumberAt(position)).
                 ContinueWith(task =>
                 {
+                    // Record the result, so that it will show up in the Main activity.
+                    IJobHistoryStorage storage = FJDTestApplication.JobHistoryStorage;
+                    string msg = $"The fibonnaci number at {position} is {task.Result}";
+                    storage.RecordResult(jobParameters, msg);
+
                     // Have to call JobFinished when the thread is done. This lets the FJD know that
                     // the work is done.
                     JobFinished(jobParameters, false);                
                     LogMessage(
-                        $"Finished FibonacciCalculatorJob::OnStartJob. The fibonacci number at {position} is {task.Result}. Job tag {jobParameters.Tag}.");
+                        $"Finished FibonacciCalculatorJob::OnStartJob/Job tag {jobParameters.Tag}. {msg}");
                 }, TaskScheduler.FromCurrentSynchronizationContext());
 
             LogMessage("Leaving FibonacciCalculatorJob::OnStartJob.");

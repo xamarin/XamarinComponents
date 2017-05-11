@@ -54,7 +54,7 @@ namespace FJDTestApp.Model
             return jobHistories[index];
         }
 
-        public void RecordResult(IJobParameters job, int result)
+        public void RecordResult(IJobParameters job, string result)
         {
             if (job == null)
             {
