@@ -102,7 +102,6 @@
     <Compile Include="JobList\JobHistoryAdapter.cs" />
     <Compile Include="JobList\JobHistoryViewHolder.cs" />
     <Compile Include="JobList\JobListActivity.cs" />
-    <Compile Include="JobDetails\JobDetailActivity.cs" />
     <Compile Include="FibonacciCalculatorJob.cs" />
     <Compile Include="JobForm\JobFormActivity.cs" />
     <Compile Include="JobForm\JobFormScheduler.cs" />

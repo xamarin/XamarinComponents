@@ -16,8 +16,10 @@
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceSmall"
                 android:textColor="#333333"
-                android:singleLine="true"
+                android:singleLine="false"
                 android:text="Caption"
+                android:lines="2"
+                android:maxLines="2"
                 android:id="@+id/job_history_textview"
                 android:layout_marginLeft="4dp" />
             <TextView

@@ -38,7 +38,7 @@ namespace FJDTestApp.Model
 
         public override string ToString ()
         {
-            return $"Service({Job.Service})::Tag({Job.Tag})";
+            return $"{Job.Service} / {Job.Tag}";
         }
 
         public override int GetHashCode ()

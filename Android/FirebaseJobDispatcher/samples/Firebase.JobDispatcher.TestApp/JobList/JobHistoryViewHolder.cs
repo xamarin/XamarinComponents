@@ -1,3 +1,4 @@
+using System;
 using Android.Support.V7.Widget;
 using Android.Views;
 using Android.Widget;
@@ -18,7 +19,7 @@ namespace FJDTestApp.JobList
 
         public void Display(JobHistory jobHistory)
         {
-            jobHistoryNameTextView.Text = $"tag= {jobHistory}";
+            jobHistoryNameTextView.Text = $"{jobHistory}";
             resultTextView.Text = $"{jobHistory.GetLastResult()}.";
         }
     }
