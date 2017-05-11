@@ -8,18 +8,18 @@ namespace FJDTestApp.JobList
     public class JobHistoryViewHolder : RecyclerView.ViewHolder
     {
         readonly TextView jobHistoryNameTextView;
-        readonly TextView resultCountTextView;
+        readonly TextView resultTextView;
 
         public JobHistoryViewHolder(View itemView) : base(itemView)
         {
             jobHistoryNameTextView = itemView.FindViewById<TextView>(Resource.Id.job_history_textview);
-            resultCountTextView = itemView.FindViewById<TextView>(Resource.Id.job_history_result_count_textview);
+            resultTextView = itemView.FindViewById<TextView>(Resource.Id.job_history_result_count_textview);
         }
 
         public void Display(JobHistory jobHistory)
         {
-            jobHistoryNameTextView.Text = $"tag= {jobHistory.Job.Tag}, endpoint = {jobHistory.Job.Service}";
-            resultCountTextView.Text = $"Job results: {jobHistory.ResultCount}.";
+            jobHistoryNameTextView.Text = $"tag= {jobHistory}";
+            resultTextView.Text = $"{jobHistory.GetLastResult()}.";
         }
     }
 }

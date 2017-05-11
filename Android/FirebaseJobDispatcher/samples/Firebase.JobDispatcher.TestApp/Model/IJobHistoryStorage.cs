@@ -15,6 +15,6 @@ namespace FJDTestApp.Model
         IEnumerable<JobHistory> GetAll();
         void Remove(int position);
         JobHistory Get(int index);
-        void RecordResult(IJobParameters job, int result);
+        void RecordResult(IJobParameters job, string result);
     }
 }

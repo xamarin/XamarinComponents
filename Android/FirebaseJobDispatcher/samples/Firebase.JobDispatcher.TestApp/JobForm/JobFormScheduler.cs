@@ -3,7 +3,6 @@ using Android.Content;
 using Android.OS;
 using Android.Util;
 using Firebase.JobDispatcher;
-using Exception = System.Exception;
 
 namespace FJDTestApp.JobForm
 {
@@ -31,21 +30,21 @@ namespace FJDTestApp.JobForm
         int winStartSeconds;
 
         /// <summary>
-        /// Creates a JobFormScheduler based on the triggers and constraints specified in
-        /// the view.
+        ///     Creates a JobFormScheduler based on the triggers and constraints specified in
+        ///     the view.
         /// </summary>
         /// <param name="view"></param>
         /// <returns></returns>
         internal static JobFormScheduler WithParametersFrom(IJobParametersView view)
         {
-            var jf = new JobFormScheduler
+            JobFormScheduler jf = new JobFormScheduler
             {
                 winEndSeconds = view.WindowStartSeconds,
                 winStartSeconds = view.WindowStartSeconds,
                 initialBackoffSeconds = view.InitialBackoffSeconds,
                 maximumBackoffSeconds = view.MaximumBackoffSeconds,
                 tag = view.JobTag,
-                lifeTime = view.Persistent ? Lifetime.Forever : Lifetime.UntilNextBoot, 
+                lifeTime = view.Persistent ? Lifetime.Forever : Lifetime.UntilNextBoot,
                 recurring = view.Recurring,
                 replaceCurrent = view.ReplaceCurrent,
                 constrainOnAnyNetwork = view.ConstrainOnAnyNetwork,
@@ -67,7 +66,8 @@ namespace FJDTestApp.JobForm
         {
             if (!initialized)
             {
-                throw new InvalidOperationException("Must initialize the parameters with JobFormScheduler.WithParametersFrom before trying to schedule the job!");
+                throw new InvalidOperationException(
+                    "Must initialize the parameters with JobFormScheduler.WithParametersFrom before trying to schedule the job!");
             }
 
             FirebaseJobDispatcher dispatcher = context.CreatJobDispatcher();
@@ -81,7 +81,7 @@ namespace FJDTestApp.JobForm
             JobTrigger trigger = Trigger.ExecutionWindow(winStartSeconds, winEndSeconds);
 
 
-            Bundle jobParameters = new Bundle();
+            var jobParameters = new Bundle();
             jobParameters.PutInt(FibonacciCalculatorJob.FibonacciPositionKey, 25);
 
             Job.Builder builder = dispatcher.NewJobBuilder()
@@ -111,7 +111,7 @@ namespace FJDTestApp.JobForm
             int scheduleResult = dispatcher.Schedule(builder.Build());
             string message =
                 $"Scheduled new job `{tag}` for the service `{typeof(T).Name}`. SCHEDULE_RESULT = {scheduleResult}.";
-        
+
             if (scheduleResult == FirebaseJobDispatcher.ScheduleResultSuccess)
             {
                 Log.Info(TAG, message);
