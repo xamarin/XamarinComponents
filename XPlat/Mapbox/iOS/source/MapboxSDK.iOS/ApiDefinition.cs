@@ -1617,35 +1617,35 @@ namespace Mapbox
 	}
 
     // @interface NSValue (MGLAdditions)
-	[BaseType(typeof(NSValue))]
-	[DisableDefaultCtor]
-    interface NSValueExt
-    {
-        // +(instancetype _Nonnull)valueWithMGLCoordinate:(CLLocationCoordinate2D)coordinate;
-        [Static]
-        [Export ("valueWithMGLCoordinate:")]
-        NSValue GetValue (CLLocationCoordinate2D coordinate);
+	//[BaseType(typeof(NSValue))]
+	//[DisableDefaultCtor]
+    //interface NSValueExt
+    //{
+    //    // +(instancetype _Nonnull)valueWithMGLCoordinate:(CLLocationCoordinate2D)coordinate;
+    //    [Static]
+    //    [Export ("valueWithMGLCoordinate:")]
+    //    NSValue GetValue (CLLocationCoordinate2D coordinate);
 
-        // +(instancetype _Nonnull)valueWithMGLCoordinateSpan:(MGLCoordinateSpan)span;
-        [Static]
-        [Export ("valueWithMGLCoordinateSpan:")]
-        NSValue GetValue (CoordinateSpan span);
+    //    // +(instancetype _Nonnull)valueWithMGLCoordinateSpan:(MGLCoordinateSpan)span;
+    //    [Static]
+    //    [Export ("valueWithMGLCoordinateSpan:")]
+    //    NSValue GetValue (CoordinateSpan span);
 
-        // +(instancetype _Nonnull)valueWithMGLCoordinateBounds:(MGLCoordinateBounds)bounds;
-        [Static]
-        [Export ("valueWithMGLCoordinateBounds:")]
-        NSValue GetValue (CoordinateBounds bounds);
+    //    // +(instancetype _Nonnull)valueWithMGLCoordinateBounds:(MGLCoordinateBounds)bounds;
+    //    [Static]
+    //    [Export ("valueWithMGLCoordinateBounds:")]
+    //    NSValue GetValue (CoordinateBounds bounds);
 
-        // +(NSValue * _Nonnull)valueWithMGLOfflinePackProgress:(MGLOfflinePackProgress)progress;
-        [Static]
-        [Export ("valueWithMGLOfflinePackProgress:")]
-        NSValue GetValue (OfflinePackProgress progress);
+    //    // +(NSValue * _Nonnull)valueWithMGLOfflinePackProgress:(MGLOfflinePackProgress)progress;
+    //    [Static]
+    //    [Export ("valueWithMGLOfflinePackProgress:")]
+    //    NSValue GetValue (OfflinePackProgress progress);
 
-        // +(NSValue * _Nonnull)valueWithMGLTransition:(MGLTransition)transition;
-        [Static]
-        [Export ("valueWithMGLTransition:")]
-        NSValue GetValue (Transition transition);
-    }
+    //    // +(NSValue * _Nonnull)valueWithMGLTransition:(MGLTransition)transition;
+    //    [Static]
+    //    [Export ("valueWithMGLTransition:")]
+    //    NSValue GetValue (Transition transition);
+    //}
 
     // audit-objc-generics: @interface StyleValue<T> : NSObject
     [BaseType (typeof(NSObject), Name = "MGLStyleValue")]
@@ -1872,15 +1872,15 @@ namespace Mapbox
 	}
 
     // @interface FillStyleLayerAdditions (NSValue)
-	[BaseType(typeof(NSValue))]
-	[DisableDefaultCtor]
-    interface FillStyleLayerExt
-    {
-        // +(instancetype _Nonnull)valueWithMGLFillTranslationAnchor:(MGLFillTranslationAnchor)fillTranslationAnchor;
-        [Static]
-        [Export ("valueWithMGLFillTranslationAnchor:")]
-        NSValue GetValue (FillTranslationAnchor fillTranslationAnchor);
-    }
+	//[BaseType(typeof(NSValue))]
+	//[DisableDefaultCtor]
+    //interface FillStyleLayerExt
+    //{
+    //    // +(instancetype _Nonnull)valueWithMGLFillTranslationAnchor:(MGLFillTranslationAnchor)fillTranslationAnchor;
+    //    [Static]
+    //    [Export ("valueWithMGLFillTranslationAnchor:")]
+    //    NSValue GetValue (FillTranslationAnchor fillTranslationAnchor);
+    //}
 
     // @interface LineStyleLayer : MGLVectorStyleLayer
     [BaseType(typeof(VectorStyleLayer), Name = "MGLLineStyleLayer")]
@@ -2003,25 +2003,25 @@ namespace Mapbox
     }
 
 	// @interface LineStyleLayerAdditions (NSValue)
-	[BaseType(typeof(NSValue))]
-	[DisableDefaultCtor]
-	interface MGLLineStyleLayerExt
-	{
-		// +(instancetype _Nonnull)valueWithMGLLineCap:(MGLLineCap)lineCap;
-		[Static]
-		[Export("valueWithMGLLineCap:")]
-		NSValue GetValue(LineCap lineCap);
+	//[BaseType(typeof(NSValue))]
+	//[DisableDefaultCtor]
+	//interface MGLLineStyleLayerExt
+	//{
+	//	// +(instancetype _Nonnull)valueWithMGLLineCap:(MGLLineCap)lineCap;
+	//	[Static]
+	//	[Export("valueWithMGLLineCap:")]
+	//	NSValue GetValue(LineCap lineCap);
 
-		// +(instancetype _Nonnull)valueWithMGLLineJoin:(MGLLineJoin)lineJoin;
-		[Static]
-		[Export("valueWithMGLLineJoin:")]
-		NSValue GetValue(LineJoin lineJoin);
+	//	// +(instancetype _Nonnull)valueWithMGLLineJoin:(MGLLineJoin)lineJoin;
+	//	[Static]
+	//	[Export("valueWithMGLLineJoin:")]
+	//	NSValue GetValue(LineJoin lineJoin);
 
-		// +(instancetype _Nonnull)valueWithMGLLineTranslationAnchor:(MGLLineTranslationAnchor)lineTranslationAnchor;
-		[Static]
-		[Export("valueWithMGLLineTranslationAnchor:")]
-		NSValue GetValue(LineTranslationAnchor lineTranslationAnchor);
-	}
+	//	// +(instancetype _Nonnull)valueWithMGLLineTranslationAnchor:(MGLLineTranslationAnchor)lineTranslationAnchor;
+	//	[Static]
+	//	[Export("valueWithMGLLineTranslationAnchor:")]
+	//	NSValue GetValue(LineTranslationAnchor lineTranslationAnchor);
+	//}
 
     // @interface SymbolStyleLayer : MGLVectorStyleLayer
     [BaseType(typeof(VectorStyleLayer), Name = "MGLSymbolStyleLayer")]
@@ -2320,60 +2320,60 @@ namespace Mapbox
     }
 
 	// @interface SymbolStyleLayerAdditions (NSValue)
-	[BaseType(typeof(NSValue))]
-	[DisableDefaultCtor]
-	interface SymbolStyleLayerAdditionsExt
-	{
-		// +(instancetype _Nonnull)valueWithMGLIconRotationAlignment:(MGLIconRotationAlignment)iconRotationAlignment;
-		[Static]
-		[Export("valueWithMGLIconRotationAlignment:")]
-		NSValue GetValue(IconRotationAlignment iconRotationAlignment);
+	//[BaseType(typeof(NSValue))]
+	//[DisableDefaultCtor]
+	//interface SymbolStyleLayerAdditionsExt
+	//{
+	//	// +(instancetype _Nonnull)valueWithMGLIconRotationAlignment:(MGLIconRotationAlignment)iconRotationAlignment;
+	//	[Static]
+	//	[Export("valueWithMGLIconRotationAlignment:")]
+	//	NSValue GetValue(IconRotationAlignment iconRotationAlignment);
 
-		// +(instancetype _Nonnull)valueWithMGLIconTextFit:(MGLIconTextFit)iconTextFit;
-		[Static]
-		[Export("valueWithMGLIconTextFit:")]
-		NSValue GetValue(IconTextFit iconTextFit);
+	//	// +(instancetype _Nonnull)valueWithMGLIconTextFit:(MGLIconTextFit)iconTextFit;
+	//	[Static]
+	//	[Export("valueWithMGLIconTextFit:")]
+	//	NSValue GetValue(IconTextFit iconTextFit);
 
-		// +(instancetype _Nonnull)valueWithMGLSymbolPlacement:(MGLSymbolPlacement)symbolPlacement;
-		[Static]
-		[Export("valueWithMGLSymbolPlacement:")]
-		NSValue GetValue(SymbolPlacement symbolPlacement);
+	//	// +(instancetype _Nonnull)valueWithMGLSymbolPlacement:(MGLSymbolPlacement)symbolPlacement;
+	//	[Static]
+	//	[Export("valueWithMGLSymbolPlacement:")]
+	//	NSValue GetValue(SymbolPlacement symbolPlacement);
 
-		// +(instancetype _Nonnull)valueWithMGLTextAnchor:(MGLTextAnchor)textAnchor;
-		[Static]
-		[Export("valueWithMGLTextAnchor:")]
-		NSValue GetValue(TextAnchor textAnchor);
+	//	// +(instancetype _Nonnull)valueWithMGLTextAnchor:(MGLTextAnchor)textAnchor;
+	//	[Static]
+	//	[Export("valueWithMGLTextAnchor:")]
+	//	NSValue GetValue(TextAnchor textAnchor);
 
-		// +(instancetype _Nonnull)valueWithMGLTextJustification:(MGLTextJustification)textJustification;
-		[Static]
-		[Export("valueWithMGLTextJustification:")]
-		NSValue GetValue(TextJustification textJustification);
+	//	// +(instancetype _Nonnull)valueWithMGLTextJustification:(MGLTextJustification)textJustification;
+	//	[Static]
+	//	[Export("valueWithMGLTextJustification:")]
+	//	NSValue GetValue(TextJustification textJustification);
 
-		// +(instancetype _Nonnull)valueWithMGLTextPitchAlignment:(MGLTextPitchAlignment)textPitchAlignment;
-		[Static]
-		[Export("valueWithMGLTextPitchAlignment:")]
-		NSValue GetValue(TextPitchAlignment textPitchAlignment);
+	//	// +(instancetype _Nonnull)valueWithMGLTextPitchAlignment:(MGLTextPitchAlignment)textPitchAlignment;
+	//	[Static]
+	//	[Export("valueWithMGLTextPitchAlignment:")]
+	//	NSValue GetValue(TextPitchAlignment textPitchAlignment);
 
-		// +(instancetype _Nonnull)valueWithMGLTextRotationAlignment:(MGLTextRotationAlignment)textRotationAlignment;
-		[Static]
-		[Export("valueWithMGLTextRotationAlignment:")]
-		NSValue GetValue(TextRotationAlignment textRotationAlignment);
+	//	// +(instancetype _Nonnull)valueWithMGLTextRotationAlignment:(MGLTextRotationAlignment)textRotationAlignment;
+	//	[Static]
+	//	[Export("valueWithMGLTextRotationAlignment:")]
+	//	NSValue GetValue(TextRotationAlignment textRotationAlignment);
 
-		// +(instancetype _Nonnull)valueWithMGLTextTransform:(MGLTextTransform)textTransform;
-		[Static]
-		[Export("valueWithMGLTextTransform:")]
-		NSValue GetValue(TextTransform textTransform);
+	//	// +(instancetype _Nonnull)valueWithMGLTextTransform:(MGLTextTransform)textTransform;
+	//	[Static]
+	//	[Export("valueWithMGLTextTransform:")]
+	//	NSValue GetValue(TextTransform textTransform);
 
-		// +(instancetype _Nonnull)valueWithMGLIconTranslationAnchor:(MGLIconTranslationAnchor)iconTranslationAnchor;
-		[Static]
-		[Export("valueWithMGLIconTranslationAnchor:")]
-		NSValue GetValue(IconTranslationAnchor iconTranslationAnchor);
+	//	// +(instancetype _Nonnull)valueWithMGLIconTranslationAnchor:(MGLIconTranslationAnchor)iconTranslationAnchor;
+	//	[Static]
+	//	[Export("valueWithMGLIconTranslationAnchor:")]
+	//	NSValue GetValue(IconTranslationAnchor iconTranslationAnchor);
 
-		// +(instancetype _Nonnull)valueWithMGLTextTranslationAnchor:(MGLTextTranslationAnchor)textTranslationAnchor;
-		[Static]
-		[Export("valueWithMGLTextTranslationAnchor:")]
-		NSValue GetValue(TextTranslationAnchor textTranslationAnchor);
-	}
+	//	// +(instancetype _Nonnull)valueWithMGLTextTranslationAnchor:(MGLTextTranslationAnchor)textTranslationAnchor;
+	//	[Static]
+	//	[Export("valueWithMGLTextTranslationAnchor:")]
+	//	NSValue GetValue(TextTranslationAnchor textTranslationAnchor);
+	//}
 
 
     // @interface RasterStyleLayer : MGLForegroundStyleLayer
@@ -2529,20 +2529,20 @@ namespace Mapbox
     }
 
 	// @interface MGLCustomStyleLayerAdditions (MGLMapView)
-	[BaseType(typeof(NSValue))]
-	[DisableDefaultCtor]
-	interface CircleStyleLayerExt
-	{
-		// +(instancetype _Nonnull)valueWithMGLCircleScaleAlignment:(MGLCircleScaleAlignment)circleScaleAlignment;
-		[Static]
-		[Export("valueWithMGLCircleScaleAlignment:")]
-		NSValue GetValue(CircleScaleAlignment circleScaleAlignment);
+	//[BaseType(typeof(NSValue))]
+	//[DisableDefaultCtor]
+	//interface CircleStyleLayerExt
+	//{
+	//	// +(instancetype _Nonnull)valueWithMGLCircleScaleAlignment:(MGLCircleScaleAlignment)circleScaleAlignment;
+	//	[Static]
+	//	[Export("valueWithMGLCircleScaleAlignment:")]
+	//	NSValue GetValue(CircleScaleAlignment circleScaleAlignment);
 
-		// +(instancetype _Nonnull)valueWithMGLCircleTranslationAnchor:(MGLCircleTranslationAnchor)circleTranslationAnchor;
-		[Static]
-		[Export("valueWithMGLCircleTranslationAnchor:")]
-		NSValue GetValue(CircleTranslationAnchor circleTranslationAnchor);
-	}
+	//	// +(instancetype _Nonnull)valueWithMGLCircleTranslationAnchor:(MGLCircleTranslationAnchor)circleTranslationAnchor;
+	//	[Static]
+	//	[Export("valueWithMGLCircleTranslationAnchor:")]
+	//	NSValue GetValue(CircleTranslationAnchor circleTranslationAnchor);
+	//}
 
     // @interface BackgroundStyleLayer : MGLStyleLayer
     [BaseType(typeof(StyleLayer), Name = "MGLBackgroundStyleLayer")]
