@@ -774,13 +774,13 @@ namespace Mapbox
         [return: NullAllowed]
         Shape From (NSData data, NSStringEncoding encoding, [NullAllowed] out NSError outError);
 
-        // @property (copy, nonatomic) NSString * _Nullable title;
-        [NullAllowed, Export ("title")]
-        string Title { get; set; }
+        //// @property (copy, nonatomic) NSString * _Nullable title;
+        //[NullAllowed, Export ("title")]
+        //string Title { get; set; }
 
-        // @property (copy, nonatomic) NSString * _Nullable subtitle;
-        [NullAllowed, Export ("subtitle")]
-        string Subtitle { get; set; }
+        //// @property (copy, nonatomic) NSString * _Nullable subtitle;
+        //[NullAllowed, Export ("subtitle")]
+        //string Subtitle { get; set; }
 
         // -(NSData * _Nonnull)geoJSONDataUsingEncoding:(NSStringEncoding)encoding;
         [Export ("geoJSONDataUsingEncoding:")]
@@ -2027,6 +2027,11 @@ namespace Mapbox
     [BaseType(typeof(VectorStyleLayer), Name = "MGLSymbolStyleLayer")]
     interface SymbolStyleLayer
     {
+		// -(instancetype _Nonnull)initWithIdentifier:(NSString * _Nonnull)identifier source:(MGLSource * _Nonnull)source __attribute__((objc_designated_initializer));
+		[Export("initWithIdentifier:source:")]
+		[DesignatedInitializer]
+		IntPtr Constructor(string identifier, Source source);
+
         // @property (nonatomic) MGLStyleValue<NSNumber *> * _Null_unspecified iconAllowsOverlap;
         [Export ("iconAllowsOverlap", ArgumentSemantic.Assign)]
         StyleValue IconAllowsOverlap { get; set; }

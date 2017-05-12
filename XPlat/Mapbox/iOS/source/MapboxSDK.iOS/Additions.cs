@@ -42,17 +42,7 @@ namespace Mapbox
 
 	partial class MultiPoint {
         public CLLocationCoordinate2D[] GetCoordinates() { 
-            return PtrToCLLocationCoordinate2DArray(this.Coordinates);
-        }
-
-        internal static CLLocationCoordinate2D[] PtrToCLLocationCoordinate2DArray(IntPtr cllocationCoordinate2DArray)
-        {
-            if (cllocationCoordinate2DArray == IntPtr.Zero)
-            	return new CLLocationCoordinate2D[] { };
-
-
-            var argc = CountCLLocationCoordinate2D(cllocationCoordinate2DArray);
-            return PtrToCLLocationCoordinate2DArray(argc, cllocationCoordinate2DArray);
+			return PtrToCLLocationCoordinate2DArray(Convert.ToInt32(this.PointCount), this.Coordinates);
         }
 
         static int CountCLLocationCoordinate2D(IntPtr cllocationCoordinate2DArray)
