@@ -35,7 +35,7 @@
     <AndroidUseSharedRuntime>false</AndroidUseSharedRuntime>
   </PropertyGroup>
   <PropertyGroup>
-    <Java8DocPaths>..\externals\docs\reference</Java8DocPaths>
+    <Java8DocPaths>..\externals\docs</Java8DocPaths>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />

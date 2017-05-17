@@ -3,14 +3,12 @@
 
 var TARGET = Argument ("t", Argument ("target", "Default"));
 
-var NUGET_VERSION = "0.3-devpreview";
+var NUGET_VERSION = "0.4-devpreview";
 
-var JAR_VERSION = "0.3-devpreview";
+var JAR_VERSION = "0.4-devpreview";
 var JAR_URL = string.Format ("https://bintray.com/google/androidthings/download_file?file_path=com%2Fgoogle%2Fandroid%2Fthings%2Fandroidthings%2F{0}%2Fandroidthings-{0}.jar", JAR_VERSION);
+var DOCS_URL = string.Format ("https://bintray.com/google/androidthings/download_file?file_path=com%2Fgoogle%2Fandroid%2Fthings%2Fandroidthings%2F{0}%2Fandroidthings-{0}-javadoc.jar", JAR_VERSION);
 var JAR_DEST = "./externals/androidthings.jar";
-
-var DOCS_URL = "https://developer.android.com/things/downloads/com.google.android.things-docs-dp2.zip";
-
 
 var buildSpec = new BuildSpec () {
 	Libs = new [] {
