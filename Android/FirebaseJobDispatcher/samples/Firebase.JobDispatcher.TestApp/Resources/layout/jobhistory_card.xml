@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content">
+    <android.support.v7.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="8dp">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:textColor="#333333"
+                android:singleLine="false"
+                android:text="Caption"
+                android:lines="2"
+                android:maxLines="2"
+                android:id="@+id/job_history_textview"
+                android:layout_marginLeft="4dp" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:textColor="#333333"
+                android:singleLine="true"
+                android:text="Caption"
+                android:id="@+id/job_history_result_count_textview"
+                android:layout_marginLeft="12dp" />
+        </LinearLayout>
+    </android.support.v7.widget.CardView>
+</FrameLayout>

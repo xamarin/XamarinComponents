@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<package >
+  <metadata>
+    <id>Xamarin.Firebase.JobDispatcher</id>
+    <title>Firebase Job Dispatcher for Xamarin.Android</title>
+    <version>$version$</version>
+    <authors>Xamarin Inc.</authors>
+    <owners>Xamarin Inc.</owners>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>A library for scheduling background jobs in an Android app using a JobScheduler like API.</description>
+    <copyright>Copyright (c) 2017 Xamarin Inc</copyright>
+    <projectUrl>https://github.com/xamarin/XamarinComponents/tree/master/Android/FirebaseJobDispatcher</projectUrl>
+    <licenseUrl>https://github.com/xamarin/XamarinComponents/blob/master/Android/FirebaseJobDispatcher/License.md</licenseUrl>
+  </metadata>
+  <files>  
+    <file src="output/Xamarin.Firebase.JobDispatcher.dll" target="lib/MonoAndroid10" />
+    <file src="External-Dependency-Info.txt" target="THIRD-PARTY-NOTICES.txt" />
+  </files>
+</package>
