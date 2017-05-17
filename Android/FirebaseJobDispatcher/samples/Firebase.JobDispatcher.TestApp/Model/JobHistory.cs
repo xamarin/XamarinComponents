@@ -14,7 +14,9 @@ namespace FJDTestApp.Model
 
         public JobHistory (IJobParameters job)
         {
-            Job = job ?? throw new NullReferenceException ("Must provide a valid IJobParameters instance!");
+            if (job == null)
+                throw new NullReferenceException ("Must provide a valid IJobParameters instance!");
+            Job = job;
         }
 
         public int ResultCount => results.Count;
