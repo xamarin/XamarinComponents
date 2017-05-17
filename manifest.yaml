@@ -52,7 +52,7 @@
   MacBuildTargets: [ samples, component ]
 - Name: FirebaseJobDispatcher
   BuildScript: ./Android/FirebaseJobDispatcher/build.cake
-  TriggerPaths: [ ./Android/FirebaseJobDispatcher ]
+  TriggerPaths: [ Android/FirebaseJobDispatcher ]
   MacBuildTargets: [ samples, nuget ]
 - Name: Timber
   BuildScript: ./Android/Timber/build.cake
