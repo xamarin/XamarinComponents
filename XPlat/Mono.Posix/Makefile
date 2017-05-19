@@ -97,8 +97,8 @@ test: all
 	docker rm $(DOCKER_TEST_CONTAINER_NAME)
 
 clean: 
-	rm -rf mono-source.zip monorepo build MonoPosixHelper tools Test/packagesource Test/TestResult.xml Test/bin Test/obj \
-	Mono.Posix.NETStandard.Test-netstandard_2_0.copy.csproj stdlibs
+	rm -rf mono-source.zip monorepo build MonoPosixHelper tools Test/packagesource Test/TestResult.xml Test/TestResult-v2.xml \
+	Test/bin Test/obj Mono.Posix.NETStandard.Test-netstandard_2_0.copy.csproj stdlibs
 
 .PHONY: clean test all
 
