@@ -3,7 +3,7 @@ MONO_GIT_REPO=bholmes/mono
 # MONOGIT_VERSION=mono-$(MONO_VERSION)
 MONOGIT_VERSION=25baeed742592c3536c2f2897c1f689a5b3f828b
 MONOPOSIX_NUGET_VERSION=5.0.0.94-alpha1
-MONOPOSIXHELPER_JENKINSBUILD=9
+MONOPOSIXHELPER_JENKINSBUILD=22
 
 DOCKER_PULL_TARGET=microsoft/dotnet-nightly@sha256:5f3394a34f719508eeaa399617508757ba263121324ac621ce5fd1cc4eba1d79
 DOCKER_RUN_IMAGE=microsoft/dotnet-nightly:1a40a56d3491
@@ -11,10 +11,7 @@ DOCKER_RUN_IMAGE=microsoft/dotnet-nightly:1a40a56d3491
 $(eval DOCKER_BUILD_CONTAINER_NAME=MonoPosixBuild-$(shell uuidgen))
 $(eval DOCKER_TEST_CONTAINER_NAME=MonoPosixBuild-$(shell uuidgen))
 
-DISTRO_LIST=debian-7-arm debian-7-armel debian-7-x64 debian-7-x86 debian-8-arm debian-8-arm64 debian-8-armel debian-8-ppc64el \
- debian-8-x64 debian-8-x86 raspbian-8-arm ubuntu-12.04-arm ubuntu-12.04-x64 ubuntu-12.04-x86 ubuntu-14.04-arm \
- ubuntu-14.04-arm64 ubuntu-14.04-ppc64el ubuntu-14.04-x64 ubuntu-14.04-x86 ubuntu-16.04-arm ubuntu-16.04-arm64 \
- ubuntu-16.04-ppc64el ubuntu-16.04-x64 ubuntu-16.04-x86
+DISTRO_LIST=centos-6-x86 centos-6-x64 debian-8-arm debian-8-armel debian-8-arm64
 
 all: build/Mono.Posix.NETStandard.$(MONOPOSIX_NUGET_VERSION).nupkg
 
