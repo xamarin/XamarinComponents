@@ -12,25 +12,25 @@
     <copyright>Copyright 2017</copyright>
   </metadata>
   <files>
-    <file src="build/any/Mono.Posix.dll" target="ref/netstandard2.0" />
+    <file src="build/any/Mono.Posix.NETStandard.dll" target="ref/netstandard2.0" />
 
     <file src="MonoPosixHelper/osx-10.7-universal/libMonoPosixHelper.dylib" target="runtimes/osx/native/libMonoPosixHelper.dylib"/>
-    <file src="build/unix/Mono.Posix.dll" target="runtimes/osx/lib/netstandard2.0/Mono.Posix.dll"/>
+    <file src="build/unix/Mono.Posix.NETStandard.dll" target="runtimes/osx/lib/netstandard2.0/Mono.Posix.NETStandard.dll"/>
 
     <file src="MonoPosixHelper/centos-6-x86/libMonoPosixHelper.so" target="runtimes/linux-x86/native/libMonoPosixHelper.so"/>
-    <file src="build/unix/Mono.Posix.dll" target="runtimes/linux-x86/lib/netstandard2.0/Mono.Posix.dll"/>
+    <file src="build/unix/Mono.Posix.NETStandard.dll" target="runtimes/linux-x86/lib/netstandard2.0/Mono.Posix.NETStandard.dll"/>
 
     <file src="MonoPosixHelper/centos-6-x64/libMonoPosixHelper.so" target="runtimes/linux-x64/native/libMonoPosixHelper.so"/>
-    <file src="build/unix/Mono.Posix.dll" target="runtimes/linux-x64/lib/netstandard2.0/Mono.Posix.dll"/>
+    <file src="build/unix/Mono.Posix.NETStandard.dll" target="runtimes/linux-x64/lib/netstandard2.0/Mono.Posix.NETStandard.dll"/>
 
     <file src="MonoPosixHelper/debian-8-arm/libMonoPosixHelper.so" target="runtimes/linux-arm/native/libMonoPosixHelper.so"/>
-    <file src="build/unix/Mono.Posix.dll" target="runtimes/linux-arm/lib/netstandard2.0/Mono.Posix.dll"/>
+    <file src="build/unix/Mono.Posix.NETStandard.dll" target="runtimes/linux-arm/lib/netstandard2.0/Mono.Posix.NETStandard.dll"/>
 
     <file src="MonoPosixHelper/debian-8-armel/libMonoPosixHelper.so" target="runtimes/linux-armel/native/libMonoPosixHelper.so"/>
-    <file src="build/unix/Mono.Posix.dll" target="runtimes/linux-armel/lib/netstandard2.0/Mono.Posix.dll"/>
+    <file src="build/unix/Mono.Posix.NETStandard.dll" target="runtimes/linux-armel/lib/netstandard2.0/Mono.Posix.NETStandard.dll"/>
 
     <file src="MonoPosixHelper/debian-8-arm64/libMonoPosixHelper.so" target="runtimes/linux-arm64/native/libMonoPosixHelper.so"/>
-    <file src="build/unix/Mono.Posix.dll" target="runtimes/linux-arm64/lib/netstandard2.0/Mono.Posix.dll"/>
+    <file src="build/unix/Mono.Posix.NETStandard.dll" target="runtimes/linux-arm64/lib/netstandard2.0/Mono.Posix.NETStandard.dll"/>
 
   </files>
 </package>

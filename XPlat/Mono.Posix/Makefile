@@ -1,7 +1,7 @@
 MONO_VERSION=5.0.0.94
 MONO_GIT_REPO=bholmes/mono
 # MONOGIT_VERSION=mono-$(MONO_VERSION)
-MONOGIT_VERSION=25baeed742592c3536c2f2897c1f689a5b3f828b
+MONOGIT_VERSION=145684081aafc3b291515401be9f209d2d92605b
 MONOPOSIX_NUGET_VERSION=5.0.0.94-alpha1
 MONOPOSIXHELPER_JENKINSBUILD=22
 
@@ -31,16 +31,16 @@ monorepo/mcs/class/Mono.Posix/Makefile: mono-source.zip
 	touch $@
 
 # using the nightly dotnetcore build for 2.0 preview to make Mono.Posix for netstandard 2.0
-build/unix/Mono.Posix.dll build/any/Mono.Posix.dll: monorepo/mcs/class/Mono.Posix/Makefile
+build/unix/Mono.Posix.NETStandard.dll build/any/Mono.Posix.NETStandard.dll: monorepo/mcs/class/Mono.Posix/Makefile
 	mkdir -p build/any
 	mkdir -p build/unix
 	docker pull $(DOCKER_PULL_TARGET)
 	docker run --name $(DOCKER_BUILD_CONTAINER_NAME) -v `pwd`:/hostdir  $(DOCKER_RUN_IMAGE) sh /hostdir/dockerbuild.sh || (docker rm $(DOCKER_BUILD_CONTAINER_NAME) && false)
 	docker rm $(DOCKER_BUILD_CONTAINER_NAME)
-	cp monorepo/mcs/class/Mono.Posix/build/any/Mono.Posix.dll build/any/Mono.Posix.dll
-	cp monorepo/mcs/class/Mono.Posix/build/unix/Mono.Posix.dll build/unix/Mono.Posix.dll
-	sn -R build/any/Mono.Posix.dll monorepo/mcs/class/mono.snk
-	sn -R build/unix/Mono.Posix.dll monorepo/mcs/class/mono.snk
+	cp monorepo/mcs/class/Mono.Posix/build/any/Mono.Posix.NETStandard.dll build/any/Mono.Posix.NETStandard.dll
+	cp monorepo/mcs/class/Mono.Posix/build/unix/Mono.Posix.NETStandard.dll build/unix/Mono.Posix.NETStandard.dll
+	sn -R build/any/Mono.Posix.NETStandard.dll monorepo/mcs/class/mono.snk
+	sn -R build/unix/Mono.Posix.NETStandard.dll monorepo/mcs/class/mono.snk
 
 # Fetch all of the libMonoPosixHelper.so files
 # Will be easier when this is all in Jenkins
@@ -62,8 +62,8 @@ tools/nuget.exe:
 
 # Pack the nuget
 build/Mono.Posix.NETStandard.$(MONOPOSIX_NUGET_VERSION).nupkg: tools/nuget.exe \
- build/any/Mono.Posix.dll \
- build/unix/Mono.Posix.dll \
+ build/any/Mono.Posix.NETStandard.dll \
+ build/unix/Mono.Posix.NETStandard.dll \
  $(addprefix MonoPosixHelper/, $(addsuffix /libMonoPosixHelper.so,$(DISTRO_LIST))) \
  MonoPosixHelper/osx-10.7-universal/libMonoPosixHelper.dylib \
  Mono.Posix.NETStandard.nuspec
@@ -79,7 +79,7 @@ test: all
 
 clean: 
 	rm -rf mono-source.zip monorepo build MonoPosixHelper tools Test/packagesource Test/TestResult.xml Test/bin Test/obj \
-	Mono.Posix.Test-netstandard_2_0.copy.csproj
+	Mono.Posix.NETStandard.Test-netstandard_2_0.copy.csproj
 
 .PHONY: clean test all
 
