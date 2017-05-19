@@ -100,6 +100,52 @@ namespace Mapbox
         }              
     }
 
+	partial class PointCollection
+	{
+		public static PointCollection From(CLLocationCoordinate2D[] coords) 
+        {
+            return _From(GetPointer(coords), Convert.ToUInt32(coords.Length));
+        }
+
+		public CLLocationCoordinate2D[] GetCoordinates()
+		{
+			return PtrToCLLocationCoordinate2DArray(Convert.ToInt32(this.PointCount), this.Coordinates);
+		}
+
+        public void GetCoordinates(CLLocationCoordinate2D[] coords, NSRange range) {
+			var ptr = GetPointer(coords);
+			this._GetCoordinates(ptr, range);
+		}
+
+
+		unsafe internal static IntPtr GetPointer(CLLocationCoordinate2D[] coordinates)
+		{
+			fixed (CLLocationCoordinate2D* ptr = &coordinates[0])
+				return (IntPtr)ptr;
+		}
+
+		static CLLocationCoordinate2D[] PtrToCLLocationCoordinate2DArray(int count, IntPtr cllocationCoordinate2DArray)
+		{
+			if (count < 0)
+				throw new ArgumentOutOfRangeException(nameof(count), "< 0");
+			if (cllocationCoordinate2DArray == IntPtr.Zero)
+				return new CLLocationCoordinate2D[count];
+
+			int structSize = Marshal.SizeOf(typeof(CLLocationCoordinate2D));
+
+			var members = new CLLocationCoordinate2D[count];
+
+			for (int i = 0; i < count; ++i)
+			{
+				var data = IntPtr.Add(cllocationCoordinate2DArray, structSize * i);
+				members[i] = Marshal.PtrToStructure<CLLocationCoordinate2D>(data);
+			}
+
+
+			return members;
+		}
+	}
+
     partial class MapView
     {
         const string frameworkPath = "Frameworks/Mapbox.framework/Mapbox";

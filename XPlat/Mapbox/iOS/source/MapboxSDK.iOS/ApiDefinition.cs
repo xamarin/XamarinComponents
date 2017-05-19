@@ -1281,7 +1281,7 @@ namespace Mapbox
         // +(instancetype)pointCollectionWithCoordinates:(const CLLocationCoordinate2D *)coords count:(NSUInteger)count;
         [Static]
         [Export ("pointCollectionWithCoordinates:count:")]
-        PointCollection From (IntPtr coords, nuint count);
+        PointCollection _From (IntPtr coords, nuint count);
 
         // @property (readonly, nonatomic) CLLocationCoordinate2D * coordinates __attribute__((objc_returns_inner_pointer));
         [Export ("coordinates")]
@@ -1293,7 +1293,7 @@ namespace Mapbox
 
         // -(void)getCoordinates:(CLLocationCoordinate2D *)coords range:(NSRange)range;
         [Export ("getCoordinates:range:")]
-        void GetCoordinates (IntPtr coords, NSRange range);
+        void _GetCoordinates (IntPtr coords, NSRange range);
     }
 
     // @interface ShapeCollection : MGLShape
