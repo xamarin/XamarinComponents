@@ -10,9 +10,14 @@
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>Provides functionality to access Posix/Unix features</description>
     <copyright>Copyright 2017</copyright>
+    <frameworkAssemblies>
+      <frameworkAssembly assemblyName="Mono.Posix" targetFramework="net40" />
+    </frameworkAssemblies>
   </metadata>
   <files>
     <file src="build/any/Mono.Posix.NETStandard.dll" target="ref/netstandard2.0" />
+
+    <file src="build/net40/Mono.Posix.NETStandard.dll" target="lib/net40" />
 
     <file src="MonoPosixHelper/osx-10.7-universal/libMonoPosixHelper.dylib" target="runtimes/osx/native/libMonoPosixHelper.dylib"/>
     <file src="build/unix/Mono.Posix.NETStandard.dll" target="runtimes/osx/lib/netstandard2.0/Mono.Posix.NETStandard.dll"/>

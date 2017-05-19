@@ -42,6 +42,24 @@ build/unix/Mono.Posix.NETStandard.dll build/any/Mono.Posix.NETStandard.dll: mono
 	sn -R build/any/Mono.Posix.NETStandard.dll monorepo/mcs/class/mono.snk
 	sn -R build/unix/Mono.Posix.NETStandard.dll monorepo/mcs/class/mono.snk
 
+build/net40/Mono.Posix.NETStandard.dll: build/net40/Mono.Posix.generated.cs
+	cd monorepo/mcs/class/Mono.Posix && \
+		mcs -t:library -out:$(PWD)/$@ -r:Mono.Posix "-d:MONO_POSIX_NETSTANDARD_BUILD;NETSTANDARD2_0" \
+		$(PWD)/build/net40/Mono.Posix.generated.cs \
+		$(PWD)/monorepo/mcs/build/common/Consts.cs \
+		$(PWD)/monorepo/mcs/class/Mono.Posix/Assembly/AssemblyInfo.cs
+	sn -R $@ monorepo/mcs/class/mono.snk
+
+build/net40/Mono.Posix.generated.cs: tools/Microsoft.DotNet.BuildTools.GenAPI/tools/GenAPI.exe
+	mkdir -p build/net40
+	mono tools/Microsoft.DotNet.BuildTools.GenAPI/tools/GenAPI.exe -w:TypeForwards build/any/Mono.Posix.NETStandard.dll -out $@
+
+tools/Microsoft.DotNet.BuildTools.GenAPI/tools/GenAPI.exe:
+	mkdir -p tools
+	curl -L -o tools/Microsoft.DotNet.BuildTools.GenAPI.nupkg https://www.nuget.org/api/v2/package/Microsoft.DotNet.BuildTools.GenAPI/1.0.0-beta-00081
+	unzip tools/Microsoft.DotNet.BuildTools.GenAPI.nupkg -d tools/Microsoft.DotNet.BuildTools.GenAPI
+	touch $@
+
 # Fetch all of the libMonoPosixHelper.so files
 # Will be easier when this is all in Jenkins
 MonoPosixHelper/%/libMonoPosixHelper.so: DISTRO_NAME = $(@:MonoPosixHelper/%/libMonoPosixHelper.so=%)
@@ -64,6 +82,7 @@ tools/nuget.exe:
 build/Mono.Posix.NETStandard.$(MONOPOSIX_NUGET_VERSION).nupkg: tools/nuget.exe \
  build/any/Mono.Posix.NETStandard.dll \
  build/unix/Mono.Posix.NETStandard.dll \
+ build/net40/Mono.Posix.NETStandard.dll \
  $(addprefix MonoPosixHelper/, $(addsuffix /libMonoPosixHelper.so,$(DISTRO_LIST))) \
  MonoPosixHelper/osx-10.7-universal/libMonoPosixHelper.dylib \
  Mono.Posix.NETStandard.nuspec
@@ -79,7 +98,7 @@ test: all
 
 clean: 
 	rm -rf mono-source.zip monorepo build MonoPosixHelper tools Test/packagesource Test/TestResult.xml Test/bin Test/obj \
-	Mono.Posix.NETStandard.Test-netstandard_2_0.copy.csproj
+	Mono.Posix.NETStandard.Test-netstandard_2_0.copy.csproj stdlibs
 
 .PHONY: clean test all
 

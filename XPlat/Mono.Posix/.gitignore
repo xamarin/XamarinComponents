@@ -5,3 +5,4 @@ Test/packagesource/
 build/
 mono-source.zip
 monorepo/
+stdlibs/
