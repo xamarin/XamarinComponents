@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <package >
   <metadata>
-    <id>Mono.Posix.NETCore</id>
+    <id>Mono.Posix.NETStandard</id>
     <version>$version$</version>
     <authors>Xamarin Inc.</authors>
     <owners>Xamarin Inc.</owners>

@@ -16,7 +16,7 @@ DISTRO_LIST=debian-7-arm debian-7-armel debian-7-x64 debian-7-x86 debian-8-arm d
  ubuntu-14.04-arm64 ubuntu-14.04-ppc64el ubuntu-14.04-x64 ubuntu-14.04-x86 ubuntu-16.04-arm ubuntu-16.04-arm64 \
  ubuntu-16.04-ppc64el ubuntu-16.04-x64 ubuntu-16.04-x86
 
-all: build/Mono.Posix.NETCore.$(MONOPOSIX_NUGET_VERSION).nupkg
+all: build/Mono.Posix.NETStandard.$(MONOPOSIX_NUGET_VERSION).nupkg
 
 # Fetch mono from Github using tagged version
 # Only extract what is needed
@@ -64,18 +64,18 @@ tools/nuget.exe:
 	curl -L -o $@ https://dist.nuget.org/win-x86-commandline/v4.1.0/nuget.exe
 
 # Pack the nuget
-build/Mono.Posix.NETCore.$(MONOPOSIX_NUGET_VERSION).nupkg: tools/nuget.exe \
+build/Mono.Posix.NETStandard.$(MONOPOSIX_NUGET_VERSION).nupkg: tools/nuget.exe \
  build/any/Mono.Posix.dll \
  build/unix/Mono.Posix.dll \
  $(addprefix MonoPosixHelper/, $(addsuffix /libMonoPosixHelper.so,$(DISTRO_LIST))) \
  MonoPosixHelper/osx-10.7-universal/libMonoPosixHelper.dylib \
- Mono.Posix.NETCore.nuspec
-	mono tools/nuget.exe pack -Version $(MONOPOSIX_NUGET_VERSION) -OutputDirectory build/  Mono.Posix.NETCore.nuspec
+ Mono.Posix.NETStandard.nuspec
+	mono tools/nuget.exe pack -Version $(MONOPOSIX_NUGET_VERSION) -OutputDirectory build/  Mono.Posix.NETStandard.nuspec
 
 test: all
 	rm -rf Test/packagesource/
 	mkdir -p Test/packagesource
-	mono tools/nuget.exe add -Source Test/packagesource build/Mono.Posix.NETCore.$(MONOPOSIX_NUGET_VERSION).nupkg
+	mono tools/nuget.exe add -Source Test/packagesource build/Mono.Posix.NETStandard.$(MONOPOSIX_NUGET_VERSION).nupkg
 	docker pull $(DOCKER_PULL_TARGET)
 	docker run --name $(DOCKER_TEST_CONTAINER_NAME) -v `pwd`:/hostdir  $(DOCKER_RUN_IMAGE) sh /hostdir/dockertest.sh $(MONOPOSIX_NUGET_VERSION) || (docker rm $(DOCKER_TEST_CONTAINER_NAME) && false)
 	docker rm $(DOCKER_TEST_CONTAINER_NAME)
