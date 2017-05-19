@@ -810,27 +810,27 @@ namespace Mapbox
 
         // -(void)getCoordinates:(CLLocationCoordinate2D * _Nonnull)coords range:(NSRange)range;
         [Export ("getCoordinates:range:")]
-        void GetCoordinates (IntPtr coords, NSRange range);
+        void _GetCoordinates (IntPtr coords, NSRange range);
 
         // -(void)setCoordinates:(CLLocationCoordinate2D * _Nonnull)coords count:(NSUInteger)count;
         [Export ("setCoordinates:count:")]
-        void SetCoordinates (IntPtr coords, nuint count);
+        void _SetCoordinates (IntPtr coords, nuint count);
 
         // -(void)insertCoordinates:(const CLLocationCoordinate2D * _Nonnull)coords count:(NSUInteger)count atIndex:(NSUInteger)index;
         [Export ("insertCoordinates:count:atIndex:")]
-        void InsertCoordinates (IntPtr coords, nuint count, nuint index);
+        void _InsertCoordinates (IntPtr coords, nuint count, nuint index);
 
         // -(void)appendCoordinates:(const CLLocationCoordinate2D * _Nonnull)coords count:(NSUInteger)count;
         [Export ("appendCoordinates:count:")]
-        void AppendCoordinates (IntPtr coords, nuint count);
+        void _AppendCoordinates (IntPtr coords, nuint count);
 
         // -(void)replaceCoordinatesInRange:(NSRange)range withCoordinates:(const CLLocationCoordinate2D * _Nonnull)coords;
         [Export ("replaceCoordinatesInRange:withCoordinates:")]
-        void ReplaceCoordinatesInRange (NSRange range, IntPtr coords);
+        void _ReplaceCoordinatesInRange (NSRange range, IntPtr coords);
 
         // -(void)replaceCoordinatesInRange:(NSRange)range withCoordinates:(const CLLocationCoordinate2D * _Nonnull)coords count:(NSUInteger)count;
         [Export ("replaceCoordinatesInRange:withCoordinates:count:")]
-        void ReplaceCoordinatesInRange (NSRange range, IntPtr coords, nuint count);
+        void _ReplaceCoordinatesInRange (NSRange range, IntPtr coords, nuint count);
 
         // -(void)removeCoordinatesInRange:(NSRange)range;
         [Export ("removeCoordinatesInRange:")]

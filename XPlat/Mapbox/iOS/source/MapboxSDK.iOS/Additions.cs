@@ -32,12 +32,6 @@ namespace Mapbox
         {
             return WithCoordinates(GetPointer(coords), count);
         }
-
-        unsafe internal static IntPtr GetPointer (CLLocationCoordinate2D[] coordinates)
-        {
-            fixed (CLLocationCoordinate2D* ptr = &coordinates[0])
-            return (IntPtr) ptr;
-        }            
     }
 
 	partial class MultiPoint {
@@ -45,17 +39,37 @@ namespace Mapbox
 			return PtrToCLLocationCoordinate2DArray(Convert.ToInt32(this.PointCount), this.Coordinates);
         }
 
-        static int CountCLLocationCoordinate2D(IntPtr cllocationCoordinate2DArray)
-        {
-            var structSize = Marshal.SizeOf(typeof(CLLocationCoordinate2D));
-
-            int count = 0;
-            while (Marshal.ReadIntPtr(cllocationCoordinate2DArray, count * structSize) != IntPtr.Zero)
-            	++count;
-            return count;
+        public void GetCoordinates(CLLocationCoordinate2D[] coords, NSRange range) {
+            var ptr = GetPointer(coords);
+            this._GetCoordinates(ptr, range);
         }
 
-        static CLLocationCoordinate2D[] PtrToCLLocationCoordinate2DArray(int count, IntPtr cllocationCoordinate2DArray)
+        public void SetCoordinates(CLLocationCoordinate2D[] coords) {
+            this._SetCoordinates(GetPointer(coords), Convert.ToUInt32(coords.Length));
+        }
+
+		public void InsertCoordinates(CLLocationCoordinate2D[] coords, int index)
+		{
+            this._InsertCoordinates(GetPointer(coords), Convert.ToUInt32(coords.Length), Convert.ToUInt32(index));
+		}
+
+		public void AppendCoordinates(CLLocationCoordinate2D[] coords)
+		{
+			this._AppendCoordinates(GetPointer(coords), Convert.ToUInt32(coords.Length));
+		}
+
+        public void _ReplaceCoordinatesInRange(NSRange range, CLLocationCoordinate2D[] coords)
+		{
+			this._ReplaceCoordinatesInRange(range, GetPointer(coords), Convert.ToUInt32(coords.Length));
+		}
+
+		unsafe internal static IntPtr GetPointer(CLLocationCoordinate2D[] coordinates)
+		{
+			fixed (CLLocationCoordinate2D* ptr = &coordinates[0])
+				return (IntPtr)ptr;
+		}
+
+		static CLLocationCoordinate2D[] PtrToCLLocationCoordinate2DArray(int count, IntPtr cllocationCoordinate2DArray)
         {
             if (count < 0)
             	throw new ArgumentOutOfRangeException(nameof(count), "< 0");
@@ -83,13 +97,7 @@ namespace Mapbox
         public static Polyline WithCoordinates (CLLocationCoordinate2D[] coords, nuint count)
         {
             return WithCoordinates(GetPointer(coords), count);
-        }
-
-        unsafe internal static IntPtr GetPointer (CLLocationCoordinate2D[] coordinates)
-        {
-            fixed (CLLocationCoordinate2D* ptr = &coordinates[0])
-            return (IntPtr) ptr;
-        }            
+        }              
     }
 
     partial class MapView
