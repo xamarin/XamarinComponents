@@ -2,7 +2,7 @@
 
 cd /hostdir/monorepo/mcs/class/Mono.Posix
 
-dotnet restore Mono.Posix.NETStandard-netstandard_2_0.csproj
+dotnet restore --configfile /hostdir/nuget.config Mono.Posix.NETStandard-netstandard_2_0.csproj
 
 mkdir -p build/any
 dotnet build Mono.Posix.NETStandard-netstandard_2_0.csproj /p:ForceUseLibC=false -c Release
