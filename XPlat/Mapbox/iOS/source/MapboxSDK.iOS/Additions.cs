@@ -114,5 +114,26 @@ namespace Mapbox
             return (IntPtr) ptr;
         }
     }
+
+	partial class CoordinateSpanConstants
+	{
+		static CoordinateSpan? zero;
+
+		public static CoordinateSpan Zero
+		{
+			get
+			{
+				if (zero == null)
+				{
+					IntPtr RTLD_MAIN_ONLY = Dlfcn.dlopen(null, 0);
+					IntPtr ptr = Dlfcn.dlsym(RTLD_MAIN_ONLY, "MGLCoordinateSpanZero");
+					zero = Marshal.PtrToStructure<CoordinateSpan>(ptr);
+					Dlfcn.dlclose(RTLD_MAIN_ONLY);
+				}
+
+				return zero.Value;
+			}
+		}
+	}
 }
 

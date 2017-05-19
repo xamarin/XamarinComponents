@@ -843,7 +843,7 @@ namespace Mapbox
     {
         // extern const MGLCoordinateSpan MGLCoordinateSpanZero __attribute__((visibility("default")));
         [Field ("MGLCoordinateSpanZero", "__Internal")]
-        IntPtr Zero { get; }
+        IntPtr _Zero { get; }
     }
 
     interface IOverlay { }
