@@ -1,7 +1,7 @@
 MONO_VERSION=5.0.0.100
 MONO_GIT_REPO=bholmes/mono
 # MONOGIT_VERSION=mono-$(MONO_VERSION)
-MONOGIT_VERSION=145684081aafc3b291515401be9f209d2d92605b
+MONOGIT_VERSION=457e2cffb33580668f45936baab4f7d0a9c619e6
 MONOPOSIX_NUGET_VERSION=1.0.0-beta1
 MONOPOSIXHELPER_JENKINSBUILD=22
 
@@ -23,8 +23,7 @@ mono-source.zip:
 
 monorepo/mcs/class/Mono.Posix/Makefile: mono-source.zip
 	unzip  mono-source.zip 'mono-$(MONOGIT_VERSION)/mcs/class/Mono.Posix/*'
-	unzip  mono-source.zip 'mono-$(MONOGIT_VERSION)/mcs/class/mono.pub'
-	unzip  mono-source.zip 'mono-$(MONOGIT_VERSION)/mcs/class/mono.snk'
+	unzip  mono-source.zip 'mono-$(MONOGIT_VERSION)/mcs/class/Open.snk'
 	unzip  mono-source.zip 'mono-$(MONOGIT_VERSION)/mcs/build/common/*'
 	mv mono-$(MONOGIT_VERSION) monorepo
 	sed 's/@MONO_VERSION@/$(MONO_VERSION)/g'  monorepo/mcs/build/common/Consts.cs.in | sed 's/@MONO_CORLIB_VERSION@/0/g' > monorepo/mcs/build/common/Consts.cs
@@ -39,16 +38,17 @@ build/unix/Mono.Posix.NETStandard.dll build/any/Mono.Posix.NETStandard.dll: mono
 	docker rm $(DOCKER_BUILD_CONTAINER_NAME)
 	cp monorepo/mcs/class/Mono.Posix/build/any/Mono.Posix.NETStandard.dll build/any/Mono.Posix.NETStandard.dll
 	cp monorepo/mcs/class/Mono.Posix/build/unix/Mono.Posix.NETStandard.dll build/unix/Mono.Posix.NETStandard.dll
-	sn -R build/any/Mono.Posix.NETStandard.dll monorepo/mcs/class/mono.snk
-	sn -R build/unix/Mono.Posix.NETStandard.dll monorepo/mcs/class/mono.snk
+	sn -R build/any/Mono.Posix.NETStandard.dll monorepo/mcs/class/Open.snk
+	sn -R build/unix/Mono.Posix.NETStandard.dll monorepo/mcs/class/Open.snk
 
 build/net40/Mono.Posix.NETStandard.dll: build/net40/Mono.Posix.generated.cs
 	cd monorepo/mcs/class/Mono.Posix && \
-		mcs -t:library -out:$(PWD)/$@ -r:Mono.Posix "-d:MONO_POSIX_NETSTANDARD_BUILD;NETSTANDARD2_0" \
+		mcs -t:library -out:$(PWD)/$@ -r:Mono.Posix \
+		-keyfile:$(PWD)/monorepo/mcs/class/Open.snk \
+		"-d:MONO_POSIX_NETSTANDARD_BUILD;NETSTANDARD2_0" \
 		$(PWD)/build/net40/Mono.Posix.generated.cs \
 		$(PWD)/monorepo/mcs/build/common/Consts.cs \
 		$(PWD)/monorepo/mcs/class/Mono.Posix/Assembly/AssemblyInfo.cs
-	sn -R $@ monorepo/mcs/class/mono.snk
 
 build/net40/Mono.Posix.generated.cs: tools/Microsoft.DotNet.BuildTools.GenAPI/tools/GenAPI.exe
 	mkdir -p build/net40
