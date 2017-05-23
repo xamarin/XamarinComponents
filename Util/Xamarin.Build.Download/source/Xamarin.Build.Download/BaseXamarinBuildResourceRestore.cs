@@ -25,7 +25,7 @@ namespace Xamarin.Build.Download
 
 		public bool ThrowOnMissingAssembly { get; set; } = true;
 
-		public virtual bool  OverwriteSourceAssembly { get; set; } = false;
+		public virtual bool  OverwriteSourceAssembly { get; set; } = true;
 
 		[Output]
 		public ITaskItem [] ChangedReferencePaths { get; set; }
