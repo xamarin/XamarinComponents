@@ -1,0 +1,103 @@
+<Type Name="ReservedTestProductIDs" FullName="Xamarin.InAppBilling.ReservedTestProductIDs">
+  <TypeSignature Language="C#" Value="public static class ReservedTestProductIDs" />
+  <TypeSignature Language="ILAsm" Value=".class public auto ansi abstract sealed beforefieldinit ReservedTestProductIDs extends System.Object" />
+  <AssemblyInfo>
+    <AssemblyName>Xamarin.InAppBilling</AssemblyName>
+    <AssemblyVersion>0.0.0.0</AssemblyVersion>
+  </AssemblyInfo>
+  <Base>
+    <BaseTypeName>System.Object</BaseTypeName>
+  </Base>
+  <Interfaces />
+  <Docs>
+    <summary>
+             Contains the reserved product IDs use to test In-App Billing via Google Play without actually making a
+             purchase. To test your implementation with static responses, you make an In-app Billing request using 
+             a special item that has a reserved product ID. Each reserved product ID returns a specific static response 
+             from Google Play. No money is transferred when you make In-app Billing requests with the reserved product
+             IDs. Also, you cannot specify the form of payment when you make a billing request with a reserved product ID.
+             </summary>
+    <remarks>To be added.</remarks>
+  </Docs>
+  <Members>
+    <Member MemberName="Canceled">
+      <MemberSignature Language="C#" Value="public const string Canceled;" />
+      <MemberSignature Language="ILAsm" Value=".field public static literal string Canceled" />
+      <MemberType>Field</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>0.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.String</ReturnType>
+      </ReturnValue>
+      <Docs>
+        <summary>
+             When you make an In-app Billing request with this product ID Google Play responds as though the purchase was canceled. 
+             </summary>
+        <returns>android.test.canceled</returns>
+        <remarks>This can occur when an error is encountered in the order process, such as an invalid credit card, or when you 
+             cancel a user's order before it is charged.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="Purchased">
+      <MemberSignature Language="C#" Value="public const string Purchased;" />
+      <MemberSignature Language="ILAsm" Value=".field public static literal string Purchased" />
+      <MemberType>Field</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>0.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.String</ReturnType>
+      </ReturnValue>
+      <Docs>
+        <summary>
+             When you make an In-app Billing request with this product ID, Google Play responds as though you successfully purchased an item.
+             </summary>
+        <returns>android.test.purchased</returns>
+        <remarks>The response includes a JSON string, which contains fake purchase information (for example, a fake order ID). In some cases, 
+             the JSON string is signed and the response includes the signature so you can test your signature verification implementation 
+             using these responses.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="Refunded">
+      <MemberSignature Language="C#" Value="public const string Refunded;" />
+      <MemberSignature Language="ILAsm" Value=".field public static literal string Refunded" />
+      <MemberType>Field</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>0.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.String</ReturnType>
+      </ReturnValue>
+      <Docs>
+        <summary>
+             When you make an In-app Billing request with this product ID, Google Play responds as though the purchase was refunded.
+             </summary>
+        <returns>android.test.refunded</returns>
+        <remarks>Refunds cannot be initiated through Google Play's in-app billing service. Refunds must be initiated by you 
+             (the merchant). After you process a refund request through your Google Wallet merchant account, a refund message is 
+             sent to your application by Google Play. This occurs only when Google Play gets notification from Google Wallet that
+              a refund has been made.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="Unavailable">
+      <MemberSignature Language="C#" Value="public const string Unavailable;" />
+      <MemberSignature Language="ILAsm" Value=".field public static literal string Unavailable" />
+      <MemberType>Field</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>0.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.String</ReturnType>
+      </ReturnValue>
+      <Docs>
+        <summary>
+             When you make an In-app Billing request with this product ID, Google Play responds as though the item being purchased 
+             was not listed in your application's product list.
+             </summary>
+        <returns>android.test.item_unavailable</returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+  </Members>
+</Type>

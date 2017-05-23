@@ -1,0 +1,54 @@
+<Type Name="ItemType" FullName="Xamarin.InAppBilling.ItemType">
+  <TypeSignature Language="C#" Value="public static class ItemType" />
+  <TypeSignature Language="ILAsm" Value=".class public auto ansi abstract sealed beforefieldinit ItemType extends System.Object" />
+  <AssemblyInfo>
+    <AssemblyName>Xamarin.InAppBilling</AssemblyName>
+    <AssemblyVersion>0.0.0.0</AssemblyVersion>
+  </AssemblyInfo>
+  <Base>
+    <BaseTypeName>System.Object</BaseTypeName>
+  </Base>
+  <Interfaces />
+  <Docs>
+    <summary>
+             Defines the types of items that can be purchased using Google Play In-App Billing.
+             </summary>
+    <remarks>To be added.</remarks>
+  </Docs>
+  <Members>
+    <Member MemberName="Product">
+      <MemberSignature Language="C#" Value="public const string Product;" />
+      <MemberSignature Language="ILAsm" Value=".field public static literal string Product" />
+      <MemberType>Field</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>0.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.String</ReturnType>
+      </ReturnValue>
+      <Docs>
+        <summary>
+             A standard consumable or non-consumable product.
+             </summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="Subscription">
+      <MemberSignature Language="C#" Value="public const string Subscription;" />
+      <MemberSignature Language="ILAsm" Value=".field public static literal string Subscription" />
+      <MemberType>Field</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>0.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.String</ReturnType>
+      </ReturnValue>
+      <Docs>
+        <summary>
+             A subscription product such as a magazine.
+             </summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+  </Members>
+</Type>

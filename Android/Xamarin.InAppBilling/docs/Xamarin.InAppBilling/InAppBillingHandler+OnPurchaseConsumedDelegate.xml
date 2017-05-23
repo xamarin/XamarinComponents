@@ -1,0 +1,24 @@
+<Type Name="InAppBillingHandler+OnPurchaseConsumedDelegate" FullName="Xamarin.InAppBilling.InAppBillingHandler+OnPurchaseConsumedDelegate">
+  <TypeSignature Language="C#" Value="public delegate void InAppBillingHandler.OnPurchaseConsumedDelegate(string token);" />
+  <TypeSignature Language="ILAsm" Value=".class nested public auto ansi sealed InAppBillingHandler/OnPurchaseConsumedDelegate extends System.MulticastDelegate" />
+  <AssemblyInfo>
+    <AssemblyName>Xamarin.InAppBilling</AssemblyName>
+    <AssemblyVersion>0.0.0.0</AssemblyVersion>
+  </AssemblyInfo>
+  <Base>
+    <BaseTypeName>System.Delegate</BaseTypeName>
+  </Base>
+  <Parameters>
+    <Parameter Name="token" Type="System.String" />
+  </Parameters>
+  <ReturnValue>
+    <ReturnType>System.Void</ReturnType>
+  </ReturnValue>
+  <Docs>
+    <param name="token">Token.</param>
+    <summary>
+             Occurs when on product consumed.
+             </summary>
+    <remarks>To be added.</remarks>
+  </Docs>
+</Type>

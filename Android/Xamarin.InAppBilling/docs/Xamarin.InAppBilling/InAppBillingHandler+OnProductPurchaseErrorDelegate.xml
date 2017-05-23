@@ -1,0 +1,26 @@
+<Type Name="InAppBillingHandler+OnProductPurchaseErrorDelegate" FullName="Xamarin.InAppBilling.InAppBillingHandler+OnProductPurchaseErrorDelegate">
+  <TypeSignature Language="C#" Value="public delegate void InAppBillingHandler.OnProductPurchaseErrorDelegate(int responseCode, string sku);" />
+  <TypeSignature Language="ILAsm" Value=".class nested public auto ansi sealed InAppBillingHandler/OnProductPurchaseErrorDelegate extends System.MulticastDelegate" />
+  <AssemblyInfo>
+    <AssemblyName>Xamarin.InAppBilling</AssemblyName>
+    <AssemblyVersion>0.0.0.0</AssemblyVersion>
+  </AssemblyInfo>
+  <Base>
+    <BaseTypeName>System.Delegate</BaseTypeName>
+  </Base>
+  <Parameters>
+    <Parameter Name="responseCode" Type="System.Int32" />
+    <Parameter Name="sku" Type="System.String" />
+  </Parameters>
+  <ReturnValue>
+    <ReturnType>System.Void</ReturnType>
+  </ReturnValue>
+  <Docs>
+    <param name="responseCode">Response code.</param>
+    <param name="sku">Sku.</param>
+    <summary>
+             Occurs when the is an error on a product purchase attempt.
+             </summary>
+    <remarks>The <c>responseCode</c> will be a value from <see cref="T:Xamarin.InAppBilling.BillingResult" />.</remarks>
+  </Docs>
+</Type>

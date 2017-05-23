@@ -1,0 +1,33 @@
+<Type Name="Resource+String" FullName="Xamarin.InAppBilling.Resource+String">
+  <TypeSignature Language="C#" Value="public class Resource.String" />
+  <TypeSignature Language="ILAsm" Value=".class nested public auto ansi Resource/String extends System.Object" />
+  <AssemblyInfo>
+    <AssemblyName>Xamarin.InAppBilling</AssemblyName>
+    <AssemblyVersion>0.0.0.0</AssemblyVersion>
+  </AssemblyInfo>
+  <Base>
+    <BaseTypeName>System.Object</BaseTypeName>
+  </Base>
+  <Interfaces />
+  <Docs>
+    <summary>To be added.</summary>
+    <remarks>To be added.</remarks>
+  </Docs>
+  <Members>
+    <Member MemberName="library_name">
+      <MemberSignature Language="C#" Value="public static int library_name;" />
+      <MemberSignature Language="ILAsm" Value=".field public static int32 library_name" />
+      <MemberType>Field</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>0.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Int32</ReturnType>
+      </ReturnValue>
+      <Docs>
+        <summary>To be added.</summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+  </Members>
+</Type>

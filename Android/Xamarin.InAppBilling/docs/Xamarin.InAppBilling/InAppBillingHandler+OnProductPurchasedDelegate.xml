@@ -1,0 +1,31 @@
+<Type Name="InAppBillingHandler+OnProductPurchasedDelegate" FullName="Xamarin.InAppBilling.InAppBillingHandler+OnProductPurchasedDelegate">
+  <TypeSignature Language="C#" Value="public delegate void InAppBillingHandler.OnProductPurchasedDelegate(int response, Purchase purchase, string purchaseData, string purchaseSignature);" />
+  <TypeSignature Language="ILAsm" Value=".class nested public auto ansi sealed InAppBillingHandler/OnProductPurchasedDelegate extends System.MulticastDelegate" />
+  <AssemblyInfo>
+    <AssemblyName>Xamarin.InAppBilling</AssemblyName>
+    <AssemblyVersion>0.0.0.0</AssemblyVersion>
+  </AssemblyInfo>
+  <Base>
+    <BaseTypeName>System.Delegate</BaseTypeName>
+  </Base>
+  <Parameters>
+    <Parameter Name="response" Type="System.Int32" />
+    <Parameter Name="purchase" Type="Xamarin.InAppBilling.Purchase" />
+    <Parameter Name="purchaseData" Type="System.String" />
+    <Parameter Name="purchaseSignature" Type="System.String" />
+  </Parameters>
+  <ReturnValue>
+    <ReturnType>System.Void</ReturnType>
+  </ReturnValue>
+  <Docs>
+    <param name="response">The response code returned from Google Play Services.</param>
+    <param name="purchase">Information about the purchase.</param>
+    <param name="purchaseData">To be added.</param>
+    <param name="purchaseSignature">To be added.</param>
+    <summary>
+             Occurs after a product has been successfully purchased Google Play.
+             </summary>
+    <remarks>This event is fired after a <c>OnProductPurchased</c> which is raised when the user successfully 
+             logs an intent to purchase with Google Play.</remarks>
+  </Docs>
+</Type>

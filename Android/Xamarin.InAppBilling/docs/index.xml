@@ -1,0 +1,109 @@
+<Overview>
+  <Assemblies>
+    <Assembly Name="Xamarin.InAppBilling" Version="0.0.0.0">
+      <Attributes>
+        <Attribute>
+          <AttributeName>Android.Runtime.ResourceDesigner("Xamarin.InAppBilling.Resource", IsApplication=false)</AttributeName>
+        </Attribute>
+        <Attribute>
+          <AttributeName>System.Runtime.CompilerServices.RuntimeCompatibility(WrapNonExceptionThrows=true)</AttributeName>
+        </Attribute>
+        <Attribute>
+          <AttributeName>System.Runtime.Versioning.TargetFramework("MonoAndroid,Version=v6.0", FrameworkDisplayName="")</AttributeName>
+        </Attribute>
+      </Attributes>
+    </Assembly>
+  </Assemblies>
+  <Remarks>To be added.</Remarks>
+  <Copyright>To be added.</Copyright>
+  <Types>
+    <Namespace Name="Com.Android.Vending.Billing">
+      <Type Name="IInAppBillingService" Kind="Interface" />
+      <Type Name="IInAppBillingServiceStub" Kind="Class" />
+      <Type Name="IInAppBillingServiceStub+Proxy" Kind="Class" />
+    </Namespace>
+    <Namespace Name="Xamarin.InAppBilling">
+      <Type Name="Billing" Kind="Class" />
+      <Type Name="BillingResult" Kind="Class" />
+      <Type Name="IInAppBillingHandler" Kind="Interface" />
+      <Type Name="InAppBillingErrorType" Kind="Enumeration" />
+      <Type Name="InAppBillingHandler" Kind="Class" />
+      <Type Name="InAppBillingHandler+BuyProductErrorDelegate" Kind="Delegate" />
+      <Type Name="InAppBillingHandler+InAppBillingProcessingErrorDelegate" Kind="Delegate" />
+      <Type Name="InAppBillingHandler+OnGetProductsErrorDelegate" Kind="Delegate" />
+      <Type Name="InAppBillingHandler+OnInvalidOwnedItemsBundleReturnedDelegate" Kind="Delegate" />
+      <Type Name="InAppBillingHandler+OnProductPurchasedDelegate" Kind="Delegate" />
+      <Type Name="InAppBillingHandler+OnProductPurchaseErrorDelegate" Kind="Delegate" />
+      <Type Name="InAppBillingHandler+OnPurchaseConsumedDelegate" Kind="Delegate" />
+      <Type Name="InAppBillingHandler+OnPurchaseConsumedErrorDelegate" Kind="Delegate" />
+      <Type Name="InAppBillingHandler+OnPurchaseFailedValidationDelegate" Kind="Delegate" />
+      <Type Name="InAppBillingHandler+OnUserCanceledDelegate" Kind="Delegate" />
+      <Type Name="InAppBillingHandler+QueryInventoryErrorDelegate" Kind="Delegate" />
+      <Type Name="InAppBillingServiceConnection" Kind="Class" />
+      <Type Name="InAppBillingServiceConnection+OnConnectedDelegate" Kind="Delegate" />
+      <Type Name="InAppBillingServiceConnection+OnDisconnectedDelegate" Kind="Delegate" />
+      <Type Name="InAppBillingServiceConnection+OnInAppBillingErrorDelegate" Kind="Delegate" />
+      <Type Name="ItemType" Kind="Class" />
+      <Type Name="Product" Kind="Class" />
+      <Type Name="Purchase" Kind="Class" />
+      <Type Name="ReservedTestProductIDs" Kind="Class" />
+      <Type Name="Resource" Kind="Class" />
+      <Type Name="Resource+Attribute" Kind="Class" />
+      <Type Name="Resource+String" Kind="Class" />
+      <Type Name="Response" Kind="Class" />
+    </Namespace>
+    <Namespace Name="Xamarin.InAppBilling.Utilities">
+      <Type Name="Extensions" Kind="Class" />
+      <Type Name="Security" Kind="Class" />
+    </Namespace>
+  </Types>
+  <Title>Xamarin.InAppBilling</Title>
+  <ExtensionMethods>
+    <ExtensionMethod>
+      <Targets>
+        <Target Type="T:Android.Content.Intent" />
+      </Targets>
+      <Member MemberName="GetReponseCodeFromIntent">
+        <MemberSignature Language="C#" Value="public static int GetReponseCodeFromIntent (this Android.Content.Intent intent);" />
+        <MemberSignature Language="ILAsm" Value=".method public static hidebysig int32 GetReponseCodeFromIntent(class Android.Content.Intent intent) cil managed" />
+        <MemberType>ExtensionMethod</MemberType>
+        <ReturnValue>
+          <ReturnType>System.Int32</ReturnType>
+        </ReturnValue>
+        <Parameters>
+          <Parameter Name="intent" Type="Android.Content.Intent" RefType="this" />
+        </Parameters>
+        <Docs>
+          <param name="intent">Intent.</param>
+          <summary>
+             Gets the reponse code from intent.
+             </summary>
+        </Docs>
+        <Link Type="Xamarin.InAppBilling.Utilities.Extensions" Member="M:Xamarin.InAppBilling.Utilities.Extensions.GetReponseCodeFromIntent(Android.Content.Intent)" />
+      </Member>
+    </ExtensionMethod>
+    <ExtensionMethod>
+      <Targets>
+        <Target Type="T:Android.OS.Bundle" />
+      </Targets>
+      <Member MemberName="GetResponseCodeFromBundle">
+        <MemberSignature Language="C#" Value="public static int GetResponseCodeFromBundle (this Android.OS.Bundle bunble);" />
+        <MemberSignature Language="ILAsm" Value=".method public static hidebysig int32 GetResponseCodeFromBundle(class Android.OS.Bundle bunble) cil managed" />
+        <MemberType>ExtensionMethod</MemberType>
+        <ReturnValue>
+          <ReturnType>System.Int32</ReturnType>
+        </ReturnValue>
+        <Parameters>
+          <Parameter Name="bunble" Type="Android.OS.Bundle" RefType="this" />
+        </Parameters>
+        <Docs>
+          <param name="bunble">Bunble.</param>
+          <summary>
+             Gets the response code from bundle.
+             </summary>
+        </Docs>
+        <Link Type="Xamarin.InAppBilling.Utilities.Extensions" Member="M:Xamarin.InAppBilling.Utilities.Extensions.GetResponseCodeFromBundle(Android.OS.Bundle)" />
+      </Member>
+    </ExtensionMethod>
+  </ExtensionMethods>
+</Overview>

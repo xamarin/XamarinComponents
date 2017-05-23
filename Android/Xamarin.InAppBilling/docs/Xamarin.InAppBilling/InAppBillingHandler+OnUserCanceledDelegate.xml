@@ -1,0 +1,21 @@
+<Type Name="InAppBillingHandler+OnUserCanceledDelegate" FullName="Xamarin.InAppBilling.InAppBillingHandler+OnUserCanceledDelegate">
+  <TypeSignature Language="C#" Value="public delegate void InAppBillingHandler.OnUserCanceledDelegate();" />
+  <TypeSignature Language="ILAsm" Value=".class nested public auto ansi sealed InAppBillingHandler/OnUserCanceledDelegate extends System.MulticastDelegate" />
+  <AssemblyInfo>
+    <AssemblyName>Xamarin.InAppBilling</AssemblyName>
+    <AssemblyVersion>0.0.0.0</AssemblyVersion>
+  </AssemblyInfo>
+  <Base>
+    <BaseTypeName>System.Delegate</BaseTypeName>
+  </Base>
+  <Parameters />
+  <ReturnValue>
+    <ReturnType>System.Void</ReturnType>
+  </ReturnValue>
+  <Docs>
+    <summary>
+             Occurs when the user cancels an In App Billing purchase.
+             </summary>
+    <remarks>To be added.</remarks>
+  </Docs>
+</Type>

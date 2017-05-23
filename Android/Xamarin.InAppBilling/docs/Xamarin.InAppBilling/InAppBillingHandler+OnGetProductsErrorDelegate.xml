@@ -1,0 +1,26 @@
+<Type Name="InAppBillingHandler+OnGetProductsErrorDelegate" FullName="Xamarin.InAppBilling.InAppBillingHandler+OnGetProductsErrorDelegate">
+  <TypeSignature Language="C#" Value="public delegate void InAppBillingHandler.OnGetProductsErrorDelegate(int responseCode, Bundle ownedItems);" />
+  <TypeSignature Language="ILAsm" Value=".class nested public auto ansi sealed InAppBillingHandler/OnGetProductsErrorDelegate extends System.MulticastDelegate" />
+  <AssemblyInfo>
+    <AssemblyName>Xamarin.InAppBilling</AssemblyName>
+    <AssemblyVersion>0.0.0.0</AssemblyVersion>
+  </AssemblyInfo>
+  <Base>
+    <BaseTypeName>System.Delegate</BaseTypeName>
+  </Base>
+  <Parameters>
+    <Parameter Name="responseCode" Type="System.Int32" />
+    <Parameter Name="ownedItems" Type="Android.OS.Bundle" />
+  </Parameters>
+  <ReturnValue>
+    <ReturnType>System.Void</ReturnType>
+  </ReturnValue>
+  <Docs>
+    <param name="responseCode">Response code.</param>
+    <param name="ownedItems">Owned items.</param>
+    <summary>
+             Raised where there is an error getting previously purchased products from the Google Play Services.
+             </summary>
+    <remarks>To be added.</remarks>
+  </Docs>
+</Type>

@@ -1,0 +1,160 @@
+<Type Name="Security" FullName="Xamarin.InAppBilling.Utilities.Security">
+  <TypeSignature Language="C#" Value="public sealed class Security" />
+  <TypeSignature Language="ILAsm" Value=".class public auto ansi sealed beforefieldinit Security extends System.Object" />
+  <AssemblyInfo>
+    <AssemblyName>Xamarin.InAppBilling</AssemblyName>
+    <AssemblyVersion>0.0.0.0</AssemblyVersion>
+  </AssemblyInfo>
+  <Base>
+    <BaseTypeName>System.Object</BaseTypeName>
+  </Base>
+  <Interfaces />
+  <Docs>
+    <summary>
+             Utility class to support secure transactions for Google Play In-App Billing
+             </summary>
+    <remarks>To be added.</remarks>
+  </Docs>
+  <Members>
+    <Member MemberName=".ctor">
+      <MemberSignature Language="C#" Value="public Security ();" />
+      <MemberSignature Language="ILAsm" Value=".method public hidebysig specialname rtspecialname instance void .ctor() cil managed" />
+      <MemberType>Constructor</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>0.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <Parameters />
+      <Docs>
+        <summary>To be added.</summary>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="GeneratePublicKey">
+      <MemberSignature Language="C#" Value="public static Java.Security.IPublicKey GeneratePublicKey (string encodedPublicKey);" />
+      <MemberSignature Language="ILAsm" Value=".method public static hidebysig class Java.Security.IPublicKey GeneratePublicKey(string encodedPublicKey) cil managed" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>0.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>Java.Security.IPublicKey</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="encodedPublicKey" Type="System.String" />
+      </Parameters>
+      <Docs>
+        <param name="encodedPublicKey">Encoded public key.</param>
+        <summary>
+             Generates the public key.
+             </summary>
+        <returns>The public key.</returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="Unify">
+      <MemberSignature Language="C#" Value="public static string Unify (string[] element, int[] segment);" />
+      <MemberSignature Language="ILAsm" Value=".method public static hidebysig string Unify(string[] element, int32[] segment) cil managed" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>0.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.String</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="element" Type="System.String[]" />
+        <Parameter Name="segment" Type="System.Int32[]" />
+      </Parameters>
+      <Docs>
+        <param name="element">List of elements used to reconstruct the string.</param>
+        <param name="segment">List of segments speciying the order of the elements.</param>
+        <summary>
+             Recombines the given elements and segments to reconstruct an obfuscated string.
+             </summary>
+        <returns>To be added.</returns>
+        <remarks>Given a list of elements {"A","B","C","D"} and segments {1,0,3,2} this function returns "BADC". This function is used to
+             hide a string inside of a Xamarin.Android app.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="Unify">
+      <MemberSignature Language="C#" Value="public static string Unify (string[] element, int[] segment, string[] hash);" />
+      <MemberSignature Language="ILAsm" Value=".method public static hidebysig string Unify(string[] element, int32[] segment, string[] hash) cil managed" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>0.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.String</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="element" Type="System.String[]" />
+        <Parameter Name="segment" Type="System.Int32[]" />
+        <Parameter Name="hash" Type="System.String[]" />
+      </Parameters>
+      <Docs>
+        <param name="element">List of elements used to reconstruct the string.</param>
+        <param name="segment">List of segments speciying the order of the elements.</param>
+        <param name="hash">Given a list of elements {"A","B","C123","D"}, segments {1,0,3,2} and hashes {"123","007"} this function returns "BADC007". This function is used to
+             hide a string inside of a Xamarin.Android app.</param>
+        <summary>
+             Recombines the given elements, segments and hashes to reconstruct an obfuscated string.
+             </summary>
+        <returns>To be added.</returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="Verify">
+      <MemberSignature Language="C#" Value="public static bool Verify (Java.Security.IPublicKey publicKey, string signedData, string signature);" />
+      <MemberSignature Language="ILAsm" Value=".method public static hidebysig bool Verify(class Java.Security.IPublicKey publicKey, string signedData, string signature) cil managed" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>0.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Boolean</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="publicKey" Type="Java.Security.IPublicKey" />
+        <Parameter Name="signedData" Type="System.String" />
+        <Parameter Name="signature" Type="System.String" />
+      </Parameters>
+      <Docs>
+        <param name="publicKey">Public key.</param>
+        <param name="signedData">Signed data.</param>
+        <param name="signature">Signature.</param>
+        <summary>
+             Verify the specified publicKey, signedData and signature.
+             </summary>
+        <returns>To be added.</returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+    <Member MemberName="VerifyPurchase">
+      <MemberSignature Language="C#" Value="public static bool VerifyPurchase (string publicKey, string signedData, string signature);" />
+      <MemberSignature Language="ILAsm" Value=".method public static hidebysig bool VerifyPurchase(string publicKey, string signedData, string signature) cil managed" />
+      <MemberType>Method</MemberType>
+      <AssemblyInfo>
+        <AssemblyVersion>0.0.0.0</AssemblyVersion>
+      </AssemblyInfo>
+      <ReturnValue>
+        <ReturnType>System.Boolean</ReturnType>
+      </ReturnValue>
+      <Parameters>
+        <Parameter Name="publicKey" Type="System.String" />
+        <Parameter Name="signedData" Type="System.String" />
+        <Parameter Name="signature" Type="System.String" />
+      </Parameters>
+      <Docs>
+        <param name="publicKey">Public key.</param>
+        <param name="signedData">Signed data.</param>
+        <param name="signature">Signature.</param>
+        <summary>
+             Verifies the purchase.
+             </summary>
+        <returns>
+          <c>true</c>, if purchase was verified, <c>false</c> otherwise.</returns>
+        <remarks>To be added.</remarks>
+      </Docs>
+    </Member>
+  </Members>
+</Type>
