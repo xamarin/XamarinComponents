@@ -1,7 +1,7 @@
 MONO_VERSION=5.0.0.100
 MONO_GIT_REPO=bholmes/mono
 # MONOGIT_VERSION=mono-$(MONO_VERSION)
-MONOGIT_VERSION=457e2cffb33580668f45936baab4f7d0a9c619e6
+MONOGIT_VERSION=3ad94d9dd8987832397966da952f0c59700cc1bb
 MONOPOSIX_NUGET_VERSION=1.0.0-beta1
 MONOPOSIXHELPER_JENKINSBUILD=22
 
@@ -47,7 +47,6 @@ build/net40/Mono.Posix.NETStandard.dll: build/net40/Mono.Posix.generated.cs
 		-keyfile:$(PWD)/monorepo/mcs/class/Open.snk \
 		"-d:MONO_POSIX_NETSTANDARD_BUILD;NETSTANDARD2_0" \
 		$(PWD)/build/net40/Mono.Posix.generated.cs \
-		$(PWD)/monorepo/mcs/build/common/Consts.cs \
 		$(PWD)/monorepo/mcs/class/Mono.Posix/Assembly/AssemblyInfo.cs
 
 build/net40/Mono.Posix.generated.cs: tools/Microsoft.DotNet.BuildTools.GenAPI/tools/GenAPI.exe
