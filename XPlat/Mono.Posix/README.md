@@ -1,22 +1,20 @@
-Mono.Posix for .Net Core
+Mono.Posix for .Net Standard
 ========================
 
 [![Components-Mono.Posix][7]][8]
 
-The purpose of this folder project is to prepare and package Mono.Posix for 
-.Net Core 2.0 as a NuGet.  The intention of these scripts is to help the 
-conversation with Release Engineering.  Depending on discussions with RE the files
-in this project may be moved or replaced.  
+The purpose of this folder project is to provide build scripts and NuGet spec files for Mono.Posix
+for .Net Standard.
 
-Building the Mono.Posix.Core NuGet
+Building the Mono.Posix.NETStandard NuGet
 ----------------------------------
 
 **Prerequisites**
 
-- MacOS - The Makefile has only been tested on MacOS.  I suspect it should have not problem on Linux as well.
+- MacOS or Linux
 - [make][1]
 - [Docker][2]
-- [Mono][3] - only for NuGet pack.  Can not find a way to get .Net Core to pack a nuspec.
+- [Mono][3] - only for NuGet pack.  Can not find a way to get .Net Core to pack a nuspec or sign dlls.
 
 **Building**
 
@@ -27,9 +25,6 @@ The Makefile will fetch all of the Posix Helpers from [Jenkins Mono builds,][4] 
 Todo Items
 -----------------------
 
- - add more arch builds for PosixHelper
- - Revisit package ID
- - Revisit all metadata in nuspec
  - When .Net Core 2.0 is released we can stop using Docker and install .Net Core 2.0 on a build bot
 
 [1]: http://stackoverflow.com/a/10265766
