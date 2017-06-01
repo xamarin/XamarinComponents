@@ -5,8 +5,8 @@ MONOGIT_VERSION=76f0a58429b4cfb47c77935cfca6ce88ce9be53e
 MONOPOSIX_NUGET_VERSION=1.0.0-beta1
 MONOPOSIXHELPER_JENKINSBUILD=22
 
-DOCKER_PULL_TARGET=microsoft/dotnet-nightly@sha256:afca03f9f091924f4d317227e03dfef256c7a87458fa2f5ff9132514b1f41e67
-DOCKER_RUN_IMAGE=microsoft/dotnet-nightly:07104058a239
+DOCKER_PULL_TARGET=microsoft/dotnet-nightly@sha256:dc76a604363ea806f5b792f191dcce630f0575968bda735f573e2bfc3af66305
+DOCKER_RUN_IMAGE=microsoft/dotnet-nightly:b2cd9d949c2b
 
 $(eval DOCKER_BUILD_CONTAINER_NAME=MonoPosixBuild-$(shell uuidgen))
 $(eval DOCKER_TEST_CONTAINER_NAME=MonoPosixBuild-$(shell uuidgen))
