@@ -141,7 +141,7 @@
 - Name: Glide
   BuildScript: ./Android/Glide/build.cake
   TriggerPaths: [ Android/Glide ]
-  MacBuildTargets: [ samples, nuget, component ]
+  MacBuildTargets: [ samples, nuget ]
 
 #######################################################
 # iOS
