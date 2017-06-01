@@ -138,6 +138,10 @@
   BuildScript: ./Android/VectorCompat/build.cake
   TriggerPaths: [ Android/VectorCompat ]
   MacBuildTargets: [ samples, nuget, component ]
+- Name: Glide
+  BuildScript: ./Android/Glide/build.cake
+  TriggerPaths: [ Android/Glide ]
+  MacBuildTargets: [ samples, nuget ]
 
 #######################################################
 # iOS
