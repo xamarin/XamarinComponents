@@ -1,4 +1,4 @@
-version: "5.3.0"
+version: "5.3.0.1"
 name: Mono.Options
 id: mono.options
 publisher:  Xamarin Inc
@@ -28,15 +28,15 @@ libraries:
   netstandard: ../output/netstandard/Mono.Options.dll
 
 packages:
-  net4: Mono.Options, Version=5.3.0
-  pcl: Mono.Options, Version=5.3.0
-  android: Mono.Options, Version=5.3.0
-  ios: Mono.Options, Version=5.3.0
-  ios-unified: Mono.Options, Version=5.3.0
-  winphone-8.0: Mono.Options, Version=5.3.0
-  winphone-8.1: Mono.Options, Version=5.3.0
-  win8: Mono.Options, Version=5.3.0
-  netstandard: Mono.Options, Version=5.3.0
+  net4: Mono.Options, Version=5.3.0.1
+  pcl: Mono.Options, Version=5.3.0.1
+  android: Mono.Options, Version=5.3.0.1
+  ios: Mono.Options, Version=5.3.0.1
+  ios-unified: Mono.Options, Version=5.3.0.1
+  winphone-8.0: Mono.Options, Version=5.3.0.1
+  winphone-8.1: Mono.Options, Version=5.3.0.1
+  win8: Mono.Options, Version=5.3.0.1
+  netstandard: Mono.Options, Version=5.3.0.1
 
 samples:
   - name: "Options Sample"
