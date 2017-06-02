@@ -3,16 +3,16 @@
   <metadata>
     <id>Mono.Options</id>
     <title>Mono.Options</title>
-    <version>5.3.0</version>
+    <version>5.3.0.1</version>
     <authors>Xamarin</authors>
     <owners>Xamarin</owners>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <summary>A Getopt::Long-inspired option parsing library for C#.</summary>
     <description>A Getopt::Long-inspired option parsing library for C#.</description>
     <copyright>Copyright © Xamarin. All Rights Reserved.</copyright>
-    <licenseUrl>https://components.xamarin.com/license/mono.options</licenseUrl>
-    <iconUrl>https://xamarin-component-icons.s3.amazonaws.com/mono.options.png</iconUrl>
-    <projectUrl>https://components.xamarin.com/view/mono.options</projectUrl>
+    <licenseUrl>https://github.com/xamarin/XamarinComponents/blob/master/XPlat/Mono.Options/License.md</licenseUrl>
+    <iconUrl>https://cdn.rawgit.com/xamarin/XamarinComponents/60536db623beeeb7bb5d1e7a78f9c26da32e26b6/XPlat/Mono.Options/component/icons/icon_256x256.png</iconUrl>
+    <projectUrl>https://github.com/xamarin/XamarinComponents/tree/master/XPlat/Mono.Options</projectUrl>
   </metadata>
   <files>
     <file src="output/net4/Mono.Options.dll" target="lib/net4-client/Mono.Options.dll" />
