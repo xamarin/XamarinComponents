@@ -13,6 +13,7 @@ PM> Install-Package Mono.Options
 This package supports almost all .NET platforms:
 
  - Full .NET Framework 4.0+ (Client Profile)
+ - .NET Core 1.0
  - .NET Standard 1.6+
  - Portable Class Libraries (Profile 259)
 
