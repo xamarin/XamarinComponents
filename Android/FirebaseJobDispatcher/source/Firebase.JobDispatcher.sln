@@ -3,6 +3,10 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 VisualStudioVersion = 15.0.26403.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{D8E9A3D1-25FD-4925-B1A3-E8E909E66905}"
+	ProjectSection(SolutionItems) = preProject
+		..\nuget\Xamarin.Firebase.JobDispatcher.nuspec = ..\nuget\Xamarin.Firebase.JobDispatcher.nuspec
+		..\build.cake = ..\build.cake
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Firebase.JobDispatcher", "Firebase.JobDispatcher\Firebase.JobDispatcher.csproj", "{EF6B1E2A-E8F0-481E-80D1-98EA9ED6CA42}"
 EndProject
