@@ -4,6 +4,8 @@ using System.IO;
 using System.Linq;
 using Microsoft.Build.Framework;
 using System.Xml.Linq;
+using Microsoft.Build.Utilities;
+using System.Collections.Generic;
 
 namespace Xamarin.Build.Download
 {
@@ -11,12 +13,26 @@ namespace Xamarin.Build.Download
 	{
 		public bool FixAndroidManifests { get; set; } = true;
 
-		protected override Stream LoadResource (string resourceFullPath, string assemblyName)
+		[Output]
+		public ITaskItem [] AarProguardConfiguration { get; set; }
+
+		List<ITaskItem> aarProguardConfiguration { get; set; } = new List<ITaskItem> ();
+
+		public override bool Execute ()
+		{
+			var res = base.Execute ();
+
+			AarProguardConfiguration = aarProguardConfiguration.ToArray ();
+
+			return res;
+		}
+
+		protected override Stream LoadResource (string resourceFullPath, string assemblyName, string assemblyOutputPath)
 		{
 			const string AAR_DIR_PREFIX = "library_project_imports";
 
 			var memoryStream = new MemoryStream ();
-			using (var fileStream = base.LoadResource (resourceFullPath, assemblyName))
+			using (var fileStream = base.LoadResource (resourceFullPath, assemblyName, assemblyOutputPath))
 				fileStream.CopyTo (memoryStream);
 
 			using (var zipArchive = new ZipArchive (memoryStream, ZipArchiveMode.Update, true)) {

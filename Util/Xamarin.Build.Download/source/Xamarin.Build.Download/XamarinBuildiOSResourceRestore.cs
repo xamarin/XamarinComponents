@@ -36,9 +36,9 @@ namespace Xamarin.Build.Download
 			return resolver;
 		}
 
-		protected override Stream LoadResource (string resourceFullPath, string assemblyName)
+		protected override Stream LoadResource (string resourceFullPath, string assemblyName, string assemblyOutputPath)
 		{
-			var fileStream = base.LoadResource (resourceFullPath, assemblyName);
+			var fileStream = base.LoadResource (resourceFullPath, assemblyName, assemblyOutputPath);
 
 			var resourceFileName = Path.GetFileName (resourceFullPath);
 
