@@ -121,6 +121,7 @@
 			<Output TaskParameter="ChangedReferencePaths" ItemName="ReferencePath" />
 			<Output TaskParameter="ChangedReferencePaths" ItemName="FileWrites" />
 			<Output TaskParameter="AdditionalFileWrites" ItemName="FileWrites" />
+			<Output TaskParameter="AarProguardConfiguration" ItemName="ProguardConfiguration" />
 		</XamarinBuildAndroidAarRestore>
 		<ItemGroup>
 			<ReferencePath Remove="@(_ResourceRestoreRemovedReferencePaths)" />

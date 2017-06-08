@@ -109,6 +109,29 @@ namespace Xamarin.Build.Download
 								}
 							}
 
+						// Xamarin.Android does not consider using proguard config files from within .aar files, so we need to extract it
+						// to a known location and output it to 
+						} else if (oldEntry.Length > 0 && (newName.EndsWith ("proguard.txt", StringComparison.OrdinalIgnoreCase) || newName.EndsWith ("proguard.cfg", StringComparison.OrdinalIgnoreCase))) {
+							
+							// We still want to copy the file over into the .aar
+							using (var oldStream = oldEntry.Open ())
+							using (var newStream = newEntry.Open ()) {
+								oldStream.CopyTo (newStream);
+							}
+
+							// Calculate an output path beside the merged/output assembly path
+							var assemblyOutputPathInfo = new FileInfo (assemblyOutputPath);
+							var proguardCfgOutputPath = Path.Combine (assemblyOutputPathInfo.Directory.FullName, "proguard.txt");
+
+							// Create a copy of the file
+							using (var oldStream = oldEntry.Open ())
+							using (var proguardStream = File.OpenWrite (proguardCfgOutputPath)) {
+								oldStream.CopyTo (proguardStream);
+							}
+
+							// Output the added files to be included in @(ProguardConfiguration)
+							aarProguardConfiguration.Add (new TaskItem (proguardCfgOutputPath));
+
 						} else {
 							// Copy file contents over if they exist
 							if (oldEntry.Length > 0) {
