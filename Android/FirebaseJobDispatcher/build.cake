@@ -12,7 +12,7 @@ var buildSpec = new BuildSpec () {
 	Libs = new ISolutionBuilder [] {
 		new DefaultSolutionBuilder {
 			BuildsOn = BuildPlatforms.Mac | BuildPlatforms.Windows,
-			SolutionPath = "./source/Firebase.JobDispatcher.sln",
+			SolutionPath = "./Xamarin.Firebase.JobDispatcher.sln",
 			OutputFiles = new [] { 
 				new OutputFileCopy {
 					FromFile = "./source/Firebase.JobDispatcher/bin/Release/Xamarin.Firebase.JobDispatcher.dll",
@@ -22,7 +22,7 @@ var buildSpec = new BuildSpec () {
 	},
 
 	Samples = new ISolutionBuilder [] {
-		new DefaultSolutionBuilder { SolutionPath = "./samples/FJDTestApp.sln" },
+		new DefaultSolutionBuilder { SolutionPath = "./Xamarin.Firebase.JobDispatcher.sln" },
 	},
 
 	NuGets = new [] {
