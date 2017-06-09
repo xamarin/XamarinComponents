@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Runtime.InteropServices;
+using CoreGraphics;
 using CoreLocation;
 using Foundation;
 using ObjCRuntime;
@@ -47,6 +48,14 @@ namespace Mapbox
         OverdrawVisualizationMask = 1 << 5,
     }
 
+	[StructLayout (LayoutKind.Sequential)]
+	public struct Transition
+	{
+		public double Duration;
+
+		public double Delay;
+	}
+
     [Native]
     public enum ErrorCode : long
     {
@@ -77,6 +86,171 @@ namespace Mapbox
         ulong CountOfResourcesExpected;
         ulong MaximumResourcesExpected;
     }
+
+	[Native]
+	public enum ResourceKind : ulong
+	{
+		Unknown,
+		Style,
+		Source,
+		Tile,
+		Glyphs,
+		SpriteImage,
+		SpriteJson
+	}
+
+	[Native]
+	public enum InterpolationMode : ulong
+	{
+		Exponential = 0,
+		Interval,
+		Categorical,
+		Identity
+	}
+
+	[Native]
+	public enum FillTranslationAnchor : ulong
+	{
+		Map,
+		Viewport
+	}
+
+	[Native]
+	public enum LineCap : ulong
+	{
+		Butt,
+		Round,
+		Square
+	}
+
+	[Native]
+	public enum LineJoin : ulong
+	{
+		Bevel,
+		Round,
+		Miter
+	}
+
+	[Native]
+	public enum LineTranslationAnchor : ulong
+	{
+		Map,
+		Viewport
+	}
+
+	[Native]
+	public enum IconRotationAlignment : ulong
+	{
+		Map,
+		Viewport,
+		Auto
+	}
+
+	[Native]
+	public enum IconTextFit : ulong
+	{
+		None,
+		Width,
+		Height,
+		Both
+	}
+
+	[Native]
+	public enum SymbolPlacement : ulong
+	{
+		Point,
+		Line
+	}
+
+	[Native]
+	public enum TextAnchor : ulong
+	{
+		Center,
+		Left,
+		Right,
+		Top,
+		Bottom,
+		TopLeft,
+		TopRight,
+		BottomLeft,
+		BottomRight
+	}
+
+	[Native]
+	public enum TextJustification : ulong
+	{
+		Left,
+		Center,
+		Right
+	}
+
+	[Native]
+	public enum TextPitchAlignment : ulong
+	{
+		Map,
+		Viewport,
+		Auto
+	}
+
+	[Native]
+	public enum TextRotationAlignment : ulong
+	{
+		Map,
+		Viewport,
+		Auto
+	}
+
+	[Native]
+	public enum TextTransform : ulong
+	{
+		None,
+		Uppercase,
+		Lowercase
+	}
+
+	[Native]
+	public enum IconTranslationAnchor : ulong
+	{
+		Map,
+		Viewport
+	}
+
+	[Native]
+	public enum TextTranslationAnchor : ulong
+	{
+		Map,
+		Viewport
+	}
+
+	[Native]
+	public enum CircleScaleAlignment : ulong
+	{
+		Map,
+		Viewport
+	}
+
+	[Native]
+	public enum CircleTranslationAnchor : ulong
+	{
+		Map,
+		Viewport
+	}
+
+	[StructLayout (LayoutKind.Sequential)]
+	public struct StyleLayerDrawingContext
+	{
+		public CGSize Size;
+
+		public CLLocationCoordinate2D CenterCoordinate;
+
+		public double ZoomLevel;
+
+		public double Direction;
+
+		public nfloat Pitch;
+
+		public nfloat FieldOfView;
+	}
 
     [Native]
     public enum AnnotationViewDragState : ulong
