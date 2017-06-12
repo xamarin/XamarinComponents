@@ -16,20 +16,38 @@ namespace Xamarin.Build.Download
 		[Output]
 		public ITaskItem [] AarProguardConfiguration { get; set; }
 
-		List<ITaskItem> aarProguardConfiguration { get; set; } = new List<ITaskItem> ();
+		string proguardIntermediateOutputPath = null;
 
 		public override bool Execute ()
 		{
+			// Get the dir to store proguard config files in
+			proguardIntermediateOutputPath = Path.Combine (MergeOutputDir, "proguard");
+			if (!Directory.Exists (proguardIntermediateOutputPath))
+				Directory.CreateDirectory (proguardIntermediateOutputPath);
+			
 			var res = base.Execute ();
 
-			AarProguardConfiguration = aarProguardConfiguration.ToArray ();
+			Log.LogMessage ("Looking for proguard configuration files in: {0}", proguardIntermediateOutputPath);
 
+			// Find any proguard config files we need to emit that were extracted
+			AarProguardConfiguration = Directory.GetFiles (proguardIntermediateOutputPath)
+			                                    ?.Select (pf => new TaskItem(pf))?.ToArray ()
+			                                        ?? new ITaskItem[] {};
+
+			foreach (var apc in AarProguardConfiguration)
+				Log.LogMessage ("ProguardConfiguration: {0}", apc);
+			
 			return res;
 		}
 
 		protected override Stream LoadResource (string resourceFullPath, string assemblyName, string assemblyOutputPath)
 		{
+			Log.LogMessage ("LoadResource: {0}", resourceFullPath);
+			Log.LogMessage ("  for:        {0}", assemblyName);
+
 			const string AAR_DIR_PREFIX = "library_project_imports";
+
+			var assemblyNameMd5 = DownloadUtils.HashMd5 (assemblyName).Substring (0, 8);
 
 			var memoryStream = new MemoryStream ();
 			using (var fileStream = base.LoadResource (resourceFullPath, assemblyName, assemblyOutputPath))
@@ -112,26 +130,24 @@ namespace Xamarin.Build.Download
 						// Xamarin.Android does not consider using proguard config files from within .aar files, so we need to extract it
 						// to a known location and output it to 
 						} else if (oldEntry.Length > 0 && (newName.EndsWith ("proguard.txt", StringComparison.OrdinalIgnoreCase) || newName.EndsWith ("proguard.cfg", StringComparison.OrdinalIgnoreCase))) {
-							
+
+
 							// We still want to copy the file over into the .aar
 							using (var oldStream = oldEntry.Open ())
 							using (var newStream = newEntry.Open ()) {
 								oldStream.CopyTo (newStream);
 							}
 
-							// Calculate an output path beside the merged/output assembly path
-							var assemblyOutputPathInfo = new FileInfo (assemblyOutputPath);
-							var proguardCfgOutputPath = Path.Combine (assemblyOutputPathInfo.Directory.FullName, "proguard.txt");
+							// Calculate an output path beside the merged/output assembly name's md5 hash
+							var proguardCfgOutputPath = Path.Combine (proguardIntermediateOutputPath, assemblyNameMd5 + ".txt");
+
+							Log.LogMessage ("Extracting Proguard Configuration to: {0}", proguardCfgOutputPath);
 
 							// Create a copy of the file
 							using (var oldStream = oldEntry.Open ())
 							using (var proguardStream = File.OpenWrite (proguardCfgOutputPath)) {
 								oldStream.CopyTo (proguardStream);
 							}
-
-							// Output the added files to be included in @(ProguardConfiguration)
-							aarProguardConfiguration.Add (new TaskItem (proguardCfgOutputPath));
-
 						} else {
 							// Copy file contents over if they exist
 							if (oldEntry.Length > 0) {
