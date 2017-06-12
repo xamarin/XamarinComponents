@@ -146,6 +146,7 @@
 
 
 	<Target Name="_CleanXbdMerge">
+		<RemoveDir Directories="$(IntermediateOutputPath)XbdMerge\proguard" Condition="Exists ('$(IntermediateOutputPath)XbdMerge\proguard')" />
 		<RemoveDir Directories="$(IntermediateOutputPath)XbdMerge" Condition="Exists ('$(IntermediateOutputPath)XbdMerge')" />
 	</Target>
 </Project>
