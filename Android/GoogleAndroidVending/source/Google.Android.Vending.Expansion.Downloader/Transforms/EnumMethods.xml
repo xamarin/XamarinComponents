@@ -1,0 +1,38 @@
+﻿<enum-method-mappings>
+  <!--
+  This example changes the Java method:
+    android.support.v4.app.Fragment.SavedState.writeToParcel (int flags)
+  to be:
+    android.support.v4.app.Fragment.SavedState.writeToParcel (Android.OS.ParcelableWriteFlags flags)
+  when bound in C#.
+  
+  <mapping jni-class="android/support/v4/app/Fragment.SavedState">
+    <method jni-name="writeToParcel" parameter="flags" clr-enum-type="Android.OS.ParcelableWriteFlags" />
+  </mapping>
+  -->
+
+  <mapping jni-class="com/google/android/vending/expansion/downloader/impl/DownloaderService">
+    <method jni-name="startDownloadServiceIfRequired" parameter="return" clr-enum-type="Google.Android.Vending.Expansion.Downloader.DownloadServiceRequirement" />
+  </mapping>
+
+  <mapping jni-class="com/google/android/vending/expansion/downloader/DownloaderClientMarshaller">
+    <method jni-name="startDownloadServiceIfRequired" parameter="return" clr-enum-type="Google.Android.Vending.Expansion.Downloader.DownloadServiceRequirement" />
+  </mapping>
+
+  <mapping jni-interface="com/google/android/vending/expansion/downloader/IDownloaderClient">
+    <method jni-name="onDownloadStateChanged" parameter="p0" clr-enum-type="Google.Android.Vending.Expansion.Downloader.DownloaderClientState" />
+  </mapping>
+
+  <mapping jni-class="com/google/android/vending/expansion/downloader/Helpers">
+    <method jni-name="getDownloaderStringResourceIDFromState" parameter="state" clr-enum-type="Google.Android.Vending.Expansion.Downloader.DownloaderClientState" />
+  </mapping>
+
+  <mapping jni-interface="com/google/android/vending/expansion/downloader/IDownloaderService">
+    <method jni-name="setDownloadFlags" parameter="p0" clr-enum-type="Google.Android.Vending.Expansion.Downloader.DownloaderServiceFlags" />
+  </mapping>
+
+  <mapping jni-class="com/google/android/vending/expansion/downloader/impl/DownloaderService">
+    <method jni-name="setDownloadFlags" parameter="flags" clr-enum-type="Google.Android.Vending.Expansion.Downloader.DownloaderServiceFlags" />
+  </mapping>
+
+</enum-method-mappings>

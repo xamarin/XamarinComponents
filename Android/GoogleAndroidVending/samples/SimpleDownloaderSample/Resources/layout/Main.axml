@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+  <TextView
+      android:id="@+id/lblStatus"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:textStyle="bold" />
+  <LinearLayout
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:layout_weight="0"
+      android:orientation="vertical"
+      android:id="@+id/dashboard">
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+      <LinearLayout
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:layout_weight="1"
+          android:orientation="horizontal"
+          android:padding="5dp">
+        <TextView
+            android:id="@+id/lblProgress"
+            style="@android:style/TextAppearance.Small"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="0MB / 0MB"
+            android:paddingRight="5dp" />
+        <ProgressBar
+            android:id="@+id/prgProgress"
+            style="?android:attr/progressBarStyleHorizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/progressAsFraction"
+            android:layout_weight="1" />
+      </LinearLayout>
+      <LinearLayout
+          android:layout_width="fill_parent"
+          android:layout_height="wrap_content"
+          android:orientation="horizontal">
+        <Button
+            android:id="@+id/btnPause"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="0"
+            android:text="@string/text_button_pause" />
+        <Button
+            android:id="@+id/btnCancel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="0"
+            android:text="@string/text_button_cancel" />
+      </LinearLayout>
+    </LinearLayout>
+  </LinearLayout>
+  <LinearLayout
+      android:id="@+id/approve"
+      android:layout_width="match_parent"
+      android:layout_height="match_parent"
+      android:orientation="vertical"
+      android:padding="5dp">
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/text_paused_cellular" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+      <Button
+          android:id="@+id/btnResumeCell"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:text="@string/text_button_resume_cellular" />
+      <Button
+          android:id="@+id/btnWifi"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:text="@string/text_button_wifi_settings" />
+    </LinearLayout>
+  </LinearLayout>
+</LinearLayout>

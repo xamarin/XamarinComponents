@@ -10,6 +10,10 @@
   BuildScript: ./Android/AndroidSwipeLayout/build.cake
   TriggerPaths: [ Android/AndroidSwipeLayout ]
   MacBuildTargets: [ samples, component ]
+- Name: GoogleAndroidVending
+  BuildScript: ./Android/GoogleAndroidVending/build.cake
+  TriggerPaths: [ Android/GoogleAndroidVending ]
+  MacBuildTargets: [ component, samples ]
 - Name: AndroidThings
   BuildScript: ./Android/AndroidThings/build.cake
   TriggerPaths: [ Android/AndroidThings ]
