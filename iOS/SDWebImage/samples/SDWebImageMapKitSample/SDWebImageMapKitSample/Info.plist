@@ -42,5 +42,7 @@
 	<string>Main</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string>We want to use your location, bwahahaha!</string>
+	<key>CFBundleName</key>
+	<string>SDWebImageMapKitSample</string>
 </dict>
 </plist>

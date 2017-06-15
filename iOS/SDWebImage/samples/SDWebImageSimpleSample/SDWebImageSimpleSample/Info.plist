@@ -10,5 +10,10 @@
 	</array>
 	<key>MinimumOSVersion</key>
 	<string>6.1</string>
+	<key>NSAppTransportSecurity</key>
+	<dict>
+		<key>NSAllowsArbitraryLoads</key>
+		<true/>
+	</dict>
 </dict>
 </plist>

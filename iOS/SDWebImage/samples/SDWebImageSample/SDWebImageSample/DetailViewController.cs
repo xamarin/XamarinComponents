@@ -48,7 +48,7 @@ namespace SDWebImageSample
 			}
 		}
 
-		void ProgressHandler (nint receivedSize, nint expectedSize)
+		void ProgressHandler (nint receivedSize, nint expectedSize, NSUrl url)
 		{
 			if (activityIndicator == null) {
 				InvokeOnMainThread (() => {
