@@ -4,13 +4,23 @@ using CoreGraphics;
 using Foundation;
 using MapKit;
 using ObjCRuntime;
+
+#if __IOS__
 using UIKit;
+using BoundUIImage = global::UIKit.UIImage;
+#else
+using AppKit;
+using BoundUIImage = global::AppKit.NSImage;
+#endif
+
+
 
 namespace SDWebImage
 {
 	// typedef void (^SDWebImageNoParamsBlock)();
 	delegate void SDWebImageNoParamsHandler ();
 
+#if __IOS__
 	// @interface FLAnimatedImageView : UIImageView
 	[BaseType (typeof (UIImageView))]
 	interface FLAnimatedImageView
@@ -95,8 +105,9 @@ namespace SDWebImage
 		[Export ("data", ArgumentSemantic.Strong)]
 		NSData Data { get; }
 	}
+#endif
 
-	interface ISDWebImageOperation {}
+	interface ISDWebImageOperation { }
 
 	// @protocol SDWebImageOperation <NSObject>
 	[Protocol, Model]
@@ -113,7 +124,7 @@ namespace SDWebImage
 	delegate void SDWebImageDownloaderProgressHandler (nint receivedSize, nint expectedSize, [NullAllowed] NSUrl url);
 
 	// typedef void (^SDWebImageDownloaderCompletedBlock)(UIImage * _Nullable, NSData * _Nullable, NSError * _Nullable, BOOL);
-	delegate void SDWebImageDownloaderCompletedHandler ([NullAllowed] UIImage image, [NullAllowed] NSData data, [NullAllowed] NSError error, bool finished);
+	delegate void SDWebImageDownloaderCompletedHandler ([NullAllowed] BoundUIImage image, [NullAllowed] NSData data, [NullAllowed] NSError error, bool finished);
 
 	// typedef SDHTTPHeadersDictionary * _Nullable (^SDWebImageDownloaderHeadersFilterBlock)(NSURL * _Nullable, SDHTTPHeadersDictionary * _Nullable);
 	delegate NSDictionary SDWebImageDownloaderHeadersFilterHandler ([NullAllowed] NSUrl url, [NullAllowed] NSDictionary<NSString, NSString> headers);
@@ -214,7 +225,7 @@ namespace SDWebImage
 	}
 
 	// typedef void (^SDCacheQueryCompletedBlock)(UIImage * _Nullable, NSData * _Nullable, SDImageCacheType);
-	delegate void SDCacheQueryCompletedHandler ([NullAllowed] UIImage image, [NullAllowed] NSData data, SDImageCacheType cacheType);
+	delegate void SDCacheQueryCompletedHandler ([NullAllowed] BoundUIImage image, [NullAllowed] NSData data, SDImageCacheType cacheType);
 
 	// typedef void (^SDWebImageCheckCacheCompletionBlock)(BOOL);
 	delegate void SDWebImageCheckCacheCompletionHandler (bool isInCache);
@@ -264,15 +275,15 @@ namespace SDWebImage
 
 		// -(void)storeImage:(UIImage * _Nullable)image forKey:(NSString * _Nullable)key completion:(SDWebImageNoParamsBlock _Nullable)completionBlock;
 		[Export ("storeImage:forKey:completion:")]
-		void StoreImage ([NullAllowed] UIImage image, [NullAllowed] string key, [NullAllowed] SDWebImageNoParamsHandler completionHandler);
+		void StoreImage ([NullAllowed] BoundUIImage image, [NullAllowed] string key, [NullAllowed] SDWebImageNoParamsHandler completionHandler);
 
 		// -(void)storeImage:(UIImage * _Nullable)image forKey:(NSString * _Nullable)key toDisk:(BOOL)toDisk completion:(SDWebImageNoParamsBlock _Nullable)completionBlock;
 		[Export ("storeImage:forKey:toDisk:completion:")]
-		void StoreImage ([NullAllowed] UIImage image, [NullAllowed] string key, bool toDisk, [NullAllowed] SDWebImageNoParamsHandler completionHandler);
+		void StoreImage ([NullAllowed] BoundUIImage image, [NullAllowed] string key, bool toDisk, [NullAllowed] SDWebImageNoParamsHandler completionHandler);
 
 		// -(void)storeImage:(UIImage * _Nullable)image imageData:(NSData * _Nullable)imageData forKey:(NSString * _Nullable)key toDisk:(BOOL)toDisk completion:(SDWebImageNoParamsBlock _Nullable)completionBlock;
 		[Export ("storeImage:imageData:forKey:toDisk:completion:")]
-		void StoreImage ([NullAllowed] UIImage image, [NullAllowed] NSData imageData, [NullAllowed] string key, bool toDisk, [NullAllowed] SDWebImageNoParamsHandler completionHandler);
+		void StoreImage ([NullAllowed] BoundUIImage image, [NullAllowed] NSData imageData, [NullAllowed] string key, bool toDisk, [NullAllowed] SDWebImageNoParamsHandler completionHandler);
 
 		// -(void)storeImageDataToDisk:(NSData * _Nullable)imageData forKey:(NSString * _Nullable)key;
 		[Export ("storeImageDataToDisk:forKey:")]
@@ -290,17 +301,17 @@ namespace SDWebImage
 		// -(UIImage * _Nullable)imageFromMemoryCacheForKey:(NSString * _Nullable)key;
 		[Export ("imageFromMemoryCacheForKey:")]
 		[return: NullAllowed]
-		UIImage ImageFromMemoryCache ([NullAllowed] string key);
+		BoundUIImage ImageFromMemoryCache ([NullAllowed] string key);
 
 		// -(UIImage * _Nullable)imageFromDiskCacheForKey:(NSString * _Nullable)key;
 		[Export ("imageFromDiskCacheForKey:")]
 		[return: NullAllowed]
-		UIImage ImageFromDiskCache ([NullAllowed] string key);
+		BoundUIImage ImageFromDiskCache ([NullAllowed] string key);
 
 		// -(UIImage * _Nullable)imageFromCacheForKey:(NSString * _Nullable)key;
 		[Export ("imageFromCacheForKey:")]
 		[return: NullAllowed]
-		UIImage ImageFromCache ([NullAllowed] string key);
+		BoundUIImage ImageFromCache ([NullAllowed] string key);
 
 		// -(void)removeImageForKey:(NSString * _Nullable)key withCompletion:(SDWebImageNoParamsBlock _Nullable)completion;
 		[Export ("removeImageForKey:withCompletion:")]
@@ -346,15 +357,15 @@ namespace SDWebImage
 	}
 
 	// typedef void (^SDExternalCompletionBlock)(UIImage * _Nullable, NSError * _Nullable, SDImageCacheType, NSURL * _Nullable);
-	delegate void SDExternalCompletionHandler ([NullAllowed] UIImage image, [NullAllowed] NSError error, SDImageCacheType cacheType, [NullAllowed] NSUrl imageUrl);
+	delegate void SDExternalCompletionHandler ([NullAllowed] BoundUIImage image, [NullAllowed] NSError error, SDImageCacheType cacheType, [NullAllowed] NSUrl imageUrl);
 
 	// typedef void (^SDInternalCompletionBlock)(UIImage * _Nullable, NSData * _Nullable, NSError * _Nullable, SDImageCacheType, BOOL, NSURL * _Nullable);
-	delegate void SDInternalCompletionHandler ([NullAllowed] UIImage image, [NullAllowed] NSData data, [NullAllowed] NSError error, SDImageCacheType cacheType, bool finished, [NullAllowed] NSUrl imageUrl);
+	delegate void SDInternalCompletionHandler ([NullAllowed] BoundUIImage image, [NullAllowed] NSData data, [NullAllowed] NSError error, SDImageCacheType cacheType, bool finished, [NullAllowed] NSUrl imageUrl);
 
 	// typedef NSString * _Nullable (^SDWebImageCacheKeyFilterBlock)(NSURL * _Nullable);
 	delegate string SDWebImageCacheKeyFilterHandler ([NullAllowed] NSUrl url);
 
-	interface ISDWebImageManagerDelegate {}
+	interface ISDWebImageManagerDelegate { }
 
 	// @protocol SDWebImageManagerDelegate <NSObject>
 	[Protocol, Model]
@@ -368,14 +379,14 @@ namespace SDWebImage
 		// @optional -(UIImage * _Nullable)imageManager:(SDWebImageManager * _Nonnull)imageManager transformDownloadedImage:(UIImage * _Nullable)image withURL:(NSURL * _Nullable)imageURL;
 		[Export ("imageManager:transformDownloadedImage:withURL:"), DelegateName ("SDWebImageManagerDelegateImage"), DefaultValueFromArgument ("image")]
 		[return: NullAllowed]
-		UIImage TransformDownloadedImage (SDWebImageManager imageManager, [NullAllowed] UIImage image, [NullAllowed] NSUrl imageUrl);
+		BoundUIImage TransformDownloadedImage (SDWebImageManager imageManager, [NullAllowed] BoundUIImage image, [NullAllowed] NSUrl imageUrl);
 	}
 
 	// @interface SDWebImageManager : NSObject
 	[DisableDefaultCtor]
 	[BaseType (typeof (NSObject),
-		Delegates=new string[] {"Delegate"}, 
-		Events=new Type[] { typeof (SDWebImageManagerDelegate) })]
+		Delegates = new string[] { "Delegate" },
+		Events = new Type[] { typeof (SDWebImageManagerDelegate) })]
 	interface SDWebImageManager
 	{
 		// @property (nonatomic, weak) id<SDWebImageManagerDelegate> _Nullable delegate;
@@ -411,7 +422,7 @@ namespace SDWebImage
 
 		// -(void)saveImageToCache:(UIImage * _Nullable)image forURL:(NSURL * _Nullable)url;
 		[Export ("saveImageToCache:forURL:")]
-		void SaveImage ([NullAllowed] UIImage image, [NullAllowed] NSUrl url);
+		void SaveImage ([NullAllowed] BoundUIImage image, [NullAllowed] NSUrl url);
 
 		// -(void)cancelAll;
 		[Export ("cancelAll")]
@@ -434,7 +445,7 @@ namespace SDWebImage
 		[return: NullAllowed]
 		string GetCacheKey ([NullAllowed] NSUrl url);
 	}
-
+#if __IOS__
 	// @interface WebCache (FLAnimatedImageView)
 	[Category]
 	[BaseType (typeof (FLAnimatedImageView))]
@@ -468,7 +479,7 @@ namespace SDWebImage
 		[Export ("sd_setImageWithURL:placeholderImage:options:progress:completed:")]
 		void SetImage ([NullAllowed] NSUrl url, [NullAllowed] UIImage placeholder, SDWebImageOptions options, [NullAllowed] SDWebImageDownloaderProgressHandler progressHandler, [NullAllowed] SDExternalCompletionHandler completedHandler);
 	}
-
+#endif
 	// @interface WebCache (MKAnnotationView)
 	[Category]
 	[BaseType (typeof (MKAnnotationView))]
@@ -480,11 +491,11 @@ namespace SDWebImage
 
 		// -(void)sd_setImageWithURL:(NSURL * _Nullable)url placeholderImage:(UIImage * _Nullable)placeholder;
 		[Export ("sd_setImageWithURL:placeholderImage:")]
-		void SetImage ([NullAllowed] NSUrl url, [NullAllowed] UIImage placeholder);
+		void SetImage ([NullAllowed] NSUrl url, [NullAllowed] BoundUIImage placeholder);
 
 		// -(void)sd_setImageWithURL:(NSURL * _Nullable)url placeholderImage:(UIImage * _Nullable)placeholder options:(SDWebImageOptions)options;
 		[Export ("sd_setImageWithURL:placeholderImage:options:")]
-		void SetImage ([NullAllowed] NSUrl url, [NullAllowed] UIImage placeholder, SDWebImageOptions options);
+		void SetImage ([NullAllowed] NSUrl url, [NullAllowed] BoundUIImage placeholder, SDWebImageOptions options);
 
 		// -(void)sd_setImageWithURL:(NSURL * _Nullable)url completed:(SDExternalCompletionBlock _Nullable)completedBlock;
 		[Export ("sd_setImageWithURL:completed:")]
@@ -492,11 +503,11 @@ namespace SDWebImage
 
 		// -(void)sd_setImageWithURL:(NSURL * _Nullable)url placeholderImage:(UIImage * _Nullable)placeholder completed:(SDExternalCompletionBlock _Nullable)completedBlock;
 		[Export ("sd_setImageWithURL:placeholderImage:completed:")]
-		void SetImage ([NullAllowed] NSUrl url, [NullAllowed] UIImage placeholder, [NullAllowed] SDExternalCompletionHandler completedHandler);
+		void SetImage ([NullAllowed] NSUrl url, [NullAllowed] BoundUIImage placeholder, [NullAllowed] SDExternalCompletionHandler completedHandler);
 
 		// -(void)sd_setImageWithURL:(NSURL * _Nullable)url placeholderImage:(UIImage * _Nullable)placeholder options:(SDWebImageOptions)options completed:(SDExternalCompletionBlock _Nullable)completedBlock;
 		[Export ("sd_setImageWithURL:placeholderImage:options:completed:")]
-		void SetImage ([NullAllowed] NSUrl url, [NullAllowed] UIImage placeholder, SDWebImageOptions options, [NullAllowed] SDExternalCompletionHandler completedHandler);
+		void SetImage ([NullAllowed] NSUrl url, [NullAllowed] BoundUIImage placeholder, SDWebImageOptions options, [NullAllowed] SDExternalCompletionHandler completedHandler);
 	}
 
 	// @interface ImageContentType (NSData)
@@ -537,23 +548,28 @@ namespace SDWebImage
 
 	// @interface ForceDecode (UIImage)
 	[Category]
+#if __IOS__
 	[BaseType (typeof (UIImage))]
 	interface UIImage_ForceDecode
+#else
+	[BaseType (typeof (NSImage))]
+	interface NSImage_ForceDecode
+#endif
 	{
 		// +(UIImage * _Nullable)decodedImageWithImage:(UIImage * _Nullable)image;
 		[Static]
 		[Export ("decodedImageWithImage:")]
 		[return: NullAllowed]
-		UIImage DecodedImage ([NullAllowed] UIImage image);
+		BoundUIImage DecodedImage ([NullAllowed] BoundUIImage image);
 
 		// +(UIImage * _Nullable)decodedAndScaledDownImageWithImage:(UIImage * _Nullable)image;
 		[Static]
 		[Export ("decodedAndScaledDownImageWithImage:")]
 		[return: NullAllowed]
-		UIImage DecodedAndScaledDownImage ([NullAllowed] UIImage image);
+		BoundUIImage DecodedAndScaledDownImage ([NullAllowed] BoundUIImage image);
 	}
 
-	interface ISDWebImageDownloaderOperationInterface {}
+	interface ISDWebImageDownloaderOperationInterface { }
 
 	// @protocol SDWebImageDownloaderOperationInterface <NSObject>
 	[Protocol, Model]
@@ -635,7 +651,7 @@ namespace SDWebImage
 		bool Cancel ([NullAllowed] NSObject token);
 	}
 
-	interface ISDWebImagePrefetcherDelegate {}
+	interface ISDWebImagePrefetcherDelegate { }
 
 	// @protocol SDWebImagePrefetcherDelegate <NSObject>
 	[Protocol, Model]
@@ -707,6 +723,7 @@ namespace SDWebImage
 		void CancelPrefetching ();
 	}
 
+#if __IOS__
 	// @interface WebCache (UIButton)
 	[Category]
 	[BaseType (typeof (UIButton))]
@@ -777,16 +794,22 @@ namespace SDWebImage
 		[Export ("sd_cancelBackgroundImageLoadForState:")]
 		void CancelBackgroundImageLoad (UIControlState state);
 	}
+#endif
 
 	// @interface GIF (UIImage)
 	[Category]
+#if __IOS__
 	[BaseType (typeof (UIImage))]
 	interface UIImage_Gif
+#else
+	[BaseType (typeof (NSImage))]
+	interface NSImage_Gif
+#endif
 	{
 		// +(UIImage *)sd_animatedGIFWithData:(NSData *)data;
 		[Static]
 		[Export ("sd_animatedGIFWithData:")]
-		UIImage CreateAnimatedGif (NSData data);
+		BoundUIImage CreateAnimatedGif (NSData data);
 
 		// -(BOOL)isGIF;
 		[Export ("isGif")]
@@ -795,14 +818,19 @@ namespace SDWebImage
 
 	// @interface MultiFormat (UIImage)
 	[Category]
+#if __IOS__
 	[BaseType (typeof (UIImage))]
 	interface UIImage_MultiFormat
+#else
+	[BaseType (typeof (NSImage))]
+	interface NSImage_MultiFormat
+#endif
 	{
 		// +(UIImage * _Nullable)sd_imageWithData:(NSData * _Nullable)data;
 		[Static]
 		[Export ("sd_imageWithData:")]
 		[return: NullAllowed]
-		UIImage CreateImage ([NullAllowed] NSData data);
+		BoundUIImage CreateImage ([NullAllowed] NSData data);
 
 		// -(NSData * _Nullable)sd_imageData;
 		[NullAllowed, Export ("sd_imageData")]
@@ -814,6 +842,7 @@ namespace SDWebImage
 		NSData GetImageData (SDImageFormat imageFormat);
 	}
 
+#if __IOS__
 	// @interface HighlightedWebCache (UIImageView)
 	[Category]
 	[BaseType (typeof (UIImageView))]
@@ -839,11 +868,17 @@ namespace SDWebImage
 		[Export ("sd_setHighlightedImageWithURL:options:progress:completed:")]
 		void SetHighlightedImage ([NullAllowed] NSUrl url, SDWebImageOptions options, [NullAllowed] SDWebImageDownloaderProgressHandler progressHandler, [NullAllowed] SDExternalCompletionHandler completedHandler);
 	}
+#endif
 
 	// @interface WebCache (UIImageView)
+#if __IOS__
 	[Category]
 	[BaseType (typeof (UIImageView))]
 	interface UIImageView_WebCache
+#else
+	[BaseType (typeof (NSImageView))]
+	interface NSImageView_WebCache
+#endif
 	{
 		// -(void)sd_setImageWithURL:(NSURL * _Nullable)url;
 		[Export ("sd_setImageWithURL:")]
@@ -851,11 +886,11 @@ namespace SDWebImage
 
 		// -(void)sd_setImageWithURL:(NSURL * _Nullable)url placeholderImage:(UIImage * _Nullable)placeholder;
 		[Export ("sd_setImageWithURL:placeholderImage:")]
-		void SetImage ([NullAllowed] NSUrl url, [NullAllowed] UIImage placeholder);
+		void SetImage ([NullAllowed] NSUrl url, [NullAllowed] BoundUIImage placeholder);
 
 		// -(void)sd_setImageWithURL:(NSURL * _Nullable)url placeholderImage:(UIImage * _Nullable)placeholder options:(SDWebImageOptions)options;
 		[Export ("sd_setImageWithURL:placeholderImage:options:")]
-		void SetImage ([NullAllowed] NSUrl url, [NullAllowed] UIImage placeholder, SDWebImageOptions options);
+		void SetImage ([NullAllowed] NSUrl url, [NullAllowed] BoundUIImage placeholder, SDWebImageOptions options);
 
 		// -(void)sd_setImageWithURL:(NSURL * _Nullable)url completed:(SDExternalCompletionBlock _Nullable)completedBlock;
 		[Export ("sd_setImageWithURL:completed:")]
@@ -863,20 +898,21 @@ namespace SDWebImage
 
 		// -(void)sd_setImageWithURL:(NSURL * _Nullable)url placeholderImage:(UIImage * _Nullable)placeholder completed:(SDExternalCompletionBlock _Nullable)completedBlock;
 		[Export ("sd_setImageWithURL:placeholderImage:completed:")]
-		void SetImage ([NullAllowed] NSUrl url, [NullAllowed] UIImage placeholder, [NullAllowed] SDExternalCompletionHandler completedHandler);
+		void SetImage ([NullAllowed] NSUrl url, [NullAllowed] BoundUIImage placeholder, [NullAllowed] SDExternalCompletionHandler completedHandler);
 
 		// -(void)sd_setImageWithURL:(NSURL * _Nullable)url placeholderImage:(UIImage * _Nullable)placeholder options:(SDWebImageOptions)options completed:(SDExternalCompletionBlock _Nullable)completedBlock;
 		[Export ("sd_setImageWithURL:placeholderImage:options:completed:")]
-		void SetImage ([NullAllowed] NSUrl url, [NullAllowed] UIImage placeholder, SDWebImageOptions options, [NullAllowed] SDExternalCompletionHandler completedHandler);
+		void SetImage ([NullAllowed] NSUrl url, [NullAllowed] BoundUIImage placeholder, SDWebImageOptions options, [NullAllowed] SDExternalCompletionHandler completedHandler);
 
 		// -(void)sd_setImageWithURL:(NSURL * _Nullable)url placeholderImage:(UIImage * _Nullable)placeholder options:(SDWebImageOptions)options progress:(SDWebImageDownloaderProgressBlock _Nullable)progressBlock completed:(SDExternalCompletionBlock _Nullable)completedBlock;
 		[Export ("sd_setImageWithURL:placeholderImage:options:progress:completed:")]
-		void SetImage ([NullAllowed] NSUrl url, [NullAllowed] UIImage placeholder, SDWebImageOptions options, [NullAllowed] SDWebImageDownloaderProgressHandler progressHandler, [NullAllowed] SDExternalCompletionHandler completedHandler);
+		void SetImage ([NullAllowed] NSUrl url, [NullAllowed] BoundUIImage placeholder, SDWebImageOptions options, [NullAllowed] SDWebImageDownloaderProgressHandler progressHandler, [NullAllowed] SDExternalCompletionHandler completedHandler);
 
 		// -(void)sd_setImageWithPreviousCachedImageWithURL:(NSURL * _Nullable)url placeholderImage:(UIImage * _Nullable)placeholder options:(SDWebImageOptions)options progress:(SDWebImageDownloaderProgressBlock _Nullable)progressBlock completed:(SDExternalCompletionBlock _Nullable)completedBlock;
 		[Export ("sd_setImageWithPreviousCachedImageWithURL:placeholderImage:options:progress:completed:")]
-		void SetImageWithPreviousCachedImage ([NullAllowed] NSUrl url, [NullAllowed] UIImage placeholder, SDWebImageOptions options, [NullAllowed] SDWebImageDownloaderProgressHandler progressHandler, [NullAllowed] SDExternalCompletionHandler completedHandler);
+		void SetImageWithPreviousCachedImage ([NullAllowed] NSUrl url, [NullAllowed] BoundUIImage placeholder, SDWebImageOptions options, [NullAllowed] SDWebImageDownloaderProgressHandler progressHandler, [NullAllowed] SDExternalCompletionHandler completedHandler);
 
+#if __IOS__
 		// -(void)sd_setAnimationImagesWithURLs:(NSArray<NSURL *> * _Nonnull)arrayOfURLs;
 		[Export ("sd_setAnimationImagesWithURLs:")]
 		void SetAnimationImages (NSUrl[] arrayOfUrls);
@@ -884,15 +920,21 @@ namespace SDWebImage
 		// -(void)sd_cancelCurrentAnimationImagesLoad;
 		[Export ("sd_cancelCurrentAnimationImagesLoad")]
 		void CancelCurrentAnimationImagesLoad ();
+#endif
 	}
 
 	// typedef void (^SDSetImageBlock)(UIImage * _Nullable, NSData * _Nullable);
-	delegate void SDSetImageHandler ([NullAllowed] UIImage image, [NullAllowed] NSData data);
+	delegate void SDSetImageHandler ([NullAllowed] BoundUIImage image, [NullAllowed] NSData data);
 
 	// @interface WebCache (UIView)
 	[Category]
+#if __IOS__
 	[BaseType (typeof (UIView))]
 	interface UIView_WebCache
+#else
+	[BaseType (typeof (NSView))]
+	interface NSView_WebCache
+#endif
 	{
 		// -(NSURL * _Nullable)sd_imageURL;
 		[NullAllowed, Export ("sd_imageURL")]
@@ -900,12 +942,13 @@ namespace SDWebImage
 
 		// -(void)sd_internalSetImageWithURL:(NSURL * _Nullable)url placeholderImage:(UIImage * _Nullable)placeholder options:(SDWebImageOptions)options operationKey:(NSString * _Nullable)operationKey setImageBlock:(SDSetImageBlock _Nullable)setImageBlock progress:(SDWebImageDownloaderProgressBlock _Nullable)progressBlock completed:(SDExternalCompletionBlock _Nullable)completedBlock;
 		[Export ("sd_internalSetImageWithURL:placeholderImage:options:operationKey:setImageBlock:progress:completed:")]
-		void InternalSetImage ([NullAllowed] NSUrl url, [NullAllowed] UIImage placeholder, SDWebImageOptions options, [NullAllowed] string operationKey, [NullAllowed] SDSetImageHandler setImageHandler, [NullAllowed] SDWebImageDownloaderProgressHandler progressHandler, [NullAllowed] SDExternalCompletionHandler completedHandler);
+		void InternalSetImage ([NullAllowed] NSUrl url, [NullAllowed] BoundUIImage placeholder, SDWebImageOptions options, [NullAllowed] string operationKey, [NullAllowed] SDSetImageHandler setImageHandler, [NullAllowed] SDWebImageDownloaderProgressHandler progressHandler, [NullAllowed] SDExternalCompletionHandler completedHandler);
 
 		// -(void)sd_cancelCurrentImageLoad;
 		[Export ("sd_cancelCurrentImageLoad")]
 		void CancelCurrentImageLoad ();
 
+#if __IOS__
 		// -(void)sd_setShowActivityIndicatorView:(BOOL)show;
 		[Export ("sd_setShowActivityIndicatorView:")]
 		void SetShowActivityIndicatorView (bool show);
@@ -925,12 +968,18 @@ namespace SDWebImage
 		// -(void)sd_removeActivityIndicator;
 		[Export ("sd_removeActivityIndicator")]
 		void RemoveActivityIndicator ();
+#endif
 	}
 
 	// @interface WebCacheOperation (UIView)
 	[Category]
+#if __IOS__
 	[BaseType (typeof (UIView))]
 	interface UIView_WebCacheOperation
+#else
+	[BaseType (typeof (NSView))]
+	interface NSView_WebCacheOperation
+#endif
 	{
 		// -(void)sd_setImageLoadOperation:(id _Nullable)operation forKey:(NSString * _Nullable)key;
 		[Export ("sd_setImageLoadOperation:forKey:")]
@@ -944,6 +993,26 @@ namespace SDWebImage
 		[Export ("sd_removeImageLoadOperationWithKey:")]
 		void RemoveImageLoadOperation ([NullAllowed] string key);
 	}
+
+#if __OSX__
+	// @interface WebCache (NSImage)
+	[Category]
+	[BaseType (typeof (NSImage))]
+	interface NSImage_WebCache
+	{
+		// -(CGImageRef)CGImage;
+		[Export ("CGImage")]
+		CGImage CGImage ();
+
+		// -(NSArray<NSImage *> *)images;
+		[Export ("images")]
+		NSImage[] Images ();
+
+		// -(BOOL)isGIF;
+		[Export ("isGIF")]
+		bool IsGif();
+	}
+#endif
 
 	[Static]
 	partial interface SDWebImageConstants

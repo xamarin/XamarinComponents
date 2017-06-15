@@ -50,7 +50,7 @@
     <ObjcBindingCoreSource Include="StructsAndEnums.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ObjcBindingNativeLibrary Include="..\..\externals\libSDWebImage.a">
+    <ObjcBindingNativeLibrary Include="..\..\externals-ios\libSDWebImage.a">
       <Link>libSDWebImage.a</Link>
     </ObjcBindingNativeLibrary>
   </ItemGroup>

@@ -29,7 +29,7 @@ samples:
 no_build: true
 is_shell: true
 packages:
-  ios-unified: Xamarin.SDWebImage, Version=3.7.5
+  ios-unified: Xamarin.SDWebImage, Version=4.0.0
 additional-files:
   - source: "../External-Dependency-Info.txt"
     destination: "THIRD-PARTY-NOTICES.txt"
