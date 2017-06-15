@@ -31,6 +31,7 @@ namespace Xamarin.Build.Download
 
 			// Find any proguard config files we need to emit that were extracted
 			AarProguardConfiguration = Directory.GetFiles (proguardIntermediateOutputPath)
+			                                    ?.Where (pc => Path.GetExtension (pc).Equals (".txt", StringComparison.OrdinalIgnoreCase))
 			                                    ?.Select (pf => new TaskItem(pf))?.ToArray ()
 			                                        ?? new ITaskItem[] {};
 
