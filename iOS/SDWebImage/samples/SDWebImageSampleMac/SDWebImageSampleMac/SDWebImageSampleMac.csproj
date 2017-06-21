@@ -84,17 +84,19 @@
     </Compile>
     <Compile Include="DataModel\ImageModel.cs" />
     <Compile Include="Classes\CollectionViewDataSource.cs" />
-    <Compile Include="Controllers\ImageListController.cs" />
-    <Compile Include="Views\SDImageView.cs" />
     <Compile Include="Classes\CollectionViewDelegate.cs" />
-    <Compile Include="Controllers\ImageCollectionViewController.cs" />
-    <Compile Include="Views\SDImageView.designer.cs">
-      <DependentUpon>SDImageView.cs</DependentUpon>
+    <Compile Include="Controllers\ImageListItem.cs" />
+    <Compile Include="Controllers\ImageListItemController.cs" />
+    <Compile Include="Controllers\ImageListItem.designer.cs">
+      <DependentUpon>ImageListItem.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\ImageListItemController.designer.cs">
+      <DependentUpon>ImageListItemController.cs</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
     <InterfaceDefinition Include="Main.storyboard" />
-    <InterfaceDefinition Include="Controllers\ImageListController.xib" />
+    <InterfaceDefinition Include="Controllers\ImageListItemController.xib" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\..\source\SDWebImage.MacOS\SDWebImage.MacOS.csproj">
