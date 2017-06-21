@@ -1,7 +1,10 @@
 ﻿using System;
+using Foundation;
+
 namespace SDWebImageSampleMac.DataModel
 {
-    public class ImageModel
+    [Register("ImageModel")]
+    public class ImageModel : NSObject
     {
         public string ImageUrl
         {
@@ -9,5 +12,14 @@ namespace SDWebImageSampleMac.DataModel
             set;
         }
 
+        public ImageModel()
+        {
+
+        }
+
+        public ImageModel (string url)
+        {
+            this.ImageUrl = url;
+        }
     }
 }
