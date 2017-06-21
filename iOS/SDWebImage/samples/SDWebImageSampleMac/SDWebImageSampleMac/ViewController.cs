@@ -20,6 +20,7 @@ namespace SDWebImageSampleMac
 		/// <value>The datasource.</value>
 		public CollectionViewDataSource Datasource { get; set; }
 
+
         public ViewController(IntPtr handle) : base(handle)
         {
         }

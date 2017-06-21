@@ -85,13 +85,13 @@
     <Compile Include="DataModel\ImageModel.cs" />
     <Compile Include="Classes\CollectionViewDataSource.cs" />
     <Compile Include="Classes\CollectionViewDelegate.cs" />
-    <Compile Include="Controllers\ImageListItem.cs" />
     <Compile Include="Controllers\ImageListItemController.cs" />
-    <Compile Include="Controllers\ImageListItem.designer.cs">
-      <DependentUpon>ImageListItem.cs</DependentUpon>
-    </Compile>
     <Compile Include="Controllers\ImageListItemController.designer.cs">
       <DependentUpon>ImageListItemController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ImageListItem.cs" />
+    <Compile Include="Views\ImageListItem.designer.cs">
+      <DependentUpon>ImageListItem.cs</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>

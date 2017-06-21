@@ -34,6 +34,35 @@ namespace SDWebImageSampleMac.Controllers
 			}
 		}
 
+
+		public NSColor BackgroundColor
+		{
+			get { return Background.FillColor; }
+			set { Background.FillColor = value; }
+		}
+
+		public override bool Selected
+		{
+			get
+			{
+				return base.Selected;
+			}
+			set
+			{
+				base.Selected = value;
+
+				// Set background color based on the selection state
+				if (value)
+				{
+					BackgroundColor = NSColor.DarkGray;
+				}
+				else
+				{
+					BackgroundColor = NSColor.LightGray;
+				}
+			}
+		}
+
         #region Constructors
 
         // Called when created from unmanaged code
@@ -58,12 +87,12 @@ namespace SDWebImageSampleMac.Controllers
         // Shared initialization code
         void Initialize()
         {
-           //
+          // BackgroundColor = NSColor.DarkGray;
         }
 
         void LoadImage()
         {
-            View.ImageView.SetImage(new NSUrl(Model.ImageUrl));
+            //View.ImageView.SetImage(new NSUrl(Model.ImageUrl));
         }
         #endregion
 
