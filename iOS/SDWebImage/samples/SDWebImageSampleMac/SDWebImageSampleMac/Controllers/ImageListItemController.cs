@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Foundation;
 using AppKit;
+using SDWebImage;
 using SDWebImageSampleMac.DataModel;
 
 namespace SDWebImageSampleMac.Controllers
@@ -25,6 +26,11 @@ namespace SDWebImageSampleMac.Controllers
 				WillChangeValue("Model");
 				_model = value;
 				DidChangeValue("Model");
+
+                if (_model != null)
+                {
+                    LoadImage();
+                }
 			}
 		}
 
@@ -52,8 +58,13 @@ namespace SDWebImageSampleMac.Controllers
         // Shared initialization code
         void Initialize()
         {
+           //
         }
 
+        void LoadImage()
+        {
+            View.ImageView.SetImage(new NSUrl(Model.ImageUrl));
+        }
         #endregion
 
         //strongly typed view accessor

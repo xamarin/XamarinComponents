@@ -871,8 +871,9 @@ namespace SDWebImage
 #endif
 
 	// @interface WebCache (UIImageView)
+    [Category]
 #if __IOS__
-	[Category]
+	
 	[BaseType (typeof (UIImageView))]
 	interface UIImageView_WebCache
 #else

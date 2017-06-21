@@ -36,6 +36,8 @@ namespace SDWebImageSampleMac.Classes
 			var item = collectionView.MakeItem("ImageCell", indexPath) as ImageListItemController;
 			item.Model = Items[(int)indexPath.Item];
 
+
+
 			return item;
         }
 
