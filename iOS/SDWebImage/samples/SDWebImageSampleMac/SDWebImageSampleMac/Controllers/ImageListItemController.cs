@@ -10,36 +10,35 @@ namespace SDWebImageSampleMac.Controllers
 {
     public partial class ImageListItemController : NSCollectionViewItem
     {
-		#region Private Variables
-		/// <summary>
-		/// The person that will be displayed.
-		/// </summary>
-		private ImageModel _model;
-		#endregion
+        #region Private Variables
+        /// <summary>
+        /// The person that will be displayed.
+        /// </summary>
+        private ImageModel _model;
+        #endregion
 
-		[Export("Model")]
-		public ImageModel Model
-		{
-			get { return _model; }
-			set
-			{
-				WillChangeValue("Model");
-				_model = value;
-				DidChangeValue("Model");
+        [Export("Model")]
+        public ImageModel Model
+        {
+            get { return _model; }
+            set
+            {
+                WillChangeValue("Model");
+                _model = value;
+                DidChangeValue("Model");
 
                 if (_model != null)
                 {
                     LoadImage();
                 }
-			}
-		}
+            }
+        }
 
-
-		public NSColor BackgroundColor
-		{
-			get { return Background.FillColor; }
-			set { Background.FillColor = value; }
-		}
+        public NSColor BackgroundColor
+        {
+            get { return Background.FillColor; }
+            set { Background.FillColor = value; }
+        }
 
 		public override bool Selected
 		{
@@ -92,7 +91,7 @@ namespace SDWebImageSampleMac.Controllers
 
         void LoadImage()
         {
-            //View.ImageView.SetImage(new NSUrl(Model.ImageUrl));
+            View.ImageView.SetImage(new NSUrl(Model.ImageUrl));
         }
         #endregion
 
@@ -103,6 +102,15 @@ namespace SDWebImageSampleMac.Controllers
             {
                 return (ImageListItem)base.View;
             }
+        }
+
+        public override void ViewDidLoad()
+        {
+            base.ViewDidLoad();
+
+            BackgroundColor = NSColor.LightGray;
+
+            //View.ImageView.SetImage(new NSUrl(Model.ImageUrl));
         }
     }
 }
