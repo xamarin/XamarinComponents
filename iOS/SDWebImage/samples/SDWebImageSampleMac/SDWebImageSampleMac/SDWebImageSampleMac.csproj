@@ -97,10 +97,19 @@
     <Compile Include="MainWindowController.designer.cs">
       <DependentUpon>MainWindowController.cs</DependentUpon>
     </Compile>
+    <Compile Include="ImageViewer.cs" />
+    <Compile Include="ImageViewerController.cs" />
+    <Compile Include="ImageViewer.designer.cs">
+      <DependentUpon>ImageViewer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ImageViewerController.designer.cs">
+      <DependentUpon>ImageViewerController.cs</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <InterfaceDefinition Include="Main.storyboard" />
     <InterfaceDefinition Include="Controllers\ImageListItemController.xib" />
+    <InterfaceDefinition Include="ImageViewer.xib" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\..\source\SDWebImage.MacOS\SDWebImage.MacOS.csproj">

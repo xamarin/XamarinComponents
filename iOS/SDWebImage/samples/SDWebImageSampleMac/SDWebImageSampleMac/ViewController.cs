@@ -111,12 +111,34 @@ namespace SDWebImageSampleMac
 			if (this.SelectionChanged != null) SelectionChanged();
 		}
 
-       
+
 		#endregion
+
+		public override void PrepareForSegue(NSStoryboardSegue segue, NSObject sender)
+		{
+			base.PrepareForSegue(segue, sender);
+
+			// Take action based on segue type
+			switch (segue.Identifier)
+			{
+				case "ViewerSegue":
+					var editor = segue.DestinationController as ImageViewerController;
+					//editor.Presentor = this;
+					//editor.CanEdit = shouldEdit;
+					//editor.Person = PersonSelected;
+					break;
+			}
+		}
 
         public void ViewImage(ImageModel model)
         {
-            
+
+
+            this.PresentViewControllerAsSheet(new ImageViewerController()
+            {
+                Model = model,
+                PresentingController = this,
+            });
         }
 	}
 }
