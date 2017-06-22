@@ -39,6 +39,7 @@
             </subviews>
             <connections>
                 <outlet property="ImageView" destination="vfA-tT-oSl" id="UHQ-fu-9LQ"/>
+                <outlet property="ParentController" destination="-2" id="dRc-qN-9TQ"/>
             </connections>
         </customView>
     </objects>

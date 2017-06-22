@@ -93,6 +93,10 @@
     <Compile Include="Views\ImageListItem.designer.cs">
       <DependentUpon>ImageListItem.cs</DependentUpon>
     </Compile>
+    <Compile Include="MainWindowController.cs" />
+    <Compile Include="MainWindowController.designer.cs">
+      <DependentUpon>MainWindowController.cs</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <InterfaceDefinition Include="Main.storyboard" />

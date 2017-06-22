@@ -1,6 +1,7 @@
 ﻿using System;
 using AppKit;
 using Foundation;
+using SDWebImageSampleMac.DataModel;
 
 namespace SDWebImageSampleMac.Classes
 {
@@ -57,6 +58,11 @@ namespace SDWebImageSampleMac.Classes
 			// Clear selection
 			//ParentViewController.PersonSelected = null;
 		}
+
+        public void DidDoubleClick(ImageModel item)
+        {
+            ParentViewController.ViewImage(item);
+        }
 		#endregion
 	}
 }

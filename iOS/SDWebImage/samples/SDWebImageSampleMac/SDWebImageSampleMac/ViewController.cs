@@ -110,6 +110,13 @@ namespace SDWebImageSampleMac
 			// Inform caller
 			if (this.SelectionChanged != null) SelectionChanged();
 		}
+
+       
 		#endregion
+
+        public void ViewImage(ImageModel model)
+        {
+            
+        }
 	}
 }

@@ -13,13 +13,21 @@ namespace SDWebImageSampleMac.Controllers
 	partial class ImageListItem
 	{
 		[Outlet]
-		public AppKit.NSImageView ImageView { get; set; }
+		public AppKit.NSImageView ImageView { get; private set; }
+
+		[Outlet]
+		SDWebImageSampleMac.Controllers.ImageListItemController ParentController { get; set; }
 		
 		void ReleaseDesignerOutlets ()
 		{
 			if (ImageView != null) {
 				ImageView.Dispose ();
 				ImageView = null;
+			}
+
+			if (ParentController != null) {
+				ParentController.Dispose ();
+				ParentController = null;
 			}
 		}
 	}

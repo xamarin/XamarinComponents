@@ -26,8 +26,20 @@ namespace SDWebImageSampleMac.Controllers
         // Shared initialization code
         void Initialize()
         {
+            
         }
 
+        public override void MouseDown(NSEvent theEvent)
+        {
+            base.MouseDown(theEvent);
+
+            if (theEvent.ClickCount > 1)
+            {
+                if (ParentController != null)
+                    ParentController.DidDoubleClick();
+                
+            }
+        } 
         #endregion
     }
 }

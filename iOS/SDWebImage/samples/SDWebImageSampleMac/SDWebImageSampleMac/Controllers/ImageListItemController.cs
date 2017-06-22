@@ -5,6 +5,7 @@ using Foundation;
 using AppKit;
 using SDWebImage;
 using SDWebImageSampleMac.DataModel;
+using SDWebImageSampleMac.Classes;
 
 namespace SDWebImageSampleMac.Controllers
 {
@@ -110,7 +111,15 @@ namespace SDWebImageSampleMac.Controllers
 
             BackgroundColor = NSColor.LightGray;
 
-            //View.ImageView.SetImage(new NSUrl(Model.ImageUrl));
+        }
+
+        public void DidDoubleClick()
+        {
+            if (this.CollectionView.Delegate != null && this.CollectionView.Delegate is CollectionViewDelegate)
+            {
+                ((CollectionViewDelegate)this.CollectionView.Delegate).DidDoubleClick((Model));
+            }
+
         }
     }
 }
