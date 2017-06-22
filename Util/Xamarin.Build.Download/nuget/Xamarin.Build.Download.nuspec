@@ -6,6 +6,7 @@
     <version>0.4.5</version>
     <authors>Xamarin Inc.</authors>
     <owners>Xamarin Inc.</owners>
+    <licenseUrl>https://github.com/xamarin/XamarinComponents/blob/master/Util/Xamarin.Build.Download/LICENSE</licenseUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>Support for downloading and unpacking archives when building MSBuild projects</description>
     <copyright>Copyright 2016</copyright>
