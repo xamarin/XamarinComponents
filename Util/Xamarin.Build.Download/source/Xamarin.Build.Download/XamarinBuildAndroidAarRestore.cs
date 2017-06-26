@@ -4,8 +4,6 @@ using System.IO;
 using System.Linq;
 using Microsoft.Build.Framework;
 using System.Xml.Linq;
-using Microsoft.Build.Utilities;
-using System.Collections.Generic;
 
 namespace Xamarin.Build.Download
 {
@@ -15,9 +13,6 @@ namespace Xamarin.Build.Download
 
 		protected override Stream LoadResource (string resourceFullPath, string assemblyName)
 		{
-			Log.LogMessage ("LoadResource: {0}", resourceFullPath);
-			Log.LogMessage ("  for:        {0}", assemblyName);
-
 			const string AAR_DIR_PREFIX = "library_project_imports";
 
 			var memoryStream = new MemoryStream ();
