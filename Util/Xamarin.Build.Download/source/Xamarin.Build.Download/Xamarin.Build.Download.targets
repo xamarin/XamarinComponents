@@ -6,6 +6,7 @@
 	<UsingTask TaskName="Xamarin.Build.Download.XamarinBuildiOSResourceRestore" AssemblyFile="Xamarin.Build.Download.dll" />
 	<UsingTask TaskName="Xamarin.Build.Download.XamarinBuildAndroidResourceRestore" AssemblyFile="Xamarin.Build.Download.dll" />
 	<UsingTask TaskName="Xamarin.Build.Download.XamarinBuildAndroidAarRestore" AssemblyFile="Xamarin.Build.Download.dll" />
+	<UsingTask TaskName="Xamarin.Build.Download.XamarinBuildAndroidAarProguardConfigs" AssemblyFile="Xamarin.Build.Download.dll" />
 
 	<PropertyGroup>
 		<XamarinBuildDownloadDir Condition="'$(XamarinBuildDownloadDir)' != '' and !HasTrailingSlash('$(XamarinBuildDownloadDir)')">$(XamarinBuildDownloadDir)\</XamarinBuildDownloadDir>
@@ -18,7 +19,7 @@
 
 	<PropertyGroup Condition="'$(TargetFrameworkIdentifier)'=='MonoAndroid'">
 		<_XamarinBuildDownloadMasterBeforeTargets>_ResolveLibraryProjectImports</_XamarinBuildDownloadMasterBeforeTargets>
-		<_XamarinBuildDownloadMasterDependsOnTargets>_XamarinBuildDownload;_XamarinAndroidBuildResourceRestore;_XamarinAndroidBuildAarRestore</_XamarinBuildDownloadMasterDependsOnTargets>
+		<_XamarinBuildDownloadMasterDependsOnTargets>_XamarinBuildDownload;_XamarinAndroidBuildResourceRestore;_XamarinAndroidBuildAarRestore;_XamarinAndroidBuildAarProguardConfigs</_XamarinBuildDownloadMasterDependsOnTargets>
 	</PropertyGroup>
 
 	<PropertyGroup>
@@ -121,11 +122,28 @@
 			<Output TaskParameter="ChangedReferencePaths" ItemName="ReferencePath" />
 			<Output TaskParameter="ChangedReferencePaths" ItemName="FileWrites" />
 			<Output TaskParameter="AdditionalFileWrites" ItemName="FileWrites" />
-			<Output TaskParameter="AarProguardConfiguration" ItemName="ProguardConfiguration" />
 		</XamarinBuildAndroidAarRestore>
 		<ItemGroup>
 			<ReferencePath Remove="@(_ResourceRestoreRemovedReferencePaths)" />
 			<ReferenceDependencyPaths Remove="@(_ResourceRestoreRemovedReferencePaths)" />
+		</ItemGroup>
+	</Target>
+
+	<Target Name="_XamarinAndroidBuildAarProguardConfigs"
+			DependsOnTargets="_XamarinAndroidBuildAarRestore"
+			AfterTargets="_XamarinAndroidBuildAarRestore"
+			>
+		<XamarinBuildAndroidAarProguardConfigs
+			TargetFrameworkVerison="$(TargetFrameworkVersion)"
+			IntermediateOutputPath="$(IntermediateOutputPath)"
+			ThrowOnMissingAssembly="$(XamarinBuildResourceMergeThrowOnMissingAssembly)"
+			InputReferencePaths="@(ReferencePath)"
+			RestoreAssemblyResources="@(XamarinBuildDownloadRestoreAssemblyAar)"
+			VsInstallRoot="$(VsInstallRoot)">
+			<Output TaskParameter="AdditionalFileWrites" ItemName="FileWrites" />
+		</XamarinBuildAndroidAarProguardConfigs>
+		<ItemGroup>
+			<ProguardConfiguration Include="$(IntermediateOutputPath)XbdMerge\proguard\*.txt" />
 		</ItemGroup>
 	</Target>
 

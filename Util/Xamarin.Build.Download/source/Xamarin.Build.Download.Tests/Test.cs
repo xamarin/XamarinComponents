@@ -879,7 +879,7 @@ namespace NativeLibraryDownloaderTests
 			var project = new ProjectInstance (prel);
 			var log = new MSBuildTestLogger ();
 
-			var success = BuildProject (engine, project, "_XamarinAndroidBuildAarRestore", log);
+			var success = BuildProject (engine, project, "_XamarinAndroidBuildAarProguardConfigs", log);
 
 			var proguardConfigItems = project.GetItems ("ProguardConfiguration");
 

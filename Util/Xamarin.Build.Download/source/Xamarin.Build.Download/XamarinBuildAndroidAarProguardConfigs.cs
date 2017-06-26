@@ -6,15 +6,106 @@ using Microsoft.Build.Framework;
 using System.Xml.Linq;
 using Microsoft.Build.Utilities;
 using System.Collections.Generic;
+using Mono.Cecil;
+using System.Reflection;
 
 namespace Xamarin.Build.Download
 {
-	public class XamarinBuildAndroidAarRestore : XamarinBuildAndroidResourceRestore
+	public class XamarinBuildAndroidAarProguardConfigs : XamarinBuildAndroidResourceRestore
 	{
 		public bool FixAndroidManifests { get; set; } = true;
 
 		[Output]
 		public ITaskItem [] AarProguardConfiguration { get; set; }
+
+		string proguardIntermediateOutputPath = null;
+
+		public override bool Execute ()
+		{
+			// Get the dir to store proguard config files in
+			proguardIntermediateOutputPath = Path.Combine (MergeOutputDir, "proguard");
+			if (!Directory.Exists (proguardIntermediateOutputPath))
+				Directory.CreateDirectory (proguardIntermediateOutputPath);
+
+
+			var additionalFileWrites = new List<ITaskItem> ();
+
+			var outputDir = MergeOutputDir;
+			Directory.CreateDirectory (outputDir);
+
+			var restoreMap = base.BuildRestoreMap (RestoreAssemblyResources);
+			if (restoreMap == null) {
+				return false;
+			}
+
+			IAssemblyResolver resolver = CreateAssemblyResolver ();
+
+			foreach (var asm in restoreMap) {
+				var asmName = new AssemblyName (asm.Key);
+				ITaskItem item = FindMatchingAssembly (InputReferencePaths, asmName);
+				if (item == null) {
+					if (ThrowOnMissingAssembly)
+						return false;
+					else
+						continue;
+				}
+
+				var intermediateAsmPath = Path.Combine (outputDir, asmName.Name + ".dll");
+
+				var saveNameHash = DownloadUtils.HashMd5 (asmName.Name)?.Substring (0, 8);
+
+				// Keep a stamp file around to avoid reprocessing
+				var stampPath = Path.Combine (outputDir, saveNameHash + ".proguard.stamp");
+				if (File.Exists (stampPath))
+					continue;
+
+				var resourceItems = asm.Value;
+
+				var entryCount = 0;
+
+				foreach (var resourceItem in resourceItems) {
+					
+					// Full path to .aar file
+					var resourceFullPath = resourceItem.GetMetadata ("FullPath");
+
+					using (var fileStream = File.OpenRead (resourceFullPath))
+					using (var zipArchive = new ZipArchive (fileStream, ZipArchiveMode.Read)) {
+
+						// Look for proguard config files in the archive
+						foreach (var entry in zipArchive.Entries) {
+							
+							// Skip entries which are not proguard configs
+							if (!entry.Name.Equals ("proguard.txt", StringComparison.OrdinalIgnoreCase)
+								&& !entry.Name.Equals ("proguard.cfg", StringComparison.OrdinalIgnoreCase))
+								continue;
+
+							// Figure out our destination filename
+							var proguardSaveFilename = Path.Combine (proguardIntermediateOutputPath, saveNameHash + entryCount + ".txt");
+
+							// Save out the proguard file
+							using (var entryStream = entry.Open ())
+							using (var fs = File.Create (proguardSaveFilename)) {
+								entryStream.CopyTo (fs);
+								fs.Flush ();
+								fs.Close ();
+							}
+
+							entryCount++;
+						}
+					}
+
+					entryCount++;
+				}
+
+				File.WriteAllText (stampPath, string.Empty);
+				additionalFileWrites.Add (new TaskItem (stampPath));
+
+			}
+
+			AdditionalFileWrites = additionalFileWrites.ToArray ();
+
+			return true;
+		}
 
 		protected override Stream LoadResource (string resourceFullPath, string assemblyName, string assemblyOutputPath)
 		{
@@ -103,6 +194,27 @@ namespace Xamarin.Build.Download
 								}
 							}
 
+							// Xamarin.Android does not consider using proguard config files from within .aar files, so we need to extract it
+							// to a known location and output it to 
+						} else if (oldEntry.Length > 0 && (newName.EndsWith ("proguard.txt", StringComparison.OrdinalIgnoreCase) || newName.EndsWith ("proguard.cfg", StringComparison.OrdinalIgnoreCase))) {
+
+
+							// We still want to copy the file over into the .aar
+							using (var oldStream = oldEntry.Open ())
+							using (var newStream = newEntry.Open ()) {
+								oldStream.CopyTo (newStream);
+							}
+
+							// Calculate an output path beside the merged/output assembly name's md5 hash
+							var proguardCfgOutputPath = Path.Combine (proguardIntermediateOutputPath, assemblyNameMd5 + ".txt");
+
+							Log.LogMessage ("Extracting Proguard Configuration to: {0}", proguardCfgOutputPath);
+
+							// Create a copy of the file
+							using (var oldStream = oldEntry.Open ())
+							using (var proguardStream = File.OpenWrite (proguardCfgOutputPath)) {
+								oldStream.CopyTo (proguardStream);
+							}
 						} else {
 							// Copy file contents over if they exist
 							if (oldEntry.Length > 0) {
