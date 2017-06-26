@@ -107,7 +107,7 @@ namespace Xamarin.Build.Download
 			return true;
 		}
 
-		protected override Stream LoadResource (string resourceFullPath, string assemblyName, string assemblyOutputPath)
+		protected override Stream LoadResource (string resourceFullPath, string assemblyName)
 		{
 			Log.LogMessage ("LoadResource: {0}", resourceFullPath);
 			Log.LogMessage ("  for:        {0}", assemblyName);
@@ -117,7 +117,7 @@ namespace Xamarin.Build.Download
 			var assemblyNameMd5 = DownloadUtils.HashMd5 (assemblyName).Substring (0, 8);
 
 			var memoryStream = new MemoryStream ();
-			using (var fileStream = base.LoadResource (resourceFullPath, assemblyName, assemblyOutputPath))
+			using (var fileStream = base.LoadResource (resourceFullPath, assemblyName))
 				fileStream.CopyTo (memoryStream);
 
 			using (var zipArchive = new ZipArchive (memoryStream, ZipArchiveMode.Update, true)) {

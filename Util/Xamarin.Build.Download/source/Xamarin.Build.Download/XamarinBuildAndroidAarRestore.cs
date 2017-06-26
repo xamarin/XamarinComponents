@@ -13,7 +13,7 @@ namespace Xamarin.Build.Download
 	{
 		public bool FixAndroidManifests { get; set; } = true;
 
-		protected override Stream LoadResource (string resourceFullPath, string assemblyName, string assemblyOutputPath)
+		protected override Stream LoadResource (string resourceFullPath, string assemblyName)
 		{
 			Log.LogMessage ("LoadResource: {0}", resourceFullPath);
 			Log.LogMessage ("  for:        {0}", assemblyName);
@@ -21,7 +21,7 @@ namespace Xamarin.Build.Download
 			const string AAR_DIR_PREFIX = "library_project_imports";
 
 			var memoryStream = new MemoryStream ();
-			using (var fileStream = base.LoadResource (resourceFullPath, assemblyName, assemblyOutputPath))
+			using (var fileStream = base.LoadResource (resourceFullPath, assemblyName))
 				fileStream.CopyTo (memoryStream);
 
 			using (var zipArchive = new ZipArchive (memoryStream, ZipArchiveMode.Update, true)) {

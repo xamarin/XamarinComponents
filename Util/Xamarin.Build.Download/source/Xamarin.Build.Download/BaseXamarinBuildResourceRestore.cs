@@ -44,7 +44,7 @@ namespace Xamarin.Build.Download
 
 		protected abstract IAssemblyResolver CreateAssemblyResolver ();
 
-		protected virtual Stream LoadResource (string resourceFullPath, string assemblyName, string assemblyOutputPath)
+		protected virtual Stream LoadResource (string resourceFullPath, string assemblyName)
 		{
 			return File.OpenRead (resourceFullPath);
 		}
@@ -134,7 +134,7 @@ namespace Xamarin.Build.Download
 					var resourceFullPath = resourceItem.GetMetadata ("FullPath");
 
 					// This gives subclasses a chance to deal with the resource however it needs to
-					var stream = LoadResource (resourceFullPath, assemblyName, mergedAsmPath);
+					var stream = LoadResource (resourceFullPath, assemblyName);
 
 					// Reset the position if the stream was manipulated
 					if (stream.CanSeek && stream.Position != 0)
