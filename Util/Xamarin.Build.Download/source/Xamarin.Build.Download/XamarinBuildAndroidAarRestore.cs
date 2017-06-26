@@ -13,17 +13,12 @@ namespace Xamarin.Build.Download
 	{
 		public bool FixAndroidManifests { get; set; } = true;
 
-		[Output]
-		public ITaskItem [] AarProguardConfiguration { get; set; }
-
 		protected override Stream LoadResource (string resourceFullPath, string assemblyName, string assemblyOutputPath)
 		{
 			Log.LogMessage ("LoadResource: {0}", resourceFullPath);
 			Log.LogMessage ("  for:        {0}", assemblyName);
 
 			const string AAR_DIR_PREFIX = "library_project_imports";
-
-			var assemblyNameMd5 = DownloadUtils.HashMd5 (assemblyName).Substring (0, 8);
 
 			var memoryStream = new MemoryStream ();
 			using (var fileStream = base.LoadResource (resourceFullPath, assemblyName, assemblyOutputPath))
