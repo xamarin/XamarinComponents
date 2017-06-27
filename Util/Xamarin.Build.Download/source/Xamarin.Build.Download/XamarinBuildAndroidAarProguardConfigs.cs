@@ -43,8 +43,6 @@ namespace Xamarin.Build.Download
 			if (restoreMap == null)
 				return false;
 
-			IAssemblyResolver resolver = CreateAssemblyResolver ();
-
 			// Look through all the assemblies we would restore for
 			foreach (var asm in restoreMap) {
 
@@ -94,6 +92,9 @@ namespace Xamarin.Build.Download
 							// Figure out our destination filename
 							var proguardSaveFilename = Path.Combine (proguardIntermediateOutputPath, saveNameHash + entryCount + ".txt");
 
+							// Add this to our file writes
+							additionalFileWrites.Add (new TaskItem (proguardSaveFilename));
+
 							// Save out the proguard file
 							using (var entryStream = entry.Open ())
 							using (var fs = File.Create (proguardSaveFilename)) {
@@ -105,8 +106,6 @@ namespace Xamarin.Build.Download
 							entryCount++;
 						}
 					}
-
-					entryCount++;
 				}
 
 				// *.proguard.stamp files are additional file writes
