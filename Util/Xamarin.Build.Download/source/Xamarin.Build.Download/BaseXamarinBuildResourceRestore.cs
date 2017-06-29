@@ -166,7 +166,7 @@ namespace Xamarin.Build.Download
 			}
 		}
 
-		ITaskItem FindMatchingAssembly (ITaskItem [] assemblies, AssemblyName name)
+		protected ITaskItem FindMatchingAssembly (ITaskItem [] assemblies, AssemblyName name)
 		{
 			foreach (var asm in assemblies) {
 				var asmPath = asm.GetMetadata ("FullPath");
@@ -190,7 +190,7 @@ namespace Xamarin.Build.Download
 			return null;
 		}
 
-		Dictionary<string, List<ITaskItem>> BuildRestoreMap (ITaskItem [] restoreAssemblyResources)
+		protected Dictionary<string, List<ITaskItem>> BuildRestoreMap (ITaskItem [] restoreAssemblyResources)
 		{
 			var restoreMap = new Dictionary<string, List<ITaskItem>> ();
 
