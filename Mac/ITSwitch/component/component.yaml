@@ -3,7 +3,7 @@ name: ITSwitch
 src-url: https://github.com/xamarin/XamarinComponents/iOS/ITSwitch
 id: itswitch
 publisher: Xamarin Inc
-license: License.md
+license: ../License.md
 icons: 
   - icons/itswitch_512x512.png
   - icons/itswitch_128x128.png
