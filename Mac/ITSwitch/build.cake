@@ -18,7 +18,7 @@ var buildSpec = new BuildSpec () {
 		},
 	},
 	Samples = new ISolutionBuilder [] {
-		new IOSSolutionBuilder { SolutionPath = "./samples/ITSwitchSample/ITSwitchSample.sln", Configuration = "Release|iPhone", BuildsOn = BuildPlatforms.Mac },
+		new DefaultSolutionBuilder { SolutionPath = "./samples/ITSwitchSample/ITSwitchSample.sln", Configuration = "Release", BuildsOn = BuildPlatforms.Mac },
 	},
 
 	NuGets = new [] {
