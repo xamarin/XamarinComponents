@@ -20,6 +20,12 @@ samples:
   - path: ../samples/ITSwitchSample/ITSwitchSample.sln
     name: Mac Sample
     nobuild: "true"
+    removeProjects:
+      - ITSwitch
+    installNuGets:
+      - project: ITSwitchSample
+        packages:
+          - Xamarin.Mac.ITSwitch
 is_shell: true
 packages:
   mac-unified: Xamarin.Mac.ITSwitch, Version=1.0.1
