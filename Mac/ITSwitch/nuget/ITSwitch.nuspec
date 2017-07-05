@@ -14,5 +14,6 @@
   </metadata>
   <files>
     <file src="output/unified/ITSwitch.dll" target="lib/Xamarin.Mac20" />
+    <file src="External-Dependency-Info.txt" target="THIRD-PARTY-NOTICES.txt" />
   </files>
 </package>
