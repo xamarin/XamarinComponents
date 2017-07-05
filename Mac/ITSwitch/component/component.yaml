@@ -15,14 +15,14 @@ details: Details.md
 screenshots: 
   - screenshots/00.jpg
 getting-started: GettingStarted.md
-version: "1.0"
+version: "1.0.1"
 samples: 
   - path: ../samples/ITSwitchSample/ITSwitchSample.sln
     name: Mac Sample
     nobuild: "true"
 is_shell: true
 packages:
-  ios-unified: Xamarin.Mac.ITSwitch, Version=1.0.0
+  ios-unified: Xamarin.Mac.ITSwitch, Version=1.0.1
 local-nuget-repo: ../output
 additional-files:
   - source: "../External-Dependency-Info.txt"
