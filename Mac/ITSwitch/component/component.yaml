@@ -23,4 +23,8 @@ samples:
 is_shell: true
 packages:
   ios-unified: Xamarin.Mac.ITSwitch, Version=1.0.0
+local-nuget-repo: ../output
+additional-files:
+  - source: "../External-Dependency-Info.txt"
+    destination: "THIRD-PARTY-NOTICES.txt"
 ...
