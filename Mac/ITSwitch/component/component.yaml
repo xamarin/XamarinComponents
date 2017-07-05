@@ -22,7 +22,7 @@ samples:
     nobuild: "true"
 is_shell: true
 packages:
-  ios-unified: Xamarin.Mac.ITSwitch, Version=1.0.1
+  mac-unified: Xamarin.Mac.ITSwitch, Version=1.0.1
 local-nuget-repo: ../output
 additional-files:
   - source: "../External-Dependency-Info.txt"
