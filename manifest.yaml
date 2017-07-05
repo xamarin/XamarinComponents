@@ -373,6 +373,14 @@
   TriggerPaths: [ XPlat/Shopify/iOS ]
   MacBuildTargets: [ samples, component ]
 
+#######################################################
+# Mac
+#######################################################
+
+- Name: ITSwitch
+  BuildScript: ./Mac/ITSwitch/build.cake
+  TriggerPaths: [ Mac/ITSwitch ]
+  MacBuildTargets: [ samples, nuget, component ]
 
 #######################################################
 # Utilities
