@@ -26,6 +26,7 @@ Browse through the most popular plugins out there today!
 
 |Name|Description|NuGet|Docs & Source|Creator|
 | ------------------- | --------------------------------- | :-----------: | :-----------: |-------------------- |
+|Audio Recorder|Record audio on a device's microphone input.|[NuGet](https://www.nuget.org/packages/Plugin.AudioRecorder)|[GitHub](https://github.com/NateRickard/Plugin.AudioRecorder)|[@NateRickard](https://github.com/NateRickard)|
 |Battery Status|Gather battery level, charging status, and type.|[NuGet](https://www.nuget.org/packages/Xam.Plugin.Battery/)|[GitHub](https://github.com/jamesmontemagno/BatteryPlugin)|[@JamesMontemagno](http://www.twitter.com/jamesmontemagno)|
 |Barcode Scanner|Scan and create barcodes with ZXing.NET.Mobile.|[NuGet](https://www.nuget.org/packages/ZXing.Net.Mobile)|[GitHub](https://github.com/Redth/ZXing.Net.Mobile)|[@Redth](https://twitter.com/redth)|
 |Bluetooth LE|Scan and connect to Bluetooth devices.|[NuGet](https://www.nuget.org/packages/Acr.Ble/)|[GitHub](https://github.com/aritchie/bluetoothle)|[@allanritchie911](https://twitter.com/allanritchie911)|
