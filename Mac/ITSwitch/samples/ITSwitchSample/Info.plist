@@ -2,33 +2,32 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>CFBundleDisplayName</key>
-	<string>ITSwitchSample</string>
-	<key>CFBundleDevelopmentRegion</key>
-	<string>en</string>
-	<key>CFBundleIconFile</key>
-	<string></string>
-	<key>CFBundleIdentifier</key>
-	<string>com.your-company.ITSwitchSample</string>
-	<key>CFBundleInfoDictionaryVersion</key>
-	<string>6.0</string>
 	<key>CFBundleName</key>
 	<string>ITSwitchSample</string>
-	<key>CFBundlePackageType</key>
-	<string>APPL</string>
+	<key>CFBundleIdentifier</key>
+	<string>com.mobillholmes.itswitchsample2</string>
 	<key>CFBundleShortVersionString</key>
 	<string>1.0</string>
-	<key>CFBundleSignature</key>
-	<string>????</string>
 	<key>CFBundleVersion</key>
 	<string>1</string>
 	<key>LSMinimumSystemVersion</key>
-	<string>10.8</string>
+	<string>10.11</string>
+	<key>CFBundleDevelopmentRegion</key>
+	<string>en</string>
+	<key>CFBundleInfoDictionaryVersion</key>
+	<string>6.0</string>
+	<key>CFBundlePackageType</key>
+	<string>APPL</string>
+	<key>CFBundleSignature</key>
+	<string>????</string>
 	<key>NSHumanReadableCopyright</key>
-	<string>davehumphreys</string>
-	<key>NSMainNibFile</key>
-	<string>MainMenu</string>
+	<string>(c) Bill Holmes</string>
 	<key>NSPrincipalClass</key>
 	<string>NSApplication</string>
+	<key>NSMainStoryboardFile</key>
+	<string>Main</string>
+	<key>XSAppIconAssets</key>
+	<string>Assets.xcassets/AppIcon.appiconset</string>
+	
 </dict>
 </plist>
