@@ -147,8 +147,16 @@ namespace Xamarin.Build.Download
 					needToWrite = true;
 				}
 
-				if (needToWrite)
-					asmDefinition.Write (mergedAsmPath);
+				if (needToWrite) {
+					if (IsFileLockedForWriting(mergedAsmPath)) {
+						Log.LogWarning("MergeResources: File is locked for writing; this would lead to a sharing violation. Manually triggering GC. File: {0}", mergedAsmPath);
+
+						GC.Collect();
+						GC.WaitForPendingFinalizers();
+					}
+
+					asmDefinition.Write(mergedAsmPath);
+				}
 
 				return true;
 			} catch (Exception ex) {
@@ -215,6 +223,25 @@ namespace Xamarin.Build.Download
 			}
 
 			return restoreMap;
+		}
+
+		private static bool IsFileLockedForWriting(string filePath)
+		{
+			var file = new FileInfo(filePath);
+
+			FileStream stream = null;
+
+			try {
+				stream = file.Open(FileMode.Open, FileAccess.ReadWrite, FileShare.None);
+			} catch (IOException) {
+				return true;
+			} finally {
+				if (stream != null)                
+					stream.Close();
+				
+			}
+
+			return false;
 		}
 	}
 }
