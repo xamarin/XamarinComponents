@@ -1,6 +1,6 @@
 no_build: true
 name: ITSwitch
-src-url: https://github.com/xamarin/XamarinComponents/Mac/ITSwitch
+src-url: https://github.com/xamarin/XamarinComponents/tree/master/Mac/ITSwitch
 id: itswitch
 publisher: Xamarin Inc
 license: ../License.md
