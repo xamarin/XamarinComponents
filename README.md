@@ -67,6 +67,7 @@ Browse through the most popular plugins out there today!
 |User Dialogs|Message box style dialogs.|[NuGet](https://www.nuget.org/packages/Acr.UserDialogs/)|[GitHub](https://github.com/aritchie/userdialogs)|[@allanritchie911](https://twitter.com/allanritchie911)|
 |Version Tracking|Track which versions of your app a user has previously installed.|[NuGet](https://www.nuget.org/packages/Plugin.VersionTracking/1.0.1)|[GitHub](https://github.com/colbylwilliams/VersionTrackingPlugin)|[@ColbyLWilliams](https://twitter.com/colbylwilliams)|
 |Vibrate|Vibrate any device.|[NuGet](https://www.nuget.org/packages/Xam.Plugins.Vibrate/)|[GitHub](https://github.com/jamesmontemagno/VibratePlugin)|[@JamesMontemagno](http://www.twitter.com/jamesmontemagno)|
+|Device Orientation|Plugin to work with screen orientation (change and lock)|[NuGet](https://www.nuget.org/packages/Plugin.DeviceOrientation/)|[GitHub](https://github.com/wcoder/Xamarin.Plugin.DeviceOrientation)|[@YauheniPakala](https://github.com/wcoder)
 
 
 ### Create a Plugin for Xamarin
