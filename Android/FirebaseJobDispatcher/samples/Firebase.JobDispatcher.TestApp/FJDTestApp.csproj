@@ -129,7 +129,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\source\Firebase.JobDispatcher\Firebase.JobDispatcher.csproj">
-      <Project>{ef6b1e2a-e8f0-481e-80d1-98ea9ed6ca42}</Project>
+      <Project>{EF6B1E2A-E8F0-481E-80D1-98EA9ED6CA42}</Project>
       <Name>Firebase.JobDispatcher</Name>
     </ProjectReference>
   </ItemGroup>
