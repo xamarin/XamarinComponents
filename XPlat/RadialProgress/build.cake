@@ -5,7 +5,7 @@ var TARGET = Argument ("t", Argument ("target", "Default"));
 
 var buildSpec = new BuildSpec {
 	Libs = new [] {
-		new IOSSolutionBuilder {
+		new DefaultSolutionBuilder {
 			SolutionPath = "./source/RadialProgress.sln",
 			OutputFiles = new [] { 
 				new OutputFileCopy {
@@ -23,7 +23,7 @@ var buildSpec = new BuildSpec {
 	},
 
 	Samples = new [] {
-		new IOSSolutionBuilder { SolutionPath = "./samples/RadialProgress.iOS.Sample/RadialProgress.iOS.Sample.sln", Configuration = "Release|iPhone" },
+		new IOSSolutionBuilder { SolutionPath = "./samples/RadialProgress.iOS.Sample/RadialProgress.iOS.Sample.sln",  Configuration = "Release", Platform="iPhone" },
 		new DefaultSolutionBuilder { SolutionPath = "./samples/RadialProgress.Android.Sample/RadialProgress.Android.Sample.sln" }
 	},
 

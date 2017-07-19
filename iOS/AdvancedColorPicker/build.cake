@@ -5,8 +5,9 @@ var TARGET = Argument ("t", Argument ("target", "Default"));
 
 var buildSpec = new BuildSpec () {
 	Libs = new ISolutionBuilder [] {
-		new IOSSolutionBuilder {
+		new DefaultSolutionBuilder {
 			SolutionPath = "./source/AdvancedColorPicker.sln",
+			Configuration = "Release",
 			BuildsOn = BuildPlatforms.Mac,
 			OutputFiles = new [] { 
 				new OutputFileCopy {
@@ -24,7 +25,7 @@ var buildSpec = new BuildSpec () {
 	Samples = new ISolutionBuilder [] {
 		new IOSSolutionBuilder {
 			SolutionPath = "./samples/AdvancedColorPickerDemo/AdvancedColorPickerDemo.sln",
-			Configuration = "Release|iPhone",
+			Configuration = "Release", Platform="iPhone",
 			BuildsOn = BuildPlatforms.Mac
 		},
 	},
