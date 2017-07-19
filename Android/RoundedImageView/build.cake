@@ -3,7 +3,7 @@
 
 var TARGET = Argument ("t", Argument ("target", "Default"));
 
-var AAR_VERSION = "2.2.1";
+var AAR_VERSION = "2.3.0";
 var AAR_URL = string.Format ("http://search.maven.org/remotecontent?filepath=com/makeramen/roundedimageview/{0}/roundedimageview-{0}.aar", AAR_VERSION);
 var AAR_FILE = "RoundedImageView.aar";
 
@@ -21,6 +21,10 @@ var buildSpec = new BuildSpec () {
 
 	Samples = new ISolutionBuilder [] {
 		new DefaultSolutionBuilder { SolutionPath = "./samples/RoundedImageViewSample.sln" },
+	},
+
+	NuGets = new [] {
+		new NuGetInfo { NuSpec = "./nuget/Xamarin.Android.RoundedImageView.nuspec" },
 	},
 
 	Components = new [] {
