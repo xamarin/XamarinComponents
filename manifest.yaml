@@ -109,7 +109,7 @@
 - Name: RoundedImageView
   BuildScript: ./Android/RoundedImageView/build.cake
   TriggerPaths: [ Android/RoundedImageView ]
-  MacBuildTargets: [ samples, component ]
+  MacBuildTargets: [ component, samples ]
 - Name: Scissors
   BuildScript: ./Android/Scissors/build.cake
   TriggerPaths: [ Android/Scissors ]
