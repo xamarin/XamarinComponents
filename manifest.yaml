@@ -38,6 +38,10 @@
   BuildScript: ./Android/Blurring/build.cake
   TriggerPaths: [ Android/Blurring ]
   MacBuildTargets: [ samples, nuget, component ]
+- Name: ShimmerLayout
+  BuildScript: ./Android/ShimmerLayout/build.cake
+  TriggerPaths: [ Android/ShimmerLayout ]
+  MacBuildTargets: [ component, samples ]
 - Name: Bolts
   BuildScript: ./Android/Bolts/build.cake
   TriggerPaths: [ Android/Bolts ]
