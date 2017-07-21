@@ -14,6 +14,9 @@ public class CocoaPods : VersionFetcher
 
     public override string FetchNewestAvailableVersion ()
     {
+        var githubClientId = System.Environment.GetEnvironmentVariable ("GITHUB_CLIENT_ID");
+        var githubClientSecret = System.Environment.GetEnvironmentVariable ("GITHUB_CLIENT_SECRET");
+
         // CocoaPods moved to using a folder prefix in their Specs repo in order to avoid
         // having all the specs in a single directory
         // The formula is the first 3 chars of the md5 value of the Pod ID
@@ -31,14 +34,12 @@ public class CocoaPods : VersionFetcher
         http.DefaultRequestHeaders.UserAgent.ParseAdd ("Xamarin-Internal/1.0");
 
         var tree = string.Format ("master:Specs/{0}", podIdPath);
-
-        //Console.WriteLine ("https://api.github.com/repos/{0}/{1}/git/trees/{2}", "CocoaPods", "Specs", tree);
         
         var url = string.Format ("https://api.github.com/repos/{0}/{1}/git/trees/{2}", "CocoaPods", "Specs", System.Net.WebUtility.UrlEncode (tree));
 
         if (!string.IsNullOrEmpty (githubClientId) && !string.IsNullOrEmpty (githubClientSecret)) 
             url += "?client_id=" + githubClientId + "&client_secret=" + githubClientSecret;
-            
+
         var data = http.GetStringAsync (url).Result;
 
         var json = JObject.Parse (data);
