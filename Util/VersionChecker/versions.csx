@@ -131,4 +131,5 @@ foreach (var grp in updates.GroupBy (up => up.Owner)) {
     SlackNotifier.Notify (owner, grp);
 }
 
-SlackNotifier.Notify (failures);
+if (failures.Any ())
+    SlackNotifier.Notify (failures);
