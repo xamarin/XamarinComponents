@@ -114,14 +114,23 @@ var fetchers = new VersionFetcher[] {
 };
 
 var updates = new List<UpdateInfo> ();
+var failures = new List<string> ();
 
 foreach (var v in fetchers) {
-    var updateInfo = v.Run ();
-    if (updateInfo != null)
-        updates.Add (updateInfo);
+    try {
+        var updateInfo = v.Run ();
+        if (updateInfo != null)
+            updates.Add (updateInfo);
+    } catch (Exception ex) {
+        failures.Add (v.ComponentName);
+    }
 }
 
 foreach (var grp in updates.GroupBy (up => up.Owner)) {
     var owner = string.IsNullOrEmpty (grp.Key) ? "here" : grp.Key;
     SlackNotifier.Notify (owner, grp);
+}
+
+foreach (var f in failures) {
+    SlackNotifier.Notify (failures);
 }
