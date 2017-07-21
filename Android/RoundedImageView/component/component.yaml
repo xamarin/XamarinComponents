@@ -1,4 +1,4 @@
-version: 2.2.1
+version: 2.3.0
 name: Rounded Image View
 id: RoundedImageView
 publisher: Xamarin Inc
@@ -17,9 +17,24 @@ icons:
 no_build: true
 libraries:
   android: ../output/RoundedImageView.dll
+
+is_shell: true
+local-nuget-repo: ../output/
 packages:
-  android: Square.Picasso, Version=2.5.2.1
+  android: 
+   - Xamarin.Android.RoundedImageView, Version=2.3.0
+   - Square.Picasso, Version=2.5.2.1
 
 samples:
   - name: "Android Sample"
     path: ../samples/RoundedImageViewSample.sln
+    removeProjects:
+      - RoundedImageView
+    installNuGets:
+      - project: RoundedImageViewSample
+        packages:
+          - Xamarin.Android.RoundedImageView
+
+additional-files:
+  - source: "../External-Dependency-Info.txt"
+    destination: "THIRD-PARTY-NOTICES.txt"

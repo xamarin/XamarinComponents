@@ -1,0 +1,39 @@
+name: Radial Progress 
+id: radialprogress
+version: 1.0.2
+summary: A stylish, circular progress view.
+publisher: Xamarin Inc
+publisher-url: http://xamarin.com/
+popover: popover.gif
+license: ../License.md
+src-url: https://github.com/xamarin/XamarinComponents/tree/master/XPlat/RadialProgress
+icons:
+  - icons/radialprogress_128x128.png
+is_shell: true
+packages:
+  ios-unified:
+    - Xamarin.RadialProgress, Version=1.0.2
+  android:
+    - Xamarin.RadialProgress, Version=1.0.2
+libraries:
+  ios-unified: ../output/RadialProgress.iOS.dll
+  android: ../output/RadialProgress.Android.dll
+samples:
+  - name: "Android Sample"
+    path: ../samples/RadialProgress.Android.Sample/RadialProgress.Android.Sample.sln
+    removeProjects:
+      RadialProgress.Android
+    installNuGets:
+      - project: RadialProgress.Android.Sample
+        packages:
+          - Xamarin.RadialProgress
+  - name: "iOS Sample"
+    path: ../samples/RadialProgress.iOS.Sample/RadialProgress.iOS.Sample.sln
+    removeProjects:
+      RadialProgress.iOS
+    installNuGets:
+      - project: RadialProgress.iOS.Sample
+        packages:
+          - Xamarin.RadialProgress
+local-nuget-repo: ../output/
+no_build: true

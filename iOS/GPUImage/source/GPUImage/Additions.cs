@@ -173,7 +173,7 @@ namespace GPUImage.Filters.ImageProcessing
 
 	partial class GPUImageCrosshairGenerator
 	{
-		public void RenderCrosshairs (float[] crosshairCoordinates, nuint numberOfCrosshairs, CMTime frameTime)
+		unsafe public void RenderCrosshairs (float[] crosshairCoordinates, nuint numberOfCrosshairs, CMTime frameTime)
 		{
 			fixed (float* c = &crosshairCoordinates [0]) {
 				RenderCrosshairs ((IntPtr)c, numberOfCrosshairs, frameTime);
@@ -215,7 +215,7 @@ namespace GPUImage.Sources
 	{
 		private GCHandle bytesHandle;
 
-		public void UpdateData (byte[] bytesToUpload, CGSize imageSize)
+		unsafe public void UpdateData (byte[] bytesToUpload, CGSize imageSize)
 		{
 			fixed (byte* l = &bytesToUpload [0]) {
 				UpdateData ((IntPtr)l, imageSize);

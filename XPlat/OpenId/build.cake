@@ -20,8 +20,9 @@ var PODFILE = new List<string> {
 
 var buildSpec = new BuildSpec {
 	Libs = new [] {
-		new IOSSolutionBuilder {
+		new DefaultSolutionBuilder {
 			SolutionPath = "./iOS/source/OpenId.AppAuth.iOS.sln",
+			Configuration="Release",
 			OutputFiles = new [] { 
 				new OutputFileCopy {
 					FromFile = "./iOS/source/OpenId.AppAuth.iOS/bin/Release/OpenId.AppAuth.iOS.dll",
@@ -44,7 +45,7 @@ var buildSpec = new BuildSpec {
 	},
 
 	Samples = new [] {
-		new IOSSolutionBuilder { SolutionPath = "./iOS/samples/OpenIdAuthSampleiOS.sln", Configuration = "Release|iPhone" },
+		new IOSSolutionBuilder { SolutionPath = "./iOS/samples/OpenIdAuthSampleiOS.sln",  Configuration = "Release", Platform="iPhone" },
 		new DefaultSolutionBuilder { SolutionPath = "./Android/samples/OpenIdAuthSampleAndroid.sln" }
 	},
 

@@ -26,7 +26,7 @@ var buildSpec = new BuildSpec () {
 	},
 
 	Samples = new ISolutionBuilder [] {
-		new IOSSolutionBuilder { SolutionPath = "./samples/TPKeyboardAvoidingSample.sln", Configuration = "Release|iPhone" },	
+		new IOSSolutionBuilder { SolutionPath = "./samples/TPKeyboardAvoidingSample.sln", Configuration = "Release", Platform="iPhone" },
 	},
 
 	Components = new [] {

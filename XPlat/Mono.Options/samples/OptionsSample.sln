@@ -1,0 +1,23 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OptionsSample", "OptionsSample\OptionsSample.csproj", "{5CA31AAF-EF36-4E4E-B6B1-41C0B1374FEA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mono.Options", "..\source\Mono.Options\Mono.Options.csproj", "{B1ACDC87-F495-41DF-99CF-B56417EE57B1}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{5CA31AAF-EF36-4E4E-B6B1-41C0B1374FEA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5CA31AAF-EF36-4E4E-B6B1-41C0B1374FEA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5CA31AAF-EF36-4E4E-B6B1-41C0B1374FEA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5CA31AAF-EF36-4E4E-B6B1-41C0B1374FEA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B1ACDC87-F495-41DF-99CF-B56417EE57B1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B1ACDC87-F495-41DF-99CF-B56417EE57B1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B1ACDC87-F495-41DF-99CF-B56417EE57B1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B1ACDC87-F495-41DF-99CF-B56417EE57B1}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal

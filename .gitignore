@@ -6,3 +6,5 @@ tools
 externals
 **/Resources/Resource.designer.cs
 *.userprefs
+
+.DS_Store

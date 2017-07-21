@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>10.0.0</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{957AF0CF-4765-4A55-B4EA-10415EE2ED93}</ProjectGuid>
+    <ProjectTypeGuids>{FEACFBD2-3405-455C-9665-78FE426C6842};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <RootNamespace>RadialProgress</RootNamespace>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>True</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>False</Optimize>
+    <IntermediateOutputPath>obj\unified\Debug</IntermediateOutputPath>
+    <OutputPath>bin\unified\Debug</OutputPath>
+    <DefineConstants>DEBUG;__UNIFIED__</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <ConsolePause>False</ConsolePause>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>none</DebugType>
+    <Optimize>True</Optimize>
+    <IntermediateOutputPath>obj\unified\Release</IntermediateOutputPath>
+    <OutputPath>bin\unified\Release</OutputPath>
+    <DefineConstants>__UNIFIED__</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <ConsolePause>False</ConsolePause>
+  </PropertyGroup>
+  <PropertyGroup>
+    <AssemblyName>RadialProgress.iOS</AssemblyName>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Core" />
+    <Reference Include="Xamarin.iOS" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RadialProgressView.cs" />
+    <Compile Include="RadialProgress\BigRadialProgressLayer.cs" />
+    <Compile Include="RadialProgress\SmallRadialProgressLayer.cs" />
+    <Compile Include="RadialProgress\RadialProgressLayer.cs" />
+    <Compile Include="RadialProgress\TinyRadialProgressLayer.cs" />
+    <Compile Include="RadialProgress\BezierPathGenerator.cs" />
+    <Compile Include="RadialProgressViewStyle.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="RadialProgress\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
+</Project>

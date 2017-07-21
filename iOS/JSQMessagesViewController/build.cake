@@ -5,7 +5,7 @@ var TARGET = Argument ("t", Argument ("target", "Default"));
 
 var buildSpec = new BuildSpec () {
 	Libs = new ISolutionBuilder [] {
-		new IOSSolutionBuilder {
+		new DefaultSolutionBuilder {
 			SolutionPath = "./source/JSQMessagesViewController/JSQMessagesViewController.sln",
 			Configuration = "Release",
 			BuildsOn = BuildPlatforms.Mac,
@@ -18,8 +18,8 @@ var buildSpec = new BuildSpec () {
 	},
 
 	Samples = new ISolutionBuilder [] {
-		new IOSSolutionBuilder { SolutionPath = "./samples/XamarinChat.sln", Configuration = "Release|iPhone", BuildsOn = BuildPlatforms.Mac },
-		new IOSSolutionBuilder { SolutionPath = "./samples/PatriotConversation.sln", Configuration = "Release|iPhone", BuildsOn = BuildPlatforms.Mac },
+		new IOSSolutionBuilder { SolutionPath = "./samples/XamarinChat.sln", Configuration = "Release", Platform="iPhone", BuildsOn = BuildPlatforms.Mac },
+		new IOSSolutionBuilder { SolutionPath = "./samples/PatriotConversation.sln", Configuration = "Release", Platform="iPhone", BuildsOn = BuildPlatforms.Mac },
 	},
 
 	Components = new [] {

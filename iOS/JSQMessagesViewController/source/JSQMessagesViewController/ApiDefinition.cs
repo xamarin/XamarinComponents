@@ -6,6 +6,7 @@ using ObjCRuntime;
 using CoreGraphics;
 using MapKit;
 using CoreLocation;
+using AVFoundation;
 
 namespace JSQMessagesViewController
 {
@@ -609,6 +610,22 @@ namespace JSQMessagesViewController
 		// -(void)scrollToBottomAnimated:(BOOL)animated;
 		[Export ("scrollToBottomAnimated:")]
 		void ScrollToBottom (bool animated);
+
+		// - (BOOL)isOutgoingMessage:(id<JSQMessageData>)messageItem;
+		[Export("isOutgoingMessage:")]
+		bool IsOutgoingMessage(MessageData messageData);
+
+		// - (void)scrollToIndexPath:(NSIndexPath *)indexPath animated:(BOOL)animated;
+		[Export("scrollToIndexPath:animated:")]
+		bool ScrollToIndexPath(NSIndexPath indexPath, bool animated);
+
+		// - (void)didReceiveMenuWillShowNotification:(NSNotification *)notification;
+		[Export("didReceiveMenuWillShowNotification:")]
+		bool ReceivedMenuWillShowNotification(NSNotification messageData);
+
+		// - (void)didReceiveMenuWillHideNotification:(NSNotification *)notification;
+		[Export("didReceiveMenuWillHideNotification:")]
+		bool ReceivedMenuWillHideNotification(NSNotification messageData);
 	}
 
 	// @interface JSQMessagesCollectionViewCellIncoming : JSQMessagesCollectionViewCell
@@ -874,6 +891,76 @@ namespace JSQMessagesViewController
 		// -(void)clearCachedMediaViews;
 		[Export ("clearCachedMediaViews")]
 		void ClearCachedMediaViews ();
+	}
+
+	// @interface JSQAudioMediaItem : JSQMediaItem <JSQMessageMediaData, AVAudioPlayerDelegate, NSCoding, NSCopying>
+	[BaseType(typeof(MediaItem), Name = "JSQAudioMediaItem")]
+	interface AudioMediaItem : MessageMediaData, IAVAudioPlayerDelegate, INSCoding, INSCopying
+	{
+		// +@property(nonatomic, strong, readonly) JSQAudioMediaViewAttributes* audioViewAttributes;
+		[Export("audioViewAttributes", ArgumentSemantic.Strong)]
+		AudioMediaViewAttributes AudioViewAttributes { get; }
+
+		// @property (nonatomic, strong, nullable) NSData *audioData;
+		[NullAllowed, Export("audioData", ArgumentSemantic.Strong)]
+		NSData AudioData { get; set; }
+
+		// - (instancetype)initWithData:(nullable NSData *)audioData
+		[Export("initWithData:")]
+		IntPtr Constructor(NSData audioData);
+
+		// - (instancetype)initWithData:(nullable NSData *)audioData audioViewAttributes:(JSQAudioMediaViewAttributes*)audioViewAttributes
+		[Export("initWithImage:audioViewAttributes:")]
+		IntPtr Constructor(NSData audioData, AudioMediaViewAttributes audioViewAttributes);
+
+		// - (instancetype)initWithAudioViewAttributes:(JSQAudioMediaViewAttributes *)audioViewAttributes;
+		[Export("initWithAudioViewAttributes:")]
+		IntPtr Constructor(AudioMediaViewAttributes audioViewAttributes);
+
+		// - (void)setAudioDataWithUrl:(nonnull NSURL *)audioURL;
+		[Export("setAudioDataWithUrl:")]
+		void SetAudioDataWithUrl(NSUrl audioURL);
+	}
+
+	// @interface JSQAudioMediaViewAttributes : NSObject
+	[BaseType(typeof(NSObject), Name = "JSQAudioMediaViewAttributes")]
+	interface AudioMediaViewAttributes
+	{
+		// @property (nonatomic, strong) UIImage *playButtonImage;
+		[Export("playButtonImage", ArgumentSemantic.Strong)]
+		UIImage PlayButtonImage { get; set; }
+
+		// @property (nonatomic, strong) UIImage *pauseButtonImage;
+		[Export("pauseButtonImage", ArgumentSemantic.Strong)]
+		UIImage PauseButtonImage { get; set; }
+
+		// @property (strong, nonatomic) UIFont *labelFont;
+		[Export("labelFont", ArgumentSemantic.Strong)]
+		UIFont LabelFont { get; set; }
+
+		// @property (nonatomic, assign) BOOL showFractionalSeconds;
+		[Export("showFractionalSeconds", ArgumentSemantic.Assign)]
+		bool ShowFractionalSeconds { get; set; }
+
+		// @property (nonatomic, strong) UIColor *backgroundColor;
+		[Export("backgroundColor", ArgumentSemantic.Strong)]
+		UIColor BackgroundColor { get; set; }
+
+		// @property (nonatomic, strong) UIColor *tintColor;
+		[Export("tintColor", ArgumentSemantic.Strong)]
+		UIColor TintColor { get; set; }
+
+		// @property (nonatomic, assign) UIEdgeInsets controlInsets;
+		[Export("controlInsets", ArgumentSemantic.Assign)]
+		UIEdgeInsets ControlInsets { get; set; }
+
+		// @property (nonatomic, assign) CGFloat controlPadding;
+		[Export("controlPadding", ArgumentSemantic.Assign)]
+		nfloat ControlPadding { get; set; }
+		
+		// - (instancetype)initWithPlayButtonImage:(UIImage *)playButtonImage pauseButtonImage:(UIImage*)pauseButtonImage labelFont:(UIFont*)labelFont showFractionalSecodns:(BOOL)showFractionalSeconds backgroundColor:(UIColor*)backgroundColor tintColor:(UIColor*)tintColor controlInsets:(UIEdgeInsets)controlInsets controlPadding:(CGFloat)controlPadding audioCategory:(NSString*)audioCategory audioCategoryOptions:(AVAudioSessionCategoryOptions)audioCategoryOptions
+		[Export("initWithPlayButtonImage:pauseButtonImage:labelFont:showFractionalSecodns:backgroundColor:tintColor:controlInsets:controlPadding:audioCategory:audioCategoryOptions:")]
+		IntPtr Constructor(UIImage playButtonImage, UIImage pauseButtonImage, UIFont labelFont, bool showFractionalSeconds, UIColor backgroundColor, UIColor tintColor, UIEdgeInsets controlInsets, nfloat controlPadding, NSString audioCategory, AVAudioSessionCategoryOptions audioCategoryOptions);
 	}
 
 	// @interface JSQPhotoMediaItem : JSQMediaItem <JSQMessageMediaData, NSCoding, NSCopying>

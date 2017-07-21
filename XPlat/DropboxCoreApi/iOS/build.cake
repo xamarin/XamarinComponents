@@ -10,7 +10,7 @@ var SDK_PATH = string.Format ("./externals/dropbox-ios-sdk-{0}", SDK_VERSION);
 
 var buildSpec = new BuildSpec () {
 	Libs = new ISolutionBuilder [] {
-		new IOSSolutionBuilder {
+		new DefaultSolutionBuilder {
 			SolutionPath = "./source/Dropbox.CoreApi.iOS/Dropbox.CoreApi.iOS.sln",
 			Configuration = "Release",
 			BuildsOn = BuildPlatforms.Mac,
@@ -24,7 +24,7 @@ var buildSpec = new BuildSpec () {
 	},
 
 	Samples = new ISolutionBuilder [] {
-		new IOSSolutionBuilder { SolutionPath = "./samples/DropboxCoreApiSample/DropboxCoreApiSample.sln", Configuration = "Release|iPhone", BuildsOn = BuildPlatforms.Mac, }
+		new IOSSolutionBuilder { SolutionPath = "./samples/DropboxCoreApiSample/DropboxCoreApiSample.sln", Configuration = "Release", Platform="iPhone", BuildsOn = BuildPlatforms.Mac, }
 	},
 
 	Components = new [] {

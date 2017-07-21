@@ -1,8 +1,4 @@
 
-<iframe src="https://appetize.io/embed/b9knv620997np08wtr2cgetmu0?device=nexus5&scale=75&autoplay=true&orientation=portrait&deviceColor=black" 
-        width="300px" height="597px" frameborder="0" scrolling="no"
-        style="float:right;margin-left:1em;"></iframe>
-
 A fast ImageView (and Drawable) that supports rounded corners with many more advanced
 features like support for ovals, rounded rectangles, ScaleTypes and TileModes.
 
