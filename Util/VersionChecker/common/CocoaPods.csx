@@ -36,6 +36,9 @@ public class CocoaPods : VersionFetcher
         
         var url = string.Format ("https://api.github.com/repos/{0}/{1}/git/trees/{2}", "CocoaPods", "Specs", System.Net.WebUtility.UrlEncode (tree));
 
+        if (!string.IsNullOrEmpty (githubClientId) && !string.IsNullOrEmpty (githubClientSecret)) 
+            url += "?client_id=" + githubClientId + "&client_secret=" + githubClientSecret;
+            
         var data = http.GetStringAsync (url).Result;
 
         var json = JObject.Parse (data);
