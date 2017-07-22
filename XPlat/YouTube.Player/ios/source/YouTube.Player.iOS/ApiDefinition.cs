@@ -11,50 +11,61 @@ namespace YouTube.Player
 
 	// @protocol YTPlayerViewDelegate <NSObject>
 	[Protocol, Model]
-	[BaseType (typeof (NSObject), Name="YTPlayerViewDelegate")]
+	[BaseType (typeof (NSObject), Name = "YTPlayerViewDelegate")]
 	interface PlayerViewDelegate
 	{
 		// @optional -(void)playerViewDidBecomeReady:(YTPlayerView * _Nonnull)playerView;
 		[Export ("playerViewDidBecomeReady:")]
+		[EventArgs ("Ready")]
 		void DidBecomeReady (PlayerView playerView);
 
 		// @optional -(void)playerView:(YTPlayerView * _Nonnull)playerView didChangeToState:(YTPlayerState)state;
 		[Export ("playerView:didChangeToState:")]
+		[EventArgs ("StateChanged")]
 		void DidChangeState (PlayerView playerView, PlayerState state);
 
 		// @optional -(void)playerView:(YTPlayerView * _Nonnull)playerView didChangeToQuality:(YTPlaybackQuality)quality;
 		[Export ("playerView:didChangeToQuality:")]
+		[EventArgs ("QualityChanged")]
 		void DidChangeToQuality (PlayerView playerView, PlaybackQuality quality);
 
 		// @optional -(void)playerView:(YTPlayerView * _Nonnull)playerView receivedError:(YTPlayerError)error;
 		[Export ("playerView:receivedError:")]
+		[EventArgs ("ReceivedError")]
 		void ReceivedError (PlayerView playerView, PlayerError error);
 
 		// @optional -(void)playerView:(YTPlayerView * _Nonnull)playerView didPlayTime:(float)playTime;
 		[Export ("playerView:didPlayTime:")]
+		[EventArgs ("PlayTime")]
 		void DidPlayTime (PlayerView playerView, float playTime);
 
 		// @optional -(UIColor * _Nonnull)playerViewPreferredWebViewBackgroundColor:(YTPlayerView * _Nonnull)playerView;
 		[Export ("playerViewPreferredWebViewBackgroundColor:")]
+		[DelegateName ("PreferredWebViewBackgroundColor"), DefaultValue ("UIColor.Clear")]
 		UIColor PreferredWebViewBackgroundColor (PlayerView playerView);
 
 		// @optional -(UIView * _Nullable)playerViewPreferredInitialLoadingView:(YTPlayerView * _Nonnull)playerView;
 		[Export ("playerViewPreferredInitialLoadingView:")]
 		[return: NullAllowed]
+		[DelegateName ("PreferredInitialLoadingView"), DefaultValue ("null")]
 		UIView PreferredInitialLoadingView (PlayerView playerView);
 	}
 
 	// @interface YTPlayerView : UIView <UIWebViewDelegate>
-	[BaseType (typeof (UIView), Name="YTPlayerView")]
+	[BaseType (typeof (UIView), Name = "YTPlayerView", Delegates = new[] { "Delegate" }, Events = new[] { typeof(PlayerViewDelegate) })]
 	interface PlayerView : IUIWebViewDelegate
 	{
 		// @property (readonly, nonatomic, strong) UIWebView * _Nullable webView;
 		[NullAllowed, Export ("webView", ArgumentSemantic.Strong)]
 		UIWebView WebView { get; }
+		
+		[Wrap ("WeakDelegate")]
+		[NullAllowed]
+		PlayerViewDelegate Delegate { get; set; }
 
 		// @property (nonatomic, weak) id<YTPlayerViewDelegate> _Nullable delegate;
 		[NullAllowed, Export ("delegate", ArgumentSemantic.Weak)]
-		IPlayerViewDelegate Delegate { get; set; }
+		NSObject WeakDelegate { get; set; }
 
 		// -(BOOL)loadWithVideoId:(NSString * _Nonnull)videoId;
 		[Export ("loadWithVideoId:")]
@@ -90,7 +101,7 @@ namespace YouTube.Player
 
 		// -(void)seekToSeconds:(float)seekToSeconds allowSeekAhead:(BOOL)allowSeekAhead;
 		[Export ("seekToSeconds:allowSeekAhead:")]
-		void SeekToSeconds (float seekToSeconds, bool allowSeekAhead);
+		void SeekTo (float seconds, bool allowSeekAhead);
 
 		// -(void)cueVideoById:(NSString * _Nonnull)videoId startSeconds:(float)startSeconds suggestedQuality:(YTPlaybackQuality)suggestedQuality;
 		[Export ("cueVideoById:startSeconds:suggestedQuality:")]
@@ -161,9 +172,7 @@ namespace YouTube.Player
 
 		// -(NSArray * _Nullable)availablePlaybackRates;
 		[Export ("availablePlaybackRates")]
-		//[Verify (StronglyTypedNSArray)] TODO
-		[return: NullAllowed]
-		NSObject [] AvailablePlaybackRates ();
+		NSNumber [] AvailablePlaybackRates { [NullAllowed] get; }
 
 		// -(void)setLoop:(BOOL)loop;
 		[Export ("setLoop:")]
@@ -175,57 +184,49 @@ namespace YouTube.Player
 
 		// -(float)videoLoadedFraction;
 		[Export ("videoLoadedFraction")]
-		float VideoLoadedFraction ();
+		float VideoLoadedFraction { get; }
 
 		// -(YTPlayerState)playerState;
 		[Export ("playerState")]
-		PlayerState PlayerState ();
+		PlayerState PlayerState { get; }
 
 		// -(float)currentTime;
 		[Export ("currentTime")]
-		float CurrentTime ();
+		float CurrentTime { get; }
 
 		// TODO should this be a prop?
 		// -(YTPlaybackQuality)playbackQuality;
 		[Export ("playbackQuality")]
-		PlaybackQuality PlaybackQuality ();
-
-		// -(void)setPlaybackQuality:(YTPlaybackQuality)suggestedQuality;
-		[Export ("setPlaybackQuality:")]
-		void SetPlaybackQuality (PlaybackQuality suggestedQuality);
+		PlaybackQuality PlaybackQuality { get; [Export ("setPlaybackQuality:")] set; }
 
 		// -(NSArray * _Nullable)availableQualityLevels;
 		[Export ("availableQualityLevels")]
-		//[Verify (StronglyTypedNSArray)] TODO
-		[return: NullAllowed]
-		NSNumber [] AvailableQualityLevels ();
+		[Internal]
+		NSNumber [] AvailableQualityLevelsInternal { [NullAllowed] get; }
 
 		// -(NSTimeInterval)duration;
 		[Export ("duration")]
-		double Duration ();
+		double Duration { get; }
 
 		// -(NSURL * _Nullable)videoUrl;
 		[Export ("videoUrl")]
-		[return: NullAllowed]
-		NSUrl VideoUrl ();
+		NSUrl VideoUrl { [NullAllowed] get; }
 
 		// -(NSString * _Nullable)videoEmbedCode;
 		[Export ("videoEmbedCode")]
-		[return: NullAllowed]
-		string VideoEmbedCode ();
+		string VideoEmbedCode { [NullAllowed] get; }
 
 		// -(NSArray * _Nullable)playlist;
 		[Export ("playlist")]
-		//[Verify (StronglyTypedNSArray)] TODO
-		[return: NullAllowed]
-		NSObject [] Playlist ();
+		string [] Playlist { [NullAllowed] get; }
 
 		// -(int)playlistIndex;
 		[Export ("playlistIndex")]
-		int PlaylistIndex ();
+		int PlaylistIndex { get; }
 
 		// -(void)removeWebView;
 		[Export ("removeWebView")]
+		[Obsolete ("Intended to use for testing, should not be used in production code.")]
 		void RemoveWebView ();
 	}
 }

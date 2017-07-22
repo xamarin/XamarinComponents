@@ -27,7 +27,16 @@ var buildSpec = new BuildSpec () {
 	},
 
 	Samples = new ISolutionBuilder [] {
+		new IOSSolutionBuilder { SolutionPath = "./samples/YouTubePlayerSample.sln" },
 	},
+
+	NuGets = new [] {
+		new NuGetInfo { NuSpec = "./nuget/Xamarin.YouTube.Player.iOS.nuspec" },
+	},
+
+	// Components = new [] {
+	// 	new Component { ManifestDirectory = "./component" },
+	// },
 };
 
 Task ("externals").IsDependentOn ("externals-base").Does (() =>

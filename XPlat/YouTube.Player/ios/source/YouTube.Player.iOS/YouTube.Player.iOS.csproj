@@ -30,12 +30,14 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="Xamarin.iOS" />
+    <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="libyoutube-ios-player-helper.linkwith.cs">
       <DependentUpon>libyoutube-ios-player-helper.a</DependentUpon>
     </Compile>
+    <Compile Include="PlayerView.cs" />
   </ItemGroup>
   <ItemGroup>
     <ObjcBindingApiDefinition Include="ApiDefinition.cs" />
