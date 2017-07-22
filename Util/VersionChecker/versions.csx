@@ -67,7 +67,7 @@ var fetchers = new VersionFetcher[] {
     // Facebook
     new XPath ("Facebook Android", "4.24.0", "https://repo1.maven.org/maven2/com/facebook/android/facebook-android-sdk/maven-metadata.xml", "/metadata/versioning/release", OWNER_CA1),
     new CocoaPods ("Facebook Pop", "1.0.9", "pop", OWNER_CA1),
-    new CocoaPods ("Facebook iOS CoreKit", "4.9.1", "FBSDKCoreKit", OWNER_MX1),
+    new CocoaPods ("Facebook iOS CoreKit", "4.24.0", "FBSDKCoreKit", OWNER_MX1),
 
     // Google - Android
     new XPath ("Google Play Services", "46", "https://dl.google.com/android/repository/addon2-1.xml", "//*[local-name() = 'remotePackage' and @path='extras;google;m2repository']/*[local-name() = 'revision']", OWNER_CA1),
@@ -75,19 +75,35 @@ var fetchers = new VersionFetcher[] {
     new XPath ("Google Glass SDK", "11", "https://dl.google.com/android/repository/glass/addon2-1.xml", "//*[local-name() = 'remotePackage' and @path='add-ons;addon-google_gdk-google-19']/*[local-name() = 'revision']", OWNER_CA1),
 
     // Google - iOS
-    new CocoaPods ("Google.Analytics iOS", "3.14.0", "GoogleAnalytics", OWNER_MX1),
-    new CocoaPods ("Google.AppIndexing iOS", "2.0.2", "GoogleAppIndexing", OWNER_MX1),
-    new CocoaPods ("Google.AppInvites iOS", "1.0.2", "AppInvites", OWNER_MX1),
-    new CocoaPods ("Google.Cast iOS", "2.10.1", "google-cast-sdk", OWNER_MX1),
-    new CocoaPods ("Google.Core iOS", "1.3.2", "Google", OWNER_MX1),
-    new CocoaPods ("Google.GoogleCloudMessaging iOS", "1.1.2", "GoogleCloudMessaging", OWNER_MX1),
-    new CocoaPods ("Google.InstanceID iOS", "1.1.4", "GGLInstanceID", OWNER_MX1),
-    new CocoaPods ("Google.MobileAds iOS", "7.6.0", "GoogleMobileAds", OWNER_MX1),
-    new CocoaPods ("Google.PlayGames iOS", "5.0.0", "GooglePlayGames", OWNER_MX1),
-    new CocoaPods ("Google.Plus iOS", "1.7.1", "GooglePlusOpenSource", OWNER_MX1),
-    new CocoaPods ("Google.TagManager iOS", "3.15.0", "GoogleTagManager", OWNER_MX1),
-    new CocoaPods ("Google.Maps iOS", "1.11.1", "GoogleMaps", OWNER_MX1),
-    new CocoaPods ("Google.SignIn iOS", "2.4.0", "GoogleSignIn", OWNER_MX1),
+    new CocoaPods ("Google.Analytics iOS", "3.17.0", "GoogleAnalytics", OWNER_MX1),
+    new CocoaPods ("Google.AppIndexing iOS", "2.0.3", "GoogleAppIndexing", OWNER_MX1),
+    // new CocoaPods ("Google.AppInvites iOS", "1.0.2", "AppInvites", OWNER_MX1), // Deprecated
+    new CocoaPods ("Google.Cast iOS", "2.3.0", "google-cast-sdk", OWNER_MX1),
+    new CocoaPods ("Google.Core iOS", "3.0.3", "Google", OWNER_MX1),
+    // new CocoaPods ("Google.GoogleCloudMessaging iOS", "1.1.2", "GoogleCloudMessaging", OWNER_MX1), // Deprecated
+    new CocoaPods ("Google.InstanceID iOS", "1.2.1", "GGLInstanceID", OWNER_MX1),
+    new CocoaPods ("Google.Maps iOS", "2.1.0", "GoogleMaps", OWNER_MX1),
+    // new CocoaPods ("Google.MobileAds iOS", "7.6.0", "GoogleMobileAds", OWNER_MX1), // Renamed as Firebase.AdMob
+    new CocoaPods ("Google.PlayGames iOS", "5.1.1", "GooglePlayGames", OWNER_MX1),
+    // new CocoaPods ("Google.Plus iOS", "1.7.1", "GooglePlusOpenSource", OWNER_MX1), // Deprecated
+    new CocoaPods ("Google.SignIn iOS", "4.0.2", "GoogleSignIn", OWNER_MX1),
+    new CocoaPods ("Google.TagManager iOS", "6.0.0", "GoogleTagManager", OWNER_MX1),
+
+    // Firebase - iOS
+    new CocoaPods ("Firebase iOS", "4.0.3", "Firebase", OWNER_MX1),
+    new CocoaPods ("Firebase.AdMob iOS", "7.21.0", "Google-Mobile-Ads-SDK", OWNER_MX1),
+    new CocoaPods ("Firebase.Analytics iOS", "4.0.2", "FirebaseAnalytics", OWNER_MX1),
+    new CocoaPods ("Firebase.Auth iOS", "4.0.0", "FirebaseAuth", OWNER_MX1),
+    new CocoaPods ("Firebase.CloudMessaging iOS", "2.0.0", "FirebaseMessaging", OWNER_MX1),
+    new CocoaPods ("Firebase.Core iOS", "4.0.3", "FirebaseCore", OWNER_MX1),
+    new CocoaPods ("Firebase.CrashReporting iOS", "2.0.0", "FirebaseCrash", OWNER_MX1),
+    new CocoaPods ("Firebase.Database iOS", "4.0.0", "FirebaseDatabase", OWNER_MX1),
+    new CocoaPods ("Firebase.DynamicLinks iOS", "2.0.0", "FirebaseDynamicLinks", OWNER_MX1),
+    new CocoaPods ("Firebase.InstanceID iOS", "2.0.0", "FirebaseInstanceID", OWNER_MX1),
+    new CocoaPods ("Firebase.Invites iOS", "2.0.0", "FirebaseInvites", OWNER_MX1),
+    new CocoaPods ("Firebase.PerformanceMonitoring iOS", "0.0.0", "FirebasePerformance", OWNER_MX1),
+    new CocoaPods ("Firebase.RemoteConfig iOS", "2.0.1", "FirebaseRemoteConfig", OWNER_MX1),
+    new CocoaPods ("Firebase.Storage iOS", "2.0.0", "FirebaseStorage", OWNER_MX1),
 
     // Mapbox
     new MavenCentral ("Mapbox Android", "4.2.2", "com/mapbox/mapboxsdk/mapbox-android-sdk", OWNER_CA1),
