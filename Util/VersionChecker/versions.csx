@@ -112,9 +112,9 @@ var fetchers = new VersionFetcher[] {
     // Square
     new MavenCentral ("OkIO", "1.9.0", "com/squareup/okio/okio", OWNER_SA1),
     new MavenCentral ("OkHttp", "2.7.5", "com/squareup/okhttp/okhttp", OWNER_SA1),
-    new MavenCentral ("OkHttp3", "3.4.1", "com/squareup/okhttp3/okhttp", OWNER_SA1),
+    new MavenCentral ("OkHttp3", "3.5.0", "com/squareup/okhttp3/okhttp", OWNER_SA1),
     new MavenCentral ("OkHttp Web Sockets", "2.7.5", "com/squareup/okhttp/okhttp-ws", OWNER_SA1),
-    new MavenCentral ("OkHttp3 Web Sockets", "3.4.1", "com/squareup/okhttp3/okhttp-ws", OWNER_SA1),
+    new MavenCentral ("OkHttp3 Web Sockets", "3.4.2", "com/squareup/okhttp3/okhttp-ws", OWNER_SA1),
     new MavenCentral ("Picasso", "2.5.2", "com/squareup/picasso/picasso", OWNER_SA1),
     new MavenCentral ("AndroidTimesSquare", "1.6.5", "com/squareup/android-times-square", OWNER_SA1),
     new MavenCentral ("Seismic", "1.0.2", "com/squareup/seismic", OWNER_SA1),
