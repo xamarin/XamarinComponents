@@ -183,6 +183,10 @@
   BuildScript: ./iOS/DZNEmptyDataSet/build.cake
   TriggerPaths: [ iOS/DZNEmptyDataSet ]
   MacBuildTargets: [ samples, component ]
+- Name: FacebookPop
+  BuildScript: ./iOS/FacebookPop/build.cake
+  TriggerPaths: [ iOS/FacebookPop ]
+  MacBuildTargets: [ samples, nuget, component ]
 - Name: FXBlurView
   BuildScript: ./iOS/FXBlurView/build.cake
   TriggerPaths: [ iOS/FXBlurView ]
