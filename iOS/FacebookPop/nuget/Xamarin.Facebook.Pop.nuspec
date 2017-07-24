@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<package>
+  <metadata>
+    <id>Xamarin.Facebook.Pop</id>
+    <title>Facebook POP for Xamarin</title>
+    <version>1.0.10</version>
+    <authors>Xamarin Inc.</authors>
+    <owners>Xamarin Inc.</owners>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>An extensible iOS and macOS animation library, useful for physics-based interactions.</description>
+    <copyright>Copyright 2017 Xamarin Inc</copyright>
+    <projectUrl>https://github.com/xamarin/XamarinComponents/tree/master/iOS/FacebookPop</projectUrl>
+    <licenseUrl>https://github.com/xamarin/XamarinComponents/blob/master/iOS/FacebookPop/License.md</licenseUrl>
+  </metadata>
+  <files>
+    <file src="output/Facebook.Pop.dll" target="lib/Xamarin.iOS10" />
+    <file src="External-Dependency-Info.txt" target="THIRD-PARTY-NOTICES.txt" />
+  </files>
+</package>
