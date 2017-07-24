@@ -5,6 +5,7 @@ publisher: Xamarin Inc
 publisher-url: "https://xamarin.com/"
 src-url: https://github.com/facebook/pop
 summary: "An extensible iOS and macOS animation library, useful for physics-based interactions."
+license: ../License.md
 icons: 
   - icons/Facebook.Pop_128x128.png
   - icons/Facebook.Pop_512x512.png
