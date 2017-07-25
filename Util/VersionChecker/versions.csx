@@ -22,7 +22,7 @@ var fetchers = new VersionFetcher[] {
     new MavenCentral ("Better Pickers", "1.6.0", "com/doomonafireball/betterpickers/library", OWNER_CA1),
     new BinTray ("Elastic Progress Bar", "1.0.4", "michelelacorte", "maven/it/michelelacorte/elasticprogressbar/library", OWNER_SA1),
     new MavenCentral ("Floating SearchView", "1.0.2", "com/github/arimorty/floatingsearchview", OWNER_SA1),
-    new MavenCentral ("GoogleGson", "2.7.0", "com/google/code/gson/gson", OWNER_SA1),
+    new MavenCentral ("GoogleGson", "2.8.1", "com/google/code/gson/gson", OWNER_SA1),
     new MavenCentral ("KenBurnsView", "1.0.7", "com/flaviofaria/kenburnsview", OWNER_SA1),
     new MavenCentral ("Minimal Json", "0.9.4", "com/eclipsesource/minimal-json/minimal-json", OWNER_SA1),
     new MavenCentral ("Nine Old Androids", "2.4.0", "com/nineoldandroids/library", OWNER_SA1),
