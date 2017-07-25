@@ -29,7 +29,7 @@ var fetchers = new VersionFetcher[] {
     new MavenCentral ("Number Progress Bar", "1.2", "com/daimajia/numberprogressbar/library", OWNER_SA1),
     new MavenCentral ("PhotoView", "1.2.4", "com/github/chrisbanes/photoview/library", OWNER_SA1),
     //new BinTray ("RecyclerView Animators", "2.1.0", "wasabeef", "maven/jp/wasabeef/recyclerview-animators", OWNER_SA1),
-    new MavenCentral ("RoundedImageView", "2.2.1", "com/makeramen/roundedimageview", OWNER_SA1),
+    new MavenCentral ("RoundedImageView", "2.3.0", "com/makeramen/roundedimageview", OWNER_SA1),
     new MavenCentral ("Scissors", "1.0.1", "com/lyft/scissors", OWNER_SA1),
     //new BinTray ("Sortable TableView", "2.2.0", "ischwarz", "maven/de/codecrafters/tableview/tableview", OWNER_SA1),
     new MavenCentral ("Sticky List Headers", "2.7.0", "se/emilsjolander/stickylistheaders", OWNER_SA1),
