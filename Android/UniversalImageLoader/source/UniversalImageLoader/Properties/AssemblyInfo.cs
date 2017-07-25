@@ -10,7 +10,7 @@ using Android.App;
 [assembly: AssemblyConfiguration ("")]
 [assembly: AssemblyCompany ("")]
 [assembly: AssemblyProduct ("")]
-[assembly: AssemblyCopyright ("matthew")]
+[assembly: AssemblyCopyright ("Xamarin Inc")]
 [assembly: AssemblyTrademark ("")]
 [assembly: AssemblyCulture ("")]
 

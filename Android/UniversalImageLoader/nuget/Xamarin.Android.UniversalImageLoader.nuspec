@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<package>
+  <metadata>
+    <id>Xamarin.Android.UniversalImageLoader</id>
+    <title>Universal Image Loader for Xamarin.Android</title>
+    <version>1.9.5</version>
+    <authors>Xamarin Inc.</authors>
+    <owners>Xamarin Inc.</owners>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>Xamarin.Android binding for Universal Image Loader - Powerful and flexible library for loading, caching and displaying images on Android.</description>
+    <copyright>Copyright 2017 Xamarin Inc</copyright>
+    <projectUrl>https://github.com/xamarin/XamarinComponents/tree/master/Android/UniversalImageLoader</projectUrl>
+    <licenseUrl>https://github.com/xamarin/XamarinComponents/blob/master/Android/UniversalImageLoader/LICENSE.md</licenseUrl>
+  </metadata>
+  <files>
+    <file src="output/UniversalImageLoader.dll" target="lib/MonoAndroid" />
+    <file src="External-Dependency-Info.txt" target="THIRD-PARTY-NOTICES.txt" />
+  </files>
+</package>
