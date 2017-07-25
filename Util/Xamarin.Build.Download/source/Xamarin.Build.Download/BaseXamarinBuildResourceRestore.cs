@@ -148,14 +148,13 @@ namespace Xamarin.Build.Download
 				}
 
 				if (needToWrite) {
-					if (IsFileLockedForWriting(mergedAsmPath)) {
-						Log.LogWarning("MergeResources: File is locked for writing; this would lead to a sharing violation. Manually triggering GC. File: {0}", mergedAsmPath);
+					var fileStream = GetWritableFileStream(mergedAsmPath);
 
-						GC.Collect();
-						GC.WaitForPendingFinalizers();
-					}
+					asmDefinition.Write(fileStream, new WriterParameters());
 
-					asmDefinition.Write(mergedAsmPath);
+					// Close the file stream, as Mono.Cecil will not do so for streams
+					// passed in from outside.
+					fileStream.Close();
 				}
 
 				return true;
@@ -225,7 +224,14 @@ namespace Xamarin.Build.Download
 			return restoreMap;
 		}
 
-		private static bool IsFileLockedForWriting(string filePath)
+		/// <summary>
+		/// Opens a FileStream for writing for a given path, running the garbage collector
+		/// and retrying if the file was already open.
+		/// </summary>
+		/// <param name="filePath">Fully qualified name of the file, or relative file name.</param>
+		/// <returns>A FileStream instance with ReadWrite access</returns>
+		/// <see cref="System.IO.FileInfo.Open">For exceptions that may be thrown</see>
+		private FileStream GetWritableFileStream(string filePath)
 		{
 			var file = new FileInfo(filePath);
 
@@ -234,14 +240,17 @@ namespace Xamarin.Build.Download
 			try {
 				stream = file.Open(FileMode.Open, FileAccess.ReadWrite, FileShare.None);
 			} catch (IOException) {
-				return true;
-			} finally {
-				if (stream != null)                
-					stream.Close();
-				
+				Log.LogWarning("MergeResources: File is locked for writing; this would lead to a sharing violation. Manually triggering GC. File: {0}", filePath);
+
+				GC.Collect();
+				GC.WaitForPendingFinalizers();
+
+				// If the file still cannot be opened, a new IOException is thrown
+				stream = file.Open(FileMode.Open, FileAccess.ReadWrite, FileShare.None);
 			}
 
-			return false;
+			// If either the first or second attempt at opening worked, we have a valid FileStream now.
+			return stream;
 		}
 	}
 }
