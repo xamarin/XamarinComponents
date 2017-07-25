@@ -1,8 +1,4 @@
 
-<iframe src="https://appetize.io/embed/k5xf8f4b2pfpfz12uakt1vbvz0?device=nexus5&scale=75&autoplay=true&orientation=portrait&deviceColor=black" 
-        width="300px" height="597px" frameborder="0" scrolling="no"
-        style="float:right;margin-left:1em;"></iframe>
-
 `PhotoView` aims to help produce an easily usable implementation of a zooming 
 Android `ImageView`.
 

@@ -1,18 +1,18 @@
 ﻿using Android.Content;
 using Android.Views;
-using Android.Support.V4.View;
 using Android.Util;
+using Android.Support.V4.Widget;
 
 namespace PhotoViewSample
 {
-    public class HackyViewPager : ViewPager
+    public class HackyDrawerLayout : DrawerLayout
     {
-        public HackyViewPager(Context context)
+        public HackyDrawerLayout(Context context)
             : base(context)
         {
         }
 
-        public HackyViewPager(Context context, IAttributeSet attrs)
+        public HackyDrawerLayout(Context context, IAttributeSet attrs)
             : base(context, attrs)
         {
         }
@@ -31,7 +31,7 @@ namespace PhotoViewSample
             {
                 return base.OnInterceptTouchEvent(ev);
             }
-            catch(Java.Lang.IllegalArgumentException ex)
+            catch (Java.Lang.IllegalArgumentException ex)
             {
                 ex.PrintStackTrace();
                 return false;

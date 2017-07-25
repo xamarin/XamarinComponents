@@ -1,5 +1,7 @@
 ﻿using System;
+using System.IO;
 using Android.App;
+using Android.Content;
 using Android.Graphics;
 using Android.OS;
 using Android.Support.V7.App;
@@ -10,7 +12,7 @@ using ImageViews.Photo;
 
 namespace PhotoViewSample
 {
-    [Activity(Label = "Simple Sample", Icon = "@drawable/icon", Theme = "@style/Theme.AppCompat")]
+    [Activity(Label = "Simple Sample")]
     public class SimpleSampleActivity : AppCompatActivity
     {
         private Matrix currentMatrix = null;
@@ -22,7 +24,7 @@ namespace PhotoViewSample
         {
             base.OnCreate(savedInstanceState);
 
-            SetContentView(Resource.Layout.Sample);
+            SetContentView(Resource.Layout.activity_main);
 
             var imageView = FindViewById<ImageView>(Resource.Id.iv_photo);
             currentMatrixTextView = FindViewById<TextView>(Resource.Id.tv_current_matrix);
@@ -42,7 +44,16 @@ namespace PhotoViewSample
             {
                 float xPercentage = e.X * 100f;
                 float yPercentage = e.Y * 100f;
-                ShowToast(string.Format("Photo Tap! X:{0:0.00} % Y:{1:0.00} % ID: {2}", xPercentage, yPercentage, e.View == null ? 0 : e.View.Id));
+				ShowToast($"Photo Tap! X:{xPercentage:0.00} % Y:{yPercentage:0.00} % ID: {(e.View == null ? 0 : e.View.Id)}");
+            };
+            attacher.OutsidePhotoTap += (sender, e) =>
+            {
+                ShowToast("You have a tap event on the place where out of the photo.");
+            };
+            attacher.SingleFling += (sender, e) =>
+            {
+                System.Diagnostics.Debug.WriteLine($"Fling velocityX: {e.VelocityX:0.00}, velocityY: {e.VelocityY:0.00}");
+                e.Handled = true;
             };
         }
 
@@ -106,7 +117,7 @@ namespace PhotoViewSample
                     float maxScale = attacher.MaximumScale;
                     float randomScale = minScale + ((float)r.NextDouble() * (maxScale - minScale));
                     attacher.SetScale(randomScale, item.ItemId == Resource.Id.menu_scale_random_animate);
-                    ShowToast(string.Format("Scaled to: {0:0.00}", randomScale));
+                    ShowToast($"Scaled to: {randomScale:0.00}");
                     return true;
                 case Resource.Id.menu_matrix_restore:
                     if (currentMatrix == null)
@@ -117,7 +128,27 @@ namespace PhotoViewSample
                 case Resource.Id.menu_matrix_capture:
                     currentMatrix = attacher.DisplayMatrix;
                     return true;
-            }
+                case Resource.Id.extract_visible_bitmap:
+                    try
+                    {
+                        var bmp = attacher.VisibleRectangleBitmap;
+                        var downloads = Android.OS.Environment.GetExternalStoragePublicDirectory(Android.OS.Environment.DirectoryDownloads);
+                        var tmpFile = Java.IO.File.CreateTempFile("photoview", ".png", downloads);
+                        using (var stream = File.OpenWrite(tmpFile.AbsolutePath))
+                            bmp.Compress(Bitmap.CompressFormat.Png, 90, stream);
+
+                        var share = new Intent(Intent.ActionSend);
+                        share.SetType("image/png");
+                        share.PutExtra(Intent.ExtraStream, Android.Net.Uri.FromFile(tmpFile));
+                        StartActivity(share);
+                        ShowToast($"Extracted into: {tmpFile.AbsolutePath}");
+                    }
+                    catch
+                    {
+                        ShowToast("Error occured while extracting bitmap");
+                    }
+                    return true;
+                }
 
             return base.OnOptionsItemSelected(item);
         }

@@ -1,49 +1,81 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using Android.App;
 using Android.Content;
 using Android.OS;
 using Android.Support.V7.App;
+using Android.Support.V7.Widget;
+using Android.Views;
 using Android.Widget;
 
 namespace PhotoViewSample
 {
-    [Activity(Label = "@string/app_name", MainLauncher = true, Icon = "@drawable/icon", Theme = "@style/Theme.AppCompat")]
-    public class MainActivity : AppCompatActivity
-    {
-        public static string[] options =
-        {
-            "Simple Sample",
-            "ViewPager Sample",
-            "Rotation Sample"
-        };
+	[Activity(Label = "@string/app_name", MainLauncher = true)]
+	public class MainActivity : AppCompatActivity
+	{
+		protected override void OnCreate(Bundle savedInstanceState)
+		{
+			base.OnCreate(savedInstanceState);
 
-        protected override void OnCreate(Bundle savedInstanceState)
-        {
-            base.OnCreate(savedInstanceState);
+			SetContentView(Resource.Layout.activity_launcher);
 
-            SetContentView(Resource.Layout.Main);
+			var recyclerView = FindViewById<RecyclerView>(Resource.Id.list);
+			recyclerView.SetLayoutManager(new LinearLayoutManager(this));
+			recyclerView.SetAdapter(new ItemAdapter());
+		}
 
-            var listView = FindViewById<ListView>(Resource.Id.listView);
-            listView.Adapter = new ArrayAdapter<string>(this, Android.Resource.Layout.SimpleListItem1, options);
-            listView.ItemClick += (sender, e) =>
-            {
-                Type c;
-                switch (e.Position)
-                {
-                    default:
-                    case 0:
-                        c = typeof(SimpleSampleActivity);
-                        break;
-                    case 1:
-                        c = typeof(ViewPagerSampleActivity);
-                        break;
-                    case 2:
-                        c = typeof(RotationSampleActivity);
-                        break;
-                }
+		private class ItemAdapter : RecyclerView.Adapter
+		{
+			private static List<KeyValuePair<string, Type>> options = new Dictionary<string, Type>
+			{
+				{ "Simple Sample", typeof(SimpleSampleActivity) },
+				{ "ViewPager Sample", typeof(ViewPagerSampleActivity) },
+				{ "Rotation Sample", typeof(RotationSampleActivity) },
+				{ "Picasso Sample", typeof(PicassoSampleActivity) },
+				{ "Activity Transition Sample", typeof(ActivityTransitionSampleActivity) },
+			}.ToList();
 
-                StartActivity(new Intent(this, c));
-            };
-        }
-    }
+			public override RecyclerView.ViewHolder OnCreateViewHolder(ViewGroup parent, int viewType)
+			{
+				return ItemViewHolder.Create(parent);
+			}
+
+			public override void OnBindViewHolder(RecyclerView.ViewHolder holder, int position)
+			{
+				((ItemViewHolder)holder).Bind(options[position]);
+			}
+
+			public override int ItemCount => options.Count;
+		}
+
+		private class ItemViewHolder : RecyclerView.ViewHolder
+		{
+			private readonly TextView textTitle;
+			private Type activityType;
+
+			public static ItemViewHolder Create(ViewGroup parent)
+			{
+				var view = LayoutInflater.From(parent.Context).Inflate(Resource.Layout.item_list_item, parent, false);
+				return new ItemViewHolder(view);
+			}
+
+			public ItemViewHolder(View view)
+				: base(view)
+			{
+				textTitle = view.FindViewById<TextView>(Resource.Id.title);
+
+				ItemView.Click += (sender, e) =>
+				{
+					ItemView.Context.StartActivity(new Intent(ItemView.Context, activityType));
+				};
+			}
+
+			public void Bind(KeyValuePair<string, Type> option)
+			{
+				textTitle.Text = option.Key;
+				activityType = option.Value;
+			}
+		}
+	}
 }
