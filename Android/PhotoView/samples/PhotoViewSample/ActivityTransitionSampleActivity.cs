@@ -67,17 +67,9 @@ namespace PhotoViewSample
                 return new ImageViewHolder(view);
             }
 
-            public TextView textTitle;
-
             public ImageViewHolder(View view)
                 : base(view)
             {
-                textTitle = view.FindViewById<TextView>(Resource.Id.title);
-            }
-
-            private void Bind(string title)
-            {
-                textTitle.Text = title;
             }
         }
     }
