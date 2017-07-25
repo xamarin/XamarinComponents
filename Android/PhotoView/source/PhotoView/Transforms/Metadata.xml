@@ -1,35 +1,30 @@
 ﻿<metadata>
-  <attr path="/api/package[@name='uk.co.senab.photoview']" name="managedName">ImageViews.Photo</attr>
-  <attr path="/api/package[@name='uk.co.senab.photoview.gestures']" name="managedName">ImageViews.Photo.Gestures</attr>
-  <attr path="/api/package[@name='uk.co.senab.photoview.log']" name="managedName">ImageViews.Photo.Log</attr>
-  <attr path="/api/package[@name='uk.co.senab.photoview.scrollerproxy']" name="managedName">ImageViews.Photo.ScrollerProxies</attr>
+  <attr path="/api/package[@name='com.github.chrisbanes.photoview']" name="managedName">ImageViews.Photo</attr>
   
-  <remove-node path="/api/package[@name='uk.co.senab.photoview']/interface[@name='IPhotoView']/field[@name='DEFAULT_MAX_SCALE']" />
-  <remove-node path="/api/package[@name='uk.co.senab.photoview']/interface[@name='IPhotoView']/field[@name='DEFAULT_MID_SCALE']" />
-  <remove-node path="/api/package[@name='uk.co.senab.photoview']/interface[@name='IPhotoView']/field[@name='DEFAULT_MIN_SCALE']" />
-  <remove-node path="/api/package[@name='uk.co.senab.photoview']/interface[@name='IPhotoView']/field[@name='DEFAULT_ZOOM_DURATION']" />
-  
-  <attr path="/api/package[@name='uk.co.senab.photoview']/interface[@name='IPhotoView']/method[@name='getScaleType']" name="propertyName"></attr>
-  <attr path="/api/package[@name='uk.co.senab.photoview']/interface[@name='IPhotoView']/method[@name='setScaleType']" name="propertyName"></attr>
-  <attr path="/api/package[@name='uk.co.senab.photoview']/class[@name='PhotoViewAttacher']/method[@name='getScaleType']" name="propertyName"></attr>
-  <attr path="/api/package[@name='uk.co.senab.photoview']/class[@name='PhotoViewAttacher']/method[@name='setScaleType']" name="propertyName"></attr>
+  <attr path="/api/package[@name='com.github.chrisbanes.photoview']/class[@name='PhotoViewAttacher']/method[@name='getScaleType']" name="propertyName"></attr>
+  <attr path="/api/package[@name='com.github.chrisbanes.photoview']/class[@name='PhotoViewAttacher']/method[@name='setScaleType']" name="propertyName"></attr>
 
-  <attr path="/api/package[@name='uk.co.senab.photoview']/interface[@name='PhotoViewAttacher.OnMatrixChangedListener']/method[@name='onMatrixChanged']/parameter[1]" name="managedName">rect</attr>
-  <attr path="/api/package[@name='uk.co.senab.photoview']/interface[@name='PhotoViewAttacher.OnScaleChangeListener']/method[@name='onScaleChange']/parameter[1]" name="managedName">scaleFactor</attr>
-  <attr path="/api/package[@name='uk.co.senab.photoview']/interface[@name='PhotoViewAttacher.OnScaleChangeListener']/method[@name='onScaleChange']/parameter[2]" name="managedName">focusX</attr>
-  <attr path="/api/package[@name='uk.co.senab.photoview']/interface[@name='PhotoViewAttacher.OnScaleChangeListener']/method[@name='onScaleChange']/parameter[3]" name="managedName">focusY</attr>
-  <attr path="/api/package[@name='uk.co.senab.photoview']/interface[@name='PhotoViewAttacher.OnPhotoTapListener']/method[@name='onPhotoTap']/parameter[1]" name="managedName">view</attr>
-  <attr path="/api/package[@name='uk.co.senab.photoview']/interface[@name='PhotoViewAttacher.OnPhotoTapListener']/method[@name='onPhotoTap']/parameter[2]" name="managedName">x</attr>
-  <attr path="/api/package[@name='uk.co.senab.photoview']/interface[@name='PhotoViewAttacher.OnPhotoTapListener']/method[@name='onPhotoTap']/parameter[3]" name="managedName">y</attr>
-  <attr path="/api/package[@name='uk.co.senab.photoview']/interface[@name='PhotoViewAttacher.OnViewTapListener']/method[@name='onViewTap']/parameter[1]" name="managedName">view</attr>
-  <attr path="/api/package[@name='uk.co.senab.photoview']/interface[@name='PhotoViewAttacher.OnViewTapListener']/method[@name='onViewTap']/parameter[2]" name="managedName">x</attr>
-  <attr path="/api/package[@name='uk.co.senab.photoview']/interface[@name='PhotoViewAttacher.OnViewTapListener']/method[@name='onViewTap']/parameter[3]" name="managedName">y</attr>
-  <attr path="/api/package[@name='uk.co.senab.photoview']/interface[@name='PhotoViewAttacher.OnSingleFlingListener']/method[@name='onFling']/parameter[1]" name="managedName">e1</attr>
-  <attr path="/api/package[@name='uk.co.senab.photoview']/interface[@name='PhotoViewAttacher.OnSingleFlingListener']/method[@name='onFling']/parameter[2]" name="managedName">e2</attr>
-  <attr path="/api/package[@name='uk.co.senab.photoview']/interface[@name='PhotoViewAttacher.OnSingleFlingListener']/method[@name='onFling']/parameter[3]" name="managedName">velocityX</attr>
-  <attr path="/api/package[@name='uk.co.senab.photoview']/interface[@name='PhotoViewAttacher.OnSingleFlingListener']/method[@name='onFling']/parameter[4]" name="managedName">velocityY</attr>
-  
-  <attr path="/api/package[@name='uk.co.senab.photoview']/class[@name='PhotoViewAttacher']/method[@name='canZoom']" name="managedName">GetZoomable</attr>
-  <attr path="/api/package[@name='uk.co.senab.photoview']/interface[@name='IPhotoView']/method[@name='canZoom']" name="managedName">GetZoomable</attr>
-  <attr path="/api/package[@name='uk.co.senab.photoview']/class[@name='PhotoView']/method[@name='canZoom']" name="managedName">GetZoomable</attr>
+  <attr path="/api/package[@name='com.github.chrisbanes.photoview']/interface[@name='OnMatrixChangedListener']/method[@name='onMatrixChanged']/parameter[1]" name="managedName">rect</attr>
+  <attr path="/api/package[@name='com.github.chrisbanes.photoview']/interface[@name='OnScaleChangedListener']/method[@name='onScaleChange']/parameter[1]" name="managedName">scaleFactor</attr>
+  <attr path="/api/package[@name='com.github.chrisbanes.photoview']/interface[@name='OnScaleChangedListener']/method[@name='onScaleChange']/parameter[2]" name="managedName">focusX</attr>
+  <attr path="/api/package[@name='com.github.chrisbanes.photoview']/interface[@name='OnScaleChangedListener']/method[@name='onScaleChange']/parameter[3]" name="managedName">focusY</attr>
+  <attr path="/api/package[@name='com.github.chrisbanes.photoview']/interface[@name='OnPhotoTapListener']/method[@name='onPhotoTap']/parameter[1]" name="managedName">view</attr>
+  <attr path="/api/package[@name='com.github.chrisbanes.photoview']/interface[@name='OnPhotoTapListener']/method[@name='onPhotoTap']/parameter[2]" name="managedName">x</attr>
+  <attr path="/api/package[@name='com.github.chrisbanes.photoview']/interface[@name='OnPhotoTapListener']/method[@name='onPhotoTap']/parameter[3]" name="managedName">y</attr>
+  <attr path="/api/package[@name='com.github.chrisbanes.photoview']/interface[@name='OnOutsidePhotoTapListener']/method[@name='onOutsidePhotoTap']/parameter[1]" name="managedName">imageView</attr>
+  <attr path="/api/package[@name='com.github.chrisbanes.photoview']/interface[@name='OnViewTapListener']/method[@name='onViewTap']/parameter[1]" name="managedName">view</attr>
+  <attr path="/api/package[@name='com.github.chrisbanes.photoview']/interface[@name='OnViewTapListener']/method[@name='onViewTap']/parameter[2]" name="managedName">x</attr>
+  <attr path="/api/package[@name='com.github.chrisbanes.photoview']/interface[@name='OnViewTapListener']/method[@name='onViewTap']/parameter[3]" name="managedName">y</attr>
+  <attr path="/api/package[@name='com.github.chrisbanes.photoview']/interface[@name='OnViewDragListener']/method[@name='onDrag']/parameter[1]" name="managedName">deltaX</attr>
+  <attr path="/api/package[@name='com.github.chrisbanes.photoview']/interface[@name='OnViewDragListener']/method[@name='onDrag']/parameter[2]" name="managedName">deltaY</attr>
+  <attr path="/api/package[@name='com.github.chrisbanes.photoview']/interface[@name='OnSingleFlingListener']/method[@name='onFling']/parameter[1]" name="managedName">event1</attr>
+  <attr path="/api/package[@name='com.github.chrisbanes.photoview']/interface[@name='OnSingleFlingListener']/method[@name='onFling']/parameter[2]" name="managedName">event2</attr>
+  <attr path="/api/package[@name='com.github.chrisbanes.photoview']/interface[@name='OnSingleFlingListener']/method[@name='onFling']/parameter[3]" name="managedName">velocityX</attr>
+  <attr path="/api/package[@name='com.github.chrisbanes.photoview']/interface[@name='OnSingleFlingListener']/method[@name='onFling']/parameter[4]" name="managedName">velocityY</attr>
+
+  <!-- future change -->
+  <attr path="/api/package[@name='com.github.chrisbanes.photoview']/class[@name='PhotoView']/method[@name='isZoomEnabled']" name="managedName">GetZoomable</attr>
+
+  <!-- private interface -->
+  <remove-node path="/api/package[@name='com.github.chrisbanes.photoview']/class[@name='PhotoViewAttacher']/implements[@name='com.github.chrisbanes.photoview.OnGestureListener']" />
 </metadata>

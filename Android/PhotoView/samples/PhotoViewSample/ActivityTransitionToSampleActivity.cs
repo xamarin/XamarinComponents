@@ -2,6 +2,8 @@
 using Android.OS;
 using Android.Support.V7.App;
 
+using ImageViews.Photo;
+
 namespace PhotoViewSample
 {
     [Activity(Label = "Activity Transition Sample")]
@@ -12,6 +14,9 @@ namespace PhotoViewSample
             base.OnCreate(savedInstanceState);
 
             SetContentView(Resource.Layout.activity_transition_to);
+
+            //var photoView = FindViewById<PhotoView>(Resource.Id.iv_photo);
+            //photoView.SetImageResource(Resource.Drawable.wallpaper);
         }
     }
 }

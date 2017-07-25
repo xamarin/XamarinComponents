@@ -7,7 +7,7 @@ using ImageViews.Photo;
 
 namespace PhotoViewSample
 {
-    [Activity(Label = "Rotation Sample")]
+	[Activity(Label = "Rotation Sample", Theme = "@style/AppTheme.WithActionBar")]
     public class RotationSampleActivity : AppCompatActivity
     {
         private PhotoView photo;
