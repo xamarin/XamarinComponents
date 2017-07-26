@@ -42,6 +42,9 @@
     <Reference Include="Xamarin.Android.Support.v4">
       <HintPath>..\packages\Xamarin.Android.Support.v4.23.4.0.1\lib\MonoAndroid403\Xamarin.Android.Support.v4.dll</HintPath>
     </Reference>
+    <Reference Include="Xamarin.Android.Support.Percent">
+      <HintPath>..\packages\Xamarin.Android.Support.Percent.23.4.0.1\lib\MonoAndroid403\Xamarin.Android.Support.Percent.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
