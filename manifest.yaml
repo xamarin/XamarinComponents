@@ -46,6 +46,10 @@
   BuildScript: ./Android/Bolts/build.cake
   TriggerPaths: [ Android/Bolts ]
   MacBuildTargets: [ libs, nuget ]
+- Name: ViewPropertyObjectAnimator
+  BuildScript: ./Android/ViewPropertyObjectAnimator/build.cake
+  TriggerPaths: [ Android/ViewPropertyObjectAnimator ]
+  MacBuildTargets: [ component, samples ]
 - Name: DeviceYearClass
   BuildScript: ./Android/DeviceYearClass/build.cake
   TriggerPaths: [ Android/DeviceYearClass ]
