@@ -1,4 +1,4 @@
-version: 1.0.2.0
+version: "2.1.1"
 name: Floating Search View
 id: FloatingSearchView
 publisher: Xamarin Inc
@@ -18,9 +18,21 @@ no_build: true
 libraries:
   android: ../output/FloatingSearchView.dll
 
+is_shell: true
+local-nuget-repo: ../output/
+packages:
+  android: Xamarin.Android.FloatingSearchView, Version=2.1.1
+
 samples:
   - name: "Android Sample"
     path: ../samples/FloatingSearchViewSample.sln
-    removeFiles:
-      - FloatingSearchViewSample/Makefile
- 
+    removeProjects:
+      - FloatingSearchView
+    installNuGets:
+      - project: FloatingSearchViewSample
+        packages:
+          - Xamarin.Android.FloatingSearchView
+
+additional-files:
+  - source: "../External-Dependency-Info.txt"
+    destination: "THIRD-PARTY-NOTICES.txt"

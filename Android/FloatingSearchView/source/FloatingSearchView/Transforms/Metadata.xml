@@ -5,12 +5,36 @@
 	<attr path="/api/package[@name='com.arlib.floatingsearchview.suggestions.model']" name="managedName">FloatingSearchViews.Suggestions.Models</attr>
 	<attr path="/api/package[@name='com.arlib.floatingsearchview.util']" name="managedName">FloatingSearchViews.Utils</attr>
 	<attr path="/api/package[@name='com.arlib.floatingsearchview.util.adapter']" name="managedName">FloatingSearchViews.Utils.Adapters</attr>
+	<attr path="/api/package[@name='com.arlib.floatingsearchview.util.view']" name="managedName">FloatingSearchViews.Utils.Views</attr>
 
-	<attr path="/api/package[@name='com.arlib.floatingsearchview']/interface[@name='FloatingSearchView.OnMenuItemClickListener']/method[@name='onMenuItemSelected']/parameter[1]" name="managedName">menuItem</attr>
+	<attr path="/api/package[@name='com.arlib.floatingsearchview']/interface[@name='FloatingSearchView.OnMenuItemClickListener']/method[@name='onActionMenuItemSelected']/parameter[1]" name="managedName">menuItem</attr>
 	<attr path="/api/package[@name='com.arlib.floatingsearchview']/interface[@name='FloatingSearchView.OnSearchListener']/method[@name='onSuggestionClicked']/parameter[1]" name="managedName">searchSuggestion</attr>
+	<attr path="/api/package[@name='com.arlib.floatingsearchview']/interface[@name='FloatingSearchView.OnSearchListener']/method[@name='onSearchAction']/parameter[1]" name="managedName">currentQuery</attr>
 	<attr path="/api/package[@name='com.arlib.floatingsearchview']/interface[@name='FloatingSearchView.OnQueryChangeListener']/method[@name='onSearchTextChanged']/parameter[1]" name="managedName">oldQuery</attr>
 	<attr path="/api/package[@name='com.arlib.floatingsearchview']/interface[@name='FloatingSearchView.OnQueryChangeListener']/method[@name='onSearchTextChanged']/parameter[2]" name="managedName">newQuery</attr>
+	<attr path="/api/package[@name='com.arlib.floatingsearchview']/interface[@name='FloatingSearchView.OnSuggestionsListHeightChanged']/method[@name='onSuggestionsListHeightChanged']/parameter[1]" name="managedName">newHeight</attr>
 
+	<attr path="/api/package[@name='com.arlib.floatingsearchview.suggestions']/interface[@name='SearchSuggestionsAdapter.OnBindSuggestionCallback']/method[@name='onBindSuggestion']/parameter[1]" name="managedName">suggestionView</attr>
+	<attr path="/api/package[@name='com.arlib.floatingsearchview.suggestions']/interface[@name='SearchSuggestionsAdapter.OnBindSuggestionCallback']/method[@name='onBindSuggestion']/parameter[2]" name="managedName">leftIcon</attr>
+	<attr path="/api/package[@name='com.arlib.floatingsearchview.suggestions']/interface[@name='SearchSuggestionsAdapter.OnBindSuggestionCallback']/method[@name='onBindSuggestion']/parameter[3]" name="managedName">textView</attr>
+	<attr path="/api/package[@name='com.arlib.floatingsearchview.suggestions']/interface[@name='SearchSuggestionsAdapter.OnBindSuggestionCallback']/method[@name='onBindSuggestion']/parameter[4]" name="managedName">item</attr>
+	<attr path="/api/package[@name='com.arlib.floatingsearchview.suggestions']/interface[@name='SearchSuggestionsAdapter.OnBindSuggestionCallback']/method[@name='onBindSuggestion']/parameter[5]" name="managedName">itemPosition</attr>
+	<attr path="/api/package[@name='com.arlib.floatingsearchview.suggestions']/interface[@name='SearchSuggestionsAdapter.Listener']/method[@name='onItemSelected']/parameter[1]" name="managedName">item</attr>
+	<attr path="/api/package[@name='com.arlib.floatingsearchview.suggestions']/interface[@name='SearchSuggestionsAdapter.Listener']/method[@name='onMoveItemToSearchClicked']/parameter[1]" name="managedName">item</attr>
+	<attr path="/api/package[@name='com.arlib.floatingsearchview.suggestions']/interface[@name='SearchSuggestionsAdapter.SearchSuggestionViewHolder.Listener']/method[@name='onItemClicked']/parameter[1]" name="managedName">adapterPosition</attr>
+	<attr path="/api/package[@name='com.arlib.floatingsearchview.suggestions']/interface[@name='SearchSuggestionsAdapter.SearchSuggestionViewHolder.Listener']/method[@name='onMoveItemToSearchClicked']/parameter[1]" name="managedName">adapterPosition</attr>
+	<attr path="/api/package[@name='com.arlib.floatingsearchview.util.view']/interface[@name='MenuView.OnVisibleWidthChangedListener']/method[@name='onItemsMenuVisibleWidthChanged']/parameter[1]" name="managedName">newVisibleWidth</attr>
+
+	<!-- we might want an event here -->
+	<!-- <attr path="/api/package[@name='com.arlib.floatingsearchview']/class[@name='FloatingSearchView']/method[@name='setOnBindSuggestionCallback']" name="managedName">SetOnBindSuggestionListener</attr> -->
+	<!-- <attr path="/api/package[@name='com.arlib.floatingsearchview.suggestions']/interface[@name='SearchSuggestionsAdapter.OnBindSuggestionCallback']" name="managedName">IOnBindSuggestionListener</attr> -->
+
+	<!-- workaround for https://bugzilla.xamarin.com/show_bug.cgi?id=58403 -->
+	<attr path="/api/package[@name='com.arlib.floatingsearchview.util.view']/class[@name='MenuView']/method[@name='setOnVisibleWidthChanged']" name="managedName">SetOnVisibleWidthChangedListener</attr>
+
+	<!-- workaround for https://github.com/arimorty/floatingsearchview/issues/266 -->
+	<remove-node path="/api/package[@name='com.arlib.floatingsearchview']/class[@name='FloatingSearchView']/method[@name='setOnMenuClickListener']" />
+	
 	<!-- cleanup a bit -->
 	<attr path="/api/package[@name='com.arlib.floatingsearchview.suggestions.model']/interface[@name='SearchSuggestion']/method" name="propertyName" />
 	<attr path="/api/package[@name='com.arlib.floatingsearchview.util']/class[@name='MenuPopupHelper']/field[@name='mOffsetX']" name="managedName">OffsetX</attr>

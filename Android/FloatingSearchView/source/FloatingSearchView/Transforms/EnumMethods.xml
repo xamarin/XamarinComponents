@@ -15,9 +15,4 @@
   - To change the type of the return value, use "return" as the parameter name.
   - The parameter names will be p0, p1, ... unless you provide JavaDoc file in the project.
   -->
-
-  <mapping jni-class="com/arlib/floatingsearchview/FloatingSearchView">
-    <method jni-name="onHostActivityResult" parameter="p1" clr-enum-type="Android.App.Result" />
-  </mapping>
-
 </enum-method-mappings>

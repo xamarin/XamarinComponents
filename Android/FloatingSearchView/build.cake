@@ -3,7 +3,7 @@
 
 var TARGET = Argument ("t", Argument ("target", "Default"));
 
-var JAR_VERSION = "1.0.2";
+var JAR_VERSION = "2.1.1";
 var JAR_URL = string.Format ("http://search.maven.org/remotecontent?filepath=com/github/arimorty/floatingsearchview/{0}/floatingsearchview-{0}.aar", JAR_VERSION);
 var JAR_DEST = "./externals/FloatingSearchView.aar";
 
@@ -23,8 +23,12 @@ var buildSpec = new BuildSpec () {
 		new DefaultSolutionBuilder { SolutionPath = "./samples/FloatingSearchViewSample.sln" },
 	},
 
+	NuGets = new [] {
+		new NuGetInfo { NuSpec = "./nuget/Xamarin.Android.FloatingSearchView.nuspec" },
+	},
+
 	Components = new [] {
-		new Component {ManifestDirectory = "./component"},
+		new Component { ManifestDirectory = "./component" },
 	},
 };
 

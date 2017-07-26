@@ -3,17 +3,14 @@ using Newtonsoft.Json.Linq;
 
 namespace FloatingSearchViewSample
 {
-	public class Colour
+	public class ColorModel
 	{
-		public Colour (JToken name, JToken rgb, JToken hex)
+		public ColorModel(JToken name, JToken rgb, JToken hex)
 		{
-			Name = name.Value<string> ();
-
-			Hex = hex.Value<string> ();
-
-			RGB = rgb.Value<string> ();
-
-			Color = Color.ParseColor (Hex);
+			Name = name.Value<string>();
+			Hex = hex.Value<string>();
+			RGB = rgb.Value<string>();
+			Color = Color.ParseColor(Hex);
 		}
 
 		public string Name { get; set; }

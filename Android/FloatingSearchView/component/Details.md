@@ -1,12 +1,8 @@
 
-<iframe src="https://appetize.io/embed/3cpbvdxv97vqedpz2j5bc1ymx4?device=nexus5&scale=75&autoplay=true&orientation=portrait&deviceColor=black&osVersion=4.4" 
-        width="300px" height="597px" frameborder="0" scrolling="no"
-        style="float:right;margin-left:1em;"></iframe>
-
 **FloatingSearchView** is an implementation of a floating search box with search suggestions.
 
 ## Usage
-    
+
 Add a FloatingSearchView to your view hierarchy, and make sure that it takes 
 up the full width and height of the screen.
 
@@ -15,19 +11,17 @@ up the full width and height of the screen.
         android:id="@+id/floating_search_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        app:floatingSearch_searchBarMarginLeft="@dimen/search_view_inset"
-        app:floatingSearch_searchBarMarginTop="@dimen/search_view_inset"
-        app:floatingSearch_searchBarMarginRight="@dimen/search_view_inset"
-        app:floatingSearch_showMenuAction="true"
-        app:floatingSearch_searchHint="Search..."
-        app:floatingSearch_voiceRecHint="Say something..."
-        app:floatingSearch_showSearchHintWhenNotFocused="true"
-        app:floatingSearch_showVoiceInput="true"
-        app:floatingSearch_showOverFlowMenu="true"
-        app:floatingSearch_hideOverflowMenuWhenFocused="true"
-        app:floatingSearch_showSearchKey="false"
+        app:floatingSearch_close_search_on_keyboard_dismiss="false"
+        app:floatingSearch_dimBackground="false"
         app:floatingSearch_dismissOnOutsideTouch="true"
-        app:floatingSearch_menu="@menu/menu_main" />
+        app:floatingSearch_leftActionMode="showHamburger"
+        app:floatingSearch_menu="@menu/menu_search_view"
+        app:floatingSearch_searchBarMarginLeft="@dimen/search_view_inset"
+        app:floatingSearch_searchBarMarginRight="@dimen/search_view_inset"
+        app:floatingSearch_searchBarMarginTop="@dimen/search_view_inset"
+        app:floatingSearch_searchHint="Search..."
+        app:floatingSearch_showSearchKey="true"
+        app:floatingSearch_suggestionsListAnimDuration="250"/>
 
 Then, listen to query changes and provide suggestion items that implement 
 `ISearchSuggestion`:
@@ -79,29 +73,14 @@ First, implement `ISearchSuggestion`:
         public string GetBody () {
             // return the text of the suggestion 
         }
-        public void SetBodyText (TextView textView) {
-            // customize the appearace of the search TextView
-        }
-        public bool SetLeftIcon (ImageView imageView) {
-            // set the image for the suggestion ImageView
-        }
-        public IParcelableCreator GetCreator () {
-            return CREATOR ();
-        }
-
+        
         // IParcelable interface
         
-        public MySuggestion (Parcel source) {
-            // read the saved values from source
-        }
-
         [ExportField ("CREATOR")]
-        public static IParcelableCreator CREATOR () {
-            return new MySuggestionCreator ();
-        }
-        public int DescribeContents () {
-            return 0;
-        }
+        public static IParcelableCreator CREATOR () => new MySuggestionCreator ();
+        
+        public int DescribeContents () => 0;
+        
         public void WriteToParcel (Parcel dest, ParcelableWriteFlags flags) {
             // write data to dest
         }
@@ -115,21 +94,4 @@ First, implement `ISearchSuggestion`:
                 return new MySuggestion[size];
             }
         }
-    }
-### Enable Voice Recognition
-
-In your xml, add:
-
-    <com.arlib.floatingsearchview.FloatingSearchView
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        ...
-        app:floatingSearch_showVoiceInput="true" />
-
-Then, in your activity, add `OnHostActivityResult` to the `OnActivityResult` method:
-
-    protected override void OnActivityResult (int requestCode, Result resultCode, Android.Content.Intent data)
-    {
-        base.OnActivityResult (requestCode, resultCode, data);
-        
-        searchView.OnHostActivityResult (requestCode, resultCode, data);
     }
