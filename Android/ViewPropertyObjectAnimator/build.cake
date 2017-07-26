@@ -3,7 +3,7 @@
 
 var TARGET = Argument ("t", Argument ("target", "Default"));
 
-var JAR_VERSION = "1.3.0";
+var JAR_VERSION = "1.4.5";
 var JAR_URL = string.Format ("http://search.maven.org/remotecontent?filepath=com/bartoszlipinski/viewpropertyobjectanimator/{0}/viewpropertyobjectanimator-{0}.aar", JAR_VERSION);
 var JAR_DEST = "./externals/ViewPropertyObjectAnimator.aar";
 
