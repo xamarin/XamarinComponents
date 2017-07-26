@@ -35,6 +35,7 @@ var fetchers = new VersionFetcher[] {
     new MavenCentral ("Sticky List Headers", "2.7.0", "se/emilsjolander/stickylistheaders", OWNER_SA1),
     new MavenCentral ("Universal Image Loader", "1.9.5", "com/nostra13/universalimageloader/universal-image-loader", OWNER_SA1),
     new MavenCentral ("VectorCompat", "1.0.5", "com/wnafee/vector-compat", OWNER_SA1),
+    new MavenCentral ("ViewPropertyObjectAnimator", "1.4.5", "com/bartoszlipinski/viewpropertyobjectanimator", OWNER_SA1),
 
     // iOS
     new CocoaPods ("AMViralSwitch", "1.0.0", "AMViralSwitch", OWNER_SA1),
