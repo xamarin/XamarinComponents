@@ -21,10 +21,4 @@
   <attr path="/api/package[@name='com.github.chrisbanes.photoview']/interface[@name='OnSingleFlingListener']/method[@name='onFling']/parameter[2]" name="managedName">event2</attr>
   <attr path="/api/package[@name='com.github.chrisbanes.photoview']/interface[@name='OnSingleFlingListener']/method[@name='onFling']/parameter[3]" name="managedName">velocityX</attr>
   <attr path="/api/package[@name='com.github.chrisbanes.photoview']/interface[@name='OnSingleFlingListener']/method[@name='onFling']/parameter[4]" name="managedName">velocityY</attr>
-
-  <!-- future change -->
-  <attr path="/api/package[@name='com.github.chrisbanes.photoview']/class[@name='PhotoView']/method[@name='isZoomEnabled']" name="managedName">GetZoomable</attr>
-
-  <!-- private interface -->
-  <remove-node path="/api/package[@name='com.github.chrisbanes.photoview']/class[@name='PhotoViewAttacher']/implements[@name='com.github.chrisbanes.photoview.OnGestureListener']" />
 </metadata>
