@@ -13,7 +13,7 @@ var fetchers = new VersionFetcher[] {
     // Android
     new MavenCentral ("Android Easing Functions", "1.0.2", "com/daimajia/easing/library", OWNER_SA1),
     new MavenCentral ("Android Swipe Layout", "1.2.0", "com/daimajia/swipelayout/library", OWNER_SA1),
-    new Maven ("Android Things", "0.4.0-devpreview", "https://google.bintray.com/androidthings/com/google/android/things/androidthings/maven-metadata.xml", OWNER_CA1),
+    new Maven ("Android Things", "0.4.1-devpreview", "https://google.bintray.com/androidthings/com/google/android/things/androidthings/maven-metadata.xml", OWNER_CA1),
     new MavenCentral ("Android View Animations", "1.1.3", "com/daimajia/androidanimations/library", OWNER_SA1),
     new MavenCentral ("Android Volley", "1.0.19", "com/mcxiaoke/volley/library", OWNER_SA1),
     new BinTray ("Animated Circle Loading View", "1.1.2", "jlmd", "maven/com/github/jlmd/AnimatedCircleLoadingView", OWNER_SA1),
