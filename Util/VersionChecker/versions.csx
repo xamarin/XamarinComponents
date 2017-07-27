@@ -111,23 +111,21 @@ var fetchers = new VersionFetcher[] {
     new CocoaPods ("Mapbox iOS", "3.5.0", "Mapbox-iOS-SDK", OWNER_CA1),
 
     // Square
-    new MavenCentral ("OkIO", "1.9.0", "com/squareup/okio/okio", OWNER_SA1),
+    new MavenCentral ("OkIO", "1.13.0", "com/squareup/okio/okio", OWNER_SA1),
     new MavenCentral ("OkHttp", "2.7.5", "com/squareup/okhttp/okhttp", OWNER_SA1),
-    new MavenCentral ("OkHttp3", "3.5.0", "com/squareup/okhttp3/okhttp", OWNER_SA1),
+    new MavenCentral ("OkHttp3", "3.8.1", "com/squareup/okhttp3/okhttp", OWNER_SA1),
     new MavenCentral ("OkHttp Web Sockets", "2.7.5", "com/squareup/okhttp/okhttp-ws", OWNER_SA1),
     new MavenCentral ("OkHttp3 Web Sockets", "3.4.2", "com/squareup/okhttp3/okhttp-ws", OWNER_SA1),
     new MavenCentral ("Picasso", "2.5.2", "com/squareup/picasso/picasso", OWNER_SA1),
-    new MavenCentral ("AndroidTimesSquare", "1.6.5", "com/squareup/android-times-square", OWNER_SA1),
+    new MavenCentral ("AndroidTimesSquare", "1.7.3", "com/squareup/android-times-square", OWNER_SA1),
     new MavenCentral ("Seismic", "1.0.2", "com/squareup/seismic", OWNER_SA1),
     new MavenCentral ("Pollexor", "2.0.4", "com/squareup/pollexor", OWNER_SA1),
     new MavenCentral ("OkHttp UrlConection", "2.7.5", "com/squareup/okhttp/okhttp-urlconnection", OWNER_SA1),
     new MavenCentral ("Retrofit", "1.9.0", "com/squareup/retrofit", OWNER_SA1),
-    new MavenCentral ("Retrofit2", "0.0.0", "com/squareup/retrofit2", OWNER_SA1),
-
-    // Square dependencies
-    new GitHubReleases ("SocketRocket", "0.4.2", "square", "SocketRocket", OWNER_SA1),
+    new MavenCentral ("Retrofit2", "2.3.0", "com/squareup/retrofit2", OWNER_SA1),
+    new GitHubReleases ("SocketRocket", "0.5.1", "square", "SocketRocket", OWNER_SA1),
     new GitHubReleases ("Valet", "2.2.2", "square", "Valet", OWNER_SA1),
-    new GitHubReleases ("Aardvark", "1.4.0", "square", "Aardvark", OWNER_SA1),
+    new GitHubReleases ("Aardvark", "1.5.0", "square", "Aardvark", OWNER_SA1),
 };
 
 var updates = new List<UpdateInfo> ();
