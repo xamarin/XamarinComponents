@@ -110,6 +110,10 @@ var fetchers = new VersionFetcher[] {
     new MavenCentral ("Mapbox Android", "4.2.2", "com/mapbox/mapboxsdk/mapbox-android-sdk", OWNER_CA1),
     new CocoaPods ("Mapbox iOS", "3.5.0", "Mapbox-iOS-SDK", OWNER_CA1),
 
+    // Socket.IO
+    new MavenCentral ("Socket.IO Client", "1.0.0", "io/socket/socket.io-client", OWNER_SA1),
+    new MavenCentral ("Engine.IO Client", "1.0.0", "io/socket/engine.io-client", OWNER_SA1),
+
     // Square
     new MavenCentral ("OkIO", "1.13.0", "com/squareup/okio/okio", OWNER_SA1),
     new MavenCentral ("OkHttp", "2.7.5", "com/squareup/okhttp/okhttp", OWNER_SA1),
