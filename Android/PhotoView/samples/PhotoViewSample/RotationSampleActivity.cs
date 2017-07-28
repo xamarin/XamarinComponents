@@ -21,7 +21,7 @@ namespace PhotoViewSample
             SetContentView(Resource.Layout.activity_rotation_sample);
 
             var toolbar = FindViewById<Toolbar>(Resource.Id.toolbar);
-            toolbar.SetTitle("Rotation Sample");
+            toolbar.Title = "Rotation Sample";
             toolbar.InflateMenu(Resource.Menu.rotation);
             toolbar.MenuItemClick += (sender, e) =>
             {
