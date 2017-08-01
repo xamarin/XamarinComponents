@@ -87,6 +87,12 @@
     <Reference Include="Square.OkIO">
       <HintPath>..\packages\Square.OkIO.1.11.0\lib\MonoAndroid\Square.OkIO.dll</HintPath>
     </Reference>
+    <Reference Include="Xamarin.Android.Support.Transition">
+      <HintPath>..\packages\Xamarin.Android.Support.Transition.25.3.1\lib\MonoAndroid70\Xamarin.Android.Support.Transition.dll</HintPath>
+    </Reference>
+    <Reference Include="Xamarin.Android.Support.Design">
+      <HintPath>..\packages\Xamarin.Android.Support.Design.25.3.1\lib\MonoAndroid70\Xamarin.Android.Support.Design.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="RotationSampleActivity.cs" />
@@ -100,6 +106,7 @@
     <Compile Include="HackyDrawerLayout.cs" />
     <Compile Include="ActivityTransitionSampleActivity.cs" />
     <Compile Include="PicassoSampleActivity.cs" />
+    <Compile Include="ImmersiveSampleActivity.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config">
@@ -110,6 +117,9 @@
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
   <ItemGroup>
     <Folder Include="Assets\" />
+    <Folder Include="Resources\drawable\" />
+    <Folder Include="Resources\layout\" />
+    <Folder Include="Resources\menu\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\source\PhotoView\PhotoView.csproj">
@@ -119,14 +129,6 @@
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\drawable-nodpi\wallpaper.jpg" />
-    <AndroidResource Include="Resources\layout\activity_launcher.xml" />
-    <AndroidResource Include="Resources\layout\activity_main.xml" />
-    <AndroidResource Include="Resources\layout\activity_simple.xml" />
-    <AndroidResource Include="Resources\layout\activity_transition.xml" />
-    <AndroidResource Include="Resources\layout\activity_transition_to.xml" />
-    <AndroidResource Include="Resources\layout\item_image.xml" />
-    <AndroidResource Include="Resources\layout\item_list_item.xml" />
-    <AndroidResource Include="Resources\menu\main_menu.xml" />
     <AndroidResource Include="Resources\mipmap-hdpi\ic_launcher.png" />
     <AndroidResource Include="Resources\mipmap-mdpi\ic_launcher.png" />
     <AndroidResource Include="Resources\mipmap-xhdpi\ic_launcher.png" />
@@ -136,6 +138,17 @@
     <AndroidResource Include="Resources\values\strings.xml" />
     <AndroidResource Include="Resources\values\styles.xml" />
     <AndroidResource Include="Resources\values\transitions.xml" />
+    <AndroidResource Include="Resources\drawable\ic_arrow_back_white_24dp.xml" />
+    <AndroidResource Include="Resources\layout\activity_immersive.xml" />
+    <AndroidResource Include="Resources\layout\activity_launcher.xml" />
+    <AndroidResource Include="Resources\layout\activity_main.xml" />
+    <AndroidResource Include="Resources\layout\activity_simple.xml" />
+    <AndroidResource Include="Resources\layout\activity_transition_to.xml" />
+    <AndroidResource Include="Resources\layout\activity_transition.xml" />
+    <AndroidResource Include="Resources\layout\activity_view_pager.xml" />
+    <AndroidResource Include="Resources\layout\item_image.xml" />
+    <AndroidResource Include="Resources\layout\item_sample.xml" />
+    <AndroidResource Include="Resources\menu\main_menu.xml" />
   </ItemGroup>
   <Import Project="..\packages\Xamarin.Build.Download.0.4.6\build\Xamarin.Build.Download.targets" Condition="Exists('..\packages\Xamarin.Build.Download.0.4.6\build\Xamarin.Build.Download.targets')" />
   <Import Project="..\packages\Xamarin.Android.Support.Annotations.25.3.1\build\MonoAndroid70\Xamarin.Android.Support.Annotations.targets" Condition="Exists('..\packages\Xamarin.Android.Support.Annotations.25.3.1\build\MonoAndroid70\Xamarin.Android.Support.Annotations.targets')" />
@@ -149,4 +162,6 @@
   <Import Project="..\packages\Xamarin.Android.Support.Animated.Vector.Drawable.25.3.1\build\MonoAndroid70\Xamarin.Android.Support.Animated.Vector.Drawable.targets" Condition="Exists('..\packages\Xamarin.Android.Support.Animated.Vector.Drawable.25.3.1\build\MonoAndroid70\Xamarin.Android.Support.Animated.Vector.Drawable.targets')" />
   <Import Project="..\packages\Xamarin.Android.Support.v7.AppCompat.25.3.1\build\MonoAndroid70\Xamarin.Android.Support.v7.AppCompat.targets" Condition="Exists('..\packages\Xamarin.Android.Support.v7.AppCompat.25.3.1\build\MonoAndroid70\Xamarin.Android.Support.v7.AppCompat.targets')" />
   <Import Project="..\packages\Xamarin.Android.Support.v7.RecyclerView.25.3.1\build\MonoAndroid70\Xamarin.Android.Support.v7.RecyclerView.targets" Condition="Exists('..\packages\Xamarin.Android.Support.v7.RecyclerView.25.3.1\build\MonoAndroid70\Xamarin.Android.Support.v7.RecyclerView.targets')" />
+  <Import Project="..\packages\Xamarin.Android.Support.Transition.25.3.1\build\MonoAndroid70\Xamarin.Android.Support.Transition.targets" Condition="Exists('..\packages\Xamarin.Android.Support.Transition.25.3.1\build\MonoAndroid70\Xamarin.Android.Support.Transition.targets')" />
+  <Import Project="..\packages\Xamarin.Android.Support.Design.25.3.1\build\MonoAndroid70\Xamarin.Android.Support.Design.targets" Condition="Exists('..\packages\Xamarin.Android.Support.Design.25.3.1\build\MonoAndroid70\Xamarin.Android.Support.Design.targets')" />
 </Project>

@@ -11,71 +11,75 @@ using Android.Widget;
 
 namespace PhotoViewSample
 {
-	[Activity(Label = "@string/app_name", MainLauncher = true)]
-	public class MainActivity : AppCompatActivity
-	{
-		protected override void OnCreate(Bundle savedInstanceState)
-		{
-			base.OnCreate(savedInstanceState);
+    [Activity(Label = "@string/app_name", MainLauncher = true)]
+    public class MainActivity : AppCompatActivity
+    {
+        protected override void OnCreate(Bundle savedInstanceState)
+        {
+            base.OnCreate(savedInstanceState);
 
-			SetContentView(Resource.Layout.activity_launcher);
+            SetContentView(Resource.Layout.activity_launcher);
 
-			var recyclerView = FindViewById<RecyclerView>(Resource.Id.list);
-			recyclerView.SetLayoutManager(new LinearLayoutManager(this));
-			recyclerView.SetAdapter(new ItemAdapter());
-		}
+            var toolbar = FindViewById<Android.Support.V7.Widget.Toolbar>(Resource.Id.toolbar);
+            toolbar.SetTitle(Resource.String.app_name);
 
-		private class ItemAdapter : RecyclerView.Adapter
-		{
-			private static List<KeyValuePair<string, Type>> options = new Dictionary<string, Type>
-			{
-				{ "Simple Sample", typeof(SimpleSampleActivity) },
-				{ "ViewPager Sample", typeof(ViewPagerSampleActivity) },
-				{ "Rotation Sample", typeof(RotationSampleActivity) },
-				{ "Picasso Sample", typeof(PicassoSampleActivity) },
-				{ "Activity Transition Sample", typeof(ActivityTransitionSampleActivity) },
-			}.ToList();
+            var recyclerView = FindViewById<RecyclerView>(Resource.Id.list);
+            recyclerView.SetLayoutManager(new LinearLayoutManager(this));
+            recyclerView.SetAdapter(new ItemAdapter());
+        }
 
-			public override RecyclerView.ViewHolder OnCreateViewHolder(ViewGroup parent, int viewType)
-			{
-				return ItemViewHolder.Create(parent);
-			}
+        private class ItemAdapter : RecyclerView.Adapter
+        {
+            private static List<KeyValuePair<string, Type>> options = new Dictionary<string, Type>
+            {
+                { "Simple Sample", typeof(SimpleSampleActivity) },
+                { "ViewPager Sample", typeof(ViewPagerSampleActivity) },
+                { "Rotation Sample", typeof(RotationSampleActivity) },
+                { "Picasso Sample", typeof(PicassoSampleActivity) },
+                { "Activity Transition Sample", typeof(ActivityTransitionSampleActivity) },
+                { "Immersive Sample", typeof(ImmersiveSampleActivity) },
+            }.ToList();
 
-			public override void OnBindViewHolder(RecyclerView.ViewHolder holder, int position)
-			{
-				((ItemViewHolder)holder).Bind(options[position]);
-			}
+            public override RecyclerView.ViewHolder OnCreateViewHolder(ViewGroup parent, int viewType)
+            {
+                return ItemViewHolder.Create(parent);
+            }
 
-			public override int ItemCount => options.Count;
-		}
+            public override void OnBindViewHolder(RecyclerView.ViewHolder holder, int position)
+            {
+                ((ItemViewHolder)holder).Bind(options[position]);
+            }
 
-		private class ItemViewHolder : RecyclerView.ViewHolder
-		{
-			private readonly TextView textTitle;
-			private Type activityType;
+            public override int ItemCount => options.Count;
+        }
 
-			public static ItemViewHolder Create(ViewGroup parent)
-			{
-				var view = LayoutInflater.From(parent.Context).Inflate(Resource.Layout.item_list_item, parent, false);
-				return new ItemViewHolder(view);
-			}
+        private class ItemViewHolder : RecyclerView.ViewHolder
+        {
+            private readonly TextView textTitle;
+            private Type activityType;
 
-			public ItemViewHolder(View view)
-				: base(view)
-			{
-				textTitle = view.FindViewById<TextView>(Resource.Id.title);
+            public static ItemViewHolder Create(ViewGroup parent)
+            {
+                var view = LayoutInflater.From(parent.Context).Inflate(Resource.Layout.item_sample, parent, false);
+                return new ItemViewHolder(view);
+            }
 
-				ItemView.Click += (sender, e) =>
-				{
-					ItemView.Context.StartActivity(new Intent(ItemView.Context, activityType));
-				};
-			}
+            public ItemViewHolder(View view)
+                : base(view)
+            {
+                textTitle = view.FindViewById<TextView>(Resource.Id.title);
 
-			public void Bind(KeyValuePair<string, Type> option)
-			{
-				textTitle.Text = option.Key;
-				activityType = option.Value;
-			}
-		}
-	}
+                ItemView.Click += (sender, e) =>
+                {
+                    ItemView.Context.StartActivity(new Intent(ItemView.Context, activityType));
+                };
+            }
+
+            public void Bind(KeyValuePair<string, Type> option)
+            {
+                textTitle.Text = option.Key;
+                activityType = option.Value;
+            }
+        }
+    }
 }

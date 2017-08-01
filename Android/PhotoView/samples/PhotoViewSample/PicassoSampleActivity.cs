@@ -17,12 +17,11 @@ namespace PhotoViewSample
             SetContentView(Resource.Layout.activity_simple);
 
             var photoView = FindViewById<PhotoView>(Resource.Id.iv_photo);
-            var attacher = new PhotoViewAttacher(photoView);
 
             Picasso
                 .With(this)
                 .Load("http://pbs.twimg.com/media/Bist9mvIYAAeAyQ.jpg")
-                .Into(photoView, () => attacher.Update(), null);
+                .Into(photoView);
         }
     }
 }

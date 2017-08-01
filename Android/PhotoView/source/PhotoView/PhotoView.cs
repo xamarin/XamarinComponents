@@ -2,7 +2,7 @@
 
 namespace ImageViews.Photo
 {
-	partial class PhotoViewAttacher
+	partial class PhotoView
 	{
 		public Matrix DisplayMatrix
 		{
@@ -18,14 +18,18 @@ namespace ImageViews.Photo
 			}
 		}
 
-		public Matrix SuppMatrix
-		{
-			get
-			{
-				var matrix = new Matrix();
-				GetSuppMatrix(matrix);
-				return matrix;
-			}
-		}
+		//public Matrix SuppMatrix
+		//{
+		//	get
+		//	{
+		//		var matrix = new Matrix();
+		//		GetSuppMatrix(matrix);
+		//		return matrix;
+		//	}
+		//	set
+		//	{
+		//		SetSuppMatrix(value);
+		//	}
+		//}
 	}
 }
