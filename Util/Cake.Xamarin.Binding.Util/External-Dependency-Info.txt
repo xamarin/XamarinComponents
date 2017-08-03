@@ -15,6 +15,31 @@ whether by implication, estoppel or otherwise.
 Copyright (c) 2008 - 2015 Jb Evain
 Copyright (c) 2008 - 2011 Novell, Inc.
 
+--------------------------------------------
+Other files from source have specific copyrights:
+--------------------------------------------
+/cecil/symbols/mdb/Mono.CompilerServices.SymbolWriter/SourceMethodBuilder.cs
+  (C) 2002 Ximian, Inc.  http://www.ximian.com
+  Copyright (C) 2012 Xamarin Inc (http://www.xamarin.com)
+
+/cecil/Mono.Security.Cryptography/CryptoConvert.cs
+  (C) 2003 Motus Technologies Inc. (http://www.motus.com)
+  Copyright (C) 2004-2006 Novell Inc. (http://www.novell.com)
+
+/cecil/symbols/mdb/Mono.CompilerServices.SymbolWriter/MonoSymbolWriter.cs
+  (C) 2002 Ximian, Inc.  http://www.ximian.com
+
+/cecil/symbols/mdb/Mono.CompilerServices.SymbolWriter/SymbolWriterImpl.cs
+  (C) 2005 Novell, Inc.  http://www.novell.com
+
+/cecil/symbols/mdb/Mono.CompilerServices.SymbolWriter/MonoSymbolFile.cs
+  (C) 2003 Ximian, Inc.  http://www.ximian.com
+  Copyright (C) 2012 Xamarin Inc (http://www.xamarin.com)
+
+/cecil/symbols/mdb/Mono.CompilerServices.SymbolWriter/MonoSymbolTable.cs
+  (C) 2002 Ximian, Inc.  http://www.ximian.com
+--------------------------------------------
+
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the
 "Software"), to deal in the Software without restriction, including
@@ -37,6 +62,19 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 You may obtain a copy of the license here:
 https://github.com/jbevain/cecil/blob/master/LICENSE.txt
 
+
+---------------------------------------------
+Other files from source have specific notice:
+---------------------------------------------
+Copyright (c) Microsoft. All rights reserved.
+This code is licensed under the Microsoft Public License.
+THIS CODE IS PROVIDED *AS IS* WITHOUT WARRANTY OF
+ANY KIND, EITHER EXPRESS OR IMPLIED, INCLUDING ANY
+IMPLIED WARRANTIES OF FITNESS FOR A PARTICULAR
+PURPOSE, MERCHANTABILITY, OR NON-INFRINGEMENT.
+---------------------------------------------
+
 ############################################
 # end - Cecil
 ############################################
+
