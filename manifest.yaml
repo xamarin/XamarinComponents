@@ -402,3 +402,7 @@
   BuildScript: ./Util/Xamarin.Build.Download/build.cake
   TriggerPaths: [ Util/Xamarin.Build.Download ]
   MacBuildTargets: [ nuget ]
+- Name: Cake.Xamarin.Binding.Util
+  BuildScript: ./Util/Cake.Xamarin.Binding.Util/build.cake
+  TriggerPaths: [ Util/Cake.Xamarin.Binding.Util ]
+  MacBuildTargets: [ nuget ]
