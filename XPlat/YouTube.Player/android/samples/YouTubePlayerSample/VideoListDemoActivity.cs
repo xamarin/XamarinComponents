@@ -27,12 +27,12 @@ namespace YouTubePlayerSample
 	public class VideoListDemoActivity : Activity, IYouTubePlayerOnFullscreenListener
 	{
 		// The duration of the animation sliding up the video in portrait.
-		private const int ANIMATION_DURATION_MILLIS = 300;
+		private const int AnimationDuration = 300;
 		// The padding between the video list and the video in landscape orientation.
-		private const int LANDSCAPE_VIDEO_PADDING_DP = 5;
+		private const int LandscapeVideoPadding = 5;
 
 		// The request code when calling startActivityForResult to recover from an API service error.
-		private const int RECOVERY_DIALOG_REQUEST = 1;
+		private const int RecoveryDialogRequest = 1;
 
 		private VideoListFragment listFragment;
 		private VideoFragment videoFragment;
@@ -67,7 +67,7 @@ namespace YouTubePlayerSample
 			var errorReason = YouTubeApiServiceUtil.IsYouTubeApiServiceAvailable(this);
 			if (errorReason.IsUserRecoverableError)
 			{
-				errorReason.GetErrorDialog(this, RECOVERY_DIALOG_REQUEST).Show();
+				errorReason.GetErrorDialog(this, RecoveryDialogRequest).Show();
 			}
 			else if (errorReason != YouTubeInitializationResult.Success)
 			{
@@ -78,7 +78,7 @@ namespace YouTubePlayerSample
 
 		protected override void OnActivityResult(int requestCode, Result resultCode, Intent data)
 		{
-			if (requestCode == RECOVERY_DIALOG_REQUEST)
+			if (requestCode == RecoveryDialogRequest)
 			{
 				// Recreate the activity if user performed a recovery action
 				Recreate();
@@ -127,7 +127,7 @@ namespace YouTubePlayerSample
 				videoBox.TranslationY = 0; // Reset any translation that was applied in portrait.
 				int screenWidth = DpToPx(Resources.Configuration.ScreenWidthDp);
 				SetLayoutSize(listFragment.View, screenWidth / 4, ViewGroup.LayoutParams.MatchParent);
-				int videoWidth = screenWidth - screenWidth / 4 - DpToPx(LANDSCAPE_VIDEO_PADDING_DP);
+				int videoWidth = screenWidth - screenWidth / 4 - DpToPx(LandscapeVideoPadding);
 				SetLayoutSize(videoFragment.View, videoWidth, ViewGroup.LayoutParams.WrapContent);
 				SetLayoutSizeAndGravity(videoBox, videoWidth, ViewGroup.LayoutParams.WrapContent, GravityFlags.Right | GravityFlags.CenterVertical);
 			}
@@ -139,9 +139,10 @@ namespace YouTubePlayerSample
 			listFragment.ListView.RequestLayout();
 			videoFragment.Pause();
 
-			var animator = videoBox.Animate()
+			var animator = videoBox
+				.Animate()
 				.TranslationYBy(videoBox.Height)
-				.SetDuration(ANIMATION_DURATION_MILLIS);
+				.SetDuration(AnimationDuration);
 			RunOnAnimationEnd(animator, () => videoBox.Visibility = ViewStates.Invisible);
 		}
 
@@ -181,7 +182,7 @@ namespace YouTubePlayerSample
 		// A fragment that shows a static list of videos.
 		public class VideoListFragment : ListFragment
 		{
-			private static readonly List<VideoEntry> VIDEO_LIST = new List<VideoEntry> {
+			private static readonly List<VideoEntry> VideoList = new List<VideoEntry> {
 				new VideoEntry("YouTube Collection", "Y_UmWdcTrrc"),
 				new VideoEntry("GMail Tap", "1KhZKNZO8mQ"),
 				new VideoEntry("Chrome Multitask", "UiLSiqyDf4Y"),
@@ -197,7 +198,7 @@ namespace YouTubePlayerSample
 			public override void OnCreate(Bundle savedInstanceState)
 			{
 				base.OnCreate(savedInstanceState);
-				adapter = new PageAdapter(Activity, VIDEO_LIST);
+				adapter = new PageAdapter(Activity, VideoList);
 			}
 
 			public override void OnActivityCreated(Bundle savedInstanceState)
@@ -211,7 +212,7 @@ namespace YouTubePlayerSample
 
 			public override void OnListItemClick(ListView l, View v, int position, long id)
 			{
-				var videoId = VIDEO_LIST[position].VideoId;
+				var videoId = VideoList[position].VideoId;
 
 				var videoFragment = FragmentManager.FindFragmentById<VideoFragment>(Resource.Id.video_fragment_container);
 				videoFragment.SetVideoId(videoId);
@@ -230,7 +231,7 @@ namespace YouTubePlayerSample
 				// If the fragment is off the screen, we animate it in.
 				if (videoBox.TranslationY > 0)
 				{
-					videoBox.Animate().TranslationY(0).SetDuration(ANIMATION_DURATION_MILLIS);
+					videoBox.Animate().TranslationY(0).SetDuration(AnimationDuration);
 				}
 			}
 

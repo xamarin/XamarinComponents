@@ -4,6 +4,7 @@ using Android.Content.PM;
 using Android.Graphics;
 using Android.Graphics.Drawables;
 using Android.OS;
+using Android.Runtime;
 using Android.Util;
 using Android.Views;
 using Android.Widget;
@@ -25,6 +26,7 @@ namespace YouTubePlayerSample
 		ConfigurationChanges = ConfigChanges.Orientation | ConfigChanges.ScreenSize | ConfigChanges.KeyboardHidden)]
 	[MetaData("@string/minVersion", Value = "11")]
 	[MetaData("@string/isLaunchableActivity", Value = "true")]
+	[Register("com.examples.youtubeapidemo.ActionBarDemoActivity")]
 	public class ActionBarDemoActivity : YouTubeFailureRecoveryActivity, IYouTubePlayerOnFullscreenListener
 	{
 		private ActionBarPaddedFrameLayout viewContainer;
@@ -34,6 +36,8 @@ namespace YouTubePlayerSample
 		protected override void OnCreate(Bundle savedInstanceState)
 		{
 			base.OnCreate(savedInstanceState);
+
+			SetContentView(Resource.Layout.action_bar_demo);
 
 			viewContainer = FindViewById<ActionBarPaddedFrameLayout>(Resource.Id.view_container);
 			playerFragment = FragmentManager.FindFragmentById<YouTubePlayerFragment>(Resource.Id.player_fragment);
@@ -45,8 +49,6 @@ namespace YouTubePlayerSample
 			var trans = Color.Black;
 			trans.A = 0xAA;
 			ActionBar.SetBackgroundDrawable(new ColorDrawable(trans));
-
-			SetContentView(Resource.Layout.action_bar_demo);
 		}
 
 		public override void OnInitializationSuccess(IYouTubePlayerProvider provider, IYouTubePlayer player, bool wasRestored)

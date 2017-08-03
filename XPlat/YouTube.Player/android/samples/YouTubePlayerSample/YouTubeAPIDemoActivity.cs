@@ -50,6 +50,8 @@ namespace YouTubePlayerSample
 				}
 			}
 
+			activities.Sort((x, y) => StringComparer.OrdinalIgnoreCase.Compare(x.Title, y.Title));
+
 			var listView = FindViewById<ListView>(Resource.Id.demo_list);
 			var adapter = new DemoArrayAdapter(this, Resource.Layout.list_item, activities);
 			listView.Adapter = adapter;

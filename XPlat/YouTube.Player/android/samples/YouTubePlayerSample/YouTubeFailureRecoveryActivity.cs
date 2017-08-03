@@ -10,13 +10,13 @@ namespace YouTubePlayerSample
 	// initialization, but can be corrected through user action.
 	public abstract class YouTubeFailureRecoveryActivity : YouTubeBaseActivity, IYouTubePlayerOnInitializedListener
 	{
-		public const int RECOVERY_DIALOG_REQUEST = 1;
+		public const int RecoveryDialogRequest = 1;
 
 		public void OnInitializationFailure(IYouTubePlayerProvider provider, YouTubeInitializationResult errorReason)
 		{
 			if (errorReason.IsUserRecoverableError)
 			{
-				errorReason.GetErrorDialog(this, RECOVERY_DIALOG_REQUEST).Show();
+				errorReason.GetErrorDialog(this, RecoveryDialogRequest).Show();
 			}
 			else
 			{
@@ -27,7 +27,7 @@ namespace YouTubePlayerSample
 
 		protected override void OnActivityResult(int requestCode, Result resultCode, Intent data)
 		{
-			if (requestCode == RECOVERY_DIALOG_REQUEST)
+			if (requestCode == RecoveryDialogRequest)
 			{
 				// Retry initialization if user performed a recovery action
 				YouTubePlayerProvider.Initialize(DeveloperKey.Key, this);

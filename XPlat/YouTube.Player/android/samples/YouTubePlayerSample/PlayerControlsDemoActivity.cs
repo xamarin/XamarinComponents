@@ -22,13 +22,13 @@ namespace YouTubePlayerSample
 		IYouTubePlayerPlaybackEventListener,
 		IYouTubePlayerPlaylistEventListener
 	{
-		private static readonly ListEntry[] ENTRIES = {
-		new ListEntry("Androidify App", "irH3OSOskcE", false),
-		new ListEntry("Chrome Speed Tests", "nCgQDjiotG0", false),
-		new ListEntry("Playlist: Google I/O 2012", "PL56D792A831D0C362", true)
-	};
+		private static readonly ListEntry[] Entries = {
+			new ListEntry("Androidify App", "irH3OSOskcE", false),
+			new ListEntry("Chrome Speed Tests", "nCgQDjiotG0", false),
+			new ListEntry("Playlist: Google I/O 2012", "PL56D792A831D0C362", true)
+		};
 
-		private const string KEY_CURRENTLY_SELECTED_ID = "currentlySelectedId";
+		private const string KeyCurrentlySelectedId = "currentlySelectedId";
 
 		private YouTubePlayerView youTubePlayerView;
 		private IYouTubePlayer player;
@@ -65,7 +65,7 @@ namespace YouTubePlayerSample
 			FindViewById<RadioButton>(Resource.Id.style_chromeless).CheckedChange += (sender, e) => player.SetPlayerStyle(YouTubePlayerPlayerStyle.Chromeless);
 			logString = new StringBuilder();
 
-			videoAdapter = new ArrayAdapter<ListEntry>(this, Android.Resource.Layout.SimpleSpinnerItem, ENTRIES);
+			videoAdapter = new ArrayAdapter<ListEntry>(this, Android.Resource.Layout.SimpleSpinnerItem, Entries);
 			videoAdapter.SetDropDownViewResource(Android.Resource.Layout.SimpleSpinnerDropDownItem);
 			videoChooser.ItemSelected += (sender, e) =>
 			{
@@ -127,13 +127,13 @@ namespace YouTubePlayerSample
 		protected override void OnSaveInstanceState(Bundle outState)
 		{
 			base.OnSaveInstanceState(outState);
-			outState.PutString(KEY_CURRENTLY_SELECTED_ID, currentlySelectedId);
+			outState.PutString(KeyCurrentlySelectedId, currentlySelectedId);
 		}
 
 		protected override void OnRestoreInstanceState(Bundle savedInstanceState)
 		{
 			base.OnRestoreInstanceState(savedInstanceState);
-			currentlySelectedId = savedInstanceState.GetString(KEY_CURRENTLY_SELECTED_ID);
+			currentlySelectedId = savedInstanceState.GetString(KeyCurrentlySelectedId);
 		}
 
 		private void UpdateText()

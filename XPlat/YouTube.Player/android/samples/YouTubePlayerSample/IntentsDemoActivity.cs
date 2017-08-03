@@ -17,13 +17,12 @@ namespace YouTubePlayerSample
 	[MetaData("@string/isLaunchableActivity", Value = "true")]
 	public class IntentsDemoActivity : Activity
 	{
-		// This is the value of Intent.EXTRA_LOCAL_ONLY for API level 11 and above.
-		private const string EXTRA_LOCAL_ONLY = "android.intent.extra.LOCAL_ONLY";
-		private const string VIDEO_ID = "-Uwjt32NvVA";
-		private const string PLAYLIST_ID = "PLF3DFB800F05F551A";
-		private const string USER_ID = "Google";
-		private const string CHANNEL_ID = "UCVHFbqXqoYvEWM1Ddxl0QDg";
-		private const int SELECT_VIDEO_REQUEST = 1000;
+		private const string VideoId = "-Uwjt32NvVA";
+		private const string PlaylistId = "PLF3DFB800F05F551A";
+		private const string UserId = "Google";
+		private const string ChannelId = "UCVHFbqXqoYvEWM1Ddxl0QDg";
+
+		private const int SelectVideoRequest = 1000;
 
 		private List<DemoListViewItem> intentItems;
 
@@ -35,13 +34,13 @@ namespace YouTubePlayerSample
 
 			intentItems = new List<DemoListViewItem>
 			{
-				new IntentItem(this, "Play Video", IntentType.PLAY_VIDEO),
-				new IntentItem(this, "Open Playlist", IntentType.OPEN_PLAYLIST),
-				new IntentItem(this, "Play Playlist", IntentType.PLAY_PLAYLIST),
-				new IntentItem(this, "Open User", IntentType.OPEN_USER),
-				new IntentItem(this, "Open Channel", IntentType.OPEN_CHANNEL),
-				new IntentItem(this, "Open Search Results", IntentType.OPEN_SEARCH),
-				new IntentItem(this, "Upload Video", IntentType.UPLOAD_VIDEO),
+				new IntentItem(this, "Play Video", IntentType.PlayVideo),
+				new IntentItem(this, "Open Playlist", IntentType.OpenPlaylist),
+				new IntentItem(this, "Play Playlist", IntentType.PlayPlaylist),
+				new IntentItem(this, "Open User", IntentType.OpenUser),
+				new IntentItem(this, "Open Channel", IntentType.OpenChannel),
+				new IntentItem(this, "Open Search Results", IntentType.OpenSearch),
+				new IntentItem(this, "Upload Video", IntentType.UploadVideo),
 			};
 
 			var listView = FindViewById<ListView>(Resource.Id.intent_list);
@@ -69,36 +68,36 @@ namespace YouTubePlayerSample
 			Intent intent;
 			switch (clickedIntentItem.Type)
 			{
-				case IntentType.PLAY_VIDEO:
-					intent = YouTubeIntents.CreatePlayVideoIntentWithOptions(this, VIDEO_ID, true, false);
+				case IntentType.PlayVideo:
+					intent = YouTubeIntents.CreatePlayVideoIntentWithOptions(this, VideoId, true, false);
 					StartActivity(intent);
 					break;
-				case IntentType.OPEN_PLAYLIST:
-					intent = YouTubeIntents.CreateOpenPlaylistIntent(this, PLAYLIST_ID);
+				case IntentType.OpenPlaylist:
+					intent = YouTubeIntents.CreateOpenPlaylistIntent(this, PlaylistId);
 					StartActivity(intent);
 					break;
-				case IntentType.PLAY_PLAYLIST:
-					intent = YouTubeIntents.CreatePlayPlaylistIntent(this, PLAYLIST_ID);
+				case IntentType.PlayPlaylist:
+					intent = YouTubeIntents.CreatePlayPlaylistIntent(this, PlaylistId);
 					StartActivity(intent);
 					break;
-				case IntentType.OPEN_SEARCH:
-					intent = YouTubeIntents.CreateSearchIntent(this, USER_ID);
+				case IntentType.OpenSearch:
+					intent = YouTubeIntents.CreateSearchIntent(this, UserId);
 					StartActivity(intent);
 					break;
-				case IntentType.OPEN_USER:
-					intent = YouTubeIntents.CreateUserIntent(this, USER_ID);
+				case IntentType.OpenUser:
+					intent = YouTubeIntents.CreateUserIntent(this, UserId);
 					StartActivity(intent);
 					break;
-				case IntentType.OPEN_CHANNEL:
-					intent = YouTubeIntents.CreateChannelIntent(this, CHANNEL_ID);
+				case IntentType.OpenChannel:
+					intent = YouTubeIntents.CreateChannelIntent(this, ChannelId);
 					StartActivity(intent);
 					break;
-				case IntentType.UPLOAD_VIDEO:
+				case IntentType.UploadVideo:
 					// This will load a picker view in the users' gallery.
 					// The upload activity is started in the function onActivityResult.
 					intent = new Intent(Intent.ActionPick, null).SetType("video/*");
-					intent.PutExtra(EXTRA_LOCAL_ONLY, true);
-					StartActivityForResult(intent, SELECT_VIDEO_REQUEST);
+					intent.PutExtra(Intent.ExtraLocalOnly, true);
+					StartActivityForResult(intent, SelectVideoRequest);
 					break;
 			}
 		}
@@ -107,26 +106,25 @@ namespace YouTubePlayerSample
 		{
 			if (resultCode == Result.Ok)
 			{
-				switch (requestCode)
+				if (requestCode == SelectVideoRequest)
 				{
-					case SELECT_VIDEO_REQUEST:
-						Intent intent = YouTubeIntents.CreateUploadIntent(this, data.Data);
-						StartActivity(intent);
-						break;
+					Intent intent = YouTubeIntents.CreateUploadIntent(this, data.Data);
+					StartActivity(intent);
 				}
 			}
+
 			base.OnActivityResult(requestCode, resultCode, data);
 		}
 
 		private enum IntentType
 		{
-			PLAY_VIDEO,
-			OPEN_PLAYLIST,
-			PLAY_PLAYLIST,
-			OPEN_USER,
-			OPEN_CHANNEL,
-			OPEN_SEARCH,
-			UPLOAD_VIDEO
+			PlayVideo,
+			OpenPlaylist,
+			PlayPlaylist,
+			OpenUser,
+			OpenChannel,
+			OpenSearch,
+			UploadVideo
 		}
 
 		private class IntentItem : DemoListViewItem
@@ -154,19 +152,19 @@ namespace YouTubePlayerSample
 			{
 				switch (type)
 				{
-					case IntentType.PLAY_VIDEO:
+					case IntentType.PlayVideo:
 						return YouTubeIntents.CanResolvePlayVideoIntent(context);
-					case IntentType.OPEN_PLAYLIST:
+					case IntentType.OpenPlaylist:
 						return YouTubeIntents.CanResolveOpenPlaylistIntent(context);
-					case IntentType.PLAY_PLAYLIST:
+					case IntentType.PlayPlaylist:
 						return YouTubeIntents.CanResolvePlayPlaylistIntent(context);
-					case IntentType.OPEN_SEARCH:
+					case IntentType.OpenSearch:
 						return YouTubeIntents.CanResolveSearchIntent(context);
-					case IntentType.OPEN_USER:
+					case IntentType.OpenUser:
 						return YouTubeIntents.CanResolveUserIntent(context);
-					case IntentType.OPEN_CHANNEL:
+					case IntentType.OpenChannel:
 						return YouTubeIntents.CanResolveChannelIntent(context);
-					case IntentType.UPLOAD_VIDEO:
+					case IntentType.UploadVideo:
 						return YouTubeIntents.CanResolveUploadIntent(context);
 				}
 

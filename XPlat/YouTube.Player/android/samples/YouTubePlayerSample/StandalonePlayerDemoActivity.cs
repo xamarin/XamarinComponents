@@ -15,12 +15,12 @@ namespace YouTubePlayerSample
 	[MetaData("@string/isLaunchableActivity", Value = "true")]
 	public class StandalonePlayerDemoActivity : Activity
 	{
-		private const int REQ_START_STANDALONE_PLAYER = 1;
-		private const int REQ_RESOLVE_SERVICE_MISSING = 2;
+		private const int StartStandalonePlayerRequest = 1;
+		private const int ResolveServiceMissingRequest = 2;
 
-		private const string VIDEO_ID = "cdgQpa1pUUE";
-		private const string PLAYLIST_ID = "7E952A67F31C58A3";
-		private static readonly string[] VIDEO_IDS = { "cdgQpa1pUUE", "8aCYZ3gXfy8", "zMabEyrtPRg" };
+		private const string VideoId = "cdgQpa1pUUE";
+		private const string PlaylistId = "7E952A67F31C58A3";
+		private static readonly string[] VideoIds = { "cdgQpa1pUUE", "8aCYZ3gXfy8", "zMabEyrtPRg" };
 
 		private Button playVideoButton;
 		private Button playPlaylistButton;
@@ -60,27 +60,27 @@ namespace YouTubePlayerSample
 			Intent intent = null;
 			if (sender == playVideoButton)
 			{
-				intent = YouTubeStandalonePlayer.CreateVideoIntent(this, DeveloperKey.Key, VIDEO_ID, startTimeMillis, autoplay, lightboxMode);
+				intent = YouTubeStandalonePlayer.CreateVideoIntent(this, DeveloperKey.Key, VideoId, startTimeMillis, autoplay, lightboxMode);
 			}
 			else if (sender == playPlaylistButton)
 			{
-				intent = YouTubeStandalonePlayer.CreatePlaylistIntent(this, DeveloperKey.Key, PLAYLIST_ID, startIndex, startTimeMillis, autoplay, lightboxMode);
+				intent = YouTubeStandalonePlayer.CreatePlaylistIntent(this, DeveloperKey.Key, PlaylistId, startIndex, startTimeMillis, autoplay, lightboxMode);
 			}
 			else if (sender == playVideoListButton)
 			{
-				intent = YouTubeStandalonePlayer.CreateVideosIntent(this, DeveloperKey.Key, VIDEO_IDS, startIndex, startTimeMillis, autoplay, lightboxMode);
+				intent = YouTubeStandalonePlayer.CreateVideosIntent(this, DeveloperKey.Key, VideoIds, startIndex, startTimeMillis, autoplay, lightboxMode);
 			}
 
 			if (intent != null)
 			{
 				if (CanResolveIntent(intent))
 				{
-					StartActivityForResult(intent, REQ_START_STANDALONE_PLAYER);
+					StartActivityForResult(intent, StartStandalonePlayerRequest);
 				}
 				else
 				{
 					// Could not resolve the intent - must need to install or update the YouTube API service.
-					YouTubeInitializationResult.ServiceMissing.GetErrorDialog(this, REQ_RESOLVE_SERVICE_MISSING).Show();
+					YouTubeInitializationResult.ServiceMissing.GetErrorDialog(this, ResolveServiceMissingRequest).Show();
 				}
 			}
 		}
@@ -89,7 +89,7 @@ namespace YouTubePlayerSample
 		{
 			base.OnActivityResult(requestCode, resultCode, data);
 
-			if (requestCode == REQ_START_STANDALONE_PLAYER && resultCode != Result.Ok)
+			if (requestCode == StartStandalonePlayerRequest && resultCode != Result.Ok)
 			{
 				var errorReason = YouTubeStandalonePlayer.GetReturnedInitializationResult(data);
 				if (errorReason.IsUserRecoverableError)

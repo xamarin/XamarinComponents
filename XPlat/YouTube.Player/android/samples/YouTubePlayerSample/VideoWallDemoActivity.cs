@@ -25,23 +25,23 @@ namespace YouTubePlayerSample
 		IYouTubeThumbnailLoaderOnThumbnailLoadedListener,
 		IYouTubePlayerPlayerStateChangeListener
 	{
-		private const int RECOVERY_DIALOG_REQUEST = 1;
+		private const int RecoveryDialogRequest = 1;
 
 		// The player view cannot be smaller than 110 pixels high.
-		private const float PLAYER_VIEW_MINIMUM_HEIGHT_DP = 110;
-		private const int MAX_NUMBER_OF_ROWS_WANTED = 4;
+		private const float PlayerViewMinimumHeight = 110;
+		private const int MaxRowCount = 4;
 
 		// Example playlist from which videos are displayed on the video wall
-		private const String PLAYLIST_ID = "ECAE6B03CA849AD332";
+		private const String PlaylistId = "ECAE6B03CA849AD332";
 
-		private const int INTER_IMAGE_PADDING_DP = 5;
+		private const int ImagePadding = 5;
 
 		// YouTube thumbnails have a 16 / 9 aspect ratio
-		private const double THUMBNAIL_ASPECT_RATIO = 16 / 9d;
+		private const double ThumbnailAspectRatio = 16 / 9d;
 
-		private const int INITIAL_FLIP_DURATION_MILLIS = 100;
-		private const int FLIP_DURATION_MILLIS = 500;
-		private const int FLIP_PERIOD_MILLIS = 2000;
+		private const int InitialFlipDuration = 100;
+		private const int FlipDuration = 500;
+		private const int FlipPeriod = 2000;
 
 		private ImageWallView imageWallView;
 		private Handler flipDelayHandler;
@@ -67,30 +67,30 @@ namespace YouTubePlayerSample
 
 		private enum State
 		{
-			UNINITIALIZED,
-			LOADING_THUMBNAILS,
-			VIDEO_FLIPPED_OUT,
-			VIDEO_LOADING,
-			VIDEO_CUED,
-			VIDEO_PLAYING,
-			VIDEO_ENDED,
-			VIDEO_BEING_FLIPPED_OUT,
+			Uninitialized,
+			LoadingThumbnails,
+			VideoFlippedOut,
+			VideoLoading,
+			VideoCued,
+			VideoPlaying,
+			VideoEnded,
+			VideoBeingFlippedOut,
 		}
 
 		protected override void OnCreate(Bundle savedInstanceState)
 		{
 			base.OnCreate(savedInstanceState);
 
-			state = State.UNINITIALIZED;
+			state = State.Uninitialized;
 
 			var viewFrame = new FrameLayout(this);
 
 			var displayMetrics = Resources.DisplayMetrics;
-			int maxAllowedNumberOfRows = (int)Math.Floor((displayMetrics.HeightPixels / displayMetrics.Density) / PLAYER_VIEW_MINIMUM_HEIGHT_DP);
-			int numberOfRows = Math.Min(maxAllowedNumberOfRows, MAX_NUMBER_OF_ROWS_WANTED);
-			int interImagePaddingPx = (int)displayMetrics.Density * INTER_IMAGE_PADDING_DP;
+			int maxAllowedNumberOfRows = (int)Math.Floor((displayMetrics.HeightPixels / displayMetrics.Density) / PlayerViewMinimumHeight);
+			int numberOfRows = Math.Min(maxAllowedNumberOfRows, MaxRowCount);
+			int interImagePaddingPx = (int)displayMetrics.Density * ImagePadding;
 			int imageHeight = (displayMetrics.HeightPixels / numberOfRows) - interImagePaddingPx;
-			int imageWidth = (int)(imageHeight * THUMBNAIL_ASPECT_RATIO);
+			int imageWidth = (int)(imageHeight * ThumbnailAspectRatio);
 
 			imageWallView = new ImageWallView(this, imageWidth, imageHeight, interImagePaddingPx);
 			viewFrame.AddView(imageWallView, ViewGroup.LayoutParams.MatchParent, ViewGroup.LayoutParams.MatchParent);
@@ -100,7 +100,7 @@ namespace YouTubePlayerSample
 
 			flippingView = new FlippingView(this, imageWidth, imageHeight);
 			flippingView.Flipped += OnFlipped;
-			flippingView.SetFlipDuration(INITIAL_FLIP_DURATION_MILLIS);
+			flippingView.SetFlipDuration(InitialFlipDuration);
 			viewFrame.AddView(flippingView, imageWidth, imageHeight);
 
 			playerView = new FrameLayout(this);
@@ -115,7 +115,7 @@ namespace YouTubePlayerSample
 			flipDelayHandler = new Handler(msg =>
 			{
 				FlipNext();
-				flipDelayHandler.SendEmptyMessageDelayed(0, FLIP_PERIOD_MILLIS);
+				flipDelayHandler.SendEmptyMessageDelayed(0, FlipPeriod);
 			});
 
 			SetContentView(viewFrame);
@@ -127,7 +127,7 @@ namespace YouTubePlayerSample
 			{
 				if (errorDialog == null || !errorDialog.IsShowing)
 				{
-					errorDialog = errorReason.GetErrorDialog(this, RECOVERY_DIALOG_REQUEST);
+					errorDialog = errorReason.GetErrorDialog(this, RecoveryDialogRequest);
 					errorDialog.Show();
 				}
 			}
@@ -152,7 +152,7 @@ namespace YouTubePlayerSample
 			{
 				if (errorDialog == null || !errorDialog.IsShowing)
 				{
-					errorDialog = errorReason.GetErrorDialog(this, RECOVERY_DIALOG_REQUEST);
+					errorDialog = errorReason.GetErrorDialog(this, RecoveryDialogRequest);
 					errorDialog.Show();
 				}
 			}
@@ -172,16 +172,16 @@ namespace YouTubePlayerSample
 
 		private void MaybeStartDemo()
 		{
-			if (activityResumed && player != null && thumbnailLoader != null && state == State.UNINITIALIZED)
+			if (activityResumed && player != null && thumbnailLoader != null && state == State.Uninitialized)
 			{
-				thumbnailLoader.SetPlaylist(PLAYLIST_ID); // loading the first thumbnail will kick off demo
-				state = State.LOADING_THUMBNAILS;
+				thumbnailLoader.SetPlaylist(PlaylistId); // loading the first thumbnail will kick off demo
+				state = State.LoadingThumbnails;
 			}
 		}
 
 		protected override void OnActivityResult(int requestCode, Result resultCode, Intent data)
 		{
-			if (requestCode == RECOVERY_DIALOG_REQUEST)
+			if (requestCode == RecoveryDialogRequest)
 			{
 				// Retry initialization if user performed a recovery action
 				if (errorDialog != null && errorDialog.IsShowing)
@@ -201,21 +201,21 @@ namespace YouTubePlayerSample
 			activityResumed = true;
 			if (thumbnailLoader != null && player != null)
 			{
-				if (state == State.UNINITIALIZED)
+				if (state == State.Uninitialized)
 				{
 					MaybeStartDemo();
 				}
-				else if (state == State.LOADING_THUMBNAILS)
+				else if (state == State.LoadingThumbnails)
 				{
 					LoadNextThumbnail();
 				}
 				else
 				{
-					if (state == State.VIDEO_PLAYING)
+					if (state == State.VideoPlaying)
 					{
 						player.Play();
 					}
-					flipDelayHandler.SendEmptyMessageDelayed(0, FLIP_DURATION_MILLIS);
+					flipDelayHandler.SendEmptyMessageDelayed(0, FlipDuration);
 				}
 			}
 		}
@@ -240,16 +240,16 @@ namespace YouTubePlayerSample
 
 		private void FlipNext()
 		{
-			if (!nextThumbnailLoaded || state == State.VIDEO_LOADING)
+			if (!nextThumbnailLoaded || state == State.VideoLoading)
 			{
 				return;
 			}
 
-			if (state == State.VIDEO_ENDED)
+			if (state == State.VideoEnded)
 			{
 				flippingCol = videoCol;
 				flippingRow = videoRow;
-				state = State.VIDEO_BEING_FLIPPED_OUT;
+				state = State.VideoBeingFlippedOut;
 			}
 			else
 			{
@@ -277,11 +277,11 @@ namespace YouTubePlayerSample
 			{
 				LoadNextThumbnail();
 
-				if (state == State.VIDEO_BEING_FLIPPED_OUT)
+				if (state == State.VideoBeingFlippedOut)
 				{
-					state = State.VIDEO_FLIPPED_OUT;
+					state = State.VideoFlippedOut;
 				}
-				else if (state == State.VIDEO_CUED)
+				else if (state == State.VideoCued)
 				{
 					videoCol = flippingCol;
 					videoRow = flippingRow;
@@ -290,12 +290,12 @@ namespace YouTubePlayerSample
 					imageWallView.HideImage(flippingCol, flippingRow);
 					playerView.Visibility = ViewStates.Visible;
 					player.Play();
-					state = State.VIDEO_PLAYING;
+					state = State.VideoPlaying;
 				}
-				else if (state == State.LOADING_THUMBNAILS && imageWallView.AllImagesLoaded)
+				else if (state == State.LoadingThumbnails && imageWallView.AllImagesLoaded)
 				{
-					state = State.VIDEO_FLIPPED_OUT; // trigger flip in of an initial video
-					flippingView.SetFlipDuration(FLIP_DURATION_MILLIS);
+					state = State.VideoFlippedOut; // trigger flip in of an initial video
+					flippingView.SetFlipDuration(FlipDuration);
 					flipDelayHandler.SendEmptyMessage(0);
 				}
 			}
@@ -325,14 +325,14 @@ namespace YouTubePlayerSample
 
 			if (activityResumed)
 			{
-				if (state == State.LOADING_THUMBNAILS)
+				if (state == State.LoadingThumbnails)
 				{
 					FlipNext();
 				}
-				else if (state == State.VIDEO_FLIPPED_OUT)
+				else if (state == State.VideoFlippedOut)
 				{
 					// load player with the video of the next thumbnail being flipped in
-					state = State.VIDEO_LOADING;
+					state = State.VideoLoading;
 					player.CueVideo(videoId);
 				}
 			}
@@ -348,20 +348,20 @@ namespace YouTubePlayerSample
 			{
 				// player has encountered an unrecoverable error - stop the demo
 				flipDelayHandler.RemoveCallbacksAndMessages(null);
-				state = State.UNINITIALIZED;
+				state = State.Uninitialized;
 				thumbnailLoader.Release();
 				thumbnailLoader = null;
 				player = null;
 			}
 			else
 			{
-				state = State.VIDEO_ENDED;
+				state = State.VideoEnded;
 			}
 		}
 
 		void IYouTubePlayerPlayerStateChangeListener.OnLoaded(string videoId)
 		{
-			state = State.VIDEO_CUED;
+			state = State.VideoCued;
 		}
 
 		void IYouTubePlayerPlayerStateChangeListener.OnLoading()
@@ -370,7 +370,7 @@ namespace YouTubePlayerSample
 
 		void IYouTubePlayerPlayerStateChangeListener.OnVideoEnded()
 		{
-			state = State.VIDEO_ENDED;
+			state = State.VideoEnded;
 			imageWallView.ShowImage(videoCol, videoRow);
 			playerView.Visibility = ViewStates.Invisible;
 		}
