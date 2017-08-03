@@ -8,7 +8,7 @@
     <owners>Xamarin Inc.</owners>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>Helper library for iOS developers that want to embed YouTube videos in their iOS apps with the iframe player API.</description>
-    <copyright>Copyright 2017</copyright>
+    <copyright>Copyright Xamarin Inc 2017</copyright>
     <projectUrl>https://github.com/xamarin/XamarinComponents/tree/master/XPlat/YouTube.Player/ios</projectUrl>
     <licenseUrl>https://github.com/xamarin/XamarinComponents/blob/master/XPlat/YouTube.Player/ios/LICENSE.md</licenseUrl>
   </metadata>

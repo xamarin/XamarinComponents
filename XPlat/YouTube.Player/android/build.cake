@@ -18,11 +18,17 @@ var buildSpec = new BuildSpec {
 		},
 	},
 
-	// Samples = new [] {
-	// },
+	Samples = new ISolutionBuilder [] {
+		new DefaultSolutionBuilder { SolutionPath = "./samples/YouTubePlayerSample.sln" },
+	},
 
-	// NuGets = new [] {
-	// }
+	NuGets = new [] {
+		new NuGetInfo { NuSpec = "./nuget/Xamarin.YouTube.Player.Android.nuspec" },
+	},
+
+	// Components = new [] {
+	// 	new Component {ManifestDirectory = "./component"},
+	// },
 };
 
 Task ("externals")
