@@ -143,10 +143,10 @@
 	<!-- member generics -->
 <!--	<attr path="/api/package[@name='com.vk.sdk.api.model']/class[@name='VKApiCommunityFull']/field[@name='contacts']" name="type">VKontakte.API.Models.VKList&lt;int&gt;</attr>-->
 	<!-- corrections -->
-    <attr path="/api/package[@name='com.vk.sdk.api.model']/class[@name='VkAudioArray']" name="managedName">VKAudioArray</attr>
-    <attr path="/api/package[@name='com.vk.sdk.dialogs']/class[@name='VKShareDialogDelegate']" name="visibility">public</attr>
-    <attr path="/api/package[@name='com.vk.sdk.dialogs']/class[@name='VKShareDialog']/method[@name='setText']/parameter[1]" name="managedName">textToPost</attr>
-    <attr path="/api/package[@name='com.vk.sdk.dialogs']/class[@name='VKShareDialogBuilder']/method[@name='setText']/parameter[1]" name="managedName">textToPost</attr>
+	<attr path="/api/package[@name='com.vk.sdk.api.model']/class[@name='VkAudioArray']" name="managedName">VKAudioArray</attr>
+	<attr path="/api/package[@name='com.vk.sdk.dialogs']/class[@name='VKShareDialogDelegate']" name="visibility">public</attr>
+	<attr path="/api/package[@name='com.vk.sdk.dialogs']/class[@name='VKShareDialog']/method[@name='setText']/parameter[1]" name="managedName">textToPost</attr>
+	<attr path="/api/package[@name='com.vk.sdk.dialogs']/class[@name='VKShareDialogBuilder']/method[@name='setText']/parameter[1]" name="managedName">textToPost</attr>
 	<!-- cross-platform compatibility and JSON deserialization -->
 	<attr path="/api/package[@name='com.vk.sdk.api.model']/class[@name='VKApiApplicationContent']/field[@name='id']" name="managedName">id</attr>
 	<attr path="/api/package[@name='com.vk.sdk.api.model']/class[@name='VKApiApplicationContent']/field[@name='name']" name="managedName">name</attr>

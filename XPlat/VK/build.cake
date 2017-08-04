@@ -20,20 +20,16 @@ var PODFILE = new List<string> {
 
 var buildSpec = new BuildSpec {
 	Libs = new [] {
-		new IOSSolutionBuilder {
+		new DefaultSolutionBuilder {
 			SolutionPath = "./iOS/source/VKontakte.iOS.sln",
 			OutputFiles = new [] { 
-				new OutputFileCopy {
-					FromFile = "./iOS/source/VKontakte.iOS/bin/Release/VKontakte.iOS.dll",
-				}
+				new OutputFileCopy { FromFile = "./iOS/source/VKontakte.iOS/bin/Release/VKontakte.iOS.dll", }
 			}
 		},
 		new DefaultSolutionBuilder {
 			SolutionPath = "./Android/source/VKontakte.Android.sln",
 			OutputFiles = new [] { 
-				new OutputFileCopy {
-					FromFile = "./Android/source/VKontakte.Android/bin/Release/VKontakte.Android.dll",
-				}
+				new OutputFileCopy { FromFile = "./Android/source/VKontakte.Android/bin/Release/VKontakte.Android.dll", }
 			}
 		}
 	},
@@ -45,7 +41,7 @@ var buildSpec = new BuildSpec {
 	},
 
 	Samples = new [] {
-		new IOSSolutionBuilder { SolutionPath = "./iOS/samples/VKontakteSampleiOS.sln", Configuration = "Release|iPhone" },
+		new IOSSolutionBuilder { SolutionPath = "./iOS/samples/VKontakteSampleiOS.sln" },
 		new DefaultSolutionBuilder { SolutionPath = "./Android/samples/VKontakteSampleAndroid.sln" }
 	},
 
@@ -78,24 +74,7 @@ Task ("externals-ios")
 	
 	CocoaPodInstall ("./externals/ios", new CocoaPodInstallSettings { NoIntegrate = true });
 
-	XCodeBuild (new XCodeBuildSettings {
-		Project = "./externals/ios/Pods/Pods.xcodeproj",
-		Target = "VK-ios-sdk",
-		Sdk = "iphoneos",
-		Configuration = "Release",
-	});
-
-	XCodeBuild (new XCodeBuildSettings {
-		Project = "./externals/ios/Pods/Pods.xcodeproj",
-		Target = "VK-ios-sdk",
-		Sdk = "iphonesimulator",
-		Configuration = "Release",
-	});
-
-	RunLipoCreate ("./", 
-		"./externals/ios/libVK-ios-sdk.a",
-		"./externals/ios/build/Release-iphoneos/VK-ios-sdk/libVK-ios-sdk.a",
-		"./externals/ios/build/Release-iphonesimulator/VK-ios-sdk/libVK-ios-sdk.a");
+	BuildXCodeFatLibrary ("./Pods/Pods.xcodeproj", "VK-ios-sdk", "VK-ios-sdk", null, "./externals/ios/", "VK-ios-sdk");
 });
 Task ("externals")
 	.IsDependentOn ("externals-android")
