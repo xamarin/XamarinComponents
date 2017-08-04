@@ -15,11 +15,6 @@
     <file src="output/Cake.Xamarin.Binding.Util.dll" target="lib/net45" />
     <file src="output/Cake.Xamarin.Binding.Util.xml" target="lib/net45" />
     
-    <file src="output/Mono.Cecil.dll" target="lib/net45" />
-    <file src="output/Mono.Cecil.Mdb.dll" target="lib/net45" />
-    <file src="output/Mono.Cecil.Pdb.dll" target="lib/net45" />
-    <file src="output/Mono.Cecil.Rocks.dll" target="lib/net45" />
-
     <file src="External-Dependency-Info.txt" target="THIRD-PARTY-NOTICES.txt" />
   </files>
 </package>
