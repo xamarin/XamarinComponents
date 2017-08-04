@@ -33,7 +33,7 @@ var buildSpec = new BuildSpec {
 	},
 
 	Samples = new [] {
-		new IOSSolutionBuilder { SolutionPath = "./samples/VideoWidgetDemo.sln", Configuration = "Release|iPhone" },
+		new IOSSolutionBuilder { SolutionPath = "./samples/VideoWidgetDemo.sln", Configuration = "Release", Platform="iPhone" },
 	},
 
 	NuGets = new [] {

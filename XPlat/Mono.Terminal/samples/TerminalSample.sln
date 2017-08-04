@@ -1,0 +1,23 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TerminalSample", "TerminalSample\TerminalSample.csproj", "{F157DECC-8F49-4B6B-A074-F454D5E24CD5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mono.Terminal", "..\source\Mono.Terminal\Mono.Terminal.csproj", "{8C6C2D7B-8988-43F5-B7AE-E066CAE9DFED}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{8C6C2D7B-8988-43F5-B7AE-E066CAE9DFED}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8C6C2D7B-8988-43F5-B7AE-E066CAE9DFED}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8C6C2D7B-8988-43F5-B7AE-E066CAE9DFED}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8C6C2D7B-8988-43F5-B7AE-E066CAE9DFED}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F157DECC-8F49-4B6B-A074-F454D5E24CD5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F157DECC-8F49-4B6B-A074-F454D5E24CD5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F157DECC-8F49-4B6B-A074-F454D5E24CD5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F157DECC-8F49-4B6B-A074-F454D5E24CD5}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal

@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<package>
+  <metadata>
+    <id>Xamarin.Android.ViewPropertyObjectAnimator</id>
+    <title>ViewPropertyObjectAnimator for Xamarin.Android</title>
+    <version>1.4.5</version>
+    <authors>Xamarin Inc.</authors>
+    <owners>Xamarin Inc.</owners>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>Xamarin.Android binding for ViewPropertyObjectAnimator - Wrapper of the ObjectAnimator that can be used similarly to ViewPropertyAnimator.</description>
+    <copyright>Copyright Xamarin Inc 2017</copyright>
+    <projectUrl>https://github.com/xamarin/XamarinComponents/tree/master/Android/ViewPropertyObjectAnimator</projectUrl>
+    <licenseUrl>https://github.com/xamarin/XamarinComponents/blob/master/Android/ViewPropertyObjectAnimator/LICENSE.md</licenseUrl>
+    <tags>xamarin,android,monodroid,animation,animator</tags>
+    <dependencies>
+      <dependency id="Xamarin.Android.Support.v4" version="23.4.0" />
+      <dependency id="Xamarin.Android.Support.Percent" version="23.4.0" />
+    </dependencies>
+  </metadata>
+  <files>
+    <file src="output/Xamarin.Android.ViewPropertyObjectAnimator.dll" target="lib/MonoAndroid" />
+    <file src="External-Dependency-Info.txt" target="THIRD-PARTY-NOTICES.txt" />
+  </files>
+</package>

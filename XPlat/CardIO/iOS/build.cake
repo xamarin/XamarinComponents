@@ -1,6 +1,8 @@
 #load "../../../common.cake"
 
 var VERSION = "5.4.1";
+var NUGET_VERSION = "5.4.1";
+
 var URL = string.Format ("https://github.com/card-io/card.io-iOS-SDK/archive/{0}.zip", VERSION);
 
 var TARGET = Argument ("t", Argument ("target", "Default"));
@@ -20,11 +22,15 @@ var buildSpec = new BuildSpec {
 	},
 
 	Samples = new [] {
-		new IOSSolutionBuilder { SolutionPath = "./samples/CardIOSampleiOS.sln", Configuration = "Release|iPhone" },
+		new IOSSolutionBuilder { SolutionPath = "./samples/CardIOSampleiOS.sln",  Configuration = "Release", Platform="iPhone" },
 	},
 
 	Components = new [] {
 		new Component { ManifestDirectory = "./component/" },
+	},
+
+	NuGets = new [] {
+		new NuGetInfo { NuSpec = "./nuget/Xamarin.CardIO.iOS.nuspec", Version = NUGET_VERSION },
 	},
 };
 

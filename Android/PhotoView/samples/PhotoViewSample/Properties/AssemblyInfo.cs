@@ -27,3 +27,4 @@ using Android.App;
 //[assembly: AssemblyKeyFile("")]
 
 [assembly: UsesPermission(Android.Manifest.Permission.Internet)]
+[assembly: UsesPermission(Android.Manifest.Permission.WriteExternalStorage)]

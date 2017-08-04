@@ -22,7 +22,7 @@ var buildSpec = new BuildSpec () {
 	},
 
 	Samples = new ISolutionBuilder [] {
-		new IOSSolutionBuilder { SolutionPath = "./samples/DACircularProgressSample.sln", Configuration = "Release|iPhone", BuildsOn = BuildPlatforms.Mac, },
+		new IOSSolutionBuilder { SolutionPath = "./samples/DACircularProgressSample.sln", Configuration = "Release", Platform="iPhone", BuildsOn = BuildPlatforms.Mac, },
 	},
 
 	NuGets = new [] {

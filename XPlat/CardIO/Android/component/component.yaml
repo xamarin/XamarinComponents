@@ -1,15 +1,32 @@
-version: 5.4.2.0
+version: 5.5.1.0
 name: Card.io for Android
 id: cardioandroid
 publisher: Xamarin Inc.
 publisher-url: http://xamarin.com
+src-url: https://github.com/xamarin/XamarinComponents/tree/master/XPlat/CardIO/Android
 icons: 
   - ./icons/card-io_128x128.png
   - ./icons/card-io_512x512.png
+license: ../License.md
 summary: Credit card scanning for mobile apps
+is_shell: true
+packages:
+  android:
+    - Xamarin.CardIO.Android, Version=5.5.1
 libraries:
   android: ../output/Card.IO.Android.dll
 samples:
   - name: "Android Sample"
     path: ../samples/CardIOSampleAndroid.sln
+    removeProjects:
+      - Card.IO.Android
+    installNuGets:
+      - project: CardIOSampleAndroid
+        packages:
+          - Xamarin.CardIO.Android
 no_build: true
+local-nuget-repo: ../output/
+
+additional-files:
+  - source: "../External-Dependency-Info.txt"
+    destination: "THIRD-PARTY-NOTICES.txt"

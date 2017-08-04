@@ -44,11 +44,12 @@ Browse through the most popular plugins out there today!
 |Geofencing|Monitor regions when user enters/exits.|[NuGet](https://www.nuget.org/packages/Acr.Geofencing/)|[GitHub](https://github.com/aritchie/geofences)|[@allanritchie911](https://twitter.com/allanritchie911)|
 |Geolocator|Easily detect GPS location of device.|[NuGet](https://www.nuget.org/packages/Xam.Plugin.Geolocator/)|[GitHub](https://github.com/jamesmontemagno/GeolocatorPlugin)|[@JamesMontemagno](http://www.twitter.com/jamesmontemagno)|
 |iBeacon & Estimote|Range and monitor Bluetooth beacons.|[NuGet](https://www.nuget.org/packages/Estimotes.Xplat/)|[GitHub](https://github.com/aritchie/estimotes-xplat)|[@allanritchie911](https://twitter.com/allanritchie911)|
+|In-App Billing|Make, Query, and get In-App Purchases and Subscriptions.|[NuGet](https://www.nuget.org/packages/Plugin.InAppBilling/)|[GitHub](https://github.com/jamesmontemagno/InAppBillingPlugin)|[@JamesMontemagno](http://www.twitter.com/jamesmontemagno)|
 |Lamp|Access to LED|[NuGet](https://www.nuget.org/packages/kphillpotts.Lamp.Plugin/)|[GitHub](https://github.com/kphillpotts/Xamarin.Plugins/tree/master/Lamp)|[@kphillpotts](http://www.twitter.com/kphillpotts)|
-|Local Notifications|Show local notifications|[NuGet](https://www.nuget.org/packages/Xam.Plugins.Notifier/)|[GitHub](https://github.com/edsnider/Xamarin.Plugins)|[@EdSnider](http://www.twitter.com/EdSnider), [@JamesMontemagno](http://www.twitter.com/JamesMontemagno)|
+|Local Notifications|Show local notifications|[NuGet](https://www.nuget.org/packages/Xam.Plugins.Notifier/)|[GitHub](https://github.com/edsnider/LocalNotificationsPlugin)|[@EdSnider](http://www.twitter.com/EdSnider), [@JamesMontemagno](http://www.twitter.com/JamesMontemagno)|
 |Manage Sleep|Manage auto sleep/auto lock.|[NuGet](https://www.nuget.org/packages/Xam.Plugins.ManageSleep/)|[GitHub](https://github.com/molinch/Xam.Plugins.ManageSleep)|[@molinch0](http://www.twitter.com/molinch0)|
 |Media|Take or pick photos and videos.|[NuGet](https://www.nuget.org/packages/Xam.Plugin.Media/)|[GitHub](https://github.com/jamesmontemagno/MediaPlugin)|[@JamesMontemagno](http://www.twitter.com/jamesmontemagno)|
-|Media Manager|Playback for Audio.|[NuGet](https://www.nuget.org/packages/Plugin.MediaManager/)|[GitHub](https://github.com/martijn00/XamarinMediaManager)|[Martijn van Dijk](https://github.com/martijn00)|
+|Media Manager|Playback for Audio.|[NuGet](https://www.nuget.org/packages/Plugin.MediaManager/)|[GitHub](https://github.com/martijn00/XamarinMediaManager)|[@mhvdijk](https://twitter.com/mhvdijk)|
 |Messaging|Make phone call, send sms, and send e-mail|[NuGet](https://www.nuget.org/packages/Xam.Plugins.Messaging/)|[GitHub](https://github.com/cjlotz/Xamarin.Plugins)|[@cjlotz](http://www.twitter.com/cjlotz)|
 |Microsoft Band|Connect and communicate with the Microsoft Band from shared code!|[NuGet](https://www.nuget.org/packages/Xamarin.Microsoft.Band/)|[GitHub](https://github.com/mattleibow/Microsoft-Band-SDK-Bindings)|[@mattleibow](https://twitter.com/mattleibow)|
 |Mono.Data.Sqlite|Add Mono.Data.Sqlite to any Xamarin or Windows .NET app.|[NuGet](https://www.nuget.org/packages/Mono.Data.Sqlite.Portable)|[GitHub](https://github.com/mattleibow/Mono.Data.Sqlite)|[@mattleibow](https://twitter.com/mattleibow)|
@@ -58,18 +59,14 @@ Browse through the most popular plugins out there today!
 |Push Notifications|Cross platform iOS and Android Push Notifications.|[NuGet](https://www.nuget.org/packages/Xam.Plugin.PushNotification/)|[GitHub](https://github.com/rdelrosario/xamarin-plugins)|[@rdelrosario](https://github.com/rdelrosario)|
 |Secure Storage|Provides secure storage for key value pairs Data|[NuGet](http://www.nuget.org/packages/sameerIOTApps.Plugin.SecureStorage/)|[GitHub](https://github.com/sameerkapps/SecureStorage)|[@sameerIOTApps](https://twitter.com/sameerIOTApps)|
 |Settings|Simple & Consistent cross platform settings API.|[NuGet](https://www.nuget.org/packages/Xam.Plugins.Settings/)|[GitHub](https://github.com/jamesmontemagno/SettingsPlugin)|[@JamesMontemagno](http://www.twitter.com/jamesmontemagno)|
-|Share|Easily share text, links, or open a browser.|[NuGet](https://www.nuget.org/packages/Share.Plugin.Xamarin.Forms/)|[GitHub](https://github.com/jguertl/SharePlugin)|[@JamesMontemagno](http://www.twitter.com/jamesmontemagno) & [@Jakob Gürtl](https://github.com/jguertl)|
+|Share|Easily share text, links, or open a browser.|[NuGet](https://www.nuget.org/packages/Plugin.Share/)|[GitHub](https://github.com/jguertl/SharePlugin)|[@JamesMontemagno](http://www.twitter.com/jamesmontemagno) & [@Jakob Gürtl](https://github.com/jguertl)|
 |Sockets|TCP & UDP Listeners and Clients + UDP multicast.|[NuGet](https://www.nuget.org/packages/rda.SocketsForPCL)|[GitHub](https://github.com/rdavisau/sockets-for-pcl)|[@rdavis_au](http://www.twitter.com/rdavis_au)|
-|Speech Recognition|Speetch to Text.|[NuGet](https://www.nuget.org/packages/Acr.SpeechRecognition/)|[GitHub](https://github.com/aritchie/speechrecognition)|[@allanritchie911](https://twitter.com/allanritchie911)|
+|Speech Recognition|Speech to Text.|[NuGet](https://www.nuget.org/packages/Acr.SpeechRecognition/)|[GitHub](https://github.com/aritchie/speechrecognition)|[@allanritchie911](https://twitter.com/allanritchie911)|
 |Text To Speech|Talk back text from shared code.|[NuGet](https://www.nuget.org/packages/Xam.Plugins.TextToSpeech/)|[GitHub](https://github.com/jamesmontemagno/TextToSpeechPlugin)|[@JamesMontemagno](http://www.twitter.com/jamesmontemagno)|
 |Toast|A simple way of showing toast/pop-up notifications.|[NuGet](https://www.nuget.org/packages/Toasts.Forms.Plugin)|[GitHub](https://github.com/EgorBo/Toasts.Forms.Plugin)|[@AdamPed](https://github.com/AdamPed) & [@EgorBo](https://github.com/EgorBo)|
 |User Dialogs|Message box style dialogs.|[NuGet](https://www.nuget.org/packages/Acr.UserDialogs/)|[GitHub](https://github.com/aritchie/userdialogs)|[@allanritchie911](https://twitter.com/allanritchie911)|
 |Version Tracking|Track which versions of your app a user has previously installed.|[NuGet](https://www.nuget.org/packages/Plugin.VersionTracking/1.0.1)|[GitHub](https://github.com/colbylwilliams/VersionTrackingPlugin)|[@ColbyLWilliams](https://twitter.com/colbylwilliams)|
 |Vibrate|Vibrate any device.|[NuGet](https://www.nuget.org/packages/Xam.Plugins.Vibrate/)|[GitHub](https://github.com/jamesmontemagno/VibratePlugin)|[@JamesMontemagno](http://www.twitter.com/jamesmontemagno)|
-
-
-### Submit Your Ideas
-We want to hear any and all ideas that you have for potential plugins. Browse through the current issues and see what other developers are interested in or submit your very own. Interested in helping work on a plugin? Simply comment on a plugin that you will start development, create a GitHub repo, and get coding!
 
 
 ### Create a Plugin for Xamarin

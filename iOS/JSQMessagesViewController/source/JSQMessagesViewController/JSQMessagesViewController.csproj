@@ -58,6 +58,24 @@
     </ObjcBindingNativeLibrary>
   </ItemGroup>
   <ItemGroup>
+    <BundleResource Include="..\..\externals\ios\Resources\JSQMessagesCollectionViewCellIncoming.nib">
+      <Link>Resources\JSQMessagesCollectionViewCellIncoming.nib</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\externals\ios\Resources\JSQMessagesCollectionViewCellOutgoing.nib">
+      <Link>Resources\JSQMessagesCollectionViewCellOutgoing.nib</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\externals\ios\Resources\JSQMessagesLoadEarlierHeaderView.nib">
+      <Link>Resources\JSQMessagesLoadEarlierHeaderView.nib</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\externals\ios\Resources\JSQMessagesToolbarContentView.nib">
+      <Link>Resources\JSQMessagesToolbarContentView.nib</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\externals\ios\Resources\JSQMessagesTypingIndicatorFooterView.nib">
+      <Link>Resources\JSQMessagesTypingIndicatorFooterView.nib</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\externals\ios\Resources\JSQMessagesViewController.nib">
+      <Link>Resources\JSQMessagesViewController.nib</Link>
+    </BundleResource>
     <BundleResource Include="..\..\externals\ios\JSQMessagesViewController\JSQMessagesViewController\Assets\JSQMessagesAssets.bundle\Base.lproj\JSQMessages.strings">
       <Link>Resources\JSQMessagesAssets.bundle\Base.lproj\JSQMessages.strings</Link>
     </BundleResource>
@@ -124,6 +142,15 @@
     <BundleResource Include="..\..\externals\ios\JSQMessagesViewController\JSQMessagesViewController\Assets\JSQMessagesAssets.bundle\Images\clip%403x.png">
       <Link>Resources\JSQMessagesAssets.bundle\Images\clip%403x.png</Link>
     </BundleResource>
+    <BundleResource Include="..\..\externals\ios\JSQMessagesViewController\JSQMessagesViewController\Assets\JSQMessagesAssets.bundle\Images\pause.png">
+      <Link>Resources\JSQMessagesAssets.bundle\Images\pause.png</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\externals\ios\JSQMessagesViewController\JSQMessagesViewController\Assets\JSQMessagesAssets.bundle\Images\pause%402x.png">
+      <Link>Resources\JSQMessagesAssets.bundle\Images\pause%402x.png</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\externals\ios\JSQMessagesViewController\JSQMessagesViewController\Assets\JSQMessagesAssets.bundle\Images\pause%403x.png">
+      <Link>Resources\JSQMessagesAssets.bundle\Images\pause%403x.png</Link>
+    </BundleResource>
     <BundleResource Include="..\..\externals\ios\JSQMessagesViewController\JSQMessagesViewController\Assets\JSQMessagesAssets.bundle\Images\play.png">
       <Link>Resources\JSQMessagesAssets.bundle\Images\play.png</Link>
     </BundleResource>
@@ -148,6 +175,9 @@
     <BundleResource Include="..\..\externals\ios\JSQMessagesViewController\JSQMessagesViewController\Assets\JSQMessagesAssets.bundle\Sounds\message_sent.aiff">
       <Link>Resources\JSQMessagesAssets.bundle\Sounds\message_sent.aiff</Link>
     </BundleResource>
+    <BundleResource Include="..\..\externals\ios\JSQMessagesViewController\JSQMessagesViewController\Assets\JSQMessagesAssets.bundle\ar.lproj\JSQMessages.strings">
+      <Link>Resources\JSQMessagesAssets.bundle\ar.lproj\JSQMessages.strings</Link>
+    </BundleResource>
     <BundleResource Include="..\..\externals\ios\JSQMessagesViewController\JSQMessagesViewController\Assets\JSQMessagesAssets.bundle\de.lproj\JSQMessages.strings">
       <Link>Resources\JSQMessagesAssets.bundle\de.lproj\JSQMessages.strings</Link>
     </BundleResource>
@@ -157,14 +187,32 @@
     <BundleResource Include="..\..\externals\ios\JSQMessagesViewController\JSQMessagesViewController\Assets\JSQMessagesAssets.bundle\es.lproj\JSQMessages.strings">
       <Link>Resources\JSQMessagesAssets.bundle\es.lproj\JSQMessages.strings</Link>
     </BundleResource>
+    <BundleResource Include="..\..\externals\ios\JSQMessagesViewController\JSQMessagesViewController\Assets\JSQMessagesAssets.bundle\fi.lproj\JSQMessages.strings">
+      <Link>Resources\JSQMessagesAssets.bundle\fi.lproj\JSQMessages.strings</Link>
+    </BundleResource>
     <BundleResource Include="..\..\externals\ios\JSQMessagesViewController\JSQMessagesViewController\Assets\JSQMessagesAssets.bundle\fr.lproj\JSQMessages.strings">
       <Link>Resources\JSQMessagesAssets.bundle\fr.lproj\JSQMessages.strings</Link>
     </BundleResource>
     <BundleResource Include="..\..\externals\ios\JSQMessagesViewController\JSQMessagesViewController\Assets\JSQMessagesAssets.bundle\he.lproj\JSQMessages.strings">
       <Link>Resources\JSQMessagesAssets.bundle\he.lproj\JSQMessages.strings</Link>
     </BundleResource>
+    <BundleResource Include="..\..\externals\ios\JSQMessagesViewController\JSQMessagesViewController\Assets\JSQMessagesAssets.bundle\id.lproj\JSQMessages.strings">
+      <Link>Resources\JSQMessagesAssets.bundle\id.lproj\JSQMessages.strings</Link>
+    </BundleResource>
     <BundleResource Include="..\..\externals\ios\JSQMessagesViewController\JSQMessagesViewController\Assets\JSQMessagesAssets.bundle\it.lproj\JSQMessages.strings">
       <Link>Resources\JSQMessagesAssets.bundle\it.lproj\JSQMessages.strings</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\externals\ios\JSQMessagesViewController\JSQMessagesViewController\Assets\JSQMessagesAssets.bundle\ja.lproj\JSQMessages.strings">
+      <Link>Resources\JSQMessagesAssets.bundle\ja.lproj\JSQMessages.strings</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\externals\ios\JSQMessagesViewController\JSQMessagesViewController\Assets\JSQMessagesAssets.bundle\ko.lproj\JSQMessages.strings">
+      <Link>Resources\JSQMessagesAssets.bundle\ko.lproj\JSQMessages.strings</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\externals\ios\JSQMessagesViewController\JSQMessagesViewController\Assets\JSQMessagesAssets.bundle\ms.lproj\JSQMessages.strings">
+      <Link>Resources\JSQMessagesAssets.bundle\ms.lproj\JSQMessages.strings</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\externals\ios\JSQMessagesViewController\JSQMessagesViewController\Assets\JSQMessagesAssets.bundle\nb.lproj\JSQMessages.strings">
+      <Link>Resources\JSQMessagesAssets.bundle\nb.lproj\JSQMessages.strings</Link>
     </BundleResource>
     <BundleResource Include="..\..\externals\ios\JSQMessagesViewController\JSQMessagesViewController\Assets\JSQMessagesAssets.bundle\nl.lproj\JSQMessages.strings">
       <Link>Resources\JSQMessagesAssets.bundle\nl.lproj\JSQMessages.strings</Link>
@@ -181,32 +229,20 @@
     <BundleResource Include="..\..\externals\ios\JSQMessagesViewController\JSQMessagesViewController\Assets\JSQMessagesAssets.bundle\ru.lproj\JSQMessages.strings">
       <Link>Resources\JSQMessagesAssets.bundle\ru.lproj\JSQMessages.strings</Link>
     </BundleResource>
+    <BundleResource Include="..\..\externals\ios\JSQMessagesViewController\JSQMessagesViewController\Assets\JSQMessagesAssets.bundle\th.lproj\JSQMessages.strings">
+      <Link>Resources\JSQMessagesAssets.bundle\th.lproj\JSQMessages.strings</Link>
+    </BundleResource>
     <BundleResource Include="..\..\externals\ios\JSQMessagesViewController\JSQMessagesViewController\Assets\JSQMessagesAssets.bundle\tr.lproj\JSQMessages.strings">
       <Link>Resources\JSQMessagesAssets.bundle\tr.lproj\JSQMessages.strings</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\externals\ios\JSQMessagesViewController\JSQMessagesViewController\Assets\JSQMessagesAssets.bundle\vi.lproj\JSQMessages.strings">
+      <Link>Resources\JSQMessagesAssets.bundle\vi.lproj\JSQMessages.strings</Link>
     </BundleResource>
     <BundleResource Include="..\..\externals\ios\JSQMessagesViewController\JSQMessagesViewController\Assets\JSQMessagesAssets.bundle\zh-Hans.lproj\JSQMessages.strings">
       <Link>Resources\JSQMessagesAssets.bundle\zh-Hans.lproj\JSQMessages.strings</Link>
     </BundleResource>
     <BundleResource Include="..\..\externals\ios\JSQMessagesViewController\JSQMessagesViewController\Assets\JSQMessagesAssets.bundle\zh-Hant.lproj\JSQMessages.strings">
       <Link>Resources\JSQMessagesAssets.bundle\zh-Hant.lproj\JSQMessages.strings</Link>
-    </BundleResource>
-    <BundleResource Include="..\..\externals\ios\Resources\JSQMessagesCollectionViewCellIncoming.nib">
-      <Link>Resources\JSQMessagesCollectionViewCellIncoming.nib</Link>
-    </BundleResource>
-    <BundleResource Include="..\..\externals\ios\Resources\JSQMessagesCollectionViewCellOutgoing.nib">
-      <Link>Resources\JSQMessagesCollectionViewCellOutgoing.nib</Link>
-    </BundleResource>
-    <BundleResource Include="..\..\externals\ios\Resources\JSQMessagesLoadEarlierHeaderView.nib">
-      <Link>Resources\JSQMessagesLoadEarlierHeaderView.nib</Link>
-    </BundleResource>
-    <BundleResource Include="..\..\externals\ios\Resources\JSQMessagesToolbarContentView.nib">
-      <Link>Resources\JSQMessagesToolbarContentView.nib</Link>
-    </BundleResource>
-    <BundleResource Include="..\..\externals\ios\Resources\JSQMessagesTypingIndicatorFooterView.nib">
-      <Link>Resources\JSQMessagesTypingIndicatorFooterView.nib</Link>
-    </BundleResource>
-    <BundleResource Include="..\..\externals\ios\Resources\JSQMessagesViewController.nib">
-      <Link>Resources\JSQMessagesViewController.nib</Link>
     </BundleResource>
   </ItemGroup>
 </Project>

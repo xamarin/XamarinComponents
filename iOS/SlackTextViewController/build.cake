@@ -7,7 +7,7 @@ var IOS_PODS = new List<string> {
 	"platform :ios, '7.0'",
 	"install! 'cocoapods', :integrate_targets => false",
 	"target 'Xamarin' do",
-	"pod 'SlackTextViewController', '1.9.1'",
+	"pod 'SlackTextViewController', '1.9.5'",
 	"end",
 };
 
@@ -27,7 +27,11 @@ var buildSpec = new BuildSpec () {
 	},
 
 	Samples = new ISolutionBuilder [] {
-		new IOSSolutionBuilder { SolutionPath = "./samples/SlackTextViewControllerSample.sln", Configuration = "Release|iPhone", BuildsOn = BuildPlatforms.Mac },	
+		new IOSSolutionBuilder { SolutionPath = "./samples/SlackTextViewControllerSample.sln", Configuration = "Release", Platform="iPhone", BuildsOn = BuildPlatforms.Mac },	
+	},
+
+	NuGets = new [] {
+		new NuGetInfo { NuSpec = "./nuget/SlackTextViewController.nuspec", BuildsOn = BuildPlatforms.Mac },
 	},
 
 	Components = new [] {

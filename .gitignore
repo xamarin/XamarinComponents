@@ -4,5 +4,7 @@ obj
 output
 tools
 externals
-*.designer.cs
+**/Resources/Resource.designer.cs
 *.userprefs
+
+.DS_Store

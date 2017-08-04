@@ -1,0 +1,46 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LoginScreen.iOS.Sample", "LoginScreen.iOS.Sample.csproj", "{FF030E2E-4A48-4E06-8398-90C4A709BDED}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LoginScreen.iOS", "..\..\source\LoginScreen.iOS\LoginScreen.iOS.csproj", "{CDBA8DEF-C80D-4341-AC8B-400F72DA74CA}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|iPhoneSimulator = Debug|iPhoneSimulator
+		Release|iPhoneSimulator = Release|iPhoneSimulator
+		Debug|iPhone = Debug|iPhone
+		Release|iPhone = Release|iPhone
+		Ad-Hoc|iPhone = Ad-Hoc|iPhone
+		AppStore|iPhone = AppStore|iPhone
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{CDBA8DEF-C80D-4341-AC8B-400F72DA74CA}.Ad-Hoc|iPhone.ActiveCfg = Release|Any CPU
+		{CDBA8DEF-C80D-4341-AC8B-400F72DA74CA}.Ad-Hoc|iPhone.Build.0 = Release|Any CPU
+		{CDBA8DEF-C80D-4341-AC8B-400F72DA74CA}.AppStore|iPhone.ActiveCfg = Release|Any CPU
+		{CDBA8DEF-C80D-4341-AC8B-400F72DA74CA}.AppStore|iPhone.Build.0 = Release|Any CPU
+		{CDBA8DEF-C80D-4341-AC8B-400F72DA74CA}.Debug|iPhone.ActiveCfg = Debug|Any CPU
+		{CDBA8DEF-C80D-4341-AC8B-400F72DA74CA}.Debug|iPhone.Build.0 = Debug|Any CPU
+		{CDBA8DEF-C80D-4341-AC8B-400F72DA74CA}.Debug|iPhoneSimulator.ActiveCfg = Debug|Any CPU
+		{CDBA8DEF-C80D-4341-AC8B-400F72DA74CA}.Debug|iPhoneSimulator.Build.0 = Debug|Any CPU
+		{CDBA8DEF-C80D-4341-AC8B-400F72DA74CA}.Release|iPhone.ActiveCfg = Release|Any CPU
+		{CDBA8DEF-C80D-4341-AC8B-400F72DA74CA}.Release|iPhone.Build.0 = Release|Any CPU
+		{CDBA8DEF-C80D-4341-AC8B-400F72DA74CA}.Release|iPhoneSimulator.ActiveCfg = Release|Any CPU
+		{CDBA8DEF-C80D-4341-AC8B-400F72DA74CA}.Release|iPhoneSimulator.Build.0 = Release|Any CPU
+		{FF030E2E-4A48-4E06-8398-90C4A709BDED}.Ad-Hoc|iPhone.ActiveCfg = Ad-Hoc|iPhone
+		{FF030E2E-4A48-4E06-8398-90C4A709BDED}.Ad-Hoc|iPhone.Build.0 = Ad-Hoc|iPhone
+		{FF030E2E-4A48-4E06-8398-90C4A709BDED}.AppStore|iPhone.ActiveCfg = AppStore|iPhone
+		{FF030E2E-4A48-4E06-8398-90C4A709BDED}.AppStore|iPhone.Build.0 = AppStore|iPhone
+		{FF030E2E-4A48-4E06-8398-90C4A709BDED}.Debug|iPhone.ActiveCfg = Debug|iPhone
+		{FF030E2E-4A48-4E06-8398-90C4A709BDED}.Debug|iPhone.Build.0 = Debug|iPhone
+		{FF030E2E-4A48-4E06-8398-90C4A709BDED}.Debug|iPhoneSimulator.ActiveCfg = Debug|iPhoneSimulator
+		{FF030E2E-4A48-4E06-8398-90C4A709BDED}.Debug|iPhoneSimulator.Build.0 = Debug|iPhoneSimulator
+		{FF030E2E-4A48-4E06-8398-90C4A709BDED}.Release|iPhone.ActiveCfg = Release|iPhone
+		{FF030E2E-4A48-4E06-8398-90C4A709BDED}.Release|iPhone.Build.0 = Release|iPhone
+		{FF030E2E-4A48-4E06-8398-90C4A709BDED}.Release|iPhoneSimulator.ActiveCfg = Release|iPhoneSimulator
+		{FF030E2E-4A48-4E06-8398-90C4A709BDED}.Release|iPhoneSimulator.Build.0 = Release|iPhoneSimulator
+	EndGlobalSection
+	GlobalSection(MonoDevelopProperties) = preSolution
+		StartupItem = LoginScreen.iOS.Sample.csproj
+	EndGlobalSection
+EndGlobal
