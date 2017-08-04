@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2012/06/nuspec.xsd">
+    <metadata>
+        <id>Xamarin.VKontakte.Android</id>
+        <version>$version$</version>
+        <title>VK (originally VKontakte)</title>
+        <authors>Xamarin</authors>
+        <owners>Xamarin</owners>
+        <licenseUrl>https://github.com/xamarin/XamarinComponents/blob/master/XPlat/VK/component/License.md</licenseUrl>
+        <projectUrl>https://github.com/xamarin/XamarinComponents</projectUrl>
+        <iconUrl>https://avatars1.githubusercontent.com/u/1478241?v=3&amp;s=256</iconUrl>
+        <requireLicenseAcceptance>false</requireLicenseAcceptance>
+        <description>VK (originally VKontakte) is the largest European online social networking service. It is available in several languages, but is especially popular among Russian-speaking users.</description>
+        <summary>VK (originally VKontakte) is the largest European online social networking service.</summary>
+        <releaseNotes></releaseNotes>
+        <copyright>Copyright © Xamarin. All Rights Reserved.</copyright>
+        <tags>VK,VKontakte,social,Xamarin,Android,Xamarin.Android,monodroid,monoandroid,monotouch</tags>
+    </metadata>
+    <files>
+        <file src="output/VKontakte.Android.dll" target="lib/MonoAndroid/VKontakte.Android.dll" />
+    </files>
+</package>

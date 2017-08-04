@@ -1,0 +1,23 @@
+<resources>
+    <!-- Strings related to login -->
+    <string name="action_sign_in_short">Sign in with VK</string>
+    <string name="action_sign_in_force">Force OAuth</string>
+    <string name="users_get">users.get</string>
+    <string name="friends_get">friends.get</string>
+    <string name="messages_get">messages.get</string>
+    <string name="dialogs_get">dialogs.get</string>
+    <string name="captcha_force">captcha.force</string>
+    <string name="wall_post">wall.post</string>
+    <string name="wall_getById">wall.getById</string>
+    <string name="upload_photo">upload photo</string>
+    <string name="upload_photo_to_wall">upload photo to wall</string>
+    <string name="upload_several_photos_to_wall">upload several photos to wall</string>
+    <string name="upload_doc">upload doc</string>
+    <string name="continue_using_app">Continue using test application</string>
+    <string name="test_validation">Test validation</string>
+    <string name="test_share">Test share dialog</string>
+    <string name="test_send_request">Test send request</string>
+    <string name="logout">Logout</string>
+
+    <string name="send_request_title">Choose friend</string>
+</resources>

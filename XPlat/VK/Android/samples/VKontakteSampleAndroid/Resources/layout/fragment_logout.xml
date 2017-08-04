@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    style="@style/Container"
+    android:orientation="vertical"
+    tools:context=".LoginActivity">
+    <Button
+        android:id="@+id/continue_button"
+        style="@style/Button"
+        android:layout_marginTop="16dp"
+        android:text="@string/continue_using_app" />
+    <Button
+        android:id="@+id/logout"
+        style="@style/Button"
+        android:layout_marginTop="16dp"
+        android:text="@string/logout" />
+</LinearLayout>
