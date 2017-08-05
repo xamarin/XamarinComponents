@@ -6,8 +6,8 @@
         <title>VK (originally VKontakte) [DEPRECATED]</title>
         <authors>Xamarin</authors>
         <owners>Xamarin</owners>
-        <licenseUrl>https://github.com/xamarin/XamarinComponents/blob/master/XPlat/VK/component/License.md</licenseUrl>
-        <projectUrl>https://github.com/xamarin/XamarinComponents</projectUrl>
+        <licenseUrl>https://github.com/xamarin/XamarinComponents/blob/master/XPlat/VK/License.md</licenseUrl>
+        <projectUrl>https://github.com/xamarin/XamarinComponents/tree/master/XPlat/VK</projectUrl>
         <iconUrl>https://avatars1.githubusercontent.com/u/1478241?v=3&amp;s=256</iconUrl>
         <requireLicenseAcceptance>false</requireLicenseAcceptance>
         <description>VK (originally VKontakte) is the largest European online social networking service. It is available in several languages, but is especially popular among Russian-speaking users.</description>
