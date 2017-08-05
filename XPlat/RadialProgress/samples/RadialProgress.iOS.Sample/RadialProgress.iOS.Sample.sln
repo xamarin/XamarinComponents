@@ -1,0 +1,36 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RadialProgress.iOS.Sample", "RadialProgress.iOS.Sample.csproj", "{E6B86CBE-B305-4ACF-B0D1-40BA85514F84}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RadialProgress.iOS", "..\..\source\RadialProgress.iOS\RadialProgress.iOS.csproj", "{957AF0CF-4765-4A55-B4EA-10415EE2ED93}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|iPhoneSimulator = Debug|iPhoneSimulator
+		Release|iPhoneSimulator = Release|iPhoneSimulator
+		Debug|iPhone = Debug|iPhone
+		Release|iPhone = Release|iPhone
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{957AF0CF-4765-4A55-B4EA-10415EE2ED93}.Debug|iPhone.ActiveCfg = Debug|Any CPU
+		{957AF0CF-4765-4A55-B4EA-10415EE2ED93}.Debug|iPhone.Build.0 = Debug|Any CPU
+		{957AF0CF-4765-4A55-B4EA-10415EE2ED93}.Debug|iPhoneSimulator.ActiveCfg = Debug|Any CPU
+		{957AF0CF-4765-4A55-B4EA-10415EE2ED93}.Debug|iPhoneSimulator.Build.0 = Debug|Any CPU
+		{957AF0CF-4765-4A55-B4EA-10415EE2ED93}.Release|iPhone.ActiveCfg = Release|Any CPU
+		{957AF0CF-4765-4A55-B4EA-10415EE2ED93}.Release|iPhone.Build.0 = Release|Any CPU
+		{957AF0CF-4765-4A55-B4EA-10415EE2ED93}.Release|iPhoneSimulator.ActiveCfg = Release|Any CPU
+		{957AF0CF-4765-4A55-B4EA-10415EE2ED93}.Release|iPhoneSimulator.Build.0 = Release|Any CPU
+		{E6B86CBE-B305-4ACF-B0D1-40BA85514F84}.Debug|iPhone.ActiveCfg = Debug|iPhone
+		{E6B86CBE-B305-4ACF-B0D1-40BA85514F84}.Debug|iPhone.Build.0 = Debug|iPhone
+		{E6B86CBE-B305-4ACF-B0D1-40BA85514F84}.Debug|iPhoneSimulator.ActiveCfg = Debug|iPhoneSimulator
+		{E6B86CBE-B305-4ACF-B0D1-40BA85514F84}.Debug|iPhoneSimulator.Build.0 = Debug|iPhoneSimulator
+		{E6B86CBE-B305-4ACF-B0D1-40BA85514F84}.Release|iPhone.ActiveCfg = Release|iPhone
+		{E6B86CBE-B305-4ACF-B0D1-40BA85514F84}.Release|iPhone.Build.0 = Release|iPhone
+		{E6B86CBE-B305-4ACF-B0D1-40BA85514F84}.Release|iPhoneSimulator.ActiveCfg = Release|iPhoneSimulator
+		{E6B86CBE-B305-4ACF-B0D1-40BA85514F84}.Release|iPhoneSimulator.Build.0 = Release|iPhoneSimulator
+	EndGlobalSection
+	GlobalSection(MonoDevelopProperties) = preSolution
+		StartupItem = RadialProgress.iOS.Sample.csproj
+	EndGlobalSection
+EndGlobal

@@ -6,18 +6,20 @@ JSQ_PROJECT_ROOT=./ios/JSQMessagesViewControllerLib
 JSQ_PROJECT=$(JSQ_PROJECT_ROOT)/JSQMessagesViewControllerLib.xcodeproj
 JSQ_TARGET=JSQMessagesViewControllerLib
 
-all :  $(JSQ_TARGET)/lib$(JSQ_TARGET).a ios/Resources/JSQMessagesViewController.nib
+all :  $(JSQ_TARGET)/lib$(JSQ_TARGET).a ios/Resources/JSQMessagesViewController.nib ../samples/XamarinChat/Resources/jsq_messages_sample.m4a
 
+../samples/XamarinChat/Resources/jsq_messages_sample.m4a: ios/JSQMessagesViewController/JSQMessagesViewController/JSQMessages.h
+	cp ios/JSQMessagesViewController/JSQMessagesDemo/jsq_messages_sample.m4a ../samples/XamarinChat/Resources/jsq_messages_sample.m4a
 
 ios/JSQSystemSoundPlayer/JSQSystemSoundPlayer/Classes/JSQSystemSoundPlayer.h :
 	mkdir -p ios
-	cd ios && git clone git@github.com:jessesquires/JSQSystemSoundPlayer.git
+	cd ios && git clone https://github.com/jessesquires/JSQSystemSoundPlayer.git
 	cd ios/JSQSystemSoundPlayer && git checkout 2.0.1
 
 ios/JSQMessagesViewController/JSQMessagesViewController/JSQMessages.h : ios/JSQSystemSoundPlayer/JSQSystemSoundPlayer/Classes/JSQSystemSoundPlayer.h 
 	mkdir -p ios
-	cd ios && git clone git@github.com:jessesquires/JSQMessagesViewController.git
-	cd ios/JSQMessagesViewController && git checkout 7.2.0
+	cd ios && git clone https://github.com/jessesquires/JSQMessagesViewController.git
+	cd ios/JSQMessagesViewController && git checkout 7.3.4
 	mkdir ios/JSQMessagesViewController/JSQMessagesViewController/JSQSystemSoundPlayer
 	cp ios/JSQSystemSoundPlayer/JSQSystemSoundPlayer/Classes/* ios/JSQMessagesViewController/JSQMessagesViewController/JSQSystemSoundPlayer/
 	sed -i '' 's/#import <JSQSystemSoundPlayer\/JSQSystemSoundPlayer.h>/#import "JSQSystemSoundPlayer.h"/g' ios/JSQMessagesViewController/JSQMessagesViewController/Categories/JSQSystemSoundPlayer+JSQMessages.h
@@ -58,4 +60,5 @@ ios/Resources/JSQMessagesViewController.nib  : ios/JSQMessagesViewController/JSQ
 	done
 
 clean :
-	rm -rf ios/JSQMessagesViewController ios/JSQSystemSoundPlayer iOS/Resources JSQMessagesViewControllerLib ios/JSQMessagesViewControllerLib/build
+	rm -rf ios/JSQMessagesViewController ios/JSQSystemSoundPlayer iOS/Resources JSQMessagesViewControllerLib \
+	ios/JSQMessagesViewControllerLib/build ../samples/XamarinChat/Resources/jsq_messages_sample.m4a

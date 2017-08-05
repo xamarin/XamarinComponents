@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<package >
+  <metadata>
+    <id>Xamarin.Android.ShimmerLayout</id>
+    <title>ShimmerLayout for Xamarin.Android</title>
+    <version>0.5.0</version>
+    <authors>Xamarin Inc.</authors>
+    <owners>Xamarin Inc.</owners>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>Xamarin.Android binding for ShimmerLayout - Memory efficient shimmering effect for Android applications.</description>
+    <copyright>Copyright 2017</copyright>
+    <projectUrl>https://github.com/xamarin/XamarinComponents/tree/master/Android/ShimmerLayout</projectUrl>
+    <licenseUrl>https://github.com/xamarin/XamarinComponents/blob/master/Android/ShimmerLayout/LICENSE.md</licenseUrl>
+  </metadata>
+  <files>
+    <file src="output/Xamarin.Android.ShimmerLayout.dll" target="lib/MonoAndroid70" />
+    <file src="External-Dependency-Info.txt" target="THIRD-PARTY-NOTICES.txt" />
+  </files>
+</package>

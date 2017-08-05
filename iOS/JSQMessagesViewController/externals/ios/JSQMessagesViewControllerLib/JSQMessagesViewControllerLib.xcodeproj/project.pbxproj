@@ -44,7 +44,9 @@
 		2188DD5A1AD876C30043EFEE /* JSQMessagesMediaPlaceholderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2188DD311AD876C30043EFEE /* JSQMessagesMediaPlaceholderView.m */; };
 		2188DD5B1AD876C30043EFEE /* JSQMessagesToolbarContentView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2188DD331AD876C30043EFEE /* JSQMessagesToolbarContentView.m */; };
 		2188DD5C1AD876C30043EFEE /* JSQMessagesTypingIndicatorFooterView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2188DD361AD876C30043EFEE /* JSQMessagesTypingIndicatorFooterView.m */; };
-		21F26A4D1BD16100006C6198 /* JSQMessagesBubblesSizeCalculator.m in Sources */ = {isa = PBXBuildFile; fileRef = 21F26A4C1BD16100006C6198 /* JSQMessagesBubblesSizeCalculator.m */; settings = {ASSET_TAGS = (); }; };
+		21F26A4D1BD16100006C6198 /* JSQMessagesBubblesSizeCalculator.m in Sources */ = {isa = PBXBuildFile; fileRef = 21F26A4C1BD16100006C6198 /* JSQMessagesBubblesSizeCalculator.m */; };
+		8B08D3B71EA2A2C600BBA178 /* JSQAudioMediaItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B08D3B61EA2A2C600BBA178 /* JSQAudioMediaItem.m */; };
+		8B08D3BA1EA2A2D500BBA178 /* JSQAudioMediaViewAttributes.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B08D3B91EA2A2D500BBA178 /* JSQAudioMediaViewAttributes.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -152,6 +154,10 @@
 		21F26A4A1BD16100006C6198 /* JSQMessagesBubbleSizeCalculating.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSQMessagesBubbleSizeCalculating.h; sourceTree = "<group>"; };
 		21F26A4B1BD16100006C6198 /* JSQMessagesBubblesSizeCalculator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSQMessagesBubblesSizeCalculator.h; sourceTree = "<group>"; };
 		21F26A4C1BD16100006C6198 /* JSQMessagesBubblesSizeCalculator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSQMessagesBubblesSizeCalculator.m; sourceTree = "<group>"; };
+		8B08D3B51EA2A2C600BBA178 /* JSQAudioMediaItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSQAudioMediaItem.h; sourceTree = "<group>"; };
+		8B08D3B61EA2A2C600BBA178 /* JSQAudioMediaItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSQAudioMediaItem.m; sourceTree = "<group>"; };
+		8B08D3B81EA2A2D500BBA178 /* JSQAudioMediaViewAttributes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSQAudioMediaViewAttributes.h; sourceTree = "<group>"; };
+		8B08D3B91EA2A2D500BBA178 /* JSQAudioMediaViewAttributes.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSQAudioMediaViewAttributes.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -268,6 +274,8 @@
 		2188DCFE1AD876C30043EFEE /* Layout */ = {
 			isa = PBXGroup;
 			children = (
+				8B08D3B81EA2A2D500BBA178 /* JSQAudioMediaViewAttributes.h */,
+				8B08D3B91EA2A2D500BBA178 /* JSQAudioMediaViewAttributes.m */,
 				21F26A4A1BD16100006C6198 /* JSQMessagesBubbleSizeCalculating.h */,
 				21F26A4B1BD16100006C6198 /* JSQMessagesBubblesSizeCalculator.h */,
 				21F26A4C1BD16100006C6198 /* JSQMessagesBubblesSizeCalculator.m */,
@@ -284,6 +292,8 @@
 		2188DD051AD876C30043EFEE /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				8B08D3B51EA2A2C600BBA178 /* JSQAudioMediaItem.h */,
+				8B08D3B61EA2A2C600BBA178 /* JSQAudioMediaItem.m */,
 				2188DD061AD876C30043EFEE /* JSQLocationMediaItem.h */,
 				2188DD071AD876C30043EFEE /* JSQLocationMediaItem.m */,
 				2188DD081AD876C30043EFEE /* JSQMediaItem.h */,
@@ -408,10 +418,12 @@
 				2188DD4C1AD876C30043EFEE /* JSQMessage.m in Sources */,
 				2188DD431AD876C30043EFEE /* JSQMessagesMediaViewBubbleImageMasker.m in Sources */,
 				2188DD4A1AD876C30043EFEE /* JSQLocationMediaItem.m in Sources */,
+				8B08D3BA1EA2A2D500BBA178 /* JSQAudioMediaViewAttributes.m in Sources */,
 				2188DD471AD876C30043EFEE /* JSQMessagesCollectionViewFlowLayout.m in Sources */,
 				2188DD591AD876C30043EFEE /* JSQMessagesLoadEarlierHeaderView.m in Sources */,
 				2188DD4B1AD876C30043EFEE /* JSQMediaItem.m in Sources */,
 				21F26A4D1BD16100006C6198 /* JSQMessagesBubblesSizeCalculator.m in Sources */,
+				8B08D3B71EA2A2C600BBA178 /* JSQAudioMediaItem.m in Sources */,
 				2188DD401AD876C30043EFEE /* JSQMessagesViewController.m in Sources */,
 				2188DD531AD876C30043EFEE /* JSQMessagesCollectionViewCell.m in Sources */,
 				2188DD5B1AD876C30043EFEE /* JSQMessagesToolbarContentView.m in Sources */,

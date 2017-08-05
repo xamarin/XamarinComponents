@@ -3,11 +3,12 @@
   <metadata>
     <id>Xamarin.Build.Download</id>
     <title>Xamarin Build-time Download Support</title>
-    <version>0.4.3-beta1</version>
+    <version>0.4.6</version>
     <authors>Xamarin Inc.</authors>
     <owners>Xamarin Inc.</owners>
+    <licenseUrl>https://github.com/xamarin/XamarinComponents/blob/master/Util/Xamarin.Build.Download/LICENSE</licenseUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
-    <description>Support for downloading and unpacking archives at when building MSBuild projects</description>
+    <description>Support for downloading and unpacking archives when building MSBuild projects</description>
     <copyright>Copyright 2016</copyright>
   </metadata>
   <files>

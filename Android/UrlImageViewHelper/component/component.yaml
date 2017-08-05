@@ -13,3 +13,4 @@ libraries:
 samples:
   - name: "Android Sample"
     path: ../samples/UrlImageViewHelperSample/UrlImageViewHelperSample.sln
+no_build: true

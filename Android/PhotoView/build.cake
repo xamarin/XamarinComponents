@@ -3,8 +3,8 @@
 
 var TARGET = Argument ("t", Argument ("target", "Default"));
 
-var AAR_VERSION = "1.2.4";
-var AAR_URL = string.Format ("http://search.maven.org/remotecontent?filepath=com/github/chrisbanes/photoview/library/{0}/library-{0}.aar", AAR_VERSION);
+var AAR_VERSION = "2.1.3";
+var AAR_URL = string.Format ("https://jitpack.io/com/github/chrisbanes/PhotoView/{0}/PhotoView-{0}.aar", AAR_VERSION);
 var AAR_FILE = "PhotoView.aar";
 
 var buildSpec = new BuildSpec () {
@@ -23,8 +23,12 @@ var buildSpec = new BuildSpec () {
 		new DefaultSolutionBuilder { SolutionPath = "./samples/PhotoViewSample.sln" },
 	},
 
+	NuGets = new [] {
+		new NuGetInfo { NuSpec = "./nuget/Xamarin.Android.PhotoView.nuspec" },
+	},
+
 	Components = new [] {
-		new Component {ManifestDirectory = "./component"},
+		new Component { ManifestDirectory = "./component" },
 	},
 };
 

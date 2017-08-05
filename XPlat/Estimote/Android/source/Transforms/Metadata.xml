@@ -16,6 +16,7 @@
 	<attr path="/api/package[@name='com.estimote.sdk.exception']" name="managedName">EstimoteSdk.Exception</attr>
 	<attr path="/api/package[@name='com.estimote.sdk.location']" name="managedName">EstimoteSdk.Location</attr>
 	<attr path="/api/package[@name='com.estimote.sdk.telemetry']" name="managedName">EstimoteSdk.Telemetry</attr>
+	<attr path="/api/package[@name='com.estimote.sdk.nfc']" name="managedName">EstimoteSdk.Nfc</attr>
 	
 
 	<!-- Make casing more .NET on class name -->

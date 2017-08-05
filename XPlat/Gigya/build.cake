@@ -13,7 +13,7 @@ var IOS_SDK_URL = string.Format ("https://s3.amazonaws.com/wikifiles.gigya.com/S
 
 var buildSpec = new BuildSpec {
 	Libs = new [] {
-		new IOSSolutionBuilder {
+		new DefaultSolutionBuilder {
 			SolutionPath = "./iOS/source/GigyaSDK.iOS.sln",
 			OutputFiles = new [] { 
 				new OutputFileCopy {
@@ -37,7 +37,7 @@ var buildSpec = new BuildSpec {
 	// },
 
 	Samples = new [] {
-		new IOSSolutionBuilder { SolutionPath = "./iOS/samples/GigyaSDKSampleiOS.sln", Configuration = "Release|iPhone" },
+		new IOSSolutionBuilder { SolutionPath = "./iOS/samples/GigyaSDKSampleiOS.sln",  Configuration = "Release", Platform="iPhone" },
 		new DefaultSolutionBuilder { SolutionPath = "./Android/samples/GigyaSDKSampleAndroid.sln" }
 	},
 

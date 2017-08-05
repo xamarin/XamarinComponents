@@ -9,6 +9,8 @@
     <RootNamespace>GigyaSDKSampleiOS</RootNamespace>
     <AssemblyName>GigyaSDKSampleiOS</AssemblyName>
     <IPhoneResourcePrefix>Resources</IPhoneResourcePrefix>
+    <!-- https://bugzilla.xamarin.com/show_bug.cgi?id=56246-->
+    <CscToolExe>mcs.exe</CscToolExe>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|iPhoneSimulator' ">
     <DebugSymbols>true</DebugSymbols>

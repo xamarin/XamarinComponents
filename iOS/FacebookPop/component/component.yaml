@@ -1,0 +1,32 @@
+version: 1.0.10
+name: Facebook Pop
+id: Facebook.Pop
+publisher: Xamarin Inc
+publisher-url: "https://xamarin.com/"
+src-url: https://github.com/facebook/pop
+summary: "An extensible iOS and macOS animation library, useful for physics-based interactions."
+license: ../License.md
+icons: 
+  - icons/Facebook.Pop_128x128.png
+  - icons/Facebook.Pop_512x512.png
+libraries:
+  ios-unified:
+    - ../output/Facebook.Pop.dll  
+samples:
+  - name: "iOS Sample"
+    path: "../samples/PopSample.sln"
+    nobuild: "true"
+    removeProjects:
+      - Facebook.Pop
+    installNuGets:
+      - project: PopSample
+        packages:
+          - Xamarin.Facebook.Pop
+is_shell: true
+packages:
+  ios-unified: Xamarin.Facebook.Pop, Version=1.0.10
+local-nuget-repo: ../output
+additional-files:
+  - source: "../External-Dependency-Info.txt"
+    destination: "THIRD-PARTY-NOTICES.txt"
+...
