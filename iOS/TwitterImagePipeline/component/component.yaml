@@ -34,3 +34,7 @@ samples:
       - project: TwitterImagePipelineDemo
         packages:
           - Xamarin.TwitterImagePipeline
+
+additional-files:
+  - source: "../External-Dependency-Info.txt"
+    destination: "THIRD-PARTY-NOTICES.txt"

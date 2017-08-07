@@ -13,10 +13,8 @@ var IOS_PODS = new List<string> {
 
 var buildSpec = new BuildSpec () {
 	Libs = new ISolutionBuilder [] {
-		new IOSSolutionBuilder {
+		new DefaultSolutionBuilder {
 			SolutionPath = "./source/TwitterImagePipeline.sln",
-			Configuration = "Release",
-			BuildsOn = BuildPlatforms.Mac,
 			OutputFiles = new [] { 
 				new OutputFileCopy {
 					FromFile = "./source/TwitterImagePipeline/bin/Release/TwitterImagePipeline.dll",
@@ -29,8 +27,6 @@ var buildSpec = new BuildSpec () {
 	Samples = new ISolutionBuilder [] {
 		new IOSSolutionBuilder { 
 			SolutionPath = "./samples/TwitterImagePipelineDemo/TwitterImagePipelineDemo.sln", 
-			Configuration = "Release|iPhone", 
-			BuildsOn = BuildPlatforms.Mac
 		},
 	},
 
@@ -39,7 +35,7 @@ var buildSpec = new BuildSpec () {
 	},
 
 	Components = new [] {
-		new Component { ManifestDirectory = "./component", BuildsOn = BuildPlatforms.Mac },
+		new Component { ManifestDirectory = "./component" },
 	},
 };
 
