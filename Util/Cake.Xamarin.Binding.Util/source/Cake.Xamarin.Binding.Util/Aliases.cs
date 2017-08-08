@@ -6,6 +6,7 @@ using Cake.Core.IO;
 
 namespace Cake.Xamarin.Binding.Util
 {
+	[CakeNamespaceImport("Cake.Xamarin.Binding.Util")]
 	[CakeAliasCategory("Xamarin Binding Utilities")]
 	public static class BindingUtilAliases
 	{
