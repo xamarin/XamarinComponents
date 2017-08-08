@@ -22,7 +22,7 @@ namespace Cake.Xamarin.Binding.Util
 		/// <param name="ignoreTypes">If set to <c>true</c> ignore types.</param>
 		/// <param name="regexPatterns">Custom regex patterns to use instead of the default.  These are based on a single line regex.</param>
 		[CakeMethodAlias]
-		public static FindObfuscationResults FindObfuscations (ICakeContext context, FilePath assembly, bool ignoreDefaultExceptions = false, bool ignoreMembers = false, bool ignoreTypes = false, string[] regexPatterns = null)
+		public static FindObfuscationResults FindObfuscations (this ICakeContext context, FilePath assembly, bool ignoreDefaultExceptions = false, bool ignoreMembers = false, bool ignoreTypes = false, string[] regexPatterns = null)
 		{
 			return Obfuscations.Find(assembly.MakeAbsolute(context.Environment).FullPath, ignoreDefaultExceptions, ignoreMembers, ignoreTypes, regexPatterns);
 		}
@@ -34,7 +34,7 @@ namespace Cake.Xamarin.Binding.Util
 		/// <param name="context">The context.</param>
 		/// <param name="assembly">The assembly file to search in.</param>
 		[CakeMethodAlias]
-		public static List<MetadataMemberInfo> FindMissingMetadata (ICakeContext context, FilePath assembly)
+		public static List<MetadataMemberInfo> FindMissingMetadata (this ICakeContext context, FilePath assembly)
 		{
 			return AndroidMetadata.FindMissing(assembly.MakeAbsolute(context.Environment).FullPath);
 		}
