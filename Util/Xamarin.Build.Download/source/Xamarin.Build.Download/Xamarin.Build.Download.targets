@@ -131,7 +131,6 @@
 
 	<Target Name="_XamarinAndroidBuildAarProguardConfigs"
 			DependsOnTargets="_XamarinAndroidBuildAarRestore"
-			AfterTargets="_XamarinAndroidBuildAarRestore"
 			>
 		<XamarinBuildAndroidAarProguardConfigs
 			TargetFrameworkVerison="$(TargetFrameworkVersion)"
