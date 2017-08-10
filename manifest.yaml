@@ -21,7 +21,7 @@
 - Name: AnimatedCircleLoadingView
   BuildScript: ./Android/AnimatedCircleLoadingView/build.cake
   TriggerPaths: [ Android/AnimatedCircleLoadingView ]
-  MacBuildTargets: [ samples, component ]
+  MacBuildTargets: [ component, samples ]
 - Name: AutoFitTextView
   BuildScript: ./Android/AutoFitTextView/build.cake
   TriggerPaths: [ Android/AutoFitTextView ]
