@@ -12,16 +12,11 @@ var IOS_PODS = new List<string> {
 };
 
 var buildSpec = new BuildSpec () {
-	Libs = new ISolutionBuilder [] {
-		new IOSSolutionBuilder {
+	Libs = new [] {
+		new DefaultSolutionBuilder {
 			SolutionPath = "./source/YouTube.Player.iOS.sln",
-			Configuration = "Release",
-			BuildsOn = BuildPlatforms.Mac,
 			OutputFiles = new [] { 
-				new OutputFileCopy {
-					FromFile = "./source/YouTube.Player.iOS/bin/Release/YouTube.Player.iOS.dll",
-					ToDirectory = "./output/"
-				},
+				new OutputFileCopy { FromFile = "./source/YouTube.Player.iOS/bin/Release/YouTube.Player.iOS.dll" },
 			}
 		},	
 	},
@@ -34,9 +29,9 @@ var buildSpec = new BuildSpec () {
 		new NuGetInfo { NuSpec = "./nuget/Xamarin.YouTube.Player.iOS.nuspec" },
 	},
 
-	// Components = new [] {
-	// 	new Component { ManifestDirectory = "./component" },
-	// },
+	Components = new [] {
+		new Component { ManifestDirectory = "./component" },
+	},
 };
 
 Task ("externals").IsDependentOn ("externals-base").Does (() =>

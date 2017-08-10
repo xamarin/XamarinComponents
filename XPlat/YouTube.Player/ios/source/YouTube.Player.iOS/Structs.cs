@@ -1,4 +1,5 @@
 ﻿using System;
+using Foundation;
 using ObjCRuntime;
 
 namespace YouTube.Player
@@ -26,6 +27,8 @@ namespace YouTube.Player
 		HighRes,
 		Auto,
 		Default,
+
+		[Advice ("This should never be returned. It is here for future proofing.")]
 		Unknown
 	}
 
