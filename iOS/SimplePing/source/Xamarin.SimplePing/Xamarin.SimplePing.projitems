@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <MSBuildAllProjects>$(MSBuildAllProjects);$(MSBuildThisFileFullPath)</MSBuildAllProjects>
+    <HasSharedItems>true</HasSharedItems>
+    <SharedGUID>{BBCEF792-5464-4964-B755-D612F700E4B1}</SharedGUID>
+  </PropertyGroup>
+  <PropertyGroup Label="Configuration">
+    <Import_RootNamespace>Xamarin.SimplePing</Import_RootNamespace>
+  </PropertyGroup>
+  <ItemGroup>
+    <ObjcBindingApiDefinition Include="$(MSBuildThisFileDirectory)ApiDefinition.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ObjcBindingCoreSource Include="$(MSBuildThisFileDirectory)StructsAndEnums.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="$(MSBuildThisFileDirectory)Properties\AssemblyInfo.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)SimplePingStartedEventArgs.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)SimplePing.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="$(MSBuildThisFileDirectory)Properties\" />
+  </ItemGroup>
+</Project>
