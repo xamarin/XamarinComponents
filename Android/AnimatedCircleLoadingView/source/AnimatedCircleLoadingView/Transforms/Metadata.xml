@@ -1,6 +1,9 @@
 ﻿<metadata>
 	<attr path="/api/package[@name='com.github.jlmd.animatedcircleloadingview']" name="managedName">AnimatedLoadingViews</attr>
-	
+
+	<attr path="/api/package[@name='com.github.jlmd.animatedcircleloadingview']/interface[@name='AnimatedCircleLoadingView.AnimationListener']/method[@name='onAnimationEnd']/parameter[1]" name="managedName">success</attr>
+	<attr path="/api/package[@name='com.github.jlmd.animatedcircleloadingview']/class[@name='AnimatedCircleLoadingView']/method[@name='setAnimationListener']" name="eventName">AnimationEnded</attr>
+
 	<remove-node path="/api/package[@name='com.github.jlmd.animatedcircleloadingview.animator']" />
 	<remove-node path="/api/package[@name='com.github.jlmd.animatedcircleloadingview.component']" />
 	<remove-node path="/api/package[@name='com.github.jlmd.animatedcircleloadingview.component.finish']" />

@@ -16,7 +16,7 @@ var fetchers = new VersionFetcher[] {
     new Maven ("Android Things", "0.4.1-devpreview", "https://google.bintray.com/androidthings/com/google/android/things/androidthings/maven-metadata.xml", OWNER_CA1),
     new MavenCentral ("Android View Animations", "1.1.3", "com/daimajia/androidanimations/library", OWNER_SA1),
     new MavenCentral ("Android Volley", "1.0.19", "com/mcxiaoke/volley/library", OWNER_SA1),
-    new BinTray ("Animated Circle Loading View", "1.1.2", "jlmd", "maven/com/github/jlmd/AnimatedCircleLoadingView", OWNER_SA1),
+    new BinTray ("Animated Circle Loading View", "1.1.5", "jlmd", "maven/com/github/jlmd/AnimatedCircleLoadingView", OWNER_SA1),
     new MavenCentral ("Auto Fit Text View", "0.2.1", "me/grantland/autofittextview", OWNER_SA1),
     new BinTray ("Azure Messaging Android", "0.4.0", "microsoftazuremobile", "SDK/com/microsoft/azure/notification-hubs-android-sdk", OWNER_CA1),
     new MavenCentral ("Better Pickers", "1.6.0", "com/doomonafireball/betterpickers/library", OWNER_CA1),

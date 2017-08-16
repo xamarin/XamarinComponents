@@ -1,17 +1,18 @@
 ﻿using System.Threading.Tasks;
 using Android.App;
 using Android.OS;
+using Android.Support.V7.App;
 
 using AnimatedLoadingViews;
 
 namespace AnimatedCircleLoadingViewSample
 {
 	[Activity (Label = "@string/app_name", MainLauncher = true, Icon = "@drawable/icon")]
-	public class MainActivity : Activity
+	public class MainActivity : AppCompatActivity
 	{
 		private AnimatedCircleLoadingView loading;
 
-		protected  override async void OnCreate (Bundle bundle)
+		protected override async void OnCreate (Bundle bundle)
 		{
 			base.OnCreate (bundle);
 
@@ -25,7 +26,7 @@ namespace AnimatedCircleLoadingViewSample
 			// do the work
 			await Task.Delay (1500);
 			for (int i = 0; i <= 100; i++) {
-				await Task.Delay (65);
+				await Task.Delay (30);
 				loading.SetPercent (i);
 			}
 		}
