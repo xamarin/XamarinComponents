@@ -88,7 +88,7 @@ namespace TwitterImagePipeline
 
 		public TIPImageFetchOptions Options { get; set; }
 
-		public NSDictionary<NSString, TIPImageFetchProgressiveLoadingPolicy> ProgressiveLoadingPolicies { get; set; }
+		public NSDictionary<NSString, ITIPImageFetchProgressiveLoadingPolicy> ProgressiveLoadingPolicies { get; set; }
 
 		public UIViewContentMode TargetContentMode { get; set; }
 
