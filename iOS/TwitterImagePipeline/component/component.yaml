@@ -1,0 +1,40 @@
+﻿%YAML 1.2
+---
+name: Twitter Image Pipeline (TIP)
+id: twitterimagepipeline
+publisher: Xamarin Inc
+publisher-url: http://xamarin.com
+summary: An iOS framework for image loading/caching which is fast, safe, modular and versatile.
+version: 2.2.2
+src-url: https://github.com/xamarin/XamarinComponents/tree/master/iOS/TwitterImagePipeline
+
+details: Details.md
+license: ../License.md
+getting-started: GettingStarted.md
+
+no_build: true
+libraries: 
+  ios-unified: ../output/TwitterImagePipeline.dll
+
+is_shell: true
+local-nuget-repo: ../output/
+packages:
+  ios-unified: Xamarin.TwitterImagePipeline, Version=2.2.2
+
+icons: 
+  - ../images/twitterimagepipeline_128x128.png
+  - ../images/twitterimagepipeline_512x512.png
+
+samples: 
+  - name: iOS Sample
+    path: ../samples/TwitterImagePipelineDemo/TwitterImagePipelineDemo.sln
+    removeProjects:
+      - TwitterImagePipeline
+    installNuGets:
+      - project: TwitterImagePipelineDemo
+        packages:
+          - Xamarin.TwitterImagePipeline
+
+additional-files:
+  - source: "../External-Dependency-Info.txt"
+    destination: "THIRD-PARTY-NOTICES.txt"

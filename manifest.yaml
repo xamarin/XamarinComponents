@@ -231,6 +231,10 @@
   BuildScript: ./iOS/LiquidFloatingActionButton/build.cake
   TriggerPaths: [ iOS/LiquidFloatingActionButton ]
   MacBuildTargets: [ samples, component ]
+- Name: TwitterImagePipeline
+  BuildScript: ./iOS/TwitterImagePipeline/build.cake
+  TriggerPaths: [ iOS/TwitterImagePipeline ]
+  MacBuildTargets: [ samples, component ]
 - Name: Masonry
   BuildScript: ./iOS/Masonry/build.cake
   TriggerPaths: [ iOS/Masonry ]
