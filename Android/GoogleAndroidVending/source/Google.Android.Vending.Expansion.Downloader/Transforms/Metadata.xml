@@ -1,0 +1,43 @@
+﻿<metadata>
+  <!--
+  This sample removes the class: android.support.v4.content.AsyncTaskLoader.LoadTask:
+  <remove-node path="/api/package[@name='android.support.v4.content']/class[@name='AsyncTaskLoader.LoadTask']" />
+  
+  This sample removes the method: android.support.v4.content.CursorLoader.loadInBackground:
+  <remove-node path="/api/package[@name='android.support.v4.content']/class[@name='CursorLoader']/method[@name='loadInBackground']" />
+  -->
+
+  <attr path="/api/package[@name='com.google.android.vending.expansion.downloader']" name="managedName">Google.Android.Vending.Expansion.Downloader</attr>
+  <attr path="/api/package[@name='com.google.android.vending.expansion.downloader.impl']" name="managedName">Google.Android.Vending.Expansion.Downloader</attr>
+
+  <attr path="/api/package[@name='com.android.vending.expansion.downloader']" name="managedName">Google.Android.Vending.Expansion.Downloader</attr>
+
+  <attr path="/api/package[@name='com.google.android.vending.expansion.downloader.impl']/class[@name='DownloaderService']/method[@name='getSALT']" name="managedName">GetSalt</attr>
+  <!--<attr path="/api/package[@name='com.google.android.vending.expansion.downloader.impl']/class[@name='DownloaderService']/method[@name='getSALT']" name="propertyName">Salt</attr>-->
+
+  <attr path="/api/package[@name='com.google.android.vending.expansion.downloader']/class[@name='Helpers']/method[@name='getDownloaderStringResourceIDFromState']" name="managedName">GetDownloaderStringResourceIdFromState</attr>
+
+  <attr path="/api/package[@name='com.google.android.vending.expansion.downloader.impl']/class[@name='DownloadInfo']/field[@name='mControl']" name="managedName">Control</attr>
+  <attr path="/api/package[@name='com.google.android.vending.expansion.downloader.impl']/class[@name='DownloadInfo']/field[@name='mCurrentBytes']" name="managedName">CurrentBytes</attr>
+  <attr path="/api/package[@name='com.google.android.vending.expansion.downloader.impl']/class[@name='DownloadInfo']/field[@name='mETag']" name="managedName">ETag</attr>
+  <attr path="/api/package[@name='com.google.android.vending.expansion.downloader.impl']/class[@name='DownloadInfo']/field[@name='mFileName']" name="managedName">FileName</attr>
+  <attr path="/api/package[@name='com.google.android.vending.expansion.downloader.impl']/class[@name='DownloadInfo']/field[@name='mFuzz']" name="managedName">Fuzz</attr>
+  <attr path="/api/package[@name='com.google.android.vending.expansion.downloader.impl']/class[@name='DownloadInfo']/field[@name='mIndex']" name="managedName">Index</attr>
+  <attr path="/api/package[@name='com.google.android.vending.expansion.downloader.impl']/class[@name='DownloadInfo']/field[@name='mLastMod']" name="managedName">LastModified</attr>
+  <attr path="/api/package[@name='com.google.android.vending.expansion.downloader.impl']/class[@name='DownloadInfo']/field[@name='mNumFailed']" name="managedName">FailedCount</attr>
+  <attr path="/api/package[@name='com.google.android.vending.expansion.downloader.impl']/class[@name='DownloadInfo']/field[@name='mRedirectCount']" name="managedName">RedirectCount</attr>
+  <attr path="/api/package[@name='com.google.android.vending.expansion.downloader.impl']/class[@name='DownloadInfo']/field[@name='mRetryAfter']" name="managedName">RetryAfter</attr>
+  <attr path="/api/package[@name='com.google.android.vending.expansion.downloader.impl']/class[@name='DownloadInfo']/field[@name='mStatus']" name="managedName">Status</attr>
+  <attr path="/api/package[@name='com.google.android.vending.expansion.downloader.impl']/class[@name='DownloadInfo']/field[@name='mTotalBytes']" name="managedName">TotalBytes</attr>
+  <attr path="/api/package[@name='com.google.android.vending.expansion.downloader.impl']/class[@name='DownloadInfo']/field[@name='mUri']" name="managedName">Uri</attr>
+
+  <attr path="/api/package[@name='com.google.android.vending.expansion.downloader']/class[@name='Helpers']/field[@name='sRandom']" name="managedName">Random</attr>
+
+  <attr path="/api/package[@name='com.google.android.vending.expansion.downloader']/class[@name='DownloadProgressInfo']/field[@name='mCurrentSpeed']" name="managedName">CurrentSpeed</attr>
+  <attr path="/api/package[@name='com.google.android.vending.expansion.downloader']/class[@name='DownloadProgressInfo']/field[@name='mOverallProgress']" name="managedName">OverallProgress</attr>
+  <attr path="/api/package[@name='com.google.android.vending.expansion.downloader']/class[@name='DownloadProgressInfo']/field[@name='mOverallTotal']" name="managedName">OverallTotal</attr>
+  <attr path="/api/package[@name='com.google.android.vending.expansion.downloader']/class[@name='DownloadProgressInfo']/field[@name='mTimeRemaining']" name="managedName">TimeRemaining</attr>
+
+  <attr path="/api/package[@name='com.google.android.vending.expansion.downloader']/interface[@name='IStub']/method[@name='getMessenger']" name="propertyName" />
+
+</metadata>
