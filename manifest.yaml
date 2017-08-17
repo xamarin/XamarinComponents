@@ -138,6 +138,10 @@
   BuildScript: ./Android/StickyListHeaders/build.cake
   TriggerPaths: [ Android/StickyListHeaders ]
   MacBuildTargets: [ samples, component ]
+- Name: Kotlin
+  BuildScript: ./Android/Kotlin/build.cake
+  TriggerPaths: [ Android/Kotlin ]
+  MacBuildTargets: [ component, samples ]
 - Name: UniversalImageLoader
   BuildScript: ./Android/UniversalImageLoader/build.cake
   TriggerPaths: [ Android/UniversalImageLoader ]
