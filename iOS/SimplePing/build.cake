@@ -36,6 +36,8 @@ Task ("externals")
 		return;
 	}
 
+	EnsureDirectoryExists ("./externals/");
+
 	// iOS
 	BuildXCodeFatLibrary (
 		xcodeProject: "./SimplePing.xcodeproj",

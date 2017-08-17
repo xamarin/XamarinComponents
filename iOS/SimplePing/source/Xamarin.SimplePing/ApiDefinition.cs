@@ -66,13 +66,13 @@ namespace Xamarin.SimplePing
 		[Export("simplePing:didStartWithAddress:")]
 		[EventArgs("SimplePingStarted")]
 		[EventName("Started")]
-		void DidStartWithAddress(SimplePing pinger, NSData address);
+		void DidStart(SimplePing pinger, NSData address);
 
 		// @optional -(void)simplePing:(SimplePing * _Nonnull)pinger didFailWithError:(NSError * _Nonnull)error;
 		[Export("simplePing:didFailWithError:")]
 		[EventArgs("SimplePingFailed")]
 		[EventName("Failed")]
-		void DidFailWithError(SimplePing pinger, NSError error);
+		void DidFail(SimplePing pinger, NSError error);
 
 		// @optional -(void)simplePing:(SimplePing * _Nonnull)pinger didSendPacket:(NSData * _Nonnull)packet sequenceNumber:(uint16_t)sequenceNumber;
 		[Export("simplePing:didSendPacket:sequenceNumber:")]

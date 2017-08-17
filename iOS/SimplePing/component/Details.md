@@ -8,7 +8,7 @@ To use the SimplePing class:
 1. create an instance of the `SimplePing` class and keep a reference to that instance
 2. set the `Delegate` property or the `Started` event.
 3. call `Start()`.
-4. if things go well, your delegate's `DidStartWithAddress()` method, or the `Started`
+4. if things go well, your delegate's `DidStart()` method, or the `Started`
    event, will be called; to send a ping, call `SendPing()`
 5. when `SimplePing` receives an ICMP packet, it will call the 
    `DidReceivePingResponsePacket()` method, or the `ResponseRecieved` event
