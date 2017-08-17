@@ -347,20 +347,20 @@ namespace TwitterImagePipeline
 		[Field("TIPMaxRatioSizeOfCacheEntryDefault", "__Internal")]
 		nuint MaxRatioSizeOfCacheEntry { get; }
 
-		// TODO: this is really a short
-		// extern const SInt16 TIPMaxCountForAllMemoryCachesDefault;
-		[Field("TIPMaxCountForAllMemoryCachesDefault", "__Internal")]
-		long MaxCountForAllMemoryCaches { get; }
+		//// TODO: this is really a short, but https://bugzilla.xamarin.com/show_bug.cgi?id=58845
+		//// extern const SInt16 TIPMaxCountForAllMemoryCachesDefault;
+		//[Field("TIPMaxCountForAllMemoryCachesDefault", "__Internal")]
+		//long MaxCountForAllMemoryCaches { get; }
 
-		// TODO: this is really a short
-		// extern const SInt16 TIPMaxCountForAllRenderedCachesDefault;
-		[Field("TIPMaxCountForAllRenderedCachesDefault", "__Internal")]
-		long MaxCountForAllRenderedCaches { get; }
+		//// TODO: this is really a short, but https://bugzilla.xamarin.com/show_bug.cgi?id=58845
+		//// extern const SInt16 TIPMaxCountForAllRenderedCachesDefault;
+		//[Field("TIPMaxCountForAllRenderedCachesDefault", "__Internal")]
+		//long MaxCountForAllRenderedCaches { get; }
 
-		// TODO: this is really a short
-		// extern const SInt16 TIPMaxCountForAllDiskCachesDefault;
-		[Field("TIPMaxCountForAllDiskCachesDefault", "__Internal")]
-		long MaxCountForAllDiskCaches { get; }
+		//// TODO: this is really a short, but https://bugzilla.xamarin.com/show_bug.cgi?id=58845
+		//// extern const SInt16 TIPMaxCountForAllDiskCachesDefault;
+		//[Field("TIPMaxCountForAllDiskCachesDefault", "__Internal")]
+		//long MaxCountForAllDiskCaches { get; }
 	}
 
 	// typedef int64_t (^TIPEstimatedBitrateProviderBlock)(NSString * _Nonnull);
@@ -429,7 +429,7 @@ namespace TwitterImagePipeline
 
 		// @property (nonatomic) id<TIPImageFetchDownloadProvider> _Null_unspecified imageFetchDownloadProvider;
 		[Export("imageFetchDownloadProvider", ArgumentSemantic.Assign)]
-		TIPImageFetchDownloadProvider ImageFetchDownloadProvider { get; set; }
+		ITIPImageFetchDownloadProvider ImageFetchDownloadProvider { get; set; }
 
 		// @property (atomic) NSInteger maxConcurrentImagePipelineDownloadCount;
 		[Export("maxConcurrentImagePipelineDownloadCount")]
@@ -501,12 +501,12 @@ namespace TwitterImagePipeline
 		[Export("initWithImage:")]
 		IntPtr Constructor(UIImage image);
 
-		// TODO
-		//// +(instancetype _Nullable)imageContainerWithImageSource:(CGImageSourceRef _Nonnull)imageSource;
-		//[Static]
-		//[Export("imageContainerWithImageSource:")]
-		//[return: NullAllowed]
-		//unsafe TIPImageContainer Create(CGImageSourceRef* imageSource); // TODO
+		// +(instancetype _Nullable)imageContainerWithImageSource:(CGImageSourceRef _Nonnull)imageSource;
+		[Static]
+		[Export("imageContainerWithImageSource:")]
+		[return: NullAllowed]
+		[Internal]
+		TIPImageContainer Create(IntPtr imageSource);
 
 		// +(instancetype _Nullable)imageContainerWithData:(NSData * _Nonnull)data codecCatalogue:(TIPImageCodecCatalogue * _Nullable)catalogue;
 		[Static]
@@ -597,8 +597,7 @@ namespace TwitterImagePipeline
 		// +(NSDictionary<NSString *,id<TIPImageCodec>> * _Nonnull)defaultCodecs;
 		[Static]
 		[Export("defaultCodecs")]
-		// TODO: TIPImageCodec should be ITIPImageCodec
-		NSDictionary<NSString, TIPImageCodec> DefaultCodecs { get; }
+		NSDictionary<NSString, ITIPImageCodec> DefaultCodecs { get; }
 
 		// +(instancetype _Nonnull)sharedInstance;
 		[Static]
@@ -608,12 +607,11 @@ namespace TwitterImagePipeline
 		// -(instancetype _Nonnull)initWithCodecs:(NSDictionary<NSString *,id<TIPImageCodec>> * _Nullable)codecs __attribute__((objc_designated_initializer));
 		[Export("initWithCodecs:")]
 		[DesignatedInitializer]
-		// TODO: TIPImageCodec should be ITIPImageCodec
-		IntPtr Constructor([NullAllowed] NSDictionary<NSString, TIPImageCodec> codecs);
+		IntPtr Constructor([NullAllowed] NSDictionary<NSString, ITIPImageCodec> codecs);
 
 		// @property (readonly, atomic) NSDictionary<NSString *,id<TIPImageCodec>> * _Nonnull allCodecs;
 		[Export("allCodecs")]
-		NSDictionary<NSString, TIPImageCodec> AllCodecs { get; }
+		NSDictionary<NSString, ITIPImageCodec> AllCodecs { get; }
 
 		// -(id<TIPImageCodec> _Nullable)codecForImageType:(NSString * _Nonnull)imageType;
 		[Export("codecForImageType:")]
@@ -630,8 +628,8 @@ namespace TwitterImagePipeline
 
 		// -(void)removeCodecForImageType:(NSString * _Nonnull)imageType removedCodec:(id<TIPImageCodec>  _Nullable * _Nullable)codec;
 		[Export("removeCodecForImageType:removedCodec:")]
-		// TODO: TIPImageCodec should be ITIPImageCodec
-		void RemoveCodec(string imageType, [NullAllowed] out TIPImageCodec codec);
+		[Internal]
+		void RemoveCodec(string imageType, [NullAllowed] out IntPtr codec);
 	}
 
 	// @interface KeyedSubscripting (TIPImageCodecCatalogue)
@@ -761,7 +759,7 @@ namespace TwitterImagePipeline
 
 		// @optional @property (readonly, copy, nonatomic) NSDictionary<NSString *,id<TIPImageFetchProgressiveLoadingPolicy>> * _Nullable progressiveLoadingPolicies;
 		[NullAllowed, Export("progressiveLoadingPolicies", ArgumentSemantic.Copy)]
-		NSDictionary<NSString, TIPImageFetchProgressiveLoadingPolicy> ProgressiveLoadingPolicies { get; }
+		NSDictionary<NSString, ITIPImageFetchProgressiveLoadingPolicy> ProgressiveLoadingPolicies { get; }
 
 		// @optional @property (readonly, nonatomic) TIPImageFetchLoadingSources loadingSources;
 		[Export("loadingSources")]
@@ -807,7 +805,7 @@ namespace TwitterImagePipeline
 		// @required @property (readonly, nonatomic) id<TIPImageFetchDownloadContext> _Nullable context;
 		[Abstract]
 		[NullAllowed, Export("context")]
-		TIPImageFetchDownloadContext Context { get; }
+		ITIPImageFetchDownloadContext Context { get; }
 
 		// @required -(void)start;
 		[Abstract]
@@ -851,27 +849,27 @@ namespace TwitterImagePipeline
 		// @required -(void)imageFetchDownloadDidStart:(id<TIPImageFetchDownload> _Nonnull)download;
 		[Abstract]
 		[Export("imageFetchDownloadDidStart:")]
-		void ImageFetchDownloadDidStart(ITIPImageFetchDownload download);
+		void DidStart(ITIPImageFetchDownload download);
 
 		// @required -(void)imageFetchDownload:(id<TIPImageFetchDownload> _Nonnull)download hydrateRequest:(NSURLRequest * _Nonnull)request completion:(TIPImageFetchDownloadRequestHydrationCompleteBlock _Nonnull)complete;
 		[Abstract]
 		[Export("imageFetchDownload:hydrateRequest:completion:")]
-		void ImageFetchDownloadHydrateRequest(ITIPImageFetchDownload download, NSUrlRequest request, TIPImageFetchDownloadRequestHydrationCompleteDelegate complete);
+		void HydrateRequest(ITIPImageFetchDownload download, NSUrlRequest request, TIPImageFetchDownloadRequestHydrationCompleteDelegate complete);
 
 		// @required -(void)imageFetchDownload:(id<TIPImageFetchDownload> _Nonnull)download didReceiveURLResponse:(NSHTTPURLResponse * _Nonnull)response;
 		[Abstract]
 		[Export("imageFetchDownload:didReceiveURLResponse:")]
-		void ImageFetchDownloadDidReceiveUrlResponse(ITIPImageFetchDownload download, NSHttpUrlResponse response);
+		void DidReceiveUrlResponse(ITIPImageFetchDownload download, NSHttpUrlResponse response);
 
 		// @required -(void)imageFetchDownload:(id<TIPImageFetchDownload> _Nonnull)download didReceiveData:(NSData * _Nonnull)data;
 		[Abstract]
 		[Export("imageFetchDownload:didReceiveData:")]
-		void ImageFetchDownloadDidReceiveData(ITIPImageFetchDownload download, NSData data);
+		void DidReceiveData(ITIPImageFetchDownload download, NSData data);
 
 		// @required -(void)imageFetchDownload:(id<TIPImageFetchDownload> _Nonnull)download didCompleteWithError:(NSError * _Nullable)error;
 		[Abstract]
 		[Export("imageFetchDownload:didCompleteWithError:")]
-		void ImageFetchDownloadDidComplete(ITIPImageFetchDownload download, [NullAllowed] NSError error);
+		void DidComplete(ITIPImageFetchDownload download, [NullAllowed] NSError error);
 	}
 
 	interface ITIPImageFetchDownloadContext { }
@@ -894,7 +892,7 @@ namespace TwitterImagePipeline
 		// @required @property (readonly, nonatomic) id<TIPImageFetchDownloadClient> _Nonnull client;
 		[Abstract]
 		[Export("client")]
-		TIPImageFetchDownloadClient Client { get; }
+		ITIPImageFetchDownloadClient Client { get; }
 
 		// @required @property (readonly, nonatomic) dispatch_queue_t _Nonnull downloadQueue;
 		[Abstract]
@@ -912,7 +910,7 @@ namespace TwitterImagePipeline
 		// @required -(id<TIPImageFetchDownload> _Nonnull)imageFetchDownloadWithContext:(id<TIPImageFetchDownloadContext> _Nonnull)context;
 		[Abstract]
 		[Export("imageFetchDownloadWithContext:")]
-		TIPImageFetchDownload ImageFetchDownload(TIPImageFetchDownloadContext context);
+		ITIPImageFetchDownload CreateImageFetchDownload(ITIPImageFetchDownloadContext context);
 	}
 
 	interface ITIPImageFetchDownloadProviderWithStubbingSupport { }
@@ -967,13 +965,9 @@ namespace TwitterImagePipeline
 		[Export("request")]
 		ITIPImageFetchRequest Request { get; }
 
-		[Wrap("WeakDelegate")]
-		[NullAllowed]
-		TIPImageFetchDelegate Delegate { get; }
-
 		// @property (readonly, atomic, weak) id<TIPImageFetchDelegate> _Nullable delegate;
 		[NullAllowed, Export("delegate", ArgumentSemantic.Weak)]
-		NSObject WeakDelegate { get; }
+		ITIPImageFetchDelegate Delegate { get; }
 
 		// @property (readonly, nonatomic) TIPImagePipeline * _Nonnull imagePipeline;
 		[Export("imagePipeline")]
@@ -1107,39 +1101,39 @@ namespace TwitterImagePipeline
 	{
 		// @optional -(void)tip_imageFetchOperationDidStart:(TIPImageFetchOperation * _Nonnull)op;
 		[Export("tip_imageFetchOperationDidStart:")]
-		void ImageFetchOperationDidStart(TIPImageFetchOperation op);
+		void DidStart(TIPImageFetchOperation op);
 
 		// @optional -(void)tip_imageFetchOperation:(TIPImageFetchOperation * _Nonnull)op willAttemptToLoadFromSource:(TIPImageLoadSource)source;
 		[Export("tip_imageFetchOperation:willAttemptToLoadFromSource:")]
-		void ImageFetchOperationWillAttemptToLoad(TIPImageFetchOperation op, TIPImageLoadSource source);
+		void WillAttemptToLoad(TIPImageFetchOperation op, TIPImageLoadSource source);
 
 		// @optional -(void)tip_imageFetchOperation:(TIPImageFetchOperation * _Nonnull)op didLoadPreviewImage:(id<TIPImageFetchResult> _Nonnull)previewResult completion:(TIPImageFetchDidLoadPreviewCallback _Nonnull)completion;
 		[Export("tip_imageFetchOperation:didLoadPreviewImage:completion:")]
-		void ImageFetchOperationDidLoadPreviewImage(TIPImageFetchOperation op, ITIPImageFetchResult previewResult, TIPImageFetchDidLoadPreviewCallback completion);
+		void DidLoadPreviewImage(TIPImageFetchOperation op, ITIPImageFetchResult previewResult, TIPImageFetchDidLoadPreviewCallback completion);
 
 		// @optional -(BOOL)tip_imageFetchOperation:(TIPImageFetchOperation * _Nonnull)op shouldLoadProgressivelyWithIdentifier:(NSString * _Nonnull)identifier URL:(NSURL * _Nonnull)URL imageType:(NSString * _Nonnull)imageType originalDimensions:(CGSize)originalDimensions;
 		[Export("tip_imageFetchOperation:shouldLoadProgressivelyWithIdentifier:URL:imageType:originalDimensions:")]
-		bool ImageFetchOperationShouldLoadProgressively(TIPImageFetchOperation op, string identifier, NSUrl url, string imageType, CGSize originalDimensions);
+		bool ShouldLoadProgressively(TIPImageFetchOperation op, string identifier, NSUrl url, string imageType, CGSize originalDimensions);
 
 		// @optional -(void)tip_imageFetchOperation:(TIPImageFetchOperation * _Nonnull)op didUpdateProgressiveImage:(id<TIPImageFetchResult> _Nonnull)progressiveResult progress:(float)progress;
 		[Export("tip_imageFetchOperation:didUpdateProgressiveImage:progress:")]
-		void ImageFetchOperationDidUpdateProgressiveImage(TIPImageFetchOperation op, ITIPImageFetchResult progressiveResult, float progress);
+		void DidUpdateProgressiveImage(TIPImageFetchOperation op, ITIPImageFetchResult progressiveResult, float progress);
 
 		// @optional -(void)tip_imageFetchOperation:(TIPImageFetchOperation * _Nonnull)op didLoadFirstAnimatedImageFrame:(id<TIPImageFetchResult> _Nonnull)progressiveResult progress:(float)progress;
 		[Export("tip_imageFetchOperation:didLoadFirstAnimatedImageFrame:progress:")]
-		void ImageFetchOperationDidLoadFirstAnimatedImageFrame(TIPImageFetchOperation op, ITIPImageFetchResult progressiveResult, float progress);
+		void DidLoadFirstAnimatedImageFrame(TIPImageFetchOperation op, ITIPImageFetchResult progressiveResult, float progress);
 
 		// @optional -(void)tip_imageFetchOperation:(TIPImageFetchOperation * _Nonnull)op didUpdateProgress:(float)progress;
 		[Export("tip_imageFetchOperation:didUpdateProgress:")]
-		void ImageFetchOperationDidUpdateProgress(TIPImageFetchOperation op, float progress);
+		void DidUpdateProgress(TIPImageFetchOperation op, float progress);
 
 		// @optional -(void)tip_imageFetchOperation:(TIPImageFetchOperation * _Nonnull)op didLoadFinalImage:(id<TIPImageFetchResult> _Nonnull)finalResult;
 		[Export("tip_imageFetchOperation:didLoadFinalImage:")]
-		void ImageFetchOperationDidLoadFinalImage(TIPImageFetchOperation op, ITIPImageFetchResult finalResult);
+		void DidLoadFinalImage(TIPImageFetchOperation op, ITIPImageFetchResult finalResult);
 
 		// @optional -(void)tip_imageFetchOperation:(TIPImageFetchOperation * _Nonnull)op didFailToLoadFinalImage:(NSError * _Nonnull)error;
 		[Export("tip_imageFetchOperation:didFailToLoadFinalImage:")]
-		void ImageFetchOperationDidFailToLoadFinalImage(TIPImageFetchOperation op, NSError error);
+		void DidFailToLoadFinalImage(TIPImageFetchOperation op, NSError error);
 	}
 
 	// @interface TIPImageFetchMetrics : NSObject
@@ -1362,7 +1356,7 @@ namespace TwitterImagePipeline
 
 		// -(TIPImageFetchOperation * _Nonnull)operationWithRequest:(id<TIPImageFetchRequest> _Nonnull)request context:(id _Nullable)context delegate:(id<TIPImageFetchDelegate> _Nullable)delegate __attribute__((objc_requires_super));
 		[Export("operationWithRequest:context:delegate:")]
-		//[RequiresSuper] // TODO
+		[Advice("You must call the base method when overriding.")]
 		TIPImageFetchOperation CreateFetchOperation(ITIPImageFetchRequest request, [NullAllowed] NSObject context, [NullAllowed] ITIPImageFetchDelegate @delegate);
 
 		// -(TIPImageFetchOperation * _Nonnull)operationWithRequest:(id<TIPImageFetchRequest> _Nonnull)request context:(id _Nullable)context completion:(TIPImagePipelineFetchCompletionBlock _Nullable)completion;
@@ -1757,14 +1751,9 @@ namespace TwitterImagePipeline
 		[NullAllowed, Export("fetchedImageURL")]
 		NSUrl FetchedImageUrl { get; }
 
-		//[Wrap("WeakDelegate")]
-		//[NullAllowed]
+		// @property (nonatomic, weak) id<TIPImageViewFetchHelperDelegate> _Nullable delegate;
 		[NullAllowed, Export("delegate", ArgumentSemantic.Weak)]
 		ITIPImageViewFetchHelperDelegate Delegate { get; set; }
-
-		//// @property (nonatomic, weak) id<TIPImageViewFetchHelperDelegate> _Nullable delegate;
-		//[NullAllowed, Export("delegate", ArgumentSemantic.Weak)]
-		//NSObject WeakDelegate { get; set; }
 
 		// @property (nonatomic, weak) id<TIPImageViewFetchHelperDataSource> _Nullable dataSource;
 		[NullAllowed, Export("dataSource", ArgumentSemantic.Weak)]
@@ -1797,27 +1786,27 @@ namespace TwitterImagePipeline
 
 		// -(void)triggerViewWillDisappear __attribute__((objc_requires_super));
 		[Export("triggerViewWillDisappear")]
-		//[RequiresSuper] // TODO
+		[Advice("You must call the base method when overriding.")]
 		void TriggerViewWillDisappear();
 
 		// -(void)triggerViewDidDisappear __attribute__((objc_requires_super));
 		[Export("triggerViewDidDisappear")]
-		//[RequiresSuper] // TODO
+		[Advice("You must call the base method when overriding.")]
 		void TriggerViewDidDisappear();
 
 		// -(void)triggerViewWillAppear __attribute__((objc_requires_super));
 		[Export("triggerViewWillAppear")]
-		//[RequiresSuper] // TODO
+		[Advice("You must call the base method when overriding.")]
 		void TriggerViewWillAppear();
 
 		// -(void)triggerViewDidAppear __attribute__((objc_requires_super));
 		[Export("triggerViewDidAppear")]
-		//[RequiresSuper] // TODO
+		[Advice("You must call the base method when overriding.")]
 		void TriggerViewDidAppear();
 
 		// -(void)triggerViewLayingOutSubviews __attribute__((objc_requires_super));
 		[Export("triggerViewLayingOutSubviews")]
-		//[RequiresSuper] // TODO
+		[Advice("You must call the base method when overriding.")]
 		void TriggerViewLayingOutSubviews();
 
 		// -(void)setViewHidden:(BOOL)hidden;
@@ -1929,7 +1918,7 @@ namespace TwitterImagePipeline
 
 		// -(NSMutableArray<NSString *> * _Nonnull)debugInfoStrings __attribute__((objc_requires_super));
 		[Export("debugInfoStrings")]
-		//[RequiresSuper] // TODO
+		[Advice("You must call the base method when overriding.")]
 		NSMutableArray<NSString> GetDebugInfoStrings();
 
 		// -(void)setDebugInfoNeedsUpdate;
@@ -1987,43 +1976,43 @@ namespace TwitterImagePipeline
 	{
 		// @optional -(BOOL)tip_fetchHelper:(TIPImageViewFetchHelper * _Nonnull)helper shouldUpdateImageWithPreviewImageResult:(id<TIPImageFetchResult> _Nonnull)previewImageResult;
 		[Export("tip_fetchHelper:shouldUpdateImageWithPreviewImageResult:")]
-		bool FetchHelperShouldUpdateImage(TIPImageViewFetchHelper helper, ITIPImageFetchResult previewImageResult);
+		bool ShouldUpdateImage(TIPImageViewFetchHelper helper, ITIPImageFetchResult previewImageResult);
 
 		// @optional -(BOOL)tip_fetchHelper:(TIPImageViewFetchHelper * _Nonnull)helper shouldContinueLoadingAfterFetchingPreviewImageResult:(id<TIPImageFetchResult> _Nonnull)previewImageResult;
 		[Export("tip_fetchHelper:shouldContinueLoadingAfterFetchingPreviewImageResult:")]
-		bool FetchHelperShouldContinueLoadingAfterFetching(TIPImageViewFetchHelper helper, ITIPImageFetchResult previewImageResult);
+		bool ShouldContinueLoadingAfterFetching(TIPImageViewFetchHelper helper, ITIPImageFetchResult previewImageResult);
 
 		// @optional -(BOOL)tip_fetchHelper:(TIPImageViewFetchHelper * _Nonnull)helper shouldLoadProgressivelyWithIdentifier:(NSString * _Nonnull)identifier URL:(NSURL * _Nonnull)URL imageType:(NSString * _Nonnull)imageType originalDimensions:(CGSize)originalDimensions;
 		[Export("tip_fetchHelper:shouldLoadProgressivelyWithIdentifier:URL:imageType:originalDimensions:")]
-		bool FetchHelperShouldLoadProgressively(TIPImageViewFetchHelper helper, string identifier, NSUrl url, string imageType, CGSize originalDimensions);
+		bool ShouldLoadProgressively(TIPImageViewFetchHelper helper, string identifier, NSUrl url, string imageType, CGSize originalDimensions);
 
 		// @optional -(BOOL)tip_fetchHelper:(TIPImageViewFetchHelper * _Nonnull)helper shouldReloadAfterDifferentFetchCompletedWithImage:(UIImage * _Nonnull)image dimensions:(CGSize)dimensions identifier:(NSString * _Nonnull)identifier URL:(NSURL * _Nonnull)URL treatedAsPlaceholder:(BOOL)placeholder manuallyStored:(BOOL)manuallyStored;
 		[Export("tip_fetchHelper:shouldReloadAfterDifferentFetchCompletedWithImage:dimensions:identifier:URL:treatedAsPlaceholder:manuallyStored:")]
-		bool FetchHelperShouldReloadAfterDifferentFetchCompleted(TIPImageViewFetchHelper helper, UIImage image, CGSize dimensions, string identifier, NSUrl url, bool placeholder, bool manuallyStored);
+		bool ShouldReloadAfterDifferentFetchCompleted(TIPImageViewFetchHelper helper, UIImage image, CGSize dimensions, string identifier, NSUrl url, bool placeholder, bool manuallyStored);
 
 		// @optional -(void)tip_fetchHelperDidStartLoading:(TIPImageViewFetchHelper * _Nonnull)helper;
 		[Export("tip_fetchHelperDidStartLoading:")]
-		void FetchHelperDidStartLoading(TIPImageViewFetchHelper helper);
+		void DidStartLoading(TIPImageViewFetchHelper helper);
 
 		// @optional -(void)tip_fetchHelper:(TIPImageViewFetchHelper * _Nonnull)helper didUpdateProgress:(float)progress;
 		[Export("tip_fetchHelper:didUpdateProgress:")]
-		void FetchHelperDidUpdateProgress(TIPImageViewFetchHelper helper, float progress);
+		void DidUpdateProgress(TIPImageViewFetchHelper helper, float progress);
 
 		// @optional -(void)tip_fetchHelper:(TIPImageViewFetchHelper * _Nonnull)helper didUpdateDisplayedImage:(UIImage * _Nonnull)image fromSourceDimensions:(CGSize)size isFinal:(BOOL)isFinal;
 		[Export("tip_fetchHelper:didUpdateDisplayedImage:fromSourceDimensions:isFinal:")]
-		void FetchHelperDidUpdateDisplayedImage(TIPImageViewFetchHelper helper, UIImage image, CGSize size, bool isFinal);
+		void DidUpdateDisplayedImage(TIPImageViewFetchHelper helper, UIImage image, CGSize size, bool isFinal);
 
 		// @optional -(void)tip_fetchHelper:(TIPImageViewFetchHelper * _Nonnull)helper didLoadFinalImageFromSource:(TIPImageLoadSource)source;
 		[Export("tip_fetchHelper:didLoadFinalImageFromSource:")]
-		void FetchHelperDidLoadFinalImage(TIPImageViewFetchHelper helper, TIPImageLoadSource source);
+		void DidLoadFinalImage(TIPImageViewFetchHelper helper, TIPImageLoadSource source);
 
 		// @optional -(void)tip_fetchHelper:(TIPImageViewFetchHelper * _Nonnull)helper didFailToLoadFinalImage:(NSError * _Nonnull)error;
 		[Export("tip_fetchHelper:didFailToLoadFinalImage:")]
-		void FetchHelperDidFailToLoadFinalImage(TIPImageViewFetchHelper helper, NSError error);
+		void DidFailToLoadFinalImage(TIPImageViewFetchHelper helper, NSError error);
 
 		// @optional -(void)tip_fetchHelperDidReset:(TIPImageViewFetchHelper * _Nonnull)helper;
 		[Export("tip_fetchHelperDidReset:")]
-		void FetchHelperDidReset(TIPImageViewFetchHelper helper);
+		void DidReset(TIPImageViewFetchHelper helper);
 	}
 
 	interface ITIPLogger { }

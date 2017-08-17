@@ -234,7 +234,7 @@
 - Name: TwitterImagePipeline
   BuildScript: ./iOS/TwitterImagePipeline/build.cake
   TriggerPaths: [ iOS/TwitterImagePipeline ]
-  MacBuildTargets: [ component, samples ]
+  MacBuildTargets: [ samples, component ]
 - Name: Masonry
   BuildScript: ./iOS/Masonry/build.cake
   TriggerPaths: [ iOS/Masonry ]

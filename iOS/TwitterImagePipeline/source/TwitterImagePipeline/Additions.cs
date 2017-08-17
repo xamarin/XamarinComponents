@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Diagnostics;
+using System.Runtime.InteropServices;
 using System.Threading.Tasks;
 using CoreGraphics;
 using Foundation;
+using ImageIO;
 using ObjCRuntime;
 using UIKit;
 
@@ -93,5 +95,46 @@ namespace TwitterImagePipeline
 		public CGSize TargetDimensions { get; set; }
 
 		public double TimeToLive { get; set; }
+	}
+
+	partial class TIPImageCodecCatalogue
+	{
+		public void RemoveCodec(string imageType, out ITIPImageCodec codec)
+		{
+			IntPtr codecPtr;
+			RemoveCodec(imageType, out codecPtr);
+			codec = Runtime.GetINativeObject<ITIPImageCodec>(codecPtr, false);
+		}
+	}
+
+	partial class TIPGlobalConfigurationDefaults
+	{
+		[DllImport(Constants.libSystemLibrary)]
+		private static extern IntPtr dlsym(IntPtr handle, string symbol);
+
+		private static short GetInt16(IntPtr handle, string symbol)
+		{
+			var indirect = dlsym(handle, symbol);
+			if (indirect == IntPtr.Zero)
+				return 0;
+			return Marshal.ReadInt16(indirect);
+		}
+
+		[Field("TIPMaxCountForAllDiskCachesDefault", "__Internal")]
+		public static short MaxCountForAllDiskCaches => GetInt16(Libraries.__Internal.Handle, "TIPMaxCountForAllDiskCachesDefault");
+
+		[Field("TIPMaxCountForAllMemoryCachesDefault", "__Internal")]
+		public static short MaxCountForAllMemoryCaches => GetInt16(Libraries.__Internal.Handle, "TIPMaxCountForAllMemoryCachesDefault");
+
+		[Field("TIPMaxCountForAllRenderedCachesDefault", "__Internal")]
+		public static short MaxCountForAllRenderedCaches => GetInt16(Libraries.__Internal.Handle, "TIPMaxCountForAllRenderedCachesDefault");
+	}
+
+	partial class TIPImageContainer
+	{
+		public static TIPImageContainer Create(CGImageSource imageSource)
+		{
+			return Create(imageSource.Handle);
+		}
 	}
 }
