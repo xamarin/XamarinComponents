@@ -271,6 +271,10 @@
   BuildScript: ./iOS/SCCatWaitingHUD/build.cake
   TriggerPaths: [ iOS/SCCatWaitingHUD ]
   MacBuildTargets: [ samples, component ]
+- Name: SimplePing
+  BuildScript: ./iOS/SimplePing/build.cake
+  TriggerPaths: [ iOS/SimplePing ]
+  MacBuildTargets: [ samples, component ]
 - Name: SDWebImage
   BuildScript: ./iOS/SDWebImage/build.cake
   TriggerPaths: [ iOS/SDWebImage ]
