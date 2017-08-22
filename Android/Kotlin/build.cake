@@ -3,7 +3,7 @@
 
 var TARGET = Argument ("t", Argument ("target", "Default"));
 
-var JAR_VERSION = "1.1.1";
+var JAR_VERSION = "1.1.2-5";
 
 var JAR_STDLIB_URL = string.Format ("https://repo1.maven.org/maven2/org/jetbrains/kotlin/kotlin-stdlib/{0}/kotlin-stdlib-{0}.jar", JAR_VERSION);
 var JAR_STDLIB_JRE7_URL = string.Format ("https://repo1.maven.org/maven2/org/jetbrains/kotlin/kotlin-stdlib-jre7/{0}/kotlin-stdlib-jre7-{0}.jar", JAR_VERSION);
