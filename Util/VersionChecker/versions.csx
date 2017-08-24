@@ -33,6 +33,7 @@ var fetchers = new VersionFetcher[] {
     new MavenCentral ("Scissors", "1.0.1", "com/lyft/scissors", OWNER_SA1),
     //new BinTray ("Sortable TableView", "2.2.0", "ischwarz", "maven/de/codecrafters/tableview/tableview", OWNER_SA1),
     new MavenCentral ("Sticky List Headers", "2.7.0", "se/emilsjolander/stickylistheaders", OWNER_SA1),
+    new MavenCentral ("Timber", "4.5.1", "com/jakewharton/timber/timber", OWNER_US1),
     new MavenCentral ("Universal Image Loader", "1.9.5", "com/nostra13/universalimageloader/universal-image-loader", OWNER_SA1),
     new MavenCentral ("VectorCompat", "1.0.5", "com/wnafee/vector-compat", OWNER_SA1),
     new MavenCentral ("ViewPropertyObjectAnimator", "1.4.5", "com/bartoszlipinski/viewpropertyobjectanimator", OWNER_SA1),
