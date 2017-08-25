@@ -282,10 +282,10 @@ Task ("build").Does (() =>
 Task ("buildall").Does (() => {
 
 	// If BUILD_NAMES were specified, only take BUILD_GROUPS that match one of the specified names, otherwise, all
-	var groupsToBuild = BUILD_NAMES.Any () ? BUILD_GROUPS.Where (i => BUILD_NAMES.Contains (i.Name)) : BUILD_NAMES;
+	var groupsToBuild = BUILD_NAMES.Any () ? BUILD_GROUPS.Where (i => BUILD_NAMES.Contains (i.Name)) : BUILD_GROUPS;
 
 	var buildinfo = new Dictionary<FilePath, string[]>();
-	foreach (var bg in groupsToBuild) {
+	foreach (var bg in groupsToBuild)
 		buildinfo.Add (new FilePath (bg.BuildScript), bg.BuildTargets.ToArray ());
 
 	RunCakeBuilds (buildinfo, null);
