@@ -1,9 +1,10 @@
 #addin nuget:?package=Cake.XCode&version=2.0.13
-#addin nuget:?package=Cake.Xamarin.Build&version=2.0.18
+#addin nuget:?package=Cake.Xamarin.Build&version=2.1.0
 #addin nuget:?package=Cake.Xamarin&version=1.3.0.15
 #addin nuget:?package=Cake.FileHelpers&version=1.0.4
 #addin nuget:?package=Cake.Yaml&version=1.0.3
 #addin nuget:?package=Cake.Json&version=1.0.2
+#tool "nuget:?package=NUnit.Runners&version=2.6.4"
 
 var TARGET = Argument ("target", Argument ("t", Argument ("Target", "build")));
 
@@ -276,6 +277,14 @@ Task ("build").Does (() =>
 	}
 
 	BuildGroups (BUILD_GROUPS, BUILD_NAMES.ToList (), buildTargets, GIT_PATH, GIT_BRANCH, GIT_PREVIOUS_COMMIT, GIT_COMMIT, FORCE_BUILD);		
+});
+
+Task ("buildall").Does (() => {
+	var buildinfo = new Dictionary<FilePath, string[]>();
+	foreach (var bg in BUILD_GROUPS)
+		buildinfo.Add (new FilePath (bg.BuildScript), bg.BuildTargets.ToArray ());
+
+	RunCakeBuilds (buildinfo, null);
 });
 
 RunTarget (TARGET);
