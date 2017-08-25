@@ -1,5 +1,5 @@
 #addin nuget:?package=Cake.XCode&version=2.0.13
-#addin nuget:?package=Cake.Xamarin.Build&version=2.0.20
+#addin nuget:?package=Cake.Xamarin.Build&version=2.0.21
 #addin nuget:?package=Cake.Xamarin&version=1.3.0.15
 #addin nuget:?package=Cake.FileHelpers&version=1.0.4
 #addin nuget:?package=Cake.Yaml&version=1.0.3
@@ -280,8 +280,12 @@ Task ("build").Does (() =>
 });
 
 Task ("buildall").Does (() => {
+
+	// If BUILD_NAMES were specified, only take BUILD_GROUPS that match one of the specified names, otherwise, all
+	var groupsToBuild = BUILD_NAMES.Any () ? BUILD_GROUPS.Where (i => BUILD_NAMES.Contains (i.Name)) : BUILD_NAMES;
+
 	var buildinfo = new Dictionary<FilePath, string[]>();
-	foreach (var bg in BUILD_GROUPS)
+	foreach (var bg in groupsToBuild) {
 		buildinfo.Add (new FilePath (bg.BuildScript), bg.BuildTargets.ToArray ());
 
 	RunCakeBuilds (buildinfo, null);
