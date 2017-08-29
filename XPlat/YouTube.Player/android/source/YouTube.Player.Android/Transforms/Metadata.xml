@@ -1,0 +1,7 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<metadata>
+	<remove-node path="/api/package[@name='com.google.android.youtube.player']/class[@name='YouTubeThumbnailView']/method[@name='finalize' and count(parameter)=0]" />
+
+	<attr path="/api/package[@name='com.google.android.youtube.player']" name="managedName">YouTube.Player</attr>
+	
+</metadata>

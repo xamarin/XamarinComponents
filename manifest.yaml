@@ -348,6 +348,14 @@
   BuildScript: ./XPlat/AzureMessaging/build.cake
   TriggerPaths: [ XPlat/AzureMessaging ]
   MacBuildTargets: [ samples, component ]
+- Name: YouTube.Player.Android
+  BuildScript: ./XPlat/YouTube.Player/android/build.cake
+  TriggerPaths: [ XPlat/YouTube.Player/android ]
+  MacBuildTargets: [ component, samples ]
+- Name: YouTube.Player.iOS
+  BuildScript: ./XPlat/YouTube.Player/ios/build.cake
+  TriggerPaths: [ XPlat/YouTube.Player/ios ]
+  MacBuildTargets: [ component, samples ]
 - Name: CardIOAndroid
   BuildScript: ./XPlat/CardIO/Android/build.cake
   TriggerPaths: [ XPlat/CardIO/Android ]
