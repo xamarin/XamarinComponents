@@ -55,5 +55,8 @@
       <Link>obj.jar</Link>
     </EmbeddedJar>
   </ItemGroup>
+  <ItemGroup>
+    <None Include="NOTICE" />
+  </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.Bindings.targets" />
 </Project>
