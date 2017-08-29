@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<metadata>
+	<attr path="/api/package[@name='com.google.ar.core']" name="managedName">Google.AR.Core</attr>
+	<attr path="/api/package[@name='com.google.ar.core.exceptions']" name="managedName">Google.AR.Core.Exceptions</attr>
+	<attr path="/api/package[@name='com.google.ar.core.lighting_estimation']" name="managedName">Google.AR.Core.LightingEstimations</attr>
+	<attr path="/api/package[@name='com.google.ar.core.math']" name="managedName">Google.AR.Core.Math</attr>
+
+	<attr path="/api/package[@name='com.google.atap.tango']" name="managedName">Google.Atap.Tango</attr>
+	<attr path="/api/package[@name='com.google.atap.tangohelperlib']" name="managedName">Google.Atap.TangoHelperLib</attr>
+	<attr path="/api/package[@name='com.google.atap.tangoservice']" name="managedName">Google.Atap.TangoService</attr>
+	<attr path="/api/package[@name='com.google.atap.tangoservice.experimental']" name="managedName">Google.Atap.TangoService.Experimental</attr>
+	<attr path="/api/package[@name='com.google.atap.tangoservice.fois']" name="managedName">Google.Atap.TangoService.Fois</attr>
+
+	<attr path="/api/package[@name='com.google.tango.javacommon']" name="managedName">Google.Atap.Tango.JavaCommon</attr>
+	<attr path="/api/package[@name='com.google.tango.loader']" name="managedName">Google.Atap.Tango.Loader</attr>
+</metadata>
