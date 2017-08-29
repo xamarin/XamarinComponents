@@ -66,7 +66,7 @@ namespace YouTube.Player
 	{
 		// Base Constructor
 		[Export("initWithFrame:")]
-		IntPtr Constructors(CGRect frame);
+		IntPtr Constructor(CGRect frame);
 
 		// @property (readonly, nonatomic, strong) UIWebView * _Nullable webView;
 		[NullAllowed, Export("webView", ArgumentSemantic.Strong)]
