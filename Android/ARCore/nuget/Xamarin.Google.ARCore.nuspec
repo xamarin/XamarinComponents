@@ -16,7 +16,7 @@
     <licenseUrl>https://github.com/xamarin/XamarinComponents/blob/master/Android/ARCore/LICENSE.md</licenseUrl>
   </metadata>
   <files>
-    <file src="output/Xamarin.Google.ARCore.dll" target="lib/MonoAndroid71" />
+    <file src="output/Xamarin.Google.ARCore.dll" target="lib/MonoAndroid70" />
     <file src="External-Dependency-Info.txt" target="THIRD-PARTY-NOTICES.txt" />
   </files>
 </package>

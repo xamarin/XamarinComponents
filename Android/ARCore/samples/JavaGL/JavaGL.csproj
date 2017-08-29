@@ -8,10 +8,10 @@
     <OutputType>Library</OutputType>
     <RootNamespace>JavaGL</RootNamespace>
     <AssemblyName>JavaGL</AssemblyName>
-    <TargetFrameworkVersion>v7.1</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v7.0</TargetFrameworkVersion>
     <MonoAndroidResourcePrefix>Resources</MonoAndroidResourcePrefix>
     <MonoAndroidAssetsPrefix>Assets</MonoAndroidAssetsPrefix>
-    <AndroidUseLatestPlatformSdk>true</AndroidUseLatestPlatformSdk>
+    <AndroidUseLatestPlatformSdk>false</AndroidUseLatestPlatformSdk>
     <AndroidClassParser>class-parse</AndroidClassParser>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
