@@ -10,6 +10,10 @@
   BuildScript: ./Android/AndroidSwipeLayout/build.cake
   TriggerPaths: [ Android/AndroidSwipeLayout ]
   MacBuildTargets: [ samples, component ]
+- Name: ARCore
+  BuildScript: ./Android/ARCore/build.cake
+  TriggerPaths: [ Android/ARCore ]
+  MacBuildTargets: [ samples, nuget ]
 - Name: GoogleAndroidVending
   BuildScript: ./Android/GoogleAndroidVending/build.cake
   TriggerPaths: [ Android/GoogleAndroidVending ]
