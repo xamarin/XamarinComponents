@@ -1,12 +1,27 @@
-MONO_VERSION=5.0.0.100
+# The mono version should come from an official release.
+# Checking your About box in VS for Mac will give you an idea
+# of what is released to stable.
+# https://github.com/mono/mono/releases
+MONO_VERSION=5.4.0.167
 MONO_GIT_REPO=mono/mono
 # MONOGIT_VERSION=mono-$(MONO_VERSION)
 MONOGIT_VERSION=76f0a58429b4cfb47c77935cfca6ce88ce9be53e
-MONOPOSIX_NUGET_VERSION=1.0.0-beta1
-MONOPOSIXHELPER_JENKINSBUILD=22
+MONOPOSIX_NUGET_VERSION=1.0.0-beta2
+# We fetch the native posix helper code from existing Mono build artifacts
+# To update the version a parameterized build needs to be run with the Mono verison
+# specified above.
+# https://jenkins.mono-project.com/view/All/job/ng-extract-libmonoposixhelper/
+# For branch use stable, beta or alpha.  Check these urls to see what exists
+# https://download.mono-project.com/repo/centos-stable/m/mono-core/
+# https://download.mono-project.com/repo/centos-beta/m/mono-core/
+# https://download.mono-project.com/repo/centos-alpha/m/mono-core/
+MONOPOSIXHELPER_JENKINSBUILD=31
 
-DOCKER_PULL_TARGET=microsoft/dotnet-nightly@sha256:dc76a604363ea806f5b792f191dcce630f0575968bda735f573e2bfc3af66305
-DOCKER_RUN_IMAGE=microsoft/dotnet-nightly:b2cd9d949c2b
+# docker images --digests
+# https://hub.docker.com/r/microsoft/dotnet/
+# https://hub.docker.com/r/microsoft/dotnet-nightly/
+DOCKER_PULL_TARGET=microsoft/dotnet@sha256:d1069f783273c48327accdee7d70184901964ab9ae630248c3e465e757999300
+DOCKER_RUN_IMAGE=microsoft/dotnet:4f778d7d5f8b
 
 $(eval DOCKER_BUILD_CONTAINER_NAME=MonoPosixBuild-$(shell uuidgen))
 $(eval DOCKER_TEST_CONTAINER_NAME=MonoPosixBuild-$(shell uuidgen))
