@@ -7,8 +7,8 @@
   <remove-node path="/api/package[@name='android.support.v4.content']/class[@name='CursorLoader']/method[@name='loadInBackground']" />
   -->
 
-  <attr path="/api/package[@name='com.android.vending.expansion.zipfile']" name="managedName">Google.Android.Vending.Expansion.ZipFile</attr>
+  <attr path="/api/package[@name='com.google.android.vending.expansion.zipfile']" name="managedName">Google.Android.Vending.Expansion.ZipFile</attr>
 
-  <attr path="/api/package[@name='com.android.vending.expansion.zipfile']/class[@name='ZipResourceFile']/field[@name='mZipFiles']" name="managedName">ZipFiles</attr>
+  <attr path="/api/package[@name='com.google.android.vending.expansion.zipfile']/class[@name='ZipResourceFile']/field[@name='mZipFiles']" name="managedName">ZipFiles</attr>
 
 </metadata>

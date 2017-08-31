@@ -17,6 +17,9 @@
 
   <attr path="/api/package[@name='com.google.android.vending.expansion.downloader']/class[@name='Helpers']/method[@name='getDownloaderStringResourceIDFromState']" name="managedName">GetDownloaderStringResourceIdFromState</attr>
 
+  <remove-node path="/api/package[@name='com.google.android.vending.expansion.downloader.impl']/class[@name='DownloadsDB.DownloadColumns']/implements" />
+  <remove-node path="/api/package[@name='com.google.android.vending.expansion.downloader.impl']/class[@name='DownloadsDB.MetadataColumns']/implements" />
+
   <attr path="/api/package[@name='com.google.android.vending.expansion.downloader.impl']/class[@name='DownloadInfo']/field[@name='mControl']" name="managedName">Control</attr>
   <attr path="/api/package[@name='com.google.android.vending.expansion.downloader.impl']/class[@name='DownloadInfo']/field[@name='mCurrentBytes']" name="managedName">CurrentBytes</attr>
   <attr path="/api/package[@name='com.google.android.vending.expansion.downloader.impl']/class[@name='DownloadInfo']/field[@name='mETag']" name="managedName">ETag</attr>
