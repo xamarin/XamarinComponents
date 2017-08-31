@@ -3,13 +3,11 @@
 
 var TARGET = Argument ("t", Argument ("target", "Default"));
 
-var RepositoryUrlRoot = "https://dl.google.com/android/repository/";
-var RepositoryUrl = RepositoryUrlRoot + "addon.xml";
-var RepositoryNS = "http://schemas.android.com/sdk/android/addon/7";
-var LicensingKey = "market_licensing";
-var LicensingVersion = "r02";
-var ExpansionKey = "market_apk_expansion";
-var ExpansionVersion = "r03";
+var LicensingVersion = "daaed06de2e298783aa645121ede4ea2cb880fa1";
+var ExpansionVersion = "b99c38aa4ce05551a4d5d74c3a4cec0a1b80d275";
+
+var LicensingUrl = "https://github.com/google/play-licensing/archive/" + LicensingVersion + ".zip";
+var ExpansionUrl = "https://github.com/google/play-apk-expansion/archive/" + ExpansionVersion + ".zip";
 
 var buildSpec = new BuildSpec () {
 	Libs = new ISolutionBuilder [] {
@@ -56,15 +54,16 @@ Task ("externals")
 	EnsureDirectoryExists("./externals/");
 
 	// download the Java code
-	var download = new Action<string, string>((key, version) => {
-		var dest = "./externals/" + key + ".zip";
+	var download = new Action<string, string, string>((url, name, version) => {
+		var dest = "./externals/" + name + ".zip";
 		if (!FileExists(dest)) {
-			DownloadFile(RepositoryUrlRoot + string.Format("{0}-{1}.zip", key, version), dest);
+			DownloadFile(url, dest);
 			Unzip(dest, "./externals/");
+			MoveDirectory("./externals/" + name + "-" + version, "./externals/" + name);
 		}
 	});
-	download(ExpansionKey, ExpansionVersion);
-	download(LicensingKey, LicensingVersion);
+	download(LicensingUrl, "play-licensing", LicensingVersion);
+	download(ExpansionUrl, "play-apk-expansion", ExpansionVersion);
 
 	// Build the Java projects
 	var result = StartProcess(IsRunningOnWindows() ? "cmd" : "sh", new ProcessSettings {

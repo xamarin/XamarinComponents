@@ -2,7 +2,7 @@
 <package>
     <metadata>
         <id>Xamarin.Google.Android.Vending.Licensing</id>
-        <version>1.5.0.0</version>
+        <version>1.6.0.0</version>
         <title>Google Play License Verification Library</title>
         <authors>Xamarin Inc.</authors>
         <owners>Xamarin Inc.</owners>
