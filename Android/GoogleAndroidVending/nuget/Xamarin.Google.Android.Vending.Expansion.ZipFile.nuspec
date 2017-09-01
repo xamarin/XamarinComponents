@@ -15,7 +15,7 @@
         <tags>android,monodroid,xamarin,google,lvl,license,verification,library,apk,expansion,downloader</tags>
     </metadata>
     <files>
-        <file src="output/Google.Android.Vending.Expansion.Downloader.dll" target="lib/MonoAndroid" />
+        <file src="output/Google.Android.Vending.Expansion.ZipFile.dll" target="lib/MonoAndroid" />
         <file src="External-Dependency-Info.txt" target="THIRD-PARTY-NOTICES.txt" />
     </files>
 </package>
