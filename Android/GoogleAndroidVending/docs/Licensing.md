@@ -42,6 +42,8 @@ Once we have installed the library and have our key, we need to ensure that the 
 appropriate permissions to access Play and the licensing service:
 
 ```csharp
+[assembly: UsesPermission(Android.Manifest.Permission.Internet)]
+
 [assembly: UsesPermission("com.android.vending.CHECK_LICENSE")]
 // OR
 [assembly: UsesPermission(LicenseChecker.Manifest.Permission.CheckLicense)]
