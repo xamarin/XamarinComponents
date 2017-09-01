@@ -1,4 +1,7 @@
-## Licensing
+## Application Licensing
+
+[![NuGet](https://img.shields.io/nuget/vpre/Xamarin.Google.Android.Vending.Licensing.svg)][3]
+[![NuGet](https://img.shields.io/nuget/dt/Xamarin.Google.Android.Vending.Licensing.svg)][3]
 
 Google Play offers a licensing service that lets us enforce licensing policies for applications
 that we publish on Google Play. With Google Play Licensing, our application can query Google Play
@@ -14,7 +17,10 @@ file.
 
 ### [Read more...][1]
 
-## Expansion APK
+## APK Expansion Files
+
+[![NuGet](https://img.shields.io/nuget/vpre/Xamarin.Google.Android.Vending.Expansion.Downloader.svg)][4]
+[![NuGet](https://img.shields.io/nuget/dt/Xamarin.Google.Android.Vending.Expansion.Downloader.svg)][4]
 
 Google Play currently requires that our APK file be no more than 50MB. For most apps, this is plenty
 of space for all the app's code and assets. However, some apps need more space for high-fidelity

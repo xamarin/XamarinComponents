@@ -1,3 +1,8 @@
+# APK Expansion Files
+
+[![NuGet](https://img.shields.io/nuget/vpre/Xamarin.Google.Android.Vending.Expansion.Downloader.svg)][4]
+[![NuGet](https://img.shields.io/nuget/dt/Xamarin.Google.Android.Vending.Expansion.Downloader.svg)][4]
+
 Google Play currently requires that our APK file be no more than 50MB. For most apps, this is plenty
 of space for all the app's code and assets. However, some apps need more space for high-fidelity
 graphics, media files, or other large assets. Google Play allows us to attach two large expansion

@@ -1,3 +1,8 @@
+# Application Licensing
+
+[![NuGet](https://img.shields.io/nuget/vpre/Xamarin.Google.Android.Vending.Licensing.svg)][3]
+[![NuGet](https://img.shields.io/nuget/dt/Xamarin.Google.Android.Vending.Licensing.svg)][3]
+
 Google Play offers a licensing service that lets us enforce licensing policies for applications
 that we publish on Google Play. With Google Play Licensing, our application can query Google Play
 at runtime to obtain the licensing status for the current user, then allow or disallow further
