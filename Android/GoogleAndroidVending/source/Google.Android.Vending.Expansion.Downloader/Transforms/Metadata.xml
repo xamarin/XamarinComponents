@@ -43,4 +43,13 @@
 
   <attr path="/api/package[@name='com.google.android.vending.expansion.downloader']/interface[@name='IStub']/method[@name='getMessenger']" name="propertyName" />
 
+  <attr path="/api/package[@name='com.google.android.vending.expansion.downloader']/interface[@name='IStub']/method[@name='connect']/parameter[1]" name="managedName">context</attr>
+  <attr path="/api/package[@name='com.google.android.vending.expansion.downloader']/interface[@name='IStub']/method[@name='disconnect']/parameter[1]" name="managedName">context</attr>
+  <attr path="/api/package[@name='com.google.android.vending.expansion.downloader']/interface[@name='IDownloaderClient']/method[@name='onDownloadProgress']/parameter[1]" name="managedName">progress</attr>
+  <attr path="/api/package[@name='com.google.android.vending.expansion.downloader']/interface[@name='IDownloaderClient']/method[@name='onDownloadStateChanged']/parameter[1]" name="managedName">newState</attr>
+  <attr path="/api/package[@name='com.google.android.vending.expansion.downloader']/interface[@name='IDownloaderClient']/method[@name='onServiceConnected']/parameter[1]" name="managedName">m</attr>
+  <attr path="/api/package[@name='com.google.android.vending.expansion.downloader']/interface[@name='IDownloaderService']/method[@name='onClientUpdated']/parameter[1]" name="managedName">clientMessenger</attr>
+  <attr path="/api/package[@name='com.google.android.vending.expansion.downloader']/interface[@name='IDownloaderService']/method[@name='setDownloadFlags']/parameter[1]" name="managedName">flags</attr>
+  <attr path="/api/package[@name='com.google.android.vending.expansion.downloader.impl']/class[@name='CustomIntentService']/method[@name='onHandleIntent']/parameter[1]" name="managedName">intent</attr>
+  
 </metadata>
