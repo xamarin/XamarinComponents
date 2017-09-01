@@ -68,7 +68,7 @@ a main expansion file, the file is renamed to `main.23.com.example.app.obb`.
 ## Getting Things Ready
 
 We will need to obtain the base64-encoded RSA public key. More information on this in the
-[Getting Things Ready section of the Licensing documentation][8].
+[Getting Things Ready section of the Licensing documentation][4].
 
 ### Implementing the Downloader
 
@@ -378,7 +378,7 @@ file. Once the entry is returned, we can read the stream of the item.
 ## Testing the Downloader
 
 Testing the download manager is very similar to testing the licensing. More information on this
-in the [Testing the Licensing section of the Licensing documentation][9]. The downloader 
+in the [Testing the Licensing section of the Licensing documentation][7]. The downloader 
 performs the license check internally, and in the response, it receives the expansion files 
 URIs from Play. It then uses these to initiate the download.
 
@@ -412,7 +412,7 @@ in place:
 [1]: https://www.nuget.org/packages/Xamarin.Google.Android.Vending.Expansion.Downloader
 [2]: https://www.nuget.org/packages/Xamarin.Google.Android.Vending.Expansion.ZipFile
 [3]: https://github.com/xamarin/XamarinComponents/tree/master/Android/GoogleAndroidVending
+[4]: Licensing.md#getting-things-ready
 [5]: https://developer.android.com/google/play/expansion-files.html
 [6]: https://developer.xamarin.com/guides/android/deployment,_testing,_and_metrics/publishing_an_application/part_5_-_apk_expansion_files
-[8]: Licensing.md#getting-things-ready
-[9]: Licensing.md#testing-the-licensing
+[7]: Licensing.md#testing-the-licensing
