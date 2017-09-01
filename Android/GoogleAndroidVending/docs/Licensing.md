@@ -8,7 +8,7 @@ that the current user did in fact pay for the application on Google Play. Howeve
 (including free apps) may use the licensing service to initiate the download of an APK expansion
 file.
 
-The official Android documentation can be found on the [Android Developers website][4].
+The official Android documentation can be found on the [Android Developers website][4]. Additional information can also be found on the [Xamarin Developer website][5].
 
 ## Getting Things Ready
 
@@ -201,3 +201,4 @@ some common things that we may have to check:
 [2]: https://github.com/xamarin/XamarinComponents/tree/master/Android/GoogleAndroidVending
 [3]: https://play.google.com/apps/publish
 [4]: https://developer.android.com/google/play/licensing
+[5]: https://developer.xamarin.com/guides/android/deployment,_testing,_and_metrics/publishing_an_application/part_4_-_google_licensing_services/

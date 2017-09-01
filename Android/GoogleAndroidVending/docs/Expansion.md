@@ -12,6 +12,8 @@ download the files from Google Play when our app starts.
 
 We can obtain the library from [NuGet.org][1] or we can compile the code directly from [GitHub][3].
 
+The official Android documentation can be found on the [Android Developers website][5]. Additional information can also be found on the [Xamarin Developer website][6].
+
 ## The Expansion Files
 
 Expansion files are treated as opaque binary blobs (obb) and each may be up to 2GB in size. Android
@@ -404,3 +406,5 @@ in place:
 [2]: https://www.nuget.org/packages/Xamarin.Google.Android.Vending.Expansion.ZipFile
 [3]: https://github.com/xamarin/XamarinComponents/tree/master/Android/GoogleAndroidVending
 [4]: Licensing.md
+[5]: https://developer.android.com/google/play/expansion-files.html
+[6]: https://developer.xamarin.com/guides/android/deployment,_testing,_and_metrics/publishing_an_application/part_5_-_apk_expansion_files
