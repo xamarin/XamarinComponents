@@ -1,7 +1,7 @@
 # Application Licensing
 
-[![NuGet](https://img.shields.io/nuget/vpre/Xamarin.Google.Android.Vending.Licensing.svg)][3]
-[![NuGet](https://img.shields.io/nuget/dt/Xamarin.Google.Android.Vending.Licensing.svg)][3]
+[![NuGet](https://img.shields.io/nuget/vpre/Xamarin.Google.Android.Vending.Licensing.svg)][1]
+[![NuGet](https://img.shields.io/nuget/dt/Xamarin.Google.Android.Vending.Licensing.svg)][1]
 
 Google Play offers a licensing service that lets us enforce licensing policies for applications
 that we publish on Google Play. With Google Play Licensing, our application can query Google Play
@@ -13,7 +13,8 @@ that the current user did in fact pay for the application on Google Play. Howeve
 (including free apps) may use the licensing service to initiate the download of an APK expansion
 file.
 
-The official Android documentation can be found on the [Android Developers website][4]. Additional information can also be found on the [Xamarin Developer website][5].
+The official Android documentation can be found on the [Android Developers website][4]. Additional
+information can also be found on the [Xamarin Developer website][5].
 
 ## Getting Things Ready
 

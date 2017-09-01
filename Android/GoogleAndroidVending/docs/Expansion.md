@@ -1,7 +1,7 @@
 # APK Expansion Files
 
-[![NuGet](https://img.shields.io/nuget/vpre/Xamarin.Google.Android.Vending.Expansion.Downloader.svg)][4]
-[![NuGet](https://img.shields.io/nuget/dt/Xamarin.Google.Android.Vending.Expansion.Downloader.svg)][4]
+[![NuGet](https://img.shields.io/nuget/vpre/Xamarin.Google.Android.Vending.Expansion.Downloader.svg)][1]
+[![NuGet](https://img.shields.io/nuget/dt/Xamarin.Google.Android.Vending.Expansion.Downloader.svg)][1]
 
 Google Play currently requires that our APK file be no more than 50MB. For most apps, this is plenty
 of space for all the app's code and assets. However, some apps need more space for high-fidelity
@@ -17,7 +17,8 @@ download the files from Google Play when our app starts.
 
 We can obtain the library from [NuGet.org][1] or we can compile the code directly from [GitHub][3].
 
-The official Android documentation can be found on the [Android Developers website][5]. Additional information can also be found on the [Xamarin Developer website][6].
+The official Android documentation can be found on the [Android Developers website][5]. Additional
+information can also be found on the [Xamarin Developer website][6].
 
 ## The Expansion Files
 
@@ -67,7 +68,7 @@ a main expansion file, the file is renamed to `main.23.com.example.app.obb`.
 ## Getting Things Ready
 
 We will need to obtain the base64-encoded RSA public key. More information on this in the
-[Getting Things Ready section of the Licensing documentation][4].
+[Getting Things Ready section of the Licensing documentation][8].
 
 ### Implementing the Downloader
 
@@ -377,13 +378,14 @@ file. Once the entry is returned, we can read the stream of the item.
 ## Testing the Downloader
 
 Testing the download manager is very similar to testing the licensing. More information on this
-in the Testing the Licensing section of the Licensing documentation][4]. The downloader 
+in the [Testing the Licensing section of the Licensing documentation][9]. The downloader 
 performs the license check internally, and in the response, it receives the expansion files 
 URIs from Play. It then uses these to initiate the download.
 
 In order to be able to download the expansion files, we have to have uploaded them when updating
 the app. The first upload does not allow the expansion files to be added, but we can just 
-re-upload the same package twice. On the second time, we can upload the expansion files with the actual app package, remembering to increase the version number beforehand.
+re-upload the same package twice. On the second time, we can upload the expansion files with 
+the actual app package, remembering to increase the version number beforehand.
 
 We can start testing our app by checking its ability to read the expansion files. We can do this
 by placing and naming the files just as the downloader would. Because the downloader always places
@@ -410,6 +412,7 @@ in place:
 [1]: https://www.nuget.org/packages/Xamarin.Google.Android.Vending.Expansion.Downloader
 [2]: https://www.nuget.org/packages/Xamarin.Google.Android.Vending.Expansion.ZipFile
 [3]: https://github.com/xamarin/XamarinComponents/tree/master/Android/GoogleAndroidVending
-[4]: Licensing.md
 [5]: https://developer.android.com/google/play/expansion-files.html
 [6]: https://developer.xamarin.com/guides/android/deployment,_testing,_and_metrics/publishing_an_application/part_5_-_apk_expansion_files
+[8]: Licensing.md#getting-things-ready
+[9]: Licensing.md#testing-the-licensing
