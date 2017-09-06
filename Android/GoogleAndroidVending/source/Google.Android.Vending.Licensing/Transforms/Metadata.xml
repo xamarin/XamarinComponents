@@ -26,6 +26,10 @@
   <attr path="/api/package[@name='com.android.vending.licensing']/interface[@name='ILicensingService']/method[@name='checkLicense']/parameter[3]" name="managedName">listener</attr>
   <attr path="/api/package[@name='com.android.vending.licensing']/interface[@name='ILicenseResultListener']/method[@name='verifyLicense']/parameter[1]" name="managedName">responseCode</attr>
   <attr path="/api/package[@name='com.android.vending.licensing']/interface[@name='ILicenseResultListener']/method[@name='verifyLicense']/parameter[2]" name="managedName">signedData</attr>
-  <attr path="/api/package[@name='com.android.vending.licensing']/interface[@name='ILicenseResultListener']/method[@name='verifyLicense']/parameter[2]" name="managedName">signature</attr>
+  <attr path="/api/package[@name='com.android.vending.licensing']/interface[@name='ILicenseResultListener']/method[@name='verifyLicense']/parameter[3]" name="managedName">signature</attr>
+
+  <attr path="/api/package[@name='com.google.android.vending.licensing']/class[@name='ResponseData']/field[@name='nonce']" name="managedName">NumberUsedOnce</attr>
+  <attr path="/api/package[@name='com.google.android.vending.licensing']/class[@name='ResponseData']/field[@name='responseCode']" name="managedName">ResponseCodeInternal</attr>
+  <attr path="/api/package[@name='com.google.android.vending.licensing']/class[@name='ResponseData']/field[@name='responseCode']" name="visibility">internal</attr>
   
 </metadata>

@@ -12,11 +12,16 @@
   -->
 
   <mapping jni-class="com/google/android/vending/expansion/downloader/impl/DownloaderService">
-    <method jni-name="startDownloadServiceIfRequired" parameter="return" clr-enum-type="Google.Android.Vending.Expansion.Downloader.DownloadServiceRequirement" />
+    <method jni-name="startDownloadServiceIfRequired" parameter="return" clr-enum-type="Google.Android.Vending.Expansion.Downloader.DownloaderServiceRequirement" />
+    <method jni-name="getControl" parameter="return" clr-enum-type="Google.Android.Vending.Expansion.Downloader.DownloaderServiceControlAction" />
+    <method jni-name="setDownloadFlags" parameter="flags" clr-enum-type="Google.Android.Vending.Expansion.Downloader.DownloaderServiceFlags" />
+    <method jni-name="getNetworkAvailabilityState" parameter="return" clr-enum-type="Google.Android.Vending.Expansion.Downloader.DownloaderServiceNetworkAvailability" />
+    <method jni-name="getLogMessageForNetworkError" parameter="networkError" clr-enum-type="Google.Android.Vending.Expansion.Downloader.DownloaderServiceNetworkAvailability" />
+    <method jni-name="getStatus" parameter="return" clr-enum-type="Google.Android.Vending.Expansion.Downloader.DownloaderServiceStatus" />
   </mapping>
 
   <mapping jni-class="com/google/android/vending/expansion/downloader/DownloaderClientMarshaller">
-    <method jni-name="startDownloadServiceIfRequired" parameter="return" clr-enum-type="Google.Android.Vending.Expansion.Downloader.DownloadServiceRequirement" />
+    <method jni-name="startDownloadServiceIfRequired" parameter="return" clr-enum-type="Google.Android.Vending.Expansion.Downloader.DownloaderServiceRequirement" />
   </mapping>
 
   <mapping jni-interface="com/google/android/vending/expansion/downloader/IDownloaderClient">
@@ -31,8 +36,11 @@
     <method jni-name="setDownloadFlags" parameter="p0" clr-enum-type="Google.Android.Vending.Expansion.Downloader.DownloaderServiceFlags" />
   </mapping>
 
-  <mapping jni-class="com/google/android/vending/expansion/downloader/impl/DownloaderService">
-    <method jni-name="setDownloadFlags" parameter="flags" clr-enum-type="Google.Android.Vending.Expansion.Downloader.DownloaderServiceFlags" />
+  <mapping jni-class="com/google/android/vending/expansion/downloader/impl/DownloadsDB">
+    <method jni-name="updateFlags" parameter="flags" clr-enum-type="Google.Android.Vending.Expansion.Downloader.DownloaderServiceFlags" />
+    <method jni-name="getFlags" parameter="return" clr-enum-type="Google.Android.Vending.Expansion.Downloader.DownloaderServiceFlags" />
+    <method jni-name="updateStatus" parameter="status" clr-enum-type="Google.Android.Vending.Expansion.Downloader.DownloaderServiceFlags" />
+    <method jni-name="updateMetadata" parameter="downloadStatus" clr-enum-type="Google.Android.Vending.Expansion.Downloader.DownloaderServiceStatus" />
   </mapping>
 
 </enum-method-mappings>

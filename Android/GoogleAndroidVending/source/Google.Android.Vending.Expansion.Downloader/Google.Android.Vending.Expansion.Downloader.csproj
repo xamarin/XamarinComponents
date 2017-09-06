@@ -46,6 +46,10 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="DownloaderServiceMarshallerParameter.cs" />
     <Compile Include="DownloaderClientMarshallerParameter.cs" />
+    <Compile Include="DownloaderServiceStatusExtras.cs" />
+    <Compile Include="DownloaderServiceActions.cs" />
+    <Compile Include="DownloaderServiceStatusExtensions.cs" />
+    <Compile Include="DownloaderServiceExtras.cs" />
   </ItemGroup>
   <ItemGroup>
     <LibraryProjectZip Include="..\..\native\market_apk_expansion\build\outputs\aar\market_apk_expansion-release.aar">

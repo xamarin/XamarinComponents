@@ -2,7 +2,7 @@
 {
 	public static class DownloaderServiceMarshallerParameter
 	{
-		public const string Flags = "flags";
-		public const string Messenger = "EMH";
+		public const string Flags = DownloaderServiceMarshaller.ParamsFlags;
+		public const string Messenger = DownloaderServiceMarshaller.ParamMessenger;
 	}
 }
