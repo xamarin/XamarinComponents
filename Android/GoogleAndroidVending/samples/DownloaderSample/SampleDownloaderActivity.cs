@@ -13,7 +13,6 @@ using Android.Views;
 
 using Google.Android.Vending.Expansion.Downloader;
 
-using IDownloaderServiceConnection = Google.Android.Vending.Expansion.Downloader.IStub;
 using Debug = System.Diagnostics.Debug;
 
 namespace DownloaderSample
@@ -223,7 +222,7 @@ namespace DownloaderSample
 		/// </returns>
 		private bool AreExpansionFilesDelivered()
 		{
-			var downloads = DownloadsDB.GetDB().GetDownloads() ?? new DownloadInfo[0];
+			var downloads = DownloadsDB.GetDownloadsList();
 			return downloads.Any() && downloads.All(x => Helpers.DoesFileExist(this, x.FileName, x.TotalBytes, false));
 		}
 
@@ -235,8 +234,7 @@ namespace DownloaderSample
 		/// </param>
 		private void DoValidateZipFiles(object state)
 		{
-			var downloadInfos = DownloadsDB.GetDB().GetDownloads() ?? new DownloadInfo[0];
-			var downloads = downloadInfos.Select(x => Helpers.GenerateSaveFileName(this, x.FileName)).ToArray();
+			var downloads = DownloadsDB.GetDownloadsList().Select(x => Helpers.GenerateSaveFileName(this, x.FileName)).ToArray();
 
 			var result = downloads.Any();
 			var progress = downloads.Length;
@@ -308,13 +306,13 @@ namespace DownloaderSample
 					this, 0, intent, PendingIntentFlags.UpdateCurrent);
 
 				// Request to start the download
-				DownloadServiceRequirement startResult = DownloaderService.StartDownloadServiceIfRequired(
+				DownloaderServiceRequirement startResult = DownloaderService.StartDownloadServiceIfRequired(
 					this, pendingIntent, typeof(SampleDownloaderService));
 
 				// The DownloaderService has started downloading the files, 
 				// show progress otherwise, the download is not needed so  we 
 				// fall through to starting the actual app.
-				if (startResult != DownloadServiceRequirement.NoDownloadRequired)
+				if (startResult != DownloaderServiceRequirement.NoDownloadRequired)
 				{
 					InitializeDownloadUi();
 					result = true;

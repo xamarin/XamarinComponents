@@ -10,5 +10,11 @@ namespace Google.Android.Vending.Expansion.Downloader
 		{
 			return context.GetString(GetDownloaderStringResourceIdFromState(state));
 		}
+
+		[Obsolete("Use GetDownloaderStringResourceIdFromState instead.")]
+		public static int GetDownloaderStringFromState(DownloaderClientState state)
+		{
+			return GetDownloaderStringResourceIdFromState(state);
+		}
 	}
 }

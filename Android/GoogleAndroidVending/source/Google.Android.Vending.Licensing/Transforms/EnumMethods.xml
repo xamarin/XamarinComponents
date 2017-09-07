@@ -25,4 +25,8 @@
     <method jni-name="isDeviceAllowed" parameter="return" clr-enum-type="Google.Android.Vending.Licensing.PolicyResponse" />
   </mapping>
 
+  <mapping jni-interface="com/android/vending/licensing/ILicenseResultListener">
+    <method jni-name="verifyLicense" parameter="p0" clr-enum-type="Google.Android.Vending.Licensing.ServerResponseCode" />
+  </mapping>
+
 </enum-method-mappings>
