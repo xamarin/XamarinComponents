@@ -1,4 +1,6 @@
-﻿using Android.App;
+﻿using System.Collections.Generic;
+using System.Linq;
+using Android.App;
 using Google.Android.Vending.Licensing;
 
 namespace Google.Android.Vending.Expansion.Downloader
@@ -8,6 +10,11 @@ namespace Google.Android.Vending.Expansion.Downloader
 		public static DownloadsDB GetDB()
 		{
 			return DownloadsDB.GetDB(Application.Context);
+		}
+
+		public static List<DownloadInfo> GetDownloadsList()
+		{
+			return GetDB().GetDownloads()?.ToList() ?? new List<DownloadInfo>();
 		}
 	}
 

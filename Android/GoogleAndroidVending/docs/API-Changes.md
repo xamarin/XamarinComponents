@@ -22,17 +22,13 @@ After switching, there will be a few compiler errors that you are most likely to
     - `DownloaderState` is now `DownloaderClientState`
     - `ServiceMarshaller` is now `DownloaderServiceMarshaller`
     - `DownloadsDatabase` is now `DownloadsDB`
-    - Database is now obtained by `DownloadsDB.GetDB()`
-    - `DownloadsDB.GetDownloads()` will return `null` if there are no downloads
+    - `DownloadsDB.GetDownloads()` is now `GetDownloadsList()`
     - `DownloadServiceRequirement` is now `DownloaderServiceRequirement`
     - `ClientMarshaller` is now `DownloaderClientMarshaller`
     - `ServiceFlags` is now `DownloaderServiceFlags`
 
 Although this is a few changes, the compiler will pick them all up and intellisense will find the 
 replacement type. 
-
-The only behavioral change is with the `DownloadsDB`: the members are all accessed via 
-the `GetDB()` method and `GetDownloads()` will return `null` if there are no downloads.
 
 ## Xamarin.Google.Android.Vending.Licensing
 
@@ -88,3 +84,5 @@ the `GetDB()` method and `GetDownloads()` will return `null` if there are no dow
        - The database is now obtained by `DownloadsDB.GetDB()`, so `DownloadsDB.GetDownloads()` 
          now becomes `DownloadsDB.GetDB().GetDownloads()`
     - Method `GetDownloads()` will return `null` if there are no downloads
+    - Method `DownloadsDB.GetDownloadsList()` will function the same as the 
+      old `DownloadsDatabase.GetDownloads()`
