@@ -4,7 +4,6 @@ using Google.Android.Vending.Expansion.Downloader;
 
 namespace SimpleDownloaderSample
 {
-
 	[Service]
 	public class SampleDownloaderService : DownloaderService
 	{

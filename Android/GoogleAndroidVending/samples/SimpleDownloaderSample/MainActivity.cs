@@ -9,8 +9,6 @@ using Android.Support.V7.App;
 
 using Google.Android.Vending.Expansion.Downloader;
 
-using IDownloaderServiceConnection = Google.Android.Vending.Expansion.Downloader.IStub;
-
 namespace SimpleDownloaderSample
 {
 	[Activity(Label = "@string/app_name", MainLauncher = true, Icon = "@drawable/icon", Theme = "@style/Theme.AppCompat.Light.DarkActionBar")]
@@ -136,7 +134,7 @@ namespace SimpleDownloaderSample
 
 		private bool AreExpansionFilesDelivered()
 		{
-			var downloads = DownloadsDB.GetDB().GetDownloads() ?? new DownloadInfo[0];
+			var downloads = DownloadsDB.GetDownloadsList();
 			return downloads.Any() && downloads.All(x => Helpers.DoesFileExist(this, x.FileName, x.TotalBytes, false));
 		}
 
@@ -168,7 +166,7 @@ namespace SimpleDownloaderSample
 			// The DownloaderService has started downloading the files, 
 			// show progress otherwise, the download is not needed so  we 
 			// fall through to starting the actual app.
-			if (startResult != DownloadServiceRequirement.NoDownloadRequired)
+			if (startResult != DownloaderServiceRequirement.NoDownloadRequired)
 			{
 				downloaderServiceConnection = DownloaderClientMarshaller.CreateStub(this, typeof(SampleDownloaderService));
 
