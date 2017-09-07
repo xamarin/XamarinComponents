@@ -38,7 +38,16 @@ download the files from Google Play when our app starts.
 
 ### [Read more...][2]
 
+## API Changes
+
+There are several breaking changes when updating from v1.x to v2.0. Although the API is fairly 
+similar, there are a few namespace and type changes. All the [changes are documented here][5], 
+along with their replacements.
+
+### [Read more...][5]
+
 [1]: docs/Licensing.md
 [2]: docs/Expansion.md
 [3]: https://www.nuget.org/packages/Xamarin.Google.Android.Vending.Licensing
 [4]: https://www.nuget.org/packages/Xamarin.Google.Android.Vending.Expansion.Downloader
+[5]: docs/API-Changes.md
