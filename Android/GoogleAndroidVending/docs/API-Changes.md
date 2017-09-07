@@ -28,7 +28,10 @@ After switching, there will be a few compiler errors that you are most likely to
     - `ServiceFlags` is now `DownloaderServiceFlags`
 
 Although this is a few changes, the compiler will pick them all up and intellisense will find the 
-replacement type. 
+replacement type.
+
+If there are any missing members or changes in behavior, please open an issue so that 
+we can rectify this.
 
 ## Xamarin.Google.Android.Vending.Licensing
 
