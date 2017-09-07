@@ -193,12 +193,12 @@ var startResult = DownloaderService.StartDownloadServiceIfRequired(
     this, pendingIntent, typeof(SampleDownloaderService));
 ```
 
-If the service was started, we obtain an `IStub` to the service which will be used to
-communicate with the service from the activity:
+If the service was started, we obtain an `IDownloaderServiceConnection` to the service
+which will be used to communicate with the service from the activity:
 
 ```csharp
 // the DownloaderService has started downloading the files
-if (startResult != DownloadServiceRequirement.NoDownloadRequired)
+if (startResult != DownloaderServiceRequirement.NoDownloadRequired)
 {
     // create the connection to the service so that we can show progress.
     // when creating the marshaller, we pass in the IDownloaderClient
@@ -239,8 +239,9 @@ download speed and various network states. We can use all of this to display inf
 user interface. This is all in addition to the notification that is automatically created and
 managed by the service.
 
-In order to receive updates, we need to get hold of an `IDownloaderService` from the `IStub`.
-To do this, we have to implement the `IDownloaderClient` somewhere, such as on the activity:
+In order to receive updates, we need to get hold of an `IDownloaderService` from the 
+`IDownloaderServiceConnection`. To do this, we have to implement the 
+`IDownloaderClient` somewhere, such as on the activity:
 
 ```csharp
 public class MainActivity : Activity, IDownloaderClient

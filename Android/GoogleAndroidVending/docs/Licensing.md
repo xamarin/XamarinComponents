@@ -61,26 +61,26 @@ can be implemented on the activity, but does not have to:
 ```csharp
 public class MainActivity : Activity, ILicenseCheckerCallback
 {
-    public void Allow(PolicyServerResponse response)
+    public void Allow(PolicyResponse response)
     {
         // Play has determined that the app is owned,
         // either purchased or free
     }
 
-    public void DontAllow(PolicyServerResponse response)
+    public void DontAllow(PolicyResponse response)
     {
         // Play has determined that the app should not be available to the user,
         // either because they haven't paid for it or it is not a valid app
         
         // However, there may have been a problem when Play tried to connect,
         // so if this is the case, allow the user to try again
-        if (response == PolicyServerResponse.Retry)
+        if (response == PolicyResponse.Retry)
         {
             // try the check again
         }
     }
 
-    public void ApplicationError(CallbackErrorCode errorCode)
+    public void ApplicationError(LicenseCheckerErrorCode errorCode)
     {
         // There was an error accessing the license
     }
