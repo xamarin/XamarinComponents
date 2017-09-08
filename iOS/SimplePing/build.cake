@@ -10,6 +10,7 @@ var buildSpec = new BuildSpec () {
 			OutputFiles = new [] {
 				new OutputFileCopy { FromFile = "./source/Xamarin.SimplePing.iOS/bin/Release/Xamarin.SimplePing.iOS.dll" },
 				new OutputFileCopy { FromFile = "./source/Xamarin.SimplePing.Mac/bin/Release/Xamarin.SimplePing.Mac.dll" },
+				new OutputFileCopy { FromFile = "./source/Xamarin.SimplePing.tvOS/bin/Release/Xamarin.SimplePing.tvOS.dll" },
 			}
 		},
 	},
@@ -56,6 +57,28 @@ Task ("externals")
 		CopyFile (
 			"./externals/Xamarin.SimplePing/build/Release/SimplePingMac.dylib",
 			"./externals/Xamarin.SimplePing/SimplePingMac.dylib");
+	}
+
+	// macOS
+	if (!FileExists ("./externals/Xamarin.SimplePing/SimplePingTV.a")) {
+		XCodeBuild (new XCodeBuildSettings {
+			Project = "./externals/Xamarin.SimplePing/SimplePing.xcodeproj",
+			Target = "SimplePingTV",
+			Sdk = "appletvos",
+			Arch = "arm64",
+			Configuration = "Release",
+		});
+		XCodeBuild (new XCodeBuildSettings {
+			Project = "./externals/Xamarin.SimplePing/SimplePing.xcodeproj",
+			Target = "SimplePingTV",
+			Sdk = "appletvsimulator",
+			Arch = "x86_64",
+			Configuration = "Release",
+		});
+		RunLipoCreate ("./externals", 
+			"./Xamarin.SimplePing/libSimplePingTV.a",
+			"./Xamarin.SimplePing/build/Release-appletvos/libSimplePingTV.a",
+			"./Xamarin.SimplePing/build/Release-appletvsimulator/libSimplePingTV.a");
 	}
 });
 
