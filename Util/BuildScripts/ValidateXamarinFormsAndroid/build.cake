@@ -12,12 +12,12 @@ var MONOANDROID_VERSION = "monoandroid7.0";
 var XAMARIN_FORMS_GIT_URL = "https://github.com/xamarin/Xamarin.Forms.git";
 
 var BUILD_TARGETS = new [] {
-    "Xamarin_Forms_Platform_Android",
-    "Xamarin_Forms_Platform_Android_AppLinks",
-    "Xamarin_Forms_Maps_Android",
+    "Platforms\\Xamarin_Forms_Platform_Android",
+    "Platforms\\Xamarin_Forms_Platform_Android_AppLinks",
+    "Xamarin_Forms_Maps\\Xamarin_Forms_Maps_Android",
     // App projects cause msbuild/nuget restore issues currently, leave out for now
-    //"Xamarin_Forms_ControlGallery_Android",
-    //"PagesGallery_Droid",
+    //"Control Gallery\\Xamarin_Forms_ControlGallery_Android",
+    //"Pages Gallery\\PagesGallery_Droid",
 };
 
 var DELETE_DIRS = new DirectoryPath [] {
@@ -90,7 +90,7 @@ Task ("build").Does (() => {
     // Build each project separately
     foreach (var bt in BUILD_TARGETS) {
         MSBuild ("./Xamarin.Forms.sln", c => {
-            c.Targets.Add (bt);
+            c.Targets.Add ("\"" + bt + "\"");
             c.Properties.Add ("TreatWarningsAsErrors", new List<string> { TREAT_WARNINGS_AS_ERRORS ? "true" : "false" });
         });
     }
