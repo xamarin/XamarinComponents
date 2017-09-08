@@ -89,9 +89,9 @@ Task ("init").Does (() => {
 Task ("build").Does (() => {
     // Build each project separately
     foreach (var bt in BUILD_TARGETS) {
-        XBuild ("./Xamarin.Forms.sln", c => {
+        MSBuild ("./Xamarin.Forms.sln", c => {
             c.Targets.Add (bt);
-            c.Properties.Add ("TreatWarningsAsErrors", new List<string> { TREAT_WARNINGS_AS_ERRORS });
+            c.Properties.Add ("TreatWarningsAsErrors", new List<string> { TREAT_WARNINGS_AS_ERRORS ? "true" : "false" });
         });
     }
 });
