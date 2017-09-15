@@ -18,6 +18,7 @@ var buildSpec = new BuildSpec () {
 	Samples = new [] {
 		new IOSSolutionBuilder { SolutionPath = "./samples/SimplePingSample.iOS/SimplePingSample.iOS.sln" },
 		new IOSSolutionBuilder { SolutionPath = "./samples/SimplePingSample.Mac/SimplePingSample.Mac.sln", Platform = "x64" },
+		new IOSSolutionBuilder { SolutionPath = "./samples/SimplePingSample.tvOS/SimplePingSample.tvOS.sln" },
 	},
 
 	NuGets = new [] {
