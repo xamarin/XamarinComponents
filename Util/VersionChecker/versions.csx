@@ -130,7 +130,7 @@ var fetchers = new VersionFetcher[] {
     new MavenCentral ("Retrofit", "1.9.0", "com/squareup/retrofit", OWNER_SA1),
     new MavenCentral ("Retrofit2", "2.3.0", "com/squareup/retrofit2", OWNER_SA1),
     new GitHubReleases ("SocketRocket", "0.5.1", "square", "SocketRocket", OWNER_SA1),
-    new GitHubReleases ("Valet", "2.4.0", "square", "Valet", OWNER_SA1),
+    new GitHubReleases ("Valet", "2.4.1", "square", "Valet", OWNER_SA1),
     new GitHubReleases ("Aardvark", "1.5.0", "square", "Aardvark", OWNER_SA1),
 };
 
