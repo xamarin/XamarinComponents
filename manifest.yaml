@@ -86,6 +86,10 @@
   BuildScript: ./Android/GoogleGson/build.cake
   TriggerPaths: [ Android/GoogleGson ]
   MacBuildTargets: [ samples, nuget ]
+- Name: GoogleZXing
+  BuildScript: ./Android/GoogleZXing/build.cake
+  TriggerPaths: [ Android/GoogleZXing ]
+  MacBuildTargets: [ samples, component ]
 - Name: JacksonCore
   BuildScript: ./Android/Jackson.Core/build.cake
   TriggerPaths: [ Android/Jackson.Core ]
