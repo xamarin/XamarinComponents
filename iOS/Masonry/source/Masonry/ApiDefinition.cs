@@ -1,20 +1,14 @@
 ﻿using System;
-
-#if __UNIFIED__
 using CoreGraphics;
 using Foundation;
 using ObjCRuntime;
-using UIKit;
-#else
-using MonoTouch.Foundation;
-using MonoTouch.ObjCRuntime;
-using MonoTouch.UIKit;
 
-using CGSize = System.Drawing.SizeF;
-using CGPoint = System.Drawing.PointF;
-using nint = System.Int32;
-using nuint = System.UInt32;
-using nfloat = System.Single;
+#if __IOS__ || __TVOS__
+using UIKit;
+#elif __MACOS__
+using AppKit;
+using UIEdgeInsets = AppKit.NSEdgeInsets;
+using UIView = AppKit.NSView;
 #endif
 
 namespace Masonry
@@ -131,7 +125,15 @@ namespace Masonry
 		[Export ("baseline")]
 		Constraint Baseline { get; }
 
-#if __IOS__
+		// -(MASConstraint *)firstBaseline;
+		[Export ("firstBaseline")]
+		Constraint FirstBaseline { get; }
+
+		// -(MASConstraint *)lastBaseline;
+		[Export ("lastBaseline")]
+		Constraint LastBaseline { get; }
+
+#if __IOS__ || __TVOS__
 
 		// -(MASConstraint *)leftMargin;
 		[Export ("leftMargin")]
@@ -186,6 +188,14 @@ namespace Masonry
 		// -(void)setOffset:(CGFloat)offset;
 		[Export ("setOffset:")]
 		void SetOffset (nfloat offset);
+
+#if __MACOS__ && !(__IOS__ || __TVOS__)
+
+		// -(MASConstraint *)animator;
+		[Export ("animator")]
+		Constraint Animator { get; }
+
+#endif
 
 		// -(void)activate;
 		[Export ("activate")]
@@ -283,7 +293,15 @@ namespace Masonry
 		[Export ("baseline", ArgumentSemantic.Strong)]
 		Constraint Baseline { get; }
 
-#if __IOS__
+		// @property (readonly, nonatomic, strong) MASConstraint * firstBaseline;
+		[Export ("firstBaseline", ArgumentSemantic.Strong)]
+		Constraint FirstBaseline { get; }
+
+		// @property (readonly, nonatomic, strong) MASConstraint * lastBaseline;
+		[Export ("lastBaseline", ArgumentSemantic.Strong)]
+		Constraint LastBaseline { get; }
+
+#if __IOS__ || __TVOS__
 
 		// @property (readonly, nonatomic, strong) MASConstraint * leftMargin;
 		[Export ("leftMargin", ArgumentSemantic.Strong)]
@@ -465,11 +483,19 @@ namespace Masonry
 		[Export ("mas_baseline", ArgumentSemantic.Strong)]
 		ViewAttribute Baseline ();
 
+		// @property (readonly, nonatomic, strong) MASViewAttribute * mas_firstBaseline;
+		[Export ("mas_firstBaseline", ArgumentSemantic.Strong)]
+		ViewAttribute FirstBaseline ();
+
+		// @property (readonly, nonatomic, strong) MASViewAttribute * mas_lastBaseline;
+		[Export ("mas_lastBaseline", ArgumentSemantic.Strong)]
+		ViewAttribute LastBaseline ();
+
 		// @property (readonly, nonatomic, strong) MASViewAttribute * (^mas_attribute)(NSLayoutAttribute);
 		[Export ("mas_attribute", ArgumentSemantic.Strong)]
 		Func<NSLayoutAttribute, ViewAttribute> Attribute ();
 
-#if __IOS__
+#if __IOS__ || __TVOS__
 
 		// @property (readonly, nonatomic, strong) MASViewAttribute * mas_leftMargin;
 		[Export ("mas_leftMargin", ArgumentSemantic.Strong)]
@@ -530,6 +556,8 @@ namespace Masonry
 		Constraint[] RemakeConstraints (Action<ConstraintMaker> block);
 	}
 
+#if __IOS__ || __TVOS__
+
 	// @interface MASAdditions (UIViewController)
 	[Category]
 	[BaseType (typeof(UIViewController))]
@@ -559,6 +587,8 @@ namespace Masonry
 		[Export ("mas_bottomLayoutGuideBottom", ArgumentSemantic.Strong)]
 		ViewAttribute BottomLayoutGuideBottom ();
 	}
+
+#endif
 
 	// @interface MASAdditions (NSArray)
 	[Category]

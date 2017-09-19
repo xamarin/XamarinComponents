@@ -1,4 +1,4 @@
-version: 0.6.4.0
+version: "1.0.2"
 name: Masonry
 id: Masonry
 publisher: Xamarin Inc
@@ -7,13 +7,38 @@ summary: Harness the power of Auto Layout NSLayoutConstraints with a simplified,
 src-url: https://github.com/xamarin/XamarinComponents/tree/master/iOS/Masonry
 icons:
   - icons/Masonry_128x128.png
+
+no_build: true
+is_shell: true
+local-nuget-repo: ../output
 libraries:
-  ios-unified: ../output/unified/Masonry.dll
+  ios-unified: ../output/Masonry.iOS.dll
+  mac-unified: ../output/Masonry.macOS.dll
+  tvos: ../output/Masonry.tvOS.dll
+packages:
+  ios-unified: Masonry, Version=1.0.2
+  mac-unified: Masonry, Version=1.0.2
+  tvos: Masonry, Version=1.0.2
+
 samples:
   - name: "iOS Sample"
     path:  ../samples/MasonrySample.sln
-no_build: true
-
-is_shell: true
-packages:
-  ios-unified: Masonry, Version=0.6.4.0
+    removeFiles:
+      - MasonrySampleMac/
+      - MasonrySampleTV/
+    installNuGets:
+      - project: MasonrySample
+        packages:
+          - Masonry
+  - name: "tvOS Sample"
+    path:  ../samples/MasonrySampleTV.sln
+    installNuGets:
+      - project: MasonrySampleTV
+        packages:
+          - Masonry
+  - name: "macOS Sample"
+    path:  ../samples/MasonrySampleMac.sln
+    installNuGets:
+      - project: MasonrySampleMac
+        packages:
+          - Masonry
