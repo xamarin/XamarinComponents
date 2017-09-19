@@ -7,11 +7,22 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		34D78ECD1F4101AA00707F5F /* SimplePing.m in Sources */ = {isa = PBXBuildFile; fileRef = 34D9AAB01F40E1FA00A92487 /* SimplePing.m */; };
-		34D9AAB21F40E1FA00A92487 /* SimplePing.m in Sources */ = {isa = PBXBuildFile; fileRef = 34D9AAB01F40E1FA00A92487 /* SimplePing.m */; };
+		34A110F81F62A44A00ABB867 /* SimplePing.h in Headers */ = {isa = PBXBuildFile; fileRef = 34A110F61F62A44A00ABB867 /* SimplePing.h */; };
+		34A110F91F62A44A00ABB867 /* SimplePing.m in Sources */ = {isa = PBXBuildFile; fileRef = 34A110F71F62A44A00ABB867 /* SimplePing.m */; };
+		34A110FA1F62A44A00ABB867 /* SimplePing.m in Sources */ = {isa = PBXBuildFile; fileRef = 34A110F71F62A44A00ABB867 /* SimplePing.m */; };
+		34A110FB1F62A44A00ABB867 /* SimplePing.m in Sources */ = {isa = PBXBuildFile; fileRef = 34A110F71F62A44A00ABB867 /* SimplePing.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
+		3407CCD11F62A21B0053B2D8 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "include/$(PRODUCT_NAME)";
+			dstSubfolderSpec = 16;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		3427FE901F40D752004A967E /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
@@ -24,13 +35,21 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		3407CCD31F62A21B0053B2D8 /* libSimplePingTV.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libSimplePingTV.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		3427FE921F40D752004A967E /* libSimplePing.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libSimplePing.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		349097261F4100DE003500B2 /* SimplePingMac.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = SimplePingMac.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
-		34D9AAAF1F40E1FA00A92487 /* SimplePing.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SimplePing.h; path = ../../SimplePing/Common/SimplePing.h; sourceTree = "<group>"; };
-		34D9AAB01F40E1FA00A92487 /* SimplePing.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SimplePing.m; path = ../../SimplePing/Common/SimplePing.m; sourceTree = "<group>"; };
+		34A110F61F62A44A00ABB867 /* SimplePing.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SimplePing.h; path = ../SimplePing/Common/SimplePing.h; sourceTree = "<group>"; };
+		34A110F71F62A44A00ABB867 /* SimplePing.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SimplePing.m; path = ../SimplePing/Common/SimplePing.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		3407CCD01F62A21B0053B2D8 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		3427FE8F1F40D752004A967E /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -51,7 +70,7 @@
 		3427FE891F40D752004A967E = {
 			isa = PBXGroup;
 			children = (
-				3427FE941F40D752004A967E /* SimplePing */,
+				34A110FC1F62A46000ABB867 /* SimplePing */,
 				3427FE931F40D752004A967E /* Products */,
 			);
 			sourceTree = "<group>";
@@ -61,17 +80,18 @@
 			children = (
 				3427FE921F40D752004A967E /* libSimplePing.a */,
 				349097261F4100DE003500B2 /* SimplePingMac.dylib */,
+				3407CCD31F62A21B0053B2D8 /* libSimplePingTV.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		3427FE941F40D752004A967E /* SimplePing */ = {
+		34A110FC1F62A46000ABB867 /* SimplePing */ = {
 			isa = PBXGroup;
 			children = (
-				34D9AAAF1F40E1FA00A92487 /* SimplePing.h */,
-				34D9AAB01F40E1FA00A92487 /* SimplePing.m */,
+				34A110F61F62A44A00ABB867 /* SimplePing.h */,
+				34A110F71F62A44A00ABB867 /* SimplePing.m */,
 			);
-			path = SimplePing;
+			name = SimplePing;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -81,12 +101,30 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				34A110F81F62A44A00ABB867 /* SimplePing.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
+		3407CCD21F62A21B0053B2D8 /* SimplePingTV */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 3407CCDB1F62A21B0053B2D8 /* Build configuration list for PBXNativeTarget "SimplePingTV" */;
+			buildPhases = (
+				3407CCCF1F62A21B0053B2D8 /* Sources */,
+				3407CCD01F62A21B0053B2D8 /* Frameworks */,
+				3407CCD11F62A21B0053B2D8 /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = SimplePingTV;
+			productName = SimplePingTV;
+			productReference = 3407CCD31F62A21B0053B2D8 /* libSimplePingTV.a */;
+			productType = "com.apple.product-type.library.static";
+		};
 		3427FE911F40D752004A967E /* SimplePing */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 3427FE9B1F40D752004A967E /* Build configuration list for PBXNativeTarget "SimplePing" */;
@@ -130,6 +168,11 @@
 				LastUpgradeCheck = 0830;
 				ORGANIZATIONNAME = "Matthew Leibowitz";
 				TargetAttributes = {
+					3407CCD21F62A21B0053B2D8 = {
+						CreatedOnToolsVersion = 8.3.3;
+						DevelopmentTeam = 42GDTGK33W;
+						ProvisioningStyle = Automatic;
+					};
 					3427FE911F40D752004A967E = {
 						CreatedOnToolsVersion = 8.3.3;
 						DevelopmentTeam = 42GDTGK33W;
@@ -156,16 +199,25 @@
 			targets = (
 				3427FE911F40D752004A967E /* SimplePing */,
 				349097251F4100DE003500B2 /* SimplePingMac */,
+				3407CCD21F62A21B0053B2D8 /* SimplePingTV */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXSourcesBuildPhase section */
+		3407CCCF1F62A21B0053B2D8 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				34A110FB1F62A44A00ABB867 /* SimplePing.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		3427FE8E1F40D752004A967E /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				34D9AAB21F40E1FA00A92487 /* SimplePing.m in Sources */,
+				34A110F91F62A44A00ABB867 /* SimplePing.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -173,13 +225,37 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				34D78ECD1F4101AA00707F5F /* SimplePing.m in Sources */,
+				34A110FA1F62A44A00ABB867 /* SimplePing.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin XCBuildConfiguration section */
+		3407CCD91F62A21B0053B2D8 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DEVELOPMENT_TEAM = 42GDTGK33W;
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = appletvos;
+				SKIP_INSTALL = YES;
+				TVOS_DEPLOYMENT_TARGET = 9.0;
+			};
+			name = Debug;
+		};
+		3407CCDA1F62A21B0053B2D8 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DEVELOPMENT_TEAM = 42GDTGK33W;
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = appletvos;
+				SKIP_INSTALL = YES;
+				TVOS_DEPLOYMENT_TARGET = 9.0;
+			};
+			name = Release;
+		};
 		3427FE991F40D752004A967E /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -323,6 +399,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		3407CCDB1F62A21B0053B2D8 /* Build configuration list for PBXNativeTarget "SimplePingTV" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3407CCD91F62A21B0053B2D8 /* Debug */,
+				3407CCDA1F62A21B0053B2D8 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		3427FE8D1F40D752004A967E /* Build configuration list for PBXProject "SimplePing" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
