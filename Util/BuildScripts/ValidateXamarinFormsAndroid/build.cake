@@ -42,7 +42,7 @@ Task ("init").Does (() => {
     
     // Update the target framework version in all the android .csproj files
     ReplaceRegexInFiles ("./**/*droid*.csproj",
-                         "<TargetFrameworkVersion>v[0-9\.]+</TargetFrameworkVersion>",
+                         "<TargetFrameworkVersion>v[0-9\\.]+</TargetFrameworkVersion>",
                          "<TargetFrameworkVersion>v" + ANDROID_VERSION + "</TargetFrameworkVersion>");
 
     // Convert the sln and projects to use paket
