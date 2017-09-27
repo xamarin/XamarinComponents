@@ -1,4 +1,4 @@
-COMMIT="443e9b8c6efb624177cdc0cea3c750e4bfff1910"
+COMMIT="0fc1b7415c7290acf4f1c4adfce8028f8846dd2c"
 URL="https://raw.githubusercontent.com/xamarin/XamarinComponents/$COMMIT/Util/Bootstrapper/cake.sh"
 SCRIPT_DIR=$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )
 SCRIPT="$SCRIPT_DIR/cake.sh"

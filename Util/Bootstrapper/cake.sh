@@ -133,4 +133,4 @@ if [ ! -f "$CAKE_EXE" ]; then
 fi
 
 # Start Cake
-exec mono "$CAKE_EXE" $SCRIPT --nuget_loaddependencies=true --nuget_useinprocessclient=true "${CAKE_ARGUMENTS[@]}"
+exec mono "$CAKE_EXE" $SCRIPT --nuget_loaddependencies=true --nuget_useinprocessclient=true --settings_skipverification=true "${CAKE_ARGUMENTS[@]}"
