@@ -34,7 +34,6 @@ CAKE_ARGUMENTS=()
 
 # Parse arguments.
 for i in "$@"; do
-    echo "ARG: $i (2: $2)"
     case $1 in
         -s|--script) SCRIPT="$2"; shift ;;
         --) shift; CAKE_ARGUMENTS+=("$@"); break ;;

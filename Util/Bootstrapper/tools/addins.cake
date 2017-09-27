@@ -15,7 +15,7 @@
 #addin nuget:?package=Cake.FileHelpers&version=2.0.0
 #addin nuget:?package=Cake.Json&version=2.0.28
 #addin nuget:?package=Cake.Yaml&version=2.0.0
-#addin nuget:?package=Cake.Xamarin&version=2.0.0
+#addin nuget:?package=Cake.Xamarin&version=2.0.1
 #addin nuget:?package=Cake.XCode&version=3.0.0
 #addin nuget:?package=Cake.Xamarin.Build&version=3.0.3
 #addin nuget:?package=Cake.Compression&version=0.1.4
