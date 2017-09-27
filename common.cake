@@ -1,9 +1,4 @@
-#tool nuget:?package=XamarinComponent&version=1.1.0.42
-
-#addin nuget:?package=Cake.XCode&version=2.0.13
-#addin nuget:?package=Cake.Xamarin.Build&version=2.0.18
-#addin nuget:?package=Cake.Xamarin&version=1.3.0.15
-#addin nuget:?package=Cake.FileHelpers&version=1.0.4
+#load "./tools/addins.cake"
 
 void BuildXCodeFatLibrary(FilePath xcodeProject, string target, string libraryTitle = null, FilePath fatLibrary = null, DirectoryPath workingDirectory = null, string targetFolderName = null)
 {
