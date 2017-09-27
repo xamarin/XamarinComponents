@@ -25,16 +25,18 @@ else
 fi
 
 # Define default arguments.
-SCRIPT="build.cake"
-BOOTSTRAPPER_COMMIT="master"
+SCRIPT="./build.cake"
+if [ -z "$BOOTSTRAPPER_COMMIT" ]; then
+    BOOTSTRAPPER_COMMIT="master"
+fi
 
 CAKE_ARGUMENTS=()
 
 # Parse arguments.
 for i in "$@"; do
+    echo "ARG: $i (2: $2)"
     case $1 in
         -s|--script) SCRIPT="$2"; shift ;;
-        --boostrapper_commit) BOOTSTRAPPER_COMMIT="$2"; shift ;;
         --) shift; CAKE_ARGUMENTS+=("$@"); break ;;
         *) CAKE_ARGUMENTS+=("$1") ;;
     esac
@@ -65,7 +67,7 @@ do
 
     # If the cached file's commit doesn't match our desired, or if it's 'master' go download the right version
     if [[ "$fileCommitContent" != "$BOOTSTRAPPER_COMMIT" ||  "$fileCommitContent" == "master" ]]; then
-        echo "Downloading $localFile..."
+        echo "Downloading $localFile... $fileUrl"
         
         # Download the file
         curl -Lsfo $localFile $fileUrl
