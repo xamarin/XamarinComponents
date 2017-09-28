@@ -22,3 +22,4 @@
 
 // Not yet cake 0.22+ compatible (requires --settings_skipverification=true)
 #addin nuget:?package=Cake.MonoApiTools&version=1.0.10
+#addin nuget:?package=Cake.Xamarin.Binding.Util&version=1.0.2
