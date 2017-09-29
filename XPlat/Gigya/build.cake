@@ -5,8 +5,8 @@ var TARGET = Argument ("t", Argument ("target", "Default"));
 
 var ANDROID_VERSION = "3.3.9";
 var ANDROID_NUGET_VERSION = "3.3.9";
-var IOS_VERSION = "3.5.3";
-var IOS_NUGET_VERSION = "3.5.3";
+var IOS_VERSION = "3.6.0";
+var IOS_NUGET_VERSION = "3.6.0";
 
 var ANDROID_SDK_URL = string.Format ("http://wikifiles.gigya.com/SDKs/Android/AndroidSDK_{0}.zip", ANDROID_VERSION);
 var IOS_SDK_URL = string.Format ("https://s3.amazonaws.com/wikifiles.gigya.com/SDKs/iPhone/{0}/GigyaSDK.framework_{0}.zip", IOS_VERSION);
@@ -69,7 +69,7 @@ Task ("externals-ios")
 
 	DownloadFile (IOS_SDK_URL, "./externals/ios/sdk.zip");
 	Unzip ("./externals/ios/sdk.zip", "./externals/ios/sdk");
-	CopyFile ("./externals/ios/sdk/GigyaSDK.framework/Versions/A/GigyaSDK", "./externals/ios/GigyaSDK");
+	CopyFile ("./externals/ios/sdk/GigyaSDK.framework/GigyaSDK", "./externals/ios/GigyaSDK");
 });
 Task ("externals").IsDependentOn ("externals-android").IsDependentOn ("externals-ios");
 
