@@ -43,3 +43,7 @@ samples:
       - project: MasonrySampleMac
         packages:
           - Masonry
+
+additional-files:
+  - source: "../External-Dependency-Info.txt"
+    destination: "THIRD-PARTY-NOTICES.txt"

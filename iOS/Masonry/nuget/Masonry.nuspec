@@ -16,5 +16,6 @@
     <file src="output/Masonry.iOS.dll" target="lib/Xamarin.iOS" />
     <file src="output/Masonry.tvOS.dll" target="lib/Xamarin.tvOS" />
     <file src="output/Masonry.macOS.dll" target="lib/Xamarin.Mac" />
+    <file src="External-Dependency-Info.txt" target="THIRD-PARTY-NOTICES.txt" />
   </files>
 </package>
