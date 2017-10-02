@@ -1,11 +1,10 @@
 ﻿using System;
-
-#if __UNIFIED__
 using ObjCRuntime;
+
+#if __IOS__ || __TVOS__
 using UIKit;
-#else
-using MonoTouch.ObjCRuntime;
-using MonoTouch.UIKit;
+#elif __MACOS__
+using AppKit;
 #endif
 
 namespace Masonry
@@ -25,8 +24,11 @@ namespace Masonry
 		CenterX = 1 << (int)NSLayoutAttribute.CenterX,
 		CenterY = 1 << (int)NSLayoutAttribute.CenterY,
 		Baseline = 1 << (int)NSLayoutAttribute.Baseline,
+		FirstBaseline = 1 << (int)NSLayoutAttribute.FirstBaseline,
+		LastBaseline = 1 << (int)NSLayoutAttribute.LastBaseline,
 
-#if __IOS__
+#if __IOS__ || __TVOS__
+
 		LeftMargin = 1 << (int)NSLayoutAttribute.LeftMargin,
 		RightMargin = 1 << (int)NSLayoutAttribute.RightMargin,
 		TopMargin = 1 << (int)NSLayoutAttribute.TopMargin,
