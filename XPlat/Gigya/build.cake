@@ -62,14 +62,13 @@ Task ("externals-android")
 	//  - package id="Xamarin.Android.Support.v4" version="24.2.1"
 });
 Task ("externals-ios")
-	.WithCriteria (!FileExists ("./externals/ios/GigyaSDK"))
+	.WithCriteria (!FileExists ("./externals/ios/sdk/GigyaSDK.framework/GigyaSDK"))
 	.Does (() => 
 {
 	EnsureDirectoryExists ("./externals/ios");
 
 	DownloadFile (IOS_SDK_URL, "./externals/ios/sdk.zip");
 	Unzip ("./externals/ios/sdk.zip", "./externals/ios/sdk");
-	CopyFile ("./externals/ios/sdk/GigyaSDK.framework/GigyaSDK", "./externals/ios/GigyaSDK");
 });
 Task ("externals").IsDependentOn ("externals-android").IsDependentOn ("externals-ios");
 
