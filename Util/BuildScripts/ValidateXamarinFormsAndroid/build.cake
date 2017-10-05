@@ -4,7 +4,7 @@
 
 #tool nuget:?package=Paket
 
-var PAKET_SOURCE_LIST = EnvironmentVariable ("PAKET_SOURCES") ?? "./output,https://api.nuget.org/v3/index.json,https://www.myget.org/F/xamprojectci/api/v3/index.json";
+var PAKET_SOURCE_LIST = EnvironmentVariable ("PAKET_SOURCES") ?? "./output,https://api.nuget.org/v3/index.json";
 var TREAT_WARNINGS_AS_ERRORS = (EnvironmentVariable ("TREAT_WARNINGS_AS_ERRORS") ?? "false").ToLower ().Equals ("true");
 
 var ANDROID_SUPPORT_VERSION = EnvironmentVariable ("ANDROID_SUPPORT_VERSION") ?? "25.4.0.2";
@@ -34,10 +34,7 @@ var PAKET_EXE = GetFiles ("./tools/**/paket.exe").FirstOrDefault ();
 var TARGET = Argument ("target", Argument ("t", "Default"));
 
 Task ("clone").Does(() => {
-
     GitClone ("https://github.com/xamarin/Xamarin.Forms.git", "./xf");
-
-    CopyDirectory ("./xf", "./");
 });
 
 Task ("init").Does (() => {
@@ -112,16 +109,5 @@ Task ("build").Does (() => {
 });
 
 Task ("Default").IsDependentOn ("init").IsDependentOn ("build");
-
-Task ("clean").Does (() => {
-    var tmpPath = new DirectoryPath(System.IO.Path.GetTempPath ());
-    CopyFile ("./build.cake", tmpPath.CombineWithFilePath ("build.cake"));
-    CopyFile ("./build.sh", tmpPath.CombineWithFilePath ("build.sh"));
-
-    CleanDirectory ("./*");
-
-    CopyFile (tmpPath.CombineWithFilePath ("build.cake"), "./build.cake");
-    CopyFile (tmpPath.CombineWithFilePath ("build.sh"), "./build.sh");
-});
 
 RunTarget (TARGET);
