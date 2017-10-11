@@ -1,0 +1,28 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+		<AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+		<PackOnBuild>true</PackOnBuild>
+		<PackageVersion>1.0</PackageVersion>
+		<Authors>xamarin</Authors>
+		<PackageId>Xamarin.Dropbox.Api.iOS</PackageId>
+		<Owners>xamarin</Owners>
+		<PackageReleaseNotes>initial</PackageReleaseNotes>
+		<Summary>Things</Summary>
+		<Title>Xamarin.Dropbox.Api.iOS</Title>
+		<Description>Xamarin.Dropbox.Api.iOS</Description>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.NETCore.Portable.Compatibility" Version="1.0.1" />
+    <PackageReference Include="Dropbox.Api" Version="4.4.1" />
+    <PackageReference Include="Xamarin.Auth" Version="1.5.0.3" />
+    <PackageReference Include="NuGet.Build.Packaging" Version="0.1.276" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Data\" />
+    <Folder Include="Enums\" />
+    <Folder Include="Helpers\" />
+  </ItemGroup>
+</Project>
