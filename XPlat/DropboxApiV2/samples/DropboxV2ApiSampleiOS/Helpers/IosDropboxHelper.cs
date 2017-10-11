@@ -9,12 +9,13 @@ using Xamarin.Auth;
 
 namespace DropboxV2ApiSampleiOS.Helpers
 {
+    //Local instance of a helper class for dropbbox
     public class IosDropBoxHelper : IDisposable
     {
         private const string tokenAppName = "DropBox2";
         private const string oauth2State = "";
         private const string RedirectUri = "https://xamarin.com";
-        private const string ApiKey = "vt5ovc3h0af5fvq";
+        private const string ApiKey = "";
         private const string AuthorizeUrl = "https://www.dropbox.com/1/oauth2/authorize";
         private const string Scope = "";
         private const string AppName = "SimpleTestApp";

@@ -23,7 +23,7 @@ namespace DropboxV2ApiSampleiOS
             DropBoxConfig.Configure()
                          .SetAppName("SimpleTestApp")
                          .SetAuthorizeUrl("https://www.dropbox.com/1/oauth2/authorize")
-                         .SetApiKey("vt5ovc3h0af5fvq")
+                         .SetApiKey("")
                          .SetRedirectUri("https://xamarin.com")
                          .SetTokenAppName("DropBox");
             
