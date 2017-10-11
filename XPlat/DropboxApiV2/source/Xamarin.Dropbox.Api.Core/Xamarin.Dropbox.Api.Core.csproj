@@ -11,6 +11,7 @@
 		<Summary>Things</Summary>
 		<Title>Xamarin.Dropbox.Api.iOS</Title>
 		<Description>Xamarin.Dropbox.Api.iOS</Description>
+		<GeneratePackageOnBuild>false</GeneratePackageOnBuild>
   </PropertyGroup>
 
   <ItemGroup>
