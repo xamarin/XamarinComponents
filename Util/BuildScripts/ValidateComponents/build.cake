@@ -1,8 +1,8 @@
-#addin nuget:?package=Cake.FileHelpers
-#addin nuget:?package=Cake.Xamarin&version=1.3.0.15
-#addin nuget:?package=Cake.Android.Adb
-#tool nuget:?package=NUnit.Runners&version=2.6.4
-#tool nuget:?package=Xamarin.UITest&version=2.0.5
+#addin nuget:?package=Cake.FileHelpers&version=2.0.0
+#addin nuget:?package=Cake.Xamarin&version=2.0.1
+#addin nuget:?package=Cake.Android.Adb&version=2.0.4
+#tool nuget:?package=NUnit.Runners&version=2.7.0
+#tool nuget:?package=Xamarin.UITest&version=2.1.3
 
 /************************************************************************************************************
 *  .XAM Xamarin Component Validation Script

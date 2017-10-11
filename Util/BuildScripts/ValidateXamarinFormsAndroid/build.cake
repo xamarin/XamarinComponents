@@ -1,5 +1,4 @@
-
-#addin nuget:?package=Cake.FileHelpers
+#addin nuget:?package=Cake.FileHelpers&version=2.0.0
 #tool nuget:?package=Paket
 
 var PAKET_SOURCE_LIST = EnvironmentVariable ("PAKET_SOURCES") ?? "./output,https://api.nuget.org/v3/index.json";
