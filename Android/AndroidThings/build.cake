@@ -1,5 +1,4 @@
-#addin nuget:?package=Cake.Xamarin.Build
-#addin nuget:?package=Cake.Xamarin
+#load "../../common.cake"
 
 var TARGET = Argument ("t", Argument ("target", "Default"));
 

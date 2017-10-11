@@ -1,9 +1,4 @@
-#tool nuget:?package=XamarinComponent
-
-#addin nuget:?package=Cake.XCode
-#addin nuget:?package=Cake.Xamarin
-#addin nuget:?package=Cake.Xamarin.Build
-#addin nuget:?package=Cake.FileHelpers
+#load "../../../common.cake"
 
 var NUGET_VERSION = "0.11.0.1";
 
