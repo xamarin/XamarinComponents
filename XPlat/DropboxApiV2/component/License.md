@@ -1,8 +1,8 @@
 **Xamarin is not responsible for, nor does it grant any licenses to, third-party packages. Some packages may require or install dependencies which are governed by additional licenses.**
 
-Note: This component depends on [Dropbox Core API](https://www.dropbox.com/developers-v1/core/sdks/ios), which is subject to the [Dropbox Developer Terms and Conditions](https://www.dropbox.com/developers/reference/tos)
+Note: This component depends on [Dropbox API v2](https://www.dropbox.com/developers), which is subject to the [Dropbox Developer Terms and Conditions](https://www.dropbox.com/developers/reference/tos)
 
-### Xamarin Component for Dropbox Core API iOS SDK
+### Xamarin Component for Dropbox API v2 SDK
 
 **The MIT License (MIT)**
 
