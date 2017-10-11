@@ -1,8 +1,4 @@
-#tool "XamarinComponent"
-#addin "nuget:?package=Cake.Json"
-#addin "nuget:?package=Cake.Xamarin"
-#addin "nuget:?package=Cake.ExtendedNuGet&version=1.0.0.24"
-#addin "nuget:?package=NuGet.Core&version=2.14.0"
+#load "common.cake"
 
 // NOTE: COOKIE_JAR_PATH Environment variable should contain the .xamarin cookie file
 
