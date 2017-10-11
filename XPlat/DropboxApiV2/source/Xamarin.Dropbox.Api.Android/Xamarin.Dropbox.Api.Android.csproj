@@ -21,7 +21,6 @@
 		<Authors>xamarin</Authors>
 		<Title>Xamarin.Dropbox.Api.Android</Title>
 		<Description>things</Description>
-		<PackOnBuild>true</PackOnBuild>
 		<Owners>xamarin</Owners>
 		<Summary>tings</Summary>
   </PropertyGroup>
@@ -94,7 +93,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Xamarin.Dropbox.Api.Core\Xamarin.Dropbox.Api.Core.csproj">
-      <Project>{6ACDB865-8AB9-4EFD-AFE0-CFC6E15C97D2}</Project>
+      <Project>{90EBBFE4-060E-4822-864F-2D62D19A3E54}</Project>
       <Name>Xamarin.Dropbox.Api.Core</Name>
     </ProjectReference>
   </ItemGroup>

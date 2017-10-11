@@ -7,6 +7,7 @@ using DropboxV2ApiSampleiOS.Data;
 using DropboxV2ApiSampleiOS.Helpers;
 using Foundation;
 using UIKit;
+using Xamarin.Dropbox.Api.iOS;
 
 namespace DropboxV2ApiSampleiOS.DataSources
 {

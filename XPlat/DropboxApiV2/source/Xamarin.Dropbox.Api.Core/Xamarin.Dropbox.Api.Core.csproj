@@ -3,7 +3,6 @@
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
 		<AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
-		<PackOnBuild>true</PackOnBuild>
 		<PackageVersion>1.0</PackageVersion>
 		<Authors>xamarin</Authors>
 		<PackageId>Xamarin.Dropbox.Api.iOS</PackageId>

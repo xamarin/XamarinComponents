@@ -150,13 +150,13 @@
   <ItemGroup>
     <Compile Include="Main.cs" />
     <Compile Include="AppDelegate.cs" />
-    <Compile Include="Helpers\DropboxHelper.cs" />
     <Compile Include="Data\DropBoxItem.cs" />
     <Compile Include="DataSources\DropBoxFolderSource.cs" />
     <Compile Include="RootFoldersTableViewController.cs" />
     <Compile Include="RootFoldersTableViewController.designer.cs">
       <DependentUpon>RootFoldersTableViewController.cs</DependentUpon>
     </Compile>
+    <Compile Include="Helpers\IosDropboxHelper.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\source\Xamarin.Dropbox.Api.Core\Xamarin.Dropbox.Api.Core.csproj">

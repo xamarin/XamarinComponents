@@ -1,12 +1,9 @@
-using Foundation;
 using System;
-using UIKit;
-using Dropbox.Api;
-using Xamarin.Auth;
 using System.Threading.Tasks;
 using DropboxV2ApiSampleiOS.Data;
 using DropboxV2ApiSampleiOS.DataSources;
-using DropboxV2ApiSampleiOS.Helpers;
+using UIKit;
+using Xamarin.Dropbox.Api.iOS;
 
 namespace DropboxV2ApiSampleiOS
 {

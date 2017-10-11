@@ -12,7 +12,7 @@ using Xamarin.Dropbox.Api.Helpers;
 
 namespace Xamarin.Dropbox.Api.Android
 {
-	public class DropBoxHelper : DropBoxHelper<Activity>
+	public class DropBoxHelper : DropBoxHelperBase<Activity>
 	{
 
 		/// <summary>

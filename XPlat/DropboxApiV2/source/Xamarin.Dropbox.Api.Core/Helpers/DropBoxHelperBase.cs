@@ -196,7 +196,7 @@ namespace Xamarin.Dropbox.Api.Helpers
     }
 
 
-    public abstract class DropBoxHelper<T> : DropBoxHelperBase
+    public abstract class DropBoxHelperBase<T> : DropBoxHelperBase
     {
         private T hasContext;
 
@@ -234,7 +234,7 @@ namespace Xamarin.Dropbox.Api.Helpers
         /// Initializes a new instance of the <see cref="T:Xamarin.Dropbox.Api.Helpers.DropBoxHelperBase`1"/> class.
         /// </summary>
         /// <param name="postAuthAction">Post auth action.</param>
-        public DropBoxHelper(Action postAuthAction) 
+        public DropBoxHelperBase(Action postAuthAction) 
             : base(postAuthAction)
         {
             
