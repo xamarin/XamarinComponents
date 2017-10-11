@@ -22,12 +22,14 @@ var buildSpec = new BuildSpec {
 	},
 
 	Samples = new [] {
-		new IOSSolutionBuilder { SolutionPath = "./samples/LoginScreen.iOS.Sample/LoginScreen.iOS.Sample.sln" },	
-		new DefaultSolutionBuilder { SolutionPath = "./samples/LoginScreen.Android.Sample/LoginScreen.Android.Sample.sln" }
+		new IOSSolutionBuilder { SolutionPath = "./samples/DropboxV2ApiSampleiOS/DropboxV2ApiSampleiOS.sln" },	
+		new DefaultSolutionBuilder { SolutionPath = "./samples/DropboxV2ApiSampleDroid/DropboxV2ApiSampleDroid.sln" }
 	},
 
 	NuGets = new [] {
-		new NuGetInfo { NuSpec = "./nuget/Xamarin.LoginScreen.nuspec" },
+		new NuGetInfo { NuSpec = "./nuget/Xamarin.Dropbox.Api.Core.nuspec" },
+		new NuGetInfo { NuSpec = "./nuget/Xamarin.Dropbox.Api.iOS.nuspec" },
+		new NuGetInfo { NuSpec = "./nuget/Xamarin.Dropbox.Api.Android.nuspec" },
 	},
 
 	Components = new [] {

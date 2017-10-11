@@ -7,13 +7,19 @@
     <authors>Xamarin</authors>
     <owners>Xamarin</owners>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
-    <description>Core library for xamarin and dropbox Api v2 integration and Xamarin.Auth</description>
+    <description>Core library for Xamarin and dropbox Api v2 integration with Xamarin.Auth</description>
     <copyright>Copyright © Xamarin. All Rights Reserved.</copyright>
     <licenseUrl>https://components.xamarin.com/license/dropboxapiv2</licenseUrl>
     <iconUrl>h</iconUrl>
-    <projectUrl>https://components.xamarin.com/license/dropboxapiv2</projectUrl>
+    <projectUrl>https://components.xamarin.com/dropboxapiv2</projectUrl>
   </metadata>
+  <dependencies>
+    <group targetFramework="netstandard2.0">
+        <dependency id="Dropbox.Api" version="4.4.1" />
+        <dependency id="Xamarin.Auth" version="1.5.0.3" />
+    </group>
+</dependencies>
   <files>
-    <file src="output/netstandard/Mono.DataConverter.dll" target="lib/netstandard2.0/Xamarin.Dropbox.Api.Core.dll" />
+    <file src="output/Xamarin.Dropbox.Api.Core.dll" target="lib/netstandard2.0" />
   </files>
 </package>
