@@ -41,46 +41,22 @@ Task ("externals")
 	EnsureDirectoryExists ("./externals/");
 
 	// iOS
-	BuildXCodeFatLibrary (
+	BuildXCodeFatLibrary_iOS (
 		xcodeProject: "./SimplePing.xcodeproj",
 		target: "SimplePing",
 		workingDirectory: "./externals/Xamarin.SimplePing/");
 
 	// macOS
-	if (!FileExists ("./externals/Xamarin.SimplePing/SimplePingMac.dylib")) {
-		XCodeBuild (new XCodeBuildSettings {
-			Project = "./externals/Xamarin.SimplePing/SimplePing.xcodeproj",
-			Target = "SimplePingMac",
-			Sdk = "macosx",
-			Arch = "x86_64",
-			Configuration = "Release",
-		});
-		CopyFile (
-			"./externals/Xamarin.SimplePing/build/Release/SimplePingMac.dylib",
-			"./externals/Xamarin.SimplePing/SimplePingMac.dylib");
-	}
+	BuildXCodeFatLibrary_macOS (
+		xcodeProject: "./SimplePing.xcodeproj",
+		target: "SimplePingMac",
+		workingDirectory: "./externals/Xamarin.SimplePing/");
 
-	// macOS
-	if (!FileExists ("./externals/Xamarin.SimplePing/SimplePingTV.a")) {
-		XCodeBuild (new XCodeBuildSettings {
-			Project = "./externals/Xamarin.SimplePing/SimplePing.xcodeproj",
-			Target = "SimplePingTV",
-			Sdk = "appletvos",
-			Arch = "arm64",
-			Configuration = "Release",
-		});
-		XCodeBuild (new XCodeBuildSettings {
-			Project = "./externals/Xamarin.SimplePing/SimplePing.xcodeproj",
-			Target = "SimplePingTV",
-			Sdk = "appletvsimulator",
-			Arch = "x86_64",
-			Configuration = "Release",
-		});
-		RunLipoCreate ("./externals", 
-			"./Xamarin.SimplePing/libSimplePingTV.a",
-			"./Xamarin.SimplePing/build/Release-appletvos/libSimplePingTV.a",
-			"./Xamarin.SimplePing/build/Release-appletvsimulator/libSimplePingTV.a");
-	}
+	// tvOS
+	BuildXCodeFatLibrary_tvOS (
+		xcodeProject: "./SimplePing.xcodeproj",
+		target: "SimplePingTV",
+		workingDirectory: "./externals/Xamarin.SimplePing/");
 });
 
 Task ("clean")
