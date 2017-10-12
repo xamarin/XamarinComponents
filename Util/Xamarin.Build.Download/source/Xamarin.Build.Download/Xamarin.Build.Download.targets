@@ -14,12 +14,12 @@
 
 	<PropertyGroup Condition="'$(TargetFrameworkIdentifier)'=='Xamarin.iOS' And ('$(OutputType)' != 'Library' OR '$(IsAppExtension)'=='True')">
 		<_XamarinBuildDownloadMasterBeforeTargets>_UnpackLibraryResources</_XamarinBuildDownloadMasterBeforeTargets>
-		<_XamarinBuildDownloadMasterDependsOnTargets>_XamarinBuildDownload;_XamariniOSBuildResourceRestore</_XamarinBuildDownloadMasterDependsOnTargets>
+		<_XamarinBuildDownloadMasterDependsOnTargets>ResolveAssemblyReferences;_XamarinBuildDownload;_XamariniOSBuildResourceRestore</_XamarinBuildDownloadMasterDependsOnTargets>
 	</PropertyGroup>
 
 	<PropertyGroup Condition="'$(TargetFrameworkIdentifier)'=='MonoAndroid'">
 		<_XamarinBuildDownloadMasterBeforeTargets>_ResolveLibraryProjectImports</_XamarinBuildDownloadMasterBeforeTargets>
-		<_XamarinBuildDownloadMasterDependsOnTargets>_XamarinBuildDownload;_XamarinAndroidBuildResourceRestore;_XamarinAndroidBuildAarRestore;_XamarinAndroidBuildAarProguardConfigs</_XamarinBuildDownloadMasterDependsOnTargets>
+		<_XamarinBuildDownloadMasterDependsOnTargets>ResolveAssemblyReferences;_XamarinBuildDownload;_XamarinAndroidBuildResourceRestore;_XamarinAndroidBuildAarRestore;_XamarinAndroidBuildAarProguardConfigs</_XamarinBuildDownloadMasterDependsOnTargets>
 	</PropertyGroup>
 
 	<PropertyGroup>

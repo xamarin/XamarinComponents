@@ -13,7 +13,7 @@ var fetchers = new VersionFetcher[] {
     // Android
     new MavenCentral ("Android Easing Functions", "1.0.2", "com/daimajia/easing/library", OWNER_SA1),
     new MavenCentral ("Android Swipe Layout", "1.2.0", "com/daimajia/swipelayout/library", OWNER_SA1),
-    new Maven ("Android Things", "0.4.1-devpreview", "https://google.bintray.com/androidthings/com/google/android/things/androidthings/maven-metadata.xml", OWNER_CA1),
+    new Maven ("Android Things", "0.5.1-devpreview", "https://google.bintray.com/androidthings/com/google/android/things/androidthings/maven-metadata.xml", OWNER_CA1),
     new MavenCentral ("Android View Animations", "1.1.3", "com/daimajia/androidanimations/library", OWNER_SA1),
     new MavenCentral ("Android Volley", "1.0.19", "com/mcxiaoke/volley/library", OWNER_SA1),
     new BinTray ("Animated Circle Loading View", "1.1.5", "jlmd", "maven/com/github/jlmd/AnimatedCircleLoadingView", OWNER_SA1),
@@ -52,7 +52,7 @@ var fetchers = new VersionFetcher[] {
     new GitHubReleases ("JSQMessagesViewController", "7.2.0", "jessesquires", "JSQMessagesViewController", OWNER_US1),
     new CocoaPods ("Progress HUD", "0.9.2", "MBProgressHUD", OWNER_SA1),
     new CocoaPods ("MWPhotoBrowser", "2.1.1", "MWPhotoBrowser", OWNER_SA1),
-    new CocoaPods ("Masonry", "0.6.4", "Masonry", OWNER_SA1),
+    new CocoaPods ("Masonry", "1.0.2", "Masonry", OWNER_SA1),
     new CocoaPods ("RZTransitions", "1.2.1", "RZTransitions", OWNER_SA1),
     new CocoaPods ("SCCatWaitingHUD", "0.1.6", "SCCatWaitingHUD", OWNER_SA1),
     new CocoaPods ("SDWebImage", "3.7.5", "SDWebImage", OWNER_SA1),
@@ -130,7 +130,7 @@ var fetchers = new VersionFetcher[] {
     new MavenCentral ("Retrofit", "1.9.0", "com/squareup/retrofit", OWNER_SA1),
     new MavenCentral ("Retrofit2", "2.3.0", "com/squareup/retrofit2", OWNER_SA1),
     new GitHubReleases ("SocketRocket", "0.5.1", "square", "SocketRocket", OWNER_SA1),
-    new GitHubReleases ("Valet", "2.4.0", "square", "Valet", OWNER_SA1),
+    new GitHubReleases ("Valet", "2.4.1", "square", "Valet", OWNER_SA1),
     new GitHubReleases ("Aardvark", "1.5.0", "square", "Aardvark", OWNER_SA1),
 };
 

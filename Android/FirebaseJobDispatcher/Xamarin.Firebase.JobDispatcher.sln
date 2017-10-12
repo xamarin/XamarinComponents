@@ -11,6 +11,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 	ProjectSection(SolutionItems) = preProject
 		build.cake = build.cake
 		Readme.md = Readme.md
+		nuget\Xamarin.Firebase.JobDispatcher.nuspec = nuget\Xamarin.Firebase.JobDispatcher.nuspec
 	EndProjectSection
 EndProject
 Global

@@ -52,13 +52,13 @@
     <TransformFile Include="Transforms\Metadata.xml" />
   </ItemGroup>
   <ItemGroup>
-    <!-- From: https://jcenter.bintray.com/com/google/android/things/androidthings/0.1-devpreview/:androidthings-0.1-devpreview.jar -->
+    <!-- From: https://jcenter.bintray.com/com/google/android/things/androidthings/x.yx-devpreview/:androidthings-x.y-devpreview.jar -->
     <InputJar Include="..\externals\androidthings.jar">
       <Link>Jars\androidthings.jar</Link>
     </InputJar>
-    <!-- We *also* add androidthings-0.1-devpreview.jar as `@(EmbeddedReferenceJar)`
+    <!-- We *also* add androidthings-x.y-devpreview.jar as `@(EmbeddedReferenceJar)`
         so that referencing projects will automatically reference - but not include! -
-        `androidthings-0.1-devpreview.jar` during compilation -->
+        `androidthings-x.y-devpreview.jar` during compilation -->
     <EmbeddedReferenceJar Include="..\externals\androidthings.jar">
       <Link>Jars\androidthings.jar</Link>
     </EmbeddedReferenceJar>
