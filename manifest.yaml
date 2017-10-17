@@ -332,14 +332,14 @@
 # XPlat
 #######################################################
 
-- Name: DropboxCoreApiAndroid
-  BuildScript: ./XPlat/DropboxCoreApi/Android/build.cake
-  TriggerPaths: [ XPlat/DropboxCoreApi/Android ]
-  MacBuildTargets: [ samples, component ]
-- Name: DropboxCoreApiiOS
-  BuildScript: ./XPlat/DropboxCoreApi/iOS/build.cake
-  TriggerPaths: [ XPlat/DropboxCoreApi/iOS ]
-  MacBuildTargets: [ samples, component ]
+# - Name: DropboxCoreApiAndroid - obsolete
+#   BuildScript: ./XPlat/DropboxCoreApi/Android/build.cake
+#   TriggerPaths: [ XPlat/DropboxCoreApi/Android ]
+#   MacBuildTargets: [ samples, component ]
+# - Name: DropboxCoreApiiOS - obsolete
+#   BuildScript: ./XPlat/DropboxCoreApi/iOS/build.cake
+#   TriggerPaths: [ XPlat/DropboxCoreApi/iOS ]
+#   MacBuildTargets: [ samples, component ]
 - Name: GoogleVRAndroid
   BuildScript: ./XPlat/GoogleVR/Android/build.cake
   TriggerPaths: [ XPlat/GoogleVR/Android ]
