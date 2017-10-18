@@ -90,6 +90,10 @@
   BuildScript: ./Android/GoogleZXing/build.cake
   TriggerPaths: [ Android/GoogleZXing ]
   MacBuildTargets: [ samples, component ]
+- Name: Guava
+  BuildScript: ./Android/Guava/build.cake
+  TriggerPaths: [ Android/Guava ]
+  MacBuildTargets: [ nuget ]
 - Name: JacksonCore
   BuildScript: ./Android/Jackson.Core/build.cake
   TriggerPaths: [ Android/Jackson.Core ]
