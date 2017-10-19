@@ -1,6 +1,6 @@
 using System;
 
-using EstimoteSdk;
+using EstimoteSdk.Recognition.Packets;
 
 namespace Estimotes.Droid
 {

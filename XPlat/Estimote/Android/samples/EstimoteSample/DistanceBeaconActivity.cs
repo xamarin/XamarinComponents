@@ -6,6 +6,9 @@ using Android.Util;
 using Android.Views;
 
 using EstimoteSdk;
+using EstimoteSdk.Observation.Region;
+using EstimoteSdk.Observation.Region.Beacon;
+using EstimoteSdk.Recognition.Packets;
 
 namespace Estimotes.Droid
 {
@@ -18,7 +21,7 @@ namespace Estimotes.Droid
         Beacon _beacon;
         View _dotView;
         FindSpecificBeacon _findBeacon;
-        Region _region;
+		BeaconRegion _region;
         int _segmentLength = -1;
         View _sonar;
         int _startY = -1;
@@ -59,7 +62,7 @@ namespace Estimotes.Droid
         {
             base.OnCreate(bundle);
 
-            Tuple<Beacon, Region> stuff = this.GetBeaconAndRegion();
+            Tuple<Beacon, BeaconRegion> stuff = this.GetBeaconAndRegion();
             _beacon = stuff.Item1;
             _region = stuff.Item2;
 
@@ -84,7 +87,7 @@ namespace Estimotes.Droid
         float ComputeDotPosY(Beacon foundBeacon)
         {
             // Put the dot at the end of the scale when it's further than 6m.
-            double x = Utils.ComputeAccuracy(foundBeacon);
+            double x = RegionUtils.ComputeAccuracy(foundBeacon);
             Log.Debug(Tag, "Beacon is approx. {0:N1} metres away", x);
             double distance = Math.Min(x, 6.0);
             return _startY + (int)(_segmentLength * (distance / 6.0));
