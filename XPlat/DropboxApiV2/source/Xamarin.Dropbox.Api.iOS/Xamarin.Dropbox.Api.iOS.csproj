@@ -74,11 +74,14 @@
       <HintPath>..\packages\Xamarin.Auth.1.5.0.3\lib\Xamarin.iOS10\Xamarin.Auth.dll</HintPath>
     </Reference>
     <Reference Include="System.Json" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.IO.Compression" />
+    <Reference Include="System.Net.Http" />
     <Reference Include="Newtonsoft.Json">
-      <HintPath>..\packages\Newtonsoft.Json.7.0.1\lib\portable-net40+sl5+wp80+win8+wpa81\Newtonsoft.Json.dll</HintPath>
+      <HintPath>..\..\samples\DropboxV2ApiSampleiOS\packages\Newtonsoft.Json.10.0.3\lib\netstandard1.3\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="Dropbox.Api">
-      <HintPath>..\packages\Dropbox.Api.4.4.1\lib\portable-net45+win8+wpa81\Dropbox.Api.dll</HintPath>
+      <HintPath>..\..\samples\DropboxV2ApiSampleiOS\packages\Xamarin.Dropbox.Api.4.5.3.01\lib\xamarinios10\Dropbox.Api.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>

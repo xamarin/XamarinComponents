@@ -9,7 +9,7 @@
     <OutputType>Library</OutputType>
     <RootNamespace>Xamarin.Dropbox.Api.Android</RootNamespace>
     <AssemblyName>Xamarin.Dropbox.Api.Android</AssemblyName>
-    <TargetFrameworkVersion>v6.0</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v8.0</TargetFrameworkVersion>
     <AndroidResgenFile>Resources\Resource.designer.cs</AndroidResgenFile>
     <AndroidResgenClass>Resource</AndroidResgenClass>
     <MonoAndroidResourcePrefix>Resources</MonoAndroidResourcePrefix>
@@ -62,9 +62,6 @@
       <HintPath>..\packages\Microsoft.Net.Http.2.2.29\lib\monoandroid\System.Net.Http.Primitives.dll</HintPath>
     </Reference>
     <Reference Include="System.Net.Http" />
-    <Reference Include="Newtonsoft.Json">
-      <HintPath>..\packages\Newtonsoft.Json.7.0.1\lib\portable-net40+sl5+wp80+win8+wpa81\Newtonsoft.Json.dll</HintPath>
-    </Reference>
     <Reference Include="Xamarin.Android.Support.v4">
       <HintPath>..\packages\Xamarin.Android.Support.v4.23.3.0\lib\MonoAndroid403\Xamarin.Android.Support.v4.dll</HintPath>
     </Reference>
@@ -75,8 +72,13 @@
       <HintPath>..\packages\Xamarin.Auth.1.5.0.3\lib\MonoAndroid10\Xamarin.Auth.dll</HintPath>
     </Reference>
     <Reference Include="System.Json" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.IO.Compression" />
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\..\samples\DropboxV2ApiSampleDroid\packages\Newtonsoft.Json.10.0.3\lib\netstandard1.3\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="Dropbox.Api">
-      <HintPath>..\packages\Dropbox.Api.4.4.1\lib\portable-net45+win8+wpa81\Dropbox.Api.dll</HintPath>
+      <HintPath>..\..\samples\DropboxV2ApiSampleDroid\packages\Xamarin.Dropbox.Api.4.5.3.01\lib\monoandroid80\Dropbox.Api.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>

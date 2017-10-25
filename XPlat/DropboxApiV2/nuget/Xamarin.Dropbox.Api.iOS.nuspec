@@ -3,7 +3,7 @@
   <metadata>
     <id>Xamarin.Dropbox.Api.iOS</id>
     <title>Xamarin.Dropbox.Api.iOS</title>
-    <version>4.4.1</version>
+    <version>4.5.3</version>
     <authors>Xamarin</authors>
     <owners>Xamarin</owners>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
@@ -14,7 +14,7 @@
     <projectUrl>https://components.xamarin.com/dropboxapiv2</projectUrl>
   </metadata>
   <group>
-    <dependency id="Xamarin.Dropbox.Api.Core" version="4.4.1" />
+    <dependency id="Xamarin.Dropbox.Api.Core" version="4.5.3" />
   </group>
   <files>
     <file src="output/Xamarin.Dropbox.Api.iOS.dll" target="lib/Xamarin.iOS10" />

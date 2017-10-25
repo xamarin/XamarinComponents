@@ -1,4 +1,4 @@
-version: 4.4.1
+version: 4.5.3
 name: Dropbox API v2 SDK
 id: dropboxapiv2
 publisher: Xamarin Inc
@@ -16,6 +16,13 @@ libraries:
   android:
     - ../output/Xamarin.Dropbox.Api.Core.dll
     - ../output/Xamarin.Dropbox.Api.Android.dll
+is_shell: true
+no_build: true
+packages:
+  ios-unified:
+    - Xamarin.Dropbox.Api, Version=4.5.3.01
+  android:
+    - Xamarin.Dropbox.Api, Version=4.5.3.01
 samples:
   - name: "Dropbox v2 Api SDK iOS Sample"
     path: ../samples/DropboxV2ApiSampleiOS/DropboxV2ApiSampleiOS.sln

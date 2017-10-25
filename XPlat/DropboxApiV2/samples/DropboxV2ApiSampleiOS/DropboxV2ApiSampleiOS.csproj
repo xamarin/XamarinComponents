@@ -125,7 +125,7 @@
       <HintPath>.\packages\Xamarin.Auth.1.5.0.3\lib\Xamarin.iOS10\Xamarin.Auth.dll</HintPath>
     </Reference>
     <Reference Include="Dropbox.Api">
-      <HintPath>.\packages\Dropbox.Api.4.4.1\lib\portable-net45+win8+wpa81\Dropbox.Api.dll</HintPath>
+      <HintPath>packages\Xamarin.Dropbox.Api.4.5.3.01\lib\xamarinios10\Dropbox.Api.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
