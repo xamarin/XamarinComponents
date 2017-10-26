@@ -2,11 +2,11 @@
 # Checking your About box in VS for Mac will give you an idea
 # of what is released to stable.
 # https://github.com/mono/mono/releases
-MONO_VERSION=5.4.0.167
+MONO_VERSION=5.4.0.201
 MONO_GIT_REPO=mono/mono
-# MONOGIT_VERSION=mono-$(MONO_VERSION)
-MONOGIT_VERSION=76f0a58429b4cfb47c77935cfca6ce88ce9be53e
-MONOPOSIX_NUGET_VERSION=1.0.0-beta2
+MONOGIT_VERSION=mono-$(MONO_VERSION)
+# MONOGIT_VERSION=76f0a58429b4cfb47c77935cfca6ce88ce9be53e
+MONOPOSIX_NUGET_VERSION=1.0.0-beta3
 # We fetch the native posix helper code from existing Mono build artifacts
 # To update the version a parameterized build needs to be run with the Mono verison
 # specified above.
@@ -15,7 +15,7 @@ MONOPOSIX_NUGET_VERSION=1.0.0-beta2
 # https://download.mono-project.com/repo/centos-stable/m/mono-core/
 # https://download.mono-project.com/repo/centos-beta/m/mono-core/
 # https://download.mono-project.com/repo/centos-alpha/m/mono-core/
-MONOPOSIXHELPER_JENKINSBUILD=31
+MONOPOSIXHELPER_JENKINSBUILD=41
 
 # docker images --digests
 # https://hub.docker.com/r/microsoft/dotnet/
