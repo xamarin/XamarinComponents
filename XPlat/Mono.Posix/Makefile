@@ -27,6 +27,7 @@ $(eval DOCKER_BUILD_CONTAINER_NAME=MonoPosixBuild-$(shell uuidgen))
 $(eval DOCKER_TEST_CONTAINER_NAME=MonoPosixBuild-$(shell uuidgen))
 
 DISTRO_LIST=centos-6-x86 centos-6-x64 debian-8-arm debian-8-armel debian-8-arm64
+WINDOWS_LIST=win-7-x64 win-7-x86
 
 all: build/Mono.Posix.NETStandard.$(MONOPOSIX_NUGET_VERSION).nupkg
 
@@ -81,6 +82,16 @@ MonoPosixHelper/%/libMonoPosixHelper.so:
 	mkdir -p MonoPosixHelper/$(DISTRO_NAME)
 	curl -o MonoPosixHelper/$(DISTRO_NAME)/libMonoPosixHelper.so -L https://xamjenkinsartifact.blob.core.windows.net/ng-extract-libmonoposixhelper/$(MONOPOSIXHELPER_JENKINSBUILD)/results/$(DISTRO_NAME)/libMonoPosixHelper.so
 
+MonoPosixHelper/%/libMonoPosixHelper.dll: DISTRO_NAME = $(@:MonoPosixHelper/%/libMonoPosixHelper.dll=%)
+MonoPosixHelper/%/libMonoPosixHelper.dll:
+	mkdir -p MonoPosixHelper/$(DISTRO_NAME)
+	curl -o MonoPosixHelper/$(DISTRO_NAME)/libMonoPosixHelper.dll -L https://xamjenkinsartifact.blob.core.windows.net/ng-extract-libmonoposixhelper/$(MONOPOSIXHELPER_JENKINSBUILD)/results/$(DISTRO_NAME)/libMonoPosixHelper.dll
+
+MonoPosixHelper/%/MonoPosixHelper.dll: DISTRO_NAME = $(@:MonoPosixHelper/%/MonoPosixHelper.dll=%)
+MonoPosixHelper/%/MonoPosixHelper.dll:
+	mkdir -p MonoPosixHelper/$(DISTRO_NAME)
+	curl -o MonoPosixHelper/$(DISTRO_NAME)/MonoPosixHelper.dll -L https://xamjenkinsartifact.blob.core.windows.net/ng-extract-libmonoposixhelper/$(MONOPOSIXHELPER_JENKINSBUILD)/results/$(DISTRO_NAME)/MonoPosixHelper.dll
+
 # Special Case the OSX fetch
 # Again will be easier when this is all in Jenkins
 MonoPosixHelper/osx-10.7-universal/libMonoPosixHelper.dylib:
@@ -98,6 +109,8 @@ build/Mono.Posix.NETStandard.$(MONOPOSIX_NUGET_VERSION).nupkg: tools/nuget.exe \
  build/unix/Mono.Posix.NETStandard.dll \
  build/net40/Mono.Posix.NETStandard.dll \
  $(addprefix MonoPosixHelper/, $(addsuffix /libMonoPosixHelper.so,$(DISTRO_LIST))) \
+ $(addprefix MonoPosixHelper/, $(addsuffix /libMonoPosixHelper.dll,$(WINDOWS_LIST))) \
+ $(addprefix MonoPosixHelper/, $(addsuffix /MonoPosixHelper.dll,$(WINDOWS_LIST))) \
  MonoPosixHelper/osx-10.7-universal/libMonoPosixHelper.dylib \
  Mono.Posix.NETStandard.nuspec
 	mono tools/nuget.exe pack -Version $(MONOPOSIX_NUGET_VERSION) -OutputDirectory build/  Mono.Posix.NETStandard.nuspec
