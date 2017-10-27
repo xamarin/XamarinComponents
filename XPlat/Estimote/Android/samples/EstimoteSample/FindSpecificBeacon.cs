@@ -8,25 +8,27 @@ using Android.Util;
 using Android.Widget;
 
 using EstimoteSdk;
-
+using EstimoteSdk.Observation.Region.Beacon;
+using EstimoteSdk.Recognition.Packets;
+using EstimoteSdk.Service;
 using JavaObject = Java.Lang.Object;
 
 namespace Estimotes.Droid
 {
-    class FindSpecificBeacon : BeaconFinder, BeaconManager.IRangingListener
+    class FindSpecificBeacon : BeaconFinder, BeaconManager.IBeaconRangingListener
     {
         static readonly string Tag = typeof(FindSpecificBeacon).FullName;
         Beacon _beacon;
         bool _isSearching;
-        Region _region;
+		BeaconRegion _region;
         public EventHandler<BeaconFoundEventArgs> BeaconFound = delegate { };
 
         public FindSpecificBeacon(Context context) : base(context)
         {
-            BeaconManager.SetRangingListener(this);
+			BeaconManager.SetBeaconRangingListener(this);
         }
 
-        public void OnBeaconsDiscovered(Region region, IList<Beacon> beacons)
+		public void OnBeaconsDiscovered(BeaconRegion region, IList<Beacon> beacons)
         {
             Log.Debug(Tag, "Found {0} beacons", beacons.Count);
             Beacon foundBeacon = (from b in beacons
@@ -58,7 +60,7 @@ namespace Estimotes.Droid
             }
         }
 
-        public void LookForBeacon(Region region, Beacon beacon)
+		public void LookForBeacon(BeaconRegion region, Beacon beacon)
         {
             _beacon = beacon;
             _region = region;

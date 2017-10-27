@@ -37,6 +37,8 @@ Task ("externals")
 		CreateDirectory ("./externals/");
 		
 	DownloadFile (ANDROID_URL, "./externals/" + ANDROID_FILE);
+
+    StartProcess ("/usr/bin/zip", "-d ./externals/firebase-dispatcher.aar annotations.zip");
 });
 
 Task ("clean").IsDependentOn ("clean-base").Does (() => 

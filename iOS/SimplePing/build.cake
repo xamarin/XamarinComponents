@@ -10,6 +10,7 @@ var buildSpec = new BuildSpec () {
 			OutputFiles = new [] {
 				new OutputFileCopy { FromFile = "./source/Xamarin.SimplePing.iOS/bin/Release/Xamarin.SimplePing.iOS.dll" },
 				new OutputFileCopy { FromFile = "./source/Xamarin.SimplePing.Mac/bin/Release/Xamarin.SimplePing.Mac.dll" },
+				new OutputFileCopy { FromFile = "./source/Xamarin.SimplePing.tvOS/bin/Release/Xamarin.SimplePing.tvOS.dll" },
 			}
 		},
 	},
@@ -17,6 +18,7 @@ var buildSpec = new BuildSpec () {
 	Samples = new [] {
 		new IOSSolutionBuilder { SolutionPath = "./samples/SimplePingSample.iOS/SimplePingSample.iOS.sln" },
 		new IOSSolutionBuilder { SolutionPath = "./samples/SimplePingSample.Mac/SimplePingSample.Mac.sln", Platform = "x64" },
+		new IOSSolutionBuilder { SolutionPath = "./samples/SimplePingSample.tvOS/SimplePingSample.tvOS.sln" },
 	},
 
 	NuGets = new [] {
@@ -39,24 +41,22 @@ Task ("externals")
 	EnsureDirectoryExists ("./externals/");
 
 	// iOS
-	BuildXCodeFatLibrary (
+	BuildXCodeFatLibrary_iOS (
 		xcodeProject: "./SimplePing.xcodeproj",
 		target: "SimplePing",
 		workingDirectory: "./externals/Xamarin.SimplePing/");
 
 	// macOS
-	if (!FileExists ("./externals/Xamarin.SimplePing/SimplePingMac.dylib")) {
-		XCodeBuild (new XCodeBuildSettings {
-			Project = "./externals/Xamarin.SimplePing/SimplePing.xcodeproj",
-			Target = "SimplePingMac",
-			Sdk = "macosx",
-			Arch = "x86_64",
-			Configuration = "Release",
-		});
-		CopyFile (
-			"./externals/Xamarin.SimplePing/build/Release/SimplePingMac.dylib",
-			"./externals/Xamarin.SimplePing/SimplePingMac.dylib");
-	}
+	BuildXCodeFatLibrary_macOS (
+		xcodeProject: "./SimplePing.xcodeproj",
+		target: "SimplePingMac",
+		workingDirectory: "./externals/Xamarin.SimplePing/");
+
+	// tvOS
+	BuildXCodeFatLibrary_tvOS (
+		xcodeProject: "./SimplePing.xcodeproj",
+		target: "SimplePingTV",
+		workingDirectory: "./externals/Xamarin.SimplePing/");
 });
 
 Task ("clean")

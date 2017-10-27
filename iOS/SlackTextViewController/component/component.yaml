@@ -1,4 +1,4 @@
-version: "1.9.5"
+version: "1.9.6"
 name: SlackTextViewController
 id: SlackTextViewController
 publisher: Xamarin Inc
@@ -13,7 +13,7 @@ no_build: true
 is_shell: true
 local-nuget-repo: ../output
 packages:
-  ios-unified: Xamarin.SlackTextViewController, Version=1.9.5
+  ios-unified: Xamarin.SlackTextViewController, Version=1.9.6
 libraries:
   ios-unified: ../output/unified/SlackTextViewController.dll
 
