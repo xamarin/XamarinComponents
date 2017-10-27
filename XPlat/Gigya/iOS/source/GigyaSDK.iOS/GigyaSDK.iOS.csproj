@@ -42,11 +42,8 @@
     <ObjcBindingCoreSource Include="Structs.cs" />
   </ItemGroup>
   <ItemGroup>
-    <NativeReference Include="..\..\..\externals\ios\GigyaSDK">
-      <Kind>Static</Kind>
-      <ForceLoad>True</ForceLoad>
-      <Frameworks>Social Security CoreGraphics</Frameworks>
-      <LinkerFlags>-ObjC</LinkerFlags>
+    <NativeReference Include="..\..\..\externals\ios\sdk\GigyaSDK.framework">
+      <Kind>Framework</Kind>
     </NativeReference>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.ObjCBinding.CSharp.targets" />
