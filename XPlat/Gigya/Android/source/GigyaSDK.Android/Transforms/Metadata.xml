@@ -1,7 +1,5 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <metadata>
-	<!-- Remove method that is not needed as the base class has it -->
-	<remove-node path="/api/package[@name='com.gigya.socialize.android.ui']/class[@name='HostActivity']/method[@name='onRequestPermissionsResult']" />
 	<!-- namespaces -->
 	<attr path="/api/package[@name='com.gigya.socialize']" name="managedName">GigyaSDK.Socialize</attr>
 	<attr path="/api/package[@name='com.gigya.socialize.android']" name="managedName">GigyaSDK.Socialize.Android</attr>

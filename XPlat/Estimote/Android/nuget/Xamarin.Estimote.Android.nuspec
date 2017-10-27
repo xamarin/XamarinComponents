@@ -6,15 +6,16 @@
         <title>Estimote SDK for Xamarin.Android</title>
         <authors>Xamarin</authors>
         <owners>Xamarin</owners>
-        <licenseUrl>https://github.com/xamarin/XamarinComponents/blob/master/XPlat/Estimote/Android/component/License.md</licenseUrl>
+        <licenseUrl>https://github.com/xamarin/XamarinComponents/blob/master/XPlat/Estimote/Android/License.md</licenseUrl>
         <requireLicenseAcceptance>false</requireLicenseAcceptance>
         <description>Estimote SDK for Xamarin.Android to actively scan for Bluetooth Beacons, Nearables, and Eddystones.</description>
         <copyright>Copyright 2016 Xamarin</copyright>
         <language>en-US</language>
-        <iconUrl>https://xamarin-component-icons.s3.amazonaws.com/Xamarin.Estimote.png</iconUrl>
+        <iconUrl>https://github.com/xamarin/XamarinComponents/raw/master/XPlat/Estimote/Android/component/icons/estimotesdk_128x128.png</iconUrl>
         <tags>Xamarin Xamarin.Android Estimote</tags>
     </metadata>
     <files>
-        <file src="output/Xamarin.Estimote.Android.dll" target="lib/MonoAndroid43" />
+        <file src="output/Xamarin.Estimote.Android.dll" target="lib/MonoAndroid50" />
+        <file src="External-Dependency-Info.txt" target="THIRD-PARTY-NOTICES.txt" />
     </files>
 </package>

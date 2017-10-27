@@ -48,8 +48,8 @@ namespace SlackHQ
 		string WordAt (NSRange range, ref NSRange rangeInText);
 	}
 
-	// @interface SLKTextInputbar : UIToolbar
-	[BaseType (typeof(UIToolbar), Name = "SLKTextInputbar")]
+	// @interface SLKTextInputbar : UIView
+	[BaseType (typeof(UIView), Name = "SLKTextInputbar")]
 	interface SlackTextInputbar
 	{
 		// extern NSString *const SLKTextInputbarDidMoveNotification __attribute__((visibility("default")));
@@ -58,11 +58,15 @@ namespace SlackHQ
 		NSString DidMoveNotification { get; }
 
 
-		// @property (nonatomic, strong) SLKTextView * textView;
+		// @property (nonatomic, readonly, strong) SLKTextView * textView;
 		[Export ("textView", ArgumentSemantic.Strong)]
-		SlackTextView TextView { get; set; }
+		SlackTextView TextView { get; }
 
-		// @property (nonatomic, strong) SLKInputAccessoryView * inputAccessoryView;
+		// @property (nonatomic, readonly, strong) UIView *contentView;
+		[Export ("contentView", ArgumentSemantic.Strong)]
+		UIView ContentView { get; }
+
+		// @property (nonatomic, readonly, strong) SLKInputAccessoryView * inputAccessoryView;
 		[Export ("inputAccessoryView", ArgumentSemantic.Strong)]
 		SlackInputAccessoryView SlackInputAccessoryView { get; }
 
@@ -223,6 +227,10 @@ namespace SlackHQ
 		// @property (readwrite, nonatomic) NSInteger placeholderNumberOfLines;
 		[Export ("placeholderNumberOfLines")]
 		nint PlaceholderNumberOfLines { get; set; }
+
+		// @property (nonatomic, copy, null_resettable) UIFont *placeholderFont;
+		[NullAllowed, Export ("placeholderFont")]
+		UIFont PlaceholderFont { get; set; }
 
 		// @property (readwrite, nonatomic) NSUInteger maxNumberOfLines;
 		[Export ("maxNumberOfLines")]
@@ -620,17 +628,17 @@ namespace SlackHQ
 		[Export ("autoCompleting")]
 		bool AutoCompleting { [Bind ("isAutoCompleting")] get; }
 
-		// @property (readonly, copy, nonatomic) NSString * foundPrefix;
+		// @property (copy, nonatomic) NSString * foundPrefix;
 		[NullAllowed, Export ("foundPrefix")]
-		string FoundPrefix { get; }
+		string FoundPrefix { get; set; }
 
-		// @property (readonly, nonatomic) NSRange foundPrefixRange;
+		// @property (nonatomic) NSRange foundPrefixRange;
 		[Export ("foundPrefixRange")]
-		NSRange FoundPrefixRange { get; }
+		NSRange FoundPrefixRange { get; set; }
 
-		// @property (readonly, copy, nonatomic) NSString * foundWord;
+		// @property (copy, nonatomic) NSString * foundWord;
 		[NullAllowed, Export ("foundWord")]
-		string FoundWord { get; }
+		string FoundWord { get; set; }
 
 		// @property (readonly, copy, nonatomic) NSArray * registeredPrefixes;
 		[Export ("registeredPrefixes", ArgumentSemantic.Copy)]
@@ -640,10 +648,13 @@ namespace SlackHQ
 		[Export ("registerPrefixesForAutoCompletion:")]
 		void RegisterPrefixesForAutoCompletion ([NullAllowed] string[] prefixes);
 
-		// -(BOOL)shouldProcessTextForAutoCompletion:(NSString * _Nonnull)text __attribute__((objc_requires_super));
-		[Export ("shouldProcessTextForAutoCompletion:")]
-//		[RequiresSuper]
-		bool ShouldProcessTextForAutoCompletion (string text);
+		// - (BOOL)shouldProcessTextForAutoCompletion;
+		[Export ("shouldProcessTextForAutoCompletion")]
+		bool ShouldProcessTextForAutoCompletion { get; }
+
+		// - (BOOL)shouldDisableTypingSuggestionForAutoCompletion;
+		[Export ("shouldDisableTypingSuggestionForAutoCompletion")]
+		bool ShouldDisableTypingSuggestionForAutoCompletion { get; }
 
 		// -(void)didChangeAutoCompletionPrefix:(NSString *)prefix andWord:(NSString *)word;
 		[Export ("didChangeAutoCompletionPrefix:andWord:")]
