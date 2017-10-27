@@ -1,0 +1,76 @@
+﻿<metadata>
+	<!--
+  This sample removes the class: android.support.v4.content.AsyncTaskLoader.LoadTask:
+  <remove-node path="/api/package[@name='android.support.v4.content']/class[@name='AsyncTaskLoader.LoadTask']" />
+  
+  This sample removes the method: android.support.v4.content.CursorLoader.loadInBackground:
+  <remove-node path="/api/package[@name='android.support.v4.content']/class[@name='CursorLoader']/method[@name='loadInBackground']" />
+  -->
+
+<!--  <attr path="/api/package[@name='com.google.android.gms.appstate']" name="managedName">Android.Gms.AppStates</attr>-->
+
+<!-- Change Package name -->
+  <attr path="/api/package[@name='com.dropbox.client2']" name="managedName">Dropbox.CoreApi.Android</attr>
+  <attr path="/api/package[@name='com.dropbox.client2.android']" name="managedName">Dropbox.CoreApi.Android</attr>
+  <attr path="/api/package[@name='com.dropbox.client2.exception']" name="managedName">Dropbox.CoreApi.Android.Exception</attr>
+  <attr path="/api/package[@name='com.dropbox.client2.jsonextract']" name="managedName">Dropbox.CoreApi.Android.Json</attr>
+  <attr path="/api/package[@name='com.dropbox.client2.session']" name="managedName">Dropbox.CoreApi.Android.Session</attr>
+  <attr path="/api/package[@name='org.json.simple']" name="managedName">Dropbox.CoreApi.Android.Json.Simple</attr>
+  <attr path="/api/package[@name='org.json.simple.parser']" name="managedName">Dropbox.CoreApi.Android.Json.Simple.Parser</attr>
+
+<!-- Fix names -->
+  <attr path="/api/package[@name='com.dropbox.client2.exception']/class[@name='DropboxServerException']/field[@name='_200_OK']" name="managedName">OK</attr>
+  <attr path="/api/package[@name='com.dropbox.client2.exception']/class[@name='DropboxServerException']/field[@name='_206_PARTIAL_CONTENT']" name="managedName">PartialContent</attr>
+  <attr path="/api/package[@name='com.dropbox.client2.exception']/class[@name='DropboxServerException']/field[@name='_302_FOUND']" name="managedName">Found</attr>
+  <attr path="/api/package[@name='com.dropbox.client2.exception']/class[@name='DropboxServerException']/field[@name='_304_NOT_MODIFIED']" name="managedName">Modified</attr>
+  <attr path="/api/package[@name='com.dropbox.client2.exception']/class[@name='DropboxServerException']/field[@name='_400_BAD_REQUEST']" name="managedName">BadRequest</attr>
+  <attr path="/api/package[@name='com.dropbox.client2.exception']/class[@name='DropboxServerException']/field[@name='_401_UNAUTHORIZED']" name="managedName">Unauthorized</attr>
+  <attr path="/api/package[@name='com.dropbox.client2.exception']/class[@name='DropboxServerException']/field[@name='_403_FORBIDDEN']" name="managedName">Forbidden</attr>
+  <attr path="/api/package[@name='com.dropbox.client2.exception']/class[@name='DropboxServerException']/field[@name='_404_NOT_FOUND']" name="managedName">NotFound</attr>
+  <attr path="/api/package[@name='com.dropbox.client2.exception']/class[@name='DropboxServerException']/field[@name='_405_METHOD_NOT_ALLOWED']" name="managedName">MethodNotAllowed</attr>
+  <attr path="/api/package[@name='com.dropbox.client2.exception']/class[@name='DropboxServerException']/field[@name='_406_NOT_ACCEPTABLE']" name="managedName">NotAcceptable</attr>
+  <attr path="/api/package[@name='com.dropbox.client2.exception']/class[@name='DropboxServerException']/field[@name='_409_CONFLICT']" name="managedName">Conflict</attr>
+  <attr path="/api/package[@name='com.dropbox.client2.exception']/class[@name='DropboxServerException']/field[@name='_411_LENGTH_REQUIRED']" name="managedName">LengthRequired</attr>
+  <attr path="/api/package[@name='com.dropbox.client2.exception']/class[@name='DropboxServerException']/field[@name='_415_UNSUPPORTED_MEDIA']" name="managedName">UnsupportedMedia</attr>
+  <attr path="/api/package[@name='com.dropbox.client2.exception']/class[@name='DropboxServerException']/field[@name='_500_INTERNAL_SERVER_ERROR']" name="managedName">InternalServerError</attr>
+  <attr path="/api/package[@name='com.dropbox.client2.exception']/class[@name='DropboxServerException']/field[@name='_501_NOT_IMPLEMENTED']" name="managedName">NotImplemented</attr>
+  <attr path="/api/package[@name='com.dropbox.client2.exception']/class[@name='DropboxServerException']/field[@name='_502_BAD_GATEWAY']" name="managedName">BadGateway</attr>
+  <attr path="/api/package[@name='com.dropbox.client2.exception']/class[@name='DropboxServerException']/field[@name='_503_SERVICE_UNAVAILABLE']" name="managedName">ServiceUnavailable</attr>
+  <attr path="/api/package[@name='com.dropbox.client2.exception']/class[@name='DropboxServerException']/field[@name='_507_INSUFFICIENT_STORAGE']" name="managedName">InsufficientStorage</attr>
+  <attr path="/api/package[@name='com.dropbox.client2.exception']/class[@name='DropboxServerException']/field[@name='error']" name="managedName">ErrorCode</attr>
+  <attr path="/api/package[@name='com.dropbox.client2.exception']/class[@name='DropboxServerException.Error']/field[@name='error']" name="managedName">ErrorMessage</attr>
+
+  <attr path="/api/package[@name='com.dropbox.client2']/class[@name='DropboxAPI']" name="managedName">DropboxApi</attr>
+
+  <attr path="/api/package[@name='com.dropbox.client2']/class[@name='DropboxAPI.ThumbSize']/field[@name='ICON_32x32']" name="managedName">Icon32x32</attr>
+  <attr path="/api/package[@name='com.dropbox.client2']/class[@name='DropboxAPI.ThumbSize']/field[@name='ICON_64x64']" name="managedName">Icon64x64</attr>
+  <attr path="/api/package[@name='com.dropbox.client2']/class[@name='DropboxAPI.ThumbSize']/field[@name='ICON_128x128']" name="managedName">Icon128x128</attr>
+  <attr path="/api/package[@name='com.dropbox.client2']/class[@name='DropboxAPI.ThumbSize']/field[@name='ICON_256x256']" name="managedName">Icon256x256</attr>
+  <attr path="/api/package[@name='com.dropbox.client2']/class[@name='DropboxAPI.ThumbSize']/field[@name='BESTFIT_320x240']" name="managedName">BestFit320x240</attr>
+  <attr path="/api/package[@name='com.dropbox.client2']/class[@name='DropboxAPI.ThumbSize']/field[@name='BESTFIT_480x320']" name="managedName">BestFit480x320</attr>
+  <attr path="/api/package[@name='com.dropbox.client2']/class[@name='DropboxAPI.ThumbSize']/field[@name='BESTFIT_640x480']" name="managedName">BestFit640x480</attr>
+  <attr path="/api/package[@name='com.dropbox.client2']/class[@name='DropboxAPI.ThumbSize']/field[@name='BESTFIT_960x640']" name="managedName">BestFit960x640</attr>
+  <attr path="/api/package[@name='com.dropbox.client2']/class[@name='DropboxAPI.ThumbSize']/field[@name='BESTFIT_1024x768']" name="managedName">BestFit1024x768</attr>
+
+<!-- Visibility Fix -->
+  <attr path="/api/package[@name='com.dropbox.client2.jsonextract']/class[@name='JsonBase']" name="visibility">public</attr>
+  <attr path="/api/package[@name='com.dropbox.client2']/class[@name='DropboxAPI.ChunkedUploadRequest']" name="visibility">public</attr>
+
+  <remove-node path="/api/package[@name='com.dropbox.client2.jsonextract']/class[@name='JsonExtractor']/method[@name='extract']"/>
+
+<!-- Interface Normalization -->
+  <attr path="/api/package[@name='com.dropbox.client2.android']/interface[@name='AuthActivity.SecurityProvider']" name="managedName">ISecurityProvider</attr>
+  <attr path="/api/package[@name='com.dropbox.client2.session']/interface[@name='Session']" name="managedName">ISession</attr>
+  <attr path="/api/package[@name='com.dropbox.client2']/interface[@name='DropboxAPI.UploadRequest']" name="managedName">IUploadRequest</attr>
+
+<!-- Fix Return type -->
+  <attr path="/api/package[@name='com.dropbox.client2.jsonextract']/class[@name='JsonList.WrapperIterator']/method[@name='next']" name="managedReturn">Java.Lang.Object</attr>
+  <attr path="/api/package[@name='com.dropbox.client2.jsonextract']/class[@name='JsonMap.WrapperIterator']/method[@name='next']" name="managedReturn">Java.Lang.Object</attr>
+  <attr path="/api/package[@name='com.dropbox.client2.jsonextract']/class[@name='JsonMap.WrappedEntry']/method[@name='getKey']" name="managedReturn">Java.Lang.Object</attr>
+  <attr path="/api/package[@name='com.dropbox.client2.jsonextract']/class[@name='JsonMap.WrappedEntry']/method[@name='getValue']" name="managedReturn">Java.Lang.Object</attr>
+  <attr path="/api/package[@name='com.dropbox.client2']/class[@name='DropboxAPI']/method[@name='getSession' and count(parameter)=0]" name="return">com.dropbox.client2.session.Session</attr>
+
+<!-- Remove -->
+  <remove-node path="/api/package[@name='com.dropbox.client2']/class[@name='DropboxAPI']/field[@name='session']"/>
+  
+</metadata>

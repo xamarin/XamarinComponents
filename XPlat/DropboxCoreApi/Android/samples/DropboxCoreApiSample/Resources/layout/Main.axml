@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent">
+    <Button
+        android:id="@+id/btnLink"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/link_button" />
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="24.9dp"
+        android:id="@+id/space1" />
+    <Button
+        android:text="@string/clear_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/btnClear" />
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="24.3dp"
+        android:id="@+id/space2" />
+    <TextView
+        android:text="@string/image_list"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/textView1"
+        android:gravity="center" />
+    <ListView
+        android:minWidth="25px"
+        android:minHeight="25px"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/lstImagesName" />
+</LinearLayout>
