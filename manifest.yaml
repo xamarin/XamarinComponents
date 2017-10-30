@@ -420,6 +420,10 @@
   BuildScript: ./XPlat/Shopify/iOS/build.cake
   TriggerPaths: [ XPlat/Shopify/iOS ]
   MacBuildTargets: [ samples, component ]
+- Name: StripeiOSBindings
+  BuildScript: ./XPlat/Stripe/bindings/iOS/build.cake
+  TriggerPaths: [ XPlat/Stripe/bindings/iOS ]
+  MacBuildTargets: [ samples ]
 
 #######################################################
 # Mac
