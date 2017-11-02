@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
+    <metadata>
+        <id>Xamarin.Stripe.Android.Pay</id>
+        <version>$version$</version>
+        <title>Stripe for and Android Pay Xamarin.Android</title>
+        <authors>Xamarin</authors>
+        <owners>Xamarin</owners>
+        <projectUrl>https://github.com/xamarin/XamarinComponents/tree/master/XPlat/Stripe/bindings/Android</projectUrl>
+        <licenseUrl>https://github.com/xamarin/XamarinComponents/blob/master/XPlat/Stripe/bindings/Android/License.md</licenseUrl>
+        <requireLicenseAcceptance>false</requireLicenseAcceptance>
+        <description>Allow customers to securely make payments using Android Pay through Stripe.</description>
+        <copyright>Copyright 2017 Xamarin</copyright>
+        <language>en-US</language>
+        <iconUrl>https://github.com/xamarin/XamarinComponents/raw/master/XPlat/Stripe/icons/Stripe-200.png</iconUrl>
+        <tags>Xamarin Xamarin.Android Stripe</tags>
+        <dependencies>
+            <group targetFramework="MonoAndroid80">
+                <dependency id="Xamarin.Android.Support.Annotations" version="26.1.0.1" />
+                <dependency id="Xamarin.Android.Support.v7.AppCompat" version="26.1.0.1" />
+                <dependency id="Xamarin.Android.Support.v4" version="26.1.0.1" />
+                <dependency id="Xamarin.GooglePlayServices.Wallet" version="42.1021.1" />
+            </group>
+        </dependencies>
+    </metadata>
+    <files>
+        <file src="output/Stripe.Android.Pay.dll" target="lib/MonoAndroid80" />
+        <file src="External-Dependency-Info.txt" target="THIRD-PARTY-NOTICES.txt" />
+    </files>
+</package>
