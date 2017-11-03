@@ -1,5 +1,35 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <metadata>
+	<attr path="/api/package[@name='com.bumptech.glide']" name="managedName">Bumptech.Glide</attr>
+	<attr path="/api/package[@name='com.bumptech.glide.disklrucache']" name="managedName">Bumptech.Glide.Disklrucache</attr>
+	<attr path="/api/package[@name='com.bumptech.glide.gifdecoder']" name="managedName">Bumptech.Glide.Gifdecoder</attr>
+	<attr path="/api/package[@name='com.bumptech.glide.load']" name="managedName">Bumptech.Glide.Load</attr>
+	<attr path="/api/package[@name='com.bumptech.glide.load.data']" name="managedName">Bumptech.Glide.Load.Data</attr>
+	<attr path="/api/package[@name='com.bumptech.glide.load.data.mediastore']" name="managedName">Bumptech.Glide.Load.Data.Mediastore</attr>
+	<attr path="/api/package[@name='com.bumptech.glide.load.engine']" name="managedName">Bumptech.Glide.Load.Engine</attr>
+	<attr path="/api/package[@name='com.bumptech.glide.load.engine.bitmap_recycle']" name="managedName">Bumptech.Glide.Load.Engine.Bitmap_recycle</attr>
+	<attr path="/api/package[@name='com.bumptech.glide.load.engine.cache']" name="managedName">Bumptech.Glide.Load.Engine.Cache</attr>
+	<attr path="/api/package[@name='com.bumptech.glide.load.engine.executor']" name="managedName">Bumptech.Glide.Load.Engine.Executor</attr>
+	<attr path="/api/package[@name='com.bumptech.glide.load.engine.prefill']" name="managedName">Bumptech.Glide.Load.Engine.Prefill</attr>
+	<attr path="/api/package[@name='com.bumptech.glide.load.model']" name="managedName">Bumptech.Glide.Load.Model</attr>
+	<attr path="/api/package[@name='com.bumptech.glide.load.model.stream']" name="managedName">Bumptech.Glide.Load.Model.Stream</attr>
+	<attr path="/api/package[@name='com.bumptech.glide.load.resource']" name="managedName">Bumptech.Glide.Load.Resource</attr>
+	<attr path="/api/package[@name='com.bumptech.glide.load.resource.bitmap']" name="managedName">Bumptech.Glide.Load.Resource.Bitmap</attr>
+	<attr path="/api/package[@name='com.bumptech.glide.load.resource.bytes']" name="managedName">Bumptech.Glide.Load.Resource.Bytes</attr>
+	<attr path="/api/package[@name='com.bumptech.glide.load.resource.drawable']" name="managedName">Bumptech.Glide.Load.Resource.Drawable</attr>
+	<attr path="/api/package[@name='com.bumptech.glide.load.resource.file']" name="managedName">Bumptech.Glide.Load.Resource.File</attr>
+	<attr path="/api/package[@name='com.bumptech.glide.load.resource.gif']" name="managedName">Bumptech.Glide.Load.Resource.Gif</attr>
+	<attr path="/api/package[@name='com.bumptech.glide.load.resource.transcode']" name="managedName">Bumptech.Glide.Load.Resource.Transcode</attr>
+	<attr path="/api/package[@name='com.bumptech.glide.manager']" name="managedName">Bumptech.Glide.Manager</attr>
+	<attr path="/api/package[@name='com.bumptech.glide.module']" name="managedName">Bumptech.Glide.Module</attr>
+	<attr path="/api/package[@name='com.bumptech.glide.provider']" name="managedName">Bumptech.Glide.Provider</attr>
+	<attr path="/api/package[@name='com.bumptech.glide.request']" name="managedName">Bumptech.Glide.Request</attr>
+	<attr path="/api/package[@name='com.bumptech.glide.request.target']" name="managedName">Bumptech.Glide.Request.Target</attr>
+	<attr path="/api/package[@name='com.bumptech.glide.request.transition']" name="managedName">Bumptech.Glide.Request.Transition</attr>
+	<attr path="/api/package[@name='com.bumptech.glide.signature']" name="managedName">Bumptech.Glide.Signature</attr>
+	<attr path="/api/package[@name='com.bumptech.glide.util']" name="managedName">Bumptech.Glide.Util</attr>
+	<attr path="/api/package[@name='com.bumptech.glide.util.pool']" name="managedName">Bumptech.Glide.Util.Pool</attr>
+	
 	<attr path="/api/package[@name='com.bumptech.glide.module']/interface[@name='AppliesOptions']" name="visibility">public</attr>
 	<attr path="/api/package[@name='com.bumptech.glide.module']/interface[@name='RegistersComponents']" name="visibility">public</attr>
 	<attr path="/api/package[@name='com.bumptech.glide.load.engine.bitmap_recycle']/interface[@name='LruPoolStrategy']" name="visibility">public</attr>
