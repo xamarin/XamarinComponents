@@ -56,7 +56,7 @@ var fetchers = new VersionFetcher[] {
     new CocoaPods ("RZTransitions", "1.2.1", "RZTransitions", OWNER_SA1),
     new CocoaPods ("SCCatWaitingHUD", "0.1.6", "SCCatWaitingHUD", OWNER_SA1),
     new CocoaPods ("SDWebImage", "3.7.5", "SDWebImage", OWNER_SA1),
-    new CocoaPods ("SlackTextViewController", "1.9.1", "SlackTextViewController", OWNER_SA1),
+    new CocoaPods ("SlackTextViewController", "1.9.6", "SlackTextViewController", OWNER_SA1),
     new CocoaPods ("TPKeyboardAvoiding", "1.2.11", "TPKeyboardAvoiding", OWNER_SA1),
     new CocoaPods ("ZipArchive", "1.4.0", "ZipArchive", OWNER_SA1),
     new CocoaPods ("iCarousel", "1.8.2", "iCarousel", OWNER_SA1),
