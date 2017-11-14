@@ -10,12 +10,13 @@
     <description>Xamarin.Android Helper classes for Xamarin.Dropbox.Api.Core</description>
     <copyright>Copyright © Xamarin. All Rights Reserved.</copyright>
     <licenseUrl>https://components.xamarin.com/license/dropboxapiv2</licenseUrl>
-    <iconUrl></iconUrl>
     <projectUrl>https://components.xamarin.com/dropboxapiv2</projectUrl>
+    <dependencies>
+        <group>
+    		<dependency id="Xamarin.Dropbox.Api.Core" version="4.5.3" />
+  		</group>
+    </dependencies>
   </metadata>
-  <group>
-    <dependency id="Xamarin.Dropbox.Api.Core" version="4.5.3" />
-  </group>
   <files>
     <file src="output/Xamarin.Dropbox.Api.Android.dll" target="lib/MonoAndroid43" />
   </files>

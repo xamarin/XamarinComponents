@@ -20,9 +20,9 @@ is_shell: true
 no_build: true
 packages:
   ios-unified:
-    - Xamarin.Dropbox.Api, Version=4.5.3.01
+    - Dropbox.Api, Version=4.5.3
   android:
-    - Xamarin.Dropbox.Api, Version=4.5.3.01
+    - Dropbox.Api, Version=4.5.3
 samples:
   - name: "Dropbox v2 Api SDK iOS Sample"
     path: ../samples/DropboxV2ApiSampleiOS/DropboxV2ApiSampleiOS.sln

@@ -23,28 +23,36 @@ namespace DropboxV2ApiSampleDroid
 			ListView.Adapter = new DropboxListAdapter(this, currentPath);
 			ListView.FastScrollEnabled = true;
 
-			if (DropBoxHelper.IsAuthenticated)
-			{
-				//already authenticated so no need to do anything at this point
-				await ((DropboxListAdapter)ListView.Adapter).LoadFolderAsync();
+            try
+            {
+                if (DropBoxHelper.IsAuthenticated)
+                {
+                    //already authenticated so no need to do anything at this point
+                    await ((DropboxListAdapter)ListView.Adapter).LoadFolderAsync();
 
-				//authenticated so refresh the adapter
-				((DropboxListAdapter)ListView.Adapter).NotifyDataSetChanged();
-			}
-			else
-			{
-                //setup a new dropbox helper and set a handler for after being authenticated
-				var authHelp = new DropBoxHelper(async () =>
-				{
-					await ((DropboxListAdapter)ListView.Adapter).LoadFolderAsync();
+                    //authenticated so refresh the adapter
+                    ((DropboxListAdapter)ListView.Adapter).NotifyDataSetChanged();
+                }
+                else
+                {
+                    //setup a new dropbox helper and set a handler for after being authenticated
+                    var authHelp = new DropBoxHelper(async () =>
+                    {
+                        await ((DropboxListAdapter)ListView.Adapter).LoadFolderAsync();
 
-					//authenticated so refresh the adapter
-					((DropboxListAdapter)ListView.Adapter).NotifyDataSetChanged();
-				});
+                        //authenticated so refresh the adapter
+                        ((DropboxListAdapter)ListView.Adapter).NotifyDataSetChanged();
+                    });
 
-                //show the authenticator
-				authHelp.PresentAuthController(this);
-			}
+                    //show the authenticator
+                    authHelp.PresentAuthController(this);
+                }
+            }
+            catch (System.Exception ex)
+            {
+
+            }
+
 
 		}
 

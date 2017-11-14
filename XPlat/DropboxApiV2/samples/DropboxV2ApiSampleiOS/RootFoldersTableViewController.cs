@@ -44,14 +44,23 @@ namespace DropboxV2ApiSampleiOS
 		{
 			base.ViewWillAppear(animated);
 
-			if (DropBoxHelper.IsAuthenticated)
-			{
-				await ReloadDataAsync();
-			}
-			else
-			{
-				Authenticate();
-			}
+            try
+            {
+                if (DropBoxHelper.IsAuthenticated)
+                {
+                    await ReloadDataAsync();
+                }
+                else
+                {
+                    Authenticate();
+                }
+            }
+            catch (Exception ex)
+            {
+                var _error = new UIAlertView("Error", ex.Message, null, "Ok", null);
+                _error.Show();
+            }
+
 		}
 
 		public void Authenticate()
