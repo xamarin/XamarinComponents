@@ -3,6 +3,7 @@ using System.Threading.Tasks;
 using DropboxV2ApiSampleiOS.Data;
 using DropboxV2ApiSampleiOS.DataSources;
 using UIKit;
+using Xamarin.Dropbox.Api.Core.Data;
 using Xamarin.Dropbox.Api.iOS;
 
 namespace DropboxV2ApiSampleiOS
@@ -46,6 +47,9 @@ namespace DropboxV2ApiSampleiOS
 
             try
             {
+                if (string.IsNullOrWhiteSpace(DropBoxConfig.Instance.ApiKey))
+                    throw new Exception("You must set the ApiKey");
+                
                 if (DropBoxHelper.IsAuthenticated)
                 {
                     await ReloadDataAsync();
