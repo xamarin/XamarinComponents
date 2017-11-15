@@ -4,6 +4,7 @@ using Android.OS;
 using Android.Widget;
 using DropboxV2ApiSampleDroid.Adapter;
 using Xamarin.Dropbox.Api.Android;
+using Xamarin.Dropbox.Api.Core.Data;
 using Xamarin.Dropbox.Api.Enums;
 
 namespace DropboxV2ApiSampleDroid
@@ -20,11 +21,14 @@ namespace DropboxV2ApiSampleDroid
 
             this.Title = currentPath;
 
-			ListView.Adapter = new DropboxListAdapter(this, currentPath);
-			ListView.FastScrollEnabled = true;
-
             try
             {
+                if (string.IsNullOrWhiteSpace((DropBoxConfig.Instance.ApiKey)))
+                    throw new System.Exception("You must enter an ApiKey");
+                
+			    ListView.Adapter = new DropboxListAdapter(this, currentPath);
+			    ListView.FastScrollEnabled = true;
+
                 if (DropBoxHelper.IsAuthenticated)
                 {
                     //already authenticated so no need to do anything at this point
@@ -50,7 +54,7 @@ namespace DropboxV2ApiSampleDroid
             }
             catch (System.Exception ex)
             {
-
+                ShowMessage("Error", ex.Message);
             }
 
 
@@ -70,5 +74,27 @@ namespace DropboxV2ApiSampleDroid
 			}
 
 		}
+
+        protected void ShowMessage(string title, string message, bool toast = false)
+        {
+            if (toast == true)
+            {
+                Toast.MakeText
+                        (
+                            this,
+                            message,
+                            ToastLength.Long
+                        ).Show();
+            }
+            else
+            {
+                var builder = new AlertDialog.Builder(this);
+                builder.SetTitle(title);
+                builder.SetMessage(message);
+                builder.SetPositiveButton("Ok", (o, e) => { });
+                builder.Create().Show();
+            }
+
+        }
 	}
 }

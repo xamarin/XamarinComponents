@@ -27,31 +27,42 @@ namespace DropboxV2ApiSampleDroid
             //you can access directly as well
             //DropBoxConfig.Instance.ApiKey = "";
 
-			ListView.Adapter = new DropboxListAdapter(this);
-            ListView.FastScrollEnabled = true;
+            try
+            {
+                if (string.IsNullOrWhiteSpace((DropBoxConfig.Instance.ApiKey)))
+                    throw new System.Exception("You must enter an ApiKey");
 
-			if (DropBoxHelper.IsAuthenticated)
-			{
-				//already authenticated so no need to do anything at this point
-				await((DropboxListAdapter)ListView.Adapter).LoadFolderAsync();
+                ListView.Adapter = new DropboxListAdapter(this);
+                ListView.FastScrollEnabled = true;
 
-				//authenticated so refresh the adapter
-				((DropboxListAdapter)ListView.Adapter).NotifyDataSetChanged();
-			}
-			else
-			{
-				//setup a new dropbox helper and set a handler for after being authenticated
-				var authHelp = new DropBoxHelper(async () =>
-				{
-                    //once authenticated load the folder contents
+                if (DropBoxHelper.IsAuthenticated)
+                {
+                    //already authenticated so no need to do anything at this point
                     await ((DropboxListAdapter)ListView.Adapter).LoadFolderAsync();
 
                     //authenticated so refresh the adapter
                     ((DropboxListAdapter)ListView.Adapter).NotifyDataSetChanged();
-				});
+                }
+                else
+                {
+                    //setup a new dropbox helper and set a handler for after being authenticated
+                    var authHelp = new DropBoxHelper(async () =>
+                    {
+                        //once authenticated load the folder contents
+                        await ((DropboxListAdapter)ListView.Adapter).LoadFolderAsync();
 
-				authHelp.PresentAuthController(this);
-			}
+                        //authenticated so refresh the adapter
+                        ((DropboxListAdapter)ListView.Adapter).NotifyDataSetChanged();
+                    });
+
+                    authHelp.PresentAuthController(this);
+                }
+            }
+            catch (System.Exception ex)
+            {
+                ShowMessage("Error", ex.Message);
+            }
+
 
 		}
 
@@ -66,6 +77,28 @@ namespace DropboxV2ApiSampleDroid
 				var activity2 = new Intent(this, typeof(DropBoxListActivity));
 				activity2.PutExtra("DBPath", ars.Path);
 				StartActivity(activity2);
+            }
+
+        }
+
+        protected void ShowMessage(string title, string message, bool toast = false)
+        {
+            if (toast == true)
+            {
+                Toast.MakeText
+                        (
+                            this,
+                            message,
+                            ToastLength.Long
+                        ).Show();
+            }
+            else
+            {
+                var builder = new AlertDialog.Builder(this);
+                builder.SetTitle(title);
+                builder.SetMessage(message);
+                builder.SetPositiveButton("Ok", (o, e) => { });
+                builder.Create().Show();
             }
 
         }
