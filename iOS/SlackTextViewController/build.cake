@@ -7,7 +7,7 @@ var IOS_PODS = new List<string> {
 	"platform :ios, '7.0'",
 	"install! 'cocoapods', :integrate_targets => false",
 	"target 'Xamarin' do",
-	"  pod 'SlackTextViewController', :git => 'https://github.com/slackhq/SlackTextViewController.git', :commit => '4c74cbab29408dda9af33633f86dcc983a3b5363'",
+	"  pod 'SlackTextViewController', '1.9.6'",
 	"end",
 };
 

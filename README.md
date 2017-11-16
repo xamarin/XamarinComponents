@@ -32,6 +32,7 @@ Browse through the most popular plugins out there today!
 |Bluetooth LE|Scan and connect to Bluetooth devices.|[NuGet](https://www.nuget.org/packages/Plugin.BluetoothLE/)|[GitHub](https://github.com/aritchie/bluetoothle)|[@allanritchie911](https://twitter.com/allanritchie911)|
 |Calendar|Query and modify device calendars|[NuGet](https://www.nuget.org/packages/CClarke.Plugin.Calendars)|[GitHub](https://github.com/TheAlmightyBob/Calendars/)|[Caleb Clarke](https://github.com/TheAlmightyBob)|
 |Compass|Access device compass heading.|[NuGet](https://www.nuget.org/packages/Plugin.Compass/)|[GitHub](https://github.com/JarleySoft/Xamarin.Plugins/tree/master/Compass)|[@cbartonnh](http://www.twitter.com/cbartonnh) & [@JamesMontemagno](http://www.twitter.com/jamesmontemagno)|
+|Config|Define the settings of the application for each environment in which it will run.|[NuGet](https://www.nuget.org/packages/Xamarin.ConfigPlugin/)|[GitHub](https://github.com/AgustinBonilla/ConfigPlugin)|[@abonilla93](https://twitter.com/abonilla93)|
 |Connectivity|Get network connectivity info such as type and if connection is available.|[NuGet](https://www.nuget.org/packages/Xam.Plugin.Connectivity/)|[GitHub](https://github.com/jamesmontemagno/ConnectivityPlugin)|[@JamesMontemagno](http://www.twitter.com/jamesmontemagno)|
 |Cryptography|PCL Crypto provides a consistent, portable set of crypto APIs.|[NuGet](https://www.nuget.org/packages/pclcrypto)|[GitHub](https://github.com/aarnott/pclcrypto)|[@aarnott](https://twitter.com/aarnott)|
 |Device Info|Properties about device such as OS, Model, and Id.|[NuGet](https://www.nuget.org/packages/Xam.Plugin.DeviceInfo/)|[GitHub](https://github.com/jamesmontemagno/DeviceInfoPlugin)|[@JamesMontemagno](http://www.twitter.com/jamesmontemagno)|
@@ -60,13 +61,14 @@ Browse through the most popular plugins out there today!
 |Permissions|Easily check and request runtime permissions.|[NuGet](http://www.nuget.org/packages/Plugin.Permissions)|[GitHub](https://github.com/jamesmontemagno/PermissionsPlugin)|[@JamesMontemagno](http://www.twitter.com/jamesmontemagno)|
 |Persistent key-value store|Akavache is an asynchronous, persistent (i.e. writes to disk) key-value store.|[NuGet](https://www.nuget.org/packages/akavache/)|[GitHub](https://github.com/akavache/Akavache)|[@paulcbetts](http://www.twitter.com/paulcbetts)|
 |Portable Razor|Lightweight implemenation of ASP.NET MVC APIs for mobile.|[NuGet](https://www.nuget.org/packages/PortableRazor/)|[GitHub](https://github.com/xamarin/PortableRazor)|[@JosephHill](http://www.twitter.com/josephhill)|
-|Push Notifications|Cross platform iOS and Android Push Notifications.|[NuGet](https://www.nuget.org/packages/Xam.Plugin.PushNotification/)|[GitHub](https://github.com/rdelrosario/xamarin-plugins)|[@rdelrosario](https://github.com/rdelrosario)|
+|Push Notifications|Cross platform iOS and Android Push Notifications.|[NuGet](https://www.nuget.org/packages/Plugin.PushNotification)|[GitHub](https://github.com/CrossGeeks/PushNotificationPlugin)|[@rdelrosario](https://github.com/rdelrosario)|
 |Secure Storage|Provides secure storage for key value pairs Data|[NuGet](http://www.nuget.org/packages/sameerIOTApps.Plugin.SecureStorage/)|[GitHub](https://github.com/sameerkapps/SecureStorage)|[@sameerIOTApps](https://twitter.com/sameerIOTApps)|
 |Settings|Simple & Consistent cross platform settings API.|[NuGet](https://www.nuget.org/packages/Xam.Plugins.Settings/)|[GitHub](https://github.com/jamesmontemagno/SettingsPlugin)|[@JamesMontemagno](http://www.twitter.com/jamesmontemagno)|
 |Share|Easily share text, links, or open a browser.|[NuGet](https://www.nuget.org/packages/Plugin.Share/)|[GitHub](https://github.com/jguertl/SharePlugin)|[@JamesMontemagno](http://www.twitter.com/jamesmontemagno) & [@Jakob Gürtl](https://github.com/jguertl)|
 |Sensors|Device sensors - accelerometer, ambient light, barometer, compass, device orientation, gyroscope, magnetometer, pedometer, and proximity|[NuGet](https://www.nuget.org/packages/Plugin.Sensors)|[GitHub](https://github.com/aritchie/sensors)|[@allanritchie911](https://twitter.com/allanritchie911)|
 |Sockets|TCP & UDP Listeners and Clients + UDP multicast.|[NuGet](https://www.nuget.org/packages/rda.SocketsForPCL)|[GitHub](https://github.com/rdavisau/sockets-for-pcl)|[@rdavis_au](http://www.twitter.com/rdavis_au)|
 |Speech Recognition|Speech to Text.|[NuGet](https://www.nuget.org/packages/Plugin.SpeechRecognition/)|[GitHub](https://github.com/aritchie/speechrecognition)|[@allanritchie911](https://twitter.com/allanritchie911)|
+|Simple Audio Player|Play multiple MP3 or wave files from a shared library.|[NuGet](https://www.nuget.org/packages/Xam.Plugin.SimpleAudioPlayer/)|[GitHub](https://github.com/adrianstevens/Xamarin-Plugins/tree/master/SimpleAudioPlayer)|[@adrianstevens](https://github.com/adrianstevens)|
 |Text To Speech|Talk back text from shared code.|[NuGet](https://www.nuget.org/packages/Xam.Plugins.TextToSpeech/)|[GitHub](https://github.com/jamesmontemagno/TextToSpeechPlugin)|[@JamesMontemagno](http://www.twitter.com/jamesmontemagno)|
 |Toast|A simple way of showing toast/pop-up notifications.|[NuGet](https://www.nuget.org/packages/Toasts.Forms.Plugin)|[GitHub](https://github.com/EgorBo/Toasts.Forms.Plugin)|[@AdamPed](https://github.com/AdamPed) & [@EgorBo](https://github.com/EgorBo)|
 |User Dialogs|Message box style dialogs.|[NuGet](https://www.nuget.org/packages/Acr.UserDialogs/)|[GitHub](https://github.com/aritchie/userdialogs)|[@allanritchie911](https://twitter.com/allanritchie911)|
@@ -89,6 +91,7 @@ If you are looking to create a plugin be sure to browse through NuGet first and 
 * Namespace: Plugin.FEATURE_NAME
 * App-store friendly OSS license (we like MIT)
 * No dependency on Xamarin.Forms
+* Have a list of supported and unsupported OSs in its GitHub wiki
 
 #### Turn into a Component
 Learn how to turn your NuGet based Plugin for Xamarin into a Component that can be featured in the Xamarin Component Store with our [component documentation](http://developer.xamarin.com/guides/cross-platform/advanced/submitting_components/components_and_nuget/).
