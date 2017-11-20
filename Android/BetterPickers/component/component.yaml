@@ -9,6 +9,10 @@ icons:
   - ./icons/betterpickers_128x128.png
   - ./icons/betterpickers_512x512.png
 
+license: ../LICENSE.md
+details: Details.md
+getting-started: GettingStarted.md
+
 libraries:
   android: 
    - ../output/BetterPickers.dll
