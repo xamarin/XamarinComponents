@@ -31,7 +31,7 @@ namespace BeaconExample
 			enterSwitch.ValueChanged += HandleValueChanged;
 			exitSwitch.ValueChanged += HandleValueChanged;
 
-			beaconManager.StartMonitoringForRegion (beaconRegion);
+			beaconManager.StartMonitoring (beaconRegion);
 
             beaconManager.ExitedRegion += (sender, e) => 
             {
@@ -50,10 +50,10 @@ namespace BeaconExample
 
 		void HandleValueChanged (object sender, EventArgs e)
 		{
-			beaconManager.StopMonitoringForRegion(beaconRegion);
+			beaconManager.StopMonitoring(beaconRegion);
 			beaconRegion.NotifyOnEntry = enterSwitch.On;
 			beaconRegion.NotifyOnExit = exitSwitch.On;
-			beaconManager.StartMonitoringForRegion (beaconRegion);
+			beaconManager.StartMonitoring (beaconRegion);
 		}
 	}
 }

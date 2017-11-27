@@ -37,7 +37,7 @@ namespace BeaconExample
 			beaconManager = new BeaconManager ();
 			beaconRegion = new CLBeaconRegion (beacon.ProximityUuid,ushort.Parse( beacon.Major.ToString()), ushort.Parse(beacon.Minor.ToString()), "RegionIdentifier");
 
-			beaconManager.StartRangingBeaconsInRegion (beaconRegion);
+			beaconManager.StartRangingBeacons (beaconRegion);
 
             beaconManager.RangedBeacons += (sender, e) => 
             {
@@ -79,7 +79,7 @@ namespace BeaconExample
 
 		public override void ViewDidDisappear (bool animated)
 		{
-			beaconManager.StopRangingBeaconsInRegion (beaconRegion);
+			beaconManager.StopRangingBeacons (beaconRegion);
 			base.ViewDidDisappear (animated);
 		}
 	}

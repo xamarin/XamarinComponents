@@ -90,8 +90,8 @@ namespace NearableMonitoringExample
 
 			UpdateStats ();
 
-			nearableManager.StartMonitoringForIdentifier (Nearable.Identifier);
-			nearableManager.StartRangingForIdentifier (Nearable.Identifier);
+			nearableManager.StartMonitoring (Nearable.Identifier);
+			nearableManager.StartRanging (Nearable.Identifier);
 
 			switch (Nearable.Color) {
 			case Color.BlueberryPie:
