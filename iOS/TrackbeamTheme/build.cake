@@ -12,7 +12,7 @@ var buildSpec = new BuildSpec {
 			OutputFiles = new [] { 
 				new OutputFileCopy { 
 					FromFile = "./source/Xamarin.Themes.TrackBeam/bin/unified/Release/Xamarin.Themes.TrackBeam.dll", 
-					ToDirectory = "./output/unified/" 
+					ToDirectory = "./output/" 
 				},
 			}
 		},	

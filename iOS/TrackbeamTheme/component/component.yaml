@@ -16,11 +16,11 @@ screenshots:
    - screenshots/02.jpg
 libraries:
   ios-unified: 
-    - ../output/unified/Xamarin.Themes.TrackBeam.dll
+    - ../output/Xamarin.Themes.TrackBeam.dll
 samples:
   - name: "iOS Unified Sample"
     path: ../samples/TrackBeamTheme-Sample-iOS/TrackBeamTheme-Sample-iOS.sln
-
+    
 packages:
   ios: Xamarin.Themes.Core, Version=1.0.0.1
   ios-unified: Xamarin.Themes.Core, Version=1.0.0.1
