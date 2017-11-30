@@ -4,7 +4,7 @@ id: dropboxapiv2
 publisher: Xamarin Inc
 publisher-url: https://xamarin.com/
 src-url: https://github.com/xamarin/XamarinComponents/tree/master/XPlat/DropboxApiV2
-license: License.md
+license: ../License.md
 summary: A .NET SDK for integrating with the Dropbox API v2 with Xamarin.iOS and Xamarin.Android and Xamarin.Auth
 icons:
   - icons/dropboxapiv2_128x128.png

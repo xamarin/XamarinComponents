@@ -49,36 +49,24 @@
     <Reference Include="System.Xml" />
     <Reference Include="System.Core" />
     <Reference Include="Mono.Android" />
-    <Reference Include="Microsoft.Threading.Tasks">
-      <HintPath>..\packages\Microsoft.Bcl.Async.1.0.168\lib\portable-net45+win8+wpa81\Microsoft.Threading.Tasks.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.Threading.Tasks.Extensions">
-      <HintPath>..\packages\Microsoft.Bcl.Async.1.0.168\lib\portable-net45+win8+wpa81\Microsoft.Threading.Tasks.Extensions.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Net.Http.Extensions">
-      <HintPath>..\packages\Microsoft.Net.Http.2.2.29\lib\monoandroid\System.Net.Http.Extensions.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Net.Http.Primitives">
-      <HintPath>..\packages\Microsoft.Net.Http.2.2.29\lib\monoandroid\System.Net.Http.Primitives.dll</HintPath>
-    </Reference>
     <Reference Include="System.Net.Http" />
     <Reference Include="System.Json" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.IO.Compression" />
     <Reference Include="Xamarin.Android.Support.v4">
-      <HintPath>..\..\samples\DropboxV2ApiSampleDroid\packages\Xamarin.Android.Support.v4.23.3.0\lib\MonoAndroid403\Xamarin.Android.Support.v4.dll</HintPath>
+      <HintPath>$(SolutionDir)packages\Xamarin.Android.Support.v4.23.3.0\lib\MonoAndroid403\Xamarin.Android.Support.v4.dll</HintPath>
     </Reference>
     <Reference Include="Xamarin.Android.Support.CustomTabs">
-      <HintPath>..\..\samples\DropboxV2ApiSampleDroid\packages\Xamarin.Android.Support.CustomTabs.23.3.0\lib\MonoAndroid403\Xamarin.Android.Support.CustomTabs.dll</HintPath>
+      <HintPath>$(SolutionDir)packages\Xamarin.Android.Support.CustomTabs.23.3.0\lib\MonoAndroid403\Xamarin.Android.Support.CustomTabs.dll</HintPath>
     </Reference>
     <Reference Include="Xamarin.Auth">
-      <HintPath>..\..\samples\DropboxV2ApiSampleDroid\packages\Xamarin.Auth.1.5.0.3\lib\MonoAndroid10\Xamarin.Auth.dll</HintPath>
+      <HintPath>$(SolutionDir)packages\Xamarin.Auth.1.5.0.3\lib\MonoAndroid10\Xamarin.Auth.dll</HintPath>
     </Reference>
     <Reference Include="Newtonsoft.Json">
-      <HintPath>..\..\samples\DropboxV2ApiSampleDroid\packages\Newtonsoft.Json.7.0.1\lib\portable-net40+sl5+wp80+win8+wpa81\Newtonsoft.Json.dll</HintPath>
+      <HintPath>$(SolutionDir)packages\Newtonsoft.Json.7.0.1\lib\portable-net40+sl5+wp80+win8+wpa81\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="Dropbox.Api">
-      <HintPath>..\..\samples\DropboxV2ApiSampleDroid\packages\Dropbox.Api.4.5.3\lib\portable-net45+win8+wpa81\Dropbox.Api.dll</HintPath>
+      <HintPath>$(SolutionDir)packages\Dropbox.Api.4.5.3\lib\portable-net45+win8+wpa81\Dropbox.Api.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -95,12 +83,12 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Xamarin.Dropbox.Api.Core\Xamarin.Dropbox.Api.Core.csproj">
-      <Project>{90EBBFE4-060E-4822-864F-2D62D19A3E54}</Project>
+      <Project>{6ACDB865-8AB9-4EFD-AFE0-CFC6E15C97D2}</Project>
       <Name>Xamarin.Dropbox.Api.Core</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
-  <Import Project="..\..\samples\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets" Condition="Exists('..\..\samples\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets')" />
+  <Import Project="$(SolutionDir)packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets" Condition="Exists('$(SolutionDir)packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets')" />
   <Import Project="..\packages\NuGet.Build.Packaging.0.1.276\build\NuGet.Build.Packaging.targets" Condition="Exists('..\packages\NuGet.Build.Packaging.0.1.276\build\NuGet.Build.Packaging.targets')" />
-  <Import Project="..\..\samples\DropboxV2ApiSampleDroid\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets" Condition="Exists('..\..\samples\DropboxV2ApiSampleDroid\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets')" />
+  <Import Project="$(SolutionDir)packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets" Condition="Exists('$(SolutionDir)packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets')" />
 </Project>
