@@ -68,7 +68,7 @@ var fetchers = new VersionFetcher[] {
 
 
     // Facebook
-    new XPath ("Facebook Android", "4.24.0", "https://repo1.maven.org/maven2/com/facebook/android/facebook-android-sdk/maven-metadata.xml", "/metadata/versioning/release", OWNER_CA1),
+    new XPath ("Facebook Android", "4.28.0", "https://repo1.maven.org/maven2/com/facebook/android/facebook-android-sdk/maven-metadata.xml", "/metadata/versioning/release", OWNER_CA1),
     new CocoaPods ("Facebook Pop", "1.0.9", "pop", OWNER_CA1),
     new CocoaPods ("Facebook iOS CoreKit", "4.24.0", "FBSDKCoreKit", OWNER_MX1),
 
