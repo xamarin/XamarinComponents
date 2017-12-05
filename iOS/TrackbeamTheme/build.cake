@@ -22,6 +22,10 @@ var buildSpec = new BuildSpec {
 		new IOSSolutionBuilder { SolutionPath = "./samples/TrackBeamTheme-Sample-iOS/TrackBeamTheme-Sample-iOS.sln", Configuration = "Release", Platform = "iPhone"  },
 	},
 
+	NuGets = new [] {
+		new NuGetInfo { NuSpec = "./nuget/Xamarin.Themes.TrackBeam.nuspec"},
+	},
+	
 	Components = new [] {
 		new Component { ManifestDirectory = "./component/" },
 	},

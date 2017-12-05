@@ -1,10 +1,10 @@
 name: Trackbeam Theme
 id: trackbeamtheme
-version: 1.5.2	
+version: 1.6.0
 summary: Trackbeam theme and sample application for iOS.
 publisher: Xamarin Inc
 publisher-url: http://www.xamarin.com/
-license: License.md
+license: ../License.md
 details: Details.md
 getting-started: GettingStarted.md
 icons: 
@@ -22,6 +22,5 @@ samples:
     path: ../samples/TrackBeamTheme-Sample-iOS/TrackBeamTheme-Sample-iOS.sln
     
 packages:
-  ios: Xamarin.Themes.Core, Version=1.0.0.1
   ios-unified: Xamarin.Themes.Core, Version=1.0.0.1
 no_build: true

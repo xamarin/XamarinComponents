@@ -6,8 +6,8 @@
         <title>Xamarin.Themes.Core</title>
         <authors>Xamarin Inc.</authors>
         <owners>Xamarin Inc.</owners>
-        <licenseUrl>http://download.xamarin.com/content/licenses/Xamarin.Forms.rtf</licenseUrl>
-        <projectUrl>http://components.xamarin.com</projectUrl>
+        <licenseUrl>https://github.com/xamarin/XamarinComponents/blob/master/iOS/Xamarin.Themes.Core/License.md</licenseUrl>
+        <projectUrl>https://github.com/xamarin/XamarinComponents/tree/master/iOS/Xamarin.Themes.Core</projectUrl>
         <iconUrl>http://xamarin.com/content/images/nuget/xamarin.png</iconUrl>
         <requireLicenseAcceptance>false</requireLicenseAcceptance>
         <description>Xamarin.Themes.Core is a theming framework for Xamarin.iOS</description>

@@ -2,12 +2,12 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
     <metadata>
         <id>Xamarin.Themes.TrackBeam</id>
-        <version>1.5.2</version>
+        <version>1.6.0</version>
         <title>Xamarin.Themes.TrackBeam</title>
         <authors>Xamarin Inc.</authors>
         <owners>Xamarin Inc.</owners>
-        <licenseUrl>https://github.com/xamarin/XamarinComponents/blob/master/LICENSE</licenseUrl>
-        <projectUrl>https://github.com/xamarin/XamarinComponents</projectUrl>
+        <licenseUrl>https://github.com/xamarin/XamarinComponents/blob/master/iOS/TrackbeamTheme/Licence.md</licenseUrl>
+        <projectUrl>https://github.com/xamarin/XamarinComponents/tree/master/iOS/TrackbeamTheme</projectUrl>
         <iconUrl>http://xamarin.com/content/images/nuget/xamarin.png</iconUrl>
         <requireLicenseAcceptance>false</requireLicenseAcceptance>
         <description>Xamarin.Themes.Trackbeam is a modern theme for the latest iOS design language</description>
