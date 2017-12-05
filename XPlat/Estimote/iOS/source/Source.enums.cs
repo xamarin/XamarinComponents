@@ -5,7 +5,6 @@ namespace Estimote
 {
 	using ObjCRuntime;
 
-
 	public enum Color
 	{
 		Unknown,
@@ -41,164 +40,48 @@ namespace Estimote
 	}
 
 	[Native]
-	public enum SettingOperationType : long
+	public enum NearableType : long
 	{
-		Read,
-		Write
+		Unknown = 0,
+		Dog,
+		Car,
+		Fridge,
+		Bag,
+		Bike,
+		Chair,
+		Bed,
+		Door,
+		Shoe,
+		Generic,
+		All
 	}
 
 	[Native]
-	public enum SettingStorageType : long
+	public enum NearableOrientation : long
 	{
-		DeviceCloud,
-		CloudOnly,
-		DeviceOnly
+		Unknown = 0,
+		Horizontal,
+		HorizontalUpsideDown,
+		Vertical,
+		VerticalUpsideDown,
+		LeftSide,
+		RightSide
 	}
 
 	[Native]
-	public enum DeviceNearableError : long
+	public enum NearableZone : long
 	{
-		DeviceNotConnected,
-		ConnectionOwnershipVerificationFail,
-		DisconnectDuringConnection,
-		ConnectionVersionReadFailed,
-		SettingNotSupported,
-		SettingWriteValueMissing,
-		ConnectionCloudConfirmationFailed,
-		UpdateNotAvailable,
-		FailedToDownloadFirmware,
-		FailedToConfirmUpdate
+		Unknown = 0,
+		Immediate,
+		Near,
+		Far
 	}
 
 	[Native]
-	public enum UtilityManagerState : long
+	public enum NearableFirmwareState : long
 	{
-		Idle,
-		Scanning
-	}
-
-	[Native]
-	public enum PeripheralDiscoveryError : long
-	{
-		NoServices = 1000,
-		ServicesFailure = 1001,
-		CharacteristicsFailure = 1002
-	}
-
-	[Native]
-	public enum PeripheralTypeUtilityError : long
-	{
-		ReadWriteOperationFailed,
-		PacketGenerationFailed
-	}
-
-	[Native]
-	public enum PeripheralTypeUtilityErrorCode : long
-	{
-		Unknown,
-		InvalidCRC,
-		RegisterIDChanged,
-		InvalidChunkIndex,
-		InvalidLength,
-		InvalidValueSize,
-		InvalidValue,
-		InvalidRegisterID,
-		InvalidOperation,
-		TooLowAuthLevel,
-		OperationBlocked,
-		NoDataReturned,
-		WaitingForMore
-	}
-
-	[Native]
-	public enum PeripheralFirmwareState : long
-	{
-		Unknown,
-		Boot,
+		Boot = 0,
 		App
-	}
-
-	[Native]
-	public enum SettingBaseError : long
-	{
-		SettingBaseErrorDeviceReferenceNotAvailable
-	}
-
-	[Native]
-	public enum SettingEstimoteTLMIntervalError : long
-	{
-		Small = 1,
-		Big
-	}
-
-	[Native]
-	public enum SettingEstimoteTLMPowerError : long
-	{
-		SettingEstimoteTLMPowerErrorValueNotAllowed = 1
-	}
-
-	public enum EstimoteTLMPower : sbyte
-	{
-		Level1 = -30,
-		Level1A = -40,
-		Level2 = -20,
-		Level3 = -16,
-		Level4 = -12,
-		Level5 = -8,
-		Level6 = -4,
-		Level7 = 0,
-		Level8 = 4,
-		Level9 = 10,
-		Level9A = 20
-	}
-
-	[Native]
-	public enum SettingConnectableIntervalError : long
-	{
-		Small = 1,
-		Big
-	}
-
-	[Native]
-	public enum DeviceSettingsManagerError : long
-	{
-		ynchronizationInProgress,
-		ettingNotSupported,
-		ettingNotProvidedForWrite,
-		ettingValidationFailed,
-		ettingCloudReadFailed,
-		ettingCloudSaveFailed
-	}
-
-	[Native]
-	public enum DeviceLocationBeaconError : long
-	{
-		CloudVerificationFailed,
-		BluetoothConnectionFailed,
-		ServicesDiscoveryFailed,
-		AuthorizationFailed,
-		SettingsSynchronizationFailed,
-		FirmwareUpdateDeviceNotConnected,
-		FirmwareUpdateCloudResponseFailed,
-		FirmwareUpdateNoUpdate,
-		FirmwareUpdateInProgress
-	}
-
-	public enum LogLevel
-	{
-		None,
-		Error,
-		Warning,
-		Debug,
-		Info,
-		Verbose
-	}
-
-	[Native]
-	public enum BeaconManagerError : long
-	{
-		InvalidRegion = 1,
-		LocationServicesUnauthorized
 	}
 
 	public enum BeaconPower : sbyte
@@ -306,9 +189,209 @@ namespace Estimote
 	}
 
 	[Native]
-	public enum SettingConnectablePowerError : long
+	public enum UtilityManagerState : long
 	{
-		SettingConnectablePowerErrorValueNotAllowed = 1
+		Idle,
+		Scanning
+	}
+
+	[Native]
+	public enum Notification : long
+	{
+		SaveNearableZoneDescription,
+		SaveNearable,
+		BeaconEnterRegion,
+		BeaconExitRegion,
+		NearableEnterRegion,
+		NearableExitRegion,
+		RangeNearables
+	}
+
+	[Native]
+	public enum ESBeaconUpdateInfoStatus : long
+	{
+		Idle,
+		ReadyToUpdate,
+		Updating,
+		UpdateSuccess,
+		UpdateFailed
+	}
+
+	[Native]
+	public enum ESBulkUpdaterStatus : long
+	{
+		Idle,
+		Updating,
+		Completed
+	}
+
+	[Native]
+	public enum BulkUpdaterMode : long
+	{
+		Foreground,
+		Background
+	}
+
+	[Native]
+	public enum EddystoneProximity : long
+	{
+		Unknown,
+		Immediate,
+		Near,
+		Far
+	}
+
+	[Native]
+	public enum EddystoneManagerState : long
+	{
+		Idle,
+		Scanning
+	}
+
+	[Native]
+	public enum BeaconManagerError : long
+	{
+		InvalidRegion = 1,
+		LocationServicesUnauthorized
+	}
+
+	[Native]
+	public enum DeviceNearableError : long
+	{
+		DeviceNotConnected,
+		ConnectionOwnershipVerificationFail,
+		DisconnectDuringConnection,
+		ConnectionVersionReadFailed,
+		SettingNotSupported,
+		SettingWriteValueMissing,
+		ConnectionCloudConfirmationFailed,
+		UpdateNotAvailable,
+		FailedToDownloadFirmware,
+		FailedToConfirmUpdate
+	}
+
+	[Native]
+	public enum GPIOConfigError : long
+	{
+		ValueNotAllowed = 1
+	}
+
+	public enum GPIOConfig : byte
+	{
+		InputNoPull = 0,
+		InputPullDown = 1,
+		InputPullUp = 2,
+		Output = 3,
+		Uart = 4
+	}
+
+	[Native]
+	public enum GPIOPort : long
+	{
+		Port0,
+		Port1
+	}
+
+	[Native]
+	public enum GPIOPortsDataError : long
+	{
+		Port,
+		Value
+	}
+
+	[Native]
+	public enum GPIOPortValue : long
+	{
+		Unknown = -1,
+		Low = 0,
+		High = 1
+	}
+
+	[Native]
+	public enum AnalyticsEventType : long
+	{
+		EnterRegion,
+		ExitRegion,
+		InFar,
+		InNear,
+		InImmediate,
+		InUnknown
+	}
+
+	[Native]
+	public enum SettingOperationType : long
+	{
+		Read,
+		Write
+	}
+
+	[Native]
+	public enum SettingStorageType : ulong
+	{
+		DeviceCloud,
+		CloudOnly,
+		DeviceOnly
+	}
+
+	public enum LogLevel
+	{
+		None,
+		Error,
+		Warning,
+		Debug,
+		Info,
+		Verbose
+	}
+
+	public enum EddystoneTLMPower : sbyte
+	{
+		Level1 = -30,
+		Level1A = -40,
+		Level2 = -20,
+		Level3 = -16,
+		Level4 = -12,
+		Level5 = -8,
+		Level6 = -4,
+		Level7 = 0,
+		Level8 = 4,
+		Level9 = 10,
+		Level9A = 20
+	}
+
+	[Native]
+	public enum BulkUpdaterDeviceUpdateStatus : long
+	{
+		Unknown,
+		Scanning,
+		PendingUpdate,
+		Updating,
+		Succeeded,
+		Failed,
+		OutOfRange
+	}
+
+	[Native]
+	public enum PeripheralFirmwareState : long
+	{
+		Unknown,
+		Boot,
+		App
+	}
+
+	[Native]
+	public enum BeaconPublicDetailsFields : ulong
+	{
+		AllFields = 1 << 0,
+		FieldMac = 1 << 1,
+		FieldColor = 1 << 2,
+		FieldPublicIdentifier = 1 << 3,
+		AllSettings = 1 << 4,
+		FieldPower = 1 << 5,
+		FieldSecurity = 1 << 6,
+		FieldBroadcastingScheme = 1 << 7,
+		FieldUUIDMajorMinor = 1 << 8,
+		FieldEddystoneNamespaceID = 1 << 9,
+		FieldEddystoneInstanceID = 1 << 10
 	}
 
 	public enum ConnectablePowerLevel : sbyte
@@ -326,12 +409,171 @@ namespace Estimote
 		Level9A = 20
 	}
 
+	public enum EddystoneUIDPower : sbyte
+	{
+		Level1 = -30,
+		Level1A = -40,
+		Level2 = -20,
+		Level3 = -16,
+		Level4 = -12,
+		Level5 = -8,
+		Level6 = -4,
+		Level7 = 0,
+		Level8 = 4,
+		Level9 = 10,
+		Level9A = 20
+	}
+
+	public enum EddystoneURLPower : sbyte
+	{
+		Level1 = -30,
+		Level1A = -40,
+		Level2 = -20,
+		Level3 = -16,
+		Level4 = -12,
+		Level5 = -8,
+		Level6 = -4,
+		Level7 = 0,
+		Level8 = 4,
+		Level9 = 10,
+		Level9A = 20
+	}
+
+	public enum EddystoneEIDPower : sbyte
+	{
+		Level1 = -30,
+		Level1A = -40,
+		Level2 = -20,
+		Level3 = -16,
+		Level4 = -12,
+		Level5 = -8,
+		Level6 = -4,
+		Level7 = 0,
+		Level8 = 4,
+		Level9 = 10,
+		Level9A = 20
+	}
+
+	public enum EstimoteLocationPower : sbyte
+	{
+		Level1 = -30,
+		Level1A = -40,
+		Level2 = -20,
+		Level3 = -16,
+		Level4 = -12,
+		Level5 = -8,
+		Level6 = -4,
+		Level7 = 0,
+		Level8 = 4,
+		Level9 = 10,
+		Level9A = 20
+	}
+
+	public enum EstimoteTLMPower : sbyte
+	{
+		Level1 = -30,
+		Level1A = -40,
+		Level2 = -20,
+		Level3 = -16,
+		Level4 = -12,
+		Level5 = -8,
+		Level6 = -4,
+		Level7 = 0,
+		Level8 = 4,
+		Level9 = 10,
+		Level9A = 20
+	}
+
+	public enum IBeaconPower : sbyte
+	{
+		Level1 = -30,
+		Level1A = -40,
+		Level2 = -20,
+		Level3 = -16,
+		Level4 = -12,
+		Level5 = -8,
+		Level6 = -4,
+		Level7 = 0,
+		Level8 = 4,
+		Level9 = 10,
+		Level9A = 20
+	}
+
+	public enum NearablePower : sbyte
+	{
+		Level1 = -30,
+		Level2 = -20,
+		Level3 = -16,
+		Level4 = -12,
+		Level5 = -8,
+		Level6 = -4,
+		Level7 = 0,
+		Level8 = 4
+	}
+
 	[Native]
 	public enum SettingOperationStatus : long
 	{
 		InProgress,
 		Complete,
 		Failed
+	}
+
+	[Native]
+	public enum RequestBaseError : long
+	{
+		ConnectionFail = -1,
+		NoData = -2,
+		BadRequest = 400,
+		Unauthorized = 401,
+		PaymentRequired = 402,
+		Forbidden = 403,
+		NotFound = 404,
+		InternalServerError = 500
+	}
+
+	[Native]
+	public enum BeaconDetailsFields : ulong
+	{
+		AllFields = 1 << 0,
+		FieldMac = 1 << 1,
+		FieldColor = 1 << 2,
+		FieldName = 1 << 3,
+		FieldGPSLocation = 1 << 4,
+		FieldIndoorLocation = 1 << 5,
+		FieldPublicIdentifier = 1 << 6,
+		FieldRemainingBatteryLifetime = 1 << 7,
+		AllSettings = 1 << 8,
+		FieldBattery = 1 << 9,
+		FieldPower = 1 << 10,
+		FieldInterval = 1 << 11,
+		FieldHardware = 1 << 12,
+		FieldFirmware = 1 << 13,
+		FieldBasicPowerMode = 1 << 14,
+		FieldSmartPowerMode = 1 << 15,
+		FieldTimeZone = 1 << 16,
+		FieldSecurity = 1 << 17,
+		FieldMotionDetection = 1 << 18,
+		FieldConditionalBroadcasting = 1 << 19,
+		FieldBroadcastingScheme = 1 << 20,
+		FieldUUIDMajorMinor = 1 << 21,
+		FieldEddystoneNamespaceID = 1 << 22,
+		FieldEddystoneInstanceID = 1 << 23
+	}
+
+	[Native]
+	public enum SettingIBeaconProximityUUIDError : ulong
+	{
+		InvalidValue = 1
+	}
+
+    // typedef NS_ENUM(char, ESTNearableBroadcastingScheme)
+	public enum NearableBroadcastingScheme : sbyte
+	{
+		Unknown = -1,
+		Nearable,
+		IBeacon,
+		EddystoneURL
 	}
 
 	[Native]
@@ -394,53 +636,11 @@ namespace Estimote
 		SettingIBeaconPowerErrorValueNotAllowed = 1
 	}
 
-	public enum IBeaconPower : sbyte
-	{
-		Level1 = -30,
-		Level1A = -40,
-		Level2 = -20,
-		Level3 = -16,
-		Level4 = -12,
-		Level5 = -8,
-		Level6 = -4,
-		Level7 = 0,
-		Level8 = 4,
-		Level9 = 10,
-		Level9A = 20
-	}
-
-	[Native]
-	public enum SettingIBeaconProximityUUIDError : long
-	{
-		SettingIBeaconProximityUUIDErrorInvalidValue = 1
-	}
-
 	[Native]
 	public enum SettingEstimoteLocationIntervalError : long
 	{
 		Small = 1,
 		Big
-	}
-
-	[Native]
-	public enum SettingEstimoteLocationPowerError : long
-	{
-		SettingEstimoteLocationPowerErrorValueNotAllowed = 1
-	}
-
-	public enum EstimoteLocationPower : sbyte
-	{
-		Level1 = -30,
-		Level1A = -40,
-		Level2 = -20,
-		Level3 = -16,
-		Level4 = -12,
-		Level5 = -8,
-		Level6 = -4,
-		Level7 = 0,
-		Level8 = 4,
-		Level9 = 10,
-		Level9A = 20
 	}
 
 	[Native]
@@ -467,27 +667,6 @@ namespace Estimote
 	}
 
 	[Native]
-	public enum SettingEddystoneUIDPowerError : long
-	{
-		SettingEddystoneUIDPowerErrorValueNotAllowed = 1
-	}
-
-	public enum EddystoneUIDPower : sbyte
-	{
-		Level1 = -30,
-		Level1A = -40,
-		Level2 = -20,
-		Level3 = -16,
-		Level4 = -12,
-		Level5 = -8,
-		Level6 = -4,
-		Level7 = 0,
-		Level8 = 4,
-		Level9 = 10,
-		Level9A = 20
-	}
-
-	[Native]
 	public enum SettingEddystoneURLNamespaceError : long
 	{
 		SettingEddystoneURLDataErrorInvalidURL = 1
@@ -498,27 +677,6 @@ namespace Estimote
 	{
 		Small = 1,
 		Big
-	}
-
-	[Native]
-	public enum SettingEddystoneURLPowerError : long
-	{
-		SettingEddystoneURLPowerErrorValueNotAllowed = 1
-	}
-
-	public enum EddystoneURLPower : sbyte
-	{
-		Level1 = -30,
-		Level1A = -40,
-		Level2 = -20,
-		Level3 = -16,
-		Level4 = -12,
-		Level5 = -8,
-		Level6 = -4,
-		Level7 = 0,
-		Level8 = 4,
-		Level9 = 10,
-		Level9A = 20
 	}
 
 	[Native]
@@ -534,47 +692,11 @@ namespace Estimote
 		SettingEddystoneTLMPowerErrorValueNotAllowed = 1
 	}
 
-	public enum EddystoneTLMPower : sbyte
-	{
-		Level1 = -30,
-		Level1A = -40,
-		Level2 = -20,
-		Level3 = -16,
-		Level4 = -12,
-		Level5 = -8,
-		Level6 = -4,
-		Level7 = 0,
-		Level8 = 4,
-		Level9 = 10,
-		Level9A = 20
-	}
-
 	[Native]
 	public enum SettingEddystoneEIDIntervalError : long
 	{
 		Small = 1,
 		Big = 2
-	}
-
-	[Native]
-	public enum SettingEddystoneEIDPowerError : long
-	{
-		SettingEddystoneEIDPowerErrorValueNotAllowed = 1
-	}
-
-	public enum EddystoneEIDPower : sbyte
-	{
-		Level1 = -30,
-		Level1A = -40,
-		Level2 = -20,
-		Level3 = -16,
-		Level4 = -12,
-		Level5 = -8,
-		Level6 = -4,
-		Level7 = 0,
-		Level8 = 4,
-		Level9 = 10,
-		Level9A = 20
 	}
 
 	[Native]
@@ -628,96 +750,6 @@ namespace Estimote
 	}
 
 	[Native]
-	public enum GPIOConfigError : long
-	{
-		GPIOConfigErrorValueNotAllowed = 1
-	}
-
-	public enum GPIOConfig : byte
-	{
-		InputNoPull = 0,
-		InputPullDown = 1,
-		InputPullUp = 2,
-		Output = 3,
-		Uart = 4
-	}
-
-	[Native]
-	public enum GPIOPort : long
-	{
-		GPIOPort0,
-		GPIOPort1
-	}
-
-	[Native]
-	public enum GPIOPortsDataError : long
-	{
-		Port,
-		Value
-	}
-
-	[Native]
-	public enum GPIOPortValue : long
-	{
-		Unknown = -1,
-		Low = 0,
-		High = 1
-	}
-
-	[Native]
-	public enum NearableType : long
-	{
-		Unknown = 0,
-		Dog,
-		Car,
-		Fridge,
-		Bag,
-		Bike,
-		Chair,
-		Bed,
-		Door,
-		Shoe,
-		Generic,
-		All
-	}
-
-	[Native]
-	public enum NearableOrientation : long
-	{
-		Unknown = 0,
-		Horizontal,
-		HorizontalUpsideDown,
-		Vertical,
-		VerticalUpsideDown,
-		LeftSide,
-		RightSide
-	}
-
-	[Native]
-	public enum NearableZone : long
-	{
-		Unknown = 0,
-		Immediate,
-		Near,
-		Far
-	}
-
-	[Native]
-	public enum NearableFirmwareState : long
-	{
-		Boot = 0,
-		App
-	}
-
-	public enum NearableBroadcastingScheme : sbyte
-	{
-		Unknown = -1,
-		Nearable,
-		IBeacon,
-		EddystoneURL
-	}
-
-	[Native]
 	public enum PeripheralNearableError : long
 	{
 		Unknown,
@@ -752,18 +784,6 @@ namespace Estimote
 		ConvenienceAPIUnsupported
 	}
 
-	public enum NearablePower : sbyte
-	{
-		Level1 = -30,
-		Level2 = -20,
-		Level3 = -16,
-		Level4 = -12,
-		Level5 = -8,
-		Level6 = -4,
-		Level7 = 0,
-		Level8 = 4
-	}
-
 	[Native]
 	public enum SettingNearableEddystoneURLError : long
 	{
@@ -776,31 +796,6 @@ namespace Estimote
 	{
 		NotAllowed = 1,
 		ConvenienceAPIUnsupported
-	}
-
-	[Native]
-	public enum ESBeaconUpdateInfoStatus : long
-	{
-		Idle,
-		ReadyToUpdate,
-		Updating,
-		UpdateSuccess,
-		UpdateFailed
-	}
-
-	[Native]
-	public enum ESBulkUpdaterStatus : long
-	{
-		Idle,
-		Updating,
-		Completed
-	}
-
-	[Native]
-	public enum BulkUpdaterMode : long
-	{
-		Foreground,
-		Background
 	}
 
 	[Native]
@@ -819,107 +814,9 @@ namespace Estimote
 	}
 
 	[Native]
-	public enum BulkUpdaterDeviceUpdateStatus : long
-	{
-		Unknown,
-		Scanning,
-		PendingUpdate,
-		Updating,
-		Succeeded,
-		Failed,
-		OutOfRange
-	}
-
-	[Native]
-	public enum Notification : long
-	{
-		SaveNearableZoneDescription,
-		SaveNearable,
-		BeaconEnterRegion,
-		BeaconExitRegion,
-		NearableEnterRegion,
-		NearableExitRegion,
-		RangeNearables
-	}
-
-	[Native]
-	public enum EddystoneProximity : long
-	{
-		Unknown,
-		Immediate,
-		Near,
-		Far
-	}
-
-	[Native]
-	public enum EddystoneManagerState : long
-	{
-		Idle,
-		Scanning
-	}
-
-	[Native]
-	public enum RequestBaseError : long
-	{
-		ConnectionFail = -1,
-		NoData = -2,
-		BadRequest = 400,
-		Unauthorized = 401,
-		PaymentRequired = 402,
-		Forbidden = 403,
-		NotFound = 404,
-		InternalServerError = 500
-	}
-
-	[Native]
 	public enum RequestGetBeaconsError : long
 	{
 		RequestGetBeaconsErrorUnknown
-	}
-
-	[Native]
-	public enum BeaconDetailsFields : ulong
-	{
-		AllFields = 1 << 0,
-		FieldMac = 1 << 1,
-		FieldColor = 1 << 2,
-		FieldName = 1 << 3,
-		FieldGPSLocation = 1 << 4,
-		FieldIndoorLocation = 1 << 5,
-		FieldPublicIdentifier = 1 << 6,
-		FieldRemainingBatteryLifetime = 1 << 7,
-		AllSettings = 1 << 8,
-		FieldBattery = 1 << 9,
-		FieldPower = 1 << 10,
-		FieldInterval = 1 << 11,
-		FieldHardware = 1 << 12,
-		FieldFirmware = 1 << 13,
-		FieldBasicPowerMode = 1 << 14,
-		FieldSmartPowerMode = 1 << 15,
-		FieldTimeZone = 1 << 16,
-		FieldSecurity = 1 << 17,
-		FieldMotionDetection = 1 << 18,
-		FieldConditionalBroadcasting = 1 << 19,
-		FieldBroadcastingScheme = 1 << 20,
-		FieldUUIDMajorMinor = 1 << 21,
-		FieldEddystoneNamespaceID = 1 << 22,
-		FieldEddystoneInstanceID = 1 << 23
-	}
-
-	[Native]
-	public enum BeaconPublicDetailsFields : ulong
-	{
-		AllFields = 1 << 0,
-		FieldMac = 1 << 1,
-		FieldColor = 1 << 2,
-		FieldPublicIdentifier = 1 << 3,
-		AllSettings = 1 << 4,
-		FieldPower = 1 << 5,
-		FieldSecurity = 1 << 6,
-		FieldBroadcastingScheme = 1 << 7,
-		FieldUUIDMajorMinor = 1 << 8,
-		FieldEddystoneNamespaceID = 1 << 9,
-		FieldEddystoneInstanceID = 1 << 10
 	}
 
 	[Native]
@@ -944,17 +841,6 @@ namespace Estimote
 	public enum RequestGetNearablesError : long
 	{
 		RequestGetNearablesUnknown
-	}
-
-	[Native]
-	public enum AnalyticsEventType : long
-	{
-		EnterRegion,
-		ExitRegion,
-		InFar,
-		InNear,
-		InImmediate,
-		InUnknown
 	}
 
 	[Native]
@@ -1053,6 +939,120 @@ namespace Estimote
 		ErrorAssetTrackingFailed,
 		ErrorPrepareNearablesScanReportFailed,
 		ErrorConfigurationFailed
+	}
+
+	[Native]
+	public enum PeripheralDiscoveryError : long
+	{
+		NoServices = 1000,
+		ServicesFailure = 1001,
+		CharacteristicsFailure = 1002
+	}
+
+	[Native]
+	public enum PeripheralTypeUtilityError : long
+	{
+		ReadWriteOperationFailed,
+		PacketGenerationFailed
+	}
+
+	[Native]
+	public enum PeripheralTypeUtilityErrorCode : long
+	{
+		Unknown,
+		InvalidCRC,
+		RegisterIDChanged,
+		InvalidChunkIndex,
+		InvalidLength,
+		InvalidValueSize,
+		InvalidValue,
+		InvalidRegisterID,
+		InvalidOperation,
+		TooLowAuthLevel,
+		OperationBlocked,
+		NoDataReturned,
+		WaitingForMore
+	}
+
+	[Native]
+	public enum SettingBaseError : long
+	{
+		SettingBaseErrorDeviceReferenceNotAvailable
+	}
+
+	[Native]
+	public enum SettingEstimoteTLMIntervalError : long
+	{
+		Small = 1,
+		Big
+	}
+
+	[Native]
+	public enum SettingEstimoteTLMPowerError : long
+	{
+		SettingEstimoteTLMPowerErrorValueNotAllowed = 1
+	}
+
+	[Native]
+	public enum SettingConnectableIntervalError : long
+	{
+		Small = 1,
+		Big
+	}
+
+	[Native]
+	public enum DeviceSettingsManagerError : long
+	{
+		ynchronizationInProgress,
+		ettingNotSupported,
+		ettingNotProvidedForWrite,
+		ettingValidationFailed,
+		ettingCloudReadFailed,
+		ettingCloudSaveFailed
+	}
+
+	[Native]
+	public enum DeviceLocationBeaconError : long
+	{
+		CloudVerificationFailed,
+		BluetoothConnectionFailed,
+		ServicesDiscoveryFailed,
+		AuthorizationFailed,
+		SettingsSynchronizationFailed,
+		FirmwareUpdateDeviceNotConnected,
+		FirmwareUpdateCloudResponseFailed,
+		FirmwareUpdateNoUpdate,
+		FirmwareUpdateInProgress
+	}
+
+	[Native]
+	public enum SettingConnectablePowerError : long
+	{
+		SettingConnectablePowerErrorValueNotAllowed = 1
+	}
+
+	[Native]
+	public enum SettingEddystoneURLPowerError : long
+	{
+		SettingEddystoneURLPowerErrorValueNotAllowed = 1
+	}
+
+	[Native]
+	public enum SettingEstimoteLocationPowerError : long
+	{
+		SettingEstimoteLocationPowerErrorValueNotAllowed = 1
+	}
+
+	[Native]
+	public enum SettingEddystoneEIDPowerError : long
+	{
+		SettingEddystoneEIDPowerErrorValueNotAllowed = 1
+	}
+
+	[Native]
+	public enum SettingEddystoneUIDPowerError : long
+	{
+		SettingEddystoneUIDPowerErrorValueNotAllowed = 1
 	}
 }
 
