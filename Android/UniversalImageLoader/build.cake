@@ -12,9 +12,7 @@ var buildSpec = new BuildSpec () {
 		new DefaultSolutionBuilder {
 			SolutionPath = "./source/UniversalImageLoader.sln",
 			OutputFiles = new [] { 
-				new OutputFileCopy {
-					FromFile = "./source/UniversalImageLoader/bin/Release/UniversalImageLoader.dll",
-				}
+				new OutputFileCopy { FromFile = "./source/UniversalImageLoader/bin/Release/UniversalImageLoader.dll" }
 			}
 		}
 	},
@@ -35,9 +33,7 @@ var buildSpec = new BuildSpec () {
 Task ("externals")
 	.Does (() => 
 {
-	if (!DirectoryExists ("./externals/"))
-		CreateDirectory ("./externals");
-		
+	EnsureDirectoryExists ("./externals/");
 	DownloadFile (JAR_URL, JAR_DEST);
 });
 

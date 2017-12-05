@@ -6,7 +6,7 @@ publisher-url: http://xamarin.com/
 src-url: https://github.com/xamarin/XamarinComponents/tree/master/Android/UniversalImageLoader
 summary: A powerful, flexible and highly customizable instrument for image loading, caching and displaying.
 
-license: License.md
+license: ../LICENSE.md
 details: Details.md
 getting-started: GettingStarted.md
 
