@@ -73,7 +73,7 @@ var fetchers = new VersionFetcher[] {
     new CocoaPods ("Facebook iOS CoreKit", "4.24.0", "FBSDKCoreKit", OWNER_MX1),
 
     // Google - Android
-    new XPath ("Google Play Services", "58", "https://dl.google.com/android/repository/addon2-1.xml", "//*[local-name() = 'remotePackage' and @path='extras;google;m2repository']/*[local-name() = 'revision']", OWNER_CA1),
+    new XPath ("Google Play Services", "11.6.0", "https://dl.google.com/dl/android/maven2/com/google/android/gms/play-services/maven-metadata.xml", "/metadata/versioning/release", OWNER_CA1),
     new XPath ("Android Support Libraries", "27.0.2", "https://dl.google.com/dl/android/maven2/com/android/support/appcompat-v7/maven-metadata.xml", "/metadata/versioning/release", OWNER_CA1),
     new XPath ("Google Glass SDK", "11", "https://dl.google.com/android/repository/glass/addon2-1.xml", "//*[local-name() = 'remotePackage' and @path='add-ons;addon-google_gdk-google-19']/*[local-name() = 'revision']", OWNER_CA1),
 
