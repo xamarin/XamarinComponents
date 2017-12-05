@@ -1310,9 +1310,9 @@ namespace Estimote
     [BaseType (typeof (NSObject), Name = "ESTUtilityManager", Delegates = new string [] { "Delegate" }, Events = new Type [] { typeof (UtilityManagerDelegate) })]
     interface UtilityManager
     {
-        // @property (readonly, assign, nonatomic) ESTUtilitManagerState state;
+        // @property (readonly, assign, nonatomic) ESTUtilityManagerState state;
         [Export ("state", ArgumentSemantic.Assign)]
-        UtilitManagerState State { get; }
+        UtilityManagerState State { get; }
 
         // @property (nonatomic, weak) id<ESTUtilityManagerDelegate> delegate;
         [NullAllowed, Export ("delegate", ArgumentSemantic.Weak)]
@@ -1757,7 +1757,7 @@ namespace Estimote
 
         // @property (assign, nonatomic) ESBeaconUpdateInfoStatus status;
         [Export ("status", ArgumentSemantic.Assign)]
-        BeaconUpdateInfoStatus Status { get; set; }
+        ESBeaconUpdateInfoStatus Status { get; set; }
 
         /**
          *  Settings creation timestamp.
