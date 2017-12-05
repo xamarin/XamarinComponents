@@ -6,7 +6,7 @@
 #addin nuget:?package=Cake.FileHelpers
 
 var NUGET_VERSION = "4.7.3.2";
-var ESTIMOTE_SDK_VERSION = "4.7.3";
+var ESTIMOTE_SDK_VERSION = "4.26.3";
 
 var COCOAPODS = new List<string> {
 	"platform :ios, '7.0'",
