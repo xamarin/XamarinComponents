@@ -3,55 +3,42 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{BEF392B1-F779-457A-9200-49FE40209273}</ProjectGuid>
     <ProjectTypeGuids>{8FFB629D-F513-41CE-95D2-7ECE97B6EEEC};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
-    <ProjectGuid>{3565E10C-89B7-45C6-A412-C307BD8CAD0F}</ProjectGuid>
     <OutputType>Library</OutputType>
-    <RootNamespace>iCarousel</RootNamespace>
+    <RootNamespace>iCarousel.iOS</RootNamespace>
+    <AssemblyName>iCarousel.iOS</AssemblyName>
     <IPhoneResourcePrefix>Resources</IPhoneResourcePrefix>
-    <AssemblyName>iCarousel</AssemblyName>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>bin\unified\Debug</OutputPath>
-    <IntermediateOutputPath>obj\unified\Debug</IntermediateOutputPath>
-    <DefineConstants>DEBUG;__UNIFIED__</DefineConstants>
+    <OutputPath>bin\Debug</OutputPath>
+    <DefineConstants>DEBUG;__IOS__</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <ConsolePause>false</ConsolePause>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <Optimize>true</Optimize>
-    <OutputPath>bin\unified\Release</OutputPath>
-    <IntermediateOutputPath>obj\unified\Release</IntermediateOutputPath>
+    <OutputPath>bin\Release</OutputPath>
+    <DefineConstants>__IOS__</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <ConsolePause>false</ConsolePause>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
-    <DefineConstants>__UNIFIED__</DefineConstants>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="Xamarin.iOS" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Resources\" />
+    <NativeReference Include="..\..\externals\ios\libiCarousel.a">
+      <Kind>Static</Kind>
+      <SmartLink>False</SmartLink>
+      <ForceLoad>True</ForceLoad>
+    </NativeReference>
   </ItemGroup>
-  <ItemGroup>
-    <ObjcBindingApiDefinition Include="ApiDefinition.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <ObjcBindingCoreSource Include="StructsAndEnums.cs" />
-  </ItemGroup>
+  <Import Project="..\iCarousel\iCarousel.projitems" Label="Shared" Condition="Exists('..\iCarousel\iCarousel.projitems')" />
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.ObjCBinding.CSharp.targets" />
-  <ItemGroup>
-    <ObjcBindingNativeLibrary Include="..\..\externals\libiCarousel.a" />
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="libiCarousel.linkwith.cs">
-      <DependentUpon>libiCarousel.a</DependentUpon>
-    </Compile>
-  </ItemGroup>
 </Project>

@@ -3,56 +3,70 @@
 
 var TARGET = Argument ("t", Argument ("target", "Default"));
 
-var IOS_PODS = new List<string> {
-	"platform :ios, '6.0'",
-	"install! 'cocoapods', :integrate_targets => false",
-	"target 'Xamarin' do",
-	"pod 'iCarousel', '1.8.2'",
-	"end",
-};
+var POD_VERSION = "1.8.3";
+
+var CreatePodSpec = new Action<string, string> ((platform, version) => {
+	var v1 = CocoaPodVersion () >= new System.Version (1, 0);
+
+	var podspec = new List<string> {
+		"platform :" + platform + ", '" + version + "'",
+		(v1 ? "install! 'cocoapods', :integrate_targets => false" : ""),
+		"target 'Xamarin' do",
+		"  pod 'iCarousel', '" + POD_VERSION + "'",
+		"end",
+	};
+
+	FileWriteLines ("./externals/" + platform + "/Podfile", podspec.ToArray ());
+	CocoaPodInstall ("./externals/" + platform, new CocoaPodInstallSettings { NoIntegrate = true });
+});
 
 var buildSpec = new BuildSpec () {
 	Libs = new ISolutionBuilder [] {
-		new IOSSolutionBuilder {
+		new DefaultSolutionBuilder {
 			SolutionPath = "./source/iCarousel.sln",
-			Configuration = "Release",
-			BuildsOn = BuildPlatforms.Mac,
 			OutputFiles = new [] { 
-				new OutputFileCopy {
-					FromFile = "./source/iCarousel/bin/unified/Release/iCarousel.dll",
-					ToDirectory = "./output/unified/"
-				},
+				new OutputFileCopy { FromFile = "./source/iCarousel.iOS/bin/Release/iCarousel.iOS.dll" },
+				new OutputFileCopy { FromFile = "./source/iCarousel.macOS/bin/Release/iCarousel.macOS.dll" },
 			}
-		},	
+		},
 	},
 
 	Samples = new ISolutionBuilder [] {
-		new IOSSolutionBuilder { SolutionPath = "./samples/iCarouselSamples/iCarouselSamples.sln", Configuration = "Release", Platform="iPhone", BuildsOn = BuildPlatforms.Mac },
+		new IOSSolutionBuilder { SolutionPath = "./samples/iCarouselSample.sln" },
+		new DefaultSolutionBuilder { SolutionPath = "./samples/iCarouselSampleMac.sln" },
+	},
+
+	NuGets = new [] {
+		new NuGetInfo { NuSpec = "./nuget/Xamarin.iCarousel.nuspec" },
 	},
 
 	Components = new [] {
-		new Component {ManifestDirectory = "./component", BuildsOn = BuildPlatforms.Mac},
+		new Component { ManifestDirectory = "./component" },
 	},
 };
 
 Task ("externals").IsDependentOn ("externals-base").Does (() =>
 {
-	EnsureDirectoryExists ("./externals");
+	// iOS
+	EnsureDirectoryExists ("./externals/ios");
+	CreatePodSpec ("ios", "8.0");
+	BuildXCodeFatLibrary_iOS ("./Pods/Pods.xcodeproj", "iCarousel", "iCarousel", null, "./externals/ios/", "iCarousel");
 
-	if (CocoaPodVersion () < new System.Version (1, 0))
-		IOS_PODS.RemoveAt (1);
-
-	FileWriteLines ("./externals/Podfile", IOS_PODS.ToArray ());
-
-	CocoaPodInstall ("./externals", new CocoaPodInstallSettings { NoIntegrate = true });
-
-	BuildXCodeFatLibrary ("./Pods/Pods.xcodeproj", "iCarousel", "iCarousel", null, null, "iCarousel");
+	// macOS
+	EnsureDirectoryExists ("./externals/osx");
+	CreatePodSpec ("osx", "10.8");
+	BuildXCodeFatLibrary_macOS ("./Pods/Pods.xcodeproj", "iCarousel", "iCarousel", null, "./externals/osx/", "iCarousel");
 });
 
 Task ("clean").IsDependentOn ("clean-base").Does (() =>
 {
-	DeleteFiles ("./externals/Podfile.lock");
-	CleanXCodeBuild ("./Pods/", null);
+	DeleteFiles ("./externals/ios/Podfile");
+	DeleteFiles ("./externals/ios/Podfile.lock");
+	CleanXCodeBuild ("./ios/Pods/", null);
+
+	DeleteFiles ("./externals/osx/Podfile");
+	DeleteFiles ("./externals/osx/Podfile.lock");
+	CleanXCodeBuild ("./osx/Pods/", null);
 });
 
 SetupXamarinBuildTasks (buildSpec, Tasks, Task);

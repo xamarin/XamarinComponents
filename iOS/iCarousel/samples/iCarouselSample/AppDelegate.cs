@@ -2,15 +2,10 @@
 using System.Collections.Generic;
 using System.Linq;
 
-#if __UNIFIED__
 using Foundation;
 using UIKit;
-#else
-using MonoTouch.Foundation;
-using MonoTouch.UIKit;
-#endif
 
-namespace BasiciOSExample
+namespace iCarouselSample
 {
 	// The UIApplicationDelegate for the application. This class is responsible for launching the
 	// User Interface of the application, as well as listening (and optionally responding) to
