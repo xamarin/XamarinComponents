@@ -1,6 +1,6 @@
 ﻿using UIKit;
 
-namespace ZipArchiveSample
+namespace ZipArchiveSampleTV
 {
 	public class Application
 	{
