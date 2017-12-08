@@ -29,6 +29,7 @@ namespace LiquidFloatingActionButtonSample
                 new LiquidFloatingCell(UIImage.FromBundle("ic_place")),
             };
 
+            topLeftButton.Image = UIImage.FromBundle("ic_art");
             topLeftButton.AnimateStyle = AnimateStyle.Down;
             topLeftButton.Cells = cells;
             topLeftButton.CellSelected += delegate

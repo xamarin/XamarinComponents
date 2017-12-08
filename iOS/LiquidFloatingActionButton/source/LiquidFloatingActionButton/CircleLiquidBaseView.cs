@@ -40,6 +40,11 @@ namespace AnimatedButtons
         private nfloat keyDuration = 0;
         private CADisplayLink displayLink;
 
+        public bool IsOpeningOrClosing
+        {
+            get { return openingCells.Count > 0; }
+        }
+
         public UIColor Color
         {
             get { return _color; }
@@ -53,6 +58,8 @@ namespace AnimatedButtons
 
         public void Setup(LiquidFloatingActionButton actionButton)
         {
+            Frame = actionButton.Frame;
+            Center = actionButton.Center.Minus(actionButton.Frame.Location);
             AnimateStyle = actionButton.AnimateStyle;
             ClipsToBounds = false;
             Layer.MasksToBounds = false;
@@ -87,7 +94,6 @@ namespace AnimatedButtons
         public void Open(LiquidFloatingCell[] cells)
         {
             Stop();
-            nfloat distance = Frame.Height * 1.25f;
             displayLink = CADisplayLink.Create(DidDisplayRefresh);
             displayLink.AddToRunLoop(NSRunLoop.Current, NSRunLoopMode.Common);
             opening = true;
@@ -102,7 +108,6 @@ namespace AnimatedButtons
         public void Close(LiquidFloatingCell[] cells)
         {
             Stop();
-            nfloat distance = Frame.Height * 1.25f;
             opening = false;
             displayLink = CADisplayLink.Create(DidDisplayRefresh);
             displayLink.AddToRunLoop(NSRunLoop.Current, NSRunLoopMode.Common);

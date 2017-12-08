@@ -25,7 +25,6 @@
     <MtouchOptimizePNGs>True</MtouchOptimizePNGs>
     <MtouchI18n>
     </MtouchI18n>
-    <MtouchUseRefCounting>true</MtouchUseRefCounting>
     <MtouchProfiling>true</MtouchProfiling>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhoneSimulator' ">
@@ -37,7 +36,6 @@
     <MtouchLink>Full</MtouchLink>
     <MtouchArch>i386, x86_64</MtouchArch>
     <ConsolePause>false</ConsolePause>
-    <MtouchUseRefCounting>true</MtouchUseRefCounting>
     <MtouchI18n>
     </MtouchI18n>
   </PropertyGroup>
@@ -56,7 +54,6 @@
     <MtouchOptimizePNGs>False</MtouchOptimizePNGs>
     <MtouchI18n>
     </MtouchI18n>
-    <MtouchUseRefCounting>true</MtouchUseRefCounting>
     <MtouchLink>None</MtouchLink>
     <MtouchEnableGenericValueTypeSharing>False</MtouchEnableGenericValueTypeSharing>
   </PropertyGroup>
@@ -73,7 +70,6 @@
     <MtouchOptimizePNGs>True</MtouchOptimizePNGs>
     <MtouchI18n>
     </MtouchI18n>
-    <MtouchUseRefCounting>true</MtouchUseRefCounting>
     <MtouchLink>Full</MtouchLink>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Ad-Hoc|iPhone' ">
@@ -91,7 +87,6 @@
     <MtouchOptimizePNGs>True</MtouchOptimizePNGs>
     <MtouchI18n>
     </MtouchI18n>
-    <MtouchUseRefCounting>true</MtouchUseRefCounting>
     <MtouchLink>Full</MtouchLink>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'AppStore|iPhone' ">
@@ -108,7 +103,6 @@
     <MtouchOptimizePNGs>True</MtouchOptimizePNGs>
     <MtouchI18n>
     </MtouchI18n>
-    <MtouchUseRefCounting>true</MtouchUseRefCounting>
     <MtouchLink>Full</MtouchLink>
   </PropertyGroup>
   <ItemGroup>
@@ -188,14 +182,12 @@
     <BundleResource Include="Resources\ic_place.png" />
     <BundleResource Include="Resources\ic_system.png" />
   </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
-    <ProjectReference Include="..\..\..\source\LiquidFloatingActionButton\LiquidFloatingActionButton.csproj">
+    <ProjectReference Include="..\..\source\LiquidFloatingActionButton\LiquidFloatingActionButton.csproj">
       <Project>{82E99AED-4239-466C-A839-E17CFAAC48DB}</Project>
       <Name>LiquidFloatingActionButton</Name>
-      <IsAppExtension>False</IsAppExtension>
-      <IsWatchApp>False</IsWatchApp>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
 </Project>
