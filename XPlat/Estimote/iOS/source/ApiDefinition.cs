@@ -506,7 +506,7 @@ namespace Estimote
         void MonitoringStarted (NSObject manager, CLBeaconRegion region);
 
         // @optional -(void)beaconManager:(id)manager monitoringDidFailForRegion:(CLBeaconRegion *)region withError:(NSError *)error;
-        [Export ("beaconManager:monitoringDidFailForRegion:withError:"), EventArgs ("BeaconManagerMonitoringFailed")]
+        [Export ("beaconManager:monitoringDidFailForRegion:withError:"), EventArgs ("MonitoringFailed")]
         void MonitoringFailed (NSObject manager, [NullAllowed]CLBeaconRegion region, NSError error);
 
         // @optional -(void)beaconManager:(id)manager didEnterRegion:(CLBeaconRegion *)region;
@@ -963,7 +963,6 @@ namespace Estimote
         [NullAllowed, Export ("delegate", ArgumentSemantic.Weak)]
         IBeaconConnectionDelegate Delegate { get; set; }
 
-
         // @property (readonly, nonatomic, strong) NSString * identifier;
         [Export ("identifier", ArgumentSemantic.Strong)]
         string Identifier { get; }
@@ -1310,9 +1309,9 @@ namespace Estimote
     [BaseType (typeof (NSObject), Name = "ESTUtilityManager", Delegates = new string [] { "Delegate" }, Events = new Type [] { typeof (UtilityManagerDelegate) })]
     interface UtilityManager
     {
-        // @property (readonly, assign, nonatomic) ESTUtilitManagerState state;
+        // @property (readonly, assign, nonatomic) ESTUtilityManagerState state;
         [Export ("state", ArgumentSemantic.Assign)]
-        UtilitManagerState State { get; }
+        UtilityManagerState State { get; }
 
         // @property (nonatomic, weak) id<ESTUtilityManagerDelegate> delegate;
         [NullAllowed, Export ("delegate", ArgumentSemantic.Weak)]
@@ -1379,8 +1378,8 @@ namespace Estimote
         void ExitedIdentifierRegion (NearableManager manager, string identifier);
 
         // @optional -(void)nearableManager:(ESTNearableManager *)manager monitoringFailedWithError:(NSError *)error;
-        [Export ("nearableManager:monitoringFailedWithError:"), EventArgs ("MonitoringFailed")]
-        void MonitoringFailed (NearableManager manager, NSError error);
+		[Export ("nearableManager:monitoringFailedWithError:"), EventArgs ("MonitoringFailedWithError")]
+		void MonitoringFailedWithError (NearableManager manager, NSError error);
     }
 
     // @interface ESTNearableManager : NSObject
@@ -1730,7 +1729,7 @@ namespace Estimote
     {
         // @required -(void)beaconUpdateInfoInitialized:(id)beaconUpdateInfo;
         [Abstract]
-        [Export ("beaconUpdateInfoInitialized:")]
+        [Export ("beaconUpdateInfoInitialized:"), EventArgs ("BeaconUpdateInfoInitialized")]
         void BeaconUpdateInfoInitialized (BeaconUpdateInfo beaconUpdateInfo);
     }
 
@@ -1757,7 +1756,7 @@ namespace Estimote
 
         // @property (assign, nonatomic) ESBeaconUpdateInfoStatus status;
         [Export ("status", ArgumentSemantic.Assign)]
-        BeaconUpdateInfoStatus Status { get; set; }
+        ESBeaconUpdateInfoStatus Status { get; set; }
 
         /**
          *  Settings creation timestamp.
@@ -2083,22 +2082,22 @@ namespace Estimote
     interface DeviceConnectableDelegate
     {
         // @optional - (void)estDeviceConnectionDidSucceed:(ESTDeviceConnectable *)device;
-        [Export ("estDeviceConnectionDidSucceed:")]
+        [Export ("estDeviceConnectionDidSucceed:"), EventArgs ("ConnectionSucceeded")]
         void ConnectionSucceeded (DeviceConnectable device);
 
         // @optional - (void)estDevice:(ESTDeviceConnectable *)device didDisconnectWithError:(NSError *)error;
-        [Export ("estDevice:didDisconnectWithError:")]
+        [Export ("estDevice:didDisconnectWithError:"), EventArgs ("Disconnected")]
         void Disconnected (DeviceConnectable device, [NullAllowed]NSError error);
 
         // @optional - (void)estDevice:(ESTDeviceConnectable *)device didFailConnectionWithError:(NSError *)error;
-        [Export ("estDevice:didFailConnectionWithError:")]
+        [Export ("estDevice:didFailConnectionWithError:"), EventArgs ("ConnectionFailed")]
         void ConnectionFailed (DeviceConnectable device, NSError error);
     }
 
     // typedef void (^ESTDeviceFirmwareUpdateProgressBlock)(NSInteger);
     delegate void DeviceFirmwareUpdateProgressBlock (nint progress);
 
-    [BaseType (typeof (Device), Name = "ESTDeviceConnectable")]
+    [BaseType (typeof (Device), Name = "ESTDeviceConnectable", Delegates = new string [] { "Delegate" }, Events = new Type [] { typeof (DeviceConnectableDelegate) })]
     interface DeviceConnectable
     {
         // @property (nonatomic, weak) id <ESTDeviceConnectableDelegate> delegate;
@@ -3776,29 +3775,26 @@ namespace Estimote
     interface DeviceManagerDelegate
     {
         // @optional -(void)deviceManager:(ESTDeviceManager * _Nonnull)manager didDiscoverDevices:(NSArray<ESTDevice *> * _Nonnull)devices;
-        [Export ("deviceManager:didDiscoverDevices:")]
+        [Export ("deviceManager:didDiscoverDevices:"), EventArgs ("DidDiscoverDevices")]
         void DidDiscoverDevices (DeviceManager manager, Device [] devices);
 
         // @optional -(void)deviceManagerDidFailDiscovery:(ESTDeviceManager * _Nonnull)manager;
-        [Export ("deviceManagerDidFailDiscovery:")]
+        [Export ("deviceManagerDidFailDiscovery:"), EventArgs ("DidFailDiscovery")]
         void DidFailDiscovery (DeviceManager manager);
     }
 
     // @interface ESTDeviceManager : NSObject
-    [BaseType (typeof (NSObject), Name="ESTDeviceManager")]
+    [BaseType (typeof (NSObject), Name = "ESTDeviceManager", Delegates = new string [] { "Delegate" }, Events = new Type [] { typeof (DeviceManagerDelegate) })]
     interface DeviceManager
     {
         // @property (readonly, assign, nonatomic) BOOL isScanning;
         [Export ("isScanning")]
         bool IsScanning { get; }
 
-        [Wrap ("WeakDelegate")]
-        [NullAllowed]
-        DeviceManagerDelegate Delegate { get; set; }
-
         // @property (nonatomic, weak) id<ESTDeviceManagerDelegate> _Nullable delegate;
-        [NullAllowed, Export ("delegate", ArgumentSemantic.Weak)]
-        NSObject WeakDelegate { get; set; }
+        [Export ("delegate", ArgumentSemantic.Weak)]
+        [NullAllowed]
+        IDeviceManagerDelegate Delegate { get; set; }
 
         // -(void)startDeviceDiscoveryWithFilter:(id<ESTDeviceFilter> _Nonnull)filter;
         [Export ("startDeviceDiscoveryWithFilter:")]
@@ -4347,28 +4343,26 @@ namespace Estimote
     interface LocationBeaconBulkUpdaterDelegate
     {
         // @optional -(void)bulkUpdater:(ESTLocationBeaconBulkUpdater *)bulkUpdater didUpdateStatus:(ESTBulkUpdaterDeviceUpdateStatus)updateStatus forDeviceWithIdentifier:(NSString *)deviceIdentifier;
-        [Export ("bulkUpdater:didUpdateStatus:forDeviceWithIdentifier:")]
+        [Export ("bulkUpdater:didUpdateStatus:forDeviceWithIdentifier:"), EventArgs ("DidUpdateStatus")]
         void DidUpdateStatus (LocationBeaconBulkUpdater bulkUpdater, BulkUpdaterDeviceUpdateStatus updateStatus, string deviceIdentifier);
 
         // @optional -(void)bulkUpdaterDidFinish:(ESTLocationBeaconBulkUpdater *)bulkUpdater;
-        [Export ("bulkUpdaterDidFinish:")]
+        [Export ("bulkUpdaterDidFinish:"), EventArgs ("DidFinish")]
         void DidFinish (LocationBeaconBulkUpdater bulkUpdater);
 
         // @optional -(void)bulkUpdater:(ESTLocationBeaconBulkUpdater *)bulkUpdater didFailWithError:(NSError *)error;
-        [Export ("bulkUpdater:didFailWithError:")]
+        [Export ("bulkUpdater:didFailWithError:"), EventArgs ("DidFail")]
         void DidFail (LocationBeaconBulkUpdater bulkUpdater, NSError error);
     }
 
     // @interface ESTLocationBeaconBulkUpdater : NSObject
-    [BaseType (typeof (NSObject), Name="ESTLocationBeaconBulkUpdater")]
+    [BaseType (typeof (NSObject), Name = "ESTLocationBeaconBulkUpdater", Delegates = new string [] { "Delegate" }, Events = new Type [] { typeof (LocationBeaconBulkUpdaterDelegate) })]
     interface LocationBeaconBulkUpdater
     {
-        [Wrap ("WeakDelegate")]
-        LocationBeaconBulkUpdaterDelegate Delegate { get; set; }
-
         // @property (nonatomic, weak) id<ESTLocationBeaconBulkUpdaterDelegate> delegate;
-        [NullAllowed, Export ("delegate", ArgumentSemantic.Weak)]
-        NSObject WeakDelegate { get; set; }
+        [Export ("delegate", ArgumentSemantic.Weak)]
+        [NullAllowed]
+        ILocationBeaconBulkUpdaterDelegate Delegate { get; set; }
 
         // @property (assign, nonatomic) NSTimeInterval timeout;
         [Export ("timeout")]
@@ -4646,7 +4640,7 @@ namespace Estimote
     {
         // @required -(void)peripheral:(id<ESTPeripheral>)peripheral didReceiveNotification:(id<ESTDeviceNotificationProtocol>)notification withData:(NSData *)data;
         [Abstract]
-        [Export ("peripheral:didReceiveNotification:withData:")]
+        [Export ("peripheral:didReceiveNotification:withData:"), EventArgs ("DidReceiveNotification")]
         void DidReceiveNotification (Peripheral peripheral, DeviceNotificationProtocol notification, NSData data);
     }
 
@@ -4658,29 +4652,26 @@ namespace Estimote
     {
         // @required -(void)peripheral:(id<ESTPeripheral>)peripheral didPerformOperation:(id<ESTNearableOperationProtocol>)operation andReceivedData:(NSData *)data;
         [Abstract]
-        [Export ("peripheral:didPerformOperation:andReceivedData:")]
+        [Export ("peripheral:didPerformOperation:andReceivedData:"), EventArgs ("DidPerformOperation")]
         void DidPerformOperation (Peripheral peripheral, NearableOperationProtocol operation, NSData data);
 
         // @required -(void)peripheral:(id<ESTPeripheral>)peripheral didFailOperation:(id<ESTNearableOperationProtocol>)operation withError:(NSError *)error;
         [Abstract]
-        [Export ("peripheral:didFailOperation:withError:")]
+        [Export ("peripheral:didFailOperation:withError:"), EventArgs ("DidFailOperation")]
         void DidFailOperation (Peripheral peripheral, NearableOperationProtocol operation, NSError error);
     }
 
     // @interface ESTPeripheralNearable : NSObject <ESTPeripheral>
-    [BaseType (typeof (NSObject), Name="ESTPeripheralNearable")]
+    [BaseType (typeof (NSObject), Name = "ESTPeripheralNearable", Delegates = new string [] { "Delegate" }, Events = new Type [] { typeof (PeripheralNearableDelegate) })]
     interface PeripheralNearable : Peripheral
     {
         // @property (readonly, nonatomic) CBPeripheral * peripheral;
         [Export ("peripheral")]
         CBPeripheral Peripheral { get; }
 
-        [Wrap ("WeakDelegate")]
-        PeripheralNearableDelegate Delegate { get; set; }
-
         // @property (nonatomic, weak) id<ESTPeripheralNearableDelegate> delegate;
         [NullAllowed, Export ("delegate", ArgumentSemantic.Weak)]
-        NSObject WeakDelegate { get; set; }
+        IPeripheralNearableDelegate Delegate { get; set; }
 
         // -(void)readAuthorizationSeedWithCompletion:(ESTObjectCompletionBlock)completion;
         [Export ("readAuthorizationSeedWithCompletion:"), Async]
@@ -4723,12 +4714,12 @@ namespace Estimote
     {
         // @required -(void)peripheral:(id<ESTPeripheral>)peripheral didPerformOperation:(id<ESTBeaconOperationProtocol>)operation andReceivedData:(NSData *)data;
         [Abstract]
-        [Export ("peripheral:didPerformOperation:andReceivedData:")]
+        [Export ("peripheral:didPerformOperation:andReceivedData:"), EventArgs ("DidPerformOperation")]
         void DidPerformOperation (Peripheral peripheral, BeaconOperationProtocol operation, NSData data);
 
         // @required -(void)peripheral:(id<ESTPeripheral>)peripheral didFailOperation:(id<ESTBeaconOperationProtocol>)operation withError:(NSError *)error;
         [Abstract]
-        [Export ("peripheral:didFailOperation:withError:")]
+        [Export ("peripheral:didFailOperation:withError:"), EventArgs ("DidFailOperation")]
         void DidFailOperation (Peripheral peripheral, BeaconOperationProtocol operation, NSError error);
     }
 
@@ -4870,54 +4861,50 @@ namespace Estimote
     interface SecureBeaconManagerDelegate
     {
         // @optional -(void)beaconManager:(id _Nonnull)manager didChangeAuthorizationStatus:(CLAuthorizationStatus)status;
-        [Export ("beaconManager:didChangeAuthorizationStatus:")]
-        void DidChangeAuthorizationStatus (NSObject manager, CLAuthorizationStatus status);
+        [Export ("beaconManager:didChangeAuthorizationStatus:"), EventArgs ("AuthorizationStatusChanged")]
+        void AuthorizationStatusChanged (NSObject manager, CLAuthorizationStatus status);
 
         // @optional -(void)beaconManager:(id _Nonnull)manager didStartMonitoringForRegion:(CLBeaconRegion * _Nonnull)region;
-        [Export ("beaconManager:didStartMonitoringForRegion:")]
-        void DidStartMonitoringForRegion (NSObject manager, CLBeaconRegion region);
+        [Export ("beaconManager:didStartMonitoringForRegion:"), EventArgs ("MonitoringStarted")]
+        void MonitoringStarted (NSObject manager, CLBeaconRegion region);
 
         // @optional -(void)beaconManager:(id _Nonnull)manager monitoringDidFailForRegion:(CLBeaconRegion * _Nullable)region withError:(NSError * _Nonnull)error;
-        [Export ("beaconManager:monitoringDidFailForRegion:withError:")]
-        void MonitoringDidFailForRegion (NSObject manager, [NullAllowed] CLBeaconRegion region, NSError error);
+        [Export ("beaconManager:monitoringDidFailForRegion:withError:"), EventArgs ("MonitoringFailed")]
+        void MonitoringFailed (NSObject manager, [NullAllowed] CLBeaconRegion region, NSError error);
 
         // @optional -(void)beaconManager:(id _Nonnull)manager didEnterRegion:(CLBeaconRegion * _Nonnull)region;
-        [Export ("beaconManager:didEnterRegion:")]
-        void DidEnterRegion (NSObject manager, CLBeaconRegion region);
+        [Export ("beaconManager:didEnterRegion:"), EventArgs ("EnteredRegion")]
+        void EnteredRegion (NSObject manager, CLBeaconRegion region);
 
         // @optional -(void)beaconManager:(id _Nonnull)manager didExitRegion:(CLBeaconRegion * _Nonnull)region;
-        [Export ("beaconManager:didExitRegion:")]
-        void DidExitRegion (NSObject manager, CLBeaconRegion region);
+        [Export ("beaconManager:didExitRegion:"), EventArgs ("ExitedRegion")]
+        void ExitedRegion (NSObject manager, CLBeaconRegion region);
 
         // @optional -(void)beaconManager:(id _Nonnull)manager didDetermineState:(CLRegionState)state forRegion:(CLBeaconRegion * _Nonnull)region;
-        [Export ("beaconManager:didDetermineState:forRegion:")]
-        void DidDetermineState (NSObject manager, CLRegionState state, CLBeaconRegion region);
+        [Export ("beaconManager:didDetermineState:forRegion:"), EventArgs ("DeterminedState")]
+        void DeterminedState (NSObject manager, CLRegionState state, CLBeaconRegion region);
 
         // @optional -(void)beaconManager:(id _Nonnull)manager didRangeBeacons:(NSArray<ESTBeacon *> * _Nonnull)beacons inRegion:(CLBeaconRegion * _Nonnull)region;
-        [Export ("beaconManager:didRangeBeacons:inRegion:")]
-        void DidRangeBeacons (NSObject manager, Beacon [] beacons, CLBeaconRegion region);
+        [Export ("beaconManager:didRangeBeacons:inRegion:"), EventArgs ("RangedBeacons")]
+        void RangedBeacons (NSObject manager, CLBeacon [] beacons, CLBeaconRegion region);
 
         // @optional -(void)beaconManager:(id _Nonnull)manager rangingBeaconsDidFailForRegion:(CLBeaconRegion * _Nullable)region withError:(NSError * _Nonnull)error;
-        [Export ("beaconManager:rangingBeaconsDidFailForRegion:withError:")]
-        void RangingBeaconsDidFailForRegion (NSObject manager, [NullAllowed] CLBeaconRegion region, NSError error);
+        [Export ("beaconManager:rangingBeaconsDidFailForRegion:withError:"), EventArgs ("RangingBeaconsFailed")]
+        void RangingBeaconsFailed (NSObject manager, [NullAllowed] CLBeaconRegion region, NSError error);
 
         // @optional -(void)beaconManager:(id _Nonnull)manager didFailWithError:(NSError * _Nonnull)error;
-        [Export ("beaconManager:didFailWithError:")]
-        void DidFailWithError (NSObject manager, NSError error);
+        [Export ("beaconManager:didFailWithError:"), EventArgs ("FailedWithError")]
+        void FailedWithError (NSObject manager, NSError error);
     }
 
 
     // @interface ESTSecureBeaconManager : NSObject
-    [BaseType (typeof (NSObject), Name="ESTSecureBeaconManager")]
+    [BaseType (typeof (NSObject), Name = "ESTSecureBeaconManager", Delegates = new string [] { "Delegate" }, Events = new Type [] { typeof (SecureBeaconManagerDelegate) })]
     interface SecureBeaconManager
     {
-        [Wrap ("WeakDelegate")]
+        [Export ("delegate", ArgumentSemantic.Weak)]
         [NullAllowed]
-        SecureBeaconManagerDelegate Delegate { get; set; }
-
-        // @property (nonatomic, weak) id<ESTSecureBeaconManagerDelegate> _Nullable delegate;
-        [NullAllowed, Export ("delegate", ArgumentSemantic.Weak)]
-        NSObject WeakDelegate { get; set; }
+        ISecureBeaconManagerDelegate Delegate { get; set; }
 
         // +(CLAuthorizationStatus)authorizationStatus;
         [Static]
@@ -4934,23 +4921,23 @@ namespace Estimote
 
         // -(void)startMonitoringForRegion:(CLBeaconRegion * _Nonnull)region;
         [Export ("startMonitoringForRegion:")]
-        void StartMonitoring (CLBeaconRegion region);
+        void StartMonitoringForRegion (CLBeaconRegion region);
 
         // -(void)stopMonitoringForRegion:(CLBeaconRegion * _Nonnull)region;
         [Export ("stopMonitoringForRegion:")]
-        void StopMonitoring (CLBeaconRegion region);
+        void StopMonitoringForRegion (CLBeaconRegion region);
 
         // -(void)startRangingBeaconsInRegion:(CLBeaconRegion * _Nonnull)region;
         [Export ("startRangingBeaconsInRegion:")]
-        void StartRangingBeacons (CLBeaconRegion region);
+        void StartRangingBeaconsInRegion (CLBeaconRegion region);
 
         // -(void)stopRangingBeaconsInRegion:(CLBeaconRegion * _Nonnull)region;
         [Export ("stopRangingBeaconsInRegion:")]
-        void StopRangingBeacons (CLBeaconRegion region);
+        void StopRangingBeaconsInRegion (CLBeaconRegion region);
 
         // -(void)requestStateForRegion:(CLBeaconRegion * _Nonnull)region;
         [Export ("requestStateForRegion:")]
-        void RequestState (CLBeaconRegion region);
+        void RequestStateForRegion (CLBeaconRegion region);
 
         // @property (readonly, copy, nonatomic) NSSet * _Nonnull monitoredRegions;
         [Export ("monitoredRegions", ArgumentSemantic.Copy)]
