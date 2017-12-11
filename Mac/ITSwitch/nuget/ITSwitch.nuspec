@@ -4,11 +4,11 @@
     <id>Xamarin.Mac.ITSwitch</id>
     <title>ITSwitch for Xamarin.Mac</title>
     <version>1.0.1</version>
-    <authors>Xamarin Inc.</authors>
-    <owners>Xamarin Inc.</owners>
-    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <authors>Microsoft</authors>
+    <owners>Microsoft</owners>
+    <requireLicenseAcceptance>true</requireLicenseAcceptance>
     <description>ITSwitch is a simple and lightweight replica of iOS 7 UISwitch for Mac OS X.</description>
-    <copyright>Copyright 2017 Xamarin Inc</copyright>
+    <copyright>© Microsoft Corporation. All rights reserved.</copyright>
     <projectUrl>https://github.com/xamarin/XamarinComponents/tree/master/Mac/ITSwitch</projectUrl>
     <licenseUrl>https://github.com/xamarin/XamarinComponents/blob/master/Mac/ITSwitch/License.md</licenseUrl>
   </metadata>

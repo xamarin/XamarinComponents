@@ -4,11 +4,11 @@
     <id>Xamarin.Android.ShimmerLayout</id>
     <title>ShimmerLayout for Xamarin.Android</title>
     <version>0.5.0</version>
-    <authors>Xamarin Inc.</authors>
-    <owners>Xamarin Inc.</owners>
-    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <authors>Microsoft</authors>
+    <owners>Microsoft</owners>
+    <requireLicenseAcceptance>true</requireLicenseAcceptance>
     <description>Xamarin.Android binding for ShimmerLayout - Memory efficient shimmering effect for Android applications.</description>
-    <copyright>Copyright 2017</copyright>
+    <copyright>© Microsoft Corporation. All rights reserved.</copyright>
     <projectUrl>https://github.com/xamarin/XamarinComponents/tree/master/Android/ShimmerLayout</projectUrl>
     <licenseUrl>https://github.com/xamarin/XamarinComponents/blob/master/Android/ShimmerLayout/LICENSE.md</licenseUrl>
   </metadata>

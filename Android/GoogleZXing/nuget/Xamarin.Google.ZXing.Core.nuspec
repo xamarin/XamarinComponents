@@ -4,11 +4,11 @@
     <id>Xamarin.Google.ZXing.Core</id>
     <title>Google ZXing (Core)</title>
     <version>$version$</version>
-    <authors>Xamarin Inc.</authors>
-    <owners>Xamarin Inc.</owners>
-    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <authors>Microsoft</authors>
+    <owners>Microsoft</owners>
+    <requireLicenseAcceptance>true</requireLicenseAcceptance>
     <description>ZXing ("zebra crossing") is an open-source, multi-format 1D/2D barcode image processing library. Core barcode encoding/decoding library.</description>
-    <copyright>Copyright 2017 Xamarin Inc</copyright>
+    <copyright>© Microsoft Corporation. All rights reserved.</copyright>
     <projectUrl>https://github.com/xamarin/XamarinComponents/tree/master/Android/GoogleZXing</projectUrl>
     <licenseUrl>https://github.com/xamarin/XamarinComponents/blob/master/Android/GoogleZXing/LICENSE.md</licenseUrl>
   </metadata>

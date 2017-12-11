@@ -4,11 +4,11 @@
     <id>GoogleGson</id>
     <title>Google Gson</title>
     <version>2.8.1.0</version>
-    <authors>Xamarin Inc.</authors>
-    <owners>Xamarin Inc.</owners>
-    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <authors>Microsoft</authors>
+    <owners>Microsoft</owners>
+    <requireLicenseAcceptance>true</requireLicenseAcceptance>
     <description>Gson is a library that can be used to convert Java Objects into their JSON representation. It can also be used to convert a JSON string to an equivalent Java object.</description>
-    <copyright>Copyright 2017 Xamarin Inc</copyright>
+    <copyright>© Microsoft Corporation. All rights reserved.</copyright>
     <projectUrl>https://github.com/xamarin/XamarinComponents/tree/master/Android/GoogleGson</projectUrl>
     <licenseUrl>https://github.com/xamarin/XamarinComponents/blob/master/Android/GoogleGson/LICENSE.md</licenseUrl>
   </metadata>

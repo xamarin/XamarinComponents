@@ -4,12 +4,12 @@
     <id>Cake.Xamarin.Binding.Util</id>
     <title>Cake Add-In providing utilities for Xamarin Binding build scripts</title>
     <version>1.0.2</version>
-    <authors>Xamarin Inc.</authors>
-    <owners>Xamarin Inc.</owners>
+    <authors>Microsoft</authors>
+    <owners>Microsoft</owners>
     <licenseUrl>https://github.com/xamarin/XamarinComponents/blob/master/Util/Cake.Xamarin.Binding.Util/LICENSE</licenseUrl>
-    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <requireLicenseAcceptance>true</requireLicenseAcceptance>
     <description>Cake Add-In providing utilities for Xamarin Binding build scripts</description>
-    <copyright>Copyright 2017</copyright>
+    <copyright>© Microsoft Corporation. All rights reserved.</copyright>
   </metadata>
   <files>
     <file src="output/Cake.Xamarin.Binding.Util.dll" target="lib/net45" />

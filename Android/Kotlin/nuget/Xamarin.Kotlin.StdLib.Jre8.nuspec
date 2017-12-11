@@ -4,11 +4,11 @@
     <id>Xamarin.Kotlin.StdLib.Jre8</id>
     <title>Kotlin Standard Library JRE 8 extension for Xamarin.Android</title>
     <version>1.1.4.3</version>
-    <authors>Xamarin Inc.</authors>
-    <owners>Xamarin Inc.</owners>
-    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <authors>Microsoft</authors>
+    <owners>Microsoft</owners>
+    <requireLicenseAcceptance>true</requireLicenseAcceptance>
     <description>Xamarin.Android binding for Kotlin Standard Library JRE 8 extension</description>
-    <copyright>Copyright Xamarin Inc 2017</copyright>
+    <copyright>© Microsoft Corporation. All rights reserved.</copyright>
     <projectUrl>https://github.com/xamarin/XamarinComponents/tree/master/Android/Kotlin</projectUrl>
     <licenseUrl>https://github.com/xamarin/XamarinComponents/blob/master/Android/Kotlin/LICENSE.md</licenseUrl>
     <dependencies>

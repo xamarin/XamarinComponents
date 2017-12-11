@@ -4,11 +4,11 @@
     <id>Xamarin.LoginScreen</id>
     <title>Xamarin Login Screen</title>
     <version>1.5</version>
-    <authors>Xamarin Inc.</authors>
-    <owners>Xamarin Inc.</owners>
-    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <authors>Microsoft</authors>
+    <owners>Microsoft</owners>
+    <requireLicenseAcceptance>true</requireLicenseAcceptance>
     <description>Allows you to add login, registration and reset password features to your iOS and Android applications</description>
-    <copyright>Copyright 2016 Xamarin</copyright>
+    <copyright>© Microsoft Corporation. All rights reserved.</copyright>
     <projectUrl>https://components.xamarin.com/view/loginscreen</projectUrl>
     <licenseUrl>https://components.xamarin.com/license/loginscreen</licenseUrl>
     <iconUrl>https://github.com/xamarin/XamarinComponents/raw/master/XPlat/LoginScreen/component/icons/loginscreen_128x128.png</iconUrl>
