@@ -49,7 +49,7 @@
     <OutputPath>bin\iPhoneSimulator\Release</OutputPath>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <MtouchArch>i386</MtouchArch>
+    <MtouchArch>i386, x86_64</MtouchArch>
     <ConsolePause>false</ConsolePause>
     <MtouchLink>None</MtouchLink>
     <AssemblyName>XamDialogsSample</AssemblyName>
@@ -98,15 +98,15 @@
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
   <ItemGroup>
-    <ProjectReference Include="..\..\src\XamDialogs\XamDialogs.csproj">
-      <Project>{EEB23B63-1AC2-4E05-B707-1CDD066FCDC5}</Project>
-      <Name>XamDialogs</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
     <BundleResource Include="Resources\app_bg2%402x.jpg" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Views\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\source\XamDialogs\XamDialogs.csproj">
+      <Project>{EEB23B63-1AC2-4E05-B707-1CDD066FCDC5}</Project>
+      <Name>XamDialogs</Name>
+    </ProjectReference>
   </ItemGroup>
 </Project>

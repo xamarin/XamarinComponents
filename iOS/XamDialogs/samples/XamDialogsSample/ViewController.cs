@@ -52,7 +52,7 @@ namespace XamDialogsSample
 				Console.WriteLine(e);
 			};
 
-			dialog.Show();
+            dialog.Show(this);
 
 			// Static methods
 //			var result = await XamDatePickerDialog.ShowDialogAsync(UIDatePickerMode.DateAndTime,"Date of Birth","Select your Date of Birth", new DateTime(1969,7,20,20,18,00,00) );
@@ -78,7 +78,7 @@ namespace XamDialogsSample
 
 			dialog.SelectedItem = "John";
 
-			dialog.Show();
+			dialog.Show(this);
 
 			// Static methods
 //			var result = await XamSimplePickerDialog.ShowDialogAsync("Who are you?","Select your name", new List<String>(){"Dave","Rob","Jamie"}, "Rob");
