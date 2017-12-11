@@ -18,7 +18,7 @@ libraries:
     - ../output/IQAudioRecorderController.dll
 samples:
   - name: "iOS Sample"
-    path: samples/IQAudioRecorderControllerSample.sln
+    path: ../samples/IQAudioRecorderControllerSample.sln
     configuration: "Release|iPhone"
     nobuild: true
 no_build: true
