@@ -1,0 +1,34 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IQAudioRecorderControllerSample", "IQAudioRecorderControllerSample\IQAudioRecorderControllerSample.csproj", "{4981ED5A-FE82-4370-8D56-FA0C2BC75915}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IQAudioRecorderController", "..\source\IQAudioRecorderController\IQAudioRecorderController.csproj", "{5187E5C0-E4F9-4B5E-AC38-F0472B95258B}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|iPhoneSimulator = Debug|iPhoneSimulator
+		Release|iPhone = Release|iPhone
+		Release|iPhoneSimulator = Release|iPhoneSimulator
+		Debug|iPhone = Debug|iPhone
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{4981ED5A-FE82-4370-8D56-FA0C2BC75915}.Debug|iPhone.ActiveCfg = Debug|iPhone
+		{4981ED5A-FE82-4370-8D56-FA0C2BC75915}.Debug|iPhone.Build.0 = Debug|iPhone
+		{4981ED5A-FE82-4370-8D56-FA0C2BC75915}.Debug|iPhoneSimulator.ActiveCfg = Debug|iPhoneSimulator
+		{4981ED5A-FE82-4370-8D56-FA0C2BC75915}.Debug|iPhoneSimulator.Build.0 = Debug|iPhoneSimulator
+		{4981ED5A-FE82-4370-8D56-FA0C2BC75915}.Release|iPhone.ActiveCfg = Release|iPhone
+		{4981ED5A-FE82-4370-8D56-FA0C2BC75915}.Release|iPhone.Build.0 = Release|iPhone
+		{4981ED5A-FE82-4370-8D56-FA0C2BC75915}.Release|iPhoneSimulator.ActiveCfg = Release|iPhoneSimulator
+		{4981ED5A-FE82-4370-8D56-FA0C2BC75915}.Release|iPhoneSimulator.Build.0 = Release|iPhoneSimulator
+		{5187E5C0-E4F9-4B5E-AC38-F0472B95258B}.Debug|iPhone.ActiveCfg = Debug|Any CPU
+		{5187E5C0-E4F9-4B5E-AC38-F0472B95258B}.Debug|iPhone.Build.0 = Debug|Any CPU
+		{5187E5C0-E4F9-4B5E-AC38-F0472B95258B}.Debug|iPhoneSimulator.ActiveCfg = Debug|Any CPU
+		{5187E5C0-E4F9-4B5E-AC38-F0472B95258B}.Debug|iPhoneSimulator.Build.0 = Debug|Any CPU
+		{5187E5C0-E4F9-4B5E-AC38-F0472B95258B}.Release|iPhone.ActiveCfg = Release|Any CPU
+		{5187E5C0-E4F9-4B5E-AC38-F0472B95258B}.Release|iPhone.Build.0 = Release|Any CPU
+		{5187E5C0-E4F9-4B5E-AC38-F0472B95258B}.Release|iPhoneSimulator.ActiveCfg = Release|Any CPU
+		{5187E5C0-E4F9-4B5E-AC38-F0472B95258B}.Release|iPhoneSimulator.Build.0 = Release|Any CPU
+		
+	EndGlobalSection
+EndGlobal
