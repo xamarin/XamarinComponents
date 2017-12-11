@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <viewController id="BYZ-38-t0r" customClass="ViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
+                        <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="app_bg2.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="oZ2-NL-ItK">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                            </imageView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="355">
+                                <rect key="frame" x="188" y="233" width="225" height="134"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ccs-z2-3y9">
+                                        <rect key="frame" x="51" y="20" width="123" height="30"/>
+                                        <state key="normal" title="Show Date Picker">
+                                            <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="ShowDatePicker:" destination="BYZ-38-t0r" eventType="touchUpInside" id="359"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WQ1-D0-gcG">
+                                        <rect key="frame" x="43" y="68" width="138" height="30"/>
+                                        <state key="normal" title="Show Simple Picker">
+                                            <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="ShowSimplePicker:" destination="BYZ-38-t0r" eventType="touchUpInside" id="360"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="134" id="Bhj-NI-zt0"/>
+                                    <constraint firstAttribute="width" constant="225" id="mBs-KQ-ygh"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="oZ2-NL-ItK" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" id="0na-88-P9W"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="355" secondAttribute="bottom" constant="233" id="4kj-rB-4l8"/>
+                            <constraint firstAttribute="centerX" secondItem="355" secondAttribute="centerX" constant="-0.5" id="ABs-4n-5MW"/>
+                            <constraint firstItem="oZ2-NL-ItK" firstAttribute="height" secondItem="8bC-Xf-vdC" secondAttribute="height" id="Fgw-eG-BPf"/>
+                            <constraint firstAttribute="centerY" secondItem="355" secondAttribute="centerY" id="UGB-aZ-lTo"/>
+                            <constraint firstAttribute="centerY" secondItem="oZ2-NL-ItK" secondAttribute="centerY" id="hf8-yo-eZ8"/>
+                            <constraint firstAttribute="centerX" secondItem="oZ2-NL-ItK" secondAttribute="centerX" id="ybt-5P-MBe"/>
+                        </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="4kj-rB-4l8"/>
+                            </mask>
+                        </variation>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="0.0" y="0.0"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="app_bg2.jpg" width="372" height="696"/>
+    </resources>
+</document>

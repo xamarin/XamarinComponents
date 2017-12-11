@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<package >
+  <metadata>
+    <id>xamdialogs</id>
+    <version>1.1.0.0</version>
+    <title>XamDialogs for Xamarin.iOS</title>
+    <authors>Dave Humphreys</authors>
+    <owners>Dave Humphreys, Xamarin</owners>
+    <projectUrl>https://github.com/newky2k/XamDialogs</projectUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>Custom dialogs for picking dates and from simple lists for Xamarin.iOS</description>
+    <releaseNotes>Initial Release</releaseNotes>
+    <copyright>Copyright (c) 2015 David Humphreys</copyright>
+    <tags>Xamarin.iOS Dialogs</tags>
+  </metadata>
+      <files>
+    	<file src="output/XamDialogs.dll" target="lib/Xamarin.iOS10" />
+    </files>
+</package>

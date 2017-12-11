@@ -1,0 +1,30 @@
+%YAML 1.2
+---
+
+name: XamDialogs
+id: xamdialogs
+summary: Custom dialogs for picking dates and from simple lists
+publisher: Xamarin Inc
+license: ../License.md
+icons: 
+  - xamdialogs_128x128.png
+  - xamdialogs_512x512.png
+publisher-url: http://www.xamarin.com
+src-url: https://github.com/newky2k/XamDialogs
+libraries: 
+  ios-unified: 
+    - ../output/XamDialogs.dll
+details: Details.md
+screenshots: 
+  - Screen1.png
+getting-started: GettingStarted.md
+version: 1.1
+samples: 
+  - path: samples/XamDialogsSample.sln
+    name: iOS Sample
+    nobuild: "true"
+    configuration: Release|iPhone
+packages:
+  ios-unified: xamdialogs, Version=1.1.0
+is_shell: true
+no_build: true
