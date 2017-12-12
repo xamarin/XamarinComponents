@@ -16,11 +16,11 @@ libraries:
     - ../output/XamDialogs.dll
 details: Details.md
 screenshots: 
-  - Screen1.png
+  - screenshots/Screen1.png
 getting-started: GettingStarted.md
 version: 1.1
 samples: 
-  - path: samples/XamDialogsSample.sln
+  - path: ../samples/XamDialogsSample.sln
     name: iOS Sample
     nobuild: "true"
     configuration: Release|iPhone

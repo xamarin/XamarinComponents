@@ -10,7 +10,7 @@ var buildSpec = new BuildSpec () {
 			Configuration = "Release",
 			OutputFiles = new [] { 
 				new OutputFileCopy {
-					FromFile = "./source/XamDialogs/bin/Release/XamDialog.dll",
+					FromFile = "./source/XamDialogs/bin/Release/XamDialogs.dll",
 					ToDirectory = "./output"
 				},
 			}
@@ -20,23 +20,15 @@ var buildSpec = new BuildSpec () {
 	Samples = new ISolutionBuilder [] {
 		new IOSSolutionBuilder { SolutionPath = "./samples/XamDialogsSample.sln", Configuration = "Release", Platform="iPhone", BuildsOn = BuildPlatforms.Mac },
 	},
+	
+	NuGets = new [] {
+		new NuGetInfo { NuSpec = "./nuget/XamDialogs.nuspec", BuildsOn = BuildPlatforms.Mac },
+	},
 
 	Components = new [] {
 		new Component {ManifestDirectory = "./component", BuildsOn = BuildPlatforms.Mac},
 	},
 };
-
-Task ("externals").IsDependentOn ("externals-base").Does (() =>
-{
-	RunMake ("./externals/", "all");
-	BuildXCodeFatLibrary ("MBAlertView.xcodeproj", "MBAlertView", null, null, null, null);
-});
-
-Task ("clean").IsDependentOn ("clean-base").Does (() =>
-{
-	CleanXCodeBuild ("./externals/", null);
-	RunMake ("./externals/", "clean");
-});
 
 SetupXamarinBuildTasks (buildSpec, Tasks, Task);
 
