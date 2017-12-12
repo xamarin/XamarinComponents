@@ -10,7 +10,7 @@
     <description>The YouTube Android Player API enables you to incorporate video playback functionality into your Android applications.</description>
     <copyright>© Microsoft Corporation. All rights reserved.</copyright>
     <projectUrl>https://github.com/xamarin/XamarinComponents/tree/master/XPlat/YouTube.Player/android</projectUrl>
-    <licenseUrl>https://github.com/xamarin/XamarinComponents/blob/master/XPlat/YouTube.Player/android/LICENSE.md</licenseUrl>
+    <licenseUrl>https://github.com/xamarin/XamarinComponents/blob/master/XPlat/YouTube.Player/android/License.md</licenseUrl>
   </metadata>
   <files>
     <file src="output/YouTube.Player.Android.dll" target="lib/MonoAndroid10" />

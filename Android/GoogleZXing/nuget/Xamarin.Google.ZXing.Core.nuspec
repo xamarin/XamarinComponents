@@ -10,7 +10,7 @@
     <description>ZXing ("zebra crossing") is an open-source, multi-format 1D/2D barcode image processing library. Core barcode encoding/decoding library.</description>
     <copyright>© Microsoft Corporation. All rights reserved.</copyright>
     <projectUrl>https://github.com/xamarin/XamarinComponents/tree/master/Android/GoogleZXing</projectUrl>
-    <licenseUrl>https://github.com/xamarin/XamarinComponents/blob/master/Android/GoogleZXing/LICENSE.md</licenseUrl>
+    <licenseUrl>https://github.com/xamarin/XamarinComponents/blob/master/Android/GoogleZXing/License.md</licenseUrl>
   </metadata>
   <files>  
     <file src="output/Google.ZXing.Core.dll" target="lib/MonoAndroid" />
