@@ -95,7 +95,7 @@ namespace Estimote
 	//delegate void ArrayCompletionBlock ([NullAllowed] NSObject[] arg0, [NullAllowed] NSError error);
 	delegate void NearableArrayCompletionBlock ([NullAllowed] Nearable[] value, [NullAllowed] NSError error);
 	delegate void BeaconVOArrayCompletionBlock ([NullAllowed] BeaconVO[] value, [NullAllowed] NSError error);
-	delegate void BeaconUpdateInfoArrayCompletionBlock ([NullAllowed] BeaconUpdateInfo[] arg0, [NullAllowed] NSError error);
+	delegate void BeaconUpdateInfoArrayCompletionBlock ([NullAllowed] BeaconUpdateInfo[] value, [NullAllowed] NSError error);
 
 	// typedef void (^ESTDictionaryCompletionBlock)(NSDictionary * _Nullable, NSError * _Nullable);
 	delegate void DictionaryCompletionBlock ([NullAllowed] NSDictionary value, [NullAllowed] NSError error);
@@ -490,7 +490,7 @@ namespace Estimote
 
 		// -(BOOL)isDuplicateOfSetting:(ESTSettingBase * _Nonnull)setting;
 		[Export ("isDuplicateOfSetting:")]
-		bool IsDuplicateOfSetting (SettingBase setting);
+		bool Duplicates (SettingBase setting);
 	}
 
 	// @interface Internal (ESTSettingBase)
@@ -7408,7 +7408,7 @@ namespace Estimote
 	}
 
 	// typedef void (^ESTRequestV2DeletePendingSettingsBlock)(id _Nullable, NSError * _Nullable);
-	delegate void RequestV2DeletePendingSettingsBlock ([NullAllowed] NSObject arg0, [NullAllowed] NSError error);
+	delegate void RequestV2DeletePendingSettingsBlock ([NullAllowed] NSObject result, [NullAllowed] NSError error);
 
 	// @interface ESTRequestV2DeletePendingSettings : ESTRequestPostJSON
 	[DisableDefaultCtor]
@@ -8427,8 +8427,8 @@ namespace Estimote
 		IntPtr Constructor ([NullAllowed] string[] identifiers, RequestGetDevicesTypeMask deviceType, NSNumber page);
 
 		//// -(instancetype _Nonnull)initWithIdentifiers:(NSArray<NSString *> * _Nullable)identifiers type:(ESTRequestGetDevicesTypeMask)deviceType;
-		//[Export ("initWithIdentifiers:type:")]
-		//IntPtr Constructor ([NullAllowed] string[] identifiers, ESTRequestGetDevicesTypeMask deviceType);
+		[Export ("initWithIdentifiers:type:")]
+		IntPtr Constructor ([NullAllowed] string[] identifiers, RequestGetDevicesTypeMask deviceType);
 
 		// -(void)sendRequestWithCompletion:(ESTRequestGetDevicesBlock _Nonnull)completion;
 		[Export ("sendRequestWithCompletion:")]
@@ -8848,11 +8848,11 @@ namespace Estimote
 
 		// -(void)readSettingsWithCompletion:(void (^ _Nonnull)(BOOL, NSArray<NSError *> * _Nullable))completion;
 		[Export ("readSettingsWithCompletion:")]
-		void ReadSettings (Action<bool, NSArray<NSError>> completion);
+		void ReadSettings (Action<bool, NSError []> completion);
 
 		// -(void)writeEnableSettings:(BOOL)enabled withCompletion:(void (^ _Nonnull)(NSArray<NSError *> * _Nullable))completion;
 		[Export ("writeEnableSettings:withCompletion:"), Async]
-		void WriteEnableSettings (bool enabled, Action<NSArray<NSError>> completion);
+		void WriteEnableSettings (bool enabled, Action<NSError []> completion);
 
 		// +(NSDictionary<NSString *,ESTSettingBase *> * _Nonnull)classNamesToSettings __attribute__((deprecated("Use +classNamesToSettingsForDeviceIdentifier: instead")));
 		[Static]
@@ -9002,8 +9002,8 @@ namespace Estimote
 		NSNumber MeasuredPower { get; }
 
 		// @property (readonly, getter = getDistance, nonatomic, strong) NSNumber * _Nonnull distance;
-		[Export ("distance", ArgumentSemantic.Strong)]
-		NSNumber Distance { [Bind ("getDistance")] get; }
+		[Export ("getDistance", ArgumentSemantic.Strong)]
+		NSNumber Distance { get; }
 
 		// -(instancetype _Nonnull)initWithData:(NSData * _Nonnull)data;
 		[Export ("initWithData:")]

@@ -334,8 +334,8 @@ namespace Estimote
 	[Native]
 	public enum SettingPowerMotionOnlyBroadcastingDelayError : ulong
 	{
-		Small = 1,
-		Big = 2
+		TooSmall = 1,
+		TooBig = 2
 	}
 
 	[Native]
@@ -983,9 +983,9 @@ namespace Estimote
 	}
 
 	[Native]
-	public enum EstrequestV3GetFirmwresError : long
+	public enum RequestV3GetFirmwresError : long
 	{
-		EstrequestV3GetFirmwresErrorIvalidValue = 1
+		InvalidValue = 1
 	}
 
 	[Native]
