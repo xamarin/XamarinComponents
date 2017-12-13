@@ -140,7 +140,7 @@ namespace Estimote
 	interface IDeviceSettingProtocol { }
 
 	// @protocol ESTDeviceSettingProtocol <ESTSettingProtocol>
-	[Protocol, Model]
+	[Protocol]
 	interface DeviceSettingProtocol : SettingProtocol
 	{
 		// @required -(uint16_t)registerID;
@@ -175,7 +175,7 @@ namespace Estimote
 	interface ICloudSettingProtocol { }
 
 	// @protocol ESTCloudSettingProtocol <ESTSettingProtocol>
-	[Protocol, Model]
+	[Protocol]
 	interface CloudSettingProtocol : SettingProtocol
 	{
 	}
@@ -492,19 +492,26 @@ namespace Estimote
 		// -(BOOL)isDuplicateOfSetting:(ESTSettingBase * _Nonnull)setting;
 		[Export ("isDuplicateOfSetting:")]
 		bool Duplicates (SettingBase setting);
+
+		// ESTSettingBase Internal Category
+		// @property (nonatomic, weak) ESTDeviceConnectable * _Nullable device;
+		[NullAllowed]
+		[Export ("device", ArgumentSemantic.Weak)]
+		DeviceConnectable Device { get; set; }
 	}
 
 	// @interface Internal (ESTSettingBase)
-	[Category]
-	[BaseType (typeof (SettingBase))]
-	interface ESTSettingBase_Internal
-	{
-		// @property (nonatomic, weak) ESTDeviceConnectable * _Nullable device;
-		[NullAllowed, Export ("device")]
-		DeviceConnectable Device ();
-		[Export ("setDevice")]
-		void SetDevice ([NullAllowed]DeviceConnectable device);
-	}
+	//[Category]
+	//[BaseType (typeof (SettingBase))]
+	//interface ESTSettingBase_Internal
+	//{
+	//	// @property (nonatomic, weak) ESTDeviceConnectable * _Nullable device;
+	//	[NullAllowed, Export ("device")]
+	//	DeviceConnectable GetDevice ();
+
+	//	[Export ("setDevice:")]
+	//	void SetDevice ([NullAllowed] DeviceConnectable device);
+	//}
 
 	// @interface ESTDeviceSettingsCollection : NSObject <NSCopying>
 	[BaseType (typeof (NSObject), Name = "ESTDeviceSettingsCollection")]
@@ -2325,19 +2332,25 @@ namespace Estimote
 		// -(ESTSettingStorageType)storageType;
 		[Export ("storageType")]
 		SettingStorageType StorageType { get; }
+
+		//ESTSettingOperation Internal Category
+		// @property (nonatomic, weak) ESTDeviceConnectable * _Nullable device;
+		[Export ("device", ArgumentSemantic.Weak)]
+		DeviceConnectable Device { get; set; }
 	}
 
 	// @interface Internal (ESTSettingOperation)
-	[Category]
-	[BaseType (typeof (SettingOperation))]
-	interface ESTSettingOperation_Internal
-	{
-		// @property (nonatomic, weak) ESTDeviceConnectable * _Nullable device;
-		[NullAllowed, Export ("device")]
-		DeviceConnectable Device ();
-		[Export ("setDevice")]
-		void SetDevice ([NullAllowed]DeviceConnectable device);
-	}
+	//[Category]
+	//[BaseType (typeof (SettingOperation))]
+	//interface ESTSettingOperation_Internal
+	//{
+	//	// @property (nonatomic, weak) ESTDeviceConnectable * _Nullable device;
+	//	[NullAllowed, Export ("device")]
+	//	DeviceConnectable Device ();
+
+	//	[Export ("setDevice:")]
+	//	void SetDevice ([NullAllowed] DeviceConnectable device);
+	//}
 
 	// @interface ESTBeaconOperationConnectivityInterval : ESTSettingOperation <ESTBeaconOperationProtocol>
 	[DisableDefaultCtor]
