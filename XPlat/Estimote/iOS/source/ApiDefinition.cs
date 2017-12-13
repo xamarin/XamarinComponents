@@ -91,7 +91,7 @@ namespace Estimote
 	delegate void ProgressBlock (nint value, [NullAllowed] string description, [NullAllowed] NSError error);
 
 	// typedef void (^ESTArrayCompletionBlock)(NSArray * _Nullable, NSError * _Nullable);
-	//delegate void ArrayCompletionBlock ([NullAllowed] NSObject[] arg0, [NullAllowed] NSError arg1);
+	//delegate void ArrayCompletionBlock ([NullAllowed] NSObject[] arg0, [NullAllowed] NSError error);
 	delegate void NearableArrayCompletionBlock ([NullAllowed] Nearable[] value, [NullAllowed] NSError error);
 	delegate void BeaconVOArrayCompletionBlock ([NullAllowed] BeaconVO[] value, [NullAllowed] NSError error);
 	delegate void BeaconUpdateInfoArrayCompletionBlock ([NullAllowed] BeaconUpdateInfo[] arg0, [NullAllowed] NSError error);
@@ -269,7 +269,7 @@ namespace Estimote
 	}
 
 	// typedef void (^ESTDeviceFirmwareUpdateProgressBlock)(NSInteger);
-	delegate void DeviceFirmwareUpdateProgressBlock (nint arg0);
+	delegate void DeviceFirmwareUpdateProgressBlock (nint value);
 
 	interface IDeviceConnectableDelegate { }
 
@@ -391,7 +391,7 @@ namespace Estimote
 	}
 
 	// typedef void (^ESTPeripheralDiscoveryCompletionBlock)(NSError *);
-	delegate void PeripheralDiscoveryCompletionBlock (NSError arg0);
+	delegate void PeripheralDiscoveryCompletionBlock (NSError error);
 
 	interface IPeripheral { }
 
@@ -477,7 +477,7 @@ namespace Estimote
 	}
 
 	// typedef void (^ESTSettingCompletionBlock)(ESTSettingBase * _Nullable, NSError * _Nullable);
-	delegate void SettingCompletionBlock ([NullAllowed] SettingBase arg0, [NullAllowed] NSError arg1);
+	delegate void SettingCompletionBlock ([NullAllowed] SettingBase setting, [NullAllowed] NSError error);
 
 	// @interface ESTSettingBase : NSObject
 	[BaseType (typeof (NSObject), Name = "ESTSettingBase")]
@@ -628,7 +628,7 @@ namespace Estimote
 	}
 
 	// typedef void (^ESTSettingEstimoteTLMEnableCompletionBlock)(ESTSettingEstimoteTLMEnable * _Nullable, NSError * _Nullable);
-	delegate void SettingEstimoteTlmEnableCompletionBlock ([NullAllowed] SettingEstimoteTlmEnable arg0, [NullAllowed] NSError arg1);
+	delegate void SettingEstimoteTlmEnableCompletionBlock ([NullAllowed] SettingEstimoteTlmEnable enabledSetting, [NullAllowed] NSError error);
 
 	// @interface ESTSettingEstimoteTLMEnable : ESTSettingReadWrite <NSCopying>
 	[BaseType (typeof (SettingReadWrite), Name = "ESTSettingEstimoteTLMEnable")]
@@ -652,7 +652,7 @@ namespace Estimote
 	}
 
 	// typedef void (^ESTSettingEstimoteTLMIntervalCompletionBlock)(ESTSettingEstimoteTLMInterval * _Nullable, NSError * _Nullable);
-	delegate void SettingEstimoteTlmIntervalCompletionBlock ([NullAllowed] SettingEstimoteTlmInterval arg0, [NullAllowed] NSError arg1);
+	delegate void SettingEstimoteTlmIntervalCompletionBlock ([NullAllowed] SettingEstimoteTlmInterval advertisingIntervalSetting, [NullAllowed] NSError error);
 
 	// @interface ESTSettingEstimoteTLMInterval : ESTSettingReadWrite <NSCopying>
 	[BaseType (typeof (SettingReadWrite), Name = "ESTSettingEstimoteTLMInterval")]
@@ -682,7 +682,7 @@ namespace Estimote
 	}
 
 	// typedef void (^ESTSettingEstimoteTLMPowerCompletionBlock)(ESTSettingEstimoteTLMPower * _Nullable, NSError * _Nullable);
-	delegate void SettingEstimoteTlmPowerCompletionBlock ([NullAllowed] SettingEstimoteTlmPower arg0, [NullAllowed] NSError arg1);
+	delegate void SettingEstimoteTlmPowerCompletionBlock ([NullAllowed] SettingEstimoteTlmPower powerSetting, [NullAllowed] NSError error);
 
 	// @interface ESTSettingEstimoteTLMPower : ESTSettingReadWrite <NSCopying>
 	[BaseType (typeof (SettingReadWrite), Name = "ESTSettingEstimoteTLMPower")]
@@ -964,7 +964,7 @@ namespace Estimote
 	}
 
 	// typedef void (^ESTSettingConnectivityIntervalCompletionBlock)(ESTSettingConnectivityInterval * _Nullable, NSError * _Nullable);
-	delegate void SettingConnectivityIntervalCompletionBlock ([NullAllowed] SettingConnectivityInterval arg0, [NullAllowed] NSError arg1);
+	delegate void SettingConnectivityIntervalCompletionBlock ([NullAllowed] SettingConnectivityInterval intervalSetting, [NullAllowed] NSError error);
 
 	// @interface ESTSettingConnectivityInterval : ESTSettingReadWrite <NSCopying>
 	[BaseType (typeof (SettingReadWrite), Name = "ESTSettingConnectivityInterval")]
@@ -1053,10 +1053,10 @@ namespace Estimote
 	}
 
 	// typedef void (^ESTDeviceSettingsManagerSyncCompletionBlock)(NSError * _Nullable);
-	delegate void DeviceSettingsManagerSyncCompletionBlock ([NullAllowed] NSError arg0);
+	delegate void DeviceSettingsManagerSyncCompletionBlock ([NullAllowed] NSError error);
 
 	// typedef void (^ESTDeviceSettingsManagerOperationsCompletionBlock)(NSError * _Nullable);
-	delegate void DeviceSettingsManagerOperationsCompletionBlock ([NullAllowed] NSError arg0);
+	delegate void DeviceSettingsManagerOperationsCompletionBlock ([NullAllowed] NSError error);
 
 	// @interface ESTBeaconSettingsManager : NSObject
 	[BaseType (typeof (NSObject), Name = "ESTBeaconSettingsManager")]
@@ -1198,7 +1198,7 @@ namespace Estimote
 	}
 
 	// typedef void (^ESTReportScanVOCompletionBlock)(ESTMeshNearablesScanReportVO * _Nullable, NSError * _Nullable);
-	delegate void ReportScanVOCompletionBlock ([NullAllowed] MeshNearablesScanReportVO arg0, [NullAllowed] NSError arg1);
+	delegate void ReportScanVOCompletionBlock ([NullAllowed] MeshNearablesScanReportVO scanReportVO, [NullAllowed] NSError error);
 
 	// @interface ESTMeshScanReportsManager : NSObject
 	[BaseType (typeof (NSObject), Name = "ESTMeshScanReportsManager")]
@@ -1690,7 +1690,7 @@ namespace Estimote
 	}
 
 	// typedef void (^ESTPowerCompletionBlock)(ESTBeaconPower, NSError * _Nullable);
-	delegate void PowerCompletionBlock (BeaconPower arg0, [NullAllowed] NSError arg1);
+	delegate void PowerCompletionBlock (BeaconPower value, [NullAllowed] NSError error);
 
 	// @interface ESTBeaconDefinitions : NSObject
 	[BaseType (typeof (NSObject), Name = "ESTBeaconDefinitions")]
@@ -2231,7 +2231,7 @@ namespace Estimote
 	}
 
 	// typedef void (^ESTSettingConnectivityPowerCompletionBlock)(ESTSettingConnectivityPower * _Nullable, NSError * _Nullable);
-	delegate void SettingConnectivityPowerCompletionBlock ([NullAllowed] SettingConnectivityPower arg0, [NullAllowed] NSError arg1);
+	delegate void SettingConnectivityPowerCompletionBlock ([NullAllowed] SettingConnectivityPower powerSetting, [NullAllowed] NSError error);
 
 	// @interface ESTSettingConnectivityPower : ESTSettingReadWrite <NSCopying>
 	[BaseType (typeof (SettingReadWrite), Name = "ESTSettingConnectivityPower")]
@@ -2261,7 +2261,7 @@ namespace Estimote
 	}
 
 	// typedef void (^ESTSettingShakeToConnectEnableCompletionBlock)(ESTSettingShakeToConnectEnable * _Nullable, NSError * _Nullable);
-	delegate void SettingShakeToConnectEnableCompletionBlock ([NullAllowed] SettingShakeToConnectEnable arg0, [NullAllowed] NSError arg1);
+	delegate void SettingShakeToConnectEnableCompletionBlock ([NullAllowed] SettingShakeToConnectEnable shakeToConnectEnableSetting, [NullAllowed] NSError error);
 
 	// @interface ESTSettingShakeToConnectEnable : ESTSettingReadWrite <NSCopying>
 	[BaseType (typeof (SettingReadWrite), Name = "ESTSettingShakeToConnectEnable")]
@@ -2363,7 +2363,7 @@ namespace Estimote
 	}
 
 	// typedef void (^ESTSettingPowerSmartPowerModeEnableCompletionBlock)(ESTSettingPowerSmartPowerModeEnable * _Nullable, NSError * _Nullable);
-	delegate void SettingPowerSmartPowerModeEnableCompletionBlock ([NullAllowed] SettingPowerSmartPowerModeEnable arg0, [NullAllowed] NSError arg1);
+	delegate void SettingPowerSmartPowerModeEnableCompletionBlock ([NullAllowed] SettingPowerSmartPowerModeEnable smartPowerModeEnableSetting, [NullAllowed] NSError error);
 
 	// @interface ESTSettingPowerSmartPowerModeEnable : ESTSettingReadWrite <NSCopying>
 	[BaseType (typeof (SettingReadWrite), Name = "ESTSettingPowerSmartPowerModeEnable")]
@@ -2393,7 +2393,7 @@ namespace Estimote
 	}
 
 	// typedef void (^ESTSettingPowerFlipToSleepEnableCompletionBlock)(ESTSettingPowerFlipToSleepEnable * _Nullable, NSError * _Nullable);
-	delegate void SettingPowerFlipToSleepEnableCompletionBlock ([NullAllowed] SettingPowerFlipToSleepEnable arg0, [NullAllowed] NSError arg1);
+	delegate void SettingPowerFlipToSleepEnableCompletionBlock ([NullAllowed] SettingPowerFlipToSleepEnable enabledSetting, [NullAllowed] NSError error);
 
 	// @interface ESTSettingPowerFlipToSleepEnable : ESTSettingReadWrite <NSCopying>
 	[BaseType (typeof (SettingReadWrite), Name = "ESTSettingPowerFlipToSleepEnable")]
@@ -2423,7 +2423,7 @@ namespace Estimote
 	}
 
 	// typedef void (^ESTSettingPowerDarkToSleepEnableCompletionBlock)(ESTSettingPowerDarkToSleepEnable * _Nullable, NSError * _Nullable);
-	delegate void SettingPowerDarkToSleepEnableCompletionBlock ([NullAllowed] SettingPowerDarkToSleepEnable arg0, [NullAllowed] NSError arg1);
+	delegate void SettingPowerDarkToSleepEnableCompletionBlock ([NullAllowed] SettingPowerDarkToSleepEnable enabledSetting, [NullAllowed] NSError error);
 
 	// @interface ESTSettingPowerDarkToSleepEnable : ESTSettingReadWrite <NSCopying>
 	[BaseType (typeof (SettingReadWrite), Name = "ESTSettingPowerDarkToSleepEnable")]
@@ -2453,7 +2453,7 @@ namespace Estimote
 	}
 
 	// typedef void (^ESTSettingPowerBatteryLifetimeCompletionBlock)(ESTSettingPowerBatteryLifetime * _Nullable, NSError * _Nullable);
-	delegate void SettingPowerBatteryLifetimeCompletionBlock ([NullAllowed] SettingPowerBatteryLifetime arg0, [NullAllowed] NSError arg1);
+	delegate void SettingPowerBatteryLifetimeCompletionBlock ([NullAllowed] SettingPowerBatteryLifetime batteryLifetimeSetting, [NullAllowed] NSError error);
 
 	// @interface ESTSettingPowerBatteryLifetime : ESTSettingReadOnly <NSCopying>
 	[BaseType (typeof (SettingReadOnly), Name = "ESTSettingPowerBatteryLifetime")]
@@ -2473,7 +2473,7 @@ namespace Estimote
 	}
 
 	// typedef void (^ESTSettingPowerMotionOnlyBroadcastingEnableCompletionBlock)(ESTSettingPowerMotionOnlyBroadcastingEnable * _Nullable, NSError * _Nullable);
-	delegate void SettingPowerMotionOnlyBroadcastingEnableCompletionBlock ([NullAllowed] SettingPowerMotionOnlyBroadcastingEnable arg0, [NullAllowed] NSError arg1);
+	delegate void SettingPowerMotionOnlyBroadcastingEnableCompletionBlock ([NullAllowed] SettingPowerMotionOnlyBroadcastingEnable enabledSetting, [NullAllowed] NSError error);
 
 	// @interface ESTSettingPowerMotionOnlyBroadcastingEnable : ESTSettingReadWrite <NSCopying>
 	[BaseType (typeof (SettingReadWrite), Name = "ESTSettingPowerMotionOnlyBroadcastingEnable")]
@@ -2503,7 +2503,7 @@ namespace Estimote
 	}
 
 	// typedef void (^ESTSettingPowerMotionOnlyBroadcastingDelayCompletionBlock)(ESTSettingPowerMotionOnlyBroadcastingDelay * _Nullable, NSError * _Nullable);
-	delegate void SettingPowerMotionOnlyBroadcastingDelayCompletionBlock ([NullAllowed] SettingPowerMotionOnlyBroadcastingDelay arg0, [NullAllowed] NSError arg1);
+	delegate void SettingPowerMotionOnlyBroadcastingDelayCompletionBlock ([NullAllowed] SettingPowerMotionOnlyBroadcastingDelay motionOnlyBroadcastingDelaySetting, [NullAllowed] NSError error);
 
 	// @interface ESTSettingPowerMotionOnlyBroadcastingDelay : ESTSettingReadWrite <NSCopying>
 	[BaseType (typeof (SettingReadWrite), Name = "ESTSettingPowerMotionOnlyBroadcastingDelay")]
@@ -2636,7 +2636,7 @@ namespace Estimote
 	}
 
 	// typedef void (^ESTSettingPowerScheduledAdvertisingEnableCompletionBlock)(ESTSettingPowerScheduledAdvertisingEnable * _Nullable, NSError * _Nullable);
-	delegate void SettingPowerScheduledAdvertisingEnableCompletionBlock ([NullAllowed] SettingPowerScheduledAdvertisingEnable arg0, [NullAllowed] NSError arg1);
+	delegate void SettingPowerScheduledAdvertisingEnableCompletionBlock ([NullAllowed] SettingPowerScheduledAdvertisingEnable enableSetting, [NullAllowed] NSError error);
 
 	// @interface ESTSettingPowerScheduledAdvertisingEnable : ESTSettingReadWrite <NSCopying>
 	[BaseType (typeof (SettingReadWrite), Name = "ESTSettingPowerScheduledAdvertisingEnable")]
@@ -2708,7 +2708,7 @@ namespace Estimote
 	}
 
 	// typedef void (^ESTSettingPowerScheduledAdvertisingPeriodCompletionBlock)(ESTSettingPowerScheduledAdvertisingPeriod * _Nullable, NSError * _Nullable);
-	delegate void SettingPowerScheduledAdvertisingPeriodCompletionBlock ([NullAllowed] SettingPowerScheduledAdvertisingPeriod arg0, [NullAllowed] NSError arg1);
+	delegate void SettingPowerScheduledAdvertisingPeriodCompletionBlock ([NullAllowed] SettingPowerScheduledAdvertisingPeriod periodSetting, [NullAllowed] NSError error);
 
 	// @interface ESTSettingPowerScheduledAdvertisingPeriod : ESTSettingReadWrite <NSCopying>
 	[BaseType (typeof (SettingReadWrite), Name = "ESTSettingPowerScheduledAdvertisingPeriod")]
@@ -2738,7 +2738,7 @@ namespace Estimote
 	}
 
 	// typedef void (^ESTSettingPowerBatteryPercentageCompletionBlock)(ESTSettingPowerBatteryPercentage * _Nullable, NSError * _Nullable);
-	delegate void SettingPowerBatteryPercentageCompletionBlock ([NullAllowed] SettingPowerBatteryPercentage arg0, [NullAllowed] NSError arg1);
+	delegate void SettingPowerBatteryPercentageCompletionBlock ([NullAllowed] SettingPowerBatteryPercentage batteryPercentageSetting, [NullAllowed] NSError error);
 
 	// @interface ESTSettingPowerBatteryPercentage : ESTSettingReadOnly <NSCopying>
 	[BaseType (typeof (SettingReadOnly), Name = "ESTSettingPowerBatteryPercentage")]
@@ -2758,7 +2758,7 @@ namespace Estimote
 	}
 
 	// typedef void (^ESTSettingPowerBatteryVoltageCompletionBlock)(ESTSettingPowerBatteryVoltage * _Nullable, NSError * _Nullable);
-	delegate void SettingPowerBatteryVoltageCompletionBlock ([NullAllowed] SettingPowerBatteryVoltage arg0, [NullAllowed] NSError arg1);
+	delegate void SettingPowerBatteryVoltageCompletionBlock ([NullAllowed] SettingPowerBatteryVoltage voltageSetting, [NullAllowed] NSError error);
 
 	// @interface ESTSettingPowerBatteryVoltage : ESTSettingReadOnly <NSCopying>
 	[BaseType (typeof (SettingReadOnly), Name = "ESTSettingPowerBatteryVoltage")]
@@ -2828,7 +2828,7 @@ namespace Estimote
 	}
 
 	// typedef void (^ESTSettingDeviceInfoFirmwareVersionCompletionBlock)(ESTSettingDeviceInfoFirmwareVersion * _Nullable, NSError * _Nullable);
-	delegate void SettingDeviceInfoFirmwareVersionCompletionBlock ([NullAllowed] SettingDeviceInfoFirmwareVersion arg0, [NullAllowed] NSError arg1);
+	delegate void SettingDeviceInfoFirmwareVersionCompletionBlock ([NullAllowed] SettingDeviceInfoFirmwareVersion versionSetting, [NullAllowed] NSError error);
 
 	// @interface ESTSettingDeviceInfoFirmwareVersion : ESTSettingReadOnly <NSCopying>
 	[BaseType (typeof (SettingReadOnly), Name = "ESTSettingDeviceInfoFirmwareVersion")]
@@ -2848,7 +2848,7 @@ namespace Estimote
 	}
 
 	// typedef void (^ESTSettingDeviceInfoApplicationVersionCompletionBlock)(ESTSettingDeviceInfoApplicationVersion * _Nullable, NSError * _Nullable);
-	delegate void SettingDeviceInfoApplicationVersionCompletionBlock ([NullAllowed] SettingDeviceInfoApplicationVersion arg0, [NullAllowed] NSError arg1);
+	delegate void SettingDeviceInfoApplicationVersionCompletionBlock ([NullAllowed] SettingDeviceInfoApplicationVersion applicationVersionSetting, [NullAllowed] NSError error);
 
 	// @interface ESTSettingDeviceInfoApplicationVersion : ESTSettingReadOnly <NSCopying>
 	[BaseType (typeof (SettingReadOnly), Name = "ESTSettingDeviceInfoApplicationVersion")]
@@ -2868,7 +2868,7 @@ namespace Estimote
 	}
 
 	// typedef void (^ESTSettingDeviceInfoBootloaderVersionCompletionBlock)(ESTSettingDeviceInfoBootloaderVersion * _Nullable, NSError * _Nullable);
-	delegate void SettingDeviceInfoBootloaderVersionCompletionBlock ([NullAllowed] SettingDeviceInfoBootloaderVersion arg0, [NullAllowed] NSError arg1);
+	delegate void SettingDeviceInfoBootloaderVersionCompletionBlock ([NullAllowed] SettingDeviceInfoBootloaderVersion bootloaderVersionSetting, [NullAllowed] NSError error);
 
 	// @interface ESTSettingDeviceInfoBootloaderVersion : ESTSettingReadOnly <NSCopying>
 	[BaseType (typeof (SettingReadOnly), Name = "ESTSettingDeviceInfoBootloaderVersion")]
@@ -2884,7 +2884,7 @@ namespace Estimote
 	}
 
 	// typedef void (^ESTSettingDeviceInfoHardwareVersionCompletionBlock)(ESTSettingDeviceInfoHardwareVersion * _Nullable, NSError * _Nullable);
-	delegate void SettingDeviceInfoHardwareVersionCompletionBlock ([NullAllowed] SettingDeviceInfoHardwareVersion arg0, [NullAllowed] NSError arg1);
+	delegate void SettingDeviceInfoHardwareVersionCompletionBlock ([NullAllowed] SettingDeviceInfoHardwareVersion versionSetting, [NullAllowed] NSError error);
 
 	// @interface ESTSettingDeviceInfoHardwareVersion : ESTSettingReadOnly <NSCopying>
 	[BaseType (typeof (SettingReadOnly), Name = "ESTSettingDeviceInfoHardwareVersion")]
@@ -2900,7 +2900,7 @@ namespace Estimote
 	}
 
 	// typedef void (^ESTSettingDeviceInfoUTCTimeCompletionBlock)(ESTSettingDeviceInfoUTCTime * _Nullable, NSError * _Nullable);
-	delegate void SettingDeviceInfoUtcTimeCompletionBlock ([NullAllowed] SettingDeviceInfoUtcTime arg0, [NullAllowed] NSError arg1);
+	delegate void SettingDeviceInfoUtcTimeCompletionBlock ([NullAllowed] SettingDeviceInfoUtcTime utcTimeSetting, [NullAllowed] NSError error);
 
 	// @interface ESTSettingDeviceInfoUTCTime : ESTSettingReadWrite <NSCopying>
 	[BaseType (typeof (SettingReadWrite), Name = "ESTSettingDeviceInfoUTCTime")]
@@ -2930,7 +2930,7 @@ namespace Estimote
 	}
 
 	// typedef void (^ESTSettingDeviceInfoTagsCompletionBlock)(ESTSettingDeviceInfoTags * _Nullable, NSError * _Nullable);
-	delegate void SettingDeviceInfoTagsCompletionBlock ([NullAllowed] SettingDeviceInfoTags arg0, [NullAllowed] NSError arg1);
+	delegate void SettingDeviceInfoTagsCompletionBlock ([NullAllowed] SettingDeviceInfoTags tagsSetting, [NullAllowed] NSError error);
 
 	// @interface ESTSettingDeviceInfoTags : ESTSettingReadWrite <NSCopying>
 	[BaseType (typeof (SettingReadWrite), Name = "ESTSettingDeviceInfoTags")]
@@ -2960,7 +2960,7 @@ namespace Estimote
 	}
 
 	// typedef void (^ESTSettingDeviceInfoGeoLocationCompletionBlock)(ESTSettingDeviceInfoGeoLocation * _Nullable, NSError * _Nullable);
-	delegate void SettingDeviceInfoGeoLocationCompletionBlock ([NullAllowed] SettingDeviceInfoGeoLocation arg0, [NullAllowed] NSError arg1);
+	delegate void SettingDeviceInfoGeoLocationCompletionBlock ([NullAllowed] SettingDeviceInfoGeoLocation geoLocationSetting, [NullAllowed] NSError error);
 
 	// @interface ESTSettingDeviceInfoGeoLocation : ESTSettingReadWrite <NSCopying>
 	[BaseType (typeof (SettingReadWrite), Name = "ESTSettingDeviceInfoGeoLocation")]
@@ -2990,7 +2990,7 @@ namespace Estimote
 	}
 
 	// typedef void (^ESTSettingDeviceInfoNameCompletionBlock)(ESTSettingDeviceInfoName * _Nullable, NSError * _Nullable);
-	delegate void SettingDeviceInfoNameCompletionBlock ([NullAllowed] SettingDeviceInfoName arg0, [NullAllowed] NSError arg1);
+	delegate void SettingDeviceInfoNameCompletionBlock ([NullAllowed] SettingDeviceInfoName nameSetting, [NullAllowed] NSError error);
 
 	// @interface ESTSettingDeviceInfoName : ESTSettingReadWrite <NSCopying>
 	[BaseType (typeof (SettingReadWrite), Name = "ESTSettingDeviceInfoName")]
@@ -3020,7 +3020,7 @@ namespace Estimote
 	}
 
 	// typedef void (^ESTSettingDeviceInfoColorCompletionBlock)(ESTSettingDeviceInfoColor * _Nullable, NSError * _Nullable);
-	delegate void SettingDeviceInfoColorCompletionBlock ([NullAllowed] SettingDeviceInfoColor arg0, [NullAllowed] NSError arg1);
+	delegate void SettingDeviceInfoColorCompletionBlock ([NullAllowed] SettingDeviceInfoColor colorSetting, [NullAllowed] NSError error);
 
 	// @interface ESTSettingDeviceInfoColor : ESTSettingReadOnly <NSCopying>
 	[BaseType (typeof (SettingReadOnly), Name = "ESTSettingDeviceInfoColor")]
@@ -3040,7 +3040,7 @@ namespace Estimote
 	}
 
 	// typedef void (^ESTSettingDeviceInfoIndoorLocationIdentifierCompletionBlock)(ESTSettingDeviceInfoIndoorLocationIdentifier * _Nullable, NSError * _Nullable);
-	delegate void SettingDeviceInfoIndoorLocationIdentifierCompletionBlock ([NullAllowed] SettingDeviceInfoIndoorLocationIdentifier arg0, [NullAllowed] NSError arg1);
+	delegate void SettingDeviceInfoIndoorLocationIdentifierCompletionBlock ([NullAllowed] SettingDeviceInfoIndoorLocationIdentifier indoorLocationIdentifierSetting, [NullAllowed] NSError error);
 
 	// @interface ESTSettingDeviceInfoIndoorLocationIdentifier : ESTSettingReadOnly <NSCopying>
 	[BaseType (typeof (SettingReadOnly), Name = "ESTSettingDeviceInfoIndoorLocationIdentifier")]
@@ -3060,7 +3060,7 @@ namespace Estimote
 	}
 
 	// typedef void (^ESTSettingDeviceInfoIndoorLocationNameCompletionBlock)(ESTSettingDeviceInfoIndoorLocationName * _Nullable, NSError * _Nullable);
-	delegate void SettingDeviceInfoIndoorLocationNameCompletionBlock ([NullAllowed] SettingDeviceInfoIndoorLocationName arg0, [NullAllowed] NSError arg1);
+	delegate void SettingDeviceInfoIndoorLocationNameCompletionBlock ([NullAllowed] SettingDeviceInfoIndoorLocationName nameSetting, [NullAllowed] NSError error);
 
 	// @interface ESTSettingDeviceInfoIndoorLocationName : ESTSettingReadOnly <NSCopying>
 	[BaseType (typeof (SettingReadOnly), Name = "ESTSettingDeviceInfoIndoorLocationName")]
@@ -3080,7 +3080,7 @@ namespace Estimote
 	}
 
 	// typedef void (^ESTSettingDeviceInfoUptimeCompletionBlock)(ESTSettingDeviceInfoUptime * _Nullable, NSError * _Nullable);
-	delegate void SettingDeviceInfoUptimeCompletionBlock ([NullAllowed] SettingDeviceInfoUptime arg0, [NullAllowed] NSError arg1);
+	delegate void SettingDeviceInfoUptimeCompletionBlock ([NullAllowed] SettingDeviceInfoUptime uptimeSetting, [NullAllowed] NSError error);
 
 	// @interface ESTSettingDeviceInfoUptime : ESTSettingReadOnly <NSCopying>
 	[BaseType (typeof (SettingReadOnly), Name = "ESTSettingDeviceInfoUptime")]
@@ -3100,7 +3100,7 @@ namespace Estimote
 	}
 
 	// typedef void (^ESTSettingDeviceInfoDevelopmentModeCompletionBlock)(ESTSettingDeviceInfoDevelopmentMode * _Nullable, NSError * _Nullable);
-	delegate void SettingDeviceInfoDevelopmentModeCompletionBlock ([NullAllowed] SettingDeviceInfoDevelopmentMode arg0, [NullAllowed] NSError arg1);
+	delegate void SettingDeviceInfoDevelopmentModeCompletionBlock ([NullAllowed] SettingDeviceInfoDevelopmentMode developmentModeSetting, [NullAllowed] NSError error);
 
 	// @interface ESTSettingDeviceInfoDevelopmentMode : ESTSettingReadWrite <NSCopying>
 	[BaseType (typeof (SettingReadWrite), Name = "ESTSettingDeviceInfoDevelopmentMode")]
@@ -3280,7 +3280,7 @@ namespace Estimote
 	}
 
 	// typedef void (^ESTSettingIBeaconEnableCompletionBlock)(ESTSettingIBeaconEnable * _Nullable, NSError * _Nullable);
-	delegate void SettingIBeaconEnableCompletionBlock ([NullAllowed] SettingIBeaconEnable arg0, [NullAllowed] NSError arg1);
+	delegate void SettingIBeaconEnableCompletionBlock ([NullAllowed] SettingIBeaconEnable iBeaconEnableSetting, [NullAllowed] NSError error);
 
 	// @interface ESTSettingIBeaconEnable : ESTSettingReadWrite <NSCopying>
 	[BaseType (typeof (SettingReadWrite), Name = "ESTSettingIBeaconEnable")]
@@ -3304,7 +3304,7 @@ namespace Estimote
 	}
 
 	// typedef void (^ESTSettingIBeaconIntervalCompletionBlock)(ESTSettingIBeaconInterval * _Nullable, NSError * _Nullable);
-	delegate void SettingIBeaconIntervalCompletionBlock ([NullAllowed] SettingIBeaconInterval arg0, [NullAllowed] NSError arg1);
+	delegate void SettingIBeaconIntervalCompletionBlock ([NullAllowed] SettingIBeaconInterval advertisingIntervalSetting, [NullAllowed] NSError error);
 
 	// @interface ESTSettingIBeaconInterval : ESTSettingReadWrite <NSCopying>
 	[BaseType (typeof (SettingReadWrite), Name = "ESTSettingIBeaconInterval")]
@@ -3334,7 +3334,7 @@ namespace Estimote
 	}
 
 	// typedef void (^ESTSettingIBeaconMajorCompletionBlock)(ESTSettingIBeaconMajor * _Nullable, NSError * _Nullable);
-	delegate void SettingIBeaconMajorCompletionBlock ([NullAllowed] SettingIBeaconMajor arg0, [NullAllowed] NSError arg1);
+	delegate void SettingIBeaconMajorCompletionBlock ([NullAllowed] SettingIBeaconMajor major, [NullAllowed] NSError error);
 
 	// @interface ESTSettingIBeaconMajor : ESTSettingReadWrite <NSCopying>
 	[BaseType (typeof (SettingReadWrite), Name = "ESTSettingIBeaconMajor")]
@@ -3364,7 +3364,7 @@ namespace Estimote
 	}
 
 	// typedef void (^ESTSettingIBeaconMinorCompletionBlock)(ESTSettingIBeaconMinor * _Nullable, NSError * _Nullable);
-	delegate void SettingIBeaconMinorCompletionBlock ([NullAllowed] SettingIBeaconMinor arg0, [NullAllowed] NSError arg1);
+	delegate void SettingIBeaconMinorCompletionBlock ([NullAllowed] SettingIBeaconMinor minor, [NullAllowed] NSError error);
 
 	// @interface ESTSettingIBeaconMinor : ESTSettingReadWrite <NSCopying>
 	[BaseType (typeof (SettingReadWrite), Name = "ESTSettingIBeaconMinor")]
@@ -3394,7 +3394,7 @@ namespace Estimote
 	}
 
 	// typedef void (^ESTSettingIBeaconPowerCompletionBlock)(ESTSettingIBeaconPower * _Nullable, NSError * _Nullable);
-	delegate void SettingIBeaconPowerCompletionBlock ([NullAllowed] SettingIBeaconPower arg0, [NullAllowed] NSError arg1);
+	delegate void SettingIBeaconPowerCompletionBlock ([NullAllowed] SettingIBeaconPower powerSetting, [NullAllowed] NSError error);
 
 	// @interface ESTSettingIBeaconPower : ESTSettingReadWrite <NSCopying>
 	[BaseType (typeof (SettingReadWrite), Name = "ESTSettingIBeaconPower")]
@@ -3424,7 +3424,7 @@ namespace Estimote
 	}
 
 	// typedef void (^ESTSettingIBeaconProximityUUIDCompletionBlock)(ESTSettingIBeaconProximityUUID * _Nullable, NSError * _Nullable);
-	delegate void SettingIBeaconProximityUuidCompletionBlock ([NullAllowed] SettingIBeaconProximityUuid arg0, [NullAllowed] NSError arg1);
+	delegate void SettingIBeaconProximityUuidCompletionBlock ([NullAllowed] SettingIBeaconProximityUuid proximityUuidSetting, [NullAllowed] NSError error);
 
 	// @interface ESTSettingIBeaconProximityUUID : ESTSettingReadWrite <NSCopying>
 	[BaseType (typeof (SettingReadWrite), Name = "ESTSettingIBeaconProximityUUID")]
@@ -3448,7 +3448,7 @@ namespace Estimote
 	}
 
 	// typedef void (^ESTSettingIBeaconSecureUUIDEnableCompletionBlock)(ESTSettingIBeaconSecureUUIDEnable * _Nullable, NSError * _Nullable);
-	delegate void SettingIBeaconSecureUuidEnableCompletionBlock ([NullAllowed] SettingIBeaconSecureUuidEnable arg0, [NullAllowed] NSError arg1);
+	delegate void SettingIBeaconSecureUuidEnableCompletionBlock ([NullAllowed] SettingIBeaconSecureUuidEnable enabledSetting, [NullAllowed] NSError error);
 
 	// @interface ESTSettingIBeaconSecureUUIDEnable : ESTSettingReadWrite <NSCopying>
 	[BaseType (typeof (SettingReadWrite), Name = "ESTSettingIBeaconSecureUUIDEnable")]
@@ -3472,7 +3472,7 @@ namespace Estimote
 	}
 
 	// typedef void (^ESTSettingIBeaconSecureUUIDPeriodScalerCompletionBlock)(ESTSettingIBeaconSecureUUIDPeriodScaler * _Nullable, NSError * _Nullable);
-	delegate void SettingIBeaconSecureUuidPeriodScalerCompletionBlock ([NullAllowed] SettingIBeaconSecureUuidPeriodScaler arg0, [NullAllowed] NSError arg1);
+	delegate void SettingIBeaconSecureUuidPeriodScalerCompletionBlock ([NullAllowed] SettingIBeaconSecureUuidPeriodScaler scalerSetting, [NullAllowed] NSError error);
 
 	// @interface ESTSettingIBeaconSecureUUIDPeriodScaler : ESTSettingReadWrite <NSCopying>
 	[BaseType (typeof (SettingReadWrite), Name = "ESTSettingIBeaconSecureUUIDPeriodScaler")]
@@ -3496,7 +3496,7 @@ namespace Estimote
 	}
 
 	// typedef void (^ESTSettingIBeaconNonStrictModeCompletionBlock)(ESTSettingIBeaconNonStrictMode * _Nullable, NSError * _Nullable);
-	delegate void SettingIBeaconNonStrictModeCompletionBlock ([NullAllowed] SettingIBeaconNonStrictMode arg0, [NullAllowed] NSError arg1);
+	delegate void SettingIBeaconNonStrictModeCompletionBlock ([NullAllowed] SettingIBeaconNonStrictMode nonStrictModeSetting, [NullAllowed] NSError error);
 
 	// @interface ESTSettingIBeaconNonStrictMode : ESTSettingReadWrite <NSCopying>
 	[BaseType (typeof (SettingReadWrite), Name = "ESTSettingIBeaconNonStrictMode")]
@@ -3520,7 +3520,7 @@ namespace Estimote
 	}
 
 	// typedef void (^ESTSettingIBeaconMotionUUIDCompletionBlock)(ESTSettingIBeaconMotionUUID * _Nullable, NSError * _Nullable);
-	delegate void SettingIBeaconMotionUuidCompletionBlock ([NullAllowed] SettingIBeaconMotionUuid arg0, [NullAllowed] NSError arg1);
+	delegate void SettingIBeaconMotionUuidCompletionBlock ([NullAllowed] SettingIBeaconMotionUuid motionUuidSetting, [NullAllowed] NSError error);
 
 	// @interface ESTSettingIBeaconMotionUUID : ESTSettingReadOnly <NSCopying>
 	[BaseType (typeof (SettingReadOnly), Name = "ESTSettingIBeaconMotionUUID")]
@@ -3545,7 +3545,7 @@ namespace Estimote
 	}
 
 	// typedef void (^ESTSettingIBeaconMotionUUIDEnableCompletionBlock)(ESTSettingIBeaconMotionUUIDEnable * _Nullable, NSError * _Nullable);
-	delegate void SettingIBeaconMotionUuidEnableCompletionBlock ([NullAllowed] SettingIBeaconMotionUuidEnable arg0, [NullAllowed] NSError arg1);
+	delegate void SettingIBeaconMotionUuidEnableCompletionBlock ([NullAllowed] SettingIBeaconMotionUuidEnable enabledSetting, [NullAllowed] NSError error);
 
 	// @interface ESTSettingIBeaconMotionUUIDEnable : ESTSettingReadWrite <NSCopying>
 	[BaseType (typeof (SettingReadWrite), Name = "ESTSettingIBeaconMotionUUIDEnable")]
@@ -3729,7 +3729,7 @@ namespace Estimote
 	}
 
 	// typedef void (^ESTSettingEstimoteLocationEnableCompletionBlock)(ESTSettingEstimoteLocationEnable * _Nullable, NSError * _Nullable);
-	delegate void SettingEstimoteLocationEnableCompletionBlock ([NullAllowed] SettingEstimoteLocationEnable arg0, [NullAllowed] NSError arg1);
+	delegate void SettingEstimoteLocationEnableCompletionBlock ([NullAllowed] SettingEstimoteLocationEnable enabledSetting, [NullAllowed] NSError error);
 
 	// @interface ESTSettingEstimoteLocationEnable : ESTSettingReadWrite <NSCopying>
 	[BaseType (typeof (SettingReadWrite), Name = "ESTSettingEstimoteLocationEnable")]
@@ -3753,7 +3753,7 @@ namespace Estimote
 	}
 
 	// typedef void (^ESTSettingEstimoteLocationIntervalCompletionBlock)(ESTSettingEstimoteLocationInterval * _Nullable, NSError * _Nullable);
-	delegate void SettingEstimoteLocationIntervalCompletionBlock ([NullAllowed] SettingEstimoteLocationInterval arg0, [NullAllowed] NSError arg1);
+	delegate void SettingEstimoteLocationIntervalCompletionBlock ([NullAllowed] SettingEstimoteLocationInterval advertisingIntervalSetting, [NullAllowed] NSError error);
 
 	// @interface ESTSettingEstimoteLocationInterval : ESTSettingReadWrite <NSCopying>
 	[BaseType (typeof (SettingReadWrite), Name = "ESTSettingEstimoteLocationInterval")]
@@ -3783,7 +3783,7 @@ namespace Estimote
 	}
 
 	// typedef void (^ESTSettingEstimoteLocationPowerCompletionBlock)(ESTSettingEstimoteLocationPower * _Nullable, NSError * _Nullable);
-	delegate void SettingEstimoteLocationPowerCompletionBlock ([NullAllowed] SettingEstimoteLocationPower arg0, [NullAllowed] NSError arg1);
+	delegate void SettingEstimoteLocationPowerCompletionBlock ([NullAllowed] SettingEstimoteLocationPower powerSetting, [NullAllowed] NSError error);
 
 	// @interface ESTSettingEstimoteLocationPower : ESTSettingReadWrite <NSCopying>
 	[BaseType (typeof (SettingReadWrite), Name = "ESTSettingEstimoteLocationPower")]
@@ -3903,7 +3903,7 @@ namespace Estimote
 	}
 
 	// typedef void (^ESTSettingEddystoneUIDEnableCompletionBlock)(ESTSettingEddystoneUIDEnable * _Nullable, NSError * _Nullable);
-	delegate void SettingEddystoneUidEnableCompletionBlock ([NullAllowed] SettingEddystoneUidEnable arg0, [NullAllowed] NSError arg1);
+	delegate void SettingEddystoneUidEnableCompletionBlock ([NullAllowed] SettingEddystoneUidEnable enabledSetting, [NullAllowed] NSError error);
 
 	// @interface ESTSettingEddystoneUIDEnable : ESTSettingReadWrite <NSCopying>
 	[BaseType (typeof (SettingReadWrite), Name = "ESTSettingEddystoneUIDEnable")]
@@ -3927,7 +3927,7 @@ namespace Estimote
 	}
 
 	// typedef void (^ESTSettingEddystoneUIDInstanceCompletionBlock)(ESTSettingEddystoneUIDInstance * _Nullable, NSError * _Nullable);
-	delegate void SettingEddystoneUidInstanceCompletionBlock ([NullAllowed] SettingEddystoneUidInstance arg0, [NullAllowed] NSError arg1);
+	delegate void SettingEddystoneUidInstanceCompletionBlock ([NullAllowed] SettingEddystoneUidInstance instanceIdSetting, [NullAllowed] NSError error);
 
 	// @interface ESTSettingEddystoneUIDInstance : ESTSettingReadWrite <NSCopying>
 	[BaseType (typeof (SettingReadWrite), Name = "ESTSettingEddystoneUIDInstance")]
@@ -3957,7 +3957,7 @@ namespace Estimote
 	}
 
 	// typedef void (^ESTSettingEddystoneUIDNamespaceCompletionBlock)(ESTSettingEddystoneUIDNamespace * _Nullable, NSError * _Nullable);
-	delegate void SettingEddystoneUidNamespaceCompletionBlock ([NullAllowed] SettingEddystoneUidNamespace arg0, [NullAllowed] NSError arg1);
+	delegate void SettingEddystoneUidNamespaceCompletionBlock ([NullAllowed] SettingEddystoneUidNamespace namespaceSetting, [NullAllowed] NSError error);
 
 	// @interface ESTSettingEddystoneUIDNamespace : ESTSettingReadWrite <NSCopying>
 	[BaseType (typeof (SettingReadWrite), Name = "ESTSettingEddystoneUIDNamespace")]
@@ -3992,7 +3992,7 @@ namespace Estimote
 	}
 
 	// typedef void (^ESTSettingEddystoneUIDIntervalCompletionBlock)(ESTSettingEddystoneUIDInterval * _Nullable, NSError * _Nullable);
-	delegate void SettingEddystoneUidIntervalCompletionBlock ([NullAllowed] SettingEddystoneUidInterval arg0, [NullAllowed] NSError arg1);
+	delegate void SettingEddystoneUidIntervalCompletionBlock ([NullAllowed] SettingEddystoneUidInterval advertisingIntervalSetting, [NullAllowed] NSError error);
 
 	// @interface ESTSettingEddystoneUIDInterval : ESTSettingReadWrite <NSCopying>
 	[BaseType (typeof (SettingReadWrite), Name = "ESTSettingEddystoneUIDInterval")]
@@ -4022,7 +4022,7 @@ namespace Estimote
 	}
 
 	// typedef void (^ESTSettingEddystoneUIDPowerCompletionBlock)(ESTSettingEddystoneUIDPower * _Nullable, NSError * _Nullable);
-	delegate void SettingEddystoneUidPowerCompletionBlock ([NullAllowed] SettingEddystoneUidPower arg0, [NullAllowed] NSError arg1);
+	delegate void SettingEddystoneUidPowerCompletionBlock ([NullAllowed] SettingEddystoneUidPower powerSetting, [NullAllowed] NSError error);
 
 	// @interface ESTSettingEddystoneUIDPower : ESTSettingReadWrite <NSCopying>
 	[BaseType (typeof (SettingReadWrite), Name = "ESTSettingEddystoneUIDPower")]
@@ -4127,7 +4127,7 @@ namespace Estimote
 	}
 
 	// typedef void (^ESTSettingEddystoneURLEnableCompletionBlock)(ESTSettingEddystoneURLEnable * _Nullable, NSError * _Nullable);
-	delegate void SettingEddystoneUrlEnableCompletionBlock ([NullAllowed] SettingEddystoneUrlEnable arg0, [NullAllowed] NSError arg1);
+	delegate void SettingEddystoneUrlEnableCompletionBlock ([NullAllowed] SettingEddystoneUrlEnable enabledSetting, [NullAllowed] NSError error);
 
 	// @interface ESTSettingEddystoneURLEnable : ESTSettingReadWrite <NSCopying>
 	[BaseType (typeof (SettingReadWrite), Name = "ESTSettingEddystoneURLEnable")]
@@ -4151,7 +4151,7 @@ namespace Estimote
 	}
 
 	// typedef void (^ESTSettingEddystoneURLDataCompletionBlock)(ESTSettingEddystoneURLData * _Nullable, NSError * _Nullable);
-	delegate void SettingEddystoneUrlDataCompletionBlock ([NullAllowed] SettingEddystoneUrlData arg0, [NullAllowed] NSError arg1);
+	delegate void SettingEddystoneUrlDataCompletionBlock ([NullAllowed] SettingEddystoneUrlData eddystoneUrlSetting, [NullAllowed] NSError error);
 
 	// @interface ESTSettingEddystoneURLData : ESTSettingReadWrite <NSCopying>
 	[BaseType (typeof (SettingReadWrite), Name = "ESTSettingEddystoneURLData")]
@@ -4181,7 +4181,7 @@ namespace Estimote
 	}
 
 	// typedef void (^ESTSettingEddystoneURLIntervalCompletionBlock)(ESTSettingEddystoneURLInterval * _Nullable, NSError * _Nullable);
-	delegate void SettingEddystoneUrlIntervalCompletionBlock ([NullAllowed] SettingEddystoneUrlInterval arg0, [NullAllowed] NSError arg1);
+	delegate void SettingEddystoneUrlIntervalCompletionBlock ([NullAllowed] SettingEddystoneUrlInterval advertisingIntervalSetting, [NullAllowed] NSError error);
 
 	// @interface ESTSettingEddystoneURLInterval : ESTSettingReadWrite <NSCopying>
 	[BaseType (typeof (SettingReadWrite), Name = "ESTSettingEddystoneURLInterval")]
@@ -4211,7 +4211,7 @@ namespace Estimote
 	}
 
 	// typedef void (^ESTSettingEddystoneURLPowerCompletionBlock)(ESTSettingEddystoneURLPower * _Nullable, NSError * _Nullable);
-	delegate void SettingEddystoneUrlPowerCompletionBlock ([NullAllowed] SettingEddystoneUrlPower arg0, [NullAllowed] NSError arg1);
+	delegate void SettingEddystoneUrlPowerCompletionBlock ([NullAllowed] SettingEddystoneUrlPower powerSetting, [NullAllowed] NSError error);
 
 	// @interface ESTSettingEddystoneURLPower : ESTSettingReadWrite <NSCopying>
 	[BaseType (typeof (SettingReadWrite), Name = "ESTSettingEddystoneURLPower")]
@@ -4301,7 +4301,7 @@ namespace Estimote
 	}
 
 	// typedef void (^ESTSettingEddystoneTLMEnableCompletionBlock)(ESTSettingEddystoneTLMEnable * _Nullable, NSError * _Nullable);
-	delegate void SettingEddystoneTlmEnableCompletionBlock ([NullAllowed] SettingEddystoneTlmEnable arg0, [NullAllowed] NSError arg1);
+	delegate void SettingEddystoneTlmEnableCompletionBlock ([NullAllowed] SettingEddystoneTlmEnable enabledSetting, [NullAllowed] NSError error);
 
 	// @interface ESTSettingEddystoneTLMEnable : ESTSettingReadWrite <NSCopying>
 	[BaseType (typeof (SettingReadWrite), Name = "ESTSettingEddystoneTLMEnable")]
@@ -4325,7 +4325,7 @@ namespace Estimote
 	}
 
 	// typedef void (^ESTSettingEddystoneTLMIntervalCompletionBlock)(ESTSettingEddystoneTLMInterval * _Nullable, NSError * _Nullable);
-	delegate void SettingEddystoneTlmIntervalCompletionBlock ([NullAllowed] SettingEddystoneTlmInterval arg0, [NullAllowed] NSError arg1);
+	delegate void SettingEddystoneTlmIntervalCompletionBlock ([NullAllowed] SettingEddystoneTlmInterval advertisingIntervalSetting, [NullAllowed] NSError error);
 
 	// @interface ESTSettingEddystoneTLMInterval : ESTSettingReadWrite <NSCopying>
 	[BaseType (typeof (SettingReadWrite), Name = "ESTSettingEddystoneTLMInterval")]
@@ -4355,7 +4355,7 @@ namespace Estimote
 	}
 
 	// typedef void (^ESTSettingEddystoneTLMPowerCompletionBlock)(ESTSettingEddystoneTLMPower * _Nullable, NSError * _Nullable);
-	delegate void SettingEddystoneTlmPowerCompletionBlock ([NullAllowed] SettingEddystoneTlmPower arg0, [NullAllowed] NSError arg1);
+	delegate void SettingEddystoneTlmPowerCompletionBlock ([NullAllowed] SettingEddystoneTlmPower powerSetting, [NullAllowed] NSError error);
 
 	// @interface ESTSettingEddystoneTLMPower : ESTSettingReadWrite <NSCopying>
 	[BaseType (typeof (SettingReadWrite), Name = "ESTSettingEddystoneTLMPower")]
@@ -4430,7 +4430,7 @@ namespace Estimote
 	}
 
 	// typedef void (^ESTSettingEddystoneEIDIntervalCompletionBlock)(ESTSettingEddystoneEIDInterval * _Nullable, NSError * _Nullable);
-	delegate void SettingEddystoneEidIntervalCompletionBlock ([NullAllowed] SettingEddystoneEidInterval arg0, [NullAllowed] NSError arg1);
+	delegate void SettingEddystoneEidIntervalCompletionBlock ([NullAllowed] SettingEddystoneEidInterval intervalSetting, [NullAllowed] NSError error);
 
 	// @interface ESTSettingEddystoneEIDInterval : ESTSettingReadWrite <NSCopying>
 	[BaseType (typeof (SettingReadWrite), Name = "ESTSettingEddystoneEIDInterval")]
@@ -4460,7 +4460,7 @@ namespace Estimote
 	}
 
 	// typedef void (^ESTSettingEddystoneEIDEnableCompletionBlock)(ESTSettingEddystoneEIDEnable * _Nullable, NSError * _Nullable);
-	delegate void SettingEddystoneEidEnableCompletionBlock ([NullAllowed] SettingEddystoneEidEnable arg0, [NullAllowed] NSError arg1);
+	delegate void SettingEddystoneEidEnableCompletionBlock ([NullAllowed] SettingEddystoneEidEnable enableSetting, [NullAllowed] NSError error);
 
 	// @interface ESTSettingEddystoneEIDEnable : ESTSettingReadWrite <NSCopying>
 	[BaseType (typeof (SettingReadWrite), Name = "ESTSettingEddystoneEIDEnable")]
@@ -4484,7 +4484,7 @@ namespace Estimote
 	}
 
 	// typedef void (^ESTSettingEddystoneEIDPowerCompletionBlock)(ESTSettingEddystoneEIDPower * _Nullable, NSError * _Nullable);
-	delegate void SettingEddystoneEidPowerCompletionBlock ([NullAllowed] SettingEddystoneEidPower arg0, [NullAllowed] NSError arg1);
+	delegate void SettingEddystoneEidPowerCompletionBlock ([NullAllowed] SettingEddystoneEidPower powerSetting, [NullAllowed] NSError error);
 
 	// @interface ESTSettingEddystoneEIDPower : ESTSettingReadWrite <NSCopying>
 	[BaseType (typeof (SettingReadWrite), Name = "ESTSettingEddystoneEIDPower")]
@@ -4559,7 +4559,7 @@ namespace Estimote
 	}
 
 	// typedef void (^ESTSettingGenericAdvertiserEnableCompletionBlock)(ESTSettingGenericAdvertiserEnable * _Nullable, NSError * _Nullable);
-	delegate void SettingGenericAdvertiserEnableCompletionBlock ([NullAllowed] SettingGenericAdvertiserEnable arg0, [NullAllowed] NSError arg1);
+	delegate void SettingGenericAdvertiserEnableCompletionBlock ([NullAllowed] SettingGenericAdvertiserEnable genericAdvertiserEnabledSetting, [NullAllowed] NSError error);
 
 	// @interface ESTSettingGenericAdvertiserEnable : ESTSettingReadWrite <NSCopying>
 	[BaseType (typeof (SettingReadWrite), Name = "ESTSettingGenericAdvertiserEnable")]
@@ -4597,7 +4597,7 @@ namespace Estimote
 	}
 
 	// typedef void (^ESTSettingGenericAdvertiserPowerCompletionBlock)(ESTSettingGenericAdvertiserPower * _Nullable, NSError * _Nullable);
-	delegate void SettingGenericAdvertiserPowerCompletionBlock ([NullAllowed] SettingGenericAdvertiserPower arg0, [NullAllowed] NSError arg1);
+	delegate void SettingGenericAdvertiserPowerCompletionBlock ([NullAllowed] SettingGenericAdvertiserPower genericAdvertiserPowerSetting, [NullAllowed] NSError error);
 
 	// @interface ESTSettingGenericAdvertiserPower : ESTSettingReadWrite <NSCopying>
 	[BaseType (typeof (SettingReadWrite), Name = "ESTSettingGenericAdvertiserPower")]
@@ -4635,7 +4635,7 @@ namespace Estimote
 	}
 
 	// typedef void (^ESTSettingGenericAdvertiserIntervalCompletionBlock)(ESTSettingGenericAdvertiserInterval * _Nullable, NSError * _Nullable);
-	delegate void SettingGenericAdvertiserIntervalCompletionBlock ([NullAllowed] SettingGenericAdvertiserInterval arg0, [NullAllowed] NSError arg1);
+	delegate void SettingGenericAdvertiserIntervalCompletionBlock ([NullAllowed] SettingGenericAdvertiserInterval genericAdvertiserIntervalSetting, [NullAllowed] NSError error);
 
 	// @interface ESTSettingGenericAdvertiserInterval : ESTSettingReadWrite <NSCopying>
 	[BaseType (typeof (SettingReadWrite), Name = "ESTSettingGenericAdvertiserInterval")]
@@ -4673,7 +4673,7 @@ namespace Estimote
 	}
 
 	// typedef void (^ESTSettingGenericAdvertiserDataCompletionBlock)(ESTSettingGenericAdvertiserData * _Nullable, NSError * _Nullable);
-	delegate void SettingGenericAdvertiserDataCompletionBlock ([NullAllowed] SettingGenericAdvertiserData arg0, [NullAllowed] NSError arg1);
+	delegate void SettingGenericAdvertiserDataCompletionBlock ([NullAllowed] SettingGenericAdvertiserData genericAdvertiserDataSetting, [NullAllowed] NSError error);
 
 	// @interface ESTSettingGenericAdvertiserData : ESTSettingReadWrite <NSCopying>
 	[BaseType (typeof (SettingReadWrite), Name = "ESTSettingGenericAdvertiserData")]
@@ -4772,7 +4772,7 @@ namespace Estimote
 	}
 
 	// typedef void (^ESTSettingGPIONotificationEnableCompletionBlock)(ESTSettingGPIONotificationEnable * _Nullable, NSError * _Nullable);
-	delegate void SettingGpioNotificationEnableCompletionBlock ([NullAllowed] SettingGpioNotificationEnable arg0, [NullAllowed] NSError arg1);
+	delegate void SettingGpioNotificationEnableCompletionBlock ([NullAllowed] SettingGpioNotificationEnable enabledSetting, [NullAllowed] NSError error);
 
 	// @interface ESTSettingGPIONotificationEnable : ESTSettingReadWrite <NSCopying>
 	[BaseType (typeof (SettingReadWrite), Name = "ESTSettingGPIONotificationEnable")]
@@ -4819,7 +4819,7 @@ namespace Estimote
 	}
 
 	// typedef void (^ESTSettingGPIOPortsDataCompletionBlock)(ESTSettingGPIOPortsData * _Nullable, NSError * _Nullable);
-	delegate void SettingGpioPortsDataCompletionBlock ([NullAllowed] SettingGpioPortsData arg0, [NullAllowed] NSError arg1);
+	delegate void SettingGpioPortsDataCompletionBlock ([NullAllowed] SettingGpioPortsData portsDataSetting, [NullAllowed] NSError error);
 
 	// @interface ESTSettingGPIOPortsData : ESTSettingReadWrite <NSCopying>
 	[BaseType (typeof (SettingReadWrite), Name = "ESTSettingGPIOPortsData")]
@@ -4849,7 +4849,7 @@ namespace Estimote
 	}
 
 	// typedef void (^ESTSettingGPIOConfigPort0CompletionBlock)(ESTSettingGPIOConfigPort0 * _Nullable, NSError * _Nullable);
-	delegate void SettingGpioConfigPort0CompletionBlock ([NullAllowed] SettingGpioConfigPort0 arg0, [NullAllowed] NSError arg1);
+	delegate void SettingGpioConfigPort0CompletionBlock ([NullAllowed] SettingGpioConfigPort0 configSetting, [NullAllowed] NSError error);
 
 	// @interface ESTSettingGPIOConfigPort0 : ESTSettingReadWrite <NSCopying>
 	[BaseType (typeof (SettingReadWrite), Name = "ESTSettingGPIOConfigPort0")]
@@ -4879,7 +4879,7 @@ namespace Estimote
 	}
 
 	// typedef void (^ESTSettingGPIOConfigPort1CompletionBlock)(ESTSettingGPIOConfigPort1 * _Nullable, NSError * _Nullable);
-	delegate void SettingGpioConfigPort1CompletionBlock ([NullAllowed] SettingGpioConfigPort1 arg0, [NullAllowed] NSError arg1);
+	delegate void SettingGpioConfigPort1CompletionBlock ([NullAllowed] SettingGpioConfigPort1 configSetting, [NullAllowed] NSError error);
 
 	// @interface ESTSettingGPIOConfigPort1 : ESTSettingReadWrite <NSCopying>
 	[BaseType (typeof (SettingReadWrite), Name = "ESTSettingGPIOConfigPort1")]
@@ -4909,7 +4909,7 @@ namespace Estimote
 	}
 
 	// typedef void (^ESTSettingGPIO0StateReflectingOnLEDCompletionBlock)(ESTSettingGPIO0StateReflectingOnLEDEnable * _Nullable, NSError * _Nullable);
-	delegate void SettingGpio0StateReflectingOnLedCompletionBlock ([NullAllowed] SettingGpio0StateReflectingOnLedEnable arg0, [NullAllowed] NSError arg1);
+	delegate void SettingGpio0StateReflectingOnLedCompletionBlock ([NullAllowed] SettingGpio0StateReflectingOnLedEnable gpio0StateReflectingOnLedEnableSetting, [NullAllowed] NSError error);
 
 	// @interface ESTSettingGPIO0StateReflectingOnLEDEnable : ESTSettingReadWrite <NSCopying>
 	[BaseType (typeof (SettingReadWrite), Name = "ESTSettingGPIO0StateReflectingOnLEDEnable")]
@@ -5014,7 +5014,7 @@ namespace Estimote
 	}
 
 	// typedef void (^ESTSettingSensorsAmbientLightCompletionBlock)(ESTSettingSensorsAmbientLight * _Nullable, NSError * _Nullable);
-	delegate void SettingSensorsAmbientLightCompletionBlock ([NullAllowed] SettingSensorsAmbientLight arg0, [NullAllowed] NSError arg1);
+	delegate void SettingSensorsAmbientLightCompletionBlock ([NullAllowed] SettingSensorsAmbientLight ambientLightSetting, [NullAllowed] NSError error);
 
 	// @interface ESTSettingSensorsAmbientLight : ESTSettingReadOnly <NSCopying>
 	[BaseType (typeof (SettingReadOnly), Name = "ESTSettingSensorsAmbientLight")]
@@ -5034,7 +5034,7 @@ namespace Estimote
 	}
 
 	// typedef void (^ESTSettingSensorsMotionNotificationEnableCompletionBlock)(ESTSettingSensorsMotionNotificationEnable * _Nullable, NSError * _Nullable);
-	delegate void SettingSensorsMotionNotificationEnableCompletionBlock ([NullAllowed] SettingSensorsMotionNotificationEnable arg0, [NullAllowed] NSError arg1);
+	delegate void SettingSensorsMotionNotificationEnableCompletionBlock ([NullAllowed] SettingSensorsMotionNotificationEnable enabledSetting, [NullAllowed] NSError error);
 
 	// @interface ESTSettingSensorsMotionNotificationEnable : ESTSettingReadWrite <NSCopying>
 	[BaseType (typeof (SettingReadWrite), Name = "ESTSettingSensorsMotionNotificationEnable")]
@@ -5064,7 +5064,7 @@ namespace Estimote
 	}
 
 	// typedef void (^ESTSettingSensorsTemperatureCompletionBlock)(ESTSettingSensorsTemperature * _Nullable, NSError * _Nullable);
-	delegate void SettingSensorsTemperatureCompletionBlock ([NullAllowed] SettingSensorsTemperature arg0, [NullAllowed] NSError arg1);
+	delegate void SettingSensorsTemperatureCompletionBlock ([NullAllowed] SettingSensorsTemperature temperatureSetting, [NullAllowed] NSError error);
 
 	// @interface ESTSettingSensorsTemperature : ESTSettingReadOnly <NSCopying>
 	[BaseType (typeof (SettingReadOnly), Name = "ESTSettingSensorsTemperature")]
@@ -5088,7 +5088,7 @@ namespace Estimote
 	}
 
 	// typedef void (^ESTSettingSensorsPressureCompletionBlock)(ESTSettingSensorsPressure * _Nullable, NSError * _Nullable);
-	delegate void SettingSensorsPressureCompletionBlock ([NullAllowed] SettingSensorsPressure arg0, [NullAllowed] NSError arg1);
+	delegate void SettingSensorsPressureCompletionBlock ([NullAllowed] SettingSensorsPressure pressureSetting, [NullAllowed] NSError error);
 
 	// @interface ESTSettingSensorsPressure : ESTSettingReadOnly <NSCopying>
 	[BaseType (typeof (SettingReadOnly), Name = "ESTSettingSensorsPressure")]
@@ -5153,7 +5153,7 @@ namespace Estimote
 	}
 
 	// typedef void (^ESTNotificationMotionBlock)(BOOL);
-	delegate void NotificationMotionBlock (bool arg0);
+	delegate void NotificationMotionBlock (bool inMotion);
 
 	// @interface ESTNotificationMotion : NSObject <ESTDeviceNotificationProtocol, NSCopying>
 	[BaseType (typeof (NSObject), Name = "ESTNotificationMotion")]
@@ -5165,7 +5165,7 @@ namespace Estimote
 	}
 
 	// typedef void (^ESTNotificationGPIODataBlock)(ESTGPIOPortsData * _Nonnull);
-	delegate void NotificationGpioDataBlock (GpioPortsData arg0);
+	delegate void NotificationGpioDataBlock (GpioPortsData portsData);
 
 	// @interface ESTNotificationGPIOData : NSObject <ESTDeviceNotificationProtocol, NSCopying>
 	[BaseType (typeof (NSObject), Name = "ESTNotificationGPIOData")]
@@ -5177,7 +5177,7 @@ namespace Estimote
 	}
 
 	// typedef void (^ESTSettingEddystoneConfigurationServiceEnableCompletionBlock)(ESTSettingEddystoneConfigurationServiceEnable * _Nullable, NSError * _Nullable);
-	delegate void SettingEddystoneConfigurationServiceEnableCompletionBlock ([NullAllowed] SettingEddystoneConfigurationServiceEnable arg0, [NullAllowed] NSError arg1);
+	delegate void SettingEddystoneConfigurationServiceEnableCompletionBlock ([NullAllowed] SettingEddystoneConfigurationServiceEnable eddystoneConfigurationServiceEnableSetting, [NullAllowed] NSError error);
 
 	// @interface ESTSettingEddystoneConfigurationServiceEnable : ESTSettingReadWrite <NSCopying>
 	[BaseType (typeof (SettingReadWrite), Name = "ESTSettingEddystoneConfigurationServiceEnable")]
@@ -5631,7 +5631,7 @@ namespace Estimote
 	}
 
 	// typedef void (^ESTSettingNearableIntervalCompletionBlock)(ESTSettingNearableInterval * _Nullable, NSError * _Nullable);
-	delegate void SettingNearableIntervalCompletionBlock ([NullAllowed] SettingNearableInterval arg0, [NullAllowed] NSError arg1);
+	delegate void SettingNearableIntervalCompletionBlock ([NullAllowed] SettingNearableInterval intervalSetting, [NullAllowed] NSError error);
 
 	// @interface ESTSettingNearableInterval : ESTSettingReadWrite <NSCopying>
 	[BaseType (typeof (SettingReadWrite), Name = "ESTSettingNearableInterval")]
@@ -5661,7 +5661,7 @@ namespace Estimote
 	}
 
 	// typedef void (^ESTSettingNearablePowerCompletionBlock)(ESTSettingNearablePower * _Nullable, NSError * _Nullable);
-	delegate void SettingNearablePowerCompletionBlock ([NullAllowed] SettingNearablePower arg0, [NullAllowed] NSError arg1);
+	delegate void SettingNearablePowerCompletionBlock ([NullAllowed] SettingNearablePower powerSetting, [NullAllowed] NSError error);
 
 	// @interface ESTSettingNearablePower : ESTSettingReadWrite <NSCopying>
 	[BaseType (typeof (SettingReadWrite), Name = "ESTSettingNearablePower")]
@@ -5816,7 +5816,7 @@ namespace Estimote
 	}
 
 	// typedef void (^ESTSettingNearableEddystoneURLCompletionBlock)(ESTSettingNearableEddystoneURL * _Nullable, NSError * _Nullable);
-	delegate void SettingNearableEddystoneUrlCompletionBlock ([NullAllowed] SettingNearableEddystoneUrl arg0, [NullAllowed] NSError arg1);
+	delegate void SettingNearableEddystoneUrlCompletionBlock ([NullAllowed] SettingNearableEddystoneUrl eddystoneUrlSetting, [NullAllowed] NSError error);
 
 	// @interface ESTSettingNearableEddystoneURL : ESTSettingReadWrite <NSCopying>
 	[BaseType (typeof (SettingReadWrite), Name = "ESTSettingNearableEddystoneURL")]
@@ -5861,7 +5861,7 @@ namespace Estimote
 	}
 
 	// typedef void (^ESTSettingNearableBroadcastingSchemeCompletionBlock)(ESTSettingNearableBroadcastingScheme * _Nullable, NSError * _Nullable);
-	delegate void SettingNearableBroadcastingSchemeCompletionBlock ([NullAllowed] SettingNearableBroadcastingScheme arg0, [NullAllowed] NSError arg1);
+	delegate void SettingNearableBroadcastingSchemeCompletionBlock ([NullAllowed] SettingNearableBroadcastingScheme broadcastingSchemeSetting, [NullAllowed] NSError error);
 
 	// @interface ESTSettingNearableBroadcastingScheme : ESTSettingReadWrite <NSCopying>
 	[BaseType (typeof (SettingReadWrite), Name = "ESTSettingNearableBroadcastingScheme")]
@@ -6960,7 +6960,7 @@ namespace Estimote
 	}
 
 	// typedef void (^ESTRequestBlock)(id _Nullable, NSError * _Nullable);
-	delegate void RequestBlock ([NullAllowed] NSObject arg0, [NullAllowed] NSError arg1);
+	delegate void RequestBlock ([NullAllowed] NSObject result, [NullAllowed] NSError error);
 
 	interface IRequestBaseDelegate { }
 
@@ -7053,7 +7053,7 @@ namespace Estimote
 	}
 
 	// typedef void (^ESTRequestGetBeaconsBlock)(NSArray<ESTBeaconVO *> * _Nullable, NSError * _Nullable);
-	delegate void RequestGetBeaconsBlock ([NullAllowed] BeaconVO[] arg0, [NullAllowed] NSError arg1);
+	delegate void RequestGetBeaconsBlock ([NullAllowed] BeaconVO[] beaconVOs, [NullAllowed] NSError error);
 
 	// @interface ESTRequestGetBeacons : ESTRequestGetJSON
 	[BaseType (typeof (RequestGetJson), Name = "ESTRequestGetBeacons")]
@@ -7065,7 +7065,8 @@ namespace Estimote
 	}
 
 	// typedef void (^ESTRequestGetBeaconsDetailsBlock)(NSArray * _Nullable, NSError * _Nullable);
-	delegate void RequestGetBeaconsDetailsBlock ([NullAllowed] NSObject[] arg0, [NullAllowed] NSError arg1);
+	delegate void RequestGetBeaconsDetailsBlock ([NullAllowed] NSObject [] beaconVOArray, [NullAllowed] NSError error);
+	delegate void RequestGetBeaconsDetailsBeaconArrayBlock ([NullAllowed] BeaconVO [] beaconVOArray, [NullAllowed] NSError error);
 
 	// @interface ESTRequestGetBeaconsDetails : ESTRequestGetJSON
 	[BaseType (typeof (RequestGetJson), Name = "ESTRequestGetBeaconsDetails")]
@@ -7089,11 +7090,12 @@ namespace Estimote
 
 		// -(void)sendRequestWithCompletion:(ESTRequestGetBeaconsDetailsBlock _Nonnull)completion;
 		[Export ("sendRequestWithCompletion:"), Async]
-		void SendRequest (RequestGetBeaconsDetailsBlock completion);
+		void SendRequest (RequestGetBeaconsDetailsBeaconArrayBlock completion);
 	}
 
 	// typedef void (^ESTRequestGetBeaconsPublicDetailsBlock)(NSArray * _Nullable, NSError * _Nullable);
-	delegate void RequestGetBeaconsPublicDetailsBlock ([NullAllowed] NSObject[] arg0, [NullAllowed] NSError arg1);
+	delegate void RequestGetBeaconsPublicDetailsBlock ([NullAllowed] NSObject[] beaconVOArray, [NullAllowed] NSError error);
+	delegate void RequestGetBeaconsPublicDetailsBeaconArrayBlock ([NullAllowed] BeaconVO [] beaconVOArray, [NullAllowed] NSError error);
 
 	// @interface ESTRequestGetBeaconsPublicDetails : ESTRequestGetJSON
 	[BaseType (typeof (RequestGetJson), Name = "ESTRequestGetBeaconsPublicDetails")]
@@ -7117,11 +7119,11 @@ namespace Estimote
 
 		// -(void)sendRequestWithCompletion:(ESTRequestGetBeaconsPublicDetailsBlock _Nonnull)completion;
 		[Export ("sendRequestWithCompletion:"), Async]
-		void SendRequest (RequestGetBeaconsPublicDetailsBlock completion);
+		void SendRequest (RequestGetBeaconsPublicDetailsBeaconArrayBlock completion);
 	}
 
 	// typedef void (^ESTRequestBeaconColorBlock)(ESTColor, NSError * _Nullable);
-	delegate void RequestBeaconColorBlock (Color arg0, [NullAllowed] NSError arg1);
+	delegate void RequestBeaconColorBlock (Color beaconColor, [NullAllowed] NSError error);
 
 	// @interface ESTRequestBeaconColor : ESTRequestGetJSON
 	[BaseType (typeof (RequestGetJson), Name = "ESTRequestBeaconColor")]
@@ -7161,7 +7163,7 @@ namespace Estimote
 	}
 
 	// typedef void (^ESTRequestBeaconMacBlock)(NSString * _Nullable, NSError * _Nullable);
-	delegate void RequestBeaconMacBlock ([NullAllowed] string arg0, [NullAllowed] NSError arg1);
+	delegate void RequestBeaconMacBlock ([NullAllowed] string macAddress, [NullAllowed] NSError error);
 
 	// @interface ESTRequestBeaconMac : ESTRequestGetJSON
 	[BaseType (typeof (RequestGetJson), Name = "ESTRequestBeaconMac")]
@@ -7211,7 +7213,7 @@ namespace Estimote
 	}
 
 	// typedef void (^ESTRequestAssignGPSLocationBlock)(CLLocation * _Nullable, NSError * _Nullable);
-	delegate void RequestAssignGpsLocationBlock ([NullAllowed] CLLocation arg0, [NullAllowed] NSError arg1);
+	delegate void RequestAssignGpsLocationBlock ([NullAllowed] CLLocation result, [NullAllowed] NSError error);
 
 	// @interface ESTRequestAssignGPSLocation : ESTRequestPutJSON
 	[BaseType (typeof (RequestPutJson), Name = "ESTRequestAssignGPSLocation")]
@@ -7235,7 +7237,7 @@ namespace Estimote
 	}
 
 	// typedef void (^ESTRequestRegisterDeviceBlock)(NSError * _Nullable);
-	delegate void RequestRegisterDeviceBlock ([NullAllowed] NSError arg0);
+	delegate void RequestRegisterDeviceBlock ([NullAllowed] NSError error);
 
 	// @interface ESTRequestRegisterDevice : ESTRequestPostJSON
 	[BaseType (typeof (RequestPostJson), Name = "ESTRequestRegisterDevice")]
@@ -7255,7 +7257,7 @@ namespace Estimote
 	}
 
 	// typedef void (^ESTRequestGetPendingSettingsBlock)(NSArray<ESTBeaconUpdateInfo *> * _Nullable, NSError * _Nullable);
-	delegate void RequestGetPendingSettingsBlock ([NullAllowed] BeaconUpdateInfo[] arg0, [NullAllowed] NSError arg1);
+	delegate void RequestGetPendingSettingsBlock ([NullAllowed] BeaconUpdateInfo[] beaconUpdateInfos, [NullAllowed] NSError error);
 
 	// @interface ESTRequestGetPendingSettings : ESTRequestGetJSON
 	[BaseType (typeof (RequestGetJson), Name = "ESTRequestGetPendingSettings")]
@@ -7267,7 +7269,7 @@ namespace Estimote
 	}
 
 	// typedef void (^ESTRequestV2DeletePendingSettingsBlock)(id _Nullable, NSError * _Nullable);
-	delegate void RequestV2DeletePendingSettingsBlock ([NullAllowed] NSObject arg0, [NullAllowed] NSError arg1);
+	delegate void RequestV2DeletePendingSettingsBlock ([NullAllowed] NSObject arg0, [NullAllowed] NSError error);
 
 	// @interface ESTRequestV2DeletePendingSettings : ESTRequestPostJSON
 	[BaseType (typeof (RequestPostJson), Name = "ESTRequestV2DeletePendingSettings")]
@@ -7296,7 +7298,7 @@ namespace Estimote
 	}
 
 	// typedef void (^ESTRequestCancelPendingSettingsBlock)(NSError * _Nullable);
-	delegate void RequestCancelPendingSettingsBlock ([NullAllowed] NSError arg0);
+	delegate void RequestCancelPendingSettingsBlock ([NullAllowed] NSError error);
 
 	// @interface ESTRequestCancelPendingSettings : ESTRequestDelete
 	[BaseType (typeof (RequestDelete), Name = "ESTRequestCancelPendingSettings")]
@@ -7316,7 +7318,7 @@ namespace Estimote
 	}
 
 	// typedef void (^ESTRequestGetSettingsHistoryBlock)(NSArray<ESTBeaconUpdateInfo *> * _Nullable, NSError * _Nullable);
-	delegate void RequestGetSettingsHistoryBlock ([NullAllowed] BeaconUpdateInfo[] arg0, [NullAllowed] NSError arg1);
+	delegate void RequestGetSettingsHistoryBlock ([NullAllowed] BeaconUpdateInfo[] beaconUpdateInfos, [NullAllowed] NSError error);
 
 	// @interface ESTRequestGetSettingsHistory : ESTRequestGetJSON
 	[BaseType (typeof (RequestGetJson), Name = "ESTRequestGetSettingsHistory")]
@@ -7336,7 +7338,7 @@ namespace Estimote
 	}
 
 	// typedef void (^ESTRequestGetNearablesBlock)(NSArray<ESTNearable *> * _Nullable, NSError * _Nullable);
-	delegate void RequestGetNearablesBlock ([NullAllowed] Nearable[] arg0, [NullAllowed] NSError arg1);
+	delegate void RequestGetNearablesBlock ([NullAllowed] Nearable[] nearables, [NullAllowed] NSError error);
 
 	// @interface ESTRequestGetNearables : ESTRequestGetJSON
 	[BaseType (typeof (RequestGetJson), Name = "ESTRequestGetNearables")]
@@ -7474,7 +7476,7 @@ namespace Estimote
 	}
 
 	// typedef void (^ESTRequestAnalyticsGroupTrackBlock)(NSError *);
-	delegate void RequestAnalyticsGroupTrackBlock (NSError arg0);
+	delegate void RequestAnalyticsGroupTrackBlock (NSError error);
 
 	// @interface ESTRequestAnalyticsTrack : ESTRequestPostJSON
 	[BaseType (typeof (RequestPostJson), Name = "ESTRequestAnalyticsTrack")]
@@ -7539,7 +7541,7 @@ namespace Estimote
 	}
 
 	// typedef void (^ESTRequestV2GetDeviceDetailsBlock)(ESTDeviceDetails * _Nullable, NSError * _Nullable);
-	delegate void RequestV2GetDeviceDetailsBlock ([NullAllowed] DeviceDetails arg0, [NullAllowed] NSError arg1);
+	delegate void RequestV2GetDeviceDetailsBlock ([NullAllowed] DeviceDetails deviceDetails, [NullAllowed] NSError error);
 
 	// @interface ESTRequestV2GetDeviceDetails : ESTRequestGetJSON
 	[BaseType (typeof (RequestGetJson), Name = "ESTRequestV2GetDeviceDetails")]
@@ -7555,7 +7557,7 @@ namespace Estimote
 	}
 
 	// typedef void (^ESTRequestV2GetDevicesBlock)(NSArray<ESTDeviceDetails *> * _Nullable, NSError * _Nullable);
-	delegate void RequestV2GetDevicesBlock ([NullAllowed] DeviceDetails[] arg0, [NullAllowed] NSError arg1);
+	delegate void RequestV2GetDevicesBlock ([NullAllowed] DeviceDetails[] devicesDetails, [NullAllowed] NSError error);
 
 	// @interface ESTRequestV2GetDevices : ESTRequestGetJSON
 	[BaseType (typeof (RequestGetJson), Name = "ESTRequestV2GetDevices")]
@@ -7601,7 +7603,7 @@ namespace Estimote
 	}
 
 	// typedef void (^ESTRequestV2DevicesUpdateBlock)(NSArray<ESTDeviceUpdateInfo *> * _Nullable, NSError * _Nullable);
-	delegate void RequestV2DevicesUpdateBlock ([NullAllowed] DeviceUpdateInfo[] arg0, [NullAllowed] NSError arg1);
+	delegate void RequestV2DevicesUpdateBlock ([NullAllowed] DeviceUpdateInfo[] result, [NullAllowed] NSError error);
 
 	// @interface ESTRequestV2DevicesUpdate : ESTRequestGetJSON
 	[BaseType (typeof (RequestGetJson), Name = "ESTRequestV2DevicesUpdate")]
@@ -8223,7 +8225,7 @@ namespace Estimote
 	}
 
 	// typedef void (^ESTRequestV3GetDeviceOwnerBlock)(NSString * _Nullable, NSError * _Nullable);
-	delegate void RequestV3GetDeviceOwnerBlock ([NullAllowed] string arg0, [NullAllowed] NSError arg1);
+	delegate void RequestV3GetDeviceOwnerBlock ([NullAllowed] string emailAddress, [NullAllowed] NSError error);
 
 	// @interface ESTRequestV3GetDeviceOwner : ESTRequestGetJSON
 	[BaseType (typeof (RequestGetJson), Name = "ESTRequestV3GetDeviceOwner")]
@@ -8239,7 +8241,7 @@ namespace Estimote
 	}
 
 	// typedef void (^ESTRequestGetDeviceDetailsBlock)(ESTDeviceDetails * _Nullable, NSError * _Nullable);
-	delegate void RequestGetDeviceDetailsBlock ([NullAllowed] DeviceDetails arg0, [NullAllowed] NSError arg1);
+	delegate void RequestGetDeviceDetailsBlock ([NullAllowed] DeviceDetails deviceDetails, [NullAllowed] NSError error);
 
 	// @interface ESTRequestGetDeviceDetails : ESTRequestGetJSON
 	[BaseType (typeof (RequestGetJson), Name = "ESTRequestGetDeviceDetails")]
@@ -8257,7 +8259,7 @@ namespace Estimote
 	}
 
 	// typedef void (^ESTRequestGetDevicesBlock)(NSArray<ESTDeviceDetails *> * _Nullable, NSNumber * _Nullable, NSNumber * _Nullable, NSError * _Nullable);
-	delegate void RequestGetDevicesBlock ([NullAllowed] DeviceDetails[] arg0, [NullAllowed] NSNumber arg1, [NullAllowed] NSNumber arg2, [NullAllowed] NSError arg3);
+	delegate void RequestGetDevicesBlock ([NullAllowed] DeviceDetails[] devicesDetails, [NullAllowed] NSNumber totalCount, [NullAllowed] NSNumber nextPage, [NullAllowed] NSError error);
 
 	// @interface ESTRequestGetDevices : ESTRequestGetJSON
 	[BaseType (typeof (RequestGetJson), Name = "ESTRequestGetDevices")]
@@ -8311,7 +8313,7 @@ namespace Estimote
 	}
 
 	// typedef void (^ESTTelemetryNotificationMotionCompletionBlock)(ESTTelemetryInfoMotion * _Nonnull);
-	delegate void TelemetryNotificationMotionCompletionBlock (TelemetryInfoMotion arg0);
+	delegate void TelemetryNotificationMotionCompletionBlock (TelemetryInfoMotion motion);
 
 	// @interface ESTTelemetryNotificationMotion : NSObject <ESTTelemetryNotificationProtocol>
 	[BaseType (typeof (NSObject), Name = "ESTTelemetryNotificationMotion")]
@@ -8336,7 +8338,7 @@ namespace Estimote
 	}
 
 	// typedef void (^ESTTelemetryNotificationAmbientLightNotificationBlock)(ESTTelemetryInfoAmbientLight * _Nonnull);
-	delegate void TelemetryNotificationAmbientLightNotificationBlock (TelemetryInfoAmbientLight arg0);
+	delegate void TelemetryNotificationAmbientLightNotificationBlock (TelemetryInfoAmbientLight ambientLight);
 
 	// @interface ESTTelemetryNotificationAmbientLight : NSObject <ESTTelemetryNotificationProtocol>
 	[BaseType (typeof (NSObject), Name = "ESTTelemetryNotificationAmbientLight")]
@@ -8361,7 +8363,7 @@ namespace Estimote
 	}
 
 	// typedef void (^ESTTelemetryNotificationTemperatureNotificationBlock)(ESTTelemetryInfoTemperature * _Nonnull);
-	delegate void TelemetryNotificationTemperatureNotificationBlock (TelemetryInfoTemperature arg0);
+	delegate void TelemetryNotificationTemperatureNotificationBlock (TelemetryInfoTemperature temperature);
 
 	// @interface ESTTelemetryNotificationTemperature : NSObject <ESTTelemetryNotificationProtocol>
 	[BaseType (typeof (NSObject), Name = "ESTTelemetryNotificationTemperature")]
@@ -8390,7 +8392,7 @@ namespace Estimote
 	}
 
 	// typedef void (^ESTTelemetryNotificationSystemStatusNotificationBlock)(ESTTelemetryInfoSystemStatus * _Nonnull);
-	delegate void TelemetryNotificationSystemStatusNotificationBlock (TelemetryInfoSystemStatus arg0);
+	delegate void TelemetryNotificationSystemStatusNotificationBlock (TelemetryInfoSystemStatus systemStatus);
 
 	// @interface ESTTelemetryNotificationSystemStatus : NSObject <ESTTelemetryNotificationProtocol>
 	[BaseType (typeof (NSObject), Name = "ESTTelemetryNotificationSystemStatus")]
@@ -8423,7 +8425,7 @@ namespace Estimote
 	}
 
 	// typedef void (^ESTTelemetryNotificationMagnetometerNotificationBlock)(ESTTelemetryInfoMagnetometer * _Nonnull);
-	delegate void TelemetryNotificationMagnetometerNotificationBlock (TelemetryInfoMagnetometer arg0);
+	delegate void TelemetryNotificationMagnetometerNotificationBlock (TelemetryInfoMagnetometer magnetometer);
 
 	// @interface ESTTelemetryNotificationMagnetometer : NSObject <ESTTelemetryNotificationProtocol>
 	[BaseType (typeof (NSObject), Name = "ESTTelemetryNotificationMagnetometer")]
@@ -8448,7 +8450,7 @@ namespace Estimote
 	}
 
 	// typedef void (^ESTTelemetryNotificationGPIONotificationBlock)(ESTTelemetryInfoGPIO * _Nonnull);
-	delegate void TelemetryNotificationGpioNotificationBlock (TelemetryInfoGpio arg0);
+	delegate void TelemetryNotificationGpioNotificationBlock (TelemetryInfoGpio gpio);
 
 	// @interface ESTTelemetryNotificationGPIO : NSObject <ESTTelemetryNotificationProtocol>
 	[BaseType (typeof (NSObject), Name = "ESTTelemetryNotificationGPIO")]
@@ -8473,7 +8475,7 @@ namespace Estimote
 	}
 
 	// typedef void (^ESTTelemetryNotificationPressureNotificationBlock)(ESTTelemetryInfoPressure * _Nonnull);
-	delegate void TelemetryNotificationPressureNotificationBlock (TelemetryInfoPressure arg0);
+	delegate void TelemetryNotificationPressureNotificationBlock (TelemetryInfoPressure pressure);
 
 	// @interface ESTTelemetryNotificationPressure : NSObject <ESTTelemetryNotificationProtocol>
 	[BaseType (typeof (NSObject), Name = "ESTTelemetryNotificationPressure")]
@@ -8706,10 +8708,10 @@ namespace Estimote
 	}
 
 	// typedef void (^ESTMeshCompletionBlock)(ESTMesh * _Nullable, NSError * _Nullable);
-	delegate void MeshCompletionBlock ([NullAllowed] Mesh arg0, [NullAllowed] NSError arg1);
+	delegate void MeshCompletionBlock ([NullAllowed] Mesh networkDetails, [NullAllowed] NSError error);
 
 	// typedef void (^ESTMeshArrayCompletionBlock)(NSArray<ESTMesh *> * _Nullable, NSError * _Nullable);
-	delegate void MeshArrayCompletionBlock ([NullAllowed] Mesh[] arg0, [NullAllowed] NSError arg1);
+	delegate void MeshArrayCompletionBlock ([NullAllowed] Mesh[] meshList, [NullAllowed] NSError error);
 
 	interface IMeshManagerDelegate { }
 
