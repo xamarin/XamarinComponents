@@ -12,6 +12,7 @@ namespace Estimote
 	interface Device
 	{
 		// @property (readonly, nonatomic, strong) NSString * _Nonnull macAddress __attribute__((deprecated("Starting from SDK 3.7.0 use identifier instead of macAddress.")));
+		[Obsolete ("Starting from SDK 3.7.0 use Identifier property instead.")]
 		[Export ("macAddress", ArgumentSemantic.Strong)]
 		string MacAddress { get; }
 
@@ -1885,6 +1886,7 @@ namespace Estimote
 		NSNumber Security { get; set; }
 
 		// @property (assign, nonatomic) BOOL isSecured __attribute__((deprecated("Starting from SDK 3.7.0 use security property instead")));
+		[Obsolete ("Starting from SDK 3.7.0 use Security property instead.")]
 		[Export ("isSecured")]
 		bool IsSecured { get; set; }
 
@@ -1956,6 +1958,7 @@ namespace Estimote
 		BeaconConnection CreateConnection (CLBeacon beacon, [NullAllowed] IBeaconConnectionDelegate @delegate);
 
 		// +(instancetype _Nonnull)connectionWithMacAddress:(NSString * _Nonnull)macAddress delegate:(id<ESTBeaconConnectionDelegate> _Nullable)delegate __attribute__((deprecated("Starting from SDK 4.0.0-beta1 macAddress is deprecated. Use initWithIdentifier constructor")));
+		[Obsolete ("Starting from SDK 4.0.0-beta1 macAddress is deprecated. Use CreateConnectionWithIdentifier static method instead.")]
 		[Static]
 		[Export ("connectionWithMacAddress:delegate:")]
 		BeaconConnection CreateConnectionWithMacAddress (string macAddress, [NullAllowed] IBeaconConnectionDelegate @delegate);
@@ -1973,14 +1976,14 @@ namespace Estimote
 		[Export ("initWithBeacon:delegate:startImmediately:")]
 		IntPtr Constructor (CLBeacon beacon, [NullAllowed] IBeaconConnectionDelegate @delegate, bool startImmediately);
 
-		// -(instancetype _Nonnull)initWithMacAddress:(NSString * _Nonnull)macAddress delegate:(id<ESTBeaconConnectionDelegate> _Nullable)delegate startImmediately:(BOOL)startImmediately __attribute__((deprecated("Starting from SDK 3.7.0 macAddress is deprecated. Use initWithIdentifier constructor")));
-		[Export ("initWithMacAddress:delegate:startImmediately:")]
-		IntPtr Constructor (string macAddress, [NullAllowed] IBeaconConnectionDelegate @delegate, bool startImmediately);
+		// There is a conflict in Constructors, but this is already deprecated.
+		//// -(instancetype _Nonnull)initWithMacAddress:(NSString * _Nonnull)macAddress delegate:(id<ESTBeaconConnectionDelegate> _Nullable)delegate startImmediately:(BOOL)startImmediately __attribute__((deprecated("Starting from SDK 3.7.0 macAddress is deprecated. Use initWithIdentifier constructor")));
+		//[Export ("initWithMacAddress:delegate:startImmediately:")]
+		//IntPtr Constructor (string macAddress, [NullAllowed] IBeaconConnectionDelegate @delegate, bool startImmediately);
 
-		// There is a conflict in Constructors
-		//// -(instancetype _Nonnull)initWithIdentifier:(NSString * _Nonnull)identifier delegate:(id<ESTBeaconConnectionDelegate> _Nullable)delegate startImmediately:(BOOL)startImmediately;
-		//[Export ("initWithIdentifier:delegate:startImmediately:")]
-		//IntPtr Constructor (string identifier, [NullAllowed] ESTBeaconConnectionDelegate @delegate, bool startImmediately);
+		// -(instancetype _Nonnull)initWithIdentifier:(NSString * _Nonnull)identifier delegate:(id<ESTBeaconConnectionDelegate> _Nullable)delegate startImmediately:(BOOL)startImmediately;
+		[Export ("initWithIdentifier:delegate:startImmediately:")]
+		IntPtr Constructor (string identifier, [NullAllowed] IBeaconConnectionDelegate @delegate, bool startImmediately);
 
 		// -(void)startConnection;
 		[Export ("startConnection")]
@@ -2031,6 +2034,7 @@ namespace Estimote
 		Color Color { get; }
 
 		// @property (readonly, nonatomic) CBPeripheral * _Nullable peripheral __attribute__((deprecated("CBPeripheral peripheral property is deprecated since 3.7.0 version")));
+		[Obsolete ("This property is deprecated since 3.7.0 version")]
 		[NullAllowed, Export ("peripheral")]
 		CBPeripheral Peripheral { get; }
 
@@ -6948,32 +6952,38 @@ namespace Estimote
 		string GoogleApiKey { get; }
 
 		// +(void)enableMonitoringAnalytics:(BOOL)enable __attribute__((deprecated("Starting from SDK 4.1.1 this method is deprecated. Please use [ESTAnalyticsManager enableMonitoringAnalytics:]")));
+		[Obsolete ("Starting from SDK 4.1.1 this method is deprecated. Please use AnalyticsManager.EnableMonitoringAnalytics static method instead.")]
 		[Static]
 		[Export ("enableMonitoringAnalytics:")]
 		void EnableMonitoringAnalytics (bool enable);
 
 		// +(void)enableRangingAnalytics:(BOOL)enable __attribute__((deprecated("Starting from SDK 4.1.1 this method is deprecated. Please use [ESTAnalyticsManager enableRangingAnalytics:]")));
+		[Obsolete ("Starting from SDK 4.1.1 this method is deprecated. Please use AnalyticsManager.EnableRangingAnalytics static method instead.")]
 		[Static]
 		[Export ("enableRangingAnalytics:")]
 		void EnableRangingAnalytics (bool enable);
 
 		// +(void)enableGPSPositioningForAnalytics:(BOOL)enable __attribute__((deprecated("Starting from SDK 4.1.1 this method is deprecated. Please use [ESTAnalyticsManager enableGPSPositioningForAnalytics:]")));
+		[Obsolete ("Starting from SDK 4.1.1 this method is deprecated. Please use AnalyticsManager.EnableGpsPositioningForAnalytics static method instead.")]
 		[Static]
 		[Export ("enableGPSPositioningForAnalytics:")]
 		void EnableGpsPositioningForAnalytics (bool enable);
 
 		// +(BOOL)isMonitoringAnalyticsEnabled __attribute__((deprecated("Starting from SDK 4.1.1 this method is deprecated. Please use [ESTAnalyticsManager isMonitoringAnalyticsEnabled:]")));
+		[Obsolete ("Starting from SDK 4.1.1 this method is deprecated. Please use AnalyticsManager.IsMonitoringAnalyticsEnabled static property instead.")]
 		[Static]
 		[Export ("isMonitoringAnalyticsEnabled")]
 		bool IsMonitoringAnalyticsEnabled { get; }
 
 		// +(BOOL)isRangingAnalyticsEnabled __attribute__((deprecated("Starting from SDK 4.1.1 this method is deprecated. Please use [ESTAnalyticsManager isRangingAnalyticsEnabled:]")));
+		[Obsolete ("Starting from SDK 4.1.1 this method is deprecated. Please use AnalyticsManager.IsRangingAnalyticsEnabled static property instead.")]
 		[Static]
 		[Export ("isRangingAnalyticsEnabled")]
 		bool IsRangingAnalyticsEnabled { get; }
 	}
 
 	// @interface ESTCloudManager : NSObject
+	[Obsolete ("Starting from SDK 3.5.0 use Config class and particular requests (eg. RequestGetBeacons) to interact with Estimote Cloud API.")]
 	[BaseType (typeof (NSObject), Name = "ESTCloudManager")]
 	interface CloudManager
 	{
@@ -7688,6 +7698,7 @@ namespace Estimote
 	delegate void RequestV2GetDeviceDetailsBlock ([NullAllowed] DeviceDetails deviceDetails, [NullAllowed] NSError error);
 
 	// @interface ESTRequestV2GetDeviceDetails : ESTRequestGetJSON
+	[Obsolete ("Please use `RequestGetDeviceDetails` class for fetching device's details from Estimote Cloud.")]
 	[BaseType (typeof (RequestGetJson), Name = "ESTRequestV2GetDeviceDetails")]
 	interface RequestV2GetDeviceDetails
 	{
@@ -7704,6 +7715,7 @@ namespace Estimote
 	delegate void RequestV2GetDevicesBlock ([NullAllowed] DeviceDetails[] devicesDetails, [NullAllowed] NSError error);
 
 	// @interface ESTRequestV2GetDevices : ESTRequestGetJSON
+	[Obsolete ("Please use `RequestGetDevices` class for fetching user's from Estimote Cloud.")]
 	[BaseType (typeof (RequestGetJson), Name = "ESTRequestV2GetDevices")]
 	interface RequestV2GetDevices
 	{
@@ -8681,6 +8693,7 @@ namespace Estimote
 	}
 
 	// @interface ESTMonitoringManager : NSObject
+	[Obsolete ("Use MonitoringV2Manager class instead.")]
 	[DisableDefaultCtor]
 	[BaseType (typeof (NSObject), Name = "ESTMonitoringManager", Delegates = new string [] { "Delegate" }, Events = new Type [] { typeof (MonitoringManagerDelegate) })]
 	interface MonitoringManager
@@ -8812,19 +8825,21 @@ namespace Estimote
 		void WriteEnableSettings (bool enabled, Action<NSArray<NSError>> completion);
 
 		// +(NSDictionary<NSString *,ESTSettingBase *> * _Nonnull)classNamesToSettings __attribute__((deprecated("Use +classNamesToSettingsForDeviceIdentifier: instead")));
+		[Obsolete ("Use ClassNamesToSettings (string) static method instead.")]
 		[Static]
 		[Export ("classNamesToSettings")]
-		NSDictionary ClassNamesToSettings { get; }
+		NSDictionary ClassNamesToSettings ();
 
 		// +(NSDictionary<NSString *,ESTSettingBase *> * _Nonnull)classNamesToSettingsForDeviceIdentifier:(NSString * _Nullable)deviceIdentifier;
 		[Static]
 		[Export ("classNamesToSettingsForDeviceIdentifier:")]
-		NSDictionary ClassNamesToSettingsForDeviceIdentifier ([NullAllowed] string deviceIdentifier);
+		NSDictionary ClassNamesToSettings ([NullAllowed] string deviceIdentifier);
 
 		// +(NSArray<id<ESTBeaconOperationProtocol>> * _Nonnull)getWriteOperations __attribute__((deprecated("Use +getWriteOperationsForDeviceIdentifier: instead")));
+		[Obsolete ("Use GetWriteOperations (string) static method instead.")]
 		[Static]
 		[Export ("getWriteOperations")]
-		IBeaconOperationProtocol[] WriteOperations { get; }
+		IBeaconOperationProtocol [] GetWriteOperations ();
 
 		// +(NSArray<id<ESTBeaconOperationProtocol>> * _Nonnull)getWriteOperationsForDeviceIdentifier:(NSString * _Nullable)deviceIdentifier;
 		[Static]
@@ -8855,19 +8870,21 @@ namespace Estimote
 		void WriteEnableSettings (bool enabled, Action<NSError []> completion);
 
 		// +(NSDictionary<NSString *,ESTSettingBase *> * _Nonnull)classNamesToSettings __attribute__((deprecated("Use +classNamesToSettingsForDeviceIdentifier: instead")));
+		[Obsolete ("Use ClassNamesToSettings (string) static method instead.")]
 		[Static]
 		[Export ("classNamesToSettings")]
-		NSDictionary ClassNamesToSettings { get; }
+		NSDictionary ClassNamesToSettings ();
 
 		// +(NSDictionary<NSString *,ESTSettingBase *> * _Nonnull)classNamesToSettingsForDeviceIdentifier:(NSString * _Nullable)deviceIdentifier;
 		[Static]
 		[Export ("classNamesToSettingsForDeviceIdentifier:")]
-		NSDictionary ClassNamesToSettingsForDeviceIdentifier ([NullAllowed] string deviceIdentifier);
+		NSDictionary ClassNamesToSettings ([NullAllowed] string deviceIdentifier);
 
 		// +(NSArray<id<ESTBeaconOperationProtocol>> * _Nonnull)getWriteOperations __attribute__((deprecated("Use +getWriteOperationsForDeviceIdentifier: instead")));
+		[Obsolete ("Use GetWriteOperations (string) static method instead.")]
 		[Static]
 		[Export ("getWriteOperations")]
-		IBeaconOperationProtocol[] WriteOperations { get; }
+		IBeaconOperationProtocol [] GetWriteOperations ();
 
 		// +(NSArray<id<ESTBeaconOperationProtocol>> * _Nonnull)getWriteOperationsForDeviceIdentifier:(NSString * _Nullable)deviceIdentifier;
 		[Static]
