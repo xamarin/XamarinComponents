@@ -7,6 +7,7 @@ using ObjCRuntime;
 namespace Estimote
 {
 	// @interface ESTDevice : NSObject
+	[DisableDefaultCtor]
 	[BaseType (typeof (NSObject), Name = "ESTDevice")]
 	interface Device
 	{
@@ -536,6 +537,7 @@ namespace Estimote
 	}
 
 	// @interface ESTSettingsIBeacon : NSObject
+	[DisableDefaultCtor]
 	[BaseType (typeof (NSObject), Name = "ESTSettingsIBeacon")]
 	interface SettingsIBeacon
 	{
@@ -589,6 +591,7 @@ namespace Estimote
 	}
 
 	// @interface ESTSettingsEstimoteLocation : NSObject
+	[DisableDefaultCtor]
 	[BaseType (typeof (NSObject), Name = "ESTSettingsEstimoteLocation")]
 	interface SettingsEstimoteLocation
 	{
@@ -712,6 +715,7 @@ namespace Estimote
 	}
 
 	// @interface ESTSettingsEstimoteTLM : NSObject
+	[DisableDefaultCtor]
 	[BaseType (typeof (NSObject), Name = "ESTSettingsEstimoteTLM")]
 	interface SettingsEstimoteTlm
 	{
@@ -733,6 +737,7 @@ namespace Estimote
 	}
 
 	// @interface ESTSettingsEddystoneUID : NSObject
+	[DisableDefaultCtor]
 	[BaseType (typeof (NSObject), Name = "ESTSettingsEddystoneUID")]
 	interface SettingsEddystoneUid
 	{
@@ -762,6 +767,7 @@ namespace Estimote
 	}
 
 	// @interface ESTSettingsEddystoneURL : NSObject
+	[DisableDefaultCtor]
 	[BaseType (typeof (NSObject), Name = "ESTSettingsEddystoneURL")]
 	interface SettingsEddystoneUrl
 	{
@@ -787,6 +793,7 @@ namespace Estimote
 	}
 
 	// @interface ESTSettingsEddystoneTLM : NSObject
+	[DisableDefaultCtor]
 	[BaseType (typeof (NSObject), Name = "ESTSettingsEddystoneTLM")]
 	interface SettingsEddystoneTlm
 	{
@@ -808,6 +815,7 @@ namespace Estimote
 	}
 
 	// @interface ESTSettingsEddystoneEID : NSObject
+	[DisableDefaultCtor]
 	[BaseType (typeof (NSObject), Name = "ESTSettingsEddystoneEID")]
 	interface SettingsEddystoneEid
 	{
@@ -829,6 +837,7 @@ namespace Estimote
 	}
 
 	// @interface ESTSettingsDeviceInfo : NSObject
+	[DisableDefaultCtor]
 	[BaseType (typeof (NSObject), Name = "ESTSettingsDeviceInfo")]
 	interface SettingsDeviceInfo
 	{
@@ -882,6 +891,7 @@ namespace Estimote
 	}
 
 	// @interface ESTSettingsPower : NSObject
+	[DisableDefaultCtor]
 	[BaseType (typeof (NSObject), Name = "ESTSettingsPower")]
 	interface SettingsPower
 	{
@@ -935,6 +945,7 @@ namespace Estimote
 	}
 
 	// @interface ESTSettingsGPIO : NSObject
+	[DisableDefaultCtor]
 	[BaseType (typeof (NSObject), Name = "ESTSettingsGPIO")]
 	interface SettingsGpio
 	{
@@ -994,6 +1005,7 @@ namespace Estimote
 	}
 
 	// @interface ESTSettingsConnectivity : NSObject
+	[DisableDefaultCtor]
 	[BaseType (typeof (NSObject), Name = "ESTSettingsConnectivity")]
 	interface SettingsConnectivity
 	{
@@ -1015,6 +1027,7 @@ namespace Estimote
 	}
 
 	// @interface ESTSettingsSensors : NSObject
+	[DisableDefaultCtor]
 	[BaseType (typeof (NSObject), Name = "ESTSettingsSensors")]
 	interface SettingsSensors
 	{
@@ -1040,6 +1053,7 @@ namespace Estimote
 	}
 
 	// @interface ESTSettingsEddystoneConfigurationService : NSObject
+	[DisableDefaultCtor]
 	[BaseType (typeof (NSObject), Name = "ESTSettingsEddystoneConfigurationService")]
 	interface SettingsEddystoneConfigurationService
 	{
@@ -1227,6 +1241,7 @@ namespace Estimote
 	//}
 
 	// @interface ESTDeviceLocationBeacon : ESTDeviceConnectable
+	[DisableDefaultCtor]
 	[BaseType (typeof (DeviceConnectable), Name = "ESTDeviceLocationBeacon")]
 	interface DeviceLocationBeacon
 	{
@@ -1256,6 +1271,7 @@ namespace Estimote
 	}
 
 	// @interface ESTTelemetryInfo : NSObject
+	[DisableDefaultCtor]
 	[BaseType (typeof (NSObject), Name = "ESTTelemetryInfo")]
 	interface TelemetryInfo
 	{
@@ -1420,6 +1436,7 @@ namespace Estimote
 	}
 
 	// @interface ESTBeacon : NSObject <NSCopying, NSSecureCoding>
+	[DisableDefaultCtor]
 	[BaseType (typeof (NSObject), Name = "ESTBeacon")]
 	interface Beacon : INSCopying, INSSecureCoding
 	{
@@ -2285,6 +2302,7 @@ namespace Estimote
 	}
 
 	// @interface ESTSettingOperation : NSObject
+	[DisableDefaultCtor]
 	[BaseType (typeof (NSObject), Name = "ESTSettingOperation")]
 	interface SettingOperation
 	{
@@ -2318,6 +2336,7 @@ namespace Estimote
 	}
 
 	// @interface ESTBeaconOperationConnectivityInterval : ESTSettingOperation <ESTBeaconOperationProtocol>
+	[DisableDefaultCtor]
 	[BaseType (typeof (SettingOperation), Name = "ESTBeaconOperationConnectivityInterval")]
 	interface BeaconOperationConnectivityInterval : BeaconOperationProtocol
 	{
@@ -2333,6 +2352,7 @@ namespace Estimote
 	}
 
 	// @interface ESTBeaconOperationConnectivityPower : ESTSettingOperation <ESTBeaconOperationProtocol>
+	[DisableDefaultCtor]
 	[BaseType (typeof (SettingOperation), Name = "ESTBeaconOperationConnectivityPower")]
 	interface BeaconOperationConnectivityPower : BeaconOperationProtocol
 	{
@@ -2348,6 +2368,7 @@ namespace Estimote
 	}
 
 	// @interface ESTBeaconOperationShakeToConnectEnable : ESTSettingOperation <ESTBeaconOperationProtocol>
+	[DisableDefaultCtor]
 	[BaseType (typeof (SettingOperation), Name = "ESTBeaconOperationShakeToConnectEnable")]
 	interface BeaconOperationShakeToConnectEnable : BeaconOperationProtocol
 	{
@@ -2456,6 +2477,7 @@ namespace Estimote
 	delegate void SettingPowerBatteryLifetimeCompletionBlock ([NullAllowed] SettingPowerBatteryLifetime batteryLifetimeSetting, [NullAllowed] NSError error);
 
 	// @interface ESTSettingPowerBatteryLifetime : ESTSettingReadOnly <NSCopying>
+	[DisableDefaultCtor]
 	[BaseType (typeof (SettingReadOnly), Name = "ESTSettingPowerBatteryLifetime")]
 	interface SettingPowerBatteryLifetime : INSCopying
 	{
@@ -2533,6 +2555,7 @@ namespace Estimote
 	}
 
 	// @interface ESTBeaconOperationPowerSmartPowerModeEnable : ESTSettingOperation <ESTBeaconOperationProtocol>
+	[DisableDefaultCtor]
 	[BaseType (typeof (SettingOperation), Name = "ESTBeaconOperationPowerSmartPowerModeEnable")]
 	interface BeaconOperationPowerSmartPowerModeEnable : BeaconOperationProtocol
 	{
@@ -2548,6 +2571,7 @@ namespace Estimote
 	}
 
 	// @interface ESTBeaconOperationPowerFlipToSleepEnable : ESTSettingOperation <ESTBeaconOperationProtocol>
+	[DisableDefaultCtor]
 	[BaseType (typeof (SettingOperation), Name = "ESTBeaconOperationPowerFlipToSleepEnable")]
 	interface BeaconOperationPowerFlipToSleepEnable : BeaconOperationProtocol
 	{
@@ -2563,6 +2587,7 @@ namespace Estimote
 	}
 
 	// @interface ESTBeaconOperationPowerDarkToSleepEnable : ESTSettingOperation <ESTBeaconOperationProtocol>
+	[DisableDefaultCtor]
 	[BaseType (typeof (SettingOperation), Name = "ESTBeaconOperationPowerDarkToSleepEnable")]
 	interface BeaconOperationPowerDarkToSleepEnable : BeaconOperationProtocol
 	{
@@ -2596,6 +2621,7 @@ namespace Estimote
 	}
 
 	// @interface ESTCloudOperationPowerBatteryLifetime : ESTSettingOperation <ESTBeaconOperationProtocol, ESTCloudOperationProtocol>
+	[DisableDefaultCtor]
 	[BaseType (typeof (SettingOperation), Name = "ESTCloudOperationPowerBatteryLifetime")]
 	interface CloudOperationPowerBatteryLifetime : BeaconOperationProtocol, CloudOperationProtocol
 	{
@@ -2606,6 +2632,7 @@ namespace Estimote
 	}
 
 	// @interface ESTBeaconOperationPowerMotionOnlyBroadcastingEnable : ESTSettingOperation <ESTBeaconOperationProtocol>
+	[DisableDefaultCtor]
 	[BaseType (typeof (SettingOperation), Name = "ESTBeaconOperationPowerMotionOnlyBroadcastingEnable")]
 	interface BeaconOperationPowerMotionOnlyBroadcastingEnable : BeaconOperationProtocol
 	{
@@ -2621,6 +2648,7 @@ namespace Estimote
 	}
 
 	// @interface ESTBeaconOperationPowerMotionOnlyBroadcastingDelay : ESTSettingOperation <ESTBeaconOperationProtocol>
+	[DisableDefaultCtor]
 	[BaseType (typeof (SettingOperation), Name = "ESTBeaconOperationPowerMotionOnlyBroadcastingDelay")]
 	interface BeaconOperationPowerMotionOnlyBroadcastingDelay : BeaconOperationProtocol
 	{
@@ -2666,6 +2694,7 @@ namespace Estimote
 	}
 
 	// @interface ESTTime : NSObject <NSCopying>
+	[DisableDefaultCtor]
 	[BaseType (typeof (NSObject), Name = "ESTTime")]
 	interface Time : INSCopying
 	{
@@ -2687,6 +2716,7 @@ namespace Estimote
 	}
 
 	// @interface ESTTimePeriod : NSObject <NSCopying>
+	[DisableDefaultCtor]
 	[BaseType (typeof (NSObject), Name = "ESTTimePeriod")]
 	interface TimePeriod : INSCopying
 	{
@@ -2741,6 +2771,7 @@ namespace Estimote
 	delegate void SettingPowerBatteryPercentageCompletionBlock ([NullAllowed] SettingPowerBatteryPercentage batteryPercentageSetting, [NullAllowed] NSError error);
 
 	// @interface ESTSettingPowerBatteryPercentage : ESTSettingReadOnly <NSCopying>
+	[DisableDefaultCtor]
 	[BaseType (typeof (SettingReadOnly), Name = "ESTSettingPowerBatteryPercentage")]
 	interface SettingPowerBatteryPercentage : INSCopying
 	{
@@ -2761,6 +2792,7 @@ namespace Estimote
 	delegate void SettingPowerBatteryVoltageCompletionBlock ([NullAllowed] SettingPowerBatteryVoltage voltageSetting, [NullAllowed] NSError error);
 
 	// @interface ESTSettingPowerBatteryVoltage : ESTSettingReadOnly <NSCopying>
+	[DisableDefaultCtor]
 	[BaseType (typeof (SettingReadOnly), Name = "ESTSettingPowerBatteryVoltage")]
 	interface SettingPowerBatteryVoltage : INSCopying
 	{
@@ -2778,6 +2810,7 @@ namespace Estimote
 	}
 
 	// @interface ESTBeaconOperationPowerScheduledAdvertisingEnable : ESTSettingOperation <ESTBeaconOperationProtocol>
+	[DisableDefaultCtor]
 	[BaseType (typeof (SettingOperation), Name = "ESTBeaconOperationPowerScheduledAdvertisingEnable")]
 	interface BeaconOperationPowerScheduledAdvertisingEnable : BeaconOperationProtocol
 	{
@@ -2793,6 +2826,7 @@ namespace Estimote
 	}
 
 	// @interface ESTBeaconOperationPowerScheduledAdvertisingPeriod : ESTSettingOperation <ESTBeaconOperationProtocol>
+	[DisableDefaultCtor]
 	[BaseType (typeof (SettingOperation), Name = "ESTBeaconOperationPowerScheduledAdvertisingPeriod")]
 	interface BeaconOperationPowerScheduledAdvertisingPeriod : BeaconOperationProtocol
 	{
@@ -2808,6 +2842,7 @@ namespace Estimote
 	}
 
 	// @interface ESTBeaconOperationPowerBatteryPercentage : ESTSettingOperation <ESTBeaconOperationProtocol>
+	[DisableDefaultCtor]
 	[BaseType (typeof (SettingOperation), Name = "ESTBeaconOperationPowerBatteryPercentage")]
 	interface BeaconOperationPowerBatteryPercentage : BeaconOperationProtocol
 	{
@@ -2818,6 +2853,7 @@ namespace Estimote
 	}
 
 	// @interface ESTBeaconOperationPowerBatteryVoltage : ESTSettingOperation <ESTBeaconOperationProtocol>
+	[DisableDefaultCtor]
 	[BaseType (typeof (SettingOperation), Name = "ESTBeaconOperationPowerBatteryVoltage")]
 	interface BeaconOperationPowerBatteryVoltage : BeaconOperationProtocol
 	{
@@ -2831,6 +2867,7 @@ namespace Estimote
 	delegate void SettingDeviceInfoFirmwareVersionCompletionBlock ([NullAllowed] SettingDeviceInfoFirmwareVersion versionSetting, [NullAllowed] NSError error);
 
 	// @interface ESTSettingDeviceInfoFirmwareVersion : ESTSettingReadOnly <NSCopying>
+	[DisableDefaultCtor]
 	[BaseType (typeof (SettingReadOnly), Name = "ESTSettingDeviceInfoFirmwareVersion")]
 	interface SettingDeviceInfoFirmwareVersion : INSCopying
 	{
@@ -2851,6 +2888,7 @@ namespace Estimote
 	delegate void SettingDeviceInfoApplicationVersionCompletionBlock ([NullAllowed] SettingDeviceInfoApplicationVersion applicationVersionSetting, [NullAllowed] NSError error);
 
 	// @interface ESTSettingDeviceInfoApplicationVersion : ESTSettingReadOnly <NSCopying>
+	[DisableDefaultCtor]
 	[BaseType (typeof (SettingReadOnly), Name = "ESTSettingDeviceInfoApplicationVersion")]
 	interface SettingDeviceInfoApplicationVersion : INSCopying
 	{
@@ -2871,6 +2909,7 @@ namespace Estimote
 	delegate void SettingDeviceInfoBootloaderVersionCompletionBlock ([NullAllowed] SettingDeviceInfoBootloaderVersion bootloaderVersionSetting, [NullAllowed] NSError error);
 
 	// @interface ESTSettingDeviceInfoBootloaderVersion : ESTSettingReadOnly <NSCopying>
+	[DisableDefaultCtor]
 	[BaseType (typeof (SettingReadOnly), Name = "ESTSettingDeviceInfoBootloaderVersion")]
 	interface SettingDeviceInfoBootloaderVersion : INSCopying
 	{
@@ -2887,6 +2926,7 @@ namespace Estimote
 	delegate void SettingDeviceInfoHardwareVersionCompletionBlock ([NullAllowed] SettingDeviceInfoHardwareVersion versionSetting, [NullAllowed] NSError error);
 
 	// @interface ESTSettingDeviceInfoHardwareVersion : ESTSettingReadOnly <NSCopying>
+	[DisableDefaultCtor]
 	[BaseType (typeof (SettingReadOnly), Name = "ESTSettingDeviceInfoHardwareVersion")]
 	interface SettingDeviceInfoHardwareVersion : INSCopying
 	{
@@ -3023,6 +3063,7 @@ namespace Estimote
 	delegate void SettingDeviceInfoColorCompletionBlock ([NullAllowed] SettingDeviceInfoColor colorSetting, [NullAllowed] NSError error);
 
 	// @interface ESTSettingDeviceInfoColor : ESTSettingReadOnly <NSCopying>
+	[DisableDefaultCtor]
 	[BaseType (typeof (SettingReadOnly), Name = "ESTSettingDeviceInfoColor")]
 	interface SettingDeviceInfoColor : INSCopying
 	{
@@ -3043,6 +3084,7 @@ namespace Estimote
 	delegate void SettingDeviceInfoIndoorLocationIdentifierCompletionBlock ([NullAllowed] SettingDeviceInfoIndoorLocationIdentifier indoorLocationIdentifierSetting, [NullAllowed] NSError error);
 
 	// @interface ESTSettingDeviceInfoIndoorLocationIdentifier : ESTSettingReadOnly <NSCopying>
+	[DisableDefaultCtor]
 	[BaseType (typeof (SettingReadOnly), Name = "ESTSettingDeviceInfoIndoorLocationIdentifier")]
 	interface SettingDeviceInfoIndoorLocationIdentifier : INSCopying
 	{
@@ -3063,6 +3105,7 @@ namespace Estimote
 	delegate void SettingDeviceInfoIndoorLocationNameCompletionBlock ([NullAllowed] SettingDeviceInfoIndoorLocationName nameSetting, [NullAllowed] NSError error);
 
 	// @interface ESTSettingDeviceInfoIndoorLocationName : ESTSettingReadOnly <NSCopying>
+	[DisableDefaultCtor]
 	[BaseType (typeof (SettingReadOnly), Name = "ESTSettingDeviceInfoIndoorLocationName")]
 	interface SettingDeviceInfoIndoorLocationName : INSCopying
 	{
@@ -3083,6 +3126,7 @@ namespace Estimote
 	delegate void SettingDeviceInfoUptimeCompletionBlock ([NullAllowed] SettingDeviceInfoUptime uptimeSetting, [NullAllowed] NSError error);
 
 	// @interface ESTSettingDeviceInfoUptime : ESTSettingReadOnly <NSCopying>
+	[DisableDefaultCtor]
 	[BaseType (typeof (SettingReadOnly), Name = "ESTSettingDeviceInfoUptime")]
 	interface SettingDeviceInfoUptime : INSCopying
 	{
@@ -3130,6 +3174,7 @@ namespace Estimote
 	}
 
 	// @interface ESTCloudOperationDeviceInfoFirmwareVersion : ESTSettingOperation <ESTBeaconOperationProtocol, ESTCloudOperationProtocol>
+	[DisableDefaultCtor]
 	[BaseType (typeof (SettingOperation), Name = "ESTCloudOperationDeviceInfoFirmwareVersion")]
 	interface CloudOperationDeviceInfoFirmwareVersion : BeaconOperationProtocol, CloudOperationProtocol
 	{
@@ -3140,6 +3185,7 @@ namespace Estimote
 	}
 
 	// @interface ESTBeaconOperationDeviceInfoApplicationVersion : ESTSettingOperation <ESTBeaconOperationProtocol>
+	[DisableDefaultCtor]
 	[BaseType (typeof (SettingOperation), Name = "ESTBeaconOperationDeviceInfoApplicationVersion")]
 	interface BeaconOperationDeviceInfoApplicationVersion : BeaconOperationProtocol
 	{
@@ -3150,6 +3196,7 @@ namespace Estimote
 	}
 
 	// @interface ESTBeaconOperationDeviceInfoBootloaderVersion : ESTSettingOperation <ESTBeaconOperationProtocol>
+	[DisableDefaultCtor]
 	[BaseType (typeof (SettingOperation), Name = "ESTBeaconOperationDeviceInfoBootloaderVersion")]
 	interface BeaconOperationDeviceInfoBootloaderVersion : BeaconOperationProtocol
 	{
@@ -3160,6 +3207,7 @@ namespace Estimote
 	}
 
 	// @interface ESTBeaconOperationDeviceInfoHardwareVersion : ESTSettingOperation <ESTBeaconOperationProtocol>
+	[DisableDefaultCtor]
 	[BaseType (typeof (SettingOperation), Name = "ESTBeaconOperationDeviceInfoHardwareVersion")]
 	interface BeaconOperationDeviceInfoHardwareVersion : BeaconOperationProtocol
 	{
@@ -3170,6 +3218,7 @@ namespace Estimote
 	}
 
 	// @interface ESTBeaconOperationDeviceInfoUTCTime : ESTSettingOperation <ESTBeaconOperationProtocol>
+	[DisableDefaultCtor]
 	[BaseType (typeof (SettingOperation), Name = "ESTBeaconOperationDeviceInfoUTCTime")]
 	interface BeaconOperationDeviceInfoUtcTime : BeaconOperationProtocol
 	{
@@ -3185,6 +3234,7 @@ namespace Estimote
 	}
 
 	// @interface ESTCloudOperationDeviceInfoTags : ESTSettingOperation <ESTBeaconOperationProtocol, ESTCloudOperationProtocol>
+	[DisableDefaultCtor]
 	[BaseType (typeof (SettingOperation), Name = "ESTCloudOperationDeviceInfoTags")]
 	interface CloudOperationDeviceInfoTags : BeaconOperationProtocol, CloudOperationProtocol
 	{
@@ -3200,6 +3250,7 @@ namespace Estimote
 	}
 
 	// @interface ESTCloudOperationDeviceInfoGeoLocation : ESTSettingOperation <ESTBeaconOperationProtocol, ESTCloudOperationProtocol>
+	[DisableDefaultCtor]
 	[BaseType (typeof (SettingOperation), Name = "ESTCloudOperationDeviceInfoGeoLocation")]
 	interface CloudOperationDeviceInfoGeoLocation : BeaconOperationProtocol, CloudOperationProtocol
 	{
@@ -3215,6 +3266,7 @@ namespace Estimote
 	}
 
 	// @interface ESTCloudOperationDeviceInfoName : ESTSettingOperation <ESTBeaconOperationProtocol, ESTCloudOperationProtocol>
+	[DisableDefaultCtor]
 	[BaseType (typeof (SettingOperation), Name = "ESTCloudOperationDeviceInfoName")]
 	interface CloudOperationDeviceInfoName : BeaconOperationProtocol, CloudOperationProtocol
 	{
@@ -3230,6 +3282,7 @@ namespace Estimote
 	}
 
 	// @interface ESTCloudOperationDeviceInfoColor : ESTSettingOperation <ESTBeaconOperationProtocol, ESTCloudOperationProtocol>
+	[DisableDefaultCtor]
 	[BaseType (typeof (SettingOperation), Name = "ESTCloudOperationDeviceInfoColor")]
 	interface CloudOperationDeviceInfoColor : BeaconOperationProtocol, CloudOperationProtocol
 	{
@@ -3245,6 +3298,7 @@ namespace Estimote
 	}
 
 	// @interface ESTCloudOperationDeviceInfoIndoorLocationIdentifier : ESTSettingOperation <ESTBeaconOperationProtocol, ESTCloudOperationProtocol>
+	[DisableDefaultCtor]
 	[BaseType (typeof (SettingOperation), Name = "ESTCloudOperationDeviceInfoIndoorLocationIdentifier")]
 	interface CloudOperationDeviceInfoIndoorLocationIdentifier : BeaconOperationProtocol, CloudOperationProtocol
 	{
@@ -3255,6 +3309,7 @@ namespace Estimote
 	}
 
 	// @interface ESTBeaconOperationDeviceInfoUptime : ESTSettingOperation <ESTBeaconOperationProtocol>
+	[DisableDefaultCtor]
 	[BaseType (typeof (SettingOperation), Name = "ESTBeaconOperationDeviceInfoUptime")]
 	interface BeaconOperationDeviceInfoUptime : BeaconOperationProtocol
 	{
@@ -3265,6 +3320,7 @@ namespace Estimote
 	}
 
 	// @interface ESTCloudOperationDeviceInfoDevelopmentMode : ESTSettingOperation <ESTBeaconOperationProtocol, ESTCloudOperationProtocol>
+	[DisableDefaultCtor]
 	[BaseType (typeof (SettingOperation), Name = "ESTCloudOperationDeviceInfoDevelopmentMode")]
 	interface CloudOperationDeviceInfoDevelopmentMode : BeaconOperationProtocol, CloudOperationProtocol
 	{
@@ -3523,6 +3579,7 @@ namespace Estimote
 	delegate void SettingIBeaconMotionUuidCompletionBlock ([NullAllowed] SettingIBeaconMotionUuid motionUuidSetting, [NullAllowed] NSError error);
 
 	// @interface ESTSettingIBeaconMotionUUID : ESTSettingReadOnly <NSCopying>
+	[DisableDefaultCtor]
 	[BaseType (typeof (SettingReadOnly), Name = "ESTSettingIBeaconMotionUUID")]
 	interface SettingIBeaconMotionUuid : INSCopying
 	{
@@ -3569,6 +3626,7 @@ namespace Estimote
 	}
 
 	// @interface ESTBeaconOperationIBeaconEnable : ESTSettingOperation <ESTBeaconOperationProtocol>
+	[DisableDefaultCtor]
 	[BaseType (typeof (SettingOperation), Name = "ESTBeaconOperationIBeaconEnable")]
 	interface BeaconOperationIBeaconEnable : BeaconOperationProtocol
 	{
@@ -3584,6 +3642,7 @@ namespace Estimote
 	}
 
 	// @interface ESTBeaconOperationIBeaconInterval : ESTSettingOperation <ESTBeaconOperationProtocol>
+	[DisableDefaultCtor]
 	[BaseType (typeof (SettingOperation), Name = "ESTBeaconOperationIBeaconInterval")]
 	interface BeaconOperationIBeaconInterval : BeaconOperationProtocol
 	{
@@ -3599,6 +3658,7 @@ namespace Estimote
 	}
 
 	// @interface ESTBeaconOperationIBeaconMajor : ESTSettingOperation <ESTBeaconOperationProtocol>
+	[DisableDefaultCtor]
 	[BaseType (typeof (SettingOperation), Name = "ESTBeaconOperationIBeaconMajor")]
 	interface BeaconOperationIBeaconMajor : BeaconOperationProtocol
 	{
@@ -3614,6 +3674,7 @@ namespace Estimote
 	}
 
 	// @interface ESTBeaconOperationIBeaconMinor : ESTSettingOperation <ESTBeaconOperationProtocol>
+	[DisableDefaultCtor]
 	[BaseType (typeof (SettingOperation), Name = "ESTBeaconOperationIBeaconMinor")]
 	interface BeaconOperationIBeaconMinor : BeaconOperationProtocol
 	{
@@ -3629,6 +3690,7 @@ namespace Estimote
 	}
 
 	// @interface ESTBeaconOperationIBeaconPower : ESTSettingOperation <ESTBeaconOperationProtocol>
+	[DisableDefaultCtor]
 	[BaseType (typeof (SettingOperation), Name = "ESTBeaconOperationIBeaconPower")]
 	interface BeaconOperationIBeaconPower : BeaconOperationProtocol
 	{
@@ -3644,6 +3706,7 @@ namespace Estimote
 	}
 
 	// @interface ESTBeaconOperationIBeaconProximityUUID : ESTSettingOperation <ESTBeaconOperationProtocol>
+	[DisableDefaultCtor]
 	[BaseType (typeof (SettingOperation), Name = "ESTBeaconOperationIBeaconProximityUUID")]
 	interface BeaconOperationIBeaconProximityUuid : BeaconOperationProtocol
 	{
@@ -3659,6 +3722,7 @@ namespace Estimote
 	}
 
 	// @interface ESTBeaconOperationIBeaconSecureUUIDEnable : ESTSettingOperation <ESTBeaconOperationProtocol>
+	[DisableDefaultCtor]
 	[BaseType (typeof (SettingOperation), Name = "ESTBeaconOperationIBeaconSecureUUIDEnable")]
 	interface BeaconOperationIBeaconSecureUuidEnable : BeaconOperationProtocol
 	{
@@ -3674,6 +3738,7 @@ namespace Estimote
 	}
 
 	// @interface ESTBeaconOperationIBeaconSecureUUIDPeriodScaler : ESTSettingOperation <ESTBeaconOperationProtocol>
+	[DisableDefaultCtor]
 	[BaseType (typeof (SettingOperation), Name = "ESTBeaconOperationIBeaconSecureUUIDPeriodScaler")]
 	interface BeaconOperationIBeaconSecureUuidPeriodScaler : BeaconOperationProtocol
 	{
@@ -3689,6 +3754,7 @@ namespace Estimote
 	}
 
 	// @interface ESTCloudOperationIBeaconNonStrictMode : ESTSettingOperation <ESTBeaconOperationProtocol, ESTCloudOperationProtocol>
+	[DisableDefaultCtor]
 	[BaseType (typeof (SettingOperation), Name = "ESTCloudOperationIBeaconNonStrictMode")]
 	interface CloudOperationIBeaconNonStrictMode : BeaconOperationProtocol, CloudOperationProtocol
 	{
@@ -3704,6 +3770,7 @@ namespace Estimote
 	}
 
 	// @interface ESTBeaconOperationIBeaconMotionUUID : ESTSettingOperation <ESTBeaconOperationProtocol>
+	[DisableDefaultCtor]
 	[BaseType (typeof (SettingOperation), Name = "ESTBeaconOperationIBeaconMotionUUID")]
 	interface BeaconOperationIBeaconMotionUuid : BeaconOperationProtocol
 	{
@@ -3714,6 +3781,7 @@ namespace Estimote
 	}
 
 	// @interface ESTBeaconOperationIBeaconMotionUUIDEnable : ESTSettingOperation <ESTBeaconOperationProtocol>
+	[DisableDefaultCtor]
 	[BaseType (typeof (SettingOperation), Name = "ESTBeaconOperationIBeaconMotionUUIDEnable")]
 	interface BeaconOperationIBeaconMotionUuidEnable : BeaconOperationProtocol
 	{
@@ -3813,6 +3881,7 @@ namespace Estimote
 	}
 
 	// @interface ESTBeaconOperationEstimoteLocationEnable : ESTSettingOperation <ESTBeaconOperationProtocol>
+	[DisableDefaultCtor]
 	[BaseType (typeof (SettingOperation), Name = "ESTBeaconOperationEstimoteLocationEnable")]
 	interface BeaconOperationEstimoteLocationEnable : BeaconOperationProtocol
 	{
@@ -3828,6 +3897,7 @@ namespace Estimote
 	}
 
 	// @interface ESTBeaconOperationEstimoteLocationInterval : ESTSettingOperation <ESTBeaconOperationProtocol>
+	[DisableDefaultCtor]
 	[BaseType (typeof (SettingOperation), Name = "ESTBeaconOperationEstimoteLocationInterval")]
 	interface BeaconOperationEstimoteLocationInterval : BeaconOperationProtocol
 	{
@@ -3843,6 +3913,7 @@ namespace Estimote
 	}
 
 	// @interface ESTBeaconOperationEstimoteLocationPower : ESTSettingOperation <ESTBeaconOperationProtocol>
+	[DisableDefaultCtor]
 	[BaseType (typeof (SettingOperation), Name = "ESTBeaconOperationEstimoteLocationPower")]
 	interface BeaconOperationEstimoteLocationPower : BeaconOperationProtocol
 	{
@@ -3858,6 +3929,7 @@ namespace Estimote
 	}
 
 	// @interface ESTBeaconOperationEstimoteTLMEnable : ESTSettingOperation <ESTBeaconOperationProtocol>
+	[DisableDefaultCtor]
 	[BaseType (typeof (SettingOperation), Name = "ESTBeaconOperationEstimoteTLMEnable")]
 	interface BeaconOperationEstimoteTlmEnable : BeaconOperationProtocol
 	{
@@ -3873,6 +3945,7 @@ namespace Estimote
 	}
 
 	// @interface ESTBeaconOperationEstimoteTLMInterval : ESTSettingOperation <ESTBeaconOperationProtocol>
+	[DisableDefaultCtor]
 	[BaseType (typeof (SettingOperation), Name = "ESTBeaconOperationEstimoteTLMInterval")]
 	interface BeaconOperationEstimoteTlmInterval : BeaconOperationProtocol
 	{
@@ -3888,6 +3961,7 @@ namespace Estimote
 	}
 
 	// @interface ESTBeaconOperationEstimoteTLMPower : ESTSettingOperation <ESTBeaconOperationProtocol>
+	[DisableDefaultCtor]
 	[BaseType (typeof (SettingOperation), Name = "ESTBeaconOperationEstimoteTLMPower")]
 	interface BeaconOperationEstimoteTlmPower : BeaconOperationProtocol
 	{
@@ -4052,6 +4126,7 @@ namespace Estimote
 	}
 
 	// @interface ESTBeaconOperationEddystoneUIDEnable : ESTSettingOperation <ESTBeaconOperationProtocol>
+	[DisableDefaultCtor]
 	[BaseType (typeof (SettingOperation), Name = "ESTBeaconOperationEddystoneUIDEnable")]
 	interface BeaconOperationEddystoneUidEnable : BeaconOperationProtocol
 	{
@@ -4067,6 +4142,7 @@ namespace Estimote
 	}
 
 	// @interface ESTBeaconOperationEddystoneUIDInstance : ESTSettingOperation <ESTBeaconOperationProtocol>
+	[DisableDefaultCtor]
 	[BaseType (typeof (SettingOperation), Name = "ESTBeaconOperationEddystoneUIDInstance")]
 	interface BeaconOperationEddystoneUidInstance : BeaconOperationProtocol
 	{
@@ -4082,6 +4158,7 @@ namespace Estimote
 	}
 
 	// @interface ESTBeaconOperationEddystoneUIDNamespace : ESTSettingOperation <ESTBeaconOperationProtocol>
+	[DisableDefaultCtor]
 	[BaseType (typeof (SettingOperation), Name = "ESTBeaconOperationEddystoneUIDNamespace")]
 	interface BeaconOperationEddystoneUidNamespace : BeaconOperationProtocol
 	{
@@ -4097,6 +4174,7 @@ namespace Estimote
 	}
 
 	// @interface ESTBeaconOperationEddystoneUIDInterval : ESTSettingOperation <ESTBeaconOperationProtocol>
+	[DisableDefaultCtor]
 	[BaseType (typeof (SettingOperation), Name = "ESTBeaconOperationEddystoneUIDInterval")]
 	interface BeaconOperationEddystoneUidInterval : BeaconOperationProtocol
 	{
@@ -4112,6 +4190,7 @@ namespace Estimote
 	}
 
 	// @interface ESTBeaconOperationEddystoneUIDPower : ESTSettingOperation <ESTBeaconOperationProtocol>
+	[DisableDefaultCtor]
 	[BaseType (typeof (SettingOperation), Name = "ESTBeaconOperationEddystoneUIDPower")]
 	interface BeaconOperationEddystoneUidPower : BeaconOperationProtocol
 	{
@@ -4241,6 +4320,7 @@ namespace Estimote
 	}
 
 	// @interface ESTBeaconOperationEddystoneURLEnable : ESTSettingOperation <ESTBeaconOperationProtocol>
+	[DisableDefaultCtor]
 	[BaseType (typeof (SettingOperation), Name = "ESTBeaconOperationEddystoneURLEnable")]
 	interface BeaconOperationEddystoneUrlEnable : BeaconOperationProtocol
 	{
@@ -4256,6 +4336,7 @@ namespace Estimote
 	}
 
 	// @interface ESTBeaconOperationEddystoneURLData : ESTSettingOperation <ESTBeaconOperationProtocol>
+	[DisableDefaultCtor]
 	[BaseType (typeof (SettingOperation), Name = "ESTBeaconOperationEddystoneURLData")]
 	interface BeaconOperationEddystoneUrlData : BeaconOperationProtocol
 	{
@@ -4271,6 +4352,7 @@ namespace Estimote
 	}
 
 	// @interface ESTBeaconOperationEddystoneURLInterval : ESTSettingOperation <ESTBeaconOperationProtocol>
+	[DisableDefaultCtor]
 	[BaseType (typeof (SettingOperation), Name = "ESTBeaconOperationEddystoneURLInterval")]
 	interface BeaconOperationEddystoneUrlInterval : BeaconOperationProtocol
 	{
@@ -4286,6 +4368,7 @@ namespace Estimote
 	}
 
 	// @interface ESTBeaconOperationEddystoneURLPower : ESTSettingOperation <ESTBeaconOperationProtocol>
+	[DisableDefaultCtor]
 	[BaseType (typeof (SettingOperation), Name = "ESTBeaconOperationEddystoneURLPower")]
 	interface BeaconOperationEddystoneUrlPower : BeaconOperationProtocol
 	{
@@ -4385,6 +4468,7 @@ namespace Estimote
 	}
 
 	// @interface ESTBeaconOperationEddystoneTLMEnable : ESTSettingOperation <ESTBeaconOperationProtocol>
+	[DisableDefaultCtor]
 	[BaseType (typeof (SettingOperation), Name = "ESTBeaconOperationEddystoneTLMEnable")]
 	interface BeaconOperationEddystoneTlmEnable : BeaconOperationProtocol
 	{
@@ -4400,6 +4484,7 @@ namespace Estimote
 	}
 
 	// @interface ESTBeaconOperationEddystoneTLMInterval : ESTSettingOperation <ESTBeaconOperationProtocol>
+	[DisableDefaultCtor]
 	[BaseType (typeof (SettingOperation), Name = "ESTBeaconOperationEddystoneTLMInterval")]
 	interface BeaconOperationEddystoneTlmInterval : BeaconOperationProtocol
 	{
@@ -4415,6 +4500,7 @@ namespace Estimote
 	}
 
 	// @interface ESTBeaconOperationEddystoneTLMPower : ESTSettingOperation <ESTBeaconOperationProtocol>
+	[DisableDefaultCtor]
 	[BaseType (typeof (SettingOperation), Name = "ESTBeaconOperationEddystoneTLMPower")]
 	interface BeaconOperationEddystoneTlmPower : BeaconOperationProtocol
 	{
@@ -4514,6 +4600,7 @@ namespace Estimote
 	}
 
 	// @interface ESTBeaconOperationEddystoneEIDInterval : ESTSettingOperation <ESTBeaconOperationProtocol>
+	[DisableDefaultCtor]
 	[BaseType (typeof (SettingOperation), Name = "ESTBeaconOperationEddystoneEIDInterval")]
 	interface BeaconOperationEddystoneEidInterval : BeaconOperationProtocol
 	{
@@ -4529,6 +4616,7 @@ namespace Estimote
 	}
 
 	// @interface ESTBeaconOperationEddystoneEIDEnable : ESTSettingOperation <ESTBeaconOperationProtocol>
+	[DisableDefaultCtor]
 	[BaseType (typeof (SettingOperation), Name = "ESTBeaconOperationEddystoneEIDEnable")]
 	interface BeaconOperationEddystoneEidEnable : BeaconOperationProtocol
 	{
@@ -4544,6 +4632,7 @@ namespace Estimote
 	}
 
 	// @interface ESTBeaconOperationEddystoneEIDPower : ESTSettingOperation <ESTBeaconOperationProtocol>
+	[DisableDefaultCtor]
 	[BaseType (typeof (SettingOperation), Name = "ESTBeaconOperationEddystoneEIDPower")]
 	interface BeaconOperationEddystoneEidPower : BeaconOperationProtocol
 	{
@@ -4711,6 +4800,7 @@ namespace Estimote
 	}
 
 	// @interface ESTBeaconOperationGenericAdvertiserEnable : ESTSettingOperation <ESTBeaconOperationProtocol>
+	[DisableDefaultCtor]
 	[BaseType (typeof (SettingOperation), Name = "ESTBeaconOperationGenericAdvertiserEnable")]
 	interface BeaconOperationGenericAdvertiserEnable : BeaconOperationProtocol
 	{
@@ -4726,6 +4816,7 @@ namespace Estimote
 	}
 
 	// @interface ESTBeaconOperationGenericAdvertiserPower : ESTSettingOperation <ESTBeaconOperationProtocol>
+	[DisableDefaultCtor]
 	[BaseType (typeof (SettingOperation), Name = "ESTBeaconOperationGenericAdvertiserPower")]
 	interface BeaconOperationGenericAdvertiserPower : BeaconOperationProtocol
 	{
@@ -4741,6 +4832,7 @@ namespace Estimote
 	}
 
 	// @interface ESTBeaconOperationGenericAdvertiserInterval : ESTSettingOperation <ESTBeaconOperationProtocol>
+	[DisableDefaultCtor]
 	[BaseType (typeof (SettingOperation), Name = "ESTBeaconOperationGenericAdvertiserInterval")]
 	interface BeaconOperationGenericAdvertiserInterval : BeaconOperationProtocol
 	{
@@ -4939,6 +5031,7 @@ namespace Estimote
 	}
 
 	// @interface ESTBeaconOperationGPIONotificationEnable : ESTSettingOperation <ESTBeaconOperationProtocol>
+	[DisableDefaultCtor]
 	[BaseType (typeof (SettingOperation), Name = "ESTBeaconOperationGPIONotificationEnable")]
 	interface BeaconOperationGpioNotificationEnable : BeaconOperationProtocol
 	{
@@ -4954,6 +5047,7 @@ namespace Estimote
 	}
 
 	// @interface ESTBeaconOperationGPIOPortsData : ESTSettingOperation <ESTBeaconOperationProtocol>
+	[DisableDefaultCtor]
 	[BaseType (typeof (SettingOperation), Name = "ESTBeaconOperationGPIOPortsData")]
 	interface BeaconOperationGpioPortsData : BeaconOperationProtocol
 	{
@@ -4969,6 +5063,7 @@ namespace Estimote
 	}
 
 	// @interface ESTBeaconOperationGPIOConfigPort0 : ESTSettingOperation <ESTBeaconOperationProtocol>
+	[DisableDefaultCtor]
 	[BaseType (typeof (SettingOperation), Name = "ESTBeaconOperationGPIOConfigPort0")]
 	interface BeaconOperationGpioConfigPort0 : BeaconOperationProtocol
 	{
@@ -4984,6 +5079,7 @@ namespace Estimote
 	}
 
 	// @interface ESTBeaconOperationGPIOConfigPort1 : ESTSettingOperation <ESTBeaconOperationProtocol>
+	[DisableDefaultCtor]
 	[BaseType (typeof (SettingOperation), Name = "ESTBeaconOperationGPIOConfigPort1")]
 	interface BeaconOperationGpioConfigPort1 : BeaconOperationProtocol
 	{
@@ -4999,6 +5095,7 @@ namespace Estimote
 	}
 
 	// @interface ESTBeaconOperationGPIO0StateReflectingOnLEDEnable : ESTSettingOperation <ESTBeaconOperationProtocol>
+	[DisableDefaultCtor]
 	[BaseType (typeof (SettingOperation), Name = "ESTBeaconOperationGPIO0StateReflectingOnLEDEnable")]
 	interface BeaconOperationGpio0StateReflectingOnLedEnable : BeaconOperationProtocol
 	{
@@ -5017,6 +5114,7 @@ namespace Estimote
 	delegate void SettingSensorsAmbientLightCompletionBlock ([NullAllowed] SettingSensorsAmbientLight ambientLightSetting, [NullAllowed] NSError error);
 
 	// @interface ESTSettingSensorsAmbientLight : ESTSettingReadOnly <NSCopying>
+	[DisableDefaultCtor]
 	[BaseType (typeof (SettingReadOnly), Name = "ESTSettingSensorsAmbientLight")]
 	interface SettingSensorsAmbientLight : INSCopying
 	{
@@ -5067,6 +5165,7 @@ namespace Estimote
 	delegate void SettingSensorsTemperatureCompletionBlock ([NullAllowed] SettingSensorsTemperature temperatureSetting, [NullAllowed] NSError error);
 
 	// @interface ESTSettingSensorsTemperature : ESTSettingReadOnly <NSCopying>
+	[DisableDefaultCtor]
 	[BaseType (typeof (SettingReadOnly), Name = "ESTSettingSensorsTemperature")]
 	interface SettingSensorsTemperature : INSCopying
 	{
@@ -5091,6 +5190,7 @@ namespace Estimote
 	delegate void SettingSensorsPressureCompletionBlock ([NullAllowed] SettingSensorsPressure pressureSetting, [NullAllowed] NSError error);
 
 	// @interface ESTSettingSensorsPressure : ESTSettingReadOnly <NSCopying>
+	[DisableDefaultCtor]
 	[BaseType (typeof (SettingReadOnly), Name = "ESTSettingSensorsPressure")]
 	interface SettingSensorsPressure : INSCopying
 	{
@@ -5108,6 +5208,7 @@ namespace Estimote
 	}
 
 	// @interface ESTBeaconOperationSensorsAmbientLight : ESTSettingOperation <ESTBeaconOperationProtocol>
+	[DisableDefaultCtor]
 	[BaseType (typeof (SettingOperation), Name = "ESTBeaconOperationSensorsAmbientLight")]
 	interface BeaconOperationSensorsAmbientLight : BeaconOperationProtocol
 	{
@@ -5118,6 +5219,7 @@ namespace Estimote
 	}
 
 	// @interface ESTBeaconOperationSensorsMotionNotificationEnable : ESTSettingOperation <ESTBeaconOperationProtocol>
+	[DisableDefaultCtor]
 	[BaseType (typeof (SettingOperation), Name = "ESTBeaconOperationSensorsMotionNotificationEnable")]
 	interface BeaconOperationSensorsMotionNotificationEnable : BeaconOperationProtocol
 	{
@@ -5133,6 +5235,7 @@ namespace Estimote
 	}
 
 	// @interface ESTBeaconOperationSensorsTemperature : ESTSettingOperation <ESTBeaconOperationProtocol>
+	[DisableDefaultCtor]
 	[BaseType (typeof (SettingOperation), Name = "ESTBeaconOperationSensorsTemperature")]
 	interface BeaconOperationSensorsTemperature : BeaconOperationProtocol
 	{
@@ -5143,6 +5246,7 @@ namespace Estimote
 	}
 
 	// @interface ESTBeaconOperationSensorsPressure : ESTSettingOperation <ESTBeaconOperationProtocol>
+	[DisableDefaultCtor]
 	[BaseType (typeof (SettingOperation), Name = "ESTBeaconOperationSensorsPressure")]
 	interface BeaconOperationSensorsPressure : BeaconOperationProtocol
 	{
@@ -5156,6 +5260,7 @@ namespace Estimote
 	delegate void NotificationMotionBlock (bool inMotion);
 
 	// @interface ESTNotificationMotion : NSObject <ESTDeviceNotificationProtocol, NSCopying>
+	[DisableDefaultCtor]
 	[BaseType (typeof (NSObject), Name = "ESTNotificationMotion")]
 	interface NotificationMotion : DeviceNotificationProtocol, INSCopying
 	{
@@ -5168,6 +5273,7 @@ namespace Estimote
 	delegate void NotificationGpioDataBlock (GpioPortsData portsData);
 
 	// @interface ESTNotificationGPIOData : NSObject <ESTDeviceNotificationProtocol, NSCopying>
+	[DisableDefaultCtor]
 	[BaseType (typeof (NSObject), Name = "ESTNotificationGPIOData")]
 	interface NotificationGpioData : DeviceNotificationProtocol, INSCopying
 	{
@@ -5422,6 +5528,7 @@ namespace Estimote
 	}
 
 	// @interface ESTSimulatedNearableManager : ESTNearableManager <ESTNearableManagerDelegate>
+	[DisableDefaultCtor]
 	[BaseType (typeof (NearableManager), Name = "ESTSimulatedNearableManager")]
 	interface SimulatedNearableManager : NearableManagerDelegate
 	{
@@ -5691,6 +5798,7 @@ namespace Estimote
 	}
 
 	// @interface ESTNearableOperationNearableInterval : ESTSettingOperation <ESTNearableOperationProtocol>
+	[DisableDefaultCtor]
 	[BaseType (typeof (SettingOperation), Name = "ESTNearableOperationNearableInterval")]
 	interface NearableOperationNearableInterval : NearableOperationProtocol
 	{
@@ -5706,6 +5814,7 @@ namespace Estimote
 	}
 
 	// @interface ESTNearableOperationNearablePower : ESTSettingOperation <ESTNearableOperationProtocol>
+	[DisableDefaultCtor]
 	[BaseType (typeof (SettingOperation), Name = "ESTNearableOperationNearablePower")]
 	interface NearableOperationNearablePower : NearableOperationProtocol
 	{
@@ -5721,6 +5830,7 @@ namespace Estimote
 	}
 
 	// @interface ESTNearableOperationName : ESTSettingOperation <ESTNearableOperationProtocol, ESTCloudOperationProtocol>
+	[DisableDefaultCtor]
 	[BaseType (typeof (SettingOperation), Name = "ESTNearableOperationName")]
 	interface NearableOperationName : NearableOperationProtocol, CloudOperationProtocol
 	{
@@ -5736,6 +5846,7 @@ namespace Estimote
 	}
 
 	// @interface ESTNearableOperationApplicationVersion : ESTSettingOperation <ESTNearableOperationProtocol>
+	[DisableDefaultCtor]
 	[BaseType (typeof (SettingOperation), Name = "ESTNearableOperationApplicationVersion")]
 	interface NearableOperationApplicationVersion : NearableOperationProtocol
 	{
@@ -5746,6 +5857,7 @@ namespace Estimote
 	}
 
 	// @interface ESTNearableOperationHardware : ESTSettingOperation <ESTBeaconOperationProtocol, ESTNearableOperationProtocol>
+	[DisableDefaultCtor]
 	[BaseType (typeof (SettingOperation), Name = "ESTNearableOperationHardware")]
 	interface NearableOperationHardware : BeaconOperationProtocol, NearableOperationProtocol
 	{
@@ -5756,6 +5868,7 @@ namespace Estimote
 	}
 
 	// @interface ESTNearableOperationMotionOnly : ESTSettingOperation <ESTBeaconOperationProtocol, ESTNearableOperationProtocol>
+	[DisableDefaultCtor]
 	[BaseType (typeof (SettingOperation), Name = "ESTNearableOperationMotionOnly")]
 	interface NearableOperationMotionOnly : BeaconOperationProtocol, NearableOperationProtocol
 	{
@@ -5771,6 +5884,7 @@ namespace Estimote
 	}
 
 	// @interface ESTNearableOperationIBeaconProximityUUID : ESTSettingOperation <ESTNearableOperationProtocol>
+	[DisableDefaultCtor]
 	[BaseType (typeof (SettingOperation), Name = "ESTNearableOperationIBeaconProximityUUID")]
 	interface NearableOperationIBeaconProximityUuid : NearableOperationProtocol
 	{
@@ -5786,6 +5900,7 @@ namespace Estimote
 	}
 
 	// @interface ESTNearableOperationIBeaconMajor : ESTSettingOperation <ESTNearableOperationProtocol>
+	[DisableDefaultCtor]
 	[BaseType (typeof (SettingOperation), Name = "ESTNearableOperationIBeaconMajor")]
 	interface NearableOperationIBeaconMajor : NearableOperationProtocol
 	{
@@ -5801,6 +5916,7 @@ namespace Estimote
 	}
 
 	// @interface ESTNearableOperationIBeaconMinor : ESTSettingOperation <ESTNearableOperationProtocol>
+	[DisableDefaultCtor]
 	[BaseType (typeof (SettingOperation), Name = "ESTNearableOperationIBeaconMinor")]
 	interface NearableOperationIBeaconMinor : NearableOperationProtocol
 	{
@@ -5846,6 +5962,7 @@ namespace Estimote
 	}
 
 	// @interface ESTNearableOperationEddystoneURL : ESTSettingOperation <ESTNearableOperationProtocol>
+	[DisableDefaultCtor]
 	[BaseType (typeof (SettingOperation), Name = "ESTNearableOperationEddystoneURL")]
 	interface NearableOperationEddystoneUrl : NearableOperationProtocol
 	{
@@ -5891,6 +6008,7 @@ namespace Estimote
 	}
 
 	// @interface ESTNearableOperationBroadcastingScheme : ESTSettingOperation <ESTNearableOperationProtocol>
+	[DisableDefaultCtor]
 	[BaseType (typeof (SettingOperation), Name = "ESTNearableOperationBroadcastingScheme")]
 	interface NearableOperationBroadcastingScheme : NearableOperationProtocol
 	{
@@ -6042,6 +6160,7 @@ namespace Estimote
 	}
 
 	// @interface ESTBulkUpdater : NSObject
+	[DisableDefaultCtor]
 	[BaseType (typeof (NSObject), Name = "ESTBulkUpdater")]
 	interface BulkUpdater
 	{
@@ -6097,6 +6216,7 @@ namespace Estimote
 	}
 
 	// @interface ESTLocationBeaconBulkUpdateConfiguration : NSObject
+	[DisableDefaultCtor]
 	[BaseType (typeof (NSObject), Name = "ESTLocationBeaconBulkUpdateConfiguration")]
 	interface LocationBeaconBulkUpdateConfiguration
 	{
@@ -6244,6 +6364,7 @@ namespace Estimote
 	}
 
 	// @interface ESTTrigger : NSObject
+	[DisableDefaultCtor]
 	[BaseType (typeof (NSObject), Name = "ESTTrigger", Delegates = new string [] { "Delegate" }, Events = new Type [] { typeof (TriggerDelegate) })]
 	interface Trigger
 	{
@@ -6297,6 +6418,7 @@ namespace Estimote
 	}
 
 	// @interface ESTNearableRule : ESTRule
+	[DisableDefaultCtor]
 	[BaseType (typeof (Rule), Name = "ESTNearableRule")]
 	interface NearableRule
 	{
@@ -6322,6 +6444,7 @@ namespace Estimote
 	}
 
 	// @interface ESTProximityRule : ESTNearableRule
+	[DisableDefaultCtor]
 	[BaseType (typeof (NearableRule), Name = "ESTProximityRule")]
 	interface ProximityRule
 	{
@@ -6351,6 +6474,7 @@ namespace Estimote
 	}
 
 	// @interface ESTTemperatureRule : ESTNearableRule
+	[DisableDefaultCtor]
 	[BaseType (typeof (NearableRule), Name = "ESTTemperatureRule")]
 	interface TemperatureRule
 	{
@@ -6394,6 +6518,7 @@ namespace Estimote
 	}
 
 	// @interface ESTMotionRule : ESTNearableRule
+	[DisableDefaultCtor]
 	[BaseType (typeof (NearableRule), Name = "ESTMotionRule")]
 	interface MotionRule
 	{
@@ -6413,6 +6538,7 @@ namespace Estimote
 	}
 
 	// @interface ESTOrientationRule : ESTNearableRule
+	[DisableDefaultCtor]
 	[BaseType (typeof (NearableRule), Name = "ESTOrientationRule")]
 	interface OrientationRule
 	{
@@ -6469,6 +6595,7 @@ namespace Estimote
 	}
 
 	// @interface ESTNotificationTransporter : NSObject
+	[DisableDefaultCtor]
 	[BaseType (typeof (NSObject), Name = "ESTNotificationTransporter")]
 	interface NotificationTransporter
 	{
@@ -6580,6 +6707,7 @@ namespace Estimote
 	}
 
 	// @interface ESTEddystoneUID : ESTEddystone
+	[DisableDefaultCtor]
 	[BaseType (typeof (Eddystone), Name = "ESTEddystoneUID")]
 	interface EddystoneUid
 	{
@@ -6601,6 +6729,7 @@ namespace Estimote
 	}
 
 	// @interface ESTEddystoneURL : ESTEddystone
+	[DisableDefaultCtor]
 	[BaseType (typeof (Eddystone), Name = "ESTEddystoneURL")]
 	interface EddystoneUrl
 	{
@@ -6639,6 +6768,7 @@ namespace Estimote
 	}
 
 	// @interface ESTEddystoneAttachment : NSObject <NSCopying>
+	[DisableDefaultCtor]
 	[BaseType (typeof (NSObject), Name = "ESTEddystoneAttachment")]
 	interface EddystoneAttachment : INSCopying
 	{
@@ -6660,6 +6790,7 @@ namespace Estimote
 	}
 
 	// @interface ESTEddystoneEID : ESTEddystone
+	[DisableDefaultCtor]
 	[BaseType (typeof (Eddystone), Name = "ESTEddystoneEID")]
 	interface EddystoneEid
 	{
@@ -6727,6 +6858,7 @@ namespace Estimote
 	}
 
 	// @interface ESTEddystoneFilterUID : ESTEddystoneFilter
+	[DisableDefaultCtor]
 	[BaseType (typeof (EddystoneFilter), Name = "ESTEddystoneFilterUID")]
 	interface EddystoneFilterUid
 	{
@@ -6767,6 +6899,7 @@ namespace Estimote
 	}
 
 	// @interface ESTEddystoneFilterURLDomain : ESTEddystoneFilter
+	[DisableDefaultCtor]
 	[BaseType (typeof (EddystoneFilter), Name = "ESTEddystoneFilterURLDomain")]
 	interface EddystoneFilterUrlDomain
 	{
@@ -6780,6 +6913,7 @@ namespace Estimote
 	}
 
 	// @interface ESTConfig : NSObject
+	[DisableDefaultCtor]
 	[BaseType (typeof (NSObject), Name = "ESTConfig")]
 	interface Config
 	{
@@ -7069,6 +7203,7 @@ namespace Estimote
 	delegate void RequestGetBeaconsDetailsBeaconArrayBlock ([NullAllowed] BeaconVO [] beaconVOArray, [NullAllowed] NSError error);
 
 	// @interface ESTRequestGetBeaconsDetails : ESTRequestGetJSON
+	[DisableDefaultCtor]
 	[BaseType (typeof (RequestGetJson), Name = "ESTRequestGetBeaconsDetails")]
 	interface RequestGetBeaconsDetails
 	{
@@ -7098,6 +7233,7 @@ namespace Estimote
 	delegate void RequestGetBeaconsPublicDetailsBeaconArrayBlock ([NullAllowed] BeaconVO [] beaconVOArray, [NullAllowed] NSError error);
 
 	// @interface ESTRequestGetBeaconsPublicDetails : ESTRequestGetJSON
+	[DisableDefaultCtor]
 	[BaseType (typeof (RequestGetJson), Name = "ESTRequestGetBeaconsPublicDetails")]
 	interface RequestGetBeaconsPublicDetails
 	{
@@ -7126,6 +7262,7 @@ namespace Estimote
 	delegate void RequestBeaconColorBlock (Color beaconColor, [NullAllowed] NSError error);
 
 	// @interface ESTRequestBeaconColor : ESTRequestGetJSON
+	[DisableDefaultCtor]
 	[BaseType (typeof (RequestGetJson), Name = "ESTRequestBeaconColor")]
 	interface RequestBeaconColor
 	{
@@ -7166,6 +7303,7 @@ namespace Estimote
 	delegate void RequestBeaconMacBlock ([NullAllowed] string macAddress, [NullAllowed] NSError error);
 
 	// @interface ESTRequestBeaconMac : ESTRequestGetJSON
+	[DisableDefaultCtor]
 	[BaseType (typeof (RequestGetJson), Name = "ESTRequestBeaconMac")]
 	interface RequestBeaconMac
 	{
@@ -7240,6 +7378,7 @@ namespace Estimote
 	delegate void RequestRegisterDeviceBlock ([NullAllowed] NSError error);
 
 	// @interface ESTRequestRegisterDevice : ESTRequestPostJSON
+	[DisableDefaultCtor]
 	[BaseType (typeof (RequestPostJson), Name = "ESTRequestRegisterDevice")]
 	interface RequestRegisterDevice
 	{
@@ -7272,6 +7411,7 @@ namespace Estimote
 	delegate void RequestV2DeletePendingSettingsBlock ([NullAllowed] NSObject arg0, [NullAllowed] NSError error);
 
 	// @interface ESTRequestV2DeletePendingSettings : ESTRequestPostJSON
+	[DisableDefaultCtor]
 	[BaseType (typeof (RequestPostJson), Name = "ESTRequestV2DeletePendingSettings")]
 	interface RequestV2DeletePendingSettings
 	{
@@ -7301,6 +7441,7 @@ namespace Estimote
 	delegate void RequestCancelPendingSettingsBlock ([NullAllowed] NSError error);
 
 	// @interface ESTRequestCancelPendingSettings : ESTRequestDelete
+	[DisableDefaultCtor]
 	[BaseType (typeof (RequestDelete), Name = "ESTRequestCancelPendingSettings")]
 	interface RequestCancelPendingSettings
 	{
@@ -7321,6 +7462,7 @@ namespace Estimote
 	delegate void RequestGetSettingsHistoryBlock ([NullAllowed] BeaconUpdateInfo[] beaconUpdateInfos, [NullAllowed] NSError error);
 
 	// @interface ESTRequestGetSettingsHistory : ESTRequestGetJSON
+	[DisableDefaultCtor]
 	[BaseType (typeof (RequestGetJson), Name = "ESTRequestGetSettingsHistory")]
 	interface RequestGetSettingsHistory
 	{
@@ -7442,6 +7584,7 @@ namespace Estimote
 	}
 
 	// @interface ESTAnalyticsEventVO : NSObject <NSCoding, NSCopying>
+	[DisableDefaultCtor]
 	[BaseType (typeof (NSObject), Name = "ESTAnalyticsEventVO")]
 	interface AnalyticsEventVO : INSCoding, INSCopying
 	{
@@ -7493,6 +7636,7 @@ namespace Estimote
 	}
 
 	// @interface ESTAnalyticsManager : NSObject
+	[DisableDefaultCtor]
 	[BaseType (typeof (NSObject), Name = "ESTAnalyticsManager")]
 	interface AnalyticsManager
 	{
@@ -7578,6 +7722,7 @@ namespace Estimote
 	}
 
 	// @interface ESTDeviceUpdateInfo : ESTBaseVO
+	[DisableDefaultCtor]
 	[BaseType (typeof (BaseVO), Name = "ESTDeviceUpdateInfo")]
 	interface DeviceUpdateInfo
 	{
@@ -7615,6 +7760,7 @@ namespace Estimote
 	}
 
 	// @interface ESTDeviceDetails : ESTBaseVO
+	[DisableDefaultCtor]
 	[BaseType (typeof (BaseVO), Name = "ESTDeviceDetails")]
 	interface DeviceDetails
 	{
@@ -7664,6 +7810,7 @@ namespace Estimote
 	}
 
 	// @interface ESTDeviceGeoLocation : ESTBaseVO
+	[DisableDefaultCtor]
 	[BaseType (typeof (BaseVO), Name = "ESTDeviceGeoLocation")]
 	interface DeviceGeoLocation
 	{
@@ -7737,6 +7884,7 @@ namespace Estimote
 	//}
 
 	// @interface ESTDeviceIndoorLocation : ESTBaseVO
+	[DisableDefaultCtor]
 	[BaseType (typeof (BaseVO), Name = "ESTDeviceIndoorLocation")]
 	interface DeviceIndoorLocation
 	{
@@ -7766,6 +7914,7 @@ namespace Estimote
 	//}
 
 	// @interface ESTDeviceShadow : ESTBaseVO
+	[DisableDefaultCtor]
 	[BaseType (typeof (BaseVO), Name = "ESTDeviceShadow")]
 	interface DeviceShadow
 	{
@@ -7799,6 +7948,7 @@ namespace Estimote
 	}
 
 	// @interface ESTDeviceSettings : ESTBaseVO <NSCopying>
+	[DisableDefaultCtor]
 	[BaseType (typeof (BaseVO), Name = "ESTDeviceSettings")]
 	interface DeviceSettings : INSCopying
 	{
@@ -7868,6 +8018,7 @@ namespace Estimote
 	}
 
 	// @interface ESTDeviceSettingsGeneral : ESTBaseVO <NSCopying>
+	[DisableDefaultCtor]
 	[BaseType (typeof (BaseVO), Name = "ESTDeviceSettingsGeneral")]
 	interface DeviceSettingsGeneral : INSCopying
 	{
@@ -7933,6 +8084,7 @@ namespace Estimote
 	}
 
 	// @interface ESTDeviceSettingsAdvertiser : ESTBaseVO <NSCopying>
+	[DisableDefaultCtor]
 	[BaseType (typeof (BaseVO), Name = "ESTDeviceSettingsAdvertiser")]
 	interface DeviceSettingsAdvertiser : INSCopying
 	{
@@ -8082,6 +8234,7 @@ namespace Estimote
 	}
 
 	// @interface ESTDeviceStatusReport : ESTBaseVO
+	[DisableDefaultCtor]
 	[BaseType (typeof (BaseVO), Name = "ESTDeviceStatusReport")]
 	interface DeviceStatusReport
 	{
@@ -8115,6 +8268,7 @@ namespace Estimote
 	}
 
 	// @interface ESTDeviceSchedule : ESTBaseVO
+	[DisableDefaultCtor]
 	[BaseType (typeof (BaseVO), Name = "ESTDeviceSchedule")]
 	interface DeviceSchedule
 	{
@@ -8182,6 +8336,7 @@ namespace Estimote
 	}
 
 	// @interface ESTMesh : ESTBaseVO <NSCopying, NSCoding>
+	[DisableDefaultCtor]
 	[BaseType (typeof (BaseVO), Name = "ESTMesh")]
 	interface Mesh : INSCopying, INSCoding
 	{
@@ -8262,6 +8417,7 @@ namespace Estimote
 	delegate void RequestGetDevicesBlock ([NullAllowed] DeviceDetails[] devicesDetails, [NullAllowed] NSNumber totalCount, [NullAllowed] NSNumber nextPage, [NullAllowed] NSError error);
 
 	// @interface ESTRequestGetDevices : ESTRequestGetJSON
+	[DisableDefaultCtor]
 	[BaseType (typeof (RequestGetJson), Name = "ESTRequestGetDevices")]
 	interface RequestGetDevices
 	{
@@ -8280,6 +8436,7 @@ namespace Estimote
 	}
 
 	// @interface ESTTelemetryInfoMotion : ESTTelemetryInfo
+	[DisableDefaultCtor]
 	[BaseType (typeof (TelemetryInfo), Name = "ESTTelemetryInfoMotion")]
 	interface TelemetryInfoMotion
 	{
@@ -8316,6 +8473,7 @@ namespace Estimote
 	delegate void TelemetryNotificationMotionCompletionBlock (TelemetryInfoMotion motion);
 
 	// @interface ESTTelemetryNotificationMotion : NSObject <ESTTelemetryNotificationProtocol>
+	[DisableDefaultCtor]
 	[BaseType (typeof (NSObject), Name = "ESTTelemetryNotificationMotion")]
 	interface TelemetryNotificationMotion : TelemetryNotificationProtocol
 	{
@@ -8325,6 +8483,7 @@ namespace Estimote
 	}
 
 	// @interface ESTTelemetryInfoAmbientLight : ESTTelemetryInfo
+	[DisableDefaultCtor]
 	[BaseType (typeof (TelemetryInfo), Name = "ESTTelemetryInfoAmbientLight")]
 	interface TelemetryInfoAmbientLight
 	{
@@ -8341,6 +8500,7 @@ namespace Estimote
 	delegate void TelemetryNotificationAmbientLightNotificationBlock (TelemetryInfoAmbientLight ambientLight);
 
 	// @interface ESTTelemetryNotificationAmbientLight : NSObject <ESTTelemetryNotificationProtocol>
+	[DisableDefaultCtor]
 	[BaseType (typeof (NSObject), Name = "ESTTelemetryNotificationAmbientLight")]
 	interface TelemetryNotificationAmbientLight : TelemetryNotificationProtocol
 	{
@@ -8350,6 +8510,7 @@ namespace Estimote
 	}
 
 	// @interface ESTTelemetryInfoTemperature : ESTTelemetryInfo
+	[DisableDefaultCtor]
 	[BaseType (typeof (TelemetryInfo), Name = "ESTTelemetryInfoTemperature")]
 	interface TelemetryInfoTemperature
 	{
@@ -8366,6 +8527,7 @@ namespace Estimote
 	delegate void TelemetryNotificationTemperatureNotificationBlock (TelemetryInfoTemperature temperature);
 
 	// @interface ESTTelemetryNotificationTemperature : NSObject <ESTTelemetryNotificationProtocol>
+	[DisableDefaultCtor]
 	[BaseType (typeof (NSObject), Name = "ESTTelemetryNotificationTemperature")]
 	interface TelemetryNotificationTemperature : TelemetryNotificationProtocol
 	{
@@ -8375,6 +8537,7 @@ namespace Estimote
 	}
 
 	// @interface ESTTelemetryInfoSystemStatus : ESTTelemetryInfo
+	[DisableDefaultCtor]
 	[BaseType (typeof (TelemetryInfo), Name = "ESTTelemetryInfoSystemStatus")]
 	interface TelemetryInfoSystemStatus
 	{
@@ -8395,6 +8558,7 @@ namespace Estimote
 	delegate void TelemetryNotificationSystemStatusNotificationBlock (TelemetryInfoSystemStatus systemStatus);
 
 	// @interface ESTTelemetryNotificationSystemStatus : NSObject <ESTTelemetryNotificationProtocol>
+	[DisableDefaultCtor]
 	[BaseType (typeof (NSObject), Name = "ESTTelemetryNotificationSystemStatus")]
 	interface TelemetryNotificationSystemStatus : TelemetryNotificationProtocol
 	{
@@ -8404,6 +8568,7 @@ namespace Estimote
 	}
 
 	// @interface ESTTelemetryInfoMagnetometer : ESTTelemetryInfo
+	[DisableDefaultCtor]
 	[BaseType (typeof (TelemetryInfo), Name = "ESTTelemetryInfoMagnetometer")]
 	interface TelemetryInfoMagnetometer
 	{
@@ -8428,6 +8593,7 @@ namespace Estimote
 	delegate void TelemetryNotificationMagnetometerNotificationBlock (TelemetryInfoMagnetometer magnetometer);
 
 	// @interface ESTTelemetryNotificationMagnetometer : NSObject <ESTTelemetryNotificationProtocol>
+	[DisableDefaultCtor]
 	[BaseType (typeof (NSObject), Name = "ESTTelemetryNotificationMagnetometer")]
 	interface TelemetryNotificationMagnetometer : TelemetryNotificationProtocol
 	{
@@ -8437,6 +8603,7 @@ namespace Estimote
 	}
 
 	// @interface ESTTelemetryInfoGPIO : ESTTelemetryInfo
+	[DisableDefaultCtor]
 	[BaseType (typeof (TelemetryInfo), Name = "ESTTelemetryInfoGPIO")]
 	interface TelemetryInfoGpio
 	{
@@ -8453,6 +8620,7 @@ namespace Estimote
 	delegate void TelemetryNotificationGpioNotificationBlock (TelemetryInfoGpio gpio);
 
 	// @interface ESTTelemetryNotificationGPIO : NSObject <ESTTelemetryNotificationProtocol>
+	[DisableDefaultCtor]
 	[BaseType (typeof (NSObject), Name = "ESTTelemetryNotificationGPIO")]
 	interface TelemetryNotificationGpio : TelemetryNotificationProtocol
 	{
@@ -8462,6 +8630,7 @@ namespace Estimote
 	}
 
 	// @interface ESTTelemetryInfoPressure : ESTTelemetryInfo
+	[DisableDefaultCtor]
 	[BaseType (typeof (TelemetryInfo), Name = "ESTTelemetryInfoPressure")]
 	interface TelemetryInfoPressure
 	{
@@ -8478,6 +8647,7 @@ namespace Estimote
 	delegate void TelemetryNotificationPressureNotificationBlock (TelemetryInfoPressure pressure);
 
 	// @interface ESTTelemetryNotificationPressure : NSObject <ESTTelemetryNotificationProtocol>
+	[DisableDefaultCtor]
 	[BaseType (typeof (NSObject), Name = "ESTTelemetryNotificationPressure")]
 	interface TelemetryNotificationPressure : TelemetryNotificationProtocol
 	{
@@ -8511,6 +8681,7 @@ namespace Estimote
 	}
 
 	// @interface ESTMonitoringManager : NSObject
+	[DisableDefaultCtor]
 	[BaseType (typeof (NSObject), Name = "ESTMonitoringManager", Delegates = new string [] { "Delegate" }, Events = new Type [] { typeof (MonitoringManagerDelegate) })]
 	interface MonitoringManager
 	{
@@ -8624,6 +8795,7 @@ namespace Estimote
 	}
 
 	// @interface ESTFeaturesetEstimoteMonitoring : NSObject
+	[DisableDefaultCtor]
 	[BaseType (typeof (NSObject), Name = "ESTFeaturesetEstimoteMonitoring")]
 	interface FeaturesetEstimoteMonitoring
 	{
@@ -8666,6 +8838,7 @@ namespace Estimote
 	}
 
 	// @interface ESTFeaturesetBackgroundMode : NSObject
+	[DisableDefaultCtor]
 	[BaseType (typeof (NSObject), Name = "ESTFeaturesetBackgroundMode")]
 	interface FeaturesetBackgroundMode
 	{
@@ -8812,6 +8985,7 @@ namespace Estimote
 	}
 
 	// @interface ESTMeshNearablesScanResultVO : NSObject
+	[DisableDefaultCtor]
 	[BaseType (typeof (NSObject), Name = "ESTMeshNearablesScanResultVO")]
 	interface MeshNearablesScanResultVO
 	{
@@ -8901,10 +9075,11 @@ namespace Estimote
 	{
 		// -(id)objectForKey:(NSString *)aKey inDictionary:(NSDictionary *)dict;
 		[Export ("objectForKey:inDictionary:")]
-		NSObject GetObject (string aKey, NSDictionary dict);
+		NSObject ObjectForKey (string aKey, NSDictionary dict);
 	}
 
 	// @interface ESTBeaconBatteryLifetimesVO : NSObject
+	[DisableDefaultCtor]
 	[BaseType (typeof (NSObject), Name = "ESTBeaconBatteryLifetimesVO")]
 	interface BeaconBatteryLifetimesVO
 	{
