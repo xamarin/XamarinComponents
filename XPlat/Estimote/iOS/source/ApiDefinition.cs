@@ -61,46 +61,46 @@ namespace Estimote
 	}
 
 	// typedef void (^ESTCompletionBlock)(NSError * _Nullable);
-	delegate void CompletionBlock ([NullAllowed] NSError arg0);
+	delegate void CompletionBlock ([NullAllowed] NSError error);
 
 	// typedef void (^ESTObjectCompletionBlock)(id _Nullable, NSError * _Nullable);
-	delegate void ObjectCompletionBlock ([NullAllowed] NSObject arg0, [NullAllowed] NSError arg1);
-	delegate void FirmwareInfoVOCompletionBlock ([NullAllowed] FirmwareInfoVO arg0, [NullAllowed] NSError arg1);
-	delegate void BeaconConnectionCompletionBlock ([NullAllowed] BeaconConnection arg0, [NullAllowed] NSError arg1);
-	delegate void BeaconVOCompletionBlock ([NullAllowed] BeaconVO arg0, [NullAllowed] NSError arg1);
-	delegate void NearableVOCompletionBlock ([NullAllowed] NearableVO arg0, [NullAllowed] NSError arg1);
-	delegate void NSNumberCompletionBlock ([NullAllowed] NSNumber arg0, [NullAllowed] NSError arg1);
-	delegate void CLLocationCompletionBlock ([NullAllowed] CLLocation arg0, [NullAllowed] NSError arg1);
+	delegate void ObjectCompletionBlock ([NullAllowed] NSObject result, [NullAllowed] NSError error);
+	delegate void FirmwareInfoVOCompletionBlock ([NullAllowed] FirmwareInfoVO value, [NullAllowed] NSError error);
+	delegate void BeaconConnectionCompletionBlock ([NullAllowed] BeaconConnection value, [NullAllowed] NSError error);
+	delegate void BeaconVOCompletionBlock ([NullAllowed] BeaconVO value, [NullAllowed] NSError error);
+	delegate void NearableVOCompletionBlock ([NullAllowed] NearableVO value, [NullAllowed] NSError error);
+	delegate void NSNumberCompletionBlock ([NullAllowed] NSNumber value, [NullAllowed] NSError error);
+	delegate void CLLocationCompletionBlock ([NullAllowed] CLLocation value, [NullAllowed] NSError error);
 
 	// typedef void (^ESTDataCompletionBlock)(NSData * _Nullable, NSError * _Nullable);
-	delegate void DataCompletionBlock ([NullAllowed] NSData arg0, [NullAllowed] NSError arg1);
+	delegate void DataCompletionBlock ([NullAllowed] NSData result, [NullAllowed] NSError error);
 
 	// typedef void (^ESTNumberCompletionBlock)(NSNumber * _Nullable, NSError * _Nullable);
-	delegate void NumberCompletionBlock ([NullAllowed] NSNumber arg0, [NullAllowed] NSError arg1);
+	delegate void NumberCompletionBlock ([NullAllowed] NSNumber value, [NullAllowed] NSError error);
 
 	// typedef void (^ESTUnsignedShortCompletionBlock)(unsigned short, NSError * _Nullable);
-	delegate void UnsignedShortCompletionBlock (ushort arg0, [NullAllowed] NSError arg1);
+	delegate void UnsignedShortCompletionBlock (ushort value, [NullAllowed] NSError error);
 
 	// typedef void (^ESTBoolCompletionBlock)(BOOL, NSError * _Nullable);
-	delegate void BoolCompletionBlock (bool arg0, [NullAllowed] NSError arg1);
+	delegate void BoolCompletionBlock (bool value, [NullAllowed] NSError error);
 
 	// typedef void (^ESTStringCompletionBlock)(NSString * _Nullable, NSError * _Nullable);
-	delegate void StringCompletionBlock ([NullAllowed] string arg0, [NullAllowed] NSError arg1);
+	delegate void StringCompletionBlock ([NullAllowed] string value, [NullAllowed] NSError error);
 
 	// typedef void (^ESTProgressBlock)(NSInteger, NSString * _Nullable, NSError * _Nullable);
-	delegate void ProgressBlock (nint arg0, [NullAllowed] string arg1, [NullAllowed] NSError arg2);
+	delegate void ProgressBlock (nint value, [NullAllowed] string description, [NullAllowed] NSError error);
 
 	// typedef void (^ESTArrayCompletionBlock)(NSArray * _Nullable, NSError * _Nullable);
 	//delegate void ArrayCompletionBlock ([NullAllowed] NSObject[] arg0, [NullAllowed] NSError arg1);
-	delegate void NearableArrayCompletionBlock ([NullAllowed] Nearable[] arg0, [NullAllowed] NSError arg1);
-	delegate void BeaconVOArrayCompletionBlock ([NullAllowed] BeaconVO[] arg0, [NullAllowed] NSError arg1);
-	delegate void BeaconUpdateInfoArrayCompletionBlock ([NullAllowed] BeaconUpdateInfo[] arg0, [NullAllowed] NSError arg1);
+	delegate void NearableArrayCompletionBlock ([NullAllowed] Nearable[] value, [NullAllowed] NSError error);
+	delegate void BeaconVOArrayCompletionBlock ([NullAllowed] BeaconVO[] value, [NullAllowed] NSError error);
+	delegate void BeaconUpdateInfoArrayCompletionBlock ([NullAllowed] BeaconUpdateInfo[] arg0, [NullAllowed] NSError error);
 
 	// typedef void (^ESTDictionaryCompletionBlock)(NSDictionary * _Nullable, NSError * _Nullable);
-	delegate void DictionaryCompletionBlock ([NullAllowed] NSDictionary arg0, [NullAllowed] NSError arg1);
+	delegate void DictionaryCompletionBlock ([NullAllowed] NSDictionary value, [NullAllowed] NSError error);
 
 	// typedef void (^ESTCsRegisterCompletonBlock)(NSError * _Nullable);
-	delegate void CsRegisterCompletonBlock ([NullAllowed] NSError arg0);
+	delegate void CsRegisterCompletonBlock ([NullAllowed] NSError error);
 
 	// @interface ESTDefinitions : NSObject
 	[BaseType (typeof (NSObject), Name = "ESTDefinitions")]
@@ -4756,6 +4756,7 @@ namespace Estimote
 	}
 
 	// @interface ESTBeaconOperationGenericAdvertiserData : ESTSettingOperation <ESTBeaconOperationProtocol>
+	[DisableDefaultCtor]
 	[BaseType (typeof (SettingOperation), Name = "ESTBeaconOperationGenericAdvertiserData")]
 	interface BeaconOperationGenericAdvertiserData : BeaconOperationProtocol
 	{
@@ -8890,5 +8891,230 @@ namespace Estimote
 	interface SettingPowerDarkToSleepThreshold
 	{
 
+	}
+
+	// @interface ESTBeaconBaseVO : NSObject
+	[BaseType (typeof (NSObject), Name = "ESTBeaconBaseVO")]
+	interface BeaconBaseVO
+	{
+		// -(id)objectForKey:(NSString *)aKey inDictionary:(NSDictionary *)dict;
+		[Export ("objectForKey:inDictionary:")]
+		NSObject GetObject (string aKey, NSDictionary dict);
+	}
+
+	// @interface ESTBeaconBatteryLifetimesVO : NSObject
+	[BaseType (typeof (NSObject), Name = "ESTBeaconBatteryLifetimesVO")]
+	interface BeaconBatteryLifetimesVO
+	{
+		// -(instancetype _Nonnull)initWithLifetimes:(NSDictionary * _Nonnull)lifetimes;
+		[Export ("initWithLifetimes:")]
+		IntPtr Constructor (NSDictionary lifetimes);
+
+		// -(NSString * _Nonnull)lifetimeForAdvertisingInterval:(int)interval;
+		[Export ("lifetimeForAdvertisingInterval:")]
+		string GetLifetimeForAdvertisingInterval (int interval);
+
+		// -(NSString * _Nonnull)lifetimeForBroadcastingPower:(int)power;
+		[Export ("lifetimeForBroadcastingPower:")]
+		string GetLifetimeForBroadcastingPower (int power);
+
+		// -(NSString * _Nonnull)lifetimeForBasicPowerMode:(ESTBeaconPowerSavingMode)basic andSmart:(ESTBeaconPowerSavingMode)smart;
+		[Export ("lifetimeForBasicPowerMode:andSmart:")]
+		string GetLifetimeForBasicPowerMode (BeaconPowerSavingMode basic, BeaconPowerSavingMode smart);
+
+		// -(NSString * _Nonnull)lifetimeForBroadcastingScheme:(ESTBroadcastingScheme)scheme;
+		[Export ("lifetimeForBroadcastingScheme:")]
+		string GetLifetimeForBroadcastingScheme (BroadcastingScheme scheme);
+
+		// -(BOOL)shouldDisplayAlertForAdvertisingInterval:(int)interval;
+		[Export ("shouldDisplayAlertForAdvertisingInterval:")]
+		bool ShouldDisplayAlertForAdvertisingInterval (int interval);
+
+		// -(BOOL)shouldDisplayAlertForBroadcastingPower:(int)power;
+		[Export ("shouldDisplayAlertForBroadcastingPower:")]
+		bool ShouldDisplayAlertForBroadcastingPower (int power);
+
+		// -(BOOL)shouldDisplayAlertForBasicPowerMode:(ESTBeaconPowerSavingMode)basic andSmart:(ESTBeaconPowerSavingMode)smart;
+		[Export ("shouldDisplayAlertForBasicPowerMode:andSmart:")]
+		bool ShouldDisplayAlertForBasicPowerMode (BeaconPowerSavingMode basic, BeaconPowerSavingMode smart);
+	}
+
+	// @interface ESTBeaconFirmwareVO : ESTFirmwareInfoVO
+	[BaseType (typeof (FirmwareInfoVO), Name = "ESTBeaconFirmwareVO")]
+	interface BeaconFirmwareVO
+	{
+		// @property (nonatomic, strong) NSString * firmwareUrl;
+		[Export ("firmwareUrl", ArgumentSemantic.Strong)]
+		string FirmwareUrl { get; set; }
+
+		// @property (nonatomic, strong) NSString * firmwareCleanerUrl;
+		[Export ("firmwareCleanerUrl", ArgumentSemantic.Strong)]
+		string FirmwareCleanerUrl { get; set; }
+	}
+
+	// @interface ESTBeaconOperationEddystoneConfigurationServiceEnable : ESTSettingOperation <ESTBeaconOperationProtocol>
+	[DisableDefaultCtor]
+	[BaseType (typeof (SettingOperation), Name = "ESTBeaconOperationEddystoneConfigurationServiceEnable")]
+	interface BeaconOperationEddystoneConfigurationServiceEnable : BeaconOperationProtocol
+	{
+		// +(instancetype _Nonnull)readOperationWithCompletion:(ESTSettingEddystoneConfigurationServiceEnableCompletionBlock _Nonnull)completion;
+		[Static]
+		[Export ("readOperationWithCompletion:")]
+		BeaconOperationEddystoneConfigurationServiceEnable ReadOperation (SettingEddystoneConfigurationServiceEnableCompletionBlock completion);
+
+		// +(instancetype _Nonnull)writeOperationWithSetting:(ESTSettingEddystoneConfigurationServiceEnable * _Nonnull)setting completion:(ESTSettingEddystoneConfigurationServiceEnableCompletionBlock _Nonnull)completion;
+		[Static]
+		[Export ("writeOperationWithSetting:completion:")]
+		BeaconOperationEddystoneConfigurationServiceEnable WriteOperation (SettingEddystoneConfigurationServiceEnable setting, SettingEddystoneConfigurationServiceEnableCompletionBlock completion);
+	}
+
+	// @interface ESTBeaconRecentConfig : ESTBeaconBaseVO
+	[DisableDefaultCtor]
+	[BaseType (typeof (BeaconBaseVO), Name = "ESTBeaconRecentConfig")]
+	interface BeaconRecentConfig
+	{
+		// @property (readonly, nonatomic) NSString * proximityUUID;
+		[Export ("proximityUUID")]
+		string ProximityUuid { get; }
+
+		// @property (readonly, nonatomic) NSNumber * major;
+		[Export ("major")]
+		NSNumber Major { get; }
+
+		// @property (readonly, nonatomic) NSNumber * minor;
+		[Export ("minor")]
+		NSNumber Minor { get; }
+
+		// @property (readonly, nonatomic) NSNumber * security;
+		[Export ("security")]
+		NSNumber Security { get; }
+
+		// @property (readonly, nonatomic) NSNumber * advInterval;
+		[Export ("advInterval")]
+		NSNumber AdvInterval { get; }
+
+		// @property (readonly, nonatomic) NSNumber * power;
+		[Export ("power")]
+		NSNumber Power { get; }
+
+		// @property (readonly, nonatomic) NSNumber * basicPowerMode;
+		[Export ("basicPowerMode")]
+		NSNumber BasicPowerMode { get; }
+
+		// @property (readonly, nonatomic) NSNumber * smartPowerMode;
+		[Export ("smartPowerMode")]
+		NSNumber SmartPowerMode { get; }
+
+		// @property (readonly, nonatomic) NSString * firmware;
+		[Export ("firmware")]
+		string Firmware { get; }
+
+		// @property (readonly, nonatomic) NSNumber * broadcastingScheme;
+		[Export ("broadcastingScheme")]
+		NSNumber BroadcastingScheme { get; }
+
+		// @property (readonly, nonatomic) NSString * formattedAddress;
+		[Export ("formattedAddress")]
+		string FormattedAddress { get; }
+
+		// @property (readonly, nonatomic) BOOL geoLocationDeleted;
+		[Export ("geoLocationDeleted")]
+		bool GeoLocationDeleted { get; }
+
+		// @property (readonly, nonatomic) NSNumber * conditionalBroadcasting;
+		[Export ("conditionalBroadcasting")]
+		NSNumber ConditionalBroadcasting { get; }
+
+		// @property (readonly, nonatomic) NSString * zone;
+		[Export ("zone")]
+		string Zone { get; }
+
+		// @property (readonly, nonatomic) NSNumber * motionDetection;
+		[Export ("motionDetection")]
+		NSNumber MotionDetection { get; }
+
+		// -(instancetype)initWithCloudData:(NSDictionary *)data;
+		[Export ("initWithCloudData:")]
+		IntPtr Constructor (NSDictionary data);
+	}
+
+	// @interface ESTBeaconRecentUpdateInfo : ESTBeaconBaseVO
+	[DisableDefaultCtor]
+	[BaseType (typeof (BeaconBaseVO), Name = "ESTBeaconRecentUpdateInfo")]
+	interface BeaconRecentUpdateInfo
+	{
+		// @property (readonly, nonatomic) NSString * macAddress;
+		[Export ("macAddress")]
+		string MacAddress { get; }
+
+		// @property (readonly, nonatomic) ESTBeaconRecentConfig * config;
+		[Export ("config")]
+		BeaconRecentConfig Config { get; }
+
+		// @property (readonly, nonatomic) NSDate * createdAt;
+		[Export ("createdAt")]
+		NSDate CreatedAt { get; }
+
+		// @property (readonly, nonatomic) NSDate * syncedAt;
+		[Export ("syncedAt")]
+		NSDate SyncedAt { get; }
+
+		// -(instancetype)initWithCloudData:(NSDictionary *)data andMacAddress:(NSString *)mac;
+		[Export ("initWithCloudData:andMacAddress:")]
+		IntPtr Constructor (NSDictionary data, string macAddress);
+	}
+
+
+
+	// @interface ESTRequestFirmwareV4 : ESTRequestGetJSON
+	[DisableDefaultCtor]
+	[BaseType (typeof (RequestGetJson), Name = "ESTRequestFirmwareV4")]
+	interface RequestFirmwareV4
+	{
+		// -(instancetype)initWithPublicID:(NSString *)publicID;
+		[Export ("initWithPublicID:")]
+		IntPtr Constructor (string publicId);
+	}
+
+	// @interface ESTRequestPatchJSON : ESTRequestBase
+	[BaseType (typeof (RequestBase), Name = "ESTRequestPatchJSON")]
+	interface RequestPatchJson
+	{
+		// -(void)setParams:(id _Nonnull)params forRequest:(NSMutableURLRequest * _Nonnull)request;
+		[Export ("setParams:forRequest:")]
+		void SetParams (NSObject parameters, NSMutableUrlRequest request);
+	}
+
+	// @interface ESTRequestPostFormData : ESTRequestBase
+	[BaseType (typeof (RequestBase), Name = "ESTRequestPostFormData")]
+	interface RequestPostFormData
+	{
+		// -(void)setFilePath:(NSString * _Nonnull)filePath forRequest:(NSMutableURLRequest * _Nonnull)request;
+		[Export ("setFilePath:forRequest:")]
+		void SetFilePath (string filePath, NSMutableUrlRequest request);
+	}
+
+	// typedef void (^ESTRequestV2GetDevicesPendingBlock)(NSArray<NSString *> * _Nullable, NSError * _Nullable);
+	delegate void RequestV2GetDevicesPendingBlock ([NullAllowed] string [] result, [NullAllowed] NSError error);
+
+	// @interface ESTRequestV2GetDevicesPending : ESTRequestGetJSON
+	[BaseType (typeof (RequestGetJson), Name = "ESTRequestV2GetDevicesPending")]
+	interface RequestV2GetDevicesPending
+	{
+		// -(void)sendRequestWithCompletion:(ESTRequestV2GetDevicesPendingBlock _Nonnull)completion;
+		[Export ("sendRequestWithCompletion:")]
+		void SendRequest (RequestV2GetDevicesPendingBlock completion);
+	}
+
+	interface IDeviceNearableSettingProtocol { }
+
+	// @protocol ESTDeviceNearableSettingProtocol <ESTDeviceSettingProtocol>
+	[Protocol (Name = "ESTDeviceNearableSettingProtocol")]
+	interface DeviceNearableSettingProtocol : DeviceSettingProtocol
+	{
+		// @required -(NSInteger)size;
+		[Abstract]
+		[Export ("size")]
+		nint Size { get; }
 	}
 }
