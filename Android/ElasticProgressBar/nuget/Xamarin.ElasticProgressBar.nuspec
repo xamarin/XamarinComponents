@@ -10,8 +10,8 @@
     <description>Xamarin.Android binding for ElasticProgressBar - An elastic loading bar.</description>
     <copyright>© Microsoft Corporation. All rights reserved.</copyright>
     <iconUrl>https://raw.githubusercontent.com/xamarin/XamarinComponents/master/Android/ElasticProgressBar/component/icons/icon_512x512.png</iconUrl>
-    <projectUrl>https://github.com/xamarin/XamarinComponents/tree/master/Android/ElasticProgressBar</projectUrl>
-    <licenseUrl>https://github.com/xamarin/XamarinComponents/blob/master/Android/ElasticProgressBar/LICENSE.md</licenseUrl>
+    <projectUrl>https://go.microsoft.com/fwlink/?linkid=865031</projectUrl>
+    <licenseUrl>https://go.microsoft.com/fwlink/?linkid=864964</licenseUrl>
     <dependencies>
         <dependency id="Xamarin.Android.Support.v4" version="23.1.1" />
     </dependencies>

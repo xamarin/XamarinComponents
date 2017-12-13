@@ -10,8 +10,8 @@
     <description>Android library for using the Honeycomb animation API on all versions of Android.</description>
     <copyright>© Microsoft Corporation. All rights reserved.</copyright>
     <iconUrl>https://xamarin-component-icons.s3.amazonaws.com/NineOldAndroids.png</iconUrl>
-    <projectUrl>https://components.xamarin.com/view/NineOldAndroids</projectUrl>
-    <licenseUrl>https://components.xamarin.com/license/NineOldAndroids</licenseUrl>
+    <projectUrl>https://go.microsoft.com/fwlink/?linkid=865041</projectUrl>
+    <licenseUrl>https://go.microsoft.com/fwlink/?linkid=865066</licenseUrl>
     <dependencies>
     </dependencies>
   </metadata>

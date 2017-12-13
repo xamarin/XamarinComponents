@@ -10,9 +10,9 @@
     <summary>A Getopt::Long-inspired option parsing library for C#.</summary>
     <description>A Getopt::Long-inspired option parsing library for C#.</description>
     <copyright>© Microsoft Corporation. All rights reserved.</copyright>
-    <licenseUrl>https://github.com/xamarin/XamarinComponents/blob/master/XPlat/Mono.Options/License.md</licenseUrl>
+    <licenseUrl>https://go.microsoft.com/fwlink/?linkid=865025</licenseUrl>
     <iconUrl>https://cdn.rawgit.com/xamarin/XamarinComponents/60536db623beeeb7bb5d1e7a78f9c26da32e26b6/XPlat/Mono.Options/component/icons/icon_256x256.png</iconUrl>
-    <projectUrl>https://github.com/xamarin/XamarinComponents/tree/master/XPlat/Mono.Options</projectUrl>
+    <projectUrl>https://go.microsoft.com/fwlink/?linkid=865059</projectUrl>
   </metadata>
   <files>
     <file src="output/net4/Mono.Options.dll" target="lib/net4-client/Mono.Options.dll" />

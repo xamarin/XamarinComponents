@@ -14,8 +14,8 @@
     Guava is a set of core libraries that includes new collection types (such as multimap and multiset), immutable collections, a graph library, functional types, an in-memory cache, and APIs/utilities for concurrency, I/O, hashing, primitives, reflection, string processing, and much more!
     </description>
     <copyright>© Microsoft Corporation. All rights reserved.</copyright>
-    <projectUrl>https://github.com/xamarin/XamarinComponents/tree/master/Android/Guava</projectUrl>
-    <licenseUrl>https://github.com/xamarin/XamarinComponents/blob/master/Android/Guava/License.md</licenseUrl>
+    <projectUrl>https://go.microsoft.com/fwlink/?linkid=865028</projectUrl>
+    <licenseUrl>https://go.microsoft.com/fwlink/?linkid=865030</licenseUrl>
     <dependencies>
     </dependencies>
   </metadata>

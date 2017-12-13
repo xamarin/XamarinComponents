@@ -9,8 +9,8 @@
     <requireLicenseAcceptance>true</requireLicenseAcceptance>
     <description>Fixed viewport image cropping library for Android.</description>
     <copyright>© Microsoft Corporation. All rights reserved.</copyright>
-    <projectUrl>https://components.xamarin.com/view/Lyft.Scissors.Picasso</projectUrl>
-    <licenseUrl>https://components.xamarin.com/license/Lyft.Scissors.Picasso</licenseUrl>
+    <projectUrl>https://go.microsoft.com/fwlink/?linkid=865044</projectUrl>
+    <licenseUrl>https://go.microsoft.com/fwlink/?linkid=865073</licenseUrl>
   </metadata>
   <files>  
     <file src="output/Lyft.Scissors.dll" target="lib/MonoAndroid403" />

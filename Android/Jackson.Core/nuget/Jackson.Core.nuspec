@@ -9,8 +9,8 @@
     <requireLicenseAcceptance>true</requireLicenseAcceptance>
     <description>This project contains core low-level incremental ("streaming") parser and generator abstractions used by Jackson Data Processor.</description>
     <copyright>© Microsoft Corporation. All rights reserved.</copyright>
-    <projectUrl>https://github.com/xamarin/XamarinComponents/tree/master/Android/Jackson.Core</projectUrl>
-    <licenseUrl>https://github.com/xamarin/XamarinComponents/blob/master/Android/Jackson.Core/License.md</licenseUrl>
+    <projectUrl>https://go.microsoft.com/fwlink/?linkid=865036</projectUrl>
+    <licenseUrl>https://go.microsoft.com/fwlink/?linkid=864972</licenseUrl>
   </metadata>
   <files>  
     <file src="output/Jackson.Core.dll" target="lib/MonoAndroid23" />

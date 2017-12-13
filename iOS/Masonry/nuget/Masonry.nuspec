@@ -9,8 +9,8 @@
     <requireLicenseAcceptance>true</requireLicenseAcceptance>
     <description>Harness the power of Auto Layout NSLayoutConstraints with a simplified, chainable and expressive syntax.</description>
     <copyright>© Microsoft Corporation. All rights reserved.</copyright>
-    <projectUrl>https://github.com/xamarin/XamarinComponents/tree/master/iOS/Masonry</projectUrl>
-    <licenseUrl>https://github.com/xamarin/XamarinComponents/blob/master/iOS/Masonry/License.md</licenseUrl>
+    <projectUrl>https://go.microsoft.com/fwlink/?linkid=864983</projectUrl>
+    <licenseUrl>https://go.microsoft.com/fwlink/?linkid=864985</licenseUrl>
   </metadata>
   <files>
     <file src="output/Masonry.iOS.dll" target="lib/Xamarin.iOS" />

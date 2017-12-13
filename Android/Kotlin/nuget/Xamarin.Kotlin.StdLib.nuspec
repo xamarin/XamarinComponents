@@ -9,8 +9,8 @@
     <requireLicenseAcceptance>true</requireLicenseAcceptance>
     <description>Xamarin.Android binding for Kotlin Standard Library</description>
     <copyright>© Microsoft Corporation. All rights reserved.</copyright>
-    <projectUrl>https://github.com/xamarin/XamarinComponents/tree/master/Android/Kotlin</projectUrl>
-    <licenseUrl>https://github.com/xamarin/XamarinComponents/blob/master/Android/Kotlin/LICENSE.md</licenseUrl>
+    <projectUrl>https://go.microsoft.com/fwlink/?linkid=864997</projectUrl>
+    <licenseUrl>https://go.microsoft.com/fwlink/?linkid=864999</licenseUrl>
     <dependencies>
     </dependencies>
   </metadata>

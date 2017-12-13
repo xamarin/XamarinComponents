@@ -9,8 +9,8 @@
     <requireLicenseAcceptance>true</requireLicenseAcceptance>
     <description>A fast ImageView (and Drawable) that supports rounded corners (and ovals or circles).</description>
     <copyright>© Microsoft Corporation. All rights reserved.</copyright>
-    <projectUrl>https://github.com/xamarin/XamarinComponents/tree/master/Android/RoundedImageView</projectUrl>
-    <licenseUrl>https://github.com/xamarin/XamarinComponents/blob/master/Android/RoundedImageView/LICENSE.md</licenseUrl>
+    <projectUrl>https://go.microsoft.com/fwlink/?linkid=865087</projectUrl>
+    <licenseUrl>https://go.microsoft.com/fwlink/?linkid=864943</licenseUrl>
     <dependencies>
       <dependency id="Square.Picasso" version="2.5.2.1" />
     </dependencies>

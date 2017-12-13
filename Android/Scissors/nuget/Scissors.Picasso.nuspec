@@ -9,8 +9,8 @@
     <requireLicenseAcceptance>true</requireLicenseAcceptance>
     <description>Fixed viewport image cropping library for Android.</description>
     <copyright>© Microsoft Corporation. All rights reserved.</copyright>
-    <projectUrl>https://components.xamarin.com/view/Lyft.Scissors.Picasso</projectUrl>
-    <licenseUrl>https://components.xamarin.com/license/Lyft.Scissors.Picasso</licenseUrl>
+    <projectUrl>https://go.microsoft.com/fwlink/?linkid=864994</projectUrl>
+    <licenseUrl>https://go.microsoft.com/fwlink/?linkid=865071</licenseUrl>
     <dependencies>
       <dependency id="Lyft.Scissors" version="1.1.1" />
       <dependency id="Square.Picasso" version="2.5.2.1" />

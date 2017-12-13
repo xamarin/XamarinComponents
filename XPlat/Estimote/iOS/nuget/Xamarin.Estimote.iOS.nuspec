@@ -6,8 +6,8 @@
         <title>Estimote SDK for Xamarin.iOS</title>
         <authors>Microsoft</authors>
         <owners>Microsoft</owners>
-        <projectUrl>https://github.com/xamarin/XamarinComponents/tree/master/XPlat/Estimote/iOS</projectUrl>
-        <licenseUrl>https://github.com/xamarin/XamarinComponents/blob/master/XPlat/Estimote/iOS/component/License.md</licenseUrl>
+        <projectUrl>https://go.microsoft.com/fwlink/?linkid=865010</projectUrl>
+        <licenseUrl>https://go.microsoft.com/fwlink/?linkid=865012</licenseUrl>
         <requireLicenseAcceptance>true</requireLicenseAcceptance>
         <description>Estimote SDK for Xamarin.iOS to actively scan for Bluetooth Beacons, Nearables, and Eddystones.</description>
         <copyright>© Microsoft Corporation. All rights reserved.</copyright>

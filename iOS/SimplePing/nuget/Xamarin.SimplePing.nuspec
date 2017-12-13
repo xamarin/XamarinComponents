@@ -6,8 +6,8 @@
         <title>SimplePing for iOS and macOS</title>
         <authors>Microsoft</authors>
         <owners>Microsoft</owners>
-        <projectUrl>https://github.com/xamarin/XamarinComponents/tree/master/iOS/SimplePing</projectUrl>
-        <licenseUrl>https://github.com/xamarin/XamarinComponents/blob/master/iOS/SimplePing/LICENSE.md</licenseUrl>
+        <projectUrl>https://go.microsoft.com/fwlink/?linkid=864995</projectUrl>
+        <licenseUrl>https://go.microsoft.com/fwlink/?linkid=865045</licenseUrl>
         <iconUrl>https://github.com/xamarin/XamarinComponents/raw/master/iOS/SimplePing/images/icon_512x512.png</iconUrl>
         <requireLicenseAcceptance>true</requireLicenseAcceptance>
         <description>Easily open a special, non-privileged ICMP socket that allows you to send and receive pings.</description>

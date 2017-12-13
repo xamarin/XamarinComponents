@@ -6,8 +6,8 @@
     <version>1.0.2</version>
     <authors>Microsoft</authors>
     <owners>Microsoft</owners>
-    <projectUrl>https://github.com/xamarin/XamarinComponents/tree/master/Util/Cake.Xamarin.Binding.Util</projectUrl>
-    <licenseUrl>https://github.com/xamarin/XamarinComponents/blob/master/Util/Cake.Xamarin.Binding.Util/LICENSE</licenseUrl>
+    <projectUrl>https://go.microsoft.com/fwlink/?linkid=864959</projectUrl>
+    <licenseUrl>https://go.microsoft.com/fwlink/?linkid=865029</licenseUrl>
     <requireLicenseAcceptance>true</requireLicenseAcceptance>
     <description>Cake Add-In providing utilities for Xamarin Binding build scripts</description>
     <copyright>© Microsoft Corporation. All rights reserved.</copyright>

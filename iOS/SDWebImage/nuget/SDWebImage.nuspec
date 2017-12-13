@@ -9,8 +9,8 @@
     <requireLicenseAcceptance>true</requireLicenseAcceptance>
     <description>Extensions for UIImageView allowing you to asynchronously load web images.</description>
     <copyright>© Microsoft Corporation. All rights reserved.</copyright>
-    <projectUrl>https://components.xamarin.com/view/sdwebimage</projectUrl>
-    <licenseUrl>https://components.xamarin.com/license/sdwebimage</licenseUrl>
+    <projectUrl>https://go.microsoft.com/fwlink/?linkid=865081</projectUrl>
+    <licenseUrl>https://go.microsoft.com/fwlink/?linkid=865072</licenseUrl>
   </metadata>
   <files>
     <file src="output/unified/SDWebImage.dll" target="lib/Xamarin.iOS" />

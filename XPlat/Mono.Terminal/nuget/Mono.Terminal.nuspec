@@ -10,9 +10,9 @@
     <summary>A command line editor.</summary>
     <description>A command line editor.</description>
     <copyright>© Microsoft Corporation. All rights reserved.</copyright>
-    <licenseUrl>https://components.xamarin.com/license/mono.terminal</licenseUrl>
+    <licenseUrl>https://go.microsoft.com/fwlink/?linkid=864942</licenseUrl>
     <iconUrl>https://xamarin-component-icons.s3.amazonaws.com/mono.terminal.png</iconUrl>
-    <projectUrl>https://components.xamarin.com/view/mono.terminal</projectUrl>
+    <projectUrl>https://go.microsoft.com/fwlink/?linkid=864940</projectUrl>
   </metadata>
   <files>
     <file src="output/net4/Mono.Terminal.dll" target="lib/net4-client/Mono.Terminal.dll" />

@@ -10,8 +10,8 @@
     <description>Xamarin.Android binding for Animated Circle Loading View - A determinate/indeterminate loading view animation.</description>
     <copyright>© Microsoft Corporation. All rights reserved.</copyright>
     <iconUrl>https://raw.githubusercontent.com/xamarin/XamarinComponents/master/Android/AnimatedCircleLoadingView/images/icon_512x512.png</iconUrl>
-    <projectUrl>https://github.com/xamarin/XamarinComponents/tree/master/Android/AnimatedCircleLoadingView</projectUrl>
-    <licenseUrl>https://github.com/xamarin/XamarinComponents/blob/master/Android/AnimatedCircleLoadingView/LICENSE.md</licenseUrl>
+    <projectUrl>https://go.microsoft.com/fwlink/?linkid=864977</projectUrl>
+    <licenseUrl>https://go.microsoft.com/fwlink/?linkid=864979</licenseUrl>
     <dependencies>
       <dependency id="Xamarin.Android.Support.v7.AppCompat" version="22.2.1" />
     </dependencies>

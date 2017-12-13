@@ -13,9 +13,9 @@ It strives to directly map the requests and responses of those specifications, w
 In addition to mapping the raw protocol flows, convenience methods are available to assist with common tasks like performing an action with fresh tokens.
     </description>
     <copyright>© Microsoft Corporation. All rights reserved.</copyright>
-    <licenseUrl>https://github.com/xamarin/XamarinComponents/blob/master/XPlat/OpenId/License.md</licenseUrl>
+    <licenseUrl>https://go.microsoft.com/fwlink/?linkid=864984</licenseUrl>
     <iconUrl>https://github.com/xamarin/XamarinComponents/raw/master/XPlat/OpenId/images/logo_1024x1024.png</iconUrl>
-    <projectUrl>https://github.com/xamarin/XamarinComponents/tree/master/XPlat/OpenId</projectUrl>
+    <projectUrl>https://go.microsoft.com/fwlink/?linkid=864982</projectUrl>
   </metadata>
   <files>
     <file src="output/OpenId.AppAuth.iOS.dll" target="lib/Xamarin.iOS10" />

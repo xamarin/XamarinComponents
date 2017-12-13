@@ -12,8 +12,8 @@
       Xamarin.Android Bindings for Google ARCore
     </description>
     <copyright>© Microsoft Corporation. All rights reserved.</copyright>
-    <projectUrl>https://github.com/xamarin/XamarinComponents/blob/master/Android/ARCore/</projectUrl>
-    <licenseUrl>https://github.com/xamarin/XamarinComponents/blob/master/Android/ARCore/LICENSE.md</licenseUrl>
+    <projectUrl>https://go.microsoft.com/fwlink/?linkid=864978</projectUrl>
+    <licenseUrl>https://go.microsoft.com/fwlink/?linkid=865040</licenseUrl>
   </metadata>
   <files>
     <file src="output/Xamarin.Google.ARCore.dll" target="lib/MonoAndroid70" />

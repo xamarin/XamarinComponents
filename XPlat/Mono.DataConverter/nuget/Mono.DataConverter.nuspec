@@ -9,9 +9,9 @@
     <requireLicenseAcceptance>true</requireLicenseAcceptance>
     <description>The DataConverter class is a replacement for System.BitConvert in the .NET class libraries.</description>
     <copyright>© Microsoft Corporation. All rights reserved.</copyright>
-    <licenseUrl>https://components.xamarin.com/license/mono.dataconverter</licenseUrl>
+    <licenseUrl>https://go.microsoft.com/fwlink/?linkid=864976</licenseUrl>
     <iconUrl>https://xamarin-component-icons.s3.amazonaws.com/mono.dataconverter.png</iconUrl>
-    <projectUrl>https://components.xamarin.com/view/mono.dataconverter</projectUrl>
+    <projectUrl>https://go.microsoft.com/fwlink/?linkid=865080</projectUrl>
   </metadata>
   <files>
     <file src="output/pcl/Mono.DataConverter.dll" target="lib/portable-win+net45+wp80+win81+wpa81+MonoAndroid10+MonoTouch10+Xamarin.iOS10/Mono.DataConverter.dll" />

@@ -9,8 +9,8 @@
     <requireLicenseAcceptance>true</requireLicenseAcceptance>
     <description>A drop-in UIViewController subclass with a growing text input view and other useful messaging features.</description>
     <copyright>© Microsoft Corporation. All rights reserved.</copyright>
-    <projectUrl>https://components.xamarin.com/view/SlackTextViewController</projectUrl>
-    <licenseUrl>https://components.xamarin.com/license/SlackTextViewController</licenseUrl>
+    <projectUrl>https://go.microsoft.com/fwlink/?linkid=865003</projectUrl>
+    <licenseUrl>https://go.microsoft.com/fwlink/?linkid=865049</licenseUrl>
     <iconUrl>https://github.com/xamarin/XamarinComponents/raw/master/iOS/SlackTextViewController/component/icons/SlackTextViewController_128x128.png</iconUrl>
   </metadata>
   <files>

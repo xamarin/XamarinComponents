@@ -10,8 +10,8 @@
     <description>A custom view for presenting a dynamically blurred version of another view's content.</description>
     <copyright>© Microsoft Corporation. All rights reserved.</copyright>
     <iconUrl>https://xamarin-component-icons.s3.amazonaws.com/Blurring.png</iconUrl>
-    <projectUrl>https://components.xamarin.com/view/Blurring</projectUrl>
-    <licenseUrl>https://components.xamarin.com/license/Blurring</licenseUrl>
+    <projectUrl>https://go.microsoft.com/fwlink/?linkid=864990</projectUrl>
+    <licenseUrl>https://go.microsoft.com/fwlink/?linkid=864992</licenseUrl>
     <dependencies>
       <dependency id="Xamarin.Android.Support.v8.RenderScript" version="23.0.1.1" />
     </dependencies>

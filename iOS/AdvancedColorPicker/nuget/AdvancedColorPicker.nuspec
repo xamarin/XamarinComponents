@@ -9,8 +9,8 @@
     <requireLicenseAcceptance>true</requireLicenseAcceptance>
     <description>An open source color picker component for Xamarin.iOS.</description>
     <copyright>© Microsoft Corporation. All rights reserved.</copyright>
-    <projectUrl>https://components.xamarin.com/view/AdvancedColorPicker</projectUrl>
-    <licenseUrl>https://components.xamarin.com/license/AdvancedColorPicker</licenseUrl>
+    <projectUrl>https://go.microsoft.com/fwlink/?linkid=864919</projectUrl>
+    <licenseUrl>https://go.microsoft.com/fwlink/?linkid=864981</licenseUrl>
   </metadata>
   <files>
     <file src="output/AdvancedColorPicker.dll" target="lib/Xamarin.iOS" />

@@ -9,8 +9,8 @@
     <requireLicenseAcceptance>true</requireLicenseAcceptance>
     <description>Xamarin.Android binding for Floating Search View - An implementation of a floating search box with search suggestions, also called persistent search bar.</description>
     <copyright>© Microsoft Corporation. All rights reserved.</copyright>
-    <projectUrl>https://github.com/xamarin/XamarinComponents/tree/master/Android/FloatingSearchView</projectUrl>
-    <licenseUrl>https://github.com/xamarin/XamarinComponents/blob/master/Android/FloatingSearchView/LICENSE.md</licenseUrl>
+    <projectUrl>https://go.microsoft.com/fwlink/?linkid=865065</projectUrl>
+    <licenseUrl>https://go.microsoft.com/fwlink/?linkid=865079</licenseUrl>
     <tags>xamarin,android,monodroid,search,view</tags>
     <dependencies>
       <dependency id="Xamarin.Android.Support.v7.AppCompat" version="25.3.1" />

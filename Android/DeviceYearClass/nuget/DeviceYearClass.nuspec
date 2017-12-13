@@ -10,8 +10,8 @@
     <description>A library that analyzes an Android device's specifications and calculates which year the device would be considered "high end".</description>
     <copyright>© Microsoft Corporation. All rights reserved.</copyright>
     <iconUrl>https://xamarin-component-icons.s3.amazonaws.com/DeviceYearClass.png</iconUrl>
-    <projectUrl>https://components.xamarin.com/view/DeviceYearClass</projectUrl>
-    <licenseUrl>https://components.xamarin.com/license/DeviceYearClass</licenseUrl>
+    <projectUrl>https://go.microsoft.com/fwlink/?linkid=865015</projectUrl>
+    <licenseUrl>https://go.microsoft.com/fwlink/?linkid=865078</licenseUrl>
     <dependencies>
     </dependencies>
   </metadata>

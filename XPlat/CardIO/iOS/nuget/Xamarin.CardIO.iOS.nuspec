@@ -6,8 +6,8 @@
         <title>Card.IO for Xamarin.iOS</title>
         <authors>Microsoft</authors>
         <owners>Microsoft</owners>
-        <projectUrl>https://components.xamarin.com/view/cardioios</projectUrl>
-        <licenseUrl>https://components.xamarin.com/license/cardioios</licenseUrl>
+        <projectUrl>https://go.microsoft.com/fwlink/?linkid=865077</projectUrl>
+        <licenseUrl>https://go.microsoft.com/fwlink/?linkid=865058</licenseUrl>
         <requireLicenseAcceptance>true</requireLicenseAcceptance>
         <description>Credit card scanning for mobile apps</description>
         <copyright>© Microsoft Corporation. All rights reserved.</copyright>

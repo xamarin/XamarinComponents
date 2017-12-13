@@ -9,8 +9,8 @@
     <requireLicenseAcceptance>true</requireLicenseAcceptance>
     <description>Xamarin.Android binding for Kotlin Standard Library JRE 8 extension</description>
     <copyright>© Microsoft Corporation. All rights reserved.</copyright>
-    <projectUrl>https://github.com/xamarin/XamarinComponents/tree/master/Android/Kotlin</projectUrl>
-    <licenseUrl>https://github.com/xamarin/XamarinComponents/blob/master/Android/Kotlin/LICENSE.md</licenseUrl>
+    <projectUrl>https://go.microsoft.com/fwlink/?linkid=865005</projectUrl>
+    <licenseUrl>https://go.microsoft.com/fwlink/?linkid=865054</licenseUrl>
     <dependencies>
       <dependency id="Xamarin.Kotlin.StdLib.Jre7" version="1.1.4.3" />
     </dependencies>
