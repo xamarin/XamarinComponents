@@ -7,30 +7,30 @@ var IOS_PODS = new List<string> {
 	"platform :ios, '7.0'",
 	"install! 'cocoapods', :integrate_targets => false",
 	"target 'Xamarin' do",
-	"pod 'TPKeyboardAvoiding', '1.2.11'",
+	"pod 'TPKeyboardAvoiding', '1.3.2'",
 	"end",
 };
 
 var buildSpec = new BuildSpec () {
 	Libs = new ISolutionBuilder [] {
-		new IOSSolutionBuilder {
-			SolutionPath = "./TPKeyboardAvoiding.sln",
-			Configuration = "Release",
+		new DefaultSolutionBuilder {
+			SolutionPath = "./source/TPKeyboardAvoiding.sln",
 			OutputFiles = new [] { 
-				new OutputFileCopy {
-					FromFile = "./source/TPKeyboardAvoiding/bin/unified/Release/TPKeyboardAvoiding.dll",
-					ToDirectory = "./output/unified/"
-				},
+				new OutputFileCopy { FromFile = "./source/TPKeyboardAvoiding/bin/Release/TPKeyboardAvoiding.dll" },
 			}
 		},
 	},
 
 	Samples = new ISolutionBuilder [] {
-		new IOSSolutionBuilder { SolutionPath = "./samples/TPKeyboardAvoidingSample.sln", Configuration = "Release", Platform="iPhone" },
+		new IOSSolutionBuilder { SolutionPath = "./samples/TPKeyboardAvoidingSample.sln" },
+	},
+
+	NuGets = new [] {
+		new NuGetInfo { NuSpec = "./nuget/Xamarin.TPKeyboardAvoiding.nuspec" },
 	},
 
 	Components = new [] {
-		new Component {ManifestDirectory = "./component", BuildsOn = BuildPlatforms.Mac},
+		new Component { ManifestDirectory = "./component" },
 	},
 };
 
