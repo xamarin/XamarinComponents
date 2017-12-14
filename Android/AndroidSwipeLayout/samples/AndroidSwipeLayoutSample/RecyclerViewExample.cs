@@ -35,7 +35,7 @@ namespace AndroidSwipeLayoutSample
 			recyclerView.SetLayoutManager (new LinearLayoutManager (this));
 
 			// Item Decorator:
-			recyclerView.AddItemDecoration (new DividerItemDecoration (Resources.GetDrawable (Resource.Drawable.divider)));
+			recyclerView.AddItemDecoration (new Adapters.Utils.DividerItemDecoration (Resources.GetDrawable (Resource.Drawable.divider)));
 			recyclerView.SetItemAnimator (new FadeInLeftAnimator ());
 
 			// Adapter:

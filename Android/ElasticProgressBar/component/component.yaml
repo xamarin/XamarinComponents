@@ -1,4 +1,4 @@
-version: 1.0.4
+version: "1.0.5"
 name: Elastic Progress Bar
 id: ElasticProgressBar
 publisher: Xamarin Inc
@@ -6,7 +6,7 @@ publisher-url: http://xamarin.com/
 src-url: https://github.com/xamarin/XamarinComponents/tree/master/Android/ElasticProgressBar
 summary: An elastic loading bar.
 
-license: License.md
+license: ../LICENSE.md
 details: Details.md
 getting-started: GettingStarted.md
 
@@ -17,9 +17,21 @@ icons:
 no_build: true
 libraries:
   android: ../output/ElasticProgressBar.dll
+is_shell: true
+local-nuget-repo: ../output/
 packages:
-  android: Xamarin.Android.Support.v4, Version=23.0.1.3
+  android: Xamarin.ElasticProgressBar, Version=1.0.5
 
 samples:
-  - name: "Android Sample"
+  - name: "Elastic Progress Bar Sample"
     path: ../samples/ElasticProgressBarSample.sln
+    removeProjects:
+      - ElasticProgressBar
+    installNuGets:
+      - project: ElasticProgressBarSample
+        packages:
+          - Xamarin.ElasticProgressBar
+
+additional-files:
+  - source: "../External-Dependency-Info.txt"
+    destination: "THIRD-PARTY-NOTICES.txt"
