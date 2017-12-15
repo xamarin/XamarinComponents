@@ -30,6 +30,10 @@ var buildSpec = new BuildSpec () {
 		new IOSSolutionBuilder { SolutionPath = "./samples/ChameleonSample.sln", Configuration = "Release", Platform="iPhone", BuildsOn = BuildPlatforms.Mac },
 	},
 
+	NuGets = new [] {
+		new NuGetInfo { NuSpec = "./nuget/Xamarin.Chameleon.nuspec" },
+	},
+
 	Components = new [] {
 		new Component {ManifestDirectory = "./component", BuildsOn = BuildPlatforms.Mac},
 	},
