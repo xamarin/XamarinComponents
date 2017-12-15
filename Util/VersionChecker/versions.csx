@@ -41,7 +41,7 @@ var fetchers = new VersionFetcher[] {
 
     // iOS
     new CocoaPods ("AMViralSwitch", "1.0.0", "AMViralSwitch", OWNER_SA1),
-    new CocoaPods ("Chameleon", "2.0.6", "ChameleonFramework", OWNER_SA1),
+    new CocoaPods ("Chameleon", "2.1", "ChameleonFramework", OWNER_SA1),
     new GitHubReleases ("CorePlot", "1.5.1", "core-plot", "core-plot", OWNER_SA1),
     new CocoaPods ("DACircularProgress", "2.3.1", "DACircularProgress", OWNER_SA1),
     new CocoaPods ("DZNEmptyDataSet", "1.7.3", "DZNEmptyDataSet", OWNER_SA1),
