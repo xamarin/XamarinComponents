@@ -7,12 +7,11 @@
 using Foundation;
 using System;
 using System.CodeDom.Compiler;
-using UIKit;
 
-namespace AMScrollingNavbarSample
+namespace AMScrollingNavbar
 {
-    [Register ("ViewController")]
-    partial class ViewController
+    [Register ("ScrollingNavigationController")]
+    partial class ScrollingNavigationController
     {
         void ReleaseDesignerOutlets ()
         {

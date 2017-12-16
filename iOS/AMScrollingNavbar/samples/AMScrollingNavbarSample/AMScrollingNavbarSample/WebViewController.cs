@@ -18,20 +18,22 @@ namespace AMScrollingNavbarSample
 		{
 			base.ViewDidLoad ();
 
+			Title = "Web View";
+
 			View.BackgroundColor = new UIColor (0.17f, 0.24f, 0.32f, 1.0f);
 			webView.BackgroundColor = new UIColor (0.17f, 0.24f, 0.32f, 1.0f);
 			NavigationController.NavigationBar.BarTintColor = new UIColor (0.2f, 0.28f, 0.37f, 1.0f);
 
 			webView.LoadHtmlString (Html, null);
-			webView.ScrollView.ShouldScrollToTop = ShouldScrollToTop;
+			webView.ScrollView.Delegate = this;
 		}
 
 		public override void ViewDidAppear (bool animated)
 		{
-			if (ScrollingNavigationController != null) {
-				// Enable the navbar scrolling
-				ScrollingNavigationController.FollowScrollView (webView, 50.0);
-			}
+			base.ViewDidAppear (animated);
+
+			// Enable the navbar scrolling
+			ScrollingNavigationController?.FollowScrollView (webView, 50.0);
 		}
 	}
 }

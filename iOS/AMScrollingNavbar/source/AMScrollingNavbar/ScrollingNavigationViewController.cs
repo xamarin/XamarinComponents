@@ -1,22 +1,7 @@
 ﻿using System;
 using System.ComponentModel;
-using AMScrollingNavbar;
-
-#if __UNIFIED__
-using CoreAnimation;
-using CoreGraphics;
 using Foundation;
 using UIKit;
-#else
-using MonoTouch.CoreAnimation;
-using MonoTouch.CoreGraphics;
-using MonoTouch.Foundation;
-using MonoTouch.UIKit;
-
-using CGRect = System.Drawing.RectangleF;
-using CGPoint = System.Drawing.PointF;
-using nfloat = System.Single;
-#endif
 
 namespace AMScrollingNavbar
 {
@@ -25,7 +10,7 @@ namespace AMScrollingNavbar
 	/// </summary>
 	[DesignTimeVisible (true), Category ("Controllers & Objects")]
 	[Register ("ScrollingNavigationViewController")]
-	public class ScrollingNavigationViewController : UIViewController, IUIScrollViewDelegate
+	public class ScrollingNavigationViewController : UIViewController, IUIScrollViewDelegate, IUINavigationControllerDelegate
 	{
 		public ScrollingNavigationViewController (NSCoder coder)
 			: base (coder)
@@ -56,39 +41,28 @@ namespace AMScrollingNavbar
 			get { return NavigationController as ScrollingNavigationController; }
 		}
 
-		public override void ViewDidAppear (bool animated)
-		{
-			base.ViewDidAppear (animated);
-
-			if (ScrollingNavigationController != null) {
-				// subscribe to events
-				ScrollingNavigationController.StateChanged += OnStateChanged;
-			}
-		}
-
 		/// <summary>
 		/// On appear calls `ShowNavbar()` by default
 		/// </summary>
-		public override void ViewWillDisappear (bool animated)
+		public override void ViewWillAppear (bool animated)
 		{
-			base.ViewWillDisappear (animated);
+			base.ViewWillAppear (animated);
 
 			if (ScrollingNavigationController != null) {
 				ScrollingNavigationController.ShowNavbar (true);
-
-				// ignore events
-				ScrollingNavigationController.StateChanged -= OnStateChanged;
+				ScrollingNavigationController.StateChanged += OnStateChanged;
 			}
 		}
 
 		/// <summary>
 		/// On disappear calls `StopFollowingScrollView()` to stop observing the current scroll view, and perform the tear down
 		/// </summary>
-		public override void ViewDidDisappear (bool animated)
+		public override void ViewWillDisappear (bool animated)
 		{
-			base.ViewDidDisappear (animated);
+			base.ViewWillDisappear (animated);
 
 			if (ScrollingNavigationController != null) {
+				ScrollingNavigationController.StateChanged -= OnStateChanged;
 				ScrollingNavigationController.StopFollowingScrollView ();
 			}
 		}
