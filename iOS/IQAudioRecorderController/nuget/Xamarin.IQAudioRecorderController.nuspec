@@ -4,13 +4,13 @@
     <id>Xamarin.IQAudioRecorderController</id>
     <title>Xamarin.IQAudioRecorderController</title>
     <version>1.1</version>
-    <authors>Xamarin Inc.</authors>
-    <owners>Xamarin Inc.</owners>
-    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <authors>Microsoft</authors>
+    <owners>Microsoft</owners>
+    <requireLicenseAcceptance>true</requireLicenseAcceptance>
     <description>A neat and clean audio recorder</description>
-    <copyright>Copyright 2017 Xamarin Inc</copyright>
-    <projectUrl>https://github.com/xamarin/XamarinComponents/tree/master/iOS/IQAudioRecorderController</projectUrl>
-    <licenseUrl>https://github.com/xamarin/XamarinComponents/blob/master/iOS/IQAudioRecorderController/License.md</licenseUrl>
+    <copyright>© Microsoft Corporation. All rights reserved.</copyright>
+    <projectUrl>https://go.microsoft.com/fwlink/?linkid=865324</projectUrl>
+    <licenseUrl>https://go.microsoft.com/fwlink/?linkid=865325</licenseUrl>
   </metadata>
   <files>
     <file src="output/IQAudioRecorderController.dll" target="lib/Xamarin.iOS" />

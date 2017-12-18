@@ -3,8 +3,8 @@ id: iqaudiorecordercontroller
 version: 1.1
 summary: A neat and clean audio recorder
 publisher: Xamarin Inc
-publisher-url: http://www.xamarin.com/
-src-url: https://github.com/xamarin/XamarinComponents/tree/master/iOS/IQAudioRecorderController
+publisher-url: https://go.microsoft.com/fwlink/?linkid=865324
+src-url: https://go.microsoft.com/fwlink/?linkid=865324
 license: ../License.md
 details: Details.md
 getting-started: GettingStarted.md
