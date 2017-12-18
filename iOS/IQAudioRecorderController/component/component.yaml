@@ -21,4 +21,7 @@ samples:
     path: ../samples/IQAudioRecorderControllerSample.sln
     configuration: "Release|iPhone"
     nobuild: true
+packages:
+  ios-unified: Xamarin.IQAudioRecorderController, Version=1.1
 no_build: true
+is_shell: true
