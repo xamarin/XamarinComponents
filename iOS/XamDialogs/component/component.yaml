@@ -9,8 +9,8 @@ license: ../License.md
 icons: 
   - xamdialogs_128x128.png
   - xamdialogs_512x512.png
-publisher-url: http://www.xamarin.com
-src-url: https://github.com/newky2k/XamDialogs
+publisher-url: https://go.microsoft.com/fwlink/?linkid=865313
+src-url: https://go.microsoft.com/fwlink/?linkid=865313
 libraries: 
   ios-unified: 
     - ../output/XamDialogs.dll
