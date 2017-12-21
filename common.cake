@@ -154,7 +154,7 @@ void BuildXCodeFatLibrary_macOS(FilePath xcodeProject, string target, string lib
 	// RunLipoCreate(workingDirectory, fatLibrary, x86_64, i386);
 }
 
-void BuildXCode (FilePath project, string libraryTitle, DirectoryPath workingDirectory, TargetOS os)
+void BuildXCode (FilePath project, string target, string libraryTitle, DirectoryPath workingDirectory, TargetOS os)
 {
 	if (!IsRunningOnUnix ()) {
 		Warning("{0} is not available on the current platform.", "xcodebuild");
@@ -174,12 +174,12 @@ void BuildXCode (FilePath project, string libraryTitle, DirectoryPath workingDir
 		if (!FileExists (dest)) {
 			XCodeBuild (new XCodeBuildSettings {
 				Project = workingDirectory.CombineWithFilePath (project).ToString (),
-				Target = libraryTitle,
+				Target = target,
 				Sdk = sdk,
 				Arch = arch,
 				Configuration = "Release",
 			});
-			var outputPath = workingDirectory.Combine ("build").Combine (os == TargetOS.Mac ? "Release" : ("Release-" + sdk)).Combine (libraryTitle).CombineWithFilePath (output);
+			var outputPath = workingDirectory.Combine ("build").Combine (os == TargetOS.Mac ? "Release" : ("Release-" + sdk)).Combine (target).CombineWithFilePath (output);
 			CopyFile (outputPath, dest);
 		}
 	});
@@ -214,7 +214,7 @@ void BuildXCode (FilePath project, string libraryTitle, DirectoryPath workingDir
 	}
 }
 
-void BuildDynamicXCode (FilePath project, string libraryTitle, DirectoryPath workingDirectory, TargetOS os)
+void BuildDynamicXCode (FilePath project, string target, string libraryTitle, DirectoryPath workingDirectory, TargetOS os)
 {
 	if (!IsRunningOnUnix ()) {
 		Warning("{0} is not available on the current platform.", "xcodebuild");
@@ -235,12 +235,12 @@ void BuildDynamicXCode (FilePath project, string libraryTitle, DirectoryPath wor
 		if (!DirectoryExists (dest)) {
 			XCodeBuild (new XCodeBuildSettings {
 				Project = workingDirectory.CombineWithFilePath (project).ToString (),
-				Target = libraryTitle,
+				Target = target,
 				Sdk = sdk,
 				Arch = arch,
 				Configuration = "Release",
 			});
-			var outputPath = workingDirectory.Combine ("build").Combine (os == TargetOS.Mac ? "Release" : ("Release-" + sdk)).Combine (libraryTitle).Combine (output);
+			var outputPath = workingDirectory.Combine ("build").Combine (os == TargetOS.Mac ? "Release" : ("Release-" + sdk)).Combine (target).Combine (output);
 			CopyDirectory (outputPath, dest);
 		}
 	});
