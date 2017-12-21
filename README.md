@@ -103,9 +103,6 @@ If you are looking to create a plugin be sure to browse through NuGet first and 
 * No dependency on Xamarin.Forms
 * Have a list of supported and unsupported OSs in its GitHub wiki
 
-#### Turn into a Component
-Learn how to turn your NuGet based Plugin for Xamarin into a Component that can be featured in the Xamarin Component Store with our [component documentation](http://developer.xamarin.com/guides/cross-platform/advanced/submitting_components/components_and_nuget/).
-
 #### Perks
 * Help out fellow developers speed up development
 * Have fun and learn new tools
