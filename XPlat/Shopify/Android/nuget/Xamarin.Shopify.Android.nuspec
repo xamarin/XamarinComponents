@@ -4,7 +4,6 @@
     <id>Xamarin.Shopify.Android</id>
     <title>Shopify Mobile Buy SDK for Xamarin.Android</title>
     <version>$version$</version>
-    <authors>Xamarin Inc.,Shopify Inc.</authors>
     <authors>Microsoft</authors>
     <owners>Microsoft</owners>
     <requireLicenseAcceptance>true</requireLicenseAcceptance>
