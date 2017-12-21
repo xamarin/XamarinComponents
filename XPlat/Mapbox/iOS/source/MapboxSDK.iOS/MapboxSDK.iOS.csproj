@@ -49,7 +49,7 @@
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.ObjCBinding.CSharp.targets" />
   <ItemGroup>
-    <NativeReference Include="..\..\..\externals\ios\Pods\Mapbox-iOS-SDK\dynamic\Mapbox.framework">
+    <NativeReference Include="..\..\..\externals\ios\mapbox-ios-sdk\dynamic\Mapbox.framework">
       <Kind>Framework</Kind>
       <SmartLink>False</SmartLink>
     </NativeReference>

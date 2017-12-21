@@ -62,7 +62,10 @@ namespace Mapbox
         Unknown = -1,
         NotFound = 1,
         BadServerResponse = 2,
-        ConnectionFailed = 3
+        ConnectionFailed = 3,
+        ParseStyleFailed = 4,
+        LoadStyleFailed = 5,
+        SnapshotFailed = 6
     }
 
 
@@ -96,7 +99,8 @@ namespace Mapbox
 		Tile,
 		Glyphs,
 		SpriteImage,
-		SpriteJson
+		SpriteJson,
+		Image
 	}
 
 	[Native]
@@ -216,10 +220,39 @@ namespace Mapbox
 	}
 
 	[Native]
+	public enum IconPitchAlignment : ulong
+	{
+		Map,
+		Viewport,
+		Auto
+	}
+
+	[Native]
 	public enum TextTranslationAnchor : ulong
 	{
 		Map,
 		Viewport
+	}
+	
+	[Native]
+	public enum TileCoordinateSystem : ulong
+	{
+		Xyz = 0,
+		Tms
+	}
+
+	[Native]
+	public enum IconAnchor : ulong
+	{
+		Center,
+		Left,
+		Right,
+		Top,
+		Bottom,
+		TopLeft,
+		TopRight,
+		BottomLeft,
+		BottomRight
 	}
 
 	[Native]
@@ -231,6 +264,21 @@ namespace Mapbox
 
 	[Native]
 	public enum CircleTranslationAnchor : ulong
+	{
+		Map,
+		Viewport
+	}
+
+	[Native]
+	public enum AttributionInfoStyle : ulong
+	{
+		Short = 1,
+		Medium,
+		Long
+	}
+
+	[Native]
+	public enum CirclePitchAlignment : ulong
 	{
 		Map,
 		Viewport
@@ -261,6 +309,42 @@ namespace Mapbox
         Canceling,
         Ending
     }
+
+	[StructLayout (LayoutKind.Sequential)]
+	public struct CoordinateQuad
+	{
+		public CLLocationCoordinate2D topLeft;
+
+		public CLLocationCoordinate2D bottomLeft;
+
+		public CLLocationCoordinate2D bottomRight;
+
+		public CLLocationCoordinate2D topRight;
+	}
+
+	[Native]
+	public enum FillExtrusionTranslationAnchor : ulong
+	{
+		Map,
+		Viewport
+	}
+
+	[Native]
+	public enum LightAnchor : ulong
+	{
+		Map,
+		Viewport
+	}
+
+	[StructLayout (LayoutKind.Sequential)]
+	public struct SphericalPosition
+	{
+		public nfloat radial;
+
+		public double azimuthal;
+
+		public double polar;
+	}
 
     // Symbols don't exist in libMapbox.a !!!
 //    static class CFunctions

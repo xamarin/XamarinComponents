@@ -7,8 +7,8 @@ var ANDROID_VERSION = "4.2.2";
 var ANDROID_NUGET_VERSION = "4.2.2";
 var JAVASERVICES_NUGET_VERSION = "1.3.1";
 
-var IOS_VERSION = "3.5.0";
-var IOS_NUGET_VERSION = "3.5.0";
+var IOS_VERSION = "3.7.1";
+var IOS_NUGET_VERSION = "3.7.1";
 
 var MAPBOX_VERSION = "4.2.2";
 var MAPBOX_ANDROID_SERVICES_VERSION = "1.3.1";
@@ -16,6 +16,8 @@ var MAPBOX_JAVA_SERVICES_VERSION = "1.3.1";
 var LOST_VERSION = "1.1.1";
 var LOGGING_INTERCEPTOR_VERSION = "3.3.1";
 var CONVERTER_GSON_VERSION = "2.1.0";
+
+var MAPBOX_FRAMEWORK = string.Format ("http://mapbox.s3.amazonaws.com/mapbox-gl-native/ios/builds/mapbox-ios-sdk-{0}-dynamic.zip", IOS_VERSION);
 
 var LOST_AAR = string.Format ("http://search.maven.org/remotecontent?filepath=com/mapzen/android/lost/{0}/lost-{0}.aar", LOST_VERSION);
 var MAPBOX_ANDROID = string.Format ("http://search.maven.org/remotecontent?filepath=com/mapbox/mapboxsdk/mapbox-android-sdk/{0}/mapbox-android-sdk-{0}.aar", MAPBOX_VERSION);
@@ -108,19 +110,15 @@ Task ("externals-android")
 	DownloadFile (CONVERTER_GSON, "./externals/android/converter-gson.jar");
 });
 Task ("externals-ios")
-	.WithCriteria (!DirectoryExists ("./externals/ios/Pods/Mapbox-iOS-SDK"))
+	.WithCriteria (!DirectoryExists ("./externals/ios/mapbox-ios-sdk"))
 	.Does (() => 
 {
-	if (CocoaPodVersion (new CocoaPodSettings ()) < new System.Version (1, 0))
-		PODFILE.RemoveAt (1);
-
 	EnsureDirectoryExists ("./externals/ios");
 
-	FileWriteLines ("./externals/ios/Podfile", PODFILE.ToArray ());
+	if (!FileExists ("./externals/ios/mapbox-ios-sdk.zip"))
+		DownloadFile (MAPBOX_FRAMEWORK, "./externals/ios/mapbox-ios-sdk.zip");
 
-	CocoaPodRepoUpdate ();
-	
-	CocoaPodInstall ("./externals/ios", new CocoaPodInstallSettings { NoIntegrate = true });
+	Unzip ("./externals/ios/mapbox-ios-sdk.zip", "./externals/ios/mapbox-ios-sdk");
 });
 Task ("externals").IsDependentOn ("externals-android").IsDependentOn ("externals-ios");
 
