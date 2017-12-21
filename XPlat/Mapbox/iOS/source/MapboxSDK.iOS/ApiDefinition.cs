@@ -578,27 +578,27 @@ namespace Mapbox
 
         // -(NSArray<id<MGLFeature>> * _Nonnull)visibleFeaturesAtPoint:(CGPoint)point;
         [Export ("visibleFeaturesAtPoint:")]
-        Feature[] GetVisibleFeaturesAtPoint (CGPoint point);
+        IFeature[] GetVisibleFeaturesAtPoint (CGPoint point);
 
         // -(NSArray<id<MGLFeature>> * _Nonnull)visibleFeaturesAtPoint:(CGPoint)point inStyleLayersWithIdentifiers:(NSSet<NSString *> * _Nullable)styleLayerIdentifiers;
         [Export ("visibleFeaturesAtPoint:inStyleLayersWithIdentifiers:")]
-        Feature[] GetVisibleFeaturesAtPoint (CGPoint point, [NullAllowed] string [] styleLayerIdentifiers);
+        IFeature[] GetVisibleFeaturesAtPoint (CGPoint point, [NullAllowed] string [] styleLayerIdentifiers);
 
         // -(NSArray<id<MGLFeature>> * _Nonnull)visibleFeaturesAtPoint:(CGPoint)point inStyleLayersWithIdentifiers:(NSSet<NSString *> * _Nullable)styleLayerIdentifiers predicate:(NSPredicate * _Nullable)predicate;
         [Export ("visibleFeaturesAtPoint:inStyleLayersWithIdentifiers:predicate:")]
-        Feature[] GetVisibleFeaturesAtPoint (CGPoint point, [NullAllowed] string [] styleLayerIdentifiers, [NullAllowed] NSPredicate predicate);
+        IFeature[] GetVisibleFeaturesAtPoint (CGPoint point, [NullAllowed] string [] styleLayerIdentifiers, [NullAllowed] NSPredicate predicate);
 
         // -(NSArray<id<MGLFeature>> * _Nonnull)visibleFeaturesInRect:(CGRect)rect;
         [Export ("visibleFeaturesInRect:")]
-        Feature[] GetVisibleFeaturesInRect (CGRect rect);
+        IFeature[] GetVisibleFeaturesInRect (CGRect rect);
 
         // -(NSArray<id<MGLFeature>> * _Nonnull)visibleFeaturesInRect:(CGRect)rect inStyleLayersWithIdentifiers:(NSSet<NSString *> * _Nullable)styleLayerIdentifiers;
         [Export ("visibleFeaturesInRect:inStyleLayersWithIdentifiers:")]
-        Feature[] GetVisibleFeaturesInRect (CGRect rect, [NullAllowed] string [] styleLayerIdentifiers);
+        IFeature[] GetVisibleFeaturesInRect (CGRect rect, [NullAllowed] string [] styleLayerIdentifiers);
 
         // -(NSArray<id<MGLFeature>> * _Nonnull)visibleFeaturesInRect:(CGRect)rect inStyleLayersWithIdentifiers:(NSSet<NSString *> * _Nullable)styleLayerIdentifiers predicate:(NSPredicate * _Nullable)predicate;
         [Export ("visibleFeaturesInRect:inStyleLayersWithIdentifiers:predicate:")]
-        Feature[] GetVisibleFeaturesInRect (CGRect rect, [NullAllowed] string [] styleLayerIdentifiers, [NullAllowed] NSPredicate predicate);
+        IFeature[] GetVisibleFeaturesInRect (CGRect rect, [NullAllowed] string [] styleLayerIdentifiers, [NullAllowed] NSPredicate predicate);
 
         // @property (nonatomic) MGLMapDebugMaskOptions debugMask;
         [Export ("debugMask", ArgumentSemantic.Assign)]
@@ -774,7 +774,7 @@ namespace Mapbox
         [Export ("mapView:annotationCanShowCallout:"), DelegateName("CanShowCallout"), DefaultValue(false)]
         bool CanShowCallout (MapView mapView, IAnnotation annotation);
 
-        // @optional -(UIView<MGLCalloutView> * _Nullable)mapView:(MGLMapView * _Nonnull)mapView calloutViewForAnnotation:(id<MGLAnnotation> _Nonnull)annotation;
+        // @optional -(id<MGLCalloutView> * _Nullable)mapView:(MGLMapView * _Nonnull)mapView calloutViewForAnnotation:(id<MGLAnnotation> _Nonnull)annotation;
         [Export ("mapView:calloutViewForAnnotation:")]
         [return: NullAllowed]
         ICalloutView GetCalloutView (MapView mapView, IAnnotation annotation);
