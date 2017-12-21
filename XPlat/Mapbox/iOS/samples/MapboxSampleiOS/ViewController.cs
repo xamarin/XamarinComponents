@@ -1,20 +1,20 @@
 ﻿using System;
-
-using UIKit;
-using Mapbox;
-using System.Linq;
 using CoreLocation;
 using Foundation;
+using UIKit;
+
+using Mapbox;
 
 namespace MapBoxSampleiOS
 {
     public partial class ViewController : UIViewController, IMapViewDelegate
     {
-        public ViewController (IntPtr handle) : base (handle)
+        private MapView mapView;
+
+        public ViewController (IntPtr handle) 
+            : base (handle)
         {
         }
-
-        MapView mapView;
 
         public override void ViewDidLoad ()
         {
@@ -46,7 +46,9 @@ namespace MapBoxSampleiOS
             };
 
             // Create our shape with the formatted coordinates array
-            mapView.AddAnnotation (Polygon.WithCoordinates (coordinates, (nuint)coordinates.Length));
+            var starAnnotation = Polygon.WithCoordinates (coordinates, (nuint)coordinates.Length);
+            starAnnotation.Title = "Portland Star";
+            mapView.AddAnnotation (starAnnotation);
 
             // Add a point annotation
             mapView.AddAnnotation (new PointAnnotation {
@@ -63,7 +65,7 @@ namespace MapBoxSampleiOS
         public void DidSelectAnnotation (MapView mapView, IAnnotation annotation)
         {
             // Just show the user which one was pressed
-            new UIAlertView ("Annotation Tapped", "You tapped on: " + annotation.GetTitle (), null, "OK")
+            new UIAlertView ("Annotation Tapped", "You tapped on: " + annotation.GetTitle (), (IUIAlertViewDelegate)null, "OK")
                 .Show ();
         }
 

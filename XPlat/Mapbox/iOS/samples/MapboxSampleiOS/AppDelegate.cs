@@ -21,7 +21,7 @@ namespace MapBoxSampleiOS
         public override bool FinishedLaunching (UIApplication application, NSDictionary launchOptions)
         {
             if (MAPBOX_ACCESS_TOKEN == "YOUR-ACCESS-TOKEN") {
-                new UIAlertView ("Change Access Token", "You need to change the MAPBOX_ACCESS_TOKEN to your own token from MapBox!", null, "OK")
+                new UIAlertView ("Change Access Token", "You need to change the MAPBOX_ACCESS_TOKEN to your own token from MapBox!", (IUIAlertViewDelegate)null, "OK")
                     .Show ();
             }
 
