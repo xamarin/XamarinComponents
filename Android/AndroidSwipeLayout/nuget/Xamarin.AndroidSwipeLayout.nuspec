@@ -3,7 +3,7 @@
   <metadata>
     <id>Xamarin.AndroidSwipeLayout</id>
     <title>Swipe Layout for Xamarin.Android</title>
-    <version>1.2.0.1</version>
+    <version>1.2.0.2</version>
     <authors>Microsoft</authors>
     <owners>Microsoft</owners>
     <requireLicenseAcceptance>true</requireLicenseAcceptance>
@@ -14,7 +14,7 @@
     <licenseUrl>https://go.microsoft.com/fwlink/?linkid=865039</licenseUrl>
     <dependencies>
       <dependency id="Xamarin.Android.Support.v4" version="21.0.3.0" />
-      <dependency id="Android.Support.v7.RecyclerView" version="21.0.3.0" />
+      <dependency id="Xamarin.Android.Support.v7.RecyclerView" version="21.0.3.0" />
     </dependencies>
   </metadata>
   <files>
