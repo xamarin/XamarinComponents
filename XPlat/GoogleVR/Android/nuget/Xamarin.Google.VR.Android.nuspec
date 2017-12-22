@@ -4,16 +4,16 @@
     <id>Xamarin.Google.VR.Android</id>
     <title>Google VR for Xamarin.Android</title>
     <version>$version$</version>
-    <authors>Xamarin</authors>
-    <owners>Xamarin</owners>
+    <authors>Microsoft</authors>
+    <owners>Microsoft</owners>
     <requireLicenseAcceptance>true</requireLicenseAcceptance>
     <summary>Create new virtual reality experiences in your mobile apps.</summary>
     <description>
       Google provides developers with two virtual reality (VR) platforms: Cardboard, the world's most popular and accessible mobile VR platform, and Daydream, a new platform for low-latency, immersive, and interactive mobile VR. The Google VR SDKs include everything you need to develop for these platforms, including libraries, API documentation, developer samples, and design guidelines.
     </description>
-    <copyright>Copyright © Xamarin. All Rights Reserved.</copyright>
-    <projectUrl>https://github.com/xamarin/XamarinComponents/tree/master/XPlat/GoogleVR/Android</projectUrl>
-    <licenseUrl>https://github.com/xamarin/XamarinComponents/blob/master/XPlat/GoogleVR/Android/component/License.md</licenseUrl>
+    <copyright>© Microsoft Corporation. All rights reserved.</copyright>
+    <projectUrl>https://go.microsoft.com/fwlink/?linkid=864951</projectUrl>
+    <licenseUrl>https://go.microsoft.com/fwlink/?linkid=864953</licenseUrl>
     <iconUrl>http://xamarin-component-icons.s3.amazonaws.com/Xamarin.Google.VR.Android.png</iconUrl>
   </metadata>
   <files>

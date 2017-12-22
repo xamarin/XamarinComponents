@@ -4,14 +4,14 @@
         <id>Xamarin.Google.Android.Vending.Expansion.Downloader</id>
         <version>2.0.0</version>
         <title>Google Play APK Expansion Downloader</title>
-        <authors>Xamarin Inc.</authors>
-        <owners>Xamarin Inc.</owners>
-        <projectUrl>https://github.com/xamarin/XamarinComponents/tree/master/Android/GoogleAndroidVending</projectUrl>
-        <licenseUrl>https://github.com/xamarin/XamarinComponents/blob/master/Android/GoogleAndroidVending/License.md</licenseUrl>
+        <authors>Microsoft</authors>
+        <owners>Microsoft</owners>
+        <projectUrl>https://go.microsoft.com/fwlink/?linkid=865032</projectUrl>
+        <licenseUrl>https://go.microsoft.com/fwlink/?linkid=864967</licenseUrl>
         <iconUrl>https://raw.githubusercontent.com/xamarin/XamarinComponents/master/Android/GoogleAndroidVending/images/ExpansionDownloader_128x128.png</iconUrl>
-        <requireLicenseAcceptance>false</requireLicenseAcceptance>
+        <requireLicenseAcceptance>true</requireLicenseAcceptance>
         <description>Client library for the Android Market (Google Play) APK Expansion files.</description>
-        <copyright>Copyright © Microsoft Corporation</copyright>
+        <copyright>© Microsoft Corporation. All rights reserved.</copyright>
         <tags>android,monodroid,xamarin,google,lvl,license,verification,library,apk,expansion,downloader</tags>
         <dependencies>
             <group targetFramework="MonoAndroid">
