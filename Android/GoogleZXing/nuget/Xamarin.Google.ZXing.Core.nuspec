@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<package>
+  <metadata>
+    <id>Xamarin.Google.ZXing.Core</id>
+    <title>Google ZXing (Core)</title>
+    <version>$version$</version>
+    <authors>Microsoft</authors>
+    <owners>Microsoft</owners>
+    <requireLicenseAcceptance>true</requireLicenseAcceptance>
+    <description>ZXing ("zebra crossing") is an open-source, multi-format 1D/2D barcode image processing library. Core barcode encoding/decoding library.</description>
+    <copyright>© Microsoft Corporation. All rights reserved.</copyright>
+    <projectUrl>https://go.microsoft.com/fwlink/?linkid=865076</projectUrl>
+    <licenseUrl>https://go.microsoft.com/fwlink/?linkid=865053</licenseUrl>
+  </metadata>
+  <files>  
+    <file src="output/Google.ZXing.Core.dll" target="lib/MonoAndroid" />
+    <file src="External-Dependency-Info.txt" target="THIRD-PARTY-NOTICES.txt" />
+  </files>
+</package>

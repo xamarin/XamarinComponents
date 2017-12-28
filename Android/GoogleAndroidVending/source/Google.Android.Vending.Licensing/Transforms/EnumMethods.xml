@@ -1,0 +1,32 @@
+﻿<enum-method-mappings>
+  <!--
+  This example changes the Java method:
+    android.support.v4.app.Fragment.SavedState.writeToParcel (int flags)
+  to be:
+    android.support.v4.app.Fragment.SavedState.writeToParcel (Android.OS.ParcelableWriteFlags flags)
+  when bound in C#.
+  
+  <mapping jni-class="android/support/v4/app/Fragment.SavedState">
+    <method jni-name="writeToParcel" parameter="flags" clr-enum-type="Android.OS.ParcelableWriteFlags" />
+  </mapping>
+  -->
+
+  <mapping jni-interface="com/google/android/vending/licensing/LicenseCheckerCallback">
+    <method jni-name="allow" parameter="p0" clr-enum-type="Google.Android.Vending.Licensing.PolicyResponse" />
+    <method jni-name="dontAllow" parameter="p0" clr-enum-type="Google.Android.Vending.Licensing.PolicyResponse" />
+    <method jni-name="applicationError" parameter="p0" clr-enum-type="Google.Android.Vending.Licensing.LicenseCheckerErrorCode" />
+  </mapping>
+
+  <mapping jni-interface="com/google/android/vending/licensing/Policy">
+    <method jni-name="processServerResponse" parameter="p0" clr-enum-type="Google.Android.Vending.Licensing.PolicyResponse" />
+  </mapping>
+
+  <mapping jni-interface="com/google/android/vending/licensing/DeviceLimiter">
+    <method jni-name="isDeviceAllowed" parameter="return" clr-enum-type="Google.Android.Vending.Licensing.PolicyResponse" />
+  </mapping>
+
+  <mapping jni-interface="com/android/vending/licensing/ILicenseResultListener">
+    <method jni-name="verifyLicense" parameter="p0" clr-enum-type="Google.Android.Vending.Licensing.ServerResponseCode" />
+  </mapping>
+
+</enum-method-mappings>

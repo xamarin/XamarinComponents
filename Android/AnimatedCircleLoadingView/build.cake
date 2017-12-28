@@ -3,7 +3,7 @@
 
 var TARGET = Argument ("t", Argument ("target", "Default"));
 
-var AAR_VERSION = "1.1.2";
+var AAR_VERSION = "1.1.5";
 var AAR_URL = string.Format ("https://bintray.com/artifact/download/jlmd/maven/com/github/jlmd/AnimatedCircleLoadingView/{0}/AnimatedCircleLoadingView-{0}.aar", AAR_VERSION);
 var AAR_DEST = "./externals/AnimatedCircleLoadingView.aar";
 
@@ -12,9 +12,7 @@ var buildSpec = new BuildSpec () {
 		new DefaultSolutionBuilder {
 			SolutionPath = "./source/AnimatedCircleLoadingView.sln",
 			OutputFiles = new [] { 
-				new OutputFileCopy {
-					FromFile = "./source/AnimatedCircleLoadingView/bin/Release/AnimatedCircleLoadingView.dll",
-				}
+				new OutputFileCopy { FromFile = "./source/AnimatedCircleLoadingView/bin/Release/AnimatedCircleLoadingView.dll" }
 			}
 		}
 	},
@@ -23,18 +21,20 @@ var buildSpec = new BuildSpec () {
 		new DefaultSolutionBuilder { SolutionPath = "./samples/AnimatedCircleLoadingViewSample.sln" },
 	},
 
+	NuGets = new [] {
+		new NuGetInfo { NuSpec = "./nuget/Xamarin.Android.AnimatedCircleLoadingView.nuspec" },
+	},
+
 	Components = new [] {
-		new Component {ManifestDirectory = "./component"},
+		new Component { ManifestDirectory = "./component" },
 	},
 };
 
-Task ("externals")
-	.Does (() => 
+Task ("externals").Does (() => 
 {
-	if (!DirectoryExists ("./externals/"))
-		CreateDirectory ("./externals");
-		
-	DownloadFile (AAR_URL, AAR_DEST);
+	EnsureDirectoryExists ("./externals/");
+	if (!FileExists (AAR_DEST))
+		DownloadFile (AAR_URL, AAR_DEST);
 });
 
 

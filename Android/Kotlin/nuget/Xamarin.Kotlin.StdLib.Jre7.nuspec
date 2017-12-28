@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<package >
+  <metadata>
+    <id>Xamarin.Kotlin.StdLib.Jre7</id>
+    <title>Kotlin Standard Library JRE 7 extension for Xamarin.Android</title>
+    <version>1.1.4.3</version>
+    <authors>Microsoft</authors>
+    <owners>Microsoft</owners>
+    <requireLicenseAcceptance>true</requireLicenseAcceptance>
+    <description>Xamarin.Android binding for Kotlin Standard Library JRE 7 extension</description>
+    <copyright>© Microsoft Corporation. All rights reserved.</copyright>
+    <projectUrl>https://go.microsoft.com/fwlink/?linkid=865001</projectUrl>
+    <licenseUrl>https://go.microsoft.com/fwlink/?linkid=865052</licenseUrl>
+    <dependencies>
+      <dependency id="Xamarin.Kotlin.StdLib" version="1.1.4.3" />
+    </dependencies>
+  </metadata>
+  <files>
+    <file src="output/Xamarin.Kotlin.StdLib.Jre7.dll" target="lib/MonoAndroid" />
+    <file src="External-Dependency-Info.txt" target="THIRD-PARTY-NOTICES.txt" />
+  </files>
+</package>

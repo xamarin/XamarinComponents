@@ -8,10 +8,10 @@
     <OutputType>Library</OutputType>
     <RootNamespace>Android.Things</RootNamespace>
     <AssemblyName>Xamarin.Android.Things</AssemblyName>
-    <TargetFrameworkVersion>v7.0</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v8.0</TargetFrameworkVersion>
     <MonoAndroidResourcePrefix>Resources</MonoAndroidResourcePrefix>
     <MonoAndroidAssetsPrefix>Assets</MonoAndroidAssetsPrefix>
-    <AndroidUseLatestPlatformSdk>true</AndroidUseLatestPlatformSdk>
+    <AndroidUseLatestPlatformSdk>false</AndroidUseLatestPlatformSdk>
     <AndroidClassParser>class-parse</AndroidClassParser>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
@@ -52,13 +52,13 @@
     <TransformFile Include="Transforms\Metadata.xml" />
   </ItemGroup>
   <ItemGroup>
-    <!-- From: https://jcenter.bintray.com/com/google/android/things/androidthings/0.1-devpreview/:androidthings-0.1-devpreview.jar -->
+    <!-- From: https://jcenter.bintray.com/com/google/android/things/androidthings/x.yx-devpreview/:androidthings-x.y-devpreview.jar -->
     <InputJar Include="..\externals\androidthings.jar">
       <Link>Jars\androidthings.jar</Link>
     </InputJar>
-    <!-- We *also* add androidthings-0.1-devpreview.jar as `@(EmbeddedReferenceJar)`
+    <!-- We *also* add androidthings-x.y-devpreview.jar as `@(EmbeddedReferenceJar)`
         so that referencing projects will automatically reference - but not include! -
-        `androidthings-0.1-devpreview.jar` during compilation -->
+        `androidthings-x.y-devpreview.jar` during compilation -->
     <EmbeddedReferenceJar Include="..\externals\androidthings.jar">
       <Link>Jars\androidthings.jar</Link>
     </EmbeddedReferenceJar>

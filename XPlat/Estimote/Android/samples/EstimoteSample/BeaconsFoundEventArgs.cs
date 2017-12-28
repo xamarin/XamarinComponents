@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 
 using EstimoteSdk;
+using EstimoteSdk.Recognition.Packets;
 
 namespace Estimotes.Droid
 {

@@ -1,6 +1,6 @@
 #tool "XamarinComponent"
-#addin "nuget:?package=Cake.Json"
-#addin "nuget:?package=Cake.Xamarin"
+#addin "nuget:?package=Cake.Json&version=1.0.2.13"
+#addin "nuget:?package=Cake.Xamarin&version=1.3.0.15"
 #addin "nuget:?package=Cake.ExtendedNuGet&version=1.0.0.24"
 #addin "nuget:?package=NuGet.Core&version=2.14.0"
 

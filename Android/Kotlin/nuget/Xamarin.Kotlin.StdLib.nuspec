@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<package >
+  <metadata>
+    <id>Xamarin.Kotlin.StdLib</id>
+    <title>Kotlin Standard Library for Xamarin.Android</title>
+    <version>1.1.4.3</version>
+    <authors>Microsoft</authors>
+    <owners>Microsoft</owners>
+    <requireLicenseAcceptance>true</requireLicenseAcceptance>
+    <description>Xamarin.Android binding for Kotlin Standard Library</description>
+    <copyright>© Microsoft Corporation. All rights reserved.</copyright>
+    <projectUrl>https://go.microsoft.com/fwlink/?linkid=864997</projectUrl>
+    <licenseUrl>https://go.microsoft.com/fwlink/?linkid=864999</licenseUrl>
+    <dependencies>
+    </dependencies>
+  </metadata>
+  <files>
+    <file src="output/Xamarin.Kotlin.StdLib.dll" target="lib/MonoAndroid" />
+    <file src="External-Dependency-Info.txt" target="THIRD-PARTY-NOTICES.txt" />
+  </files>
+</package>

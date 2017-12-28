@@ -1,0 +1,32 @@
+version: "0.1.6"
+name: YouTube Player for iOS
+id: youtubeiosplayer
+publisher: Xamarin Inc.
+publisher-url: https://xamarin.com
+src-url: https://github.com/xamarin/XamarinComponents/tree/master/XPlat/YouTube.Player/ios
+summary: "Helper library for iOS developers that want to embed YouTube videos in their iOS apps with the iframe player API."
+license: ../License.md
+details: Details.md
+getting-started: GettingStarted.md
+icons:
+  - ../../images/youtubeplayerios_128x128.png
+  - ../../images/youtubeplayerios_512x512.png
+
+docs-url: https://developers.google.com/youtube/v3/guides/ios_youtube_helper
+libraries:
+  ios-unified: ../output/YouTube.Player.iOS.dll
+is_shell: true
+packages:
+  ios-unified:
+    - Xamarin.YouTube.Player.iOS, Version=0.1.6
+samples:
+  - name: "YouTube Player for iOS sample"
+    path:  ../samples/YouTubePlayerSample.sln
+    removeProjects: 
+      - YouTube.Player.iOS
+    installNuGets:
+      - project: YouTubePlayerSample
+        packages:
+          - Xamarin.YouTube.Player.iOS
+local-nuget-repo: ../output
+no_build: true

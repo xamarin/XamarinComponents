@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package>
+    <metadata>
+        <id>Xamarin.Google.Android.Vending.Expansion.ZipFile</id>
+        <version>2.0.0</version>
+        <title>Android APK Expansion FileSystem</title>
+        <authors>Microsoft</authors>
+        <owners>Microsoft</owners>
+        <projectUrl>https://go.microsoft.com/fwlink/?linkid=864961</projectUrl>
+        <licenseUrl>https://go.microsoft.com/fwlink/?linkid=864963</licenseUrl>
+        <!--<iconUrl>https://raw.githubusercontent.com/xamarin/XamarinComponents/master/Android/GoogleAndroidVending/images/ExpansionDownloader_128x128.png</iconUrl>-->
+        <requireLicenseAcceptance>true</requireLicenseAcceptance>
+        <description>A library that uses multiple zip files as a virtual read-only filesystem with hooks to support APK Expansion lies.</description>
+        <copyright>© Microsoft Corporation. All rights reserved.</copyright>
+        <tags>android,monodroid,xamarin,google,lvl,license,verification,library,apk,expansion,downloader</tags>
+    </metadata>
+    <files>
+        <file src="output/Google.Android.Vending.Expansion.ZipFile.dll" target="lib/MonoAndroid" />
+        <file src="External-Dependency-Info.txt" target="THIRD-PARTY-NOTICES.txt" />
+    </files>
+</package>

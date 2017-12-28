@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<package>
+  <metadata>
+    <id>Xamarin.Android.PhotoView</id>
+    <title>PhotoView for Xamarin.Android</title>
+    <version>2.1.3</version>
+    <authors>Microsoft</authors>
+    <owners>Microsoft</owners>
+    <requireLicenseAcceptance>true</requireLicenseAcceptance>
+    <description>Xamarin.Android binding for PhotoView - Implementation of ImageView for Android that supports zooming, by various touch gestures.</description>
+    <copyright>© Microsoft Corporation. All rights reserved.</copyright>
+    <projectUrl>https://go.microsoft.com/fwlink/?linkid=864989</projectUrl>
+    <licenseUrl>https://go.microsoft.com/fwlink/?linkid=865070</licenseUrl>
+  </metadata>
+  <files>
+    <file src="output/PhotoView.dll" target="lib/MonoAndroid" />
+    <file src="External-Dependency-Info.txt" target="THIRD-PARTY-NOTICES.txt" />
+  </files>
+</package>

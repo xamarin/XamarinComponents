@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<package>
+  <metadata>
+    <id>Xamarin.Google.ARCore</id>
+    <title>Xamarin Google ARCore</title>
+    <version>$version$</version>
+    <authors>Microsoft</authors>
+    <owners>Microsoft</owners>
+    <requireLicenseAcceptance>true</requireLicenseAcceptance>
+    <summary>Xamarin.Android Bindings for Google ARCore</summary>
+    <description>
+      Xamarin.Android Bindings for Google ARCore
+    </description>
+    <copyright>© Microsoft Corporation. All rights reserved.</copyright>
+    <projectUrl>https://go.microsoft.com/fwlink/?linkid=864978</projectUrl>
+    <licenseUrl>https://go.microsoft.com/fwlink/?linkid=865040</licenseUrl>
+  </metadata>
+  <files>
+    <file src="output/Xamarin.Google.ARCore.dll" target="lib/MonoAndroid70" />
+    <file src="External-Dependency-Info.txt" target="THIRD-PARTY-NOTICES.txt" />
+  </files>
+</package>

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <string name="app_name">Market Licensing Example</string>
+
+  <!-- License checking status messages -->
+  <string name="check_license">Check license</string>
+  <string name="reset_license">Reset license</string>
+  <string name="checking_license">Checking license...</string>
+  <string name="dont_allow">Don\'t allow the user access</string>
+  <string name="allow">Allow the user access</string>
+  <string name="application_error">Application error: {0}</string>
+
+  <!-- Unlicensed dialog messages -->
+  <string name="unlicensed_dialog_title">Application not licensed</string>
+  <string name="unlicensed_dialog_body">This application is not licensed. Please purchase it from Android Market.</string>
+  <string name="unlicensed_dialog_retry_body">Unable to validate license. Check to see if a network connection is available.</string>
+  <string name="buy_button">Buy app</string>
+  <string name="retry_button">Retry</string>
+  <string name="quit_button">Exit</string>
+</resources>

@@ -10,6 +10,14 @@
   BuildScript: ./Android/AndroidSwipeLayout/build.cake
   TriggerPaths: [ Android/AndroidSwipeLayout ]
   MacBuildTargets: [ samples, component ]
+- Name: ARCore
+  BuildScript: ./Android/ARCore/build.cake
+  TriggerPaths: [ Android/ARCore ]
+  MacBuildTargets: [ samples, nuget ]
+- Name: GoogleAndroidVending
+  BuildScript: ./Android/GoogleAndroidVending/build.cake
+  TriggerPaths: [ Android/GoogleAndroidVending ]
+  MacBuildTargets: [ component, samples ]
 - Name: AndroidThings
   BuildScript: ./Android/AndroidThings/build.cake
   TriggerPaths: [ Android/AndroidThings ]
@@ -21,7 +29,7 @@
 - Name: AnimatedCircleLoadingView
   BuildScript: ./Android/AnimatedCircleLoadingView/build.cake
   TriggerPaths: [ Android/AnimatedCircleLoadingView ]
-  MacBuildTargets: [ samples, component ]
+  MacBuildTargets: [ component, samples ]
 - Name: AutoFitTextView
   BuildScript: ./Android/AutoFitTextView/build.cake
   TriggerPaths: [ Android/AutoFitTextView ]
@@ -38,10 +46,18 @@
   BuildScript: ./Android/Blurring/build.cake
   TriggerPaths: [ Android/Blurring ]
   MacBuildTargets: [ samples, nuget, component ]
+- Name: ShimmerLayout
+  BuildScript: ./Android/ShimmerLayout/build.cake
+  TriggerPaths: [ Android/ShimmerLayout ]
+  MacBuildTargets: [ component, samples ]
 - Name: Bolts
   BuildScript: ./Android/Bolts/build.cake
   TriggerPaths: [ Android/Bolts ]
   MacBuildTargets: [ libs, nuget ]
+- Name: ViewPropertyObjectAnimator
+  BuildScript: ./Android/ViewPropertyObjectAnimator/build.cake
+  TriggerPaths: [ Android/ViewPropertyObjectAnimator ]
+  MacBuildTargets: [ component, samples ]
 - Name: DeviceYearClass
   BuildScript: ./Android/DeviceYearClass/build.cake
   TriggerPaths: [ Android/DeviceYearClass ]
@@ -70,6 +86,14 @@
   BuildScript: ./Android/GoogleGson/build.cake
   TriggerPaths: [ Android/GoogleGson ]
   MacBuildTargets: [ samples, nuget ]
+- Name: GoogleZXing
+  BuildScript: ./Android/GoogleZXing/build.cake
+  TriggerPaths: [ Android/GoogleZXing ]
+  MacBuildTargets: [ samples, component ]
+- Name: Guava
+  BuildScript: ./Android/Guava/build.cake
+  TriggerPaths: [ Android/Guava ]
+  MacBuildTargets: [ nuget ]
 - Name: JacksonCore
   BuildScript: ./Android/Jackson.Core/build.cake
   TriggerPaths: [ Android/Jackson.Core ]
@@ -105,7 +129,7 @@
 - Name: RoundedImageView
   BuildScript: ./Android/RoundedImageView/build.cake
   TriggerPaths: [ Android/RoundedImageView ]
-  MacBuildTargets: [ samples, component ]
+  MacBuildTargets: [ component, samples ]
 - Name: Scissors
   BuildScript: ./Android/Scissors/build.cake
   TriggerPaths: [ Android/Scissors ]
@@ -126,6 +150,10 @@
   BuildScript: ./Android/StickyListHeaders/build.cake
   TriggerPaths: [ Android/StickyListHeaders ]
   MacBuildTargets: [ samples, component ]
+- Name: Kotlin
+  BuildScript: ./Android/Kotlin/build.cake
+  TriggerPaths: [ Android/Kotlin ]
+  MacBuildTargets: [ component, samples ]
 - Name: UniversalImageLoader
   BuildScript: ./Android/UniversalImageLoader/build.cake
   TriggerPaths: [ Android/UniversalImageLoader ]
@@ -138,6 +166,10 @@
   BuildScript: ./Android/VectorCompat/build.cake
   TriggerPaths: [ Android/VectorCompat ]
   MacBuildTargets: [ samples, nuget, component ]
+- Name: Glide
+  BuildScript: ./Android/Glide/build.cake
+  TriggerPaths: [ Android/Glide ]
+  MacBuildTargets: [ samples, nuget ]
 
 #######################################################
 # iOS
@@ -175,6 +207,10 @@
   BuildScript: ./iOS/DZNEmptyDataSet/build.cake
   TriggerPaths: [ iOS/DZNEmptyDataSet ]
   MacBuildTargets: [ samples, component ]
+- Name: FacebookPop
+  BuildScript: ./iOS/FacebookPop/build.cake
+  TriggerPaths: [ iOS/FacebookPop ]
+  MacBuildTargets: [ samples, nuget, component ]
 - Name: FXBlurView
   BuildScript: ./iOS/FXBlurView/build.cake
   TriggerPaths: [ iOS/FXBlurView ]
@@ -203,10 +239,10 @@
   BuildScript: ./iOS/JDStatusBarNotification/build.cake
   TriggerPaths: [ iOS/JDStatusBarNotification ]
   MacBuildTargets: [ samples, component ]
-- Name: JSQMessagesViewController
-  BuildScript: ./iOS/JSQMessagesViewController/build.cake
-  TriggerPaths: [ iOS/JSQMessagesViewController ]
-  MacBuildTargets: [ samples, component ]
+# - Name: JSQMessagesViewController TODO - temporarily disable to allow other projects to complete 
+#   BuildScript: ./iOS/JSQMessagesViewController/build.cake
+#   TriggerPaths: [ iOS/JSQMessagesViewController ]
+#   MacBuildTargets: [ samples, component ]
 - Name: JZMultiChoicesCircleButton
   BuildScript: ./iOS/JZMultiChoicesCircleButton/build.cake
   TriggerPaths: [ iOS/JZMultiChoicesCircleButton ]
@@ -214,6 +250,10 @@
 - Name: LiquidFloatingActionButton
   BuildScript: ./iOS/LiquidFloatingActionButton/build.cake
   TriggerPaths: [ iOS/LiquidFloatingActionButton ]
+  MacBuildTargets: [ samples, component ]
+- Name: TwitterImagePipeline
+  BuildScript: ./iOS/TwitterImagePipeline/build.cake
+  TriggerPaths: [ iOS/TwitterImagePipeline ]
   MacBuildTargets: [ samples, component ]
 - Name: Masonry
   BuildScript: ./iOS/Masonry/build.cake
@@ -242,6 +282,10 @@
 - Name: SCCatWaitingHUD
   BuildScript: ./iOS/SCCatWaitingHUD/build.cake
   TriggerPaths: [ iOS/SCCatWaitingHUD ]
+  MacBuildTargets: [ samples, component ]
+- Name: SimplePing
+  BuildScript: ./iOS/SimplePing/build.cake
+  TriggerPaths: [ iOS/SimplePing ]
   MacBuildTargets: [ samples, component ]
 - Name: SDWebImage
   BuildScript: ./iOS/SDWebImage/build.cake
@@ -292,14 +336,14 @@
 # XPlat
 #######################################################
 
-- Name: DropboxCoreApiAndroid
-  BuildScript: ./XPlat/DropboxCoreApi/Android/build.cake
-  TriggerPaths: [ XPlat/DropboxCoreApi/Android ]
-  MacBuildTargets: [ samples, component ]
-- Name: DropboxCoreApiiOS
-  BuildScript: ./XPlat/DropboxCoreApi/iOS/build.cake
-  TriggerPaths: [ XPlat/DropboxCoreApi/iOS ]
-  MacBuildTargets: [ samples, component ]
+# - Name: DropboxCoreApiAndroid - obsolete
+#   BuildScript: ./XPlat/DropboxCoreApi/Android/build.cake
+#   TriggerPaths: [ XPlat/DropboxCoreApi/Android ]
+#   MacBuildTargets: [ samples, component ]
+# - Name: DropboxCoreApiiOS - obsolete
+#   BuildScript: ./XPlat/DropboxCoreApi/iOS/build.cake
+#   TriggerPaths: [ XPlat/DropboxCoreApi/iOS ]
+#   MacBuildTargets: [ samples, component ]
 - Name: GoogleVRAndroid
   BuildScript: ./XPlat/GoogleVR/Android/build.cake
   TriggerPaths: [ XPlat/GoogleVR/Android ]
@@ -316,6 +360,14 @@
   BuildScript: ./XPlat/AzureMessaging/build.cake
   TriggerPaths: [ XPlat/AzureMessaging ]
   MacBuildTargets: [ samples, component ]
+- Name: YouTube.Player.Android
+  BuildScript: ./XPlat/YouTube.Player/android/build.cake
+  TriggerPaths: [ XPlat/YouTube.Player/android ]
+  MacBuildTargets: [ component, samples ]
+- Name: YouTube.Player.iOS
+  BuildScript: ./XPlat/YouTube.Player/ios/build.cake
+  TriggerPaths: [ XPlat/YouTube.Player/ios ]
+  MacBuildTargets: [ component, samples ]
 - Name: CardIOAndroid
   BuildScript: ./XPlat/CardIO/Android/build.cake
   TriggerPaths: [ XPlat/CardIO/Android ]
@@ -369,6 +421,14 @@
   TriggerPaths: [ XPlat/Shopify/iOS ]
   MacBuildTargets: [ samples, component ]
 
+#######################################################
+# Mac
+#######################################################
+
+- Name: ITSwitch
+  BuildScript: ./Mac/ITSwitch/build.cake
+  TriggerPaths: [ Mac/ITSwitch ]
+  MacBuildTargets: [ samples, nuget, component ]
 
 #######################################################
 # Utilities
@@ -377,4 +437,8 @@
 - Name: Xamarin.Build.Download
   BuildScript: ./Util/Xamarin.Build.Download/build.cake
   TriggerPaths: [ Util/Xamarin.Build.Download ]
+  MacBuildTargets: [ nuget ]
+- Name: Cake.Xamarin.Binding.Util
+  BuildScript: ./Util/Cake.Xamarin.Binding.Util/build.cake
+  TriggerPaths: [ Util/Cake.Xamarin.Binding.Util ]
   MacBuildTargets: [ nuget ]

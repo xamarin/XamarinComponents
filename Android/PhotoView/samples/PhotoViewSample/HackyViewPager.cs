@@ -1,15 +1,6 @@
-﻿using System;
-using Android.App;
-using Android.Content;
-using Android.Graphics;
-using Android.OS;
-using Android.Support.V7.App;
+﻿using Android.Content;
 using Android.Views;
-using Android.Widget;
-
-using ImageViews.Photo;
 using Android.Support.V4.View;
-using Android.Runtime;
 using Android.Util;
 
 namespace PhotoViewSample
@@ -19,34 +10,32 @@ namespace PhotoViewSample
         public HackyViewPager(Context context)
             : base(context)
         {
-            IsLocked = false;
         }
 
         public HackyViewPager(Context context, IAttributeSet attrs)
             : base(context, attrs)
         {
-            IsLocked = false;
         }
-
-        public bool IsLocked { get; set; }
 
         public override bool OnInterceptTouchEvent(MotionEvent ev)
         {
-            if (!IsLocked)
+            // Hacky fix for Issue #4 and
+            // http://code.google.com/p/android/issues/detail?id=18990
+            // ScaleGestureDetector seems to mess up the touch events, which means that
+            // ViewGroups which make use of onInterceptTouchEvent throw a lot of
+            // IllegalArgumentException: pointerIndex out of range.
+            //
+            // There's not much I can do in my code for now, but we can mask the result by
+            // just catching the problem and ignoring it.
+            try
             {
                 return base.OnInterceptTouchEvent(ev);
             }
-            return false;
-        }
-
-        public override bool OnTouchEvent(MotionEvent e)
-        {
-            return !IsLocked && base.OnTouchEvent(e);
-        }
-
-        public void ToggleLock()
-        {
-            IsLocked = !IsLocked;
+            catch(Java.Lang.IllegalArgumentException ex)
+            {
+                ex.PrintStackTrace();
+                return false;
+            }
         }
     }
 }

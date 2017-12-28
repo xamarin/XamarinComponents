@@ -1,24 +1,24 @@
 ﻿using System;
 using Android.Runtime;
 
-namespace EstimoteSdk
+namespace EstimoteSdk.Observation.Region.Beacon
 {
-    public partial class Region
+	public partial class BeaconRegion
     {
 
-        public Region(string identifier, string proximityUUID)
+		public BeaconRegion(string identifier, string proximityUUID)
             : this(identifier, Java.Util.UUID.FromString (proximityUUID), null, null)
         {
             
         }
 
-        public Region(string identifier, string proximityUUID, int major)
+		public BeaconRegion(string identifier, string proximityUUID, int major)
             : this(identifier, Java.Util.UUID.FromString (proximityUUID), new Java.Lang.Integer(major), null)
         {
 
         }
 
-        public Region(string identifier, string proximityUUID, int major, int minor)
+		public BeaconRegion(string identifier, string proximityUUID, int major, int minor)
             : this(identifier, Java.Util.UUID.FromString (proximityUUID), new Java.Lang.Integer(major), new Java.Lang.Integer(minor))
         {
 

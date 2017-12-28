@@ -9,7 +9,7 @@ var JAR_JS_FILE = string.Format ("./externals/jackson-core-{0}.jar", JS_VERSION)
 
 var buildSpec = new BuildSpec () {
 	Libs = new ISolutionBuilder [] {
-		new IOSSolutionBuilder {
+		new DefaultSolutionBuilder {
 			SolutionPath = "./source/Jackson.Core/Jackson.Core.sln",
 			Configuration = "Release",
 			OutputFiles = new [] { 

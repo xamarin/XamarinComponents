@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<view xmlns:android="http://schemas.android.com/apk/res/android"
+    class="com.examples.youtubeapidemo.ActionBarDemoActivity_ActionBarPaddedFrameLayout"
+    android:id="@+id/view_container"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal">
+        <fragment
+            android:name="com.google.android.youtube.player.YouTubePlayerFragment"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:id="@+id/player_fragment" />
+        <TextView
+            android:id="@+id/tutorial_text"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:padding="5dp"
+            android:text="@string/actionbar_tutorial"
+            android:textAppearance="@android:style/TextAppearance.Small" />
+    </LinearLayout>
+</view>

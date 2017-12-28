@@ -1,0 +1,25 @@
+
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimplePingSample.Mac", "SimplePingSample.Mac\SimplePingSample.Mac.csproj", "{52A200D9-5BFB-4AEC-ABE0-175BBFDF1D87}"
+EndProject
+Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "Xamarin.SimplePing", "..\..\source\Xamarin.SimplePing\Xamarin.SimplePing.shproj", "{BBCEF792-5464-4964-B755-D612F700E4B1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Xamarin.SimplePing.Mac", "..\..\source\Xamarin.SimplePing.Mac\Xamarin.SimplePing.Mac.csproj", "{9E25E47C-7359-4B71-9E10-F7E4B1268872}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x64 = Debug|x64
+		Release|x64 = Release|x64
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{52A200D9-5BFB-4AEC-ABE0-175BBFDF1D87}.Debug|x64.ActiveCfg = Debug|x64
+		{52A200D9-5BFB-4AEC-ABE0-175BBFDF1D87}.Debug|x64.Build.0 = Debug|x64
+		{52A200D9-5BFB-4AEC-ABE0-175BBFDF1D87}.Release|x64.ActiveCfg = Release|x64
+		{52A200D9-5BFB-4AEC-ABE0-175BBFDF1D87}.Release|x64.Build.0 = Release|x64
+		{9E25E47C-7359-4B71-9E10-F7E4B1268872}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{9E25E47C-7359-4B71-9E10-F7E4B1268872}.Debug|x64.Build.0 = Debug|Any CPU
+		{9E25E47C-7359-4B71-9E10-F7E4B1268872}.Release|x64.ActiveCfg = Release|Any CPU
+		{9E25E47C-7359-4B71-9E10-F7E4B1268872}.Release|x64.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal

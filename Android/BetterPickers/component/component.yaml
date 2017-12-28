@@ -1,22 +1,41 @@
-version: 1.6.0.1
+version: "1.6.0.2"
 name: BetterPickers
 id: betterpickers
+summary: "Better UI Pickers for Date, Time, Numbers and more!"
 publisher: Xamarin Inc.
 publisher-url: "http://xamarin.com"
 src-url: https://github.com/xamarin/XamarinComponents/tree/master/Android/BetterPickers
-no_build: true
 icons: 
   - ./icons/betterpickers_128x128.png
   - ./icons/betterpickers_512x512.png
-summary: "Better UI Pickers for Date, Time, Numbers and more!"
+
+license: ../LICENSE.md
+details: Details.md
+getting-started: GettingStarted.md
+
 libraries:
   android: 
    - ../output/BetterPickers.dll
    - ../output/AndroidSwitchBackport.dll
+
+no_build: true
+is_shell: true
+local-nuget-repo: ../output/
 packages:
   android:
-    - Xamarin.Android.Support.v4, Version=23.0.1.3
-    - NineOldAndroids, Version=2.4.0
+    - Xamarin.BetterPickers, Version=1.6.0.2
+
 samples:
   - name: "Android Sample"
     path: ../samples/BetterPickersSample.sln
+    removeProjects:
+      - AndroidSwitchBackport
+      - BetterPickers
+    installNuGets:
+      - project: BetterPickersSample
+        packages:
+          - Xamarin.BetterPickers
+
+additional-files:
+  - source: "../External-Dependency-Info.txt"
+    destination: "THIRD-PARTY-NOTICES.txt"

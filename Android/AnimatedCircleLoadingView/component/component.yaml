@@ -1,4 +1,4 @@
-version: 1.1.2.1
+version: "1.1.5"
 name: Animated Circle Loading View
 id: AnimatedCircleLoadingView
 publisher: Xamarin Inc
@@ -21,3 +21,18 @@ libraries:
 samples:
   - name: "Android Sample"
     path: ../samples/AnimatedCircleLoadingViewSample.sln
+    removeProjects:
+      - AnimatedCircleLoadingView
+    installNuGets:
+      - project: AnimatedCircleLoadingViewSample
+        packages:
+          - Xamarin.Android.AnimatedCircleLoadingView
+
+is_shell: true
+local-nuget-repo: ../output/
+packages:
+  android: Xamarin.Android.AnimatedCircleLoadingView, Version=1.1.5
+
+additional-files:
+  - source: "../External-Dependency-Info.txt"
+    destination: "THIRD-PARTY-NOTICES.txt"

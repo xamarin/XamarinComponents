@@ -1,0 +1,109 @@
+﻿<enum-field-mappings>
+  <!--
+  This example converts the constants Fragment_id, Fragment_name,
+  and Fragment_tag from android.support.v4.app.FragmentActivity.FragmentTag
+  to an enum called Android.Support.V4.App.FragmentTagType with values
+  Id, Name, and Tag.
+  
+  <mapping jni-class="android/support/v4/app/FragmentActivity$FragmentTag" clr-enum-type="Android.Support.V4.App.FragmentTagType">
+    <field jni-name="Fragment_name" clr-name="Name" value="0" />
+    <field jni-name="Fragment_id" clr-name="Id" value="1" />
+    <field jni-name="Fragment_tag" clr-name="Tag" value="2" />
+  </mapping>
+  -->
+
+  <mapping jni-interface="com/google/android/vending/expansion/downloader/IDownloaderService" clr-enum-type="Google.Android.Vending.Expansion.Downloader.DownloaderServiceFlags">
+    <field jni-name="FLAGS_NONE" clr-name="None" value="0" />
+    <field jni-name="FLAGS_DOWNLOAD_OVER_CELLULAR" clr-name="DownloadOverCellular" value="1" />
+  </mapping>
+
+  <mapping jni-class="com/google/android/vending/expansion/downloader/impl/DownloaderService" clr-enum-type="Google.Android.Vending.Expansion.Downloader.DownloaderServiceRequirement">
+    <field jni-name="NO_DOWNLOAD_REQUIRED" clr-name="NoDownloadRequired" value="0" />
+    <field jni-name="LVL_CHECK_REQUIRED" clr-name="LvlCheckRequired" value="1" />
+    <field jni-name="DOWNLOAD_REQUIRED" clr-name="DownloadRequired" value="2" />
+  </mapping>
+
+  <mapping jni-class="com/google/android/vending/expansion/downloader/impl/DownloaderService" clr-enum-type="Google.Android.Vending.Expansion.Downloader.DownloaderServiceControlAction">
+    <field jni-name="CONTROL_RUN" clr-name="Run" value="0" />
+    <field jni-name="CONTROL_PAUSED" clr-name="Paused" value="1" />
+  </mapping>
+
+  <mapping jni-class="com/google/android/vending/expansion/downloader/impl/DownloaderService" clr-enum-type="Google.Android.Vending.Expansion.Downloader.DownloaderServiceNetworkAvailability">
+    <field jni-name="NETWORK_OK" clr-name="Ok" value="1" />
+    <field jni-name="NETWORK_NO_CONNECTION" clr-name="NoConnection" value="2" />
+    <field jni-name="NETWORK_UNUSABLE_DUE_TO_SIZE" clr-name="UnusableDueToSize" value="3" />
+    <field jni-name="NETWORK_RECOMMENDED_UNUSABLE_DUE_TO_SIZE" clr-name="RecommendedUnusableDueToSize" value="4" />
+    <field jni-name="NETWORK_CANNOT_USE_ROAMING" clr-name="CannotUseRoaming" value="5" />
+    <field jni-name="NETWORK_TYPE_DISALLOWED_BY_REQUESTOR" clr-name="TypeDisallowedByRequestor" value="6" />
+  </mapping>
+
+  <mapping jni-class="com/google/android/vending/expansion/downloader/impl/DownloaderService" clr-enum-type="Google.Android.Vending.Expansion.Downloader.DownloaderServiceStatus">
+    <field jni-name="STATUS_PENDING" clr-name="Pending" value="190" />
+    <field jni-name="STATUS_RUNNING" clr-name="Running" value="192" />
+    <field jni-name="STATUS_PAUSED_BY_APP" clr-name="PausedByApp" value="193" />
+    <field jni-name="STATUS_WAITING_TO_RETRY" clr-name="WaitingToRetry" value="194" />
+    <field jni-name="STATUS_WAITING_FOR_NETWORK" clr-name="WaitingForNetwork" value="195" />
+    <field jni-name="STATUS_QUEUED_FOR_WIFI_OR_CELLULAR_PERMISSION" clr-name="QueuedForWifiOrCellularPermission" value="196" />
+    <field jni-name="STATUS_QUEUED_FOR_WIFI" clr-name="QueuedForWifi" value="197" />
+    <field jni-name="STATUS_SUCCESS" clr-name="Success" value="200" />
+    <field jni-name="STATUS_FORBIDDEN" clr-name="Forbidden" value="403" />
+    <field jni-name="STATUS_FILE_DELIVERED_INCORRECTLY" clr-name="FileDeliveredIncorrectly" value="487" />
+    <field jni-name="STATUS_FILE_ALREADY_EXISTS_ERROR" clr-name="FileAlreadyExists" value="488" />
+    <field jni-name="STATUS_CANNOT_RESUME" clr-name="CannotResume" value="489" />
+    <field jni-name="STATUS_CANCELED" clr-name="Canceled" value="490" />
+    <field jni-name="STATUS_UNKNOWN_ERROR" clr-name="UnknownError" value="491" />
+    <field jni-name="STATUS_FILE_ERROR" clr-name="FileError" value="492" />
+    <field jni-name="STATUS_UNHANDLED_REDIRECT" clr-name="UnhandledRedirect" value="493" />
+    <field jni-name="STATUS_UNHANDLED_HTTP_CODE" clr-name="UnhandledHttpCode" value="494" />
+    <field jni-name="STATUS_HTTP_DATA_ERROR" clr-name="HttpDataError" value="495" />
+    <field jni-name="STATUS_HTTP_EXCEPTION" clr-name="HttpException" value="496" />
+    <field jni-name="STATUS_TOO_MANY_REDIRECTS" clr-name="TooManyRedirects" value="497" />
+    <field jni-name="STATUS_INSUFFICIENT_SPACE_ERROR" clr-name="InsufficientSpace" value="498" />
+    <field jni-name="STATUS_DEVICE_NOT_FOUND_ERROR" clr-name="DeviceNotFound" value="499" />
+  </mapping>
+
+  <mapping jni-class="com/google/android/vending/expansion/downloader/Constants" clr-enum-type="Google.Android.Vending.Expansion.Downloader.DownloaderServiceStatus">
+    <field jni-name="STATUS_BAD_REQUEST" clr-name="BadRequest" value="400" />
+    <field jni-name="STATUS_NOT_ACCEPTABLE" clr-name="NotAcceptable" value="406" />
+    <field jni-name="STATUS_LENGTH_REQUIRED" clr-name="LengthRequired" value="411" />
+    <field jni-name="STATUS_PRECONDITION_FAILED" clr-name="PreconditionFailed" value="412" />
+  </mapping>
+
+  <mapping jni-interface="com/google/android/vending/expansion/downloader/IDownloaderClient" clr-enum-type="Google.Android.Vending.Expansion.Downloader.DownloaderClientState">
+    <field jni-name="STATE_IDLE" clr-name="Idle" value="1" />
+    <field jni-name="STATE_FETCHING_URL" clr-name="FetchingUrl" value="2" />
+    <field jni-name="STATE_CONNECTING" clr-name="Connecting" value="3" />
+    <field jni-name="STATE_DOWNLOADING" clr-name="Downloading" value="4" />
+    <field jni-name="STATE_COMPLETED" clr-name="Completed" value="5" />
+    <field jni-name="STATE_PAUSED_NETWORK_UNAVAILABLE" clr-name="PausedNetworkUnavailable" value="6" />
+    <field jni-name="STATE_PAUSED_BY_REQUEST" clr-name="PausedByRequest" value="7" />
+    <field jni-name="STATE_PAUSED_WIFI_DISABLED_NEED_CELLULAR_PERMISSION" clr-name="PausedWifiDisabledNeedCellularPermission" value="8" />
+    <field jni-name="STATE_PAUSED_NEED_CELLULAR_PERMISSION" clr-name="PausedNeedCellularPermission" value="9" />
+    <field jni-name="STATE_PAUSED_WIFI_DISABLED" clr-name="PausedWifiDisabled" value="10" />
+    <field jni-name="STATE_PAUSED_NEED_WIFI" clr-name="PausedNeedWifi" value="11" />
+    <field jni-name="STATE_PAUSED_ROAMING" clr-name="PausedRoaming" value="12" />
+    <field jni-name="STATE_PAUSED_NETWORK_SETUP_FAILURE" clr-name="PausedNetworkSetupFailure" value="13" />
+    <field jni-name="STATE_PAUSED_SDCARD_UNAVAILABLE" clr-name="PausedSdCardUnavailable" value="14" />
+    <field jni-name="STATE_FAILED_UNLICENSED" clr-name="FailedUnlicensed" value="15" />
+    <field jni-name="STATE_FAILED_FETCHING_URL" clr-name="FailedFetchingUrl" value="16" />
+    <field jni-name="STATE_FAILED_SDCARD_FULL" clr-name="FailedSdCardFull" value="17" />
+    <field jni-name="STATE_FAILED_CANCELED" clr-name="FailedCanceled" value="18" />
+    <field jni-name="STATE_FAILED" clr-name="Failed" value="19" />
+  </mapping>
+
+  <mapping jni-class="com/google/android/vending/expansion/downloader/DownloaderServiceMarshaller" clr-enum-type="Google.Android.Vending.Expansion.Downloader.DownloaderServiceMarshallerMessage">
+    <field jni-name="MSG_REQUEST_ABORT_DOWNLOAD" clr-name="RequestAbortDownload" value="1" />
+    <field jni-name="MSG_REQUEST_PAUSE_DOWNLOAD" clr-name="RequestPauseDownload" value="2" />
+    <field jni-name="MSG_SET_DOWNLOAD_FLAGS" clr-name="SetDownloadFlags" value="3" />
+    <field jni-name="MSG_REQUEST_CONTINUE_DOWNLOAD" clr-name="RequestContinueDownload" value="4" />
+    <field jni-name="MSG_REQUEST_DOWNLOAD_STATE" clr-name="RequestDownloadState" value="5" />
+    <field jni-name="MSG_REQUEST_CLIENT_UPDATE" clr-name="RequestClientUpdate" value="6" />
+  </mapping>
+
+  <mapping jni-class="com/google/android/vending/expansion/downloader/DownloaderClientMarshaller" clr-enum-type="Google.Android.Vending.Expansion.Downloader.DownloaderClientMarshallerMessage">
+    <field jni-name="MSG_ONDOWNLOADSTATE_CHANGED" clr-name="DownloadStateChanged" value="10" />
+    <field jni-name="MSG_ONDOWNLOADPROGRESS" clr-name="DownloadProgress" value="11" />
+    <field jni-name="MSG_ONSERVICECONNECTED" clr-name="ServiceConnected" value="12" />
+  </mapping>
+
+</enum-field-mappings>

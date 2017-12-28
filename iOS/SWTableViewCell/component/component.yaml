@@ -24,3 +24,5 @@ screenshots:
   - screenshots/screenshot2.png
   - screenshots/screenshot3.png
   - screenshots/screenshot4.png
+
+no_build: true

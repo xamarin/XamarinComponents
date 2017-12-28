@@ -79,6 +79,7 @@
     <Compile Include="XamarinDownloadPartialZips.cs" />
     <Compile Include="PartialZipDownload.cs" />
     <Compile Include="HttpMultipartContentParser.cs" />
+    <Compile Include="XamarinBuildAndroidAarProguardConfigs.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Xamarin.Build.Download.targets">

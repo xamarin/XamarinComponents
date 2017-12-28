@@ -1,0 +1,35 @@
+﻿<metadata>
+  <!--
+  This sample removes the class: android.support.v4.content.AsyncTaskLoader.LoadTask:
+  <remove-node path="/api/package[@name='android.support.v4.content']/class[@name='AsyncTaskLoader.LoadTask']" />
+  
+  This sample removes the method: android.support.v4.content.CursorLoader.loadInBackground:
+  <remove-node path="/api/package[@name='android.support.v4.content']/class[@name='CursorLoader']/method[@name='loadInBackground']" />
+  -->
+
+  <attr path="/api/package[@name='com.android.vending.licensing']" name="managedName">Google.Android.Vending.Licensing</attr>
+  <attr path="/api/package[@name='com.google.android.vending.licensing']" name="managedName">Google.Android.Vending.Licensing</attr>
+  <attr path="/api/package[@name='com.google.android.vending.licensing.util']" name="managedName">Google.Android.Vending.Licensing.Util</attr>
+
+  <attr path="/api/package[@name='com.google.android.vending.licensing']/interface[@name='Policy']/method[@name='processServerResponse']/parameter[1]" name="managedName">response</attr>
+  <attr path="/api/package[@name='com.google.android.vending.licensing']/interface[@name='Policy']/method[@name='processServerResponse']/parameter[2]" name="managedName">rawData</attr>
+  <attr path="/api/package[@name='com.google.android.vending.licensing']/interface[@name='Obfuscator']/method[@name='obfuscate']/parameter[1]" name="managedName">original</attr>
+  <attr path="/api/package[@name='com.google.android.vending.licensing']/interface[@name='Obfuscator']/method[@name='obfuscate']/parameter[2]" name="managedName">key</attr>
+  <attr path="/api/package[@name='com.google.android.vending.licensing']/interface[@name='Obfuscator']/method[@name='unobfuscate']/parameter[1]" name="managedName">obfuscated</attr>
+  <attr path="/api/package[@name='com.google.android.vending.licensing']/interface[@name='Obfuscator']/method[@name='unobfuscate']/parameter[2]" name="managedName">key</attr>
+  <attr path="/api/package[@name='com.google.android.vending.licensing']/interface[@name='DeviceLimiter']/method[@name='isDeviceAllowed']/parameter[1]" name="managedName">userId</attr>
+  <attr path="/api/package[@name='com.google.android.vending.licensing']/interface[@name='LicenseCheckerCallback']/method[@name='allow']/parameter[1]" name="managedName">reason</attr>
+  <attr path="/api/package[@name='com.google.android.vending.licensing']/interface[@name='LicenseCheckerCallback']/method[@name='dontAllow']/parameter[1]" name="managedName">reason</attr>
+  <attr path="/api/package[@name='com.google.android.vending.licensing']/interface[@name='LicenseCheckerCallback']/method[@name='applicationError']/parameter[1]" name="managedName">errorCode</attr>
+  <attr path="/api/package[@name='com.android.vending.licensing']/interface[@name='ILicensingService']/method[@name='checkLicense']/parameter[1]" name="managedName">nonce</attr>
+  <attr path="/api/package[@name='com.android.vending.licensing']/interface[@name='ILicensingService']/method[@name='checkLicense']/parameter[2]" name="managedName">packageName</attr>
+  <attr path="/api/package[@name='com.android.vending.licensing']/interface[@name='ILicensingService']/method[@name='checkLicense']/parameter[3]" name="managedName">listener</attr>
+  <attr path="/api/package[@name='com.android.vending.licensing']/interface[@name='ILicenseResultListener']/method[@name='verifyLicense']/parameter[1]" name="managedName">responseCode</attr>
+  <attr path="/api/package[@name='com.android.vending.licensing']/interface[@name='ILicenseResultListener']/method[@name='verifyLicense']/parameter[2]" name="managedName">signedData</attr>
+  <attr path="/api/package[@name='com.android.vending.licensing']/interface[@name='ILicenseResultListener']/method[@name='verifyLicense']/parameter[3]" name="managedName">signature</attr>
+
+  <attr path="/api/package[@name='com.google.android.vending.licensing']/class[@name='ResponseData']/field[@name='nonce']" name="managedName">NumberUsedOnce</attr>
+  <attr path="/api/package[@name='com.google.android.vending.licensing']/class[@name='ResponseData']/field[@name='responseCode']" name="managedName">ResponseCodeInternal</attr>
+  <attr path="/api/package[@name='com.google.android.vending.licensing']/class[@name='ResponseData']/field[@name='responseCode']" name="visibility">internal</attr>
+  
+</metadata>

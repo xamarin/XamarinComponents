@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<package >
+  <metadata>
+    <id>Xamarin.YouTube.Player.iOS</id>
+    <title>YouTube Player for Xamarin.iOS</title>
+    <version>0.1.6</version>
+    <authors>Microsoft</authors>
+    <owners>Microsoft</owners>
+    <requireLicenseAcceptance>true</requireLicenseAcceptance>
+    <description>Helper library for iOS developers that want to embed YouTube videos in their iOS apps with the iframe player API.</description>
+    <copyright>© Microsoft Corporation. All rights reserved.</copyright>
+    <iconUrl>https://raw.githubusercontent.com/xamarin/XamarinComponents/master/XPlat/YouTube.Player/images/youtubeplayerios_256x256.png</iconUrl>
+    <projectUrl>https://go.microsoft.com/fwlink/?linkid=865067</projectUrl>
+    <licenseUrl>https://go.microsoft.com/fwlink/?linkid=864988</licenseUrl>
+  </metadata>
+  <files>
+    <file src="output/YouTube.Player.iOS.dll" target="lib/XamariniOS10" />
+    <file src="External-Dependency-Info.txt" target="THIRD-PARTY-NOTICES.txt" />
+  </files>
+</package>

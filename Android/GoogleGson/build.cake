@@ -3,7 +3,7 @@
 
 var TARGET = Argument ("t", Argument ("target", "Default"));
 
-var JAR_VERSION = "2.7";
+var JAR_VERSION = "2.8.1";
 var JAR_URL = string.Format ("http://search.maven.org/remotecontent?filepath=com/google/code/gson/gson/{0}/gson-{0}.jar", JAR_VERSION);
 var JAR_DEST = "./externals/gson.jar";
 

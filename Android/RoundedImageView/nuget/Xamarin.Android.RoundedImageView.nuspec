@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<package >
+  <metadata>
+    <id>Xamarin.Android.RoundedImageView</id>
+    <title>Rounded Image View for Xamarin.Android</title>
+    <version>2.3.0</version>
+    <authors>Microsoft</authors>
+    <owners>Microsoft</owners>
+    <requireLicenseAcceptance>true</requireLicenseAcceptance>
+    <description>A fast ImageView (and Drawable) that supports rounded corners (and ovals or circles).</description>
+    <copyright>© Microsoft Corporation. All rights reserved.</copyright>
+    <projectUrl>https://go.microsoft.com/fwlink/?linkid=865087</projectUrl>
+    <licenseUrl>https://go.microsoft.com/fwlink/?linkid=864943</licenseUrl>
+    <dependencies>
+      <dependency id="Square.Picasso" version="2.5.2.1" />
+    </dependencies>
+  </metadata>
+  <files>
+    <file src="output/RoundedImageView.dll" target="lib/MonoAndroid403" />
+    <file src="External-Dependency-Info.txt" target="THIRD-PARTY-NOTICES.txt" />
+  </files>
+</package>

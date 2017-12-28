@@ -1,222 +1,113 @@
-#tool nuget:?package=Paket
-#addin nuget:?package=Cake.FileHelpers
 
-var NUGET_SOURCE_LIST = EnvironmentVariable ("NUGET_SOURCES") ?? "https://nuget.org/api/v2";
-var PAKET_SOURCE_LIST = EnvironmentVariable ("PAKET_SOURCES") ?? "./output,https://nuget.org/api/v2";
+#addin nuget:?package=Cake.FileHelpers
+#addin nuget:?package=Cake.Git
+
+#tool nuget:?package=Paket
+
+var PAKET_SOURCE_LIST = EnvironmentVariable ("PAKET_SOURCES") ?? "./output,https://api.nuget.org/v3/index.json";
 var TREAT_WARNINGS_AS_ERRORS = (EnvironmentVariable ("TREAT_WARNINGS_AS_ERRORS") ?? "false").ToLower ().Equals ("true");
 
-var FRAMEWORK = "MonoAndroid70";
-var SUPPORT_VERSION = EnvironmentVariable ("ANDROID_SUPPORT_VERSION") ?? "25.3.1";
-var GPS_VERSION = EnvironmentVariable ("PLAY_SERVICES_VERSION") ?? "29.0.0.1";
+var ANDROID_SUPPORT_VERSION = EnvironmentVariable ("ANDROID_SUPPORT_VERSION") ?? "25.4.0.2";
+var GOOGLE_PLAY_SERVICES_FIREBASE_VERSION = EnvironmentVariable ("PLAY_SERVICES_VERSION") ?? "42.1021.1";
+var ANDROID_VERSION = EnvironmentVariable ("ANDROID_VERSION") ?? "8.0";
+var MONOANDROID_VERSION = "monoandroid" + ANDROID_VERSION;
+
+var XAMARIN_FORMS_GIT_URL = "https://github.com/xamarin/Xamarin.Forms.git";
 
 var BUILD_TARGETS = new [] {
-    "Xamarin_Forms_Platform_Android",
-    "Xamarin_Forms_Platform_Android_AppLinks",
-    "Xamarin_Forms_Maps_Android",
+    "Platforms\\Xamarin_Forms_Platform_Android",
+    "Platforms\\Xamarin_Forms_Platform_Android_AppLinks",
+    "Xamarin_Forms_Maps\\Xamarin_Forms_Maps_Android",
     // App projects cause msbuild/nuget restore issues currently, leave out for now
-    //"Xamarin_Forms_ControlGallery_Android",
-    //"PagesGallery_Droid",
+    //"Control Gallery\\Xamarin_Forms_ControlGallery_Android",
+    //"Pages Gallery\\PagesGallery_Droid",
 };
 
-var PROJECT_REFS = new Dictionary<string, PkgChanges> {
-    { 
-        "./Xamarin.Forms.Platform.Android", new PkgChanges { 
-            Add = new [] { 
-                new Pkg ("Xamarin.Android.Support.v4", SUPPORT_VERSION),
-                new Pkg ("Xamarin.Android.Support.Design", SUPPORT_VERSION), 
-                new Pkg ("Xamarin.Android.Support.v7.CardView", SUPPORT_VERSION),
-            },
-            RemovePatterns = new [] { "Xamarin.Android.Support.", "Xamarin.Build.Download" }
-        }
-    },
-    { 
-        "./Xamarin.Forms.Platform.Android.AppLinks", new PkgChanges {
-            Add = new [] {
-                new Pkg ("Xamarin.Android.Support.v4", SUPPORT_VERSION),
-                new Pkg("Xamarin.GooglePlayServices.AppIndexing", GPS_VERSION),
-                new Pkg("Xamarin.Firebase.AppIndexing", GPS_VERSION),
-            },
-            RemovePatterns = new [] { "Xamarin.Android.Support.", "Xamarin.GooglePlayServices.", "Xamarin.Firebase.", "Xamarin.Build.Download" }
-        }
-    },
-    {
-        "./Xamarin.Forms.Maps.Android", new PkgChanges {
-            Add = new [] {
-                new Pkg ("Xamarin.Android.Support.v4", SUPPORT_VERSION),
-                new Pkg ("Xamarin.Android.Support.v7.AppCompat", SUPPORT_VERSION),
-                new Pkg("Xamarin.GooglePlayServices.Maps", GPS_VERSION),
-            },
-            RemovePatterns = new [] { "Xamarin.Android.Support.", "Xamarin.GooglePlayServices.", "Xamarin.Build.Download" }
-        }
-    },
-    {
-        "./Xamarin.Forms.ControlGallery.Android", new PkgChanges {
-            Add = new [] {
-                new Pkg ("Xamarin.Android.Support.v4", SUPPORT_VERSION),
-                new Pkg ("Xamarin.Android.Support.Design", SUPPORT_VERSION),
-                new Pkg ("Xamarin.Android.Support.v7.CardView", SUPPORT_VERSION),
-                new Pkg("Xamarin.GooglePlayServices.Maps", GPS_VERSION),
-            },
-            RemovePatterns = new [] { "Xamarin.Android.Support.", "Xamarin.GooglePlayServices.", "Xamarin.Build.Download" }
-        }
-    },
-    {
-        "./Stubs/Xamarin.Forms.Platform.Android", new PkgChanges { 
-            Add = new [] {
-                new Pkg ("Xamarin.Android.Support.v4", SUPPORT_VERSION),
-                new Pkg ("Xamarin.Android.Support.v7.RecyclerView", SUPPORT_VERSION),
-            },
-            RemovePatterns = new [] { "Xamarin.Android.Support.", "Xamarin.Build.Download" }
-        } 
-    },
-    {
-        "./PagesGallery/PagesGallery.Droid", new PkgChanges { 
-            Add = new [] {
-                new Pkg ("Xamarin.Android.Support.v4", SUPPORT_VERSION),
-                new Pkg ("Xamarin.Android.Support.Design", SUPPORT_VERSION),
-                new Pkg ("Xamarin.Android.Support.v7.CardView", SUPPORT_VERSION),
-            },
-            RemovePatterns = new [] { "Xamarin.Android.Support.", "Xamarin.Build.Download" }
-        }
-    },
+var DELETE_DIRS = new DirectoryPath [] {
+    "./PagesGallery/PagesGallery.WinPhone",
+    "./PagesGallery/PagesGallery.Windows",
 };
 
-var NUGET_SOURCES = NUGET_SOURCE_LIST.Split (new [] { ',', ';' });
 var PAKET_SOURCES = PAKET_SOURCE_LIST.Split (new [] { ',', ';' });
+var PAKET_EXE = GetFiles ("./tools/**/paket.exe").FirstOrDefault ();
 
-var TARGET = Argument ("target", Argument ("t", "Init"));
-var NL = "\r\n";
+var TARGET = Argument ("target", Argument ("t", "Default"));
 
-public class Pkg
-{
-    public Pkg (string id, string version)
-    {
-        Id = id;
-        Version = version;
-    }
+Task ("clone").Does(() => {
+    GitClone ("https://github.com/xamarin/Xamarin.Forms.git", "./xf");
+});
 
-    public string Id { get;set; }
-    public string Version { get;set; }
-}
-
-public class PkgChanges
-{
-    public Pkg[] Add { get;set; }
-    public string[] RemovePatterns { get;set; }
-}
-
-Task ("Init").Does (() => {
-
-    var paketFramework = "framework: " + FRAMEWORK + NL;
-
-    Information ("Init Framework");
-
-    var paketSources = PAKET_SOURCES.Select (s => "source " + s);
-
-    // Get the list of dependencies
-    var paketNugets = PROJECT_REFS
-        .SelectMany (kvp => kvp.Value.Add)
-        .GroupBy(v => v.Id)
-        .Select (g => g.First())
-        .Select (p => "nuget " + p.Id + " == " + p.Version);
-
-    // Write out the paket.dependencies
-    FileWriteText ("./paket.dependencies", 
-        paketFramework + NL +
-        string.Join (NL, paketSources) + NL + 
-        string.Join (NL, paketNugets));
-
-    foreach (var kvp in PROJECT_REFS) {
-        var paketPackages = kvp.Value.Add.Select (p => p.Id);
-
-        var refFilePath = (new DirectoryPath (kvp.Key)).CombineWithFilePath ("./paket.references");
-
-        FileWriteText (refFilePath, string.Join (NL, paketPackages));
+Task ("init").Does (() => {
+    // Delete these directories as they aren't referenced by Xamarin.Forms.sln anymore
+    // and they reference nuget package versions of Xamarin.Forms in them (and an old version)
+    // which messes with paket.exe and causes version conflicts, so easiest just to delete the dirs
+    foreach (var dd in DELETE_DIRS) {
+        if (DirectoryExists (dd))
+            DeleteDirectory (dd, true);
     }
     
-    EnsureDirectoryExists ("./output");
+    // Update the target framework version in all the android .csproj files
+    ReplaceRegexInFiles ("./**/*droid*.csproj",
+                         "<TargetFrameworkVersion>v[0-9\\.]+</TargetFrameworkVersion>",
+                         "<TargetFrameworkVersion>v" + ANDROID_VERSION + "</TargetFrameworkVersion>");
 
-});
+    // Convert the sln and projects to use paket
+    StartProcess (PAKET_EXE, "convert-from-nuget --force --verbose");
 
-Task ("Update").IsDependentOn ("Init").Does (() => {
+    // Load the dependencies file, skipping any 'source' line
+    var lines = FileReadLines ("./paket.dependencies")
+                    .Where (l => !l.StartsWith ("source"));
 
-    // Remove old nuget references
-    foreach (var kvp in PROJECT_REFS) {
-        
-        foreach (var removePackagePattern in kvp.Value.RemovePatterns) {
+    // Keep track of our changes, start by adding the requested nuget sources
+    var newLines = new List<string> ();
+    newLines.AddRange (PAKET_SOURCES.Select (n => "source " + n));
 
-            Information ("Removing Package ID Pattern: {0}", removePackagePattern);
+    foreach (var line in lines) {
 
-            // Build a list of xpath patterns to remove
-            var csprojXPathRemoves = new List<string> {
-                "//x:Reference[starts-with(@Include, '" + removePackagePattern + "')]",
-                "//x:Import[contains(@Project, '" + removePackagePattern + "')]",
-                "//x:Target[@Name='EnsureNuGetPackageBuildImports']",
-            };
+        // Break apart the line to see if it's a nuget specification
+        var match = System.Text.RegularExpressions.Regex.Match (line, @"nuget\s+(?<id>[^ ]+)\s+(?<version>[^ ]+)");
 
-            if (!TREAT_WARNINGS_AS_ERRORS)
-                csprojXPathRemoves.Add ("//x:TreatWarningsAsErrors[text() = 'true']");
-
-            // Get the .csproj files for the project directory
-            var csprojFiles = GetFiles (kvp.Key + "/*.csproj");
-
-            foreach (var csproj in csprojFiles) {
-                Information ("  Removing items from .csproj: {0}", csproj);
-                
-                // Remove all the xpath patterns from this csproj
-                foreach (var xpathRemove in csprojXPathRemoves) {
-                    try {
-                        Information ("    XPath: {0}", xpathRemove);
-                        // We XmlPoke the pattern with null to remove it
-                        XmlPoke (csproj, xpathRemove, null, new XmlPokeSettings {
-                            Namespaces = new Dictionary<string, string> { { "x", "http://schemas.microsoft.com/developer/msbuild/2003" } }
-                        });
-                    } catch {
-                        Information ("      None found.");
-                    }
-                }
-            }
-
-            // Find the packages.config file
-            var packagesConfigFile = (new DirectoryPath (kvp.Key)).CombineWithFilePath ("./packages.config");
-
-            Information("  Removing items from packages.config: {0}", packagesConfigFile);
-
-            // Remove from packages.config
-            try {
-                var xpath = "//package[starts-with(@id, '" + removePackagePattern + "')]";
-                Information ("    XPath: {0}", xpath);
-                XmlPoke (packagesConfigFile, xpath, null);
-            } catch {
-                Information ("    None found.");
-            }
+        // If not, just write out the line as is
+        if (!match.Success) {
+            newLines.Add (line);
+            continue;
         }
+
+        // Get the package id and version
+        var pkgId = string.Empty;
+        if (match != null && match.Groups != null && match.Groups["id"] != null)
+            pkgId = match.Groups["id"].Value;
+        var pkgVer = string.Empty;
+        if (match != null && match.Groups != null && match.Groups["version"] != null)
+            pkgVer = match.Groups["version"].Value;
+        var restriction = line.Contains ("restriction:");
+
+        // Check to see if it's a Google Play Services or Firebase package and build the line appropriately
+        if (pkgId.StartsWith ("Xamarin.GooglePlayServices.") || pkgId.StartsWith ("Xamarin.Firebase."))
+            newLines.Add (string.Format ("nuget {0} {1}{2}", pkgId, GOOGLE_PLAY_SERVICES_FIREBASE_VERSION, restriction ? " restriction: >= " + MONOANDROID_VERSION : string.Empty));
+        else if (pkgId.StartsWith ("Xamarin.Android.Support."))
+            newLines.Add (string.Format ("nuget {0} {1}{2}", pkgId, ANDROID_SUPPORT_VERSION, restriction ? " restriction: >= " + MONOANDROID_VERSION : string.Empty));
+        else // Other package id's just get written out as is
+            newLines.Add (line);
     }
 
-    var paketExe = GetFiles ("./tools/**/paket.exe").FirstOrDefault ();
-
-    StartProcess (paketExe, "update --force");
-
-    Information ("Restoring nuget packages...");
-
-    // Perform a nuget restore for each .csproj
-    foreach (var kvp in PROJECT_REFS)
-    {
-        var csprojFiles = GetFiles (kvp.Key + "/*.csproj");
-
-        foreach (var csproj in csprojFiles) {
-            Information ("  Restoring NuGets for .csproj: {0}", csproj);
-
-            NuGetRestore (csproj, new NuGetRestoreSettings {
-                Source = NUGET_SOURCES,
-                PackagesDirectory = "./packages"
-            });
-        }             
-    }
-
-    // Build each project separately
-    foreach (var bt in BUILD_TARGETS)
-        XBuild ("./Xamarin.Forms.sln", c => c.Targets.Add (bt));
+    // Overwrite our dependencies file with the modified info
+    FileWriteLines ("./paket.dependencies", newLines.ToArray ());
+    
+    // Convert the sln and projects to use paket
+    StartProcess (PAKET_EXE, "install --force --verbose");
 });
+
+Task ("build").Does (() => {
+    // Build each project separately
+    foreach (var bt in BUILD_TARGETS) {
+        MSBuild ("./Xamarin.Forms.sln", c => {
+            c.Targets.Add ("\"" + bt + "\"");
+            c.Properties.Add ("TreatWarningsAsErrors", new List<string> { TREAT_WARNINGS_AS_ERRORS ? "true" : "false" });
+        });
+    }
+});
+
+Task ("Default").IsDependentOn ("init").IsDependentOn ("build");
 
 RunTarget (TARGET);

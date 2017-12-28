@@ -1,0 +1,47 @@
+version: "1.4.1"
+name: SimplePing
+id: simpleping
+publisher: Xamarin Inc
+publisher-url: https://xamarin.com
+src-url: https://github.com/xamarin/XamarinComponents/tree/master/iOS/SimplePing
+summary: Easily open a special, non-privileged ICMP socket that allows you to send and receive pings.
+license: ../License.md
+icons:
+  - ../images/icon_128x128.png
+  - ../images/icon_512x512.png
+
+no_build: true
+is_shell: true
+libraries:
+  ios-unified: ../output/Xamarin.SimplePing.iOS.dll
+  mac-unified: ../output/Xamarin.SimplePing.Mac.dll
+  tvos: ../output/Xamarin.SimplePing.tvOS.dll
+local-nuget-repo: ../output
+packages:
+  ios-unified: Xamarin.SimplePing, Version=1.4.1
+  mac-unified: Xamarin.SimplePing, Version=1.4.1
+  tvos: Xamarin.SimplePing, Version=1.4.1
+
+samples:
+  - name: "iOS Sample"
+    path: ../samples/SimplePingSample.iOS/SimplePingSample.iOS.sln
+    removeProjects:
+      - Xamarin.SimplePing
+      - Xamarin.SimplePing.iOS
+    installNuGets:
+      - project: SimplePingSample.iOS
+        packages:
+          - Xamarin.SimplePing
+  - name: "macOS Sample"
+    path: ../samples/SimplePingSample.Mac/SimplePingSample.Mac.sln
+    removeProjects:
+      - Xamarin.SimplePing
+      - Xamarin.SimplePing.Mac
+    installNuGets:
+      - project: SimplePingSample.Mac
+        packages:
+          - Xamarin.SimplePing
+
+additional-files:
+  - source: "../External-Dependency-Info.txt"
+    destination: "THIRD-PARTY-NOTICES.txt"

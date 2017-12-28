@@ -1,0 +1,455 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		34A110F91F62A44A00ABB867 /* SimplePing.m in Sources */ = {isa = PBXBuildFile; fileRef = 34A110F71F62A44A00ABB867 /* SimplePing.m */; };
+		34A110FB1F62A44A00ABB867 /* SimplePing.m in Sources */ = {isa = PBXBuildFile; fileRef = 34A110F71F62A44A00ABB867 /* SimplePing.m */; };
+		34E369591F8FCBB10038CE7F /* SimplePing.m in Sources */ = {isa = PBXBuildFile; fileRef = 34A110F71F62A44A00ABB867 /* SimplePing.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		3407CCD11F62A21B0053B2D8 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "include/$(PRODUCT_NAME)";
+			dstSubfolderSpec = 16;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3427FE901F40D752004A967E /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "include/$(PRODUCT_NAME)";
+			dstSubfolderSpec = 16;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		3407CCD31F62A21B0053B2D8 /* libSimplePingTV.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libSimplePingTV.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		3427FE921F40D752004A967E /* libSimplePing.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libSimplePing.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		3487613F1F8FCB5E00D72D31 /* libSimplePingMac.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libSimplePingMac.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		34A110F61F62A44A00ABB867 /* SimplePing.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SimplePing.h; path = ../SimplePing/Common/SimplePing.h; sourceTree = "<group>"; };
+		34A110F71F62A44A00ABB867 /* SimplePing.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SimplePing.m; path = ../SimplePing/Common/SimplePing.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		3407CCD01F62A21B0053B2D8 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3427FE8F1F40D752004A967E /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3487613C1F8FCB5E00D72D31 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		3427FE891F40D752004A967E = {
+			isa = PBXGroup;
+			children = (
+				34A110FC1F62A46000ABB867 /* SimplePing */,
+				3427FE931F40D752004A967E /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		3427FE931F40D752004A967E /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				3427FE921F40D752004A967E /* libSimplePing.a */,
+				3407CCD31F62A21B0053B2D8 /* libSimplePingTV.a */,
+				3487613F1F8FCB5E00D72D31 /* libSimplePingMac.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		34A110FC1F62A46000ABB867 /* SimplePing */ = {
+			isa = PBXGroup;
+			children = (
+				34A110F61F62A44A00ABB867 /* SimplePing.h */,
+				34A110F71F62A44A00ABB867 /* SimplePing.m */,
+			);
+			name = SimplePing;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		3487613D1F8FCB5E00D72D31 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		3407CCD21F62A21B0053B2D8 /* SimplePingTV */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 3407CCDB1F62A21B0053B2D8 /* Build configuration list for PBXNativeTarget "SimplePingTV" */;
+			buildPhases = (
+				3407CCCF1F62A21B0053B2D8 /* Sources */,
+				3407CCD01F62A21B0053B2D8 /* Frameworks */,
+				3407CCD11F62A21B0053B2D8 /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = SimplePingTV;
+			productName = SimplePingTV;
+			productReference = 3407CCD31F62A21B0053B2D8 /* libSimplePingTV.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+		3427FE911F40D752004A967E /* SimplePing */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 3427FE9B1F40D752004A967E /* Build configuration list for PBXNativeTarget "SimplePing" */;
+			buildPhases = (
+				3427FE8E1F40D752004A967E /* Sources */,
+				3427FE8F1F40D752004A967E /* Frameworks */,
+				3427FE901F40D752004A967E /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = SimplePing;
+			productName = SimplePing;
+			productReference = 3427FE921F40D752004A967E /* libSimplePing.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+		3487613E1F8FCB5E00D72D31 /* SimplePingMac */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 348761451F8FCB5F00D72D31 /* Build configuration list for PBXNativeTarget "SimplePingMac" */;
+			buildPhases = (
+				3487613B1F8FCB5E00D72D31 /* Sources */,
+				3487613C1F8FCB5E00D72D31 /* Frameworks */,
+				3487613D1F8FCB5E00D72D31 /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = SimplePingMac;
+			productName = SimplePingMac;
+			productReference = 3487613F1F8FCB5E00D72D31 /* libSimplePingMac.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		3427FE8A1F40D752004A967E /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0830;
+				ORGANIZATIONNAME = "Matthew Leibowitz";
+				TargetAttributes = {
+					3407CCD21F62A21B0053B2D8 = {
+						CreatedOnToolsVersion = 8.3.3;
+						DevelopmentTeam = 42GDTGK33W;
+						ProvisioningStyle = Automatic;
+					};
+					3427FE911F40D752004A967E = {
+						CreatedOnToolsVersion = 8.3.3;
+						DevelopmentTeam = 42GDTGK33W;
+						ProvisioningStyle = Automatic;
+					};
+					3487613E1F8FCB5E00D72D31 = {
+						CreatedOnToolsVersion = 9.0;
+						DevelopmentTeam = 42GDTGK33W;
+						ProvisioningStyle = Automatic;
+					};
+				};
+			};
+			buildConfigurationList = 3427FE8D1F40D752004A967E /* Build configuration list for PBXProject "SimplePing" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 3427FE891F40D752004A967E;
+			productRefGroup = 3427FE931F40D752004A967E /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				3427FE911F40D752004A967E /* SimplePing */,
+				3487613E1F8FCB5E00D72D31 /* SimplePingMac */,
+				3407CCD21F62A21B0053B2D8 /* SimplePingTV */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXSourcesBuildPhase section */
+		3407CCCF1F62A21B0053B2D8 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				34A110FB1F62A44A00ABB867 /* SimplePing.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3427FE8E1F40D752004A967E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				34A110F91F62A44A00ABB867 /* SimplePing.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3487613B1F8FCB5E00D72D31 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				34E369591F8FCBB10038CE7F /* SimplePing.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		3407CCD91F62A21B0053B2D8 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DEVELOPMENT_TEAM = 42GDTGK33W;
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = appletvos;
+				SKIP_INSTALL = YES;
+				TVOS_DEPLOYMENT_TARGET = 9.0;
+			};
+			name = Debug;
+		};
+		3407CCDA1F62A21B0053B2D8 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DEVELOPMENT_TEAM = 42GDTGK33W;
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = appletvos;
+				SKIP_INSTALL = YES;
+				TVOS_DEPLOYMENT_TARGET = 9.0;
+			};
+			name = Release;
+		};
+		3427FE991F40D752004A967E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		3427FE9A1F40D752004A967E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		3427FE9C1F40D752004A967E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DEVELOPMENT_TEAM = 42GDTGK33W;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+		3427FE9D1F40D752004A967E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DEVELOPMENT_TEAM = 42GDTGK33W;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+			};
+			name = Release;
+		};
+		348761461F8FCB5F00D72D31 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_IDENTITY = "Mac Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 42GDTGK33W;
+				EXECUTABLE_PREFIX = lib;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		348761471F8FCB5F00D72D31 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_IDENTITY = "Mac Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 42GDTGK33W;
+				EXECUTABLE_PREFIX = lib;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		3407CCDB1F62A21B0053B2D8 /* Build configuration list for PBXNativeTarget "SimplePingTV" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3407CCD91F62A21B0053B2D8 /* Debug */,
+				3407CCDA1F62A21B0053B2D8 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		3427FE8D1F40D752004A967E /* Build configuration list for PBXProject "SimplePing" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3427FE991F40D752004A967E /* Debug */,
+				3427FE9A1F40D752004A967E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		3427FE9B1F40D752004A967E /* Build configuration list for PBXNativeTarget "SimplePing" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3427FE9C1F40D752004A967E /* Debug */,
+				3427FE9D1F40D752004A967E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		348761451F8FCB5F00D72D31 /* Build configuration list for PBXNativeTarget "SimplePingMac" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				348761461F8FCB5F00D72D31 /* Debug */,
+				348761471F8FCB5F00D72D31 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 3427FE8A1F40D752004A967E /* Project object */;
+}

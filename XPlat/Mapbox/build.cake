@@ -7,8 +7,8 @@ var ANDROID_VERSION = "4.2.2";
 var ANDROID_NUGET_VERSION = "4.2.2";
 var JAVASERVICES_NUGET_VERSION = "1.3.1";
 
-var IOS_VERSION = "3.3.7";
-var IOS_NUGET_VERSION = "3.3.7";
+var IOS_VERSION = "3.5.0";
+var IOS_NUGET_VERSION = "3.5.0";
 
 var MAPBOX_VERSION = "4.2.2";
 var MAPBOX_ANDROID_SERVICES_VERSION = "1.3.1";
@@ -67,7 +67,7 @@ var buildSpec = new BuildSpec {
 	},
 
 	Samples = new [] {
-		new IOSSolutionBuilder { SolutionPath = "./iOS/samples/MapboxSampleiOS.sln", Configuration = "Release|iPhone" },
+		new IOSSolutionBuilder { SolutionPath = "./iOS/samples/MapboxSampleiOS.sln",  Configuration = "Release", Platform="iPhone" },
 		new DefaultSolutionBuilder { SolutionPath = "./Android/samples/MapboxSampleAndroid.sln" }
 	},
 

@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<package >
+  <metadata>
+    <id>Xamarin.Android.FloatingSearchView</id>
+    <title>Floating Search View for Xamarin.Android</title>
+    <version>2.1.1</version>
+    <authors>Microsoft</authors>
+    <owners>Microsoft</owners>
+    <requireLicenseAcceptance>true</requireLicenseAcceptance>
+    <description>Xamarin.Android binding for Floating Search View - An implementation of a floating search box with search suggestions, also called persistent search bar.</description>
+    <copyright>© Microsoft Corporation. All rights reserved.</copyright>
+    <projectUrl>https://go.microsoft.com/fwlink/?linkid=865065</projectUrl>
+    <licenseUrl>https://go.microsoft.com/fwlink/?linkid=865079</licenseUrl>
+    <tags>xamarin,android,monodroid,search,view</tags>
+    <dependencies>
+      <dependency id="Xamarin.Android.Support.v7.AppCompat" version="25.3.1" />
+      <dependency id="Xamarin.Android.Support.v7.CardView" version="25.3.1" />
+      <dependency id="Xamarin.Android.Support.v7.RecyclerView" version="25.3.1" />
+      <dependency id="Xamarin.Android.Support.Design" version="25.3.1" />
+      <dependency id="Xamarin.Android.ViewPropertyObjectAnimator" version="1.2.0" />
+    </dependencies>
+  </metadata>
+  <files>
+    <file src="output/FloatingSearchView.dll" target="lib/MonoAndroid" />
+    <file src="External-Dependency-Info.txt" target="THIRD-PARTY-NOTICES.txt" />
+  </files>
+</package>

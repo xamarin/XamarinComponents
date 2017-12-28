@@ -3,17 +3,17 @@
 
 var TARGET = Argument ("t", Argument ("target", "Default"));
 
-var ANDROID_VERSION = "3.3.4";
-var ANDROID_NUGET_VERSION = "3.3.4";
-var IOS_VERSION = "3.5.3";
-var IOS_NUGET_VERSION = "3.5.3";
+var ANDROID_VERSION = "3.3.9";
+var ANDROID_NUGET_VERSION = "3.3.9";
+var IOS_VERSION = "3.6.0";
+var IOS_NUGET_VERSION = "3.6.0";
 
 var ANDROID_SDK_URL = string.Format ("http://wikifiles.gigya.com/SDKs/Android/AndroidSDK_{0}.zip", ANDROID_VERSION);
 var IOS_SDK_URL = string.Format ("https://s3.amazonaws.com/wikifiles.gigya.com/SDKs/iPhone/{0}/GigyaSDK.framework_{0}.zip", IOS_VERSION);
 
 var buildSpec = new BuildSpec {
 	Libs = new [] {
-		new IOSSolutionBuilder {
+		new DefaultSolutionBuilder {
 			SolutionPath = "./iOS/source/GigyaSDK.iOS.sln",
 			OutputFiles = new [] { 
 				new OutputFileCopy {
@@ -37,7 +37,7 @@ var buildSpec = new BuildSpec {
 	// },
 
 	Samples = new [] {
-		new IOSSolutionBuilder { SolutionPath = "./iOS/samples/GigyaSDKSampleiOS.sln", Configuration = "Release|iPhone" },
+		new IOSSolutionBuilder { SolutionPath = "./iOS/samples/GigyaSDKSampleiOS.sln",  Configuration = "Release", Platform="iPhone" },
 		new DefaultSolutionBuilder { SolutionPath = "./Android/samples/GigyaSDKSampleAndroid.sln" }
 	},
 
@@ -54,7 +54,7 @@ Task ("externals-android")
 
 	DownloadFile (ANDROID_SDK_URL, "./externals/android/sdk.zip");
 	Unzip ("./externals/android/sdk.zip", "./externals/android/sdk");
-	CopyFile ("./externals/android/sdk/gigya-sdk-" + ANDROID_VERSION + ".jar", "./externals/android/gigya.jar");
+	CopyFile ("./externals/android/sdk/" + ANDROID_VERSION + "/gigya-sdk-" + ANDROID_VERSION + ".jar", "./externals/android/gigya.jar");
 
 	// depends on:
 	//  - package id="Xamarin.Facebook.Android" version="4.16.1"
@@ -62,14 +62,13 @@ Task ("externals-android")
 	//  - package id="Xamarin.Android.Support.v4" version="24.2.1"
 });
 Task ("externals-ios")
-	.WithCriteria (!FileExists ("./externals/ios/GigyaSDK"))
+	.WithCriteria (!FileExists ("./externals/ios/sdk/GigyaSDK.framework/GigyaSDK"))
 	.Does (() => 
 {
 	EnsureDirectoryExists ("./externals/ios");
 
 	DownloadFile (IOS_SDK_URL, "./externals/ios/sdk.zip");
 	Unzip ("./externals/ios/sdk.zip", "./externals/ios/sdk");
-	CopyFile ("./externals/ios/sdk/GigyaSDK.framework/Versions/A/GigyaSDK", "./externals/ios/GigyaSDK");
 });
 Task ("externals").IsDependentOn ("externals-android").IsDependentOn ("externals-ios");
 

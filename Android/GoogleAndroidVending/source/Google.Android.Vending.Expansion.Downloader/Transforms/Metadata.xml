@@ -1,0 +1,97 @@
+﻿<metadata>
+  <!--
+  This sample removes the class: android.support.v4.content.AsyncTaskLoader.LoadTask:
+  <remove-node path="/api/package[@name='android.support.v4.content']/class[@name='AsyncTaskLoader.LoadTask']" />
+  
+  This sample removes the method: android.support.v4.content.CursorLoader.loadInBackground:
+  <remove-node path="/api/package[@name='android.support.v4.content']/class[@name='CursorLoader']/method[@name='loadInBackground']" />
+  -->
+
+  <attr path="/api/package[@name='com.google.android.vending.expansion.downloader']" name="managedName">Google.Android.Vending.Expansion.Downloader</attr>
+  <attr path="/api/package[@name='com.google.android.vending.expansion.downloader.impl']" name="managedName">Google.Android.Vending.Expansion.Downloader</attr>
+
+  <attr path="/api/package[@name='com.android.vending.expansion.downloader']" name="managedName">Google.Android.Vending.Expansion.Downloader</attr>
+
+  <attr path="/api/package[@name='com.google.android.vending.expansion.downloader.impl']/class[@name='DownloaderService']/method[@name='getSALT']" name="managedName">GetSalt</attr>
+  <!--<attr path="/api/package[@name='com.google.android.vending.expansion.downloader.impl']/class[@name='DownloaderService']/method[@name='getSALT']" name="propertyName">Salt</attr>-->
+
+  <attr path="/api/package[@name='com.google.android.vending.expansion.downloader']/class[@name='Helpers']/method[@name='getDownloaderStringResourceIDFromState']" name="managedName">GetDownloaderStringResourceIdFromState</attr>
+
+  <remove-node path="/api/package[@name='com.google.android.vending.expansion.downloader.impl']/class[@name='DownloadsDB.DownloadColumns']/implements" />
+  <remove-node path="/api/package[@name='com.google.android.vending.expansion.downloader.impl']/class[@name='DownloadsDB.MetadataColumns']/implements" />
+
+  <attr path="/api/package[@name='com.google.android.vending.expansion.downloader.impl']/class[@name='DownloadInfo']/field[@name='mControl']" name="managedName">Control</attr>
+  <attr path="/api/package[@name='com.google.android.vending.expansion.downloader.impl']/class[@name='DownloadInfo']/field[@name='mCurrentBytes']" name="managedName">CurrentBytes</attr>
+  <attr path="/api/package[@name='com.google.android.vending.expansion.downloader.impl']/class[@name='DownloadInfo']/field[@name='mETag']" name="managedName">ETag</attr>
+  <attr path="/api/package[@name='com.google.android.vending.expansion.downloader.impl']/class[@name='DownloadInfo']/field[@name='mFileName']" name="managedName">FileName</attr>
+  <attr path="/api/package[@name='com.google.android.vending.expansion.downloader.impl']/class[@name='DownloadInfo']/field[@name='mFuzz']" name="managedName">Fuzz</attr>
+  <attr path="/api/package[@name='com.google.android.vending.expansion.downloader.impl']/class[@name='DownloadInfo']/field[@name='mIndex']" name="managedName">Index</attr>
+  <attr path="/api/package[@name='com.google.android.vending.expansion.downloader.impl']/class[@name='DownloadInfo']/field[@name='mLastMod']" name="managedName">LastModified</attr>
+  <attr path="/api/package[@name='com.google.android.vending.expansion.downloader.impl']/class[@name='DownloadInfo']/field[@name='mNumFailed']" name="managedName">FailedCount</attr>
+  <attr path="/api/package[@name='com.google.android.vending.expansion.downloader.impl']/class[@name='DownloadInfo']/field[@name='mRedirectCount']" name="managedName">RedirectCount</attr>
+  <attr path="/api/package[@name='com.google.android.vending.expansion.downloader.impl']/class[@name='DownloadInfo']/field[@name='mRetryAfter']" name="managedName">RetryAfter</attr>
+  <attr path="/api/package[@name='com.google.android.vending.expansion.downloader.impl']/class[@name='DownloadInfo']/field[@name='mStatus']" name="managedName">StatusInternal</attr>
+  <attr path="/api/package[@name='com.google.android.vending.expansion.downloader.impl']/class[@name='DownloadInfo']/field[@name='mStatus']" name="visibility">internal</attr>
+  <attr path="/api/package[@name='com.google.android.vending.expansion.downloader.impl']/class[@name='DownloadInfo']/field[@name='mTotalBytes']" name="managedName">TotalBytes</attr>
+  <attr path="/api/package[@name='com.google.android.vending.expansion.downloader.impl']/class[@name='DownloadInfo']/field[@name='mUri']" name="managedName">Uri</attr>
+
+  <attr path="/api/package[@name='com.google.android.vending.expansion.downloader']/class[@name='Helpers']/field[@name='sRandom']" name="managedName">Random</attr>
+
+  <attr path="/api/package[@name='com.google.android.vending.expansion.downloader']/class[@name='DownloadProgressInfo']/field[@name='mCurrentSpeed']" name="managedName">CurrentSpeed</attr>
+  <attr path="/api/package[@name='com.google.android.vending.expansion.downloader']/class[@name='DownloadProgressInfo']/field[@name='mOverallProgress']" name="managedName">OverallProgress</attr>
+  <attr path="/api/package[@name='com.google.android.vending.expansion.downloader']/class[@name='DownloadProgressInfo']/field[@name='mOverallTotal']" name="managedName">OverallTotal</attr>
+  <attr path="/api/package[@name='com.google.android.vending.expansion.downloader']/class[@name='DownloadProgressInfo']/field[@name='mTimeRemaining']" name="managedName">TimeRemaining</attr>
+
+  <attr path="/api/package[@name='com.google.android.vending.expansion.downloader']/interface[@name='IStub']/method[@name='getMessenger']" name="propertyName" />
+
+  <attr path="/api/package[@name='com.google.android.vending.expansion.downloader']/interface[@name='IStub']/method[@name='connect']/parameter[1]" name="managedName">context</attr>
+  <attr path="/api/package[@name='com.google.android.vending.expansion.downloader']/interface[@name='IStub']/method[@name='disconnect']/parameter[1]" name="managedName">context</attr>
+  <attr path="/api/package[@name='com.google.android.vending.expansion.downloader']/interface[@name='IDownloaderClient']/method[@name='onDownloadProgress']/parameter[1]" name="managedName">progress</attr>
+  <attr path="/api/package[@name='com.google.android.vending.expansion.downloader']/interface[@name='IDownloaderClient']/method[@name='onDownloadStateChanged']/parameter[1]" name="managedName">newState</attr>
+  <attr path="/api/package[@name='com.google.android.vending.expansion.downloader']/interface[@name='IDownloaderClient']/method[@name='onServiceConnected']/parameter[1]" name="managedName">m</attr>
+  <attr path="/api/package[@name='com.google.android.vending.expansion.downloader']/interface[@name='IDownloaderService']/method[@name='onClientUpdated']/parameter[1]" name="managedName">clientMessenger</attr>
+  <attr path="/api/package[@name='com.google.android.vending.expansion.downloader']/interface[@name='IDownloaderService']/method[@name='setDownloadFlags']/parameter[1]" name="managedName">flags</attr>
+  <attr path="/api/package[@name='com.google.android.vending.expansion.downloader.impl']/class[@name='CustomIntentService']/method[@name='onHandleIntent']/parameter[1]" name="managedName">intent</attr>
+  
+  <attr path="/api/package[@name='com.google.android.vending.expansion.downloader']/interface[@name='IStub']" name="managedName">IDownloaderServiceConnection</attr>
+
+  <attr path="/api/package[@name='com.google.android.vending.expansion.downloader']/class[@name='DownloaderClientMarshaller']/field[@name='DOWNLOAD_REQUIRED']" name="visibility">internal</attr>
+  <attr path="/api/package[@name='com.google.android.vending.expansion.downloader']/class[@name='DownloaderClientMarshaller']/field[@name='LVL_CHECK_REQUIRED']" name="visibility">internal</attr>
+  <attr path="/api/package[@name='com.google.android.vending.expansion.downloader']/class[@name='DownloaderClientMarshaller']/field[@name='NO_DOWNLOAD_REQUIRED']" name="visibility">internal</attr>
+  <attr path="/api/package[@name='com.google.android.vending.expansion.downloader']/class[@name='DownloaderClientMarshaller']/field[@name='PARAM_MESSENGER']" name="visibility">internal</attr>
+  <attr path="/api/package[@name='com.google.android.vending.expansion.downloader']/class[@name='DownloaderClientMarshaller']/field[@name='PARAM_NEW_STATE']" name="visibility">internal</attr>
+  <attr path="/api/package[@name='com.google.android.vending.expansion.downloader']/class[@name='DownloaderClientMarshaller']/field[@name='PARAM_PROGRESS']" name="visibility">internal</attr>
+  <attr path="/api/package[@name='com.google.android.vending.expansion.downloader']/class[@name='DownloaderServiceMarshaller']/field[@name='PARAM_MESSENGER']" name="visibility">internal</attr>
+  <attr path="/api/package[@name='com.google.android.vending.expansion.downloader']/class[@name='DownloaderServiceMarshaller']/field[@name='PARAMS_FLAGS']" name="visibility">internal</attr>
+  <attr path="/api/package[@name='com.google.android.vending.expansion.downloader']/class[@name='Constants']/field[@name='STATUS_CANNOT_RESUME']" name="visibility">internal</attr>
+  <attr path="/api/package[@name='com.google.android.vending.expansion.downloader']/class[@name='Constants']/field[@name='STATUS_DEVICE_NOT_FOUND_ERROR']" name="visibility">internal</attr>
+  <attr path="/api/package[@name='com.google.android.vending.expansion.downloader']/class[@name='Constants']/field[@name='STATUS_FILE_ALREADY_EXISTS_ERROR']" name="visibility">internal</attr>
+  <attr path="/api/package[@name='com.google.android.vending.expansion.downloader']/class[@name='Constants']/field[@name='STATUS_FILE_ERROR']" name="visibility">internal</attr>
+  <attr path="/api/package[@name='com.google.android.vending.expansion.downloader']/class[@name='Constants']/field[@name='STATUS_HTTP_DATA_ERROR']" name="visibility">internal</attr>
+  <attr path="/api/package[@name='com.google.android.vending.expansion.downloader']/class[@name='Constants']/field[@name='STATUS_HTTP_EXCEPTION']" name="visibility">internal</attr>
+  <attr path="/api/package[@name='com.google.android.vending.expansion.downloader']/class[@name='Constants']/field[@name='STATUS_INSUFFICIENT_SPACE_ERROR']" name="visibility">internal</attr>
+  <attr path="/api/package[@name='com.google.android.vending.expansion.downloader']/class[@name='Constants']/field[@name='STATUS_TOO_MANY_REDIRECTS']" name="visibility">internal</attr>
+  <attr path="/api/package[@name='com.google.android.vending.expansion.downloader']/class[@name='Constants']/field[@name='STATUS_UNHANDLED_HTTP_CODE']" name="visibility">internal</attr>
+  <attr path="/api/package[@name='com.google.android.vending.expansion.downloader']/class[@name='Constants']/field[@name='STATUS_UNHANDLED_REDIRECT']" name="visibility">internal</attr>
+  <attr path="/api/package[@name='com.google.android.vending.expansion.downloader']/class[@name='Constants']/field[@name='STATUS_UNKNOWN_ERROR']" name="visibility">internal</attr>
+  <attr path="/api/package[@name='com.google.android.vending.expansion.downloader']/class[@name='Constants']/field[@name='STATUS_SUCCESS']" name="visibility">internal</attr>
+  <attr path="/api/package[@name='com.google.android.vending.expansion.downloader']/class[@name='Constants']/field[@name='STATUS_CANCELED']" name="visibility">internal</attr>
+  <attr path="/api/package[@name='com.google.android.vending.expansion.downloader']/class[@name='Constants']/field[@name='ACTION_HIDE']" name="visibility">internal</attr>
+  <attr path="/api/package[@name='com.google.android.vending.expansion.downloader']/class[@name='Constants']/field[@name='ACTION_LIST']" name="visibility">internal</attr>
+  <attr path="/api/package[@name='com.google.android.vending.expansion.downloader']/class[@name='Constants']/field[@name='ACTION_OPEN']" name="visibility">internal</attr>
+  <attr path="/api/package[@name='com.google.android.vending.expansion.downloader']/class[@name='Constants']/field[@name='ACTION_RETRY']" name="visibility">internal</attr>
+  <attr path="/api/package[@name='com.google.android.vending.expansion.downloader.impl']/class[@name='DownloaderService']/field[@name='ACTION_DOWNLOADS_CHANGED']" name="visibility">internal</attr>
+  <attr path="/api/package[@name='com.google.android.vending.expansion.downloader.impl']/class[@name='DownloaderService']/field[@name='ACTION_DOWNLOAD_STATUS']" name="visibility">internal</attr>
+  <attr path="/api/package[@name='com.google.android.vending.expansion.downloader.impl']/class[@name='DownloaderService']/field[@name='ACTION_DOWNLOAD_COMPLETE']" name="visibility">internal</attr>
+  <attr path="/api/package[@name='com.google.android.vending.expansion.downloader.impl']/class[@name='DownloaderService']/field[@name='EXTRA_PENDING_INTENT']" name="visibility">internal</attr>
+  <attr path="/api/package[@name='com.google.android.vending.expansion.downloader.impl']/class[@name='DownloaderService']/field[@name='EXTRA_PACKAGE_NAME']" name="visibility">internal</attr>
+  <attr path="/api/package[@name='com.google.android.vending.expansion.downloader.impl']/class[@name='DownloaderService']/field[@name='EXTRA_MESSAGE_HANDLER']" name="visibility">internal</attr>
+  <attr path="/api/package[@name='com.google.android.vending.expansion.downloader.impl']/class[@name='DownloaderService']/field[@name='EXTRA_IS_WIFI_REQUIRED']" name="visibility">internal</attr>
+  <attr path="/api/package[@name='com.google.android.vending.expansion.downloader.impl']/class[@name='DownloaderService']/field[@name='EXTRA_FILE_NAME']" name="visibility">internal</attr>
+  <attr path="/api/package[@name='com.google.android.vending.expansion.downloader.impl']/class[@name='DownloaderService']/field[@name='EXTRA_STATUS_TOTAL_SIZE']" name="visibility">internal</attr>
+  <attr path="/api/package[@name='com.google.android.vending.expansion.downloader.impl']/class[@name='DownloaderService']/field[@name='EXTRA_STATUS_TOTAL_PROGRESS']" name="visibility">internal</attr>
+  <attr path="/api/package[@name='com.google.android.vending.expansion.downloader.impl']/class[@name='DownloaderService']/field[@name='EXTRA_STATUS_STATE']" name="visibility">internal</attr>
+  <attr path="/api/package[@name='com.google.android.vending.expansion.downloader.impl']/class[@name='DownloaderService']/field[@name='EXTRA_STATUS_CURRENT_PROGRESS']" name="visibility">internal</attr>
+  <attr path="/api/package[@name='com.google.android.vending.expansion.downloader.impl']/class[@name='DownloaderService']/field[@name='EXTRA_STATUS_CURRENT_FILE_SIZE']" name="visibility">internal</attr>
+
+</metadata>

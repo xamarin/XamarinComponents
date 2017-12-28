@@ -4,13 +4,13 @@
     <id>Xamarin.SDWebImage</id>
     <title>SDWebImage for Xamarin.iOS</title>
     <version>4.0.0-beta1</version>
-    <authors>Xamarin Inc.</authors>
-    <owners>Xamarin Inc.</owners>
-    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <authors>Microsoft</authors>
+    <owners>Microsoft</owners>
+    <requireLicenseAcceptance>true</requireLicenseAcceptance>
     <description>Extensions for UIImageView allowing you to asynchronously load web images.</description>
-    <copyright>Copyright 2016 Xamarin Inc</copyright>
-    <projectUrl>https://components.xamarin.com/view/sdwebimage</projectUrl>
-    <licenseUrl>https://components.xamarin.com/license/sdwebimage</licenseUrl>
+    <copyright>© Microsoft Corporation. All rights reserved.</copyright>
+    <projectUrl>https://go.microsoft.com/fwlink/?linkid=865081</projectUrl>
+    <licenseUrl>https://go.microsoft.com/fwlink/?linkid=865072</licenseUrl>
   </metadata>
   <files>
     <file src="output/unified/SDWebImage.dll" target="lib/Xamarin.iOS" />

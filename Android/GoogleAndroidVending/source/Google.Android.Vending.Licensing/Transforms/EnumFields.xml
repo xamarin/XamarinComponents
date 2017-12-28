@@ -1,0 +1,43 @@
+﻿<enum-field-mappings>
+  <!--
+  This example converts the constants Fragment_id, Fragment_name,
+  and Fragment_tag from android.support.v4.app.FragmentActivity.FragmentTag
+  to an enum called Android.Support.V4.App.FragmentTagType with values
+  Id, Name, and Tag.
+  
+  <mapping jni-class="android/support/v4/app/FragmentActivity$FragmentTag" clr-enum-type="Android.Support.V4.App.FragmentTagType">
+    <field jni-name="Fragment_name" clr-name="Name" value="0" />
+    <field jni-name="Fragment_id" clr-name="Id" value="1" />
+    <field jni-name="Fragment_tag" clr-name="Tag" value="2" />
+  </mapping>
+  -->
+
+  <mapping jni-interface="com/google/android/vending/licensing/LicenseCheckerCallback" clr-enum-type="Google.Android.Vending.Licensing.LicenseCheckerErrorCode">
+    <field jni-name="ERROR_INVALID_PACKAGE_NAME" clr-name="InvalidPackageName" value="1" />
+    <field jni-name="ERROR_NON_MATCHING_UID" clr-name="NonMatchingUid" value="2" />
+    <field jni-name="ERROR_NOT_MARKET_MANAGED" clr-name="NotMarketManaged" value="3" />
+    <field jni-name="ERROR_CHECK_IN_PROGRESS" clr-name="CheckInProgress" value="4" />
+    <field jni-name="ERROR_INVALID_PUBLIC_KEY" clr-name="InvalidPublicKey" value="5" />
+    <field jni-name="ERROR_MISSING_PERMISSION" clr-name="MissingPermission" value="6" />
+  </mapping>
+
+  <mapping jni-interface="com/google/android/vending/licensing/Policy" clr-enum-type="Google.Android.Vending.Licensing.PolicyResponse">
+    <field jni-name="LICENSED" clr-name="Licensed" value="256" />
+    <field jni-name="NOT_LICENSED" clr-name="NotLicensed" value="561" />
+    <field jni-name="RETRY" clr-name="Retry" value="291" />
+  </mapping>
+
+  <!-- combined enum -->
+  <mapping jni-class="com/google/android/vending/licensing/LicenseValidator" clr-enum-type="Google.Android.Vending.Licensing.ServerResponseCode">
+    <field jni-name="LICENSED" clr-name="Licensed" value="0x0" />
+    <field jni-name="NOT_LICENSED" clr-name="NotLicensed" value="0x1" />
+    <field jni-name="LICENSED_OLD_KEY" clr-name="LicensedOldKey" value="0x2" />
+    <field jni-name="ERROR_NOT_MARKET_MANAGED" clr-name="NotMarketManaged" value="0x3" />
+    <field jni-name="ERROR_SERVER_FAILURE" clr-name="ServerFailure" value="0x4" />
+    <field jni-name="ERROR_OVER_QUOTA" clr-name="OverQuota" value="0x5" />
+    <field jni-name="ERROR_CONTACTING_SERVER" clr-name="ErrorContactingServer" value="0x101" />
+    <field jni-name="ERROR_INVALID_PACKAGE_NAME" clr-name="InvalidPackageName" value="0x102" />
+    <field jni-name="ERROR_NON_MATCHING_UID" clr-name="NonMatchingUid" value="0x103" />
+  </mapping>
+
+</enum-field-mappings>

@@ -1,0 +1,38 @@
+version: 0.5.0
+name: ShimmerLayout
+id: ShimmerLayout
+publisher: Xamarin Inc
+publisher-url: http://xamarin.com/
+src-url: https://github.com/xamarin/XamarinComponents/tree/master/Android/ShimmerLayout
+summary: Memory efficient shimmering effect for Android applications.
+
+license: License.md
+details: Details.md
+getting-started: GettingStarted.md
+
+icons:
+  - ../images/icon_128x128.png
+  - ../images/icon_512x512.png
+
+no_build: true
+libraries:
+  android: ../output/Xamarin.Android.ShimmerLayout.dll
+
+is_shell: true
+local-nuget-repo: ../output/
+packages:
+  android: Xamarin.Android.ShimmerLayout, Version=0.5.0
+
+samples:
+  - name: "Android Sample"
+    path: ../samples/ShimmerLayoutSample.sln
+    removeProjects:
+      - Xamarin.Android.ShimmerLayout
+    installNuGets:
+      - project: ShimmerLayoutSample
+        packages:
+          - Xamarin.Android.ShimmerLayout
+
+additional-files:
+  - source: "../External-Dependency-Info.txt"
+    destination: "THIRD-PARTY-NOTICES.txt"

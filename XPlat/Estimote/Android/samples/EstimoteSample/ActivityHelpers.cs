@@ -4,8 +4,9 @@ using Android.App;
 using Android.Content;
 using Android.Widget;
 
-using EstimoteSdk;
-
+using EstimoteSdk.Observation;
+using EstimoteSdk.Observation.Region.Beacon;
+using EstimoteSdk.Recognition.Packets;
 using JavaInteger = Java.Lang.Integer;
 
 namespace Estimotes.Droid
@@ -34,18 +35,18 @@ namespace Estimotes.Droid
             activity.StartActivity(intent);
         }
 
-        public static Region CreateRegion(this Beacon beacon)
+        public static BeaconRegion CreateRegion(this Beacon beacon)
         {
-            Region region = new Region("region_id", beacon.ProximityUUID, new JavaInteger(beacon.Major), new JavaInteger(beacon.Minor));
+			BeaconRegion region = new BeaconRegion("region_id", beacon.ProximityUUID, new JavaInteger(beacon.Major), new JavaInteger(beacon.Minor));
             return region;
         }
 
-        public static Tuple<Beacon, Region> GetBeaconAndRegion(this Activity activity)
+		public static Tuple<Beacon, BeaconRegion> GetBeaconAndRegion(this Activity activity)
         {
             Beacon beacon = GetBeacon(activity);
-            Region region = beacon.CreateRegion();
+			BeaconRegion region = beacon.CreateRegion();
 
-            return new Tuple<Beacon, Region>(beacon, region);
+            return new Tuple<Beacon, BeaconRegion>(beacon, region);
         }
     }
 }

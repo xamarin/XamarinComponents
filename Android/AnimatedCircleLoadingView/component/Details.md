@@ -1,7 +1,5 @@
 
-<iframe src="https://appetize.io/embed/zereg0cbdyw2yy0jdtpudevrjw?device=nexus5&scale=75&autoplay=true&orientation=portrait&deviceColor=black" 
-        width="300px" height="597px" frameborder="0" scrolling="no"
-        style="float:right;margin-left:1em;"></iframe>
+<img src="https://raw.githubusercontent.com/jlmd/AnimatedCircleLoadingView/master/art/indeterminate_ok.gif" width="220" style="float:right;margin-left:1em;" />
 
 Add `AnimatedCircleLoadingView` to your layout and define `mainColor` and `secondaryColor` as custom 
 attributes:

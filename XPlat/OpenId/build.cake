@@ -20,8 +20,9 @@ var PODFILE = new List<string> {
 
 var buildSpec = new BuildSpec {
 	Libs = new [] {
-		new IOSSolutionBuilder {
+		new DefaultSolutionBuilder {
 			SolutionPath = "./iOS/source/OpenId.AppAuth.iOS.sln",
+			Configuration="Release",
 			OutputFiles = new [] { 
 				new OutputFileCopy {
 					FromFile = "./iOS/source/OpenId.AppAuth.iOS/bin/Release/OpenId.AppAuth.iOS.dll",
@@ -44,7 +45,7 @@ var buildSpec = new BuildSpec {
 	},
 
 	Samples = new [] {
-		new IOSSolutionBuilder { SolutionPath = "./iOS/samples/OpenIdAuthSampleiOS.sln", Configuration = "Release|iPhone" },
+		new IOSSolutionBuilder { SolutionPath = "./iOS/samples/OpenIdAuthSampleiOS.sln",  Configuration = "Release", Platform="iPhone" },
 		new DefaultSolutionBuilder { SolutionPath = "./Android/samples/OpenIdAuthSampleAndroid.sln" }
 	},
 
@@ -76,24 +77,30 @@ Task ("externals-ios")
 	
 	CocoaPodInstall ("./externals/ios", new CocoaPodInstallSettings { NoIntegrate = true });
 
-	XCodeBuild (new XCodeBuildSettings {
-		Project = "./externals/ios/Pods/Pods.xcodeproj",
-		Target = "AppAuth",
-		Sdk = "iphoneos",
-		Configuration = "Release",
-	});
+	// Only introducing the Makefile because I need to set
+	// GCC_TREAT_WARNINGS_AS_ERRORS=No
+	// When the cake XCode plugin is adjusted to allow this we can
+	// revert
+	
+	RunMake ("./externals/ios", "all");
+	// XCodeBuild (new XCodeBuildSettings {
+	// 	Project = "./externals/ios/Pods/Pods.xcodeproj",
+	// 	Target = "AppAuth",
+	// 	Sdk = "iphoneos",
+	// 	Configuration = "Release",
+	// });
 
-	XCodeBuild (new XCodeBuildSettings {
-		Project = "./externals/ios/Pods/Pods.xcodeproj",
-		Target = "AppAuth",
-		Sdk = "iphonesimulator",
-		Configuration = "Release",
-	});
+	// XCodeBuild (new XCodeBuildSettings {
+	// 	Project = "./externals/ios/Pods/Pods.xcodeproj",
+	// 	Target = "AppAuth",
+	// 	Sdk = "iphonesimulator",
+	// 	Configuration = "Release",
+	// });
 
-	RunLipoCreate ("./", 
-		"./externals/ios/libAppAuth.a",
-		"./externals/ios/build/Release-iphoneos/AppAuth/libAppAuth.a",
-		"./externals/ios/build/Release-iphonesimulator/AppAuth/libAppAuth.a");
+	// RunLipoCreate ("./", 
+	// 	"./externals/ios/libAppAuth.a",
+	// 	"./externals/ios/build/Release-iphoneos/AppAuth/libAppAuth.a",
+	// 	"./externals/ios/build/Release-iphonesimulator/AppAuth/libAppAuth.a");
 });
 Task ("externals")
 	.IsDependentOn ("externals-android")
@@ -101,8 +108,10 @@ Task ("externals")
 
 Task ("clean").IsDependentOn ("clean-base").Does (() => 
 {
-	if (DirectoryExists ("./externals"))
-		DeleteDirectory ("./externals", true);
+	if (DirectoryExists ("./externals/android"))
+		DeleteDirectory ("./externals/android", true);
+
+	RunMake ("./externals/ios", "clean");
 });
 
 SetupXamarinBuildTasks (buildSpec, Tasks, Task);

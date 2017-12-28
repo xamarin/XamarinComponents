@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2012/06/nuspec.xsd">
+    <metadata>
+        <id>Xamarin.SimplePing</id>
+        <version>1.4.1</version>
+        <title>SimplePing for iOS and macOS</title>
+        <authors>Microsoft</authors>
+        <owners>Microsoft</owners>
+        <projectUrl>https://go.microsoft.com/fwlink/?linkid=864995</projectUrl>
+        <licenseUrl>https://go.microsoft.com/fwlink/?linkid=865045</licenseUrl>
+        <iconUrl>https://github.com/xamarin/XamarinComponents/raw/master/iOS/SimplePing/images/icon_512x512.png</iconUrl>
+        <requireLicenseAcceptance>true</requireLicenseAcceptance>
+        <description>Easily open a special, non-privileged ICMP socket that allows you to send and receive pings.</description>
+        <summary>Easily open a special, non-privileged ICMP socket that allows you to send and receive pings.</summary>
+        <releaseNotes></releaseNotes>
+        <copyright>© Microsoft Corporation. All rights reserved.</copyright>
+        <tags>xamarin,ios,mac,xamarin.ios,xamarin.mac,ip,networking,ping</tags>
+    </metadata>
+    <files>
+        <file src="output/Xamarin.SimplePing.iOS.dll" target="lib/XamariniOS10" />
+        <file src="output/Xamarin.SimplePing.Mac.dll" target="lib/XamarinMac20" />
+        <file src="output/Xamarin.SimplePing.tvOS.dll" target="lib/XamarintvOS10" />
+        <file src="External-Dependency-Info.txt" target="THIRD-PARTY-NOTICES.txt" />
+    </files>
+</package>

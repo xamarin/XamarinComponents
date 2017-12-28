@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<package >
+  <metadata>
+    <id>Cake.Xamarin.Binding.Util</id>
+    <title>Cake Add-In providing utilities for Xamarin Binding build scripts</title>
+    <version>1.0.2</version>
+    <authors>Microsoft</authors>
+    <owners>Microsoft</owners>
+    <projectUrl>https://go.microsoft.com/fwlink/?linkid=864959</projectUrl>
+    <licenseUrl>https://go.microsoft.com/fwlink/?linkid=865029</licenseUrl>
+    <requireLicenseAcceptance>true</requireLicenseAcceptance>
+    <description>Cake Add-In providing utilities for Xamarin Binding build scripts</description>
+    <copyright>© Microsoft Corporation. All rights reserved.</copyright>
+  </metadata>
+  <files>
+    <file src="output/Cake.Xamarin.Binding.Util.dll" target="lib/net45" />
+    <file src="output/Cake.Xamarin.Binding.Util.xml" target="lib/net45" />
+    
+    <file src="External-Dependency-Info.txt" target="THIRD-PARTY-NOTICES.txt" />
+  </files>
+</package>

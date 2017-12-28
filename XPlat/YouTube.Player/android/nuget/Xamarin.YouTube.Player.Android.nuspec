@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<package >
+  <metadata>
+    <id>Xamarin.YouTube.Player.Android</id>
+    <title>YouTube Player for Xamarin.Android</title>
+    <version>1.2.2</version>
+    <authors>Microsoft</authors>
+    <owners>Microsoft</owners>
+    <requireLicenseAcceptance>true</requireLicenseAcceptance>
+    <description>The YouTube Android Player API enables you to incorporate video playback functionality into your Android applications.</description>
+    <copyright>© Microsoft Corporation. All rights reserved.</copyright>
+    <projectUrl>https://go.microsoft.com/fwlink/?linkid=865069</projectUrl>
+    <licenseUrl>https://go.microsoft.com/fwlink/?linkid=865082</licenseUrl>
+  </metadata>
+  <files>
+    <file src="output/YouTube.Player.Android.dll" target="lib/MonoAndroid10" />
+    <!-- <file src="External-Dependency-Info.txt" target="THIRD-PARTY-NOTICES.txt" /> -->
+  </files>
+</package>

@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package>
+    <metadata>
+        <id>Xamarin.Google.Android.Vending.Licensing</id>
+        <version>2.0.0</version>
+        <title>Google Play License Verification Library</title>
+        <authors>Microsoft</authors>
+        <owners>Microsoft</owners>
+        <projectUrl>https://go.microsoft.com/fwlink/?linkid=865035</projectUrl>
+        <licenseUrl>https://go.microsoft.com/fwlink/?linkid=864971</licenseUrl>
+        <iconUrl>https://raw.githubusercontent.com/xamarin/XamarinComponents/master/Android/GoogleAndroidVending/images/LicenseVerificationLibrary_128x128.png</iconUrl>
+        <requireLicenseAcceptance>true</requireLicenseAcceptance>
+        <description>Client library for the Android Market (Google Play) licensing server.</description>
+        <copyright>© Microsoft Corporation. All rights reserved.</copyright>
+        <tags>android,monodroid,xamarin,google,lvl,license,verification,library</tags>
+    </metadata>
+    <files>
+        <file src="output/Google.Android.Vending.Licensing.dll" target="lib/MonoAndroid" />
+        <file src="External-Dependency-Info.txt" target="THIRD-PARTY-NOTICES.txt" />
+    </files>
+</package>

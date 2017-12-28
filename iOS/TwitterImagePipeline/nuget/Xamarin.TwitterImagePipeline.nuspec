@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<package>
+  <metadata>
+    <id>Xamarin.TwitterImagePipeline</id>
+    <title>Twitter Image Pipeline (TIP)</title>
+    <version>2.2.2</version>
+    <authors>Microsoft</authors>
+    <owners>Microsoft</owners>
+    <requireLicenseAcceptance>true</requireLicenseAcceptance>
+    <description>An iOS framework for image loading/caching which is fast, safe, modular and versatile.</description>
+    <copyright>© Microsoft Corporation. All rights reserved.</copyright>
+    <iconUrl>https://raw.githubusercontent.com/xamarin/XamarinComponents/twitter-image-pipeline/iOS/TwitterImagePipeline/Images/twitterimagepipeline_512x512.png</iconUrl>
+    <projectUrl>https://go.microsoft.com/fwlink/?linkid=864987</projectUrl>
+    <licenseUrl>https://go.microsoft.com/fwlink/?linkid=865085</licenseUrl>
+  </metadata>
+  <files>
+    <file src="output/TwitterImagePipeline.dll" target="lib/Xamarin.iOS" />
+    <file src="External-Dependency-Info.txt" target="THIRD-PARTY-NOTICES.txt" />
+  </files>
+</package>

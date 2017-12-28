@@ -1,0 +1,3 @@
+include ':market_licensing'
+include ':market_apk_expansion'
+include ':market_apk_expansion_zipfile'
