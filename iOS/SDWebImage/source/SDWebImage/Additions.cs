@@ -1,13 +1,6 @@
 ﻿using System;
-using System.Runtime.CompilerServices;
-
-#if __UNIFIED__
 using Foundation;
 using ObjCRuntime;
-#else
-using MonoTouch.Foundation;
-using MonoTouch.ObjCRuntime;
-#endif
 
 namespace SDWebImage
 {

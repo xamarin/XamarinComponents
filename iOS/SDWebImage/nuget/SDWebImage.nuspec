@@ -2,19 +2,20 @@
 <package>
   <metadata>
     <id>Xamarin.SDWebImage</id>
-    <title>SDWebImage for Xamarin.iOS</title>
-    <version>4.0.0-beta1</version>
+    <title>SDWebImage for Xamarin.iOS, Xamarin.tvOS, Xamarin.macOS</title>
+    <version>4.0.0-beta2</version>
     <authors>Microsoft</authors>
     <owners>Microsoft</owners>
     <requireLicenseAcceptance>true</requireLicenseAcceptance>
-    <description>Extensions for UIImageView allowing you to asynchronously load web images.</description>
+    <description>Extensions for UIImageView and NSImageView allowing you to asynchronously load web images.</description>
     <copyright>© Microsoft Corporation. All rights reserved.</copyright>
     <projectUrl>https://go.microsoft.com/fwlink/?linkid=865081</projectUrl>
     <licenseUrl>https://go.microsoft.com/fwlink/?linkid=865072</licenseUrl>
   </metadata>
   <files>
-    <file src="output/unified/SDWebImage.dll" target="lib/Xamarin.iOS" />
-    <file src="output/macos/SDWebImage.dll" target="lib/Xamarin.Mac20" />
+    <file src="output/SDWebImage.iOS.dll" target="lib/Xamarin.iOS" />
+    <file src="output/SDWebImage.macOS.dll" target="lib/Xamarin.Mac" />
+    <file src="output/SDWebImage.tvOS.dll" target="lib/Xamarin.tvOS" />
     <file src="External-Dependency-Info.txt" target="THIRD-PARTY-NOTICES.txt" />
   </files>
 </package>

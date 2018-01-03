@@ -2,7 +2,7 @@
 <Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
-    <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
+    <Platform Condition=" '$(Platform)' == '' ">x64</Platform>
     <ProjectGuid>{A79DAA61-435C-4999-A12C-80664C587B24}</ProjectGuid>
     <ProjectTypeGuids>{A3F8F2AB-B479-4A4A-A458-A89E7DC349F1};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <OutputType>Exe</OutputType>
@@ -12,7 +12,7 @@
     <TargetFrameworkIdentifier>Xamarin.Mac</TargetFrameworkIdentifier>
     <MonoMacResourcePrefix>Resources</MonoMacResourcePrefix>
   </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x64' ">
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -28,9 +28,9 @@
     <UseSGen>true</UseSGen>
     <UseRefCounting>true</UseRefCounting>
     <Profiling>true</Profiling>
-    <PlatformTarget>x86</PlatformTarget>
+    <PlatformTarget>x64</PlatformTarget>
   </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x64' ">
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release</OutputPath>
@@ -43,7 +43,7 @@
     <UseSGen>true</UseSGen>
     <UseRefCounting>true</UseRefCounting>
     <LinkMode>SdkOnly</LinkMode>
-    <PlatformTarget>x86</PlatformTarget>
+    <PlatformTarget>x64</PlatformTarget>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -66,10 +66,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Resources\" />
-    <Folder Include="DataModel\" />
-    <Folder Include="Classes\" />
-    <Folder Include="Controllers\" />
-    <Folder Include="Views\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Info.plist" />
@@ -82,40 +78,36 @@
     <Compile Include="ViewController.designer.cs">
       <DependentUpon>ViewController.cs</DependentUpon>
     </Compile>
-    <Compile Include="DataModel\ImageModel.cs" />
-    <Compile Include="Classes\CollectionViewDataSource.cs" />
-    <Compile Include="Classes\CollectionViewDelegate.cs" />
-    <Compile Include="Controllers\ImageListItemController.cs" />
-    <Compile Include="Controllers\ImageListItemController.designer.cs">
-      <DependentUpon>ImageListItemController.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Views\ImageListItem.cs" />
-    <Compile Include="Views\ImageListItem.designer.cs">
-      <DependentUpon>ImageListItem.cs</DependentUpon>
-    </Compile>
     <Compile Include="MainWindowController.cs" />
     <Compile Include="MainWindowController.designer.cs">
       <DependentUpon>MainWindowController.cs</DependentUpon>
     </Compile>
-    <Compile Include="ImageViewer.cs" />
-    <Compile Include="ImageViewerController.cs" />
-    <Compile Include="ImageViewer.designer.cs">
-      <DependentUpon>ImageViewer.cs</DependentUpon>
+    <Compile Include="ImageListItem.cs" />
+    <Compile Include="ImageListItem.designer.cs">
+      <DependentUpon>ImageListItem.cs</DependentUpon>
     </Compile>
-    <Compile Include="ImageViewerController.designer.cs">
-      <DependentUpon>ImageViewerController.cs</DependentUpon>
+    <Compile Include="ImageListItemController.cs" />
+    <Compile Include="ImageListItemController.designer.cs">
+      <DependentUpon>ImageListItemController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ImageRepository.cs" />
+    <Compile Include="AppDelegate.designer.cs">
+      <DependentUpon>AppDelegate.cs</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
     <InterfaceDefinition Include="Main.storyboard" />
-    <InterfaceDefinition Include="Controllers\ImageListItemController.xib" />
-    <InterfaceDefinition Include="ImageViewer.xib" />
+    <InterfaceDefinition Include="ImageListItemController.xib" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\..\source\SDWebImage.MacOS\SDWebImage.MacOS.csproj">
       <Project>{F0D1142E-7A43-4993-84C1-1B2189F442F7}</Project>
       <Name>SDWebImage.MacOS</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\placeholder.png" />
+    <BundleResource Include="Resources\placeholder%402x.png" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Mac\Xamarin.Mac.CSharp.targets" />
 </Project>

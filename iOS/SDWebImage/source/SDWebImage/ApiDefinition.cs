@@ -5,15 +5,13 @@ using Foundation;
 using MapKit;
 using ObjCRuntime;
 
-#if __IOS__
-using UIKit;
-using BoundUIImage = global::UIKit.UIImage;
-#else
+#if __MACOS__
 using AppKit;
 using BoundUIImage = global::AppKit.NSImage;
+#elif __IOS__ || __TVOS__
+using UIKit;
+using BoundUIImage = global::UIKit.UIImage;
 #endif
-
-
 
 namespace SDWebImage
 {
@@ -445,6 +443,7 @@ namespace SDWebImage
 		[return: NullAllowed]
 		string GetCacheKey ([NullAllowed] NSUrl url);
 	}
+
 #if __IOS__
 	// @interface WebCache (FLAnimatedImageView)
 	[Category]
@@ -480,6 +479,7 @@ namespace SDWebImage
 		void SetImage ([NullAllowed] NSUrl url, [NullAllowed] UIImage placeholder, SDWebImageOptions options, [NullAllowed] SDWebImageDownloaderProgressHandler progressHandler, [NullAllowed] SDExternalCompletionHandler completedHandler);
 	}
 #endif
+
 	// @interface WebCache (MKAnnotationView)
 	[Category]
 	[BaseType (typeof (MKAnnotationView))]
@@ -548,7 +548,7 @@ namespace SDWebImage
 
 	// @interface ForceDecode (UIImage)
 	[Category]
-#if __IOS__
+#if __IOS__ || __TVOS__
 	[BaseType (typeof (UIImage))]
 	interface UIImage_ForceDecode
 #else
@@ -723,7 +723,7 @@ namespace SDWebImage
 		void CancelPrefetching ();
 	}
 
-#if __IOS__
+#if __IOS__ || __TVOS__
 	// @interface WebCache (UIButton)
 	[Category]
 	[BaseType (typeof (UIButton))]
@@ -798,7 +798,7 @@ namespace SDWebImage
 
 	// @interface GIF (UIImage)
 	[Category]
-#if __IOS__
+#if __IOS__ || __TVOS__
 	[BaseType (typeof (UIImage))]
 	interface UIImage_Gif
 #else
@@ -818,7 +818,7 @@ namespace SDWebImage
 
 	// @interface MultiFormat (UIImage)
 	[Category]
-#if __IOS__
+#if __IOS__ || __TVOS__
 	[BaseType (typeof (UIImage))]
 	interface UIImage_MultiFormat
 #else
@@ -842,7 +842,7 @@ namespace SDWebImage
 		NSData GetImageData (SDImageFormat imageFormat);
 	}
 
-#if __IOS__
+#if __IOS__ || __TVOS__
 	// @interface HighlightedWebCache (UIImageView)
 	[Category]
 	[BaseType (typeof (UIImageView))]
@@ -871,9 +871,8 @@ namespace SDWebImage
 #endif
 
 	// @interface WebCache (UIImageView)
-    [Category]
-#if __IOS__
-	
+	[Category]
+#if __IOS__ || __TVOS__
 	[BaseType (typeof (UIImageView))]
 	interface UIImageView_WebCache
 #else
@@ -913,7 +912,7 @@ namespace SDWebImage
 		[Export ("sd_setImageWithPreviousCachedImageWithURL:placeholderImage:options:progress:completed:")]
 		void SetImageWithPreviousCachedImage ([NullAllowed] NSUrl url, [NullAllowed] BoundUIImage placeholder, SDWebImageOptions options, [NullAllowed] SDWebImageDownloaderProgressHandler progressHandler, [NullAllowed] SDExternalCompletionHandler completedHandler);
 
-#if __IOS__
+#if __IOS__ || __TVOS__
 		// -(void)sd_setAnimationImagesWithURLs:(NSArray<NSURL *> * _Nonnull)arrayOfURLs;
 		[Export ("sd_setAnimationImagesWithURLs:")]
 		void SetAnimationImages (NSUrl[] arrayOfUrls);
@@ -929,7 +928,7 @@ namespace SDWebImage
 
 	// @interface WebCache (UIView)
 	[Category]
-#if __IOS__
+#if __IOS__ || __TVOS__
 	[BaseType (typeof (UIView))]
 	interface UIView_WebCache
 #else
@@ -949,7 +948,7 @@ namespace SDWebImage
 		[Export ("sd_cancelCurrentImageLoad")]
 		void CancelCurrentImageLoad ();
 
-#if __IOS__
+#if __IOS__ || __TVOS__
 		// -(void)sd_setShowActivityIndicatorView:(BOOL)show;
 		[Export ("sd_setShowActivityIndicatorView:")]
 		void SetShowActivityIndicatorView (bool show);
@@ -974,7 +973,7 @@ namespace SDWebImage
 
 	// @interface WebCacheOperation (UIView)
 	[Category]
-#if __IOS__
+#if __IOS__ || __TVOS__
 	[BaseType (typeof (UIView))]
 	interface UIView_WebCacheOperation
 #else
@@ -995,7 +994,7 @@ namespace SDWebImage
 		void RemoveImageLoadOperation ([NullAllowed] string key);
 	}
 
-#if __OSX__
+#if __MACOS__
 	// @interface WebCache (NSImage)
 	[Category]
 	[BaseType (typeof (NSImage))]

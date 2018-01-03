@@ -1,33 +1,47 @@
 // WARNING
 //
-// This file has been generated automatically by Xamarin Studio to store outlets and
-// actions made in the UI designer. If it is removed, they will be lost.
-// Manual changes to this file may not be handled correctly.
+// This file has been generated automatically by Visual Studio from the outlets and
+// actions declared in your storyboard file.
+// Manual changes to this file will not be maintained.
 //
-#if __UNIFIED__
 using Foundation;
-using UIKit;
-#else
-using MonoTouch.Foundation;
-using MonoTouch.UIKit;
-#endif
-
+using System;
 using System.CodeDom.Compiler;
+using UIKit;
 
 namespace SDWebImageSample
 {
-	[Register ("DetailViewController")]
-	partial class DetailViewController
-	{
-		[Outlet]
-		UIImageView ImageView { get; set; }
-		
-		void ReleaseDesignerOutlets ()
-		{
-			if (ImageView != null) {
-				ImageView.Dispose ();
-				ImageView = null;
-			}
-		}
-	}
+    [Register ("DetailViewController")]
+    partial class DetailViewController
+    {
+        [Outlet]
+        [GeneratedCode ("iOS Designer", "1.0")]
+        UIKit.UIActivityIndicatorView activity { get; set; }
+
+        [Outlet]
+        [GeneratedCode ("iOS Designer", "1.0")]
+        UIKit.UIImageView imageView { get; set; }
+
+        [Outlet]
+        [GeneratedCode ("iOS Designer", "1.0")]
+        UIKit.UIProgressView progress { get; set; }
+
+        void ReleaseDesignerOutlets ()
+        {
+            if (activity != null) {
+                activity.Dispose ();
+                activity = null;
+            }
+
+            if (imageView != null) {
+                imageView.Dispose ();
+                imageView = null;
+            }
+
+            if (progress != null) {
+                progress.Dispose ();
+                progress = null;
+            }
+        }
+    }
 }

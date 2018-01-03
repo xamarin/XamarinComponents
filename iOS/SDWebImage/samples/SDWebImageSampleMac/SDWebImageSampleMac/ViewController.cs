@@ -1,144 +1,89 @@
 ﻿using System;
-
+using System.Collections.Generic;
+using System.Linq;
 using AppKit;
 using CoreGraphics;
 using Foundation;
-using SDWebImageSampleMac.Classes;
-using SDWebImageSampleMac.Controllers;
-using SDWebImageSampleMac.DataModel;
+
+using SDWebImage;
 
 namespace SDWebImageSampleMac
 {
-    public partial class ViewController : NSViewController
-    {
-        private ImageModel _imageSelected;
+	public partial class ViewController : NSViewController
+	{
+		private List<string> images;
 
-		/// <summary>
-		/// Gets or sets the datasource that provides the data to display in the 
-		/// Collection View.
-		/// </summary>
-		/// <value>The datasource.</value>
-		public CollectionViewDataSource Datasource { get; set; }
-
-
-        public ViewController(IntPtr handle) : base(handle)
-        {
-        }
-
-        public override void ViewDidLoad()
-        {
-            base.ViewDidLoad();
-
-            // Do any additional setup after loading the view.
-            ConfigureCollectionView();
-            PopulateWithData();
-        }
-
-		[Export("ImageSelected")]
-		public ImageModel ImageSelected
+		public ViewController(IntPtr handle)
+			: base(handle)
 		{
-			get { return _imageSelected; }
-			set
-			{
-				WillChangeValue("PersonSelected");
-				_imageSelected = value;
-				DidChangeValue("PersonSelected");
-				RaiseSelectionChanged();
-			}
 		}
 
-        public override NSObject RepresentedObject
-        {
-            get
-            {
-                return base.RepresentedObject;
-            }
-            set
-            {
-                base.RepresentedObject = value;
-                // Update the view, if already loaded.
-            }
-        }
-
-		private void ConfigureCollectionView()
+		public override void ViewDidLoad()
 		{
-			ImageCollection.RegisterClassForItem(typeof(ImageListItemController), "ImageCell");
+			base.ViewDidLoad();
 
-			// Create a flow layout
-			var flowLayout = new NSCollectionViewFlowLayout()
+			collectionView.RegisterClassForItem(typeof(ImageListItemController), nameof(ImageListItem));
+
+			collectionView.WantsLayer = true;
+			collectionView.CollectionViewLayout = new NSCollectionViewFlowLayout
 			{
-				ItemSize = new CGSize(150, 150),
-				SectionInset = new NSEdgeInsets(10, 10, 10, 20),
+				ItemSize = new CGSize(140, 140),
+				SectionInset = new NSEdgeInsets(10, 10, 10, 10),
 				MinimumInteritemSpacing = 10,
 				MinimumLineSpacing = 10
 			};
-			ImageCollection.WantsLayer = true;
 
-			// Setup collection view
-			ImageCollection.CollectionViewLayout = flowLayout;
-			ImageCollection.Delegate = new CollectionViewDelegate(this);
+			images = ImageRepository.GetImages();
+			collectionView.DataSource = new CollectionDataSource(images);
+			collectionView.Delegate = new CollectionDelegate(this);
 
+			collectionView.ReloadData();
 		}
 
-		private void PopulateWithData()
+		private class CollectionDataSource : NSCollectionViewDataSource
 		{
-			// Make datasource
-			Datasource = new CollectionViewDataSource(ImageCollection);
+			private List<string> images;
 
-            Datasource.Fill();
-
-			// Populate collection view
-			ImageCollection.ReloadData();
-		}
-
-		#region Events
-		/// <summary>
-		/// Selection changed delegate.
-		/// </summary>
-		public delegate void SelectionChangedDelegate();
-
-		/// <summary>
-		/// Occurs when selection changed.
-		/// </summary>
-		public event SelectionChangedDelegate SelectionChanged;
-
-		/// <summary>
-		/// Raises the selection changed event.
-		/// </summary>
-		internal void RaiseSelectionChanged()
-		{
-			// Inform caller
-			if (this.SelectionChanged != null) SelectionChanged();
-		}
-
-
-		#endregion
-
-		public override void PrepareForSegue(NSStoryboardSegue segue, NSObject sender)
-		{
-			base.PrepareForSegue(segue, sender);
-
-			// Take action based on segue type
-			switch (segue.Identifier)
+			public CollectionDataSource(List<string> images)
 			{
-				case "ViewerSegue":
-					var editor = segue.DestinationController as ImageViewerController;
-					//editor.Presentor = this;
-					//editor.CanEdit = shouldEdit;
-					//editor.Person = PersonSelected;
-					break;
+				this.images = images;
+			}
+
+			public override NSCollectionViewItem GetItem(NSCollectionView collectionView, NSIndexPath indexPath)
+			{
+				var item = collectionView.MakeItem(nameof(ImageListItem), indexPath) as ImageListItemController;
+				item.View.ImageView.SetImage(new NSUrl(images[(int)indexPath.Item]), NSImage.ImageNamed("placeholder"));
+				return item;
+			}
+
+			public override nint GetNumberofItems(NSCollectionView collectionView, nint section)
+			{
+				return images.Count;
 			}
 		}
 
-        public void ViewImage(ImageModel model)
-        {
+		private class CollectionDelegate : NSCollectionViewDelegateFlowLayout
+		{
+			private ViewController parent;
 
+			public CollectionDelegate(ViewController parent)
+			{
+				this.parent = parent;
+			}
 
-            this.PresentViewControllerAsSheet(new ImageViewerController()
-            {
-                Model = model,
-                PresentingController = this,
-            });
-        }
+			public override void ItemsSelected(NSCollectionView collectionView, NSSet indexPaths)
+			{
+				var indexPath = indexPaths.ToArray<NSIndexPath>().FirstOrDefault();
+				if (indexPath != null)
+				{
+					var image = parent.images[(int)indexPath.Item];
+					parent.imageView.SetImage(new NSUrl(image), NSImage.ImageNamed("placeholder"));
+				}
+				else
+				{
+					parent.imageView.Image = null;
+				}
+			}
+		}
 	}
 }

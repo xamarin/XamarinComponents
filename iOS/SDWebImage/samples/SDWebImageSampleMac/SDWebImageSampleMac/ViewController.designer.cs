@@ -13,13 +13,21 @@ namespace SDWebImageSampleMac
 	partial class ViewController
 	{
 		[Outlet]
-		AppKit.NSCollectionView ImageCollection { get; set; }
+		AppKit.NSCollectionView collectionView { get; set; }
+
+		[Outlet]
+		AppKit.NSImageView imageView { get; set; }
 		
 		void ReleaseDesignerOutlets ()
 		{
-			if (ImageCollection != null) {
-				ImageCollection.Dispose ();
-				ImageCollection = null;
+			if (collectionView != null) {
+				collectionView.Dispose ();
+				collectionView = null;
+			}
+
+			if (imageView != null) {
+				imageView.Dispose ();
+				imageView = null;
 			}
 		}
 	}
