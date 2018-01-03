@@ -41,6 +41,7 @@
       <SmartLink>True</SmartLink>
       <ForceLoad>True</ForceLoad>
       <Frameworks>ImageIO MapKit</Frameworks>
+      <LinkerFlags>-ObjC -fobjc-arc</LinkerFlags>
     </NativeReference>
     <NativeReference Include="..\..\externals\osx\liblibwebp.a">
       <Kind>Static</Kind>
