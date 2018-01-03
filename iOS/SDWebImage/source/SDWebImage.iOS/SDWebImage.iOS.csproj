@@ -50,6 +50,7 @@
       <SmartLink>True</SmartLink>
       <Frameworks>ImageIO MapKit</Frameworks>
       <ForceLoad>True</ForceLoad>
+      <LinkerFlags>-ObjC -fobjc-arc</LinkerFlags>
     </NativeReference>
   </ItemGroup>
   <Import Project="..\SDWebImage\SDWebImage.projitems" Label="Shared" Condition="Exists('..\SDWebImage\SDWebImage.projitems')" />
