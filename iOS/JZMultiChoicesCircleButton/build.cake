@@ -18,6 +18,10 @@ var buildSpec = new BuildSpec () {
 		},	
 	},
 
+	NuGets = new [] {
+		new NuGetInfo { NuSpec = "./nuget/Xamarin.JZMultiChoicesCircleButton.nuspec", BuildsOn = BuildPlatforms.Mac },
+	},
+	
 	Samples = new ISolutionBuilder [] {
 		new IOSSolutionBuilder { SolutionPath = "./samples/JZMultiChoicesCircleButtonSample.sln", Configuration = "Release", Platform="iPhone", BuildsOn = BuildPlatforms.Mac },
 	},
