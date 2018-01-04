@@ -13,7 +13,7 @@
     <licenseUrl>https://go.microsoft.com/fwlink/?linkid=865976</licenseUrl>
   </metadata>
   <files>
-    <file src="output/unified/JZMultiChoice.dll" target="lib/Xamarin.iOS" />
+    <file src="output/JZMultiChoice.dll" target="lib/Xamarin.iOS" />
     <file src="External-Dependency-Info.txt" target="THIRD-PARTY-NOTICES.txt" />
   </files>
 </package>

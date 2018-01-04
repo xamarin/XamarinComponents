@@ -12,7 +12,7 @@ var buildSpec = new BuildSpec () {
 			OutputFiles = new [] { 
 				new OutputFileCopy { 
 					FromFile = "./source/JZMultiChoice/bin/Release/JZMultiChoice.dll", 
-					ToDirectory = "./output/unified/" 
+					ToDirectory = "./output/" 
 				},	
 			}
 		},	
