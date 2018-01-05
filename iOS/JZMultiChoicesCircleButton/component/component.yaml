@@ -15,8 +15,12 @@ screenshots:
    - screenshots/00.jpg
 libraries:
   ios-unified: 
-    - ../source/JZMultiChoice/bin/release/JZMultiChoice.dll
+    - ../output/JZMultiChoice.dll
 samples:
   - name: "iOS Unified Sample"
     path: ../samples/JZMultiChoicesCircleButtonSample.sln
+    nobuild: "true"
+packages:
+   ios-unified: Xamarin.JZMultiChoicesCircleButton, Version=1.1
+is_shell: true
 no_build: true
