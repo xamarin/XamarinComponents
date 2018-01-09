@@ -1,0 +1,34 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "REFrostedViewController", "..\source\REFrostedViewController\REFrostedViewController.csproj", "{07EE8B83-EBEF-4A2B-8C85-D3FAE093E43E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "REFrostedViewControllerExample", "REFrostedViewControllerExample\REFrostedViewControllerExample.csproj", "{CE7E6AE7-14D2-4E43-8F02-67A6DA4F3934}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|iPhoneSimulator = Debug|iPhoneSimulator
+		Release|iPhone = Release|iPhone
+		Release|iPhoneSimulator = Release|iPhoneSimulator
+		Debug|iPhone = Debug|iPhone
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{07EE8B83-EBEF-4A2B-8C85-D3FAE093E43E}.Debug|iPhone.ActiveCfg = Debug|Any CPU
+		{07EE8B83-EBEF-4A2B-8C85-D3FAE093E43E}.Debug|iPhone.Build.0 = Debug|Any CPU
+		{07EE8B83-EBEF-4A2B-8C85-D3FAE093E43E}.Debug|iPhoneSimulator.ActiveCfg = Debug|Any CPU
+		{07EE8B83-EBEF-4A2B-8C85-D3FAE093E43E}.Debug|iPhoneSimulator.Build.0 = Debug|Any CPU
+		{07EE8B83-EBEF-4A2B-8C85-D3FAE093E43E}.Release|iPhone.ActiveCfg = Release|Any CPU
+		{07EE8B83-EBEF-4A2B-8C85-D3FAE093E43E}.Release|iPhone.Build.0 = Release|Any CPU
+		{07EE8B83-EBEF-4A2B-8C85-D3FAE093E43E}.Release|iPhoneSimulator.ActiveCfg = Release|Any CPU
+		{07EE8B83-EBEF-4A2B-8C85-D3FAE093E43E}.Release|iPhoneSimulator.Build.0 = Release|Any CPU
+		{CE7E6AE7-14D2-4E43-8F02-67A6DA4F3934}.Debug|iPhone.ActiveCfg = Debug|iPhone
+		{CE7E6AE7-14D2-4E43-8F02-67A6DA4F3934}.Debug|iPhone.Build.0 = Debug|iPhone
+		{CE7E6AE7-14D2-4E43-8F02-67A6DA4F3934}.Debug|iPhoneSimulator.ActiveCfg = Debug|iPhoneSimulator
+		{CE7E6AE7-14D2-4E43-8F02-67A6DA4F3934}.Debug|iPhoneSimulator.Build.0 = Debug|iPhoneSimulator
+		{CE7E6AE7-14D2-4E43-8F02-67A6DA4F3934}.Release|iPhone.ActiveCfg = Release|iPhone
+		{CE7E6AE7-14D2-4E43-8F02-67A6DA4F3934}.Release|iPhone.Build.0 = Release|iPhone
+		{CE7E6AE7-14D2-4E43-8F02-67A6DA4F3934}.Release|iPhoneSimulator.ActiveCfg = Release|iPhoneSimulator
+		{CE7E6AE7-14D2-4E43-8F02-67A6DA4F3934}.Release|iPhoneSimulator.Build.0 = Release|iPhoneSimulator
+		
+	EndGlobalSection
+EndGlobal
