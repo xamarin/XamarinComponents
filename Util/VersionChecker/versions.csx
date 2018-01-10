@@ -47,6 +47,7 @@ var fetchers = new VersionFetcher[] {
     new CocoaPods ("DZNEmptyDataSet", "1.7.3", "DZNEmptyDataSet", OWNER_SA1),
     new CocoaPods ("FXBlurView", "1.6.4", "FXBlurView", OWNER_SA1),
     new CocoaPods ("GPUImage", "0.1.7", "GPUImage", OWNER_SA1),
+    new CocoaPods ("Shimmer", "1.0.2", "Shimmer", OWNER_SA1),
     new CocoaPods ("InAppSettingsKit", "2.6", "InAppSettingsKit", OWNER_SA1),
     new CocoaPods ("JDStatusBarNotification", "1.5.3", "JDStatusBarNotification", OWNER_SA1),
     new GitHubReleases ("JSQMessagesViewController", "7.2.0", "jessesquires", "JSQMessagesViewController", OWNER_US1),
