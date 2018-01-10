@@ -4,7 +4,7 @@
 var TARGET = Argument ("t", Argument ("target", "Default"));
 
 var IOS_PODS = new List<string> {
-	"platform :ios, '5.0'",
+	"platform :ios, '11.2'",
 	"install! 'cocoapods', :integrate_targets => false",
 	"target 'Xamarin' do",
 	"pod 'GPUImage', '0.1.7'",

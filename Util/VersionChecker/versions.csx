@@ -41,7 +41,7 @@ var fetchers = new VersionFetcher[] {
 
     // iOS
     new CocoaPods ("AMViralSwitch", "1.0.0", "AMViralSwitch", OWNER_SA1),
-    new CocoaPods ("Chameleon", "2.0.6", "ChameleonFramework", OWNER_SA1),
+    new CocoaPods ("Chameleon", "2.1", "ChameleonFramework", OWNER_SA1),
     new GitHubReleases ("CorePlot", "1.5.1", "core-plot", "core-plot", OWNER_SA1),
     new CocoaPods ("DACircularProgress", "2.3.1", "DACircularProgress", OWNER_SA1),
     new CocoaPods ("DZNEmptyDataSet", "1.7.3", "DZNEmptyDataSet", OWNER_SA1),
@@ -68,7 +68,7 @@ var fetchers = new VersionFetcher[] {
 
 
     // Facebook
-    new XPath ("Facebook Android", "4.24.0", "https://repo1.maven.org/maven2/com/facebook/android/facebook-android-sdk/maven-metadata.xml", "/metadata/versioning/release", OWNER_CA1),
+    new XPath ("Facebook Android", "4.28.0", "https://repo1.maven.org/maven2/com/facebook/android/facebook-android-sdk/maven-metadata.xml", "/metadata/versioning/release", OWNER_CA1),
     new CocoaPods ("Facebook Pop", "1.0.9", "pop", OWNER_CA1),
     new CocoaPods ("Facebook iOS CoreKit", "4.24.0", "FBSDKCoreKit", OWNER_MX1),
 
