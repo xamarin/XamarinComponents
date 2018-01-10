@@ -4,13 +4,13 @@
     <id>AndroidEasingFunctions</id>
     <title>Android Animation Easing Functions</title>
     <version>1.0.2.0</version>
-    <authors>Xamarin Inc.</authors>
-    <owners>Xamarin Inc.</owners>
-    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <authors>Microsoft</authors>
+    <owners>Microsoft</owners>
+    <requireLicenseAcceptance>true</requireLicenseAcceptance>
     <description>Various Android animation easing functions.</description>
-    <copyright>Copyright 2015 Xamarin Inc</copyright>
-    <projectUrl>https://components.xamarin.com/view/AndroidEasingFunctions</projectUrl>
-    <licenseUrl>https://components.xamarin.com/license/AndroidEasingFunctions</licenseUrl>
+    <copyright>© Microsoft Corporation. All rights reserved.</copyright>
+    <projectUrl>https://go.microsoft.com/fwlink/?linkid=865009</projectUrl>
+    <licenseUrl>https://go.microsoft.com/fwlink/?linkid=865011</licenseUrl>
     <dependencies>
       <dependency id="NineOldAndroids" version="2.4.0" />
     </dependencies>
