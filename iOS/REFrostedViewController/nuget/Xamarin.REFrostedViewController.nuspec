@@ -8,9 +8,9 @@
     <owners>Microsoft</owners>
     <requireLicenseAcceptance>true</requireLicenseAcceptance>
     <description>iOS 7/8 style blurred view controller that appears on top of your view controller</description>
-    <copyright>Copyright 2018 Microsoft</copyright>
-    <projectUrl>https://components.xamarin.com/view/mbprogresshud</projectUrl>
-    <licenseUrl>https://components.xamarin.com/license/mbprogresshud</licenseUrl>
+    <copyright>© Microsoft Corporation. All rights reserved.</copyright>
+    <projectUrl>https://go.microsoft.com/fwlink/?linkid=866321</projectUrl>
+    <licenseUrl>https://go.microsoft.com/fwlink/?linkid=866322</licenseUrl>
   </metadata>
   <files>
     <file src="./output/REFrostedViewController.dll" target="lib/Xamarin.iOS" />
