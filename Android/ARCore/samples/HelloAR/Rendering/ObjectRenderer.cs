@@ -3,7 +3,7 @@ using Android.Content;
 using Android.Graphics;
 using Android.Opengl;
 using Java.Nio;
-using JavaGl;
+using JavaGl.Obj;
 
 namespace HelloAR
 {
