@@ -4,7 +4,7 @@
 var TARGET = Argument ("t", Argument ("target", "Default"));
 
 var IOS_PODS = new List<string> {
-	"platform :ios, '6.0'",
+	"platform :ios, '11.2'",
 	"install! 'cocoapods', :integrate_targets => false",
 	"target 'Xamarin' do",
 	"pod 'SWTableViewCell', '0.3.7'",
@@ -28,6 +28,10 @@ var buildSpec = new BuildSpec () {
 
 	Samples = new ISolutionBuilder [] {
 		new IOSSolutionBuilder { SolutionPath = "./samples/SWTableViewCellSample.sln", Configuration = "Release", Platform="iPhone", BuildsOn = BuildPlatforms.Mac },
+	},
+
+	NuGets = new [] {
+		new NuGetInfo { NuSpec = "./nuget/Xamarin.SWTableViewCell.nuspec" },
 	},
 
 	Components = new [] {
