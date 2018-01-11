@@ -90,6 +90,7 @@
     <Compile Include="Rendering\PlaneAttachment.cs" />
     <Compile Include="Rendering\PlaneRenderer.cs" />
     <Compile Include="Rendering\PointCloudRenderer.cs" />
+    <Compile Include="DisplayRotationHelper.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\AboutResources.txt" />

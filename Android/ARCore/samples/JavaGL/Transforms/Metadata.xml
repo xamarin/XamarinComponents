@@ -1,4 +1,4 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <metadata>
-	<attr path="/api/package[@name='de.javagl']" name="managedName">JavaGl</attr>
+	<attr path="/api/package[@name='de.javagl.obj']" name="managedName">JavaGl.Obj</attr>
 </metadata>
