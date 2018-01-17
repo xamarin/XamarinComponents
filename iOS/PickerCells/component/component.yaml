@@ -27,3 +27,6 @@ samples:
 is_shell: true
 packages:
   ios-unified: Xamarin.PickerCells, Version=1.2.0.0
+additional-files:
+  - source: "../External-Dependency-Info.txt"
+    destination: "THIRD-PARTY-NOTICES.txt"
