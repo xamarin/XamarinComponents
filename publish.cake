@@ -91,6 +91,43 @@ Task ("DownloadArtifacts")
 
 		if (!downloadedFileHash.Equals (buildManifest.Sha256, StringComparison.InvariantCultureIgnoreCase))
 			throw new Exception ("Download Corrupt");
+
+        // Next we need to validate the signature
+		Information ("Verifiying Signatures of Assemblies inside of {0}", downloadedFile.GetFilename());
+
+		if (DirectoryExists ("./tmpnupkg"))
+			DeleteDirectory ("./tmpnupkg", true);
+		EnsureDirectoryExists("./tmpnupkg");
+
+		Unzip (downloadedFile, "./tmpnupkg");
+
+		var assemblies = GetFiles ("./tmpnupkg/**/*.dll") + GetFiles ("./tmpnupkg/**/*.exe");
+		foreach (var assembly in assemblies) {
+
+			IEnumerable<string> stdout;
+			string failText;
+
+			if (IsRunningOnWindows ()) {
+				failText = "No signature found";
+				StartProcess ("signtool", new ProcessSettings {
+					Arguments = "\"" + MakeAbsolute(assembly).FullPath + "\"",
+					RedirectStandardOutput = true,
+				}, out stdout);
+			} else {
+				failText = "doesn't contain a digital signature";
+				StartProcess ("/Library/Frameworks/Mono.framework/Versions/Current/Commands/chktrust", new ProcessSettings {
+					Arguments = "\"" + MakeAbsolute(assembly).FullPath + "\"",
+					RedirectStandardOutput = true,
+				}, out stdout);
+			}
+			var stdoutStr = string.Join(" ", stdout);
+
+			Information (" -> {0}", assembly.GetFilename());
+			Information ("{0}", stdoutStr);
+
+			if (stdoutStr.Contains (failText))
+				throw new Exception (string.Format("Missing Authenticode Signature found in {0} for {1}", assembly.GetFilename(), downloadedFile.GetFilename()));
+		}
 	}
 });
 
