@@ -24,3 +24,6 @@ no_build: true
 packages:
   ios-unified: Xamarin.REFrostedViewController, Version=1.1
 is_shell: true
+additional-files:
+  - source: "../External-Dependency-Info.txt"
+    destination: "THIRD-PARTY-NOTICES.txt"
