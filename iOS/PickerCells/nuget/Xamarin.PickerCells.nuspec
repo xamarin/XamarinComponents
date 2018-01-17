@@ -3,14 +3,14 @@
   <metadata>
     <id>Xamarin.PickerCells</id>
     <title>Xamarin.PickerCells</title>
-    <version>1.2</version>
+    <version>1.2.0.0</version>
     <authors>Microsoft</authors>
     <owners>Microsoft</owners>
     <requireLicenseAcceptance>true</requireLicenseAcceptance>
     <description>A translucent, HUD-style dialog that shows a progress indicator and a status label.</description>
     <copyright>© Microsoft Corporation. All rights reserved.</copyright>
-    <projectUrl>https://components.xamarin.com/view/mbprogresshud</projectUrl>
-    <licenseUrl>https://components.xamarin.com/license/mbprogresshud</licenseUrl>
+    <projectUrl>https://go.microsoft.com/fwlink/?linkid=866526</projectUrl>
+    <licenseUrl>https://go.microsoft.com/fwlink/?linkid=866527</licenseUrl>
   </metadata>
   <files>
     <file src="output/PickerCells.dll" target="lib/Xamarin.iOS" />

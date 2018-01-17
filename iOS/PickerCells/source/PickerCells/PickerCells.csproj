@@ -9,7 +9,7 @@
     <RootNamespace>PickerCells</RootNamespace>
     <IPhoneResourcePrefix>Resources</IPhoneResourcePrefix>
     <AssemblyName>PickerCells</AssemblyName>
-    <ReleaseVersion>1.1</ReleaseVersion>
+    <ReleaseVersion>1.2.0.0</ReleaseVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>

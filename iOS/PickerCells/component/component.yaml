@@ -10,17 +10,20 @@ icons:
   - pickercells_128x128.png
   - pickercells_512x512.png
 publisher-url: http://www.xamarin.com
-src-url: https://github.com/newky2k/PickerCells
+src-url: https://go.microsoft.com/fwlink/?linkid=866526
 libraries: 
   ios-unified: 
     - ../output/PickerCells.dll
 details: Details.md
 screenshots: 
-  - /screenshots/Screen1.png
+  - screenshots/Screen1.png
 getting-started: GettingStarted.md
 version: 1.2
 samples: 
-  - path: samples/PickerCellSample.sln
+  - path: ../samples/PickerCellSample.sln
     name: iOS Sample
     nobuild: "true"
     configuration: Release|iPhone
+is_shell: true
+packages:
+  ios-unified: Xamarin.PickerCells, Version=1.2.0.0
