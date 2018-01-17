@@ -7,6 +7,7 @@
 var TARGET = Argument ("target", Argument ("t", "build"));
 
 var PREVIEW_ONLY = Argument ("preview", EnvironmentVariable ("PREVIEW_ONLY") ?? "false").Equals ("true");
+var SIGNTOOL_PATH = Argument ("signtool-path", EnvironmentVariable ("SIGNTOOL_PATH") ?? "C:\\Program Files (x86)\\Windows Kits\\10\\bin\\x64\\signtool.exe");
 
 var NUGET_FORCE_PUSH = Argument ("nuget-force-push", EnvironmentVariable ("NUGET_FORCE_PUSH") ?? "false").Equals ("true");
 var NUGET_MAX_ATTEMPTS = 5;
@@ -91,48 +92,63 @@ Task ("DownloadArtifacts")
 
 		if (!downloadedFileHash.Equals (buildManifest.Sha256, StringComparison.InvariantCultureIgnoreCase))
 			throw new Exception ("Download Corrupt");
+	}
+});
 
-        // Next we need to validate the signature
-		Information ("Verifiying Signatures of Assemblies inside of {0}", downloadedFile.GetFilename());
+Task ("VerifyAuthenticode")
+	.IsDependentOn ("DownloadArtifacts")
+	.Does (() => 
+{
+	var globPatterns = (GLOB_PATTERNS ?? "./output/*.nupkg").Split (new [] { ',', ';', ' ' });
 
-		if (DirectoryExists ("./tmpnupkg"))
-			DeleteDirectory ("./tmpnupkg", true);
-		EnsureDirectoryExists("./tmpnupkg");
+	DumpGlobPatterns (globPatterns);
 
-		Unzip (downloadedFile, "./tmpnupkg");
+	foreach (var globPattern in globPatterns) {
+		var nupkgFiles = GetFiles (globPattern);
 
-		var assemblies = GetFiles ("./tmpnupkg/**/*.dll") + GetFiles ("./tmpnupkg/**/*.exe");
-		foreach (var assembly in assemblies) {
+		foreach (var nupkgFile in nupkgFiles) {
+			Information ("Verifiying Signatures of Assemblies inside of {0}", nupkgFile.GetFilename());
 
-			IEnumerable<string> stdout;
-			string failText;
+			if (DirectoryExists ("./tmpnupkg"))
+				DeleteDirectory ("./tmpnupkg", true);
+			EnsureDirectoryExists("./tmpnupkg");
 
-			if (IsRunningOnWindows ()) {
-				failText = "No signature found";
-				StartProcess ("signtool", new ProcessSettings {
-					Arguments = "\"" + MakeAbsolute(assembly).FullPath + "\"",
-					RedirectStandardOutput = true,
-				}, out stdout);
-			} else {
-				failText = "doesn't contain a digital signature";
-				StartProcess ("/Library/Frameworks/Mono.framework/Versions/Current/Commands/chktrust", new ProcessSettings {
-					Arguments = "\"" + MakeAbsolute(assembly).FullPath + "\"",
-					RedirectStandardOutput = true,
-				}, out stdout);
+			Unzip (nupkgFile, "./tmpnupkg");
+
+			var assemblies = GetFiles ("./tmpnupkg/**/*.dll") + GetFiles ("./tmpnupkg/**/*.exe");
+			foreach (var assembly in assemblies) {
+
+				IEnumerable<string> stdout;
+				var stdoutput = string.Empty;
+				bool verified = false;
+
+				if (IsRunningOnWindows ()) {
+					StartProcess (SIGNTOOL_PATH, new ProcessSettings {
+						Arguments = "/pa \"" + MakeAbsolute(assembly).FullPath + "\"",
+						RedirectStandardOutput = true,
+					}, out stdout);
+					stdoutput = string.Join(" ", stdout);
+					verified = stdoutput.Contains ("Successfully verified");
+				} else {
+					StartProcess ("/Library/Frameworks/Mono.framework/Versions/Current/Commands/chktrust", new ProcessSettings {
+						Arguments = "\"" + MakeAbsolute(assembly).FullPath + "\"",
+						RedirectStandardOutput = true,
+					}, out stdout);
+					stdoutput = string.Join(" ", stdout);
+					verified = !stdoutput.Contains ("doesn't contain a digital signature");
+				}
+				Information (" -> {0}", assembly.GetFilename());
+				Information (" -> {0}", stdoutput);
+
+				if (!verified)
+					throw new Exception (string.Format("Missing Authenticode Signature found in {0} for {1}", assembly.GetFilename(), nupkgFile.GetFilename()));
 			}
-			var stdoutStr = string.Join(" ", stdout);
-
-			Information (" -> {0}", assembly.GetFilename());
-			Information ("{0}", stdoutStr);
-
-			if (stdoutStr.Contains (failText))
-				throw new Exception (string.Format("Missing Authenticode Signature found in {0} for {1}", assembly.GetFilename(), downloadedFile.GetFilename()));
 		}
 	}
 });
 
 Task ("MyGet")
-	.IsDependentOn("DownloadArtifacts")
+	.IsDependentOn("VerifyAuthenticode")
 	.Does (() =>
 {
 	var globPatterns = (GLOB_PATTERNS ?? "./output/*.nupkg").Split (new [] { ',', ';', ' ' });
@@ -150,7 +166,7 @@ Task ("MyGet")
 });
 
 Task ("NuGet")
-	.IsDependentOn("DownloadArtifacts")
+	.IsDependentOn("VerifyAuthenticode")
 	.Does (() =>
 {
 	var globPatterns = (GLOB_PATTERNS ?? "./output/*.nupkg").Split (new [] { ',', ';', ' ' });
