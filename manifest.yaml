@@ -327,6 +327,10 @@
   BuildScript: ./iOS/SDSegmentedControl/build.cake
   TriggerPaths: [ iOS/SDSegmentedControl ]
   MacBuildTargets: [ samples, component ]
+- Name: REFrostedViewController
+  BuildScript: ./iOS/REFrostedViewController/build.cake
+  TriggerPaths: [ iOS/REFrostedViewController ]
+  MacBuildTargets: [ samples, nuget, component ]
 
 #######################################################
 # XPlat
