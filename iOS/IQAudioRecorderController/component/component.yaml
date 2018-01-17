@@ -25,3 +25,6 @@ packages:
   ios-unified: Xamarin.IQAudioRecorderController, Version=1.1
 no_build: true
 is_shell: true
+additional-files:
+  - source: "../External-Dependency-Info.txt"
+    destination: "THIRD-PARTY-NOTICES.txt"
