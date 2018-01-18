@@ -124,7 +124,7 @@ Task ("VerifyAuthenticode")
 
 				if (IsRunningOnWindows ()) {
 					StartProcess (SIGNTOOL_PATH, new ProcessSettings {
-						Arguments = "/pa \"" + MakeAbsolute(assembly).FullPath + "\"",
+						Arguments = "verify /pa \"" + MakeAbsolute(assembly).FullPath + "\"",
 						RedirectStandardOutput = true,
 					}, out stdout);
 					stdoutput = string.Join(" ", stdout);
