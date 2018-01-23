@@ -1,0 +1,23 @@
+name: JVMenuPopover
+id: jvmenupopover
+version: 1.6
+summary: Simple popover menu for Xamarin.iOS
+publisher: Xamarin Inc
+publisher-url: http://www.xamarin.com/
+src-url: https://github.com/JV17/JVMenuPopover
+license: component/License.md
+details: component/Details.md
+getting-started: component/GettingStarted.md
+icons: 
+  - component/icons/jvmenupopover_128x128.png
+  - component/icons/jvmenupopover_512x512.png
+screenshots:
+   - component/screenshots/00.jpg
+   - component/screenshots/01.jpg
+libraries:
+  ios-unified: 
+    - src/JVMenuPopover/bin/Release/JVMenuPopover.dll
+samples:
+  "iOS Unified Sample": samples/JVMenuPopoverSample/JVMenuPopoverSample.sln
+build:
+  - src/JVMenuPopover.sln
