@@ -26,3 +26,6 @@ samples:
 is_shell: true
 packages:
   ios-unified: Xamarin.JVMenuPopover, Version=1.7.0
+additional-files:
+  - source: "../External-Dependency-Info.txt"
+    destination: "THIRD-PARTY-NOTICES.txt"

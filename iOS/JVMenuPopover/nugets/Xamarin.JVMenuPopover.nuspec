@@ -14,5 +14,6 @@
   </metadata>
   <files>
     <file src="output/JVMenuPopover.dll" target="lib/Xamarin.iOS" />
+    <file src="External-Dependency-Info.txt" target="THIRD-PARTY-NOTICES.txt" />
   </files>
 </package>
