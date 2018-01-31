@@ -1,0 +1,31 @@
+name: APDropDownNavToolbar
+id: apdropdownnavtoolbar
+version: 1.1
+summary: iOS7 Messages App style toolbar that drops down from navigation bar when tapping on the UIBarButton item
+publisher: Xamarin Inc
+publisher-url: http://www.xamarin.com/
+src-url: https://github.com/ankurp/APDropDownNavToolbar
+license: ../License.md
+details: Details.md
+getting-started: GettingStarted.md
+no_build: true
+icons: 
+  - component/icons/apdropdownnavtoolbar_128x128.png
+  - component/icons/apdropdownnavtoolbar_512x512.png
+screenshots:
+   - screenshots/00.jpg
+   - screenshots/01.jpg
+libraries:
+  ios-unified: 
+    - ../output/APDropDownNavToolbar.dll
+samples:
+  - path: samples/APDropDownNavToolbar-Sample.sln
+    name: iOS Sample
+    nobuild: "true"
+    configuration: Release|iPhone
+is_shell: true
+packages:
+  ios-unified: Xamarin.JVMenuPopover, Version=1.7.0
+additional-files:
+  - source: "../External-Dependency-Info.txt"
+    destination: "THIRD-PARTY-NOTICES.txt"
