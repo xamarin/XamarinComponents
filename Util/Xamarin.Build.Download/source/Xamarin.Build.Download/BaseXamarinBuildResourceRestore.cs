@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Reflection;
+using System.Threading;
 using Microsoft.Build.Framework;
 using Microsoft.Build.Utilities;
 using Mono.Cecil;
@@ -10,7 +11,7 @@ using Xamarin.MacDev;
 
 namespace Xamarin.Build.Download
 {
-	public abstract class BaseXamarinBuildResourceRestore : Task
+	public abstract class BaseXamarinBuildResourceRestore : Task, ICancelableTask
 	{
 		[Required]
 		public string IntermediateOutputPath { get; set; }
@@ -36,6 +37,8 @@ namespace Xamarin.Build.Download
 		[Output]
 		public ITaskItem [] AdditionalFileWrites { get; set; }
 
+		CancellationTokenSource cancelTaskSource;
+
 		protected virtual string MergeOutputDir {
 			get {
 				return Path.Combine (IntermediateOutputPath, "XbdMerge");
@@ -49,8 +52,16 @@ namespace Xamarin.Build.Download
 			return File.OpenRead (resourceFullPath);
 		}
 
+		public void Cancel ()
+		{
+			if (cancelTaskSource != null && !cancelTaskSource.IsCancellationRequested)
+				cancelTaskSource.Cancel ();
+		}
+
 		public override bool Execute ()
 		{
+			cancelTaskSource = new CancellationTokenSource ();
+
 			var additionalFileWrites = new List<ITaskItem> ();
 
 			var outputDir = MergeOutputDir;
@@ -67,6 +78,10 @@ namespace Xamarin.Build.Download
 			IAssemblyResolver resolver = null;
 
 			foreach (var asm in restoreMap) {
+
+				if (cancelTaskSource.IsCancellationRequested)
+					return false;
+
 				var asmName = new AssemblyName (asm.Key);
 				ITaskItem item = FindMatchingAssembly (InputReferencePaths, asmName);
 				if (item == null) {
@@ -121,6 +136,13 @@ namespace Xamarin.Build.Download
 			var disposeList = new List<IDisposable> ();
 			var sameAssembly = originalAsmPath == mergedAsmPath;
 
+			var asmLockFilePath = originalAsmPath + ".lock";
+
+			var exclusiveLock = DownloadUtils.ObtainExclusiveFileLock (asmLockFilePath, cancelTaskSource.Token, TimeSpan.FromSeconds (60));
+
+			if (exclusiveLock == null)
+				return false;
+			
 			try {
 				var asmDefinition = AssemblyDefinition.ReadAssembly (originalAsmPath, new ReaderParameters {AssemblyResolver = resolver});
 				var needToWrite = !sameAssembly;
@@ -163,6 +185,17 @@ namespace Xamarin.Build.Download
 						dispose.Dispose ();
 					} catch { }
 				}
+
+				try {
+					if (File.Exists (asmLockFilePath))
+						File.Delete (asmLockFilePath);
+				} catch { }
+
+				try {
+					exclusiveLock?.Dispose ();
+				} catch { }
+
+				exclusiveLock = null;
 			}
 		}
 
