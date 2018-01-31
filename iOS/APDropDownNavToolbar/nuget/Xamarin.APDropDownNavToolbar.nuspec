@@ -9,8 +9,8 @@
     <requireLicenseAcceptance>true</requireLicenseAcceptance>
     <description>iOS7 Messages App style toolbar that drops down from navigation bar when tapping on the UIBarButton item</description>
     <copyright>© Microsoft Corporation. All rights reserved.</copyright>
-    <projectUrl>https://components.xamarin.com/view/gpuimage</projectUrl>
-    <licenseUrl>https://components.xamarin.com/license/gpuimage</licenseUrl>
+    <projectUrl>https://go.microsoft.com/fwlink/?linkid=867217</projectUrl>
+    <licenseUrl>https://go.microsoft.com/fwlink/?linkid=867218</licenseUrl>
   </metadata>
   <files>
     <file src="output/APDropDownNavToolbar.dll" target="lib/Xamarin.iOS" />
