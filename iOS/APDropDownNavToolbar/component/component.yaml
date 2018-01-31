@@ -10,8 +10,8 @@ details: Details.md
 getting-started: GettingStarted.md
 no_build: true
 icons: 
-  - component/icons/apdropdownnavtoolbar_128x128.png
-  - component/icons/apdropdownnavtoolbar_512x512.png
+  - icons/apdropdownnavtoolbar_128x128.png
+  - icons/apdropdownnavtoolbar_512x512.png
 screenshots:
    - screenshots/00.jpg
    - screenshots/01.jpg
@@ -19,7 +19,7 @@ libraries:
   ios-unified: 
     - ../output/APDropDownNavToolbar.dll
 samples:
-  - path: samples/APDropDownNavToolbar-Sample.sln
+  - path: ../samples/APDropDownNavToolbar-Sample.sln
     name: iOS Sample
     nobuild: "true"
     configuration: Release|iPhone
