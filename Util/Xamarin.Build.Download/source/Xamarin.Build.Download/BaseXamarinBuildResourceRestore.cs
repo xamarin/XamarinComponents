@@ -45,6 +45,12 @@ namespace Xamarin.Build.Download
 			}
 		}
 
+		protected IBuildEngine4 BuildEngine4 {
+			get {
+				return (IBuildEngine4)BuildEngine;
+			}
+		}
+
 		protected abstract IAssemblyResolver CreateAssemblyResolver ();
 
 		protected virtual Stream LoadResource (string resourceFullPath, string assemblyName)
@@ -133,18 +139,33 @@ namespace Xamarin.Build.Download
 
 		bool MergeResources (IAssemblyResolver resolver, string originalAsmPath, string mergedAsmPath, string assemblyName, List<ITaskItem> resourceItems)
 		{
+			// Check the build engine for an existing registered task object for this assembly
+			// If it exists, another task in parallel is already or has already handled merging resources
+			// for this assembly, so we can just skip it.
+			var registeredTaskObjectKey = "Xamarin.Build.Download.MergeResources." + DownloadUtils.HashMd5 (originalAsmPath);
+			var existingTaskObject = BuildEngine4.GetRegisteredTaskObject (registeredTaskObjectKey, RegisteredTaskObjectLifetime.Build);
+			if (existingTaskObject != null)
+				return true;
+
+			// Register this assembly as a task object so other parallel invocations will know to skip it
+			// as we're already doing the work here
+			BuildEngine4.RegisterTaskObject (registeredTaskObjectKey, originalAsmPath, RegisteredTaskObjectLifetime.Build, false);
+
 			var disposeList = new List<IDisposable> ();
 			var sameAssembly = originalAsmPath == mergedAsmPath;
 
+			Stream exclusiveLock = null;
 			var asmLockFilePath = originalAsmPath + ".lock";
+			var writeSucceded = false;
 
-			var exclusiveLock = DownloadUtils.ObtainExclusiveFileLock (asmLockFilePath, cancelTaskSource.Token, TimeSpan.FromSeconds (60));
-
-			if (exclusiveLock == null)
-				return false;
-			
 			try {
-				var asmDefinition = AssemblyDefinition.ReadAssembly (originalAsmPath, new ReaderParameters {AssemblyResolver = resolver});
+				// Try to obtain an exclusive write lock to the lock file of the assembly
+				// we're wroking with
+				exclusiveLock = DownloadUtils.ObtainExclusiveFileLock (asmLockFilePath, cancelTaskSource.Token, TimeSpan.FromSeconds (60));
+				if (exclusiveLock == null)
+					return false;
+
+				var asmDefinition = AssemblyDefinition.ReadAssembly (originalAsmPath, new ReaderParameters { AssemblyResolver = resolver });
 				var needToWrite = !sameAssembly;
 
 				foreach (var resourceItem in resourceItems) {
@@ -172,6 +193,7 @@ namespace Xamarin.Build.Download
 				if (needToWrite)
 					asmDefinition.Write (mergedAsmPath);
 
+				writeSucceded = true;
 				return true;
 			} catch (Exception ex) {
 				try {
@@ -180,6 +202,11 @@ namespace Xamarin.Build.Download
 				Log.LogErrorFromException (ex, true);
 				return false;
 			} finally {
+				// If we failed to write the assembly, we should unregister this item
+				// so another invocation can still try again
+				if (!writeSucceded)
+					BuildEngine4.UnregisterTaskObject (registeredTaskObjectKey, RegisteredTaskObjectLifetime.Build);
+
 				foreach (var dispose in disposeList) {
 					try {
 						dispose.Dispose ();
