@@ -327,6 +327,10 @@
   BuildScript: ./iOS/SDSegmentedControl/build.cake
   TriggerPaths: [ iOS/SDSegmentedControl ]
   MacBuildTargets: [ samples, component ]
+- Name: APDropDownNavToolbar
+  BuildScript: ./iOS/APDropDownNavToolbar/build.cake
+  TriggerPaths: [ iOS/APDropDownNavToolbar ]
+  MacBuildTargets: [ samples, nuget, component ]
 
 #######################################################
 # XPlat
