@@ -26,8 +26,7 @@ namespace HelloAR
 
 		// Rendering. The Renderers are created here, and initialized when the GL surface is created.
 		GLSurfaceView mSurfaceView;
-
-		Google.AR.Core.Config mDefaultConfig;
+      
 		Session mSession;
 		BackgroundRenderer mBackgroundRenderer = new BackgroundRenderer();
 		GestureDetector mGestureDetector;
@@ -86,6 +85,7 @@ namespace HelloAR
                 Finish();
                 return;
             }
+            mSession.Configure(config);
 			
 			mGestureDetector = new Android.Views.GestureDetector(this, new SimpleTapGestureDetector {
 				SingleTapUpHandler = (MotionEvent arg) => {
@@ -132,13 +132,16 @@ namespace HelloAR
 		protected override void OnPause()
 		{
 			base.OnPause();
+         if (ContextCompat.CheckSelfPermission(this, Android.Manifest.Permission.Camera) == Android.Content.PM.Permission.Granted)
+         {
             // Note that the order matters - GLSurfaceView is paused first so that it does not try
             // to query the session. If Session is paused before GLSurfaceView, GLSurfaceView may
             // still call mSession.update() and get a SessionPausedException.
             mDisplayRotationHelper.OnPause();
-			mSurfaceView.OnPause();
+            mSurfaceView.OnPause();
             if (mSession != null)
-    			mSession.Pause();
+                mSession.Pause();
+         }
 		}
 
 		public override void OnRequestPermissionsResult(int requestCode, string[] permissions, Android.Content.PM.Permission[] grantResults)
