@@ -13,6 +13,8 @@ namespace Xamarin.Build.Download
 {
 	public class XamarinBuildAndroidAarProguardConfigs : XamarinBuildAndroidResourceRestore
 	{
+        const string TASK_KEY = "Xamarin.Build.Download.AarProugardConfigs-";
+
 		public bool FixAndroidManifests { get; set; } = true;
 
 		[Output]
@@ -46,9 +48,20 @@ namespace Xamarin.Build.Download
 			// Look through all the assemblies we would restore for
 			foreach (var asm in restoreMap) {
 
-				// We only want to find proguard files in .aar files referenced
-				// for assemblies we actually have referenced and have them mapped to
-				var asmName = new AssemblyName (asm.Key);
+                var taskKey = TASK_KEY + DownloadUtils.HashMd5(asm.Key);
+
+                if (BuildEngine4.GetRegisteredTaskObject(taskKey, RegisteredTaskObjectLifetime.AppDomain) != null) {
+                    Log.LogMessage("Xamarin.Build.Download.AarProguardConfigs already processed for: " + asm.Key);
+                    continue;
+                }
+
+                BuildEngine4.RegisterTaskObject(taskKey, asm.Key, RegisteredTaskObjectLifetime.AppDomain, false);
+
+
+                // We only want to find proguard files in .aar files referenced
+                // for assemblies we actually have referenced and have them mapped to
+                var asmName = new AssemblyName (asm.Key);
+
 				ITaskItem item = FindMatchingAssembly (InputReferencePaths, asmName);
 				if (item == null) {
 					if (ThrowOnMissingAssembly)

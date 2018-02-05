@@ -64,11 +64,13 @@ namespace Xamarin.Build.Download
 				cancelTaskSource.Cancel ();
 		}
 
+        const string RES_RESTORE_TASK_KEY = "Xamarin.Build.Download.BaseXamarinBuildResourceRestore-";
+
 		public override bool Execute ()
 		{
-			cancelTaskSource = new CancellationTokenSource ();
+            cancelTaskSource = new CancellationTokenSource ();
 
-			var additionalFileWrites = new List<ITaskItem> ();
+			var additionalFileWrites = new List<string> ();
 
 			var outputDir = MergeOutputDir;
 			Directory.CreateDirectory (outputDir);
@@ -88,7 +90,20 @@ namespace Xamarin.Build.Download
 				if (cancelTaskSource.IsCancellationRequested)
 					return false;
 
-				var asmName = new AssemblyName (asm.Key);
+                // Our key is also keyed to the type name since this class is inherited, and could in theory
+                // be implemented and used by multiple subclasses
+                var taskKey = RES_RESTORE_TASK_KEY + this.GetType().Name + "-" + DownloadUtils.HashMd5(asm.Key);
+
+                // Check to see if another build task instance has already processed this task key and skip
+                if (BuildEngine4.GetRegisteredTaskObject(taskKey, RegisteredTaskObjectLifetime.AppDomain) != null) {
+                    Log.LogMessage("Xamarin.Build.Download.BaseXamarinBuildResourceRestore already processed: " + asm.Key);
+                    continue;
+                }
+
+                // Register this task key with the build engine to allow other instances to skip this item
+                BuildEngine4.RegisterTaskObject(taskKey, asm.Key, RegisteredTaskObjectLifetime.AppDomain, false);
+
+                var asmName = new AssemblyName (asm.Key);
 				ITaskItem item = FindMatchingAssembly (InputReferencePaths, asmName);
 				if (item == null) {
 					if (ThrowOnMissingAssembly)
@@ -105,7 +120,7 @@ namespace Xamarin.Build.Download
 				var stampAsmPath = intermediateAsmPath + ".stamp";
 
 				if (File.Exists (stampAsmPath)) {
-					additionalFileWrites.Add (new TaskItem (stampAsmPath));
+					additionalFileWrites.Add (stampAsmPath);
 					Log.LogMessage ("Reference has already had resources merged, skipping due to: {0}", stampAsmPath);
 
 				} else if (OverwriteSourceAssembly || !File.Exists(intermediateAsmPath) || File.GetLastWriteTime (intermediateAsmPath) < File.GetLastWriteTime (originalAsmPath)) {
@@ -115,7 +130,7 @@ namespace Xamarin.Build.Download
 						return false;
 
 					File.WriteAllText (stampAsmPath, string.Empty);
-					additionalFileWrites.Add (new TaskItem (stampAsmPath));
+					additionalFileWrites.Add (stampAsmPath);
 				}
 
 				removedReferencePaths.Add (item);
@@ -132,40 +147,30 @@ namespace Xamarin.Build.Download
 				RemovedReferencePaths = removedReferencePaths.ToArray ();
 			}
 
-			AdditionalFileWrites = additionalFileWrites.ToArray ();
+			AdditionalFileWrites = additionalFileWrites.Select(a => new TaskItem(a)).ToArray ();
 
 			return true;
 		}
 
 		bool MergeResources (IAssemblyResolver resolver, string originalAsmPath, string mergedAsmPath, string assemblyName, List<ITaskItem> resourceItems)
 		{
-			// Check the build engine for an existing registered task object for this assembly
-			// If it exists, another task in parallel is already or has already handled merging resources
-			// for this assembly, so we can just skip it.
-			var registeredTaskObjectKey = "Xamarin.Build.Download.MergeResources." + DownloadUtils.HashMd5 (originalAsmPath);
-			var existingTaskObject = BuildEngine4.GetRegisteredTaskObject (registeredTaskObjectKey, RegisteredTaskObjectLifetime.Build);
-			if (existingTaskObject != null)
-				return true;
-
-			// Register this assembly as a task object so other parallel invocations will know to skip it
-			// as we're already doing the work here
-			BuildEngine4.RegisterTaskObject (registeredTaskObjectKey, originalAsmPath, RegisteredTaskObjectLifetime.Build, false);
-
 			var disposeList = new List<IDisposable> ();
 			var sameAssembly = originalAsmPath == mergedAsmPath;
 
-			Stream exclusiveLock = null;
-			var asmLockFilePath = originalAsmPath + ".lock";
-			var writeSucceded = false;
+            Stream xlock = null;
 
 			try {
-				// Try to obtain an exclusive write lock to the lock file of the assembly
-				// we're wroking with
-				exclusiveLock = DownloadUtils.ObtainExclusiveFileLock (asmLockFilePath, cancelTaskSource.Token, TimeSpan.FromSeconds (60));
-				if (exclusiveLock == null)
-					return false;
+                // obtain an exclusive Lock on the assembly.dll.lock to ensure other instances of this task or the proguard task
+                // aren't accessing this dll at the same time
+                xlock = DownloadUtils.ObtainExclusiveFileLock(originalAsmPath + ".lock", cancelTaskSource.Token, TimeSpan.FromSeconds(30));
+                if (xlock == null)
+                    return false;
 
-				var asmDefinition = AssemblyDefinition.ReadAssembly (originalAsmPath, new ReaderParameters { AssemblyResolver = resolver });
+                // Copy the original file to a temp location so we can work on it
+                var asmTmpPath = originalAsmPath + ".tmp";
+                File.Copy(originalAsmPath, asmTmpPath, true);
+
+				var asmDefinition = AssemblyDefinition.ReadAssembly (asmTmpPath, new ReaderParameters { AssemblyResolver = resolver });
 				var needToWrite = !sameAssembly;
 
 				foreach (var resourceItem in resourceItems) {
@@ -190,59 +195,74 @@ namespace Xamarin.Build.Download
 					needToWrite = true;
 				}
 
-				if (needToWrite)
-					asmDefinition.Write (mergedAsmPath);
+                if (needToWrite) {
+                    asmDefinition.Write(asmTmpPath);
+                    // Copy our temp/working file back to overwrite the original file
+                    File.Copy(asmTmpPath, originalAsmPath, true);
+                }
 
-				writeSucceded = true;
 				return true;
 			} catch (Exception ex) {
 				try {
-					if (!sameAssembly) File.Delete (mergedAsmPath);
+					if (!sameAssembly && File.Exists(mergedAsmPath))
+                        File.Delete (mergedAsmPath);
 				} catch { }
 				Log.LogErrorFromException (ex, true);
 				return false;
 			} finally {
-				// If we failed to write the assembly, we should unregister this item
-				// so another invocation can still try again
-				if (!writeSucceded)
-					BuildEngine4.UnregisterTaskObject (registeredTaskObjectKey, RegisteredTaskObjectLifetime.Build);
-
 				foreach (var dispose in disposeList) {
 					try {
 						dispose.Dispose ();
 					} catch { }
 				}
 
-				try {
-					if (File.Exists (asmLockFilePath))
-						File.Delete (asmLockFilePath);
-				} catch { }
-
-				try {
-					exclusiveLock?.Dispose ();
-				} catch { }
-
-				exclusiveLock = null;
+                // Release our exclusive file lock regardless of what happens
+                if (xlock != null) {
+                    try { xlock.Dispose(); }
+                    catch { }
+                    xlock = null;
+                }
 			}
 		}
 
-		protected ITaskItem FindMatchingAssembly (ITaskItem [] assemblies, AssemblyName name)
+        const string ASM_NAME_TASK_KEY = "Xamarin.Build.Download.AssemblyName-";
+
+        protected ITaskItem FindMatchingAssembly (ITaskItem [] assemblies, AssemblyName name)
 		{
 			foreach (var asm in assemblies) {
-				var asmPath = asm.GetMetadata ("FullPath");
-				var filename = Path.GetFileNameWithoutExtension (asmPath);
+                if (cancelTaskSource?.IsCancellationRequested ?? false)
+                    return null;
+
+                var asmPath = asm.GetMetadata("FullPath");
+                var filename = Path.GetFileNameWithoutExtension (asmPath);
+
 				if (filename == name.Name) {
-					AssemblyName aname;
+                    var taskKey = ASM_NAME_TASK_KEY + DownloadUtils.HashMd5(asmPath);
+
+                    AssemblyName aname;
 					try {
-						aname = AssemblyName.GetAssemblyName (asmPath);
-					} catch {
-						Log.LogError ("Unable to read reference '{0}'", asmPath);
+                        // Check for an existing task with the same key having already executed
+                        // if it exists, we will have the AssemblyName already cached and have no need
+                        // to read it again
+                        aname = BuildEngine4.GetRegisteredTaskObject(taskKey, RegisteredTaskObjectLifetime.Build) as AssemblyName;
+                        if (aname == null) {
+                            // XBD uses an exclusive file lock on the filename.dll.lock
+                            // to help ensure we aren't accessing the assembly at the same time from multiple tasks/threads
+                            using (var xlock = DownloadUtils.ObtainExclusiveFileLock(asmPath + ".lock", cancelTaskSource.Token, TimeSpan.FromSeconds(30)))
+                                 aname = AssemblyName.GetAssemblyName(asmPath);
+                            // Register the taskKey with the build engine so other tasks know can use the cached AssemblyName
+                            BuildEngine4.RegisterTaskObject(taskKey, aname, RegisteredTaskObjectLifetime.Build, false);
+                            Log.LogMessage("AssemblyName cached for '{0}'", asmPath);
+                        } else {
+                            Log.LogMessage("AssemblyName cache hit for '{0}'", asmPath);
+                        }
+					} catch (Exception ex) {
+						Log.LogError ("GetAssemblyName -> Unable to read reference '{0}'", asmPath);
 						return null;
 					}
 					//TODO: should the check be more thorough?
-					if (aname.Name == name.Name) {
-						return asm;
-					}
+					if (aname.Name == name.Name)
+                        return asm;
 				}
 			}
 			if (ThrowOnMissingAssembly)
