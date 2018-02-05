@@ -20,7 +20,7 @@ namespace Xamarin.Build.Download
 		[Output]
 		public ITaskItem [] AarProguardConfiguration { get; set; }
 
-		string proguardIntermediateOutputPath = null;
+        string proguardIntermediateOutputPath = null;
 
 		// We intentionally won't call the base implementation in this override
 		// since other tasks should handle the restores
@@ -29,12 +29,12 @@ namespace Xamarin.Build.Download
 		// track down the .aar files themselves.
 		public override bool Execute ()
 		{
-			// Get the dir to store proguard config files in
-			proguardIntermediateOutputPath = Path.Combine (MergeOutputDir, "proguard");
+            // Get the dir to store proguard config files in
+            proguardIntermediateOutputPath = Path.Combine (MergeOutputDir, "proguard");
 			if (!Directory.Exists (proguardIntermediateOutputPath))
 				Directory.CreateDirectory (proguardIntermediateOutputPath);
 
-			var additionalFileWrites = new List<ITaskItem> ();
+			var additionalFileWrites = new List<string> ();
 
 			// Make sure our XbdMerge directory exists
 			var outputDir = MergeOutputDir;
@@ -75,8 +75,22 @@ namespace Xamarin.Build.Download
 
 				// We keep a stamp file around to avoid reprocessing, so skip if it exists
 				var stampPath = Path.Combine (outputDir, saveNameHash + ".proguard.stamp");
-				if (File.Exists (stampPath))
-					continue;
+
+                // If we have a stamp file, it should contain any proguard config files that
+                // were previously processed.  These need to be emitted still as FileWrites
+                if (File.Exists(stampPath)) {
+                    // Each line should be a filename
+                    var stampLines = File.ReadAllLines(stampPath);
+                    if (stampLines != null && stampLines.Any()) {
+                        foreach (var line in stampLines) {
+                            if (File.Exists(line)) // make sure we only add files that exist
+                                additionalFileWrites.Add(line);
+                        }
+                    }
+                    // the stamp file itself is a filewrites file
+                    additionalFileWrites.Add(stampPath);
+                    continue;
+                }
 
 				// Get all the mapped .aar files
 				var resourceItems = asm.Value;
@@ -103,14 +117,14 @@ namespace Xamarin.Build.Download
 								continue;
 
 							// Figure out our destination filename
-							var proguardSaveFilename = Path.Combine (proguardIntermediateOutputPath, saveNameHash + entryCount + ".txt");
+							var proguardSaveFile = new FileInfo(Path.Combine (proguardIntermediateOutputPath, saveNameHash + entryCount + ".txt"));
 
 							// Add this to our file writes
-							additionalFileWrites.Add (new TaskItem (proguardSaveFilename));
+							additionalFileWrites.Add (proguardSaveFile.FullName);
 
 							// Save out the proguard file
 							using (var entryStream = entry.Open ())
-							using (var fs = File.Create (proguardSaveFilename)) {
+							using (var fs = File.Create (proguardSaveFile.FullName)) {
 								entryStream.CopyTo (fs);
 								fs.Flush ();
 								fs.Close ();
@@ -122,12 +136,11 @@ namespace Xamarin.Build.Download
 				}
 
 				// *.proguard.stamp files are additional file writes
-				File.WriteAllText (stampPath, string.Empty);
-				additionalFileWrites.Add (new TaskItem (stampPath));
-
+				File.WriteAllText (stampPath, string.Join(Environment.NewLine, additionalFileWrites));
+				additionalFileWrites.Add (stampPath);
 			}
 
-			AdditionalFileWrites = additionalFileWrites.ToArray ();
+            AdditionalFileWrites = additionalFileWrites.Select(a => new TaskItem(a)).ToArray();
 
 			return true;
 		}
