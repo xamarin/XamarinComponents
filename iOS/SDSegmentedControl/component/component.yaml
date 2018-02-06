@@ -1,5 +1,5 @@
 id: sdsegmentedcontrol
-version: 2.1.4
+version: 2.1.5
 name: SDSegmentedControl
 publisher: Xamarin Inc
 publisher-url: https://xamarin.com/
@@ -20,7 +20,7 @@ samples:
     nobuild: "true"
 is_shell: true
 packages:
-  ios-unified: Xamarin.SDSegmentedControl, Version=2.1.4
+  ios-unified: Xamarin.SDSegmentedControl, Version=2.1.5
 additional-files:
   - source: "../External-Dependency-Info.txt"
     destination: "THIRD-PARTY-NOTICES.txt"
