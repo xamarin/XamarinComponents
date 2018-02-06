@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Reflection;
+using System.Threading;
 using Microsoft.Build.Framework;
 using Microsoft.Build.Utilities;
 using Mono.Cecil;
@@ -10,7 +11,7 @@ using Xamarin.MacDev;
 
 namespace Xamarin.Build.Download
 {
-	public abstract class BaseXamarinBuildResourceRestore : Task
+	public abstract class BaseXamarinBuildResourceRestore : Task, ICancelableTask
 	{
 		[Required]
 		public string IntermediateOutputPath { get; set; }
@@ -49,14 +50,28 @@ namespace Xamarin.Build.Download
 			return File.OpenRead (resourceFullPath);
 		}
 
+		CancellationTokenSource cancelTaskSource;
+
+		protected CancellationToken CancelToken {
+			get { return cancelTaskSource.Token; }
+		}
+
+		public virtual void Cancel ()
+		{
+			if (!cancelTaskSource.IsCancellationRequested)
+				cancelTaskSource.Cancel ();
+		}
+
 		public override bool Execute ()
 		{
+			cancelTaskSource = new CancellationTokenSource ();
+
 			var additionalFileWrites = new List<ITaskItem> ();
 
 			var outputDir = MergeOutputDir;
 			Directory.CreateDirectory (outputDir);
 
-			var restoreMap = BuildRestoreMap (RestoreAssemblyResources);
+			var restoreMap = BuildRestoreMap (RestoreAssemblyResources, InputReferencePaths, CancelToken);
 			if (restoreMap == null) {
 				return false;
 			}
@@ -67,8 +82,7 @@ namespace Xamarin.Build.Download
 			IAssemblyResolver resolver = null;
 
 			foreach (var asm in restoreMap) {
-				var asmName = new AssemblyName (asm.Key);
-				ITaskItem item = FindMatchingAssembly (InputReferencePaths, asmName);
+				ITaskItem item = asm.Value.InputAssemblyReference;
 				if (item == null) {
 					if (ThrowOnMissingAssembly)
 						return false;
@@ -76,25 +90,42 @@ namespace Xamarin.Build.Download
 						continue;
 				}
 
-
 				//TODO: collision avoidance. AssemblyName MD5? NuGet package ID?
 				var originalAsmPath = item.GetMetadata ("FullPath");
-				var intermediateAsmPath = Path.Combine (outputDir, asmName.Name + ".dll");
+				var intermediateAsmPath = Path.Combine (outputDir, asm.Value.CanonicalName.Name + ".dll");
 				var outputAsmPath = OverwriteSourceAssembly ? originalAsmPath : intermediateAsmPath;
 				var stampAsmPath = intermediateAsmPath + ".stamp";
 
-				if (File.Exists (stampAsmPath)) {
+				var asmTaskKey = "XBD-" + this.GetType ().Name + "-" + DownloadUtils.HashMd5 (outputAsmPath);
+				var existingTask = BuildEngine4.GetRegisteredTaskObject (asmTaskKey, RegisteredTaskObjectLifetime.Build);
+
+				if (existingTask != null) {
+					Log.LogMessage ("Another task is already processing resources for this item, skipping: {0}", outputAsmPath);
+				} else if (File.Exists (stampAsmPath)) {
 					additionalFileWrites.Add (new TaskItem (stampAsmPath));
 					Log.LogMessage ("Reference has already had resources merged, skipping due to: {0}", stampAsmPath);
+				} else {
+					// Lock the output assembly .lock file path so nothing else in our own tasks will read/write it
+					using (var xlock = DownloadUtils.ObtainExclusiveFileLock (outputAsmPath + ".lock", cancelTaskSource.Token, TimeSpan.FromSeconds (30))){
+						// If we were waiting on a lock for this assembly there's a good chance we were waiting because another 
+						// instance was already doing this work, so let's check once more to see if the work was done 
+						existingTask = BuildEngine4.GetRegisteredTaskObject (asmTaskKey, RegisteredTaskObjectLifetime.Build);
+						if (existingTask != null) {
+							Log.LogMessage ("Another task is already processing resources for this item, skipping: {0}", outputAsmPath);
+						} else {
+							// Register with the build engine that we're handling processing this item
+							BuildEngine4.RegisterTaskObject (asmTaskKey, outputAsmPath, RegisteredTaskObjectLifetime.Build, false);
+							if (OverwriteSourceAssembly || !File.Exists (intermediateAsmPath) || File.GetLastWriteTime (intermediateAsmPath) < File.GetLastWriteTime (originalAsmPath)) {
+								if (resolver == null)
+									resolver = CreateAssemblyResolver ();
+								if (!MergeResources (resolver, originalAsmPath, outputAsmPath, asm.Key, asm.Value.RestoreItems))
+									return false;
 
-				} else if (OverwriteSourceAssembly || !File.Exists(intermediateAsmPath) || File.GetLastWriteTime (intermediateAsmPath) < File.GetLastWriteTime (originalAsmPath)) {
-					if (resolver == null)
-						resolver = CreateAssemblyResolver ();
-					if (!MergeResources (resolver, originalAsmPath, outputAsmPath, asm.Key, asm.Value))
-						return false;
-
-					File.WriteAllText (stampAsmPath, string.Empty);
-					additionalFileWrites.Add (new TaskItem (stampAsmPath));
+								File.WriteAllText (stampAsmPath, string.Empty);
+								additionalFileWrites.Add (new TaskItem (stampAsmPath));
+							}
+						}
+					}
 				}
 
 				removedReferencePaths.Add (item);
@@ -166,55 +197,85 @@ namespace Xamarin.Build.Download
 			}
 		}
 
-		protected ITaskItem FindMatchingAssembly (ITaskItem [] assemblies, AssemblyName name)
+		protected Dictionary<string, AssemblyRestoreMapping> BuildRestoreMap (ITaskItem [] restoreAssemblyResources, ITaskItem[] inputReferences, CancellationToken cancelToken)
 		{
-			foreach (var asm in assemblies) {
-				var asmPath = asm.GetMetadata ("FullPath");
-				var filename = Path.GetFileNameWithoutExtension (asmPath);
-				if (filename == name.Name) {
-					AssemblyName aname;
-					try {
-						aname = AssemblyName.GetAssemblyName (asmPath);
-					} catch {
+			// First load up all the assembly names from the input references
+			var inputRefAssemblyNames = new List<Tuple<ITaskItem, AssemblyName>> ();
+
+			foreach (var iasm in inputReferences) {
+				var asmPath = iasm.GetMetadata ("FullPath");
+
+				// See if the build has cached this assembly name to input reference mapping already
+				var asmCacheKey = "XBD-AssemblyName-" + DownloadUtils.HashMd5 (asmPath);
+				var refInfo = BuildEngine4.GetRegisteredTaskObject (asmCacheKey, RegisteredTaskObjectLifetime.Build) as Tuple<ITaskItem, AssemblyName>;
+				if (refInfo == null) {
+					AssemblyName aname = null;
+
+					// Try and get the assembly name a few times in case something is locking it
+					for (int i = 0; i < 5; i++) {
+						try {
+							using (var xlock = DownloadUtils.ObtainExclusiveFileLock (asmPath + ".lock", cancelToken, TimeSpan.FromSeconds (30)))
+								aname = AssemblyName.GetAssemblyName (asmPath);
+							break;
+						} catch { }
+					}
+
+					// If still null, we failed several attempts
+					if (aname == null) {
 						Log.LogError ("Unable to read reference '{0}'", asmPath);
 						return null;
 					}
-					//TODO: should the check be more thorough?
-					if (aname.Name == name.Name) {
-						return asm;
-					}
-				}
-			}
-			if (ThrowOnMissingAssembly)
-				Log.LogError ("Did not find reference matching RestoreAssemblyResources AssemblyName metadata '{0}'", name);
-			return null;
-		}
 
-		protected Dictionary<string, List<ITaskItem>> BuildRestoreMap (ITaskItem [] restoreAssemblyResources)
-		{
-			var restoreMap = new Dictionary<string, List<ITaskItem>> ();
+					refInfo = Tuple.Create (iasm, aname);
+					BuildEngine4.RegisterTaskObject (asmCacheKey, refInfo, RegisteredTaskObjectLifetime.Build, false);
+				}
+				inputRefAssemblyNames.Add (refInfo);
+			}
+
+			var restoreMap = new Dictionary<string, AssemblyRestoreMapping> ();
 
 			foreach (var res in restoreAssemblyResources) {
+				// This will just be `Xamarin.Some.AssemblyName` not an actual filename
 				var nameStr = res.GetMetadata ("AssemblyName");
 				if (string.IsNullOrEmpty (nameStr)) {
 					Log.LogError ("Missing AssemblyName metadata on RestoreAssemblyResources item '{0}'", res.ItemSpec);
 					return null;
 				}
+
 				string canonicalName;
 				try {
+					// FYI This doesn't incur loading an assemblyname info from an actual file
 					canonicalName = new AssemblyName (nameStr).FullName;
 				} catch {
 					Log.LogError ("Malformed AssemblyName metadata '{0}' on RestoreAssemblyResources item '{1}'", nameStr, res.ItemSpec);
 					return null;
 				}
-				List<ITaskItem> restoreList;
-				if (!restoreMap.TryGetValue (canonicalName, out restoreList)) {
-					restoreMap [canonicalName] = restoreList = new List<ITaskItem> ();
+
+				var asmName = new AssemblyName (canonicalName);
+
+				// Find the matching input reference assembly for the given restore item assembly canonical name
+				// which comes from our targets (eg: <_XbdAssemblyName_x>Xamarin.GooglePlayServices.Location</_XbdAssemblyName_x> )
+				var refInfo = inputRefAssemblyNames.FirstOrDefault (i => i.Item2.Name == asmName.Name);
+
+				AssemblyRestoreMapping mapping;
+				if (!restoreMap.TryGetValue (canonicalName, out mapping)) {
+					restoreMap [canonicalName] = mapping = new AssemblyRestoreMapping {
+						RestoreItems = new List<ITaskItem> (),
+						InputAssemblyReference = refInfo.Item1,
+						CanonicalName = asmName
+					};;
 				}
-				restoreList.Add (res);
+				mapping.RestoreItems.Add (res);
 			}
 
 			return restoreMap;
+		}
+
+		public struct AssemblyRestoreMapping
+		{
+			public List<ITaskItem> RestoreItems;
+			public ITaskItem InputAssemblyReference;
+			public AssemblyName CanonicalName;
 		}
 	}
 }
