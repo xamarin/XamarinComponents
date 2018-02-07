@@ -19,8 +19,8 @@ var buildSpec = new BuildSpec () {
 			BuildsOn = BuildPlatforms.Mac,
 			OutputFiles = new [] { 
 				new OutputFileCopy {
-					FromFile = "./source/JDStatusBarNotification/bin/unified/Release/JDStatusBarNotification.dll",
-					ToDirectory = "./output/unified/"
+					FromFile = "./source/JDStatusBarNotification/bin/Release/JDStatusBarNotification.dll",
+					ToDirectory = "./output/"
 				},
 			}
 		},	
