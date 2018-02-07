@@ -212,12 +212,14 @@ namespace Xamarin.Build.Download
 					AssemblyName aname = null;
 
 					// Try and get the assembly name a few times in case something is locking it
-					for (int i = 0; i < 5; i++) {
+					for (int i = 0; i < 10; i++) {
 						try {
-							using (var xlock = DownloadUtils.ObtainExclusiveFileLock (asmPath + ".lock", cancelToken, TimeSpan.FromSeconds (30)))
+							//using (var xlock = DownloadUtils.ObtainExclusiveFileLock (asmPath + ".lock", cancelToken, TimeSpan.FromSeconds (30)))
 								aname = AssemblyName.GetAssemblyName (asmPath);
 							break;
-						} catch { }
+						} catch {
+							Thread.Sleep (250);
+						}
 					}
 
 					// If still null, we failed several attempts
