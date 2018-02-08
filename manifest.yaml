@@ -326,7 +326,7 @@
 - Name: SDSegmentedControl
   BuildScript: ./iOS/SDSegmentedControl/build.cake
   TriggerPaths: [ iOS/SDSegmentedControl ]
-  MacBuildTargets: [ samples, component ]
+  MacBuildTargets: [ samples, nuget, component ]
 
 #######################################################
 # XPlat
