@@ -4,10 +4,10 @@
 var TARGET = Argument ("t", Argument ("target", "Default"));
 
 var IOS_PODS = new List<string> {
-	"platform :ios, '8.0'",
+	"platform :ios, '11.2'",
 	"install! 'cocoapods', :integrate_targets => false",
 	"target 'Xamarin' do",
-	"pod 'ChameleonFramework', '2.0.6'",
+	"pod 'ChameleonFramework', '2.1'",
 	"end",
 };
 
@@ -28,6 +28,10 @@ var buildSpec = new BuildSpec () {
 
 	Samples = new ISolutionBuilder [] {
 		new IOSSolutionBuilder { SolutionPath = "./samples/ChameleonSample.sln", Configuration = "Release", Platform="iPhone", BuildsOn = BuildPlatforms.Mac },
+	},
+
+	NuGets = new [] {
+		new NuGetInfo { NuSpec = "./nuget/Xamarin.Chameleon.nuspec" },
 	},
 
 	Components = new [] {

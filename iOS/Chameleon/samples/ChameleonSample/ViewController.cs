@@ -16,10 +16,10 @@ namespace ChameleonSample
 		{
 			base.ViewDidLoad ();
 
-			NavigationController.HideNavigationBarHairline (true);
+            NavigationController.HidesNavigationBarHairline();
 
 			var image = UIImage.FromBundle ("africa-blue.jpg");
-			var average = ChameleonColor.GetImageAverageColor (image);
+			var average = ChameleonColor.GetImageAverageColor (null, image);
 			View.BackgroundColor = average;
 		}
 	}

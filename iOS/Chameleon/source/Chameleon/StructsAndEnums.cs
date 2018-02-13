@@ -48,4 +48,27 @@ namespace ChameleonFramework
 
 		Contrast = 100,
 	}
+
+    [Native]
+    public enum UIContentStyle : ulong
+    {
+        Contrast,
+        Light,
+        Dark
+    }
+
+    [Native]
+    public enum UIGradientStyle : ulong
+    {
+        LeftToRight,
+        Radial,
+        TopToBottom
+    }
+
+    [Native]
+    public enum UIShadeStyle : long
+    {
+        Light,
+        Dark
+    }
 }
