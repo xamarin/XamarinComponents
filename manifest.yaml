@@ -226,7 +226,7 @@
 - Name: InAppSettingsKit
   BuildScript: ./iOS/InAppSettingsKit/build.cake
   TriggerPaths: [ iOS/InAppSettingsKit ]
-  MacBuildTargets: [ samples, component ]
+  MacBuildTargets: [ samples, nuget, component ]
 - Name: iRate
   BuildScript: ./iOS/iRate/build.cake
   TriggerPaths: [ iOS/iRate ]
