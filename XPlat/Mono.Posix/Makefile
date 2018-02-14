@@ -21,7 +21,8 @@ MONOPOSIXHELPER_JENKINSBUILD=41
 # https://hub.docker.com/r/microsoft/dotnet/
 # https://hub.docker.com/r/microsoft/dotnet-nightly/
 DOCKER_PULL_TARGET=microsoft/dotnet@sha256:83ea086418516a9b6311acf393f1474d241015902b380ac7c3dfe90f32b72dad
-DOCKER_RUN_IMAGE=microsoft/dotnet:411cc86cfa2e
+# DOCKER_RUN_IMAGE=microsoft/dotnet:411cc86cfa2e
+DOCKER_RUN_IMAGE=411cc86cfa2e
 
 $(eval DOCKER_BUILD_CONTAINER_NAME=MonoPosixBuild-$(shell uuidgen))
 $(eval DOCKER_TEST_CONTAINER_NAME=MonoPosixBuild-$(shell uuidgen))
