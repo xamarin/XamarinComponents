@@ -12,6 +12,7 @@ var buildSpec = new BuildSpec () {
 			OutputFiles = new [] { 
 				new OutputFileCopy {
 					FromFile = "./source/HDNotification/bin/Release/HDNotification.dll"
+					ToDirectory = "./output/"
 				},
 			}
 		},
@@ -19,6 +20,10 @@ var buildSpec = new BuildSpec () {
 
 	Samples = new ISolutionBuilder [] {
 		new IOSSolutionBuilder { SolutionPath = "./samples/HDNotificationDemo/HDNotificationDemo.sln", Configuration = "Release", Platform="iPhone", BuildsOn = BuildPlatforms.Mac },
+	},
+
+	NuGets = new [] {
+		new NuGetInfo { NuSpec = "./nuget/Xamarin.HDNotification.nuspec", BuildsOn = BuildPlatforms.Mac },
 	},
 
 	Components = new [] {
