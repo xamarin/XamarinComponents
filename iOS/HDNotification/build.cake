@@ -11,7 +11,7 @@ var buildSpec = new BuildSpec () {
 			BuildsOn = BuildPlatforms.Mac,
 			OutputFiles = new [] { 
 				new OutputFileCopy {
-					FromFile = "./source/HDNotification/bin/Release/HDNotification.dll"
+					FromFile = "./source/HDNotification/bin/Release/HDNotification.dll",
 					ToDirectory = "./output/"
 				},
 			}

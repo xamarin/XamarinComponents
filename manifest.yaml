@@ -218,7 +218,7 @@
 - Name: HDNotification
   BuildScript: ./iOS/HDNotification/build.cake
   TriggerPaths: [ iOS/HDNotification ]
-  MacBuildTargets: [ samples, component ]
+  MacBuildTargets: [ samples, nuget, component ]
 - Name: iCarousel
   BuildScript: ./iOS/iCarousel/build.cake
   TriggerPaths: [ iOS/iCarousel ]

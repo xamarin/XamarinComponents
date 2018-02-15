@@ -1,6 +1,6 @@
 name: HDNotification
 id: hdnotification
-version: 1.0
+version: 1.1
 publisher: Xamarin Inc
 publisher-url: https://xamarin.com
 src-url: https://github.com/xamarin/XamarinComponents/tree/master/iOS/HDNotification
