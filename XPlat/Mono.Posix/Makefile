@@ -6,7 +6,7 @@ MONO_VERSION=5.4.0.201
 MONO_GIT_REPO=mono/mono
 MONOGIT_VERSION=mono-$(MONO_VERSION)
 # MONOGIT_VERSION=76f0a58429b4cfb47c77935cfca6ce88ce9be53e
-MONOPOSIX_NUGET_VERSION=1.0.0-beta3
+MONOPOSIX_NUGET_VERSION=1.0.0-beta4
 # We fetch the native posix helper code from existing Mono build artifacts
 # To update the version a parameterized build needs to be run with the Mono verison
 # specified above.

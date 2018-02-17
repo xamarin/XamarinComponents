@@ -17,6 +17,7 @@
   <files>
     <file src="build/any/Mono.Posix.NETStandard.dll" target="ref/netstandard2.0" />
 
+    <file src="build/net40/Mono.Posix.NETStandard.dll" target="ref/net40" />
     <file src="build/net40/Mono.Posix.NETStandard.dll" target="lib/net40" />
 
     <file src="MonoPosixHelper/osx-10.7-universal/libMonoPosixHelper.dylib" target="runtimes/osx/native/libMonoPosixHelper.dylib"/>
