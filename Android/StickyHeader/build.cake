@@ -19,6 +19,10 @@ var buildSpec = new BuildSpec () {
 		new DefaultSolutionBuilder { SolutionPath = "./samples/StickyHeaderSample.sln" },
 	},
 
+	NuGets = new [] {
+		new NuGetInfo { NuSpec = "./nuget/Xamarin.StickyHeader.nuspec" },
+	},
+
 	Components = new [] {
 		new Component {ManifestDirectory = "./component"},
 	},
