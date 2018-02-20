@@ -3,6 +3,14 @@
 
 var TARGET = Argument ("t", Argument ("target", "Default"));
 
+var IOS_PODS = new List<string> {
+	"platform :ios, '11.2'",
+	"install! 'cocoapods', :integrate_targets => false",
+	"target 'Xamarin' do",
+	"pod 'JSQMessagesViewController'",
+	"end",
+};
+
 var buildSpec = new BuildSpec () {
 	Libs = new ISolutionBuilder [] {
 		new DefaultSolutionBuilder {
@@ -20,6 +28,10 @@ var buildSpec = new BuildSpec () {
 	Samples = new ISolutionBuilder [] {
 		new IOSSolutionBuilder { SolutionPath = "./samples/XamarinChat.sln", Configuration = "Release", Platform="iPhone", BuildsOn = BuildPlatforms.Mac },
 		new IOSSolutionBuilder { SolutionPath = "./samples/PatriotConversation.sln", Configuration = "Release", Platform="iPhone", BuildsOn = BuildPlatforms.Mac },
+	},
+
+	NuGets = new [] {
+		new NuGetInfo { NuSpec = "./nuget/Xamarin.JSQMessagesViewController.nuspec" },
 	},
 
 	Components = new [] {
