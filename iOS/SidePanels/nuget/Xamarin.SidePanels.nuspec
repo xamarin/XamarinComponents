@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<package>
+  <metadata>
+    <id>Xamarin.SidePanels</id>
+    <title>JASidePanels for Xamarin.iOS</title>
+    <version>1.3</version>
+    <authors>Microsoft</authors>
+    <owners>Microsoft</owners>
+    <requireLicenseAcceptance>true</requireLicenseAcceptance>
+    <description>JASidePanels is a UIViewController container designed for presenting a center panel with revealable side panels - one to the left and one to the right.</description>
+    <copyright>© Microsoft Corporation. All rights reserved.</copyright>
+    <projectUrl>https://components.xamarin.com/view/jasidepanels</projectUrl>
+    <licenseUrl>https://components.xamarin.com/license/jasidepanels</licenseUrl>
+  </metadata>
+  <files>
+    <file src="output/unified/SidePanels.dll" target="lib/Xamarin.iOS" />
+  </files>
+</package>
