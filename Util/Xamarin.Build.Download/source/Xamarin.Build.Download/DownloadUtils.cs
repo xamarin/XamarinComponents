@@ -233,7 +233,37 @@ namespace Xamarin.Build.Download
 			return ArchiveKind.Unknown;
 		}
 
-		public static Stream ObtainExclusiveFileLock (string file, CancellationToken cancelToken, TimeSpan timeout, ILogger log = null)
+        public static void TouchFile (string file)
+        {
+            if (!File.Exists(file)) {
+                using (var f = File.Open(file, FileMode.OpenOrCreate, FileAccess.ReadWrite, FileShare.ReadWrite))
+                    f.Close();
+            }
+
+            File.SetLastWriteTimeUtc(file, DateTime.UtcNow);
+        }
+
+        public static bool CopyFileWithRetry (string source, string dest, TaskLoggingHelper log)
+        {
+            for (int i = 0; i < 20; i++)
+            {
+                try
+                {
+                    File.Copy(source, dest, true);
+                    return true;
+                }
+                catch
+                {
+                    log.LogMessage("Failed to copy Assembly to Temp File, waiting to retry...");
+                    Thread.Sleep(250);
+                }
+            }
+
+            log.LogError("Failed to copy file: {0} to {1}", source, dest);
+            return false;
+        }
+
+		public static Stream ObtainExclusiveFileLock (string file, CancellationToken cancelToken, TimeSpan timeout, TaskLoggingHelper log)
 		{
 			var linkedCancelTokenSource = CancellationTokenSource.CreateLinkedTokenSource (
 				cancelToken,
