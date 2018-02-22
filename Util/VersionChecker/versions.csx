@@ -79,6 +79,7 @@ var fetchers = new VersionFetcher[] {
     new XPath ("Google Android ARCore", "0.91.0", "https://dl.google.com/dl/android/maven2/com/google/ar/core/maven-metadata.xml", "/metadata/versioning/release", OWNER_CA1),
     new XPath ("Android Wearable/Wearable", "2.2.0", "https://dl.google.com/dl/android/maven2/com/google/android/wearable/wearable/maven-metadata.xml", "/metadata/versioning/release", OWNER_CA1),
     new XPath ("Android Support/Wearable", "2.2.0", "https://dl.google.com/dl/android/maven2/com/google/android/support/wearable/maven-metadata.xml", "/metadata/versioning/release", OWNER_CA1),
+    new XPath ("Android Support Constraint Layout", "1.1.0-beta5", "https://dl.google.com/dl/android/maven2/com/android/support/constraint/constraint-layout/maven-metadata.xml", "/metadata/versioning/release", OWNER_CA1),
 
     // Google - iOS
     new CocoaPods ("Google.Analytics iOS", "3.17.0", "GoogleAnalytics", OWNER_MX1),
