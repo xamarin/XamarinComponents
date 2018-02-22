@@ -77,7 +77,12 @@ namespace Xamarin.Build.Download
 					// Full path to .aar file
 					var resourceFullPath = resourceItem.GetMetadata ("FullPath");
 
-					using (var fileStream = File.OpenRead (resourceFullPath))
+                    var tempFile = Path.GetTempFileName();
+
+                    if (!DownloadUtils.CopyFileWithRetry(resourceFullPath, tempFile, Log))
+                        return false;
+
+                    using (var fileStream = File.OpenRead (tempFile))
 					using (var zipArchive = new ZipArchive (fileStream, ZipArchiveMode.Read)) {
 
 						// Look for proguard config files in the archive
