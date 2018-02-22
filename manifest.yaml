@@ -14,6 +14,10 @@
   BuildScript: ./Android/ARCore/build.cake
   TriggerPaths: [ Android/ARCore ]
   MacBuildTargets: [ samples, nuget ]
+- Name: ConstraintLayout
+  BuildScript: ./Android/ConstraintLayout/build.cake
+  TriggerPaths: [ Android/ConstraintLayout ]
+  MacBuildTargets: [ samples, nuget ]
 - Name: GoogleAndroidVending
   BuildScript: ./Android/GoogleAndroidVending/build.cake
   TriggerPaths: [ Android/GoogleAndroidVending ]

@@ -5,4 +5,3 @@ Xamarin creates and maintains Xamarin.Android bindings for the Google Android Su
 
  - Constraint Layout
  - Constraint Layout Solver
-
