@@ -241,15 +241,23 @@ namespace Xamarin.Build.Download
 			
 			while (!linkedCancelTokenSource.IsCancellationRequested) {
 				try {
+                    log.LogMessage("Trying to obtain exclusive lock on: {0}", file);
 					var lockStream = File.Open (file, FileMode.OpenOrCreate, FileAccess.ReadWrite, FileShare.None);
-					return lockStream;
+                    log.LogMessage("Obtained exclusive lock on: {0}", file);
+                    return lockStream;
 				} catch (Exception ex) when (ex is UnauthorizedAccessException || ex is IOException) {
-					Thread.Sleep (100);
+                    log?.LogMessage("Waiting for exclusive lock on: {0}", file);
+                    Thread.Sleep (100);
 				} catch (Exception ex) {
 					log?.LogErrorFromException (ex);
-				}
+                    Thread.Sleep(100);
+                }
 			}
 
+            if (linkedCancelTokenSource.IsCancellationRequested)
+            {
+                log.LogMessage("Exclusive lock failed (canceled) on: {0}", file);
+            }
 			return null;
 		}
 

@@ -76,5 +76,10 @@ namespace Xamarin.Build.Download
 		{
 			base.Log.LogErrorFromException (exception);
 		}
+
+        public void LogMessage (string message, params object[] param)
+        {
+            base.Log.LogMessage(message, param);
+        }
 	}
 }

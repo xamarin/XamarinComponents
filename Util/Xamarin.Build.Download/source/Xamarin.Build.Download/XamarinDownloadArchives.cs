@@ -137,7 +137,7 @@ namespace Xamarin.Build.Download
 			}
 
 			var lockFile = xbd.DestinationDir + ".locked";
-			using (var lockStream = DownloadUtils.ObtainExclusiveFileLock (lockFile, Token, TimeSpan.FromSeconds (xbd.ExclusiveLockTimeout), this)) {
+			using (var lockStream = DownloadUtils.ObtainExclusiveFileLock (lockFile, Token, TimeSpan.FromSeconds (xbd.ExclusiveLockTimeout), Log)) {
 
 				if (lockStream == null) {
 					LogCodedError (ErrorCodes.ExclusiveLockTimeout, "Timed out waiting for exclusive file lock on: {0}", lockFile);

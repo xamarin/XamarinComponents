@@ -78,7 +78,6 @@
     <Compile Include="XamarinBuildAndroidAarProguardConfigs.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="README.md" />
     <None Include="Xamarin.Build.Download.targets">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <SubType>Designer</SubType>

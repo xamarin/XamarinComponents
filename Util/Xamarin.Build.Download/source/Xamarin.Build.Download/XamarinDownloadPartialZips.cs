@@ -75,7 +75,7 @@ namespace Xamarin.Build.Download
 					// Since we could download a multipart request, we are locking on the url from any other process downloading from it
 					var lockFile = Path.Combine (cacheDirectory, DownloadUtils.HashMd5 (downloadUrl) + ".locked");
 
-					using (var lockStream = DownloadUtils.ObtainExclusiveFileLock (lockFile, base.Token, TimeSpan.FromSeconds (30))) {
+					using (var lockStream = DownloadUtils.ObtainExclusiveFileLock (lockFile, base.Token, TimeSpan.FromSeconds (30), Log)) {
 
 						if (lockStream == null) {
 							LogCodedError (ErrorCodes.ExclusiveLockTimeout, "Timed out waiting for exclusive file lock on: {0}", lockFile);
