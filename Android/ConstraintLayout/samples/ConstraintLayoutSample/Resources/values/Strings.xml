@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Constraint Layout Sample</string>
+    <string name="toronto_description">Toronto, the capital of the province of Ontario, is a major Canadian city along Lake Ontario\'s northwestern shore. It\'s a dynamic metropolis with a core of soaring skyscrapers, all dwarfed by the iconic CN Tower. Toronto also has many green spaces, from the orderly oval of Queen\'s Park to 400-acre High Park and its trails, sports facilities and zoo.</string>
+    <string name="dummy">dummy</string>
+    <string name="discard">Discard</string>
+    <string name="upload">Upload</string>
+    <string name="camera_settings">ƒ/3.9 14s ISO 250</string>
+    <string name="settings">Settings</string>
+    <string name="camera">Camera</string>
+    <string name="camera_value">Canon Rebel Ti 1</string>
+    <string name="toronto">Toronto</string>
+</resources>
