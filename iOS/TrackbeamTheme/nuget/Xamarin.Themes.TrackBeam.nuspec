@@ -4,15 +4,15 @@
         <id>Xamarin.Themes.TrackBeam</id>
         <version>1.6.0</version>
         <title>Xamarin.Themes.TrackBeam</title>
-        <authors>Xamarin Inc.</authors>
-        <owners>Xamarin Inc.</owners>
-        <licenseUrl>https://github.com/xamarin/XamarinComponents/blob/master/iOS/TrackbeamTheme/Licence.md</licenseUrl>
-        <projectUrl>https://github.com/xamarin/XamarinComponents/tree/master/iOS/TrackbeamTheme</projectUrl>
+        <authors>Microsoft</authors>
+        <owners>Microsoft</owners>
+        <requireLicenseAcceptance>true</requireLicenseAcceptance>
+        <licenseUrl>https://go.microsoft.com/fwlink/?linkid=869013</licenseUrl>
+        <projectUrl>https://go.microsoft.com/fwlink/?linkid=869012</projectUrl>
         <iconUrl>http://xamarin.com/content/images/nuget/xamarin.png</iconUrl>
-        <requireLicenseAcceptance>false</requireLicenseAcceptance>
         <description>Xamarin.Themes.Trackbeam is a modern theme for the latest iOS design language</description>
         <releaseNotes>Initial Release</releaseNotes>
-        <copyright>Copyright 2017</copyright>
+        <copyright>© Microsoft Corporation. All rights reserved.</copyright>
         <dependencies>
      		<group>
      			<dependency id="Xamarin.Themes.Core" version="1.0.0.1" />

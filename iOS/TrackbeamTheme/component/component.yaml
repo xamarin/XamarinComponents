@@ -20,7 +20,15 @@ libraries:
 samples:
   - name: "iOS Unified Sample"
     path: ../samples/TrackBeamTheme-Sample-iOS/TrackBeamTheme-Sample-iOS.sln
-    
+    removeProjects:
+      - Xamarin.Themes.TrackBeam
+    installNuGets:
+      - project: TrackBeamTheme-Sample-iOS
+        packages:
+          - Xamarin.Themes.TrackBeam
+    nobuild: true
+local-nuget-repo: ../output
+is_shell: true
 packages:
-  ios-unified: Xamarin.Themes.Core, Version=1.0.0.1
+  ios-unified: Xamarin.Themes.TrackBeam, Version=1.6.0
 no_build: true
