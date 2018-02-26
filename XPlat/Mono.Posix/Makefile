@@ -2,11 +2,11 @@
 # Checking your About box in VS for Mac will give you an idea
 # of what is released to stable.
 # https://github.com/mono/mono/releases
-MONO_VERSION=5.4.0.201
+MONO_VERSION=5.8.0.127
 MONO_GIT_REPO=mono/mono
 MONOGIT_VERSION=mono-$(MONO_VERSION)
 # MONOGIT_VERSION=76f0a58429b4cfb47c77935cfca6ce88ce9be53e
-MONOPOSIX_NUGET_VERSION=1.0.0-beta4
+MONOPOSIX_NUGET_VERSION=1.0.0-beta5
 # We fetch the native posix helper code from existing Mono build artifacts
 # To update the version a parameterized build needs to be run with the Mono verison
 # specified above.
@@ -15,7 +15,7 @@ MONOPOSIX_NUGET_VERSION=1.0.0-beta4
 # https://download.mono-project.com/repo/centos-stable/m/mono-core/
 # https://download.mono-project.com/repo/centos-beta/m/mono-core/
 # https://download.mono-project.com/repo/centos-alpha/m/mono-core/
-MONOPOSIXHELPER_JENKINSBUILD=41
+MONOPOSIXHELPER_JENKINSBUILD=46
 
 # docker images --digests
 # https://hub.docker.com/r/microsoft/dotnet/
@@ -44,6 +44,8 @@ monorepo/mcs/class/Mono.Posix/Makefile: mono-source.zip
 	unzip  mono-source.zip 'mono-$(MONOGIT_VERSION)/mcs/build/common/*'
 	mv mono-$(MONOGIT_VERSION) monorepo
 	sed 's/@MONO_VERSION@/$(MONO_VERSION)/g'  monorepo/mcs/build/common/Consts.cs.in | sed 's/@MONO_CORLIB_VERSION@/0/g' > monorepo/mcs/build/common/Consts.cs
+	# Apply patch from Miguel https://github.com/mono/mono/pull/7024
+	patch monorepo/mcs/class/Mono.Posix/Mono.Unix.Native/Syscall.cs PR-7024.patch
 	touch $@
 
 # using the nightly dotnetcore build for 2.0 preview to make Mono.Posix for netstandard 2.0
