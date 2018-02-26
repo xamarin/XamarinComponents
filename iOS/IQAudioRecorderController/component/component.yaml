@@ -19,8 +19,14 @@ libraries:
 samples:
   - name: "iOS Sample"
     path: ../samples/IQAudioRecorderControllerSample.sln
-    configuration: "Release|iPhone"
+    removeProjects:
+      - IQAudioRecorderController
+    installNuGets:
+      - project: IQAudioRecorderControllerSample
+        packages:
+          - Xamarin.IQAudioRecorderController
     nobuild: true
+local-nuget-repo: ../output
 packages:
   ios-unified: Xamarin.IQAudioRecorderController, Version=1.1
 no_build: true
