@@ -19,7 +19,14 @@ libraries:
 samples:
   - name: "iOS Unified Sample"
     path: ../samples/JZMultiChoicesCircleButtonSample.sln
+    removeProjects:
+      - JZMultiChoice
+    installNuGets:
+      - project: JZMultiChoicesCircleButtonSample
+        packages:
+          - Xamarin.JZMultiChoicesCircleButton
     nobuild: "true"
+local-nuget-repo: ../output
 packages:
    ios-unified: Xamarin.JZMultiChoicesCircleButton, Version=1.1
 is_shell: true
