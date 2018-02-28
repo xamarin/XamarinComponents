@@ -21,8 +21,18 @@ libraries:
 samples: 
   - path: ../samples/JVMenuPopoverSample/JVMenuPopoverSample.sln
     name: iOS Sample
+    removeProjects:
+      - JVMenuPopover
+    installNuGets:
+      - project: JVMenuPopoverNavigationSample
+        packages:
+          - Xamarin.JVMenuPopover
+      - project: JVMenuPopoverMenuSample
+        packages:
+          - Xamarin.JVMenuPopover
     nobuild: "true"
     configuration: Release|iPhone
+local-nuget-repo: ../output
 is_shell: true
 packages:
   ios-unified: Xamarin.JVMenuPopover, Version=1.7.0
