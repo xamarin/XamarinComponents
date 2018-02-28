@@ -16,8 +16,15 @@ libraries:
 samples:
   - name: "JDStatusBarNotification Sample"
     path:  ../samples/JDStatusBarNotificationSample.sln
+    removeProjects:
+      - JDStatusBarNotification
+    installNuGets:
+      - project: JDStatusBarNotificationSample
+        packages:
+          - Xamarin.JDStatusBarNotification
     nobuild: "true"
     configuration: Release|iPhone
+local-nuget-repo: ../output
 is_shell: true
 packages:
   ios-unified: Xamarin.JDStatusBarNotification, Version=1.5.3
