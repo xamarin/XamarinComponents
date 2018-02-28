@@ -15,11 +15,18 @@ screenshots:
    - screenshots/Screenshot1.jpg
 libraries:
   ios-unified: 
-    - ../source/REFrostedViewController/bin/Release/REFrostedViewController.dll
+    - ../output/REFrostedViewController.dll
 samples:
   - name: "iOS Unified Sample"
     path: ../samples/REFrostedViewController.sln
+    removeProjects:
+      - REFrostedViewController
+    installNuGets:
+      - project: REFrostedViewControllerExample
+        packages:
+          - Xamarin.REFrostedViewController
     nobuild: true
+local-nuget-repo: ../output
 no_build: true
 packages:
   ios-unified: Xamarin.REFrostedViewController, Version=1.1
