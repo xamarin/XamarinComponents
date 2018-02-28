@@ -25,7 +25,7 @@ The Makefile will fetch all of the Posix Helpers from [Jenkins Mono builds,][4] 
 Todo Items
 -----------------------
 
- - Nothing for the moment
+ - Remove the manual patch from the Makefile when [Miguel's fix][miguelfix1] lands in a Mono release.
 
 [1]: http://stackoverflow.com/a/10265766
 [2]: https://www.docker.com/
@@ -35,3 +35,4 @@ Todo Items
 [6]: https://hub.docker.com/r/microsoft/dotnet-nightly/
 [7]: https://jenkins.mono-project.com/view/Components/job/Components-Mono.Posix/badge/icon
 [8]: https://jenkins.mono-project.com/view/Components/job/Components-Mono.Posix
+[miguelfix1]: https://github.com/mono/mono/pull/7024
