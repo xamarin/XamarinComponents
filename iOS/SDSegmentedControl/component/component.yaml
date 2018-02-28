@@ -17,7 +17,14 @@ libraries:
 samples:
   - name: "SDSegmentedControl Sample"
     path:  ../samples/SDSegmentedControlSample.sln
+    removeProjects:
+      - SegmentedControl
+    installNuGets:
+      - project: SDSegmentedControlSample
+        packages:
+          - Xamarin.SDSegmentedControl
     nobuild: "true"
+local-nuget-repo: ../output
 is_shell: true
 packages:
   ios-unified: Xamarin.SDSegmentedControl, Version=2.1.5
