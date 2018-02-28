@@ -21,11 +21,18 @@ libraries:
 samples:
   - path: ../samples/APDropDownNavToolbar-Sample.sln
     name: iOS Sample
+    removeProjects:
+      - APDropDownNavToolbar
+    installNuGets:
+      - project: APDropDownNavToolbar-Sample
+        packages:
+          - Xamarin.APDropDownNavToolbar
     nobuild: "true"
     configuration: Release|iPhone
+local-nuget-repo: ../output
 is_shell: true
 packages:
-  ios-unified: Xamarin.JVMenuPopover, Version=1.7.0
+  ios-unified: Xamarin.APDropDownNavToolbar, Version=1.7.0
 additional-files:
   - source: "../External-Dependency-Info.txt"
     destination: "THIRD-PARTY-NOTICES.txt"
