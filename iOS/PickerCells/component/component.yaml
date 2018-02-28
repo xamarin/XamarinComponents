@@ -22,8 +22,15 @@ version: 1.2
 samples: 
   - path: ../samples/PickerCellSample.sln
     name: iOS Sample
+    removeProjects:
+      - PickerCells
+    installNuGets:
+      - project: PickerCellsSample
+        packages:
+          - Xamarin.PickerCells
     nobuild: "true"
     configuration: Release|iPhone
+local-nuget-repo: ../output
 is_shell: true
 packages:
   ios-unified: Xamarin.PickerCells, Version=1.2.0.0
