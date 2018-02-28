@@ -1,0 +1,30 @@
+buildscript {
+    repositories {
+        jcenter()
+    }
+
+    dependencies {
+        classpath 'com.android.tools.build:gradle:2.2.3'
+    }
+}
+
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion 26
+    buildToolsVersion "26.0.1"
+    defaultConfig {
+        applicationId "com.example.getthoseversions"
+    }
+}
+
+repositories {
+    jcenter()
+    maven {
+        url "https://maven.google.com"
+        }
+}
+
+dependencies {
+    compile 'com.android.support:support-vector-drawable:25.4.0'
+}

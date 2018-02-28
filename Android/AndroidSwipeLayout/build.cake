@@ -12,9 +12,7 @@ var buildSpec = new BuildSpec () {
 		new DefaultSolutionBuilder {
 			SolutionPath = "./source/AndroidSwipeLayout.sln",
 			OutputFiles = new [] { 
-				new OutputFileCopy {
-					FromFile = "./source/AndroidSwipeLayout/bin/Release/AndroidSwipeLayout.dll",
-				}
+				new OutputFileCopy { FromFile = "./source/AndroidSwipeLayout/bin/Release/AndroidSwipeLayout.dll" }
 			}
 		}
 	},
@@ -24,7 +22,11 @@ var buildSpec = new BuildSpec () {
 	},
 
 	Components = new [] {
-		new Component {ManifestDirectory = "./component"},
+		new Component { ManifestDirectory = "./component" },
+	},
+
+	NuGets = new [] {
+		new NuGetInfo { NuSpec = "./nuget/Xamarin.AndroidSwipeLayout.nuspec" },
 	},
 };
 

@@ -4,14 +4,14 @@
     <id>VectorCompat</id>
     <title>VectorCompat</title>
     <version>1.0.5.0</version>
-    <authors>Xamarin Inc.</authors>
-    <owners>Xamarin Inc.</owners>
-    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <authors>Microsoft</authors>
+    <owners>Microsoft</owners>
+    <requireLicenseAcceptance>true</requireLicenseAcceptance>
     <description>A support library for VectorDrawable and AnimatedVectorDrawable classes introduced in Lollipop.</description>
-    <copyright>Copyright 2015 Xamarin Inc</copyright>
+    <copyright>© Microsoft Corporation. All rights reserved.</copyright>
     <iconUrl>https://xamarin-component-icons.s3.amazonaws.com/VectorCompat.png</iconUrl>
-    <projectUrl>https://components.xamarin.com/view/VectorCompat</projectUrl>
-    <licenseUrl>https://components.xamarin.com/license/VectorCompat</licenseUrl>
+    <projectUrl>https://go.microsoft.com/fwlink/?linkid=865014</projectUrl>
+    <licenseUrl>https://go.microsoft.com/fwlink/?linkid=865055</licenseUrl>
     <dependencies>
     </dependencies>
   </metadata>

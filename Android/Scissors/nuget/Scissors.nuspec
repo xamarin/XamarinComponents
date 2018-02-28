@@ -4,13 +4,13 @@
     <id>Lyft.Scissors</id>
     <title>Scissors</title>
     <version>1.1.1</version>
-    <authors>Xamarin Inc.</authors>
-    <owners>Xamarin Inc.</owners>
-    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <authors>Microsoft</authors>
+    <owners>Microsoft</owners>
+    <requireLicenseAcceptance>true</requireLicenseAcceptance>
     <description>Fixed viewport image cropping library for Android.</description>
-    <copyright>Copyright 2015 Xamarin Inc</copyright>
-    <projectUrl>https://components.xamarin.com/view/Lyft.Scissors.Picasso</projectUrl>
-    <licenseUrl>https://components.xamarin.com/license/Lyft.Scissors.Picasso</licenseUrl>
+    <copyright>© Microsoft Corporation. All rights reserved.</copyright>
+    <projectUrl>https://go.microsoft.com/fwlink/?linkid=865044</projectUrl>
+    <licenseUrl>https://go.microsoft.com/fwlink/?linkid=865073</licenseUrl>
   </metadata>
   <files>  
     <file src="output/Lyft.Scissors.dll" target="lib/MonoAndroid403" />

@@ -90,6 +90,10 @@
   BuildScript: ./Android/GoogleZXing/build.cake
   TriggerPaths: [ Android/GoogleZXing ]
   MacBuildTargets: [ samples, component ]
+- Name: Guava
+  BuildScript: ./Android/Guava/build.cake
+  TriggerPaths: [ Android/Guava ]
+  MacBuildTargets: [ nuget ]
 - Name: JacksonCore
   BuildScript: ./Android/Jackson.Core/build.cake
   TriggerPaths: [ Android/Jackson.Core ]
@@ -235,10 +239,10 @@
   BuildScript: ./iOS/JDStatusBarNotification/build.cake
   TriggerPaths: [ iOS/JDStatusBarNotification ]
   MacBuildTargets: [ samples, nuget, component ]
-- Name: JSQMessagesViewController
-  BuildScript: ./iOS/JSQMessagesViewController/build.cake
-  TriggerPaths: [ iOS/JSQMessagesViewController ]
-  MacBuildTargets: [ samples, component ]
+# - Name: JSQMessagesViewController TODO - temporarily disable to allow other projects to complete 
+#   BuildScript: ./iOS/JSQMessagesViewController/build.cake
+#   TriggerPaths: [ iOS/JSQMessagesViewController ]
+#   MacBuildTargets: [ samples, component ]
 - Name: JZMultiChoicesCircleButton
   BuildScript: ./iOS/JZMultiChoicesCircleButton/build.cake
   TriggerPaths: [ iOS/JZMultiChoicesCircleButton ]
@@ -332,14 +336,14 @@
 # XPlat
 #######################################################
 
-- Name: DropboxCoreApiAndroid
-  BuildScript: ./XPlat/DropboxCoreApi/Android/build.cake
-  TriggerPaths: [ XPlat/DropboxCoreApi/Android ]
-  MacBuildTargets: [ samples, component ]
-- Name: DropboxCoreApiiOS
-  BuildScript: ./XPlat/DropboxCoreApi/iOS/build.cake
-  TriggerPaths: [ XPlat/DropboxCoreApi/iOS ]
-  MacBuildTargets: [ samples, component ]
+# - Name: DropboxCoreApiAndroid - obsolete
+#   BuildScript: ./XPlat/DropboxCoreApi/Android/build.cake
+#   TriggerPaths: [ XPlat/DropboxCoreApi/Android ]
+#   MacBuildTargets: [ samples, component ]
+# - Name: DropboxCoreApiiOS - obsolete
+#   BuildScript: ./XPlat/DropboxCoreApi/iOS/build.cake
+#   TriggerPaths: [ XPlat/DropboxCoreApi/iOS ]
+#   MacBuildTargets: [ samples, component ]
 - Name: GoogleVRAndroid
   BuildScript: ./XPlat/GoogleVR/Android/build.cake
   TriggerPaths: [ XPlat/GoogleVR/Android ]

@@ -6,6 +6,7 @@ using System;
 using System.Threading.Tasks;
 using System.Net.Http;
 using System.Xml.Serialization;
+using Bumptech.Glide;
 
 namespace GlideSample
 {
@@ -65,7 +66,7 @@ namespace GlideSample
 
 			var imageView = view.FindViewById<ImageView>(Resource.Id.imageView);
 
-			Bumptech.Glide.With(Parent).Load(item.Url).Into(imageView);
+			Glide.With(Parent).Load(item.Url).Into(imageView);
 
 			return view;
 		}

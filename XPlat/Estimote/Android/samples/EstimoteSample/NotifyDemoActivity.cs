@@ -4,8 +4,8 @@ using Android.OS;
 using Android.Views;
 using Android.Widget;
 
-using EstimoteSdk;
-
+using EstimoteSdk.Observation.Region.Beacon;
+using EstimoteSdk.Service;
 using Java.Util.Concurrent;
 
 namespace Estimotes.Droid
@@ -16,7 +16,7 @@ namespace Estimotes.Droid
         static readonly int NOTIFICATION_ID = 123321;
         BeaconManager _beaconManager;
         NotificationManager _notificationManager;
-        Region _region;
+        BeaconRegion _region;
 
         public void OnServiceReady()
         {
@@ -38,8 +38,8 @@ namespace Estimotes.Droid
             // In order for this demo to be more responsive and immediate we lower down those values.
             _beaconManager.SetBackgroundScanPeriod(TimeUnit.Seconds.ToMillis(1), 0);
 
-            _beaconManager.EnteredRegion += (sender, e) => PostNotification("Entered region");
-            _beaconManager.ExitedRegion += (sender, e) => PostNotification("Exited region");
+            _beaconManager.BeaconEnteredRegion += (sender, e) => PostNotification("Entered region");
+            _beaconManager.BeaconExitedRegion += (sender, e) => PostNotification("Exited region");
         }
 
         public override bool OnOptionsItemSelected(IMenuItem item)

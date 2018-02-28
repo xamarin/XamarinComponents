@@ -85,7 +85,7 @@ Task ("Default").Does (() => {
 
 			NuGetRestore (sampleSln, nugetRestoreSettings);
 
-			DotNetBuild (sampleSln, c => c.Configuration = "Release");
+			MSBuild (sampleSln, c => c.Configuration = "Release");
 
 			var androidCsProj = "";
 			var uitestCsProj = "";
