@@ -20,12 +20,12 @@ Building the Mono.Posix.NETStandard NuGet
 
 Just run `make`.
 
-The Makefile will fetch all of the Posix Helpers from [Jenkins Mono builds,][4] fetch the [Mono.Posix code][5] from the Mono Github repository, build a netstandard 2.0 targeted version of Mono.Posix.dll using a docker image containing the [latest nightly build of .Net Core 2.0,][6] and pack the Mono.Posix.Core NuGet.  The resulting NuGet package will be created in the build directory.
+The Makefile will fetch all of the Posix Helpers from [Jenkins Mono builds,][4] fetch the [Mono.Posix code][5] from the Mono Github repository, build a netstandard 2.0 targeted version of Mono.Posix.dll using a docker image containing a [build of .Net Core 2.0,][6] and pack the Mono.Posix.Core NuGet.  The resulting NuGet package will be created in the build directory.
 
 Todo Items
 -----------------------
 
- - When .Net Core 2.0 is released we can stop using Docker and install .Net Core 2.0 on a build bot
+ - Nothing for the moment
 
 [1]: http://stackoverflow.com/a/10265766
 [2]: https://www.docker.com/
