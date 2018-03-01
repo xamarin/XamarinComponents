@@ -17,8 +17,15 @@ libraries:
 samples:
   - name: "InAppSettingsKit Sample"
     path:  ../samples/InAppSettingsKitSample.sln
+    removeProjects:
+      - InAppSettingsKit
+    installNuGets:
+      - project: InAppSettingsKitSample
+        packages:
+          - Xamarin.InAppSettingsKit
     nobuild: "true"
     configuration: Release|iPhone
+local-nuget-repo: ../output
 is_shell: true
 packages:
   ios-unified: Xamarin.InAppSettingsKit, Version=2.6.0.0
