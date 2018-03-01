@@ -19,10 +19,17 @@ libraries:
 samples:
   - name: "HDNotification Sample"
     path: ../samples/HDNotificationDemo/HDNotificationDemo.sln
+    removeProjects:
+      - HDNotification
+    installNuGets:
+      - project: HDNotificationDemo
+        packages:
+          - Xamarin.HDNotification
     configuration: "Release|iPhone"
+local-nuget-repo: ../output
 is_shell: true
 packages:
-  ios-unified: Xamarin.HDNotification, Version=1.0
+  ios-unified: Xamarin.HDNotification, Version=1.1
 additional-files:
   - source: "../External-Dependency-Info.txt"
     destination: "THIRD-PARTY-NOTICES.txt"
