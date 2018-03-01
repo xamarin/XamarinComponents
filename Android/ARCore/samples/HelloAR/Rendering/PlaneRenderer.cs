@@ -275,11 +275,8 @@ namespace HelloAR
 			float cameraZ = cameraPose.Tz();
 			foreach (var plane in allPlanes)
 			{
-				if (plane.GetType() != Plane.Type.HorizontalUpwardFacing ||
-						plane.GetTrackingState() != Plane.TrackingState.Tracking)
-				{
+				if (plane.TrackingState != TrackableTrackingState.Tracking || plane.SubsumedBy != null)
 					continue;
-				}
 
 				var center = plane.CenterPose;
 				// Get transformed Y axis of plane's coordinate system.
@@ -341,7 +338,7 @@ namespace HelloAR
 
 
 				updatePlaneParameters(planeMatrix, plane.ExtentX,
-					plane.ExtentZ, plane.PlanePolygon);
+					plane.ExtentZ, plane.Polygon);
 
 				// Get plane index. Keep a map to assign same indices to same planes.
 

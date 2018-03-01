@@ -50,6 +50,7 @@ Browse through the most popular plugins out there today!
 |iBeacon & Estimote|Range and monitor Bluetooth beacons.|[NuGet](https://www.nuget.org/packages/Estimotes.Xplat/)|[GitHub](https://github.com/aritchie/estimotes-xplat)|[@allanritchie911](https://twitter.com/allanritchie911)|
 |In-App Billing|Make, Query, and get In-App Purchases and Subscriptions.|[NuGet](https://www.nuget.org/packages/Plugin.InAppBilling/)|[GitHub](https://github.com/jamesmontemagno/InAppBillingPlugin)|[@JamesMontemagno](http://www.twitter.com/jamesmontemagno)|
 |Lamp|Access to LED|[NuGet](https://www.nuget.org/packages/kphillpotts.Lamp.Plugin/)|[GitHub](https://github.com/kphillpotts/Xamarin.Plugins/tree/master/Lamp)|[@kphillpotts](http://www.twitter.com/kphillpotts)|
+|Latest Version|Detect if your users are using the latest version of your app.|[NuGet](https://www.nuget.org/packages/Xam.Plugin.LatestVersion/)|[GitHub](https://github.com/edsnider/LatestVersionPlugin)|[@EdSnider](http://www.twitter.com/EdSnider)|
 |Local Notifications|Show local notifications|[NuGet](https://www.nuget.org/packages/Xam.Plugins.Notifier/)|[GitHub](https://github.com/edsnider/LocalNotificationsPlugin)|[@EdSnider](http://www.twitter.com/EdSnider), [@JamesMontemagno](http://www.twitter.com/JamesMontemagno)|
 |Local Notifications|Manage local notifications|[NuGet](https://www.nuget.org/packages/Plugin.Notifications/)|[GitHub](https://github.com/aritchie/notifications)|[@allanritchie911](https://twitter.com/allanritchie911)|
 |Manage Sleep|Manage auto sleep/auto lock.|[NuGet](https://www.nuget.org/packages/Xam.Plugins.ManageSleep/)|[GitHub](https://github.com/molinch/Xam.Plugins.ManageSleep)|[@molinch0](http://www.twitter.com/molinch0)|
@@ -57,24 +58,37 @@ Browse through the most popular plugins out there today!
 |Media Manager|Playback for Audio.|[NuGet](https://www.nuget.org/packages/Plugin.MediaManager/)|[GitHub](https://github.com/martijn00/XamarinMediaManager)|[@mhvdijk](https://twitter.com/mhvdijk)|
 |Messaging|Make phone call, send sms, and send e-mail|[NuGet](https://www.nuget.org/packages/Xam.Plugins.Messaging/)|[GitHub](https://github.com/cjlotz/Xamarin.Plugins)|[@cjlotz](http://www.twitter.com/cjlotz)|
 |Microsoft Band|Connect and communicate with the Microsoft Band from shared code!|[NuGet](https://www.nuget.org/packages/Xamarin.Microsoft.Band/)|[GitHub](https://github.com/mattleibow/Microsoft-Band-SDK-Bindings)|[@mattleibow](https://twitter.com/mattleibow)|
-|Mono.Data.Sqlite|Add Mono.Data.Sqlite to any Xamarin or Windows .NET app.|[NuGet](https://www.nuget.org/packages/Mono.Data.Sqlite.Portable)|[GitHub](https://github.com/mattleibow/Mono.Data.Sqlite)|[@mattleibow](https://twitter.com/mattleibow)|
+|Multilingual Plugin|Simple cross platform plugin for handling language localization.|[NuGet](https://www.nuget.org/packages/Plugin.Multilingual)|[GitHub](https://github.com/CrossGeeks/MultilingualPlugin)|[@CrossGeeks](https://github.com/CrossGeeks/)|
 |Permissions|Easily check and request runtime permissions.|[NuGet](http://www.nuget.org/packages/Plugin.Permissions)|[GitHub](https://github.com/jamesmontemagno/PermissionsPlugin)|[@JamesMontemagno](http://www.twitter.com/jamesmontemagno)|
-|Persistent key-value store|Akavache is an asynchronous, persistent (i.e. writes to disk) key-value store.|[NuGet](https://www.nuget.org/packages/akavache/)|[GitHub](https://github.com/akavache/Akavache)|[@paulcbetts](http://www.twitter.com/paulcbetts)|
 |Portable Razor|Lightweight implemenation of ASP.NET MVC APIs for mobile.|[NuGet](https://www.nuget.org/packages/PortableRazor/)|[GitHub](https://github.com/xamarin/PortableRazor)|[@JosephHill](http://www.twitter.com/josephhill)|
 |Push Notifications|Cross platform iOS and Android Push Notifications.|[NuGet](https://www.nuget.org/packages/Plugin.PushNotification)|[GitHub](https://github.com/CrossGeeks/PushNotificationPlugin)|[@rdelrosario](https://github.com/rdelrosario)|
-|Secure Storage|Provides secure storage for key value pairs Data|[NuGet](http://www.nuget.org/packages/sameerIOTApps.Plugin.SecureStorage/)|[GitHub](https://github.com/sameerkapps/SecureStorage)|[@sameerIOTApps](https://twitter.com/sameerIOTApps)|
+|Secure Storage|Provides secure storage for key value pair string data|[NuGet](http://www.nuget.org/packages/sameerIOTApps.Plugin.SecureStorage/)|[GitHub](https://github.com/sameerkapps/SecureStorage)|[@sameerIOTApps](https://twitter.com/sameerIOTApps)|
 |Settings|Simple & Consistent cross platform settings API.|[NuGet](https://www.nuget.org/packages/Xam.Plugins.Settings/)|[GitHub](https://github.com/jamesmontemagno/SettingsPlugin)|[@JamesMontemagno](http://www.twitter.com/jamesmontemagno)|
 |Share|Easily share text, links, or open a browser.|[NuGet](https://www.nuget.org/packages/Plugin.Share/)|[GitHub](https://github.com/jguertl/SharePlugin)|[@JamesMontemagno](http://www.twitter.com/jamesmontemagno) & [@Jakob Gürtl](https://github.com/jguertl)|
 |Sensors|Device sensors - accelerometer, ambient light, barometer, compass, device orientation, gyroscope, magnetometer, pedometer, and proximity|[NuGet](https://www.nuget.org/packages/Plugin.Sensors)|[GitHub](https://github.com/aritchie/sensors)|[@allanritchie911](https://twitter.com/allanritchie911)|
 |Sockets|TCP & UDP Listeners and Clients + UDP multicast.|[NuGet](https://www.nuget.org/packages/rda.SocketsForPCL)|[GitHub](https://github.com/rdavisau/sockets-for-pcl)|[@rdavis_au](http://www.twitter.com/rdavis_au)|
 |Speech Recognition|Speech to Text.|[NuGet](https://www.nuget.org/packages/Plugin.SpeechRecognition/)|[GitHub](https://github.com/aritchie/speechrecognition)|[@allanritchie911](https://twitter.com/allanritchie911)|
 |Simple Audio Player|Play multiple MP3 or wave files from a shared library.|[NuGet](https://www.nuget.org/packages/Xam.Plugin.SimpleAudioPlayer/)|[GitHub](https://github.com/adrianstevens/Xamarin-Plugins/tree/master/SimpleAudioPlayer)|[@adrianstevens](https://github.com/adrianstevens)|
+|Store Review|Ask for store review or launch app store page.|[NuGet](https://www.nuget.org/packages/Plugin.StoreReview/)|[GitHub](https://github.com/jamesmontemagno/StoreReviewPlugin)|[@jamesmontemagno](https://github.com/jamesmontemagno)|
 |Text To Speech|Talk back text from shared code.|[NuGet](https://www.nuget.org/packages/Xam.Plugins.TextToSpeech/)|[GitHub](https://github.com/jamesmontemagno/TextToSpeechPlugin)|[@JamesMontemagno](http://www.twitter.com/jamesmontemagno)|
 |Toast|A simple way of showing toast/pop-up notifications.|[NuGet](https://www.nuget.org/packages/Toasts.Forms.Plugin)|[GitHub](https://github.com/EgorBo/Toasts.Forms.Plugin)|[@AdamPed](https://github.com/AdamPed) & [@EgorBo](https://github.com/EgorBo)|
 |User Dialogs|Message box style dialogs.|[NuGet](https://www.nuget.org/packages/Acr.UserDialogs/)|[GitHub](https://github.com/aritchie/userdialogs)|[@allanritchie911](https://twitter.com/allanritchie911)|
 |Version Tracking|Track which versions of your app a user has previously installed.|[NuGet](https://www.nuget.org/packages/Plugin.VersionTracking/1.0.1)|[GitHub](https://github.com/colbylwilliams/VersionTrackingPlugin)|[@ColbyLWilliams](https://twitter.com/colbylwilliams)|
 |Vibrate|Vibrate any device.|[NuGet](https://www.nuget.org/packages/Xam.Plugins.Vibrate/)|[GitHub](https://github.com/jamesmontemagno/VibratePlugin)|[@JamesMontemagno](http://www.twitter.com/jamesmontemagno)|
 |Device Orientation|Plugin to work with screen orientation (change and lock)|[NuGet](https://www.nuget.org/packages/Plugin.DeviceOrientation/)|[GitHub](https://github.com/wcoder/Xamarin.Plugin.DeviceOrientation)|[@YauheniPakala](https://github.com/wcoder)
+
+### Data Caching & Databases
+
+|Name|Description|NuGet|Docs & Source|Creator|
+| ------------------- | --------------------------------- | :-----------: | :-----------: |-------------------- |
+|Akavache|An asynchronous, persistent (i.e. writes to disk) key-value store.|[NuGet](https://www.nuget.org/packages/akavache/)|[GitHub](https://github.com/akavache/Akavache)|[@paulcbetts](http://www.twitter.com/paulcbetts)|
+|Azure Mobile Apps|Offline sync-enabled Windows and Xamarin mobile apps that connect to Azure Mobile App.|[NuGet](https://www.nuget.org/packages/Microsoft.Azure.Mobile.Client.SQLiteStore/)|[GitHub](https://github.com/Azure/azure-mobile-apps-net-client)|[@microsoft](http://www.twitter.com/microsoft)|
+|Cosmos DB|Azure Cosmos DB is a globally distributed, multi-model database service.|[NuGet](https://www.nuget.org/packages/Microsoft.Azure.DocumentDB.Core/)|[GitHub](https://github.com/Azure/azure-documentdb-dotnet)|[@azurecosmosdb](http://www.twitter.com/azurecosmosdb)|
+|LiteDB|LiteDB - A .NET NoSQL Document Store in a single data file|[NuGet](https://www.nuget.org/packages/LiteDB/)|[GitHub](https://github.com/mbdavid/LiteDB)|[@mbdavid](https://github.com/mbdavid)|
+|🐒 Monkey Cache|Cache any data structure for a specific amount of time with minimal dependencies.|[NuGet](https://www.nuget.org/packages?q=monkeycache)|[GitHub](https://github.com/jamesmontemagno/monkey-cache)|[@jamesmontemagno](https://github.com/jamesmontemagno)|
+|Mono.Data.Sqlite|Add Mono.Data.Sqlite to any Xamarin or Windows .NET app.|[NuGet](https://www.nuget.org/packages/Mono.Data.Sqlite.Portable)|[GitHub](https://github.com/mattleibow/Mono.Data.Sqlite)|[@mattleibow](https://twitter.com/mattleibow)|
+|Realm|Realm is a mobile database: a replacement for SQLite and ORMs.|[NuGet](https://www.nuget.org/packages/Realm.Database/)|[GitHub](https://github.com/realm/realm-dotnet)|[@realm](https://twitter.com/realm)|
+|SQLite-net|Simple, powerful, cross-platform SQLite client and ORM for .NET|[NuGet](https://www.nuget.org/packages/sqlite-net-pcl)|[GitHub](https://github.com/praeclarum/sqlite-net)|[@praeclarum](https://twitter.com/praeclarum)|
 
 
 ### Create a Plugin for Xamarin
@@ -92,9 +106,6 @@ If you are looking to create a plugin be sure to browse through NuGet first and 
 * App-store friendly OSS license (we like MIT)
 * No dependency on Xamarin.Forms
 * Have a list of supported and unsupported OSs in its GitHub wiki
-
-#### Turn into a Component
-Learn how to turn your NuGet based Plugin for Xamarin into a Component that can be featured in the Xamarin Component Store with our [component documentation](http://developer.xamarin.com/guides/cross-platform/advanced/submitting_components/components_and_nuget/).
 
 #### Perks
 * Help out fellow developers speed up development

@@ -13,7 +13,7 @@ var fetchers = new VersionFetcher[] {
     // Android
     new MavenCentral ("Android Easing Functions", "1.0.2", "com/daimajia/easing/library", OWNER_SA1),
     new MavenCentral ("Android Swipe Layout", "1.2.0", "com/daimajia/swipelayout/library", OWNER_SA1),
-    new Maven ("Android Things", "0.6-devpreview", "https://google.bintray.com/androidthings/com/google/android/things/androidthings/maven-metadata.xml", OWNER_CA1),
+    new Maven ("Android Things", "0.6.1-devpreview", "https://google.bintray.com/androidthings/com/google/android/things/androidthings/maven-metadata.xml", OWNER_CA1),
     new MavenCentral ("Android View Animations", "1.1.3", "com/daimajia/androidanimations/library", OWNER_SA1),
     new MavenCentral ("Android Volley", "1.0.19", "com/mcxiaoke/volley/library", OWNER_SA1),
     new BinTray ("Animated Circle Loading View", "1.1.5", "jlmd", "maven/com/github/jlmd/AnimatedCircleLoadingView", OWNER_SA1),
@@ -76,6 +76,9 @@ var fetchers = new VersionFetcher[] {
     new XPath ("Google Play Services", "11.6.0", "https://dl.google.com/dl/android/maven2/com/google/android/gms/play-services/maven-metadata.xml", "/metadata/versioning/release", OWNER_CA1),
     new XPath ("Android Support Libraries", "27.0.2", "https://dl.google.com/dl/android/maven2/com/android/support/appcompat-v7/maven-metadata.xml", "/metadata/versioning/release", OWNER_CA1),
     new XPath ("Google Glass SDK", "11", "https://dl.google.com/android/repository/glass/addon2-1.xml", "//*[local-name() = 'remotePackage' and @path='add-ons;addon-google_gdk-google-19']/*[local-name() = 'revision']", OWNER_CA1),
+    new XPath ("Google Android ARCore", "0.91.0", "https://dl.google.com/dl/android/maven2/com/google/ar/core/maven-metadata.xml", "/metadata/versioning/release", OWNER_CA1),
+    new XPath ("Android Wearable/Wearable", "2.2.0", "https://dl.google.com/dl/android/maven2/com/google/android/wearable/wearable/maven-metadata.xml", "/metadata/versioning/release", OWNER_CA1),
+    new XPath ("Android Support/Wearable", "2.2.0", "https://dl.google.com/dl/android/maven2/com/google/android/support/wearable/maven-metadata.xml", "/metadata/versioning/release", OWNER_CA1),
 
     // Google - iOS
     new CocoaPods ("Google.Analytics iOS", "3.17.0", "GoogleAnalytics", OWNER_MX1),
