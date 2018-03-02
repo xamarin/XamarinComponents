@@ -4,6 +4,8 @@ namespace YouTubePlayerSample
 {
 	public static class YouTubeApiKey
 	{
+        // https://www.thewissen.io/embedding-youtube-feed-xamarin-forms/
+
 		// This is not related with YouTube.Player for iOS
 		// This is an extra functionality to show a better sample of the component
 

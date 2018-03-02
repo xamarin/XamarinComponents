@@ -11,6 +11,7 @@ namespace YouTubePlayerSample
 		/// to register a new developer key: 
 		///     https://console.developers.google.com/
 		/// </summary>
+		/// https://www.thewissen.io/embedding-youtube-feed-xamarin-forms/
 		public const string Key = "YOUR_API_KEY";
 
 		static DeveloperKey()
