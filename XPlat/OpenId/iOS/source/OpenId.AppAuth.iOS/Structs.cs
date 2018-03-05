@@ -16,6 +16,8 @@ namespace OpenId.AppAuth
 		SafariOpenError = -9,
 		BrowserOpenError = -10,
 		TokenRefreshError = -11,
+		RegistrationResponseConstructionError = -12,
+		JSONSerializationError = -13,
 	}
 
 	[Native]
@@ -31,6 +33,8 @@ namespace OpenId.AppAuth
 		InvalidClient = -9,
 		InvalidGrant = -10,
 		UnsupportedGrantType = -11,
+		InvalidRedirectUri = -12,
+		InvalidClientMetadata = -13,
 		ClientError = -0xEFFF,
 		Other = -0xF000
 	}
@@ -58,6 +62,16 @@ namespace OpenId.AppAuth
 		UnauthorizedClient = ErrorCodeOAuth.UnauthorizedClient,
 		UnsupportedGrantType = ErrorCodeOAuth.UnsupportedGrantType,
 		InvalidScope = ErrorCodeOAuth.InvalidScope,
+		ClientError = ErrorCodeOAuth.ClientError,
+		Other = ErrorCodeOAuth.Other
+	}
+
+	[Native]
+	public enum ErrorCodeOAuthRegistration : long
+	{
+		InvalidRequest = ErrorCodeOAuth.InvalidRequest,
+		InvalidRedirectURI = ErrorCodeOAuth.InvalidRedirectUri,
+		InvalidClientMetadata = ErrorCodeOAuth.InvalidClientMetadata,
 		ClientError = ErrorCodeOAuth.ClientError,
 		Other = ErrorCodeOAuth.Other
 	}
