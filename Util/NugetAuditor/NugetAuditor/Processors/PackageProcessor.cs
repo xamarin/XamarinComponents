@@ -169,7 +169,7 @@ namespace NugetAuditor.Processors
 
             result.IsSigned = VerifySigned();
 
-            result.UrlResult = VerifyUrls();
+            VerifyUrls(result);
 
             return result;
         }

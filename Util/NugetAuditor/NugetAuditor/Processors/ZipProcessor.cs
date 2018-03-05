@@ -24,23 +24,33 @@ namespace NugetAuditor.Processors
         {
             var results = new List<string>();
 
-            using (ZipArchive archive = System.IO.Compression.ZipFile.OpenRead(this.filePath))
+            using (var fStream = new FileStream(this.filePath, FileMode.Open))
             {
-                var its = archive.Entries.Where(x => x.FullName.EndsWith(".exe") || x.FullName.EndsWith(".dll")).ToList();
-
-                foreach (ZipArchiveEntry entry in its)
+                using (ZipArchive archive = new ZipArchive(fStream))
                 {
-                    
-                    var exportFilePath = Path.Combine(outputFolderPath, entry.FullName);
+                    var its = archive.Entries.Where(x => x.FullName.EndsWith(".exe") || x.FullName.EndsWith(".dll")).ToList();
 
-                    if (!Directory.Exists(Path.GetDirectoryName(exportFilePath)))
-                        Directory.CreateDirectory(Path.GetDirectoryName(exportFilePath));
+                    foreach (ZipArchiveEntry entry in its)
+                    {
 
-                    entry.ExtractToFile(exportFilePath, true);
+                        var exportFilePath = Path.Combine(outputFolderPath, entry.FullName);
 
-                    results.Add(exportFilePath);
+                        if (!Directory.Exists(Path.GetDirectoryName(exportFilePath)))
+                            Directory.CreateDirectory(Path.GetDirectoryName(exportFilePath));
+
+                        var aStream = entry.Open();
+
+                        using (var eStream = new FileStream(exportFilePath, FileMode.CreateNew, FileAccess.ReadWrite))
+                        {
+                            aStream.CopyTo(eStream);
+                        }
+                            
+
+                        results.Add(exportFilePath);
+                    }
                 }
             }
+
 
             return results;
         }

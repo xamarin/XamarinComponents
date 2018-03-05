@@ -12,6 +12,8 @@ namespace NugetAuditor
 
 		public static void Main(string[] args)
 		{
+            AuditorDbContext.InitializeAsync().Wait();
+
             NugetAuditProcessor.ProcessAsync().Wait();
 		}
 	}
