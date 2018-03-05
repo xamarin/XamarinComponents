@@ -9,6 +9,7 @@ namespace NugetAuditor.Data
 {
     public class ProcessResult
     {
+
         public string PackageId { get; set; }
 
         public string PackageTitle { get; set; }
@@ -21,6 +22,16 @@ namespace NugetAuditor.Data
 
         public long TotalDownloads { get; set; }
 
-        public UrlResults UrlResult { get; set; }
+        public bool ProjectUrlIsValid { get; set; }
+
+        public bool LicenceUrlIsValid { get; set; }
+
+        public bool IconUrlIsValid { get; set; }
+
+        public bool ProjectUrlIsFWLink { get; set; }
+
+        public bool LicenceUrlIsFWLink { get; set; }
+
+
     }
 }

@@ -55,14 +55,14 @@ namespace NugetAuditor.Processors
 
             result.IsSigned = await VerifySignedAsync();
 
-            result.UrlResult = await VerifyUrlsAsync();
+            
+            await VerifyUrlsAsync(result);
 
             return result;
         }
 
-        private async Task<UrlResults> VerifyUrlsAsync()
+        private async Task VerifyUrlsAsync(ProcessResult result)
         {
-            var result = new UrlResults();
 
             try
             {
@@ -91,8 +91,6 @@ namespace NugetAuditor.Processors
                 throw;
             }
 
-
-            return result;
         }
 
         private async Task<bool> VerifySignedAsync()
@@ -176,10 +174,9 @@ namespace NugetAuditor.Processors
             return result;
         }
 
-        private UrlResults VerifyUrls()
+        private void VerifyUrls(ProcessResult result)
         {
-            var result = new UrlResults();
-
+        
             try
             {
                 if (!string.IsNullOrWhiteSpace(package.ProjectUrl))
@@ -207,8 +204,6 @@ namespace NugetAuditor.Processors
                 throw;
             }
 
-
-            return result;
         }
 
         private bool VerifySigned()
