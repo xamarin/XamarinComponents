@@ -3,8 +3,8 @@
 
 var TARGET = Argument ("t", Argument ("target", "Default"));
 
-var ANDROID_VERSION = "0.4.1";
-var ANDROID_NUGET_VERSION = "0.4.1.1";
+var ANDROID_VERSION = "0.7.0";
+var ANDROID_NUGET_VERSION = "0.7.0";
 var IOS_VERSION = "0.92.0";
 var IOS_NUGET_VERSION = "0.92.0";
 
