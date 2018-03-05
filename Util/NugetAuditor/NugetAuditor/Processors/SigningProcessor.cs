@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CheckNuGets.Processors
+namespace NugetAuditor.Processors
 {
     public static class SigningProcessor
     {

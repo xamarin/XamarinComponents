@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CheckNuGets.Data
+namespace NugetAuditor.Data
 {
     public class JsonDeserializeSettings
     {

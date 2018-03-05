@@ -4,7 +4,7 @@ using System.IO;
 using System.IO.Compression;
 using System.Linq;
 
-namespace CheckNuGets.Processors
+namespace NugetAuditor.Processors
 {
     public class ZipProcessor : IDisposable
     {

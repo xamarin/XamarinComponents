@@ -1,11 +1,11 @@
-﻿using CheckNuGets.Data.Results;
+﻿using NugetAuditor.Data.Results;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CheckNuGets.Data
+namespace NugetAuditor.Data
 {
     public class ProcessResult
     {

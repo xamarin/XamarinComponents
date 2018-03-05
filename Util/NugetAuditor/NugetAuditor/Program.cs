@@ -2,8 +2,8 @@
 using System.Threading.Tasks;
 using System.Collections.Generic;
 using System.Collections.Concurrent;
-using CheckNuGets.Data;
-using CheckNuGets.Processors;
+using NugetAuditor.Data;
+using NugetAuditor.Processors;
 
 namespace NugetAuditor
 {

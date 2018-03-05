@@ -1,5 +1,5 @@
-﻿using CheckNuGets.Data;
-using CheckNuGets.Processors;
+﻿using NugetAuditor.Data;
+using NugetAuditor.Processors;
 using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;

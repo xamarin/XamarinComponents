@@ -1,12 +1,12 @@
-﻿using CheckNuGets.Data;
-using CheckNuGets.Data.Results;
+﻿using NugetAuditor.Data;
+using NugetAuditor.Data.Results;
 using Newtonsoft.Json;
 using System;
 using System.IO;
 using System.Net;
 using System.Threading.Tasks;
 
-namespace CheckNuGets.Processors
+namespace NugetAuditor.Processors
 {
     public class PackageProcessor : IDisposable
     {
@@ -85,7 +85,7 @@ namespace CheckNuGets.Processors
                     result.IconUrlIsValid = await ValidateUrlAsync(package.IconUrl);
                 }
             }
-            catch (Exception ex)
+            catch (Exception)
             {
 
                 throw;
@@ -147,7 +147,7 @@ namespace CheckNuGets.Processors
 
                 return true;
             }
-            catch (WebException ex)
+            catch (WebException)
             {
                 return false;
             }
@@ -201,7 +201,7 @@ namespace CheckNuGets.Processors
                     result.IconUrlIsValid = ValidateUrl(package.IconUrl);
                 }
             }
-            catch (Exception ex)
+            catch (Exception)
             {
 
                 throw;
@@ -263,7 +263,7 @@ namespace CheckNuGets.Processors
 
                 return true;
             }
-            catch (WebException ex)
+            catch (WebException)
             {
                 return false;
             }

@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using J = Newtonsoft.Json.JsonPropertyAttribute;
 
-namespace CheckNuGets.Data
+namespace NugetAuditor.Data
 {
     public partial class PackageVersion
     {
