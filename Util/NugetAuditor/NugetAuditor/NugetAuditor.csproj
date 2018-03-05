@@ -80,6 +80,7 @@
     <Compile Include="Data\PackageData.cs" />
     <Compile Include="Data\RegistrationLeafResponse.cs" />
     <Compile Include="Data\Results\UrlResults.cs" />
+    <Compile Include="NugetAuditProcessor.cs" />
     <Compile Include="Processors\FeedProcessor.cs" />
     <Compile Include="Processors\PackageProcessor.cs" />
     <Compile Include="Processors\SigningProcessor.cs" />

@@ -39,6 +39,9 @@ namespace CheckNuGets.Processors
                 return package.Versions[lastVesionIndex];
             }
         }
+
+        #region Async
+
         public async Task<ProcessResult> ProcessAsync()
         {
             var result = new ProcessResult()
@@ -50,14 +53,14 @@ namespace CheckNuGets.Processors
                 TotalDownloads = package.TotalDownloads,
             };
 
-            result.IsSigned = await VerifySigned();
+            result.IsSigned = await VerifySignedAsync();
 
-            result.UrlResult = await VerifyUrls();
+            result.UrlResult = await VerifyUrlsAsync();
 
             return result;
         }
 
-        private async Task<UrlResults> VerifyUrls()
+        private async Task<UrlResults> VerifyUrlsAsync()
         {
             var result = new UrlResults();
 
@@ -67,19 +70,19 @@ namespace CheckNuGets.Processors
                 {
                     result.ProjectUrlIsFWLink = package.ProjectUrl.Contains(FWLinkString);
 
-                    result.ProjectUrlIsValid = await IsURLValid(package.ProjectUrl);
+                    result.ProjectUrlIsValid = await ValidateUrlAsync(package.ProjectUrl);
                 }
 
                 if (!string.IsNullOrWhiteSpace(package.LicenceUrl))
                 {
                     result.LicenceUrlIsFWLink = package.LicenceUrl.Contains(FWLinkString);
 
-                    result.LicenceUrlIsValid = await IsURLValid(package.LicenceUrl);
+                    result.LicenceUrlIsValid = await ValidateUrlAsync(package.LicenceUrl);
                 }
 
                 if (!string.IsNullOrWhiteSpace(package.IconUrl))
                 {
-                    result.IconUrlIsValid = await IsURLValid(package.IconUrl);
+                    result.IconUrlIsValid = await ValidateUrlAsync(package.IconUrl);
                 }
             }
             catch (Exception ex)
@@ -91,7 +94,8 @@ namespace CheckNuGets.Processors
 
             return result;
         }
-        private async Task<bool> VerifySigned()
+
+        private async Task<bool> VerifySignedAsync()
         {
             var regLeafResponse = await webClient.DownloadStringTaskAsync(LatestVersion.RegistrationLeafUrl);
             var regLeafResult = JsonConvert.DeserializeObject<RegistrationLeafResponse>(regLeafResponse, JsonDeserializeSettings.Default);
@@ -132,7 +136,7 @@ namespace CheckNuGets.Processors
             return true;
         }
 
-        private async Task<bool> IsURLValid(string url)
+        private async Task<bool> ValidateUrlAsync(string url)
         {
             if (string.IsNullOrWhiteSpace(url))
                 return false;
@@ -148,6 +152,124 @@ namespace CheckNuGets.Processors
                 return false;
             }
         }
+
+
+        #endregion
+
+        #region NonAsync
+
+        public ProcessResult Process()
+        {
+            var result = new ProcessResult()
+            {
+                PackageId = package.PackageId,
+                PackageTitle = package.Title,
+                CurrentVersion = package.CurrentVersion,
+                TotalVersions = package.Versions.Count,
+                TotalDownloads = package.TotalDownloads,
+            };
+
+            result.IsSigned = VerifySigned();
+
+            result.UrlResult = VerifyUrls();
+
+            return result;
+        }
+
+        private UrlResults VerifyUrls()
+        {
+            var result = new UrlResults();
+
+            try
+            {
+                if (!string.IsNullOrWhiteSpace(package.ProjectUrl))
+                {
+                    result.ProjectUrlIsFWLink = package.ProjectUrl.Contains(FWLinkString);
+
+                    result.ProjectUrlIsValid = ValidateUrl(package.ProjectUrl);
+                }
+
+                if (!string.IsNullOrWhiteSpace(package.LicenceUrl))
+                {
+                    result.LicenceUrlIsFWLink = package.LicenceUrl.Contains(FWLinkString);
+
+                    result.LicenceUrlIsValid = ValidateUrl(package.LicenceUrl);
+                }
+
+                if (!string.IsNullOrWhiteSpace(package.IconUrl))
+                {
+                    result.IconUrlIsValid = ValidateUrl(package.IconUrl);
+                }
+            }
+            catch (Exception ex)
+            {
+
+                throw;
+            }
+
+
+            return result;
+        }
+
+        private bool VerifySigned()
+        {
+            var regLeafResponse = webClient.DownloadString(LatestVersion.RegistrationLeafUrl);
+            var regLeafResult = JsonConvert.DeserializeObject<RegistrationLeafResponse>(regLeafResponse, JsonDeserializeSettings.Default);
+
+            if (regLeafResult.Published < startTime)
+                return false;
+
+            var catalogEntryResponse = webClient.DownloadString(regLeafResult.CatalogEntryUrl);
+            var catalogEntryResult = JsonConvert.DeserializeObject<CatalogEntryResponse>(catalogEntryResponse, JsonDeserializeSettings.Default);
+
+            var folderName = Path.Combine(Directory.GetCurrentDirectory(), $"{package.PackageId}-{LatestVersion.VersionString}");
+            var nugetPackageName = Path.Combine(folderName, $"{package.PackageId}.{LatestVersion.VersionString}.nupkg");
+
+            try
+            {
+                Directory.CreateDirectory(folderName);
+                webClient.DownloadFile(regLeafResult.PackageContentUrl, nugetPackageName);
+
+                using (var aZipProc = new ZipProcessor(nugetPackageName))
+                {
+                    var filesToProcess = aZipProc.GetSignableFilesMS(folderName);
+
+                    foreach (var aFile in filesToProcess)
+                    {
+                        if (!SigningProcessor.IsTrusted(aFile))
+                            return false;
+                    }
+
+                }
+
+            }
+            finally
+            {
+
+                Directory.Delete(folderName, true);
+            }
+
+            return true;
+        }
+
+        private bool ValidateUrl(string url)
+        {
+            if (string.IsNullOrWhiteSpace(url))
+                return false;
+
+            try
+            {
+                var result = webClient.DownloadString(url);
+
+                return true;
+            }
+            catch (WebException ex)
+            {
+                return false;
+            }
+        }
+
+        #endregion
     }
 }
 
