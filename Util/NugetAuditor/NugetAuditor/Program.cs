@@ -16,6 +16,7 @@ namespace NugetAuditor
             await AuditorDbContext.InitializeAsync();
 
             Console.WriteLine("Setting up Nuget Search Service Api...");
+            await NugetServiceIndex.SetupSearchApiAsync();
 
             Console.WriteLine("Processing feed...");
             await NugetAuditProcessor.ProcessAsync();
