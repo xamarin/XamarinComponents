@@ -40,7 +40,7 @@ namespace NugetAuditor.Processors
 
                         var aStream = entry.Open();
 
-                        using (var eStream = new FileStream(exportFilePath, FileMode.CreateNew, FileAccess.ReadWrite))
+                        using (var eStream = new FileStream(exportFilePath, FileMode.Create, FileAccess.ReadWrite))
                         {
                             aStream.CopyTo(eStream);
                         }

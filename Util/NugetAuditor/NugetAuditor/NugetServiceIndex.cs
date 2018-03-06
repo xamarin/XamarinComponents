@@ -39,12 +39,7 @@ namespace NugetAuditor.Processors
                 SearchQueryServiceApiUrl = searchQueryService.Id;
                 
             }
-
-
         }
-
-
-
     }
 
     public partial class NugetApiDefinition
