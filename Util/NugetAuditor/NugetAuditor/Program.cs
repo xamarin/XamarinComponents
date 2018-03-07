@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Collections.Concurrent;
 using NugetAuditor.Data;
 using NugetAuditor.Processors;
+using System.Configuration;
 
 namespace NugetAuditor
 {
@@ -12,6 +13,8 @@ namespace NugetAuditor
 
 		public static async Task Main(string[] args)
 		{
+            
+
             Console.WriteLine("Initialising Database...");
             await AuditorDbContext.InitializeAsync();
 

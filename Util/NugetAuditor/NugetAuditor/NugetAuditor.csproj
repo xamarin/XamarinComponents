@@ -166,6 +166,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+    <None Include="appsettings.config">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="connections.config">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
