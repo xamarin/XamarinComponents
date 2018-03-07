@@ -16,8 +16,12 @@ libraries:
   ios-unified: ../output/unified/Shimmer.dll
 
 samples:
-  - name: "Storyboard Sample"
+  - name: "Shimmer Sample"
     path: ../samples/ShimmerSample/ShimmerSample.sln
-    configuration: "Release|iPhone"
+    installNuGets:
+      - project: ShimmerSample
+        packages:
+          - Shimmer
+    configuration: "Release|iPhone"    
 
 monodoc: ../docs/

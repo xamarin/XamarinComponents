@@ -10,7 +10,7 @@ namespace Shimmer.iOS
     // @protocol FBShimmering <NSObject>
     [Protocol, Model]
     [BaseType(typeof(NSObject))]
-    interface FBShimmering
+    interface Shimmering
     {
         // @required @property (getter = isShimmering, assign, readwrite, nonatomic) BOOL shimmering;
         [Abstract]
