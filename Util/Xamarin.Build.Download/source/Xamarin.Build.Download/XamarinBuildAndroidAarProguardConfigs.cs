@@ -32,7 +32,7 @@ namespace Xamarin.Build.Download
 			if (!Directory.Exists (proguardIntermediateOutputPath))
 				Directory.CreateDirectory (proguardIntermediateOutputPath);
 
-			var additionalFileWrites = new List<ITaskItem> ();
+			var additionalFileWrites = new List<string> ();
 
 			// Make sure our XbdMerge directory exists
 			var outputDir = MergeOutputDir;
@@ -62,8 +62,21 @@ namespace Xamarin.Build.Download
 
 				// We keep a stamp file around to avoid reprocessing, so skip if it exists
 				var stampPath = Path.Combine (outputDir, saveNameHash + ".proguard.stamp");
-				if (File.Exists (stampPath))
+				// If we have a stamp file, it should contain any proguard config files that
+				// were previously processed.  These need to be emitted still as FileWrites
+				if (File.Exists (stampPath)) {
+					// Each line should be a filename
+					var stampLines = File.ReadAllLines (stampPath);
+					if (stampLines != null && stampLines.Any ()) {
+						foreach (var line in stampLines) {
+							if (File.Exists (line)) // make sure we only add files that exist
+								additionalFileWrites.Add (line);
+						}
+					}
+					// the stamp file itself is a filewrites file
+					additionalFileWrites.Add (stampPath);
 					continue;
+				}
 
 				// Get all the mapped .aar files
 				var resourceItems = asm.Value;
@@ -93,7 +106,7 @@ namespace Xamarin.Build.Download
 							var proguardSaveFilename = Path.Combine (proguardIntermediateOutputPath, saveNameHash + entryCount + ".txt");
 
 							// Add this to our file writes
-							additionalFileWrites.Add (new TaskItem (proguardSaveFilename));
+							additionalFileWrites.Add (proguardSaveFilename);
 
 							// Save out the proguard file
 							using (var entryStream = entry.Open ())
@@ -109,12 +122,11 @@ namespace Xamarin.Build.Download
 				}
 
 				// *.proguard.stamp files are additional file writes
-				File.WriteAllText (stampPath, string.Empty);
-				additionalFileWrites.Add (new TaskItem (stampPath));
-
+				File.WriteAllText (stampPath, string.Join (Environment.NewLine, additionalFileWrites));
+				additionalFileWrites.Add (stampPath);
 			}
 
-			AdditionalFileWrites = additionalFileWrites.ToArray ();
+			AdditionalFileWrites = additionalFileWrites.Select (a => new TaskItem (a)).ToArray ();
 
 			return true;
 		}
