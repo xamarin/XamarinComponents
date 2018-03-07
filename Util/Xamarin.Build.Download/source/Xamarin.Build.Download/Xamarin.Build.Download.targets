@@ -107,9 +107,23 @@
 		</ItemGroup>
 	</Target>
 
+	<!-- TODO: AndroidAarLibrary is not yet in AvailableItemName so we added it manually for now -->
+	<ItemGroup>
+		<AvailableItemName Include="AndroidAarLibrary" />
+	</ItemGroup>
+	<!-- END TODO -->
+		
+	<Target Name="_XamarinBuildDownloadAarInclude"
+			DependsOnTargets="_XamarinBuildDownload"
+			Condition="'@(XamarinBuildDownloadRestoreAssemblyAar)'!='' and %(AvailableItemName.Identity) == 'AndroidAarLibrary'">
+		<ItemGroup>
+			<AndroidAarLibrary Include="@(XamarinBuildDownloadRestoreAssemblyAar)" />
+		</ItemGroup>
+	</Target>
+
 	<Target Name="_XamarinAndroidBuildAarRestore"
 			DependsOnTargets="_XamarinBuildDownload"
-			Condition="'@(XamarinBuildDownloadRestoreAssemblyAar)'!=''"
+			Condition="'@(XamarinBuildDownloadRestoreAssemblyAar)'!='' and %(AvailableItemName.Identity) != 'AndroidAarLibrary'"
 			>
 		<XamarinBuildAndroidAarRestore
 			TargetFrameworkVerison="$(TargetFrameworkVersion)"
