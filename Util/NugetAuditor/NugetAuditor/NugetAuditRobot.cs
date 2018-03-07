@@ -1,4 +1,5 @@
 ﻿using NugetAuditor.Data;
+using NugetAuditor.Helpers;
 using NugetAuditor.Processors;
 using System;
 using System.Collections.Concurrent;
@@ -9,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace NugetAuditor
 {
-    public class NugetAuditProcessor
+    public class NugetAuditRobot
     {
       
         public static async Task ProcessAsync()
@@ -47,6 +48,18 @@ namespace NugetAuditor
 
                 await aDb.SaveChangesAsync();
             }
+
+            //check for failed packages, that haven't been signed but only after the cutoff date when signing was required
+            var failedSignCheck = results.Where(x => x.IsSigned.Equals(false) 
+                                            && x.DatePublished >= SettingsHelper.CutOffDateTime);
+
+            if (failedSignCheck.Any())
+            {
+                var packageIds = failedSignCheck.Select(x => x.PackageId);
+
+                SlackNotifier.Notify(packageIds.ToList());
+            }
+
 
             Console.WriteLine($"Processed: {results.Count} Packages");
             Console.ReadLine();

@@ -5,6 +5,7 @@ using System;
 using System.IO;
 using System.Net;
 using System.Threading.Tasks;
+using NugetAuditor.Helpers;
 
 namespace NugetAuditor.Processors
 {
@@ -12,7 +13,6 @@ namespace NugetAuditor.Processors
     {
         private const string FWLinkString = "go.microsoft.com/fwlink/";
 
-        DateTime startTime = new DateTime(2018, 01, 15);
         private PackageData package;
         private WebClient webClient;
 
@@ -53,12 +53,23 @@ namespace NugetAuditor.Processors
                 TotalDownloads = package.TotalDownloads,
             };
 
-            result.IsSigned = await VerifySignedAsync();
+            var leaf = await GetLeafResponseAsync();
 
-            
+            result.DatePublished = leaf.Published;
+
+            result.IsSigned = await VerifySignedAsync(leaf);
+
             await VerifyUrlsAsync(result);
 
             return result;
+        }
+
+        private async Task<RegistrationLeafResponse> GetLeafResponseAsync()
+        {
+            var regLeafResponse = await webClient.DownloadStringTaskAsync(LatestVersion.RegistrationLeafUrl);
+            var regLeafResult = JsonConvert.DeserializeObject<RegistrationLeafResponse>(regLeafResponse, JsonDeserializeSettings.Default);
+
+            return regLeafResult;
         }
 
         private async Task VerifyUrlsAsync(ProcessResult result)
@@ -93,16 +104,10 @@ namespace NugetAuditor.Processors
 
         }
 
-        private async Task<bool> VerifySignedAsync()
+        private async Task<bool> VerifySignedAsync(RegistrationLeafResponse leaf)
         {
-            var regLeafResponse = await webClient.DownloadStringTaskAsync(LatestVersion.RegistrationLeafUrl);
-            var regLeafResult = JsonConvert.DeserializeObject<RegistrationLeafResponse>(regLeafResponse, JsonDeserializeSettings.Default);
-
-            if (regLeafResult.Published < startTime)
+            if (leaf.Published < SettingsHelper.CutOffDateTime)
                 return false;
-
-            var catalogEntryResponse = await webClient.DownloadStringTaskAsync(regLeafResult.CatalogEntryUrl);
-            var catalogEntryResult = JsonConvert.DeserializeObject<CatalogEntryResponse>(catalogEntryResponse, JsonDeserializeSettings.Default);
 
             var folderName = Path.Combine(Directory.GetCurrentDirectory(), $"{package.PackageId}-{LatestVersion.VersionString}");
             var nugetPackageName = Path.Combine(folderName, $"{package.PackageId}.{LatestVersion.VersionString}.nupkg");
@@ -110,7 +115,7 @@ namespace NugetAuditor.Processors
             try
             {
                 Directory.CreateDirectory(folderName);
-                await webClient.DownloadFileTaskAsync(regLeafResult.PackageContentUrl, nugetPackageName);
+                await webClient.DownloadFileTaskAsync(leaf.PackageContentUrl, nugetPackageName);
 
                 using (var aZipProc = new ZipProcessor(nugetPackageName))
                 {
@@ -167,12 +172,34 @@ namespace NugetAuditor.Processors
                 TotalDownloads = package.TotalDownloads,
             };
 
-            result.IsSigned = VerifySigned();
+            var leaf = GetLeafResponse();
+
+            result.DatePublished = leaf.Published;
+
+            //var catEntry = GetCatalogEntryResponse(leaf);
+
+            result.IsSigned = VerifySigned(leaf);
 
             VerifyUrls(result);
 
             return result;
         }
+
+        private RegistrationLeafResponse GetLeafResponse()
+        {
+            var regLeafResponse = webClient.DownloadString(LatestVersion.RegistrationLeafUrl);
+            var regLeafResult = JsonConvert.DeserializeObject<RegistrationLeafResponse>(regLeafResponse, JsonDeserializeSettings.Default);
+
+            return regLeafResult;
+        }
+
+        //private CatalogEntryResponse GetCatalogEntryResponse(RegistrationLeafResponse leaf)
+        //{
+        //    var catalogEntryResponse = webClient.DownloadString(leaf.CatalogEntryUrl);
+        //    var catalogEntryResult = JsonConvert.DeserializeObject<CatalogEntryResponse>(catalogEntryResponse, JsonDeserializeSettings.Default);
+
+        //    return catalogEntryResult;
+        //}
 
         private void VerifyUrls(ProcessResult result)
         {
@@ -206,16 +233,11 @@ namespace NugetAuditor.Processors
 
         }
 
-        private bool VerifySigned()
+        private bool VerifySigned(RegistrationLeafResponse leaf)
         {
-            var regLeafResponse = webClient.DownloadString(LatestVersion.RegistrationLeafUrl);
-            var regLeafResult = JsonConvert.DeserializeObject<RegistrationLeafResponse>(regLeafResponse, JsonDeserializeSettings.Default);
 
-            if (regLeafResult.Published < startTime)
+            if (leaf.Published < SettingsHelper.CutOffDateTime)
                 return false;
-
-            var catalogEntryResponse = webClient.DownloadString(regLeafResult.CatalogEntryUrl);
-            var catalogEntryResult = JsonConvert.DeserializeObject<CatalogEntryResponse>(catalogEntryResponse, JsonDeserializeSettings.Default);
 
             var folderName = Path.Combine(Directory.GetCurrentDirectory(), $"{package.PackageId}-{LatestVersion.VersionString}");
             var nugetPackageName = Path.Combine(folderName, $"{package.PackageId}.{LatestVersion.VersionString}.nupkg");
@@ -223,7 +245,7 @@ namespace NugetAuditor.Processors
             try
             {
                 Directory.CreateDirectory(folderName);
-                webClient.DownloadFile(regLeafResult.PackageContentUrl, nugetPackageName);
+                webClient.DownloadFile(leaf.PackageContentUrl, nugetPackageName);
 
                 using (var aZipProc = new ZipProcessor(nugetPackageName))
                 {

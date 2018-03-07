@@ -150,6 +150,7 @@
     <Compile Include="Data\PackageData.cs" />
     <Compile Include="Data\RegistrationLeafResponse.cs" />
     <Compile Include="Data\Results\UrlResults.cs" />
+    <Compile Include="Helpers\SettingsHelper.cs" />
     <Compile Include="Migrations\20180305230341_InitialDbLayout.cs" />
     <Compile Include="Migrations\20180305230341_InitialDbLayout.designer.cs">
       <DependentUpon>20180305230341_InitialDbLayout.cs</DependentUpon>
@@ -163,6 +164,7 @@
     <Compile Include="Processors\ZipProcessor.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SlackNotifier.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

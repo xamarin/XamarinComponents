@@ -22,7 +22,7 @@ namespace NugetAuditor
             await NugetServiceIndex.SetupSearchApiAsync();
 
             Console.WriteLine("Processing feed...");
-            await NugetAuditProcessor.ProcessAsync();
+            await NugetAuditRobot.ProcessAsync();
 		}
 	}
 

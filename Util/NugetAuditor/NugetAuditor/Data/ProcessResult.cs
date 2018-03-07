@@ -16,6 +16,8 @@ namespace NugetAuditor.Data
 
         public string CurrentVersion { get; set; }
 
+        public DateTime DatePublished { get; set; }
+
         public bool IsSigned { get; set; }
 
         public long TotalVersions { get; set; }
