@@ -21,7 +21,7 @@ samples:
     installNuGets:
       - project: ShimmerSample
         packages:
-          - Shimmer
+          - Xamarin.Shimmer
     configuration: "Release|iPhone"    
 
 monodoc: ../docs/
