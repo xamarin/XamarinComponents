@@ -13,4 +13,8 @@ libraries:
 samples:
   - name: "Chameleon Sample"
     path:  ../samples/ChameleonSample.sln
+    installNuGets:
+      - project: ChameleonSample
+        packages:
+          - Xamarin.Chameleon
 no_build: true
