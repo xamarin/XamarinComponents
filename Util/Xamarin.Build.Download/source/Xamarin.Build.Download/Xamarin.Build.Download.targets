@@ -19,7 +19,7 @@
 
 	<PropertyGroup Condition="'$(TargetFrameworkIdentifier)'=='MonoAndroid'">
 		<_XamarinBuildDownloadMasterBeforeTargets>_ResolveLibraryProjectImports</_XamarinBuildDownloadMasterBeforeTargets>
-		<_XamarinBuildDownloadMasterDependsOnTargets>ResolveAssemblyReferences;_XamarinBuildDownload;_XamarinAndroidBuildResourceRestore;_XamarinAndroidBuildAarRestore;_XamarinAndroidBuildAarProguardConfigs</_XamarinBuildDownloadMasterDependsOnTargets>
+		<_XamarinBuildDownloadMasterDependsOnTargets>ResolveAssemblyReferences;_XamarinBuildDownload;_XamarinAndroidBuildResourceRestore;_XamarinAndroidBuildAarRestore;_XamarinBuildDownloadAarInclude;_XamarinAndroidBuildAarProguardConfigs</_XamarinBuildDownloadMasterDependsOnTargets>
 	</PropertyGroup>
 
 	<PropertyGroup>
@@ -27,6 +27,18 @@
 			$(CleanDependsOn);
 			_CleanXbdMerge;
 		</CleanDependsOn>
+	</PropertyGroup>
+
+
+	<!-- TODO: AndroidAarLibrary is not yet in AvailableItemName so we added it manually for now -->
+	<ItemGroup>
+		<AvailableItemName Include="AndroidAarLibrary" />
+	</ItemGroup>
+	<!-- END TODO -->
+
+	<PropertyGroup>
+		<SupportsAarLibrary Condition="'%(AvailableItemName.Identity)' == 'AndroidAarLibrary'">true</SupportsAarLibrary>
+		<SupportsAarLibrary Condition="'$(SupportsAarLibrary)' == ''">false</SupportsAarLibrary>
 	</PropertyGroup>
 
 
@@ -107,15 +119,9 @@
 		</ItemGroup>
 	</Target>
 
-	<!-- TODO: AndroidAarLibrary is not yet in AvailableItemName so we added it manually for now -->
-	<ItemGroup>
-		<AvailableItemName Include="AndroidAarLibrary" />
-	</ItemGroup>
-	<!-- END TODO -->
-		
 	<Target Name="_XamarinBuildDownloadAarInclude"
 			DependsOnTargets="_XamarinBuildDownload"
-			Condition="'@(XamarinBuildDownloadRestoreAssemblyAar)'!='' and %(AvailableItemName.Identity) == 'AndroidAarLibrary'">
+			Condition="'@(XamarinBuildDownloadRestoreAssemblyAar)'!='' and '$(SupportsAarLibrary)'' == 'true'">
 		<ItemGroup>
 			<AndroidAarLibrary Include="@(XamarinBuildDownloadRestoreAssemblyAar)" />
 		</ItemGroup>
@@ -123,7 +129,7 @@
 
 	<Target Name="_XamarinAndroidBuildAarRestore"
 			DependsOnTargets="_XamarinBuildDownload"
-			Condition="'@(XamarinBuildDownloadRestoreAssemblyAar)'!='' and %(AvailableItemName.Identity) != 'AndroidAarLibrary'"
+			Condition="'@(XamarinBuildDownloadRestoreAssemblyAar)'!='' and '$(SupportsAarLibrary)'' == 'true'"
 			>
 		<XamarinBuildAndroidAarRestore
 			TargetFrameworkVerison="$(TargetFrameworkVersion)"
