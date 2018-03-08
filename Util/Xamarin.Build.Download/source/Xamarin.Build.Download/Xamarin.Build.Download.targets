@@ -129,7 +129,7 @@
 
 	<Target Name="_XamarinAndroidBuildAarRestore"
 			DependsOnTargets="_XamarinBuildDownload"
-			Condition="'@(XamarinBuildDownloadRestoreAssemblyAar)'!='' and '$(SupportsAarLibrary)'' == 'true'"
+			Condition="'@(XamarinBuildDownloadRestoreAssemblyAar)'!='' and '$(SupportsAarLibrary)'' != 'true'"
 			>
 		<XamarinBuildAndroidAarRestore
 			TargetFrameworkVerison="$(TargetFrameworkVersion)"
