@@ -1,6 +1,6 @@
 id: stickyheader
 name: Sticky Header
-version: 1.11
+version: 1.1.2
 publisher: Xamarin Inc
 publisher-url: http://xamarin.com/
 src-url: https://github.com/xamarin/XamarinComponents/tree/master/Android/StickyHeader
@@ -17,6 +17,10 @@ icons:
 samples: 
   - name: Android Sample
     path: ../samples/StickyHeaderSample.sln
+    installNuGets:
+      - project: StickyHeaderSample
+        packages:
+          - Xamarin.StickyHeader
 
 no_build: true
 libraries: 
