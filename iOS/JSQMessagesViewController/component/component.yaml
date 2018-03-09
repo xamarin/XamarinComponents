@@ -2,7 +2,7 @@
 ---
 name: JSQMessagesViewController
 id: jsqmessagesviewcontroller
-version: 7.3.5
+version: 7.3.5.1
 summary: An elegant messages UI library for iOS
 publisher: Xamarin Inc.
 publisher-url: http://xamarin.com
@@ -18,6 +18,10 @@ libraries:
 samples: 
   - name: "Xamarin Chat Sample"
     path: ../samples/XamarinChat.sln
+    installNuGets:
+      - project: XamarinChat
+        packages:
+          - Xamarin.JSQMessagesViewController
     configuration: "Release|iPhone"
 no_build: true
 
