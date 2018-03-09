@@ -1,4 +1,4 @@
-version: 1.3.2
+version: 2.0.0.3
 name: SidePanels
 id: jasidepanels
 publisher: Xamarin Inc
@@ -18,12 +18,24 @@ libraries:
 samples:
   - name: "Storyboard Sample"
     path: ../samples/SidePanelsSample/SidePanelsSample.sln
+    installNuGets:
+      - project: SidePanelsSample
+        packages:
+          - Xamarin.JASidePanel
     configuration: "Release|iPhone"
   - name: "Code Sample"
     path: ../samples/SidePanelsCodeSample/SidePanelsCodeSample.sln
+    installNuGets:
+      - project: SidePanelsCodeSample
+        packages:
+          - Xamarin.JASidePanel
     configuration: "Release|iPhone"
   - name: "JASidePanel Compatibility Sample"
     path: ../samples/JASidePanelsSample/JASidePanelsSample.sln
+    installNuGets:
+      - project: JASidePanelsSample
+        packages:
+          - Xamarin.JASidePanel
     configuration: "Release|iPhone"
 
 monodoc: ../docs/
