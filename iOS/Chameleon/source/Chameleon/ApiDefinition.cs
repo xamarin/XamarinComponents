@@ -16,8 +16,9 @@ using nfloat = System.Single;
 
 namespace ChameleonFramework
 {
-    [Static]
-    partial interface Constants
+    // @interface ChameleonConstants : NSObject
+    [BaseType(typeof(NSObject))]
+    interface ChameleonConstants
     {
         // extern double ChameleonVersionNumber;
         [Field("ChameleonVersionNumber", "__Internal")]
@@ -30,12 +31,6 @@ namespace ChameleonFramework
         // extern const UIStatusBarStyle UIStatusBarStyleContrast;
         [Field("UIStatusBarStyleContrast", "__Internal")]
         UIStatusBarStyle UIStatusBarStyleContrast { get; }
-    }
-
-    // @interface ChameleonConstants : NSObject
-    [BaseType(typeof(NSObject))]
-    interface ChameleonConstants
-    {
     }
 
     // @interface Chameleon (UIColor)
