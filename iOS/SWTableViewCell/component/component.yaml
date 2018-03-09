@@ -1,5 +1,5 @@
 id: swtableviewcell
-version: 0.3.7
+version: 0.3.7.1
 name: SWTableViewCell
 publisher: Xamarin Inc
 publisher-url: http://xamarin.com/
@@ -12,6 +12,10 @@ libraries:
 samples:
   - name: "iOS Unified Sample"
     path: ../samples/SWTableViewCellSample.sln
+    installNuGets:
+      - project: SWTableViewCellSample
+        packages:
+          - Xamarin.SWTableViewCell
     configuration: "Release|iPhone"
 
 monodoc: docs/
