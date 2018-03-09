@@ -3,16 +3,17 @@
   <metadata>
     <id>GPUImage</id>
     <title>GPUImage</title>
-    <version>0.1.7</version>
+    <version>0.1.7.2</version>
     <authors>Microsoft</authors>
     <owners>Microsoft</owners>
     <requireLicenseAcceptance>true</requireLicenseAcceptance>
     <description>An open source iOS framework for GPU-based image and video processing.</description>
     <copyright>© Microsoft Corporation. All rights reserved.</copyright>
-    <projectUrl>https://components.xamarin.com/view/GPUImage</projectUrl>
-    <licenseUrl>https://components.xamarin.com/license/gpuimage</licenseUrl>
+    <projectUrl>https://go.microsoft.com/fwlink/?linkid=869711</projectUrl>
+    <licenseUrl>https://go.microsoft.com/fwlink/?linkid=869712</licenseUrl>
   </metadata>
   <files>
     <file src="output/unified/GPUImage.dll" target="lib/Xamarin.iOS" />
+    <file src="External-Dependency-Info.txt" target="THIRD-PARTY-NOTICES.txt" />
   </files>
 </package>

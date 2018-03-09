@@ -1,4 +1,4 @@
-version: 0.1.7
+version: 0.1.7.2
 name: GPUImage
 id: GPUImage
 publisher: Xamarin Inc
@@ -13,7 +13,11 @@ libraries:
 samples:
   - name: "GPUImage Sample"
     path:  ../samples/GPUImageSample.sln
+    installNuGets:
+      - project: GPUImageSample
+        packages:
+          - Xamarin.GPUImage
 no_build: true
 is_shell: true
 packages:
-  ios-unified: GPUImage, Version=0.1.7.1
+  ios-unified: GPUImage, Version=0.1.7.2
