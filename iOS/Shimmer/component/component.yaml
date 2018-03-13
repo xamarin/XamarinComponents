@@ -20,13 +20,13 @@ samples:
     path: ../samples/ShimmerSample/ShimmerSample.sln
     removeProjects:
         - Shimmer
-
     installNuGets:
       - project: ShimmerSample
         packages:
-          - Shimmer
+          - Xamarin.Shimmer
     configuration: "Release|iPhone"   
-is_shell: true
+is_shell: true 
+
 monodoc: ../docs/
 local-nuget-repo: ../output
 additional-files:
