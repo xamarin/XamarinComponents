@@ -8,7 +8,7 @@ forth below.  Microsoft reserves all other rights not expressly granted,
 whether by implication, estoppel or otherwise.
 
 ########################################
-# Shimmer - Lincense
+# Shimmer - License
 # https://github.com/facebook/Shimmer
 ########################################
 

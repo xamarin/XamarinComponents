@@ -5,7 +5,7 @@ publisher: Xamarin Inc
 publisher-url: http://xamarin.com
 src-url: https://github.com/xamarin/XamarinComponents/tree/master/iOS/Shimmer
 summary: Shimmer is an easy way to add a shimmering effect to any view in your app
-
+license: ../License.md
 no_build: true
 
 icons:
@@ -18,10 +18,17 @@ libraries:
 samples:
   - name: "Shimmer Sample"
     path: ../samples/ShimmerSample/ShimmerSample.sln
+    removeProjects:
+        - Shimmer
+
     installNuGets:
       - project: ShimmerSample
         packages:
           - Shimmer
-    configuration: "Release|iPhone"    
-
+    configuration: "Release|iPhone"   
+is_shell: true
 monodoc: ../docs/
+local-nuget-repo: ../output
+additional-files:
+  - source: "../External-Dependency-Info.txt"
+    destination: "THIRD-PARTY-NOTICES.txt"

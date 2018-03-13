@@ -12,11 +12,6 @@ namespace Shimmer.iOS
     [BaseType(typeof(NSObject))]
     interface Shimmering
     {
-        // @required @property (getter = isShimmering, assign, readwrite, nonatomic) BOOL shimmering;
-        [Abstract]
-        [Export("shimmering")]
-        bool Shimmering { [Bind("isShimmering")] get; set; }
-
         // @required @property (assign, readwrite, nonatomic) CFTimeInterval shimmeringPauseDuration;
         [Abstract]
         [Export("shimmeringPauseDuration")]
@@ -46,11 +41,6 @@ namespace Shimmer.iOS
         [Abstract]
         [Export("shimmeringHighlightWidth")]
         nfloat ShimmeringHighlightWidth { [Bind("shimmeringHighlightLength")] get; [Bind("setShimmeringHighlightLength:")] set; }
-
-        // @required @property (assign, readwrite, nonatomic) FBShimmerDirection shimmeringDirection;
-        [Abstract]
-        [Export("shimmeringDirection", ArgumentSemantic.Assign)]
-        FBShimmerDirection ShimmeringDirection { get; set; }
 
         // @required @property (assign, readwrite, nonatomic) CFTimeInterval shimmeringBeginFadeDuration;
         [Abstract]
