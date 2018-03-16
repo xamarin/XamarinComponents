@@ -34,6 +34,8 @@ namespace NugetAuditor.Data
 
         public bool LicenceUrlIsFWLink { get; set; }
 
+        public bool HasMicrosoftOwner { get; set; }
 
+        public string Owners { get; set; }
     }
 }

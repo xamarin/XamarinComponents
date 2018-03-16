@@ -11,32 +11,62 @@ namespace NugetAuditor.Processors
 {
     public class NugetServiceIndex
     {
+        private static string baseQueryServiceApiUrl;
         private static string searchQueryServiceApiUrl;
         private const string serviceIndexApiUrl = "https://api.nuget.org/v3/index.json";
+
+        public static string QueryServiceApiUrl
+        {
+            get
+            {
+
+                return $"{BaseQuertServiceApiUrl}" + "/query";
+
+            }
+            
+        }
 
         public static string SearchQueryServiceApiUrl
         {
             get
             {
-                if (string.IsNullOrWhiteSpace(searchQueryServiceApiUrl))
-                    throw new NullReferenceException("You must setup the SearchApi first by calling NugetServiceIndexProcessor.SetupSearchApiAsync");
 
-                return searchQueryServiceApiUrl;
+                return $"{BaseQuertServiceApiUrl}" + "/search/query";
+
             }
-            private set { searchQueryServiceApiUrl = value; }
+
         }
 
+        private static string BaseQuertServiceApiUrl
+        {
+            get
+            {
+                if (string.IsNullOrWhiteSpace(baseQueryServiceApiUrl))
+                    throw new NullReferenceException("You must setup the SearchApi first by calling NugetServiceIndexProcessor.SetupSearchApiAsync");
+
+                return baseQueryServiceApiUrl;
+            }
+            set
+            {
+                baseQueryServiceApiUrl = value;
+            }
+        }
 
         public static async Task SetupSearchApiAsync()
         {
             using (var wc = new WebClient())
             {
+
+                var things = "https://api-v2v3search-0.nuget.org/search/query?q=owner:xamarin";
+
                 var result = await wc.DownloadStringTaskAsync(serviceIndexApiUrl);
                 var apiDef = JsonConvert.DeserializeObject<NugetApiDefinition>(result, JsonDeserializeSettings.Default);
 
                 var searchQueryService = apiDef.Resources.First(x => x.Type.Equals("SearchQueryService"));
 
-                SearchQueryServiceApiUrl = searchQueryService.Id;
+                BaseQuertServiceApiUrl = searchQueryService.Id.Replace("/query","");
+
+
                 
             }
         }

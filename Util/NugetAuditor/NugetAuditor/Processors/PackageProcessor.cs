@@ -14,11 +14,13 @@ namespace NugetAuditor.Processors
         private const string FWLinkString = "go.microsoft.com/fwlink/";
 
         private PackageData package;
+        private PackageSearchData searchData;
         private WebClient webClient;
 
-        public PackageProcessor(PackageData package)
+        public PackageProcessor(PackageData package, PackageSearchData searchData)
         {
             this.package = package;
+            this.searchData = searchData;
 
             webClient = new WebClient();
         }
@@ -51,13 +53,13 @@ namespace NugetAuditor.Processors
                 CurrentVersion = package.CurrentVersion,
                 TotalVersions = package.Versions.Count,
                 TotalDownloads = package.TotalDownloads,
+                DatePublished = searchData.Published.Date,
             };
 
-            var leaf = await GetLeafResponseAsync();
+            result.Owners = string.Join(",", searchData.PackageRegistration.Owners);
+            result.HasMicrosoftOwner = result.Owners.ToLower().Contains("microsoft");
 
-            result.DatePublished = leaf.Published;
-
-            result.IsSigned = await VerifySignedAsync(leaf);
+            result.IsSigned = await VerifySignedAsync();
 
             await VerifyUrlsAsync(result);
 
@@ -104,8 +106,10 @@ namespace NugetAuditor.Processors
 
         }
 
-        private async Task<bool> VerifySignedAsync(RegistrationLeafResponse leaf)
+        private async Task<bool> VerifySignedAsync()
         {
+            var leaf = await GetLeafResponseAsync();
+
             if (leaf.Published < SettingsHelper.CutOffDateTime)
                 return false;
 
@@ -170,15 +174,10 @@ namespace NugetAuditor.Processors
                 CurrentVersion = package.CurrentVersion,
                 TotalVersions = package.Versions.Count,
                 TotalDownloads = package.TotalDownloads,
+                DatePublished = searchData.Published.Date,
             };
 
-            var leaf = GetLeafResponse();
-
-            result.DatePublished = leaf.Published;
-
-            //var catEntry = GetCatalogEntryResponse(leaf);
-
-            result.IsSigned = VerifySigned(leaf);
+            result.IsSigned = VerifySigned();
 
             VerifyUrls(result);
 
@@ -192,14 +191,6 @@ namespace NugetAuditor.Processors
 
             return regLeafResult;
         }
-
-        //private CatalogEntryResponse GetCatalogEntryResponse(RegistrationLeafResponse leaf)
-        //{
-        //    var catalogEntryResponse = webClient.DownloadString(leaf.CatalogEntryUrl);
-        //    var catalogEntryResult = JsonConvert.DeserializeObject<CatalogEntryResponse>(catalogEntryResponse, JsonDeserializeSettings.Default);
-
-        //    return catalogEntryResult;
-        //}
 
         private void VerifyUrls(ProcessResult result)
         {
@@ -233,8 +224,9 @@ namespace NugetAuditor.Processors
 
         }
 
-        private bool VerifySigned(RegistrationLeafResponse leaf)
+        private bool VerifySigned()
         {
+            var leaf = GetLeafResponse();
 
             if (leaf.Published < SettingsHelper.CutOffDateTime)
                 return false;

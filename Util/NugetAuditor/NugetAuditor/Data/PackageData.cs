@@ -17,5 +17,7 @@ namespace NugetAuditor.Data
         [J("licenseUrl")] public string LicenceUrl { get; set; }
         [J("iconUrl")] public string IconUrl { get; set; }
         [J("totalDownloads")] public long TotalDownloads { get; set; }
+        [J("authors")] public string[] Authors { get; set; }
+
     }
 }

@@ -5,6 +5,7 @@ using System.Collections.Concurrent;
 using NugetAuditor.Data;
 using NugetAuditor.Processors;
 using System.Configuration;
+using NugetAuditor.Helpers;
 
 namespace NugetAuditor
 {
@@ -13,15 +14,13 @@ namespace NugetAuditor
 
 		public static async Task Main(string[] args)
 		{
-            
-
-            Console.WriteLine("Initialising Database...");
+            LogHelper.WriteLine("Initialising Database...");
             await AuditorDbContext.InitializeAsync();
 
-            Console.WriteLine("Setting up Nuget Search Service Api...");
+            LogHelper.WriteLine("Setting up Nuget Search Service Api...");
             await NugetServiceIndex.SetupSearchApiAsync();
 
-            Console.WriteLine("Processing feed...");
+            LogHelper.WriteLine("Processing feed...");
             await NugetAuditRobot.ProcessAsync();
 		}
 	}

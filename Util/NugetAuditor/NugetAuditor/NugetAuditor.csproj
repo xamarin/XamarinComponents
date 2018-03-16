@@ -144,27 +144,35 @@
     <Compile Include="AuditorDbContext.cs" />
     <Compile Include="Data\CatalogEntryResponse.cs" />
     <Compile Include="Data\JsonDeserializeSettings.cs" />
+    <Compile Include="Data\PackageRegistration.cs" />
+    <Compile Include="Data\PackageSearchResults.cs" />
     <Compile Include="Data\PackageVersion.cs" />
     <Compile Include="Data\ProcessResult.cs" />
     <Compile Include="Data\PackagesData.cs" />
     <Compile Include="Data\PackageData.cs" />
     <Compile Include="Data\RegistrationLeafResponse.cs" />
     <Compile Include="Data\Results\UrlResults.cs" />
+    <Compile Include="Data\PackageSearchData.cs" />
+    <Compile Include="Helpers\LogHelper.cs" />
     <Compile Include="Helpers\SettingsHelper.cs" />
     <Compile Include="Migrations\20180305230341_InitialDbLayout.cs" />
     <Compile Include="Migrations\20180305230341_InitialDbLayout.designer.cs">
       <DependentUpon>20180305230341_InitialDbLayout.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\20180307214348_added-publish-date.cs" />
+    <Compile Include="Migrations\20180307214348_added-publish-date.designer.cs">
+      <DependentUpon>20180307214348_added-publish-date.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\AuditorDbContextModelSnapshot.cs" />
-    <Compile Include="NugetAuditProcessor.cs" />
+    <Compile Include="NugetAuditRobot.cs" />
     <Compile Include="Processors\FeedProcessor.cs" />
-    <Compile Include="NugetServiceIndex.cs" />
+    <Compile Include="Helpers\NugetServiceIndex.cs" />
     <Compile Include="Processors\PackageProcessor.cs" />
     <Compile Include="Processors\SigningProcessor.cs" />
     <Compile Include="Processors\ZipProcessor.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="SlackNotifier.cs" />
+    <Compile Include="Helpers\SlackNotifier.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
