@@ -1,10 +1,14 @@
-version: 1.0
 name: HDNotification
 id: hdnotification
+version: 1.1
 publisher: Xamarin Inc
 publisher-url: https://xamarin.com
 src-url: https://github.com/xamarin/XamarinComponents/tree/master/iOS/HDNotification
 summary: A simple and beautiful notification style view.
+license: ../License.md
+details: Details.md
+getting-started: GettingStarted.md
+no_build: true
 icons:
   - icons/hdnotification_128x128.png
   - icons/hdnotification_512x512.png
@@ -15,5 +19,17 @@ libraries:
 samples:
   - name: "HDNotification Sample"
     path: ../samples/HDNotificationDemo/HDNotificationDemo.sln
+    removeProjects:
+      - HDNotification
+    installNuGets:
+      - project: HDNotificationDemo
+        packages:
+          - Xamarin.HDNotification
     configuration: "Release|iPhone"
-no_build: true
+local-nuget-repo: ../output
+is_shell: true
+packages:
+  ios-unified: Xamarin.HDNotification, Version=1.1
+additional-files:
+  - source: "../External-Dependency-Info.txt"
+    destination: "THIRD-PARTY-NOTICES.txt"
