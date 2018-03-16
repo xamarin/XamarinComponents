@@ -1,4 +1,4 @@
-version: 1.5.3.0
+version: 1.5.3.1
 name: JDStatusBarNotification
 id: JDStatusBarNotification
 publisher: Xamarin Inc
@@ -27,7 +27,7 @@ samples:
 local-nuget-repo: ../output
 is_shell: true
 packages:
-  ios-unified: Xamarin.JDStatusBarNotification, Version=1.5.3
+  ios-unified: Xamarin.JDStatusBarNotification, Version=1.5.3.1
 additional-files:
   - source: "../External-Dependency-Info.txt"
     destination: "THIRD-PARTY-NOTICES.txt"
