@@ -238,7 +238,7 @@
 - Name: JDStatusBarNotification
   BuildScript: ./iOS/JDStatusBarNotification/build.cake
   TriggerPaths: [ iOS/JDStatusBarNotification ]
-  MacBuildTargets: [ samples, component ]
+  MacBuildTargets: [ samples, nuget, component ]
 # - Name: JSQMessagesViewController TODO - temporarily disable to allow other projects to complete 
 #   BuildScript: ./iOS/JSQMessagesViewController/build.cake
 #   TriggerPaths: [ iOS/JSQMessagesViewController ]

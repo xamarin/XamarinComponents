@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<package>
+  <metadata>
+    <id>Xamarin.JDStatusBarNotification</id>
+    <title>Xamarin.JDStatusBarNotification</title>
+    <version>1.5.3.1</version>
+    <authors>Microsoft</authors>
+    <owners>Microsoft</owners>
+    <requireLicenseAcceptance>true</requireLicenseAcceptance>
+    <description>Easy, customizable notifications displayed on top of the statusbar. With progress and activity.</description>
+    <copyright>© Microsoft Corporation. All rights reserved.</copyright>
+    <projectUrl>https://go.microsoft.com/fwlink/?linkid=867599</projectUrl>
+    <licenseUrl>https://go.microsoft.com/fwlink/?linkid=867600</licenseUrl>
+  </metadata>
+  <files>
+    <file src="output/JDStatusBarNotification.dll" target="lib/Xamarin.iOS" />
+    <file src="External-Dependency-Info.txt" target="THIRD-PARTY-NOTICES.txt" />
+  </files>
+</package>

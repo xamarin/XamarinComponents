@@ -14,9 +14,9 @@
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>bin\unified\Debug</OutputPath>
+    <OutputPath>bin\Release</OutputPath>
     <IntermediateOutputPath>obj\unified\Debug</IntermediateOutputPath>
-    <DefineConstants>DEBUG;__UNIFIED__;</DefineConstants>
+    <DefineConstants>__MOBILE__;__IOS__;DEBUG;__UNIFIED__;</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <ConsolePause>false</ConsolePause>
@@ -24,13 +24,13 @@
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <Optimize>true</Optimize>
-    <OutputPath>bin\unified\Release</OutputPath>
+    <OutputPath>bin\Release</OutputPath>
     <IntermediateOutputPath>obj\unified\Release</IntermediateOutputPath>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <ConsolePause>false</ConsolePause>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
-    <DefineConstants>__UNIFIED__;</DefineConstants>
+    <DefineConstants>__MOBILE__;__IOS__;__UNIFIED__;</DefineConstants>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
