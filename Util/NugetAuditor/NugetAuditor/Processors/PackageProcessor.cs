@@ -56,9 +56,6 @@ namespace NugetAuditor.Processors
                 DatePublished = searchData.Published.Date,
             };
 
-            result.Owners = string.Join(",", searchData.PackageRegistration.Owners);
-            result.HasMicrosoftOwner = result.Owners.ToLower().Contains("microsoft");
-
             result.IsSigned = await VerifySignedAsync();
 
             await VerifyUrlsAsync(result);
@@ -176,6 +173,9 @@ namespace NugetAuditor.Processors
                 TotalDownloads = package.TotalDownloads,
                 DatePublished = searchData.Published.Date,
             };
+
+            result.Owners = string.Join(",", searchData.PackageRegistration.Owners);
+            result.HasMicrosoftOwner = result.Owners.ToLower().Contains("microsoft");
 
             result.IsSigned = VerifySigned();
 

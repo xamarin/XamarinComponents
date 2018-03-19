@@ -163,6 +163,10 @@
     <Compile Include="Migrations\20180307214348_added-publish-date.designer.cs">
       <DependentUpon>20180307214348_added-publish-date.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\20180316180518_AddOwnerData.cs" />
+    <Compile Include="Migrations\20180316180518_AddOwnerData.designer.cs">
+      <DependentUpon>20180316180518_AddOwnerData.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\AuditorDbContextModelSnapshot.cs" />
     <Compile Include="NugetAuditRobot.cs" />
     <Compile Include="Processors\FeedProcessor.cs" />
