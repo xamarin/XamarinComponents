@@ -17,7 +17,7 @@ samples:
     removeProjects:
       - Chameleon
     installNuGets:
-      - project: Chameleon
+      - project: ChameleonSample
         packages:
           - Xamarin.Chameleon
 is_shell: true
