@@ -59,6 +59,7 @@
     </IpaPackageName>
     <MtouchI18n>
     </MtouchI18n>
+    <MtouchLink>SdkOnly</MtouchLink>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhone' ">
     <DebugType>full</DebugType>
