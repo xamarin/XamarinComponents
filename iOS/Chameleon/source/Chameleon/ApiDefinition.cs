@@ -21,12 +21,12 @@ namespace ChameleonFramework
     interface ChameleonConstants
     {
         // extern double ChameleonVersionNumber;
-        [Field("ChameleonVersionNumber", "__Internal")]
-        double ChameleonVersionNumber { get; }
+        //[Field("ChameleonVersionNumber", "__Internal")]
+        //double ChameleonVersionNumber { get; }
 
         // extern const unsigned char [] ChameleonVersionString;
-        [Field("ChameleonVersionString", "__Internal")]
-        IntPtr ChameleonVersionString { get; }
+        //[Field("ChameleonVersionString", "__Internal")]
+        //IntPtr ChameleonVersionString { get; }
 
         // extern const UIStatusBarStyle UIStatusBarStyleContrast;
         [Field("UIStatusBarStyleContrast", "__Internal")]
