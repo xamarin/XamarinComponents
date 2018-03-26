@@ -3,10 +3,10 @@
 
 var TARGET = Argument ("t", Argument ("target", "Default"));
 
-var ANDROID_VERSION = "0.4.1";
-var ANDROID_NUGET_VERSION = "0.4.1.1";
-var IOS_VERSION = "0.7.1";
-var IOS_NUGET_VERSION = "0.7.1";
+var ANDROID_VERSION = "0.7.0";
+var ANDROID_NUGET_VERSION = "0.7.0";
+var IOS_VERSION = "0.92.0";
+var IOS_NUGET_VERSION = "0.92.0";
 
 var AAR_URL = string.Format ("https://bintray.com/openid/net.openid/download_file?file_path=net%2Fopenid%2Fappauth%2F{0}%2Fappauth-{0}.aar", ANDROID_VERSION);
 
@@ -77,30 +77,24 @@ Task ("externals-ios")
 	
 	CocoaPodInstall ("./externals/ios", new CocoaPodInstallSettings { NoIntegrate = true });
 
-	// Only introducing the Makefile because I need to set
-	// GCC_TREAT_WARNINGS_AS_ERRORS=No
-	// When the cake XCode plugin is adjusted to allow this we can
-	// revert
-	
-	RunMake ("./externals/ios", "all");
-	// XCodeBuild (new XCodeBuildSettings {
-	// 	Project = "./externals/ios/Pods/Pods.xcodeproj",
-	// 	Target = "AppAuth",
-	// 	Sdk = "iphoneos",
-	// 	Configuration = "Release",
-	// });
+	XCodeBuild (new XCodeBuildSettings {
+		Project = "./externals/ios/Pods/Pods.xcodeproj",
+		Target = "AppAuth",
+		Sdk = "iphoneos",
+		Configuration = "Release",
+	});
 
-	// XCodeBuild (new XCodeBuildSettings {
-	// 	Project = "./externals/ios/Pods/Pods.xcodeproj",
-	// 	Target = "AppAuth",
-	// 	Sdk = "iphonesimulator",
-	// 	Configuration = "Release",
-	// });
+	XCodeBuild (new XCodeBuildSettings {
+		Project = "./externals/ios/Pods/Pods.xcodeproj",
+		Target = "AppAuth",
+		Sdk = "iphonesimulator",
+		Configuration = "Release",
+	});
 
-	// RunLipoCreate ("./", 
-	// 	"./externals/ios/libAppAuth.a",
-	// 	"./externals/ios/build/Release-iphoneos/AppAuth/libAppAuth.a",
-	// 	"./externals/ios/build/Release-iphonesimulator/AppAuth/libAppAuth.a");
+	RunLipoCreate ("./", 
+		"./externals/ios/libAppAuth.a",
+		"./externals/ios/build/Release-iphoneos/AppAuth/libAppAuth.a",
+		"./externals/ios/build/Release-iphonesimulator/AppAuth/libAppAuth.a");
 });
 Task ("externals")
 	.IsDependentOn ("externals-android")
@@ -108,10 +102,8 @@ Task ("externals")
 
 Task ("clean").IsDependentOn ("clean-base").Does (() => 
 {
-	if (DirectoryExists ("./externals/android"))
-		DeleteDirectory ("./externals/android", true);
-
-	RunMake ("./externals/ios", "clean");
+	if (DirectoryExists ("./externals"))
+		DeleteDirectory ("./externals", true);
 });
 
 SetupXamarinBuildTasks (buildSpec, Tasks, Task);
