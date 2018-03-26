@@ -252,6 +252,10 @@ namespace NugetAuditor.Processors
                 }
 
             }
+            catch (Exception ex)
+            {
+
+            }
             finally
             {
 

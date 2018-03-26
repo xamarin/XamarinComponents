@@ -29,7 +29,13 @@ namespace NugetAuditor
 
                 var results = new List<ProcessResult>();
 
-                Parallel.ForEach<PackageData>(packageData, package =>
+                var options = new ParallelOptions()
+                {
+                    MaxDegreeOfParallelism = 2
+                    
+                };
+
+                Parallel.ForEach<PackageData>(packageData, options, package =>
                 {
                     LogHelper.WriteLine($"Processing: {package.Title}");
 
