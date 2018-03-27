@@ -1,7 +1,7 @@
 ﻿using System;
 using ObjCRuntime;
 
-namespace Shimmer.iOS
+namespace Shimmer
 {
     [Native]
     public enum ShimmerDirection : long

@@ -34,11 +34,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="IShimmering.cs" />
-    <Compile Include="ShimmeringDirection.cs" />
-    <Compile Include="ShimmeringLayer.cs" />
-    <Compile Include="ShimmeringMaskLayer.cs" />
-    <Compile Include="ShimmeringView.cs" />
   </ItemGroup>
   <ItemGroup>
     <ObjcBindingApiDefinition Include="ApiDefinition.cs" />

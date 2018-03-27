@@ -1,17 +1,21 @@
 ﻿using System;
-
-using UIKit;
+using CoreAnimation;
 using Foundation;
 using ObjCRuntime;
-using CoreGraphics;
+using UIKit;
 
-namespace Shimmer.iOS
+namespace Shimmer
 {
     // @protocol FBShimmering <NSObject>
-    [Protocol, Model]
-    [BaseType(typeof(NSObject))]
+
+    [BaseType(typeof(NSObject), Name = "FBShimmering")]
     interface Shimmering
     {
+        // @required @property (getter = isShimmering, assign, readwrite, nonatomic) BOOL shimmering;
+        [Abstract]
+        [Export("shimmering")]
+        bool IsShimmering { [Bind("isShimmering")] get; set; }
+
         // @required @property (assign, readwrite, nonatomic) CFTimeInterval shimmeringPauseDuration;
         [Abstract]
         [Export("shimmeringPauseDuration")]
@@ -42,6 +46,11 @@ namespace Shimmer.iOS
         [Export("shimmeringHighlightWidth")]
         nfloat ShimmeringHighlightWidth { [Bind("shimmeringHighlightLength")] get; [Bind("setShimmeringHighlightLength:")] set; }
 
+        // @required @property (assign, readwrite, nonatomic) FBShimmerDirection shimmeringDirection;
+        [Abstract]
+        [Export("shimmeringDirection", ArgumentSemantic.Assign)]
+        ShimmerDirection ShimmeringDirection { get; set; }
+
         // @required @property (assign, readwrite, nonatomic) CFTimeInterval shimmeringBeginFadeDuration;
         [Abstract]
         [Export("shimmeringBeginFadeDuration")]
@@ -57,4 +66,25 @@ namespace Shimmer.iOS
         [Export("shimmeringFadeTime")]
         double ShimmeringFadeTime { get; }
     }
+
+    interface IShimmering{}
+
+    // @interface FBShimmeringLayer : CALayer <FBShimmering>
+    [BaseType(typeof(CALayer), Name = "FBShimmeringLayer")]
+    interface ShimmeringLayer : Shimmering
+    {
+        // @property (nonatomic, strong) CALayer * contentLayer;
+        [Export("contentLayer", ArgumentSemantic.Strong)]
+        CALayer ContentLayer { get; set; }
+    }
+
+    // @interface FBShimmeringView : UIView <FBShimmering>
+    [BaseType(typeof(UIView), Name = "FBShimmeringView")]
+    interface ShimmeringView : Shimmering
+    {
+        // @property (nonatomic, strong) UIView * contentView;
+        [Export("contentView", ArgumentSemantic.Strong)]
+        UIView ContentView { get; set; }
+    }
+
 }
