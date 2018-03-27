@@ -1,0 +1,20 @@
+﻿<Properties StartupConfiguration="{424FB004-7068-44D5-880E-CB76B7B8A653}|Default">
+  <MonoDevelop.Ide.Workbench>
+    <Pads>
+      <Pad Id="ProjectPad">
+        <State name="__root__">
+          <Node name="SWTableViewCellSample" expanded="True">
+            <Node name="SWTableViewCellSample" selected="True" />
+          </Node>
+        </State>
+      </Pad>
+    </Pads>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.ItemProperties.SWTableViewCellSample PreferredExecutionTarget="MonoDevelop.IPhone.IPhoneSimulatorTarget.0735FF0F-72F9-4C92-B0DD-B9E8F7F5CB6D" />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MultiItemStartupConfigurations />
+</Properties>
