@@ -1,14 +1,14 @@
-﻿using System.Threading.Tasks;
-using NugetAuditor.Core;
+﻿using NugetAuditor.Core;
 using NugetAuditor.Core.Helpers;
+using System;
+using System.Threading.Tasks;
 
-namespace NugetAuditor
+namespace NugetAuditorNetcore
 {
-    class MainClass
-	{
-
-		public static async Task Main(string[] args)
-		{
+    class Program
+    {
+        public static async Task Main(string[] args)
+        {
             //setup
             SettingsHelper.ConfigurationProvider = new ConfigurationProvider();
 
@@ -20,8 +20,6 @@ namespace NugetAuditor
 
             LogHelper.WriteLine("Processing feed...");
             await NugetAuditRobot.ProcessAsync();
-		}
-	}
-
-
+        }
+    }
 }

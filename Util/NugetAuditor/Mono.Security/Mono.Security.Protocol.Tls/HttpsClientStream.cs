@@ -88,13 +88,13 @@ namespace Mono.Security.Protocol.Tls {
 			_status = ((failed) ? certificateErrors [0] : 0);
 
 #pragma warning disable 618
-			if (ServicePointManager.CertificatePolicy != null) {
-				ServicePoint sp = _request.ServicePoint;
-                bool res = true;// ServicePointManager.CertificatePolicy.CheckValidationResult (sp, certificate, _request, _status);
-				if (!res)
-					return false;
-				failed = true;
-			}
+			//if (ServicePointManager.CertificatePolicy != null) {
+			//	ServicePoint sp = _request.ServicePoint;
+   //             bool res = true;// ServicePointManager.CertificatePolicy.CheckValidationResult (sp, certificate, _request, _status);
+			//	if (!res)
+			//		return false;
+			//	failed = true;
+			//}
 #pragma warning restore 618
  			if (HaveRemoteValidation2Callback)
  				return failed; // The validation already tried the 2.0 callback 
