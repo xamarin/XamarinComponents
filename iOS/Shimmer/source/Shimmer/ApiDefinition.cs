@@ -7,7 +7,7 @@ using UIKit;
 namespace Shimmer
 {
     // @protocol FBShimmering <NSObject>
-
+    [Protocol, Model]
     [BaseType(typeof(NSObject), Name = "FBShimmering")]
     interface Shimmering
     {
@@ -36,11 +36,6 @@ namespace Shimmer
         [Export("shimmeringSpeed")]
         nfloat ShimmeringSpeed { get; set; }
 
-        // @required @property (assign, readwrite, nonatomic) CGFloat shimmeringHighlightLength;
-        [Abstract]
-        [Export("shimmeringHighlightLength")]
-        nfloat ShimmeringHighlightLength { get; set; }
-
         // @required @property (getter = shimmeringHighlightLength, assign, readwrite, nonatomic, setter = setShimmeringHighlightLength:) CGFloat shimmeringHighlightWidth;
         [Abstract]
         [Export("shimmeringHighlightWidth")]
@@ -67,11 +62,9 @@ namespace Shimmer
         double ShimmeringFadeTime { get; }
     }
 
-    interface IShimmering{}
-
     // @interface FBShimmeringLayer : CALayer <FBShimmering>
     [BaseType(typeof(CALayer), Name = "FBShimmeringLayer")]
-    interface ShimmeringLayer : Shimmering
+    interface ShimmeringLayer : IShimmering
     {
         // @property (nonatomic, strong) CALayer * contentLayer;
         [Export("contentLayer", ArgumentSemantic.Strong)]
@@ -80,11 +73,14 @@ namespace Shimmer
 
     // @interface FBShimmeringView : UIView <FBShimmering>
     [BaseType(typeof(UIView), Name = "FBShimmeringView")]
-    interface ShimmeringView : Shimmering
+    interface ShimmeringView : IShimmering
     {
         // @property (nonatomic, strong) UIView * contentView;
         [Export("contentView", ArgumentSemantic.Strong)]
         UIView ContentView { get; set; }
     }
 
+    internal interface IShimmering : Shimmering
+    {
+    }
 }
