@@ -170,6 +170,10 @@
   BuildScript: ./Android/Glide/build.cake
   TriggerPaths: [ Android/Glide ]
   MacBuildTargets: [ samples, nuget ]
+- Name: Wear
+  BuildScript: ./Android/Wear/build.cake
+  TriggerPaths: [ Android/Wear ]
+  MacBuildTargets: [ samples, nuget ]
 
 #######################################################
 # iOS
