@@ -20,6 +20,7 @@ var buildSpec = new BuildSpec () {
 			OutputFiles = new [] { 
 				new OutputFileCopy {
 					FromFile = "./source/JSQMessagesViewController/bin/Release/JSQMessagesViewController.dll",
+					ToDirectory = "./output/unified/"
 				},
 			}
 		},	

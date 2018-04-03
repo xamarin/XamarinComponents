@@ -15,10 +15,10 @@ icons:
 screenshots: 
   - screenshots/screenshot1.png
 libraries: 
-  ios-unified: ../output/JSQMessagesViewController.dll
+  ios-unified: ../output/unified/JSQMessagesViewController.dll
 samples: 
   - name: "Xamarin Chat Sample"
-    path: ../samples/XamarinChat.
+    path: ../samples/XamarinChat.sln
     removeProjects:
         - JSQMessagesViewController
     installNuGets:
