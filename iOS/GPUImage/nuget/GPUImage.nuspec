@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <package>
   <metadata>
-    <id>GPUImage</id>
+    <id>Xamarin.GPUImage</id>
     <title>GPUImage</title>
     <version>0.1.7.2</version>
     <authors>Microsoft</authors>
