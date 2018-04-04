@@ -29,11 +29,6 @@
 		</CleanDependsOn>
 	</PropertyGroup>
 
-	<PropertyGroup>
-		<SupportsAarLibrary Condition="'%(AvailableItemName.Identity)' == 'AndroidAarLibrary'">true</SupportsAarLibrary>
-		<SupportsAarLibrary Condition="'$(SupportsAarLibrary)' == ''">false</SupportsAarLibrary>
-	</PropertyGroup>
-
 
 	<!--
 	In XS, props files are not inserted in the correct place (https://bugzilla.xamarin.com/show_bug.cgi?id=19054)
@@ -114,7 +109,7 @@
 
 	<Target Name="_XamarinBuildDownloadAarInclude"
 			DependsOnTargets="_XamarinBuildDownload"
-			Condition="'@(XamarinBuildDownloadRestoreAssemblyAar)'!='' and '$(SupportsAarLibrary)' == 'true'">
+			Condition="'@(XamarinBuildDownloadRestoreAssemblyAar)'!='' and '@(AvailableItemNames->AnyHaveMetadataValue('Identity', 'AndroidAarLibrary'))' == 'True'">
 		<ItemGroup>
 			<AndroidAarLibrary Include="@(XamarinBuildDownloadRestoreAssemblyAar)" />
 		</ItemGroup>
@@ -122,7 +117,7 @@
 
 	<Target Name="_XamarinAndroidBuildAarRestore"
 			DependsOnTargets="_XamarinBuildDownload"
-			Condition="'@(XamarinBuildDownloadRestoreAssemblyAar)'!='' and '$(SupportsAarLibrary)' != 'true'"
+			Condition="'@(XamarinBuildDownloadRestoreAssemblyAar)'!='' and '@(AvailableItemNames->AnyHaveMetadataValue('Identity', 'AndroidAarLibrary'))' != 'True'"
 			>
 		<XamarinBuildAndroidAarRestore
 			TargetFrameworkVerison="$(TargetFrameworkVersion)"
