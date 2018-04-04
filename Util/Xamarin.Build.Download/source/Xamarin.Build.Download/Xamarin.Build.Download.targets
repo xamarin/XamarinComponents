@@ -29,13 +29,6 @@
 		</CleanDependsOn>
 	</PropertyGroup>
 
-
-	<!-- TODO: AndroidAarLibrary is not yet in AvailableItemName so we added it manually for now -->
-	<ItemGroup>
-		<AvailableItemName Include="AndroidAarLibrary" />
-	</ItemGroup>
-	<!-- END TODO -->
-
 	<PropertyGroup>
 		<SupportsAarLibrary Condition="'%(AvailableItemName.Identity)' == 'AndroidAarLibrary'">true</SupportsAarLibrary>
 		<SupportsAarLibrary Condition="'$(SupportsAarLibrary)' == ''">false</SupportsAarLibrary>
