@@ -335,6 +335,10 @@
   BuildScript: ./iOS/SDSegmentedControl/build.cake
   TriggerPaths: [ iOS/SDSegmentedControl ]
   MacBuildTargets: [ samples, component ]
+- Name: JVMenuPopover
+  BuildScript: ./iOS/JVMenuPopover/build.cake
+  TriggerPaths: [ iOS/JVMenuPopover ]
+  MacBuildTargets: [ samples, nuget, component ]
 
 #######################################################
 # XPlat
