@@ -109,7 +109,7 @@
 
 	<Target Name="_XamarinBuildDownloadAarInclude"
 			DependsOnTargets="_XamarinBuildDownload"
-			Condition="'@(XamarinBuildDownloadRestoreAssemblyAar)'!='' and '@(AvailableItemNames->AnyHaveMetadataValue('Identity', 'AndroidAarLibrary'))' == 'True'">
+			Condition="'@(XamarinBuildDownloadRestoreAssemblyAar)'!='' and @(AvailableItemName->AnyHaveMetadataValue('Identity', 'AndroidAarLibrary'))">
 		<ItemGroup>
 			<AndroidAarLibrary Include="@(XamarinBuildDownloadRestoreAssemblyAar)" />
 		</ItemGroup>
@@ -117,7 +117,7 @@
 
 	<Target Name="_XamarinAndroidBuildAarRestore"
 			DependsOnTargets="_XamarinBuildDownload"
-			Condition="'@(XamarinBuildDownloadRestoreAssemblyAar)'!='' and '@(AvailableItemNames->AnyHaveMetadataValue('Identity', 'AndroidAarLibrary'))' != 'True'"
+			Condition="'@(XamarinBuildDownloadRestoreAssemblyAar)'!='' and !@(AvailableItemName->AnyHaveMetadataValue('Identity', 'AndroidAarLibrary'))"
 			>
 		<XamarinBuildAndroidAarRestore
 			TargetFrameworkVerison="$(TargetFrameworkVersion)"
