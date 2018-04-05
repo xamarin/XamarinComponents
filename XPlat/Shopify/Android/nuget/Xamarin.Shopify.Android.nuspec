@@ -4,13 +4,14 @@
     <id>Xamarin.Shopify.Android</id>
     <title>Shopify Mobile Buy SDK for Xamarin.Android</title>
     <version>$version$</version>
-    <authors>Xamarin Inc.,Shopify Inc.</authors>
-    <owners>Xamarin Inc.</owners>
-    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <authors>Microsoft</authors>
+    <owners>Microsoft</owners>
+    <requireLicenseAcceptance>true</requireLicenseAcceptance>
     <description>Shopify’s Mobile Buy SDK makes it simple to sell physical products inside your mobile app. With a few lines of code, you can connect your app with the Shopify platform and let your users buy your products using their credit card.</description>
     <summary>Sell with Shopify in Android apps</summary>
-    <copyright>Copyright © Xamarin. All Rights Reserved.</copyright>
-    <licenseUrl>https://raw.githubusercontent.com/Shopify/mobile-buy-sdk-android/$version$/LICENSE</licenseUrl>
+    <copyright>© Microsoft Corporation. All rights reserved.</copyright>
+    <projectUrl>https://go.microsoft.com/fwlink/?linkid=864970</projectUrl>
+    <licenseUrl>https://go.microsoft.com/fwlink/?linkid=865064</licenseUrl>
     <iconUrl>https://avatars3.githubusercontent.com/u/8085?v=3&amp;s=256</iconUrl>
     <dependencies>
       <dependency id="GoogleGson" version="2.6.1.0" />

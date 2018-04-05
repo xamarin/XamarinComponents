@@ -2,9 +2,8 @@ using System;
 
 using Android.Content;
 using Android.Util;
-
-using EstimoteSdk;
-
+using EstimoteSdk.Common.Requirements;
+using EstimoteSdk.Service;
 using JavaObject = Java.Lang.Object;
 
 namespace Estimotes.Droid

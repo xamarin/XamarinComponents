@@ -1,4 +1,4 @@
-version: "1.4.0"
+version: "1.4.1"
 name: SimplePing
 id: simpleping
 publisher: Xamarin Inc
@@ -15,10 +15,12 @@ is_shell: true
 libraries:
   ios-unified: ../output/Xamarin.SimplePing.iOS.dll
   mac-unified: ../output/Xamarin.SimplePing.Mac.dll
+  tvos: ../output/Xamarin.SimplePing.tvOS.dll
 local-nuget-repo: ../output
 packages:
-  ios-unified: Xamarin.SimplePing, Version=1.4.0
-  mac-unified: Xamarin.SimplePing, Version=1.4.0
+  ios-unified: Xamarin.SimplePing, Version=1.4.1
+  mac-unified: Xamarin.SimplePing, Version=1.4.1
+  tvos: Xamarin.SimplePing, Version=1.4.1
 
 samples:
   - name: "iOS Sample"

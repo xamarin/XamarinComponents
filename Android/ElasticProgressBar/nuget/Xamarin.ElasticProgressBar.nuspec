@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<package >
+  <metadata>
+    <id>Xamarin.ElasticProgressBar</id>
+    <title>ElasticProgressBar for Xamarin.Android</title>
+    <version>1.0.5</version>
+    <authors>Microsoft</authors>
+    <owners>Microsoft</owners>
+    <requireLicenseAcceptance>true</requireLicenseAcceptance>
+    <description>Xamarin.Android binding for ElasticProgressBar - An elastic loading bar.</description>
+    <copyright>© Microsoft Corporation. All rights reserved.</copyright>
+    <iconUrl>https://raw.githubusercontent.com/xamarin/XamarinComponents/master/Android/ElasticProgressBar/component/icons/icon_512x512.png</iconUrl>
+    <projectUrl>https://go.microsoft.com/fwlink/?linkid=865031</projectUrl>
+    <licenseUrl>https://go.microsoft.com/fwlink/?linkid=864964</licenseUrl>
+    <dependencies>
+        <dependency id="Xamarin.Android.Support.v4" version="23.1.1" />
+    </dependencies>
+  </metadata>
+  <files>
+    <file src="output/ElasticProgressBar.dll" target="lib/MonoAndroid" />
+    <file src="External-Dependency-Info.txt" target="THIRD-PARTY-NOTICES.txt" />
+  </files>
+</package>

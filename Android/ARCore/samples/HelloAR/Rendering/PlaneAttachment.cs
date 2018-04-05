@@ -22,8 +22,8 @@ namespace HelloAR
 		{
 			get {
 				return /*true if*/
-					plane.GetTrackingState() == Plane.TrackingState.Tracking
-						  && anchor.GetTrackingState() == Anchor.TrackingState.Tracking;
+					plane.TrackingState == TrackingState.Tracking
+                         && anchor.TrackingState == TrackingState.Tracking;
 			}
 		}
 

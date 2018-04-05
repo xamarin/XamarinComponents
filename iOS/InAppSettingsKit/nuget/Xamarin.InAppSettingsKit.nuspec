@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<package>
+  <metadata>
+    <id>Xamarin.InAppSettingsKit</id>
+    <title>Xamarin.InAppSettingsKit</title>
+    <version>2.6.0.1</version>
+    <authors>Microsoft</authors>
+    <owners>Microsoft</owners>
+    <requireLicenseAcceptance>true</requireLicenseAcceptance>
+    <description>This iOS framework allows settings to be in-app in addition to being in the Settings app.</description>
+    <copyright>© Microsoft Corporation. All rights reserved.</copyright>
+    <projectUrl>https://go.microsoft.com/fwlink/?linkid=867661</projectUrl>
+    <licenseUrl>https://go.microsoft.com/fwlink/?linkid=867662</licenseUrl>
+  </metadata>
+  <files>
+    <file src="output/InAppSettingsKit.dll" target="lib/Xamarin.iOS" />
+    <file src="External-Dependency-Info.txt" target="THIRD-PARTY-NOTICES.txt" />
+  </files>
+</package>
+

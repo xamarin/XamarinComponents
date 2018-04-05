@@ -1,0 +1,23 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JVMenuPopover", "JVMenuPopover\JVMenuPopover.csproj", "{761ED8A2-E43B-4B12-B7F5-84C8EF81F991}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|iPhoneSimulator = Debug|iPhoneSimulator
+		Release|iPhone = Release|iPhone
+		Release|iPhoneSimulator = Release|iPhoneSimulator
+		Debug|iPhone = Debug|iPhone
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{761ED8A2-E43B-4B12-B7F5-84C8EF81F991}.Debug|iPhone.ActiveCfg = Debug|Any CPU
+		{761ED8A2-E43B-4B12-B7F5-84C8EF81F991}.Debug|iPhone.Build.0 = Debug|Any CPU
+		{761ED8A2-E43B-4B12-B7F5-84C8EF81F991}.Debug|iPhoneSimulator.ActiveCfg = Debug|Any CPU
+		{761ED8A2-E43B-4B12-B7F5-84C8EF81F991}.Debug|iPhoneSimulator.Build.0 = Debug|Any CPU
+		{761ED8A2-E43B-4B12-B7F5-84C8EF81F991}.Release|iPhone.ActiveCfg = Release|Any CPU
+		{761ED8A2-E43B-4B12-B7F5-84C8EF81F991}.Release|iPhone.Build.0 = Release|Any CPU
+		{761ED8A2-E43B-4B12-B7F5-84C8EF81F991}.Release|iPhoneSimulator.ActiveCfg = Release|Any CPU
+		{761ED8A2-E43B-4B12-B7F5-84C8EF81F991}.Release|iPhoneSimulator.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
