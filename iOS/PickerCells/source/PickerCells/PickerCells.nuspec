@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<package >
+  <metadata>
+    <id>dhpickercells</id>
+    <version>1.1.0.0</version>
+    <title>DHPickerCells for Xamarin.iOS</title>
+    <authors>Dave Humphreys</authors>
+    <owners>Dave Humphreys, Xamarin</owners>
+    <projectUrl>https://github.com/newky2k/PickerCells</projectUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>This class adds UIDatePicker or UIPickerView that will slide in/out by tapping on the cell in your UITableView</description>
+    <releaseNotes>Initial Xamarin port</releaseNotes>
+    <copyright>Copyright (c) 2015 David Humphreys</copyright>
+    <tags>Xamarin UITableView UITableViewCell</tags>
+  </metadata>
+      <files>
+    	<file src="bin/Release/PickerCells.dll" target="lib\Xamarin.iOS10" />
+    </files>
+</package>

@@ -335,6 +335,10 @@
   BuildScript: ./iOS/SDSegmentedControl/build.cake
   TriggerPaths: [ iOS/SDSegmentedControl ]
   MacBuildTargets: [ samples, component ]
+- Name: PickerCells
+  BuildScript: ./iOS/PickerCells/build.cake
+  TriggerPaths: [ iOS/PickerCells ]
+  MacBuildTargets: [ samples, nuget, component ]
 - Name: JVMenuPopover
   BuildScript: ./iOS/JVMenuPopover/build.cake
   TriggerPaths: [ iOS/JVMenuPopover ]
