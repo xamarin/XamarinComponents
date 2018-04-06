@@ -21,5 +21,7 @@ namespace Xamarin.Build.Download
 	{
 		void LogCodedError (string code, string message, params object [] messageArgs);
 		void LogErrorFromException (System.Exception exception);
+
+        void LogMessage(string message, params object[] param);
 	}
 }

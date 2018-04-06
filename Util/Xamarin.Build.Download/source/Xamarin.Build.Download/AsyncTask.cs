@@ -80,7 +80,7 @@ namespace Xamarin.Build.Download
 				LogDebugMessage ("    {0}", item.ItemSpec);
 		}
 
-		protected void LogMessage (string message, params object [] messageArgs)
+		public void LogMessage (string message, params object [] messageArgs)
 		{
 			LogMessage (string.Format (message, messageArgs));
 		}
@@ -116,7 +116,7 @@ namespace Xamarin.Build.Download
 			LogError (code, string.Format (message, messageArgs));
 		}
 
-		protected void LogError (string code, string message)
+        protected void LogError (string code, string message)
 		{
 			if (UIThreadId == Thread.CurrentThread.ManagedThreadId)
 				#pragma warning disable 618

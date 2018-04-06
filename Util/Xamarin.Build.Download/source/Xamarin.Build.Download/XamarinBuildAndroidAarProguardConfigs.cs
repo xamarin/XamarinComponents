@@ -39,7 +39,7 @@ namespace Xamarin.Build.Download
 			Directory.CreateDirectory (outputDir);
 
 			// Get our assembly restore map
-			var restoreMap = BuildRestoreMap (RestoreAssemblyResources);
+			var restoreMap = BuildRestoreMap (RestoreAssemblyResources, InputReferencePaths, CancelToken);
 			if (restoreMap == null)
 				return false;
 
@@ -48,8 +48,7 @@ namespace Xamarin.Build.Download
 
 				// We only want to find proguard files in .aar files referenced
 				// for assemblies we actually have referenced and have them mapped to
-				var asmName = new AssemblyName (asm.Key);
-				ITaskItem item = FindMatchingAssembly (InputReferencePaths, asmName);
+				ITaskItem item = asm.Value.InputAssemblyReference;
 				if (item == null) {
 					if (ThrowOnMissingAssembly)
 						return false;
@@ -58,7 +57,7 @@ namespace Xamarin.Build.Download
 				}
 
 				// Use a hash for the assembly name to keep paths shorter
-				var saveNameHash = DownloadUtils.HashMd5 (asmName.Name)?.Substring (0, 8);
+				var saveNameHash = DownloadUtils.HashMd5 (asm.Value.CanonicalName.Name)?.Substring (0, 8);
 
 				// We keep a stamp file around to avoid reprocessing, so skip if it exists
 				var stampPath = Path.Combine (outputDir, saveNameHash + ".proguard.stamp");
@@ -79,7 +78,7 @@ namespace Xamarin.Build.Download
 				}
 
 				// Get all the mapped .aar files
-				var resourceItems = asm.Value;
+				var resourceItems = asm.Value.RestoreItems;
 
 				// We want to increment on the hash name in case there are multiple .aar files and/or proguard config
 				// files for a given assembly, so we use them all and not overwrite the same name
@@ -91,7 +90,12 @@ namespace Xamarin.Build.Download
 					// Full path to .aar file
 					var resourceFullPath = resourceItem.GetMetadata ("FullPath");
 
-					using (var fileStream = File.OpenRead (resourceFullPath))
+                    var tempFile = Path.GetTempFileName();
+
+                    if (!DownloadUtils.CopyFileWithRetry(resourceFullPath, tempFile, Log))
+                        return false;
+
+                    using (var fileStream = File.OpenRead (tempFile))
 					using (var zipArchive = new ZipArchive (fileStream, ZipArchiveMode.Read)) {
 
 						// Look for proguard config files in the archive
