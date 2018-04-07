@@ -21,7 +21,7 @@ samples:
     installNuGets:
       - project: SidePanelsSample
         packages:
-          - Xamarin.JASidePanel
+          - Xamarin.SidePanels
     configuration: "Release|iPhone"
   - name: "Code Sample"
     path: ../samples/SidePanelsCodeSample/SidePanelsCodeSample.sln
@@ -30,14 +30,14 @@ samples:
     installNuGets:
       - project: SidePanelsCodeSample
         packages:
-          - Xamarin.JASidePanel
+          - Xamarin.SidePanels
     configuration: "Release|iPhone"
   - name: "JASidePanel Compatibility Sample"
     path: ../samples/JASidePanelsSample/JASidePanelsSample.sln
     installNuGets:
       - project: JASidePanelsSample
         packages:
-          - Xamarin.JASidePanel
+          - Xamarin.SidePanels
     configuration: "Release|iPhone"
 
 is_shell: true 

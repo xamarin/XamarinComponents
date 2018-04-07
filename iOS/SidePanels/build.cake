@@ -23,6 +23,10 @@ var buildSpec = new BuildSpec () {
 		new IOSSolutionBuilder { SolutionPath = "./samples/SidePanelsSample/SidePanelsSample.sln", Configuration = "Release", Platform="iPhone", BuildsOn = BuildPlatforms.Mac },
 	},
 
+	NuGets = new [] {
+		new NuGetInfo { NuSpec = "./nuget/Xamarin.SidePanels.nuspec" },
+	},
+
 	Components = new [] {
 		new Component {ManifestDirectory = "./component", BuildsOn = BuildPlatforms.Mac},
 	},
