@@ -10,6 +10,7 @@ var buildSpec = new BuildSpec () {
 			OutputFiles = new [] { 
 				new OutputFileCopy {
 					FromFile = "./source/StickyHeader/bin/Release/StickyHeader.dll",
+					ToDirectory = "./output/"
 				}
 			}
 		}

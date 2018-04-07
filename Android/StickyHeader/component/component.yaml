@@ -8,7 +8,6 @@ summary: A very simple library that allows you to stick any View as a header of 
 license: ../License.md
 getting-started: GettingStarted.md
 details: Details.md
-license: License.md
 
 icons: 
   - ../images/icon_128x128.png
@@ -16,7 +15,7 @@ icons:
 
 samples: 
   - name: Android Sample
-    path: ../samples/StickyHeaderSample.
+    path: ../samples/StickyHeaderSample.sln
     removeProjects:
         - StickyHeader
     installNuGets:
