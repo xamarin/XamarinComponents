@@ -31,3 +31,7 @@ packages:
    ios-unified: Xamarin.JZMultiChoicesCircleButton, Version=1.1
 is_shell: true
 no_build: true
+additional-files:
+  - source: "../External-Dependency-Info.txt"
+    destination: "THIRD-PARTY-NOTICES.txt"
+
