@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SegmentedControl", "source\SDSegmentedControl\SegmentedControl.csproj", "{DDEA604A-C9BF-4829-8B7C-98F2E1C4D555}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SegmentedControl", "SDSegmentedControl\SegmentedControl.csproj", "{DDEA604A-C9BF-4829-8B7C-98F2E1C4D555}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
