@@ -4,13 +4,13 @@
     <id>mbprogresshud</id>
     <title>Progress HUD</title>
     <version>0.9.2.0</version>
-    <authors>Xamarin Inc.</authors>
-    <owners>Xamarin Inc.</owners>
-    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <authors>Microsoft</authors>
+    <owners>Microsoft</owners>
+    <requireLicenseAcceptance>true</requireLicenseAcceptance>
     <description>A translucent, HUD-style dialog that shows a progress indicator and a status label.</description>
-    <copyright>Copyright 2015 Xamarin Inc</copyright>
-    <projectUrl>https://components.xamarin.com/view/mbprogresshud</projectUrl>
-    <licenseUrl>https://components.xamarin.com/license/mbprogresshud</licenseUrl>
+    <copyright>© Microsoft Corporation. All rights reserved.</copyright>
+    <projectUrl>https://go.microsoft.com/fwlink/?linkid=864991</projectUrl>
+    <licenseUrl>https://go.microsoft.com/fwlink/?linkid=865042</licenseUrl>
   </metadata>
   <files>
     <file src="output/unified/MBProgressHUD.dll" target="lib/Xamarin.iOS" />

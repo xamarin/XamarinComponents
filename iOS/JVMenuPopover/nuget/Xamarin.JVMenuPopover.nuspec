@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<package>
+  <metadata>
+    <id>Xamarin.JVMenuPopover</id>
+    <title>Xamarin.JVMenuPopover</title>
+    <version>1.7</version>
+    <authors>Microsoft</authors>
+    <owners>Microsoft</owners>
+    <requireLicenseAcceptance>true</requireLicenseAcceptance>
+    <description>Simple popover menu for Xamarin.iOS</description>
+    <copyright>© Microsoft Corporation. All rights reserved.</copyright>
+    <projectUrl>https://go.microsoft.com/fwlink/?linkid=867099</projectUrl>
+    <licenseUrl>https://go.microsoft.com/fwlink/?linkid=867101</licenseUrl>
+  </metadata>
+  <files>
+    <file src="output/JVMenuPopover.dll" target="lib/Xamarin.iOS" />
+    <file src="External-Dependency-Info.txt" target="THIRD-PARTY-NOTICES.txt" />
+  </files>
+</package>

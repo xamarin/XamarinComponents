@@ -10,12 +10,8 @@ var buildSpec = new BuildSpec {
 			SolutionPath = "source/Cake.Xamarin.Binding.Util.sln",
 			BuildsOn = BuildPlatforms.Windows | BuildPlatforms.Mac,
 			OutputFiles = new [] { 
-				new OutputFileCopy { FromFile = "./source/Cake.Xamarin.Binding.Util/bin/Release/Cake.Xamarin.Binding.Util.dll" },
-				new OutputFileCopy { FromFile = "./source/Cake.Xamarin.Binding.Util/bin/Release/Cake.Xamarin.Binding.Util.xml" },
-				new OutputFileCopy { FromFile = "./source/Cake.Xamarin.Binding.Util/bin/Release/Mono.Cecil.dll" },
-				new OutputFileCopy { FromFile = "./source/Cake.Xamarin.Binding.Util/bin/Release/Mono.Cecil.Mdb.dll" },
-				new OutputFileCopy { FromFile = "./source/Cake.Xamarin.Binding.Util/bin/Release/Mono.Cecil.Pdb.dll" },
-				new OutputFileCopy { FromFile = "./source/Cake.Xamarin.Binding.Util/bin/Release/Mono.Cecil.Rocks.dll" },
+				new OutputFileCopy { FromFile = "./source/Cake.Xamarin.Binding.Util/bin/Release/netstandard2.0/Cake.Xamarin.Binding.Util.dll" },
+				new OutputFileCopy { FromFile = "./source/Cake.Xamarin.Binding.Util/bin/Release/netstandard2.0/Cake.Xamarin.Binding.Util.xml" }
 			},
 		}
 	},

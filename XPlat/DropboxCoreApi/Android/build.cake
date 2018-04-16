@@ -14,7 +14,7 @@ var JAR_JS_FILE = string.Format ("json_simple-{0}.jar", JS_VERSION);
 
 var buildSpec = new BuildSpec () {
 	Libs = new ISolutionBuilder [] {
-		new IOSSolutionBuilder {
+		new DefaultSolutionBuilder {
 			SolutionPath = "./source/Dropbox.CoreApi.Android.sln",
 			Configuration = "Release",
 			OutputFiles = new [] { 
@@ -27,7 +27,7 @@ var buildSpec = new BuildSpec () {
 	},
 
 	Samples = new ISolutionBuilder [] {
-		new IOSSolutionBuilder { SolutionPath = "./samples/DropboxCoreApiSample/DropboxCoreApiSample.sln" }
+		new DefaultSolutionBuilder { SolutionPath = "./samples/DropboxCoreApiSample/DropboxCoreApiSample.sln" }
 	},
 
 	Components = new [] {

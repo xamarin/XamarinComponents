@@ -11,7 +11,8 @@
   <!-- Normalize the namespaces for .NET -->
   <attr path="/api/package[@name='com.firebase.jobdispatcher']" name="managedName">Firebase.JobDispatcher</attr>
   <attr path="/api/package[@name='com.google.android.gms.gcm']" name="managedName">Android.Gms.Gcm</attr>
-
+  <attr path="/api/package[@name='com.firebase.jobdispatcher']/class[@name='ObservedUri']/method[@name='getFlags' and count(parameter)=0]" name="managedName">Flag</attr>
+	
   <add-node path="/api/package[@name='com.firebase.jobdispatcher']">
     <class abstract="true" deprecated="not deprecated" extends="android.app.Service"
            extends-generic-aware="android.app.Service" final="false" name="ExternalReceiver" static="false"

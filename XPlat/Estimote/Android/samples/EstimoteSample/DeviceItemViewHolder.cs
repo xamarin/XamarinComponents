@@ -2,7 +2,8 @@ using Android.Views;
 using Android.Widget;
 
 using EstimoteSdk;
-
+using EstimoteSdk.Observation.Region;
+using EstimoteSdk.Recognition.Packets;
 using Java.Lang;
 
 namespace Estimotes.Droid
@@ -26,7 +27,7 @@ namespace Estimotes.Droid
 
         public void Display(Beacon beacon)
         {
-            _macTextView.Text = string.Format("MAC: {0} ({1:N2})", beacon.MacAddress, Utils.ComputeAccuracy(beacon));
+			_macTextView.Text = string.Format("MAC: {0} ({1:N2})", beacon.MacAddress, RegionUtils.ComputeAccuracy(beacon));
             _majorTextView.Text = string.Format("Major: {0}", beacon.Major);
             _minorTextView.Text = string.Format("Minor: {0}", beacon.Minor);
             _measuredPowerTextView.Text = string.Format("MPower: {0}", beacon.MeasuredPower);

@@ -1,60 +1,144 @@
 ﻿<metadata>
 
 	<!-- Rename java packages to .NET friendly namespaces -->
-    <attr path="/api/package[@name='com.estimote.sdk']" name="managedName">EstimoteSdk</attr>
-    <attr path="/api/package[@name='com.estimote.sdk.cloud']" name="managedName">EstimoteSdk.Cloud</attr>
-    <attr path="/api/package[@name='com.estimote.sdk.cloud.model']" name="managedName">EstimoteSdk.Cloud.Model</attr>
-	<attr path="/api/package[@name='com.estimote.sdk.cloud.model.analytics']" name="managedName">EstimoteSdk.Cloud.Model.Analytics</attr>
-	<attr path="/api/package[@name='com.estimote.sdk.cloud.model.google']" name="managedName">EstimoteSdk.Cloud.Model.Google</attr>
-    <attr path="/api/package[@name='com.estimote.sdk.connection']" name="managedName">EstimoteSdk.Connection</attr>
-	<attr path="/api/package[@name='com.estimote.sdk.connection.errors']" name="managedName">EstimoteSdk.Connection.Errors</attr>
-	<attr path="/api/package[@name='com.estimote.sdk.connection.exceptions']" name="managedName">EstimoteSdk.Connection.Exceptions</attr>
-	<attr path="/api/package[@name='com.estimote.sdk.connection.scanner']" name="managedName">EstimoteSdk.Connection.Scanner</attr>
-	<attr path="/api/package[@name='com.estimote.sdk.connection.settings']" name="managedName">EstimoteSdk.Connection.Settings</attr>
-	<attr path="/api/package[@name='com.estimote.sdk.eddystone']" name="managedName">EstimoteSdk.EddystoneSdk</attr>
-	<attr path="/api/package[@name='com.estimote.sdk.service']" name="managedName">EstimoteSdk.Service</attr>
-	<attr path="/api/package[@name='com.estimote.sdk.exception']" name="managedName">EstimoteSdk.Exception</attr>
-	<attr path="/api/package[@name='com.estimote.sdk.location']" name="managedName">EstimoteSdk.Location</attr>
-	<attr path="/api/package[@name='com.estimote.sdk.telemetry']" name="managedName">EstimoteSdk.Telemetry</attr>
-	<attr path="/api/package[@name='com.estimote.sdk.nfc']" name="managedName">EstimoteSdk.Nfc</attr>
-	
+	<attr path="/api/package[@name='com.estimote.coresdk']" name="managedName">EstimoteSdk</attr>
+	<attr path="/api/package[@name='com.estimote.coresdk.cloud.api']" name="managedName">EstimoteSdk.Cloud.Api</attr>
+	<attr path="/api/package[@name='com.estimote.coresdk.cloud.google']" name="managedName">EstimoteSdk.Cloud.Google</attr>
+	<attr path="/api/package[@name='com.estimote.coresdk.cloud.google.model']" name="managedName">EstimoteSdk.Cloud.Google.Model</attr>
+	<attr path="/api/package[@name='com.estimote.coresdk.cloud.model']" name="managedName">EstimoteSdk.Cloud.Model</attr>
+	<attr path="/api/package[@name='com.estimote.coresdk.common.config']" name="managedName">EstimoteSdk.Common.Config</attr>
+	<attr path="/api/package[@name='com.estimote.coresdk.common.exception']" name="managedName">EstimoteSdk.Common.Exception</attr>
+	<attr path="/api/package[@name='com.estimote.coresdk.common.requirements']" name="managedName">EstimoteSdk.Common.Requirements</attr>
+	<attr path="/api/package[@name='com.estimote.coresdk.connection.bluerock']" name="managedName">EstimoteSdk.Connection.Bluerock</attr>
+	<attr path="/api/package[@name='com.estimote.coresdk.connection.gatt']" name="managedName">EstimoteSdk.Connection.Gatt</attr>
+	<attr path="/api/package[@name='com.estimote.coresdk.connection.utils']" name="managedName">EstimoteSdk.Connection.Utils</attr>
+	<attr path="/api/package[@name='com.estimote.coresdk.observation.region']" name="managedName">EstimoteSdk.Observation.Region</attr>
+	<attr path="/api/package[@name='com.estimote.coresdk.observation.region.beacon']" name="managedName">EstimoteSdk.Observation.Region.Beacon</attr>
+	<attr path="/api/package[@name='com.estimote.coresdk.observation.region.mirror']" name="managedName">EstimoteSdk.Observation.Region.Mirror</attr>
+	<attr path="/api/package[@name='com.estimote.coresdk.observation.utils']" name="managedName">EstimoteSdk.Observation.Utils</attr>
+	<attr path="/api/package[@name='com.estimote.coresdk.recognition.packets']" name="managedName">EstimoteSdk.Recognition.Packets</attr>
+	<attr path="/api/package[@name='com.estimote.coresdk.recognition.utils']" name="managedName">EstimoteSdk.Recognition.Utils</attr>
+	<attr path="/api/package[@name='com.estimote.coresdk.scanning.bluetooth.adapters']" name="managedName">EstimoteSdk.Scanning.Bluetooth.Adapters</attr>
+	<attr path="/api/package[@name='com.estimote.coresdk.scanning.bluetooth.filters']" name="managedName">EstimoteSdk.Scanning.Bluetooth.Filters</attr>
+	<attr path="/api/package[@name='com.estimote.coresdk.scanning.bluetooth.settings']" name="managedName">EstimoteSdk.Scanning.Bluetooth.Settings</attr>
+	<attr path="/api/package[@name='com.estimote.coresdk.scanning.module']" name="managedName">EstimoteSdk.Scanning.Module</attr>
+	<attr path="/api/package[@name='com.estimote.coresdk.scanning.scheduling']" name="managedName">EstimoteSdk.Scanning.Scheduling</attr>
+	<attr path="/api/package[@name='com.estimote.coresdk.service']" name="managedName">EstimoteSdk.Service</attr>
+	<attr path="/api/package[@name='com.estimote.mgmtsdk']" name="managedName">EstimoteMgmtSdk</attr>
+	<attr path="/api/package[@name='com.estimote.mgmtsdk.common.errors']" name="managedName">EstimoteMgmtSdk.Common.Errors</attr>
+	<attr path="/api/package[@name='com.estimote.mgmtsdk.common.exceptions']" name="managedName">EstimoteMgmtSdk.Common.Exceptions</attr>
+	<attr path="/api/package[@name='com.estimote.mgmtsdk.connection.api']" name="managedName">EstimoteMgmtSdk.Connection.Api</attr>
+	<attr path="/api/package[@name='com.estimote.mgmtsdk.connection.protocol']" name="managedName">EstimoteMgmtSdk.Connection.Protocol</attr>
+	<attr path="/api/package[@name='com.estimote.mgmtsdk.connection.protocol.characteristic']" name="managedName">EstimoteMgmtSdk.Connection.Protocol.Characteristic</attr>
+	<attr path="/api/package[@name='com.estimote.mgmtsdk.connection.protocol.nearables']" name="managedName">EstimoteMgmtSdk.Connection.Protocol.Nearables</attr>
+	<attr path="/api/package[@name='com.estimote.mgmtsdk.connection.protocol.packet']" name="managedName">EstimoteMgmtSdk.Connection.Protocol.Packet</attr>
+	<attr path="/api/package[@name='com.estimote.mgmtsdk.connection.strategy']" name="managedName">EstimoteMgmtSdk.Connection.Strategy</attr>
+	<attr path="/api/package[@name='com.estimote.mgmtsdk.connection.strategy.security']" name="managedName">EstimoteMgmtSdk.Connection.Strategy.Security</attr>
+	<attr path="/api/package[@name='com.estimote.mgmtsdk.connection.strategy.sync']" name="managedName">EstimoteMgmtSdk.Connection.Strategy.Sync</attr>
+	<attr path="/api/package[@name='com.estimote.mgmtsdk.feature.bulk_updater']" name="managedName">EstimoteMgmtSdk.Feature.Bulk_updater</attr>
+	<attr path="/api/package[@name='com.estimote.mgmtsdk.feature.fu']" name="managedName">EstimoteMgmtSdk.Feature.FU</attr>
+	<attr path="/api/package[@name='com.estimote.mgmtsdk.feature.fu.dfu']" name="managedName">EstimoteMgmtSdk.Feature.FU.Dfu</attr>
+	<attr path="/api/package[@name='com.estimote.mgmtsdk.feature.fu.ota']" name="managedName">EstimoteMgmtSdk.Feature.FU.Ota</attr>
+	<attr path="/api/package[@name='com.estimote.mgmtsdk.feature.mesh']" name="managedName">EstimoteMgmtSdk.Feature.Mesh</attr>
+	<attr path="/api/package[@name='com.estimote.mgmtsdk.feature.nfc']" name="managedName">EstimoteMgmtSdk.Feature.Nfc</attr>
+	<attr path="/api/package[@name='com.estimote.mgmtsdk.feature.settings']" name="managedName">EstimoteMgmtSdk.Feature.Settings</attr>
+	<attr path="/api/package[@name='com.estimote.mgmtsdk.feature.settings.api']" name="managedName">EstimoteMgmtSdk.Feature.Settings.Api</attr>
+	<attr path="/api/package[@name='com.estimote.mgmtsdk.feature.settings.mapping']" name="managedName">EstimoteMgmtSdk.Feature.Settings.Mapping</attr>
+
 
 	<!-- Make casing more .NET on class name -->
-	<attr path="/api/package[@name='com.estimote.sdk']/class[@name='EstimoteSDK']" name="managedName">Estimote</attr>
+	<attr path="/api/package[@name='com.estimote.coresdk.common.config']/class[@name='EstimoteSDK']" name="managedName">Estimote</attr>
 
 	<!-- Remove unnecessary and problematic bindings -->
-	<remove-node path="/api/package[contains(@name,'com.estimote.sdk.repackaged')]" />
-    <remove-node path="/api/package[contains(@name,'.internal')]" />
-    <remove-node path="/api/package[@name='com.estimote.sdk']/class[@name='Utils']/method[@name='beaconFromLeScan']" />
-    <remove-node path="/api/package[@name='com.estimote.sdk.connection']/class[@name='BeaconAuthentication']/constructor" />
-    <remove-node path="/api/package[@name='com.estimote.sdk.connection']/class[@name='BeaconConnection']/method[@name='createNoCloudConnection']" />
-    <remove-node path="/api/package[@name='com.estimote.sdk.connection']/class[@name='BeaconConnection']/method[@name='getInternalEstimoteCloud']" />
-    <remove-node path="/api/package[@name='com.estimote.sdk.exception']/class[@name='EstimoteServerException']/constructor" />
+	<remove-node path="/api/package[contains(@name,'com.estimote.coresdk.repackaged')]" />
+	<remove-node path="/api/package[contains(@name,'com.estimote.mgmtsdk.repackaged')]" />
+	<remove-node path="/api/package[contains(@name,'.internal')]" />
+	<remove-node path="/api/package[@name='com.estimote.mgmtsdk.connection.protocol']/interface[@name='Protocol']" />
 
-    <!-- We will manually add the JNI code to make this return an int instead of Java.Lang.Integer -->
-    <attr path="/api/package[@name='com.estimote.sdk']/class[@name='Region']/method[@name='getMinor' and count(parameter)=0]" name="managedName">_MinorInternal</attr>
-    <attr path="/api/package[@name='com.estimote.sdk']/class[@name='Region']/method[@name='getMinor' and count(parameter)=0]" name="visibility">protected</attr>
-    <attr path="/api/package[@name='com.estimote.sdk']/class[@name='Region']/method[@name='getMajor' and count(parameter)=0]" name="managedName">_MajorInternal</attr>
-    <attr path="/api/package[@name='com.estimote.sdk']/class[@name='Region']/method[@name='getMajor' and count(parameter)=0]" name="visibility">protected</attr>
 
-    <!-- These class names collide with field names, so renaming the classes -->
-    <attr path="/api/package[@name='com.estimote.sdk']/class[@name='Nearable.BatteryLevel']" name="managedName">BatteryLevelValue</attr>
-    <attr path="/api/package[@name='com.estimote.sdk']/class[@name='Nearable.FirmwareState']" name="managedName">FirmwareStateValue</attr>
-    <attr path="/api/package[@name='com.estimote.sdk']/class[@name='Nearable.Orientation']" name="managedName">OrientationValue</attr>
+	<!-- We will manually add the JNI code to make this return an int instead of Java.Lang.Integer -->
+	<attr path="/api/package[@name='com.estimote.coresdk.observation.region.beacon']/class[@name='BeaconRegion']/method[@name='getMinor' and count(parameter)=0]" name="managedName">_MinorInternal</attr>
+	<attr path="/api/package[@name='com.estimote.coresdk.observation.region.beacon']/class[@name='BeaconRegion']/method[@name='getMinor' and count(parameter)=0]" name="visibility">protected</attr>
+	<attr path="/api/package[@name='com.estimote.coresdk.observation.region.beacon']/class[@name='BeaconRegion']/method[@name='getMajor' and count(parameter)=0]" name="managedName">_MajorInternal</attr>
+	<attr path="/api/package[@name='com.estimote.coresdk.observation.region.beacon']/class[@name='BeaconRegion']/method[@name='getMajor' and count(parameter)=0]" name="visibility">protected</attr>
 
-    <!-- Manually fix up missing parameter names -->
-    <attr path="/api/package[@name='com.estimote.sdk']/interface[@name='BeaconManager.EddystoneListener']/method[@name='onEddystonesFound']/parameter[@name='p0']" name="name">eddystones</attr>
-	<attr path="/api/package[@name='com.estimote.sdk']/interface[@name='BeaconManager.ErrorListener']/method[@name='onError']/parameter[@name='p0']" name="name">errorId</attr>
-    <attr path="/api/package[@name='com.estimote.sdk']/interface[@name='BeaconManager.MonitoringListener']/method[@name='onEnteredRegion']/parameter[@name='p0']" name="name">region</attr>
-    <attr path="/api/package[@name='com.estimote.sdk']/interface[@name='BeaconManager.MonitoringListener']/method[@name='onEnteredRegion']/parameter[@name='p1']" name="name">beacons</attr>
-<!--    <attr path="/api/package[@name='com.estimote.sdk']/interface[@name='BeaconManager.MonitoringListener']/method[@name='onExitedRegion']/parameter[@name='p0']" name="name">region</attr>-->
-    <attr path="/api/package[@name='com.estimote.sdk']/interface[@name='BeaconManager.NearableListener']/method[@name='onNearablesDiscovered']/parameter[@name='p0']" name="name">nearables</attr>
-    <attr path="/api/package[@name='com.estimote.sdk']/interface[@name='BeaconManager.RangingListener']/method[@name='onBeaconsDiscovered']/parameter[@name='p0']" name="name">region</attr>
-    <attr path="/api/package[@name='com.estimote.sdk']/interface[@name='BeaconManager.RangingListener']/method[@name='onBeaconsDiscovered']/parameter[@name='p1']" name="name">beacons</attr>
+	<!-- Manually fix up missing parameter names -->
+	<attr path="/api/package[@name='com.estimote.coresdk.service']/interface[@name='BeaconManager.MirrorMonitoringListener']/method[@name='onEnteredRegion']/parameter[@name='p0']" name="name">region</attr>
+	<attr path="/api/package[@name='com.estimote.coresdk.service']/interface[@name='BeaconManager.MirrorMonitoringListener']/method[@name='onEnteredRegion']/parameter[@name='p1']" name="name">beacons</attr>
+	<attr path="/api/package[@name='com.estimote.coresdk.service']/interface[@name='BeaconManager.MirrorMonitoringListener']/method[@name='onExitedRegion']/parameter[@name='p0']" name="name">region</attr>
+	<attr path="/api/package[@name='com.estimote.coresdk.service']/interface[@name='BeaconManager.BeaconRangingListener']/method[@name='onBeaconsDiscovered']/parameter[@name='p0']" name="name">region</attr>
+	<attr path="/api/package[@name='com.estimote.coresdk.service']/interface[@name='BeaconManager.BeaconRangingListener']/method[@name='onBeaconsDiscovered']/parameter[@name='p1']" name="name">beacons</attr>
+	<attr path="/api/package[@name='com.estimote.coresdk.service']/interface[@name='BeaconManager.BeaconMonitoringListener']/method[@name='onEnteredRegion']/parameter[1]" name="name">region</attr>
+	<attr path="/api/package[@name='com.estimote.coresdk.service']/interface[@name='BeaconManager.BeaconMonitoringListener']/method[@name='onEnteredRegion']/parameter[2]" name="name">beacons</attr>
+	<attr path="/api/package[@name='com.estimote.coresdk.service']/interface[@name='BeaconManager.BeaconMonitoringListener']/method[@name='onExitedRegion']/parameter[1]" name="name">region</attr>
+	<attr path="/api/package[@name='com.estimote.coresdk.service']/interface[@name='BeaconManager.ConfigurableDevicesListener']/method[@name='onConfigurableDevicesFound']/parameter[1]" name="name">devices</attr>
+	<attr path="/api/package[@name='com.estimote.coresdk.service']/interface[@name='BeaconManager.EddystoneListener']/method[@name='onEddystonesFound']/parameter[1]" name="name">eddystones</attr>
+	<attr path="/api/package[@name='com.estimote.coresdk.service']/interface[@name='BeaconManager.ErrorListener']/method[@name='onError']/parameter[1]" name="name">errorId</attr>
+	<attr path="/api/package[@name='com.estimote.coresdk.service']/interface[@name='BeaconManager.LocationListener']/method[@name='onLocationsFound']/parameter[1]" name="name">locations</attr>
+	<attr path="/api/package[@name='com.estimote.coresdk.service']/interface[@name='BeaconManager.MirrorListener']/method[@name='onMirrorsFound']/parameter[1]" name="name">mirrors</attr>
+	<attr path="/api/package[@name='com.estimote.coresdk.service']/interface[@name='BeaconManager.MirrorRangingListener']/method[@name='onMirrorsDiscovered']/parameter[1]" name="name">region</attr>
+	<attr path="/api/package[@name='com.estimote.coresdk.service']/interface[@name='BeaconManager.MirrorRangingListener']/method[@name='onMirrorsDiscovered']/parameter[2]" name="name">mirrors</attr>
+	<attr path="/api/package[@name='com.estimote.coresdk.service']/interface[@name='BeaconManager.NearableListener']/method[@name='onNearablesDiscovered']/parameter[1]" name="name">nearables</attr>
+	<attr path="/api/package[@name='com.estimote.coresdk.service']/interface[@name='BeaconManager.TelemetryListener']/method[@name='onTelemetriesFound']/parameter[1]" name="name">telemetries</attr>
 
-    <attr path="/api/package[@name='com.estimote.sdk.connection.settings']/class[@name='Version']/method[@name='compareTo' and count(parameter)=1 and parameter[1][@type='com.estimote.sdk.connection.settings.Version']]/parameter[1]" name="managedType">Java.Lang.Object</attr>
+	<!-- Fields had same names as class names, not allowed -->
+	<attr path="/api/package[@name='com.estimote.coresdk.cloud.google.model']/class[@name='Beacons']/field[@name='beacons']" name="managedName">BeaconList</attr>
+	<attr path="/api/package[@name='com.estimote.coresdk.cloud.google.model']/class[@name='Observations']/field[@name='observations']" name="managedName">ObservationList</attr>
+	<attr path="/api/package[@name='com.estimote.coresdk.cloud.model']/class[@name='ChallengeResponse']/field[@name='challengeResponse']" name="managedName">Response</attr>
+
+	<!-- These classes are used in the public API and need to be public as well -->
+	<attr path="/api/package[@name='com.estimote.mgmtsdk.connection.protocol.characteristic']/class[@name='BluetoothService']" name="visibility">public</attr>
+	<attr path="/api/package[@name='com.estimote.coresdk.scanning.bluetooth.filters']/interface[@name='FilterFactory']" name="visibility">public</attr>
+
+	<!-- There are similar listeners on this class.  It is causing name collisions during event generation -->
+	<attr path="/api/package[@name='com.estimote.coresdk.service']/interface[@name='BeaconManager.BeaconMonitoringListener']/method[@name='onEnteredRegion']"
+		name="eventName">BeaconEnteredRegion</attr>
+	<attr path="/api/package[@name='com.estimote.coresdk.service']/interface[@name='BeaconManager.BeaconMonitoringListener']/method[@name='onExitedRegion']"
+		name="eventName">BeaconExitedRegion</attr>
+
+	<attr path="/api/package[@name='com.estimote.coresdk.service']/interface[@name='BeaconManager.MirrorMonitoringListener']/method[@name='onEnteredRegion']"
+		name="eventName">MirrorEnteredRegion</attr>
+	<attr path="/api/package[@name='com.estimote.coresdk.service']/interface[@name='BeaconManager.MirrorMonitoringListener']/method[@name='onExitedRegion']"
+		name="eventName">MirrorExitedRegion</attr>
+
+	<attr path="/api/package[@name='com.estimote.coresdk.service']/interface[@name='BeaconManager.BeaconMonitoringListener']/method[@name='onEnteredRegion']"
+		name="argsType">BeaconEnteredRegionEventArgs</attr>
+	<attr path="/api/package[@name='com.estimote.coresdk.service']/interface[@name='BeaconManager.BeaconMonitoringListener']/method[@name='onExitedRegion']"
+		name="argsType">BeaconExitedRegionEventArgs</attr>
 	
-	<!-- Lists had same names as class names, not allowed -->
-	<attr path="/api/package[@name='com.estimote.sdk.cloud.model.google']/class[@name='Beacons']/field[@name='beacons']" name="managedName">BeaconList</attr>
-	<attr path="/api/package[@name='com.estimote.sdk.cloud.model.google']/class[@name='Observations']/field[@name='observations']" name="managedName">ObservationList</attr>
+	<attr path="/api/package[@name='com.estimote.coresdk.service']/interface[@name='BeaconManager.MirrorMonitoringListener']/method[@name='onEnteredRegion']"
+		name="argsType">MirrorEnteredRegionEventArgs</attr>
+	<attr path="/api/package[@name='com.estimote.coresdk.service']/interface[@name='BeaconManager.MirrorMonitoringListener']/method[@name='onExitedRegion']"
+		name="argsType">MirrorExitedRegionEventArgs</attr>
+	
+	<attr path="/api/package[@name='com.estimote.coresdk.service']/class[@name='BeaconManager']/method[@name='setMonitoringListener' and count(parameter)=1 and parameter[1][@type='com.estimote.coresdk.service.BeaconManager.BeaconMonitoringListener']]"
+		name="managedName">SetBeaconMonitoringListener</attr>
+	<attr path="/api/package[@name='com.estimote.coresdk.service']/class[@name='BeaconManager']/method[@name='setMonitoringListener' and count(parameter)=1 and parameter[1][@type='com.estimote.coresdk.service.BeaconManager.MirrorMonitoringListener']]"
+		name="managedName">SetMirrorMonitoringListener</attr>
+	<attr path="/api/package[@name='com.estimote.coresdk.service']/class[@name='BeaconManager']/method[@name='setRangingListener' and count(parameter)=1 and parameter[1][@type='com.estimote.coresdk.service.BeaconManager.BeaconRangingListener']]"
+		name="managedName">SetBeaconRangingListener</attr>
+	<attr path="/api/package[@name='com.estimote.coresdk.service']/class[@name='BeaconManager']/method[@name='setRangingListener' and count(parameter)=1 and parameter[1][@type='com.estimote.coresdk.service.BeaconManager.MirrorRangingListener']]"
+		name="managedName">SetMirrorRangingListener</attr>
+
+	<!-- Change some argument types to match abstract base members-->
+	<attr path="/api/package[@name='com.estimote.coresdk.observation.region.beacon']/class[@name='BeaconRegionMonitor']/method[@name='invokeEnterRegionCallbacks' and count(parameter)=2]/parameter[1]"
+		name="managedType">Java.Lang.Object</attr>
+	<attr path="/api/package[@name='com.estimote.coresdk.observation.region.beacon']/class[@name='BeaconRegionMonitor']/method[@name='isPacketInRegion' and count(parameter)=2]/parameter"
+		name="managedType">Java.Lang.Object</attr>
+	<attr path="/api/package[@name='com.estimote.coresdk.observation.region.beacon']/class[@name='BeaconRegionMonitor']/method[@name='invokeExitRegionCallbacks' and count(parameter)=2]/parameter[1]"
+		name="managedType">Java.Lang.Object</attr>
+
+	<attr path="/api/package[@name='com.estimote.coresdk.observation.region.mirror']/class[@name='MirrorRegionMonitor']/method[@name='invokeEnterRegionCallbacks' and count(parameter)=2]/parameter[1]"
+		name="managedType">Java.Lang.Object</attr>
+	<attr path="/api/package[@name='com.estimote.coresdk.observation.region.mirror']/class[@name='MirrorRegionMonitor']/method[@name='isPacketInRegion' and count(parameter)=2]/parameter"
+		name="managedType">Java.Lang.Object</attr>
+	<attr path="/api/package[@name='com.estimote.coresdk.observation.region.mirror']/class[@name='MirrorRegionMonitor']/method[@name='invokeExitRegionCallbacks' and count(parameter)=2]/parameter[1]"
+		name="managedType">Java.Lang.Object</attr>
+
+	<!-- We will manually add the JNI code to change the arguments from generic collecitons to non generic -->
+	<remove-node path="/api/package[@name='com.estimote.coresdk.observation.region.beacon']/class[@name='BeaconRegionMonitor']/method[@name='processFoundPacketsInRegion' and count(parameter)=2]" />
+	<remove-node path="/api/package[@name='com.estimote.coresdk.observation.region.mirror']/class[@name='MirrorRegionMonitor']/method[@name='processFoundPacketsInRegion' and count(parameter)=2]" />
+	<remove-node path="/api/package[@name='com.estimote.coresdk.observation.region.beacon']/class[@name='BeaconRegionRanger']/method[@name='processNewScanCycle' and count(parameter)=2]" />
+	<remove-node path="/api/package[@name='com.estimote.coresdk.observation.region.mirror']/class[@name='MirrorRegionRanger']/method[@name='processNewScanCycle' and count(parameter)=2]" />
+
 </metadata>

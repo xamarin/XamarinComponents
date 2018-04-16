@@ -4,13 +4,13 @@
     <id>Xamarin.iRate</id>
     <title>iRate for Xamarin.iOS</title>
     <version>1.11.7</version>
-    <authors>Xamarin Inc.</authors>
-    <owners>Xamarin Inc.</owners>
-    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <authors>Microsoft</authors>
+    <owners>Microsoft</owners>
+    <requireLicenseAcceptance>true</requireLicenseAcceptance>
     <description>Asks users to rate your app after they've used it for a while.</description>
-    <copyright>Copyright 2016 Xamarin Inc</copyright>
-    <projectUrl>https://components.xamarin.com/view/irate</projectUrl>
-    <licenseUrl>https://components.xamarin.com/license/irate</licenseUrl>
+    <copyright>© Microsoft Corporation. All rights reserved.</copyright>
+    <projectUrl>https://go.microsoft.com/fwlink/?linkid=864975</projectUrl>
+    <licenseUrl>https://go.microsoft.com/fwlink/?linkid=865084</licenseUrl>
   </metadata>
   <files>
     <file src="output/unified/MTiRate.dll" target="lib/Xamarin.iOS" />

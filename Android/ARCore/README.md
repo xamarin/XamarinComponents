@@ -18,12 +18,6 @@ Windows:
 powershell ..\..\build.ps1 -Target libs
 ```
 
-## Install the ARCore Services app
+## Running ARCore
 
-The ARCore Service app includes the Android system level service which is required for ARCore capabilities.
-
-[Download](https://github.com/google-ar/arcore-android-sdk/releases/download/sdk-preview/arcore-preview.apk) the ARCore Service and install it by running the following adb command:
-
-```
-adb install -r -d arcore-preview.apk
-```
+You can run AR apps on a [supported device](https://developers.google.com/ar/discover/#supported_devices) or an emulator.

@@ -3,18 +3,20 @@
   <metadata>
     <id>Xamarin.Build.Download</id>
     <title>Xamarin Build-time Download Support</title>
-    <version>0.4.7</version>
-    <authors>Xamarin Inc.</authors>
-    <owners>Xamarin Inc.</owners>
-    <licenseUrl>https://github.com/xamarin/XamarinComponents/blob/master/Util/Xamarin.Build.Download/LICENSE</licenseUrl>
-    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <version>0.4.9</version>
+    <authors>Microsoft</authors>
+    <owners>Microsoft</owners>
+    <projectUrl>https://go.microsoft.com/fwlink/?linkid=865061</projectUrl>
+    <licenseUrl>https://go.microsoft.com/fwlink/?linkid=864965</licenseUrl>
+    <requireLicenseAcceptance>true</requireLicenseAcceptance>
     <description>Support for downloading and unpacking archives when building MSBuild projects</description>
-    <copyright>Copyright 2016</copyright>
+    <copyright>© Microsoft Corporation. All rights reserved.</copyright>
   </metadata>
   <files>
     <file src="output/Xamarin.Build.Download.targets" target="build"  />
     <file src="output/Xamarin.Build.Download.dll" target="build"  />
     <file src="output/Xamarin.Build.Download.props" target="build"  />
+
     <file src="output/Mono.Cecil.dll" target="build"  />
     <file src="output/System.Net.Http.Formatting.dll" target="build"  />
     <file src="output/Newtonsoft.Json.dll" target="build"  />

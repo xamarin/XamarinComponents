@@ -3,8 +3,8 @@
 
 var TARGET = Argument ("t", Argument ("target", "Default"));
 
-var JAR_VERSION = "3.8.0";
-var JAR_URL = string.Format ("https://github.com/bumptech/glide/releases/download/v{0}/glide-{0}.jar", JAR_VERSION);
+var JAR_VERSION = "4.0.0";
+var JAR_URL = string.Format ("https://github.com/bumptech/glide/releases/download/v{0}/glide-full-{0}.jar", JAR_VERSION);
 var JAR_DEST = "./externals/glide.jar";
 
 var buildSpec = new BuildSpec () {
