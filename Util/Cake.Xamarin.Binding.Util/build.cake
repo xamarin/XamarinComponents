@@ -21,19 +21,19 @@ var buildSpec = new BuildSpec {
 };
 
 Task ("merge").IsDependentOn("libs").Does (() => {
-	CopyFile ("./output/Cake.Xamarin.Binding.Util.dll", "./output/Cake.Xamarin.Binding.Util.Temp.dll");
+	// CopyFile ("./output/Cake.Xamarin.Binding.Util.dll", "./output/Cake.Xamarin.Binding.Util.Temp.dll");
 
-	ILRepack ("./output/Cake.Xamarin.Binding.Util.dll", 
-		"./output/Cake.Xamarin.Binding.Util.Temp.dll",
-		new FilePath[] { "./output/Mono.Cecil.dll", "./output/Mono.Cecil.Mdb.dll", "./output/Mono.Cecil.Pdb.dll", "./output/Mono.Cecil.Rocks.dll" },
-		new ILRepackSettings {
-			Libs = new List<FilePath> {
-				"./output/",
-				"./source/Cake.Xamarin.Binding.Util/bin/Release/",
-			}
-		});
+	// ILRepack ("./output/Cake.Xamarin.Binding.Util.dll", 
+	// 	"./output/Cake.Xamarin.Binding.Util.Temp.dll",
+	// 	new FilePath[] { "./output/Mono.Cecil.dll", "./output/Mono.Cecil.Mdb.dll", "./output/Mono.Cecil.Pdb.dll", "./output/Mono.Cecil.Rocks.dll" },
+	// 	new ILRepackSettings {
+	// 		Libs = new List<FilePath> {
+	// 			"./output/",
+	// 			"./source/Cake.Xamarin.Binding.Util/bin/Release/",
+	// 		}
+	// 	});
 
-	CopyFile ("./source/Cake.Xamarin.Binding.Util/bin/Release/Cake.Xamarin.Binding.Util.xml", "./output/Cake.Xamarin.Binding.Util.xml");
+	// CopyFile ("./source/Cake.Xamarin.Binding.Util/bin/Release/Cake.Xamarin.Binding.Util.xml", "./output/Cake.Xamarin.Binding.Util.xml");
 });
 
 Task("nuget").IsDependentOn ("merge").IsDependentOn("nuget-base");

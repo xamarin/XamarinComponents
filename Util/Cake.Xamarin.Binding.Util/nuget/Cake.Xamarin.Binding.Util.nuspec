@@ -11,6 +11,9 @@
     <requireLicenseAcceptance>true</requireLicenseAcceptance>
     <description>Cake Add-In providing utilities for Xamarin Binding build scripts</description>
     <copyright>© Microsoft Corporation. All rights reserved.</copyright>
+     <dependencies>
+        <dependency id="Mono.Cecil" version="0.10.0" />
+    </dependencies>
   </metadata>
   <files>
     <file src="output/Cake.Xamarin.Binding.Util.dll" target="lib/netstandard2.0" />
