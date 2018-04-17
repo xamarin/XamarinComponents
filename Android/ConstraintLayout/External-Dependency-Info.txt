@@ -10,7 +10,7 @@ expressly granted, whether by implication, estoppel or otherwise.
 ########################################
 # Google Android Support Constraint Layout
 # https://developer.android.com/reference/android/support/constraint/ConstraintLayout.html
-# https://dl.google.com/dl/android/maven2/com/android/support/constraint/constraint-layout/1.1.0-beta5/constraint-layout-1.1.0-beta5.pom
+# https://dl.google.com/dl/android/maven2/com/android/support/constraint/constraint-layout/1.1.0/constraint-layout-1.1.0.pom
 ########################################
 
 Copyright 2016, The Android Open Source Project
