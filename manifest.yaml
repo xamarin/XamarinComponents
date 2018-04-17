@@ -247,10 +247,10 @@
   BuildScript: ./iOS/JDStatusBarNotification/build.cake
   TriggerPaths: [ iOS/JDStatusBarNotification ]
   MacBuildTargets: [ samples, nuget, component ]
-# - Name: JSQMessagesViewController TODO - temporarily disable to allow other projects to complete 
-#   BuildScript: ./iOS/JSQMessagesViewController/build.cake
-#   TriggerPaths: [ iOS/JSQMessagesViewController ]
-#   MacBuildTargets: [ samples, component ]
+- Name: JSQMessagesViewController
+  BuildScript: ./iOS/JSQMessagesViewController/build.cake
+  TriggerPaths: [ iOS/JSQMessagesViewController ]
+  MacBuildTargets: [ samples, nuget, component ]
 - Name: JZMultiChoicesCircleButton
   BuildScript: ./iOS/JZMultiChoicesCircleButton/build.cake
   TriggerPaths: [ iOS/JZMultiChoicesCircleButton ]
