@@ -14,6 +14,10 @@
   BuildScript: ./Android/ARCore/build.cake
   TriggerPaths: [ Android/ARCore ]
   MacBuildTargets: [ samples, nuget ]
+- Name: ConstraintLayout
+  BuildScript: ./Android/ConstraintLayout/build.cake
+  TriggerPaths: [ Android/ConstraintLayout ]
+  MacBuildTargets: [ samples, nuget ]
 - Name: GoogleAndroidVending
   BuildScript: ./Android/GoogleAndroidVending/build.cake
   TriggerPaths: [ Android/GoogleAndroidVending ]
@@ -90,6 +94,10 @@
   BuildScript: ./Android/GoogleZXing/build.cake
   TriggerPaths: [ Android/GoogleZXing ]
   MacBuildTargets: [ samples, component ]
+- Name: Guava
+  BuildScript: ./Android/Guava/build.cake
+  TriggerPaths: [ Android/Guava ]
+  MacBuildTargets: [ nuget ]
 - Name: JacksonCore
   BuildScript: ./Android/Jackson.Core/build.cake
   TriggerPaths: [ Android/Jackson.Core ]
@@ -166,6 +174,10 @@
   BuildScript: ./Android/Glide/build.cake
   TriggerPaths: [ Android/Glide ]
   MacBuildTargets: [ samples, nuget ]
+- Name: Wear
+  BuildScript: ./Android/Wear/build.cake
+  TriggerPaths: [ Android/Wear ]
+  MacBuildTargets: [ samples, nuget ]
 
 #######################################################
 # iOS
@@ -218,7 +230,7 @@
 - Name: HDNotification
   BuildScript: ./iOS/HDNotification/build.cake
   TriggerPaths: [ iOS/HDNotification ]
-  MacBuildTargets: [ samples, component ]
+  MacBuildTargets: [ samples, nuget, component ]
 - Name: iCarousel
   BuildScript: ./iOS/iCarousel/build.cake
   TriggerPaths: [ iOS/iCarousel ]
@@ -226,7 +238,7 @@
 - Name: InAppSettingsKit
   BuildScript: ./iOS/InAppSettingsKit/build.cake
   TriggerPaths: [ iOS/InAppSettingsKit ]
-  MacBuildTargets: [ samples, component ]
+  MacBuildTargets: [ samples, nuget, component ]
 - Name: iRate
   BuildScript: ./iOS/iRate/build.cake
   TriggerPaths: [ iOS/iRate ]
@@ -234,11 +246,11 @@
 - Name: JDStatusBarNotification
   BuildScript: ./iOS/JDStatusBarNotification/build.cake
   TriggerPaths: [ iOS/JDStatusBarNotification ]
-  MacBuildTargets: [ samples, component ]
+  MacBuildTargets: [ samples, nuget, component ]
 - Name: JSQMessagesViewController
   BuildScript: ./iOS/JSQMessagesViewController/build.cake
   TriggerPaths: [ iOS/JSQMessagesViewController ]
-  MacBuildTargets: [ samples, component ]
+  MacBuildTargets: [ samples, nuget, component ]
 - Name: JZMultiChoicesCircleButton
   BuildScript: ./iOS/JZMultiChoicesCircleButton/build.cake
   TriggerPaths: [ iOS/JZMultiChoicesCircleButton ]
@@ -326,24 +338,32 @@
 - Name: SDSegmentedControl
   BuildScript: ./iOS/SDSegmentedControl/build.cake
   TriggerPaths: [ iOS/SDSegmentedControl ]
-  MacBuildTargets: [ samples, component ]
+  MacBuildTargets: [ samples, nuget, component ]
 - Name: IQAudioRecorderController
   BuildScript: ./iOS/IQAudioRecorderController/build.cake
   TriggerPaths: [ iOS/IQAudioRecorderController ]
+  MacBuildTargets: [ samples, nuget, component ]
+- Name: PickerCells
+  BuildScript: ./iOS/PickerCells/build.cake
+  TriggerPaths: [ iOS/PickerCells ]
+  MacBuildTargets: [ samples, nuget, component ]
+- Name: JVMenuPopover
+  BuildScript: ./iOS/JVMenuPopover/build.cake
+  TriggerPaths: [ iOS/JVMenuPopover ]
   MacBuildTargets: [ samples, nuget, component ]
 
 #######################################################
 # XPlat
 #######################################################
 
-- Name: DropboxCoreApiAndroid
-  BuildScript: ./XPlat/DropboxCoreApi/Android/build.cake
-  TriggerPaths: [ XPlat/DropboxCoreApi/Android ]
-  MacBuildTargets: [ samples, component ]
-- Name: DropboxCoreApiiOS
-  BuildScript: ./XPlat/DropboxCoreApi/iOS/build.cake
-  TriggerPaths: [ XPlat/DropboxCoreApi/iOS ]
-  MacBuildTargets: [ samples, component ]
+# - Name: DropboxCoreApiAndroid - obsolete
+#   BuildScript: ./XPlat/DropboxCoreApi/Android/build.cake
+#   TriggerPaths: [ XPlat/DropboxCoreApi/Android ]
+#   MacBuildTargets: [ samples, component ]
+# - Name: DropboxCoreApiiOS - obsolete
+#   BuildScript: ./XPlat/DropboxCoreApi/iOS/build.cake
+#   TriggerPaths: [ XPlat/DropboxCoreApi/iOS ]
+#   MacBuildTargets: [ samples, component ]
 - Name: GoogleVRAndroid
   BuildScript: ./XPlat/GoogleVR/Android/build.cake
   TriggerPaths: [ XPlat/GoogleVR/Android ]

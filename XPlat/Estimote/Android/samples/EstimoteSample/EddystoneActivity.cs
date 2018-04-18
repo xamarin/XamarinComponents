@@ -11,6 +11,8 @@ using Android.Runtime;
 using Android.Views;
 using Android.Widget;
 using EstimoteSdk;
+using EstimoteSdk.Observation.Region;
+using EstimoteSdk.Service;
 
 namespace Estimotes.Droid
 {
@@ -32,7 +34,7 @@ namespace Estimotes.Droid
 
                     RunOnUiThread(()=>
                         {
-                            var items = e.Eddystones.Select(n => "Url: " + n.Url + "Proximity: " + Utils.ComputeProximity(n));
+					var items = e.Eddystones.Select(n => "Url: " + n.Url + "Proximity: " + RegionUtils.ComputeProximity(n));
                             ListAdapter = new ArrayAdapter<string>(this, 
                                 Android.Resource.Layout.SimpleListItem1, 
                                 Android.Resource.Id.Text1, 
@@ -57,7 +59,7 @@ namespace Estimotes.Droid
 
             isScanning = false;
 
-            beaconManager.StopEddystoneScanning(scanId);
+            beaconManager.StopEddystoneScanning();
             refreshItem.SetActionView(null);
             refreshItem.SetIcon(Resource.Drawable.ic_refresh);
         }
@@ -95,7 +97,6 @@ namespace Estimotes.Droid
         }
 
 
-        string scanId;
         bool isScanning;
         private void LookForEddystones()
         {
@@ -111,7 +112,7 @@ namespace Estimotes.Droid
 
         public void OnServiceReady()
         {
-            scanId = beaconManager.StartEddystoneScanning();
+            beaconManager.StartEddystoneScanning();
         }
 
         protected override void OnDestroy()

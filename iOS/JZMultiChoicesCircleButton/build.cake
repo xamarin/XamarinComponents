@@ -12,12 +12,16 @@ var buildSpec = new BuildSpec () {
 			OutputFiles = new [] { 
 				new OutputFileCopy { 
 					FromFile = "./source/JZMultiChoice/bin/Release/JZMultiChoice.dll", 
-					ToDirectory = "./output/unified/" 
+					ToDirectory = "./output/" 
 				},	
 			}
 		},	
 	},
 
+	NuGets = new [] {
+		new NuGetInfo { NuSpec = "./nuget/Xamarin.JZMultiChoicesCircleButton.nuspec", BuildsOn = BuildPlatforms.Mac },
+	},
+	
 	Samples = new ISolutionBuilder [] {
 		new IOSSolutionBuilder { SolutionPath = "./samples/JZMultiChoicesCircleButtonSample.sln", Configuration = "Release", Platform="iPhone", BuildsOn = BuildPlatforms.Mac },
 	},

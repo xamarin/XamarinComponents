@@ -21,50 +21,31 @@
   <attr path="/api/package[@name='com.doomonafireball.betterpickers.timezonepicker']" name="managedName">BetterPickers.TimeZonePickers</attr>
   <attr path="/api/package[@name='com.doomonafireball.betterpickers.widget']" name="managedName">BetterPickers.Widgets</attr>
 
-
-
-  <!--remove-node path="/api/package[@name='com.doomonafireball.betterpickers.calendardatepicker']/class[@name='DayPickerView']" / -->
-  <!-- remove-node path="/api/package[@name='com.doomonafireball.betterpickers.calendardatepicker']/class[@name='YearPickerView']" / -->
-
-  <!-- remove-node path="/api/package[@name='com.doomonafireball.betterpickers.timezonepicker']/class[@name='TimeZoneFilterTypeAdapter']" / -->
-
-
-
-<remove-node path="/api/package[@name='com.doomonafireball.betterpickers.calendardatepicker']/class[@name='MonthView.MonthViewTouchHelper']" />
-
-
   <attr path="/api/package[@name='com.doomonafireball.betterpickers.calendardatepicker']/interface[@name='CalendarDatePickerController']" name="visibility">public</attr>
+  <attr path="/api/package[@name='com.doomonafireball.betterpickers.calendardatepicker']/interface[@name='CalendarDatePickerDialog.OnDateSetListener']" name="visibility">public</attr>
+  <attr path="/api/package[@name='com.doomonafireball.betterpickers.calendardatepicker']/interface[@name='CalendarDatePickerDialog.OnDateChangedListener']" name="visibility">public</attr>
 
+  <add-node path="/api/package[@name='com.doomonafireball.betterpickers.calendardatepicker']/class[@name='MonthAdapter']">
+      <constructor deprecated="not deprecated" final="false" name="MonthAdapter" static="false" visibility="public" bridge="false" synthetic="false" jni-signature="(Landroid/content/Context;Lcom/doomonafireball/betterpickers/calendardatepicker/CalendarDatePickerController;)V">
+        <parameter name="context" type="android.content.Context" jni-type="Landroid/content/Context;" />
+        <parameter name="controller" type="com.doomonafireball.betterpickers.calendardatepicker.CalendarDatePickerController" jni-type="Lcom/doomonafireball/betterpickers/calendardatepicker/CalendarDatePickerController;" />
+      </constructor>
+  </add-node>
 
-  <add-node path="/api/package[@name='com.doomonafireball.betterpickers.timezonepicker']/class[@name='TimeZoneFilterTypeAdapter']">
-    	<method name="getItem" return="java.lang.Object" abstract="false" native="false" 
-    		synchronized="false" static="false" final="false" deprecated="not deprecated" visibility="public">
-      		<parameter name="position" type="int" />
-    	</method>
-  	</add-node>
+  <add-node path="/api/package[@name='com.doomonafireball.betterpickers.calendardatepicker']/class[@name='SimpleMonthAdapter']">
+      <constructor deprecated="not deprecated" final="false" name="SimpleMonthAdapter" static="false" visibility="public" bridge="false" synthetic="false" jni-signature="(Landroid/content/Context;Lcom/doomonafireball/betterpickers/calendardatepicker/CalendarDatePickerController;)V">
+        <parameter name="context" type="android.content.Context" jni-type="Landroid/content/Context;" />
+        <parameter name="controller" type="com.doomonafireball.betterpickers.calendardatepicker.CalendarDatePickerController" jni-type="Lcom/doomonafireball/betterpickers/calendardatepicker/CalendarDatePickerController;" />
+      </constructor>
+  </add-node>
 
-  	<add-node path="/api/package[@name='com.doomonafireball.betterpickers.timezonepicker']/class[@name='TimeZoneInfo']">
-    	<method name="getItem" return="java.lang.Object" abstract="false" native="false" 
-    		synchronized="false" static="false" final="false" deprecated="not deprecated" visibility="public">
-      		<parameter name="position" type="int" />
-    	</method>
-  	</add-node>
+  <add-node path="/api/package[@name='com.doomonafireball.betterpickers.calendardatepicker']/class[@name='YearPickerView']">
+      <constructor deprecated="not deprecated" final="false" name="YearPickerView" static="false" visibility="public" bridge="false" synthetic="false" jni-signature="(Landroid/content/Context;Lcom/doomonafireball/betterpickers/calendardatepicker/CalendarDatePickerController;)V">
+        <parameter name="context" type="android.content.Context" jni-type="Landroid/content/Context;" />
+        <parameter name="controller" type="com.doomonafireball.betterpickers.calendardatepicker.CalendarDatePickerController" jni-type="Lcom/doomonafireball/betterpickers/calendardatepicker/CalendarDatePickerController;" />
+      </constructor>
+  </add-node>
 
-
-
-  	<attr path="/api/package[@name='com.doomonafireball.betterpickers.calendardatepicker']/interface[@name='CalendarDatePickerDialog.OnDateSetListener']" name="visibility">public</attr>
-  	<attr path="/api/package[@name='com.doomonafireball.betterpickers.calendardatepicker']/interface[@name='CalendarDatePickerDialog.OnDateChangedListener']" name="visibility">public</attr>
-<!--  	<add-node path="/api/package[@name='com.doomonafireball.betterpickers.calendardatepicker']/class[@name='CalendarDatePickerDialog']">
-	    <method abstract="false" deprecated="not deprecated" final="false" name="newInstance" native="false" return="com.doomonafireball.betterpickers.calendardatepicker.CalendarDatePickerDialog" static="true" synchronized="false" visibility="public">
-	        <parameter name="callback" type="com.doomonafireball.betterpickers.calendardatepicker.CalendarDatePickerDialog.OnDateSetListener" />
-	        <parameter name="year" type="int" />
-	        <parameter name="monthOfYear" type="int" />
-	        <parameter name="dayOfMonth" type="int" />
-	    </method>
-	</add-node>-->
-
-
-	<attr path="/api/package[@name='com.doomonafireball.betterpickers.recurrencepicker']/interface[@name='RecurrencePickerDialog.OnRecurrenceSetListener']/method[@name='onRecurrenceSet']/parameter[1]" name="managedName">rrule</attr>
-	<attr path="/api/package[@name='com.doomonafireball.betterpickers.timezonepicker']/interface[@name='TimeZonePickerDialog.OnTimeZoneSetListener']/method[@name='onTimeZoneSet']/parameter[1]" name="managedName">tzi</attr>
+  <attr path="/api/package[@name='com.doomonafireball.betterpickers.recurrencepicker']/interface[@name='RecurrencePickerDialog.OnRecurrenceSetListener']/method[@name='onRecurrenceSet']/parameter[1]" name="managedName">rrule</attr>
+  <attr path="/api/package[@name='com.doomonafireball.betterpickers.timezonepicker']/interface[@name='TimeZonePickerDialog.OnTimeZoneSetListener']/method[@name='onTimeZoneSet']/parameter[1]" name="managedName">tzi</attr>
 </metadata>
-

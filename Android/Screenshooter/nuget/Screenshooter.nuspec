@@ -4,14 +4,14 @@
     <id>Screenshooter</id>
     <title>Screenshooter for Xamarin.Android</title>
     <version>1.0.0</version>
-    <authors>Xamarin Inc.</authors>
-    <owners>Xamarin Inc.</owners>
-    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <authors>Microsoft</authors>
+    <owners>Microsoft</owners>
+    <requireLicenseAcceptance>true</requireLicenseAcceptance>
     <description>The simplest way to take a screenshot of any view in your app.</description>
-    <copyright>Copyright 2015</copyright>
+    <copyright>© Microsoft Corporation. All rights reserved.</copyright>
     <iconUrl>https://xamarin-component-icons.s3.amazonaws.com/Screenshooter.png</iconUrl>
-    <projectUrl>https://components.xamarin.com/view/Screenshooter</projectUrl>
-    <licenseUrl>https://components.xamarin.com/license/Screenshooter</licenseUrl>
+    <projectUrl>https://go.microsoft.com/fwlink/?linkid=865006</projectUrl>
+    <licenseUrl>https://go.microsoft.com/fwlink/?linkid=865050</licenseUrl>
     <dependencies>
     </dependencies>
   </metadata>
