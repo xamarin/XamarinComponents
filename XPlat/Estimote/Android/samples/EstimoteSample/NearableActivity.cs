@@ -12,6 +12,8 @@ using Android.Views;
 using Android.Widget;
 using EstimoteSdk;
 using System.Linq;
+using EstimoteSdk.Service;
+using EstimoteSdk.Observation.Region;
 
 namespace Estimotes.Droid
 {
@@ -33,7 +35,7 @@ namespace Estimotes.Droid
                     
                     RunOnUiThread(()=>
                         {
-                            var items = e.Nearables.Select(n => "Id: " + n.Identifier + "Proximity: " + Utils.ComputeProximity(n));
+                            var items = e.Nearables.Select(n => "Id: " + n.Identifier + "Proximity: " + RegionUtils.ComputeProximity(n));
                             ListAdapter = new ArrayAdapter<string>(this, 
                                 Android.Resource.Layout.SimpleListItem1, 
                                 Android.Resource.Id.Text1, 
@@ -58,7 +60,7 @@ namespace Estimotes.Droid
             
             isScanning = false;
 
-            beaconManager.StopNearableDiscovery(scanId);
+            beaconManager.StopNearableDiscovery();
             refreshItem.SetActionView(null);
             refreshItem.SetIcon(Resource.Drawable.ic_refresh);
         }
@@ -96,7 +98,6 @@ namespace Estimotes.Droid
         }
 
 
-        string scanId;
         bool isScanning;
         private void LookForNearables()
         {
@@ -112,7 +113,7 @@ namespace Estimotes.Droid
 
         public void OnServiceReady()
         {
-            scanId = beaconManager.StartNearableDiscovery();
+            beaconManager.StartNearableDiscovery();
         }
 
         protected override void OnDestroy()

@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">iPhoneSimulator</Platform>
+    <ProjectTypeGuids>{FEACFBD2-3405-455C-9665-78FE426C6842};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <ProjectGuid>{391BD069-0953-4FD4-8E5C-8351A7BB107F}</ProjectGuid>
+    <OutputType>Exe</OutputType>
+    <RootNamespace>TrackBeamTheme_Sample_iOS</RootNamespace>
+    <IPhoneResourcePrefix>Resources</IPhoneResourcePrefix>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|iPhoneSimulator' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\unified\iPhoneSimulator\Debug</OutputPath>
+    <IntermediateOutputPath>obj\unified\iPhoneSimulator\Debug</IntermediateOutputPath>
+    <DefineConstants>DEBUG;</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <ConsolePause>false</ConsolePause>
+    <MtouchArch>x86_64</MtouchArch>
+    <MtouchLink>None</MtouchLink>
+    <MtouchDebug>true</MtouchDebug>
+    <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
+    <AssemblyName>TrackBeamThemeSampleiOS</AssemblyName>
+    <CodesignKey>iPhone Developer</CodesignKey>
+    <MtouchProfiling>false</MtouchProfiling>
+    <MtouchI18n>
+    </MtouchI18n>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhoneSimulator' ">
+    <Optimize>true</Optimize>
+    <OutputPath>bin\unified\iPhoneSimulator\Release</OutputPath>
+    <IntermediateOutputPath>obj\unified\iPhoneSimulator\Release</IntermediateOutputPath>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <MtouchLink>None</MtouchLink>
+    <MtouchArch>i386, x86_64</MtouchArch>
+    <ConsolePause>false</ConsolePause>
+    <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
+    <AssemblyName>TrackBeamThemeSampleiOS</AssemblyName>
+    <MtouchI18n>
+    </MtouchI18n>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|iPhone' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\unified\iPhone\Debug</OutputPath>
+    <IntermediateOutputPath>obj\unified\iPhone\Debug</IntermediateOutputPath>
+    <DefineConstants>DEBUG;</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <ConsolePause>false</ConsolePause>
+    <MtouchArch>ARMv7, ARM64</MtouchArch>
+    <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
+    <CodesignKey>iPhone Developer</CodesignKey>
+    <MtouchDebug>true</MtouchDebug>
+    <AssemblyName>TrackBeamTheme_Sample_iOS</AssemblyName>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhone' ">
+    <DebugType>full</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\unified\iPhone\Release</OutputPath>
+    <IntermediateOutputPath>obj\unified\iPhone\Release</IntermediateOutputPath>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
+    <MtouchArch>ARMv7, ARM64</MtouchArch>
+    <ConsolePause>false</ConsolePause>
+    <CodesignKey>iPhone Developer</CodesignKey>
+    <AssemblyName>TrackBeamTheme_Sample_iOS</AssemblyName>
+    <IpaPackageName>
+    </IpaPackageName>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Ad-Hoc|iPhone' ">
+    <DebugType>full</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\unified\iPhone\Ad-Hoc</OutputPath>
+    <IntermediateOutputPath>obj\unified\iPhone\Ad-Hoc</IntermediateOutputPath>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <ConsolePause>false</ConsolePause>
+    <MtouchArch>ARMv7, ARM64</MtouchArch>
+    <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
+    <BuildIpa>true</BuildIpa>
+    <CodesignProvision>Automatic:AdHoc</CodesignProvision>
+    <CodesignKey>iPhone Distribution</CodesignKey>
+    <AssemblyName>TrackBeamTheme_Sample_iOS</AssemblyName>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'AppStore|iPhone' ">
+    <DebugType>full</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\unified\iPhone\AppStore</OutputPath>
+    <IntermediateOutputPath>obj\unified\iPhone\AppStore</IntermediateOutputPath>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <ConsolePause>false</ConsolePause>
+    <MtouchArch>ARMv7, ARM64</MtouchArch>
+    <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
+    <CodesignProvision>Automatic:AppStore</CodesignProvision>
+    <CodesignKey>iPhone Distribution</CodesignKey>
+    <AssemblyName>TrackBeamTheme_Sample_iOS</AssemblyName>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Core" />
+    <Reference Include="Xamarin.iOS" />
+    <Reference Include="Xamarin.Themes.Core">
+      <HintPath>packages\Xamarin.Themes.Core.1.0.0.1\lib\Xamarin.iOS10\Xamarin.Themes.Core.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\Default-568h%402x.png" />
+    <BundleResource Include="Resources\album-large.jpg" />
+    <BundleResource Include="Resources\album-small.jpg" />
+    <BundleResource Include="Resources\arrow.png" />
+    <BundleResource Include="Resources\arrow%402x.png" />
+    <BundleResource Include="Resources\artist-tab.png" />
+    <BundleResource Include="Resources\artist-tab%402x.png" />
+    <BundleResource Include="Resources\back.png" />
+    <BundleResource Include="Resources\back%402x.png" />
+    <BundleResource Include="Resources\clock-tab.png" />
+    <BundleResource Include="Resources\clock-tab%402x.png" />
+    <BundleResource Include="Resources\cover-mask.png" />
+    <BundleResource Include="Resources\cover-mask%402x.png" />
+    <BundleResource Include="Resources\Default.png" />
+    <BundleResource Include="Resources\Default%402x.png" />
+    <BundleResource Include="Resources\details-item-next.png" />
+    <BundleResource Include="Resources\details-item-next%402x.png" />
+    <BundleResource Include="Resources\details-item-play.png" />
+    <BundleResource Include="Resources\details-item-play%402x.png" />
+    <BundleResource Include="Resources\details-item-prev.png" />
+    <BundleResource Include="Resources\details-item-prev%402x.png" />
+    <BundleResource Include="Resources\details-item-shadow.png" />
+    <BundleResource Include="Resources\details-item-shadow%402x.png" />
+    <BundleResource Include="Resources\details-item-speaker.png" />
+    <BundleResource Include="Resources\details-item-speaker%402x.png" />
+    <BundleResource Include="Resources\ipad-album-large.png" />
+    <BundleResource Include="Resources\ipad-album-large-1.png" />
+    <BundleResource Include="Resources\ipad-album-large-2.png" />
+    <BundleResource Include="Resources\ipad-album-large-3.png" />
+    <BundleResource Include="Resources\ipad-album-small-1.png" />
+    <BundleResource Include="Resources\ipad-album-small-2.png" />
+    <BundleResource Include="Resources\ipad-album-small-3.png" />
+    <BundleResource Include="Resources\list-background.png" />
+    <BundleResource Include="Resources\list-background%402x.png" />
+    <BundleResource Include="Resources\music-tab.png" />
+    <BundleResource Include="Resources\music-tab%402x.png" />
+    <BundleResource Include="Resources\selection-tab.png" />
+    <BundleResource Include="Resources\selection-tab%402x.png" />
+    <BundleResource Include="Resources\Default-736h%403x.png" />
+    <BundleResource Include="Resources\Default-667h%402x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Info.plist" />
+    <None Include="Entitlements.plist" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Main.cs" />
+    <Compile Include="AppDelegate.cs" />
+    <Compile Include="Views\iPhone\DetailThemeController.cs" />
+    <Compile Include="Views\iPhone\DetailThemeController.designer.cs" />
+    <Compile Include="Views\iPhone\ElementThemeController.cs" />
+    <Compile Include="Views\iPhone\ElementThemeController.designer.cs" />
+    <Compile Include="Views\iPhone\ThemeListCell.cs" />
+    <Compile Include="Views\iPhone\ThemeListCell.designer.cs" />
+    <Compile Include="Views\iPhone\ThemeListController.cs" />
+    <Compile Include="Views\iPhone\ThemeListController.designer.cs" />
+    <Compile Include="Views\iPad\ElementsFormController.cs" />
+    <Compile Include="Views\iPad\ElementsFormController.designer.cs" />
+    <Compile Include="Views\iPad\MasteriPadViewController.cs" />
+    <Compile Include="Views\iPad\MasteriPadViewController.designer.cs" />
+    <Compile Include="Model\DataLoader.cs" />
+    <Compile Include="Model\Track.cs" />
+    <Compile Include="CustomTheme\CustomTheme.cs" />
+  </ItemGroup>
+  <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
+  <ItemGroup>
+    <InterfaceDefinition Include="MainStoryboard_iPad.storyboard" />
+    <InterfaceDefinition Include="MainStoryboard_iPhone.storyboard" />
+    <InterfaceDefinition Include="LaunchScreen.xib" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\source\Xamarin.Themes.TrackBeam\Xamarin.Themes.TrackBeam.csproj">
+      <Project>{DB4DA8A5-B310-4983-8AE0-DA33DE80B45E}</Project>
+      <Name>Xamarin.Themes.TrackBeam</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="CustomTheme\" />
+  </ItemGroup>
+</Project>

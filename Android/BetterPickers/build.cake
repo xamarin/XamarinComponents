@@ -14,12 +14,8 @@ var buildSpec = new BuildSpec () {
 		new DefaultSolutionBuilder {
 			SolutionPath = "./BetterPickers.sln",
 			OutputFiles = new [] { 
-				new OutputFileCopy {
-					FromFile = "./source/BetterPickers/bin/Release/BetterPickers.dll",
-				},
-				new OutputFileCopy {
-					FromFile = "./source/AndroidSwitchBackport/bin/Release/AndroidSwitchBackport.dll",
-				}
+				new OutputFileCopy { FromFile = "./source/BetterPickers/bin/Release/BetterPickers.dll" },
+				new OutputFileCopy { FromFile = "./source/AndroidSwitchBackport/bin/Release/AndroidSwitchBackport.dll" }
 			}
 		}
 	},
@@ -29,7 +25,11 @@ var buildSpec = new BuildSpec () {
 	},
 
 	Components = new [] {
-		new Component {ManifestDirectory = "./component"},
+		new Component { ManifestDirectory = "./component" },
+	},
+
+	NuGets = new [] {
+		new NuGetInfo { NuSpec = "./nuget/Xamarin.BetterPickers.nuspec" },
 	},
 };
 
@@ -42,7 +42,6 @@ Task ("externals").IsDependentOn ("externals-base")
 		CreateDirectory ("./externals");
 
 	DownloadFile (AAR_URL, "./externals/BetterPickers.aar");
-
 	DownloadFile (ASB_AAR_URL, "./externals/AndroidSwitchBackport.aar");
 });
 

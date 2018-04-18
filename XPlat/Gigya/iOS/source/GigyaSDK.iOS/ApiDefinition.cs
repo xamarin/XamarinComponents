@@ -42,6 +42,10 @@ namespace GigyaSDK
 		// -(NSString *)JSONString;
 		[Export("JSONString")]
 		string JsonString { get; }
+
+		[Internal]
+		[Export ("dictionary")]
+		NSMutableDictionary InternalDictionary { get; set; }
 	}
 
 	// typedef void (^ _Nullable)(GSResponse * _Nullable, NSError * _Nullable) GSResponseHandler;
@@ -213,9 +217,14 @@ namespace GigyaSDK
 	[BaseType(typeof(NSObject), Name = "GSAccountsDelegate")]
 	interface GSAccountsDelegate
 	{
+		// The managed type of GSResponse is intentional.
+		// Internally the instance type of the parameter is
+		// GSResponse not GSAccount.We need to respond with the
+		// correct type in C#.  A ToAccount extension has been
+		// to help the developer get to the type they expect.
 		// @optional -(void)accountDidLogin:(GSAccount *)account;
 		[Export("accountDidLogin:")]
-		void AccountDidLogin(GSAccount account);
+		void AccountDidLogin(GSResponse accountResponse);
 
 		// @optional -(void)accountDidLogout;
 		[Export("accountDidLogout")]

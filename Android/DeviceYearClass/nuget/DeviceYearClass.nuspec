@@ -4,14 +4,14 @@
     <id>DeviceYearClass</id>
     <title>Device Year Class for Xamarin.Android</title>
     <version>1.0.0</version>
-    <authors>Xamarin Inc.</authors>
-    <owners>Xamarin Inc.</owners>
-    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <authors>Microsoft</authors>
+    <owners>Microsoft</owners>
+    <requireLicenseAcceptance>true</requireLicenseAcceptance>
     <description>A library that analyzes an Android device's specifications and calculates which year the device would be considered "high end".</description>
-    <copyright>Copyright 2015</copyright>
+    <copyright>© Microsoft Corporation. All rights reserved.</copyright>
     <iconUrl>https://xamarin-component-icons.s3.amazonaws.com/DeviceYearClass.png</iconUrl>
-    <projectUrl>https://components.xamarin.com/view/DeviceYearClass</projectUrl>
-    <licenseUrl>https://components.xamarin.com/license/DeviceYearClass</licenseUrl>
+    <projectUrl>https://go.microsoft.com/fwlink/?linkid=865015</projectUrl>
+    <licenseUrl>https://go.microsoft.com/fwlink/?linkid=865078</licenseUrl>
     <dependencies>
     </dependencies>
   </metadata>

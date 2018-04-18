@@ -1,0 +1,15 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>netcoreapp2.0</TargetFramework>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="NUnit" Version="3.6.1" />
+    <PackageReference Include="NUnit.Extension.NUnitV2ResultWriter" Version="3.5.0" />
+    <PackageReference Include="NUnitLite" Version="3.6.1" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="..\monorepo\mcs\class\Mono.Posix\Test\**\*.cs" />
+  </ItemGroup>
+</Project>

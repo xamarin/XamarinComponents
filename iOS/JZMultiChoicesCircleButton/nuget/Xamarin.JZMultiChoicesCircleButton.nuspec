@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<package>
+  <metadata>
+    <id>Xamarin.JZMultiChoicesCircleButton</id>
+    <title>JZMultiChoicesCircleButton for Xamarin.iOS</title>
+    <version>1.1</version>
+    <authors>Microsoft</authors>
+    <owners>Microsoft</owners>
+    <requireLicenseAcceptance>true</requireLicenseAcceptance>
+    <description>Multi choice circle button with cool 3d parallax effect for Xamarin.iOS</description>
+    <copyright>© Microsoft Corporation. All rights reserved.</copyright>
+    <projectUrl>https://go.microsoft.com/fwlink/?linkid=865975</projectUrl>
+    <licenseUrl>https://go.microsoft.com/fwlink/?linkid=865976</licenseUrl>
+  </metadata>
+  <files>
+    <file src="output/JZMultiChoice.dll" target="lib/Xamarin.iOS" />
+    <file src="External-Dependency-Info.txt" target="THIRD-PARTY-NOTICES.txt" />
+  </files>
+</package>

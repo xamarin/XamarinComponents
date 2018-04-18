@@ -15,7 +15,7 @@ var PODS = new List<string> {
 var buildSpec = new BuildSpec () {
 	Libs = new ISolutionBuilder [] {
 		new DefaultSolutionBuilder {
-			SolutionPath = "./SDSegmentedControl.sln",
+			SolutionPath = "./source/SDSegmentedControl.sln",
 			Configuration = "Release",
 			BuildsOn = BuildPlatforms.Mac,
 			OutputFiles = new [] { 
@@ -26,6 +26,10 @@ var buildSpec = new BuildSpec () {
 
 	Samples = new ISolutionBuilder [] {
 		new IOSSolutionBuilder { SolutionPath = "./samples/SDSegmentedControlSample.sln", Configuration = "Release", Platform="iPhone", BuildsOn = BuildPlatforms.Mac },
+	},
+
+	NuGets = new [] {
+		new NuGetInfo { NuSpec = "./nuget/Xamarin.SDSegmentedControl.nuspec", BuildsOn = BuildPlatforms.Mac },
 	},
 
 	Components = new [] {

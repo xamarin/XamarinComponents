@@ -1,0 +1,39 @@
+%YAML 1.2
+---
+no_build: true
+name: PickerCells
+id: pickercells
+summary: UITableViewCell classes that make it easy to add inline UIDatePicker or UIPickerView elements to your UITableView
+publisher: Microsoft
+license: ../License.md
+icons: 
+  - pickercells_128x128.png
+  - pickercells_512x512.png
+publisher-url: http://www.xamarin.com
+src-url: https://go.microsoft.com/fwlink/?linkid=866526
+libraries: 
+  ios-unified: 
+    - ../output/PickerCells.dll
+details: Details.md
+screenshots: 
+  - screenshots/Screen1.png
+getting-started: GettingStarted.md
+version: 1.2
+samples: 
+  - path: ../samples/PickerCellSample.sln
+    name: iOS Sample
+    removeProjects:
+      - PickerCells
+    installNuGets:
+      - project: PickerCellsSample
+        packages:
+          - Xamarin.PickerCells
+    nobuild: "true"
+    configuration: Release|iPhone
+local-nuget-repo: ../output
+is_shell: true
+packages:
+  ios-unified: Xamarin.PickerCells, Version=1.2.0.0
+additional-files:
+  - source: "../External-Dependency-Info.txt"
+    destination: "THIRD-PARTY-NOTICES.txt"

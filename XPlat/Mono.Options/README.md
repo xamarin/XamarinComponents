@@ -40,7 +40,7 @@ options expected:
         { "h|help", "show this message and exit", h => shouldShowHelp = h != null },
     };
 
-Then, in the `static void Main (string[] args)` method, we can parse the incomming 
+Then, in the `static void Main (string[] args)` method, we can parse the incoming 
 arguments and get a list of any extras:
 
     List<string> extra;
