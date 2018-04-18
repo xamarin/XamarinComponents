@@ -339,6 +339,10 @@
   BuildScript: ./iOS/SDSegmentedControl/build.cake
   TriggerPaths: [ iOS/SDSegmentedControl ]
   MacBuildTargets: [ samples, nuget, component ]
+- Name: XamDialogs
+  BuildScript: ./iOS/XamDialogs/build.cake
+  TriggerPaths: [ iOS/XamDialogs ]
+  MacBuildTargets: [ samples, component ]
 - Name: IQAudioRecorderController
   BuildScript: ./iOS/IQAudioRecorderController/build.cake
   TriggerPaths: [ iOS/IQAudioRecorderController ]
