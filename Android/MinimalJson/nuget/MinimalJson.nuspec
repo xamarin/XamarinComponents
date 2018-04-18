@@ -4,13 +4,13 @@
     <id>MinimalJson</id>
     <title>Minimal-Json</title>
     <version>0.9.4.0</version>
-    <authors>Xamarin Inc.</authors>
-    <owners>Xamarin Inc.</owners>
-    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <authors>Microsoft</authors>
+    <owners>Microsoft</owners>
+    <requireLicenseAcceptance>true</requireLicenseAcceptance>
     <description>A fast and small JSON parser and writer for Java.</description>
-    <copyright>Copyright 2015 Xamarin Inc</copyright>
-    <projectUrl>https://github.com/xamarin/XamarinComponents/tree/master/Android/MinimalJson</projectUrl>
-    <licenseUrl>https://github.com/xamarin/XamarinComponents/blob/master/Android/MinimalJson/License.md</licenseUrl>
+    <copyright>© Microsoft Corporation. All rights reserved.</copyright>
+    <projectUrl>https://go.microsoft.com/fwlink/?linkid=865057</projectUrl>
+    <licenseUrl>https://go.microsoft.com/fwlink/?linkid=864948</licenseUrl>
   </metadata>
   <files>  
     <file src="output/MinimalJson.dll" target="lib/MonoAndroid23" />

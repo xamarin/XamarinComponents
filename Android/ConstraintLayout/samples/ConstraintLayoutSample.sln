@@ -1,0 +1,29 @@
+
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConstraintLayoutSample", "ConstraintLayoutSample\ConstraintLayoutSample.csproj", "{17133E29-65C3-4B55-AC7E-107F50EE21D6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConstraintLayout", "..\source\ConstraintLayout\ConstraintLayout.csproj", "{045F2ED1-9752-4CC2-A73C-86A5B9E28C8F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConstraintLayoutSolver", "..\source\ConstraintLayoutSolver\ConstraintLayoutSolver.csproj", "{84FD66DF-C448-425E-860F-C0B076EED150}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{17133E29-65C3-4B55-AC7E-107F50EE21D6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{17133E29-65C3-4B55-AC7E-107F50EE21D6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{17133E29-65C3-4B55-AC7E-107F50EE21D6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{17133E29-65C3-4B55-AC7E-107F50EE21D6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{045F2ED1-9752-4CC2-A73C-86A5B9E28C8F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{045F2ED1-9752-4CC2-A73C-86A5B9E28C8F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{045F2ED1-9752-4CC2-A73C-86A5B9E28C8F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{045F2ED1-9752-4CC2-A73C-86A5B9E28C8F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{84FD66DF-C448-425E-860F-C0B076EED150}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{84FD66DF-C448-425E-860F-C0B076EED150}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{84FD66DF-C448-425E-860F-C0B076EED150}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{84FD66DF-C448-425E-860F-C0B076EED150}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal

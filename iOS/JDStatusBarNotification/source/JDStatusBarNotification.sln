@@ -1,0 +1,29 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{9344BDBB-3E7F-41FC-A0DD-8665D75EE146}") = "JDStatusBarNotification", "JDStatusBarNotification\JDStatusBarNotification.csproj", "{D2110073-4D15-4323-BE4C-41ABF32944DE}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+		Debug|iPhoneSimulator = Debug|iPhoneSimulator
+		Release|iPhoneSimulator = Release|iPhoneSimulator
+		Debug|iPhone = Debug|iPhone
+		Release|iPhone = Release|iPhone
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{D2110073-4D15-4323-BE4C-41ABF32944DE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D2110073-4D15-4323-BE4C-41ABF32944DE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D2110073-4D15-4323-BE4C-41ABF32944DE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D2110073-4D15-4323-BE4C-41ABF32944DE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D2110073-4D15-4323-BE4C-41ABF32944DE}.Debug|iPhoneSimulator.ActiveCfg = Debug|Any CPU
+		{D2110073-4D15-4323-BE4C-41ABF32944DE}.Debug|iPhoneSimulator.Build.0 = Debug|Any CPU
+		{D2110073-4D15-4323-BE4C-41ABF32944DE}.Release|iPhoneSimulator.ActiveCfg = Release|Any CPU
+		{D2110073-4D15-4323-BE4C-41ABF32944DE}.Release|iPhoneSimulator.Build.0 = Release|Any CPU
+		{D2110073-4D15-4323-BE4C-41ABF32944DE}.Debug|iPhone.ActiveCfg = Debug|Any CPU
+		{D2110073-4D15-4323-BE4C-41ABF32944DE}.Debug|iPhone.Build.0 = Debug|Any CPU
+		{D2110073-4D15-4323-BE4C-41ABF32944DE}.Release|iPhone.ActiveCfg = Release|Any CPU
+		{D2110073-4D15-4323-BE4C-41ABF32944DE}.Release|iPhone.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal

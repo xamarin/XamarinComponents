@@ -4,13 +4,13 @@
     <id>Lyft.Scissors.Picasso</id>
     <title>Picasso Bitmap Loader for Scissors</title>
     <version>1.1.1</version>
-    <authors>Xamarin Inc.</authors>
-    <owners>Xamarin Inc.</owners>
-    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <authors>Microsoft</authors>
+    <owners>Microsoft</owners>
+    <requireLicenseAcceptance>true</requireLicenseAcceptance>
     <description>Fixed viewport image cropping library for Android.</description>
-    <copyright>Copyright 2015 Xamarin Inc</copyright>
-    <projectUrl>https://components.xamarin.com/view/Lyft.Scissors.Picasso</projectUrl>
-    <licenseUrl>https://components.xamarin.com/license/Lyft.Scissors.Picasso</licenseUrl>
+    <copyright>© Microsoft Corporation. All rights reserved.</copyright>
+    <projectUrl>https://go.microsoft.com/fwlink/?linkid=864994</projectUrl>
+    <licenseUrl>https://go.microsoft.com/fwlink/?linkid=865071</licenseUrl>
     <dependencies>
       <dependency id="Lyft.Scissors" version="1.1.1" />
       <dependency id="Square.Picasso" version="2.5.2.1" />

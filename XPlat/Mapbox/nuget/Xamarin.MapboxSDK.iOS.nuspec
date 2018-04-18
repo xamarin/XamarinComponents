@@ -4,16 +4,16 @@
     <id>Xamarin.MapboxSDK.iOS</id>
     <title>Mapbox SDK for Xamarin.iOS</title>
     <version>$version$</version>
-    <authors>Xamarin</authors>
-    <owners>Xamarin</owners>
-    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <authors>Microsoft</authors>
+    <owners>Microsoft</owners>
+    <requireLicenseAcceptance>true</requireLicenseAcceptance>
     <summary>Add smooth and fast vector maps to your Xamarin.iOS app!</summary>
     <description>
       Mapbox is built on vector maps, an advanced approach to mapping where data is delivered to the device and precisely rendered in real-time. The result is smooth, fast maps.
     </description>
-    <copyright>Copyright © Xamarin. All Rights Reserved.</copyright>
-    <projectUrl>https://components.xamarin.com/view/mapboxsdk</projectUrl>
-    <licenseUrl>https://components.xamarin.com/license/mapboxsdk</licenseUrl>
+    <copyright>© Microsoft Corporation. All rights reserved.</copyright>
+    <projectUrl>https://go.microsoft.com/fwlink/?linkid=865051</projectUrl>
+    <licenseUrl>https://go.microsoft.com/fwlink/?linkid=865008</licenseUrl>
     <iconUrl>https://raw.githubusercontent.com/xamarin/XamarinComponents/master/XPlat/Mapbox/component/icons/mapboxsdk_128x128.png</iconUrl>
   </metadata>
   <files>

@@ -6,12 +6,14 @@ using Android.Content;
 using Android.Util;
 
 using EstimoteSdk;
+using EstimoteSdk.Observation.Region.Beacon;
+using EstimoteSdk.Service;
 
 namespace Estimotes.Droid
 {
     class FindAllBeacons : BeaconFinder
     {
-        public static readonly Region ALL_ESTIMOTE_BEACONS_REGION = new Region("rid", "B9407F30-F5F8-466E-AFF9-25556B57FE6D");
+        public static readonly BeaconRegion ALL_ESTIMOTE_BEACONS_REGION = new BeaconRegion("rid", "B9407F30-F5F8-466E-AFF9-25556B57FE6D");
 
         static readonly string TAG = typeof(FindAllBeacons).Name;
 
@@ -19,7 +21,7 @@ namespace Estimotes.Droid
 
         public FindAllBeacons(Context context) : base(context)
         {
-            BeaconManager.Ranging += HandleRanging;
+            BeaconManager.BeaconRanging += HandleRanging;
         }
 
         public override void OnServiceReady()
@@ -27,7 +29,7 @@ namespace Estimotes.Droid
             BeaconManager.StartRanging(ALL_ESTIMOTE_BEACONS_REGION);
         }
 
-        protected virtual void HandleRanging(object sender, BeaconManager.RangingEventArgs e)
+		protected virtual void HandleRanging(object sender, BeaconManager.BeaconRangingEventArgs e)
         {
             Log.Debug(TAG, "Found {0} beacons.", e.Beacons.Count);
 //            IEnumerable<Beacon> beacons = from item in e.Beacons

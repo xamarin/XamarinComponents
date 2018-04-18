@@ -4,8 +4,7 @@ using Android.Content;
 using Android.Views;
 using Android.Widget;
 
-using EstimoteSdk;
-
+using EstimoteSdk.Recognition.Packets;
 using Java.Lang;
 
 namespace Estimotes.Droid

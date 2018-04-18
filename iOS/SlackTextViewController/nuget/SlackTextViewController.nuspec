@@ -3,14 +3,14 @@
   <metadata>
     <id>Xamarin.SlackTextViewController</id>
     <title>SlackTextViewController for Xamarin.iOS</title>
-    <version>1.9.5</version>
-    <authors>Xamarin Inc.</authors>
-    <owners>Xamarin Inc.</owners>
-    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <version>1.9.6</version>
+    <authors>Microsoft</authors>
+    <owners>Microsoft</owners>
+    <requireLicenseAcceptance>true</requireLicenseAcceptance>
     <description>A drop-in UIViewController subclass with a growing text input view and other useful messaging features.</description>
-    <copyright>Copyright 2017 Xamarin Inc</copyright>
-    <projectUrl>https://components.xamarin.com/view/SlackTextViewController</projectUrl>
-    <licenseUrl>https://components.xamarin.com/license/SlackTextViewController</licenseUrl>
+    <copyright>© Microsoft Corporation. All rights reserved.</copyright>
+    <projectUrl>https://go.microsoft.com/fwlink/?linkid=865003</projectUrl>
+    <licenseUrl>https://go.microsoft.com/fwlink/?linkid=865049</licenseUrl>
     <iconUrl>https://github.com/xamarin/XamarinComponents/raw/master/iOS/SlackTextViewController/component/icons/SlackTextViewController_128x128.png</iconUrl>
   </metadata>
   <files>

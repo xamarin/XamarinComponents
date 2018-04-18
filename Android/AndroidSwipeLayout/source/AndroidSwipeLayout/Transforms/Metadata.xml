@@ -19,6 +19,18 @@
 	<attr path="/api/package[@name='com.daimajia.swipe']/class[@name='SimpleSwipeListener']/method[@name='onStartClose']" name="managedName">OnClosing</attr>
 	<attr path="/api/package[@name='com.daimajia.swipe']/class[@name='SimpleSwipeListener']/method[@name='onOpen']" name="managedName">OnOpened</attr>
 	<attr path="/api/package[@name='com.daimajia.swipe']/class[@name='SimpleSwipeListener']/method[@name='onClose']" name="managedName">OnClosed</attr>
+	<attr path="/api/package[@name='com.daimajia.swipe']/interface[@name='SwipeLayout.OnLayout']/method[@name='onLayout']/parameter[1]" name="managedName">layout</attr>
+	<attr path="/api/package[@name='com.daimajia.swipe']/interface[@name='SwipeLayout.SwipeDenier']/method[@name='shouldDenySwipe']/parameter[1]" name="managedName">e</attr>
+	<attr path="/api/package[@name='com.daimajia.swipe']/interface[@name='SwipeLayout.SwipeListener']/method[@name='onClose']/parameter[1]" name="managedName">layout</attr>
+	<attr path="/api/package[@name='com.daimajia.swipe']/interface[@name='SwipeLayout.SwipeListener']/method[@name='onHandRelease']/parameter[1]" name="managedName">layout</attr>
+	<attr path="/api/package[@name='com.daimajia.swipe']/interface[@name='SwipeLayout.SwipeListener']/method[@name='onHandRelease']/parameter[2]" name="managedName">xvel</attr>
+	<attr path="/api/package[@name='com.daimajia.swipe']/interface[@name='SwipeLayout.SwipeListener']/method[@name='onHandRelease']/parameter[3]" name="managedName">yvel</attr>
+	<attr path="/api/package[@name='com.daimajia.swipe']/interface[@name='SwipeLayout.SwipeListener']/method[@name='onOpen']/parameter[1]" name="managedName">layout</attr>
+	<attr path="/api/package[@name='com.daimajia.swipe']/interface[@name='SwipeLayout.SwipeListener']/method[@name='onStartClose']/parameter[1]" name="managedName">layout</attr>
+	<attr path="/api/package[@name='com.daimajia.swipe']/interface[@name='SwipeLayout.SwipeListener']/method[@name='onStartOpen']/parameter[1]" name="managedName">layout</attr>
+	<attr path="/api/package[@name='com.daimajia.swipe']/interface[@name='SwipeLayout.SwipeListener']/method[@name='onUpdate']/parameter[1]" name="managedName">layout</attr>
+	<attr path="/api/package[@name='com.daimajia.swipe']/interface[@name='SwipeLayout.SwipeListener']/method[@name='onUpdate']/parameter[2]" name="managedName">leftOffset</attr>
+	<attr path="/api/package[@name='com.daimajia.swipe']/interface[@name='SwipeLayout.SwipeListener']/method[@name='onUpdate']/parameter[3]" name="managedName">topOffset</attr>
 	<attr path="/api/package[@name='com.daimajia.swipe']/interface[@name='SwipeLayout.OnRevealListener']/method[@name='onReveal']/parameter[1]" name="managedName">child</attr>
 	<attr path="/api/package[@name='com.daimajia.swipe']/interface[@name='SwipeLayout.OnRevealListener']/method[@name='onReveal']/parameter[2]" name="managedName">edge</attr>
 	<attr path="/api/package[@name='com.daimajia.swipe']/interface[@name='SwipeLayout.OnRevealListener']/method[@name='onReveal']/parameter[3]" name="managedName">fraction</attr>
@@ -30,12 +42,25 @@
 	<attr path="/api/package[@name='com.daimajia.swipe.adapters']/class[@name='BaseSwipeAdapter']/method[@name='generateView']/parameter[1]" name="managedName">position</attr>
 	<attr path="/api/package[@name='com.daimajia.swipe.adapters']/class[@name='BaseSwipeAdapter']/method[@name='generateView']/parameter[2]" name="managedName">parent</attr>
 	<attr path="/api/package[@name='com.daimajia.swipe.adapters']/class[@name='BaseSwipeAdapter']/method[@name='getSwipeLayoutResourceId']/parameter[1]" name="managedName">position</attr>
+	<attr path="/api/package[@name='com.daimajia.swipe.interfaces']/interface[@name='SwipeItemMangerInterface']/method[@name='closeAllExcept']/parameter[1]" name="managedName">layout</attr>
+	<attr path="/api/package[@name='com.daimajia.swipe.interfaces']/interface[@name='SwipeItemMangerInterface']/method[@name='closeItem']/parameter[1]" name="managedName">position</attr>
+	<attr path="/api/package[@name='com.daimajia.swipe.interfaces']/interface[@name='SwipeItemMangerInterface']/method[@name='isOpen']/parameter[1]" name="managedName">position</attr>
+	<attr path="/api/package[@name='com.daimajia.swipe.interfaces']/interface[@name='SwipeItemMangerInterface']/method[@name='openItem']/parameter[1]" name="managedName">position</attr>
+	<attr path="/api/package[@name='com.daimajia.swipe.interfaces']/interface[@name='SwipeItemMangerInterface']/method[@name='removeShownLayouts']/parameter[1]" name="managedName">layout</attr>
+	<attr path="/api/package[@name='com.daimajia.swipe.interfaces']/interface[@name='SwipeItemMangerInterface']/method[@name='setMode']/parameter[1]" name="managedName">mode</attr>
+	<attr path="/api/package[@name='com.daimajia.swipe.interfaces']/interface[@name='SwipeAdapterInterface']/method[@name='getSwipeLayoutResourceId']/parameter[1]" name="managedName">position</attr>
+	<attr path="/api/package[@name='com.daimajia.swipe.implments']/class[@name='SwipeItemMangerImpl']/method[@name='initialize']/parameter[1]" name="managedName">view</attr>
+	<attr path="/api/package[@name='com.daimajia.swipe.implments']/class[@name='SwipeItemMangerImpl']/method[@name='initialize']/parameter[2]" name="managedName">position</attr>
+	<attr path="/api/package[@name='com.daimajia.swipe.implments']/class[@name='SwipeItemMangerImpl']/method[@name='bindView']/parameter[1]" name="managedName">view</attr>
+	<attr path="/api/package[@name='com.daimajia.swipe.implments']/class[@name='SwipeItemMangerImpl']/method[@name='bindView']/parameter[2]" name="managedName">position</attr>
+	<attr path="/api/package[@name='com.daimajia.swipe.implments']/class[@name='SwipeItemMangerImpl']/method[@name='updateConvertView']/parameter[1]" name="managedName">view</attr>
+	<attr path="/api/package[@name='com.daimajia.swipe.implments']/class[@name='SwipeItemMangerImpl']/method[@name='updateConvertView']/parameter[2]" name="managedName">position</attr>
 
 	<!-- implements -->
 	<attr path="/api/package[@name='com.daimajia.swipe.interfaces']/interface[@name='SwipeItemMangerInterface']" name="managedName">ISwipeItemManagerInterface</attr>
-	<attr path="/api/package[@name='com.daimajia.swipe.interfaces']/class[@name='SwipeItemAdapterMangerImpl']" name="managedName">SwipeItemAdapterManagerImpl</attr>
-	<attr path="/api/package[@name='com.daimajia.swipe.interfaces']/class[@name='SwipeItemMangerImpl']" name="managedName">SwipeItemManagerImpl</attr>
-	<attr path="/api/package[@name='com.daimajia.swipe.interfaces']/class[@name='SwipeItemRecyclerMangerImpl']" name="managedName">SwipeItemRecyclerManagerImpl</attr>
+	<!-- <attr path="/api/package[@name='com.daimajia.swipe.implments']/class[@name='SwipeItemAdapterMangerImpl']" name="managedName">SwipeItemAdapterManagerImpl</attr> -->
+	<!-- <attr path="/api/package[@name='com.daimajia.swipe.implments']/class[@name='SwipeItemMangerImpl']" name="managedName">SwipeItemManagerImpl</attr> -->
+	<!-- <attr path="/api/package[@name='com.daimajia.swipe.implments']/class[@name='SwipeItemRecyclerMangerImpl']" name="managedName">SwipeItemRecyclerManagerImpl</attr> -->
 	<attr path="/api/package[@name='com.daimajia.swipe.adapters']/class[@name='BaseSwipeAdapter']/field[@name='mItemManger']" name="managedName">MItemManager</attr>
 	<attr path="/api/package[@name='com.daimajia.swipe.adapters']/class[@name='RecyclerSwipeAdapter']/field[@name='mItemManger']" name="managedName">MItemManager</attr>
 	

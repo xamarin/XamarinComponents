@@ -1,8 +1,3 @@
-
-<iframe src="https://appetize.io/embed/4zg238qnkudw10hnkef6qc9yn4?device=iphone5s&scale=75&autoplay=true&orientation=portrait&deviceColor=black" 
-        width="274px" height="587px" frameborder="0" scrolling="no"
-        style="float:right;margin-left:1em;">&nbsp;</iframe>
-
 **JDStatusBarNotification** allows an app to show messages on top of the status bar. 
 
 ## Usage

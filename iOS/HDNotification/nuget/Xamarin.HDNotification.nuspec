@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<package>
+  <metadata>
+    <id>Xamarin.HDNotification</id>
+    <title>Xamarin.HDNotification</title>
+    <version>1.1</version>
+    <authors>Microsoft</authors>
+    <owners>Microsoft</owners>
+    <requireLicenseAcceptance>true</requireLicenseAcceptance>
+    <description>A simple and beautiful notification style view.</description>
+    <copyright>© Microsoft Corporation. All rights reserved.</copyright>
+    <projectUrl>https://go.microsoft.com/fwlink/?linkid=867908</projectUrl>
+    <licenseUrl>https://go.microsoft.com/fwlink/?linkid=867910</licenseUrl>
+  </metadata>
+  <files>
+    <file src="output/HDNotification.dll" target="lib/Xamarin.iOS" />
+    <file src="External-Dependency-Info.txt" target="THIRD-PARTY-NOTICES.txt" />
+  </files>
+</package>

@@ -4,14 +4,14 @@
     <id>NineOldAndroids</id>
     <title>Nine Old Androids for Xamarin.Android</title>
     <version>2.4.0</version>
-    <authors>Xamarin Inc.</authors>
-    <owners>Xamarin Inc.</owners>
-    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <authors>Microsoft</authors>
+    <owners>Microsoft</owners>
+    <requireLicenseAcceptance>true</requireLicenseAcceptance>
     <description>Android library for using the Honeycomb animation API on all versions of Android.</description>
-    <copyright>Copyright 2015</copyright>
+    <copyright>© Microsoft Corporation. All rights reserved.</copyright>
     <iconUrl>https://xamarin-component-icons.s3.amazonaws.com/NineOldAndroids.png</iconUrl>
-    <projectUrl>https://components.xamarin.com/view/NineOldAndroids</projectUrl>
-    <licenseUrl>https://components.xamarin.com/license/NineOldAndroids</licenseUrl>
+    <projectUrl>https://go.microsoft.com/fwlink/?linkid=865041</projectUrl>
+    <licenseUrl>https://go.microsoft.com/fwlink/?linkid=865066</licenseUrl>
     <dependencies>
     </dependencies>
   </metadata>

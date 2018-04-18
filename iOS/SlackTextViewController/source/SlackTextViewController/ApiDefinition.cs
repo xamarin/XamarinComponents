@@ -1,22 +1,10 @@
 ﻿using System;
 
-#if __UNIFIED__
 using CoreGraphics;
 using Foundation;
 using ObjCRuntime;
 using UIKit;
-#else
-using MonoTouch.Foundation;
-using MonoTouch.ObjCRuntime;
-using MonoTouch.UIKit;
 
-using CGRect = System.Drawing.RectangleF;
-using CGSize = System.Drawing.SizeF;
-using CGPoint = System.Drawing.PointF;
-using nint = System.Int32;
-using nuint = System.UInt32;
-using nfloat = System.Single;
-#endif
 
 namespace SlackHQ
 {
@@ -44,11 +32,11 @@ namespace SlackHQ
 		string WordAtCaret (ref NSRange range);
 
 		// @optional -(NSString *)wordAtRange:(NSRange)range rangeInText:(NSRangePointer)rangePointer;
-		[Export("wordAtRange:rangeInText:")]
+		[Export ("wordAtRange:rangeInText:")]
 		string WordAt (NSRange range, ref NSRange rangeInText);
 	}
 
-	// @interface SLKTextInputbar : UIToolbar
+	// @interface SLKTextInputbar : UIView
 	[BaseType (typeof(UIToolbar), Name = "SLKTextInputbar")]
 	interface SlackTextInputbar
 	{
@@ -58,28 +46,32 @@ namespace SlackHQ
 		NSString DidMoveNotification { get; }
 
 
-		// @property (nonatomic, strong) SLKTextView * textView;
+		// @property (readonly, nonatomic, strong) SLKTextView * _Nonnull textView;
 		[Export ("textView", ArgumentSemantic.Strong)]
-		SlackTextView TextView { get; set; }
+		SlackTextView TextView { get; }
 
-		// @property (nonatomic, strong) SLKInputAccessoryView * inputAccessoryView;
+		// @property (readonly, nonatomic, strong) UIView * _Nonnull contentView;
+		[Export ("contentView", ArgumentSemantic.Strong)]
+		UIView ContentView { get; }
+
+		// @property (readonly, nonatomic, strong) SLKInputAccessoryView * _Nonnull inputAccessoryView;
 		[Export ("inputAccessoryView", ArgumentSemantic.Strong)]
 		SlackInputAccessoryView SlackInputAccessoryView { get; }
 
-		// @property (nonatomic, strong) UIButton * leftButton;
+		// @property (nonatomic, strong) UIButton * _Nonnull leftButton;
 		[Export ("leftButton", ArgumentSemantic.Strong)]
 		UIButton LeftButton { get; set; }
 
-		// @property (nonatomic, strong) UIButton * rightButton;
+		// @property (nonatomic, strong) UIButton * _Nonnull rightButton;
 		[Export ("rightButton", ArgumentSemantic.Strong)]
 		UIButton RightButton { get; set; }
 
 		// @property (readwrite, nonatomic) BOOL autoHideRightButton;
 		[Export ("autoHideRightButton")]
 		bool AutoHideRightButton { get; set; }
-        
-        // @property (nonatomic, assign) BOOL bounces;
-		[Export ("bounces", ArgumentSemantic.Assign)]
+
+		// @property (assign, nonatomic) BOOL bounces;
+		[Export ("bounces")]
 		bool Bounces { get; set; }
 
 		// @property (assign, nonatomic) UIEdgeInsets contentInset;
@@ -94,23 +86,23 @@ namespace SlackHQ
 		[Export ("appropriateHeight")]
 		nfloat AppropriateHeight { get; }
 
-		// -(instancetype)initWithTextViewClass:(Class)textViewClass;
+		// -(instancetype _Nonnull)initWithTextViewClass:(Class _Nonnull)textViewClass;
 		[Export ("initWithTextViewClass:")]
 		IntPtr Constructor (Class textViewClass);
 
-		// @property (nonatomic, strong) UIView * editorContentView;
+		// @property (nonatomic, strong) UIView * _Nonnull editorContentView;
 		[Export ("editorContentView", ArgumentSemantic.Strong)]
 		UIView EditorContentView { get; set; }
 
-		// @property (nonatomic, strong) UILabel * editorTitle;
+		// @property (nonatomic, strong) UILabel * _Nonnull editorTitle;
 		[Export ("editorTitle", ArgumentSemantic.Strong)]
 		UILabel EditorTitle { get; set; }
 
-		// @property (nonatomic, strong) UIButton * editorLeftButton;
+		// @property (nonatomic, strong) UIButton * _Nonnull editorLeftButton;
 		[Export ("editorLeftButton", ArgumentSemantic.Strong)]
 		UIButton EditorLeftButton { get; set; }
 
-		// @property (nonatomic, strong) UIButton * editorRightButton;
+		// @property (nonatomic, strong) UIButton * _Nonnull editorRightButton;
 		[Export ("editorRightButton", ArgumentSemantic.Strong)]
 		UIButton EditorRightButton { get; set; }
 
@@ -122,7 +114,7 @@ namespace SlackHQ
 		[Export ("editing")]
 		bool Editing { [Bind ("isEditing")] get; set; }
 
-		// -(BOOL)canEditText:(NSString *)text;
+		// -(BOOL)canEditText:(NSString * _Nonnull)text;
 		[Export ("canEditText:")]
 		bool CanEditText (string text);
 
@@ -134,7 +126,7 @@ namespace SlackHQ
 		[Export ("endTextEdition")]
 		void EndTextEditing ();
 
-		// @property (readonly, nonatomic) UILabel * charCountLabel;
+		// @property (readonly, nonatomic) UILabel * _Nonnull charCountLabel;
 		[Export ("charCountLabel")]
 		UILabel CharCountLabel { get; }
 
@@ -154,11 +146,11 @@ namespace SlackHQ
 		[Export ("limitExceeded")]
 		bool LimitExceeded { get; }
 
-		// @property (readwrite, nonatomic, strong) UIColor * charCountLabelNormalColor;
+		// @property (readwrite, nonatomic, strong) UIColor * _Nonnull charCountLabelNormalColor;
 		[Export ("charCountLabelNormalColor", ArgumentSemantic.Strong)]
 		UIColor CharCountLabelNormalColor { get; set; }
 
-		// @property (readwrite, nonatomic, strong) UIColor * charCountLabelWarningColor;
+		// @property (readwrite, nonatomic, strong) UIColor * _Nonnull charCountLabelWarningColor;
 		[Export ("charCountLabelWarningColor", ArgumentSemantic.Strong)]
 		UIColor CharCountLabelWarningColor { get; set; }
 	}
@@ -208,21 +200,25 @@ namespace SlackHQ
 		NSString PastedItemData { get; }
 
 
-        // @property (nonatomic, weak) id<SLKTextViewDelegate,UITextViewDelegate> delegate;
+		// @property (nonatomic, weak) id<SLKTextViewDelegate,UITextViewDelegate> _Nullable delegate;
 		[NullAllowed, Export ("delegate", ArgumentSemantic.Weak)]
 		ISlackTextViewDelegate Delegate { get; set; }
 
-		// @property (copy, nonatomic) NSString * placeholder;
+		// @property (copy, nonatomic) NSString * _Nullable placeholder;
 		[NullAllowed, Export ("placeholder")]
 		string Placeholder { get; set; }
 
-		// @property (copy, nonatomic) UIColor * placeholderColor;
+		// @property (copy, nonatomic) UIColor * _Null_unspecified placeholderColor;
 		[Export ("placeholderColor", ArgumentSemantic.Copy)]
 		UIColor PlaceholderColor { get; set; }
 
 		// @property (readwrite, nonatomic) NSInteger placeholderNumberOfLines;
 		[Export ("placeholderNumberOfLines")]
 		nint PlaceholderNumberOfLines { get; set; }
+
+		// @property (copy, nonatomic) UIFont * _Null_unspecified placeholderFont;
+		[Export ("placeholderFont", ArgumentSemantic.Copy)]
+		UIFont PlaceholderFont { get; set; }
 
 		// @property (readwrite, nonatomic) NSUInteger maxNumberOfLines;
 		[Export ("maxNumberOfLines")]
@@ -244,7 +240,7 @@ namespace SlackHQ
 		[Export ("didNotResignFirstResponder")]
 		bool DidNotResignFirstResponder { get; set; }
 
-		// @property (getter = isLoupeVisible, nonatomic) BOOL loupeVisible;
+		// @property (getter = isLoupeVisible, nonatomic) BOOL loupeVisible __attribute__((deprecated("")));
 		[Export ("loupeVisible")]
 		bool LoupeVisible { [Bind ("isLoupeVisible")] get; set; }
 
@@ -264,14 +260,6 @@ namespace SlackHQ
 		[Export ("dynamicTypeEnabled")]
 		bool DynamicTypeEnabled { [Bind ("isDynamicTypeEnabled")] get; set; }
 
-		// @property (nonatomic, readonly, getter=isFormattingEnabled) BOOL formattingEnabled;
-		[Export ("formattingEnabled")]
-		bool FormattingEnabled { [Bind ("isFormattingEnabled")] get; set; }
-
-		// @property (nonatomic, readonly) NSArray *registeredSymbols;
-		[NullAllowed, Export ("registeredSymbols")]
-		string[] RegisteredSymbols { get; }
-
 		// -(void)refreshFirstResponder;
 		[Export ("refreshFirstResponder")]
 		void RefreshFirstResponder ();
@@ -280,31 +268,39 @@ namespace SlackHQ
 		[Export ("refreshInputViews")]
 		void RefreshInputViews ();
 
-		// - (void)didPressArrowKey:(UIKeyCommand *)keyCommand;
+		// -(void)didPressArrowKey:(UIKeyCommand * _Nonnull)keyCommand;
 		[Export ("didPressArrowKey:")]
 		void DidPressArrowKey (UIKeyCommand keyCommand);
-        
-        // - (void)registerMarkdownFormattingSymbol:(NSString *)symbol withTitle:(NSString *)title;
+
+		// @property (readonly, getter = isFormattingEnabled, nonatomic) BOOL formattingEnabled;
+		[Export ("formattingEnabled")]
+		bool FormattingEnabled { [Bind ("isFormattingEnabled")] get; }
+
+		// @property (readonly, nonatomic) NSArray * _Nullable registeredSymbols;
+		[NullAllowed, Export ("registeredSymbols")]
+		string[] RegisteredSymbols { get; }
+
+		// -(void)registerMarkdownFormattingSymbol:(NSString * _Nonnull)symbol withTitle:(NSString * _Nonnull)title;
 		[Export ("registerMarkdownFormattingSymbol:withTitle:")]
 		void RegisterMarkdownFormattingSymbol (string symbol, string title);
 
-        // - (void)observeKeyInput:(NSString *)input modifiers:(UIKeyModifierFlags)modifiers title:(NSString *)title completion:(void (^)(UIKeyCommand *keyCommand))completion;
+		// -(void)observeKeyInput:(NSString * _Nonnull)input modifiers:(UIKeyModifierFlags)modifiers title:(NSString * _Nullable)title completion:(void (^ _Nonnull)(UIKeyCommand * _Nonnull))completion;
 		[Export ("observeKeyInput:modifiers:title:completion:")]
-		void ObserveKeyInput (string input, UIKeyModifierFlags modifiers, string title, Action<UIKeyCommand> completion);
+		void ObserveKeyInput (string input, UIKeyModifierFlags modifiers, [NullAllowed] string title, Action<UIKeyCommand> completion);
 	}
 
 	interface ISlackTextViewDelegate {}
 
 	// @protocol SLKTextViewDelegate <UITextViewDelegate>
 	[Protocol, Model]
-	[BaseType (typeof(UITextViewDelegate), Name = "SLKTextViewDelegate")]
-	interface SlackTextViewDelegate
+	[BaseType (typeof(NSObject), Name = "SLKTextViewDelegate")]
+	interface SlackTextViewDelegate : IUITextViewDelegate
 	{
-		// @optional - (BOOL)textView:(SLKTextView *)textView shouldOfferFormattingForSymbol:(NSString *)symbol;
+		// @optional -(BOOL)textView:(SLKTextView * _Nonnull)textView shouldOfferFormattingForSymbol:(NSString * _Nonnull)symbol;
 		[Export ("textView:shouldOfferFormattingForSymbol:")]
 		bool ShouldOfferFormattingForSymbol (SlackTextView textView, string symbol);
 
-		// @optional (BOOL)textView:(SLKTextView *)textView shouldInsertSuffixForFormattingWithSymbol:(NSString *)symbol prefixRange:(NSRange)prefixRange;
+		// @optional -(BOOL)textView:(SLKTextView * _Nonnull)textView shouldInsertSuffixForFormattingWithSymbol:(NSString * _Nonnull)symbol prefixRange:(NSRange)prefixRange;
 		[Export ("textView:shouldInsertSuffixForFormattingWithSymbol:prefixRange:")]
 		bool ShouldInsertSuffixForFormattingWithSymbol (SlackTextView textView, string symbol, NSRange prefixRange);
 	}
@@ -338,15 +334,19 @@ namespace SlackHQ
 		[Export ("canResignByTouch")]
 		bool CanResignByTouch { get; set; }
 
-		// @property (nonatomic, strong) UIColor * textColor;
+		// @property (nonatomic, strong) UIColor * _Nonnull textColor;
 		[Export ("textColor", ArgumentSemantic.Strong)]
 		UIColor TextColor { get; set; }
 
-		// @property (nonatomic, strong) UIFont * textFont;
+		// @property (nonatomic, strong) UIColor * _Nonnull highlightTextColor;
+		[Export ("highlightTextColor", ArgumentSemantic.Strong)]
+		UIColor HighlightTextColor { get; set; }
+
+		// @property (nonatomic, strong) UIFont * _Nonnull textFont;
 		[Export ("textFont", ArgumentSemantic.Strong)]
 		UIFont TextFont { get; set; }
 
-		// @property (nonatomic, strong) UIFont * highlightFont;
+		// @property (nonatomic, strong) UIFont * _Nonnull highlightFont;
 		[Export ("highlightFont", ArgumentSemantic.Strong)]
 		UIFont HighlightFont { get; set; }
 
@@ -354,11 +354,11 @@ namespace SlackHQ
 		[Export ("contentInset", ArgumentSemantic.Assign)]
 		UIEdgeInsets ContentInset { get; set; }
 
-		// -(void)insertUsername:(NSString *)username;
+		// -(void)insertUsername:(NSString * _Nullable)username;
 		[Export ("insertUsername:")]
 		void InsertUsername ([NullAllowed] string username);
 
-		// -(void)removeUsername:(NSString *)username;
+		// -(void)removeUsername:(NSString * _Nullable)username;
 		[Export ("removeUsername:")]
 		void RemoveUsername ([NullAllowed] string username);
 	}
@@ -389,35 +389,35 @@ namespace SlackHQ
 		NSString KeyboardDidHideNotification { get; }
 
 
-		// @property (readonly, nonatomic) UITableView * tableView;
+		// @property (readonly, nonatomic) UITableView * _Nullable tableView;
 		[NullAllowed, Export ("tableView")]
 		UITableView TableView { get; }
 
-		// @property (readonly, nonatomic) UICollectionView * collectionView;
+		// @property (readonly, nonatomic) UICollectionView * _Nullable collectionView;
 		[NullAllowed, Export ("collectionView")]
 		UICollectionView CollectionView { get; }
 
-		// @property (readonly, nonatomic) UIScrollView * scrollView;
+		// @property (readonly, nonatomic) UIScrollView * _Nullable scrollView;
 		[NullAllowed, Export ("scrollView")]
 		UIScrollView ScrollView { get; }
 
-		// @property (readonly, nonatomic) SLKTextInputbar * textInputbar;
+		// @property (readonly, nonatomic) SLKTextInputbar * _Nonnull textInputbar;
 		[Export ("textInputbar")]
 		SlackTextInputbar TextInputbar { get; }
 
-		// @property (readonly, nonatomic) SLKTypingIndicatorView * typingIndicatorView;
+		// @property (readonly, nonatomic) SLKTypingIndicatorView * _Nullable typingIndicatorView;
 		[NullAllowed, Export ("typingIndicatorView")]
 		SlackTypingIndicatorView TypingIndicatorView { get; }
 
-		// @property (readonly, nonatomic) UIView<SLKTypingIndicatorProtocol> * typingIndicatorProxyView;
+		// @property (readonly, nonatomic) UIView<SLKTypingIndicatorProtocol> * _Nonnull typingIndicatorProxyView;
 		[Export ("typingIndicatorProxyView")]
 		ISlackTypingIndicator TypingIndicatorProxyView { get; }
 
-		// @property (readonly, nonatomic) UIGestureRecognizer * singleTapGesture;
+		// @property (readonly, nonatomic) UIGestureRecognizer * _Nonnull singleTapGesture;
 		[Export ("singleTapGesture")]
 		UIGestureRecognizer SingleTapGesture { get; }
 
-		// @property (readonly, nonatomic) UIPanGestureRecognizer * verticalPanGesture;
+		// @property (readonly, nonatomic) UIPanGestureRecognizer * _Nonnull verticalPanGesture;
 		[Export ("verticalPanGesture")]
 		UIPanGestureRecognizer VerticalPanGesture { get; }
 
@@ -461,44 +461,44 @@ namespace SlackHQ
 		[Export ("keyboardStatus")]
 		KeyboardStatus KeyboardStatus { get; }
 
-		// @property (readonly, nonatomic) SLKTextView * textView;
+		// @property (readonly, nonatomic) SLKTextView * _Nonnull textView;
 		[Export ("textView")]
 		SlackTextView TextView { get; }
 
-		// @property (readonly, nonatomic) UIButton * leftButton;
+		// @property (readonly, nonatomic) UIButton * _Nonnull leftButton;
 		[Export ("leftButton")]
 		UIButton LeftButton { get; }
 
-		// @property (readonly, nonatomic) UIButton * rightButton;
+		// @property (readonly, nonatomic) UIButton * _Nonnull rightButton;
 		[Export ("rightButton")]
 		UIButton RightButton { get; }
 
-		// -(instancetype)initWithTableViewStyle:(UITableViewStyle)style __attribute__((objc_designated_initializer));
+		// -(instancetype _Nullable)initWithTableViewStyle:(UITableViewStyle)style;
 		[Export ("initWithTableViewStyle:")]
 		[DesignatedInitializer]
 		IntPtr Constructor (UITableViewStyle style);
 
-		// -(instancetype)initWithCollectionViewLayout:(UICollectionViewLayout *)layout __attribute__((objc_designated_initializer));
+		// -(instancetype _Nullable)initWithCollectionViewLayout:(UICollectionViewLayout * _Nonnull)layout;
 		[Export ("initWithCollectionViewLayout:")]
 		[DesignatedInitializer]
 		IntPtr Constructor (UICollectionViewLayout layout);
 
-		// -(instancetype)initWithScrollView:(UIScrollView *)scrollView __attribute__((objc_designated_initializer));
+		// -(instancetype _Nullable)initWithScrollView:(UIScrollView * _Nonnull)scrollView;
 		[Export ("initWithScrollView:")]
 		[DesignatedInitializer]
 		IntPtr Constructor (UIScrollView scrollView);
 
-//		// -(instancetype)initWithCoder:(NSCoder *)decoder __attribute__((objc_designated_initializer));
+//		// -(instancetype _Nullable)initWithCoder:(NSCoder * _Nonnull)decoder;
 //		[Export ("initWithCoder:")]
 //		[DesignatedInitializer]
 //		IntPtr Constructor (NSCoder decoder);
 
-		// +(UITableViewStyle)tableViewStyleForCoder:(NSCoder *)decoder;
+		// +(UITableViewStyle)tableViewStyleForCoder:(NSCoder * _Nonnull)decoder;
 		[Static]
 		[Export ("tableViewStyleForCoder:")]
 		UITableViewStyle GetTableViewStyle (NSCoder decoder);
 
-		// +(UICollectionViewLayout *)collectionViewLayoutForCoder:(NSCoder *)decoder;
+		// +(UICollectionViewLayout * _Nonnull)collectionViewLayoutForCoder:(NSCoder * _Nonnull)decoder;
 		[Static]
 		[Export ("collectionViewLayoutForCoder:")]
 		UICollectionViewLayout GetCollectionViewLayout (NSCoder decoder);
@@ -511,7 +511,7 @@ namespace SlackHQ
 		[Export ("dismissKeyboard:")]
 		void DismissKeyboard (bool animated);
 
-		// -(BOOL)forceTextInputbarAdjustmentForResponder:(UIResponder *)responder;
+		// -(BOOL)forceTextInputbarAdjustmentForResponder:(UIResponder * _Nullable)responder;
 		[Export ("forceTextInputbarAdjustmentForResponder:")]
 		bool ForceTextInputbarAdjustmentForResponder ([NullAllowed] UIResponder responder);
 
@@ -539,11 +539,11 @@ namespace SlackHQ
 //		[RequiresSuper]
 		void TextSelectionDidChange ();
 
-		// -(void)didPressLeftButton:(id)sender;
+		// -(void)didPressLeftButton:(id _Nullable)sender;
 		[Export ("didPressLeftButton:")]
 		void DidPressLeftButton ([NullAllowed] NSObject sender);
 
-		// -(void)didPressRightButton:(id)sender __attribute__((objc_requires_super));
+		// -(void)didPressRightButton:(id _Nullable)sender __attribute__((objc_requires_super));
 		[Export ("didPressRightButton:")]
 //		[RequiresSuper]
 		void DidPressRightButton ([NullAllowed] NSObject sender);
@@ -552,7 +552,7 @@ namespace SlackHQ
 		[Export ("canPressRightButton")]
 		bool CanPressRightButton { get; }
 
-		// -(void)didPasteMediaContent:(NSDictionary *)userInfo;
+		// -(void)didPasteMediaContent:(NSDictionary * _Nonnull)userInfo;
 		[Export ("didPasteMediaContent:")]
 		void DidPasteMediaContent (NSDictionary userInfo);
 
@@ -564,17 +564,17 @@ namespace SlackHQ
 		[Export ("willRequestUndo")]
 		void WillRequestUndo ();
 
-		// -(void)didPressReturnKey:(id)sender __attribute__((objc_requires_super));
+		// -(void)didPressReturnKey:(UIKeyCommand * _Nullable)keyCommand __attribute__((objc_requires_super));
 		[Export ("didPressReturnKey:")]
 //		[RequiresSuper]
 		void DidPressReturnKey ([NullAllowed] UIKeyCommand sender);
 
-		// -(void)didPressEscapeKey:(id)sender __attribute__((objc_requires_super));
+		// -(void)didPressEscapeKey:(UIKeyCommand * _Nullable)keyCommand __attribute__((objc_requires_super));
 		[Export ("didPressEscapeKey:")]
 //		[RequiresSuper]
 		void DidPressEscapeKey ([NullAllowed] UIKeyCommand sender);
 
-		// -(void)didPressArrowKey:(id)sender __attribute__((objc_requires_super));
+		// -(void)didPressArrowKey:(UIKeyCommand * _Nullable)keyCommand __attribute__((objc_requires_super));
 		[Export ("didPressArrowKey:")]
 //		[RequiresSuper]
 		void DidPressArrowKey ([NullAllowed] UIKeyCommand sender);
@@ -592,7 +592,7 @@ namespace SlackHQ
 		[Export ("editing")]
 		bool Editing { [Bind ("isEditing")] get; set; }
 
-		// -(void)editText:(NSString *)text __attribute__((objc_requires_super));
+		// -(void)editText:(NSString * _Nonnull)text __attribute__((objc_requires_super));
 		[Export ("editText:")]
 //		[RequiresSuper]
 		void EditText (string text);
@@ -602,17 +602,17 @@ namespace SlackHQ
 //		[RequiresSuper]
 		void EditText (NSAttributedString attributedText);
 
-		// -(void)didCommitTextEditing:(id)sender __attribute__((objc_requires_super));
+		// -(void)didCommitTextEditing:(id _Nonnull)sender __attribute__((objc_requires_super));
 		[Export ("didCommitTextEditing:")]
 //		[RequiresSuper]
 		void DidCommitTextEditing (NSObject sender);
 
-		// -(void)didCancelTextEditing:(id)sender __attribute__((objc_requires_super));
+		// -(void)didCancelTextEditing:(id _Nonnull)sender __attribute__((objc_requires_super));
 		[Export ("didCancelTextEditing:")]
 //		[RequiresSuper]
 		void DidCancelTextEditing (NSObject sender);
 
-		// @property (readonly, nonatomic) UITableView * autoCompletionView;
+		// @property (readonly, nonatomic) UITableView * _Nonnull autoCompletionView;
 		[Export ("autoCompletionView")]
 		UITableView AutoCompletionView { get; }
 
@@ -620,32 +620,35 @@ namespace SlackHQ
 		[Export ("autoCompleting")]
 		bool AutoCompleting { [Bind ("isAutoCompleting")] get; }
 
-		// @property (readonly, copy, nonatomic) NSString * foundPrefix;
+		// @property (copy, nonatomic) NSString * _Nullable foundPrefix;
 		[NullAllowed, Export ("foundPrefix")]
-		string FoundPrefix { get; }
+		string FoundPrefix { get; set; }
 
-		// @property (readonly, nonatomic) NSRange foundPrefixRange;
-		[Export ("foundPrefixRange")]
-		NSRange FoundPrefixRange { get; }
+		// @property (nonatomic) NSRange foundPrefixRange;
+		[Export ("foundPrefixRange", ArgumentSemantic.Assign)]
+		NSRange FoundPrefixRange { get; set; }
 
-		// @property (readonly, copy, nonatomic) NSString * foundWord;
+		// @property (copy, nonatomic) NSString * _Nullable foundWord;
 		[NullAllowed, Export ("foundWord")]
-		string FoundWord { get; }
+		string FoundWord { get; set; }
 
-		// @property (readonly, copy, nonatomic) NSArray * registeredPrefixes;
-		[Export ("registeredPrefixes", ArgumentSemantic.Copy)]
+		// @property (readonly, copy, nonatomic) NSSet<NSString *> * _Nullable registeredPrefixes;
+		[NullAllowed, Export ("registeredPrefixes", ArgumentSemantic.Copy)]
 		string[] RegisteredPrefixes { get; }
 
-		// -(void)registerPrefixesForAutoCompletion:(NSArray *)prefixes;
+		// -(void)registerPrefixesForAutoCompletion:(NSArray<NSString *> * _Nullable)prefixes;
 		[Export ("registerPrefixesForAutoCompletion:")]
 		void RegisterPrefixesForAutoCompletion ([NullAllowed] string[] prefixes);
 
-		// -(BOOL)shouldProcessTextForAutoCompletion:(NSString * _Nonnull)text __attribute__((objc_requires_super));
-		[Export ("shouldProcessTextForAutoCompletion:")]
-//		[RequiresSuper]
-		bool ShouldProcessTextForAutoCompletion (string text);
+		// -(BOOL)shouldProcessTextForAutoCompletion;
+		[Export ("shouldProcessTextForAutoCompletion")]
+		bool ShouldProcessTextForAutoCompletion { get; }
 
-		// -(void)didChangeAutoCompletionPrefix:(NSString *)prefix andWord:(NSString *)word;
+		// -(BOOL)shouldDisableTypingSuggestionForAutoCompletion;
+		[Export ("shouldDisableTypingSuggestionForAutoCompletion")]
+		bool ShouldDisableTypingSuggestionForAutoCompletion { get; }
+
+		// -(void)didChangeAutoCompletionPrefix:(NSString * _Nonnull)prefix andWord:(NSString * _Nonnull)word;
 		[Export ("didChangeAutoCompletionPrefix:andWord:")]
 		void DidChangeAutoCompletionPrefix (string prefix, string word);
 
@@ -669,15 +672,15 @@ namespace SlackHQ
 		[Export ("cancelAutoCompletion")]
 		void CancelAutoCompletion ();
 
-		// -(void)acceptAutoCompletionWithString:(NSString *)string;
+		// -(void)acceptAutoCompletionWithString:(NSString * _Nullable)string;
 		[Export ("acceptAutoCompletionWithString:")]
 		void AcceptAutoCompletion ([NullAllowed] string @string);
 
-		// -(void)acceptAutoCompletionWithString:(NSString *)string keepPrefix:(BOOL)keepPrefix;
+		// -(void)acceptAutoCompletionWithString:(NSString * _Nullable)string keepPrefix:(BOOL)keepPrefix;
 		[Export ("acceptAutoCompletionWithString:keepPrefix:")]
 		void AcceptAutoCompletion ([NullAllowed] string @string, bool keepPrefix);
 
-		// -(NSString *)keyForTextCaching;
+		// -(NSString * _Nullable)keyForTextCaching;
 		[NullAllowed, Export ("keyForTextCaching")]
 		string KeyForTextCaching { get; }
 
@@ -694,57 +697,48 @@ namespace SlackHQ
 		[Export ("cacheTextView")]
 		void CacheTextView ();
 
-		// -(void)registerClassForTextView:(Class)aClass;
+		// -(void)registerClassForTextView:(Class _Nullable)aClass;
 		[Export ("registerClassForTextView:")]
 		void RegisterClassForTextView ([NullAllowed] Class aClass);
 
-		// -(void)registerClassForTypingIndicatorView:(Class)aClass;
+		// -(void)registerClassForTypingIndicatorView:(Class _Nullable)aClass;
 		[Export ("registerClassForTypingIndicatorView:")]
 		void RegisterClassForTypingIndicatorView ([NullAllowed] Class aClass);
 
-
-		// -(BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text __attribute__((objc_requires_super));
+		// -(BOOL)textView:(UITextView * _Nonnull)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString * _Nonnull)text __attribute__((objc_requires_super));
 		[Export ("textView:shouldChangeTextInRange:replacementText:")]
 //		[RequiresSuper]
 		bool ShouldChangeText (UITextView textView, NSRange range, string text);
 
-        // - (BOOL)textView:(SLKTextView *)textView shouldInsertSuffixForFormattingWithSymbol:(NSString *)symbol prefixRange:(NSRange)prefixRange NS_REQUIRES_SUPER;
+		// -(BOOL)textView:(SLKTextView * _Nonnull)textView shouldInsertSuffixForFormattingWithSymbol:(NSString * _Nonnull)symbol prefixRange:(NSRange)prefixRange __attribute__((objc_requires_super));
 		[Export ("textView:shouldInsertSuffixForFormattingWithSymbol:prefixRange:")]
 //		[RequiresSuper]
 		bool ShouldInsertSuffixForFormattingWithSymbol (SlackTextView textView, string symbol, NSRange prefixRange);
 
-		// -(BOOL)scrollViewShouldScrollToTop:(UIScrollView *)scrollView __attribute__((objc_requires_super));
+		// -(BOOL)scrollViewShouldScrollToTop:(UIScrollView * _Nonnull)scrollView __attribute__((objc_requires_super));
 		[Export ("scrollViewShouldScrollToTop:")]
 //		[RequiresSuper]
 		bool ShouldScrollToTop (UIScrollView scrollView);
 
-		// -(void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate __attribute__((objc_requires_super));
+		// -(void)scrollViewDidEndDragging:(UIScrollView * _Nonnull)scrollView willDecelerate:(BOOL)decelerate __attribute__((objc_requires_super));
 		[Export ("scrollViewDidEndDragging:willDecelerate:")]
 //		[RequiresSuper]
 		void DraggingEnded (UIScrollView scrollView, bool decelerate);
 
-		// -(void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView __attribute__((objc_requires_super));
+		// -(void)scrollViewDidEndDecelerating:(UIScrollView * _Nonnull)scrollView __attribute__((objc_requires_super));
 		[Export ("scrollViewDidEndDecelerating:")]
 //		[RequiresSuper]
 		void DecelerationEnded (UIScrollView scrollView);
 
-		// -(void)scrollViewDidScroll:(UIScrollView *)scrollView __attribute__((objc_requires_super));
+		// -(void)scrollViewDidScroll:(UIScrollView * _Nonnull)scrollView __attribute__((objc_requires_super));
 		[Export ("scrollViewDidScroll:")]
 //		[RequiresSuper]
 		void Scrolled (UIScrollView scrollView);
 
-
-		// -(BOOL)gestureRecognizerShouldBegin:(UIGestureRecognizer *)gestureRecognizer __attribute__((objc_requires_super));
+		// -(BOOL)gestureRecognizerShouldBegin:(UIGestureRecognizer * _Nonnull)gestureRecognizer __attribute__((objc_requires_super));
 		[Export ("gestureRecognizerShouldBegin:")]
 //		[RequiresSuper]
 		bool ShouldBegin (UIGestureRecognizer gestureRecognizer);
-
-
-		// -(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex __attribute__((objc_requires_super));
-		[Export ("alertView:clickedButtonAtIndex:")]
-//		[RequiresSuper]
-		void Clicked (UIAlertView alertView, nint buttonIndex);
-
 
 		// -(void)loadView __attribute__((objc_requires_super));
 		[Override]
@@ -816,7 +810,7 @@ namespace SlackHQ
 		[Export ("slk_insertNewLineBreak")]
 		void SlackInsertNewLineBreak ();
 
-		// -(void)slk_insertTextAtCaretRange:(NSString *)text;
+		// -(void)slk_insertTextAtCaretRange:(NSString * _Nonnull)text;
 		[Export ("slk_insertTextAtCaretRange:")]
 		void SlackInsertText (string text);
 
@@ -824,7 +818,7 @@ namespace SlackHQ
 		[Export ("slk_insertTextAtCaretRange:withAttributes:")]
 		void SlackInsertText (string text, NSDictionary<NSString, NSObject> attributes);
 
-		// -(NSRange)slk_insertText:(NSString *)text inRange:(NSRange)range;
+		// -(NSRange)slk_insertText:(NSString * _Nonnull)text inRange:(NSRange)range;
 		[Export ("slk_insertText:inRange:")]
 		NSRange SlackInsertText (string text, NSRange range);
 
@@ -841,7 +835,7 @@ namespace SlackHQ
 		void SlackInsertAttributedText (NSAttributedString attributedText);
 
 		// -(NSRange)slk_insertAttributedText:(NSAttributedString * _Nonnull)attributedText inRange:(NSRange)range;
-		[Export("slk_insertAttributedText:inRange:")]
+		[Export ("slk_insertAttributedText:inRange:")]
 		NSRange SlackInsertAttributedText (NSAttributedString attributedText, NSRange range);
 
 		// -(void)slk_clearAllAttributesInRange:(NSRange)range;
@@ -892,27 +886,27 @@ namespace SlackHQ
 	[BaseType (typeof(UIView))]
 	interface UIViewExtensions
 	{
-		// -(void)slk_animateLayoutIfNeededWithBounce:(BOOL)bounce options:(UIViewAnimationOptions)options animations:(void (^)(void))animations;
+		// -(void)slk_animateLayoutIfNeededWithBounce:(BOOL)bounce options:(UIViewAnimationOptions)options animations:(void (^ _Nullable)(void))animations;
 		[Export ("slk_animateLayoutIfNeededWithBounce:options:animations:")]
 		void SlackAnimateLayoutIfNeeded (bool bounce, UIViewAnimationOptions options, [NullAllowed] Action animations);
 
-		// -(void)slk_animateLayoutIfNeededWithBounce:(BOOL)bounce options:(UIViewAnimationOptions)options animations:(void (^)(void))animations completion:(void (^)(BOOL))completion;
+		// -(void)slk_animateLayoutIfNeededWithBounce:(BOOL)bounce options:(UIViewAnimationOptions)options animations:(void (^ _Nullable)(void))animations completion:(void (^ _Nullable)(BOOL))completion;
 		[Export ("slk_animateLayoutIfNeededWithBounce:options:animations:completion:")]
 		void SlackAnimateLayoutIfNeeded (bool bounce, UIViewAnimationOptions options, [NullAllowed] Action animations, [NullAllowed] Action<bool> completion);
 
-		// -(void)slk_animateLayoutIfNeededWithDuration:(NSTimeInterval)duration bounce:(BOOL)bounce options:(UIViewAnimationOptions)options animations:(void (^)(void))animations completion:(void (^)(BOOL))completion;
+		// -(void)slk_animateLayoutIfNeededWithDuration:(NSTimeInterval)duration bounce:(BOOL)bounce options:(UIViewAnimationOptions)options animations:(void (^ _Nullable)(void))animations completion:(void (^ _Nullable)(BOOL))completion;
 		[Export ("slk_animateLayoutIfNeededWithDuration:bounce:options:animations:completion:")]
 		void SlackAnimateLayoutIfNeeded (double duration, bool bounce, UIViewAnimationOptions options, [NullAllowed] Action animations, [NullAllowed] Action<bool> completion);
 
-		// -(NSArray *)slk_constraintsForAttribute:(NSLayoutAttribute)attribute;
+		// -(NSArray * _Nullable)slk_constraintsForAttribute:(NSLayoutAttribute)attribute;
 		[Export ("slk_constraintsForAttribute:")]
 		[return: NullAllowed]
 		NSLayoutConstraint[] SlackConstraintsForAttribute (NSLayoutAttribute attribute);
 
-		// -(NSLayoutConstraint *)slk_constraintForAttribute:(NSLayoutAttribute)attribute firstItem:(id)first secondItem:(id)second;
+		// -(NSLayoutConstraint * _Nullable)slk_constraintForAttribute:(NSLayoutAttribute)attribute firstItem:(id _Nullable)first secondItem:(id _Nullable)second;
 		[Export ("slk_constraintForAttribute:firstItem:secondItem:")]
 		[return: NullAllowed]
-		NSLayoutConstraint SlackConstraintForAttribute (NSLayoutAttribute attribute, NSObject first, NSObject second);
+		NSLayoutConstraint SlackConstraintForAttribute (NSLayoutAttribute attribute, [NullAllowed] NSObject first, [NullAllowed] NSObject second);
 	}
 
 	// @interface SLKAdditions (UIResponder)
@@ -920,7 +914,7 @@ namespace SlackHQ
 	[BaseType (typeof(UIResponder))]
 	interface UIResponderExtensions
 	{
-		// +(instancetype)slk_currentFirstResponder;
+		// +(instancetype _Nullable)slk_currentFirstResponder;
 		[Static]
 		[Export ("slk_currentFirstResponder")]
 		[return: NullAllowed]
