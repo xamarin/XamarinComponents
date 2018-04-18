@@ -1,8 +1,3 @@
-**Xamarin is not responsible for, nor does it grant any licenses to, third-party packages. Some packages may require or install dependencies which are governed by additional licenses.**
-
-Note: This component is derived from [APDropDownNavToolbar](https://github.com/ankurp/APDropDownNavToolbar), which is subject to the [MIT License](https://github.com/ankurp/APDropDownNavToolbar/blob/master/LICENSE)
-
-### Xamarin Component for APDropDownNavToolbar
 
 **The MIT License (MIT)**
 
