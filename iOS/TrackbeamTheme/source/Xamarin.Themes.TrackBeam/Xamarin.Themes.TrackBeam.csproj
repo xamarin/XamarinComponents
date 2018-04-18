@@ -36,7 +36,7 @@
     <Reference Include="System.Core" />
     <Reference Include="Xamarin.iOS" />
     <Reference Include="Xamarin.Themes.Core">
-      <HintPath>..\packages\Xamarin.Themes.Core.1.0.0.1\lib\Xamarin.iOS10\Xamarin.Themes.Core.dll</HintPath>
+      <HintPath>..\..\samples\TrackBeamTheme-Sample-iOS\packages\Xamarin.Themes.Core.1.0.0.1\lib\Xamarin.iOS10\Xamarin.Themes.Core.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
