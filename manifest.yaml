@@ -327,6 +327,10 @@
   BuildScript: ./iOS/SDSegmentedControl/build.cake
   TriggerPaths: [ iOS/SDSegmentedControl ]
   MacBuildTargets: [ samples, component ]
+- Name: XamDialogs
+  BuildScript: ./iOS/XamDialogs/build.cake
+  TriggerPaths: [ iOS/XamDialogs ]
+  MacBuildTargets: [ samples, component ]
 
 #######################################################
 # XPlat
