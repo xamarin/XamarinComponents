@@ -343,6 +343,10 @@
   BuildScript: ./iOS/XamDialogs/build.cake
   TriggerPaths: [ iOS/XamDialogs ]
   MacBuildTargets: [ samples, component ]
+- Name: REFrostedViewController
+  BuildScript: ./iOS/REFrostedViewController/build.cake
+  TriggerPaths: [ iOS/REFrostedViewController ]
+  MacBuildTargets: [ samples, nuget, component ]
 - Name: TrackbeamTheme
   BuildScript: ./iOS/TrackbeamTheme/build.cake
   TriggerPaths: [ iOS/TrackbeamTheme ]

@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<package>
+  <metadata>
+    <id>Xamarin.REFrostedViewController</id>
+    <title>Xamarin.REFrostedViewController</title>
+    <version>1.1</version>
+    <authors>Microsoft</authors>
+    <owners>Microsoft</owners>
+    <requireLicenseAcceptance>true</requireLicenseAcceptance>
+    <description>iOS 7/8 style blurred view controller that appears on top of your view controller</description>
+    <copyright>© Microsoft Corporation. All rights reserved.</copyright>
+    <projectUrl>https://go.microsoft.com/fwlink/?linkid=866321</projectUrl>
+    <licenseUrl>https://go.microsoft.com/fwlink/?linkid=866322</licenseUrl>
+  </metadata>
+  <files>
+    <file src="./output/REFrostedViewController.dll" target="lib/Xamarin.iOS" />
+    <file src="External-Dependency-Info.txt" target="THIRD-PARTY-NOTICES.txt" />
+  </files>
+</package>
