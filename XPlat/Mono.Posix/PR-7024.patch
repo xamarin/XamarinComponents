@@ -1,0 +1,13 @@
+3786c3786
+< 		private static extern int sys_epoll_wait (int epfd, EpollEvent [] ee, int maxevents, int timeout);
+---
+> 		private static extern int sys_epoll_wait (int epfd, [In,Out] EpollEvent [] ee, int maxevents, int timeout);
+3869c3869
+< 		private static extern int sys_poll (_pollfd[] ufds, uint nfds, int timeout);
+---
+> 		private static extern int sys_poll ([In,Out] _pollfd[] ufds, uint nfds, int timeout);
+5881c5881
+< // End: 
+---
+> // End: 
+\ No newline at end of file

@@ -1,4 +1,3 @@
-
 **JDStatusBarNotification** allows an app to show messages on top of the status bar. 
 
 ## Usage

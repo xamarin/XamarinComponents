@@ -1,11 +1,11 @@
 name: JZMultiChoicesCircleButton
 id: jzmultichoicescirclebutton
-version: 1.0
+version: 1.1
 summary: Multi choice circle button with cool 3d parallax effect
 publisher: Xamarin Inc
-publisher-url: http://www.xamarin.com/
-src-url: https://github.com/xamarin/XamarinComponents/tree/master/iOS/JZMultiChoicesCircleButton
-license: License.md
+publisher-url: https://go.microsoft.com/fwlink/?linkid=865975
+src-url: https://go.microsoft.com/fwlink/?linkid=865975
+license: ../License.md
 details: Details.md
 getting-started: GettingStarted.md
 icons: 
@@ -15,8 +15,23 @@ screenshots:
    - screenshots/00.jpg
 libraries:
   ios-unified: 
-    - ../source/JZMultiChoice/bin/release/JZMultiChoice.dll
+    - ../output/JZMultiChoice.dll
 samples:
   - name: "iOS Unified Sample"
     path: ../samples/JZMultiChoicesCircleButtonSample.sln
+    removeProjects:
+      - JZMultiChoice
+    installNuGets:
+      - project: JZMultiChoicesCircleButtonSample
+        packages:
+          - Xamarin.JZMultiChoicesCircleButton
+    nobuild: "true"
+local-nuget-repo: ../output
+packages:
+   ios-unified: Xamarin.JZMultiChoicesCircleButton, Version=1.1
+is_shell: true
 no_build: true
+additional-files:
+  - source: "../External-Dependency-Info.txt"
+    destination: "THIRD-PARTY-NOTICES.txt"
+

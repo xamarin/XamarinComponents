@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<package >
+  <metadata>
+    <id>Xamarin.AndroidSwipeLayout</id>
+    <title>Swipe Layout for Xamarin.Android</title>
+    <version>1.2.0.2</version>
+    <authors>Microsoft</authors>
+    <owners>Microsoft</owners>
+    <requireLicenseAcceptance>true</requireLicenseAcceptance>
+    <description>Android Swipe Layout provides a layout which enables view to be swiped away to reveal other views underneath..</description>
+    <copyright>© Microsoft Corporation. All rights reserved.</copyright>
+    <iconUrl>https://raw.githubusercontent.com/xamarin/XamarinComponents/master/Android/AndroidSwipeLayout/images/icon_256x256.png</iconUrl>
+    <projectUrl>https://go.microsoft.com/fwlink/?linkid=864974</projectUrl>
+    <licenseUrl>https://go.microsoft.com/fwlink/?linkid=865039</licenseUrl>
+    <dependencies>
+      <dependency id="Xamarin.Android.Support.v4" version="21.0.3.0" />
+      <dependency id="Xamarin.Android.Support.v7.RecyclerView" version="21.0.3.0" />
+    </dependencies>
+  </metadata>
+  <files>
+    <file src="output/AndroidSwipeLayout.dll" target="lib/MonoAndroid403" />
+    <file src="External-Dependency-Info.txt" target="THIRD-PARTY-NOTICES.txt" />
+  </files>
+</package>

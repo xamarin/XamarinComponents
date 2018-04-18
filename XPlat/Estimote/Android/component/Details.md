@@ -34,7 +34,7 @@ Beacon is only a piece of hardware broadcasting radio signal. On top of that, th
 
 # Estimote SDK for Android
 
-The Estimote SDK for Android is a library that allows interaction with Estimote beacons & stickers. The SDK system works on Android 4.3 or above and requires device with Bluetooth Low Energy (SDK's min Android SDK version is 9).
+The Estimote SDK for Android is a library that allows interaction with Estimote beacons & stickers. The SDK system works on Android 4.3 or above and requires device with Bluetooth Low Energy.
 
 It allows for:
 

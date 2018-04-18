@@ -1,0 +1,26 @@
+<?xml version="1.0"?>
+<package >
+  <metadata>
+    <id>Xamarin.Google.Guava</id>
+    <title>Google Guava reference library for Xamarin.Android</title>
+    <version>$version$</version>
+    <authors>Microsoft</authors>
+    <owners>Microsoft</owners>
+    <requireLicenseAcceptance>true</requireLicenseAcceptance>
+    <description>
+    NOTE: This package is meant to be used as a reference only for other binding projects that depend on Guava.
+    This package does not expose any useful API's in the .dll itself.
+    
+    Guava is a set of core libraries that includes new collection types (such as multimap and multiset), immutable collections, a graph library, functional types, an in-memory cache, and APIs/utilities for concurrency, I/O, hashing, primitives, reflection, string processing, and much more!
+    </description>
+    <copyright>© Microsoft Corporation. All rights reserved.</copyright>
+    <projectUrl>https://go.microsoft.com/fwlink/?linkid=865028</projectUrl>
+    <licenseUrl>https://go.microsoft.com/fwlink/?linkid=865030</licenseUrl>
+    <dependencies>
+    </dependencies>
+  </metadata>
+  <files>
+    <file src="output/Xamarin.Google.Guava.dll" target="lib/MonoAndroid403" />
+    <file src="External-Dependency-Info.txt" target="THIRD-PARTY-NOTICES.txt" />
+  </files>
+</package>

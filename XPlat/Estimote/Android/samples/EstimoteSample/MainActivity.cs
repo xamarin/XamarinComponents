@@ -9,6 +9,7 @@ using Android.Views;
 using Android.Widget;
 
 using EstimoteSdk;
+using EstimoteSdk.Recognition.Packets;
 
 namespace Estimotes.Droid
 {

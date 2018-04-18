@@ -4,13 +4,13 @@
     <id>DACircularProgress</id>
     <title>DACircularProgress</title>
     <version>2.3.1.0</version>
-    <authors>Xamarin Inc.</authors>
-    <owners>Xamarin Inc.</owners>
-    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <authors>Microsoft</authors>
+    <owners>Microsoft</owners>
+    <requireLicenseAcceptance>true</requireLicenseAcceptance>
     <description>DACircularProgress is a UIView subclass with circular UIProgressView properties.</description>
-    <copyright>Copyright 2015 Xamarin Inc</copyright>
-    <projectUrl>https://components.xamarin.com/view/DACircularProgress</projectUrl>
-    <licenseUrl>https://components.xamarin.com/license/DACircularProgress</licenseUrl>
+    <copyright>© Microsoft Corporation. All rights reserved.</copyright>
+    <projectUrl>https://go.microsoft.com/fwlink/?linkid=865033</projectUrl>
+    <licenseUrl>https://go.microsoft.com/fwlink/?linkid=864969</licenseUrl>
   </metadata>
   <files>
     <file src="output/unified/DACircularProgress.dll" target="lib/Xamarin.iOS" />
