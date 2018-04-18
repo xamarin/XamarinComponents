@@ -343,6 +343,10 @@
   BuildScript: ./iOS/XamDialogs/build.cake
   TriggerPaths: [ iOS/XamDialogs ]
   MacBuildTargets: [ samples, component ]
+- Name: TrackbeamTheme
+  BuildScript: ./iOS/TrackbeamTheme/build.cake
+  TriggerPaths: [ iOS/TrackbeamTheme ]
+  MacBuildTargets: [ samples, nuget, component ]
 - Name: IQAudioRecorderController
   BuildScript: ./iOS/IQAudioRecorderController/build.cake
   TriggerPaths: [ iOS/IQAudioRecorderController ]
