@@ -7,22 +7,14 @@
 using Foundation;
 using System;
 using System.CodeDom.Compiler;
-using UIKit;
 
-namespace TrackBeamTheme_Sample_iOS.Views.iPhone
+namespace Xamarin.Themes.TrackBeam.Controls
 {
-    [Register ("ThemeListController")]
-    partial class ThemeListController
+    [Register ("TBSwitch")]
+    partial class TBSwitch
     {
-        [Outlet]
-        UITableView tableListView { get; set; }
-
         void ReleaseDesignerOutlets ()
         {
-            if (tableListView != null) {
-                tableListView.Dispose ();
-                tableListView = null;
-            }
         }
     }
 }
