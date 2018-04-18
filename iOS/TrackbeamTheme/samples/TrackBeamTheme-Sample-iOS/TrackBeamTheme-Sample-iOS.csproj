@@ -182,6 +182,7 @@
   <ItemGroup>
     <InterfaceDefinition Include="MainStoryboard_iPad.storyboard" />
     <InterfaceDefinition Include="MainStoryboard_iPhone.storyboard" />
+    <InterfaceDefinition Include="LaunchScreen.xib" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\source\Xamarin.Themes.TrackBeam\Xamarin.Themes.TrackBeam.csproj">
