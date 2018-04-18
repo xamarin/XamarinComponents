@@ -343,6 +343,10 @@
   BuildScript: ./iOS/XamDialogs/build.cake
   TriggerPaths: [ iOS/XamDialogs ]
   MacBuildTargets: [ samples, component ]
+- Name: APDropDownNavToolbar
+  BuildScript: ./iOS/APDropDownNavToolbar/build.cake
+  TriggerPaths: [ iOS/APDropDownNavToolbar ]
+  MacBuildTargets: [ samples, nuget, component ]
 - Name: REFrostedViewController
   BuildScript: ./iOS/REFrostedViewController/build.cake
   TriggerPaths: [ iOS/REFrostedViewController ]

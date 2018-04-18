@@ -1,0 +1,26 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "APDropDownNavToolbar", "APDropDownNavToolbar\APDropDownNavToolbar.csproj", "{450701FE-1EE2-4F55-9B06-49C6C61871B1}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|iPhoneSimulator = Debug|iPhoneSimulator
+		Debug|iPhone = Debug|iPhone
+		Release|iPhone = Release|iPhone
+		Release|iPhoneSimulator = Release|iPhoneSimulator
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{450701FE-1EE2-4F55-9B06-49C6C61871B1}.Debug|iPhone.ActiveCfg = Debug|Any CPU
+		{450701FE-1EE2-4F55-9B06-49C6C61871B1}.Debug|iPhone.Build.0 = Debug|Any CPU
+		{450701FE-1EE2-4F55-9B06-49C6C61871B1}.Debug|iPhoneSimulator.ActiveCfg = Debug|Any CPU
+		{450701FE-1EE2-4F55-9B06-49C6C61871B1}.Debug|iPhoneSimulator.Build.0 = Debug|Any CPU
+		{450701FE-1EE2-4F55-9B06-49C6C61871B1}.Release|iPhone.ActiveCfg = Release|Any CPU
+		{450701FE-1EE2-4F55-9B06-49C6C61871B1}.Release|iPhone.Build.0 = Release|Any CPU
+		{450701FE-1EE2-4F55-9B06-49C6C61871B1}.Release|iPhoneSimulator.ActiveCfg = Release|Any CPU
+		{450701FE-1EE2-4F55-9B06-49C6C61871B1}.Release|iPhoneSimulator.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(MonoDevelopProperties) = preSolution
+		version = 1.1
+	EndGlobalSection
+EndGlobal
