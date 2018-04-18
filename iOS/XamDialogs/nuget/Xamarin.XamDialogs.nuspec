@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <package >
   <metadata>
-    <id>xamdialogs</id>
+    <id>Xamarin.XamDialogs</id>
     <version>1.1.0.0</version>
     <title>XamDialogs for Xamarin.iOS</title>
     <authors>Microsoft</authors>
@@ -14,7 +14,8 @@
     <copyright>© Microsoft Corporation. All rights reserved.</copyright>
     <tags>Xamarin.iOS Dialogs</tags>
   </metadata>
-      <files>
-    	<file src="output/XamDialogs.dll" target="lib/Xamarin.iOS10" />
-    </files>
+   <files>
+     <file src="output/XamDialogs.dll" target="lib/Xamarin.iOS10" />
+    <file src="External-Dependency-Info.txt" target="THIRD-PARTY-NOTICES.txt" />
+   </files>
 </package>

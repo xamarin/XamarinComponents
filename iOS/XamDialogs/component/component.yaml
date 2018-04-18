@@ -27,11 +27,14 @@ samples:
     installNuGets:
       - project: XamDialogsSample
         packages:
-          - xamdialogs
+          - Xamarin.XamDialogs
     nobuild: "true"
     configuration: Release|iPhone
 local-nuget-repo: ../output
 packages:
-  ios-unified: xamdialogs, Version=1.1.0
+  ios-unified: Xamarin.XamDialogs, Version=1.1.0
 is_shell: true
 no_build: true
+additional-files:
+  - source: "../External-Dependency-Info.txt"
+    destination: "THIRD-PARTY-NOTICES.txt"

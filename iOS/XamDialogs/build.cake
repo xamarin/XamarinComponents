@@ -22,7 +22,7 @@ var buildSpec = new BuildSpec () {
 	},
 	
 	NuGets = new [] {
-		new NuGetInfo { NuSpec = "./nuget/XamDialogs.nuspec", BuildsOn = BuildPlatforms.Mac },
+		new NuGetInfo { NuSpec = "./nuget/Xamarin.XamDialogs.nuspec", BuildsOn = BuildPlatforms.Mac },
 	},
 
 	Components = new [] {
