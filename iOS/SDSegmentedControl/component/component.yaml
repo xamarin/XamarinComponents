@@ -1,22 +1,33 @@
 id: sdsegmentedcontrol
-version: 2.1.4
+version: 2.1.5
 name: SDSegmentedControl
 publisher: Xamarin Inc
 publisher-url: https://xamarin.com/
 src-url: https://github.com/xamarin/XamarinComponents/tree/master/iOS/SDSegmentedControl
 summary: A fancy tab control similar to one used in the App Store.
-
 icons:
   - icons/sdsegmentedcontrol_128x128.png
   - icons/sdsegmentedcontrol_512x512.png
 details: Details.md
 getting-started: GettingStarted.md
-license: License.md
-
+license: ../License.md
 no_build: true
 libraries:
   ios-unified: ../output/SegmentedControl.dll
-
 samples:
   - name: "SDSegmentedControl Sample"
     path:  ../samples/SDSegmentedControlSample.sln
+    removeProjects:
+      - SegmentedControl
+    installNuGets:
+      - project: SDSegmentedControlSample
+        packages:
+          - Xamarin.SDSegmentedControl
+    nobuild: "true"
+local-nuget-repo: ../output
+is_shell: true
+packages:
+  ios-unified: Xamarin.SDSegmentedControl, Version=2.1.5
+additional-files:
+  - source: "../External-Dependency-Info.txt"
+    destination: "THIRD-PARTY-NOTICES.txt"

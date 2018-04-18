@@ -1,11 +1,13 @@
-#addin nuget:?package=Cake.Xamarin.Build
-#addin nuget:?package=Cake.Xamarin
+#load "../../common.cake"
 
 var TARGET = Argument ("t", Argument ("target", "Default"));
 
-var NUGET_VERSION = "0.0.1-preview";
-var JAVAGL_VERSION = "0.2.1";
-var SDK_URL = "https://github.com/google-ar/arcore-android-sdk/releases/download/sdk-preview/arcore-android-sdk-preview.zip";
+var NUGET_VERSION = "1.0.0";
+
+var AAR_VERSION = "1.0.0";
+var AAR_URL = string.Format("https://dl.google.com/dl/android/maven2/com/google/ar/core/{0}/core-{0}.aar", AAR_VERSION);
+var OBJ_VERSION = "0.2.1";
+var OBJ_URL = string.Format("https://oss.sonatype.org/content/repositories/releases/de/javagl/obj/{0}/obj-{0}.jar", OBJ_VERSION);
 
 var buildSpec = new BuildSpec () {
 	Libs = new [] {
@@ -27,17 +29,17 @@ var buildSpec = new BuildSpec () {
 Task ("externals")
 	.Does (() => 
 {
-	var SDK_ZIP = "./externals/arcoresdk.zip";
+	var AAR_FILE = "./externals/arcore.aar";
+	var OBJ_JAR_FILE = "./externals/obj.jar";
 
 	if (!DirectoryExists ("./externals/"))
 		CreateDirectory ("./externals");
 
-	if (!FileExists (SDK_ZIP)) {
-		DownloadFile (SDK_URL, SDK_ZIP);
-		Unzip (SDK_ZIP, "./externals/");
-		CopyFile ("./externals/arcore-android-sdk-master/libraries/arcore_client.aar", "./externals/arcore_client.aar");
-		CopyFile ("./externals/arcore-android-sdk-master/samples/java_arcore_hello_ar/app/libs/obj-" + JAVAGL_VERSION + ".jar", "./externals/obj.jar");
-	}
+	if (!FileExists (AAR_FILE))
+		DownloadFile (AAR_URL, AAR_FILE);
+
+	if (!FileExists (OBJ_JAR_FILE))
+		DownloadFile (OBJ_URL, OBJ_JAR_FILE);
 });
 
 

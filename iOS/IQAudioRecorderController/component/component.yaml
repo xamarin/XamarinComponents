@@ -1,0 +1,36 @@
+name: IQAudioRecorderController
+id: iqaudiorecordercontroller
+version: 1.1
+summary: A neat and clean audio recorder
+publisher: Xamarin Inc
+publisher-url: https://go.microsoft.com/fwlink/?linkid=865324
+src-url: https://go.microsoft.com/fwlink/?linkid=865324
+license: ../License.md
+details: Details.md
+getting-started: GettingStarted.md
+icons: 
+  - icons/iqaudiorecordercontroller_128x128.png
+  - icons/iqaudiorecordercontroller_512x512.png
+screenshots:
+  - screenshots/screenshot.png
+libraries:
+  ios-unified: 
+    - ../output/IQAudioRecorderController.dll
+samples:
+  - name: "iOS Sample"
+    path: ../samples/IQAudioRecorderControllerSample.sln
+    removeProjects:
+      - IQAudioRecorderController
+    installNuGets:
+      - project: IQAudioRecorderControllerSample
+        packages:
+          - Xamarin.IQAudioRecorderController
+    nobuild: true
+local-nuget-repo: ../output
+packages:
+  ios-unified: Xamarin.IQAudioRecorderController, Version=1.1
+no_build: true
+is_shell: true
+additional-files:
+  - source: "../External-Dependency-Info.txt"
+    destination: "THIRD-PARTY-NOTICES.txt"

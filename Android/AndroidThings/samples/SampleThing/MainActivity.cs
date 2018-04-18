@@ -25,7 +25,7 @@ namespace SampleThing
 
             listView = FindViewById<ListView>(Resource.Id.listView1);
 
-            var peripheralMgr = new PeripheralManagerService();
+            var peripheralMgr = PeripheralManager.Instance;
 
             var gpios = peripheralMgr.GpioList;
             foreach (var gpio in gpios)

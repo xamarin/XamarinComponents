@@ -17,7 +17,7 @@
     <DebugSymbols>true</DebugSymbols>
     <DebugType></DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>bin\$(Configuration)</OutputPath>
+    <OutputPath>bin\Release</OutputPath>
     <DefineConstants>__MOBILE__;__IOS__;DEBUG;__UNIFIED__;</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>

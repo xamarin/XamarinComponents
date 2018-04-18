@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android" android:versionCode="1" android:versionName="1.0" package="com.xamarin.watchfacesample">
+	<uses-sdk />
+	<application android:label="Xamarin WatchFace Sample" android:icon="@drawable/xamarin_logo">
+		<service
+			android:name="watchfacesample.AnalogWatchFaceService"
+			android:label="Xamarin Sample"
+			android:allowEmbedded="true"
+			android:taskAffinity=""
+			android:permission="android.permission.BIND_WALLPAPER" >
+			<meta-data
+				android:name="android.service.wallpaper"
+				android:resource="@xml/watch_face" />
+			<meta-data
+				android:name="com.google.android.wearable.watchface.preview"
+				android:resource="@drawable/preview_analog" />
+			<intent-filter>
+				<action android:name="android.service.wallpaper.WallpaperService" />
+				<category android:name="com.google.android.wearable.watchface.category.WATCH_FACE" />
+			</intent-filter>
+		</service>
+	</application>
+	<uses-permission android:name="android.permission.INTERNET" />
+</manifest>
