@@ -10,6 +10,7 @@ var buildSpec = new BuildSpec () {
 			OutputFiles = new [] { 
 				new OutputFileCopy {
 					FromFile = "./source/StickyHeader/bin/Release/StickyHeader.dll",
+					ToDirectory = "./output/"
 				}
 			}
 		}
@@ -17,6 +18,10 @@ var buildSpec = new BuildSpec () {
 
 	Samples = new ISolutionBuilder [] {
 		new DefaultSolutionBuilder { SolutionPath = "./samples/StickyHeaderSample.sln" },
+	},
+
+	NuGets = new [] {
+		new NuGetInfo { NuSpec = "./nuget/Xamarin.StickyHeader.nuspec" },
 	},
 
 	Components = new [] {
