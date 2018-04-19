@@ -952,12 +952,12 @@ namespace OpenId.AppAuth
 
 		// @property (readonly, nonatomic) NSDictionary<NSString *,NSObject<NSCopying> *> * _Nullable additionalParameters;
 		[NullAllowed, Export("additionalParameters")]
-		NSDictionary<NSString, NSCopying> AdditionalParameters { get; }
+		NSDictionary<NSString, INSCopying> AdditionalParameters { get; }
 
 		// -(instancetype _Nonnull)initWithRequest:(OIDTokenRequest * _Nonnull)request parameters:(NSDictionary<NSString *,NSObject<NSCopying> *> * _Nonnull)parameters __attribute__((objc_designated_initializer));
 		[Export("initWithRequest:parameters:")]
 		[DesignatedInitializer]
-		IntPtr Constructor(TokenRequest request, NSDictionary<NSString, NSCopying> parameters);
+		IntPtr Constructor(TokenRequest request, NSDictionary<NSString, INSCopying> parameters);
 	}
 
 	interface IAuthorizationUICoordinator { }
