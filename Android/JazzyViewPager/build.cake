@@ -19,6 +19,10 @@ var buildSpec = new BuildSpec () {
 		new DefaultSolutionBuilder { SolutionPath = "./samples/JazzyViewPagerSample.sln" },
 	},
 
+	NuGets = new [] {
+		new NuGetInfo { NuSpec = "./nuget/Xamarin.JazzyViewPager.nuspec" },
+	},
+
 	Components = new [] {
 		new Component {ManifestDirectory = "./component"},
 	},
