@@ -2,7 +2,7 @@
 <package>
   <metadata>
     <id>Xamarin.StickyHeader</id>
-    <title>StickyHeader for Xamarin.Android</title>
+    <title>StickyHeader for Xamarin.MonoAndroid40</title>
     <version>1.1.2</version>
     <authors>Microsoft</authors>
     <owners>Microsoft</owners>
