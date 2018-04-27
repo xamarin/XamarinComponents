@@ -1,9 +1,3 @@
-**Xamarin is not responsible for, nor does it grant any licenses to, third-party packages. Some packages may require or install dependencies which are governed by additional licenses.**
-
-Note: This component depends on [JSQMessagesViewController](https://github.com/jessesquires/JSQMessagesViewController), which is subject to the [MIT License](https://github.com/jessesquires/JSQMessagesViewController/blob/develop/LICENSE)
-
-### Xamarin Component for JSQMessagesViewController
-
 **The MIT License (MIT)**
 
 Copyright (c) .NET Foundation Contributors
