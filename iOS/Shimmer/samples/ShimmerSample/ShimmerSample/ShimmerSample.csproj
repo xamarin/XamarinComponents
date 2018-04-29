@@ -25,8 +25,7 @@
     <MtouchOptimizePNGs>True</MtouchOptimizePNGs>
     <MtouchI18n>
     </MtouchI18n>
-    <MtouchUseRefCounting>true</MtouchUseRefCounting>
-    <MtouchProfiling>true</MtouchProfiling>
+    <CodesignKey>iPhone Developer</CodesignKey>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhoneSimulator' ">
     <DebugType>none</DebugType>
@@ -37,7 +36,6 @@
     <MtouchLink>Full</MtouchLink>
     <MtouchArch>i386, x86_64</MtouchArch>
     <ConsolePause>false</ConsolePause>
-    <MtouchUseRefCounting>true</MtouchUseRefCounting>
     <MtouchI18n>
     </MtouchI18n>
   </PropertyGroup>
@@ -58,7 +56,7 @@
     <MtouchI18n>
     </MtouchI18n>
     <MtouchProfiling>true</MtouchProfiling>
-    <MtouchUseRefCounting>true</MtouchUseRefCounting>
+    <MtouchLink>None</MtouchLink>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhone' ">
     <DebugType>none</DebugType>
@@ -73,7 +71,6 @@
     <MtouchOptimizePNGs>True</MtouchOptimizePNGs>
     <MtouchI18n>
     </MtouchI18n>
-    <MtouchUseRefCounting>true</MtouchUseRefCounting>
     <MtouchLink>Full</MtouchLink>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Ad-Hoc|iPhone' ">
@@ -91,7 +88,6 @@
     <MtouchOptimizePNGs>True</MtouchOptimizePNGs>
     <MtouchI18n>
     </MtouchI18n>
-    <MtouchUseRefCounting>true</MtouchUseRefCounting>
     <MtouchLink>Full</MtouchLink>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'AppStore|iPhone' ">
@@ -108,7 +104,6 @@
     <MtouchOptimizePNGs>True</MtouchOptimizePNGs>
     <MtouchI18n>
     </MtouchI18n>
-    <MtouchUseRefCounting>true</MtouchUseRefCounting>
     <MtouchLink>Full</MtouchLink>
   </PropertyGroup>
   <ItemGroup>
@@ -213,10 +208,8 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\..\source\Shimmer\Shimmer.csproj">
-      <Project>{82E99AED-4239-466C-A839-E17CFAAC48DB}</Project>
+      <Project>{9F62FB30-2774-40C4-8787-B4F31E106684}</Project>
       <Name>Shimmer</Name>
-      <IsAppExtension>False</IsAppExtension>
-      <IsWatchApp>False</IsWatchApp>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />

@@ -41,7 +41,7 @@ namespace ShimmerSample
 
         private void OnTapped()
         {
-            _shimmeringView.Shimmering = !_shimmeringView.Shimmering;
+            _shimmeringView.IsShimmering = !_shimmeringView.IsShimmering;
         }
 
         private void OnPanned(UIPanGestureRecognizer panRecognizer)
