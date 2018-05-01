@@ -2,7 +2,11 @@
 <package>
   <metadata>
     <id>Xamarin.SortableTableView</id>
+<<<<<<< HEAD
     <title>SortableTableView for Xamarin.MonoAndroid40</title>
+=======
+    <title>SortableTableView for Xamarin.MonoAndroid44</title>
+>>>>>>> 7c768d8b8c48205fda6b5b21e845e0faf130c00a
     <version>2.2.1</version>
     <authors>Microsoft</authors>
     <owners>Microsoft</owners>
