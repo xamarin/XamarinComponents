@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<package>
+  <metadata>
+    <id>Xamarin.Shimmer</id>
+    <title>Shimmer for Xamarin.iOS</title>
+    <version>1.0.2</version>
+    <authors>Microsoft</authors>
+    <owners>Microsoft</owners>
+    <requireLicenseAcceptance>true</requireLicenseAcceptance>
+    <description>Shimmer is an easy way to add a shimmering effect to any view in your app.</description>
+    <copyright>© Microsoft Corporation. All rights reserved.</copyright>
+    <projectUrl>https://go.microsoft.com/fwlink/?linkid=868526</projectUrl>
+    <licenseUrl>https://go.microsoft.com/fwlink/?linkid=868527</licenseUrl>
+  </metadata>
+  <files>
+    <file src="output/unified/Shimmer.dll" target="lib/Xamarin.iOS" />
+    <file src="External-Dependency-Info.txt" target="THIRD-PARTY-NOTICES.txt" />
+  </files>
+</package>
