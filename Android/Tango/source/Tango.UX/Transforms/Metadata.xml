@@ -1,0 +1,7 @@
+<metadata>
+  <attr path="/api/package[@name='com.google.atap.tango.ux']" name="managedName">ProjectTango.UX</attr>
+  <attr path="/api/package[@name='com.google.atap.tango.uxsupportlibrary']" name="managedName">ProjectTango.UX.Support</attr>
+
+  <remove-node path="/api/package/class[@visibility='']" />
+  <remove-node path="/api/package/interface[@visibility='']" />
+</metadata>

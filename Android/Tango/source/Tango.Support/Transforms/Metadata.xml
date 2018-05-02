@@ -1,0 +1,6 @@
+<metadata>
+  <attr path="/api/package[@name='com.projecttango.tangosupport']" name="managedName">ProjectTango.Support</attr>
+
+  <remove-node path="/api/package/class[@visibility='']" />
+  <remove-node path="/api/package/interface[@visibility='']" />
+</metadata>

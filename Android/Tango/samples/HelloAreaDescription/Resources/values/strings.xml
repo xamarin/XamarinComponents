@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+   Copyright 2014 Google Inc.
+
+   Licensed under the Apache License, Version 2.0 (the "License");
+   you may not use this file except in compliance with the License.
+   You may obtain a copy of the License at
+
+      http://www.apache.org/licenses/LICENSE-2.0
+
+   Unless required by applicable law or agreed to in writing, software
+   distributed under the License is distributed on an "AS IS" BASIS,
+   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+   See the License for the specific language governing permissions and
+   limitations under the License.
+-->
+<resources>
+    <string name="app_name">Hello Area Description</string>
+    <string name="app_name_long">C# Hello Area Description Example</string>
+    <string name="start">Start</string>
+    <string name="set_name_dialog_title">Set the ADF name</string>
+    <string name="cancel">Cancel</string>
+    <string name="save_adf">Save ADF</string>
+    <string name="name">Name</string>
+    <string name="ok">OK</string>
+    <string name="start_config">Start</string>
+    <string name="manage_adfs">Manage ADFs</string>
+    <string name="api_adfs">Project Tango Local ADFs:</string>
+    <string name="application_adfs">Application ADFs</string>
+    <string name="uuid">UUID</string>
+    <string name="tango_error">"Tango Exception! Try again!"</string>
+    <string name="tango_invalid">"Tango Invalid Exception! Try again!"</string>
+    <string name="tango_out_of_date_exception">"Tango Service outdated!"</string>
+    <string name="no_uuid_tango_error">"No ADF with that UUID!"</string>
+    <string name="adf_save">"ADF saved with UUID: "</string>
+    <string name="adf_exists_app_space">"Tango Error! ADF already exists in app space or File system."</string>
+    <string name="adf_exists_api_space">"Tango Error! ADF already exists in API Space."</string>
+    <string name="no_adfs_tango_error">No ADF UUIDs</string>
+    <string name="no_permissions">"Permission not granted!"</string>
+    <string name="metadata_not_read">"Meta Data cannot be read"</string>
+    <string name="motiontracking_permission">"Motion Tracking permission needed!"</string>
+    <string name="arealearning_permission">"Area Learning permission needed!"</string>
+    <string name="no_uuid">"no ADFs"</string>
+    <string name="number_of_adfs">"No of ADFs: "</string>
+    <string name="na">"N/A"</string>
+    <string name="learning_mode_off">"Learning mode off"</string>
+    <string name="learning_mode_on">"Learning mode on"</string>
+    <string name="load_adf_on">"Load ADF on"</string>
+    <string name="load_adf_off">"Load ADF off"</string>
+    <string name="pose_initializing">"initializing"</string>
+    <string name="pose_valid">"valid"</string>
+    <string name="pose_invalid">"invalid"</string>
+    <string name="pose_unknown">"unknown"</string>
+    <string name="latest_adf_is">", Latest ADF is: "</string>
+    <string name="adf_saving">Saving ADF</string>
+    <string name="default_adf_name">New ADF</string>
+    <string name="save_adf_failed_toast_format">"Failed to save ADF '{0}'."</string>
+    <string name="save_adf_success_toast_format">"Saved ADF '{0}' ({1})."</string>
+    <string name="relocalization_status">Relocalization Status:</string>
+    <string name="localized">Localized</string>
+    <string name="not_localized">Not Localized</string>
+    <string name="tango_not_ready">"Tango is not ready yet!"</string>
+    <string-array name="set_dialog_menu_items_api_space">
+        <item>Rename</item>
+        <item>Delete from API space</item>
+        <item>Export to App space</item>
+    </string-array>
+    <string-array name="set_dialog_menu_items_app_space">
+        <item>Delete from  App space</item>
+        <item>Import to API space</item>
+    </string-array>
+
+</resources>

@@ -1,0 +1,34 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tango", "Tango\Tango.csproj", "{CD841200-D10D-4631-808D-3B713D77AC86}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tango.UX", "Tango.UX\Tango.UX.csproj", "{FA619ECF-DE53-493A-B45E-B344D1B2202C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tango.Support", "Tango.Support\Tango.Support.csproj", "{BE6975B5-53C6-4A24-931B-48A2E6D43097}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{CD841200-D10D-4631-808D-3B713D77AC86}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CD841200-D10D-4631-808D-3B713D77AC86}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CD841200-D10D-4631-808D-3B713D77AC86}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CD841200-D10D-4631-808D-3B713D77AC86}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FA619ECF-DE53-493A-B45E-B344D1B2202C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FA619ECF-DE53-493A-B45E-B344D1B2202C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FA619ECF-DE53-493A-B45E-B344D1B2202C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FA619ECF-DE53-493A-B45E-B344D1B2202C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BE6975B5-53C6-4A24-931B-48A2E6D43097}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BE6975B5-53C6-4A24-931B-48A2E6D43097}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BE6975B5-53C6-4A24-931B-48A2E6D43097}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BE6975B5-53C6-4A24-931B-48A2E6D43097}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
