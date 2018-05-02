@@ -8,7 +8,7 @@
     <OutputType>Library</OutputType>
     <RootNamespace>Common</RootNamespace>
     <AssemblyName>Xamarin.Google.VR.Android.Common</AssemblyName>
-    <TargetFrameworkVersion>v4.4</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v5.1</TargetFrameworkVersion>
     <MonoAndroidResourcePrefix>Resources</MonoAndroidResourcePrefix>
     <MonoAndroidAssetsPrefix>Assets</MonoAndroidAssetsPrefix>
     <AndroidUseLatestPlatformSdk>false</AndroidUseLatestPlatformSdk>
@@ -45,6 +45,7 @@
     <Compile Include="..\GvrConsts.cs">
       <Link>GvrConsts.cs</Link>
     </Compile>
+    <Compile Include="Additions\Additions.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Additions\AboutAdditions.txt" />
@@ -56,9 +57,15 @@
     <TransformFile Include="Transforms\Metadata.xml" />
   </ItemGroup>
   <ItemGroup>
-    <InputJar Include="..\..\..\externals\android\libraries\common\classes.jar">
+    <ProjectReference Include="..\Protobuf.Nano\Protobuf.Nano.csproj">
+      <Project>{9D2BEF38-BA5E-4BB9-9F1F-108A2492ED19}</Project>
+      <Name>Protobuf.Nano</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedJar Include="..\..\..\externals\android\libraries\common\classes.jar">
       <Link>Jars\classes.jar</Link>
-    </InputJar>
+    </EmbeddedJar>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.Bindings.targets" />
 </Project>

@@ -1,64 +1,9 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <metadata>
-	<attr path="/api/package[@name='com.google.android.exoplayer']" name="managedName">Google.Android.ExoPlayer</attr>
-	<attr path="/api/package[@name='com.google.android.exoplayer.audio']" name="managedName">Google.Android.ExoPlayer.Audio</attr>
-	<attr path="/api/package[@name='com.google.android.exoplayer.chunk']" name="managedName">Google.Android.ExoPlayer.Chunks</attr>
-	<attr path="/api/package[@name='com.google.android.exoplayer.dash']" name="managedName">Google.Android.ExoPlayer.Dash</attr>
-	<attr path="/api/package[@name='com.google.android.exoplayer.dash.mpd']" name="managedName">Google.Android.ExoPlayer.Dash.Mpd</attr>
-	<attr path="/api/package[@name='com.google.android.exoplayer.drm']" name="managedName">Google.Android.ExoPlayer.Drm</attr>
-	<attr path="/api/package[@name='com.google.android.exoplayer.extractor']" name="managedName">Google.Android.ExoPlayer.Extractor</attr>
-	<attr path="/api/package[@name='com.google.android.exoplayer.extractor.flv']" name="managedName">Google.Android.ExoPlayer.Extractor.Flv</attr>
-	<attr path="/api/package[@name='com.google.android.exoplayer.extractor.mp3']" name="managedName">Google.Android.ExoPlayer.Extractor.Mp3</attr>
-	<attr path="/api/package[@name='com.google.android.exoplayer.extractor.mp4']" name="managedName">Google.Android.ExoPlayer.Extractor.Mp4</attr>
-	<attr path="/api/package[@name='com.google.android.exoplayer.extractor.ogg']" name="managedName">Google.Android.ExoPlayer.Extractor.Ogg</attr>
-	<attr path="/api/package[@name='com.google.android.exoplayer.extractor.ts']" name="managedName">Google.Android.ExoPlayer.Extractor.Ts</attr>
-	<attr path="/api/package[@name='com.google.android.exoplayer.extractor.wav']" name="managedName">Google.Android.ExoPlayer.Extractor.Wav</attr>
-	<attr path="/api/package[@name='com.google.android.exoplayer.extractor.webm']" name="managedName">Google.Android.ExoPlayer.Extractor.WebM</attr>
-	<attr path="/api/package[@name='com.google.android.exoplayer.hls']" name="managedName">Google.Android.ExoPlayer.Extractor.HLS</attr>
-	<attr path="/api/package[@name='com.google.android.exoplayer.metadata']" name="managedName">Google.Android.ExoPlayer.MetaData</attr>
-	<attr path="/api/package[@name='com.google.android.exoplayer.metadata.id3']" name="managedName">Google.Android.ExoPlayer.MetaData.ID3</attr>
-	<attr path="/api/package[@name='com.google.android.exoplayer.smoothstreaming']" name="managedName">Google.Android.ExoPlayer.SmoothStreaming</attr>
-	<attr path="/api/package[@name='com.google.android.exoplayer.text']" name="managedName">Google.Android.ExoPlayer.Text</attr>
-	<attr path="/api/package[@name='com.google.android.exoplayer.text.eia608']" name="managedName">Google.Android.ExoPlayer.Text.EIA608</attr>
-	<attr path="/api/package[@name='com.google.android.exoplayer.text.subrip']" name="managedName">Google.Android.ExoPlayer.Text.SubRip</attr>
-	<attr path="/api/package[@name='com.google.android.exoplayer.text.ttml']" name="managedName">Google.Android.ExoPlayer.Text.TTML</attr>
-	<attr path="/api/package[@name='com.google.android.exoplayer.text.tx3g']" name="managedName">Google.Android.ExoPlayer.Text.TX3G</attr>
-	<attr path="/api/package[@name='com.google.android.exoplayer.text.webvtt']" name="managedName">Google.Android.ExoPlayer.Text.WebVTT</attr>
-	<attr path="/api/package[@name='com.google.android.exoplayer.upstream']" name="managedName">Google.Android.ExoPlayer.Upstream</attr>
-	<attr path="/api/package[@name='com.google.android.exoplayer.upstream.cache']" name="managedName">Google.Android.ExoPlayer.Upstream.Cache</attr>
-	<attr path="/api/package[@name='com.google.android.exoplayer.upstream.crypto']" name="managedName">Google.Android.ExoPlayer.Upstream.Crypto</attr>
-	<attr path="/api/package[@name='com.google.android.exoplayer.util']" name="managedName">Google.Android.ExoPlayer.Utils</attr>
-	<attr path="/api/package[@name='com.google.android.exoplayer.util.extensions']" name="managedName">Google.Android.ExoPlayer.Utils.Extensions</attr>
-	<attr path="/api/package[@name='com.google.protobuf.nano']" name="managedName">Google.Protobuf.Nano</attr>
+	
 	<attr path="/api/package[@name='com.google.vr.jump.preview.model']" name="managedName">Google.VR</attr>
 	<attr path="/api/package[@name='com.google.vr.sdk.widgets.video']" name="managedName">Google.VR.SDK.Widgets.Video</attr>
 	<attr path="/api/package[@name='com.google.vr.sdk.widgets.video.nano']" name="managedName">Google.VR.SDK.Widgets.Video.Nano</attr>
-
-	<attr path="/api/package[@name='com.google.android.exoplayer.extractor.webm']/interface[@name='EbmlReaderOutput']" name="visibility">public</attr>
-	<attr path="/api/package[@name='com.google.android.exoplayer.extractor.mp4']/class[@name='DefaultSampleValues']" name="visibility">public</attr>
-	<attr path="/api/package[@name='com.google.android.exoplayer.extractor.mp4']/class[@name='TrackFragment']" name="visibility">public</attr>
-	<attr path="/api/package[@name='com.google.android.exoplayer.extractor.mp4']/class[@name='TrackSampleTable']" name="visibility">public</attr>
-	<attr path="/api/package[@name='com.google.android.exoplayer.extractor.ts']/class[@name='ElementaryStreamReader']" name="visibility">public</attr>
-	<attr path="/api/package[@name='com.google.android.exoplayer.text.ttml']/class[@name='TtmlNode']" name="visibility">public</attr>
-	<attr path="/api/package[@name='com.google.android.exoplayer.text.ttml']/class[@name='TtmlStyle']" name="visibility">public</attr>
-	<attr path="/api/package[@name='com.google.android.exoplayer.text.ttml']/class[@name='TtmlRegion']" name="visibility">public</attr>
-	<attr path="/api/package[@name='com.google.android.exoplayer.text.webvtt']/class[@name='WebvttCue']" name="visibility">public</attr>
-	<attr path="/api/package[@name='com.google.android.exoplayer.text.subrip']/class[@name='SubripSubtitle']" name="visibility">public</attr>
-	<attr path="/api/package[@name='com.google.android.exoplayer.text.webvtt']/class[@name='Mp4WebvttSubtitle']" name="visibility">public</attr>
-
-	<remove-node path="/api/package[@name='com.google.android.exoplayer.smoothstreaming']/class[@name='SmoothStreamingManifestParser.SmoothStreamMediaParser']/method[@name='build' and count(parameter)=0]" />
-	<remove-node path="/api/package[@name='com.google.android.exoplayer.smoothstreaming']/class[@name='SmoothStreamingManifestParser.ProtectionElementParser']/method[@name='build' and count(parameter)=0]" />
-	<remove-node path="/api/package[@name='com.google.android.exoplayer.smoothstreaming']/class[@name='SmoothStreamingManifestParser.StreamElementParser']/method[@name='build' and count(parameter)=0]" />
-	<remove-node path="/api/package[@name='com.google.android.exoplayer.smoothstreaming']/class[@name='SmoothStreamingManifestParser.TrackElementParser']/method[@name='build' and count(parameter)=0]" />
-
-	<attr path="/api/package[@name='com.google.android.exoplayer.chunk']/interface[@name='ChunkExtractorWrapper.SingleTrackOutput']/method[@name='drmInitData' and count(parameter)=1 and parameter[1][@type='com.google.android.exoplayer.drm.DrmInitData']]" name="name">setDrmInitData</attr>
-	<attr path="/api/package[@name='com.google.android.exoplayer.chunk']/interface[@name='ChunkExtractorWrapper.SingleTrackOutput']/method[@name='seekMap' and count(parameter)=1 and parameter[1][@type='com.google.android.exoplayer.extractor.SeekMap']]" name="name">setSeekMap</attr>
-	<attr path="/api/package[@name='com.google.android.exoplayer.extractor']/interface[@name='TrackOutput']/method[@name='format' and count(parameter)=1 and parameter[1][@type='com.google.android.exoplayer.MediaFormat']]" name="name">setFormat</attr>
-
-	<attr path="/api/package[@name='com.google.android.exoplayer.text.ttml']/class[@name='TtmlParser']/method[@name='parse' and count(parameter)=3 and parameter[1][@type='byte[]'] and parameter[2][@type='int'] and parameter[3][@type='int']]" name="managedReturn">Google.Android.ExoPlayer.Text.ISubtitle</attr>
-	<attr path="/api/package[@name='com.google.android.exoplayer.text.webvtt']/class[@name='WebvttParser']/method[@name='parse' and count(parameter)=3 and parameter[1][@type='byte[]'] and parameter[2][@type='int'] and parameter[3][@type='int']]" name="managedReturn">Google.Android.ExoPlayer.Text.ISubtitle</attr>
+	
 	<attr path="/api/package[@name='com.google.vr.sdk.widgets.video.nano']/class[@name='SphericalMetadataOuterClass.SphericalMetadata']/method[@name='mergeFrom' and count(parameter)=1 and parameter[1][@type='com.google.protobuf.nano.CodedInputByteBufferNano']]" name="managedReturn">Google.Protobuf.Nano.MessageNano</attr>
-
-	<remove-node path="/api/package[@name='com.google.android.exoplayer.metadata.id3']/class[@name='Id3Parser']" />
-	<remove-node path="/api/package[@name='com.google.android.exoplayer']/class[@name='MediaCodecAudioTrackRenderer']" />
 </metadata>

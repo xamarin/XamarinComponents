@@ -15,6 +15,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PanoWidget", "Google.VR.And
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VideoWidget", "Google.VR.Android\VideoWidget\VideoWidget.csproj", "{9880009D-F546-42D4-B7F1-32E291F515F0}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Protobuf.Nano", "Google.VR.Android\Protobuf.Nano\Protobuf.Nano.csproj", "{9D2BEF38-BA5E-4BB9-9F1F-108A2492ED19}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExoPlayer", "Google.VR.Android\ExoPlayer\ExoPlayer.csproj", "{81C2E72A-408F-4E1B-A79A-2211F6DD82BF}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -49,5 +53,13 @@ Global
 		{9880009D-F546-42D4-B7F1-32E291F515F0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9880009D-F546-42D4-B7F1-32E291F515F0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9880009D-F546-42D4-B7F1-32E291F515F0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9D2BEF38-BA5E-4BB9-9F1F-108A2492ED19}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9D2BEF38-BA5E-4BB9-9F1F-108A2492ED19}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9D2BEF38-BA5E-4BB9-9F1F-108A2492ED19}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9D2BEF38-BA5E-4BB9-9F1F-108A2492ED19}.Release|Any CPU.Build.0 = Release|Any CPU
+		{81C2E72A-408F-4E1B-A79A-2211F6DD82BF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{81C2E72A-408F-4E1B-A79A-2211F6DD82BF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{81C2E72A-408F-4E1B-A79A-2211F6DD82BF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{81C2E72A-408F-4E1B-A79A-2211F6DD82BF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

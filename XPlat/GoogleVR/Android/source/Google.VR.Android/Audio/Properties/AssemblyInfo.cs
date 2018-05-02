@@ -44,6 +44,18 @@ using Android.App;
     Version = __GvrConsts.Version,
     PackageName = __Consts.PackageName)]
 
+[assembly: Android.NativeLibraryReferenceAttribute ("jni/arm64-v8a/libvraudio_engine.so",
+	SourceUrl = __GvrConsts.Url,
+	EmbeddedArchive = __Consts.AarPath,
+	Version = __GvrConsts.Version,
+	PackageName = __Consts.PackageName)]
+
+[assembly: Android.NativeLibraryReferenceAttribute ("jni/x86/libvraudio_engine.so",
+	SourceUrl = __GvrConsts.Url,
+	EmbeddedArchive = __Consts.AarPath,
+	Version = __GvrConsts.Version,
+	PackageName = __Consts.PackageName)]
+
 static class __Consts
 {
     public const string PackageName = "gvr audio";

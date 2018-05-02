@@ -24,6 +24,18 @@ namespace Google.VR
 		// @property (nonatomic) BOOL enableCardboardButton;
 		[Export ("enableCardboardButton")]
 		bool EnableCardboardButton { get; set; }
+
+		// @property (nonatomic) BOOL enableTouchTracking;
+		[Export("enableTouchTracking")]
+		bool EnableTouchTracking { get; set; }
+
+		// @property(nonatomic, readonly) GVRHeadRotation headRotation;
+		[Export("headRotation")]
+		GVRHeadRotation HeadRotation { get; }
+
+		// @property(nonatomic) GVRWidgetDisplayMode displayMode;
+		[Export("displayMode")]
+		GVRWidgetDisplayMode DisplayMode { get; set; }
 	}
 
     interface IGVRWidgetViewDelegate { }
@@ -70,9 +82,17 @@ namespace Google.VR
 		[Export ("update")]
 		void Update ();
 
+		// -(void)enableStereoSpeakerMode:(bool)enable;
+		[Export ("enableStereoSpeakerMode:")]
+		void EnableStereoSpeakerMode(bool enable);
+
 		// -(_Bool)preloadSoundFile:(const NSString *)filename;
 		[Export ("preloadSoundFile:")]
 		bool PreloadSoundFile (string filename);
+
+		// -(void)unloadSoundFile:(const NSString*)filename;
+		[Export("unloadSoundFile:")]
+		void UnloadSoundFile(string filename);
 
 		// -(int)createSoundObject:(const NSString *)filename;
 		[Export ("createSoundObject:")]
@@ -82,9 +102,21 @@ namespace Google.VR
 		[Export ("createSoundfield:")]
 		int CreateSoundfield (string filename);
 
+		// -(int)createStereoSound:(const NSString*)filename;
+		[Export("createStereoSound:")]
+		int CreateStereoSound(string filename);
+
 		// -(void)playSound:(int)soundId loopingEnabled:(_Bool)loopingEnabled;
 		[Export ("playSound:loopingEnabled:")]
 		void PlaySound (int soundId, bool loopingEnabled);
+
+		// - (void)pauseSound:(int)sourceId;
+		[Export("pauseSound:")]
+		void PauseSound(int soundId);
+
+		// -(void)resumeSound:(int)sourceId;
+		[Export("resumeSound:")]
+		void ResumeSound(int soundId);
 
 		// -(void)stopSound:(int)soundId;
 		[Export ("stopSound:")]
@@ -93,6 +125,14 @@ namespace Google.VR
 		// -(void)setSoundObjectPosition:(int)soundObjectId x:(float)x y:(float)y z:(float)z;
 		[Export ("setSoundObjectPosition:x:y:z:")]
 		void SetSoundObjectPosition (int soundObjectId, float x, float y, float z);
+
+		// -(void)setSoundObjectDistanceRolloffModel:(int)soundObjectId rolloffModel:(distanceRolloffModel)rolloffModel minDistance:(float)minDistance maxDistance:(float)maxDistance;
+		[Export("setSoundObjectDistanceRolloffModel:rolloffModel:minDistance:maxDistance:")]
+		void SetSoundObjectDistanceRolloffModel(int soundObjectId, GVRDistanceRolloffModel rolloffModel, float minDistance, float maxDistance);
+
+		// -(void)setSoundfieldRotation:(int)soundfieldId x:(float)x y:(float)y z:(float)z w:(float)w;
+		[Export("setSoundfieldRotation:x:y:z:w:")]
+		void SetSoundfieldRotation(int soundObjectId, float x, float y, float z, float w);
 
 		// -(void)setSoundVolume:(int)soundId volume:(float)volume;
 		[Export ("setSoundVolume:volume:")]
@@ -117,6 +157,10 @@ namespace Google.VR
 		// -(void)setRoomProperties:(float)size_x size_y:(float)size_y size_z:(float)size_z wall_material:(materialName)wall_material ceiling_material:(materialName)ceiling_material floor_material:(materialName)floor_material;
 		[Export ("setRoomProperties:size_y:size_z:wall_material:ceiling_material:floor_material:")]
 		void SetRoomProperties (float size_x, float size_y, float size_z, GVRMaterialName wall_material, GVRMaterialName ceiling_material, GVRMaterialName floor_material);
+
+		// -(void)setRoomReverbAdjustments:(float)gain timeAdjust:(float)timeAdjust brightnessAdjust:(float)brightnessAdjust;
+		[Export("setRoomReverbAdjustments:timeAdjust:brightnessAdjust:")]
+		void SetRoomReverbAdjustments(float gain, float timeAdjust, float brightnessAdjust);
 	}
 
 	// @interface GVRHeadTransform : NSObject
@@ -220,6 +264,10 @@ namespace Google.VR
 		[Export ("loadFromUrl:")]
 		void LoadFromUrl (NSUrl videoUrl);
 
+		// -(void)loadFromUrl:(NSURL*)videoUrl ofType:(GVRVideoType)videoType;
+		[Export("loadFromUrl:ofType:")]
+		void LoadFromUrl(NSUrl videoUrl, GVRPanoramaVideoType videoType);
+
 		// -(void)pause;
 		[Export ("pause")]
 		void Pause ();
@@ -239,9 +287,13 @@ namespace Google.VR
 		// -(void)seekTo:(NSTimeInterval)position;
 		[Export ("seekTo:")]
 		void SeekTo (double position);
+
+		// @property(nonatomic) float volume;
+		[Export("volume", ArgumentSemantic.Assign)]
+		float Volume { get; set; }
 	}
 
-    interface IGVRVideoViewDelegate { }
+	interface IGVRVideoViewDelegate { }
 
 	// @protocol GVRVideoViewDelegate <GVRWidgetViewDelegate>
 	[Protocol, Model]
@@ -253,5 +305,49 @@ namespace Google.VR
 		[Export ("videoView:didUpdatePosition:")]
 		void DidUpdatePosition (GVRVideoView videoView, double position);
 	}
+
+	interface IGVROverlayViewDelegate { }
+
+	// @protocol GVROverlayViewDelegate <NSObject>
+	[Protocol, Model]
+	[BaseType(typeof(NSObject))]
+	interface GVROverlayViewDelegate
+	{
+		// @required -(void)didTapBackButton;
+		[Abstract]
+		[Export("didTapBackButton")]
+		void DidTapBackButton();
+
+		// @optional -(void)didTapCardboardButton;
+		[Export("didTapCardboardButton")]
+		void DidTapCardboardButton();
+
+		// @optional -(UIViewController *)presentingViewControllerForSettingsDialog;
+		[Export("presentingViewControllerForSettingsDialog")]
+		UIViewController PresentingViewControllerForSettingsDialog();
+
+		// @optional -(void)didPresentSettingsDialog:(BOOL)presented;
+		[Export("didPresentSettingsDialog:")]
+		void DidPresentSettingsDialog(bool presented);
+
+		// @optional -(void)didChangeViewerProfile;
+		[Export("didChangeViewerProfile")]
+		void DidChangeViewerProfile();
+
+		// @optional -(void)shouldDisableIdleTimer:(BOOL)shouldDisable;
+		[Export("shouldDisableIdleTimer:")]
+		void ShouldDisableIdleTimer(bool shouldDisable);
+	}
+
+	// @interface GVROverlayView : UIView
+	[BaseType(typeof(UIView))]
+	interface GVROverlayView
+	{
+		// @property (nonatomic, weak) id<GVROverlayViewDelegate> _Nullable delegate;
+		[NullAllowed, Export("delegate", ArgumentSemantic.Weak)]
+		IGVROverlayViewDelegate Delegate { get; set; }
+	}
+
+
 }
 
