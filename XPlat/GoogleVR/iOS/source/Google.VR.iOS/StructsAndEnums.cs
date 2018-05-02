@@ -12,6 +12,13 @@ namespace Google.VR
 		FullscreenVR
 	}
 
+	[StructLayout (LayoutKind.Sequential)]
+	public struct GVRHeadRotation
+	{
+		public nfloat Yaw;
+		public nfloat Pitch;
+	}
+
 	public enum GVRRenderingMode : uint
 	{
 		StereoPanning,
@@ -34,6 +41,7 @@ namespace Google.VR
 		Grass,
 		LinoleumOnConcrete,
 		Marble,
+		Metal,
 		ParquetOnConcrete,
 		PlasterRough,
 		PlasterSmooth,
@@ -43,6 +51,13 @@ namespace Google.VR
 		WaterOrIceSurface,
 		WoodCeiling,
 		WoodPanel
+	}
+
+	public enum GVRDistanceRolloffModel : uint
+	{
+		Logarithmic,
+		Linear,
+		None
 	}
 
 	[Native]
@@ -74,6 +89,12 @@ namespace Google.VR
 	}
 
 	public enum GVRPanoramaImageType
+	{
+		Mono = 1,
+		StereoOverUnder
+	}
+
+	public enum GVRPanoramaVideoType
 	{
 		Mono = 1,
 		StereoOverUnder
