@@ -8,3 +8,6 @@ externals
 *.userprefs
 
 .DS_Store
+XPlat/DropboxApiV2/samples/DropboxV2ApiSampleDroid/.vs/DropboxV2ApiSampleDroid/xs/UserPrefs.xml
+
+XPlat/DropboxApiV2/samples/DropboxV2ApiSampleiOS/.vs/DropboxV2ApiSampleiOS/xs/UserPrefs.xml

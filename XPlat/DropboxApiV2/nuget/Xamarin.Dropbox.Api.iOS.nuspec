@@ -4,13 +4,13 @@
     <id>Xamarin.Dropbox.Api.iOS</id>
     <title>Xamarin.Dropbox.Api.iOS</title>
     <version>4.5.3</version>
-    <authors>Xamarin</authors>
-    <owners>Xamarin</owners>
-    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <authors>Microsoft</authors>
+    <owners>Microsoft</owners>
+    <requireLicenseAcceptance>true</requireLicenseAcceptance>
     <description>Xamarin.iOS helper classes for Xamarin.Dropbox.Api.Core</description>
-    <copyright>Copyright © Xamarin. All Rights Reserved.</copyright>
-    <licenseUrl>hhttps://github.com/xamarin/XamarinComponents/blob/master/LICENSE</licenseUrl>
-    <projectUrl>https://github.com/xamarin/XamarinComponents</projectUrl>
+    <copyright>© Microsoft Corporation. All rights reserved.</copyright>
+    <licenseUrl>https://go.microsoft.com/fwlink/?linkid=873370</licenseUrl>
+    <projectUrl>https://go.microsoft.com/fwlink/?linkid=873371</projectUrl>
     <dependencies>
     	<group>
     		<dependency id="Xamarin.Dropbox.Api.Core" version="4.5.3" />
