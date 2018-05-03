@@ -9,7 +9,7 @@ var buildSpec = new BuildSpec {
 			SolutionPath = "./source/Xamarin.Dropbox.Api.sln",
 			OutputFiles = new [] { 
 				new OutputFileCopy {
-					FromFile = "./source/Xamarin.Dropbox.Api.Core/bin/Release/netstandard2.0/Xamarin.Dropbox.Api.Core.dll",
+					FromFile = "./source/Xamarin.Dropbox.Api.Core/bin/Release/netstandard2.0/netstandard2.0/Xamarin.Dropbox.Api.Core.dll",
 				},
 				new OutputFileCopy {
 					FromFile = "./source/Xamarin.Dropbox.Api.Android/bin/Release/Xamarin.Dropbox.Api.Android.dll",
