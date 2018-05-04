@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<package>
+  <metadata>
+    <id>Xamarin.Dropbox.Api.Core</id>
+    <title>Xamarin.Dropbox.Api.Core</title>
+    <version>4.5.3</version>
+    <authors>Microsoft</authors>
+    <owners>Microsoft</owners>
+    <requireLicenseAcceptance>true</requireLicenseAcceptance>
+    <description>Core library for Xamarin and dropbox Api v2 integration with Xamarin.Auth</description>
+    <copyright>© Microsoft Corporation. All rights reserved.</copyright>
+    <licenseUrl>https://go.microsoft.com/fwlink/?linkid=873370</licenseUrl>
+    <projectUrl>https://go.microsoft.com/fwlink/?linkid=873371</projectUrl>
+    <dependencies>
+      <group targetFramework="netstandard2.0">
+        <dependency id="Dropbox.Api" version="4.5.3" />
+        <dependency id="Xamarin.Auth" version="1.5.0.3" />
+     </group>
+    </dependencies>
+  </metadata>
+  <files>
+    <file src="output/Xamarin.Dropbox.Api.Core.dll" target="lib/netstandard2.0" />
+  </files>
+</package>

@@ -1,0 +1,51 @@
+version: 4.5.3
+name: Dropbox API v2 SDK
+id: dropboxapiv2
+publisher: Xamarin Inc
+publisher-url: https://go.microsoft.com/fwlink/?linkid=873371
+src-url: https://go.microsoft.com/fwlink/?linkid=873371
+license: ../License.md
+summary: A .NET SDK for integrating with the Dropbox API v2 with Xamarin.iOS and Xamarin.Android and Xamarin.Auth
+icons:
+  - icons/dropboxapiv2_128x128.png
+  - icons/dropboxapiv2_512x512.png
+libraries:
+  ios-unified:
+    - ../output/Xamarin.Dropbox.Api.Core.dll
+    - ../output/Xamarin.Dropbox.Api.iOS.dll
+  android:
+    - ../output/Xamarin.Dropbox.Api.Core.dll
+    - ../output/Xamarin.Dropbox.Api.Android.dll
+is_shell: true
+no_build: true
+local-nuget-repo: ../output
+packages:
+  ios-unified:
+    - Dropbox.Api, Version=4.5.3
+  android:
+    - Dropbox.Api, Version=4.5.3
+samples:
+  - name: "Dropbox v2 Api SDK iOS Sample"
+    path: ../samples/DropboxV2ApiSampleiOS/DropboxV2ApiSampleiOS.sln
+    removeProjects:
+      - Xamarin.Dropbox.Api.Core
+      - Xamarin.Dropbox.Api.iOS
+    installNuGets:
+      - project: DropboxV2ApiSampleiOS
+        packages:
+          - Xamarin.Dropbox.Api.Core
+          - Xamarin.Dropbox.Api.iOS
+    configuration: "Release|iPhone"
+    no_build: true
+  - name: "Dropbox v2 Api SDK Android Sample"
+    path: ../samples/DropboxV2ApiSampleDroid/DropboxV2ApiSampleDroid.sln
+    removeProjects:
+      - Xamarin.Dropbox.Api.Core
+      - Xamarin.Dropbox.Api.Android
+    installNuGets:
+      - project: DropboxV2ApiSampleDroid
+        packages:
+          - Xamarin.Dropbox.Api.Core
+          - Xamarin.Dropbox.Api.Android
+    configuration: "Release"        
+    nobuild: true
