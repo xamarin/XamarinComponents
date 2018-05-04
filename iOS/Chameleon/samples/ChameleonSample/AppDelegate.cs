@@ -1,6 +1,5 @@
 ﻿using Foundation;
 using UIKit;
-
 using ChameleonFramework;
 
 namespace ChameleonSample
