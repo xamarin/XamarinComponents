@@ -29,7 +29,7 @@ namespace NearableExample
 
 			NearablePicker.WeakDelegate = this;
 			NearablePicker.DataSource = this;
-		
+
 		}
 
 		private void StartTrigger ()
@@ -38,14 +38,14 @@ namespace NearableExample
 
 			var rule1 = OrientationRule.OrientationEquals (NearableOrientation.Horizontal, GetTypeForRow (row));
 
-			var forgotBagTrigger = new Trigger (new Rule[]{ rule1 }, TriggerId);
+			var forgotBagTrigger = new Trigger (new Rule [] { rule1 }, TriggerId);
 
 			if (triggerManager == null) {
 				triggerManager = new TriggerManager ();
 			}
 
-			triggerManager.StartMonitoringForTrigger (forgotBagTrigger);
-            triggerManager.ChangedState += HandleTriggerChangedState;
+			triggerManager.StartMonitoring (forgotBagTrigger);
+			triggerManager.TriggerChangedState += HandleTriggerChangedState;
 
 		}
 
@@ -81,17 +81,17 @@ namespace NearableExample
 
 
 
-        void HandleTriggerChangedState (object sender, TriggerChangedStateEventArgs e)
-        {
-            LabelTime.Text = DateTime.Now.ToString ("G");
-        }
+		void HandleTriggerChangedState (object sender, TriggerManagerTriggerChangedStateEventArgs e)
+		{
+			LabelTime.Text = DateTime.Now.ToString ("G");
+		}
 
 		private void StopTrigger ()
 		{
 			if (triggerManager == null)
 				return;
 
-			triggerManager.StopMonitoringForTriggerWithIdentifier (TriggerId);
+			triggerManager.StopMonitoringForTrigger (TriggerId);
 
 		}
 
