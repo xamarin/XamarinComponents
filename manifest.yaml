@@ -412,6 +412,10 @@
   BuildScript: ./XPlat/CardIO/iOS/build.cake
   TriggerPaths: [ XPlat/CardIO/iOS ]
   MacBuildTargets: [ samples, nuget, component ]
+- Name: VK
+  BuildScript: ./XPlat/VK/build.cake
+  TriggerPaths: [ XPlat/VK ]
+  MacBuildTargets: [ component, samples ]
 - Name: Mono.DataConverter
   BuildScript: ./XPlat/Mono.DataConverter/build.cake
   TriggerPaths: [ XPlat/Mono.DataConverter ]
