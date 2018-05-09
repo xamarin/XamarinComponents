@@ -4,13 +4,13 @@
     <id>Xamarin.Android.UniversalImageLoader</id>
     <title>Universal Image Loader for Xamarin.Android</title>
     <version>1.9.5</version>
-    <authors>Xamarin Inc.</authors>
-    <owners>Xamarin Inc.</owners>
-    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <authors>Microsoft</authors>
+    <owners>Microsoft</owners>
+    <requireLicenseAcceptance>true</requireLicenseAcceptance>
     <description>Xamarin.Android binding for Universal Image Loader - Powerful and flexible library for loading, caching and displaying images on Android.</description>
-    <copyright>Copyright 2017 Xamarin Inc</copyright>
-    <projectUrl>https://github.com/xamarin/XamarinComponents/tree/master/Android/UniversalImageLoader</projectUrl>
-    <licenseUrl>https://github.com/xamarin/XamarinComponents/blob/master/Android/UniversalImageLoader/LICENSE.md</licenseUrl>
+    <copyright>© Microsoft Corporation. All rights reserved.</copyright>
+    <projectUrl>https://go.microsoft.com/fwlink/?linkid=874020</projectUrl>
+    <licenseUrl>https://go.microsoft.com/fwlink/?linkid=874021</licenseUrl>
   </metadata>
   <files>
     <file src="output/UniversalImageLoader.dll" target="lib/MonoAndroid" />
