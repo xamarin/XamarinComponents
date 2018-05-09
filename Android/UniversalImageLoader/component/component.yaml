@@ -3,7 +3,7 @@ name: Universal Image Loader
 id: UniversalImageLoader
 publisher: Xamarin Inc
 publisher-url: http://xamarin.com/
-src-url: https://github.com/xamarin/XamarinComponents/tree/master/Android/UniversalImageLoader
+src-url: https://go.microsoft.com/fwlink/?linkid=874020
 summary: A powerful, flexible and highly customizable instrument for image loading, caching and displaying.
 
 license: ../LICENSE.md
