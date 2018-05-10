@@ -2,7 +2,7 @@
 <package>
   <metadata>
     <id>Xamarin.StickyHeader</id>
-    <title>StickyHeader for Xamarin.MonoAndroid40</title>
+    <title>StickyHeader for Xamarin.MonoAndroid44</title>
     <version>1.1.2</version>
     <authors>Microsoft</authors>
     <owners>Microsoft</owners>
@@ -13,7 +13,7 @@
     <licenseUrl>https://go.microsoft.com/fwlink/?linkid=869731</licenseUrl>
   </metadata>
   <files>
-    <file src="output/StickyHeader.dll" target="lib/Xamarin.Android" />
+    <file src="output/StickyHeader.dll" target="lib/Xamarin.MonoAndroid44" />
     <file src="External-Dependency-Info.txt" target="THIRD-PARTY-NOTICES.txt" />
   </files>
 </package>
