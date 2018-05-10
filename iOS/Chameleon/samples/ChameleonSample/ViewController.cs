@@ -16,7 +16,7 @@ namespace ChameleonSample
 		{
 			base.ViewDidLoad ();
 
-            NavigationController.HidesNavigationBarHairline();
+			NavigationController.HidesNavigationBarHairline();
 
 			var image = UIImage.FromBundle ("africa-blue.jpg");
 			var average = ChameleonColor.GetImageAverageColor (null, image);
