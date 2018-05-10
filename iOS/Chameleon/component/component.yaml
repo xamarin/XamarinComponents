@@ -1,10 +1,11 @@
-version: 2.0.4.0
+version: 2.1
 name: Chameleon
 id: Chameleon
 publisher: Xamarin Inc
 publisher-url: https://xamarin.com
 src-url: https://github.com/xamarin/XamarinComponents/tree/master/iOS/Chameleon
 summary: Chameleon is a lightweight, yet powerful, color framework for iOS.
+license: ../License.md
 icons:
   - icons/Chameleon_128x128.png
   - icons/Chameleon_512x512.png
@@ -13,4 +14,17 @@ libraries:
 samples:
   - name: "Chameleon Sample"
     path:  ../samples/ChameleonSample.sln
+    removeProjects:
+      - Chameleon
+    installNuGets:
+      - project: ChameleonSample
+        packages:
+          - Xamarin.Chameleon
+is_shell: true
 no_build: true
+
+local-nuget-repo: ../output
+
+additional-files:
+  - source: "../External-Dependency-Info.txt"
+    destination: "THIRD-PARTY-NOTICES.txt"
