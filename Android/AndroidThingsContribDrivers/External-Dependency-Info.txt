@@ -1,0 +1,38 @@
+THIRD-PARTY SOFTWARE NOTICES AND INFORMATION
+Do not translate or localize
+
+Xamarin Components for Google's Android Things Contrib-Driver Libraries incorporates 
+third party material from the projects listed below. The original copyright 
+notice and the license under which Microsoft received such third party 
+material are set forth below.  Microsoft reserves all other rights not 
+expressly granted, whether by implication, estoppel or otherwise.
+
+########################################
+# Google Android Things Contrib-Driver Libraries
+# https://bintray.com/google/androidthings/contrib-driver-apa102
+# https://bintray.com/google/androidthings/contrib-driver-bmx280
+# https://bintray.com/google/androidthings/contrib-driver-button
+# https://bintray.com/google/androidthings/contrib-driver-cap12xx
+# https://bintray.com/google/androidthings/contrib-driver-gps
+# https://bintray.com/google/androidthings/contrib-driver-ht16k33
+# https://bintray.com/google/androidthings/contrib-driver-mma7660fc
+# https://bintray.com/google/androidthings/contrib-driver-pwmservo
+# https://bintray.com/google/androidthings/contrib-driver-pwmspeaker
+# https://bintray.com/google/androidthings/contrib-driver-rainbowhat
+# https://bintray.com/google/androidthings/contrib-driver-ssd1306
+# https://bintray.com/google/androidthings/contrib-driver-tm1637
+########################################
+
+Copyright 2016, The Android Open Source Project
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
