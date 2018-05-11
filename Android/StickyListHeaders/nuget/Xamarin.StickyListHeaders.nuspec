@@ -13,7 +13,7 @@
     <licenseUrl>https://go.microsoft.com/fwlink/?linkid=871805</licenseUrl>
   </metadata>
   <files>
-    <file src="output/StickyListHeaders.dll" target="lib/Xamarin.Android" />
+    <file src="output/StickyListHeaders.dll" target="lib/Xamarin.MonoAndroid40" />
     <file src="External-Dependency-Info.txt" target="THIRD-PARTY-NOTICES.txt" />
   </files>
 </package>
