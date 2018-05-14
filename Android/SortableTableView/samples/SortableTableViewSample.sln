@@ -7,8 +7,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SortableTableView", "..\sou
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SortableTableViewSample", "SortableTableViewSample\SortableTableViewSample.csproj", "{F749E06A-B8D5-4969-99A6-1E6E9ED70781}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SortabelTableSample", "SortabelTableSample\SortabelTableSample.csproj", "{9F2F76C1-2217-4E11-9F90-905FECD866C6}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -25,10 +23,6 @@ Global
 		{F749E06A-B8D5-4969-99A6-1E6E9ED70781}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F749E06A-B8D5-4969-99A6-1E6E9ED70781}.Release|Any CPU.Build.0 = Release|Any CPU
 		{F749E06A-B8D5-4969-99A6-1E6E9ED70781}.Release|Any CPU.Deploy.0 = Release|Any CPU
-		{9F2F76C1-2217-4E11-9F90-905FECD866C6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{9F2F76C1-2217-4E11-9F90-905FECD866C6}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{9F2F76C1-2217-4E11-9F90-905FECD866C6}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{9F2F76C1-2217-4E11-9F90-905FECD866C6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
