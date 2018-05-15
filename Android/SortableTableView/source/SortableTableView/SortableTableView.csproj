@@ -52,6 +52,9 @@
       <HintPath>..\..\samples\packages\Xamarin.Android.Support.v7.AppCompat.23.4.0\lib\MonoAndroid403\Xamarin.Android.Support.v7.AppCompat.dll</HintPath>
       <Private>False</Private>
     </Reference>
+    <Reference Include="Xamarin.Android.Support.Animated.Vector.Drawable">
+      <HintPath>..\..\samples\packages\Xamarin.Android.Support.Animated.Vector.Drawable.23.4.0\lib\MonoAndroid403\Xamarin.Android.Support.Animated.Vector.Drawable.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -63,7 +66,6 @@
     <TransformFile Include="Transforms\Metadata.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.Bindings.targets" />
-  <Import Project="..\..\samples\packages\Xamarin.Android.Bindings.Generators.1.6.1.17\build\MonoAndroid\Xamarin.Android.Bindings.Generators.targets" Condition="Exists('..\..\samples\packages\Xamarin.Android.Bindings.Generators.1.6.1.17\build\MonoAndroid\Xamarin.Android.Bindings.Generators.targets')" />
   <ItemGroup>
     <Folder Include="Additions\" />
   </ItemGroup>
@@ -75,4 +77,5 @@
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
+  <Import Project="..\..\samples\packages\Xamarin.Android.Bindings.Generators.1.6.1.17\build\MonoAndroid\Xamarin.Android.Bindings.Generators.targets" Condition="Exists('..\..\samples\packages\Xamarin.Android.Bindings.Generators.1.6.1.17\build\MonoAndroid\Xamarin.Android.Bindings.Generators.targets')" />
 </Project>
