@@ -13,7 +13,7 @@
     <licenseUrl>https://go.microsoft.com/fwlink/?linkid=871806</licenseUrl>
   </metadata>
   <files>
-    <file src="output/SortableTableView.dll" target="lib/Xamarin.MonoAndroid44" />
+    <file src="output/SortableTableView.dll" target="lib/MonoAndroid" />
     <file src="External-Dependency-Info.txt" target="THIRD-PARTY-NOTICES.txt" />
   </files>
 </package>
