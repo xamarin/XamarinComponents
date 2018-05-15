@@ -1,9 +1,4 @@
-#tool nuget:?package=XamarinComponent
-
-#addin nuget:?package=Cake.XCode
-#addin nuget:?package=Cake.Xamarin
-#addin nuget:?package=Cake.Xamarin.Build
-#addin nuget:?package=Cake.FileHelpers
+#load "../../common.cake"
 
 var NUGET_VERSION = "4.26.3.0";
 var ESTIMOTE_SDK_VERSION = "4.26.3";
