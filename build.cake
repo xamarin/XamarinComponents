@@ -97,7 +97,7 @@ void BuildGroups (List<BuildGroup> buildGroups, List<string> names, List<string>
 		// and also set our previous commit to 'master' to compare against
 		var prActualCommit = EnvironmentVariable("ghprbActualCommit");
 		if (!string.IsNullOrWhiteSpace(prActualCommit)) {
-			gitPreviousCommit = "origin/HEAD";
+			gitPreviousCommit = "master";
 			gitCommit = prActualCommit;
 		}
 
