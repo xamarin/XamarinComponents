@@ -147,8 +147,15 @@ namespace Xamarin.Build.Download
 					needToWrite = true;
 				}
 
-				if (needToWrite)
-					asmDefinition.Write (mergedAsmPath);
+				if (needToWrite) {
+					var fileStream = GetWritableFileStream(mergedAsmPath);
+
+					asmDefinition.Write(fileStream, new WriterParameters());
+
+					// Close the file stream, as Mono.Cecil will not do so for streams
+					// passed in from outside.
+					fileStream.Close();
+				}
 
 				return true;
 			} catch (Exception ex) {
@@ -215,6 +222,35 @@ namespace Xamarin.Build.Download
 			}
 
 			return restoreMap;
+		}
+
+		/// <summary>
+		/// Opens a FileStream for writing for a given path, running the garbage collector
+		/// and retrying if the file was already open.
+		/// </summary>
+		/// <param name="filePath">Fully qualified name of the file, or relative file name.</param>
+		/// <returns>A FileStream instance with ReadWrite access</returns>
+		/// <see cref="System.IO.FileInfo.Open">For exceptions that may be thrown</see>
+		private FileStream GetWritableFileStream(string filePath)
+		{
+			var file = new FileInfo(filePath);
+
+			FileStream stream = null;
+
+			try {
+				stream = file.Open(FileMode.Open, FileAccess.ReadWrite, FileShare.None);
+			} catch (IOException) {
+				Log.LogWarning("MergeResources: File is locked for writing; this would lead to a sharing violation. Manually triggering GC. File: {0}", filePath);
+
+				GC.Collect();
+				GC.WaitForPendingFinalizers();
+
+				// If the file still cannot be opened, a new IOException is thrown
+				stream = file.Open(FileMode.Open, FileAccess.ReadWrite, FileShare.None);
+			}
+
+			// If either the first or second attempt at opening worked, we have a valid FileStream now.
+			return stream;
 		}
 	}
 }
