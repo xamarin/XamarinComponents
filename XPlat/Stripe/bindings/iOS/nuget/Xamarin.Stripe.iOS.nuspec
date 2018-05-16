@@ -4,13 +4,13 @@
         <id>Xamarin.Stripe.iOS</id>
         <version>$version$</version>
         <title>Stripe for Xamarin.iOS</title>
-        <authors>Xamarin</authors>
-        <owners>Xamarin</owners>
-        <projectUrl>https://github.com/xamarin/XamarinComponents/tree/master/XPlat/Stripe/bindings/iOS</projectUrl>
-        <licenseUrl>https://github.com/xamarin/XamarinComponents/blob/master/XPlat/Stripe/bindings/iOS/License.md</licenseUrl>
-        <requireLicenseAcceptance>false</requireLicenseAcceptance>
+        <authors>Microsoft</authors>
+        <owners>Microsoft</owners>
+        <projectUrl>https://go.microsoft.com/fwlink/?linkid=874374</projectUrl>
+        <licenseUrl>https://go.microsoft.com/fwlink/?linkid=874375</licenseUrl>
+        <requireLicenseAcceptance>true</requireLicenseAcceptance>
         <description>The Stripe iOS SDK makes it quick and easy to build an excellent payment experience in your Xamarin.iOS app</description>
-        <copyright>Copyright 2017 Xamarin</copyright>
+        <copyright>© Microsoft Corporation. All rights reserved.</copyright>
         <language>en-US</language>
         <iconUrl>https://github.com/xamarin/XamarinComponents/raw/master/XPlat/Stripe/icons/Stripe-200.png</iconUrl>
         <tags>Xamarin Xamarin.iOS Stripe</tags>
