@@ -1,10 +1,4 @@
-#addin nuget:?package=Cake.XCode&version=4.0.0
-#addin nuget:?package=Cake.Xamarin.Build&version=4.0.0
-#addin nuget:?package=Cake.Xamarin&version=3.0.0
-#addin nuget:?package=Cake.FileHelpers&version=3.0.0
-#addin nuget:?package=Cake.Yaml&version=2.1.0
-#addin nuget:?package=Cake.Json&version=3.0.1
-#tool "nuget:?package=NUnit.Runners&version=2.6.4"
+#load "common.cake"
 
 var TARGET = Argument ("target", Argument ("t", Argument ("Target", "build")));
 

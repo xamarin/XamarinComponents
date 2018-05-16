@@ -4,6 +4,11 @@
 #addin nuget:?package=Cake.Xamarin.Build&version=4.0.0
 #addin nuget:?package=Cake.Xamarin&version=3.0.0
 #addin nuget:?package=Cake.FileHelpers&version=3.0.0
+#addin nuget:?package=YamlDotNet&version=4.2.1
+#addin nuget:?package=Cake.Yaml&version=2.1.0
+#addin nuget:?package=Newtonsoft.Json&version=9.0.1
+#addin nuget:?package=Cake.Json&version=3.0.1
+#tool "nuget:?package=NUnit.Runners&version=2.6.4"
 
 public enum TargetOS {
 	Windows,
