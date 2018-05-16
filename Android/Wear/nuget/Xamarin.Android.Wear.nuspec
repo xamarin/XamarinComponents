@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<package>
+  <metadata>
+    <id>Xamarin.Android.Wear</id>
+    <title>Xamarin Android Wear Libraries</title>
+    <version>$version$</version>
+    <authors>Microsoft</authors>
+    <owners>Microsoft</owners>
+    <requireLicenseAcceptance>true</requireLicenseAcceptance>
+    <summary>Xamarin.Android Bindings for Wear Libraries</summary>
+    <description>
+      Xamarin.Android Bindings for Wear Libraries
+    </description>
+    <copyright>© Microsoft Corporation. All rights reserved.</copyright>
+    <projectUrl>https://go.microsoft.com/fwlink/?linkid=868403</projectUrl>
+    <licenseUrl>https://go.microsoft.com/fwlink/?linkid=868402</licenseUrl>
+    <dependencies>
+      <group targetFramework="MonoAndroid80">
+        <dependency id="Xamarin.Android.Support.Annotations" version="26.1.0.1" />
+        <dependency id="Xamarin.Android.Support.Compat" version="26.1.0.1" />
+        <dependency id="Xamarin.Android.Support.Core.UI" version="26.1.0.1" />
+        <dependency id="Xamarin.Android.Support.Percent" version="26.1.0.1" />
+        <dependency id="Xamarin.Android.Support.v7.RecyclerView" version="26.1.0.1" />
+      </group>
+    </dependencies>
+  </metadata>
+  <files>
+    <file src="nuget/Xamarin.Android.Wear.targets" target="build/MonoAndroid80" />
+    <file src="externals/support_wearable/proguard.txt" target="proguard/proguard.txt" />
+    <file src="output/Xamarin.Android.Wear.dll" target="lib/MonoAndroid80" />
+    <file src="External-Dependency-Info.txt" target="THIRD-PARTY-NOTICES.txt" />
+  </files>
+</package>

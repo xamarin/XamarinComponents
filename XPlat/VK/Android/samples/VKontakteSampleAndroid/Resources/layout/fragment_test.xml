@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    tools:context=".TestActivity$PlaceholderFragment">
+    <LinearLayout
+        style="@style/Container">
+        <Button
+            android:id="@+id/users_get"
+            style="@style/Button"
+            android:text="@string/users_get" />
+        <Button
+            android:id="@+id/friends_get"
+            style="@style/Button"
+            android:text="@string/friends_get" />
+        <Button
+            android:id="@+id/messages_get"
+            style="@style/Button"
+            android:text="@string/messages_get" />
+        <Button
+            android:id="@+id/dialogs_get"
+            style="@style/Button"
+            android:text="@string/dialogs_get" />
+        <Button
+            android:id="@+id/captcha_force"
+            style="@style/Button"
+            android:text="@string/captcha_force" />
+        <Button
+            android:id="@+id/wall_post"
+            style="@style/Button"
+            android:text="@string/wall_post" />
+        <Button
+            android:id="@+id/wall_getById"
+            style="@style/Button"
+            android:text="@string/wall_getById" />
+        <Button
+            android:id="@+id/upload_photo"
+            style="@style/Button"
+            android:text="@string/upload_photo" />
+        <Button
+            android:id="@+id/upload_photo_to_wall"
+            style="@style/Button"
+            android:text="@string/upload_photo_to_wall" />
+        <Button
+            android:id="@+id/upload_several_photos_to_wall"
+            style="@style/Button"
+            android:text="@string/upload_several_photos_to_wall" />
+        <Button
+            android:id="@+id/upload_doc"
+            style="@style/Button"
+            android:text="@string/upload_doc" />
+        <Button
+            android:id="@+id/test_validation"
+            style="@style/Button"
+            android:text="@string/test_validation" />
+        <Button
+            android:id="@+id/test_share"
+            style="@style/Button"
+            android:text="@string/test_share" />
+        <Button
+            android:id="@+id/test_send_request"
+            style="@style/Button"
+            android:text="@string/test_send_request" />
+    </LinearLayout>
+</ScrollView>

@@ -38,14 +38,14 @@ namespace NearableMonitoringExample
 		{
 			base.ViewDidAppear (animated);
 
-			manager.StartRangingForType (NearableType.All);
+			manager.StartRanging (NearableType.All);
 		}
 
 		public override void ViewDidDisappear (bool animated)
 		{
 			base.ViewDidDisappear (animated);
 
-			manager.StopRangingForType (NearableType.All);
+			manager.StopRanging (NearableType.All);
 		}
 
 

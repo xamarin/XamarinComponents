@@ -3,9 +3,9 @@
 
 var TARGET = Argument ("t", Argument ("target", "Default"));
 
-var NUGET_VERSION = "0.5.1-devpreview";
+var NUGET_VERSION = "1.0";
 
-var JAR_VERSION = "0.5.1-devpreview";
+var JAR_VERSION = "1.0";
 var JAR_URL = string.Format ("https://bintray.com/google/androidthings/download_file?file_path=com%2Fgoogle%2Fandroid%2Fthings%2Fandroidthings%2F{0}%2Fandroidthings-{0}.jar", JAR_VERSION);
 var DOCS_URL = string.Format ("https://bintray.com/google/androidthings/download_file?file_path=com%2Fgoogle%2Fandroid%2Fthings%2Fandroidthings%2F{0}%2Fandroidthings-{0}-javadoc.jar", JAR_VERSION);
 var JAR_DEST = "./externals/androidthings.jar";

@@ -1,0 +1,29 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PickerCells", "PickerCells\PickerCells.csproj", "{19BB5F1C-D785-4049-9D7D-43B739BAF5DD}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+		Debug|iPhoneSimulator = Debug|iPhoneSimulator
+		Release|iPhone = Release|iPhone
+		Release|iPhoneSimulator = Release|iPhoneSimulator
+		Debug|iPhone = Debug|iPhone
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{19BB5F1C-D785-4049-9D7D-43B739BAF5DD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{19BB5F1C-D785-4049-9D7D-43B739BAF5DD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{19BB5F1C-D785-4049-9D7D-43B739BAF5DD}.Debug|iPhone.ActiveCfg = Debug|Any CPU
+		{19BB5F1C-D785-4049-9D7D-43B739BAF5DD}.Debug|iPhone.Build.0 = Debug|Any CPU
+		{19BB5F1C-D785-4049-9D7D-43B739BAF5DD}.Debug|iPhoneSimulator.ActiveCfg = Debug|Any CPU
+		{19BB5F1C-D785-4049-9D7D-43B739BAF5DD}.Debug|iPhoneSimulator.Build.0 = Debug|Any CPU
+		{19BB5F1C-D785-4049-9D7D-43B739BAF5DD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{19BB5F1C-D785-4049-9D7D-43B739BAF5DD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{19BB5F1C-D785-4049-9D7D-43B739BAF5DD}.Release|iPhone.ActiveCfg = Release|Any CPU
+		{19BB5F1C-D785-4049-9D7D-43B739BAF5DD}.Release|iPhone.Build.0 = Release|Any CPU
+		{19BB5F1C-D785-4049-9D7D-43B739BAF5DD}.Release|iPhoneSimulator.ActiveCfg = Release|Any CPU
+		{19BB5F1C-D785-4049-9D7D-43B739BAF5DD}.Release|iPhoneSimulator.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal

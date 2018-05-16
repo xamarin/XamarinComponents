@@ -1,8 +1,16 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <metadata>
 	<attr path="/api/package[@name='com.google.android.things']" name="managedName">Android.Things</attr>
+    <attr path="/api/package[@name='com.google.android.things.device']" name="managedName">Android.Things.Device</attr>
+    <attr path="/api/package[@name='com.google.android.things.lowpan']" name="managedName">Android.Things.Lowpan</attr>
+    <attr path="/api/package[@name='com.google.android.things.update']" name="managedName">Android.Things.Update</attr>
 	<attr path="/api/package[@name='com.google.android.things.pio']" name="managedName">Android.Things.Pio</attr>
 	<attr path="/api/package[@name='com.google.android.things.userdriver']" name="managedName">Android.Things.UserDriver</attr>
+    <attr path="/api/package[@name='com.google.android.things.userdriver.input']" name="managedName">Android.Things.UserDriver.Input</attr>
+    <attr path="/api/package[@name='com.google.android.things.userdriver.location']" name="managedName">Android.Things.UserDriver.Location</attr>
+    <attr path="/api/package[@name='com.google.android.things.userdriver.lowpan']" name="managedName">Android.Things.UserDriver.Lowpan</attr>
+    <attr path="/api/package[@name='com.google.android.things.userdriver.pio']" name="managedName">Android.Things.UserDriver.Pio</attr>
+    <attr path="/api/package[@name='com.google.android.things.userdriver.sensor']" name="managedName">Android.Things.UserDriver.Sensor</attr>
 	<attr path="/api/package[@name='com.google.android.things.bluetooth']" name="managedName">Android.Things.Bluetooth</attr>
 	<attr path="/api/package[@name='com.google.android.things.devicemanagement']" name="managedName">Android.Things.DeviceManagement</attr>
 

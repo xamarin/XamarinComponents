@@ -41,39 +41,38 @@ namespace NearableExample
 			var secondHour = (int)SecondHourSwitch.SelectedRowInComponent (0);
 
 			var goingToWork = DateRule.HourBetween (firstHour, secondHour);
-			var insideCarRule = ProximityRule.InRangeOfNearableType (NearableType.Car);
-			var noBagRule = ProximityRule.OutsideRangeOfNearableType (NearableType.Bag);
+			var insideCarRule = ProximityRule.InRangeOf (NearableType.Car);
+			var noBagRule = ProximityRule.OutsideRangeOf (NearableType.Bag);
 
-			var forgotBagTrigger = new Trigger (new Rule[]{ goingToWork, insideCarRule, noBagRule }, TriggerId); 
+			var forgotBagTrigger = new Trigger (new Rule [] { goingToWork, insideCarRule, noBagRule }, TriggerId);
 
 			if (triggerManager == null) {
 				triggerManager = new TriggerManager ();
 			}
 
-			triggerManager.StartMonitoringForTrigger (forgotBagTrigger);
-            triggerManager.ChangedState += HandleTriggerChangedState;
+			triggerManager.StartMonitoring (forgotBagTrigger);
+			triggerManager.TriggerChangedState += HandleTriggerChangedState;
 		}
 
 
 
-        void HandleTriggerChangedState (object sender, TriggerChangedStateEventArgs e)
-        {
-            if(e.Trigger.Identifier == TriggerId && e.Trigger.State)
-            {
-                Console.WriteLine("You forgot your bag!");
-                var notification = new UILocalNotification();
-                notification.AlertBody = "You forgot your bag!";
-                UIApplication.SharedApplication.PresentLocalNotificationNow(notification);
+		void HandleTriggerChangedState (object sender, TriggerManagerTriggerChangedStateEventArgs e)
+		{
+			if (e.Trigger.Identifier == TriggerId && e.Trigger.State) {
+				Console.WriteLine ("You forgot your bag!");
+				var notification = new UILocalNotification ();
+				notification.AlertBody = "You forgot your bag!";
+				UIApplication.SharedApplication.PresentLocalNotificationNow (notification);
 
-            }
-        }
+			}
+		}
 
 		private void StopReminderTrigger ()
 		{
 			if (triggerManager == null)
 				return;
 
-			triggerManager.StopMonitoringForTriggerWithIdentifier (TriggerId);
+			triggerManager.StopMonitoringForTrigger (TriggerId);
 
 		}
 

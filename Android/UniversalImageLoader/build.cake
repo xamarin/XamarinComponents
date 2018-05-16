@@ -12,9 +12,7 @@ var buildSpec = new BuildSpec () {
 		new DefaultSolutionBuilder {
 			SolutionPath = "./source/UniversalImageLoader.sln",
 			OutputFiles = new [] { 
-				new OutputFileCopy {
-					FromFile = "./source/UniversalImageLoader/bin/Release/UniversalImageLoader.dll",
-				}
+				new OutputFileCopy { FromFile = "./source/UniversalImageLoader/bin/Release/UniversalImageLoader.dll" }
 			}
 		}
 	},
@@ -23,17 +21,19 @@ var buildSpec = new BuildSpec () {
 		new DefaultSolutionBuilder { SolutionPath = "./samples/UniversalImageLoaderSample.sln" },
 	},
 
+	NuGets = new [] {
+		new NuGetInfo { NuSpec = "./nuget/Xamarin.Android.UniversalImageLoader.nuspec" },
+	},
+
 	Components = new [] {
-		new Component {ManifestDirectory = "./component"},
+		new Component { ManifestDirectory = "./component" },
 	},
 };
 
 Task ("externals")
 	.Does (() => 
 {
-	if (!DirectoryExists ("./externals/"))
-		CreateDirectory ("./externals");
-		
+	EnsureDirectoryExists ("./externals/");
 	DownloadFile (JAR_URL, JAR_DEST);
 });
 

@@ -36,8 +36,8 @@ namespace BeaconExample
             if (CLOUD_APP_ID == "YOUR-APP-ID" || CLOUD_APP_TOKEN == "YOUR-APP-TOKEN")
                 throw new Exception ("Please configure your own Cloud App ID and App Token!");
 
-            CloudManager.SetupAppID (CLOUD_APP_ID, CLOUD_APP_TOKEN);
-            Config.Setup (CLOUD_APP_ID, CLOUD_APP_TOKEN);
+            CloudManager.SetupAppId (CLOUD_APP_ID, CLOUD_APP_TOKEN);
+            Config.SetupAppId (CLOUD_APP_ID, CLOUD_APP_TOKEN);
             Config.EnableMonitoringAnalytics (true);
             Config.EnableRangingAnalytics (true);
 

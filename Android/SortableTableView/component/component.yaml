@@ -1,4 +1,4 @@
-version: 2.2.0
+version: 2.8.0
 name: Sortable Table View
 id: SortableTableView
 publisher: Xamarin Inc
@@ -6,7 +6,7 @@ publisher-url: http://xamarin.com/
 src-url: https://github.com/xamarin/XamarinComponents/tree/master/Android/SortableTableView
 summary: A simple TableView and an advanced SortableTableView providing a lot of customisation possibilities to fit all needs.
 
-license: License.md
+license: ../License.md
 details: Details.md
 getting-started: GettingStarted.md
 
@@ -25,3 +25,15 @@ packages:
 samples:
   - name: "Android Sample"
     path: ../samples/SortableTableViewSample.sln
+    removeProjects:
+        - SortableTableView
+    installNuGets:
+      - project: SortableTableViewSample
+        packages:
+          - Xamarin.SortableTableView
+
+is_shell: true 
+local-nuget-repo: ../output
+additional-files:
+  - source: "../External-Dependency-Info.txt"
+    destination: "THIRD-PARTY-NOTICES.txt"
