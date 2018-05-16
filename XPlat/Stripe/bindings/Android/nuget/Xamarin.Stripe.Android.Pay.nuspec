@@ -4,13 +4,13 @@
         <id>Xamarin.Stripe.Android.Pay</id>
         <version>$version$</version>
         <title>Stripe for and Android Pay Xamarin.Android</title>
-        <authors>Xamarin</authors>
-        <owners>Xamarin</owners>
-        <projectUrl>https://github.com/xamarin/XamarinComponents/tree/master/XPlat/Stripe/bindings/Android</projectUrl>
-        <licenseUrl>https://github.com/xamarin/XamarinComponents/blob/master/XPlat/Stripe/bindings/Android/License.md</licenseUrl>
-        <requireLicenseAcceptance>false</requireLicenseAcceptance>
+        <authors>Microsoft</authors>
+        <owners>Microsoft</owners>
+        <projectUrl>https://go.microsoft.com/fwlink/?linkid=874376</projectUrl>
+        <licenseUrl>https://go.microsoft.com/fwlink/?linkid=874377</licenseUrl>
+        <requireLicenseAcceptance>true</requireLicenseAcceptance>
         <description>Allow customers to securely make payments using Android Pay through Stripe.</description>
-        <copyright>Copyright 2017 Xamarin</copyright>
+        <copyright>© Microsoft Corporation. All rights reserved.</copyright>
         <language>en-US</language>
         <iconUrl>https://github.com/xamarin/XamarinComponents/raw/master/XPlat/Stripe/icons/Stripe-200.png</iconUrl>
         <tags>Xamarin Xamarin.Android Stripe</tags>
