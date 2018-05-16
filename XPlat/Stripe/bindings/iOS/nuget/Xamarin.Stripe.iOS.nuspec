@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
+    <metadata>
+        <id>Xamarin.Stripe.iOS</id>
+        <version>$version$</version>
+        <title>Stripe for Xamarin.iOS</title>
+        <authors>Microsoft</authors>
+        <owners>Microsoft</owners>
+        <projectUrl>https://go.microsoft.com/fwlink/?linkid=874374</projectUrl>
+        <licenseUrl>https://go.microsoft.com/fwlink/?linkid=874375</licenseUrl>
+        <requireLicenseAcceptance>true</requireLicenseAcceptance>
+        <description>The Stripe iOS SDK makes it quick and easy to build an excellent payment experience in your Xamarin.iOS app</description>
+        <copyright>© Microsoft Corporation. All rights reserved.</copyright>
+        <language>en-US</language>
+        <iconUrl>https://github.com/xamarin/XamarinComponents/raw/master/XPlat/Stripe/icons/Stripe-200.png</iconUrl>
+        <tags>Xamarin Xamarin.iOS Stripe</tags>
+    </metadata>
+    <files>
+        <file src="output/Stripe.iOS.dll" target="lib/Xamarin.iOS10" />
+        <file src="External-Dependency-Info.txt" target="THIRD-PARTY-NOTICES.txt" />
+    </files>
+</package>
