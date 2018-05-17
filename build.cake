@@ -330,7 +330,7 @@ Task ("buildall")
 	assembly.CollectionItems.Add(col);
 	
 	var resultWriter = new Xunit.ResultWriter.XunitV2Writer();
-	resultWriter.Write(new List<Xunit.ResultWriter.Assembly> { assembly }, MakeAbsolute(new FilePath("./cakebuildresults.xml")).FullPath);
+	resultWriter.Write(new List<Xunit.ResultWriter.Assembly> { assembly }, MakeAbsolute(new FilePath("./xunit.xml")).FullPath);
 	
 });
 
