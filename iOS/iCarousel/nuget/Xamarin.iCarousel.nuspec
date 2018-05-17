@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<package>
+  <metadata>
+    <id>Xamarin.iCarousel</id>
+    <title>iCarousel</title>
+    <version>1.8.3</version>
+    <authors>Xamarin Inc.</authors>
+    <owners>Xamarin Inc.</owners>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>iCarousel is designed to simplify the implementation of various types of carousel (paged, scrolling views) on iPhone and iPad.</description>
+    <copyright>Copyright 2017 Xamarin Inc</copyright>
+    <projectUrl>https://github.com/xamarin/XamarinComponents/tree/master/iOS/iCarousel</projectUrl>
+    <licenseUrl>https://github.com/xamarin/XamarinComponents/blob/master/iOS/iCarousel/License.md</licenseUrl>
+  </metadata>
+  <files>
+    <file src="output/iCarousel.iOS.dll" target="lib/Xamarin.iOS" />
+    <file src="output/iCarousel.macOS.dll" target="lib/Xamarin.Mac" />
+    <file src="External-Dependency-Info.txt" target="THIRD-PARTY-NOTICES.txt" />
+  </files>
+</package>

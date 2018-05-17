@@ -1,30 +1,15 @@
 ﻿using System;
 using System.Linq;
 
-#if __UNIFIED__
 using CoreAnimation;
 using CoreGraphics;
 using Foundation;
 using ObjCRuntime;
 using UIKit;
-#else
-using MonoTouch.CoreAnimation;
-using MonoTouch.CoreGraphics;
-using MonoTouch.Foundation;
-using MonoTouch.ObjCRuntime;
-using MonoTouch.UIKit;
-
-using CGRect = global::System.Drawing.RectangleF;
-using CGSize = global::System.Drawing.SizeF;
-using CGPoint = global::System.Drawing.PointF;
-using nfloat = global::System.Single;
-using nint = global::System.Int32;
-using nuint = global::System.UInt32;
-#endif
 
 using Carousels;
 
-namespace BasiciOSExample
+namespace iCarouselSample
 {
 	public partial class ExampleViewController : UIViewController
 	{
@@ -66,7 +51,7 @@ namespace BasiciOSExample
 
 			// handle item selections
 			carousel.ItemSelected += (sender, args) => {
-				using (var alert = new UIAlertView ("Item Selected", string.Format ("You selected item '{0}'.", args.Index), null, "OK"))
+				using (var alert = new UIAlertView ("Item Selected", string.Format ("You selected item '{0}'.", args.Index), (IUIAlertViewDelegate)null, "OK"))
 					alert.Show ();
 			};
 
