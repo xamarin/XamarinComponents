@@ -1,5 +1,7 @@
 #load "common.cake"
 
+#addin nuget:?package=redth.xunit.resultwriter&version=1.0.0
+
 var TARGET = Argument ("target", Argument ("t", Argument ("Target", "build")));
 
 var GIT_PREVIOUS_COMMIT = EnvironmentVariable ("GIT_PREVIOUS_SUCCESSFUL_COMMIT") ?? Argument ("gitpreviouscommit", "");
@@ -273,16 +275,63 @@ Task ("build").Does (() =>
 	BuildGroups (BUILD_GROUPS, BUILD_NAMES.ToList (), buildTargets, GIT_PATH, GIT_BRANCH, GIT_PREVIOUS_COMMIT, GIT_COMMIT, FORCE_BUILD);		
 });
 
-Task ("buildall").Does (() => {
-
+Task ("buildall")
+	.Does (() =>
+{
 	// If BUILD_NAMES were specified, only take BUILD_GROUPS that match one of the specified names, otherwise, all
 	var groupsToBuild = BUILD_NAMES.Any () ? BUILD_GROUPS.Where (i => BUILD_NAMES.Contains (i.Name)) : BUILD_GROUPS;
 
-	var buildinfo = new Dictionary<FilePath, string[]>();
-	foreach (var bg in groupsToBuild)
-		buildinfo.Add (new FilePath (bg.BuildScript), bg.BuildTargets.ToArray ());
+	//var cakeExePath = GetFiles("./**/Cake.exe").FirstOrDefault();
 
-	RunCakeBuilds (buildinfo, null);
+	var assembly = new Xunit.ResultWriter.Assembly {
+		Name = "ComponentsBuilder",
+		TestFramework = "xUnit",
+		Environment = "CI",
+		RunDate = DateTime.UtcNow.ToString("yyyy-MM-dd"),
+		RunTime = DateTime.UtcNow.ToString("hh:mm:ss")
+	};
+
+	var col = new Xunit.ResultWriter.Collection {
+		Name = "Components"
+	};
+
+	foreach (var bg in groupsToBuild) {
+		var buildScript = new FilePath(bg.BuildScript);
+
+		var name = MakeAbsolute(buildScript).GetDirectory().GetDirectoryName();
+
+		var test = new Xunit.ResultWriter.Test {
+			Name = name,
+			Type = "ComponentsBuilder",
+			Method = name + "(" + string.Join(",", bg.BuildTargets) + ")",
+		};
+
+		var start = DateTime.UtcNow;
+
+		try {
+			CakeExecuteScript(bg.BuildScript, new CakeSettings {
+				Arguments = new Dictionary<string, string> {
+					{ "--target", string.Join(",", bg.BuildTargets) }
+				}
+			});
+			test.Result = Xunit.ResultWriter.ResultType.Pass;
+		} catch (Exception ex) {
+			test.Result = Xunit.ResultWriter.ResultType.Fail;
+			test.Failure = new Xunit.ResultWriter.Failure {
+				Message = ex.Message,
+				StackTrace = ex.ToString()
+			};
+		}
+
+		test.Time = (decimal)(DateTime.UtcNow - start).TotalSeconds;
+		col.TestItems.Add(test);
+	}
+
+	assembly.CollectionItems.Add(col);
+	
+	var resultWriter = new Xunit.ResultWriter.XunitV2Writer();
+	resultWriter.Write(new List<Xunit.ResultWriter.Assembly> { assembly }, MakeAbsolute(new FilePath("./cakebuildresults.xml")).FullPath);
+	
 });
 
 RunTarget (TARGET);
