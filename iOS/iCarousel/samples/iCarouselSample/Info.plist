@@ -41,5 +41,7 @@
 	<string>iCarousel Sample</string>
 	<key>CFBundleIdentifier</key>
 	<string>com.companyname.icarouselsample</string>
+	<key>UILaunchStoryboardName</key>
+	<string>LaunchScreen</string>
 </dict>
 </plist>
