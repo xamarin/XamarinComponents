@@ -13,7 +13,7 @@
     <licenseUrl>https://go.microsoft.com/fwlink/?linkid=871869</licenseUrl>
   </metadata>
   <files>
-    <file src="output/JazzyViewPager.dll" target="lib/Xamarin.MonoAndroid40" />
+    <file src="output/JazzyViewPager.dll" target="lib/MonoAndroid44" />
     <file src="External-Dependency-Info.txt" target="THIRD-PARTY-NOTICES.txt" />
   </files>
 </package>
