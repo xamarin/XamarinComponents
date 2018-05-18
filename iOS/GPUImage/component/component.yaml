@@ -23,7 +23,7 @@ samples:
 no_build: true
 is_shell: true
 packages:
-  ios-unified: GPUImage, Version=0.1.7.
+  ios-unified: GPUImage, Version=0.1.7.2
 
 local-nuget-repo: ../output
 additional-files:
