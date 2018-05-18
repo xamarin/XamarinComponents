@@ -47,5 +47,7 @@
 	<string>Resources/Media.xcassets/LaunchImages.launchimage</string>
 	<key>CFBundleName</key>
 	<string>SidePanels</string>
+	<key>UILaunchStoryboardName</key>
+	<string>Main</string>
 </dict>
 </plist>
