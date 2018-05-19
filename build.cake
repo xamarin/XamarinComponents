@@ -296,14 +296,10 @@ Task ("buildall")
 	};
 
 	foreach (var bg in groupsToBuild) {
-		var buildScript = new FilePath(bg.BuildScript);
-
-		var name = MakeAbsolute(buildScript).GetDirectory().GetDirectoryName();
-
 		var test = new Xunit.ResultWriter.Test {
-			Name = name,
+			Name = bg.BuildScript,
 			Type = "ComponentsBuilder",
-			Method = name + "(" + string.Join(",", bg.BuildTargets) + ")",
+			Method = "Build (" + string.Join(",", bg.BuildTargets) + ")",
 		};
 
 		var start = DateTime.UtcNow;
