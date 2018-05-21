@@ -1,20 +1,34 @@
 name: Overlay Dialog and Progress View
-version: 1.3.1.0
+version: 1.3.1.1
 id: mbalertview
 publisher: Xamarin Inc
 publisher-url: http://xamarin.com
 src-url: https://github.com/xamarin/XamarinComponents/tree/master/iOS/MBAlertView
 summary: A simple overlay-style dialog and HUD library for iOS.
+license: ../License.md
 no_build: true
 libraries:
   ios-unified: ../output/unified/AlertView.dll
 samples:
   - name: "iOS Unified Sample"
     path: ../samples/MBAlertViewDemo/MBAlertViewDemo.sln
+    removeProjects:
+        - MBAlertView
+    installNuGets:
+      - project: MBAlertViewDemo
+        packages:
+          - Xamarin.MBAlertView
     configuration: "Release|iPhone"
-monodoc: docs/
+
 screenshots:
   - screenshots/screenshot0.png
 icons:
   - icons/mbalertview_128x128.png
   - icons/mbalertview_512x512.png
+is_shell: true 
+
+monodoc: ../docs/
+local-nuget-repo: ../output
+additional-files:
+  - source: "../External-Dependency-Info.txt"
+    destination: "THIRD-PARTY-NOTICES.txt"
