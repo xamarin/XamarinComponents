@@ -31,7 +31,7 @@ namespace JASidePanelsSample
 
 
 			hide = new UIButton (UIButtonType.RoundedRect);
-			hide.Frame = new CGRect (20.0f, 70.0f, 200.0f, 40.0f);
+			hide.Frame = new CGRect (20.0f, 110.0f, 200.0f, 40.0f);
 			hide.AutoresizingMask = UIViewAutoresizing.FlexibleRightMargin | UIViewAutoresizing.FlexibleBottomMargin;
 			hide.SetTitle ("Hide Center", UIControlState.Normal);
 			hide.TouchUpInside += (sender, e) => {
@@ -55,7 +55,7 @@ namespace JASidePanelsSample
 
 
 			removeRightPanel = new UIButton (UIButtonType.RoundedRect);
-			removeRightPanel.Frame = new CGRect (20.0f, 120.0f, 200.0f, 40.0f);
+			removeRightPanel.Frame = new CGRect (20.0f, 160.0f, 200.0f, 40.0f);
 			removeRightPanel.AutoresizingMask = UIViewAutoresizing.FlexibleRightMargin | UIViewAutoresizing.FlexibleBottomMargin;
 			removeRightPanel.SetTitle ("Remove Right Panel", UIControlState.Normal);
 			removeRightPanel.TouchUpInside += (sender, e) => {
@@ -79,7 +79,7 @@ namespace JASidePanelsSample
 
 
 			changeCenterPanel = new UIButton (UIButtonType.RoundedRect);
-			changeCenterPanel.Frame = new CGRect (20.0f, 170.0f, 200.0f, 40.0f);
+			changeCenterPanel.Frame = new CGRect (20.0f, 210.0f, 200.0f, 40.0f);
 			changeCenterPanel.AutoresizingMask = UIViewAutoresizing.FlexibleRightMargin;
 			changeCenterPanel.SetTitle ("Change Center Panel", UIControlState.Normal);
 			changeCenterPanel.TouchUpInside += (sender, e) => {
@@ -92,7 +92,7 @@ namespace JASidePanelsSample
 		{
 			base.ViewWillAppear (animated);
 
-			label.Center = new CGPoint (this.GetSidePanelController ().LeftVisibleWidth / 2.0f, 25.0f);
+			label.Center = new CGPoint (this.GetSidePanelController ().LeftVisibleWidth / 2.0f, 65.0f);
 		}
 	}
 }

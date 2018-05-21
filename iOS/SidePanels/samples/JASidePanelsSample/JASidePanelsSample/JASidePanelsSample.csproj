@@ -131,4 +131,7 @@
       <Name>SidePanels</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup>
+    <InterfaceDefinition Include="LaunchScreen.storyboard" />
+  </ItemGroup>
 </Project>
