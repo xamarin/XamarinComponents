@@ -3,8 +3,8 @@
 
 var TARGET = Argument ("t", Argument ("target", "Default"));
 
-var ANDROID_VERSION = "0.8.3";
-var ANDROID_NUGET_VERSION = "0.8.3.0-beta1";
+var ANDROID_VERSION = "0.8.5";
+var ANDROID_NUGET_VERSION = "0.8.5.0-beta1";
 var ANDROID_URL = string.Format ("https://jcenter.bintray.com/com/firebase/firebase-jobdispatcher/{0}/firebase-jobdispatcher-{0}.aar", ANDROID_VERSION);
 var ANDROID_FILE = "firebase-dispatcher.aar";
 
