@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<package>
+  <metadata>
+    <id>Xamarin.StickyHeader</id>
+    <title>StickyHeader for Xamarin.MonoAndroid44</title>
+    <version>1.1.2</version>
+    <authors>Microsoft</authors>
+    <owners>Microsoft</owners>
+    <requireLicenseAcceptance>true</requireLicenseAcceptance>
+    <description>A very simple library that allows you to stick any View as a header of a ListView, RecyclerView or ScrollView.</description>
+    <copyright>© Microsoft Corporation. All rights reserved.</copyright>
+    <projectUrl>https://go.microsoft.com/fwlink/?linkid=869732</projectUrl>
+    <licenseUrl>https://go.microsoft.com/fwlink/?linkid=869731</licenseUrl>
+  </metadata>
+  <files>
+    <file src="output/StickyHeader.dll" target="lib/MonoAndroid44" />
+    <file src="External-Dependency-Info.txt" target="THIRD-PARTY-NOTICES.txt" />
+  </files>
+</package>
