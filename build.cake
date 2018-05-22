@@ -296,31 +296,31 @@ Task ("buildall")
 	};
 
 	foreach (var bg in groupsToBuild) {
-		var test = new Xunit.ResultWriter.Test {
-			Name = bg.BuildScript,
-			Type = "ComponentsBuilder",
-			Method = "Build (" + string.Join(",", bg.BuildTargets) + ")",
-		};
-
-		var start = DateTime.UtcNow;
-
-		try {
-			CakeExecuteScript(bg.BuildScript, new CakeSettings {
-				Arguments = new Dictionary<string, string> {
-					{ "--target", string.Join(",", bg.BuildTargets) }
-				}
-			});
-			test.Result = Xunit.ResultWriter.ResultType.Pass;
-		} catch (Exception ex) {
-			test.Result = Xunit.ResultWriter.ResultType.Fail;
-			test.Failure = new Xunit.ResultWriter.Failure {
-				Message = ex.Message,
-				StackTrace = ex.ToString()
+		foreach (var t in bg.BuildTargets) {
+			var test = new Xunit.ResultWriter.Test {
+				Name = bg.BuildScript,
+				Type = "ComponentsBuilder",
+				Method = "Build (" + t + ")",
 			};
-		}
 
-		test.Time = (decimal)(DateTime.UtcNow - start).TotalSeconds;
-		col.TestItems.Add(test);
+			var start = DateTime.UtcNow;
+
+			try {
+				CakeExecuteScript(bg.BuildScript, new CakeSettings {
+					Arguments = new Dictionary<string, string> { { "--target", t } }
+				});
+				test.Result = Xunit.ResultWriter.ResultType.Pass;
+			} catch (Exception ex) {
+				test.Result = Xunit.ResultWriter.ResultType.Fail;
+				test.Failure = new Xunit.ResultWriter.Failure {
+					Message = ex.Message,
+					StackTrace = ex.ToString()
+				};
+			}
+
+			test.Time = (decimal)(DateTime.UtcNow - start).TotalSeconds;
+			col.TestItems.Add(test);
+		}
 	}
 
 	assembly.CollectionItems.Add(col);
