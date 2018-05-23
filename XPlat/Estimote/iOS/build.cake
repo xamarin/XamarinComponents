@@ -1,4 +1,4 @@
-#load "../../common.cake"
+#load "../../../common.cake"
 
 var NUGET_VERSION = "4.26.3.0";
 var ESTIMOTE_SDK_VERSION = "4.26.3";
