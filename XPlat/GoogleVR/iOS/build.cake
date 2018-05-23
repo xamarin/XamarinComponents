@@ -1,11 +1,3 @@
-//#tool nuget:?package=ILRepack&version=2.0.10
-//#tool nuget:?package=XamarinComponent
-
-//#addin nuget:?package=Cake.XCode&version=1.0.8
-//#addin nuget:?package=Cake.Xamarin
-//#addin nuget:?package=Cake.Xamarin.Build
-//#addin nuget:?package=Cake.FileHelpers
-
 #load "../../../common.cake"
 
 var TARGET = Argument ("t", Argument ("target", "Default"));

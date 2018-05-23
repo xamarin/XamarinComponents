@@ -1,9 +1,14 @@
-#tool nuget:?package=XamarinComponent&version=1.1.0.42
+#tool nuget:?package=XamarinComponent&version=1.1.0.65
 
-#addin nuget:?package=Cake.XCode&version=2.0.13
-#addin nuget:?package=Cake.Xamarin.Build&version=2.0.21
-#addin nuget:?package=Cake.Xamarin&version=1.3.0.15
-#addin nuget:?package=Cake.FileHelpers&version=1.0.4
+#addin nuget:?package=Cake.XCode&version=4.0.0
+#addin nuget:?package=Cake.Xamarin.Build&version=4.0.0
+#addin nuget:?package=Cake.Xamarin&version=3.0.0
+#addin nuget:?package=Cake.FileHelpers&version=3.0.0
+#addin nuget:?package=YamlDotNet&version=4.2.1
+#addin nuget:?package=Cake.Yaml&version=2.1.0
+#addin nuget:?package=Newtonsoft.Json&version=9.0.1
+#addin nuget:?package=Cake.Json&version=3.0.1
+
 
 public enum TargetOS {
 	Windows,

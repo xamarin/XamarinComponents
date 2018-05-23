@@ -1,8 +1,6 @@
-#addin nuget:?package=Cake.Xamarin
-#addin nuget:?package=Cake.Xamarin.Build
+#load "../../common.cake"
 
 var TARGET = Argument ("target", Argument ("t", "Default"));
-
 
 var NUGET_VERSION = "1.1.0";
 var AAR_VERSION = "1.1.0";

@@ -1,10 +1,6 @@
-#addin nuget:?package=Cake.XCode&version=2.0.13
-#addin nuget:?package=Cake.Xamarin.Build&version=2.0.21
-#addin nuget:?package=Cake.Xamarin&version=1.3.0.15
-#addin nuget:?package=Cake.FileHelpers&version=1.0.4
-#addin nuget:?package=Cake.Yaml&version=1.0.3
-#addin nuget:?package=Cake.Json&version=1.0.2
-#tool "nuget:?package=NUnit.Runners&version=2.6.4"
+#load "common.cake"
+
+#addin nuget:?package=redth.xunit.resultwriter&version=1.0.0
 
 var TARGET = Argument ("target", Argument ("t", Argument ("Target", "build")));
 
@@ -279,16 +275,59 @@ Task ("build").Does (() =>
 	BuildGroups (BUILD_GROUPS, BUILD_NAMES.ToList (), buildTargets, GIT_PATH, GIT_BRANCH, GIT_PREVIOUS_COMMIT, GIT_COMMIT, FORCE_BUILD);		
 });
 
-Task ("buildall").Does (() => {
-
+Task ("buildall")
+	.Does (() =>
+{
 	// If BUILD_NAMES were specified, only take BUILD_GROUPS that match one of the specified names, otherwise, all
 	var groupsToBuild = BUILD_NAMES.Any () ? BUILD_GROUPS.Where (i => BUILD_NAMES.Contains (i.Name)) : BUILD_GROUPS;
 
-	var buildinfo = new Dictionary<FilePath, string[]>();
-	foreach (var bg in groupsToBuild)
-		buildinfo.Add (new FilePath (bg.BuildScript), bg.BuildTargets.ToArray ());
+	//var cakeExePath = GetFiles("./**/Cake.exe").FirstOrDefault();
 
-	RunCakeBuilds (buildinfo, null);
+	var assembly = new Xunit.ResultWriter.Assembly {
+		Name = "ComponentsBuilder",
+		TestFramework = "xUnit",
+		Environment = "CI",
+		RunDate = DateTime.UtcNow.ToString("yyyy-MM-dd"),
+		RunTime = DateTime.UtcNow.ToString("hh:mm:ss")
+	};
+
+	var col = new Xunit.ResultWriter.Collection {
+		Name = "Components"
+	};
+
+	foreach (var bg in groupsToBuild) {
+		foreach (var t in bg.BuildTargets) {
+			var test = new Xunit.ResultWriter.Test {
+				Name = bg.BuildScript,
+				Type = "ComponentsBuilder",
+				Method = "Build (" + t + ")",
+			};
+
+			var start = DateTime.UtcNow;
+
+			try {
+				CakeExecuteScript(bg.BuildScript, new CakeSettings {
+					Arguments = new Dictionary<string, string> { { "--target", t } }
+				});
+				test.Result = Xunit.ResultWriter.ResultType.Pass;
+			} catch (Exception ex) {
+				test.Result = Xunit.ResultWriter.ResultType.Fail;
+				test.Failure = new Xunit.ResultWriter.Failure {
+					Message = ex.Message,
+					StackTrace = ex.ToString()
+				};
+			}
+
+			test.Time = (decimal)(DateTime.UtcNow - start).TotalSeconds;
+			col.TestItems.Add(test);
+		}
+	}
+
+	assembly.CollectionItems.Add(col);
+	
+	var resultWriter = new Xunit.ResultWriter.XunitV2Writer();
+	resultWriter.Write(new List<Xunit.ResultWriter.Assembly> { assembly }, MakeAbsolute(new FilePath("./xunit.xml")).FullPath);
+	
 });
 
 RunTarget (TARGET);
