@@ -10,7 +10,7 @@
     <description>An open source color picker component for Xamarin.iOS.</description>
     <copyright>© Microsoft Corporation. All rights reserved.</copyright>
     <projectUrl>https://go.microsoft.com/fwlink/?linkid=874578</projectUrl>
-    <licenseUrl>https://go.microsoft.com/fwlink/?linkid=864981</licenseUrl>
+    <licenseUrl>https://go.microsoft.com/fwlink/?linkid=874579</licenseUrl>
   </metadata>
   <files>
     <file src="output/unified/AnimatedShapeButton.dll" target="lib/Xamarin.iOS" />
