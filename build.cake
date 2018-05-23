@@ -92,6 +92,15 @@ void BuildGroups (List<BuildGroup> buildGroups, List<string> names, List<string>
 		// Get all the changed files in this commit
 		IEnumerable<string> changedFiles = new List<string> ();
 
+		// Look for an indication that we are building via ghprb (GitHub PR Builder)
+		// If so, we need to get the 'actual' commit of the PR
+		// and also set our previous commit to 'master' to compare against
+		var prActualCommit = EnvironmentVariable("ghprbActualCommit");
+		if (!string.IsNullOrWhiteSpace(prActualCommit)) {
+			gitPreviousCommit = "origin/master";
+			gitCommit = prActualCommit;
+		}
+
 		if (!string.IsNullOrWhiteSpace (gitPreviousCommit)) {
 			// We have both commit hashes (previous and current) so do a diff on them
 			changedFiles = ExecuteProcess (gitPath, "--no-pager diff --name-only " + gitPreviousCommit + " " + gitCommit);

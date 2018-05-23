@@ -1,0 +1,92 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>MonoAndroid81</TargetFramework>
+    <AssemblyName>Xamarin.Android.Things.Contrib.Drivers</AssemblyName>
+    <MonoAndroidResourcePrefix>Resources</MonoAndroidResourcePrefix>
+    <MonoAndroidAssetsPrefix>Assets</MonoAndroidAssetsPrefix>
+    <AndroidUseLatestPlatformSdk>False</AndroidUseLatestPlatformSdk>
+    <AndroidUseIntermediateDesignerFile>True</AndroidUseIntermediateDesignerFile>
+    <AndroidResgenFile>Resources\Resource.designer.cs</AndroidResgenFile> 
+    <AssemblyVersion>1.0.0</AssemblyVersion>
+    <IncludeBuildOutput>False</IncludeBuildOutput>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <PackageId>Xamarin.Android.Things.Contrib.Drivers</PackageId>
+    <Title>Xamarin Android Things IoT - Contrib Drivers</Title>
+    <Authors>Microsoft</Authors>
+    <Owners>Microsoft</Owners>
+    <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
+    <Summary>Xamarin.Android Bindings for Android Things IoT - Contrib Drivers</Summary>
+    <Description>
+      Xamarin.Android Bindings for Android Things IoT - Contrib Drivers
+        - adcv2x
+        - apa102
+        - bmx280
+        - button
+        - cap12xx
+        - gps
+        - ht16k33
+        - lowpan
+        - matrixkeypad
+        - mma7660fc
+        - motorhat
+        - pwmservo
+        - pwmspeaker
+        - rainbowhat
+        - sensehat
+        - ssd1306
+        - tm1637
+        - vcnl4200
+        - voicehat
+        - zxgesturesensor
+    </Description>
+    <Copyright>© Microsoft Corporation. All rights reserved.</Copyright>
+    <PackageProjectUrl>https://go.microsoft.com/fwlink/?linkid=865021</PackageProjectUrl>
+    <PackageLicenseUrl>https://go.microsoft.com/fwlink/?linkid=865023</PackageLicenseUrl>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Include="..\..\External-Dependency-Info.txt" Pack="True" PackagePath="THIRD-PARTY-NOTICES.txt" />
+  </ItemGroup>
+
+  <ItemGroup>
+<!--    <PackageReference Include="NuGet.Build.Packaging" Version="0.2.2" />-->
+    <PackageReference Include="MSBuild.Sdk.Extras" Version="1.4.0" PrivateAssets="All" />
+  </ItemGroup>
+
+
+  <ItemGroup>
+    <_PackageFiles Include="$(MSBuildThisFileDirectory)\..\*\bin\$(Configuration)\*\*Contrib.Driver.*.dll">
+      <BuildAction>None</BuildAction>
+      <PackagePath>lib\$(TargetFramework)\%(Filename)%(Extension)</PackagePath>
+      <Pack>True</Pack>
+    </_PackageFiles>
+  </ItemGroup>
+    
+  <ItemGroup>
+    <ProjectReference Include="..\driver-cap12xx\driver-cap12xx.csproj" PrivateAssets="All" />
+    <ProjectReference Include="..\driver-gps\driver-gps.csproj" PrivateAssets="All" />
+    <ProjectReference Include="..\driver-ht16k33\driver-ht16k33.csproj" PrivateAssets="All" />
+    <ProjectReference Include="..\driver-lowpan\driver-lowpan.csproj" PrivateAssets="All" />
+    <ProjectReference Include="..\driver-matrixkeypad\driver-matrixkeypad.csproj" PrivateAssets="All" />
+    <ProjectReference Include="..\driver-mma7660fc\driver-mma7660fc.csproj" PrivateAssets="All" />
+    <ProjectReference Include="..\driver-adcv2x\driver-adcv2x.csproj" PrivateAssets="All" />
+    <ProjectReference Include="..\driver-apa102\driver-apa102.csproj" PrivateAssets="All" />
+    <ProjectReference Include="..\driver-bmx280\driver-bmx280.csproj" PrivateAssets="All" />
+    <ProjectReference Include="..\driver-button\driver-button.csproj" PrivateAssets="All" />
+    <ProjectReference Include="..\driver-motorhat\driver-motorhat.csproj" PrivateAssets="All" />
+    <ProjectReference Include="..\driver-pwmservo\driver-pwmservo.csproj" PrivateAssets="All" />
+    <ProjectReference Include="..\driver-pwmspeaker\driver-pwmspeaker.csproj" PrivateAssets="All" />
+    <ProjectReference Include="..\driver-rainbowhat\driver-rainbowhat.csproj" PrivateAssets="All" />
+    <ProjectReference Include="..\driver-sensehat\driver-sensehat.csproj" PrivateAssets="All" />
+    <ProjectReference Include="..\driver-ssd1306\driver-ssd1306.csproj" PrivateAssets="All" />
+    <ProjectReference Include="..\driver-tm1637\driver-tm1637.csproj" PrivateAssets="All" />
+    <ProjectReference Include="..\driver-vcnl4200\driver-vcnl4200.csproj" PrivateAssets="All" />
+    <ProjectReference Include="..\driver-voicehat\driver-voicehat.csproj" PrivateAssets="All" />
+    <ProjectReference Include="..\driver-zxgesturesensor\driver-zxgesturesensor.csproj" PrivateAssets="All" />
+    <ProjectReference Include="..\things\Xamarin.Android.Things.csproj" />
+  </ItemGroup>
+  <Import Project="$(MSBuildSDKExtrasTargets)" Condition="Exists('$(MSBuildSDKExtrasTargets)')" />
+</Project>
