@@ -25,7 +25,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\things\things.csproj" />
+    <ProjectReference Include="..\things\Xamarin.Android.Things.csproj" />
+    <ProjectReference Include="..\driver-button\driver-button.csproj" />
   </ItemGroup>
 
 

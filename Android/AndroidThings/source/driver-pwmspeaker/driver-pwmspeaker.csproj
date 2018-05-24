@@ -25,7 +25,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\things\things.csproj" />
+    <ProjectReference Include="..\things\Xamarin.Android.Things.csproj" />
   </ItemGroup>
 
 

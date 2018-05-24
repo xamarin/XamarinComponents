@@ -25,7 +25,13 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\things\things.csproj" />
+    <ProjectReference Include="..\things\Xamarin.Android.Things.csproj" />
+    <ProjectReference Include="..\driver-apa102\driver-apa102.csproj" />
+    <ProjectReference Include="..\driver-button\driver-button.csproj" />
+    <ProjectReference Include="..\driver-bmx280\driver-bmx280.csproj" />
+    <ProjectReference Include="..\driver-ht16k33\driver-ht16k33.csproj" />
+    <ProjectReference Include="..\driver-pwmservo\driver-pwmservo.csproj" />
+    <ProjectReference Include="..\driver-pwmspeaker\driver-pwmspeaker.csproj" />
   </ItemGroup>
 
 
