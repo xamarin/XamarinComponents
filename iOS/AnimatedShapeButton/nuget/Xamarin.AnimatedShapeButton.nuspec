@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<package>
+  <metadata>
+    <id>Xamarin.AnimatedShapeButton</id>
+    <title>AnimatedShapeButton for Xamarin.iOS</title>
+    <version>1.0.0.2</version>
+    <authors>Microsoft</authors>
+    <owners>Microsoft</owners>
+    <requireLicenseAcceptance>true</requireLicenseAcceptance>
+    <description>An open source color picker component for Xamarin.iOS.</description>
+    <copyright>© Microsoft Corporation. All rights reserved.</copyright>
+    <projectUrl>https://go.microsoft.com/fwlink/?linkid=874578</projectUrl>
+    <licenseUrl>https://go.microsoft.com/fwlink/?linkid=874579</licenseUrl>
+  </metadata>
+  <files>
+    <file src="output/unified/AnimatedShapeButton.dll" target="lib/Xamarin.iOS" />
+  </files>
+</package>

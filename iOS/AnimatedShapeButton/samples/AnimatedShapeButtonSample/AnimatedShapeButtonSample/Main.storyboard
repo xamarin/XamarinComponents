@@ -1,9 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="15">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="15">
+    <device id="retina5_9" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
         <!--View Controller-->
@@ -15,11 +19,11 @@
                         <viewControllerLayoutGuide type="bottom" id="13"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="16">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <control opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="22" customClass="AnimatedShapeButton">
-                                <rect key="frame" x="16" y="229" width="142" height="142"/>
+                                <rect key="frame" x="16" y="363" width="86" height="86"/>
                                 <constraints>
                                     <constraint firstAttribute="height" secondItem="22" secondAttribute="width" multiplier="1:1" id="57"/>
                                 </constraints>
@@ -28,73 +32,73 @@
                                 </userDefinedRuntimeAttributes>
                             </control>
                             <control opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="19" customClass="AnimatedShapeButton">
-                                <rect key="frame" x="158" y="229" width="142" height="142"/>
+                                <rect key="frame" x="102" y="363" width="85.5" height="86"/>
                                 <constraints>
                                     <constraint firstAttribute="height" secondItem="19" secondAttribute="width" multiplier="1:1" id="59"/>
                                 </constraints>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="image" keyPath="Image" value="heart.png"/>
                                     <userDefinedRuntimeAttribute type="color" keyPath="Color">
-                                        <color key="value" colorSpace="calibratedRGB" red="0.996078431372549" green="0.43137254901960786" blue="0.43529411764705883" alpha="1"/>
+                                        <color key="value" red="0.99607843137254903" green="0.43137254901960786" blue="0.43529411764705883" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     </userDefinedRuntimeAttribute>
                                     <userDefinedRuntimeAttribute type="color" keyPath="CircleColor">
-                                        <color key="value" colorSpace="calibratedRGB" red="0.996078431372549" green="0.43137254901960786" blue="0.43529411764705883" alpha="1"/>
+                                        <color key="value" red="0.99607843137254903" green="0.43137254901960786" blue="0.43529411764705883" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     </userDefinedRuntimeAttribute>
                                     <userDefinedRuntimeAttribute type="color" keyPath="LinesColor">
-                                        <color key="value" colorSpace="calibratedRGB" red="0.88627450980392153" green="0.37647058823529411" blue="0.37647058823529411" alpha="1"/>
+                                        <color key="value" red="0.88627450980392153" green="0.37647058823529411" blue="0.37647058823529411" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </control>
                             <control opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="20" customClass="AnimatedShapeButton">
-                                <rect key="frame" x="300" y="229" width="142" height="142"/>
+                                <rect key="frame" x="187.5" y="363" width="86" height="86"/>
                                 <constraints>
                                     <constraint firstAttribute="height" secondItem="20" secondAttribute="width" multiplier="1:1" id="58"/>
                                 </constraints>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="image" keyPath="Image" value="like.png"/>
                                     <userDefinedRuntimeAttribute type="color" keyPath="Color">
-                                        <color key="value" colorSpace="calibratedRGB" red="0.20392156862745098" green="0.596078431372549" blue="0.85882352941176465" alpha="1"/>
+                                        <color key="value" red="0.20392156862745098" green="0.59607843137254901" blue="0.85882352941176465" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     </userDefinedRuntimeAttribute>
                                     <userDefinedRuntimeAttribute type="color" keyPath="CircleColor">
-                                        <color key="value" colorSpace="calibratedRGB" red="0.20392156862745098" green="0.596078431372549" blue="0.85882352941176465" alpha="1"/>
+                                        <color key="value" red="0.20392156862745098" green="0.59607843137254901" blue="0.85882352941176465" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     </userDefinedRuntimeAttribute>
                                     <userDefinedRuntimeAttribute type="color" keyPath="LinesColor">
-                                        <color key="value" colorSpace="calibratedRGB" red="0.16078431372549021" green="0.50196078431372548" blue="0.72549019607843135" alpha="1"/>
+                                        <color key="value" red="0.16078431372549021" green="0.50196078431372548" blue="0.72549019607843135" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </control>
                             <control opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="21" customClass="AnimatedShapeButton">
-                                <rect key="frame" x="442" y="229" width="142" height="142"/>
+                                <rect key="frame" x="273.5" y="363" width="85.5" height="86"/>
                                 <constraints>
                                     <constraint firstAttribute="height" secondItem="21" secondAttribute="width" multiplier="1:1" id="60"/>
                                 </constraints>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="image" keyPath="Image" value="smile.png"/>
                                     <userDefinedRuntimeAttribute type="color" keyPath="Color">
-                                        <color key="value" colorSpace="calibratedRGB" red="0.17647058823529413" green="0.8" blue="0.4392156862745098" alpha="1"/>
+                                        <color key="value" red="0.17647058823529413" green="0.80000000000000004" blue="0.4392156862745098" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     </userDefinedRuntimeAttribute>
                                     <userDefinedRuntimeAttribute type="color" keyPath="CircleColor">
-                                        <color key="value" colorSpace="calibratedRGB" red="0.17647058823529413" green="0.8" blue="0.4392156862745098" alpha="1"/>
+                                        <color key="value" red="0.17647058823529413" green="0.80000000000000004" blue="0.4392156862745098" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     </userDefinedRuntimeAttribute>
                                     <userDefinedRuntimeAttribute type="color" keyPath="LinesColor">
-                                        <color key="value" colorSpace="calibratedRGB" red="0.17647058823529413" green="0.76470588235294112" blue="0.41568627450980394" alpha="1"/>
+                                        <color key="value" red="0.17647058823529413" green="0.76470588235294112" blue="0.41568627450980394" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </control>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="22" firstAttribute="leading" secondItem="16" secondAttribute="leadingMargin" id="Cj7-8b-zqj"/>
                             <constraint firstAttribute="centerY" secondItem="19" secondAttribute="centerY" id="DAF-TN-mnn"/>
                             <constraint firstItem="21" firstAttribute="trailing" secondItem="16" secondAttribute="trailingMargin" id="JzM-uD-SnX"/>
-                            <constraint firstItem="20" firstAttribute="leading" secondItem="19" secondAttribute="trailing" constant="0.0" id="ODP-eW-3dA"/>
+                            <constraint firstItem="20" firstAttribute="leading" secondItem="19" secondAttribute="trailing" id="ODP-eW-3dA"/>
                             <constraint firstAttribute="centerY" secondItem="20" secondAttribute="centerY" id="Ruc-kA-cK9"/>
                             <constraint firstItem="20" firstAttribute="width" secondItem="21" secondAttribute="width" id="Vr7-qc-hRf"/>
-                            <constraint firstItem="19" firstAttribute="leading" secondItem="22" secondAttribute="trailing" constant="0.0" id="Zpw-fC-Dqm"/>
+                            <constraint firstItem="19" firstAttribute="leading" secondItem="22" secondAttribute="trailing" id="Zpw-fC-Dqm"/>
                             <constraint firstItem="19" firstAttribute="width" secondItem="20" secondAttribute="width" id="Zy5-NT-pdd"/>
                             <constraint firstAttribute="centerY" secondItem="21" secondAttribute="centerY" id="faB-Yo-gZd"/>
                             <constraint firstItem="20" firstAttribute="width" secondItem="22" secondAttribute="width" id="gu9-x7-Bpk"/>
-                            <constraint firstItem="21" firstAttribute="leading" secondItem="20" secondAttribute="trailing" constant="0.0" id="mm7-i6-83l"/>
+                            <constraint firstItem="21" firstAttribute="leading" secondItem="20" secondAttribute="trailing" id="mm7-i6-83l"/>
                             <constraint firstAttribute="centerY" secondItem="22" secondAttribute="centerY" id="wyN-t3-4HT"/>
                         </constraints>
                     </view>
