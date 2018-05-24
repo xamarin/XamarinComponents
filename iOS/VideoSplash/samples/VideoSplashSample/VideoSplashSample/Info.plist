@@ -47,5 +47,9 @@
 	<array>
 		<string>Museo500-Regular.otf</string>
 	</array>
+	<key>CFBundleName</key>
+	<string>VideoSplash</string>
+	<key>UILaunchStoryboardName</key>
+	<string>Main</string>
 </dict>
 </plist>
