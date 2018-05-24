@@ -43,5 +43,9 @@
 	</array>
 	<key>CFBundleDisplayName</key>
 	<string>TextSwitch</string>
+	<key>CFBundleName</key>
+	<string>TextSwitch</string>
+	<key>UILaunchStoryboardName</key>
+	<string>Main</string>
 </dict>
 </plist>
