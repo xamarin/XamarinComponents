@@ -1,51 +1,56 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6211" systemVersion="14A298i" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="6">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="6">
+    <device id="retina5_9" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6204"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="Unknown constraint types" minToolsVersion="5.1"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
         <!--View Controller-->
         <scene sceneID="5">
             <objects>
-                <viewController id="6" sceneMemberID="viewController" customClass="ViewController">
+                <viewController id="6" customClass="ViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="3"/>
                         <viewControllerLayoutGuide type="bottom" id="4"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="7">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <color key="backgroundColor" customColorSpace="calibratedWhite" colorSpace="calibratedRGB" red="0.17647058823529413" green="0.70196078431372544" blue="0.20392156862745098" alpha="1"/>
                         <subviews>
-                            <control opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" customClass="AnimatedCheckButton" translatesAutoresizingMaskIntoConstraints="NO" id="26">
-                                <rect key="frame" x="230" y="230" width="140" height="140"/>
+                            <control opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="26" customClass="AnimatedCheckButton">
+                                <rect key="frame" x="117.5" y="336" width="140" height="140"/>
                                 <constraints>
-                                    <constraint id="27" firstItem="26" firstAttribute="height" constant="140"/>
-                                    <constraint id="28" firstItem="26" firstAttribute="width" constant="140"/>
+                                    <constraint firstAttribute="height" constant="140" id="27"/>
+                                    <constraint firstAttribute="width" constant="140" id="28"/>
                                 </constraints>
-                                <connections/>
                             </control>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="34" translatesAutoresizingMaskIntoConstraints="NO">
-                                <rect key="frame" x="20" y="550" width="560" height="30"/>
-                                <state key="normal" title="Check Without Animation">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="34">
+                                <rect key="frame" x="16" y="762" width="343" height="30"/>
                                 <constraints>
-                                    <constraint id="38" firstItem="34" firstAttribute="height" constant="30"/>
+                                    <constraint firstAttribute="height" constant="30" id="38"/>
                                 </constraints>
+                                <state key="normal" title="Check Without Animation">
+                                    <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
                                 <connections>
-                                    <action selector="OnCheck:" destination="6" id="41" eventType="touchUpInside"/>
+                                    <action selector="OnCheck:" destination="6" eventType="touchUpInside" id="41"/>
                                 </connections>
                             </button>
                         </subviews>
+                        <color key="backgroundColor" red="0.17647058823529413" green="0.70196078431372544" blue="0.20392156862745098" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="17" firstAttribute="centerY" secondItem="7" secondAttribute="centerY" constant="0.0" id="20"/>
-                            <constraint firstItem="17" firstAttribute="centerX" secondItem="7" secondAttribute="centerX" constant="0.0" id="22"/>
-                            <constraint firstItem="26" firstAttribute="centerX" secondItem="7" secondAttribute="centerX" constant="0.0" id="29"/>
-                            <constraint firstItem="7" firstAttribute="centerY" secondItem="26" secondAttribute="centerY" constant="0.0" id="30"/>
-                            <constraint id="35" firstItem="34" firstAttribute="leading" secondItem="7" secondAttribute="leadingMargin"/>
-                            <constraint id="36" firstItem="7" firstAttribute="trailingMargin" secondItem="34" secondAttribute="trailing"/>
-                            <constraint id="40" firstItem="7" firstAttribute="bottom" secondItem="34" secondAttribute="bottom" constant="20"/>
+                            <constraint firstAttribute="centerY" secondItem="7" secondAttribute="centerY" id="20"/>
+                            <constraint firstAttribute="centerX" secondItem="7" secondAttribute="centerX" id="22"/>
+                            <constraint firstItem="26" firstAttribute="centerX" secondItem="7" secondAttribute="centerX" id="29"/>
+                            <constraint firstAttribute="centerY" secondItem="26" secondAttribute="centerY" id="30"/>
+                            <constraint firstItem="34" firstAttribute="leading" secondItem="7" secondAttribute="leadingMargin" id="35"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="34" secondAttribute="trailing" id="36"/>
+                            <constraint firstAttribute="bottom" secondItem="34" secondAttribute="bottom" constant="20" id="40"/>
                         </constraints>
                     </view>
                     <connections>
@@ -57,10 +62,4 @@
             <point key="canvasLocation" x="278" y="46"/>
         </scene>
     </scenes>
-    <resources>
-        <image name="Home.png" width="750" height="1334"/>
-        <image name="Login.png" width="750" height="1334"/>
-        <image name="Media.xcassets/LaunchImages.launchimage/Default-568h.png" width="640" height="1136"/>
-        <image name="Media.xcassets/LaunchImages.launchimage/Default.png" width="320" height="480"/>
-    </resources>
 </document>
