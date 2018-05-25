@@ -2,15 +2,15 @@
 <package>
   <metadata>
     <id>Xamarin.ZipArchive</id>
-    <title>ZipArchive</title>
+    <title>Xamarin.ZipArchive</title>
     <version>1.4.0</version>
-    <authors>Xamarin Inc.</authors>
-    <owners>Xamarin Inc.</owners>
-    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <authors>Microsoft</authors>
+    <owners>Microsoft</owners>
+    <requireLicenseAcceptance>true</requireLicenseAcceptance>
     <description>Harness the power of Auto Layout NSLayoutConstraints with a simplified, chainable and expressive syntax.</description>
-    <copyright>Copyright 2017 Xamarin Inc</copyright>
-    <projectUrl>https://github.com/xamarin/XamarinComponents/tree/master/iOS/ZipArchive</projectUrl>
-    <licenseUrl>https://github.com/xamarin/XamarinComponents/blob/master/iOS/ZipArchive/License.md</licenseUrl>
+    <copyright>© Microsoft Corporation. All rights reserved.</copyright>
+    <projectUrl>https://go.microsoft.com/fwlink/?linkid=874696</projectUrl>
+    <licenseUrl>https://go.microsoft.com/fwlink/?linkid=874697</licenseUrl>
   </metadata>
   <files>
     <file src="output/ZipArchive.iOS.dll" target="lib/Xamarin.iOS" />
