@@ -74,7 +74,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Additions\JobDispatchHelpers.cs" />
+    <Compile Include="Additions\FirebaseJobDispatcherHelpers.cs" />
     <Compile Include="Additions\FirebaseJobServiceIntent.cs" />
   </ItemGroup>
   <ItemGroup>
