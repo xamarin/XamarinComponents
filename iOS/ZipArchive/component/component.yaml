@@ -1,16 +1,56 @@
-version: 1.4.0.2
+version: "1.4.0.3"
 name: ZipArchive
 id: ZipArchive
 publisher: Xamarin Inc
 publisher-url: https://xamarin.com
-src-url: https://github.com/xamarin/XamarinComponents/tree/master/iOS/ZipArchive
 summary: Add zip and unzip archive ability to your Xamarin.iOS project
+src-url: https://github.com/xamarin/XamarinComponents/tree/master/iOS/ZipArchive
+license: ../License.md
 icons:
   - icons/ZipArchive_128x128.png
   - icons/ZipArchive_512x512.png
-libraries:
-  ios-unified: ../output/unified/ZipArchive.dll
-samples:
-  - name: "Zip Archive Sample"
-    path:  ../samples/ZipArchiveSample.sln
+
 no_build: true
+is_shell: true
+local-nuget-repo: ../output
+libraries:
+  ios-unified: ../output/ZipArchive.iOS.dll
+  mac-unified: ../output/ZipArchive.macOS.dll
+  tvos: ../output/ZipArchive.tvOS.dll
+packages:
+  ios-unified: Xamarin.ZipArchive, Version=1.4.0
+  mac-unified: Xamarin.ZipArchive, Version=1.4.0
+  tvos: Xamarin.ZipArchive, Version=1.4.0
+
+samples:
+  - name: "iOS Sample"
+    path:  ../samples/ZipArchiveSample.sln
+    removeFiles:
+      - ZipArchiveSampleMac/
+      - ZipArchiveSampleTV/
+    installNuGets:
+      - project: ZipArchiveSample
+        packages:
+          - Xamarin.ZipArchive
+  - name: "macOS Sample"
+    path:  ../samples/ZipArchiveSampleMac.sln
+    removeFiles:
+      - ZipArchiveSample/
+      - ZipArchiveSampleTV/
+    installNuGets:
+      - project: ZipArchiveSampleMac
+        packages:
+          - Xamarin.ZipArchive
+  - name: "tvOS Sample"
+    path:  ../samples/ZipArchiveSampleTV.sln
+    removeFiles:
+      - ZipArchiveSample/
+      - ZipArchiveSampleMac/
+    installNuGets:
+      - project: ZipArchiveSampleTV
+        packages:
+          - Xamarin.ZipArchive
+
+additional-files:
+  - source: "../External-Dependency-Info.txt"
+    destination: "THIRD-PARTY-NOTICES.txt"

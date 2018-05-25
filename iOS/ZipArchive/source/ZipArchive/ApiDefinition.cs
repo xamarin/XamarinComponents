@@ -1,15 +1,6 @@
 ﻿using System;
-
-#if __UNIFIED__
 using Foundation;
 using ObjCRuntime;
-#else
-using MonoTouch.Foundation;
-using MonoTouch.ObjCRuntime;
-using nint = System.Int32;
-using nuint = System.UInt32;
-#endif
-
 
 namespace MiniZip.ZipArchive
 {

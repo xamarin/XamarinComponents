@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6211" systemVersion="14A298i" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="279">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6204"/>
+    </dependencies>
+    <scenes>
+        <scene sceneID="278">
+            <objects>
+                <navigationController id="279" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="281">
+                        <rect key="frame" x="0.0" y="20" width="600" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue id="329" destination="294" kind="relationship" relationship="rootViewController"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="282" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="63" y="134"/>
+        </scene>
+        <scene sceneID="293">
+            <objects>
+                <viewController id="294" sceneMemberID="viewController" customClass="ViewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="291"/>
+                        <viewControllerLayoutGuide type="bottom" id="292"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="295">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="364" translatesAutoresizingMaskIntoConstraints="NO">
+                                <rect key="frame" x="20" y="84" width="560" height="48"/>
+                                <state key="normal" title="Zip / Compress">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <constraints>
+                                    <constraint id="434" firstItem="364" firstAttribute="height" constant="48"/>
+                                </constraints>
+                                <connections>
+                                    <action selector="OnZip:" destination="294" id="601" eventType="touchUpInside"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="439" translatesAutoresizingMaskIntoConstraints="NO">
+                                <rect key="frame" x="20" y="152" width="560" height="48"/>
+                                <state key="normal" title="Unzip / Decompress">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <constraints>
+                                    <constraint id="440" firstItem="439" firstAttribute="height" constant="48"/>
+                                </constraints>
+                                <connections>
+                                    <action selector="OnUnzip:" destination="294" id="605" eventType="touchUpInside"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Press a button..." textAlignment="center" lineBreakMode="wordWrap" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="489" translatesAutoresizingMaskIntoConstraints="NO" numberOfLines="0">
+                                <rect key="frame" x="20" y="220" width="560" height="360"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <constraints>
+                            <constraint id="422" firstItem="364" firstAttribute="top" secondItem="291" secondAttribute="bottom" constant="20"/>
+                            <constraint id="426" firstItem="364" firstAttribute="leading" secondItem="295" secondAttribute="leadingMargin"/>
+                            <constraint id="430" firstItem="364" firstAttribute="trailing" secondItem="295" secondAttribute="trailingMargin"/>
+                            <constraint id="444" firstItem="439" firstAttribute="top" secondItem="364" secondAttribute="bottom" constant="20"/>
+                            <constraint id="448" firstItem="439" firstAttribute="leading" secondItem="295" secondAttribute="leadingMargin"/>
+                            <constraint id="452" firstItem="439" firstAttribute="trailing" secondItem="295" secondAttribute="trailingMargin"/>
+                            <constraint id="496" firstItem="489" firstAttribute="leading" secondItem="295" secondAttribute="leadingMargin"/>
+                            <constraint id="500" firstItem="295" firstAttribute="trailingMargin" secondItem="489" secondAttribute="trailing"/>
+                            <constraint id="504" firstItem="489" firstAttribute="top" secondItem="439" secondAttribute="bottom" constant="20"/>
+                            <constraint id="514" firstItem="292" firstAttribute="top" secondItem="489" secondAttribute="bottom" constant="20"/>
+                        </constraints>
+                    </view>
+                    <navigationItem title="ZipArchive" id="328" key="navigationItem"/>
+                    <connections>
+                        <outlet property="statusLabel" destination="489" id="name-outlet-489"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="296" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="804" y="131"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="Default-568h.png" width="320" height="568"/>
+    </resources>
+</document>
