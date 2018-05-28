@@ -2,15 +2,15 @@
 <package>
   <metadata>
     <id>Xamarin.LiquidFloatingActionButton</id>
-    <title>Liquid Floating Action Button</title>
+    <title>Xamarin.LiquidFloatingActionButton</title>
     <version>2.0.0</version>
-    <authors>Xamarin Inc.</authors>
-    <owners>Xamarin Inc.</owners>
-    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <authors>Microsoft</authors>
+    <owners>Microsoft</owners>
+    <requireLicenseAcceptance>true</requireLicenseAcceptance>
     <description>The LiquidFloatingActionButton is a floating action button in liquid state.</description>
-    <copyright>Copyright 2017 Xamarin Inc</copyright>
-    <projectUrl>https://github.com/xamarin/XamarinComponents/tree/master/iOS/LiquidFloatingActionButton</projectUrl>
-    <licenseUrl>https://github.com/xamarin/XamarinComponents/blob/master/iOS/LiquidFloatingActionButton/License.md</licenseUrl>
+    <copyright>© Microsoft Corporation. All rights reserved.</copyright>
+    <projectUrl>https://go.microsoft.com/fwlink/?linkid=874751</projectUrl>
+    <licenseUrl>https://go.microsoft.com/fwlink/?linkid=874752</licenseUrl>
   </metadata>
   <files>
     <file src="output/LiquidFloatingActionButton.dll" target="lib/Xamarin.iOS" />
