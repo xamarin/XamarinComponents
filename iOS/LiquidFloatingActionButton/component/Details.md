@@ -1,8 +1,3 @@
-
-<iframe src="https://appetize.io/embed/87r6c8gtepugbaeu1vgjx3c748?device=iphone5s&scale=75&autoplay=true&orientation=portrait&deviceColor=black" 
-        width="274px" height="587px" frameborder="0" scrolling="no"
-        style="float:right;margin-left:1em;">&nbsp;</iframe>
-
 The Liquid Floating Action Button is a floating action button in liquid state.
 
 ##  Using LiquidFloatingActionButton

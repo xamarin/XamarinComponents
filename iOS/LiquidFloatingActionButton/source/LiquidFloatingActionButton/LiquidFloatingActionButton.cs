@@ -30,6 +30,7 @@ namespace AnimatedButtons
 
         private bool _enableShadow = true;
         private UIColor color = UIColor.FromRGB(82, 112, 235);
+        private UIImage image;
 
         private CAShapeLayer plusLayer = new CAShapeLayer();
         private CAShapeLayer circleLayer = new CAShapeLayer();
@@ -101,21 +102,12 @@ namespace AnimatedButtons
         [Export("Responsible")]
         public bool Responsible { get; set; }
 
-        public bool IsClosed
+        public bool IsOpening
         {
-            get { return plusRotation == 0; }
-            set
-            {
-                if (value)
-                {
-                    Close();
-                }
-                else
-                {
-                    Open();
-                }
-            }
+            get { return baseView.IsOpeningOrClosing; }
         }
+
+        public bool IsClosed { get; private set; } = true;
 
         [Browsable(true)]
         [Export("Color")]
@@ -128,6 +120,31 @@ namespace AnimatedButtons
                 baseView.Color = color;
             }
         }
+
+        [Browsable(true)]
+        [Export("Image")]
+        public UIImage Image
+        {
+            get { return image; }
+            set
+            {
+                image = value;
+                plusLayer.Contents = image?.CGImage;
+                plusLayer.Path = null;
+            }
+        }
+
+        [Browsable(true)]
+        [Export("RotationDegrees")]
+        public nfloat RotationDegrees { get; set; } = 45.0f;
+
+        public event EventHandler Opening;
+
+        public event EventHandler Opened;
+
+        public event EventHandler Closing;
+
+        public event EventHandler Closed;
 
         private void InsertCell(LiquidFloatingCell cell)
         {
@@ -153,9 +170,11 @@ namespace AnimatedButtons
         /// </summary>
         public void Open()
         {
+            Opening?.Invoke(this, EventArgs.Empty);
+
             // rotate plus icon
-            plusLayer.AddAnimation(PlusKeyFrame(true), "plusRot");
-            plusRotation = CoreGraphicsExtensions.PI * 0.25f; // 45 degree
+            CATransaction.AnimationDuration = 0.8;
+            plusLayer.Transform = CATransform3D.MakeRotation((CoreGraphicsExtensions.PI * RotationDegrees) / 180, 0, 0, 1);
 
             var cells = CellArray();
             foreach (var cell in cells)
@@ -164,7 +183,10 @@ namespace AnimatedButtons
             }
 
             baseView.Open(cells);
-            SetNeedsDisplay();
+
+            IsClosed = false;
+
+            Opened?.Invoke(this, EventArgs.Empty);
         }
 
         /// <summary>
@@ -172,12 +194,17 @@ namespace AnimatedButtons
         /// </summary>
         public void Close()
         {
+            Closing?.Invoke(this, EventArgs.Empty);
+
             // rotate plus icon
-            plusLayer.AddAnimation(PlusKeyFrame(false), "plusRot");
-            plusRotation = 0;
+            CATransaction.AnimationDuration = 0.8;
+            plusLayer.Transform = CATransform3D.MakeRotation(0, 0, 0, 1);
 
             baseView.Close(CellArray());
-            SetNeedsDisplay();
+
+            IsClosed = true;
+
+            Closed?.Invoke(this, EventArgs.Empty);
         }
 
         public override void Draw(CGRect rect)
@@ -186,12 +213,28 @@ namespace AnimatedButtons
 
             DrawCircle();
             DrawShadow();
-            DrawPlus(plusRotation);
+        }
+
+        public virtual CAShapeLayer CreatePlusLayer(CGRect frame)
+        {
+            // draw plus shape
+            var layer = new CAShapeLayer();
+            layer.LineCap = CAShapeLayer.CapRound;
+            layer.StrokeColor = UIColor.White.CGColor;
+            layer.LineWidth = 3.0f;
+
+            var path = new UIBezierPath();
+            path.MoveTo(new CGPoint(frame.Width * internalRadiusRatio, frame.Height * 0.5f));
+            path.AddLineTo(new CGPoint(frame.Width * (1 - internalRadiusRatio), frame.Height * 0.5f));
+            path.MoveTo(new CGPoint(frame.Width * 0.5f, frame.Height * internalRadiusRatio));
+            path.AddLineTo(new CGPoint(frame.Width * 0.5f, frame.Height * (1 - internalRadiusRatio)));
+
+            layer.Path = path.CGPath;
+            return layer;
         }
 
         private void DrawCircle()
         {
-            circleLayer.Frame = new CGRect(CGPoint.Empty, Frame.Size);
             circleLayer.CornerRadius = Frame.Width * 0.5f;
             circleLayer.MasksToBounds = true;
             if (touching && Responsible)
@@ -204,60 +247,12 @@ namespace AnimatedButtons
             }
         }
 
-        private void DrawPlus(nfloat rotation)
-        {
-            plusLayer.Frame = new CGRect(CGPoint.Empty, Frame.Size);
-            plusLayer.LineCap = CAShapeLayer.CapRound;
-            plusLayer.StrokeColor = UIColor.White.CGColor; // TODO: customizable
-            plusLayer.LineWidth = 3.0f;
-
-            plusLayer.Path = PathPlus(rotation).CGPath;
-        }
-
         private void DrawShadow()
         {
             if (EnableShadow)
             {
                 circleLayer.AppendShadow();
             }
-        }
-
-        private UIBezierPath PathPlus(nfloat rotation)
-        {
-            var radius = Frame.Width * internalRadiusRatio * 0.5f;
-            var center = Center.Minus(Frame.Location);
-            var points = new[] {
-                CoreGraphicsExtensions.CirclePoint(center, radius,  CoreGraphicsExtensions.PI2 * 0f + rotation),
-                CoreGraphicsExtensions.CirclePoint(center, radius, CoreGraphicsExtensions.PI2 * 1f + rotation),
-                CoreGraphicsExtensions.CirclePoint(center, radius, CoreGraphicsExtensions.PI2 * 2f + rotation),
-                CoreGraphicsExtensions.CirclePoint(center, radius, CoreGraphicsExtensions.PI2 * 3f + rotation)
-            };
-            var path = new UIBezierPath();
-            path.MoveTo(points[0]);
-            path.AddLineTo(points[2]);
-            path.MoveTo(points[1]);
-            path.AddLineTo(points[3]);
-            return path;
-        }
-
-        private CAKeyFrameAnimation PlusKeyFrame(bool closed)
-        {
-            var paths = closed ? new[] {
-                    PathPlus(CoreGraphicsExtensions.PI * 0f),
-                    PathPlus(CoreGraphicsExtensions.PI * 0.125f),
-                    PathPlus(CoreGraphicsExtensions.PI * 0.25f),
-            } : new[] {
-                    PathPlus(CoreGraphicsExtensions.PI* 0.25f),
-                    PathPlus(CoreGraphicsExtensions.PI* 0.125f),
-                    PathPlus(CoreGraphicsExtensions.PI* 0f),
-            };
-            var anim = CAKeyFrameAnimation.GetFromKeyPath("path");
-            anim.TimingFunction = CAMediaTimingFunction.FromName(CAMediaTimingFunction.EaseInEaseOut);
-            anim.SetValues(paths.Select(x => x.CGPath).ToArray());
-            anim.Duration = 0.5f;
-            anim.RemovedOnCompletion = true;
-            anim.FillMode = CAFillMode.Forwards;
-            return anim;
         }
 
         public override void TouchesBegan(NSSet touches, UIEvent evt)
@@ -319,11 +314,16 @@ namespace AnimatedButtons
             baseView.Setup(this);
             AddSubview(baseView);
 
+            liquidView.Frame = baseView.Frame;
             liquidView.UserInteractionEnabled = false;
             AddSubview(liquidView);
 
             liquidView.Layer.AddSublayer(circleLayer);
+            circleLayer.Frame = liquidView.Layer.Bounds;
+
+            plusLayer = CreatePlusLayer(circleLayer.Bounds);
             circleLayer.AddSublayer(plusLayer);
+            plusLayer.Frame = circleLayer.Bounds;
         }
 
         private void DidTapped()

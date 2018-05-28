@@ -1,23 +1,28 @@
-version: 1.0.0.1
+version: "2.0.0"
 name: Liquid Floating Action Button
 id: liquidfloatingactionbutton
 publisher: Xamarin Inc
-publisher-url: http://xamarin.com
-src-url: https://github.com/xamarin/XamarinComponents/tree/master/iOS/LiquidFloatingActionButton
+publisher-url: https://xamarin.com
 summary: The LiquidFloatingActionButton is a floating action button in liquid state.
-
-no_build: true
-
+src-url: https://github.com/xamarin/XamarinComponents/tree/master/iOS/LiquidFloatingActionButton
+license: ../License.md
 icons:
   - ../images/icon_128x128.png
   - ../images/icon_512x512.png
 
+no_build: true
+is_shell: true
+local-nuget-repo: ../output
 libraries:
-  ios-unified: ../output/unified/LiquidFloatingActionButton.dll
+  ios-unified: ../output/LiquidFloatingActionButton.dll
+packages:
+  ios-unified: Xamarin.LiquidFloatingActionButton, Version=2.0.0
+monodoc: ../docs/
 
 samples:
-  - name: "Storyboard Sample"
-    path: ../samples/LiquidFloatingActionButtonSample/LiquidFloatingActionButtonSample.sln
-    configuration: "Release|iPhone"    
-
-monodoc: ../docs/
+  - name: "iOS Sample"
+    path:  ../samples/LiquidFloatingActionButtonSample.sln
+    installNuGets:
+      - project: LiquidFloatingActionButtonSample
+        packages:
+          - Xamarin.LiquidFloatingActionButton

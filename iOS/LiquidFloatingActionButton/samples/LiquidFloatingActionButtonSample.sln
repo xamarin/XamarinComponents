@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
 VisualStudioVersion = 14.0.23107.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LiquidFloatingActionButton", "..\..\source\LiquidFloatingActionButton\LiquidFloatingActionButton.csproj", "{82E99AED-4239-466C-A839-E17CFAAC48DB}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LiquidFloatingActionButton", "..\source\LiquidFloatingActionButton\LiquidFloatingActionButton.csproj", "{82E99AED-4239-466C-A839-E17CFAAC48DB}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LiquidFloatingActionButtonSample", "LiquidFloatingActionButtonSample\LiquidFloatingActionButtonSample.csproj", "{801986EA-CF6B-4128-8758-8864898719CD}"
 EndProject

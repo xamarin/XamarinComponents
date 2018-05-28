@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="15">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="14">
+            <objects>
+                <viewController id="15" customClass="ViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="12"/>
+                        <viewControllerLayoutGuide type="bottom" id="13"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="16">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <control opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="21" customClass="LiquidFloatingActionButton">
+                                <rect key="frame" x="16" y="16" width="56" height="56"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="56" id="33"/>
+                                    <constraint firstAttribute="width" constant="56" id="34"/>
+                                </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="Color">
+                                        <color key="value" red="1" green="0.6470588235294118" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </control>
+                            <control opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="26" customClass="LiquidFloatingActionButton">
+                                <rect key="frame" x="342" y="664" width="56" height="56"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="56" id="35"/>
+                                    <constraint firstAttribute="height" constant="56" id="36"/>
+                                </constraints>
+                            </control>
+                        </subviews>
+                        <color key="backgroundColor" red="0.14117647058823529" green="0.16470588235294117" blue="0.23921568627450981" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="tintColor" red="0.24313725490196078" green="0.32549019607843138" blue="0.85882352941176465" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="21" firstAttribute="leading" secondItem="16" secondAttribute="leading" constant="16" id="22"/>
+                            <constraint firstAttribute="trailing" secondItem="26" secondAttribute="trailing" constant="16" id="30"/>
+                            <constraint firstItem="21" firstAttribute="top" secondItem="16" secondAttribute="top" constant="16" id="37"/>
+                            <constraint firstAttribute="bottom" secondItem="26" secondAttribute="bottom" constant="16" id="38"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="bottomRightButton" destination="26" id="name-outlet-26"/>
+                        <outlet property="topLeftButton" destination="21" id="name-outlet-21"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="17" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="261" y="71"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="ic_brush.png" width="48" height="48"/>
+        <image name="ic_cloud.png" width="48" height="48"/>
+        <image name="ic_art.png" width="48" height="48"/>
+        <image name="ic_place.png" width="48" height="48"/>
+        <image name="ic_system.png" width="48" height="48"/>
+    </resources>
+</document>
