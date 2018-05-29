@@ -142,10 +142,10 @@
   BuildScript: ./Android/Screenshooter/build.cake
   TriggerPaths: [ Android/Screenshooter ]
   MacBuildTargets: [ samples, nuget, component ]
-# - Name: SortableTableView - Temp disabled as failing to build
-#  BuildScript: ./Android/SortableTableView/build.cake
-#  TriggerPaths: [ Android/SortableTableView ]
-#  MacBuildTargets: [ samples, component ]
+- Name: SortableTableView - Temp disabled as failing to build
+  BuildScript: ./Android/SortableTableView/build.cake
+  TriggerPaths: [ Android/SortableTableView ]
+  MacBuildTargets: [ samples, nuget, component ]
 - Name: StickyHeader
   BuildScript: ./Android/StickyHeader/build.cake
   TriggerPaths: [ Android/StickyHeader ]
