@@ -142,7 +142,7 @@
   BuildScript: ./Android/Screenshooter/build.cake
   TriggerPaths: [ Android/Screenshooter ]
   MacBuildTargets: [ samples, nuget, component ]
-- Name: SortableTableView - Temp disabled as failing to build
+- Name: SortableTableView
   BuildScript: ./Android/SortableTableView/build.cake
   TriggerPaths: [ Android/SortableTableView ]
   MacBuildTargets: [ samples, nuget, component ]
