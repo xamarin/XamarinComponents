@@ -12,4 +12,5 @@
 
 	<remove-node path="/api/package[@name='com.google.ar.core']/class[@name='Point']/method[@name='getAnchors' and count(parameter)=0]" />
 	<remove-node path="/api/package[@name='com.google.ar.core']/class[@name='Plane']/method[@name='getAnchors' and count(parameter)=0]" />
+	<remove-node path="/api/package[@name='com.google.ar.core']/class[@name='AugmentedImage']/method[@name='getAnchors' and count(parameter)=0]" />
 </metadata>
