@@ -26,7 +26,8 @@ samples:
           - Xamarin.TransitionSubmit
     configuration: "Release|iPhone"
 is_shell: true 
-
+packages:
+  ios-unified: Xamarin.TransitionSubmit, Version=1.0.1.2
 monodoc: ../docs/
 local-nuget-repo: ../output
 additional-files:
