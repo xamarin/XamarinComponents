@@ -26,7 +26,8 @@ samples:
           - Xamarin.TextSwitch
     configuration: "Release|iPhone"
 is_shell: true 
-
+packages:
+  ios-unified: Xamarin.TextSwitch, Version=1.0.0.1
 monodoc: ../docs/
 local-nuget-repo: ../output
 additional-files:
