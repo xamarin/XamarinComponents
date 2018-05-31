@@ -33,6 +33,8 @@ samples:
     removeProjects:
         - PullToBounce       
 is_shell: true 
+packages:
+  ios-unified: Xamarin.PullToBounce, Version=1.0.0.3
 local-nuget-repo: ../output
 monodoc: ../docs/
 additional-files:
