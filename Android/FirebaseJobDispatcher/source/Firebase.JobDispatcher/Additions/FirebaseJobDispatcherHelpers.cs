@@ -4,7 +4,7 @@ using Android.Content;
 // ReSharper disable once CheckNamespace
 namespace Firebase.JobDispatcher
 {
-    public static class JobDispatchHelpers
+    public static class FirebaseJobDispatcherHelpers
     {
 
         /// <summary>
@@ -12,7 +12,7 @@ namespace Firebase.JobDispatcher
         /// </summary>
         /// <param name="context"></param>
         /// <returns></returns>
-        public static FirebaseJobDispatcher CreatJobDispatcher(this Context context)
+        public static FirebaseJobDispatcher CreateJobDispatcher(this Context context)
         {
             IDriver driver = new GooglePlayDriver(context);
             return new FirebaseJobDispatcher(driver);
