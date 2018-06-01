@@ -1,4 +1,4 @@
-version: 1.0.7
+version: 1.0.8
 name: KenBurnsView
 id: KenBurnsView
 publisher: Xamarin Inc
@@ -21,3 +21,17 @@ libraries:
 samples:
   - name: "Android Sample"
     path: ../samples/KenBurnsViewSample.sln
+    removeProjects:
+        - KenBurnsView
+    installNuGets:
+      - project: KenBurnsViewSample
+        packages:
+          - Xamarin.KenBurnsView
+
+is_shell: true 
+packages:
+  ios-unified: Xamarin.KenBurnsView, Version=1.0.8
+local-nuget-repo: ../output
+additional-files:
+  - source: "../External-Dependency-Info.txt"
+    destination: "THIRD-PARTY-NOTICES.txt"
