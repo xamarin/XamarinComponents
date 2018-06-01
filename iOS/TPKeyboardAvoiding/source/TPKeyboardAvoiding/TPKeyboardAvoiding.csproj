@@ -14,8 +14,7 @@
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>bin\unified\Debug</OutputPath>
-    <IntermediateOutputPath>obj\unified\Debug</IntermediateOutputPath>
+    <OutputPath>bin\Debug</OutputPath>
     <DefineConstants>DEBUG;__UNIFIED__;</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -24,8 +23,7 @@
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <Optimize>true</Optimize>
-    <OutputPath>bin\unified\Release</OutputPath>
-    <IntermediateOutputPath>obj\unified\Release</IntermediateOutputPath>
+    <OutputPath>bin\Release</OutputPath>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <ConsolePause>false</ConsolePause>
@@ -38,6 +36,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Resources\" />
+    <Folder Include="Properties\" />
   </ItemGroup>
   <ItemGroup>
     <ObjcBindingApiDefinition Include="ApiDefinition.cs" />
@@ -46,15 +45,15 @@
     <ObjcBindingCoreSource Include="StructsAndEnums.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ObjcBindingNativeLibrary Include="..\..\externals\libTPKeyboardAvoiding.a">
-      <Link>libTPKeyboardAvoiding.a</Link>
-    </ObjcBindingNativeLibrary>
+    <Compile Include="Additions.cs" />
+    <Compile Include="Resources\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="libTPKeyboardAvoiding.linkwith.cs">
-      <DependentUpon>libTPKeyboardAvoiding.a</DependentUpon>
-    </Compile>
-    <Compile Include="Additions.cs" />
+    <NativeReference Include="..\..\externals\libTPKeyboardAvoiding.a">
+      <Kind>Static</Kind>
+      <SmartLink>False</SmartLink>
+      <ForceLoad>True</ForceLoad>
+    </NativeReference>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.ObjCBinding.CSharp.targets" />
 </Project>
