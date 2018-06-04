@@ -1,8 +1,4 @@
 
-<iframe src="https://appetize.io/embed/vydz2mhymugakv22jwb7avdgzr?device=iphone5s&scale=75&autoplay=true&orientation=portrait&deviceColor=black" 
-        width="274px" height="587px" frameborder="0" scrolling="no"
-        style="float:right;margin-left:1em;">&nbsp;</iframe>
-
 **AMScrollingNavbar** provides a custom UINavigationController that enables the scrolling of the 
 navigation bar alongside the scrolling of an observed content view.
 

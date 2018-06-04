@@ -11,18 +11,18 @@ using UIKit;
 
 namespace AMScrollingNavbarSample
 {
-    [Register ("WebViewController")]
-    partial class WebViewController
+    [Register ("CollectionViewController")]
+    partial class CollectionViewController
     {
         [Outlet]
         [GeneratedCode ("iOS Designer", "1.0")]
-        UIKit.UIWebView webView { get; set; }
+        UIKit.UICollectionView collectionView { get; set; }
 
         void ReleaseDesignerOutlets ()
         {
-            if (webView != null) {
-                webView.Dispose ();
-                webView = null;
+            if (collectionView != null) {
+                collectionView.Dispose ();
+                collectionView = null;
             }
         }
     }

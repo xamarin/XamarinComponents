@@ -1,6 +1,6 @@
 // WARNING
 //
-// This file has been generated automatically by Xamarin Studio from the outlets and
+// This file has been generated automatically by Visual Studio from the outlets and
 // actions declared in your storyboard file.
 // Manual changes to this file will not be maintained.
 //
@@ -11,19 +11,19 @@ using UIKit;
 
 namespace AMScrollingNavbarSample
 {
-	[Register ("ScrollViewController")]
-	partial class ScrollViewController
-	{
-		[Outlet]
-		[GeneratedCode ("iOS Designer", "1.0")]
-		UIScrollView scrollView { get; set; }
+    [Register ("ScrollViewController")]
+    partial class ScrollViewController
+    {
+        [Outlet]
+        [GeneratedCode ("iOS Designer", "1.0")]
+        UIKit.UIScrollView scrollView { get; set; }
 
-		void ReleaseDesignerOutlets ()
-		{
-			if (scrollView != null) {
-				scrollView.Dispose ();
-				scrollView = null;
-			}
-		}
-	}
+        void ReleaseDesignerOutlets ()
+        {
+            if (scrollView != null) {
+                scrollView.Dispose ();
+                scrollView = null;
+            }
+        }
+    }
 }

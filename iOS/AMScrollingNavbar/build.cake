@@ -5,24 +5,24 @@ var TARGET = Argument ("t", Argument ("target", "Default"));
 
 var buildSpec = new BuildSpec () {
 	Libs = new ISolutionBuilder [] {
-		new IOSSolutionBuilder {
-			SolutionPath = "./AMScrollingNavbar.sln",
-			Configuration = "Release",
-			BuildsOn = BuildPlatforms.Mac,
+		new DefaultSolutionBuilder {
+			SolutionPath = "./source/AMScrollingNavbar.sln",
 			OutputFiles = new [] { 
-				new OutputFileCopy {
-					FromFile = "./source/AMScrollingNavbar/bin/Release/AMScrollingNavbar.dll",
-					ToDirectory = "./output/unified/"
-				},
+				new OutputFileCopy { FromFile = "./source/AMScrollingNavbar/bin/Release/AMScrollingNavbar.dll" },
 			}
 		},
 	},
+
 	Samples = new ISolutionBuilder [] {
-		new IOSSolutionBuilder { SolutionPath = "./samples/AMScrollingNavbarSample/AMScrollingNavbarSample.sln", Configuration = "Release", Platform="iPhone", BuildsOn = BuildPlatforms.Mac },
+		new IOSSolutionBuilder { SolutionPath = "./samples/AMScrollingNavbarSample/AMScrollingNavbarSample.sln" },
+	},
+
+	NuGets = new [] {
+		new NuGetInfo { NuSpec = "./nuget/Xamarin.AMScrollingNavbar.nuspec" },
 	},
 
 	Components = new [] {
-		new Component {ManifestDirectory = "./component", BuildsOn = BuildPlatforms.Mac},
+		new Component { ManifestDirectory = "./component" },
 	},
 };
 

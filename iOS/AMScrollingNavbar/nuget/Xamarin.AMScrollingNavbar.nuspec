@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<package>
+  <metadata>
+    <id>Xamarin.AMScrollingNavbar</id>
+    <title>Xamarin.AMScrollingNavbar</title>
+    <version>4.1.0</version>
+    <authors>Microsoft</authors>
+    <owners>Microsoft</owners>
+    <requireLicenseAcceptance>true</requireLicenseAcceptance>
+    <description>A custom UINavigationController that enables the scrolling of the navigation bar alongside the scrolling of an observed content view.</description>
+    <copyright>© Microsoft Corporation. All rights reserved.</copyright>
+    <projectUrl>https://go.microsoft.com/fwlink/?linkid=874997</projectUrl>
+    <licenseUrl>https://go.microsoft.com/fwlink/?linkid=874998</licenseUrl>
+  </metadata>
+  <files>
+    <file src="output/AMScrollingNavbar.dll" target="lib/Xamarin.iOS" />
+  </files>
+</package>

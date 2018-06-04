@@ -14,6 +14,8 @@ namespace AMScrollingNavbarSample
 		{
 			base.ViewDidLoad ();
 
+			Title = "Samples";
+
 			TableView.TableFooterView = new UIView ();
 		}
 
