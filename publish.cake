@@ -25,6 +25,11 @@ var MYGET_API_KEY = Argument ("myget-api-key", EnvironmentVariable ("MYGET_API_K
 var MYGET_SOURCE = Argument ("myget-source", EnvironmentVariable ("MYGET_SOURCE") ?? "");
 var MYGET_PUSH_SOURCE = Argument ("myget-push-source", EnvironmentVariable ("MYGET_PUSH_SOURCE") ?? "");
 
+var CUSTOM_API_KEY = Argument ("custom-api-key", EnvironmentVariable ("CUSTOM_API_KEY") ?? "");
+var CUSTOM_PUSH_SOURCE = Argument ("custom-push-source", EnvironmentVariable ("CUSTOM_PUSH_SOURCE") ?? "");
+var CUSTOM_SOURCE = Argument ("custom-source", EnvironmentVariable ("CUSTOM_SOURCE") ?? CUSTOM_PUSH_SOURCE);
+var CUSTOM_MAX_ATTEMPTS = 5;
+
 var GLOB_PATTERNS = Argument ("glob-patterns", EnvironmentVariable ("GLOBBER_FILE_PATTERNS"));
 
 public partial class BuildManifest
@@ -181,6 +186,24 @@ Task ("NuGet")
 	};
 
 	PublishNuGets (NUGET_SOURCE, NUGET_PUSH_SOURCE, NUGET_API_KEY, settings, globPatterns);
+});
+
+Task ("Custom")
+	.IsDependentOn("VerifyAuthenticode")
+	.Does (() =>
+{
+	var globPatterns = (GLOB_PATTERNS ?? "./output/*.nupkg").Split (new [] { ',', ';', ' ' });
+
+	DumpGlobPatterns (globPatterns);
+	if (PREVIEW_ONLY)
+		return;
+
+	var settings = new PublishNuGetsSettings {
+		MaxAttempts = CUSTOM_MAX_ATTEMPTS,
+		ForcePush = CUSTOM_FORCE_PUSH
+	};
+
+	PublishNuGets (CUSTOM_SOURCE, CUSTOM_PUSH_SOURCE, CUSTOM_API_KEY, settings, globPatterns);
 });
 
 RunTarget (TARGET);
