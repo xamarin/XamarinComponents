@@ -1,7 +1,7 @@
-#addin "nuget:?package=Cake.Http&version=0.4.0"
-#addin "nuget:?package=Cake.Json&version=1.0.2.13"
-#addin "nuget:?package=Cake.Xamarin&version=1.3.0.15"
-#addin "nuget:?package=Cake.ExtendedNuGet&version=1.0.0.24"
+#addin "nuget:?package=Cake.Http&version=0.5.0"
+#addin "nuget:?package=Cake.Json&version=3.0.1"
+#addin "nuget:?package=Cake.Xamarin&version=3.0.0"
+#addin "nuget:?package=Cake.ExtendedNuGet&version=1.0.0.27"
 #addin "nuget:?package=NuGet.Core&version=2.14.0"
 
 var TARGET = Argument ("target", Argument ("t", "build"));
