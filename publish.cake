@@ -78,13 +78,13 @@ Task ("DownloadArtifacts")
 
 	var buildManifests = DeserializeJson<BuildManifest[]> (manifestJson);
 
-    var downloadDir = new DirectoryPath ("./output/");
+	var downloadDir = new DirectoryPath ("./output/");
 	EnsureDirectoryExists (downloadDir);
 
 	foreach (var buildManifest in buildManifests) {
         var uri = new Uri (buildManifest.Url);
         var filename = System.IO.Path.GetFileName(uri.LocalPath);
-		var downloadedFile = downloadDir.CombineWithFilePath (filename);
+	var downloadedFile = downloadDir.CombineWithFilePath (filename);
         
         if (!downloadedFile.GetExtension().Equals(".nupkg", StringComparison.InvariantCultureIgnoreCase)) {
             Information ("Skipping: {0}", filename);
