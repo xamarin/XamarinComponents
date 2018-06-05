@@ -19,6 +19,10 @@ var buildSpec = new BuildSpec () {
 		new DefaultSolutionBuilder { SolutionPath = "./samples/ExplosionsSample.sln" },
 	},
 
+	NuGets = new [] {
+		new NuGetInfo { NuSpec = "./nuget/Xamarin.Explosions.nuspec" },
+	},
+
 	Components = new [] {
 		new Component {ManifestDirectory = "./component"},
 	},
