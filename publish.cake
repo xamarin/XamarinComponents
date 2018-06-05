@@ -29,7 +29,7 @@ var CUSTOM_API_KEY = Argument ("custom-api-key", EnvironmentVariable ("CUSTOM_AP
 var CUSTOM_PUSH_SOURCE = Argument ("custom-push-source", EnvironmentVariable ("CUSTOM_PUSH_SOURCE") ?? "");
 var CUSTOM_SOURCE = Argument ("custom-source", EnvironmentVariable ("CUSTOM_SOURCE") ?? CUSTOM_PUSH_SOURCE);
 var CUSTOM_FORCE_PUSH = Argument ("custom-force-push", EnvironmentVariable ("CUSTOM_FORCE_PUSH") ?? "false").Equals ("true");
-var CUSTOM_MAX_ATTEMPTS = 5;
+var CUSTOM_MAX_ATTEMPTS = 3;
 
 var GLOB_PATTERNS = Argument ("glob-patterns", EnvironmentVariable ("GLOBBER_FILE_PATTERNS"));
 
