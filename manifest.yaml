@@ -14,6 +14,10 @@
   BuildScript: ./Android/ARCore/build.cake
   TriggerPaths: [ Android/ARCore ]
   MacBuildTargets: [ samples, nuget ]
+- Name: ConstraintLayout
+  BuildScript: ./Android/ConstraintLayout/build.cake
+  TriggerPaths: [ Android/ConstraintLayout ]
+  MacBuildTargets: [ samples, nuget ]
 - Name: GoogleAndroidVending
   BuildScript: ./Android/GoogleAndroidVending/build.cake
   TriggerPaths: [ Android/GoogleAndroidVending ]
@@ -141,7 +145,7 @@
 - Name: SortableTableView
   BuildScript: ./Android/SortableTableView/build.cake
   TriggerPaths: [ Android/SortableTableView ]
-  MacBuildTargets: [ samples, component ]
+  MacBuildTargets: [ samples, nuget, component ]
 - Name: StickyHeader
   BuildScript: ./Android/StickyHeader/build.cake
   TriggerPaths: [ Android/StickyHeader ]
@@ -169,6 +173,10 @@
 - Name: Glide
   BuildScript: ./Android/Glide/build.cake
   TriggerPaths: [ Android/Glide ]
+  MacBuildTargets: [ samples, nuget ]
+- Name: Wear
+  BuildScript: ./Android/Wear/build.cake
+  TriggerPaths: [ Android/Wear ]
   MacBuildTargets: [ samples, nuget ]
 
 #######################################################
@@ -222,7 +230,7 @@
 - Name: HDNotification
   BuildScript: ./iOS/HDNotification/build.cake
   TriggerPaths: [ iOS/HDNotification ]
-  MacBuildTargets: [ samples, component ]
+  MacBuildTargets: [ samples, nuget, component ]
 - Name: iCarousel
   BuildScript: ./iOS/iCarousel/build.cake
   TriggerPaths: [ iOS/iCarousel ]
@@ -230,7 +238,7 @@
 - Name: InAppSettingsKit
   BuildScript: ./iOS/InAppSettingsKit/build.cake
   TriggerPaths: [ iOS/InAppSettingsKit ]
-  MacBuildTargets: [ samples, component ]
+  MacBuildTargets: [ samples, nuget, component ]
 - Name: iRate
   BuildScript: ./iOS/iRate/build.cake
   TriggerPaths: [ iOS/iRate ]
@@ -238,11 +246,11 @@
 - Name: JDStatusBarNotification
   BuildScript: ./iOS/JDStatusBarNotification/build.cake
   TriggerPaths: [ iOS/JDStatusBarNotification ]
-  MacBuildTargets: [ samples, component ]
-# - Name: JSQMessagesViewController TODO - temporarily disable to allow other projects to complete 
-#   BuildScript: ./iOS/JSQMessagesViewController/build.cake
-#   TriggerPaths: [ iOS/JSQMessagesViewController ]
-#   MacBuildTargets: [ samples, component ]
+  MacBuildTargets: [ samples, nuget, component ]
+- Name: JSQMessagesViewController
+  BuildScript: ./iOS/JSQMessagesViewController/build.cake
+  TriggerPaths: [ iOS/JSQMessagesViewController ]
+  MacBuildTargets: [ samples, nuget, component ]
 - Name: JZMultiChoicesCircleButton
   BuildScript: ./iOS/JZMultiChoicesCircleButton/build.cake
   TriggerPaths: [ iOS/JZMultiChoicesCircleButton ]
@@ -330,7 +338,35 @@
 - Name: SDSegmentedControl
   BuildScript: ./iOS/SDSegmentedControl/build.cake
   TriggerPaths: [ iOS/SDSegmentedControl ]
+  MacBuildTargets: [ samples, nuget, component ]
+- Name: XamDialogs
+  BuildScript: ./iOS/XamDialogs/build.cake
+  TriggerPaths: [ iOS/XamDialogs ]
   MacBuildTargets: [ samples, component ]
+- Name: APDropDownNavToolbar
+  BuildScript: ./iOS/APDropDownNavToolbar/build.cake
+  TriggerPaths: [ iOS/APDropDownNavToolbar ]
+  MacBuildTargets: [ samples, nuget, component ]
+- Name: REFrostedViewController
+  BuildScript: ./iOS/REFrostedViewController/build.cake
+  TriggerPaths: [ iOS/REFrostedViewController ]
+  MacBuildTargets: [ samples, nuget, component ]
+- Name: TrackbeamTheme
+  BuildScript: ./iOS/TrackbeamTheme/build.cake
+  TriggerPaths: [ iOS/TrackbeamTheme ]
+  MacBuildTargets: [ samples, nuget, component ]
+- Name: IQAudioRecorderController
+  BuildScript: ./iOS/IQAudioRecorderController/build.cake
+  TriggerPaths: [ iOS/IQAudioRecorderController ]
+  MacBuildTargets: [ samples, nuget, component ]
+- Name: PickerCells
+  BuildScript: ./iOS/PickerCells/build.cake
+  TriggerPaths: [ iOS/PickerCells ]
+  MacBuildTargets: [ samples, nuget, component ]
+- Name: JVMenuPopover
+  BuildScript: ./iOS/JVMenuPopover/build.cake
+  TriggerPaths: [ iOS/JVMenuPopover ]
+  MacBuildTargets: [ samples, nuget, component ]
 
 #######################################################
 # XPlat
@@ -376,6 +412,10 @@
   BuildScript: ./XPlat/CardIO/iOS/build.cake
   TriggerPaths: [ XPlat/CardIO/iOS ]
   MacBuildTargets: [ samples, nuget, component ]
+- Name: VK
+  BuildScript: ./XPlat/VK/build.cake
+  TriggerPaths: [ XPlat/VK ]
+  MacBuildTargets: [ component, samples ]
 - Name: Mono.DataConverter
   BuildScript: ./XPlat/Mono.DataConverter/build.cake
   TriggerPaths: [ XPlat/Mono.DataConverter ]
@@ -419,6 +459,14 @@
 - Name: ShopifyiOS
   BuildScript: ./XPlat/Shopify/iOS/build.cake
   TriggerPaths: [ XPlat/Shopify/iOS ]
+  MacBuildTargets: [ samples, component ]
+- Name: StripeiOSBindings
+  BuildScript: ./XPlat/Stripe/bindings/iOS/build.cake
+  TriggerPaths: [ XPlat/Stripe/bindings/iOS ]
+  MacBuildTargets: [ samples, nuget ]
+- Name: DropboxApiV2
+  BuildScript: ./XPlat/DropboxApiV2/build.cake
+  TriggerPaths: [ XPlat/DropboxApiV2 ]
   MacBuildTargets: [ samples, component ]
 
 #######################################################

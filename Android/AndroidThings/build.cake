@@ -1,31 +1,75 @@
-#addin nuget:?package=Cake.Xamarin.Build
-#addin nuget:?package=Cake.Xamarin
+#load "../../common.cake"
 
 var TARGET = Argument ("t", Argument ("target", "Default"));
 
-var NUGET_VERSION = "0.6.1-devpreview";
+var NUGET_VERSION = "1.0.0.1";
 
-var JAR_VERSION = "0.6.1-devpreview";
+var JAR_VERSION = "1.0";
 var JAR_URL = string.Format ("https://bintray.com/google/androidthings/download_file?file_path=com%2Fgoogle%2Fandroid%2Fthings%2Fandroidthings%2F{0}%2Fandroidthings-{0}.jar", JAR_VERSION);
 var DOCS_URL = string.Format ("https://bintray.com/google/androidthings/download_file?file_path=com%2Fgoogle%2Fandroid%2Fthings%2Fandroidthings%2F{0}%2Fandroidthings-{0}-javadoc.jar", JAR_VERSION);
+
+var CONTRIB_URL = "https://bintray.com/google/androidthings/download_file?file_path=com%2Fgoogle%2Fandroid%2Fthings%2Fcontrib%2Fdriver-{0}%2F{1}%2Fdriver-{0}-{1}.aar";
+var CONTRIB_SRC_URL = "https://bintray.com/google/androidthings/download_file?file_path=com%2Fgoogle%2Fandroid%2Fthings%2Fcontrib%2Fdriver-{0}%2F{1}%2Fdriver-{0}-{1}-sources.jar";
+
 var JAR_DEST = "./externals/androidthings.jar";
 
-var buildSpec = new BuildSpec () {
-	Libs = new [] {
-		new DefaultSolutionBuilder {
-			SolutionPath = "./Android.Things.sln",
-			OutputFiles = new [] { 
-				new OutputFileCopy {
-					FromFile = "./source/bin/Release/Xamarin.Android.Things.dll",
-				}
-			}
-		}
-	},
-
-	NuGets = new [] {
-		new NuGetInfo { NuSpec = "./nuget/Xamarin.Android.Things.nuspec", Version = NUGET_VERSION },
-	},
+var CONTRIB_DRIVERS = new [] {
+	"adcv2x",
+	"apa102",
+	"bmx280",
+	"button",
+	"cap12xx",
+	"gps",
+	"ht16k33",
+	"lowpan",
+	"matrixkeypad",
+	"mma7660fc",
+	"motorhat",
+	"pwmservo",
+	"pwmspeaker",
+	"rainbowhat",
+	"sensehat",
+	"ssd1306",
+	"tm1637",
+	"vcnl4200",
+	"voicehat",
+	"zxgesturesensor"
 };
+
+Task("libs")
+	.IsDependentOn("externals")
+	.Does(() =>
+{
+	MSBuild("./Android.Things.sln", c => 
+		c.SetConfiguration("Release")
+			.WithTarget("Restore"));
+
+	MSBuild("./Android.Things.sln", c => 
+		c.SetConfiguration("Release")
+			.WithTarget("Build"));
+});
+
+Task("nuget")
+	.IsDependentOn("libs")
+	.Does(() =>
+{
+	EnsureDirectoryExists("./output");
+
+	MSBuild("./source/things/Xamarin.Android.Things.csproj", c => 
+		c.SetConfiguration("Release")
+			.WithTarget("Pack")
+			.WithProperty("PackageVersion", NUGET_VERSION)
+			.WithProperty("PackageOutputPath", "../../output"));
+
+	MSBuild("./source/drivers/Xamarin.Android.Things.Contrib.Drivers.csproj", c => 
+		c.SetConfiguration("Release")
+			.WithTarget("Pack")
+			.WithProperty("PackageVersion", NUGET_VERSION)
+			.WithProperty("PackageOutputPath", "../../output"));
+});
+
+Task("samples");
+Task("component");
 
 Task ("externals")
 	.Does (() => 
@@ -40,15 +84,24 @@ Task ("externals")
 		DownloadFile (DOCS_URL, "./externals/docs.zip");
 		Unzip ("./externals/docs.zip", "./externals/docs");
 	}
+
+	foreach (var c in CONTRIB_DRIVERS) {
+		var aarFile = "./externals/driver-" + c + ".aar";
+		var srcsFile = "./externals/driver-" + c + "-sources.jar";
+
+		if (!FileExists(aarFile))
+			DownloadFile(string.Format(CONTRIB_URL, c, JAR_VERSION), aarFile);
+
+		if (!FileExists(srcsFile))
+			DownloadFile(string.Format(CONTRIB_SRC_URL, c, JAR_VERSION), srcsFile);
+	}
 });
 
-
-Task ("clean").IsDependentOn ("clean-base").Does (() => 
-{	
+Task ("clean")
+	.Does (() => 
+{
 	if (DirectoryExists ("./externals"))
 		DeleteDirectory ("./externals", true);
 });
-
-SetupXamarinBuildTasks (buildSpec, Tasks, Task);
 
 RunTarget (TARGET);

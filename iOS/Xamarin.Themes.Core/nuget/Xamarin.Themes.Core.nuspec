@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
+    <metadata>
+        <id>Xamarin.Themes.Core</id>
+        <version>1.0.0.1</version>
+        <title>Xamarin.Themes.Core</title>
+        <authors>Xamarin Inc.</authors>
+        <owners>Xamarin Inc.</owners>
+        <licenseUrl>https://github.com/xamarin/XamarinComponents/blob/master/iOS/Xamarin.Themes.Core/License.md</licenseUrl>
+        <projectUrl>https://github.com/xamarin/XamarinComponents/tree/master/iOS/Xamarin.Themes.Core</projectUrl>
+        <iconUrl>http://xamarin.com/content/images/nuget/xamarin.png</iconUrl>
+        <requireLicenseAcceptance>false</requireLicenseAcceptance>
+        <description>Xamarin.Themes.Core is a theming framework for Xamarin.iOS</description>
+        <releaseNotes>Initial Release</releaseNotes>
+        <copyright>Copyright 2015</copyright>
+    </metadata>
+    <files>
+        <file src="output/unified/Xamarin.Themes.Core.dll" target="lib/Xamarin.iOS10" />
+    </files>
+</package>

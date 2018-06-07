@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2012/06/nuspec.xsd">
+    <metadata>
+        <id>Xamarin.VKontakte</id>
+        <version>1.0.1</version>
+        <title>VK (originally VKontakte) [DEPRECATED]</title>
+        <authors>Microsoft</authors>
+        <owners>Microsoft</owners>
+        <licenseUrl>https://go.microsoft.com/fwlink/?linkid=873656</licenseUrl>
+        <projectUrl>https://go.microsoft.com/fwlink/?linkid=873658</projectUrl>
+        <iconUrl>https://avatars1.githubusercontent.com/u/1478241?v=3&amp;s=256</iconUrl>
+        <requireLicenseAcceptance>false</requireLicenseAcceptance>
+        <description>VK (originally VKontakte) is the largest European online social networking service. It is available in several languages, but is especially popular among Russian-speaking users.</description>
+        <summary>VK (originally VKontakte) is the largest European online social networking service.</summary>
+        <releaseNotes></releaseNotes>
+        <copyright>© Microsoft Corporation. All rights reserved.</copyright>
+        <tags>VK,VKontakte,social,Xamarin,Android,iOS,windows phone,wp8,monodroid,monoandroid,monotouch</tags>
+        <dependencies>
+            <group targetFramework="MonoAndroid">
+                <dependency id="Xamarin.VKontakte.Android" version="1.6.7"/>
+            </group>
+            <group targetFramework="XamariniOS">
+                <dependency id="Xamarin.VKontakte.iOS" version="1.3.16"/>
+            </group>
+        </dependencies>
+    </metadata>
+    <files></files>
+</package>

@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<package>
+  <metadata>
+    <id>Xamarin.AnimatedCheckButton</id>
+    <title>AnimatedCheckButton for Xamarin.iOS</title>
+    <version>1.0.2</version>
+    <authors>Microsoft</authors>
+    <owners>Microsoft</owners>
+    <requireLicenseAcceptance>true</requireLicenseAcceptance>
+    <description>The Animated Check Button is an animated UIControl, that has a nice animation between its checked and unchecked states.</description>
+    <copyright>© Microsoft Corporation. All rights reserved.</copyright>
+    <projectUrl>https://go.microsoft.com/fwlink/?linkid=871872</projectUrl>
+    <licenseUrl>https://go.microsoft.com/fwlink/?linkid=871871</licenseUrl>
+  </metadata>
+  <files>
+    <file src="output/unified/AnimatedCheckButton.dll" target="lib/Xamarin.iOS" />
+  </files>
+</package>

@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<enum-method-mappings>
+	<!--path="/api/package[@name='android.support.wearable.view']/class[@name='WearableFrameLayout']/method[@name='setVisibility' and count(parameter)=1 and parameter[1][@type='int']]"-->
+	<mapping jni-class="android/support/wearable/view/WearableFrameLayout">
+		<method jni-name="setVisibility" parameter="visibility" clr-enum-type="Android.Views.ViewState" />
+		<!-- path="/api/package[@name='android.support.wearable.view']/class[@name='WearableFrameLayout']/method[@name='getForegroundGravity' and count(parameter)=0]"-->
+		<method jni-name="getForegroundGravity" parameter="return" clr-enum-type="Android.Views.GravityFlags" />
+	</mapping>
+
+	<!-- path="/api/package[@name='android.support.wearable.view.drawer']/class[@name='WearableDrawerLayout'] -->
+	<mapping jni-class="android/support/wearable/view/drawer/WearableDrawerLayout">
+		<method jni-name="setVisibility" parameter="visibility" clr-enum-type="Android.Views.ViewState" />
+		<method jni-name="setVisibility" parameter="p0" clr-enum-type="Android.Views.ViewState" />
+		
+		<method jni-name="getNestedScrollAxes" parameter="return" clr-enum-type="Android.Views.ScrollAxis" />
+		
+		<method jni-name="onNestedScrollAccepted" parameter="axes" clr-enum-type="Android.Views.ScrollAxis" />
+		<method jni-name="onNestedScrollAccepted" parameter="p2" clr-enum-type="Android.Views.ScrollAxis" />
+		<method jni-name="onStartNestedScroll" parameter="nestedScrollAxes" clr-enum-type="Android.Views.ScrollAxis" />
+		<method jni-name="onStartNestedScroll" parameter="p2" clr-enum-type="Android.Views.ScrollAxis" />
+		<method jni-name="startNestedScroll" parameter="axes" clr-enum-type="Android.Views.ScrollAxis" />
+		<method jni-name="startNestedScroll" parameter="p0" clr-enum-type="Android.Views.ScrollAxis" />
+	</mapping>
+</enum-method-mappings>

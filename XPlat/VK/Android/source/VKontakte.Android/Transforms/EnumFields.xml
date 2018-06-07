@@ -1,0 +1,110 @@
+﻿<enum-field-mappings>
+	<!--
+  This example converts the constants Fragment_id, Fragment_name,
+  and Fragment_tag from android.support.v4.app.FragmentActivity.FragmentTag
+  to an enum called Android.Support.V4.App.FragmentTagType with values
+  Id, Name, and Tag.
+
+  Notes:
+  - An optional "bitfield" attribute marks the enum type with [Flags].
+  - For Java interfaces, use "jni-interface" attribute instead of "jni-class" attribute.
+  -->
+
+	<mapping clr-enum-type="VKontakte.API.Models.VKApiAudioGenre" jni-class="com/vk/sdk/api/model/VKApiAudio$Genre">
+		<field clr-name="Rock" jni-name="ROCK" value="1" />
+		<field clr-name="Pop" jni-name="POP" value="2" />
+		<field clr-name="RapAndHipHop" jni-name="RAP_AND_HIPHOP" value="3" />
+		<field clr-name="EasyListening" jni-name="EASY_LISTENING" value="4" />
+		<field clr-name="DanceAndHouse" jni-name="DANCE_AND_HOUSE" value="5" />
+		<field clr-name="Instrumental" jni-name="INSTRUMENTAL" value="6" />
+		<field clr-name="Metal" jni-name="METAL" value="7" />
+		<field clr-name="Dubstep" jni-name="DUBSTEP" value="8" />
+		<field clr-name="JazzAndBlues" jni-name="JAZZ_AND_BLUES" value="9" />
+		<field clr-name="DrumAndBass" jni-name="DRUM_AND_BASS" value="10" />
+		<field clr-name="Trance" jni-name="TRANCE" value="11" />
+		<field clr-name="Chanson" jni-name="CHANSON" value="12" />
+		<field clr-name="Ethnic" jni-name="ETHNIC" value="13" />
+		<field clr-name="AcousticAndVocal" jni-name="ACOUSTIC_AND_VOCAL" value="14" />
+		<field clr-name="Reggae" jni-name="REGGAE" value="15" />
+		<field clr-name="Classical" jni-name="CLASSICAL" value="16" />
+		<field clr-name="IndiePop" jni-name="INDIE_POP" value="17" />
+		<field clr-name="Other" jni-name="OTHER" value="18" />
+		<field clr-name="Speech" jni-name="SPEECH" value="19" />
+		<field clr-name="Alternative" jni-name="ALTERNATIVE" value="21" />
+		<field clr-name="ElectroPopAndDisco" jni-name="ELECTROPOP_AND_DISCO" value="22" />
+	</mapping>
+
+	<mapping clr-enum-type="VKontakte.API.Models.VKApiCommunityType" jni-class="com/vk/sdk/api/model/VKApiCommunity$Type">
+		<field clr-name="Group" jni-name="GROUP" value="0" />
+		<field clr-name="Page" jni-name="PAGE" value="1" />
+		<field clr-name="Event" jni-name="EVENT" value="2" />
+	</mapping>
+
+	<mapping clr-enum-type="VKontakte.API.Models.VKApiCommunityStatus" jni-class="com/vk/sdk/api/model/VKApiCommunity$Status">
+		<field clr-name="Open" jni-name="OPEN" value="0" />
+		<field clr-name="Closed" jni-name="CLOSED" value="1" />
+		<field clr-name="Private" jni-name="PRIVATE" value="2" />
+	</mapping>
+
+	<mapping clr-enum-type="VKontakte.API.Models.VKApiCommunityAdminLevel" jni-class="com/vk/sdk/api/model/VKApiCommunity$AdminLevel">
+		<field clr-name="Moderator" jni-name="MODERATOR" value="1" />
+		<field clr-name="Editor" jni-name="EDITOR" value="2" />
+		<field clr-name="Admin" jni-name="ADMIN" value="3" />
+	</mapping>
+
+	<mapping clr-enum-type="VKontakte.API.Models.VKApiUserAttitude" jni-class="com/vk/sdk/api/model/VKApiUserFull$Attitude">
+		<field clr-name="VeryNegative" jni-name="VERY_NEGATIVE" value="1" />
+		<field clr-name="Negative" jni-name="NEGATIVE" value="2" />
+		<field clr-name="Compromisable" jni-name="COMPROMISABLE" value="3" />
+		<field clr-name="Neutral" jni-name="NEUTRAL" value="4" />
+		<field clr-name="Positive" jni-name="POSITIVE" value="5" />
+	</mapping>
+
+	<mapping clr-enum-type="VKontakte.API.Models.VKApiUserLifeMain" jni-class="com/vk/sdk/api/model/VKApiUserFull$LifeMain">
+		<field clr-name="FamilyAndChildren" jni-name="FAMILY_AND_CHILDREN" value="1" />
+		<field clr-name="CareerAndMoney" jni-name="CAREER_AND_MONEY" value="2" />
+		<field clr-name="EntertainmentAndLeisure" jni-name="ENTERTAINMENT_AND_LEISURE" value="3" />
+		<field clr-name="ScienceAndResearch" jni-name="SCIENCE_AND_RESEARCH" value="4" />
+		<field clr-name="ImprovingTheWorld" jni-name="IMPROOVING_THE_WORLD" value="5" />
+		<field clr-name="PersonalDevelopment" jni-name="PERSONAL_DEVELOPMENT" value="6" />
+		<field clr-name="BeautyAndArt" jni-name="BEAUTY_AND_ART" value="7" />
+		<field clr-name="FameAndInfluence" jni-name="FAME_AND_INFLUENCE" value="8" />
+	</mapping>
+
+	<mapping clr-enum-type="VKontakte.API.Models.VKApiUserPeopleMain" jni-class="com/vk/sdk/api/model/VKApiUserFull$PeopleMain">
+		<field clr-name="IntellectAndCreativity" jni-name="INTELLECT_AND_CREATIVITY" value="1" />
+		<field clr-name="KindnessAndHonesty" jni-name="KINDNESS_AND_HONESTLY" value="2" />
+		<field clr-name="HealthAndBeauty" jni-name="HEALTH_AND_BEAUTY" value="3" />
+		<field clr-name="WealthAndPower" jni-name="WEALTH_AND_POWER" value="4" />
+		<field clr-name="CourageAndPersistence" jni-name="COURAGE_AND_PERSISTENCE" value="5" />
+		<field clr-name="HumorAndLoveForLife" jni-name="HUMOR_AND_LOVE_FOR_LIFE" value="6" />
+	</mapping>
+
+	<mapping clr-enum-type="VKontakte.API.Models.VKApiUserPolitical" jni-class="com/vk/sdk/api/model/VKApiUserFull$Political">
+		<field clr-name="Communnist" jni-name="COMMUNNIST" value="1" />
+		<field clr-name="Socialist" jni-name="SOCIALIST" value="2" />
+		<field clr-name="Centrist" jni-name="CENTRIST" value="3" />
+		<field clr-name="Liberal" jni-name="LIBERAL" value="4" />
+		<field clr-name="Conservative" jni-name="CONSERVATIVE" value="5" />
+		<field clr-name="Monarchist" jni-name="MONARCHIST" value="6" />
+		<field clr-name="UltraConservative" jni-name="ULTRACONSERVATIVE" value="7" />
+		<field clr-name="Libertarian" jni-name="LIBERTARIAN" value="8" />
+		<field clr-name="Apathetic" jni-name="APATHETIC" value="9" />
+	</mapping>
+
+	<mapping clr-enum-type="VKontakte.API.Models.VKApiUserRelation" jni-class="com/vk/sdk/api/model/VKApiUserFull$Relation">
+		<field clr-name="Single" jni-name="SINGLE" value="1" />
+		<field clr-name="Relationship" jni-name="RELATIONSHIP" value="2" />
+		<field clr-name="Engaged" jni-name="ENGAGED" value="3" />
+		<field clr-name="Married" jni-name="MARRIED" value="4" />
+		<field clr-name="Complicated" jni-name="COMPLICATED" value="5" />
+		<field clr-name="Searching" jni-name="SEARCHING" value="6" />
+		<field clr-name="InLove" jni-name="IN_LOVE" value="7" />
+	</mapping>
+
+	<mapping clr-enum-type="VKontakte.API.Models.VKApiUserSex" jni-class="com/vk/sdk/api/model/VKApiUserFull$Sex">
+		<field clr-name="Female" jni-name="FEMALE" value="1" />
+		<field clr-name="Male" jni-name="MALE" value="2" />
+	</mapping>
+
+</enum-field-mappings>

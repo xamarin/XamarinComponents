@@ -16,6 +16,7 @@
     <file src="output/Xamarin.Build.Download.targets" target="build"  />
     <file src="output/Xamarin.Build.Download.dll" target="build"  />
     <file src="output/Xamarin.Build.Download.props" target="build"  />
+
     <file src="output/Mono.Cecil.dll" target="build"  />
     <file src="output/System.Net.Http.Formatting.dll" target="build"  />
     <file src="output/Newtonsoft.Json.dll" target="build"  />

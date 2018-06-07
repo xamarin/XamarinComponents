@@ -5,25 +5,24 @@ var TARGET = Argument ("t", Argument ("target", "Default"));
 
 var buildSpec = new BuildSpec () {
 	Libs = new ISolutionBuilder [] {
-		new IOSSolutionBuilder {
-			SolutionPath = "./LiquidFloatingActionButton.sln",
-			Configuration = "Release",
-			BuildsOn = BuildPlatforms.Mac,
+		new DefaultSolutionBuilder {
+			SolutionPath = "./source/LiquidFloatingActionButton.sln",
 			OutputFiles = new [] { 
-				new OutputFileCopy {
-					FromFile = "./source/LiquidFloatingActionButton/bin/Release/LiquidFloatingActionButton.dll",
-					ToDirectory = "./output/unified/"
-				},
+				new OutputFileCopy { FromFile = "./source/LiquidFloatingActionButton/bin/Release/LiquidFloatingActionButton.dll" }
 			}
 		},	
 	},
 
 	Samples = new ISolutionBuilder [] {
-		new IOSSolutionBuilder { SolutionPath = "./samples/LiquidFloatingActionButtonSample/LiquidFloatingActionButtonSample.sln", Configuration = "Release", Platform="iPhone", BuildsOn = BuildPlatforms.Mac },
+		new IOSSolutionBuilder { SolutionPath = "./samples/LiquidFloatingActionButtonSample.sln" },
+	},
+
+	NuGets = new [] {
+		new NuGetInfo { NuSpec = "./nuget/Xamarin.LiquidFloatingActionButton.nuspec" },
 	},
 
 	Components = new [] {
-		new Component {ManifestDirectory = "./component", BuildsOn = BuildPlatforms.Mac},
+		new Component { ManifestDirectory = "./component" },
 	},
 };
 

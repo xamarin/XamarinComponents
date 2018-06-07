@@ -1,0 +1,6 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<metadata>
+	<attr path="/api/package[@name='com.stripe.wrap.pay']" name="managedName">Stripe.Wrap.Pay</attr>
+	<attr path="/api/package[@name='com.stripe.wrap.pay.activity']" name="managedName">Stripe.Wrap.Pay.Activity</attr>
+	<attr path="/api/package[@name='com.stripe.wrap.pay.utils']" name="managedName">Stripe.Wrap.Pay.Utils</attr>
+</metadata>

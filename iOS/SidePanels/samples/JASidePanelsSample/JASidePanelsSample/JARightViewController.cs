@@ -14,7 +14,7 @@ namespace JASidePanelsSample
 			View.BackgroundColor = UIColor.Red;
 			label.Text = "Right Panel";
 			label.SizeToFit ();
-			hide.Frame = new CGRect (View.Bounds.Size.Width - 220.0f, 70.0f, 200.0f, 40.0f);
+			hide.Frame = new CGRect (View.Bounds.Size.Width - 220.0f, 110.0f, 200.0f, 40.0f);
 			hide.AutoresizingMask = UIViewAutoresizing.FlexibleLeftMargin | UIViewAutoresizing.FlexibleBottomMargin;
 			show.Frame = hide.Frame;
 			show.AutoresizingMask = hide.AutoresizingMask;
@@ -29,7 +29,7 @@ namespace JASidePanelsSample
 			base.ViewWillAppear (animated);
 
 			var width = this.GetSidePanelController ().RightVisibleWidth;
-			label.Center = new CGPoint ((View.Bounds.Size.Width - width) + (width / 2.0f), 25.0f);
+			label.Center = new CGPoint ((View.Bounds.Size.Width - width) + (width / 2.0f), 65.0f);
 		}
 	}
 }

@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<package>
+  <metadata>
+    <id>Xamarin.Chameleon</id>
+    <title>Chameleon for Xamarin.iOS</title>
+    <version>2.1</version>
+    <authors>Microsoft</authors>
+    <owners>Microsoft</owners>
+    <requireLicenseAcceptance>true</requireLicenseAcceptance>
+    <description>Chameleon is a lightweight, yet powerful, color framework for iOS.</description>
+    <copyright>© Microsoft Corporation. All rights reserved.</copyright>
+    <projectUrl>https://go.microsoft.com/fwlink/?linkid=869564</projectUrl>
+    <licenseUrl>https://go.microsoft.com/fwlink/?linkid=869565</licenseUrl>
+  </metadata>
+  <files>
+    <file src="output/unified/Chameleon.dll" target="lib/Xamarin.iOS" />
+    <file src="External-Dependency-Info.txt" target="THIRD-PARTY-NOTICES.txt" />
+  </files>
+</package>

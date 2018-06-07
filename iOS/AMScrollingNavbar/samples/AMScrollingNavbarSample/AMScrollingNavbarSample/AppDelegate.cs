@@ -14,6 +14,9 @@ namespace AMScrollingNavbarSample
 			UINavigationBar.Appearance.TitleTextAttributes = new UIStringAttributes {
 				ForegroundColor = UIColor.White
 			};
+			UINavigationBar.Appearance.LargeTitleTextAttributes = new UIStringAttributes {
+				ForegroundColor = UIColor.White
+			};
 
 			return true;
 		}

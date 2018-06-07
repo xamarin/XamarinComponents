@@ -1,24 +1,15 @@
 using System;
 
-#if __UNIFIED__
 using CoreAnimation;
 using CoreGraphics;
 using Foundation;
 using ObjCRuntime;
+
+#if __IOS__
 using UIKit;
 #else
-using MonoTouch.CoreAnimation;
-using MonoTouch.CoreGraphics;
-using MonoTouch.Foundation;
-using MonoTouch.ObjCRuntime;
-using MonoTouch.UIKit;
-
-using CGRect = global::System.Drawing.RectangleF;
-using CGSize = global::System.Drawing.SizeF;
-using CGPoint = global::System.Drawing.PointF;
-using nfloat = global::System.Single;
-using nint = global::System.Int32;
-using nuint = global::System.UInt32;
+using AppKit;
+using UIView = AppKit.NSView;
 #endif
 
 namespace Carousels

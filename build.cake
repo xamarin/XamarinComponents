@@ -1,9 +1,6 @@
-#addin nuget:?package=Cake.XCode&version=2.0.13
-#addin nuget:?package=Cake.Xamarin.Build&version=2.0.18
-#addin nuget:?package=Cake.Xamarin&version=1.3.0.15
-#addin nuget:?package=Cake.FileHelpers&version=1.0.4
-#addin nuget:?package=Cake.Yaml&version=1.0.3
-#addin nuget:?package=Cake.Json&version=1.0.2
+#load "common.cake"
+
+#addin nuget:?package=redth.xunit.resultwriter&version=1.0.0
 
 var TARGET = Argument ("target", Argument ("t", Argument ("Target", "build")));
 
@@ -94,6 +91,15 @@ void BuildGroups (List<BuildGroup> buildGroups, List<string> names, List<string>
 		
 		// Get all the changed files in this commit
 		IEnumerable<string> changedFiles = new List<string> ();
+
+		// Look for an indication that we are building via ghprb (GitHub PR Builder)
+		// If so, we need to get the 'actual' commit of the PR
+		// and also set our previous commit to 'master' to compare against
+		var prActualCommit = EnvironmentVariable("ghprbActualCommit");
+		if (!string.IsNullOrWhiteSpace(prActualCommit)) {
+			gitPreviousCommit = "origin/master";
+			gitCommit = prActualCommit;
+		}
 
 		if (!string.IsNullOrWhiteSpace (gitPreviousCommit)) {
 			// We have both commit hashes (previous and current) so do a diff on them
@@ -276,6 +282,61 @@ Task ("build").Does (() =>
 	}
 
 	BuildGroups (BUILD_GROUPS, BUILD_NAMES.ToList (), buildTargets, GIT_PATH, GIT_BRANCH, GIT_PREVIOUS_COMMIT, GIT_COMMIT, FORCE_BUILD);		
+});
+
+Task ("buildall")
+	.Does (() =>
+{
+	// If BUILD_NAMES were specified, only take BUILD_GROUPS that match one of the specified names, otherwise, all
+	var groupsToBuild = BUILD_NAMES.Any () ? BUILD_GROUPS.Where (i => BUILD_NAMES.Contains (i.Name)) : BUILD_GROUPS;
+
+	//var cakeExePath = GetFiles("./**/Cake.exe").FirstOrDefault();
+
+	var assembly = new Xunit.ResultWriter.Assembly {
+		Name = "ComponentsBuilder",
+		TestFramework = "xUnit",
+		Environment = "CI",
+		RunDate = DateTime.UtcNow.ToString("yyyy-MM-dd"),
+		RunTime = DateTime.UtcNow.ToString("hh:mm:ss")
+	};
+
+	var col = new Xunit.ResultWriter.Collection {
+		Name = "Components"
+	};
+
+	foreach (var bg in groupsToBuild) {
+		foreach (var t in bg.BuildTargets) {
+			var test = new Xunit.ResultWriter.Test {
+				Name = bg.BuildScript,
+				Type = "ComponentsBuilder",
+				Method = "Build (" + t + ")",
+			};
+
+			var start = DateTime.UtcNow;
+
+			try {
+				CakeExecuteScript(bg.BuildScript, new CakeSettings {
+					Arguments = new Dictionary<string, string> { { "--target", t } }
+				});
+				test.Result = Xunit.ResultWriter.ResultType.Pass;
+			} catch (Exception ex) {
+				test.Result = Xunit.ResultWriter.ResultType.Fail;
+				test.Failure = new Xunit.ResultWriter.Failure {
+					Message = ex.Message,
+					StackTrace = ex.ToString()
+				};
+			}
+
+			test.Time = (decimal)(DateTime.UtcNow - start).TotalSeconds;
+			col.TestItems.Add(test);
+		}
+	}
+
+	assembly.CollectionItems.Add(col);
+	
+	var resultWriter = new Xunit.ResultWriter.XunitV2Writer();
+	resultWriter.Write(new List<Xunit.ResultWriter.Assembly> { assembly }, MakeAbsolute(new FilePath("./xunit.xml")).FullPath);
+	
 });
 
 RunTarget (TARGET);

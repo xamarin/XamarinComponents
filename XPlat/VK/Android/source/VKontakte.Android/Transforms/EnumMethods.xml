@@ -1,0 +1,7 @@
+﻿<enum-method-mappings>
+
+	<mapping jni-class="com/vk/sdk/VKSdk">
+		<method jni-name="onActivityResult" parameter="resultCode" clr-enum-type="Android.App.Result" />
+	</mapping>
+
+</enum-method-mappings>

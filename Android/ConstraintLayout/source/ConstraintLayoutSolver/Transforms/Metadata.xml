@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<metadata>
+	<attr path="/api/package[@name='android.support.constraint.solver']" name="managedName">Android.Support.Constraints.Solver</attr>
+	<attr path="/api/package[@name='android.support.constraint.solver.widgets']" name="managedName">Android.Support.Constraints.Solver.Widgets</attr>
+
+	<attr path="/api/package[@name='android.support.constraint.solver.widgets']/class[@name='ConstraintAnchor']/method[@name='getType' and count(parameter)=0]" name="managedName">GetAnchorType</attr>
+
+	<attr path="/api/package[@name='android.support.constraint.solver.widgets']/class[@name='Guideline']/field[@name='RELATIVE_END']" name="managedName">RELATIVE_END</attr>
+	<attr path="/api/package[@name='android.support.constraint.solver.widgets']/class[@name='Guideline']/field[@name='RELATIVE_BEGIN']" name="managedName">RELATIVE_BEGIN</attr>
+	<attr path="/api/package[@name='android.support.constraint.solver.widgets']/class[@name='Guideline']/field[@name='RELATIVE_PERCENT']" name="managedName">RELATIVE_PERCENT</attr>
+	<!-- Yes, google typo'd this, we'll fix it, and eventually they probably will too -->
+	<attr path="/api/package[@name='android.support.constraint.solver.widgets']/class[@name='Guideline']/field[@name='RELATIVE_UNKNWON']" name="managedName">RELATIVE_UNKNOWN</attr>
+	<attr path="/api/package[@name='android.support.constraint.solver.widgets']/class[@name='Guideline']/field[@name='VERTICAL']" name="managedName">VERTICAL</attr>
+	<attr path="/api/package[@name='android.support.constraint.solver.widgets']/class[@name='Guideline']/field[@name='HORIZONTAL']" name="managedName">HORIZONTAL</attr>
+</metadata>
+

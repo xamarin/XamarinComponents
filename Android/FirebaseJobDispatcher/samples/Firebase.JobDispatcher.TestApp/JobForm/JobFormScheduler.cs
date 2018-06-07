@@ -70,7 +70,7 @@ namespace FJDTestApp.JobForm
                     "Must initialize the parameters with JobFormScheduler.WithParametersFrom before trying to schedule the job!");
             }
 
-            FirebaseJobDispatcher dispatcher = context.CreatJobDispatcher();
+            FirebaseJobDispatcher dispatcher = context.CreateJobDispatcher();
 
             RetryStrategy retryStrategy = BuildRetryStrategy(dispatcher);
             if (retryStrategy == null)

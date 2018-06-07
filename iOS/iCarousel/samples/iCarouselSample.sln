@@ -1,0 +1,48 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "iCarousel", "..\source\iCarousel\iCarousel.shproj", "{DD3772B0-894F-45CE-B7E9-0FCAB30E9421}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "iCarousel.iOS", "..\source\iCarousel.iOS\iCarousel.iOS.csproj", "{BEF392B1-F779-457A-9200-49FE40209273}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "iCarouselSample", "iCarouselSample\iCarouselSample.csproj", "{7885BFF7-EDA4-4920-90A6-8A439AB22E61}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+		Debug|iPhoneSimulator = Debug|iPhoneSimulator
+		Release|iPhoneSimulator = Release|iPhoneSimulator
+		Debug|iPhone = Debug|iPhone
+		Release|iPhone = Release|iPhone
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{BEF392B1-F779-457A-9200-49FE40209273}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BEF392B1-F779-457A-9200-49FE40209273}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BEF392B1-F779-457A-9200-49FE40209273}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BEF392B1-F779-457A-9200-49FE40209273}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BEF392B1-F779-457A-9200-49FE40209273}.Debug|iPhoneSimulator.ActiveCfg = Debug|Any CPU
+		{BEF392B1-F779-457A-9200-49FE40209273}.Debug|iPhoneSimulator.Build.0 = Debug|Any CPU
+		{BEF392B1-F779-457A-9200-49FE40209273}.Release|iPhoneSimulator.ActiveCfg = Release|Any CPU
+		{BEF392B1-F779-457A-9200-49FE40209273}.Release|iPhoneSimulator.Build.0 = Release|Any CPU
+		{BEF392B1-F779-457A-9200-49FE40209273}.Debug|iPhone.ActiveCfg = Debug|Any CPU
+		{BEF392B1-F779-457A-9200-49FE40209273}.Debug|iPhone.Build.0 = Debug|Any CPU
+		{BEF392B1-F779-457A-9200-49FE40209273}.Release|iPhone.ActiveCfg = Release|Any CPU
+		{BEF392B1-F779-457A-9200-49FE40209273}.Release|iPhone.Build.0 = Release|Any CPU
+		{7885BFF7-EDA4-4920-90A6-8A439AB22E61}.Debug|Any CPU.ActiveCfg = Debug|iPhoneSimulator
+		{7885BFF7-EDA4-4920-90A6-8A439AB22E61}.Debug|Any CPU.Build.0 = Debug|iPhoneSimulator
+		{7885BFF7-EDA4-4920-90A6-8A439AB22E61}.Release|Any CPU.ActiveCfg = Release|iPhoneSimulator
+		{7885BFF7-EDA4-4920-90A6-8A439AB22E61}.Release|Any CPU.Build.0 = Release|iPhoneSimulator
+		{7885BFF7-EDA4-4920-90A6-8A439AB22E61}.Debug|iPhoneSimulator.ActiveCfg = Debug|iPhoneSimulator
+		{7885BFF7-EDA4-4920-90A6-8A439AB22E61}.Debug|iPhoneSimulator.Build.0 = Debug|iPhoneSimulator
+		{7885BFF7-EDA4-4920-90A6-8A439AB22E61}.Release|iPhoneSimulator.ActiveCfg = Release|iPhoneSimulator
+		{7885BFF7-EDA4-4920-90A6-8A439AB22E61}.Release|iPhoneSimulator.Build.0 = Release|iPhoneSimulator
+		{7885BFF7-EDA4-4920-90A6-8A439AB22E61}.Debug|iPhone.ActiveCfg = Debug|iPhone
+		{7885BFF7-EDA4-4920-90A6-8A439AB22E61}.Debug|iPhone.Build.0 = Debug|iPhone
+		{7885BFF7-EDA4-4920-90A6-8A439AB22E61}.Release|iPhone.ActiveCfg = Release|iPhone
+		{7885BFF7-EDA4-4920-90A6-8A439AB22E61}.Release|iPhone.Build.0 = Release|iPhone
+	EndGlobalSection
+	GlobalSection(MonoDevelopProperties) = preSolution
+		StartupItem = BasiciOSExample\BasiciOSExample.csproj
+	EndGlobalSection
+EndGlobal

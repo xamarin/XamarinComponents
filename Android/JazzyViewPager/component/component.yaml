@@ -1,4 +1,4 @@
-version: 1.0.0
+version: 1.0.1
 name: Jazzy ViewPager
 id: JazzyViewPager
 publisher: Xamarin Inc
@@ -6,7 +6,7 @@ publisher-url: http://xamarin.com/
 src-url: https://github.com/xamarin/XamarinComponents/tree/master/Android/JazzyViewPager
 summary: An easy to use ViewPager that adds an awesome set of custom swiping animations.
 
-license: License.md
+license: ../License.md
 details: Details.md
 getting-started: GettingStarted.md
 
@@ -21,3 +21,15 @@ libraries:
 samples:
   - name: "Android Sample"
     path: ../samples/JazzyViewPagerSample.sln
+    removeProjects:
+        - JazzyViewPager
+    installNuGets:
+      - project: JazzyViewPagerSample
+        packages:
+          - Xamarin.JazzyViewPager
+
+is_shell: true 
+local-nuget-repo: ../output
+additional-files:
+  - source: "../External-Dependency-Info.txt"
+    destination: "THIRD-PARTY-NOTICES.txt"

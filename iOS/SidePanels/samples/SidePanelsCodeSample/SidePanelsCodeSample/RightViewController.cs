@@ -27,7 +27,7 @@ namespace SidePanelsCodeSample
             View.AddSubview(background);
 
             label = new UILabel();
-            label.Frame = new CGRect(20.0f, 20.0f, 200.0f, 40.0f);
+            label.Frame = new CGRect(20.0f, 90.0f, 200.0f, 40.0f);
             label.Font = UIFont.BoldSystemFontOfSize(24);
             label.BackgroundColor = UIColor.Clear;
             label.Text = "Right Panel";
@@ -37,7 +37,7 @@ namespace SidePanelsCodeSample
 
 
             hide = new UIButton(UIButtonType.RoundedRect);
-            hide.Frame = new CGRect(20.0f, 70.0f, 200.0f, 40.0f);
+            hide.Frame = new CGRect(20.0f, 140.0f, 200.0f, 40.0f);
             hide.AutoresizingMask = UIViewAutoresizing.FlexibleRightMargin | UIViewAutoresizing.FlexibleBottomMargin;
             hide.SetTitle("Hide Center", UIControlState.Normal);
             hide.TouchUpInside += (sender, e) =>
@@ -67,7 +67,7 @@ namespace SidePanelsCodeSample
             base.ViewWillAppear(animated);
 
             var rightPanelVisibleWidth = this.GetSidePanelController().RightPanelVisibleWidth;
-            label.Center = new CGPoint(((View.Bounds.Size.Width - rightPanelVisibleWidth) + rightPanelVisibleWidth / 2.0f), 25.0f);
+            label.Center = new CGPoint(((View.Bounds.Size.Width - rightPanelVisibleWidth) + rightPanelVisibleWidth / 2.0f), 65.0f);
         }
     }
 }

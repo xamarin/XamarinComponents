@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<package>
+  <metadata>
+    <id>Xamarin.SortableTableView</id>
+    <title>SortableTableView for Xamarin.MonoAndroid81</title>
+    <version>2.8.0</version>
+    <authors>Microsoft</authors>
+    <owners>Microsoft</owners>
+    <requireLicenseAcceptance>true</requireLicenseAcceptance>
+    <description>A simple TableView and an advanced SortableTableView providing a lot of customisation possibilities to fit all needs.</description>
+    <copyright>© Microsoft Corporation. All rights reserved.</copyright>
+    <projectUrl>https://go.microsoft.com/fwlink/?linkid=871869</projectUrl>
+    <licenseUrl>https://go.microsoft.com/fwlink/?linkid=871806</licenseUrl>
+  </metadata>
+  <files>
+    <file src="output/SortableTableView.dll" target="lib/MonoAndroid81" />
+    <file src="External-Dependency-Info.txt" target="THIRD-PARTY-NOTICES.txt" />
+  </files>
+</package>

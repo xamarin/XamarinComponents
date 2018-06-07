@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<package>
+  <metadata>
+    <id>Xamarin.Dropbox.Api.Android</id>
+    <title>Xamarin.Dropbox.Api.Android</title>
+    <version>4.5.3</version>
+    <authors>Microsoft</authors>
+    <owners>Microsoft</owners>
+    <requireLicenseAcceptance>true</requireLicenseAcceptance>
+    <description>Xamarin.Android Helper classes for Xamarin.Dropbox.Api.Core</description>
+    <copyright>© Microsoft Corporation. All rights reserved.</copyright>
+    <licenseUrl>https://go.microsoft.com/fwlink/?linkid=873370</licenseUrl>
+    <projectUrl>https://go.microsoft.com/fwlink/?linkid=873371</projectUrl>
+    <dependencies>
+        <group>
+    		<dependency id="Xamarin.Dropbox.Api.Core" version="4.5.3" />
+  		</group>
+    </dependencies>
+  </metadata>
+  <files>
+    <file src="output/Xamarin.Dropbox.Api.Android.dll" target="lib/MonoAndroid43" />
+  </files>
+</package>

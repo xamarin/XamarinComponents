@@ -1,8 +1,4 @@
 
-<iframe src="https://appetize.io/embed/zafeap5j0bugwk5pm74kauat38?device=iphone5s&scale=75&autoplay=true&orientation=portrait&deviceColor=black" 
-        width="274px" height="587px" frameborder="0" scrolling="no"
-        style="float:right;margin-left:1em;">&nbsp;</iframe>
-
 **TPKeyboardAvoiding** is a relatively universal, drop-in solution: `UIScrollView`, 
 `UITableView` and `UICollectionView` subclasses that handle everything. 
 

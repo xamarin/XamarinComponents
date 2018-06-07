@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<package>
+  <metadata>
+    <id>Xamarin.SDSegmentedControl</id>
+    <title>Xamarin.SDSegmentedControl</title>
+    <version>2.1.5</version>
+    <authors>Microsoft</authors>
+    <owners>Microsoft</owners>
+    <requireLicenseAcceptance>true</requireLicenseAcceptance>
+    <description>A fancy tab control similar to one used in the App Store.</description>
+    <copyright>© Microsoft Corporation. All rights reserved.</copyright>
+    <projectUrl>https://go.microsoft.com/fwlink/?linkid=867318</projectUrl>
+    <licenseUrl>https://go.microsoft.com/fwlink/?linkid=867319</licenseUrl>
+  </metadata>
+  <files>
+    <file src="output/SegmentedControl.dll" target="lib/Xamarin.iOS" />
+    <file src="External-Dependency-Info.txt" target="THIRD-PARTY-NOTICES.txt" />
+  </files>
+</package>

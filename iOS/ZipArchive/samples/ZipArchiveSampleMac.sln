@@ -1,0 +1,25 @@
+
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "ZipArchive", "..\source\ZipArchive\ZipArchive.shproj", "{DD3772B0-894F-45CE-B7E9-0FCAB30E9421}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ZipArchive.macOS", "..\source\ZipArchive.macOS\ZipArchive.macOS.csproj", "{5EE04F8C-2728-479C-9DAE-6AFBC0BF63F0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ZipArchiveSampleMac", "ZipArchiveSampleMac\ZipArchiveSampleMac.csproj", "{084E92B0-DC9C-48AD-B461-D114A49F27AA}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x86 = Debug|x86
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{5EE04F8C-2728-479C-9DAE-6AFBC0BF63F0}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{5EE04F8C-2728-479C-9DAE-6AFBC0BF63F0}.Debug|x86.Build.0 = Debug|Any CPU
+		{5EE04F8C-2728-479C-9DAE-6AFBC0BF63F0}.Release|x86.ActiveCfg = Release|Any CPU
+		{5EE04F8C-2728-479C-9DAE-6AFBC0BF63F0}.Release|x86.Build.0 = Release|Any CPU
+		{084E92B0-DC9C-48AD-B461-D114A49F27AA}.Debug|x86.ActiveCfg = Debug|x86
+		{084E92B0-DC9C-48AD-B461-D114A49F27AA}.Debug|x86.Build.0 = Debug|x86
+		{084E92B0-DC9C-48AD-B461-D114A49F27AA}.Release|x86.ActiveCfg = Release|x86
+		{084E92B0-DC9C-48AD-B461-D114A49F27AA}.Release|x86.Build.0 = Release|x86
+	EndGlobalSection
+EndGlobal

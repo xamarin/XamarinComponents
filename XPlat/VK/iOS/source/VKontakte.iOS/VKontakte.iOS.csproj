@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectTypeGuids>{8FFB629D-F513-41CE-95D2-7ECE97B6EEEC};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <ProjectGuid>{D545D620-4CEC-46B1-AECF-8F46FC2F6C21}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <RootNamespace>VKontakte</RootNamespace>
+    <IPhoneResourcePrefix>Resources</IPhoneResourcePrefix>
+    <AssemblyName>VKontakte.iOS</AssemblyName>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug</OutputPath>
+    <DefineConstants>DEBUG;</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <ConsolePause>false</ConsolePause>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>full</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release</OutputPath>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <ConsolePause>false</ConsolePause>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="Xamarin.iOS" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Resources\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Extras.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ObjcBindingApiDefinition Include="ApiDefinition.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ObjcBindingCoreSource Include="StructsAndEnums.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="..\..\..\externals\ios\Pods\VK-ios-sdk\VKSdkResources.bundle\BlueBtn.png">
+      <Link>Resources\VKSdkResources.bundle\BlueBtn.png</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\..\externals\ios\Pods\VK-ios-sdk\VKSdkResources.bundle\BlueBtn%402x.png">
+      <Link>Resources\VKSdkResources.bundle\BlueBtn%402x.png</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\..\externals\ios\Pods\VK-ios-sdk\VKSdkResources.bundle\BlueBtn%403x.png">
+      <Link>Resources\VKSdkResources.bundle\BlueBtn%403x.png</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\..\externals\ios\Pods\VK-ios-sdk\VKSdkResources.bundle\BlueBtn_pressed.png">
+      <Link>Resources\VKSdkResources.bundle\BlueBtn_pressed.png</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\..\externals\ios\Pods\VK-ios-sdk\VKSdkResources.bundle\BlueBtn_pressed%402x.png">
+      <Link>Resources\VKSdkResources.bundle\BlueBtn_pressed%402x.png</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\..\externals\ios\Pods\VK-ios-sdk\VKSdkResources.bundle\BlueBtn_pressed%403x.png">
+      <Link>Resources\VKSdkResources.bundle\BlueBtn_pressed%403x.png</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\..\externals\ios\Pods\VK-ios-sdk\VKSdkResources.bundle\Disclosure.png">
+      <Link>Resources\VKSdkResources.bundle\Disclosure.png</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\..\externals\ios\Pods\VK-ios-sdk\VKSdkResources.bundle\Disclosure%402x.png">
+      <Link>Resources\VKSdkResources.bundle\Disclosure%402x.png</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\..\externals\ios\Pods\VK-ios-sdk\VKSdkResources.bundle\Disclosure%403x.png">
+      <Link>Resources\VKSdkResources.bundle\Disclosure%403x.png</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\..\externals\ios\Pods\VK-ios-sdk\VKSdkResources.bundle\Info.plist">
+      <Link>Resources\VKSdkResources.bundle\Info.plist</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\..\externals\ios\Pods\VK-ios-sdk\VKSdkResources.bundle\ic_deleteattach.png">
+      <Link>Resources\VKSdkResources.bundle\ic_deleteattach.png</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\..\externals\ios\Pods\VK-ios-sdk\VKSdkResources.bundle\ic_deleteattach%402x.png">
+      <Link>Resources\VKSdkResources.bundle\ic_deleteattach%402x.png</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\..\externals\ios\Pods\VK-ios-sdk\VKSdkResources.bundle\ic_deletephoto.png">
+      <Link>Resources\VKSdkResources.bundle\ic_deletephoto.png</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\..\externals\ios\Pods\VK-ios-sdk\VKSdkResources.bundle\ic_deletephoto%402x.png">
+      <Link>Resources\VKSdkResources.bundle\ic_deletephoto%402x.png</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\..\externals\ios\Pods\VK-ios-sdk\VKSdkResources.bundle\ic_vk_activity_logo.png">
+      <Link>Resources\VKSdkResources.bundle\ic_vk_activity_logo.png</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\..\externals\ios\Pods\VK-ios-sdk\VKSdkResources.bundle\ic_vk_activity_logo%402x.png">
+      <Link>Resources\VKSdkResources.bundle\ic_vk_activity_logo%402x.png</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\..\externals\ios\Pods\VK-ios-sdk\VKSdkResources.bundle\ic_vk_activity_logo%402x~ipad.png">
+      <Link>Resources\VKSdkResources.bundle\ic_vk_activity_logo%402x~ipad.png</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\..\externals\ios\Pods\VK-ios-sdk\VKSdkResources.bundle\ic_vk_activity_logo%403x.png">
+      <Link>Resources\VKSdkResources.bundle\ic_vk_activity_logo%403x.png</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\..\externals\ios\Pods\VK-ios-sdk\VKSdkResources.bundle\ic_vk_activity_logo~ipad.png">
+      <Link>Resources\VKSdkResources.bundle\ic_vk_activity_logo~ipad.png</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\..\externals\ios\Pods\VK-ios-sdk\VKSdkResources.bundle\ic_vk_ios7_activity_logo.png">
+      <Link>Resources\VKSdkResources.bundle\ic_vk_ios7_activity_logo.png</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\..\externals\ios\Pods\VK-ios-sdk\VKSdkResources.bundle\ic_vk_ios7_activity_logo%402x.png">
+      <Link>Resources\VKSdkResources.bundle\ic_vk_ios7_activity_logo%402x.png</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\..\externals\ios\Pods\VK-ios-sdk\VKSdkResources.bundle\ic_vk_ios7_activity_logo%402x~ipad.png">
+      <Link>Resources\VKSdkResources.bundle\ic_vk_ios7_activity_logo%402x~ipad.png</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\..\externals\ios\Pods\VK-ios-sdk\VKSdkResources.bundle\ic_vk_ios7_activity_logo%403x.png">
+      <Link>Resources\VKSdkResources.bundle\ic_vk_ios7_activity_logo%403x.png</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\..\externals\ios\Pods\VK-ios-sdk\VKSdkResources.bundle\ic_vk_ios7_activity_logo~ipad.png">
+      <Link>Resources\VKSdkResources.bundle\ic_vk_ios7_activity_logo~ipad.png</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\..\externals\ios\Pods\VK-ios-sdk\VKSdkResources.bundle\ic_vk_logo_nb.png">
+      <Link>Resources\VKSdkResources.bundle\ic_vk_logo_nb.png</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\..\externals\ios\Pods\VK-ios-sdk\VKSdkResources.bundle\ic_vk_logo_nb%402x.png">
+      <Link>Resources\VKSdkResources.bundle\ic_vk_logo_nb%402x.png</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\..\externals\ios\Pods\VK-ios-sdk\VKSdkResources.bundle\ic_vk_logo_nb%403x.png">
+      <Link>Resources\VKSdkResources.bundle\ic_vk_logo_nb%403x.png</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\..\externals\ios\Pods\VK-ios-sdk\VKSdkResources.bundle\img_newpostattachlink.png">
+      <Link>Resources\VKSdkResources.bundle\img_newpostattachlink.png</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\..\externals\ios\Pods\VK-ios-sdk\VKSdkResources.bundle\img_newpostattachlink%402x.png">
+      <Link>Resources\VKSdkResources.bundle\img_newpostattachlink%402x.png</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\..\externals\ios\Pods\VK-ios-sdk\VKSdkResources.bundle\vk_settings.png">
+      <Link>Resources\VKSdkResources.bundle\vk_settings.png</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\..\externals\ios\Pods\VK-ios-sdk\VKSdkResources.bundle\vk_settings%402x.png">
+      <Link>Resources\VKSdkResources.bundle\vk_settings%402x.png</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\..\externals\ios\Pods\VK-ios-sdk\VKSdkResources.bundle\en.lproj\InfoPlist.strings">
+      <Link>Resources\VKSdkResources.bundle\en.lproj\InfoPlist.strings</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\..\externals\ios\Pods\VK-ios-sdk\VKSdkResources.bundle\en.lproj\Localizable.strings">
+      <Link>Resources\VKSdkResources.bundle\en.lproj\Localizable.strings</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\..\externals\ios\Pods\VK-ios-sdk\VKSdkResources.bundle\ru.lproj\Localizable.strings">
+      <Link>Resources\VKSdkResources.bundle\ru.lproj\Localizable.strings</Link>
+    </BundleResource>
+  </ItemGroup>
+  <ItemGroup>
+    <NativeReference Include="..\..\..\externals\ios\libVK-ios-sdk.a">
+      <Kind>Static</Kind>
+      <Frameworks>Foundation UIKit SafariServices CoreGraphics Security</Frameworks>
+      <ForceLoad>True</ForceLoad>
+      <SmartLink>False</SmartLink>
+    </NativeReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.ObjCBinding.CSharp.targets" />
+</Project>

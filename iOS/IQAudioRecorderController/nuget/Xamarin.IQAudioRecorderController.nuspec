@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<package>
+  <metadata>
+    <id>Xamarin.IQAudioRecorderController</id>
+    <title>Xamarin.IQAudioRecorderController</title>
+    <version>1.1</version>
+    <authors>Microsoft</authors>
+    <owners>Microsoft</owners>
+    <requireLicenseAcceptance>true</requireLicenseAcceptance>
+    <description>A neat and clean audio recorder</description>
+    <copyright>© Microsoft Corporation. All rights reserved.</copyright>
+    <projectUrl>https://go.microsoft.com/fwlink/?linkid=865324</projectUrl>
+    <licenseUrl>https://go.microsoft.com/fwlink/?linkid=865325</licenseUrl>
+  </metadata>
+  <files>
+    <file src="output/IQAudioRecorderController.dll" target="lib/Xamarin.iOS" />
+    <file src="External-Dependency-Info.txt" target="THIRD-PARTY-NOTICES.txt" />
+  </files>
+</package>

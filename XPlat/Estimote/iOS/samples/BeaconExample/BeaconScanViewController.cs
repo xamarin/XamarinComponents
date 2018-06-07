@@ -58,7 +58,7 @@ namespace BeaconExample
 					/*
              * No need to explicitly request permission in iOS < 8, will happen automatically when starting ranging.
              */
-					beaconManager.StartRangingBeaconsInRegion(region);
+					beaconManager.StartRangingBeacons(region);
 
 				} else {
 					/*
@@ -74,7 +74,7 @@ namespace BeaconExample
 			}
 			else if(status == CLAuthorizationStatus.Authorized)
 			{
-				beaconManager.StartRangingBeaconsInRegion(region);
+				beaconManager.StartRangingBeacons(region);
 
 			}
 			else if(status == CLAuthorizationStatus.Denied)
@@ -90,7 +90,7 @@ namespace BeaconExample
 		public override void ViewDidDisappear (bool animated)
 		{
 			base.ViewDidDisappear (animated);
-			beaconManager.StopRangingBeaconsInRegion (region);
+			beaconManager.StopRangingBeacons (region);
 			utilityManager.StopEstimoteBeaconDiscovery ();
 		}
 

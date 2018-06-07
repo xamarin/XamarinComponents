@@ -14,6 +14,10 @@ Xamarin Supported Open Source components are a collection of Xamarin built bindi
 | Xamarin.Auth                          | Cross-platform API for authenticating users and storing their accounts.          | [GitHub](https://github.com/xamarin/Xamarin.Auth)                |
 
 
+### [Xamarin.Essentials](https://github.com/xamarin/essentials)
+
+Xamarin.Essentials gives developers essential cross-platform APIs for their mobile applications. Xamarin.Essentials exposes over 25 native APIs in a single cross-platform package for developers to consume in their iOS, Android, UWP, or Xamarin.Forms application. Browse through the [documentation](https://docs.microsoft.com/en-us/xamarin/essentials) on how to get started today.
+
 ## Community Provided Open Source Plugins
 
 Plugins for Xamarin are community built NuGet and Components that add cross-platform functionality or abstracts platform specific functionality to a common API. These are both completely cross-platform and extremely small (i.e., they do 1 or 2 things really well with minimal-to-no dependencies). The Plugin API can be accessed on each platform, however, you will most likely only use the common API in a Portable Class Library or Shared Code project.
@@ -35,6 +39,7 @@ Browse through the most popular plugins out there today!
 |Config|Define the settings of the application for each environment in which it will run.|[NuGet](https://www.nuget.org/packages/Xamarin.ConfigPlugin/)|[GitHub](https://github.com/AgustinBonilla/ConfigPlugin)|[@abonilla93](https://twitter.com/abonilla93)|
 |Connectivity|Get network connectivity info such as type and if connection is available.|[NuGet](https://www.nuget.org/packages/Xam.Plugin.Connectivity/)|[GitHub](https://github.com/jamesmontemagno/ConnectivityPlugin)|[@JamesMontemagno](http://www.twitter.com/jamesmontemagno)|
 |Cryptography|PCL Crypto provides a consistent, portable set of crypto APIs.|[NuGet](https://www.nuget.org/packages/pclcrypto)|[GitHub](https://github.com/aarnott/pclcrypto)|[@aarnott](https://twitter.com/aarnott)|
+|Custom Vision|Runs CoreML and TensorFlow models from https://CustomVision.ai on device|[NuGet](https://www.nuget.org/packages/Xam.Plugins.OnDeviceCustomVision/)|[GitHub](https://github.com/jimbobbennett/Xam.Plugins.OnDeviceCustomVision)|[@JimBobBennett](https://twitter.com/jimbobbennett)|
 |Device Info|Properties about device such as OS, Model, and Id.|[NuGet](https://www.nuget.org/packages/Xam.Plugin.DeviceInfo/)|[GitHub](https://github.com/jamesmontemagno/DeviceInfoPlugin)|[@JamesMontemagno](http://www.twitter.com/jamesmontemagno)|
 |Device Motion|Provides access to Accelerometer, Gyroscope, Magnetometer, and Compass.|[NuGet](https://www.nuget.org/packages/Xam.Plugin.DeviceMotion/)|[GitHub](https://github.com/rdelrosario/xamarin-plugins/tree/master/DeviceMotion)|[@rdelrosario](https://github.com/rdelrosario)|
 |Embedded Resource|Unpack embedded resource cross-platform.|[NuGet](https://www.nuget.org/packages/Xam.Plugin.EmbeddedResource/)|[GitHub](https://github.com/JosephHill/EmbeddedResourcePlugin)|[@JosephHill](http://www.twitter.com/josephhill)|
@@ -55,7 +60,7 @@ Browse through the most popular plugins out there today!
 |Local Notifications|Manage local notifications|[NuGet](https://www.nuget.org/packages/Plugin.Notifications/)|[GitHub](https://github.com/aritchie/notifications)|[@allanritchie911](https://twitter.com/allanritchie911)|
 |Manage Sleep|Manage auto sleep/auto lock.|[NuGet](https://www.nuget.org/packages/Xam.Plugins.ManageSleep/)|[GitHub](https://github.com/molinch/Xam.Plugins.ManageSleep)|[@molinch0](http://www.twitter.com/molinch0)|
 |Media|Take or pick photos and videos.|[NuGet](https://www.nuget.org/packages/Xam.Plugin.Media/)|[GitHub](https://github.com/jamesmontemagno/MediaPlugin)|[@JamesMontemagno](http://www.twitter.com/jamesmontemagno)|
-|Media Manager|Playback for Audio.|[NuGet](https://www.nuget.org/packages/Plugin.MediaManager/)|[GitHub](https://github.com/martijn00/XamarinMediaManager)|[@mhvdijk](https://twitter.com/mhvdijk)|
+|Media Manager|Playback for Audio and Video.|[NuGet](https://www.nuget.org/packages/Plugin.MediaManager/)|[GitHub](https://github.com/martijn00/XamarinMediaManager)|[@mhvdijk](https://twitter.com/mhvdijk)|
 |Messaging|Make phone call, send sms, and send e-mail|[NuGet](https://www.nuget.org/packages/Xam.Plugins.Messaging/)|[GitHub](https://github.com/cjlotz/Xamarin.Plugins)|[@cjlotz](http://www.twitter.com/cjlotz)|
 |Microsoft Band|Connect and communicate with the Microsoft Band from shared code!|[NuGet](https://www.nuget.org/packages/Xamarin.Microsoft.Band/)|[GitHub](https://github.com/mattleibow/Microsoft-Band-SDK-Bindings)|[@mattleibow](https://twitter.com/mattleibow)|
 |Multilingual Plugin|Simple cross platform plugin for handling language localization.|[NuGet](https://www.nuget.org/packages/Plugin.Multilingual)|[GitHub](https://github.com/CrossGeeks/MultilingualPlugin)|[@CrossGeeks](https://github.com/CrossGeeks/)|

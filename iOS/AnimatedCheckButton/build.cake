@@ -21,6 +21,10 @@ var buildSpec = new BuildSpec () {
 		new IOSSolutionBuilder { SolutionPath = "./samples/AnimatedCheckButtonSample/AnimatedCheckButtonSample.sln", Configuration = "Release", Platform="iPhone", BuildsOn = BuildPlatforms.Mac },
 	},
 
+	NuGets = new [] {
+		new NuGetInfo { NuSpec = "./nuget/Xamarin.AnimatedCheckButton.nuspec" },
+	},
+
 	Components = new [] {
 		new Component {ManifestDirectory = "./component", BuildsOn = BuildPlatforms.Mac},
 	},

@@ -25,6 +25,60 @@
 	<attr path="/api/package[@name='com.nostra13.universalimageloader.core.listener']/interface[@name='ImageLoadingProgressListener']/method[@name='onProgressUpdate']/parameter[3]" name="managedName">current</attr>
 	<attr path="/api/package[@name='com.nostra13.universalimageloader.core.listener']/interface[@name='ImageLoadingProgressListener']/method[@name='onProgressUpdate']/parameter[4]" name="managedName">total</attr>
 
+	<attr path="/api/package[@name='com.nostra13.universalimageloader.cache.disc']/interface[@name='DiskCache']/method[@name='get']/parameter[1]" name="managedName">imageUri</attr>
+	<attr path="/api/package[@name='com.nostra13.universalimageloader.cache.disc']/interface[@name='DiskCache']/method[@name='remove']/parameter[1]" name="managedName">imageUri</attr>
+	<attr path="/api/package[@name='com.nostra13.universalimageloader.cache.disc']/interface[@name='DiskCache']/method[@name='save']/parameter[1]" name="managedName">imageUri</attr>
+	<attr path="/api/package[@name='com.nostra13.universalimageloader.cache.disc']/interface[@name='DiskCache']/method[@name='save'and parameter[2][@type='android.graphics.Bitmap']]/parameter[2]" name="managedName">bitmap</attr>
+	<attr path="/api/package[@name='com.nostra13.universalimageloader.cache.disc']/interface[@name='DiskCache']/method[@name='save'and parameter[2][@type='java.io.InputStream']]/parameter[2]" name="managedName">imageStream</attr>
+	<attr path="/api/package[@name='com.nostra13.universalimageloader.cache.disc']/interface[@name='DiskCache']/method[@name='save'and parameter[3][@type='com.nostra13.universalimageloader.utils.IoUtils.CopyListener']]/parameter[3]" name="managedName">listener</attr>
+
+	<attr path="/api/package[@name='com.nostra13.universalimageloader.cache.disc.naming']/interface[@name='FileNameGenerator']/method[@name='generate']/parameter[1]" name="managedName">imageUri</attr>
+
+	<attr path="/api/package[@name='com.nostra13.universalimageloader.cache.memory']/class[@name='BaseMemoryCache']/method[@name='createReference']/parameter[1]" name="managedName">value</attr>
+
+	<attr path="/api/package[@name='com.nostra13.universalimageloader.cache.memory']/interface[@name='MemoryCache']/method[@name='get']/parameter[1]" name="managedName">key</attr>
+	<attr path="/api/package[@name='com.nostra13.universalimageloader.cache.memory']/interface[@name='MemoryCache']/method[@name='remove']/parameter[1]" name="managedName">key</attr>
+	<attr path="/api/package[@name='com.nostra13.universalimageloader.cache.memory']/interface[@name='MemoryCache']/method[@name='put']/parameter[1]" name="managedName">key</attr>
+	<attr path="/api/package[@name='com.nostra13.universalimageloader.cache.memory']/interface[@name='MemoryCache']/method[@name='put']/parameter[2]" name="managedName">value</attr>
+
+	<attr path="/api/package[@name='com.nostra13.universalimageloader.cache.memory']/class[@name='LimitedMemoryCache']/method[@name='getSize']/parameter[1]" name="managedName">value</attr>
+
+	<attr path="/api/package[@name='com.nostra13.universalimageloader.core.assist.deque']/interface[@name='Deque']/method/parameter[@type='E']" name="managedName">e</attr>
+	<attr path="/api/package[@name='com.nostra13.universalimageloader.core.assist.deque']/interface[@name='Deque']/method/parameter[@type='java.lang.Object']" name="managedName">o</attr>
+
+	<attr path="/api/package[@name='com.nostra13.universalimageloader.core.assist.deque']/interface[@name='BlockingDeque']/method/parameter[@type='E']" name="managedName">e</attr>
+	<attr path="/api/package[@name='com.nostra13.universalimageloader.core.assist.deque']/interface[@name='BlockingDeque']/method/parameter[@type='java.lang.Object']" name="managedName">o</attr>
+	<attr path="/api/package[@name='com.nostra13.universalimageloader.core.assist.deque']/interface[@name='BlockingDeque']/method/parameter[@type='long']" name="managedName">timeout</attr>
+	<attr path="/api/package[@name='com.nostra13.universalimageloader.core.assist.deque']/interface[@name='BlockingDeque']/method/parameter[@type='java.util.concurrent.TimeUnit']" name="managedName">unit</attr>
+
+	<attr path="/api/package[@name='com.nostra13.universalimageloader.core.decode']/interface[@name='ImageDecoder']/method[@name='decode']/parameter[1]" name="managedName">imageDecodingInfo</attr>
+
+	<attr path="/api/package[@name='com.nostra13.universalimageloader.core.display']/interface[@name='BitmapDisplayer']/method[@name='display']/parameter[1]" name="managedName">bitmap</attr>
+	<attr path="/api/package[@name='com.nostra13.universalimageloader.core.display']/interface[@name='BitmapDisplayer']/method[@name='display']/parameter[2]" name="managedName">imageAware</attr>
+	<attr path="/api/package[@name='com.nostra13.universalimageloader.core.display']/interface[@name='BitmapDisplayer']/method[@name='display']/parameter[3]" name="managedName">loadedFrom</attr>
+
+	<attr path="/api/package[@name='com.nostra13.universalimageloader.core.download']/interface[@name='ImageDownloader']/method[@name='getStream']/parameter[1]" name="managedName">imageUri</attr>
+	<attr path="/api/package[@name='com.nostra13.universalimageloader.core.download']/interface[@name='ImageDownloader']/method[@name='getStream']/parameter[2]" name="managedName">extra</attr>
+
+	<attr path="/api/package[@name='com.nostra13.universalimageloader.core.imageaware']/interface[@name='ImageAware']/method[@name='setImageDrawable']/parameter[1]" name="managedName">drawable</attr>
+	<attr path="/api/package[@name='com.nostra13.universalimageloader.core.imageaware']/interface[@name='ImageAware']/method[@name='setImageBitmap']/parameter[1]" name="managedName">bitmap</attr>
+
+	<attr path="/api/package[@name='com.nostra13.universalimageloader.core.imageaware']/class[@name='ViewAware']/method[@name='setImageDrawableInto']/parameter[1]" name="managedName">drawable</attr>
+	<attr path="/api/package[@name='com.nostra13.universalimageloader.core.imageaware']/class[@name='ViewAware']/method[@name='setImageDrawableInto']/parameter[2]" name="managedName">view</attr>
+
+	<attr path="/api/package[@name='com.nostra13.universalimageloader.core.imageaware']/class[@name='ViewAware']/method[@name='setImageBitmapInto']/parameter[1]" name="managedName">bitmap</attr>
+	<attr path="/api/package[@name='com.nostra13.universalimageloader.core.imageaware']/class[@name='ViewAware']/method[@name='setImageBitmapInto']/parameter[2]" name="managedName">view</attr>
+
+	<attr path="/api/package[@name='com.nostra13.universalimageloader.core.listener']/interface[@name='ImageLoadingListener']/method/parameter[1][@type='java.lang.String']" name="managedName">imageUri</attr>
+	<attr path="/api/package[@name='com.nostra13.universalimageloader.core.listener']/interface[@name='ImageLoadingListener']/method/parameter[2][@type='android.view.View']" name="managedName">view</attr>
+	<attr path="/api/package[@name='com.nostra13.universalimageloader.core.listener']/interface[@name='ImageLoadingListener']/method/parameter[3][@type='android.graphics.Bitmap']" name="managedName">loadedImage</attr>
+	<attr path="/api/package[@name='com.nostra13.universalimageloader.core.listener']/interface[@name='ImageLoadingListener']/method/parameter[3][@type='com.nostra13.universalimageloader.core.assist.FailReason']" name="managedName">failReason</attr>
+
+	<attr path="/api/package[@name='com.nostra13.universalimageloader.core.process']/interface[@name='BitmapProcessor']/method[@name='process']/parameter[1]" name="managedName">bitmap</attr>
+
+	<attr path="/api/package[@name='com.nostra13.universalimageloader.utils']/interface[@name='IoUtils.CopyListener']/method[@name='onBytesCopied']/parameter[1]" name="managedName">current</attr>
+	<attr path="/api/package[@name='com.nostra13.universalimageloader.utils']/interface[@name='IoUtils.CopyListener']/method[@name='onBytesCopied']/parameter[2]" name="managedName">total</attr>
+
 	<!-- remove private/internal/implementation/deprecated types -->
 	<remove-node path="/api/package[starts-with(@name, 'com.nostra13.universalimageloader.cache.disc.impl')]" />
 	<remove-node path="/api/package[starts-with(@name, 'com.nostra13.universalimageloader.cache.memory.impl')]" />
