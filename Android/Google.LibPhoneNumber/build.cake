@@ -13,10 +13,10 @@ var JAR_DEST = "./externals/libphonenumber.jar";
 var buildSpec = new BuildSpec () {
 	Libs = new [] {
 		new DefaultSolutionBuilder {
-			SolutionPath = "./Google.LibPhoneNumber.sln",
+			SolutionPath = "./Xamarin.Google.LibPhoneNumber.sln",
 			OutputFiles = new [] { 
 				new OutputFileCopy {
-					FromFile = "./source/bin/Release/Xamarin.Google.LibPhoneNumber.dll",
+					FromFile = "./source/bin/Release/monoandroid81/Xamarin.Google.LibPhoneNumber.dll",
 				}
 			}
 		}
