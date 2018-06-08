@@ -2,7 +2,7 @@
 ---
 name: JSQMessagesViewController
 id: jsqmessagesviewcontroller
-version: 7.3.5.1
+version: 7.3.5.2
 summary: An elegant messages UI library for iOS
 publisher: Xamarin Inc.
 publisher-url: http://xamarin.com
@@ -29,7 +29,8 @@ samples:
 no_build: true
 
 is_shell: true 
-
+packages:
+  ios-unified: Xamarin.JSQMessagesViewController, Version=7.3.5.2
 local-nuget-repo: ../output
 additional-files:
   - source: "../External-Dependency-Info.txt"
