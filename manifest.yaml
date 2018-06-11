@@ -178,6 +178,10 @@
   BuildScript: ./Android/Wear/build.cake
   TriggerPaths: [ Android/Wear ]
   MacBuildTargets: [ samples, nuget ]
+- Name: GoogleLibPhoneNumber
+  BuildScript: ./Android/Google.LibPhoneNumber/build.cake
+  TriggerPaths: [ Android/Google.LibPhoneNumber ]
+  MacBuildTargets: [nuget]
 
 #######################################################
 # iOS
