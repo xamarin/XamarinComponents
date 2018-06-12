@@ -22,6 +22,10 @@ var buildSpec = new BuildSpec () {
 		new IOSSolutionBuilder { SolutionPath = "./samples/PullToBounceTableViewControllerSample/PullToBounceTableViewControllerSample.sln", Configuration = "Release", Platform="iPhone", BuildsOn = BuildPlatforms.Mac },
 	},
 
+	NuGets = new [] {
+		new NuGetInfo { NuSpec = "./nuget/Xamarin.PullToBounce.nuspec" },
+	},
+
 	Components = new [] {
 		new Component {ManifestDirectory = "./component", BuildsOn = BuildPlatforms.Mac},
 	},
