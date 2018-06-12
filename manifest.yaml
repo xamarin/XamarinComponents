@@ -468,7 +468,7 @@
   BuildScript: ./XPlat/Stripe/bindings/iOS/build.cake
   TriggerPaths: [ XPlat/Stripe/bindings/iOS ]
   MacBuildTargets: [ samples, nuget ]
-- Name: StripeiAndroidBindings
+- Name: StripeAndroidBindings
   BuildScript: ./XPlat/Stripe/bindings/Android/build.cake
   TriggerPaths: [ XPlat/Stripe/bindings/Android ]
   MacBuildTargets: [ samples, nuget ]
