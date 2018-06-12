@@ -468,6 +468,10 @@
   BuildScript: ./XPlat/Stripe/bindings/iOS/build.cake
   TriggerPaths: [ XPlat/Stripe/bindings/iOS ]
   MacBuildTargets: [ samples, nuget ]
+- Name: StripeiAndroidBindings
+  BuildScript: ./XPlat/Stripe/bindings/Android/build.cake
+  TriggerPaths: [ XPlat/Stripe/bindings/Android ]
+  MacBuildTargets: [ samples, nuget ]
 - Name: DropboxApiV2
   BuildScript: ./XPlat/DropboxApiV2/build.cake
   TriggerPaths: [ XPlat/DropboxApiV2 ]
