@@ -7,6 +7,7 @@ externals
 **/Resources/Resource.designer.cs
 *.userprefs
 .vs/
+tmpnupkg/
 
 .DS_Store
 XPlat/DropboxApiV2/samples/DropboxV2ApiSampleDroid/.vs/DropboxV2ApiSampleDroid/xs/UserPrefs.xml
