@@ -5,38 +5,43 @@
 #addin "nuget:?package=Cake.ExtendedNuGet&version=1.0.0.27"
 #addin "nuget:?package=NuGet.Core&version=2.14.0"
 
+var DEFAULT_SIGNTOOL_PATH = IsRunningOnWindows ()
+	? "C:\\Program Files (x86)\\Windows Kits\\10\\bin\\x64\\signtool.exe"
+	: "/Library/Frameworks/Mono.framework/Versions/Current/Commands/chktrust";
+var DEFAULT_NUGET_PATH = Context.Tools.Resolve ("nuget.exe").FullPath;
+// this is the SHA256 hash of the Microsoft Corporation certificate
+var DEFAULT_MS_FINGERPRINT = "3F9001EA83C560D712C24CF213C3D312CB3BFF51EE89435D3430BD06B5D0EECE";
+
 var TARGET = Argument ("target", Argument ("t", "build"));
 
-var PREVIEW_ONLY = Argument ("preview", EnvironmentVariable ("PREVIEW_ONLY") ?? "false").Equals ("true");
-var SIGNTOOL_PATH = Argument ("signtool-path", EnvironmentVariable ("SIGNTOOL_PATH") ?? "C:\\Program Files (x86)\\Windows Kits\\10\\bin\\x64\\signtool.exe");
+var PREVIEW_ONLY = GetArgBool ("preview", "PREVIEW_ONLY");
+var NUGET_FINGERPRINTS = GetArg ("nuget-fingerprints", "NUGET_FINGERPRINTS", DEFAULT_MS_FINGERPRINT);
+var MANIFEST_URL = GetArg ("build-manifest-url", "BUILD_MANIFEST_URL");
 
-var NUGET_FORCE_PUSH = Argument ("nuget-force-push", EnvironmentVariable ("NUGET_FORCE_PUSH") ?? "false").Equals ("true");
+var SIGNTOOL_PATH = GetArg ("signtool-path", "SIGNTOOL_PATH", DEFAULT_SIGNTOOL_PATH);
+var NUGET_PATH = GetArg ("nuget-path", "NUGET_PATH", DEFAULT_NUGET_PATH);
+
+var NUGET_API_KEY = GetArg ("nuget-api-key", "NUGET_API_KEY");
+var NUGET_SOURCE = GetArg ("nuget-source", "NUGET_SOURCE");
+var NUGET_PUSH_SOURCE = GetArg ("nuget-push-source", "NUGET_PUSH_SOURCE");
+var NUGET_FORCE_PUSH = GetArgBool ("nuget-force-push", "NUGET_FORCE_PUSH");
 var NUGET_MAX_ATTEMPTS = 5;
 
-var MYGET_FORCE_PUSH = Argument ("myget-force-push", EnvironmentVariable ("MYGET_FORCE_PUSH") ?? "false").Equals ("true");
+var MYGET_API_KEY = GetArg ("myget-api-key", "MYGET_API_KEY");
+var MYGET_SOURCE = GetArg ("myget-source", "MYGET_SOURCE");
+var MYGET_PUSH_SOURCE = GetArg ("myget-push-source", "MYGET_PUSH_SOURCE");
+var MYGET_FORCE_PUSH = GetArgBool ("myget-force-push", "MYGET_FORCE_PUSH");
 var MYGET_MAX_ATTEMPTS = 5;
 
-var MANIFEST_URL = Argument ("build-manifest-url", EnvironmentVariable ("BUILD_MANIFEST_URL") ?? "");
-
-var NUGET_API_KEY = Argument ("nuget-api-key", EnvironmentVariable ("NUGET_API_KEY") ?? "");
-var NUGET_SOURCE = Argument ("nuget-source", EnvironmentVariable ("NUGET_SOURCE") ?? "");
-var NUGET_PUSH_SOURCE = Argument ("nuget-push-source", EnvironmentVariable ("NUGET_PUSH_SOURCE") ?? "");
-
-var MYGET_API_KEY = Argument ("myget-api-key", EnvironmentVariable ("MYGET_API_KEY") ?? "");
-var MYGET_SOURCE = Argument ("myget-source", EnvironmentVariable ("MYGET_SOURCE") ?? "");
-var MYGET_PUSH_SOURCE = Argument ("myget-push-source", EnvironmentVariable ("MYGET_PUSH_SOURCE") ?? "");
-
-var CUSTOM_API_KEY = Argument ("custom-api-key", EnvironmentVariable ("CUSTOM_API_KEY") ?? "");
-var CUSTOM_PUSH_SOURCE = Argument ("custom-push-source", EnvironmentVariable ("CUSTOM_PUSH_SOURCE") ?? "");
-var CUSTOM_SOURCE = Argument ("custom-source", EnvironmentVariable ("CUSTOM_SOURCE") ?? CUSTOM_PUSH_SOURCE);
-var CUSTOM_FORCE_PUSH = Argument ("custom-force-push", EnvironmentVariable ("CUSTOM_FORCE_PUSH") ?? "false").Equals ("true");
+var CUSTOM_API_KEY = GetArg ("custom-api-key", "CUSTOM_API_KEY");
+var CUSTOM_PUSH_SOURCE = GetArg ("custom-push-source", "CUSTOM_PUSH_SOURCE");
+var CUSTOM_SOURCE = GetArg ("custom-source", "CUSTOM_SOURCE", CUSTOM_PUSH_SOURCE);
+var CUSTOM_FORCE_PUSH = GetArgBool ("custom-force-push", "CUSTOM_FORCE_PUSH");
 var CUSTOM_MAX_ATTEMPTS = 3;
 
-var GLOB_PATTERNS = Argument ("glob-patterns", EnvironmentVariable ("GLOBBER_FILE_PATTERNS"));
+var GLOB_PATTERNS = GetArgList ("glob-patterns", "GLOBBER_FILE_PATTERNS", "./output/*.nupkg");
 
-// this is the SHA256 hash of the Microsoft Corporation certificate
-var MS_FINGERPRINT = "3F9001EA83C560D712C24CF213C3D312CB3BFF51EE89435D3430BD06B5D0EECE";
-var NUGET_FINGERPRINTS = Argument ("nuget-fingerprints", EnvironmentVariable ("NUGET_FINGERPRINTS") ?? MS_FINGERPRINT);
+DumpGlobPatterns (GLOB_PATTERNS);
 
 public partial class BuildManifest
 {
@@ -45,26 +50,37 @@ public partial class BuildManifest
 	public long Size { get; set; }
 }
 
-Func<FilePath, string> Sha256File = (FilePath file) =>
+string GetArg (string cmd, string env, string def = "")
 {
-    var crypt = new System.Security.Cryptography.SHA256Managed();
-    string hash = String.Empty;
+	return Argument (cmd, EnvironmentVariable (env) ?? def);
+}
+string[] GetArgList (string cmd, string env, string def = "")
+{
+	return GetArg (cmd, env, def).Split (new [] { ',', ';', ' ' });
+}
+bool GetArgBool (string cmd, string env, bool def = false)
+{
+	return GetArg (cmd, env, def.ToString ()).ToLower ().Equals ("true");
+}
+
+string Sha256File (FilePath file)
+{
+	var crypt = new System.Security.Cryptography.SHA256Managed();
+	string hash = String.Empty;
 	using (var stream = System.IO.File.OpenRead(MakeAbsolute(file).FullPath)) {
 		var hashBytes = crypt.ComputeHash(stream);
 		foreach (byte theByte in hashBytes)
-        	hash += theByte.ToString("x2");	
+			hash += theByte.ToString("x2");	
 	}
-    return hash;
-};
+	return hash;
+}
 
-Action<string[]> DumpGlobPatterns = (string[] globPatterns) => {
-
+void DumpGlobPatterns (string[] globPatterns)
+{
 	foreach (var gp in globPatterns) {
-
 		Information ("Matching: {0}", gp ?? "");
 
 		var files = GetFiles (gp);
-		
 		if (files == null || !files.Any ())
 			continue;
 
@@ -73,32 +89,31 @@ Action<string[]> DumpGlobPatterns = (string[] globPatterns) => {
 
 		Information ("GLOBBER_FILE_PATTERNS={0}", string.Join (",", files));
 	}
-};
+}
 
 Task ("DownloadArtifacts")
 	.WithCriteria (!string.IsNullOrEmpty (MANIFEST_URL))
 	.Does (() => 
 {
 	var manifestJson = HttpGet (MANIFEST_URL);
-
 	var buildManifests = DeserializeJson<BuildManifest[]> (manifestJson);
 
 	var downloadDir = new DirectoryPath ("./output/");
 	EnsureDirectoryExists (downloadDir);
 
 	foreach (var buildManifest in buildManifests) {
-        var uri = new Uri (buildManifest.Url);
-        var filename = System.IO.Path.GetFileName(uri.LocalPath);
-	var downloadedFile = downloadDir.CombineWithFilePath (filename);
-        
-        if (!downloadedFile.GetExtension().Equals(".nupkg", StringComparison.InvariantCultureIgnoreCase)) {
-            Information ("Skipping: {0}", filename);
-            continue;
-        }
+		var uri = new Uri (buildManifest.Url);
+		var filename = System.IO.Path.GetFileName(uri.LocalPath);
+		var downloadedFile = downloadDir.CombineWithFilePath (filename);
+		
+		if (!downloadedFile.GetExtension().Equals(".nupkg", StringComparison.InvariantCultureIgnoreCase)) {
+			Information ("Skipping: {0}", filename);
+			continue;
+		}
 
-        Information ("Downloading: {0}", filename);
+		Information ("Downloading: {0}", filename);
 
-        DownloadFile (buildManifest.Url, downloadedFile);
+		DownloadFile (buildManifest.Url, downloadedFile);
 		var downloadedFileHash = Sha256File (downloadedFile);
 
 		if (!downloadedFileHash.Equals (buildManifest.Sha256, StringComparison.InvariantCultureIgnoreCase))
@@ -114,23 +129,25 @@ Task ("VerifyNuGetSigning")
 	.IsDependentOn ("DownloadArtifacts")
 	.Does (() => 
 {
-	var NUGET_PATH = Context.Tools.Resolve ("nuget.exe");
-	
-	var globPatterns = (GLOB_PATTERNS ?? "./output/*.nupkg").Split (new [] { ',', ';', ' ' });
-
-	DumpGlobPatterns (globPatterns);
-	
-	foreach (var globPattern in globPatterns) {
+	foreach (var globPattern in GLOB_PATTERNS) {
 		var nupkgFiles = GetFiles (globPattern);
 
 		foreach (var nupkgFile in nupkgFiles) {
 			Information ("Verifiying Signature of {0}", nupkgFile.GetFilename ());
+
+			IEnumerable<string> stdout;
 			var result = StartProcess (NUGET_PATH, new ProcessSettings {
-				Arguments = $"verify -All -CertificateFingerprint \"{NUGET_FINGERPRINTS}\" -Verbosity Normal \"{nupkgFile}\""
-			});
-			if (result != 0) {
+				Arguments = $"verify -All -CertificateFingerprint \"{NUGET_FINGERPRINTS}\" -Verbosity Normal \"{nupkgFile}\"",
+				RedirectStandardOutput = true,
+			}, out stdout);
+
+			var stdoutput = string.Join ("\n    ", stdout);
+			Information (" -> {0}", nupkgFile.GetFilename ());
+			Information ("    " + stdoutput);
+			Information ("");
+
+			if (result != 0)
 				throw new Exception ($"Invalid Signature {nupkgFile.GetFilename ()}");
-			}
 		}
 	}
 });
@@ -139,11 +156,7 @@ Task ("VerifyAuthenticode")
 	.IsDependentOn ("DownloadArtifacts")
 	.Does (() => 
 {
-	var globPatterns = (GLOB_PATTERNS ?? "./output/*.nupkg").Split (new [] { ',', ';', ' ' });
-
-	DumpGlobPatterns (globPatterns);
-
-	foreach (var globPattern in globPatterns) {
+	foreach (var globPattern in GLOB_PATTERNS) {
 		var nupkgFiles = GetFiles (globPattern);
 
 		foreach (var nupkgFile in nupkgFiles) {
@@ -164,14 +177,14 @@ Task ("VerifyAuthenticode")
 
 				if (IsRunningOnWindows ()) {
 					StartProcess (SIGNTOOL_PATH, new ProcessSettings {
-						Arguments = "verify /pa \"" + MakeAbsolute(assembly).FullPath + "\"",
+						Arguments = $"verify /pa \"{MakeAbsolute(assembly)}\"",
 						RedirectStandardOutput = true,
 					}, out stdout);
 					stdoutput = string.Join("\n    ", stdout);
 					verified = stdoutput.Contains ("Successfully verified");
 				} else {
-					StartProcess ("/Library/Frameworks/Mono.framework/Versions/Current/Commands/chktrust", new ProcessSettings {
-						Arguments = "\"" + MakeAbsolute(assembly).FullPath + "\"",
+					StartProcess (SIGNTOOL_PATH, new ProcessSettings {
+						Arguments = $"\"{MakeAbsolute(assembly)}\"",
 						RedirectStandardOutput = true,
 					}, out stdout);
 					stdoutput = string.Join("\n    ", stdout);
@@ -189,56 +202,41 @@ Task ("VerifyAuthenticode")
 
 Task ("MyGet")
 	.IsDependentOn("VerifyNuGets")
+	.WithCriteria (!PREVIEW_ONLY)
 	.Does (() =>
 {
-	var globPatterns = (GLOB_PATTERNS ?? "./output/*.nupkg").Split (new [] { ',', ';', ' ' });
-
-	DumpGlobPatterns (globPatterns);
-	if (PREVIEW_ONLY)
-		return;
-
 	var settings = new PublishNuGetsSettings {
 		MaxAttempts = MYGET_MAX_ATTEMPTS,
 		ForcePush = MYGET_FORCE_PUSH
 	};
 
-	PublishNuGets (MYGET_SOURCE, MYGET_PUSH_SOURCE, MYGET_API_KEY, settings, globPatterns);
+	PublishNuGets (MYGET_SOURCE, MYGET_PUSH_SOURCE, MYGET_API_KEY, settings, GLOB_PATTERNS);
 });
 
 Task ("NuGet")
 	.IsDependentOn("VerifyNuGets")
+	.WithCriteria (!PREVIEW_ONLY)
 	.Does (() =>
 {
-	var globPatterns = (GLOB_PATTERNS ?? "./output/*.nupkg").Split (new [] { ',', ';', ' ' });
-
-	DumpGlobPatterns (globPatterns);
-	if (PREVIEW_ONLY)
-		return;
-
 	var settings = new PublishNuGetsSettings {
 		MaxAttempts = NUGET_MAX_ATTEMPTS,
 		ForcePush = NUGET_FORCE_PUSH
 	};
 
-	PublishNuGets (NUGET_SOURCE, NUGET_PUSH_SOURCE, NUGET_API_KEY, settings, globPatterns);
+	PublishNuGets (NUGET_SOURCE, NUGET_PUSH_SOURCE, NUGET_API_KEY, settings, GLOB_PATTERNS);
 });
 
 Task ("Custom")
 	.IsDependentOn("VerifyNuGets")
+	.WithCriteria (!PREVIEW_ONLY)
 	.Does (() =>
 {
-	var globPatterns = (GLOB_PATTERNS ?? "./output/*.nupkg").Split (new [] { ',', ';', ' ' });
-
-	DumpGlobPatterns (globPatterns);
-	if (PREVIEW_ONLY)
-		return;
-
 	var settings = new PublishNuGetsSettings {
 		MaxAttempts = CUSTOM_MAX_ATTEMPTS,
 		ForcePush = CUSTOM_FORCE_PUSH
 	};
 
-	PublishNuGets (CUSTOM_SOURCE, CUSTOM_PUSH_SOURCE, CUSTOM_API_KEY, settings, globPatterns);
+	PublishNuGets (CUSTOM_SOURCE, CUSTOM_PUSH_SOURCE, CUSTOM_API_KEY, settings, GLOB_PATTERNS);
 });
 
 RunTarget (TARGET);
