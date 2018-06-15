@@ -34,6 +34,10 @@ var CUSTOM_MAX_ATTEMPTS = 3;
 
 var GLOB_PATTERNS = Argument ("glob-patterns", EnvironmentVariable ("GLOBBER_FILE_PATTERNS"));
 
+// this is the SHA256 hash of the Microsoft Corporation certificate
+var MS_FINGERPRINT = "3F9001EA83C560D712C24CF213C3D312CB3BFF51EE89435D3430BD06B5D0EECE";
+var NUGET_FINGERPRINTS = Argument ("nuget-fingerprints", EnvironmentVariable ("NUGET_FINGERPRINTS") ?? MS_FINGERPRINT);
+
 public partial class BuildManifest
 {
 	public string Url { get; set; }
@@ -110,6 +114,25 @@ Task ("VerifyNuGetSigning")
 	.IsDependentOn ("DownloadArtifacts")
 	.Does (() => 
 {
+	var NUGET_PATH = Context.Tools.Resolve ("nuget.exe");
+	
+	var globPatterns = (GLOB_PATTERNS ?? "./output/*.nupkg").Split (new [] { ',', ';', ' ' });
+
+	DumpGlobPatterns (globPatterns);
+	
+	foreach (var globPattern in globPatterns) {
+		var nupkgFiles = GetFiles (globPattern);
+
+		foreach (var nupkgFile in nupkgFiles) {
+			Information ("Verifiying Signature of {0}", nupkgFile.GetFilename ());
+			var result = StartProcess (NUGET_PATH, new ProcessSettings {
+				Arguments = $"verify -All -CertificateFingerprint \"{NUGET_FINGERPRINTS}\" -Verbosity Detailed \"{nupkgFile}\""
+			});
+			if (result != 0) {
+				throw new Exception ($"Invalid Signature {nupkgFile.GetFilename ()}");
+			}
+		}
+	}
 });
 
 Task ("VerifyAuthenticode")
