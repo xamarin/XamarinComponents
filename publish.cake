@@ -126,7 +126,7 @@ Task ("VerifyNuGetSigning")
 		foreach (var nupkgFile in nupkgFiles) {
 			Information ("Verifiying Signature of {0}", nupkgFile.GetFilename ());
 			var result = StartProcess (NUGET_PATH, new ProcessSettings {
-				Arguments = $"verify -All -CertificateFingerprint \"{NUGET_FINGERPRINTS}\" -Verbosity Detailed \"{nupkgFile}\""
+				Arguments = $"verify -All -CertificateFingerprint \"{NUGET_FINGERPRINTS}\" -Verbosity Normal \"{nupkgFile}\""
 			});
 			if (result != 0) {
 				throw new Exception ($"Invalid Signature {nupkgFile.GetFilename ()}");
