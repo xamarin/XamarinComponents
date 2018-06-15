@@ -167,18 +167,18 @@ Task ("VerifyAuthenticode")
 						Arguments = "verify /pa \"" + MakeAbsolute(assembly).FullPath + "\"",
 						RedirectStandardOutput = true,
 					}, out stdout);
-					stdoutput = string.Join(" ", stdout);
+					stdoutput = string.Join("\n    ", stdout);
 					verified = stdoutput.Contains ("Successfully verified");
 				} else {
 					StartProcess ("/Library/Frameworks/Mono.framework/Versions/Current/Commands/chktrust", new ProcessSettings {
 						Arguments = "\"" + MakeAbsolute(assembly).FullPath + "\"",
 						RedirectStandardOutput = true,
 					}, out stdout);
-					stdoutput = string.Join(" ", stdout);
+					stdoutput = string.Join("\n    ", stdout);
 					verified = !stdoutput.Contains ("doesn't contain a digital signature");
 				}
 				Information (" -> {0}", assembly.GetFilename());
-				Information (" -> {0}", stdoutput);
+				Information ("    " + stdoutput);
 
 				if (!verified)
 					throw new Exception (string.Format("Missing Authenticode Signature found in {0} for {1}", assembly.GetFilename(), nupkgFile.GetFilename()));
