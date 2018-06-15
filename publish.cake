@@ -202,9 +202,13 @@ Task ("VerifyAuthenticode")
 
 Task ("MyGet")
 	.IsDependentOn("VerifyNuGets")
-	.WithCriteria (!PREVIEW_ONLY)
 	.Does (() =>
 {
+	if (PREVIEW_ONLY) {
+		Warning ("Skipping publish due to \"preview only\" flag.");
+		return;
+	}
+
 	var settings = new PublishNuGetsSettings {
 		MaxAttempts = MYGET_MAX_ATTEMPTS,
 		ForcePush = MYGET_FORCE_PUSH
@@ -215,9 +219,13 @@ Task ("MyGet")
 
 Task ("NuGet")
 	.IsDependentOn("VerifyNuGets")
-	.WithCriteria (!PREVIEW_ONLY)
 	.Does (() =>
 {
+	if (PREVIEW_ONLY) {
+		Warning ("Skipping publish due to \"preview only\" flag.");
+		return;
+	}
+
 	var settings = new PublishNuGetsSettings {
 		MaxAttempts = NUGET_MAX_ATTEMPTS,
 		ForcePush = NUGET_FORCE_PUSH
@@ -228,9 +236,13 @@ Task ("NuGet")
 
 Task ("Custom")
 	.IsDependentOn("VerifyNuGets")
-	.WithCriteria (!PREVIEW_ONLY)
 	.Does (() =>
 {
+	if (PREVIEW_ONLY) {
+		Warning ("Skipping publish due to \"preview only\" flag.");
+		return;
+	}
+
 	var settings = new PublishNuGetsSettings {
 		MaxAttempts = CUSTOM_MAX_ATTEMPTS,
 		ForcePush = CUSTOM_FORCE_PUSH
