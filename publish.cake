@@ -102,6 +102,16 @@ Task ("DownloadArtifacts")
 	}
 });
 
+Task ("VerifyNuGets")
+	.IsDependentOn ("VerifyAuthenticode")
+	.IsDependentOn ("VerifyNuGetSigning");
+
+Task ("VerifyNuGetSigning")
+	.IsDependentOn ("DownloadArtifacts")
+	.Does (() => 
+{
+});
+
 Task ("VerifyAuthenticode")
 	.IsDependentOn ("DownloadArtifacts")
 	.Does (() => 
@@ -155,7 +165,7 @@ Task ("VerifyAuthenticode")
 });
 
 Task ("MyGet")
-	.IsDependentOn("VerifyAuthenticode")
+	.IsDependentOn("VerifyNuGets")
 	.Does (() =>
 {
 	var globPatterns = (GLOB_PATTERNS ?? "./output/*.nupkg").Split (new [] { ',', ';', ' ' });
@@ -173,7 +183,7 @@ Task ("MyGet")
 });
 
 Task ("NuGet")
-	.IsDependentOn("VerifyAuthenticode")
+	.IsDependentOn("VerifyNuGets")
 	.Does (() =>
 {
 	var globPatterns = (GLOB_PATTERNS ?? "./output/*.nupkg").Split (new [] { ',', ';', ' ' });
@@ -191,7 +201,7 @@ Task ("NuGet")
 });
 
 Task ("Custom")
-	.IsDependentOn("VerifyAuthenticode")
+	.IsDependentOn("VerifyNuGets")
 	.Does (() =>
 {
 	var globPatterns = (GLOB_PATTERNS ?? "./output/*.nupkg").Split (new [] { ',', ';', ' ' });
