@@ -1,11 +1,11 @@
-version: 1.0.0.0
+version: 1.0.0.1
 name: VideoSplash
 id: VideoSplash
 publisher: Xamarin Inc
 publisher-url: http://xamarin.com
 src-url: https://github.com/xamarin/XamarinComponents/tree/master/iOS/VideoSplash
 summary: VideoSplash is a video-based UIViewController.
-
+license: ../License.md
 no_build: true
 
 icons:
@@ -18,6 +18,18 @@ libraries:
 samples:
   - name: "Storyboard Sample"
     path: ../samples/VideoSplashSample/VideoSplashSample.sln
+    removeProjects:
+        - VideoSplash
+    installNuGets:
+      - project: VideoSplashSample
+        packages:
+          - Xamarin.VideoSplash
     configuration: "Release|iPhone"
-
+is_shell: true 
+packages:
+  ios-unified: Xamarin.VideoSplash, Version=1.0.0.1
 monodoc: ../docs/
+local-nuget-repo: ../output
+additional-files:
+  - source: "../External-Dependency-Info.txt"
+    destination: "THIRD-PARTY-NOTICES.txt"
