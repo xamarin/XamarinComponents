@@ -207,6 +207,10 @@ namespace MTiRate
 		[Export ("rateButtonLabel")]
 		string RateButtonLabel { get; set; }
 
+        // @property (assign, nonatomic) BOOL useSKStoreReviewControllerIfAvailable;
+        [Export("useSKStoreReviewControllerIfAvailable")]
+        bool UseSKStoreReviewControllerIfAvailable { get; set; }
+
 		// @property (assign, nonatomic) BOOL useUIAlertControllerIfAvailable;
 		[Export ("useUIAlertControllerIfAvailable")]
 		bool UseUIAlertControllerIfAvailable { get; set; }
