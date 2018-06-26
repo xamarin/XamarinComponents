@@ -7,7 +7,7 @@ var IOS_PODS = new List<string> {
 	"platform :ios, '7.0'",
 	"install! 'cocoapods', :integrate_targets => false",
 	"target 'Xamarin' do",
-	"pod 'JSQMessagesViewController', '~> 7.3'",
+	"pod 'JSQMessagesViewController', '7.3.5'",
 	"end",
 };
 
