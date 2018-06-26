@@ -1,6 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
+    <AndroidCodegenTarget>XAJavaInterop1</AndroidCodegenTarget>
     <TargetFramework>MonoAndroid81</TargetFramework>
     <IsBindingProject>true</IsBindingProject>
 
