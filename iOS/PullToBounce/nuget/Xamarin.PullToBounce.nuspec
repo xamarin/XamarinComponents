@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<package>
+  <metadata>
+    <id>Xamarin.PullToBounce</id>
+    <title>PullToBounce for Xamarin.iOS</title>
+    <version>1.0.0.3</version>
+    <authors>Microsoft</authors>
+    <owners>Microsoft</owners>
+    <requireLicenseAcceptance>true</requireLicenseAcceptance>
+    <description>Pull To Bounce can wrap any UIScrollView and add a cool, bouncy pull-to-refresh animation. All that needs to be done is to add a UIScrollView as a sub view, and then subscribe to an event.</description>
+    <copyright>© Microsoft Corporation. All rights reserved.</copyright>
+    <projectUrl>https://go.microsoft.com/fwlink/?linkid=874626</projectUrl>
+    <licenseUrl>https://go.microsoft.com/fwlink/?linkid=874627</licenseUrl>
+  </metadata>
+  <files>
+    <file src="output/unified/PullToBounce.dll" target="lib/Xamarin.iOS" />
+    <file src="External-Dependency-Info.txt" target="THIRD-PARTY-NOTICES.txt" />
+  </files>
+</package>

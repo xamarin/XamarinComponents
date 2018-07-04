@@ -178,6 +178,10 @@
   BuildScript: ./Android/Wear/build.cake
   TriggerPaths: [ Android/Wear ]
   MacBuildTargets: [ samples, nuget ]
+- Name: GoogleLibPhoneNumber
+  BuildScript: ./Android/Google.LibPhoneNumber/build.cake
+  TriggerPaths: [ Android/Google.LibPhoneNumber ]
+  MacBuildTargets: [nuget]
 
 #######################################################
 # iOS
@@ -463,6 +467,10 @@
 - Name: StripeiOSBindings
   BuildScript: ./XPlat/Stripe/bindings/iOS/build.cake
   TriggerPaths: [ XPlat/Stripe/bindings/iOS ]
+  MacBuildTargets: [ samples, nuget ]
+- Name: StripeAndroidBindings
+  BuildScript: ./XPlat/Stripe/bindings/Android/build.cake
+  TriggerPaths: [ XPlat/Stripe/bindings/Android ]
   MacBuildTargets: [ samples, nuget ]
 - Name: DropboxApiV2
   BuildScript: ./XPlat/DropboxApiV2/build.cake

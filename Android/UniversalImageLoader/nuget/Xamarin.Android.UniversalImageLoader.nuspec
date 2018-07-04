@@ -3,7 +3,7 @@
   <metadata>
     <id>Xamarin.Android.UniversalImageLoader</id>
     <title>Universal Image Loader for Xamarin.Android</title>
-    <version>1.9.5</version>
+    <version>1.9.5.1</version>
     <authors>Microsoft</authors>
     <owners>Microsoft</owners>
     <requireLicenseAcceptance>true</requireLicenseAcceptance>

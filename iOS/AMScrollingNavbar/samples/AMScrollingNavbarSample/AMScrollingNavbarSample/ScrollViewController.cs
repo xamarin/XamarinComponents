@@ -1,5 +1,4 @@
 using System;
-using Foundation;
 using CoreGraphics;
 using UIKit;
 
@@ -9,7 +8,7 @@ namespace AMScrollingNavbarSample
 {
 	partial class ScrollViewController : ScrollingNavigationViewController
 	{
-		private const string AmazingGraceLyrics = 
+		private const string AmazingGraceLyrics =
 			"Amazing Grace!\n" +
 			"How sweet the sound\n" +
 			"That saved a wretch like me\n" +
@@ -50,7 +49,16 @@ namespace AMScrollingNavbarSample
 		{
 			base.ViewDidLoad ();
 
-			NavigationController.NavigationBar.BarTintColor = new UIColor (0.17f, 0.59f, 0.87f, 1.0f);
+			Title = "Scroll View";
+
+			if (NavigationController?.NavigationBar != null) {
+				NavigationController.NavigationBar.BarTintColor = new UIColor (0.17f, 0.59f, 0.87f, 1.0f);
+				NavigationController.NavigationBar.PrefersLargeTitles = false;
+			}
+			if (TabBarController?.TabBar != null) {
+				TabBarController.TabBar.BarTintColor = new UIColor (0.17f, 0.59f, 0.87f, 1.0f);
+				TabBarController.TabBar.TintColor = UIColor.White;
+			}
 
 			scrollView.BackgroundColor = new UIColor (0.13f, 0.5f, 0.73f, 1.0f);
 
@@ -68,16 +76,25 @@ namespace AMScrollingNavbarSample
 			label.SizeToFit ();
 
 			scrollView.ContentSize = new CGSize (View.Frame.Width, label.Frame.Height);
-			scrollView.ShouldScrollToTop = ShouldScrollToTop;
+
+			scrollView.Delegate = this;
 		}
 
 		public override void ViewDidAppear (bool animated)
 		{
 			base.ViewDidAppear (animated);
 
-			if (ScrollingNavigationController != null) {
+			if (ScrollingNavigationController?.NavigationBar != null) {
+				ScrollingNavigationController.NavigationBar.BarTintColor = new UIColor (0.17f, 0.59f, 0.87f, 1.0f);
+
 				// Enable the navbar scrolling
-				ScrollingNavigationController.FollowScrollView (scrollView, 100.0);
+				if (TabBarController != null) {
+					ScrollingNavigationController.FollowScrollView (scrollView, 0, 2, new[] { TabBarController.TabBar });
+				} else {
+					ScrollingNavigationController.FollowScrollView (scrollView, 0.0, 2);
+				}
+
+				ScrollingNavigationController.ExpandOnActive = false;
 			}
 		}
 

@@ -1,44 +1,86 @@
-#tool "XamarinComponent"
-#addin "nuget:?package=Cake.Json&version=1.0.2.13"
-#addin "nuget:?package=Cake.Xamarin&version=1.3.0.15"
-#addin "nuget:?package=Cake.ExtendedNuGet&version=1.0.0.24"
+#addin "nuget:?package=Cake.Http&version=0.5.0"
+#addin "nuget:?package=Cake.Json&version=3.0.1"
+#addin "nuget:?package=Newtonsoft.Json&version=9.0.1"
+#addin "nuget:?package=Cake.Xamarin&version=3.0.0"
+#addin "nuget:?package=Cake.ExtendedNuGet&version=1.0.0.27"
 #addin "nuget:?package=NuGet.Core&version=2.14.0"
 
-// NOTE: COOKIE_JAR_PATH Environment variable should contain the .xamarin cookie file
+var DEFAULT_SIGNTOOL_PATH = IsRunningOnWindows ()
+	? "C:\\Program Files (x86)\\Windows Kits\\10\\bin\\x64\\signtool.exe"
+	: "/Library/Frameworks/Mono.framework/Versions/Current/Commands/chktrust";
+var DEFAULT_NUGET_PATH = Context.Tools.Resolve ("nuget.exe").FullPath;
+// this is the SHA256 hash of the Microsoft Corporation certificate
+var DEFAULT_MS_FINGERPRINT = "3F9001EA83C560D712C24CF213C3D312CB3BFF51EE89435D3430BD06B5D0EECE";
 
 var TARGET = Argument ("target", Argument ("t", "build"));
 
-var PREVIEW_ONLY = Argument ("preview", EnvironmentVariable ("PREVIEW_ONLY") ?? "false").Equals ("true");
+var PREVIEW_ONLY = GetArgBool ("preview", "PREVIEW_ONLY");
+var NUGET_FINGERPRINTS = GetArg ("nuget-fingerprints", "NUGET_FINGERPRINTS", DEFAULT_MS_FINGERPRINT);
+var MANIFEST_URL = GetArg ("build-manifest-url", "BUILD_MANIFEST_URL");
 
-var NUGET_FORCE_PUSH = Argument ("nuget-force-push", EnvironmentVariable ("NUGET_FORCE_PUSH") ?? "false").Equals ("true");
+var SIGNTOOL_PATH = GetArg ("signtool-path", "SIGNTOOL_PATH", DEFAULT_SIGNTOOL_PATH);
+var NUGET_PATH = GetArg ("nuget-path", "NUGET_PATH", DEFAULT_NUGET_PATH);
+
+var NUGET_API_KEY = GetArg ("nuget-api-key", "NUGET_API_KEY");
+var NUGET_SOURCE = GetArg ("nuget-source", "NUGET_SOURCE");
+var NUGET_PUSH_SOURCE = GetArg ("nuget-push-source", "NUGET_PUSH_SOURCE");
+var NUGET_FORCE_PUSH = GetArgBool ("nuget-force-push", "NUGET_FORCE_PUSH");
 var NUGET_MAX_ATTEMPTS = 5;
 
-var MYGET_FORCE_PUSH = Argument ("myget-force-push", EnvironmentVariable ("MYGET_FORCE_PUSH") ?? "false").Equals ("true");
+var MYGET_API_KEY = GetArg ("myget-api-key", "MYGET_API_KEY");
+var MYGET_SOURCE = GetArg ("myget-source", "MYGET_SOURCE");
+var MYGET_PUSH_SOURCE = GetArg ("myget-push-source", "MYGET_PUSH_SOURCE");
+var MYGET_FORCE_PUSH = GetArgBool ("myget-force-push", "MYGET_FORCE_PUSH");
 var MYGET_MAX_ATTEMPTS = 5;
 
-var COMP_MAX_ATTEMPTS = 3;
+var CUSTOM_API_KEY = GetArg ("custom-api-key", "CUSTOM_API_KEY");
+var CUSTOM_PUSH_SOURCE = GetArg ("custom-push-source", "CUSTOM_PUSH_SOURCE");
+var CUSTOM_SOURCE = GetArg ("custom-source", "CUSTOM_SOURCE", CUSTOM_PUSH_SOURCE);
+var CUSTOM_FORCE_PUSH = GetArgBool ("custom-force-push", "CUSTOM_FORCE_PUSH");
+var CUSTOM_MAX_ATTEMPTS = 3;
 
-var NUGET_API_KEY = Argument ("nuget-api-key", EnvironmentVariable ("NUGET_API_KEY") ?? "");
-var NUGET_SOURCE = Argument ("nuget-source", EnvironmentVariable ("NUGET_SOURCE") ?? "");
-var NUGET_PUSH_SOURCE = Argument ("nuget-push-source", EnvironmentVariable ("NUGET_PUSH_SOURCE") ?? "");
+var GLOB_PATTERNS = GetArgList ("glob-patterns", "GLOBBER_FILE_PATTERNS", "./output/*.nupkg");
 
-var MYGET_API_KEY = Argument ("myget-api-key", EnvironmentVariable ("MYGET_API_KEY") ?? "");
-var MYGET_SOURCE = Argument ("myget-source", EnvironmentVariable ("MYGET_SOURCE") ?? "");
-var MYGET_PUSH_SOURCE = Argument ("myget-push-source", EnvironmentVariable ("MYGET_PUSH_SOURCE") ?? "");
+DumpGlobPatterns (GLOB_PATTERNS);
 
-var XAM_ACCT_EMAIL = Argument ("xamarin-account-email", EnvironmentVariable ("XAM_ACCT_EMAIL") ?? "");
-var XAM_ACCT_PWD = Argument ("xamarin-account-password", EnvironmentVariable ("XAM_ACCT_PWD") ?? "");
+public partial class BuildManifest
+{
+	public string Url { get; set; }
+	public string Sha256 { get; set; }
+	public long Size { get; set; }
+}
 
-var GLOB_PATTERNS = Argument ("glob-patterns", EnvironmentVariable ("GLOBBER_FILE_PATTERNS"));
+string GetArg (string cmd, string env, string def = "")
+{
+	return Argument (cmd, EnvironmentVariable (env) ?? def);
+}
+string[] GetArgList (string cmd, string env, string def = "")
+{
+	return GetArg (cmd, env, def).Split (new [] { ',', ';', ' ' });
+}
+bool GetArgBool (string cmd, string env, bool def = false)
+{
+	return GetArg (cmd, env, def.ToString ()).ToLower ().Equals ("true");
+}
 
-Action<string[]> DumpGlobPatterns = (string[] globPatterns) => {
+string Sha256File (FilePath file)
+{
+	var crypt = new System.Security.Cryptography.SHA256Managed();
+	string hash = String.Empty;
+	using (var stream = System.IO.File.OpenRead(MakeAbsolute(file).FullPath)) {
+		var hashBytes = crypt.ComputeHash(stream);
+		foreach (byte theByte in hashBytes)
+			hash += theByte.ToString("x2");	
+	}
+	return hash;
+}
 
+void DumpGlobPatterns (string[] globPatterns)
+{
 	foreach (var gp in globPatterns) {
-
 		Information ("Matching: {0}", gp ?? "");
 
 		var files = GetFiles (gp);
-		
 		if (files == null || !files.Any ())
 			continue;
 
@@ -47,55 +89,166 @@ Action<string[]> DumpGlobPatterns = (string[] globPatterns) => {
 
 		Information ("GLOBBER_FILE_PATTERNS={0}", string.Join (",", files));
 	}
-};
+}
 
-Task ("MyGet").Does (() =>
+Task ("DownloadArtifacts")
+	.WithCriteria (!string.IsNullOrEmpty (MANIFEST_URL))
+	.Does (() => 
 {
-	var globPatterns = (GLOB_PATTERNS ?? "./output/*.nupkg").Split (new [] { ',', ';', ' ' });
+	var manifestJson = HttpGet (MANIFEST_URL);
+	var buildManifests = DeserializeJson<BuildManifest[]> (manifestJson);
 
-	DumpGlobPatterns (globPatterns);
-	if (PREVIEW_ONLY)
+	var downloadDir = new DirectoryPath ("./output/");
+	EnsureDirectoryExists (downloadDir);
+
+	foreach (var buildManifest in buildManifests) {
+		var uri = new Uri (buildManifest.Url);
+		var filename = System.IO.Path.GetFileName(uri.LocalPath);
+		var downloadedFile = downloadDir.CombineWithFilePath (filename);
+		
+		if (!downloadedFile.GetExtension().Equals(".nupkg", StringComparison.InvariantCultureIgnoreCase)) {
+			Information ("Skipping: {0}", filename);
+			continue;
+		}
+
+		Information ("Downloading: {0}", filename);
+
+		DownloadFile (buildManifest.Url, downloadedFile);
+		var downloadedFileHash = Sha256File (downloadedFile);
+
+		if (!downloadedFileHash.Equals (buildManifest.Sha256, StringComparison.InvariantCultureIgnoreCase))
+			throw new Exception ("Download Corrupt");
+	}
+});
+
+Task ("VerifyNuGets")
+	.IsDependentOn ("VerifyAuthenticode")
+	.IsDependentOn ("VerifyNuGetSigning");
+
+Task ("VerifyNuGetSigning")
+	.IsDependentOn ("DownloadArtifacts")
+	.Does (() => 
+{
+	foreach (var globPattern in GLOB_PATTERNS) {
+		var nupkgFiles = GetFiles (globPattern);
+
+		foreach (var nupkgFile in nupkgFiles) {
+			Information ("Verifiying Signature of {0}", nupkgFile.GetFilename ());
+
+			IEnumerable<string> stdout;
+			var result = StartProcess (NUGET_PATH, new ProcessSettings {
+				Arguments = $"verify -All -CertificateFingerprint \"{NUGET_FINGERPRINTS}\" -Verbosity Normal \"{nupkgFile}\"",
+				RedirectStandardOutput = true,
+			}, out stdout);
+
+			var stdoutput = string.Join ("\n    ", stdout);
+			Information (" -> {0}", nupkgFile.GetFilename ());
+			Information ("    " + stdoutput);
+			Information ("");
+
+			if (result != 0)
+				throw new Exception ($"Invalid Signature {nupkgFile.GetFilename ()}");
+		}
+	}
+});
+
+Task ("VerifyAuthenticode")
+	.IsDependentOn ("DownloadArtifacts")
+	.Does (() => 
+{
+	foreach (var globPattern in GLOB_PATTERNS) {
+		var nupkgFiles = GetFiles (globPattern);
+
+		foreach (var nupkgFile in nupkgFiles) {
+			Information ("Verifiying Signatures of Assemblies inside of {0}", nupkgFile.GetFilename());
+
+			if (DirectoryExists ("./tmpnupkg"))
+				DeleteDirectory ("./tmpnupkg", true);
+			EnsureDirectoryExists("./tmpnupkg");
+
+			Unzip (nupkgFile, "./tmpnupkg");
+
+			var assemblies = GetFiles ("./tmpnupkg/**/*.dll") + GetFiles ("./tmpnupkg/**/*.exe");
+			foreach (var assembly in assemblies) {
+
+				IEnumerable<string> stdout;
+				var stdoutput = string.Empty;
+				bool verified = false;
+
+				if (IsRunningOnWindows ()) {
+					StartProcess (SIGNTOOL_PATH, new ProcessSettings {
+						Arguments = $"verify /pa \"{MakeAbsolute(assembly)}\"",
+						RedirectStandardOutput = true,
+					}, out stdout);
+					stdoutput = string.Join("\n    ", stdout);
+					verified = stdoutput.Contains ("Successfully verified");
+				} else {
+					StartProcess (SIGNTOOL_PATH, new ProcessSettings {
+						Arguments = $"\"{MakeAbsolute(assembly)}\"",
+						RedirectStandardOutput = true,
+					}, out stdout);
+					stdoutput = string.Join("\n    ", stdout);
+					verified = !stdoutput.Contains ("doesn't contain a digital signature");
+				}
+				Information (" -> {0}", assembly.GetFilename());
+				Information ("    " + stdoutput);
+
+				if (!verified)
+					throw new Exception (string.Format("Missing Authenticode Signature found in {0} for {1}", assembly.GetFilename(), nupkgFile.GetFilename()));
+			}
+		}
+	}
+});
+
+Task ("MyGet")
+	.IsDependentOn("VerifyNuGets")
+	.Does (() =>
+{
+	if (PREVIEW_ONLY) {
+		Warning ("Skipping publish due to \"preview only\" flag.");
 		return;
+	}
 
 	var settings = new PublishNuGetsSettings {
 		MaxAttempts = MYGET_MAX_ATTEMPTS,
 		ForcePush = MYGET_FORCE_PUSH
 	};
 
-	PublishNuGets (MYGET_SOURCE, MYGET_PUSH_SOURCE, MYGET_API_KEY, settings, globPatterns);
+	PublishNuGets (MYGET_SOURCE, MYGET_PUSH_SOURCE, MYGET_API_KEY, settings, GLOB_PATTERNS);
 });
 
-Task ("NuGet").Does (() =>
+Task ("NuGet")
+	.IsDependentOn("VerifyNuGets")
+	.Does (() =>
 {
-	var globPatterns = (GLOB_PATTERNS ?? "./output/*.nupkg").Split (new [] { ',', ';', ' ' });
-
-	DumpGlobPatterns (globPatterns);
-	if (PREVIEW_ONLY)
+	if (PREVIEW_ONLY) {
+		Warning ("Skipping publish due to \"preview only\" flag.");
 		return;
+	}
 
 	var settings = new PublishNuGetsSettings {
 		MaxAttempts = NUGET_MAX_ATTEMPTS,
 		ForcePush = NUGET_FORCE_PUSH
 	};
 
-	PublishNuGets (NUGET_SOURCE, NUGET_PUSH_SOURCE, NUGET_API_KEY, settings, globPatterns);
+	PublishNuGets (NUGET_SOURCE, NUGET_PUSH_SOURCE, NUGET_API_KEY, settings, GLOB_PATTERNS);
 });
 
-Task ("Component").Does (() => 
+Task ("Custom")
+	.IsDependentOn("VerifyNuGets")
+	.Does (() =>
 {
-	var globPatterns = (GLOB_PATTERNS ?? "./output/*.xam").Split (new [] { ',', ';', ' ' });
-
-	DumpGlobPatterns (globPatterns);
-	if (PREVIEW_ONLY)
+	if (PREVIEW_ONLY) {
+		Warning ("Skipping publish due to \"preview only\" flag.");
 		return;
+	}
 
-	var settings = new XamarinComponentUploadSettings { 
-		Email = XAM_ACCT_EMAIL,
-		Password = XAM_ACCT_PWD,
-		MaxAttempts = COMP_MAX_ATTEMPTS,
+	var settings = new PublishNuGetsSettings {
+		MaxAttempts = CUSTOM_MAX_ATTEMPTS,
+		ForcePush = CUSTOM_FORCE_PUSH
 	};
 
-	UploadComponents (settings, globPatterns);
+	PublishNuGets (CUSTOM_SOURCE, CUSTOM_PUSH_SOURCE, CUSTOM_API_KEY, settings, GLOB_PATTERNS);
 });
 
 RunTarget (TARGET);

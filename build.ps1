@@ -106,6 +106,7 @@ $PACKAGES_CONFIG = Join-Path $TOOLS_DIR "packages.config"
 $PACKAGES_CONFIG_MD5 = Join-Path $TOOLS_DIR "packages.config.md5sum"
 $ADDINS_PACKAGES_CONFIG = Join-Path $ADDINS_DIR "packages.config"
 $MODULES_PACKAGES_CONFIG = Join-Path $MODULES_DIR "packages.config"
+$CAKE_PACKAGES_CONFIG = Join-Path $PSScriptRoot "cake.packages.config"
 
 # Make sure tools folder exists
 if ((Test-Path $PSScriptRoot) -and !(Test-Path $TOOLS_DIR)) {
@@ -115,11 +116,16 @@ if ((Test-Path $PSScriptRoot) -and !(Test-Path $TOOLS_DIR)) {
 
 # Make sure that packages.config exist.
 if (!(Test-Path $PACKAGES_CONFIG)) {
-    Write-Verbose -Message "Downloading packages.config..."    
-    try {        
-        $wc = GetProxyEnabledWebClient
-        $wc.DownloadFile("https://cakebuild.net/download/bootstrapper/packages", $PACKAGES_CONFIG) } catch {
-        Throw "Could not download packages.config."
+    if (!(Test-Path $CAKE_PACKAGES_CONFIG)) {
+        Write-Verbose -Message "Downloading packages.config..."    
+        try {        
+            $wc = GetProxyEnabledWebClient
+            $wc.DownloadFile("https://cakebuild.net/download/bootstrapper/packages", $PACKAGES_CONFIG) } catch {
+            Throw "Could not download packages.config."
+        }
+    } else {
+        Write-Verbose -Message "using local cake.packages.config..."
+        Copy-Item $CAKE_PACKAGES_CONFIG $PACKAGES_CONFIG
     }
 }
 

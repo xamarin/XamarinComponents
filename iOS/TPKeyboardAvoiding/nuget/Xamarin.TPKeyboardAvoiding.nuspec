@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<package>
+  <metadata>
+    <id>Xamarin.TPKeyboardAvoiding</id>
+    <title>Xamarin.TPKeyboardAvoiding</title>
+    <version>1.3.2</version>
+    <authors>Microsoft</authors>
+    <owners>Microsoft</owners>
+    <requireLicenseAcceptance>true</requireLicenseAcceptance>
+    <description>A drop-in universal solution for moving text fields out of the way of the keyboard in iOS.</description>
+    <copyright>© Microsoft Corporation. All rights reserved.</copyright>
+    <projectUrl>https://go.microsoft.com/fwlink/?linkid=875000</projectUrl>
+    <licenseUrl>https://go.microsoft.com/fwlink/?linkid=875001</licenseUrl>
+  </metadata>
+  <files>
+    <file src="output/TPKeyboardAvoiding.dll" target="lib/Xamarin.iOS" />
+    <file src="External-Dependency-Info.txt" target="THIRD-PARTY-NOTICES.txt" />
+  </files>
+</package>

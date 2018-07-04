@@ -21,7 +21,7 @@ libraries:
 is_shell: true
 local-nuget-repo: ../output/
 packages:
-  android: Xamarin.Android.UniversalImageLoader, Version=1.9.5
+  android: Xamarin.Android.UniversalImageLoader, Version=1.9.5.1
 
 samples:
   - name: "Android Sample"
