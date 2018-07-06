@@ -10,5 +10,9 @@
 	</array>
 	<key>MinimumOSVersion</key>
 	<string>8.0</string>
+	<key>CFBundleIdentifier</key>
+	<string>com.yourcompany.SDWebImageSimpleSample</string>
+	<key>CFBundleName</key>
+	<string>SDWebImageSimpleSample</string>
 </dict>
 </plist>

@@ -4,12 +4,12 @@
 var TARGET = Argument ("t", Argument ("target", "Default"));
 
 var IOS_PODS = new List<string> {
-	"platform :ios, '5.0'",
+	"platform :ios, '7.0'",
 	"install! 'cocoapods', :integrate_targets => false",
 	"target 'Xamarin' do",
-	"pod 'SDWebImage', '3.7.5'",
-	"pod 'SDWebImage/MapKit', '3.7.5'",
-	"pod 'SDWebImage/WebP', '3.7.5'",
+	"pod 'SDWebImage', '4.4'",
+	"pod 'SDWebImage/MapKit', '4.4'",
+	"pod 'SDWebImage/WebP', '4.4'",
 	"end",
 };
 
