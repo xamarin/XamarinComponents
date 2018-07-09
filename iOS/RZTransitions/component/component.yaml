@@ -13,7 +13,7 @@ icons:
   - icons/icon_512x512.png
 
 libraries:
-  ios-unified: ../output/RZTransitions.dll
+  ios-unified: ../output/unified/RZTransitions.dll
 
 samples:
   - name: "RZTransitions Sample"
