@@ -1,8 +1,3 @@
-**Xamarin is not responsible for, nor does it grant any licenses to, third-party packages. Some packages may require or install dependencies which are governed by additional licenses.**
-
-Note: This component depends on [ViralSwitch](https://github.com/andreamazz/ViralSwitch), which is subject to the [MIT License](https://github.com/andreamazz/ViralSwitch/blob/master/LICENSE)
-
-### Xamarin Component for AMViralSwitch
 
 **The MIT License (MIT)**
 
