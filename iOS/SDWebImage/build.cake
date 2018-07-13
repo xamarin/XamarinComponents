@@ -3,7 +3,6 @@
 
 var TARGET = Argument ("t", Argument ("target", "Default"));
 
-<<<<<<< HEAD
 var IOS_PODS = new List<string> {
 	"platform :ios, '7.0'",
 	"install! 'cocoapods', :integrate_targets => false",
@@ -13,7 +12,7 @@ var IOS_PODS = new List<string> {
 	"pod 'SDWebImage/WebP', '4.4'",
 	"end",
 };
-=======
+
 var POD_VERSION = "4.0.0";
 
 var CreatePodSpec = new Action<string, string> ((platform, version) => {
@@ -37,7 +36,6 @@ var CreatePodSpec = new Action<string, string> ((platform, version) => {
 	FileWriteLines ("./externals/" + platform + "/Podfile", podspec.ToArray ());
 	CocoaPodInstall ("./externals/" + platform, new CocoaPodInstallSettings { NoIntegrate = true });
 });
->>>>>>> 6b6330588e1d0c93dea410c83be94292d3f4402b
 
 var buildSpec = new BuildSpec () {
 	Libs = new ISolutionBuilder [] {
