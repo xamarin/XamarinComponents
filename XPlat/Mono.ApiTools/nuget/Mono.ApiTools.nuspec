@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <package>
   <metadata>
-    <id>mono-api-tools</id>
+    <id>Mono.ApiTools</id>
     <version>$version$</version>
     <authors>Microsoft</authors>
     <owners>Microsoft</owners>

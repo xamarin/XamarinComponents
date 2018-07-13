@@ -53,14 +53,14 @@ Task("nuget")
 	EnsureDirectoryExists(OUTPUT_PATH);
 
 	// build the "preview" nuget
-	NuGetPack("nuget/mono-api-tools.nuspec", new NuGetPackSettings {
+	NuGetPack("nuget/Mono.ApiTools.nuspec", new NuGetPackSettings {
 		Version = NUGET_VERSION + "-preview",
 		BasePath = ".",
 		OutputDirectory = OUTPUT_PATH,
 	});
 
 	// build the "stable" nuget
-	NuGetPack("nuget/mono-api-tools.nuspec", new NuGetPackSettings {
+	NuGetPack("nuget/Mono.ApiTools.nuspec", new NuGetPackSettings {
 		Version = NUGET_VERSION,
 		BasePath = ".",
 		OutputDirectory = OUTPUT_PATH,
