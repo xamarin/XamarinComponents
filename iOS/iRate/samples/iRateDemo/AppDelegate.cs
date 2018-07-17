@@ -21,7 +21,7 @@ namespace iRateDemo
 	public partial class AppDelegate : UIApplicationDelegate
 	{
 		// class-level declarations
-		iRateDemoViewController viewController;
+		iRateViewController viewController;
 
 		// Must override the Window property for iRate to work properly
 		public override UIWindow Window { get; set; }
@@ -61,7 +61,7 @@ namespace iRateDemo
 			// Enable preview mode so everytime Application is launched you get the promt
 			rateAlert.PreviewMode = true;
 
-			viewController = new iRateDemoViewController ();
+			viewController = new iRateViewController ();
 			Window.RootViewController = viewController;
 			Window.MakeKeyAndVisible ();
 			

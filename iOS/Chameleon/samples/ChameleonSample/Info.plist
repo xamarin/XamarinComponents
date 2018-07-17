@@ -43,5 +43,7 @@
 	</array>
 	<key>UIMainStoryboardFile~ipad</key>
 	<string>Main</string>
+	<key>CFBundleName</key>
+	<string>ChameleonSample</string>
 </dict>
 </plist>

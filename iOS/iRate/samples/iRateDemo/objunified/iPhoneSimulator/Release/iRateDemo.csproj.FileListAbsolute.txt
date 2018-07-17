@@ -1,0 +1,15 @@
+/Users/adlair/Documents/Projects/Xamarin/XamarinComponents/iOS/iRate/samples/iRateDemo/bin/unified/iPhoneSimulator/Release/iRateDemo.exe
+/Users/adlair/Documents/Projects/Xamarin/XamarinComponents/iOS/iRate/samples/iRateDemo/bin/unified/iPhoneSimulator/Release/iRateDemo.pdb
+/Users/adlair/Documents/Projects/Xamarin/XamarinComponents/iOS/iRate/samples/iRateDemo/bin/unified/iPhoneSimulator/Release/MTiRate.dll
+/Users/adlair/Documents/Projects/Xamarin/XamarinComponents/iOS/iRate/samples/iRateDemo/bin/unified/iPhoneSimulator/Release/MTiRate.pdb
+/Users/adlair/Documents/Projects/Xamarin/XamarinComponents/iOS/iRate/samples/iRateDemo/objunified/iPhoneSimulator/Release/ibtool/_BundleResourceWithLogicalName.items
+/Users/adlair/Documents/Projects/Xamarin/XamarinComponents/iOS/iRate/samples/iRateDemo/objunified/iPhoneSimulator/Release/actool/_PartialAppManifest.items
+/Users/adlair/Documents/Projects/Xamarin/XamarinComponents/iOS/iRate/samples/iRateDemo/objunified/iPhoneSimulator/Release/actool/_BundleResourceWithLogicalName.items
+/Users/adlair/Documents/Projects/Xamarin/XamarinComponents/iOS/iRate/samples/iRateDemo/objunified/iPhoneSimulator/Release/coremlc/_PartialAppManifest.items
+/Users/adlair/Documents/Projects/Xamarin/XamarinComponents/iOS/iRate/samples/iRateDemo/objunified/iPhoneSimulator/Release/coremlc/_BundleResourceWithLogicalName.items
+/Users/adlair/Documents/Projects/Xamarin/XamarinComponents/iOS/iRate/samples/iRateDemo/objunified/iPhoneSimulator/Release/optimized/Default-568h@2x.png
+/Users/adlair/Documents/Projects/Xamarin/XamarinComponents/iOS/iRate/samples/iRateDemo/objunified/iPhoneSimulator/Release/optimized/
+/Users/adlair/Documents/Projects/Xamarin/XamarinComponents/iOS/iRate/samples/iRateDemo/objunified/iPhoneSimulator/Release/iRateDemo.csprojResolveAssemblyReference.cache
+/Users/adlair/Documents/Projects/Xamarin/XamarinComponents/iOS/iRate/samples/iRateDemo/objunified/iPhoneSimulator/Release/iRateDemo.csproj.CoreCompileInputs.cache
+/Users/adlair/Documents/Projects/Xamarin/XamarinComponents/iOS/iRate/samples/iRateDemo/objunified/iPhoneSimulator/Release/iRateDemo.exe
+/Users/adlair/Documents/Projects/Xamarin/XamarinComponents/iOS/iRate/samples/iRateDemo/objunified/iPhoneSimulator/Release/iRateDemo.pdb
