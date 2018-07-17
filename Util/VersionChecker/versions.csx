@@ -117,38 +117,38 @@ var fetchers = new VersionFetcher[] {
     new CocoaPods ("Google.TagManager iOS", "6.0.0", "GoogleTagManager", OWNER_MX1),
 
     //Firebase - Android
-    new XPath ("Firebase - Ads", "15.0.1", "https://dl.google.com/dl/android/maven2/com/google/firebase/firebase-ads/maven-metadata.xml", "/metadata/versioning/release", OWNER_CA1)
-    new XPath ("Firebase - Analytics", "16.0.1", "https://dl.google.com/dl/android/maven2/com/google/firebase/firebase-analytics/maven-metadata.xml", "/metadata/versioning/release", OWNER_CA1)
-    new XPath ("Firebase - Analytics Impl", "16.1.1", "https://dl.google.com/dl/android/maven2/com/google/firebase/firebase-analytics-impl/maven-metadata.xml", "/metadata/versioning/release", OWNER_CA1)
-    new XPath ("Firebase - Appindexing", "16.0.1", "https://dl.google.com/dl/android/maven2/com/google/firebase/firebase-appindexing/maven-metadata.xml", "/metadata/versioning/release", OWNER_CA1)
-    new XPath ("Firebase - Auth", "16.0.2", "https://dl.google.com/dl/android/maven2/com/google/firebase/firebase-auth/maven-metadata.xml", "/metadata/versioning/release", OWNER_CA1)
-    new XPath ("Firebase - Common", "16.0.0", "https://dl.google.com/dl/android/maven2/com/google/firebase/firebase-common/maven-metadata.xml", "/metadata/versioning/release", OWNER_CA1)
-    new XPath ("Firebase - Config", "16.0.0", "https://dl.google.com/dl/android/maven2/com/google/firebase/firebase-config/maven-metadata.xml", "/metadata/versioning/release", OWNER_CA1)
-    new XPath ("Firebase - Core", "16.0.1", "https://dl.google.com/dl/android/maven2/com/google/firebase/firebase-core/maven-metadata.xml", "/metadata/versioning/release", OWNER_CA1)
-    new XPath ("Firebase - Crash", "16.0.1", "https://dl.google.com/dl/android/maven2/com/google/firebase/firebase-crash/maven-metadata.xml", "/metadata/versioning/release", OWNER_CA1)
-    new XPath ("Firebase - Database", "16.0.1", "https://dl.google.com/dl/android/maven2/com/google/firebase/firebase-database/maven-metadata.xml", "/metadata/versioning/release", OWNER_CA1)
-    new XPath ("Firebase - Database Connection", "16.0.1", "https://dl.google.com/dl/android/maven2/com/google/firebase/firebase-database-connection/maven-metadata.xml", "/metadata/versioning/release", OWNER_CA1)
-    new XPath ("Firebase - Dynamic Links", "16.0.1", "https://dl.google.com/dl/android/maven2/com/google/firebase/firebase-dynamic-links/maven-metadata.xml", "/metadata/versioning/release", OWNER_CA1)
-    new XPath ("Firebase - Firestore", "17.0.2", "https://dl.google.com/dl/android/maven2/com/google/firebase/firebase-firestore/maven-metadata.xml", "/metadata/versioning/release", OWNER_CA1)
-    new XPath ("Firebase - Iid", "16.2.0", "https://dl.google.com/dl/android/maven2/com/google/firebase/firebase-iid/maven-metadata.xml", "/metadata/versioning/release", OWNER_CA1)
-    new XPath ("Firebase - Invites", "16.0.1", "https://dl.google.com/dl/android/maven2/com/google/firebase/firebase-invites/maven-metadata.xml", "/metadata/versioning/release", OWNER_CA1)
-    new XPath ("Firebase - Messaging", "17.1.0", "https://dl.google.com/dl/android/maven2/com/google/firebase/firebase-messaging/maven-metadata.xml", "/metadata/versioning/release", OWNER_CA1)
-    new XPath ("Firebase - Perf", "16.0.0", "https://dl.google.com/dl/android/maven2/com/google/firebase/firebase-perf/maven-metadata.xml", "/metadata/versioning/release", OWNER_CA1)
-    new XPath ("Firebase - Storage", "16.0.1", "https://dl.google.com/dl/android/maven2/com/google/firebase/firebase-storage/maven-metadata.xml", "/metadata/versioning/release", OWNER_CA1)
-    new XPath ("Firebase - Storage Common", "16.0.1", "https://dl.google.com/dl/android/maven2/com/google/firebase/firebase-storage-common/maven-metadata.xml", "/metadata/versioning/release", OWNER_CA1)
+    new XPath ("Firebase - Ads", "15.0.1", "https://dl.google.com/dl/android/maven2/com/google/firebase/firebase-ads/maven-metadata.xml", "/metadata/versioning/release", OWNER_CA1),
+    new XPath ("Firebase - Analytics", "16.0.1", "https://dl.google.com/dl/android/maven2/com/google/firebase/firebase-analytics/maven-metadata.xml", "/metadata/versioning/release", OWNER_CA1),
+    new XPath ("Firebase - Analytics Impl", "16.1.1", "https://dl.google.com/dl/android/maven2/com/google/firebase/firebase-analytics-impl/maven-metadata.xml", "/metadata/versioning/release", OWNER_CA1),
+    new XPath ("Firebase - Appindexing", "16.0.1", "https://dl.google.com/dl/android/maven2/com/google/firebase/firebase-appindexing/maven-metadata.xml", "/metadata/versioning/release", OWNER_CA1),
+    new XPath ("Firebase - Auth", "16.0.2", "https://dl.google.com/dl/android/maven2/com/google/firebase/firebase-auth/maven-metadata.xml", "/metadata/versioning/release", OWNER_CA1),
+    new XPath ("Firebase - Common", "16.0.0", "https://dl.google.com/dl/android/maven2/com/google/firebase/firebase-common/maven-metadata.xml", "/metadata/versioning/release", OWNER_CA1),
+    new XPath ("Firebase - Config", "16.0.0", "https://dl.google.com/dl/android/maven2/com/google/firebase/firebase-config/maven-metadata.xml", "/metadata/versioning/release", OWNER_CA1),
+    new XPath ("Firebase - Core", "16.0.1", "https://dl.google.com/dl/android/maven2/com/google/firebase/firebase-core/maven-metadata.xml", "/metadata/versioning/release", OWNER_CA1),
+    new XPath ("Firebase - Crash", "16.0.1", "https://dl.google.com/dl/android/maven2/com/google/firebase/firebase-crash/maven-metadata.xml", "/metadata/versioning/release", OWNER_CA1),
+    new XPath ("Firebase - Database", "16.0.1", "https://dl.google.com/dl/android/maven2/com/google/firebase/firebase-database/maven-metadata.xml", "/metadata/versioning/release", OWNER_CA1),
+    new XPath ("Firebase - Database Connection", "16.0.1", "https://dl.google.com/dl/android/maven2/com/google/firebase/firebase-database-connection/maven-metadata.xml", "/metadata/versioning/release", OWNER_CA1),
+    new XPath ("Firebase - Dynamic Links", "16.0.1", "https://dl.google.com/dl/android/maven2/com/google/firebase/firebase-dynamic-links/maven-metadata.xml", "/metadata/versioning/release", OWNER_CA1),
+    new XPath ("Firebase - Firestore", "17.0.2", "https://dl.google.com/dl/android/maven2/com/google/firebase/firebase-firestore/maven-metadata.xml", "/metadata/versioning/release", OWNER_CA1),
+    new XPath ("Firebase - Iid", "16.2.0", "https://dl.google.com/dl/android/maven2/com/google/firebase/firebase-iid/maven-metadata.xml", "/metadata/versioning/release", OWNER_CA1),
+    new XPath ("Firebase - Invites", "16.0.1", "https://dl.google.com/dl/android/maven2/com/google/firebase/firebase-invites/maven-metadata.xml", "/metadata/versioning/release", OWNER_CA1),
+    new XPath ("Firebase - Messaging", "17.1.0", "https://dl.google.com/dl/android/maven2/com/google/firebase/firebase-messaging/maven-metadata.xml", "/metadata/versioning/release", OWNER_CA1),
+    new XPath ("Firebase - Perf", "16.0.0", "https://dl.google.com/dl/android/maven2/com/google/firebase/firebase-perf/maven-metadata.xml", "/metadata/versioning/release", OWNER_CA1),
+    new XPath ("Firebase - Storage", "16.0.1", "https://dl.google.com/dl/android/maven2/com/google/firebase/firebase-storage/maven-metadata.xml", "/metadata/versioning/release", OWNER_CA1),
+    new XPath ("Firebase - Storage Common", "16.0.1", "https://dl.google.com/dl/android/maven2/com/google/firebase/firebase-storage-common/maven-metadata.xml", "/metadata/versioning/release", OWNER_CA1),
     
-    new XPath ("Firebase - Abt", "16.0.0", "https://dl.google.com/dl/android/maven2/com/google/firebase/firebase-abt/maven-metadata.xml", "/metadata/versioning/release", OWNER_CA1)
-    new XPath ("Firebase - Ads Lite", "15.0.1", "https://dl.google.com/dl/android/maven2/com/google/firebase/firebase-ads-lite/maven-metadata.xml", "/metadata/versioning/release", OWNER_CA1)
-    new XPath ("Firebase - Auth Interop", "16.0.0", "https://dl.google.com/dl/android/maven2/com/google/firebase/firebase-auth-interop/maven-metadata.xml", "/metadata/versioning/release", OWNER_CA1)
-    new XPath ("Firebase - Database Collection", "15.0.1", "https://dl.google.com/dl/android/maven2/com/google/firebase/firebase-database-collection/maven-metadata.xml", "/metadata/versioning/release", OWNER_CA1)
-    new XPath ("Firebase - Functions", "16.0.1", "https://dl.google.com/dl/android/maven2/com/google/firebase/firebase-functions/maven-metadata.xml", "/metadata/versioning/release", OWNER_CA1)
-    new XPath ("Firebase - Iid Interop", "16.0.0", "https://dl.google.com/dl/android/maven2/com/google/firebase/firebase-iid-interop/maven-metadata.xml", "/metadata/versioning/release", OWNER_CA1)    
-    new XPath ("Firebase - Measurement Connector", "17.0.0", "https://dl.google.com/dl/android/maven2/com/google/firebase/firebase-measurement-connector/maven-metadata.xml", "/metadata/versioning/release", OWNER_CA1)
-    new XPath ("Firebase - Measurement Connector Impl", "16.0.1", "https://dl.google.com/dl/android/maven2/com/google/firebase/firebase-measurement-connector-impl/maven-metadata.xml", "/metadata/versioning/release", OWNER_CA1)
-    new XPath ("Firebase - Ml Common", "16.0.0", "https://dl.google.com/dl/android/maven2/com/google/firebase/firebase-ml-common/maven-metadata.xml", "/metadata/versioning/release", OWNER_CA1)
-    new XPath ("Firebase - Ml Model Interpreter", "16.0.0", "https://dl.google.com/dl/android/maven2/com/google/firebase/firebase-ml-model-interpreter/maven-metadata.xml", "/metadata/versioning/release", OWNER_CA1)
-    new XPath ("Firebase - Ml Vision", "16.0.0", "https://dl.google.com/dl/android/maven2/com/google/firebase/firebase-ml-vision/maven-metadata.xml", "/metadata/versioning/release", OWNER_CA1)
-    new XPath ("Firebase - Ml Vision Image Label Model", "15.0.0", "https://dl.google.com/dl/android/maven2/com/google/firebase/firebase-ml-vision-image-label-model/maven-metadata.xml", "/metadata/versioning/release", OWNER_CA1)
+    new XPath ("Firebase - Abt", "16.0.0", "https://dl.google.com/dl/android/maven2/com/google/firebase/firebase-abt/maven-metadata.xml", "/metadata/versioning/release", OWNER_CA1),
+    new XPath ("Firebase - Ads Lite", "15.0.1", "https://dl.google.com/dl/android/maven2/com/google/firebase/firebase-ads-lite/maven-metadata.xml", "/metadata/versioning/release", OWNER_CA1),
+    new XPath ("Firebase - Auth Interop", "16.0.0", "https://dl.google.com/dl/android/maven2/com/google/firebase/firebase-auth-interop/maven-metadata.xml", "/metadata/versioning/release", OWNER_CA1),
+    new XPath ("Firebase - Database Collection", "15.0.1", "https://dl.google.com/dl/android/maven2/com/google/firebase/firebase-database-collection/maven-metadata.xml", "/metadata/versioning/release", OWNER_CA1),
+    new XPath ("Firebase - Functions", "16.0.1", "https://dl.google.com/dl/android/maven2/com/google/firebase/firebase-functions/maven-metadata.xml", "/metadata/versioning/release", OWNER_CA1),
+    new XPath ("Firebase - Iid Interop", "16.0.0", "https://dl.google.com/dl/android/maven2/com/google/firebase/firebase-iid-interop/maven-metadata.xml", "/metadata/versioning/release", OWNER_CA1),
+    new XPath ("Firebase - Measurement Connector", "17.0.0", "https://dl.google.com/dl/android/maven2/com/google/firebase/firebase-measurement-connector/maven-metadata.xml", "/metadata/versioning/release", OWNER_CA1),
+    new XPath ("Firebase - Measurement Connector Impl", "16.0.1", "https://dl.google.com/dl/android/maven2/com/google/firebase/firebase-measurement-connector-impl/maven-metadata.xml", "/metadata/versioning/release", OWNER_CA1),
+    new XPath ("Firebase - Ml Common", "16.0.0", "https://dl.google.com/dl/android/maven2/com/google/firebase/firebase-ml-common/maven-metadata.xml", "/metadata/versioning/release", OWNER_CA1),
+    new XPath ("Firebase - Ml Model Interpreter", "16.0.0", "https://dl.google.com/dl/android/maven2/com/google/firebase/firebase-ml-model-interpreter/maven-metadata.xml", "/metadata/versioning/release", OWNER_CA1),
+    new XPath ("Firebase - Ml Vision", "16.0.0", "https://dl.google.com/dl/android/maven2/com/google/firebase/firebase-ml-vision/maven-metadata.xml", "/metadata/versioning/release", OWNER_CA1),
+    new XPath ("Firebase - Ml Vision Image Label Model", "15.0.0", "https://dl.google.com/dl/android/maven2/com/google/firebase/firebase-ml-vision-image-label-model/maven-metadata.xml", "/metadata/versioning/release", OWNER_CA1),
 
 
     // Firebase - iOS
