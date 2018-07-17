@@ -24,6 +24,9 @@ namespace NugetAuditor.Core.Processors
         {
             var results = new List<string>();
 
+            //normalise the path
+            var exportPath = Path.GetFullPath(outputFolderPath);
+
             using (var fStream = new FileStream(this.filePath, FileMode.Open))
             {
                 using (ZipArchive archive = new ZipArchive(fStream))
@@ -32,21 +35,30 @@ namespace NugetAuditor.Core.Processors
 
                     foreach (ZipArchiveEntry entry in its)
                     {
+                        var fileName = entry.FullName;
 
-                        var exportFilePath = Path.Combine(outputFolderPath, entry.FullName);
-
-                        if (!Directory.Exists(Path.GetDirectoryName(exportFilePath)))
-                            Directory.CreateDirectory(Path.GetDirectoryName(exportFilePath));
-
-                        var aStream = entry.Open();
-
-                        using (var eStream = new FileStream(exportFilePath, FileMode.Create, FileAccess.ReadWrite))
+                        //check to make sure there is no funny business going on
+                        if (!fileName.EndsWith(Path.DirectorySeparatorChar.ToString()))
                         {
-                            aStream.CopyTo(eStream);
+                            var exportFilePath = Path.Combine(exportPath, fileName);
+
+
+                            if (!Directory.Exists(Path.GetDirectoryName(exportFilePath)))
+                                Directory.CreateDirectory(Path.GetDirectoryName(exportFilePath));
+
+                            var aStream = entry.Open();
+
+                            using (var eStream = new FileStream(exportFilePath, FileMode.Create, FileAccess.ReadWrite))
+                            {
+                                aStream.CopyTo(eStream);
+                            }
+
+
+                            results.Add(exportFilePath);
                         }
                             
 
-                        results.Add(exportFilePath);
+    
                     }
                 }
             }
