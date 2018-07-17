@@ -22,7 +22,6 @@ namespace MTiRate
 		[Field ("iRateAppStoreGameGenreID", "__Internal")]
 		nuint iRateAppStoreGameGenreID { get; }
 #endif
-
 		// extern NSString *const iRateErrorDomain;
 		[Field ("iRateErrorDomain", "__Internal")]
 		NSString iRateErrorDomain { get; }
@@ -207,6 +206,10 @@ namespace MTiRate
 		[Export ("rateButtonLabel")]
 		string RateButtonLabel { get; set; }
 
+        // @property (assign, nonatomic) BOOL useSKStoreReviewControllerIfAvailable;
+        [Export("useSKStoreReviewControllerIfAvailable")]
+        bool UseSKStoreReviewControllerIfAvailable { get; set; }
+
 		// @property (assign, nonatomic) BOOL useUIAlertControllerIfAvailable;
 		[Export ("useUIAlertControllerIfAvailable")]
 		bool UseUIAlertControllerIfAvailable { get; set; }
@@ -279,9 +282,12 @@ namespace MTiRate
 		[Export ("ratedAnyVersion")]
 		bool RatedAnyVersion { get; }
 
-		// @property (nonatomic, unsafe_unretained) id<iRateDelegate> delegate;
-		[NullAllowed, Export ("delegate", ArgumentSemantic.Assign)]
-		IiRateDelegate Delegate { get; set; }
+        [Wrap("WeakDelegate")]
+        iRateDelegate Delegate { get; set; }
+
+        // @property (nonatomic, unsafe_unretained) id<iRateDelegate> delegate;
+        [NullAllowed, Export("delegate", ArgumentSemantic.Assign)]
+        NSObject WeakDelegate { get; set; }
 
 		// -(BOOL)shouldPromptForRating;
 		[Export ("shouldPromptForRating")]
@@ -311,6 +317,4 @@ namespace MTiRate
 		[Export ("remindLater")]
 		void RemindLater ();
 	}
-
 }
-

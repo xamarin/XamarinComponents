@@ -12,9 +12,9 @@ namespace MTiRate
 	public enum iRateErrorCode : ulong
 	{
 		BundleIdDoesNotMatchAppStore = 1,
-		ApplicationNotFoundOnAppStore,
-		ApplicationIsNotLatestVersion,
-		CouldNotOpenRatingPageURL
+        ApplicationNotFoundOnAppStore,
+        ApplicationIsNotLatestVersion,
+        CouldNotOpenRatingPageURL
 	}
 }
 
