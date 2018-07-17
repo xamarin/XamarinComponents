@@ -5,13 +5,13 @@ using Android.App;
 // Information about this assembly is defined by the following attributes. 
 // Change them to the values specific to your project.
 
-[assembly: AssemblyTitle("Xamarin.TensorFlow.Lite.Bindings.XamarinAndroid")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyTitle("Xamarin.TensorFlow.Lite")]
+[assembly: AssemblyDescription("Xamarin bindings for TensorFlow Lite package")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("HolisticWare / Xamarin / Microsoft ")]
+[assembly: AssemblyCompany("Microsoft Corporation")]
 [assembly: AssemblyProduct("")]
-[assembly: AssemblyCopyright("moljac @ HolisticWare / Xamarin / Microsoft 2016")]
-[assembly: AssemblyTrademark("HolisticWare / Xamarin / Microsoft ")]
+[assembly: AssemblyCopyright("Microsoft Corporation 2018")]
+[assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
 // The assembly version has the format "{Major}.{Minor}.{Build}.{Revision}".

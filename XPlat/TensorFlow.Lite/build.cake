@@ -62,12 +62,12 @@ BuildSpec buildSpec = new BuildSpec ()
 	{
 		new DefaultSolutionBuilder 
 		{
-			SolutionPath = "./source/Xamarin.TensorFlow.Lite.Source.sln",
+			SolutionPath = "./source/Xamarin.TensorFlow.Lite.sln",
 			OutputFiles = new [] 
 			{ 
 				new OutputFileCopy 
 				{ 
-					FromFile = "./source/Xamarin.TensorFlow.Lite.Bindings.XamarinAndroid/bin/Release/Xamarin.TensorFlow.Lite.Bindings.dll" 
+					FromFile = "./source/Xamarin.TensorFlow.Lite.Bindings.XamarinAndroid/bin/Release/monoandroid81/Xamarin.TensorFlow.Lite.dll" 
 				},
 				new OutputFileCopy 
 				{ 
@@ -114,17 +114,13 @@ Task ("externals")
 		() => 
 		{
 			Information("externals ...");
-
-			if (!DirectoryExists ("./externals/"))
-			{
-				CreateDirectory ("./externals");
-			}
-
+			EnsureDirectoryExists("./externals/android");
 			Information("    downloading ...");
 
-			if ( ! string.IsNullOrEmpty(AAR_URL) )
+			string file = "./externals/android/tensorflow-lite-1.9.0.aar";
+			if ( ! string.IsNullOrEmpty(AAR_URL) && ! FileExists(file))
 			{
-				DownloadFile (AAR_URL, "./externals/android/tensorflow-lite-1.9.0.aar");
+				DownloadFile (AAR_URL, file);
 			}
 		}
 	);
