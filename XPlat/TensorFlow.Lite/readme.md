@@ -1,4 +1,4 @@
-# Dotnet new template of the Xamarin Components team
+# TensorFlow Lite
 
 TensorFlow Lite bindings for Xamarin.Android
 
