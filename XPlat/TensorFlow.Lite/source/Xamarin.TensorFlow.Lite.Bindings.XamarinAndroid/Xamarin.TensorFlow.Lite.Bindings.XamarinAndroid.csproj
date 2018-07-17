@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
   <!--
   https://montemagno.com/converting-xamarin-libraries-to-sdk-style-multi-targeted-projects/
     
@@ -67,7 +67,7 @@
     </ItemGroup>
 
     <ItemGroup>
-        <LibraryProjectZip Include="..\..\externals\android\tensorflow-lite-1.9.0.aar" >
+        <LibraryProjectZip Include="..\..\externals\android\tensorflow-lite-1.9.0.aar">
             <Link>Jars\tensorflow-lite-1.9.0.aar</Link>
         </LibraryProjectZip>
     </ItemGroup>
