@@ -13,13 +13,10 @@
     <licenseUrl>https://go.microsoft.com/fwlink/?linkid=865072</licenseUrl>
   </metadata>
   <files>
-<<<<<<< HEAD
     <file src="output/unified/SDWebImage.dll" target="lib/Xamarin.iOS" />
-=======
     <file src="output/SDWebImage.iOS.dll" target="lib/Xamarin.iOS" />
     <file src="output/SDWebImage.macOS.dll" target="lib/Xamarin.Mac" />
     <file src="output/SDWebImage.tvOS.dll" target="lib/Xamarin.tvOS" />
->>>>>>> 6b6330588e1d0c93dea410c83be94292d3f4402b
     <file src="External-Dependency-Info.txt" target="THIRD-PARTY-NOTICES.txt" />
   </files>
 </package>

@@ -4,11 +4,8 @@ id: sdwebimage
 publisher: Xamarin Inc
 publisher-url: https://xamarin.com/
 src-url: https://github.com/xamarin/XamarinComponents/tree/master/iOS/SDWebImage
-<<<<<<< HEAD
 summary: Extensions for UIImageView allowing you to asynchronously load web images.
-=======
 summary: Extensions for UIImageView and NSImageView allowing you to asynchronously load web images.
->>>>>>> 6b6330588e1d0c93dea410c83be94292d3f4402b
 license: ../License.md
 icons:
  - icons/sdwebimage_128x128.png
@@ -69,12 +66,10 @@ samples:
           - Xamarin.SDWebImage
   - name: "iOS MapKit Annotation Image"
     path: "../samples/SDWebImageMapKitSample/SDWebImageMapKitSample.sln"
-<<<<<<< HEAD
 no_build: true
 is_shell: true
 packages:
   ios-unified: Xamarin.SDWebImage, Version=3.7.5
-=======
     removeProjects:
       - Xamarin.SDWebImage
       - Xamarin.SDWebImage.tvOS
@@ -84,7 +79,6 @@ packages:
         packages:
           - Xamarin.SDWebImage
 
->>>>>>> 6b6330588e1d0c93dea410c83be94292d3f4402b
 additional-files:
   - source: "../External-Dependency-Info.txt"
     destination: "THIRD-PARTY-NOTICES.txt"

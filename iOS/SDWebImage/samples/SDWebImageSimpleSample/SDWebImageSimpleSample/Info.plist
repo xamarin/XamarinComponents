@@ -34,14 +34,12 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
-<<<<<<< HEAD
 	<key>MinimumOSVersion</key>
 	<string>8.0</string>
 	<key>CFBundleIdentifier</key>
 	<string>com.yourcompany.SDWebImageSimpleSample</string>
 	<key>CFBundleName</key>
 	<string>SDWebImageSimpleSample</string>
-=======
 	<key>XSAppIconAssets</key>
 	<string>Assets.xcassets/AppIcon.appiconset</string>
 	<key>NSAppTransportSecurity</key>
@@ -49,6 +47,5 @@
 		<key>NSAllowsArbitraryLoads</key>
 		<true/>
 	</dict>
->>>>>>> 6b6330588e1d0c93dea410c83be94292d3f4402b
 </dict>
 </plist>

@@ -38,15 +38,12 @@
 	<string>Assets.xcassets/AppIcon.appiconset</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string>We want to use your location, bwahahaha!</string>
-<<<<<<< HEAD
 	<key>CFBundleName</key>
 	<string>SDWebImageMapKitSample</string>
-=======
 	<key>NSAppTransportSecurity</key>
 	<dict>
 		<key>NSAllowsArbitraryLoads</key>
 		<true/>
 	</dict>
->>>>>>> 6b6330588e1d0c93dea410c83be94292d3f4402b
 </dict>
 </plist>
