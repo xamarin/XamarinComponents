@@ -30,7 +30,7 @@ samples:
 
 is_shell: true
 packages:
-	ios-unified: Xamarin.NumberProgressBar, Version=1.2.0.1
+	android: Xamarin.NumberProgressBar, Version=1.2.0.1
 local-nuget-repo: ../output
 additional-files:
   - source: "../External-Dependency-Info.txt"

@@ -2,7 +2,7 @@
 <package>
   <metadata>
     <id>Xamarin.NumberProgressBar</id>
-    <title>NumberProgressBar for Xamarin.MonoAndroid23</title>
+    <title>Xamarin NumberProgressBar</title>
     <version>1.2.0.1</version>
     <authors>Microsoft</authors>
     <owners>Microsoft</owners>
@@ -13,7 +13,7 @@
     <licenseUrl>https://go.microsoft.com/fwlink/?linkid=875040</licenseUrl>
   </metadata>
   <files>
-    <file src="output/NumberProgressBar.dll" target="lib/Xamarin.MonoAndroid23" />
+    <file src="output/NumberProgressBar.dll" target="lib/MonoAndroid23" />
     <file src="External-Dependency-Info.txt" target="THIRD-PARTY-NOTICES.txt" />
   </files>
 </package>
