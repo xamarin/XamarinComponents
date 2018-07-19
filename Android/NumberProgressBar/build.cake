@@ -23,6 +23,10 @@ var buildSpec = new BuildSpec () {
 		new DefaultSolutionBuilder { SolutionPath = "./samples/NumberProgressBarSample.sln" },
 	},
 
+	NuGets = new [] {
+		new NuGetInfo { NuSpec = "./nuget/Xamarin.NumberProgressBar.nuspec" },
+	},
+
 	Components = new [] {
 		new Component {ManifestDirectory = "./component"},
 	},
