@@ -59,7 +59,7 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedJar Include="..\..\externals\constraint-layout-solver.jar">
-      <Link>constraint-layout-solver.jar</Link>
+      <Link>Jars\constraint-layout-solver.jar</Link>
     </EmbeddedJar>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.Bindings.targets" />

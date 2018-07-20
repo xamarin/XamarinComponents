@@ -59,7 +59,7 @@
   </ItemGroup>
   <ItemGroup>
     <LibraryProjectZip Include="..\..\externals\constraint-layout.aar">
-      <Link>constraint-layout.aar</Link>
+      <Link>Jars\constraint-layout.aar</Link>
     </LibraryProjectZip>
   </ItemGroup>
   <ItemGroup>
