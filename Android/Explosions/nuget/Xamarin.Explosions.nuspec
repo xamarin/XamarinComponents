@@ -2,7 +2,7 @@
 <package>
   <metadata>
     <id>Xamarin.Explosions</id>
-    <title>Explosions for Xamarin.MonoAndroid23</title>
+    <title>Explosions for Android</title>
     <version>1.0.0.2</version>
     <authors>Microsoft</authors>
     <owners>Microsoft</owners>
@@ -13,7 +13,7 @@
     <licenseUrl>https://go.microsoft.com/fwlink/?linkid=875058</licenseUrl>
   </metadata>
   <files>
-    <file src="output/Explosions.dll" target="lib/Xamarin.MonoAndroid8123" />
+    <file src="output/Explosions.dll" target="lib/MonoAndroid8123" />
     <file src="External-Dependency-Info.txt" target="THIRD-PARTY-NOTICES.txt" />
   </files>
 </package>

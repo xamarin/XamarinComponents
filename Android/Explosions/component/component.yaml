@@ -30,7 +30,7 @@ samples:
 
 is_shell: true
 packages:
-  ios-unified: Xamarin.Explosions, Version=1.0.0.2
+  android: Xamarin.Explosions, Version=1.0.0.2
 local-nuget-repo: ../output
 additional-files:
   - source: "../External-Dependency-Info.txt"
