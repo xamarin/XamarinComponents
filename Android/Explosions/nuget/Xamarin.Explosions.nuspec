@@ -13,7 +13,7 @@
     <licenseUrl>https://go.microsoft.com/fwlink/?linkid=875058</licenseUrl>
   </metadata>
   <files>
-    <file src="output/Explosions.dll" target="lib/MonoAndroid8123" />
+    <file src="output/Explosions.dll" target="lib/MonoAndroid23" />
     <file src="External-Dependency-Info.txt" target="THIRD-PARTY-NOTICES.txt" />
   </files>
 </package>
