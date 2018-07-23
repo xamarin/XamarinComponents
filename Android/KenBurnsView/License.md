@@ -1,9 +1,3 @@
-**Xamarin is not responsible for, nor does it grant any licenses to, third-party packages. Some packages may require or install dependencies which are governed by additional licenses.**
-
-Note: This component depends on [KenBurnsView](https://github.com/flavioarfaria/KenBurnsView), which is subject to the [Apache License, Version 2.0](https://github.com/flavioarfaria/KenBurnsView/blob/master/LICENSE)
-
-### Xamarin Component for KenBurnsView
-
 **The MIT License (MIT)**
 
 Copyright (c) .NET Foundation Contributors

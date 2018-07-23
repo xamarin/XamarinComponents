@@ -10,6 +10,7 @@ namespace NugetAuditor.Core.Processors
     public class PackageProcessor : IDisposable
     {
         private const string FWLinkString = "go.microsoft.com/fwlink/";
+        private const string MSCopyright = "© Microsoft Corporation. All rights reserved.";
 
         private PackageData package;
         private PackageSearchData searchData;
@@ -174,7 +175,13 @@ namespace NugetAuditor.Core.Processors
                 TotalVersions = package.Versions.Count,
                 TotalDownloads = package.TotalDownloads,
                 DatePublished = searchData.Published.Date,
+                Copyright = searchData.Copyright,
             };
+
+            if (!string.IsNullOrWhiteSpace(result.Copyright))
+                result.Copyright = result.Copyright.Replace("Â", string.Empty); 
+
+            result.IsValidCopyright = CheckCopyright(result.Copyright);
 
             result.Owners = string.Join(",", searchData.PackageRegistration.Owners);
             result.HasMicrosoftOwner = result.Owners.ToLower().Contains("microsoft");
@@ -184,6 +191,14 @@ namespace NugetAuditor.Core.Processors
             VerifyUrls(result);
 
             return result;
+        }
+
+        private bool CheckCopyright(string copyright)
+        {
+            if (string.IsNullOrWhiteSpace(copyright))
+                return false;
+
+            return copyright.Equals(copyright);
         }
 
         private RegistrationLeafResponse GetLeafResponse()

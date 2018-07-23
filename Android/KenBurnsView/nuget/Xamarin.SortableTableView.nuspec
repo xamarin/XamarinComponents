@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<package>
+  <metadata>
+    <id>Xamarin.KenBurnsView</id>
+    <title>KenBurnsView for Xamarin.MonoAndroid44</title>
+    <version>1.0.8</version>
+    <authors>Microsoft</authors>
+    <owners>Microsoft</owners>
+    <requireLicenseAcceptance>true</requireLicenseAcceptance>
+    <description>Android library that provides an extension to ImageView that creates an immersive experience by animating its drawable using the [Ken Burns Effect].</description>
+    <copyright>© Microsoft Corporation. All rights reserved.</copyright>
+    <projectUrl>https://go.microsoft.com/fwlink/?linkid=874937</projectUrl>
+    <licenseUrl>https://go.microsoft.com/fwlink/?linkid=874938</licenseUrl>
+  </metadata>
+  <files>
+    <file src="output/KenBurnsView.dll" target="lib/MonoAndroid44" />
+    <file src="External-Dependency-Info.txt" target="THIRD-PARTY-NOTICES.txt" />
+  </files>
+</package>

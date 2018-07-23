@@ -41,5 +41,9 @@ namespace NugetAuditor.Core
         public bool ProjectUrlPointsToComponentsStore { get; set; }
 
         public bool LicenceUrlPointsToComponentsStore { get; set; }
+
+        public string Copyright { get; set; }
+
+        public bool IsValidCopyright { get; set; }
     }
 }

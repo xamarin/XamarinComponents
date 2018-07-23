@@ -1,0 +1,34 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.26124.0
+MinimumVisualStudioVersion = 15.0.26124.0
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "mono-api-info", "mono-api-info\mono-api-info.csproj", "{82A42CF4-F381-4235-8FBA-2DF3AFD9895F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "mono-api-diff", "mono-api-diff\mono-api-diff.csproj", "{6D5FA521-134A-4986-BCE4-0DBF24E130F5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "mono-api-html", "mono-api-html\mono-api-html.csproj", "{14DE355B-E0D7-403F-BD94-91FFB4972CC0}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{82A42CF4-F381-4235-8FBA-2DF3AFD9895F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{82A42CF4-F381-4235-8FBA-2DF3AFD9895F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{82A42CF4-F381-4235-8FBA-2DF3AFD9895F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{82A42CF4-F381-4235-8FBA-2DF3AFD9895F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6D5FA521-134A-4986-BCE4-0DBF24E130F5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6D5FA521-134A-4986-BCE4-0DBF24E130F5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6D5FA521-134A-4986-BCE4-0DBF24E130F5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6D5FA521-134A-4986-BCE4-0DBF24E130F5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{14DE355B-E0D7-403F-BD94-91FFB4972CC0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{14DE355B-E0D7-403F-BD94-91FFB4972CC0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{14DE355B-E0D7-403F-BD94-91FFB4972CC0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{14DE355B-E0D7-403F-BD94-91FFB4972CC0}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
