@@ -1,0 +1,341 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{CC058B34-4817-4F51-95F9-B743A2C6F2C4}</ProjectGuid>
+    <ProjectTypeGuids>{8FFB629D-F513-41CE-95D2-7ECE97B6EEEC};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <RootNamespace>MaterialComponents</RootNamespace>
+    <AssemblyName>MaterialComponents</AssemblyName>
+    <IPhoneResourcePrefix>Resources</IPhoneResourcePrefix>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug</OutputPath>
+    <DefineConstants>DEBUG;</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release</OutputPath>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="Xamarin.iOS" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ObjcBindingApiDefinition Include="ApiDefinition.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ObjcBindingCoreSource Include="Structs.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <NativeReference Include="..\..\externals\libMaterialComponents.a">
+      <Kind>Static</Kind>
+      <SmartLink>False</SmartLink>
+      <LinkerFlags>-ObjC</LinkerFlags>
+      <Frameworks>CoreGraphics QuartzCore</Frameworks>
+    </NativeReference>
+    <NativeReference Include="..\..\externals\libMotionAnimator.a">
+      <Kind>Static</Kind>
+      <SmartLink>False</SmartLink>
+    </NativeReference>
+    <NativeReference Include="..\..\externals\libMDFInternationalization.a">
+      <Kind>Static</Kind>
+      <SmartLink>False</SmartLink>
+    </NativeReference>
+    <NativeReference Include="..\..\externals\libMDFTextAccessibility.a">
+      <Kind>Static</Kind>
+      <SmartLink>False</SmartLink>
+    </NativeReference>
+    <NativeReference Include="..\..\externals\libMotionInterchange.a">
+      <Kind>Static</Kind>
+      <SmartLink>False</SmartLink>
+    </NativeReference>
+    <NativeReference Include="..\..\externals\libMotionTransitioning.a">
+      <Kind>Static</Kind>
+      <SmartLink>False</SmartLink>
+    </NativeReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Resources\" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="..\..\externals\Pods\MaterialComponents\components\Tabs\src\MaterialTabs.bundle\Resources\ar.lproj\MaterialTabs.strings">
+      <Link>Resources\MaterialTabs.bundle\Resources\ar.lproj\MaterialTabs.strings</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\externals\Pods\MaterialComponents\components\Tabs\src\MaterialTabs.bundle\Resources\bg.lproj\MaterialTabs.strings">
+      <Link>Resources\MaterialTabs.bundle\Resources\bg.lproj\MaterialTabs.strings</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\externals\Pods\MaterialComponents\components\Tabs\src\MaterialTabs.bundle\Resources\ca.lproj\MaterialTabs.strings">
+      <Link>Resources\MaterialTabs.bundle\Resources\ca.lproj\MaterialTabs.strings</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\externals\Pods\MaterialComponents\components\Tabs\src\MaterialTabs.bundle\Resources\cs.lproj\MaterialTabs.strings">
+      <Link>Resources\MaterialTabs.bundle\Resources\cs.lproj\MaterialTabs.strings</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\externals\Pods\MaterialComponents\components\Tabs\src\MaterialTabs.bundle\Resources\da.lproj\MaterialTabs.strings">
+      <Link>Resources\MaterialTabs.bundle\Resources\da.lproj\MaterialTabs.strings</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\externals\Pods\MaterialComponents\components\Tabs\src\MaterialTabs.bundle\Resources\de.lproj\MaterialTabs.strings">
+      <Link>Resources\MaterialTabs.bundle\Resources\de.lproj\MaterialTabs.strings</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\externals\Pods\MaterialComponents\components\Tabs\src\MaterialTabs.bundle\Resources\el.lproj\MaterialTabs.strings">
+      <Link>Resources\MaterialTabs.bundle\Resources\el.lproj\MaterialTabs.strings</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\externals\Pods\MaterialComponents\components\Tabs\src\MaterialTabs.bundle\Resources\en.lproj\MaterialTabs.strings">
+      <Link>Resources\MaterialTabs.bundle\Resources\en.lproj\MaterialTabs.strings</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\externals\Pods\MaterialComponents\components\Tabs\src\MaterialTabs.bundle\Resources\en_AU.lproj\MaterialTabs.strings">
+      <Link>Resources\MaterialTabs.bundle\Resources\en_AU.lproj\MaterialTabs.strings</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\externals\Pods\MaterialComponents\components\Tabs\src\MaterialTabs.bundle\Resources\en_GB.lproj\MaterialTabs.strings">
+      <Link>Resources\MaterialTabs.bundle\Resources\en_GB.lproj\MaterialTabs.strings</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\externals\Pods\MaterialComponents\components\Tabs\src\MaterialTabs.bundle\Resources\en_IN.lproj\MaterialTabs.strings">
+      <Link>Resources\MaterialTabs.bundle\Resources\en_IN.lproj\MaterialTabs.strings</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\externals\Pods\MaterialComponents\components\Tabs\src\MaterialTabs.bundle\Resources\es.lproj\MaterialTabs.strings">
+      <Link>Resources\MaterialTabs.bundle\Resources\es.lproj\MaterialTabs.strings</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\externals\Pods\MaterialComponents\components\Tabs\src\MaterialTabs.bundle\Resources\es_419.lproj\MaterialTabs.strings">
+      <Link>Resources\MaterialTabs.bundle\Resources\es_419.lproj\MaterialTabs.strings</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\externals\Pods\MaterialComponents\components\Tabs\src\MaterialTabs.bundle\Resources\es_MX.lproj\MaterialTabs.strings">
+      <Link>Resources\MaterialTabs.bundle\Resources\es_MX.lproj\MaterialTabs.strings</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\externals\Pods\MaterialComponents\components\Tabs\src\MaterialTabs.bundle\Resources\fa.lproj\MaterialTabs.strings">
+      <Link>Resources\MaterialTabs.bundle\Resources\fa.lproj\MaterialTabs.strings</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\externals\Pods\MaterialComponents\components\Tabs\src\MaterialTabs.bundle\Resources\fi.lproj\MaterialTabs.strings">
+      <Link>Resources\MaterialTabs.bundle\Resources\fi.lproj\MaterialTabs.strings</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\externals\Pods\MaterialComponents\components\Tabs\src\MaterialTabs.bundle\Resources\fr.lproj\MaterialTabs.strings">
+      <Link>Resources\MaterialTabs.bundle\Resources\fr.lproj\MaterialTabs.strings</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\externals\Pods\MaterialComponents\components\Tabs\src\MaterialTabs.bundle\Resources\fr_CA.lproj\MaterialTabs.strings">
+      <Link>Resources\MaterialTabs.bundle\Resources\fr_CA.lproj\MaterialTabs.strings</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\externals\Pods\MaterialComponents\components\Tabs\src\MaterialTabs.bundle\Resources\he.lproj\MaterialTabs.strings">
+      <Link>Resources\MaterialTabs.bundle\Resources\he.lproj\MaterialTabs.strings</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\externals\Pods\MaterialComponents\components\Tabs\src\MaterialTabs.bundle\Resources\hi.lproj\MaterialTabs.strings">
+      <Link>Resources\MaterialTabs.bundle\Resources\hi.lproj\MaterialTabs.strings</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\externals\Pods\MaterialComponents\components\Tabs\src\MaterialTabs.bundle\Resources\hr.lproj\MaterialTabs.strings">
+      <Link>Resources\MaterialTabs.bundle\Resources\hr.lproj\MaterialTabs.strings</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\externals\Pods\MaterialComponents\components\Tabs\src\MaterialTabs.bundle\Resources\hu.lproj\MaterialTabs.strings">
+      <Link>Resources\MaterialTabs.bundle\Resources\hu.lproj\MaterialTabs.strings</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\externals\Pods\MaterialComponents\components\Tabs\src\MaterialTabs.bundle\Resources\hy.lproj\MaterialTabs.strings">
+      <Link>Resources\MaterialTabs.bundle\Resources\hy.lproj\MaterialTabs.strings</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\externals\Pods\MaterialComponents\components\Tabs\src\MaterialTabs.bundle\Resources\id.lproj\MaterialTabs.strings">
+      <Link>Resources\MaterialTabs.bundle\Resources\id.lproj\MaterialTabs.strings</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\externals\Pods\MaterialComponents\components\Tabs\src\MaterialTabs.bundle\Resources\it.lproj\MaterialTabs.strings">
+      <Link>Resources\MaterialTabs.bundle\Resources\it.lproj\MaterialTabs.strings</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\externals\Pods\MaterialComponents\components\Tabs\src\MaterialTabs.bundle\Resources\iw.lproj\MaterialTabs.strings">
+      <Link>Resources\MaterialTabs.bundle\Resources\iw.lproj\MaterialTabs.strings</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\externals\Pods\MaterialComponents\components\Tabs\src\MaterialTabs.bundle\Resources\ja.lproj\MaterialTabs.strings">
+      <Link>Resources\MaterialTabs.bundle\Resources\ja.lproj\MaterialTabs.strings</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\externals\Pods\MaterialComponents\components\Tabs\src\MaterialTabs.bundle\Resources\ka.lproj\MaterialTabs.strings">
+      <Link>Resources\MaterialTabs.bundle\Resources\ka.lproj\MaterialTabs.strings</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\externals\Pods\MaterialComponents\components\Tabs\src\MaterialTabs.bundle\Resources\kk.lproj\MaterialTabs.strings">
+      <Link>Resources\MaterialTabs.bundle\Resources\kk.lproj\MaterialTabs.strings</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\externals\Pods\MaterialComponents\components\Tabs\src\MaterialTabs.bundle\Resources\km.lproj\MaterialTabs.strings">
+      <Link>Resources\MaterialTabs.bundle\Resources\km.lproj\MaterialTabs.strings</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\externals\Pods\MaterialComponents\components\Tabs\src\MaterialTabs.bundle\Resources\ko.lproj\MaterialTabs.strings">
+      <Link>Resources\MaterialTabs.bundle\Resources\ko.lproj\MaterialTabs.strings</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\externals\Pods\MaterialComponents\components\Tabs\src\MaterialTabs.bundle\Resources\lo.lproj\MaterialTabs.strings">
+      <Link>Resources\MaterialTabs.bundle\Resources\lo.lproj\MaterialTabs.strings</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\externals\Pods\MaterialComponents\components\Tabs\src\MaterialTabs.bundle\Resources\lt.lproj\MaterialTabs.strings">
+      <Link>Resources\MaterialTabs.bundle\Resources\lt.lproj\MaterialTabs.strings</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\externals\Pods\MaterialComponents\components\Tabs\src\MaterialTabs.bundle\Resources\lv.lproj\MaterialTabs.strings">
+      <Link>Resources\MaterialTabs.bundle\Resources\lv.lproj\MaterialTabs.strings</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\externals\Pods\MaterialComponents\components\Tabs\src\MaterialTabs.bundle\Resources\mn.lproj\MaterialTabs.strings">
+      <Link>Resources\MaterialTabs.bundle\Resources\mn.lproj\MaterialTabs.strings</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\externals\Pods\MaterialComponents\components\Tabs\src\MaterialTabs.bundle\Resources\ms.lproj\MaterialTabs.strings">
+      <Link>Resources\MaterialTabs.bundle\Resources\ms.lproj\MaterialTabs.strings</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\externals\Pods\MaterialComponents\components\Tabs\src\MaterialTabs.bundle\Resources\nb.lproj\MaterialTabs.strings">
+      <Link>Resources\MaterialTabs.bundle\Resources\nb.lproj\MaterialTabs.strings</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\externals\Pods\MaterialComponents\components\Tabs\src\MaterialTabs.bundle\Resources\nl.lproj\MaterialTabs.strings">
+      <Link>Resources\MaterialTabs.bundle\Resources\nl.lproj\MaterialTabs.strings</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\externals\Pods\MaterialComponents\components\Tabs\src\MaterialTabs.bundle\Resources\no.lproj\MaterialTabs.strings">
+      <Link>Resources\MaterialTabs.bundle\Resources\no.lproj\MaterialTabs.strings</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\externals\Pods\MaterialComponents\components\Tabs\src\MaterialTabs.bundle\Resources\pl.lproj\MaterialTabs.strings">
+      <Link>Resources\MaterialTabs.bundle\Resources\pl.lproj\MaterialTabs.strings</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\externals\Pods\MaterialComponents\components\Tabs\src\MaterialTabs.bundle\Resources\pt.lproj\MaterialTabs.strings">
+      <Link>Resources\MaterialTabs.bundle\Resources\pt.lproj\MaterialTabs.strings</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\externals\Pods\MaterialComponents\components\Tabs\src\MaterialTabs.bundle\Resources\pt_BR.lproj\MaterialTabs.strings">
+      <Link>Resources\MaterialTabs.bundle\Resources\pt_BR.lproj\MaterialTabs.strings</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\externals\Pods\MaterialComponents\components\Tabs\src\MaterialTabs.bundle\Resources\pt_PT.lproj\MaterialTabs.strings">
+      <Link>Resources\MaterialTabs.bundle\Resources\pt_PT.lproj\MaterialTabs.strings</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\externals\Pods\MaterialComponents\components\Tabs\src\MaterialTabs.bundle\Resources\ro.lproj\MaterialTabs.strings">
+      <Link>Resources\MaterialTabs.bundle\Resources\ro.lproj\MaterialTabs.strings</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\externals\Pods\MaterialComponents\components\Tabs\src\MaterialTabs.bundle\Resources\ru.lproj\MaterialTabs.strings">
+      <Link>Resources\MaterialTabs.bundle\Resources\ru.lproj\MaterialTabs.strings</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\externals\Pods\MaterialComponents\components\Tabs\src\MaterialTabs.bundle\Resources\sk.lproj\MaterialTabs.strings">
+      <Link>Resources\MaterialTabs.bundle\Resources\sk.lproj\MaterialTabs.strings</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\externals\Pods\MaterialComponents\components\Tabs\src\MaterialTabs.bundle\Resources\sq.lproj\MaterialTabs.strings">
+      <Link>Resources\MaterialTabs.bundle\Resources\sq.lproj\MaterialTabs.strings</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\externals\Pods\MaterialComponents\components\Tabs\src\MaterialTabs.bundle\Resources\sr.lproj\MaterialTabs.strings">
+      <Link>Resources\MaterialTabs.bundle\Resources\sr.lproj\MaterialTabs.strings</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\externals\Pods\MaterialComponents\components\Tabs\src\MaterialTabs.bundle\Resources\sv.lproj\MaterialTabs.strings">
+      <Link>Resources\MaterialTabs.bundle\Resources\sv.lproj\MaterialTabs.strings</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\externals\Pods\MaterialComponents\components\Tabs\src\MaterialTabs.bundle\Resources\th.lproj\MaterialTabs.strings">
+      <Link>Resources\MaterialTabs.bundle\Resources\th.lproj\MaterialTabs.strings</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\externals\Pods\MaterialComponents\components\Tabs\src\MaterialTabs.bundle\Resources\tr.lproj\MaterialTabs.strings">
+      <Link>Resources\MaterialTabs.bundle\Resources\tr.lproj\MaterialTabs.strings</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\externals\Pods\MaterialComponents\components\Tabs\src\MaterialTabs.bundle\Resources\uk.lproj\MaterialTabs.strings">
+      <Link>Resources\MaterialTabs.bundle\Resources\uk.lproj\MaterialTabs.strings</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\externals\Pods\MaterialComponents\components\Tabs\src\MaterialTabs.bundle\Resources\vi.lproj\MaterialTabs.strings">
+      <Link>Resources\MaterialTabs.bundle\Resources\vi.lproj\MaterialTabs.strings</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\externals\Pods\MaterialComponents\components\Tabs\src\MaterialTabs.bundle\Resources\zh_CN.lproj\MaterialTabs.strings">
+      <Link>Resources\MaterialTabs.bundle\Resources\zh_CN.lproj\MaterialTabs.strings</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\externals\Pods\MaterialComponents\components\Tabs\src\MaterialTabs.bundle\Resources\zh_HK.lproj\MaterialTabs.strings">
+      <Link>Resources\MaterialTabs.bundle\Resources\zh_HK.lproj\MaterialTabs.strings</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\externals\Pods\MaterialComponents\components\Tabs\src\MaterialTabs.bundle\Resources\zh_TW.lproj\MaterialTabs.strings">
+      <Link>Resources\MaterialTabs.bundle\Resources\zh_TW.lproj\MaterialTabs.strings</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\externals\Pods\MaterialComponents\components\FeatureHighlight\src\MaterialFeatureHighlight.bundle\Resources\en.lproj\MaterialFeatureHighlight.strings">
+      <Link>Resources\MaterialFeatureHighlight.bundle\Resources\en.lproj\MaterialFeatureHighlight.strings</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\externals\Pods\MaterialComponents\components\AppBar\src\MaterialAppBar.bundle\Resources\en.lproj\MaterialAppBar.strings">
+      <Link>Resources\MaterialAppBar.bundle\Resources\en.lproj\MaterialAppBar.strings</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\externals\Pods\MaterialComponents\components\Collections\src\MaterialCollections.bundle\Resources\en.lproj\MaterialCollections.strings">
+      <Link>Resources\MaterialCollections.bundle\Resources\en.lproj\MaterialCollections.strings</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\externals\Pods\MaterialComponents\components\private\Icons\icons\ic_arrow_back\src\MaterialIcons_ic_arrow_back.bundle\ic_arrow_back.png">
+      <Link>Resources\MaterialIcons_ic_arrow_back.bundle\ic_arrow_back.png</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\externals\Pods\MaterialComponents\components\private\Icons\icons\ic_arrow_back\src\MaterialIcons_ic_arrow_back.bundle\ic_arrow_back%402x.png">
+      <Link>Resources\MaterialIcons_ic_arrow_back.bundle\ic_arrow_back%402x.png</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\externals\Pods\MaterialComponents\components\private\Icons\icons\ic_arrow_back\src\MaterialIcons_ic_arrow_back.bundle\ic_arrow_back%403x.png">
+      <Link>Resources\MaterialIcons_ic_arrow_back.bundle\ic_arrow_back%403x.png</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\externals\Pods\MaterialComponents\components\private\Icons\icons\ic_arrow_back\src\MaterialIcons_ic_arrow_back.bundle\ic_arrow_back_ios.png">
+      <Link>Resources\MaterialIcons_ic_arrow_back.bundle\ic_arrow_back_ios.png</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\externals\Pods\MaterialComponents\components\private\Icons\icons\ic_arrow_back\src\MaterialIcons_ic_arrow_back.bundle\ic_arrow_back_ios%402x.png">
+      <Link>Resources\MaterialIcons_ic_arrow_back.bundle\ic_arrow_back_ios%402x.png</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\externals\Pods\MaterialComponents\components\private\Icons\icons\ic_arrow_back\src\MaterialIcons_ic_arrow_back.bundle\ic_arrow_back_ios%403x.png">
+      <Link>Resources\MaterialIcons_ic_arrow_back.bundle\ic_arrow_back_ios%403x.png</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\externals\Pods\MaterialComponents\components\private\Icons\icons\ic_check\src\MaterialIcons_ic_check.bundle\ic_check.png">
+      <Link>Resources\MaterialIcons_ic_check.bundle\ic_check.png</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\externals\Pods\MaterialComponents\components\private\Icons\icons\ic_check\src\MaterialIcons_ic_check.bundle\ic_check%402x.png">
+      <Link>Resources\MaterialIcons_ic_check.bundle\ic_check%402x.png</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\externals\Pods\MaterialComponents\components\private\Icons\icons\ic_check\src\MaterialIcons_ic_check.bundle\ic_check%403x.png">
+      <Link>Resources\MaterialIcons_ic_check.bundle\ic_check%403x.png</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\externals\Pods\MaterialComponents\components\private\Icons\icons\ic_check_circle\src\MaterialIcons_ic_check_circle.bundle\ic_check_circle.png">
+      <Link>Resources\MaterialIcons_ic_check_circle.bundle\ic_check_circle.png</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\externals\Pods\MaterialComponents\components\private\Icons\icons\ic_check_circle\src\MaterialIcons_ic_check_circle.bundle\ic_check_circle%402x.png">
+      <Link>Resources\MaterialIcons_ic_check_circle.bundle\ic_check_circle%402x.png</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\externals\Pods\MaterialComponents\components\private\Icons\icons\ic_check_circle\src\MaterialIcons_ic_check_circle.bundle\ic_check_circle%403x.png">
+      <Link>Resources\MaterialIcons_ic_check_circle.bundle\ic_check_circle%403x.png</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\externals\Pods\MaterialComponents\components\private\Icons\icons\ic_chevron_right\src\MaterialIcons_ic_chevron_right.bundle\ic_chevron_right.png">
+      <Link>Resources\MaterialIcons_ic_chevron_right.bundle\ic_chevron_right.png</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\externals\Pods\MaterialComponents\components\private\Icons\icons\ic_chevron_right\src\MaterialIcons_ic_chevron_right.bundle\ic_chevron_right%402x.png">
+      <Link>Resources\MaterialIcons_ic_chevron_right.bundle\ic_chevron_right%402x.png</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\externals\Pods\MaterialComponents\components\private\Icons\icons\ic_chevron_right\src\MaterialIcons_ic_chevron_right.bundle\ic_chevron_right%403x.png">
+      <Link>Resources\MaterialIcons_ic_chevron_right.bundle\ic_chevron_right%403x.png</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\externals\Pods\MaterialComponents\components\private\Icons\icons\ic_info\src\MaterialIcons_ic_info.bundle\ic_info.png">
+      <Link>Resources\MaterialIcons_ic_info.bundle\ic_info.png</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\externals\Pods\MaterialComponents\components\private\Icons\icons\ic_info\src\MaterialIcons_ic_info.bundle\ic_info%402x.png">
+      <Link>Resources\MaterialIcons_ic_info.bundle\ic_info%402x.png</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\externals\Pods\MaterialComponents\components\private\Icons\icons\ic_info\src\MaterialIcons_ic_info.bundle\ic_info%403x.png">
+      <Link>Resources\MaterialIcons_ic_info.bundle\ic_info%403x.png</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\externals\Pods\MaterialComponents\components\private\Icons\icons\ic_radio_button_unchecked\src\MaterialIcons_ic_radio_button_unchecked.bundle\ic_radio_button_unchecked.png">
+      <Link>Resources\MaterialIcons_ic_radio_button_unchecked.bundle\ic_radio_button_unchecked.png</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\externals\Pods\MaterialComponents\components\private\Icons\icons\ic_radio_button_unchecked\src\MaterialIcons_ic_radio_button_unchecked.bundle\ic_radio_button_unchecked%402x.png">
+      <Link>Resources\MaterialIcons_ic_radio_button_unchecked.bundle\ic_radio_button_unchecked%402x.png</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\externals\Pods\MaterialComponents\components\private\Icons\icons\ic_radio_button_unchecked\src\MaterialIcons_ic_radio_button_unchecked.bundle\ic_radio_button_unchecked%403x.png">
+      <Link>Resources\MaterialIcons_ic_radio_button_unchecked.bundle\ic_radio_button_unchecked%403x.png</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\externals\Pods\MaterialComponents\components\private\Icons\icons\ic_reorder\src\MaterialIcons_ic_reorder.bundle\ic_reorder.png">
+      <Link>Resources\MaterialIcons_ic_reorder.bundle\ic_reorder.png</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\externals\Pods\MaterialComponents\components\private\Icons\icons\ic_reorder\src\MaterialIcons_ic_reorder.bundle\ic_reorder%402x.png">
+      <Link>Resources\MaterialIcons_ic_reorder.bundle\ic_reorder%402x.png</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\externals\Pods\MaterialComponents\components\private\Icons\icons\ic_reorder\src\MaterialIcons_ic_reorder.bundle\ic_reorder%403x.png">
+      <Link>Resources\MaterialIcons_ic_reorder.bundle\ic_reorder%403x.png</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\externals\Pods\MaterialComponents\components\ActivityIndicator\src\MaterialActivityIndicator.bundle\Resources\en.lproj\MaterialActivityIndicator.strings">
+      <Link>Resources\MaterialActivityIndicator.bundle\Resources\en.lproj\MaterialActivityIndicator.strings</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\externals\Pods\MaterialComponents\components\Dialogs\src\MaterialDialogs.bundle\Resources\en.lproj\MaterialDialogs.strings">
+      <Link>Resources\MaterialDialogs.bundle\Resources\en.lproj\MaterialDialogs.strings</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\externals\Pods\MaterialComponents\components\BottomNavigation\src\MaterialBottomNavigation.bundle\Resources\en.lproj\MaterialBottomNavigation.strings">
+      <Link>Resources\MaterialBottomNavigation.bundle\Resources\en.lproj\MaterialBottomNavigation.strings</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\externals\Pods\MaterialComponents\components\PageControl\src\MaterialPageControl.bundle\Resources\en.lproj\MaterialPageControl.strings">
+      <Link>Resources\MaterialPageControl.bundle\Resources\en.lproj\MaterialPageControl.strings</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\externals\Pods\MaterialComponents\components\CollectionCells\src\MaterialCollectionCells.bundle\Resources\en.lproj\MaterialCollectionCells.strings">
+      <Link>Resources\MaterialCollectionCells.bundle\Resources\en.lproj\MaterialCollectionCells.strings</Link>
+    </BundleResource>
+  </ItemGroup>
+  <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.ObjCBinding.CSharp.targets" />
+</Project>

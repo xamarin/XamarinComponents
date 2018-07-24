@@ -1,0 +1,70 @@
+#load "../../common.cake"
+
+var TARGET = Argument ("t", Argument ("target", "Default"));
+
+var IOS_PODS = new List<string> {
+	"platform :ios, '8.0'",
+	"install! 'cocoapods', :integrate_targets => false",
+	"target 'Xamarin' do",
+	"pod 'MaterialComponents', '39.0.0'",
+	"end",
+};
+
+var buildSpec = new BuildSpec {
+
+	Libs = new ISolutionBuilder [] {
+		new IOSSolutionBuilder {
+			SolutionPath = "source/MaterialComponents/MaterialComponents.sln",
+			Configuration = "Release",
+			Platform = "Any CPU",
+			OutputFiles = new [] { 
+				new OutputFileCopy {
+					FromFile = "./source/MaterialComponents/bin/Release/MaterialComponents.dll",
+				}
+			}
+		},
+	},
+
+	Samples = new ISolutionBuilder [] {
+		new IOSSolutionBuilder { 
+			SolutionPath = "./samples/MaterialSample/MaterialSample.sln",
+			Configuration = "Release", Platform="iPhone",
+			BuildsOn = BuildPlatforms.Mac
+		},
+	},
+
+	NuGets = new [] {
+		new NuGetInfo { NuSpec = "./nuget/Xamarin.iOS.MaterialComponents.nuspec", BuildsOn = BuildPlatforms.Mac },
+	},
+};
+
+Task ("externals").IsDependentOn ("externals-base")
+	.WithCriteria (!FileExists ("./externals/libMaterialComponents.a"))
+	.Does (() => 
+{
+	EnsureDirectoryExists ("./externals");
+
+	if (CocoaPodVersion () < new System.Version (1, 0))
+		IOS_PODS.RemoveAt (1);
+
+	FileWriteLines ("./externals/Podfile", IOS_PODS.ToArray ());
+
+	CocoaPodInstall ("./externals", new CocoaPodInstallSettings { NoIntegrate = true });
+
+	BuildXCodeFatLibrary ("./Pods/Pods.xcodeproj", "MotionInterchange", "MotionInterchange", null, null, "MotionInterchange");
+	BuildXCodeFatLibrary ("./Pods/Pods.xcodeproj", "MDFInternationalization", "MDFInternationalization", null, null, "MDFInternationalization");
+	BuildXCodeFatLibrary ("./Pods/Pods.xcodeproj", "MotionTransitioning", "MotionTransitioning", null, null, "MotionTransitioning");
+	BuildXCodeFatLibrary ("./Pods/Pods.xcodeproj", "MDFTextAccessibility", "MDFTextAccessibility", null, null, "MDFTextAccessibility");
+	BuildXCodeFatLibrary ("./Pods/Pods.xcodeproj", "MaterialComponents", "MaterialComponents", null, null, "MaterialComponents");
+	BuildXCodeFatLibrary ("./Pods/Pods.xcodeproj", "MotionAnimator", "MotionAnimator", null, null, "MotionAnimator");
+});
+
+Task ("clean").IsDependentOn ("clean-base").Does (() => 
+{
+	if (DirectoryExists ("./externals/"))
+		DeleteDirectory ("./externals/", true);
+});
+
+SetupXamarinBuildTasks (buildSpec, Tasks, Task);
+
+RunTarget (TARGET);
