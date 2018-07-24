@@ -6,7 +6,7 @@ using ObjCRuntime;
 namespace MaterialComponents
 {
 	[Native]
-	public enum MDCAnimationTimingFunction : ulong
+	public enum AnimationTimingFunction : ulong
 	{
 		EaseInOut,
 		EaseOut,
@@ -20,14 +20,14 @@ namespace MaterialComponents
 	}
 
 	[Native]
-	public enum MDCActivityIndicatorMode : long
+	public enum ActivityIndicatorMode : long
 	{
 		Indeterminate,
 		Determinate
 	}
 
 	[Native]
-	public enum MDCFlexibleHeaderShiftBehavior : long
+	public enum FlexibleHeaderShiftBehavior : long
 	{
 		Disabled,
 		Enabled,
@@ -35,14 +35,14 @@ namespace MaterialComponents
 	}
 
 	[Native]
-	public enum MDCFlexibleHeaderContentImportance : long
+	public enum FlexibleHeaderContentImportance : long
 	{
 		Default,
 		High
 	}
 
 	[Native]
-	public enum MDCFlexibleHeaderScrollPhase : long
+	public enum FlexibleHeaderScrollPhase : long
 	{
 		Shifting,
 		Collapsing,
@@ -50,21 +50,21 @@ namespace MaterialComponents
 	}
 
 	[Native]
-	public enum MDCNavigationBarTitleAlignment : long
+	public enum NavigationBarTitleAlignment : long
 	{
 		Center,
 		Leading
 	}
 
 	[Native]
-	public enum MDCInkStyle : long
+	public enum InkStyle : long
 	{
 		Bounded,
 		Unbounded
 	}
 
 	[Native]
-	public enum MDCFloatingButtonShape : long
+	public enum FloatingButtonShape : long
 	{
 		Default = 0,
 		Mini = 1,
@@ -72,14 +72,14 @@ namespace MaterialComponents
 	}
 
 	[Native]
-	public enum MDCBottomAppBarFloatingButtonElevation : long
+	public enum BottomAppBarFloatingButtonElevation : long
 	{
 		Primary = 0,
 		Secondary = 1
 	}
 
 	[Native]
-	public enum MDCBottomAppBarFloatingButtonPosition : long
+	public enum BottomAppBarFloatingButtonPosition : long
 	{
 		Center = 0,
 		Leading = 1,
@@ -87,7 +87,7 @@ namespace MaterialComponents
 	}
 
 	[Native]
-	public enum MDCBottomNavigationBarTitleVisibility : long
+	public enum BottomNavigationBarTitleVisibility : long
 	{
 		Selected = 0,
 		Always = 1,
@@ -95,7 +95,7 @@ namespace MaterialComponents
 	}
 
 	[Native]
-	public enum MDCBottomNavigationBarAlignment : long
+	public enum BottomNavigationBarAlignment : long
 	{
 		Justified = 0,
 		JustifiedAdjacentTitles = 1,
@@ -103,7 +103,7 @@ namespace MaterialComponents
 	}
 
 	[Native]
-	public enum MDCButtonBarLayoutPosition : ulong
+	public enum ButtonBarLayoutPosition : ulong
 	{
 		None = 0,
 		Leading = 1 << 0,
@@ -113,7 +113,7 @@ namespace MaterialComponents
 	}
 
 	[Native]
-	public enum MDCBarButtonItemLayoutHints : ulong
+	public enum BarButtonItemLayoutHints : ulong
 	{
 		None = 0,
 		IsFirstButton = 1 << 0,
@@ -121,7 +121,7 @@ namespace MaterialComponents
 	}
 
 	[Native]
-	public enum MDCCollectionViewCellAccessoryType : ulong
+	public enum CollectionViewCellAccessoryType : ulong
 	{
 		None,
 		DisclosureIndicator,
@@ -130,7 +130,7 @@ namespace MaterialComponents
 	}
 
 	[Native]
-	public enum MDCCollectionViewCellStyle : ulong
+	public enum CollectionViewCellStyle : ulong
 	{
 		Default,
 		Grouped,
@@ -138,7 +138,7 @@ namespace MaterialComponents
 	}
 
 	[Native]
-	public enum MDCCollectionViewCellLayoutType : ulong
+	public enum CollectionViewCellLayoutType : ulong
 	{
 		List,
 		Grid,
@@ -146,7 +146,7 @@ namespace MaterialComponents
 	}
 
 	[Native]
-	public enum MDCCollectionViewOrdinalPosition : ulong
+	public enum CollectionViewOrdinalPosition : ulong
 	{
 		VerticalTop = 1 << 0,
 		VerticalCenter = 1 << 1,
@@ -158,7 +158,7 @@ namespace MaterialComponents
 	}
 
 	[Native]
-	public enum MDCFontTextStyle : long
+	public enum FontTextStyle : long
 	{
 		Body1,
 		Body2,
@@ -267,7 +267,7 @@ namespace MaterialComponents
 	//}
 
 	[Native]
-	public enum MDCTextInputTextInsetsMode : ulong
+	public enum TextInputTextInsetsMode : ulong
 	{
 		Never = 0,
 		IfContent,
@@ -275,14 +275,14 @@ namespace MaterialComponents
 	}
 
 	[Native]
-	public enum MDCProgressViewBackwardAnimationMode : long
+	public enum ProgressViewBackwardAnimationMode : long
 	{
 		Reset,
 		Animate
 	}
 
 	[Native]
-	public enum MDCTabBarAlignment : long
+	public enum TabBarAlignment : long
 	{
 		Leading,
 		Justified,
@@ -291,7 +291,7 @@ namespace MaterialComponents
 	}
 
 	[Native]
-	public enum MDCTabBarItemAppearance : long
+	public enum TabBarItemAppearance : long
 	{
 		Titles,
 		Images,
@@ -299,7 +299,7 @@ namespace MaterialComponents
 	}
 
 	[Native]
-	public enum MDCTriangleEdgeStyle : ulong
+	public enum TriangleEdgeStyle : ulong
 	{
 		Handle,
 		Cut

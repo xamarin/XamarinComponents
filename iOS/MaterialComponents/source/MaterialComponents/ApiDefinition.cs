@@ -9,27 +9,23 @@ namespace MaterialComponents
 {
 	// @interface MDCAnimationTiming (CAMediaTimingFunction)
 	[Category]
-	[BaseType (typeof (CAMediaTimingFunction))]
+	[BaseType (typeof(CAMediaTimingFunction))]
 	interface CAMediaTimingFunction_MDCAnimationTiming
 	{
 		// +(CAMediaTimingFunction * _Nullable)mdc_functionWithType:(MDCAnimationTimingFunction)type;
 		[Static]
 		[Export ("mdc_functionWithType:")]
 		[return: NullAllowed]
-		CAMediaTimingFunction Mdc_functionWithType (MDCAnimationTimingFunction type);
+		CAMediaTimingFunction Mdc_functionWithType(AnimationTimingFunction type);
 	}
 
 	// @interface MDCActivityIndicator : UIView
-	[BaseType (typeof (UIView))]
-	interface MDCActivityIndicator
+	[BaseType (typeof(UIView), Name="MDCActivityIndicator")]
+	interface ActivityIndicator
 	{
-		[Wrap ("WeakDelegate")]
-		[NullAllowed]
-		MDCActivityIndicatorDelegate Delegate { get; set; }
-
 		// @property (nonatomic, weak) id<MDCActivityIndicatorDelegate> _Nullable delegate;
 		[NullAllowed, Export ("delegate",ArgumentSemantic.Weak)]
-		NSObject WeakDelegate { get; set; }
+		IActivityIndicatorDelegate Delegate { get; set; }
 
 		// @property (getter = isAnimating, assign, nonatomic) BOOL animating;
 		[Export ("animating")]
@@ -49,11 +45,11 @@ namespace MaterialComponents
 
 		// @property (assign, nonatomic) MDCActivityIndicatorMode indicatorMode;
 		[Export ("indicatorMode",ArgumentSemantic.Assign)]
-		MDCActivityIndicatorMode IndicatorMode { get; set; }
+		ActivityIndicatorMode IndicatorMode { get; set; }
 
 		// -(void)setIndicatorMode:(MDCActivityIndicatorMode)mode animated:(BOOL)animated;
 		[Export ("setIndicatorMode:animated:")]
-		void SetIndicatorMode (MDCActivityIndicatorMode mode,bool animated);
+		void SetIndicatorMode (ActivityIndicatorMode mode,bool animated);
 
 		// @property (assign, nonatomic) float progress;
 		[Export ("progress")]
@@ -72,20 +68,24 @@ namespace MaterialComponents
 		void StopAnimating ();
 	}
 
+	interface IActivityIndicatorDelegate {}
+
 	// @protocol MDCActivityIndicatorDelegate <NSObject>
 	[Protocol, Model]
-	[BaseType (typeof (NSObject))]
-	interface MDCActivityIndicatorDelegate
+	[BaseType (typeof(NSObject), Name="MDCActivityIndicatorDelegate")]
+	interface ActivityIndicatorDelegate
 	{
 		// @optional -(void)activityIndicatorAnimationDidFinish:(MDCActivityIndicator * _Nonnull)activityIndicator;
 		[Export ("activityIndicatorAnimationDidFinish:")]
-		void ActivityIndicatorAnimationDidFinish (MDCActivityIndicator activityIndicator);
+		void ActivityIndicatorAnimationDidFinish (ActivityIndicator activityIndicator);
 	}
 
+	interface IColorScheme {}
+
 	// @protocol MDCColorScheme
-	[BaseType (typeof (NSObject))]
+	[BaseType (typeof(NSObject), Name="MDCColorScheme")]
 	[Protocol, Model]
-	interface MDCColorScheme
+	interface ColorScheme
 	{
 		// @required @property (readonly, nonatomic, strong) UIColor * _Nonnull primaryColor;
 		[Abstract]
@@ -114,9 +114,9 @@ namespace MaterialComponents
 	}
 
 	// @interface MDCBasicColorScheme : NSObject <MDCColorScheme, NSCopying>
-	[BaseType (typeof (NSObject))]
+	[BaseType (typeof(NSObject), Name="MDCBasicColorScheme")]
 	[DisableDefaultCtor]
-	interface MDCBasicColorScheme : MDCColorScheme, INSCopying
+	interface BasicColorScheme : ColorScheme, INSCopying
 	{
 		// @property (readonly, nonatomic, strong) UIColor * _Nonnull primaryColor;
 		[Export ("primaryColor",ArgumentSemantic.Strong)]
@@ -161,9 +161,9 @@ namespace MaterialComponents
 	}
 
 	// @interface MDCTonalPalette : NSObject <NSCoding, NSCopying>
-	[BaseType (typeof (NSObject))]
+	[BaseType (typeof(NSObject), Name="MDCTonalPalette")]
 	[DisableDefaultCtor]
-	interface MDCTonalPalette : INSCoding, INSCopying
+	interface TonalPalette : INSCoding, INSCopying
 	{
 		// @property (readonly, copy, nonatomic) NSArray<UIColor *> * _Nonnull colors;
 		[Export ("colors",ArgumentSemantic.Copy)]
@@ -205,9 +205,9 @@ namespace MaterialComponents
 	}
 
 	// @interface MDCTonalColorScheme : NSObject <MDCColorScheme, NSCopying>
-	[BaseType (typeof (NSObject))]
+	[BaseType (typeof(NSObject), Name="MDCTonalColorScheme")]
 	[DisableDefaultCtor]
-	interface MDCTonalColorScheme : MDCColorScheme, INSCopying
+	interface TonalColorScheme : ColorScheme, INSCopying
 	{
 		// @property (readonly, nonatomic, strong) UIColor * _Nonnull primaryColor;
 		[Export ("primaryColor",ArgumentSemantic.Strong)]
@@ -235,44 +235,44 @@ namespace MaterialComponents
 
 		// @property (readonly, nonatomic, strong) MDCTonalPalette * _Nonnull primaryTonalPalette;
 		[Export ("primaryTonalPalette",ArgumentSemantic.Strong)]
-		MDCTonalPalette PrimaryTonalPalette { get; }
+		TonalPalette PrimaryTonalPalette { get; }
 
 		// @property (readonly, nonatomic, strong) MDCTonalPalette * _Nonnull secondaryTonalPalette;
 		[Export ("secondaryTonalPalette",ArgumentSemantic.Strong)]
-		MDCTonalPalette SecondaryTonalPalette { get; }
+		TonalPalette SecondaryTonalPalette { get; }
 
 		// -(instancetype _Nonnull)initWithPrimaryTonalPalette:(MDCTonalPalette * _Nonnull)primaryTonalPalette secondaryTonalPalette:(MDCTonalPalette * _Nonnull)secondaryTonalPalette __attribute__((objc_designated_initializer));
 		[Export ("initWithPrimaryTonalPalette:secondaryTonalPalette:")]
 		[DesignatedInitializer]
-		IntPtr Constructor (MDCTonalPalette primaryTonalPalette,MDCTonalPalette secondaryTonalPalette);
+		IntPtr Constructor (TonalPalette primaryTonalPalette,TonalPalette secondaryTonalPalette);
 	}
 
 	// @interface MDCActivityIndicatorColorThemer : NSObject
-	[BaseType (typeof (NSObject))]
-	interface MDCActivityIndicatorColorThemer
+	[BaseType (typeof(NSObject), Name="MDCActivityIndicatorColorThemer")]
+	interface ActivityIndicatorColorThemer
 	{
 		// +(void)applyColorScheme:(NSObject<MDCColorScheme> *)colorScheme toActivityIndicator:(MDCActivityIndicator *)activityIndicator;
 		[Static]
 		[Export ("applyColorScheme:toActivityIndicator:")]
-		void ApplyColorScheme (MDCColorScheme colorScheme,MDCActivityIndicator activityIndicator);
+		void ApplyColorScheme (IColorScheme colorScheme,ActivityIndicator activityIndicator);
 	}
 
 	// @interface MDCAlertController : UIViewController
-	[BaseType (typeof (UIViewController))]
-	interface MDCAlertController
+	[BaseType (typeof(UIViewController), Name="MDCAlertController")]
+	interface AlertController
 	{
 		// +(instancetype _Nonnull)alertControllerWithTitle:(NSString * _Nullable)title message:(NSString * _Nullable)message;
 		[Static]
 		[Export ("alertControllerWithTitle:message:")]
-		MDCAlertController AlertControllerWithTitle ([NullAllowed] string title,[NullAllowed] string message);
+		AlertController AlertControllerWithTitle ([NullAllowed] string title,[NullAllowed] string message);
 
 		// -(void)addAction:(MDCAlertAction * _Nonnull)action;
 		[Export ("addAction:")]
-		void AddAction (MDCAlertAction action);
+		void AddAction (AlertAction action);
 
 		// @property (readonly, nonatomic) NSArray<MDCAlertAction *> * _Nonnull actions;
 		[Export ("actions")]
-		MDCAlertAction[] Actions { get; }
+		AlertAction[] Actions { get; }
 
 		// @property (copy, nonatomic) NSString * _Nullable title;
 		[NullAllowed, Export ("title")]
@@ -288,17 +288,17 @@ namespace MaterialComponents
 	}
 
 	// typedef void (^MDCActionHandler)(MDCAlertAction * _Nonnull);
-	delegate void MDCActionHandler (MDCAlertAction arg0);
+	delegate void MDCActionHandler (AlertAction arg0);
 
 	// @interface MDCAlertAction : NSObject <NSCopying>
-	[BaseType (typeof (NSObject))]
+	[BaseType (typeof(NSObject), Name="MDCAlertAction")]
 	[DisableDefaultCtor]
-	interface MDCAlertAction : INSCopying
+	interface AlertAction : INSCopying
 	{
 		// +(instancetype _Nonnull)actionWithTitle:(NSString * _Nonnull)title handler:(MDCActionHandler _Nullable)handler;
 		[Static]
 		[Export ("actionWithTitle:handler:")]
-		MDCAlertAction ActionWithTitle (string title,[NullAllowed] MDCActionHandler handler);
+		AlertAction ActionWithTitle (string title,[NullAllowed] MDCActionHandler handler);
 
 		// @property (readonly, nonatomic) NSString * _Nullable title;
 		[NullAllowed, Export ("title")]
@@ -306,8 +306,8 @@ namespace MaterialComponents
 	}
 
 	// @interface MDCDialogPresentationController : UIPresentationController
-	[BaseType (typeof (UIPresentationController))]
-	interface MDCDialogPresentationController
+	[BaseType (typeof(UIPresentationController), Name="MDCDialogPresentationController")]
+	interface DialogPresentationController
 	{
 		// @property (assign, nonatomic) BOOL dismissOnBackgroundTap;
 		[Export ("dismissOnBackgroundTap")]
@@ -323,34 +323,34 @@ namespace MaterialComponents
 	}
 
 	// @interface MDCDialogTransitionController : NSObject <UIViewControllerAnimatedTransitioning, UIViewControllerTransitioningDelegate>
-	[BaseType (typeof (NSObject))]
-	interface MDCDialogTransitionController : IUIViewControllerAnimatedTransitioning, IUIViewControllerTransitioningDelegate
+	[BaseType (typeof(NSObject), Name="MDCDialogTransitionController")]
+	interface DialogTransitionController : IUIViewControllerAnimatedTransitioning, IUIViewControllerTransitioningDelegate
 	{
 	}
 
 	// @interface MaterialDialogs (UIViewController)
 	[Category]
-	[BaseType (typeof (UIViewController))]
+	[BaseType (typeof(UIViewController))]
 	interface UIViewController_MaterialDialogs
 	{
 		// @property (readonly, nonatomic) MDCDialogPresentationController * _Nullable mdc_dialogPresentationController;
 		[NullAllowed, Export ("mdc_dialogPresentationController")]
-		MDCDialogPresentationController Mdc_dialogPresentationController ();
+		DialogPresentationController Mdc_dialogPresentationController ();
 	}
 
 	// @interface MDCAlertColorThemer : NSObject
-	[BaseType (typeof (NSObject))]
-	interface MDCAlertColorThemer
+	[BaseType (typeof(NSObject), Name="MDCAlertColorThemer")]
+	interface AlertColorThemer
 	{
 		// +(void)applyColorScheme:(NSObject<MDCColorScheme> *)colorScheme;
 		[Static]
 		[Export ("applyColorScheme:")]
-		void ApplyColorScheme (MDCColorScheme colorScheme);
+		void ApplyColorScheme (IColorScheme colorScheme);
 	}
 
 	// @interface MDCFlexibleHeaderContainerViewController : UIViewController
-	[BaseType (typeof (UIViewController))]
-	interface MDCFlexibleHeaderContainerViewController
+	[BaseType (typeof(UIViewController), Name="MDCFlexibleHeaderContainerViewController")]
+	interface FlexibleHeaderContainerViewController
 	{
 		// -(instancetype _Nonnull)initWithContentViewController:(UIViewController * _Nullable)contentViewController __attribute__((objc_designated_initializer));
 		[Export ("initWithContentViewController:")]
@@ -359,7 +359,7 @@ namespace MaterialComponents
 
 		// @property (readonly, nonatomic, strong) MDCFlexibleHeaderViewController * _Nonnull headerViewController;
 		[Export ("headerViewController",ArgumentSemantic.Strong)]
-		MDCFlexibleHeaderViewController HeaderViewController { get; }
+		FlexibleHeaderViewController HeaderViewController { get; }
 
 		// @property (nonatomic, strong) UIViewController * _Nullable contentViewController;
 		[NullAllowed, Export ("contentViewController",ArgumentSemantic.Strong)]
@@ -367,14 +367,14 @@ namespace MaterialComponents
 	}
 
 	// typedef void (^MDCFlexibleHeaderChangeContentInsetsBlock)();
-	delegate void MDCFlexibleHeaderChangeContentInsetsBlock ();
+	delegate void FlexibleHeaderChangeContentInsetsBlock ();
 
 	// typedef void (^MDCFlexibleHeaderShadowIntensityChangeBlock)(CALayer * _Nonnull, CGFloat);
-	delegate void MDCFlexibleHeaderShadowIntensityChangeBlock (CALayer arg0,nfloat arg1);
+	delegate void FlexibleHeaderShadowIntensityChangeBlock (CALayer arg0,nfloat arg1);
 
 	// @interface MDCFlexibleHeaderView : UIView
-	[BaseType (typeof (UIView))]
-	interface MDCFlexibleHeaderView
+	[BaseType (typeof(UIView), Name="MDCFlexibleHeaderView")]
+	interface FlexibleHeaderView
 	{
 		// @property (nonatomic, strong) CALayer * _Nullable shadowLayer;
 		[NullAllowed, Export ("shadowLayer",ArgumentSemantic.Strong)]
@@ -382,7 +382,7 @@ namespace MaterialComponents
 
 		// -(void)setShadowLayer:(CALayer * _Nonnull)shadowLayer intensityDidChangeBlock:(MDCFlexibleHeaderShadowIntensityChangeBlock _Nonnull)block;
 		[Export ("setShadowLayer:intensityDidChangeBlock:")]
-		void SetShadowLayer (CALayer shadowLayer,MDCFlexibleHeaderShadowIntensityChangeBlock block);
+		void SetShadowLayer (CALayer shadowLayer,FlexibleHeaderShadowIntensityChangeBlock block);
 
 		// -(void)trackingScrollViewDidScroll;
 		[Export ("trackingScrollViewDidScroll")]
@@ -435,7 +435,7 @@ namespace MaterialComponents
 
 		// -(void)changeContentInsets:(MDCFlexibleHeaderChangeContentInsetsBlock _Nonnull)block;
 		[Export ("changeContentInsets:")]
-		void ChangeContentInsets (MDCFlexibleHeaderChangeContentInsetsBlock block);
+		void ChangeContentInsets (FlexibleHeaderChangeContentInsetsBlock block);
 
 		// -(void)forwardTouchEventsForView:(UIView * _Nonnull)view;
 		[Export ("forwardTouchEventsForView:")]
@@ -447,7 +447,7 @@ namespace MaterialComponents
 
 		// @property (readonly, nonatomic) MDCFlexibleHeaderScrollPhase scrollPhase;
 		[Export ("scrollPhase")]
-		MDCFlexibleHeaderScrollPhase ScrollPhase { get; }
+		FlexibleHeaderScrollPhase ScrollPhase { get; }
 
 		// @property (readonly, nonatomic) CGFloat scrollPhaseValue;
 		[Export ("scrollPhaseValue")]
@@ -471,11 +471,11 @@ namespace MaterialComponents
 
 		// @property (nonatomic) MDCFlexibleHeaderShiftBehavior shiftBehavior;
 		[Export ("shiftBehavior",ArgumentSemantic.Assign)]
-		MDCFlexibleHeaderShiftBehavior ShiftBehavior { get; set; }
+		FlexibleHeaderShiftBehavior ShiftBehavior { get; set; }
 
 		// @property (nonatomic) MDCFlexibleHeaderContentImportance headerContentImportance;
 		[Export ("headerContentImportance",ArgumentSemantic.Assign)]
-		MDCFlexibleHeaderContentImportance HeaderContentImportance { get; set; }
+		FlexibleHeaderContentImportance HeaderContentImportance { get; set; }
 
 		// @property (nonatomic) BOOL canOverExtend;
 		[Export ("canOverExtend")]
@@ -509,39 +509,37 @@ namespace MaterialComponents
 		[Export ("contentIsTranslucent")]
 		bool ContentIsTranslucent { get; set; }
 
-		[Wrap ("WeakDelegate")]
-		[NullAllowed]
-		MDCFlexibleHeaderViewDelegate Delegate { get; set; }
-
 		// @property (nonatomic, weak) id<MDCFlexibleHeaderViewDelegate> _Nullable delegate;
 		[NullAllowed, Export ("delegate",ArgumentSemantic.Weak)]
-		NSObject WeakDelegate { get; set; }
+		IFlexibleHeaderViewDelegate Delegate { get; set; }
 	}
+
+	interface IFlexibleHeaderViewDelegate {}
 
 	// @protocol MDCFlexibleHeaderViewDelegate <NSObject>
 	[Protocol, Model]
-	[BaseType (typeof (NSObject))]
-	interface MDCFlexibleHeaderViewDelegate
+	[BaseType (typeof(NSObject), Name="MDCFlexibleHeaderViewDelegate")]
+	interface FlexibleHeaderViewDelegate
 	{
 		// @required -(void)flexibleHeaderViewNeedsStatusBarAppearanceUpdate:(MDCFlexibleHeaderView * _Nonnull)headerView;
 		[Abstract]
 		[Export ("flexibleHeaderViewNeedsStatusBarAppearanceUpdate:")]
-		void FlexibleHeaderViewNeedsStatusBarAppearanceUpdate (MDCFlexibleHeaderView headerView);
+		void FlexibleHeaderViewNeedsStatusBarAppearanceUpdate (FlexibleHeaderView headerView);
 
 		// @required -(void)flexibleHeaderViewFrameDidChange:(MDCFlexibleHeaderView * _Nonnull)headerView;
 		[Abstract]
 		[Export ("flexibleHeaderViewFrameDidChange:")]
-		void FlexibleHeaderViewFrameDidChange (MDCFlexibleHeaderView headerView);
+		void FlexibleHeaderViewFrameDidChange (FlexibleHeaderView headerView);
 	}
 
 	// @interface  (MDCFlexibleHeaderView)
 	[Category]
-	[BaseType (typeof (MDCFlexibleHeaderView))]
-	interface MDCFlexibleHeaderView_
+	[BaseType (typeof(FlexibleHeaderView))]
+	interface FlexibleHeaderView_
 	{
 		// @property (nonatomic) MDCFlexibleHeaderShiftBehavior behavior __attribute__((deprecated("Use shiftBehavior instead.")));
 		[Export ("behavior",ArgumentSemantic.Assign)]
-		MDCFlexibleHeaderShiftBehavior Behavior ();
+		FlexibleHeaderShiftBehavior Behavior ();
 
 		// @property (nonatomic, strong) UIView * _Nonnull contentView __attribute__((deprecated("Please register views directly to the flexible header.")));
 		[Export ("contentView",ArgumentSemantic.Strong)]
@@ -549,20 +547,16 @@ namespace MaterialComponents
 	}
 
 	// @interface MDCFlexibleHeaderViewController : UIViewController <UIScrollViewDelegate, UITableViewDelegate>
-	[BaseType (typeof (UIViewController))]
-	interface MDCFlexibleHeaderViewController : IUIScrollViewDelegate, IUITableViewDelegate
+	[BaseType (typeof(UIViewController), Name="MDCFlexibleHeaderViewController")]
+	interface FlexibleHeaderViewController : IUIScrollViewDelegate, IUITableViewDelegate
 	{
 		// @property (readonly, nonatomic, strong) MDCFlexibleHeaderView * _Nonnull headerView;
 		[Export ("headerView",ArgumentSemantic.Strong)]
-		MDCFlexibleHeaderView HeaderView { get; }
-
-		[Wrap ("WeakLayoutDelegate")]
-		[NullAllowed]
-		MDCFlexibleHeaderViewLayoutDelegate LayoutDelegate { get; set; }
+		FlexibleHeaderView HeaderView { get; }
 
 		// @property (nonatomic, weak) id<MDCFlexibleHeaderViewLayoutDelegate> _Nullable layoutDelegate;
 		[NullAllowed, Export ("layoutDelegate",ArgumentSemantic.Weak)]
-		NSObject WeakLayoutDelegate { get; set; }
+		IFlexibleHeaderViewLayoutDelegate LayoutDelegate { get; set; }
 
 		// -(BOOL)prefersStatusBarHidden;
 		[Export ("prefersStatusBarHidden")]
@@ -577,20 +571,22 @@ namespace MaterialComponents
 		void UpdateTopLayoutGuide ();
 	}
 
+	interface IFlexibleHeaderViewLayoutDelegate {}
+
 	// @protocol MDCFlexibleHeaderViewLayoutDelegate <NSObject>
 	[Protocol, Model]
-	[BaseType (typeof (NSObject))]
-	interface MDCFlexibleHeaderViewLayoutDelegate
+	[BaseType (typeof(NSObject), Name="MDCFlexibleHeaderViewLayoutDelegate")]
+	interface FlexibleHeaderViewLayoutDelegate
 	{
 		// @required -(void)flexibleHeaderViewController:(MDCFlexibleHeaderViewController * _Nonnull)flexibleHeaderViewController flexibleHeaderViewFrameDidChange:(MDCFlexibleHeaderView * _Nonnull)flexibleHeaderView;
 		[Abstract]
 		[Export ("flexibleHeaderViewController:flexibleHeaderViewFrameDidChange:")]
-		void FlexibleHeaderViewFrameDidChange (MDCFlexibleHeaderViewController flexibleHeaderViewController,MDCFlexibleHeaderView flexibleHeaderView);
+		void FlexibleHeaderViewFrameDidChange (FlexibleHeaderViewController flexibleHeaderViewController,FlexibleHeaderView flexibleHeaderView);
 	}
 
 	// @interface MDCHeaderStackView : UIView
-	[BaseType (typeof (UIView))]
-	interface MDCHeaderStackView
+	[BaseType (typeof(UIView), Name="MDCHeaderStackView")]
+	interface HeaderStackView
 	{
 		// @property (nonatomic, strong) UIView * _Nullable topBar;
 		[NullAllowed, Export ("topBar",ArgumentSemantic.Strong)]
@@ -601,10 +597,12 @@ namespace MaterialComponents
 		UIView BottomBar { get; set; }
 	}
 
+	interface IUINavigationItemObservables {}
+
 	// @protocol MDCUINavigationItemObservables <NSObject>
 	[Protocol, Model]
-	[BaseType (typeof (NSObject))]
-	interface MDCUINavigationItemObservables
+	[BaseType (typeof(NSObject), Name="MDCUINavigationItemObservables")]
+	interface UINavigationItemObservables
 	{
 		// @required @property (copy, nonatomic) NSString * _Nullable title;
 		[Abstract]
@@ -648,17 +646,17 @@ namespace MaterialComponents
 	}
 
 	// @interface MDCNavigationBarTextColorAccessibilityMutator : NSObject
-	[BaseType (typeof (NSObject))]
-	interface MDCNavigationBarTextColorAccessibilityMutator
+	[BaseType (typeof(NSObject), Name="MDCNavigationBarTextColorAccessibilityMutator")]
+	interface NavigationBarTextColorAccessibilityMutator
 	{
 		// -(void)mutate:(MDCNavigationBar * _Nonnull)navBar;
 		[Export ("mutate:")]
-		void Mutate (MDCNavigationBar navBar);
+		void Mutate (NavigationBar navBar);
 	}
 
 	// @interface MDCNavigationBar : UIView
-	[BaseType (typeof (UIView))]
-	interface MDCNavigationBar
+	[BaseType (typeof(UIView), Name="MDCNavigationBar")]
+	interface NavigationBar
 	{
 		// @property (copy, nonatomic) NSString * _Nullable title;
 		[NullAllowed, Export ("title")]
@@ -702,7 +700,7 @@ namespace MaterialComponents
 
 		// @property (nonatomic) MDCNavigationBarTitleAlignment titleAlignment;
 		[Export ("titleAlignment",ArgumentSemantic.Assign)]
-		MDCNavigationBarTitleAlignment TitleAlignment { get; set; }
+		NavigationBarTitleAlignment TitleAlignment { get; set; }
 
 		// -(void)observeNavigationItem:(UINavigationItem * _Nonnull)navigationItem;
 		[Export ("observeNavigationItem:")]
@@ -738,17 +736,17 @@ namespace MaterialComponents
 	}
 
 	// @interface MDCAppBarTextColorAccessibilityMutator : NSObject
-	[BaseType (typeof (NSObject))]
-	interface MDCAppBarTextColorAccessibilityMutator
+	[BaseType (typeof(NSObject), Name="MDCAppBarTextColorAccessibilityMutator")]
+	interface AppBarTextColorAccessibilityMutator
 	{
 		// -(void)mutate:(MDCAppBar * _Nonnull)appBar;
 		[Export ("mutate:")]
-		void Mutate (MDCAppBar appBar);
+		void Mutate (AppBar appBar);
 	}
 
 	// @interface MDCAppBar : NSObject
-	[BaseType (typeof (NSObject))]
-	interface MDCAppBar
+	[BaseType (typeof(NSObject), Name="MDCAppBar")]
+	interface AppBar
 	{
 		// -(void)addSubviewsToParent;
 		[Export ("addSubviewsToParent")]
@@ -756,21 +754,21 @@ namespace MaterialComponents
 
 		// @property (readonly, nonatomic, strong) MDCFlexibleHeaderViewController * _Nonnull headerViewController;
 		[Export ("headerViewController",ArgumentSemantic.Strong)]
-		MDCFlexibleHeaderViewController HeaderViewController { get; }
+		FlexibleHeaderViewController HeaderViewController { get; }
 
 		// @property (readonly, nonatomic, strong) MDCNavigationBar * _Nonnull navigationBar;
 		[Export ("navigationBar",ArgumentSemantic.Strong)]
-		MDCNavigationBar NavigationBar { get; }
+		NavigationBar NavigationBar { get; }
 
 		// @property (readonly, nonatomic, strong) MDCHeaderStackView * _Nonnull headerStackView;
 		[Export ("headerStackView",ArgumentSemantic.Strong)]
-		MDCHeaderStackView HeaderStackView { get; }
+		HeaderStackView HeaderStackView { get; }
 	}
 
 	// @interface MDCAppBarContainerViewController : UIViewController
-	[BaseType (typeof (UIViewController))]
+	[BaseType (typeof(UIViewController), Name="MDCAppBarContainerViewController")]
 	[DisableDefaultCtor]
-	interface MDCAppBarContainerViewController
+	interface AppBarContainerViewController
 	{
 		// -(instancetype _Nonnull)initWithContentViewController:(UIViewController * _Nonnull)contentViewController __attribute__((objc_designated_initializer));
 		[Export ("initWithContentViewController:")]
@@ -779,7 +777,7 @@ namespace MaterialComponents
 
 		// @property (readonly, nonatomic, strong) MDCAppBar * _Nonnull appBar;
 		[Export ("appBar",ArgumentSemantic.Strong)]
-		MDCAppBar AppBar { get; }
+		AppBar AppBar { get; }
 
 		// @property (readonly, nonatomic, strong) UIViewController * _Nonnull contentViewController;
 		[Export ("contentViewController",ArgumentSemantic.Strong)]
@@ -787,18 +785,18 @@ namespace MaterialComponents
 	}
 
 	// @interface MDCAppBarColorThemer : NSObject
-	[BaseType (typeof (NSObject))]
-	interface MDCAppBarColorThemer
+	[BaseType (typeof(NSObject), Name="MDCAppBarColorThemer")]
+	interface AppBarColorThemer
 	{
 		// +(void)applyColorScheme:(NSObject<MDCColorScheme> *)colorScheme toAppBar:(MDCAppBar *)appBar;
 		[Static]
 		[Export ("applyColorScheme:toAppBar:")]
-		void ApplyColorScheme (MDCColorScheme colorScheme,MDCAppBar appBar);
+		void ApplyColorScheme (IColorScheme colorScheme,AppBar appBar);
 	}
 
 	// @interface MDCInkGestureRecognizer : UIGestureRecognizer
-	[BaseType (typeof (UIGestureRecognizer))]
-	interface MDCInkGestureRecognizer
+	[BaseType (typeof(UIGestureRecognizer), Name="MDCInkGestureRecognizer")]
+	interface InkGestureRecognizer
 	{
 		// @property (assign, nonatomic) CGFloat dragCancelDistance;
 		[Export ("dragCancelDistance")]
@@ -822,9 +820,9 @@ namespace MaterialComponents
 	}
 
 	// @interface MDCInkTouchController : NSObject <UIGestureRecognizerDelegate>
-	[BaseType (typeof (NSObject))]
+	[BaseType (typeof(NSObject), Name="MDCInkTouchController")]
 	[DisableDefaultCtor]
-	interface MDCInkTouchController : IUIGestureRecognizerDelegate
+	interface InkTouchController : IUIGestureRecognizerDelegate
 	{
 		// @property (readonly, nonatomic, weak) UIView * _Nullable view;
 		[NullAllowed, Export ("view",ArgumentSemantic.Weak)]
@@ -832,15 +830,11 @@ namespace MaterialComponents
 
 		// @property (readonly, nonatomic, strong) MDCInkView * _Nonnull defaultInkView;
 		[Export ("defaultInkView",ArgumentSemantic.Strong)]
-		MDCInkView DefaultInkView { get; }
-
-		[Wrap ("WeakDelegate")]
-		[NullAllowed]
-		MDCInkTouchControllerDelegate Delegate { get; set; }
+		InkView DefaultInkView { get; }
 
 		// @property (nonatomic, weak) id<MDCInkTouchControllerDelegate> _Nullable delegate;
 		[NullAllowed, Export ("delegate",ArgumentSemantic.Weak)]
-		NSObject WeakDelegate { get; set; }
+		IInkTouchControllerDelegate Delegate { get; set; }
 
 		// @property (assign, nonatomic) BOOL delaysInkSpread;
 		[Export ("delaysInkSpread")]
@@ -860,7 +854,7 @@ namespace MaterialComponents
 
 		// @property (readonly, nonatomic, strong) MDCInkGestureRecognizer * _Nonnull gestureRecognizer;
 		[Export ("gestureRecognizer",ArgumentSemantic.Strong)]
-		MDCInkGestureRecognizer GestureRecognizer { get; }
+		InkGestureRecognizer GestureRecognizer { get; }
 
 		// -(instancetype _Nonnull)initWithView:(UIView * _Nonnull)view __attribute__((objc_designated_initializer));
 		[Export ("initWithView:")]
@@ -878,42 +872,44 @@ namespace MaterialComponents
 		// -(MDCInkView * _Nullable)inkViewAtTouchLocation:(CGPoint)location;
 		[Export ("inkViewAtTouchLocation:")]
 		[return: NullAllowed]
-		MDCInkView InkViewAtTouchLocation (CGPoint location);
+		InkView InkViewAtTouchLocation (CGPoint location);
 	}
+
+	interface IInkTouchControllerDelegate {}
 
 	// @protocol MDCInkTouchControllerDelegate <NSObject>
 	[Protocol, Model]
-	[BaseType (typeof (NSObject))]
-	interface MDCInkTouchControllerDelegate
+	[BaseType (typeof(NSObject), Name="MDCInkTouchControllerDelegate")]
+	interface InkTouchControllerDelegate
 	{
 		// @optional -(void)inkTouchController:(MDCInkTouchController * _Nonnull)inkTouchController insertInkView:(UIView * _Nonnull)inkView intoView:(UIView * _Nonnull)view;
 		[Export ("inkTouchController:insertInkView:intoView:")]
-		void InkTouchController (MDCInkTouchController inkTouchController,UIView inkView,UIView view);
+		void InkTouchController (InkTouchController inkTouchController,UIView inkView,UIView view);
 
 		// @optional -(MDCInkView * _Nullable)inkTouchController:(MDCInkTouchController * _Nonnull)inkTouchController inkViewAtTouchLocation:(CGPoint)location;
 		[Export ("inkTouchController:inkViewAtTouchLocation:")]
 		[return: NullAllowed]
-		MDCInkView InkTouchController (MDCInkTouchController inkTouchController,CGPoint location);
+		InkView InkTouchController (InkTouchController inkTouchController,CGPoint location);
 
 		// @optional -(BOOL)inkTouchController:(MDCInkTouchController * _Nonnull)inkTouchController shouldProcessInkTouchesAtTouchLocation:(CGPoint)location;
 		[Export ("inkTouchController:shouldProcessInkTouchesAtTouchLocation:")]
-		bool InkTouchController2 (MDCInkTouchController inkTouchController,CGPoint location);
+		bool InkTouchController2 (InkTouchController inkTouchController,CGPoint location);
 
 		// @optional -(void)inkTouchController:(MDCInkTouchController * _Nonnull)inkTouchController didProcessInkView:(MDCInkView * _Nonnull)inkView atTouchLocation:(CGPoint)location;
 		[Export ("inkTouchController:didProcessInkView:atTouchLocation:")]
-		void InkTouchController (MDCInkTouchController inkTouchController,MDCInkView inkView,CGPoint location);
+		void InkTouchController (InkTouchController inkTouchController,InkView inkView,CGPoint location);
 	}
 
 	// typedef void (^MDCInkCompletionBlock)();
 	delegate void MDCInkCompletionBlock ();
 
 	// @interface MDCInkView : UIView
-	[BaseType (typeof (UIView))]
-	interface MDCInkView
+	[BaseType (typeof(UIView), Name="MDCInkView")]
+	interface InkView
 	{
 		// @property (assign, nonatomic) MDCInkStyle inkStyle;
 		[Export ("inkStyle",ArgumentSemantic.Assign)]
-		MDCInkStyle InkStyle { get; set; }
+		InkStyle InkStyle { get; set; }
 
 		// @property (nonatomic, strong) UIColor * _Null_unspecified inkColor;
 		[Export ("inkColor",ArgumentSemantic.Strong)]
@@ -950,7 +946,7 @@ namespace MaterialComponents
 		// +(MDCInkView * _Nonnull)injectedInkViewForView:(UIView * _Nonnull)view;
 		[Static]
 		[Export ("injectedInkViewForView:")]
-		MDCInkView InjectedInkViewForView (UIView view);
+		InkView InjectedInkViewForView (UIView view);
 	}
 
 	[Static]
@@ -1047,12 +1043,12 @@ namespace MaterialComponents
 	}
 
 	// @interface MDCButton : UIButton
-	[BaseType (typeof (UIButton))]
-	interface MDCButton
+	[BaseType (typeof(UIButton), Name="MDCButton")]
+	interface Button
 	{
 		// @property (assign, nonatomic) MDCInkStyle inkStyle __attribute__((annotate("ui_appearance_selector")));
 		[Export ("inkStyle",ArgumentSemantic.Assign)]
-		MDCInkStyle InkStyle { get; set; }
+		InkStyle InkStyle { get; set; }
 
 		// @property (nonatomic, strong) UIColor * _Null_unspecified inkColor __attribute__((annotate("ui_appearance_selector")));
 		[Export ("inkColor",ArgumentSemantic.Strong)]
@@ -1159,8 +1155,8 @@ namespace MaterialComponents
 	}
 
 	// @interface MDCFlatButton : MDCButton
-	[BaseType (typeof (MDCButton))]
-	interface MDCFlatButton
+	[BaseType (typeof(Button), Name="MDCFlatButton")]
+	interface FlatButton
 	{
 		// @property (nonatomic) BOOL hasOpaqueBackground;
 		[Export ("hasOpaqueBackground")]
@@ -1168,13 +1164,13 @@ namespace MaterialComponents
 	}
 
 	// @interface MDCFloatingButton : MDCButton
-	[BaseType (typeof (MDCButton))]
-	interface MDCFloatingButton
+	[BaseType (typeof(Button), Name="MDCFloatingButton")]
+	interface FloatingButton
 	{
 		// +(instancetype _Nonnull)floatingButtonWithShape:(MDCFloatingButtonShape)shape;
 		[Static]
 		[Export ("floatingButtonWithShape:")]
-		MDCFloatingButton FloatingButtonWithShape (MDCFloatingButtonShape shape);
+		FloatingButton FloatingButtonWithShape (FloatingButtonShape shape);
 
 		// +(CGFloat)defaultDimension;
 		[Static]
@@ -1189,7 +1185,7 @@ namespace MaterialComponents
 		// -(instancetype _Nonnull)initWithFrame:(CGRect)frame shape:(MDCFloatingButtonShape)shape __attribute__((objc_designated_initializer));
 		[Export ("initWithFrame:shape:")]
 		[DesignatedInitializer]
-		IntPtr Constructor (CGRect frame,MDCFloatingButtonShape shape);
+		IntPtr Constructor (CGRect frame,FloatingButtonShape shape);
 
 		// -(instancetype _Nonnull)initWithFrame:(CGRect)frame;
 		[Export ("initWithFrame:")]
@@ -1203,12 +1199,12 @@ namespace MaterialComponents
 		// +(instancetype _Nonnull)buttonWithShape:(MDCFloatingButtonShape)shape __attribute__((deprecated("Use floatingButtonWithShape: instead.")));
 		[Static]
 		[Export ("buttonWithShape:")]
-		MDCFloatingButton ButtonWithShape (MDCFloatingButtonShape shape);
+		FloatingButton ButtonWithShape (FloatingButtonShape shape);
 	}
 
 	// @interface Animation (MDCFloatingButton)
 	[Category]
-	[BaseType (typeof (MDCFloatingButton))]
+	[BaseType (typeof(FloatingButton))]
 	interface MDCFloatingButton_Animation
 	{
 		// -(void)expand:(BOOL)animated completion:(void (^ _Nullable)(void))completion;
@@ -1221,14 +1217,14 @@ namespace MaterialComponents
 	}
 
 	// @interface MDCRaisedButton : MDCButton
-	[BaseType (typeof (MDCButton))]
-	interface MDCRaisedButton
+	[BaseType (typeof(Button), Name="MDCRaisedButton")]
+	interface RaisedButton
 	{
 	}
 
 	// @interface MDCBottomAppBarView : UIView
-	[BaseType (typeof (UIView))]
-	interface MDCBottomAppBarView
+	[BaseType (typeof(UIView), Name="MDCBottomAppBarView")]
+	interface BottomAppBarView
 	{
 		// @property (getter = isFloatingButtonHidden, assign, nonatomic) BOOL floatingButtonHidden;
 		[Export ("floatingButtonHidden")]
@@ -1236,15 +1232,15 @@ namespace MaterialComponents
 
 		// @property (assign, nonatomic) MDCBottomAppBarFloatingButtonElevation floatingButtonElevation;
 		[Export ("floatingButtonElevation",ArgumentSemantic.Assign)]
-		MDCBottomAppBarFloatingButtonElevation FloatingButtonElevation { get; set; }
+		BottomAppBarFloatingButtonElevation FloatingButtonElevation { get; set; }
 
 		// @property (assign, nonatomic) MDCBottomAppBarFloatingButtonPosition floatingButtonPosition;
 		[Export ("floatingButtonPosition",ArgumentSemantic.Assign)]
-		MDCBottomAppBarFloatingButtonPosition FloatingButtonPosition { get; set; }
+		BottomAppBarFloatingButtonPosition FloatingButtonPosition { get; set; }
 
 		// @property (readonly, nonatomic, strong) MDCFloatingButton * _Nonnull floatingButton;
 		[Export ("floatingButton",ArgumentSemantic.Strong)]
-		MDCFloatingButton FloatingButton { get; }
+		FloatingButton FloatingButton { get; }
 
 		// @property (copy, nonatomic) NSArray<UIBarButtonItem *> * _Nullable leadingBarButtonItems;
 		[NullAllowed, Export ("leadingBarButtonItems",ArgumentSemantic.Copy)]
@@ -1260,32 +1256,28 @@ namespace MaterialComponents
 
 		// -(void)setFloatingButtonElevation:(MDCBottomAppBarFloatingButtonElevation)floatingButtonElevation animated:(BOOL)animated;
 		[Export ("setFloatingButtonElevation:animated:")]
-		void SetFloatingButtonElevation (MDCBottomAppBarFloatingButtonElevation floatingButtonElevation,bool animated);
+		void SetFloatingButtonElevation (BottomAppBarFloatingButtonElevation floatingButtonElevation,bool animated);
 
 		// -(void)setFloatingButtonPosition:(MDCBottomAppBarFloatingButtonPosition)floatingButtonPosition animated:(BOOL)animated;
 		[Export ("setFloatingButtonPosition:animated:")]
-		void SetFloatingButtonPosition (MDCBottomAppBarFloatingButtonPosition floatingButtonPosition,bool animated);
+		void SetFloatingButtonPosition (BottomAppBarFloatingButtonPosition floatingButtonPosition,bool animated);
 	}
 
 	// @interface MDCBottomNavigationBar : UIView
-	[BaseType (typeof (UIView))]
-	interface MDCBottomNavigationBar
+	[BaseType (typeof(UIView), Name="MDCBottomNavigationBar")]
+	interface BottomNavigationBar
 	{
-		[Wrap ("WeakDelegate")]
-		[NullAllowed]
-		MDCBottomNavigationBarDelegate Delegate { get; set; }
-
 		// @property (nonatomic, weak) id<MDCBottomNavigationBarDelegate> _Nullable delegate;
 		[NullAllowed, Export ("delegate",ArgumentSemantic.Weak)]
-		NSObject WeakDelegate { get; set; }
+		IBottomNavigationBarDelegate Delegate { get; set; }
 
 		// @property (assign, nonatomic) MDCBottomNavigationBarTitleVisibility titleVisibility __attribute__((annotate("ui_appearance_selector")));
 		[Export ("titleVisibility",ArgumentSemantic.Assign)]
-		MDCBottomNavigationBarTitleVisibility TitleVisibility { get; set; }
+		BottomNavigationBarTitleVisibility TitleVisibility { get; set; }
 
 		// @property (assign, nonatomic) MDCBottomNavigationBarAlignment alignment __attribute__((annotate("ui_appearance_selector")));
 		[Export ("alignment",ArgumentSemantic.Assign)]
-		MDCBottomNavigationBarAlignment Alignment { get; set; }
+		BottomNavigationBarAlignment Alignment { get; set; }
 
 		// @property (copy, nonatomic) NSArray<UITabBarItem *> * _Nonnull items;
 		[Export ("items",ArgumentSemantic.Copy)]
@@ -1308,98 +1300,96 @@ namespace MaterialComponents
 		UIColor UnselectedItemTintColor { get; set; }
 	}
 
+	interface IBottomNavigationBarDelegate {}
+
 	// @protocol MDCBottomNavigationBarDelegate <UINavigationBarDelegate>
-	[BaseType (typeof (NSObject))]
+	[BaseType (typeof(NSObject), Name="MDCBottomNavigationBarDelegate")]
 	[Protocol, Model]
-	interface MDCBottomNavigationBarDelegate : IUINavigationBarDelegate
+	interface BottomNavigationBarDelegate : IUINavigationBarDelegate
 	{
 		// @optional -(BOOL)bottomNavigationBar:(MDCBottomNavigationBar * _Nonnull)bottomNavigationBar shouldSelectItem:(UITabBarItem * _Nonnull)item;
 		[Export ("bottomNavigationBar:shouldSelectItem:")]
-		bool BottomNavigationBar (MDCBottomNavigationBar bottomNavigationBar,UITabBarItem item);
+		bool BottomNavigationBar (BottomNavigationBar bottomNavigationBar,UITabBarItem item);
 
 		// @optional -(void)bottomNavigationBar:(MDCBottomNavigationBar * _Nonnull)bottomNavigationBar didSelectItem:(UITabBarItem * _Nonnull)item;
 		[Export ("bottomNavigationBar:didSelectItem:")]
-		void BottomNavigationBar2 (MDCBottomNavigationBar bottomNavigationBar,UITabBarItem item);
+		void BottomNavigationBar2 (BottomNavigationBar bottomNavigationBar,UITabBarItem item);
 	}
 
 	// @interface MDCBottomNavigationBarColorThemer : NSObject
-	[BaseType (typeof (NSObject))]
-	interface MDCBottomNavigationBarColorThemer
+	[BaseType (typeof(NSObject), Name="MDCBottomNavigationBarColorThemer")]
+	interface BottomNavigationBarColorThemer
 	{
 		// +(void)applyColorScheme:(NSObject<MDCColorScheme> *)colorScheme toBottomNavigationBar:(MDCBottomNavigationBar *)bottomNavigationBar;
 		[Static]
 		[Export ("applyColorScheme:toBottomNavigationBar:")]
-		void ApplyColorScheme (MDCColorScheme colorScheme,MDCBottomNavigationBar bottomNavigationBar);
+		void ApplyColorScheme (IColorScheme colorScheme,BottomNavigationBar bottomNavigationBar);
 	}
 
 	// @interface MDCBottomSheetController : UIViewController
-	[BaseType (typeof (UIViewController))]
-	interface MDCBottomSheetController
+	[BaseType (typeof(UIViewController), Name="MDCBottomSheetController")]
+	interface BottomSheetController
 	{
 		// @property (readonly, nonatomic, strong) UIViewController * _Nonnull contentViewController;
 		[Export ("contentViewController",ArgumentSemantic.Strong)]
 		UIViewController ContentViewController { get; }
 
-		[Wrap ("WeakDelegate")]
-		[NullAllowed]
-		MDCBottomSheetControllerDelegate Delegate { get; set; }
-
 		// @property (nonatomic, weak) id<MDCBottomSheetControllerDelegate> _Nullable delegate;
 		[NullAllowed, Export ("delegate",ArgumentSemantic.Weak)]
-		NSObject WeakDelegate { get; set; }
+		IBottomSheetControllerDelegate Delegate { get; set; }
 
 		// -(instancetype _Nonnull)initWithContentViewController:(UIViewController * _Nonnull)contentViewController;
 		[Export ("initWithContentViewController:")]
 		IntPtr Constructor (UIViewController contentViewController);
 	}
 
+	interface IBottomSheetControllerDelegate {}
+
 	// @protocol MDCBottomSheetControllerDelegate <NSObject>
 	[Protocol, Model]
-	[BaseType (typeof (NSObject))]
-	interface MDCBottomSheetControllerDelegate
+	[BaseType (typeof(NSObject), Name="MDCBottomSheetControllerDelegate")]
+	interface BottomSheetControllerDelegate
 	{
 		// @required -(void)bottomSheetControllerDidDismissBottomSheet:(MDCBottomSheetController * _Nonnull)controller;
 		[Abstract]
 		[Export ("bottomSheetControllerDidDismissBottomSheet:")]
-		void BottomSheetControllerDidDismissBottomSheet (MDCBottomSheetController controller);
+		void BottomSheetControllerDidDismissBottomSheet (BottomSheetController controller);
 	}
+
+	interface IBottomSheetPresentationControllerDelegate {}
 
 	// @protocol MDCBottomSheetPresentationControllerDelegate <UIAdaptivePresentationControllerDelegate>
 	[Protocol, Model]
-	[BaseType (typeof (NSObject))]
-	interface MDCBottomSheetPresentationControllerDelegate : IUIAdaptivePresentationControllerDelegate
+	[BaseType (typeof(NSObject), Name="MDCBottomSheetPresentationControllerDelegate")]
+	interface BottomSheetPresentationControllerDelegate : IUIAdaptivePresentationControllerDelegate
 	{
 		// @optional -(void)prepareForBottomSheetPresentation:(MDCBottomSheetPresentationController * _Nonnull)bottomSheet;
 		[Export ("prepareForBottomSheetPresentation:")]
-		void PrepareForBottomSheetPresentation (MDCBottomSheetPresentationController bottomSheet);
+		void PrepareForBottomSheetPresentation (BottomSheetPresentationController bottomSheet);
 
 		// @optional -(void)bottomSheetPresentationControllerDidDismissBottomSheet:(MDCBottomSheetPresentationController * _Nonnull)bottomSheet;
 		[Export ("bottomSheetPresentationControllerDidDismissBottomSheet:")]
-		void BottomSheetPresentationControllerDidDismissBottomSheet (MDCBottomSheetPresentationController bottomSheet);
+		void BottomSheetPresentationControllerDidDismissBottomSheet (BottomSheetPresentationController bottomSheet);
 	}
 
 	// @interface MDCBottomSheetPresentationController : UIPresentationController
-	[BaseType (typeof (UIPresentationController))]
-	interface MDCBottomSheetPresentationController
+	[BaseType (typeof(UIPresentationController), Name="MDCBottomSheetPresentationController")]
+	interface BottomSheetPresentationController
 	{
-		[Wrap ("WeakDelegate")]
-		[NullAllowed]
-		MDCBottomSheetPresentationControllerDelegate Delegate { get; set; }
-
 		// @property (nonatomic, weak) id<MDCBottomSheetPresentationControllerDelegate> _Nullable delegate;
 		[NullAllowed, Export ("delegate",ArgumentSemantic.Weak)]
-		NSObject WeakDelegate { get; set; }
+		IBottomSheetPresentationControllerDelegate Delegate { get; set; }
 	}
 
 	// @interface MDCBottomSheetTransitionController : NSObject <UIViewControllerAnimatedTransitioning, UIViewControllerTransitioningDelegate>
-	[BaseType (typeof (NSObject))]
-	interface MDCBottomSheetTransitionController : IUIViewControllerAnimatedTransitioning, IUIViewControllerTransitioningDelegate
+	[BaseType (typeof(NSObject), Name="MDCBottomSheetTransitionController")]
+	interface BottomSheetTransitionController : IUIViewControllerAnimatedTransitioning, IUIViewControllerTransitioningDelegate
 	{
 	}
 
 	// @interface MDCButtonBar : UIView
-	[BaseType (typeof (UIView))]
-	interface MDCButtonBar
+	[BaseType (typeof(UIView), Name="MDCButtonBar")]
+	interface ButtonBar
 	{
 		// @property (copy, nonatomic) NSArray<UIBarButtonItem *> * _Nullable items;
 		[NullAllowed, Export ("items",ArgumentSemantic.Copy)]
@@ -1411,52 +1401,54 @@ namespace MaterialComponents
 
 		// @property (nonatomic) MDCButtonBarLayoutPosition layoutPosition;
 		[Export ("layoutPosition",ArgumentSemantic.Assign)]
-		MDCButtonBarLayoutPosition LayoutPosition { get; set; }
+		ButtonBarLayoutPosition LayoutPosition { get; set; }
 
 		// -(CGSize)sizeThatFits:(CGSize)size;
 		[Export ("sizeThatFits:")]
 		CGSize SizeThatFits (CGSize size);
 	}
 
+	interface IButtonBarDelegate {}
+
 	// @protocol MDCButtonBarDelegate <NSObject>
 	[Protocol, Model]
-	[BaseType (typeof (NSObject))]
-	interface MDCButtonBarDelegate
+	[BaseType (typeof(NSObject), Name="MDCButtonBarDelegate")]
+	interface ButtonBarDelegate
 	{
 		// @required -(UIView * _Nonnull)buttonBar:(MDCButtonBar * _Nonnull)buttonBar viewForItem:(UIBarButtonItem * _Nonnull)barButtonItem layoutHints:(MDCBarButtonItemLayoutHints)layoutHints;
 		[Abstract]
 		[Export ("buttonBar:viewForItem:layoutHints:")]
-		UIView ViewForItem (MDCButtonBar buttonBar,UIBarButtonItem barButtonItem,MDCBarButtonItemLayoutHints layoutHints);
+		UIView ViewForItem (ButtonBar buttonBar,UIBarButtonItem barButtonItem,BarButtonItemLayoutHints layoutHints);
 	}
 
 	// @interface MDCButtonBarColorThemer : NSObject
-	[BaseType (typeof (NSObject))]
-	interface MDCButtonBarColorThemer
+	[BaseType (typeof(NSObject), Name="MDCButtonBarColorThemer")]
+	interface ButtonBarColorThemer
 	{
 		// +(void)applyColorScheme:(NSObject<MDCColorScheme> *)colorScheme toButtonBar:(MDCButtonBar *)buttonBar;
 		[Static]
 		[Export ("applyColorScheme:toButtonBar:")]
-		void ApplyColorScheme (MDCColorScheme colorScheme,MDCButtonBar buttonBar);
+		void ApplyColorScheme (IColorScheme colorScheme,ButtonBar buttonBar);
 	}
 
 	// @interface MDCButtonColorThemer : NSObject
-	[BaseType (typeof (NSObject))]
-	interface MDCButtonColorThemer
+	[BaseType (typeof(NSObject), Name="MDCButtonColorThemer")]
+	interface ButtonColorThemer
 	{
 		// +(void)applyColorScheme:(NSObject<MDCColorScheme> *)colorScheme toButton:(MDCButton *)button;
 		[Static]
 		[Export ("applyColorScheme:toButton:")]
-		void ApplyColorScheme (MDCColorScheme colorScheme,MDCButton button);
+		void ApplyColorScheme (IColorScheme colorScheme,Button button);
 	}
 
 	// @interface MDCButtonTitleColorAccessibilityMutator : NSObject
-	[BaseType (typeof (NSObject))]
-	interface MDCButtonTitleColorAccessibilityMutator
+	[BaseType (typeof(NSObject), Name="MDCButtonTitleColorAccessibilityMutator")]
+	interface ButtonTitleColorAccessibilityMutator
 	{
 		// +(void)changeTitleColorOfButton:(MDCButton *)button;
 		[Static]
 		[Export ("changeTitleColorOfButton:")]
-		void ChangeTitleColorOfButton (MDCButton button);
+		void ChangeTitleColorOfButton (Button button);
 	}
 
 	[Static]
@@ -1473,12 +1465,12 @@ namespace MaterialComponents
 	}
 
 	// @interface MDCCollectionViewCell : UICollectionViewCell
-	[BaseType (typeof (UICollectionViewCell))]
-	interface MDCCollectionViewCell
+	[BaseType (typeof(UICollectionViewCell), Name="MDCCollectionViewCell")]
+	interface CollectionViewCell
 	{
 		// @property (nonatomic) MDCCollectionViewCellAccessoryType accessoryType;
 		[Export ("accessoryType",ArgumentSemantic.Assign)]
-		MDCCollectionViewCellAccessoryType AccessoryType { get; set; }
+		CollectionViewCellAccessoryType AccessoryType { get; set; }
 
 		// @property (nonatomic, strong) UIView * _Nullable accessoryView;
 		[NullAllowed, Export ("accessoryView",ArgumentSemantic.Strong)]
@@ -1514,13 +1506,15 @@ namespace MaterialComponents
 
 		// @property (nonatomic, strong) MDCInkView * _Nullable inkView;
 		[NullAllowed, Export ("inkView",ArgumentSemantic.Strong)]
-		MDCInkView InkView { get; set; }
+		InkView InkView { get; set; }
 	}
+
+	interface ICollectionViewEditing {}
 
 	// @protocol MDCCollectionViewEditing <NSObject>
 	[Protocol, Model]
-	[BaseType (typeof (NSObject))]
-	interface MDCCollectionViewEditing
+	[BaseType (typeof(NSObject), Name="MDCCollectionViewEditing")]
+	interface CollectionViewEditing
 	{
 		// @required @property (readonly, nonatomic, weak) UICollectionView * _Nullable collectionView;
 		[Abstract]
@@ -1530,7 +1524,7 @@ namespace MaterialComponents
 		// @required @property (nonatomic, weak) id<MDCCollectionViewEditingDelegate> _Nullable delegate;
 		[Abstract]
 		[NullAllowed, Export ("delegate",ArgumentSemantic.Weak)]
-		IMDCCollectionViewEditingDelegate Delegate { get; set; }
+		ICollectionViewEditingDelegate Delegate { get; set; }
 
 		// @required @property (readonly, nonatomic, strong) NSIndexPath * _Nullable reorderingCellIndexPath;
 		[Abstract]
@@ -1558,12 +1552,12 @@ namespace MaterialComponents
 		void Animated (bool editing,bool animated);
 	}
 
-	interface IMDCCollectionViewEditingDelegate { }
+	interface ICollectionViewEditingDelegate { }
 
 	// @protocol MDCCollectionViewEditingDelegate <NSObject>
 	[Protocol, Model]
-	[BaseType (typeof (NSObject))]
-	interface MDCCollectionViewEditingDelegate
+	[BaseType (typeof(NSObject), Name="MDCCollectionViewEditingDelegate")]
+	interface CollectionViewEditingDelegate
 	{
 		// @optional -(BOOL)collectionViewAllowsEditing:(UICollectionView * _Nonnull)collectionView;
 		[Export ("collectionViewAllowsEditing:")]
@@ -1687,10 +1681,12 @@ namespace MaterialComponents
 		nfloat MDCCollectionViewCellStyleCardSectionInset { get; }
 	}
 
+	interface ICollectionViewStyling {}
+
 	// @protocol MDCCollectionViewStyling <NSObject>
 	[Protocol, Model]
-	[BaseType (typeof (NSObject))]
-	interface MDCCollectionViewStyling
+	[BaseType (typeof(NSObject), Name="MDCCollectionViewStyling")]
+	interface CollectionViewStyling
 	{
 		// @required @property (readonly, nonatomic, weak) UICollectionView * _Nullable collectionView;
 		[Abstract]
@@ -1700,7 +1696,7 @@ namespace MaterialComponents
 		// @required @property (nonatomic, weak) id<MDCCollectionViewStylingDelegate> _Nullable delegate;
 		[Abstract]
 		[NullAllowed, Export ("delegate",ArgumentSemantic.Weak)]
-		IMDCCollectionViewStylingDelegate Delegate { get; set; }
+		ICollectionViewStylingDelegate Delegate { get; set; }
 
 		// @required @property (assign, nonatomic) BOOL shouldInvalidateLayout;
 		[Abstract]
@@ -1715,7 +1711,7 @@ namespace MaterialComponents
 		// @required @property (assign, nonatomic) MDCCollectionViewCellLayoutType cellLayoutType;
 		[Abstract]
 		[Export ("cellLayoutType",ArgumentSemantic.Assign)]
-		MDCCollectionViewCellLayoutType CellLayoutType { get; set; }
+		CollectionViewCellLayoutType CellLayoutType { get; set; }
 
 		// @required @property (assign, nonatomic) NSInteger gridColumnCount;
 		[Abstract]
@@ -1730,28 +1726,28 @@ namespace MaterialComponents
 		// @required @property (assign, nonatomic) MDCCollectionViewCellStyle cellStyle;
 		[Abstract]
 		[Export ("cellStyle",ArgumentSemantic.Assign)]
-		MDCCollectionViewCellStyle CellStyle { get; set; }
+		CollectionViewCellStyle CellStyle { get; set; }
 
 		// @required -(void)setCellStyle:(MDCCollectionViewCellStyle)cellStyle animated:(BOOL)animated;
 		[Abstract]
 		[Export ("setCellStyle:animated:")]
-		void SetCellStyle (MDCCollectionViewCellStyle cellStyle,bool animated);
+		void SetCellStyle (CollectionViewCellStyle cellStyle,bool animated);
 
 		// @required -(MDCCollectionViewCellStyle)cellStyleAtSectionIndex:(NSInteger)section;
 		[Abstract]
 		[Export ("cellStyleAtSectionIndex:")]
-		MDCCollectionViewCellStyle CellStyleAtSectionIndex (nint section);
+		CollectionViewCellStyle CellStyleAtSectionIndex (nint section);
 
 		// @required -(UIEdgeInsets)backgroundImageViewOutsetsForCellWithAttribute:(MDCCollectionViewLayoutAttributes * _Nonnull)attr;
 		[Abstract]
 		[Export ("backgroundImageViewOutsetsForCellWithAttribute:")]
-		UIEdgeInsets BackgroundImageViewOutsetsForCellWithAttribute (MDCCollectionViewLayoutAttributes attr);
+		UIEdgeInsets BackgroundImageViewOutsetsForCellWithAttribute (CollectionViewLayoutAttributes attr);
 
 		// @required -(UIImage * _Nullable)backgroundImageForCellLayoutAttributes:(MDCCollectionViewLayoutAttributes * _Nonnull)attr;
 		[Abstract]
 		[Export ("backgroundImageForCellLayoutAttributes:")]
 		[return: NullAllowed]
-		UIImage BackgroundImageForCellLayoutAttributes (MDCCollectionViewLayoutAttributes attr);
+		UIImage BackgroundImageForCellLayoutAttributes (CollectionViewLayoutAttributes attr);
 
 		// @required @property (nonatomic, strong) UIColor * _Nullable separatorColor;
 		[Abstract]
@@ -1776,7 +1772,7 @@ namespace MaterialComponents
 		// @required -(BOOL)shouldHideSeparatorForCellLayoutAttributes:(MDCCollectionViewLayoutAttributes * _Nonnull)attr;
 		[Abstract]
 		[Export ("shouldHideSeparatorForCellLayoutAttributes:")]
-		bool ShouldHideSeparatorForCellLayoutAttributes (MDCCollectionViewLayoutAttributes attr);
+		bool ShouldHideSeparatorForCellLayoutAttributes (CollectionViewLayoutAttributes attr);
 
 		// @required @property (assign, nonatomic) BOOL allowsItemInlay;
 		[Abstract]
@@ -1849,12 +1845,12 @@ namespace MaterialComponents
 		void BeginCellAppearanceAnimation ();
 	}
 
-	interface IMDCCollectionViewStylingDelegate {}
+	interface ICollectionViewStylingDelegate {}
 
 	// @protocol MDCCollectionViewStylingDelegate <NSObject>
 	[Protocol, Model]
-	[BaseType (typeof (NSObject))]
-	interface MDCCollectionViewStylingDelegate
+	[BaseType (typeof(NSObject), Name="MDCCollectionViewStylingDelegate")]
+	interface CollectionViewStylingDelegate
 	{
 		// @optional -(CGFloat)collectionView:(UICollectionView * _Nonnull)collectionView cellHeightAtIndexPath:(NSIndexPath * _Nonnull)indexPath;
 		[Export ("collectionView:cellHeightAtIndexPath:")]
@@ -1862,7 +1858,7 @@ namespace MaterialComponents
 
 		// @optional -(MDCCollectionViewCellStyle)collectionView:(UICollectionView * _Nonnull)collectionView cellStyleForSection:(NSInteger)section;
 		[Export ("collectionView:cellStyleForSection:")]
-		MDCCollectionViewCellStyle CollectionView (UICollectionView collectionView,nint section);
+		CollectionViewCellStyle CollectionView (UICollectionView collectionView,nint section);
 
 		// @optional -(UIColor * _Nullable)collectionView:(UICollectionView * _Nonnull)collectionView cellBackgroundColorAtIndexPath:(NSIndexPath * _Nonnull)indexPath;
 		[Export ("collectionView:cellBackgroundColorAtIndexPath:")]
@@ -1912,20 +1908,20 @@ namespace MaterialComponents
 
 		// @optional -(MDCInkView * _Nonnull)collectionView:(UICollectionView * _Nonnull)collectionView inkTouchController:(MDCInkTouchController * _Nonnull)inkTouchController inkViewAtIndexPath:(NSIndexPath * _Nonnull)indexPath;
 		[Export ("collectionView:inkTouchController:inkViewAtIndexPath:")]
-		MDCInkView CollectionView203 (UICollectionView collectionView,MDCInkTouchController inkTouchController,NSIndexPath indexPath);
+		InkView CollectionView203 (UICollectionView collectionView,InkTouchController inkTouchController,NSIndexPath indexPath);
 	}
 
 	// @interface MDCCollectionViewController : UICollectionViewController <MDCCollectionViewEditingDelegate, MDCCollectionViewStylingDelegate, UICollectionViewDelegateFlowLayout>
-	[BaseType (typeof (UICollectionViewController))]
-	interface MDCCollectionViewController : MDCCollectionViewEditingDelegate, MDCCollectionViewStylingDelegate, IUICollectionViewDelegateFlowLayout
+	[BaseType (typeof(UICollectionViewController), Name="MDCCollectionViewController")]
+	interface CollectionViewController : CollectionViewEditingDelegate, CollectionViewStylingDelegate, IUICollectionViewDelegateFlowLayout
 	{
 		// @property (readonly, nonatomic, strong) id<MDCCollectionViewStyling> _Nonnull styler;
 		[Export ("styler",ArgumentSemantic.Strong)]
-		MDCCollectionViewStyling Styler { get; }
+		ICollectionViewStyling Styler { get; }
 
 		// @property (readonly, nonatomic, strong) id<MDCCollectionViewEditing> _Nonnull editor;
 		[Export ("editor",ArgumentSemantic.Strong)]
-		MDCCollectionViewEditing Editor { get; }
+		ICollectionViewEditing Editor { get; }
 
 		// -(BOOL)collectionView:(UICollectionView * _Nonnull)collectionView shouldHighlightItemAtIndexPath:(NSIndexPath * _Nonnull)indexPath __attribute__((objc_requires_super));
 		[Export ("collectionView:shouldHighlightItemAtIndexPath:")]
@@ -1978,14 +1974,14 @@ namespace MaterialComponents
 	}
 
 	// @interface MDCCollectionViewFlowLayout : UICollectionViewFlowLayout
-	[BaseType (typeof (UICollectionViewFlowLayout))]
-	interface MDCCollectionViewFlowLayout
+	[BaseType (typeof(UICollectionViewFlowLayout), Name="MDCCollectionViewFlowLayout")]
+	interface CollectionViewFlowLayout
 	{
 	}
 
 	// @interface MDCCollectionViewLayoutAttributes : UICollectionViewLayoutAttributes <NSCopying>
-	[BaseType (typeof (UICollectionViewLayoutAttributes))]
-	interface MDCCollectionViewLayoutAttributes : INSCopying
+	[BaseType (typeof(UICollectionViewLayoutAttributes), Name="MDCCollectionViewLayoutAttributes")]
+	interface CollectionViewLayoutAttributes : INSCopying
 	{
 		// @property (getter = isEditing, nonatomic) BOOL editing;
 		[Export ("editing")]
@@ -2017,7 +2013,7 @@ namespace MaterialComponents
 
 		// @property (assign, nonatomic) MDCCollectionViewOrdinalPosition sectionOrdinalPosition;
 		[Export ("sectionOrdinalPosition",ArgumentSemantic.Assign)]
-		MDCCollectionViewOrdinalPosition SectionOrdinalPosition { get; set; }
+		CollectionViewOrdinalPosition SectionOrdinalPosition { get; set; }
 
 		// @property (nonatomic, strong) UIColor * _Nullable separatorColor;
 		[NullAllowed, Export ("separatorColor",ArgumentSemantic.Strong)]
@@ -2070,8 +2066,8 @@ namespace MaterialComponents
 	}
 
 	// @interface MDCCollectionViewTextCell : MDCCollectionViewCell
-	[BaseType (typeof (MDCCollectionViewCell))]
-	interface MDCCollectionViewTextCell
+	[BaseType (typeof(CollectionViewCell), Name="MDCCollectionViewTextCell")]
+	interface CollectionViewTextCell
 	{
 		// @property (readonly, nonatomic, strong) UILabel * _Nullable textLabel;
 		[NullAllowed, Export ("textLabel",ArgumentSemantic.Strong)]
@@ -2087,8 +2083,8 @@ namespace MaterialComponents
 	}
 
 	// @interface MDCCornerTreatment : NSObject <NSCopying, NSSecureCoding>
-	[BaseType (typeof (NSObject))]
-	interface MDCCornerTreatment : INSCopying, INSSecureCoding
+	[BaseType (typeof(NSObject), Name="MDCCornerTreatment")]
+	interface CornerTreatment : INSCopying, INSSecureCoding
 	{
 		//// -(instancetype _Nullable)initWithCoder:(NSCoder * _Nonnull)aDecoder __attribute__((objc_designated_initializer));
 		//[Export ("initWithCoder:")]
@@ -2097,22 +2093,24 @@ namespace MaterialComponents
 
 		// -(MDCPathGenerator * _Nonnull)pathGeneratorForCornerWithAngle:(CGFloat)angle;
 		[Export ("pathGeneratorForCornerWithAngle:")]
-		MDCPathGenerator PathGeneratorForCornerWithAngle (nfloat angle);
+		PathGeneratorClass PathGeneratorForCornerWithAngle (nfloat angle);
 	}
 
 	// @interface MDCCurvedCornerTreatment : MDCCornerTreatment
-	[BaseType (typeof (MDCCornerTreatment))]
-	interface MDCCurvedCornerTreatment
+	[BaseType (typeof(CornerTreatment), Name="MDCCurvedCornerTreatment")]
+	interface CurvedCornerTreatment
 	{
 		// @property (assign, nonatomic) CGSize size;
 		[Export ("size",ArgumentSemantic.Assign)]
 		CGSize Size { get; set; }
 	}
 
+	interface IShapeGenerating {}
+
 	// @protocol MDCShapeGenerating <NSCopying, NSSecureCoding>
 	[Protocol, Model]
-	[BaseType (typeof (NSObject))]
-	interface MDCShapeGenerating : INSCopying, INSSecureCoding
+	[BaseType (typeof(NSObject), Name="MDCShapeGenerating")]
+	interface ShapeGenerating : INSCopying, INSSecureCoding
 	{
 		// @required -(CGPathRef _Nullable)pathForSize:(CGSize)size;
 		[Abstract]
@@ -2123,8 +2121,8 @@ namespace MaterialComponents
 	}
 
 	// @interface MDCCurvedRectShapeGenerator : NSObject <MDCShapeGenerating>
-	[BaseType (typeof (NSObject))]
-	interface MDCCurvedRectShapeGenerator : MDCShapeGenerating
+	[BaseType (typeof(NSObject), Name="MDCCurvedRectShapeGenerator")]
+	interface CurvedRectShapeGenerator : ShapeGenerating
 	{
 		// @property (assign, nonatomic) CGSize cornerSize;
 		[Export ("cornerSize",ArgumentSemantic.Assign)]
@@ -2142,8 +2140,8 @@ namespace MaterialComponents
 	}
 
 	// @interface MDCEdgeTreatment : NSObject <NSCopying, NSSecureCoding>
-	[BaseType (typeof (NSObject))]
-	interface MDCEdgeTreatment : INSCopying, INSSecureCoding
+	[BaseType (typeof(NSObject), Name="MDCEdgeTreatment")]
+	interface EdgeTreatment : INSCopying, INSSecureCoding
 	{
 		//// -(instancetype _Nullable)initWithCoder:(NSCoder * _Nonnull)aDecoder __attribute__((objc_designated_initializer));
 		//[Export ("initWithCoder:")]
@@ -2152,7 +2150,7 @@ namespace MaterialComponents
 
 		// -(MDCPathGenerator * _Nonnull)pathGeneratorForEdgeWithLength:(CGFloat)length;
 		[Export ("pathGeneratorForEdgeWithLength:")]
-		MDCPathGenerator PathGeneratorForEdgeWithLength (nfloat length);
+		PathGeneratorClass PathGeneratorForEdgeWithLength (nfloat length);
 	}
 
 	[Static]
@@ -2168,9 +2166,9 @@ namespace MaterialComponents
 	delegate void MDCFeatureHighlightCompletion (bool arg0);
 
 	// @interface MDCFeatureHighlightViewController : UIViewController
-	[BaseType (typeof (UIViewController))]
+	[BaseType (typeof(UIViewController), Name="MDCFeatureHighlightViewController")]
 	[DisableDefaultCtor]
-	interface MDCFeatureHighlightViewController
+	interface FeatureHighlightViewController
 	{
 		// -(instancetype _Nonnull)initWithHighlightedView:(UIView * _Nonnull)highlightedView andShowView:(UIView * _Nonnull)displayedView completion:(MDCFeatureHighlightCompletion _Nullable)completion __attribute__((objc_designated_initializer));
 		[Export ("initWithHighlightedView:andShowView:completion:")]
@@ -2219,8 +2217,8 @@ namespace MaterialComponents
 	}
 
 	// @interface MDCFeatureHighlightView : UIView
-	[BaseType (typeof (UIView))]
-	interface MDCFeatureHighlightView
+	[BaseType (typeof(UIView), Name="MDCFeatureHighlightView")]
+	interface FeatureHighlightView
 	{
 		// @property (nonatomic, strong) UIColor * _Nullable innerHighlightColor __attribute__((annotate("ui_appearance_selector")));
 		[NullAllowed, Export ("innerHighlightColor",ArgumentSemantic.Strong)]
@@ -2240,50 +2238,50 @@ namespace MaterialComponents
 	}
 
 	// @interface MDCFeatureHighlightColorThemer : NSObject
-	[BaseType (typeof (NSObject))]
-	interface MDCFeatureHighlightColorThemer
+	[BaseType (typeof(NSObject), Name="MDCFeatureHighlightColorThemer")]
+	interface FeatureHighlightColorThemer
 	{
 		// +(void)applyColorScheme:(NSObject<MDCColorScheme> *)colorScheme toFeatureHighlightView:(MDCFeatureHighlightView *)featureHighlightView;
 		[Static]
 		[Export ("applyColorScheme:toFeatureHighlightView:")]
-		void ApplyColorScheme (MDCColorScheme colorScheme,MDCFeatureHighlightView featureHighlightView);
+		void ApplyColorScheme (IColorScheme colorScheme,FeatureHighlightView featureHighlightView);
 	}
 
 	// @interface MDCFlexibleHeaderColorThemer : NSObject
-	[BaseType (typeof (NSObject))]
-	interface MDCFlexibleHeaderColorThemer
+	[BaseType (typeof(NSObject), Name="MDCFlexibleHeaderColorThemer")]
+	interface FlexibleHeaderColorThemer
 	{
 		// +(void)applyColorScheme:(NSObject<MDCColorScheme> *)colorScheme toFlexibleHeaderView:(MDCFlexibleHeaderView *)flexibleHeaderView;
 		[Static]
 		[Export ("applyColorScheme:toFlexibleHeaderView:")]
-		void ApplyColorScheme (MDCColorScheme colorScheme,MDCFlexibleHeaderView flexibleHeaderView);
+		void ApplyColorScheme (IColorScheme colorScheme,FlexibleHeaderView flexibleHeaderView);
 
 		// +(void)applyColorScheme:(NSObject<MDCColorScheme> *)colorScheme toMDCFlexibleHeaderController:(MDCFlexibleHeaderViewController *)flexibleHeaderController;
 		[Static]
 		[Export ("applyColorScheme:toMDCFlexibleHeaderController:")]
-		void ApplyColorScheme (MDCColorScheme colorScheme,MDCFlexibleHeaderViewController flexibleHeaderController);
+		void ApplyColorScheme (IColorScheme colorScheme,FlexibleHeaderViewController flexibleHeaderController);
 	}
 
 	// @interface MDCHeaderStackViewColorThemer : NSObject
-	[BaseType (typeof (NSObject))]
-	interface MDCHeaderStackViewColorThemer
+	[BaseType (typeof(NSObject), Name="MDCHeaderStackViewColorThemer")]
+	interface HeaderStackViewColorThemer
 	{
 		// +(void)applyColorScheme:(NSObject<MDCColorScheme> *)colorScheme toHeaderStackView:(MDCHeaderStackView *)headerStackView;
 		[Static]
 		[Export ("applyColorScheme:toHeaderStackView:")]
-		void ApplyColorScheme (MDCColorScheme colorScheme,MDCHeaderStackView headerStackView);
+		void ApplyColorScheme (IColorScheme colorScheme,HeaderStackView headerStackView);
 	}
 
 	// @interface MDCIcons : NSObject
-	[BaseType (typeof (NSObject))]
+	[BaseType (typeof(NSObject), Name="MDCIcons")]
 	[DisableDefaultCtor]
-	interface MDCIcons
+	interface Icons
 	{
 	}
 
 	// @interface BundleLoader (MDCIcons)
 	[Category]
-	[BaseType (typeof (MDCIcons))]
+	[BaseType (typeof(Icons))]
 	interface MDCIcons_BundleLoader
 	{
 		// +(NSString * _Nonnull)pathForIconName:(NSString * _Nonnull)iconName withBundleName:(NSString * _Nonnull)bundleName;
@@ -2299,13 +2297,13 @@ namespace MaterialComponents
 	}
 
 	// @interface MDCInkColorThemer : NSObject
-	[BaseType (typeof (NSObject))]
-	interface MDCInkColorThemer
+	[BaseType (typeof(NSObject), Name="MDCInkColorThemer")]
+	interface InkColorThemer
 	{
 		// +(void)applyColorScheme:(NSObject<MDCColorScheme> *)colorScheme toInkView:(MDCInkView *)inkView;
 		[Static]
 		[Export ("applyColorScheme:toInkView:")]
-		void ApplyColorScheme (MDCColorScheme colorScheme,MDCInkView inkView);
+		void ApplyColorScheme (IColorScheme colorScheme,InkView inkView);
 	}
 
 	[Static]
@@ -2326,13 +2324,13 @@ namespace MaterialComponents
 	}
 
 	// @interface MDCKeyboardWatcher : NSObject
-	[BaseType (typeof (NSObject))]
-	interface MDCKeyboardWatcher
+	[BaseType (typeof(NSObject), Name="MDCKeyboardWatcher")]
+	interface KeyboardWatcher
 	{
 		// +(instancetype)sharedKeyboardWatcher;
 		[Static]
 		[Export ("sharedKeyboardWatcher")]
-		MDCKeyboardWatcher SharedKeyboardWatcher ();
+		KeyboardWatcher SharedKeyboardWatcher ();
 
 		// +(NSTimeInterval)animationDurationFromKeyboardNotification:(NSNotification *)notification;
 		[Static]
@@ -2354,9 +2352,9 @@ namespace MaterialComponents
 	}
 
 	// @interface MDCMaskedTransition : NSObject <MDMTransition>
-	[BaseType (typeof (NSObject))]
+	[BaseType (typeof(NSObject), Name="MDCMaskedTransition")]
 	[DisableDefaultCtor]
-	interface MDCMaskedTransition // : MDMTransition This is in a private header
+	interface MaskedTransition // : MDMTransition This is in a private header
 	{
 		// -(instancetype _Nonnull)initWithSourceView:(UIView * _Nonnull)sourceView __attribute__((objc_designated_initializer));
 		[Export ("initWithSourceView:")]
@@ -2368,10 +2366,12 @@ namespace MaterialComponents
 		Func<UIPresentationController,CGRect> CalculateFrameOfPresentedView { get; set; }
 	}
 
+	interface ITextInput {}
+
 	// @protocol MDCTextInput <NSObject>
 	[Protocol, Model]
-	[BaseType (typeof (NSObject))]
-	interface MDCTextInput
+	[BaseType (typeof(NSObject), Name="MDCTextInput")]
+	interface TextInput
 	{
 		// @required @property (copy, nonatomic) NSAttributedString * _Nullable attributedPlaceholder;
 		[Abstract]
@@ -2391,7 +2391,7 @@ namespace MaterialComponents
 		// @required @property (nonatomic, strong) MDCTextInputBorderView * _Nullable borderView;
 		[Abstract]
 		[NullAllowed, Export ("borderView",ArgumentSemantic.Strong)]
-		MDCTextInputBorderView BorderView { get; set; }
+		TextInputBorderView BorderView { get; set; }
 
 		// @required @property (readonly, nonatomic, strong) UIButton * _Nonnull clearButton;
 		[Abstract]
@@ -2451,7 +2451,7 @@ namespace MaterialComponents
 		// @required @property (nonatomic, weak) id<MDCTextInputPositioningDelegate> _Nullable positioningDelegate;
 		[Abstract]
 		[NullAllowed, Export ("positioningDelegate",ArgumentSemantic.Weak)]
-		IMDCTextInputPositioningDelegate PositioningDelegate { get; set; }
+		ITextInputPositioningDelegate PositioningDelegate { get; set; }
 
 		// @required @property (copy, nonatomic) NSString * _Nullable text;
 		[Abstract]
@@ -2471,7 +2471,7 @@ namespace MaterialComponents
 		// @required @property (assign, nonatomic) MDCTextInputTextInsetsMode textInsetsMode __attribute__((annotate("ui_appearance_selector")));
 		[Abstract]
 		[Export ("textInsetsMode",ArgumentSemantic.Assign)]
-		MDCTextInputTextInsetsMode TextInsetsMode { get; set; }
+		TextInputTextInsetsMode TextInsetsMode { get; set; }
 
 		// @required @property (readonly, nonatomic, strong) UILabel * _Nonnull trailingUnderlineLabel;
 		[Abstract]
@@ -2491,13 +2491,15 @@ namespace MaterialComponents
 		// @required @property (readonly, nonatomic, strong) MDCTextInputUnderlineView * _Nullable underline;
 		[Abstract]
 		[NullAllowed, Export ("underline",ArgumentSemantic.Strong)]
-		MDCTextInputUnderlineView Underline { get; }
+		TextInputUnderlineView Underline { get; }
 	}
+
+	interface IMultilineTextInput {}
 
 	// @protocol MDCMultilineTextInput <MDCTextInput>
 	[Protocol, Model]
-	[BaseType (typeof (NSObject))]
-	interface MDCMultilineTextInput : MDCTextInput
+	[BaseType (typeof(NSObject), Name="MDCMultilineTextInput")]
+	interface MultilineTextInput : TextInput
 	{
 		// @required @property (assign, nonatomic) BOOL expandsOnOverflow;
 		[Abstract]
@@ -2511,8 +2513,8 @@ namespace MaterialComponents
 	}
 
 	// @interface MDCMultilineTextField : UIView <MDCTextInput, MDCMultilineTextInput>
-	[BaseType (typeof (UIView))]
-	interface MDCMultilineTextField : MDCTextInput, MDCMultilineTextInput
+	[BaseType (typeof(UIView), Name="MDCMultilineTextField")]
+	interface MultilineTextField : TextInput, MultilineTextInput
 	{
 		// @property (assign, nonatomic) BOOL adjustsFontForContentSizeCategory;
 		[Export ("adjustsFontForContentSizeCategory")]
@@ -2522,21 +2524,13 @@ namespace MaterialComponents
 		[Export ("expandsOnOverflow")]
 		bool ExpandsOnOverflow { get; set; }
 
-		[Wrap ("WeakLayoutDelegate")]
-		[NullAllowed]
-		MDCMultilineTextInputLayoutDelegate LayoutDelegate { get; set; }
-
 		// @property (nonatomic, weak) id<MDCMultilineTextInputLayoutDelegate> _Nullable layoutDelegate __attribute__((iboutlet));
 		[NullAllowed, Export ("layoutDelegate",ArgumentSemantic.Weak)]
-		NSObject WeakLayoutDelegate { get; set; }
-
-		[Wrap ("WeakMultilineDelegate")]
-		[NullAllowed]
-		MDCMultilineTextInputDelegate MultilineDelegate { get; set; }
+		IMultilineTextInputLayoutDelegate LayoutDelegate { get; set; }
 
 		// @property (nonatomic, weak) id<MDCMultilineTextInputDelegate> _Nullable multilineDelegate __attribute__((iboutlet));
 		[NullAllowed, Export ("multilineDelegate",ArgumentSemantic.Weak)]
-		NSObject WeakMultilineDelegate { get; set; }
+		IMultilineTextInputDelegate MultilineDelegate { get; set; }
 
 		// @property (copy, nonatomic) NSString * _Nullable placeholder;
 		[NullAllowed, Export ("placeholder")]
@@ -2551,39 +2545,43 @@ namespace MaterialComponents
 		UITextView TextView { get; set; }
 	}
 
+	interface IMultilineTextInputLayoutDelegate {}
+
 	// @protocol MDCMultilineTextInputLayoutDelegate <NSObject>
 	[Protocol, Model]
-	[BaseType (typeof (NSObject))]
-	interface MDCMultilineTextInputLayoutDelegate
+	[BaseType (typeof(NSObject), Name="MDCMultilineTextInputLayoutDelegate")]
+	interface MultilineTextInputLayoutDelegate
 	{
 		// @optional -(void)multilineTextField:(id<MDCMultilineTextInput> _Nonnull)multilineTextField didChangeContentSize:(CGSize)size;
 		[Export ("multilineTextField:didChangeContentSize:")]
-		void DidChangeContentSize (MDCMultilineTextInput multilineTextField,CGSize size);
+		void DidChangeContentSize (IMultilineTextInput multilineTextField,CGSize size);
 	}
+
+	interface IMultilineTextInputDelegate {}
 
 	// @protocol MDCMultilineTextInputDelegate <NSObject>
 	[Protocol, Model]
-	[BaseType (typeof (NSObject))]
-	interface MDCMultilineTextInputDelegate
+	[BaseType (typeof(NSObject), Name="MDCMultilineTextInputDelegate")]
+	interface MultilineTextInputDelegate
 	{
 		// @optional -(BOOL)multilineTextFieldShouldClear:(UIView<MDCTextInput> *)textField;
 		[Export ("multilineTextFieldShouldClear:")]
-		bool MultilineTextFieldShouldClear (MDCTextInput textField);
+		bool MultilineTextFieldShouldClear (ITextInput textField);
 	}
 
 	// @interface MDCNavigationBarColorThemer : NSObject
-	[BaseType (typeof (NSObject))]
-	interface MDCNavigationBarColorThemer
+	[BaseType (typeof(NSObject), Name="MDCNavigationBarColorThemer")]
+	interface NavigationBarColorThemer
 	{
 		// +(void)applyColorScheme:(NSObject<MDCColorScheme> *)colorScheme toNavigationBar:(MDCNavigationBar *)navigationBar;
 		[Static]
 		[Export ("applyColorScheme:toNavigationBar:")]
-		void ApplyColorScheme (MDCColorScheme colorScheme,MDCNavigationBar navigationBar);
+		void ApplyColorScheme (IColorScheme colorScheme,NavigationBar navigationBar);
 	}
 
 	// @interface MDCNumericValueLabel : UIView
-	[BaseType (typeof (UIView))]
-	interface MDCNumericValueLabel
+	[BaseType (typeof(UIView), Name="MDCNumericValueLabel")]
+	interface NumericValueLabel
 	{
 		// @property (retain, nonatomic) UIColor * backgroundColor;
 		[Export ("backgroundColor",ArgumentSemantic.Retain)]
@@ -2603,13 +2601,13 @@ namespace MaterialComponents
 	}
 
 	// @interface MDCOverlayObserver : NSObject
-	[BaseType (typeof (NSObject))]
-	interface MDCOverlayObserver
+	[BaseType (typeof(NSObject), Name="MDCOverlayObserver")]
+	interface OverlayObserver
 	{
 		// +(instancetype)observerForScreen:(UIScreen *)screen;
 		[Static]
 		[Export ("observerForScreen:")]
-		MDCOverlayObserver ObserverForScreen (UIScreen screen);
+		OverlayObserver ObserverForScreen (UIScreen screen);
 
 		// -(void)addTarget:(id)target action:(SEL)action;
 		[Export ("addTarget:action:")]
@@ -2624,10 +2622,12 @@ namespace MaterialComponents
 		void RemoveTarget (NSObject target);
 	}
 
+	interface IOverlay {}
+
 	// @protocol MDCOverlay <NSObject>
 	[Protocol, Model]
-	[BaseType (typeof (NSObject))]
-	interface MDCOverlay
+	[BaseType (typeof(NSObject), Name="MDCOverlay")]
+	interface Overlay
 	{
 		// @required @property (readonly, copy, nonatomic) NSString * identifier;
 		[Abstract]
@@ -2640,10 +2640,12 @@ namespace MaterialComponents
 		CGRect Frame { get; }
 	}
 
+	interface IOverlayTransitioning {}
+
 	// @protocol MDCOverlayTransitioning <NSObject>
 	[Protocol, Model]
-	[BaseType (typeof (NSObject))]
-	interface MDCOverlayTransitioning
+	[BaseType (typeof(NSObject), Name="MDCOverlayTransitioning")]
+	interface OverlayTransitioning
 	{
 		// @required @property (readonly, nonatomic) NSTimeInterval duration;
 		[Abstract]
@@ -2687,11 +2689,11 @@ namespace MaterialComponents
 		void AnimateAlongsideTransitionWithOptions (UIViewAnimationOptions options,Action animations,Action<bool> completion);
 	}
 
-	delegate void EnumerateOverlaysHandler (MDCOverlay overlay,nuint idx,ref bool stop);
+	delegate void EnumerateOverlaysHandler (IOverlay overlay,nuint idx,ref bool stop);
 
 	// @interface MDCOverlayWindow : UIWindow
-	[BaseType (typeof (UIWindow))]
-	interface MDCOverlayWindow
+	[BaseType (typeof(UIWindow), Name="MDCOverlayWindow")]
+	interface OverlayWindow
 	{
 		// -(void)activateOverlay:(UIView *)overlay withLevel:(UIWindowLevel)level;
 		[Export ("activateOverlay:withLevel:")]
@@ -2703,8 +2705,8 @@ namespace MaterialComponents
 	}
 
 	// @interface MDCPageControl : UIControl <UIScrollViewDelegate>
-	[BaseType (typeof (UIControl))]
-	interface MDCPageControl : IUIScrollViewDelegate
+	[BaseType (typeof(UIControl), Name="MDCPageControl")]
+	interface PageControl : IUIScrollViewDelegate
 	{
 		// @property (nonatomic) NSInteger numberOfPages;
 		[Export ("numberOfPages")]
@@ -2757,13 +2759,13 @@ namespace MaterialComponents
 	}
 
 	// @interface MDCPageControlColorThemer : NSObject
-	[BaseType (typeof (NSObject))]
-	interface MDCPageControlColorThemer
+	[BaseType (typeof(NSObject), Name="MDCPageControlColorThemer")]
+	interface PageControlColorThemer
 	{
 		// +(void)applyColorScheme:(NSObject<MDCColorScheme> *)colorScheme toPageControl:(MDCPageControl *)pageControl;
 		[Static]
 		[Export ("applyColorScheme:toPageControl:")]
-		void ApplyColorScheme (MDCColorScheme colorScheme,MDCPageControl pageControl);
+		void ApplyColorScheme (IColorScheme colorScheme,PageControl pageControl);
 	}
 
 	[Static]
@@ -2828,113 +2830,113 @@ namespace MaterialComponents
 	}
 
 	// @interface MDCPalette : NSObject
-	[BaseType (typeof (NSObject))]
-	interface MDCPalette
+	[BaseType (typeof(NSObject), Name="MDCPalette")]
+	interface Palette
 	{
 		// @property (readonly, strong, class) MDCPalette * _Nonnull redPalette;
 		[Static]
 		[Export ("redPalette",ArgumentSemantic.Strong)]
-		MDCPalette RedPalette { get; }
+		Palette RedPalette { get; }
 
 		// @property (readonly, strong, class) MDCPalette * _Nonnull pinkPalette;
 		[Static]
 		[Export ("pinkPalette",ArgumentSemantic.Strong)]
-		MDCPalette PinkPalette { get; }
+		Palette PinkPalette { get; }
 
 		// @property (readonly, strong, class) MDCPalette * _Nonnull purplePalette;
 		[Static]
 		[Export ("purplePalette",ArgumentSemantic.Strong)]
-		MDCPalette PurplePalette { get; }
+		Palette PurplePalette { get; }
 
 		// @property (readonly, strong, class) MDCPalette * _Nonnull deepPurplePalette;
 		[Static]
 		[Export ("deepPurplePalette",ArgumentSemantic.Strong)]
-		MDCPalette DeepPurplePalette { get; }
+		Palette DeepPurplePalette { get; }
 
 		// @property (readonly, strong, class) MDCPalette * _Nonnull indigoPalette;
 		[Static]
 		[Export ("indigoPalette",ArgumentSemantic.Strong)]
-		MDCPalette IndigoPalette { get; }
+		Palette IndigoPalette { get; }
 
 		// @property (readonly, strong, class) MDCPalette * _Nonnull bluePalette;
 		[Static]
 		[Export ("bluePalette",ArgumentSemantic.Strong)]
-		MDCPalette BluePalette { get; }
+		Palette BluePalette { get; }
 
 		// @property (readonly, strong, class) MDCPalette * _Nonnull lightBluePalette;
 		[Static]
 		[Export ("lightBluePalette",ArgumentSemantic.Strong)]
-		MDCPalette LightBluePalette { get; }
+		Palette LightBluePalette { get; }
 
 		// @property (readonly, strong, class) MDCPalette * _Nonnull cyanPalette;
 		[Static]
 		[Export ("cyanPalette",ArgumentSemantic.Strong)]
-		MDCPalette CyanPalette { get; }
+		Palette CyanPalette { get; }
 
 		// @property (readonly, strong, class) MDCPalette * _Nonnull tealPalette;
 		[Static]
 		[Export ("tealPalette",ArgumentSemantic.Strong)]
-		MDCPalette TealPalette { get; }
+		Palette TealPalette { get; }
 
 		// @property (readonly, strong, class) MDCPalette * _Nonnull greenPalette;
 		[Static]
 		[Export ("greenPalette",ArgumentSemantic.Strong)]
-		MDCPalette GreenPalette { get; }
+		Palette GreenPalette { get; }
 
 		// @property (readonly, strong, class) MDCPalette * _Nonnull lightGreenPalette;
 		[Static]
 		[Export ("lightGreenPalette",ArgumentSemantic.Strong)]
-		MDCPalette LightGreenPalette { get; }
+		Palette LightGreenPalette { get; }
 
 		// @property (readonly, strong, class) MDCPalette * _Nonnull limePalette;
 		[Static]
 		[Export ("limePalette",ArgumentSemantic.Strong)]
-		MDCPalette LimePalette { get; }
+		Palette LimePalette { get; }
 
 		// @property (readonly, strong, class) MDCPalette * _Nonnull yellowPalette;
 		[Static]
 		[Export ("yellowPalette",ArgumentSemantic.Strong)]
-		MDCPalette YellowPalette { get; }
+		Palette YellowPalette { get; }
 
 		// @property (readonly, strong, class) MDCPalette * _Nonnull amberPalette;
 		[Static]
 		[Export ("amberPalette",ArgumentSemantic.Strong)]
-		MDCPalette AmberPalette { get; }
+		Palette AmberPalette { get; }
 
 		// @property (readonly, strong, class) MDCPalette * _Nonnull orangePalette;
 		[Static]
 		[Export ("orangePalette",ArgumentSemantic.Strong)]
-		MDCPalette OrangePalette { get; }
+		Palette OrangePalette { get; }
 
 		// @property (readonly, strong, class) MDCPalette * _Nonnull deepOrangePalette;
 		[Static]
 		[Export ("deepOrangePalette",ArgumentSemantic.Strong)]
-		MDCPalette DeepOrangePalette { get; }
+		Palette DeepOrangePalette { get; }
 
 		// @property (readonly, strong, class) MDCPalette * _Nonnull brownPalette;
 		[Static]
 		[Export ("brownPalette",ArgumentSemantic.Strong)]
-		MDCPalette BrownPalette { get; }
+		Palette BrownPalette { get; }
 
 		// @property (readonly, strong, class) MDCPalette * _Nonnull greyPalette;
 		[Static]
 		[Export ("greyPalette",ArgumentSemantic.Strong)]
-		MDCPalette GreyPalette { get; }
+		Palette GreyPalette { get; }
 
 		// @property (readonly, strong, class) MDCPalette * _Nonnull blueGreyPalette;
 		[Static]
 		[Export ("blueGreyPalette",ArgumentSemantic.Strong)]
-		MDCPalette BlueGreyPalette { get; }
+		Palette BlueGreyPalette { get; }
 
 		// +(instancetype _Nonnull)paletteGeneratedFromColor:(UIColor * _Nonnull)target500Color;
 		[Static]
 		[Export ("paletteGeneratedFromColor:")]
-		MDCPalette PaletteGeneratedFromColor (UIColor target500Color);
+		Palette PaletteGeneratedFromColor (UIColor target500Color);
 
 		// +(instancetype _Nonnull)paletteWithTints:(NSDictionary<MDCPaletteTint,UIColor *> * _Nonnull)tints accents:(NSDictionary<MDCPaletteAccent,UIColor *> * _Nullable)accents;
 		[Static]
 		[Export ("paletteWithTints:accents:")]
-		MDCPalette PaletteWithTints (NSDictionary<NSString,UIColor> tints,[NullAllowed] NSDictionary<NSString,UIColor> accents);
+		Palette PaletteWithTints (NSDictionary<NSString,UIColor> tints,[NullAllowed] NSDictionary<NSString,UIColor> accents);
 
 		// -(instancetype _Nonnull)initWithTints:(NSDictionary<MDCPaletteTint,UIColor *> * _Nonnull)tints accents:(NSDictionary<MDCPaletteAccent,UIColor *> * _Nullable)accents;
 		[Export ("initWithTints:accents:")]
@@ -2998,8 +3000,8 @@ namespace MaterialComponents
 	}
 
 	// @interface MDCPathGenerator : NSObject
-	[BaseType (typeof (NSObject))]
-	interface MDCPathGenerator
+	[BaseType (typeof(NSObject), Name="MDCPathGenerator")]
+	interface PathGeneratorClass
 	{
 		// @property (readonly, nonatomic) CGPoint startPoint;
 		[Export ("startPoint")]
@@ -3012,12 +3014,12 @@ namespace MaterialComponents
 		// +(instancetype _Nonnull)pathGenerator;
 		[Static]
 		[Export ("pathGenerator")]
-		MDCPathGenerator PathGenerator ();
+		PathGeneratorClass PathGenerator ();
 
 		// +(instancetype _Nonnull)pathGeneratorWithStartPoint:(CGPoint)startPoint;
 		[Static]
 		[Export ("pathGeneratorWithStartPoint:")]
-		MDCPathGenerator PathGeneratorWithStartPoint (CGPoint startPoint);
+		PathGeneratorClass PathGeneratorWithStartPoint (CGPoint startPoint);
 
 		// -(void)addLineToPoint:(CGPoint)point;
 		[Export ("addLineToPoint:")]
@@ -3046,14 +3048,14 @@ namespace MaterialComponents
 	}
 
 	// @interface MDCPillShapeGenerator : NSObject <MDCShapeGenerating>
-	[BaseType (typeof (NSObject))]
-	interface MDCPillShapeGenerator : MDCShapeGenerating
+	[BaseType (typeof(NSObject), Name="MDCPillShapeGenerator")]
+	interface PillShapeGenerator : ShapeGenerating
 	{
 	}
 
 	// @interface MDCProgressView : UIView
-	[BaseType (typeof (UIView))]
-	interface MDCProgressView
+	[BaseType (typeof(UIView), Name="MDCProgressView")]
+	interface ProgressView
 	{
 		// @property (nonatomic, strong) UIColor * _Null_unspecified progressTintColor __attribute__((annotate("ui_appearance_selector")));
 		[Export ("progressTintColor",ArgumentSemantic.Strong)]
@@ -3069,7 +3071,7 @@ namespace MaterialComponents
 
 		// @property (assign, nonatomic) MDCProgressViewBackwardAnimationMode backwardProgressAnimationMode;
 		[Export ("backwardProgressAnimationMode",ArgumentSemantic.Assign)]
-		MDCProgressViewBackwardAnimationMode BackwardProgressAnimationMode { get; set; }
+		ProgressViewBackwardAnimationMode BackwardProgressAnimationMode { get; set; }
 
 		// -(void)setProgress:(float)progress animated:(BOOL)animated completion:(void (^ _Nullable)(BOOL))completion;
 		[Export ("setProgress:animated:completion:")]
@@ -3081,34 +3083,34 @@ namespace MaterialComponents
 	}
 
 	// @interface MDCProgressViewColorThemer : NSObject
-	[BaseType (typeof (NSObject))]
-	interface MDCProgressViewColorThemer
+	[BaseType (typeof(NSObject), Name="MDCProgressViewColorThemer")]
+	interface ProgressViewColorThemer
 	{
 		// +(void)applyColorScheme:(NSObject<MDCColorScheme> *)colorScheme toProgressView:(MDCProgressView *)progressView;
 		[Static]
 		[Export ("applyColorScheme:toProgressView:")]
-		void ApplyColorScheme (MDCColorScheme colorScheme,MDCProgressView progressView);
+		void ApplyColorScheme (IColorScheme colorScheme,ProgressView progressView);
 	}
 
 	// @interface MDCRectangleShapeGenerator : NSObject <MDCShapeGenerating>
-	[BaseType (typeof (NSObject))]
-	interface MDCRectangleShapeGenerator : MDCShapeGenerating
+	[BaseType (typeof(NSObject), Name="MDCRectangleShapeGenerator")]
+	interface RectangleShapeGenerator : ShapeGenerating
 	{
 		// @property (nonatomic, strong) MDCCornerTreatment * topLeftCorner;
 		[Export ("topLeftCorner",ArgumentSemantic.Strong)]
-		MDCCornerTreatment TopLeftCorner { get; set; }
+		CornerTreatment TopLeftCorner { get; set; }
 
 		// @property (nonatomic, strong) MDCCornerTreatment * topRightCorner;
 		[Export ("topRightCorner",ArgumentSemantic.Strong)]
-		MDCCornerTreatment TopRightCorner { get; set; }
+		CornerTreatment TopRightCorner { get; set; }
 
 		// @property (nonatomic, strong) MDCCornerTreatment * bottomLeftCorner;
 		[Export ("bottomLeftCorner",ArgumentSemantic.Strong)]
-		MDCCornerTreatment BottomLeftCorner { get; set; }
+		CornerTreatment BottomLeftCorner { get; set; }
 
 		// @property (nonatomic, strong) MDCCornerTreatment * bottomRightCorner;
 		[Export ("bottomRightCorner",ArgumentSemantic.Strong)]
-		MDCCornerTreatment BottomRightCorner { get; set; }
+		CornerTreatment BottomRightCorner { get; set; }
 
 		// @property (assign, nonatomic) CGPoint topLeftCornerOffset;
 		[Export ("topLeftCornerOffset",ArgumentSemantic.Assign)]
@@ -3128,32 +3130,32 @@ namespace MaterialComponents
 
 		// @property (nonatomic, strong) MDCEdgeTreatment * topEdge;
 		[Export ("topEdge",ArgumentSemantic.Strong)]
-		MDCEdgeTreatment TopEdge { get; set; }
+		EdgeTreatment TopEdge { get; set; }
 
 		// @property (nonatomic, strong) MDCEdgeTreatment * rightEdge;
 		[Export ("rightEdge",ArgumentSemantic.Strong)]
-		MDCEdgeTreatment RightEdge { get; set; }
+		EdgeTreatment RightEdge { get; set; }
 
 		// @property (nonatomic, strong) MDCEdgeTreatment * bottomEdge;
 		[Export ("bottomEdge",ArgumentSemantic.Strong)]
-		MDCEdgeTreatment BottomEdge { get; set; }
+		EdgeTreatment BottomEdge { get; set; }
 
 		// @property (nonatomic, strong) MDCEdgeTreatment * leftEdge;
 		[Export ("leftEdge",ArgumentSemantic.Strong)]
-		MDCEdgeTreatment LeftEdge { get; set; }
+		EdgeTreatment LeftEdge { get; set; }
 
 		// -(void)setCorners:(MDCCornerTreatment *)cornerShape;
 		[Export ("setCorners:")]
-		void SetCorners (MDCCornerTreatment cornerShape);
+		void SetCorners (CornerTreatment cornerShape);
 
 		// -(void)setEdges:(MDCEdgeTreatment *)edgeShape;
 		[Export ("setEdges:")]
-		void SetEdges (MDCEdgeTreatment edgeShape);
+		void SetEdges (EdgeTreatment edgeShape);
 	}
 
 	// @interface MDCRoundedCornerTreatment : MDCCornerTreatment
-	[BaseType (typeof (MDCCornerTreatment))]
-	interface MDCRoundedCornerTreatment
+	[BaseType (typeof(CornerTreatment), Name="MDCRoundedCornerTreatment")]
+	interface RoundedCornerTreatment
 	{
 		// @property (assign, nonatomic) CGFloat radius;
 		[Export ("radius")]
@@ -3171,8 +3173,8 @@ namespace MaterialComponents
 	}
 
 	// @interface MDCShadowMetrics : NSObject
-	[BaseType (typeof (NSObject))]
-	interface MDCShadowMetrics
+	[BaseType (typeof(NSObject), Name="MDCShadowMetrics")]
+	interface ShadowMetrics
 	{
 		// @property (readonly, nonatomic) CGFloat topShadowRadius;
 		[Export ("topShadowRadius")]
@@ -3201,12 +3203,12 @@ namespace MaterialComponents
 		// +(MDCShadowMetrics * _Nonnull)metricsWithElevation:(CGFloat)elevation;
 		[Static]
 		[Export ("metricsWithElevation:")]
-		MDCShadowMetrics MetricsWithElevation (nfloat elevation);
+		ShadowMetrics MetricsWithElevation (nfloat elevation);
 	}
 
 	// @interface MDCShadowLayer : CALayer
-	[BaseType (typeof (CALayer))]
-	interface MDCShadowLayer
+	[BaseType (typeof(CALayer), Name="MDCShadowLayer")]
+	interface ShadowLayer
 	{
 		// @property (assign, nonatomic) MDCShadowElevation elevation;
 		[Export ("elevation")]
@@ -3218,17 +3220,17 @@ namespace MaterialComponents
 	}
 
 	// @interface MDCShapeLayer : CAShapeLayer
-	[BaseType (typeof (CAShapeLayer))]
-	interface MDCShapeLayer
+	[BaseType (typeof(CAShapeLayer), Name="MDCShapeLayer")]
+	interface ShapeLayer
 	{
 		// @property (nonatomic, strong) id<MDCShapeGenerating> _Nullable shapeGenerator;
 		[NullAllowed, Export ("shapeGenerator",ArgumentSemantic.Strong)]
-		MDCShapeGenerating ShapeGenerator { get; set; }
+		IShapeGenerating ShapeGenerator { get; set; }
 	}
 
 	// @interface MDCShapedShadowLayer : MDCShadowLayer
-	[BaseType (typeof (MDCShadowLayer))]
-	interface MDCShapedShadowLayer
+	[BaseType (typeof(ShadowLayer), Name="MDCShapedShadowLayer")]
+	interface ShapedShadowLayer
 	{
 		// @property CGColorRef _Nullable fillColor;
 		[NullAllowed, Export ("fillColor",ArgumentSemantic.Assign)]
@@ -3237,12 +3239,12 @@ namespace MaterialComponents
 
 		// @property (nonatomic, strong) id<MDCShapeGenerating> _Nullable shapeGenerator;
 		[NullAllowed, Export ("shapeGenerator",ArgumentSemantic.Strong)]
-		MDCShapeGenerating ShapeGenerator { get; set; }
+		IShapeGenerating ShapeGenerator { get; set; }
 	}
 
 	// @interface MDCShapedView : UIView
-	[BaseType (typeof (UIView))]
-	interface MDCShapedView
+	[BaseType (typeof(UIView), Name="MDCShapedView")]
+	interface ShapedView
 	{
 		// @property (assign, nonatomic) MDCShadowElevation elevation;
 		[Export ("elevation")]
@@ -3250,12 +3252,12 @@ namespace MaterialComponents
 
 		// @property (nonatomic, strong) id<MDCShapeGenerating> _Nullable shapeGenerator __attribute__((iboutlet));
 		[NullAllowed, Export ("shapeGenerator",ArgumentSemantic.Strong)]
-		MDCShapeGenerating ShapeGenerator { get; set; }
+		IShapeGenerating ShapeGenerator { get; set; }
 
 		// -(instancetype _Nonnull)initWithFrame:(CGRect)frame shapeGenerator:(id<MDCShapeGenerating> _Nullable)shapeGenerator __attribute__((objc_designated_initializer));
 		[Export ("initWithFrame:shapeGenerator:")]
 		[DesignatedInitializer]
-		IntPtr Constructor (CGRect frame,[NullAllowed] MDCShapeGenerating shapeGenerator);
+		IntPtr Constructor (CGRect frame,[NullAllowed] IShapeGenerating shapeGenerator);
 
 		// -(instancetype _Nonnull)initWithFrame:(CGRect)frame;
 		[Export ("initWithFrame:")]
@@ -3268,8 +3270,8 @@ namespace MaterialComponents
 	}
 
 	// @interface MDCSlantedRectShapeGenerator : NSObject <MDCShapeGenerating>
-	[BaseType (typeof (NSObject))]
-	interface MDCSlantedRectShapeGenerator : MDCShapeGenerating
+	[BaseType (typeof(NSObject), Name="MDCSlantedRectShapeGenerator")]
+	interface SlantedRectShapeGenerator : ShapeGenerating
 	{
 		// @property (assign, nonatomic) CGFloat slant;
 		[Export ("slant")]
@@ -3277,16 +3279,12 @@ namespace MaterialComponents
 	}
 
 	// @interface MDCSlider : UIControl <NSSecureCoding>
-	[BaseType (typeof (UIControl))]
-	interface MDCSlider : INSSecureCoding
+	[BaseType (typeof(UIControl), Name="MDCSlider")]
+	interface Slider : INSSecureCoding
 	{
-		[Wrap ("WeakDelegate")]
-		[NullAllowed]
-		MDCSliderDelegate Delegate { get; set; }
-
 		// @property (nonatomic, weak) id<MDCSliderDelegate> _Nullable delegate;
 		[NullAllowed, Export ("delegate",ArgumentSemantic.Weak)]
-		NSObject WeakDelegate { get; set; }
+		ISliderDelegate Delegate { get; set; }
 
 		// @property (nonatomic, strong) UIColor * _Null_unspecified color;
 		[Export ("color",ArgumentSemantic.Strong)]
@@ -3337,52 +3335,54 @@ namespace MaterialComponents
 		bool ThumbHollowAtStart { [Bind ("isThumbHollowAtStart")] get; set; }
 	}
 
+	interface ISliderDelegate {}
+
 	// @protocol MDCSliderDelegate <NSObject>
 	[Protocol, Model]
-	[BaseType (typeof (NSObject))]
-	interface MDCSliderDelegate
+	[BaseType (typeof(NSObject), Name="MDCSliderDelegate")]
+	interface SliderDelegate
 	{
 		// @optional -(BOOL)slider:(MDCSlider * _Nonnull)slider shouldJumpToValue:(CGFloat)value;
 		[Export ("slider:shouldJumpToValue:")]
-		bool Slider (MDCSlider slider,nfloat value);
+		bool Slider (Slider slider,nfloat value);
 
 		// @optional -(NSString * _Nonnull)slider:(MDCSlider * _Nonnull)slider displayedStringForValue:(CGFloat)value;
 		[Export ("slider:displayedStringForValue:")]
-		string Slider2 (MDCSlider slider,nfloat value);
+		string Slider2 (Slider slider,nfloat value);
 
 		// @optional -(NSString * _Nonnull)slider:(MDCSlider * _Nonnull)slider accessibilityLabelForValue:(CGFloat)value;
 		[Export ("slider:accessibilityLabelForValue:")]
-		string Slide3 (MDCSlider slider,nfloat value);
+		string Slide3 (Slider slider,nfloat value);
 	}
 
 	// @interface MDCSliderColorThemer : NSObject
-	[BaseType (typeof (NSObject))]
-	interface MDCSliderColorThemer
+	[BaseType (typeof(NSObject), Name="MDCSliderColorThemer")]
+	interface SliderColorThemer
 	{
 		// +(void)applyColorScheme:(NSObject<MDCColorScheme> * _Nonnull)colorScheme toSlider:(MDCSlider * _Nonnull)slider;
 		[Static]
 		[Export ("applyColorScheme:toSlider:")]
-		void ApplyColorScheme (MDCColorScheme colorScheme,MDCSlider slider);
+		void ApplyColorScheme (IColorScheme colorScheme,Slider slider);
 
 		// +(MDCBasicColorScheme * _Nonnull)defaultSliderLightColorScheme;
 		[Static]
 		[Export ("defaultSliderLightColorScheme")]
-		MDCBasicColorScheme DefaultSliderLightColorScheme { get; }
+		BasicColorScheme DefaultSliderLightColorScheme { get; }
 
 		// +(MDCBasicColorScheme * _Nonnull)defaultSliderDarkColorScheme;
 		[Static]
 		[Export ("defaultSliderDarkColorScheme")]
-		MDCBasicColorScheme DefaultSliderDarkColorScheme { get; }
+		BasicColorScheme DefaultSliderDarkColorScheme { get; }
 	}
 
 	// @interface MDCSnackbarManager : NSObject
-	[BaseType (typeof (NSObject))]
-	interface MDCSnackbarManager
+	[BaseType (typeof(NSObject), Name="MDCSnackbarManager")]
+	interface SnackbarManager
 	{
 		// +(void)showMessage:(MDCSnackbarMessage *)message;
 		[Static]
 		[Export ("showMessage:")]
-		void ShowMessage (MDCSnackbarMessage message);
+		void ShowMessage (SnackbarMessage message);
 
 		// +(void)setPresentationHostView:(UIView *)hostView;
 		[Static]
@@ -3402,23 +3402,25 @@ namespace MaterialComponents
 		// +(id<MDCSnackbarSuspensionToken>)suspendAllMessages;
 		[Static]
 		[Export ("suspendAllMessages")]
-		MDCSnackbarSuspensionToken SuspendAllMessages ();
+		ISnackbarSuspensionToken SuspendAllMessages ();
 
 		// +(id<MDCSnackbarSuspensionToken>)suspendMessagesWithCategory:(NSString *)category;
 		[Static]
 		[Export ("suspendMessagesWithCategory:")]
-		MDCSnackbarSuspensionToken SuspendMessagesWithCategory (string category);
+		ISnackbarSuspensionToken SuspendMessagesWithCategory (string category);
 
 		// +(void)resumeMessagesWithToken:(id<MDCSnackbarSuspensionToken>)token;
 		[Static]
 		[Export ("resumeMessagesWithToken:")]
-		void ResumeMessagesWithToken (MDCSnackbarSuspensionToken token);
+		void ResumeMessagesWithToken (ISnackbarSuspensionToken token);
 	}
+
+	interface ISnackbarSuspensionToken {}
 
 	// @protocol MDCSnackbarSuspensionToken <NSObject>
 	[Protocol, Model]
-	[BaseType (typeof (NSObject))]
-	interface MDCSnackbarSuspensionToken
+	[BaseType (typeof(NSObject), Name="MDCSnackbarSuspensionToken")]
+	interface SnackbarSuspensionToken
 	{
 	}
 
@@ -3442,18 +3444,18 @@ namespace MaterialComponents
 	}
 
 	// @interface MDCSnackbarMessage : NSObject <NSCopying, UIAccessibilityIdentification>
-	[BaseType (typeof (NSObject))]
-	interface MDCSnackbarMessage : INSCopying, IUIAccessibilityIdentification
+	[BaseType (typeof(NSObject), Name="MDCSnackbarMessage")]
+	interface SnackbarMessage : INSCopying, IUIAccessibilityIdentification
 	{
 		// +(instancetype)messageWithText:(NSString *)text;
 		[Static]
 		[Export ("messageWithText:")]
-		MDCSnackbarMessage MessageWithText (string text);
+		SnackbarMessage MessageWithText (string text);
 
 		// +(instancetype)messageWithAttributedText:(NSAttributedString *)attributedText;
 		[Static]
 		[Export ("messageWithAttributedText:")]
-		MDCSnackbarMessage MessageWithAttributedText (NSAttributedString attributedText);
+		SnackbarMessage MessageWithAttributedText (NSAttributedString attributedText);
 
 		// @property (copy, nonatomic) NSString * text;
 		[Export ("text")]
@@ -3465,7 +3467,7 @@ namespace MaterialComponents
 
 		// @property (nonatomic, strong) MDCSnackbarMessageAction * action;
 		[Export ("action",ArgumentSemantic.Strong)]
-		MDCSnackbarMessageAction Action { get; set; }
+		SnackbarMessageAction Action { get; set; }
 
 		// @property (nonatomic, strong) UIColor * buttonTextColor;
 		[Export ("buttonTextColor",ArgumentSemantic.Strong)]
@@ -3497,8 +3499,8 @@ namespace MaterialComponents
 	}
 
 	// @interface MDCSnackbarMessageAction : NSObject <UIAccessibilityIdentification, NSCopying>
-	[BaseType (typeof (NSObject))]
-	interface MDCSnackbarMessageAction : IUIAccessibilityIdentification, INSCopying
+	[BaseType (typeof(NSObject), Name="MDCSnackbarMessageAction")]
+	interface SnackbarMessageAction : IUIAccessibilityIdentification, INSCopying
 	{
 		// @property (copy, nonatomic) NSString * title;
 		[Export ("title")]
@@ -3510,8 +3512,8 @@ namespace MaterialComponents
 	}
 
 	// @interface MDCSnackbarMessageView : UIView
-	[BaseType (typeof (UIView))]
-	interface MDCSnackbarMessageView
+	[BaseType (typeof(UIView), Name="MDCSnackbarMessageView")]
+	interface SnackbarMessageView
 	{
 		// @property (nonatomic, strong) UIColor * _Nullable snackbarMessageViewBackgroundColor __attribute__((annotate("ui_appearance_selector")));
 		[NullAllowed, Export ("snackbarMessageViewBackgroundColor",ArgumentSemantic.Strong)]
@@ -3527,13 +3529,13 @@ namespace MaterialComponents
 	}
 
 	// @interface MDCTabBar : UIView <UIBarPositioning>
-	[BaseType (typeof (UIView))]
-	interface MDCTabBar : IUIBarPositioning
+	[BaseType (typeof(UIView), Name="MDCTabBar")]
+	interface TabBar : IUIBarPositioning
 	{
 		// +(CGFloat)defaultHeightForItemAppearance:(MDCTabBarItemAppearance)appearance;
 		[Static]
 		[Export ("defaultHeightForItemAppearance:")]
-		nfloat DefaultHeightForItemAppearance (MDCTabBarItemAppearance appearance);
+		nfloat DefaultHeightForItemAppearance (TabBarItemAppearance appearance);
 
 		// @property (copy, nonatomic) NSArray<UITabBarItem *> * _Nonnull items;
 		[Export ("items",ArgumentSemantic.Copy)]
@@ -3543,13 +3545,9 @@ namespace MaterialComponents
 		[NullAllowed, Export ("selectedItem",ArgumentSemantic.Strong)]
 		UITabBarItem SelectedItem { get; set; }
 
-		[Wrap ("WeakDelegate")]
-		[NullAllowed]
-		MDCTabBarDelegate Delegate { get; set; }
-
 		// @property (nonatomic, weak) id<MDCTabBarDelegate> _Nullable delegate __attribute__((iboutlet));
 		[NullAllowed, Export ("delegate",ArgumentSemantic.Weak)]
-		NSObject WeakDelegate { get; set; }
+		ITabBarDelegate Delegate { get; set; }
 
 		// @property (nonatomic, strong) UIColor * _Null_unspecified tintColor;
 		[Export ("tintColor",ArgumentSemantic.Strong)]
@@ -3573,11 +3571,11 @@ namespace MaterialComponents
 
 		// @property (nonatomic) MDCTabBarAlignment alignment;
 		[Export ("alignment",ArgumentSemantic.Assign)]
-		MDCTabBarAlignment Alignment { get; set; }
+		TabBarAlignment Alignment { get; set; }
 
 		// @property (nonatomic) MDCTabBarItemAppearance itemAppearance;
 		[Export ("itemAppearance",ArgumentSemantic.Assign)]
-		MDCTabBarItemAppearance ItemAppearance { get; set; }
+		TabBarItemAppearance ItemAppearance { get; set; }
 
 		// @property (nonatomic) BOOL displaysUppercaseTitles;
 		[Export ("displaysUppercaseTitles")]
@@ -3589,12 +3587,12 @@ namespace MaterialComponents
 
 		// -(void)setAlignment:(MDCTabBarAlignment)alignment animated:(BOOL)animated;
 		[Export ("setAlignment:animated:")]
-		void SetAlignment (MDCTabBarAlignment alignment,bool animated);
+		void SetAlignment (TabBarAlignment alignment,bool animated);
 	}
 
 	// @interface MDCAccessibility (MDCTabBar)
 	[Category]
-	[BaseType (typeof (MDCTabBar))]
+	[BaseType (typeof(TabBar))]
 	interface MDCTabBar_MDCAccessibility
 	{
 		// -(id _Nullable)accessibilityElementForItem:(UITabBarItem * _Nonnull)item;
@@ -3603,22 +3601,24 @@ namespace MaterialComponents
 		NSObject AccessibilityElementForItem (UITabBarItem item);
 	}
 
+	interface ITabBarDelegate { }
+
 	// @protocol MDCTabBarDelegate <UIBarPositioningDelegate>
-	[BaseType (typeof (NSObject))]
+	[BaseType (typeof(NSObject), Name="MDCTabBarDelegate")]
 	[Protocol, Model]
-	interface MDCTabBarDelegate : IUIBarPositioningDelegate
+	interface TabBarDelegate : IUIBarPositioningDelegate
 	{
 		// @optional -(BOOL)tabBar:(MDCTabBar * _Nonnull)tabBar shouldSelectItem:(UITabBarItem * _Nonnull)item;
 		[Export ("tabBar:shouldSelectItem:")]
-		bool TabBar1 (MDCTabBar tabBar,UITabBarItem item);
+		bool TabBar1 (TabBar tabBar,UITabBarItem item);
 
 		// @optional -(void)tabBar:(MDCTabBar * _Nonnull)tabBar willSelectItem:(UITabBarItem * _Nonnull)item;
 		[Export ("tabBar:willSelectItem:")]
-		void TabBar2 (MDCTabBar tabBar,UITabBarItem item);
+		void TabBar2 (TabBar tabBar,UITabBarItem item);
 
 		// @optional -(void)tabBar:(MDCTabBar * _Nonnull)tabBar didSelectItem:(UITabBarItem * _Nonnull)item;
 		[Export ("tabBar:didSelectItem:")]
-		void TabBar3 (MDCTabBar tabBar,UITabBarItem item);
+		void TabBar3 (TabBar tabBar,UITabBarItem item);
 	}
 
 	[Static]
@@ -3631,16 +3631,12 @@ namespace MaterialComponents
 	}
 
 	// @interface MDCTabBarViewController : UIViewController <MDCTabBarDelegate, UIBarPositioningDelegate>
-	[BaseType (typeof (UIViewController))]
-	interface MDCTabBarViewController : MDCTabBarDelegate, IUIBarPositioningDelegate
+	[BaseType (typeof(UIViewController), Name="MDCTabBarViewController")]
+	interface TabBarViewController : TabBarDelegate, IUIBarPositioningDelegate
 	{
-		[Wrap ("WeakDelegate")]
-		[NullAllowed]
-		MDCTabBarControllerDelegate Delegate { get; set; }
-
 		// @property (nonatomic, weak) id<MDCTabBarControllerDelegate> _Nullable delegate;
 		[NullAllowed, Export ("delegate",ArgumentSemantic.Weak)]
-		NSObject WeakDelegate { get; set; }
+		ITabBarControllerDelegate Delegate { get; set; }
 
 		// @property (copy, nonatomic) NSArray<UIViewController *> * _Nonnull viewControllers;
 		[Export ("viewControllers",ArgumentSemantic.Copy)]
@@ -3652,7 +3648,7 @@ namespace MaterialComponents
 
 		// @property (readonly, nonatomic) MDCTabBar * _Nullable tabBar;
 		[NullAllowed, Export ("tabBar")]
-		MDCTabBar TabBar { get; }
+		TabBar TabBar { get; }
 
 		// @property (nonatomic) BOOL tabBarHidden;
 		[Export ("tabBarHidden")]
@@ -3663,28 +3659,30 @@ namespace MaterialComponents
 		void SetTabBarHidden (bool hidden,bool animated);
 	}
 
+	interface ITabBarControllerDelegate {}
+
 	// @protocol MDCTabBarControllerDelegate <NSObject>
 	[Protocol, Model]
-	[BaseType (typeof (NSObject))]
-	interface MDCTabBarControllerDelegate
+	[BaseType (typeof(NSObject), Name="MDCTabBarControllerDelegate")]
+	interface TabBarControllerDelegate
 	{
 		// @optional -(BOOL)tabBarController:(MDCTabBarViewController * _Nonnull)tabBarController shouldSelectViewController:(UIViewController * _Nonnull)viewController;
 		[Export ("tabBarController:shouldSelectViewController:")]
-		bool TabBarController (MDCTabBarViewController tabBarController,UIViewController viewController);
+		bool TabBarController (TabBarViewController tabBarController,UIViewController viewController);
 
 		// @optional -(void)tabBarController:(MDCTabBarViewController * _Nonnull)tabBarController didSelectViewController:(UIViewController * _Nonnull)viewController;
 		[Export ("tabBarController:didSelectViewController:")]
-		void TabBarController2 (MDCTabBarViewController tabBarController,UIViewController viewController);
+		void TabBarController2 (TabBarViewController tabBarController,UIViewController viewController);
 	}
 
 	// @interface MDCTabBarColorThemer : NSObject
-	[BaseType (typeof (NSObject))]
-	interface MDCTabBarColorThemer
+	[BaseType (typeof(NSObject), Name="MDCTabBarColorThemer")]
+	interface TabBarColorThemer
 	{
 		// +(void)applyColorScheme:(NSObject<MDCColorScheme> *)colorScheme toTabBar:(MDCTabBar *)tabBar;
 		[Static]
 		[Export ("applyColorScheme:toTabBar:")]
-		void ApplyColorScheme (MDCColorScheme colorScheme,MDCTabBar tabBar);
+		void ApplyColorScheme (IColorScheme colorScheme,TabBar tabBar);
 	}
 
 	[Static]
@@ -3697,8 +3695,8 @@ namespace MaterialComponents
 	}
 
 	// @interface MDCTextField : UITextField <MDCTextInput>
-	[BaseType (typeof (UITextField))]
-	interface MDCTextField : MDCTextInput
+	[BaseType (typeof(UITextField), Name="MDCTextField")]
+	interface TextField : TextInput
 	{
 		// @property (nonatomic, strong) UIView * _Nullable leadingView;
 		[NullAllowed, Export ("leadingView",ArgumentSemantic.Strong)]
@@ -3709,12 +3707,12 @@ namespace MaterialComponents
 		UITextFieldViewMode LeadingViewMode { get; set; }
 	}
 
-	interface IMDCTextInputPositioningDelegate {}
+	interface ITextInputPositioningDelegate {}
 
 	// @protocol MDCTextInputPositioningDelegate <NSObject>
 	[Protocol, Model]
-	[BaseType (typeof (NSObject))]
-	interface MDCTextInputPositioningDelegate
+	[BaseType (typeof(NSObject), Name="MDCTextInputPositioningDelegate")]
+	interface TextInputPositioningDelegate
 	{
 		// @optional -(UIEdgeInsets)textInsets:(UIEdgeInsets)defaultInsets;
 		[Export ("textInsets:")]
@@ -3733,27 +3731,31 @@ namespace MaterialComponents
 		void TextInputDidUpdateConstraints ();
 	}
 
+	interface ITextInputCharacterCounter {}
+
 	// @protocol MDCTextInputCharacterCounter <NSObject>
 	[Protocol, Model]
-	[BaseType (typeof (NSObject))]
-	interface MDCTextInputCharacterCounter
+	[BaseType (typeof(NSObject), Name="MDCTextInputCharacterCounter")]
+	interface TextInputCharacterCounter
 	{
 		// @required -(NSUInteger)characterCountForTextInput:(UIView<MDCTextInput> * _Nullable)textInput;
 		[Abstract]
 		[Export ("characterCountForTextInput:")]
-		nuint CharacterCountForTextInput ([NullAllowed] MDCTextInput textInput);
+		nuint CharacterCountForTextInput ([NullAllowed] ITextInput textInput);
 	}
 
 	// @interface MDCTextInputAllCharactersCounter : NSObject <MDCTextInputCharacterCounter>
-	[BaseType (typeof (NSObject))]
-	interface MDCTextInputAllCharactersCounter : MDCTextInputCharacterCounter
+	[BaseType (typeof(NSObject), Name="MDCTextInputAllCharactersCounter")]
+	interface TextInputAllCharactersCounter : TextInputCharacterCounter
 	{
 	}
 
+	interface ITextInputController {}
+
 	// @protocol MDCTextInputController <NSObject, NSCoding, NSCopying, MDCTextInputPositioningDelegate>
 	[Protocol, Model]
-	[BaseType (typeof (NSObject))]
-	interface MDCTextInputController : INSCoding, INSCopying, MDCTextInputPositioningDelegate
+	[BaseType (typeof(NSObject), Name="MDCTextInputController")]
+	interface TextInputController : INSCoding, INSCopying, TextInputPositioningDelegate
 	{
 		// @required @property (nonatomic, strong) UIColor * _Null_unspecified activeColor;
 		[Abstract]
@@ -3768,7 +3770,7 @@ namespace MaterialComponents
 		// @required @property (nonatomic, weak) id<MDCTextInputCharacterCounter> _Null_unspecified characterCounter;
 		[Abstract]
 		[Export ("characterCounter",ArgumentSemantic.Weak)]
-		MDCTextInputCharacterCounter CharacterCounter { get; set; }
+		ITextInputCharacterCounter CharacterCounter { get; set; }
 
 		// @required @property (assign, nonatomic) NSUInteger characterCountMax;
 		[Abstract]
@@ -3888,7 +3890,7 @@ namespace MaterialComponents
 		// @required @property (nonatomic, strong) UIView<MDCTextInput> * _Nullable textInput;
 		[Abstract]
 		[NullAllowed, Export ("textInput",ArgumentSemantic.Strong)]
-		MDCTextInput TextInput { get; set; }
+		ITextInput TextInput { get; set; }
 
 		// @required @property (nonatomic, strong) UIFont * _Null_unspecified trailingUnderlineLabelFont;
 		[Abstract]
@@ -3945,8 +3947,8 @@ namespace MaterialComponents
 	}
 
 	// @interface MDCTextInputControllerDefault : NSObject <MDCTextInputController>
-	[BaseType (typeof (NSObject))]
-	interface MDCTextInputControllerDefault : MDCTextInputController
+	[BaseType (typeof(NSObject), Name="MDCTextInputControllerDefault")]
+	interface TextInputControllerDefault : TextInputController
 	{
 		// @property (nonatomic, strong) UIColor * _Nullable borderFillColor;
 		[NullAllowed, Export ("borderFillColor",ArgumentSemantic.Strong)]
@@ -3998,14 +4000,14 @@ namespace MaterialComponents
 	}
 
 	// @interface MDCTextInputControllerFullWidth : NSObject <MDCTextInputController>
-	[BaseType (typeof (NSObject))]
-	interface MDCTextInputControllerFullWidth : MDCTextInputController
+	[BaseType (typeof(NSObject), Name="MDCTextInputControllerFullWidth")]
+	interface TextInputControllerFullWidth : TextInputController
 	{
 	}
 
 	// @interface MDCTextInputControllerLegacyDefault : NSObject <MDCTextInputController>
-	[BaseType (typeof (NSObject))]
-	interface MDCTextInputControllerLegacyDefault : MDCTextInputController
+	[BaseType (typeof(NSObject), Name="MDCTextInputControllerLegacyDefault")]
+	interface TextInputControllerLegacyDefault : TextInputController
 	{
 		// @property (nonatomic, strong) UIColor * _Null_unspecified floatingPlaceholderNormalColor;
 		[Export ("floatingPlaceholderNormalColor",ArgumentSemantic.Strong)]
@@ -4036,32 +4038,32 @@ namespace MaterialComponents
 	}
 
 	// @interface MDCTextInputControllerLegacyFullWidth : NSObject <MDCTextInputController>
-	[BaseType (typeof (NSObject))]
-	interface MDCTextInputControllerLegacyFullWidth : MDCTextInputController
+	[BaseType (typeof(NSObject), Name="MDCTextInputControllerLegacyFullWidth")]
+	interface TextInputControllerLegacyFullWidth : TextInputController
 	{
 	}
 
 	// @interface MDCTextInputControllerOutlined : MDCTextInputControllerDefault
-	[BaseType (typeof (MDCTextInputControllerDefault))]
-	interface MDCTextInputControllerOutlined
+	[BaseType (typeof(TextInputControllerDefault), Name="MDCTextInputControllerOutlined")]
+	interface TextInputControllerOutlined
 	{
 	}
 
 	// @interface MDCTextInputControllerOutlinedTextArea : MDCTextInputControllerDefault
-	[BaseType (typeof (MDCTextInputControllerDefault))]
-	interface MDCTextInputControllerOutlinedTextArea
+	[BaseType (typeof(TextInputControllerDefault), Name="MDCTextInputControllerOutlinedTextArea")]
+	interface TextInputControllerOutlinedTextArea
 	{
 	}
 
 	// @interface MDCTextInputControllerFilled : MDCTextInputControllerDefault
-	[BaseType (typeof (MDCTextInputControllerDefault))]
-	interface MDCTextInputControllerFilled
+	[BaseType (typeof(TextInputControllerDefault), Name="MDCTextInputControllerFilled")]
+	interface TextInputControllerFilled
 	{
 	}
 
 	// @interface MDCTextInputUnderlineView : UIView <NSCopying, NSCoding>
-	[BaseType (typeof (UIView))]
-	interface MDCTextInputUnderlineView : INSCopying, INSCoding
+	[BaseType (typeof(UIView), Name="MDCTextInputUnderlineView")]
+	interface TextInputUnderlineView : INSCopying, INSCoding
 	{
 		// @property (nonatomic, strong) UIColor * color;
 		[Export ("color",ArgumentSemantic.Strong)]
@@ -4081,28 +4083,28 @@ namespace MaterialComponents
 	}
 
 	// @interface MDCTextFieldColorThemer : NSObject
-	[BaseType (typeof (NSObject))]
-	interface MDCTextFieldColorThemer
+	[BaseType (typeof(NSObject), Name="MDCTextFieldColorThemer")]
+	interface TextFieldColorThemer
 	{
 		// +(void)applyColorScheme:(NSObject<MDCColorScheme> *)colorScheme toTextInputController:(NSObject<MDCTextInputController> *)textInputController;
 		[Static]
 		[Export ("applyColorScheme:toTextInputController:")]
-		void ApplyColorScheme (MDCColorScheme colorScheme,MDCTextInputController textInputController);
+		void ApplyColorScheme (IColorScheme colorScheme,ITextInputController textInputController);
 
 		// +(void)applyColorScheme:(NSObject<MDCColorScheme> *)colorScheme toTextInputControllerDefault:(MDCTextInputControllerLegacyDefault *)textInputControllerDefault;
 		[Static]
 		[Export ("applyColorScheme:toTextInputControllerDefault:")]
-		void ApplyColorScheme (MDCColorScheme colorScheme,MDCTextInputControllerLegacyDefault textInputControllerDefault);
+		void ApplyColorScheme (IColorScheme colorScheme,TextInputControllerLegacyDefault textInputControllerDefault);
 
 		// +(void)applyColorSchemeToAllTextInputControllerDefault:(NSObject<MDCColorScheme> *)colorScheme;
 		[Static]
 		[Export ("applyColorSchemeToAllTextInputControllerDefault:")]
-		void ApplyColorSchemeToAllTextInputControllerDefault (MDCColorScheme colorScheme);
+		void ApplyColorSchemeToAllTextInputControllerDefault (IColorScheme colorScheme);
 	}
 
 	// @interface MDCTextInputBorderView : UIView <NSCopying>
-	[BaseType (typeof (UIView))]
-	interface MDCTextInputBorderView : INSCopying
+	[BaseType (typeof(UIView), Name="MDCTextInputBorderView")]
+	interface TextInputBorderView : INSCopying
 	{
 		// @property (nonatomic, strong) UIColor * _Nullable borderFillColor __attribute__((annotate("ui_appearance_selector")));
 		[NullAllowed, Export ("borderFillColor",ArgumentSemantic.Strong)]
@@ -4118,16 +4120,12 @@ namespace MaterialComponents
 	}
 
 	// @interface MDCThumbTrack : UIControl
-	[BaseType (typeof (UIControl))]
-	interface MDCThumbTrack
+	[BaseType (typeof(UIControl), Name="MDCThumbTrack")]
+	interface ThumbTrack
 	{
-		[Wrap ("WeakDelegate")]
-		[NullAllowed]
-		MDCThumbTrackDelegate Delegate { get; set; }
-
 		// @property (nonatomic, weak) id<MDCThumbTrackDelegate> _Nullable delegate;
 		[NullAllowed, Export ("delegate",ArgumentSemantic.Weak)]
-		NSObject WeakDelegate { get; set; }
+		IThumbTrackDelegate Delegate { get; set; }
 
 		// @property (nonatomic, strong) UIColor * _Nullable primaryColor;
 		[NullAllowed, Export ("primaryColor",ArgumentSemantic.Strong)]
@@ -4227,7 +4225,7 @@ namespace MaterialComponents
 
 		// @property (nonatomic, strong) MDCThumbView * _Nullable thumbView;
 		[NullAllowed, Export ("thumbView",ArgumentSemantic.Strong)]
-		MDCThumbView ThumbView { get; set; }
+		ThumbView ThumbView { get; set; }
 
 		// @property (assign, nonatomic) BOOL continuousUpdateEvents;
 		[Export ("continuousUpdateEvents")]
@@ -4258,35 +4256,37 @@ namespace MaterialComponents
 		void SetIcon ([NullAllowed] UIImage icon);
 	}
 
+	interface IThumbTrackDelegate {}
+
 	// @protocol MDCThumbTrackDelegate <NSObject>
 	[Protocol, Model]
-	[BaseType (typeof (NSObject))]
-	interface MDCThumbTrackDelegate
+	[BaseType (typeof(NSObject), Name="MDCThumbTrackDelegate")]
+	interface ThumbTrackDelegate
 	{
 		// @optional -(NSString * _Nonnull)thumbTrack:(MDCThumbTrack * _Nonnull)thumbTrack stringForValue:(CGFloat)value;
 		[Export ("thumbTrack:stringForValue:")]
-		string ThumbTrack (MDCThumbTrack thumbTrack,nfloat value);
+		string ThumbTrack (ThumbTrack thumbTrack,nfloat value);
 
 		// @optional -(BOOL)thumbTrack:(MDCThumbTrack * _Nonnull)thumbTrack shouldJumpToValue:(CGFloat)value;
 		[Export ("thumbTrack:shouldJumpToValue:")]
-		bool ThumbTrack2 (MDCThumbTrack thumbTrack,nfloat value);
+		bool ThumbTrack2 (ThumbTrack thumbTrack,nfloat value);
 
 		// @optional -(void)thumbTrack:(MDCThumbTrack * _Nonnull)thumbTrack willJumpToValue:(CGFloat)value;
 		[Export ("thumbTrack:willJumpToValue:")]
-		void ThumbTrack3 (MDCThumbTrack thumbTrack,nfloat value);
+		void ThumbTrack3 (ThumbTrack thumbTrack,nfloat value);
 
 		// @optional -(void)thumbTrack:(MDCThumbTrack * _Nonnull)thumbTrack willAnimateToValue:(CGFloat)value;
 		[Export ("thumbTrack:willAnimateToValue:")]
-		void ThumbTrack4 (MDCThumbTrack thumbTrack,nfloat value);
+		void ThumbTrack4 (ThumbTrack thumbTrack,nfloat value);
 
 		// @optional -(void)thumbTrack:(MDCThumbTrack * _Nonnull)thumbTrack didAnimateToValue:(CGFloat)value;
 		[Export ("thumbTrack:didAnimateToValue:")]
-		void ThumbTrack5 (MDCThumbTrack thumbTrack,nfloat value);
+		void ThumbTrack5 (ThumbTrack thumbTrack,nfloat value);
 	}
 
 	// @interface MDCThumbView : UIView
-	[BaseType (typeof (UIView))]
-	interface MDCThumbView
+	[BaseType (typeof(UIView), Name="MDCThumbView")]
+	interface ThumbView
 	{
 		// @property (assign, nonatomic) BOOL hasShadow;
 		[Export ("hasShadow")]
@@ -4306,9 +4306,9 @@ namespace MaterialComponents
 	}
 
 	// @interface MDCTriangleEdgeTreatment : MDCEdgeTreatment
-	[BaseType (typeof (MDCEdgeTreatment))]
+	[BaseType (typeof(EdgeTreatment), Name="MDCTriangleEdgeTreatment")]
 	[DisableDefaultCtor]
-	interface MDCTriangleEdgeTreatment
+	interface TriangleEdgeTreatment
 	{
 		// @property (assign, nonatomic) CGFloat size;
 		[Export ("size")]
@@ -4316,12 +4316,12 @@ namespace MaterialComponents
 
 		// @property (assign, nonatomic) MDCTriangleEdgeStyle style;
 		[Export ("style",ArgumentSemantic.Assign)]
-		MDCTriangleEdgeStyle Style { get; set; }
+		TriangleEdgeStyle Style { get; set; }
 
 		// -(instancetype _Nonnull)initWithSize:(CGFloat)size style:(MDCTriangleEdgeStyle)style __attribute__((objc_designated_initializer));
 		[Export ("initWithSize:style:")]
 		[DesignatedInitializer]
-		IntPtr Constructor (nfloat size,MDCTriangleEdgeStyle style);
+		IntPtr Constructor (nfloat size,TriangleEdgeStyle style);
 
 		//// -(instancetype _Nullable)initWithCoder:(NSCoder * _Nonnull)aDecoder __attribute__((objc_designated_initializer));
 		//[Export ("initWithCoder:")]
@@ -4329,10 +4329,12 @@ namespace MaterialComponents
 		//IntPtr Constructor (NSCoder aDecoder); TODO not needed
 	}
 
+	interface ITypographyFontLoading {}
+
 	// @protocol MDCTypographyFontLoading <NSObject>
 	[Protocol, Model]
-	[BaseType (typeof (NSObject))]
-	interface MDCTypographyFontLoading
+	[BaseType (typeof(NSObject), Name="MDCTypographyFontLoading")]
+	interface TypographyFontLoading
 	{
 		// @required -(UIFont * _Nullable)lightFontOfSize:(CGFloat)fontSize;
 		[Abstract]
@@ -4378,14 +4380,14 @@ namespace MaterialComponents
 	}
 
 	// @interface MDCTypography : NSObject
-	[BaseType (typeof (NSObject))]
-	interface MDCTypography
+	[BaseType (typeof(NSObject), Name="MDCTypography")]
+	interface Typography
 	{
 		// +(id<MDCTypographyFontLoading> _Nonnull)fontLoader;
 		// +(void)setFontLoader:(id<MDCTypographyFontLoading> _Nonnull)fontLoader;
 		[Static]
 		[Export ("fontLoader")]
-		MDCTypographyFontLoading FontLoader { get; set; }
+		ITypographyFontLoading FontLoader { get; set; }
 
 		// +(UIFont * _Nonnull)display4Font;
 		[Static]
@@ -4514,14 +4516,14 @@ namespace MaterialComponents
 	}
 
 	// @interface MDCSystemFontLoader : NSObject <MDCTypographyFontLoading>
-	[BaseType (typeof (NSObject))]
-	interface MDCSystemFontLoader : MDCTypographyFontLoading
+	[BaseType (typeof(NSObject), Name="MDCSystemFontLoader")]
+	interface SystemFontLoader : TypographyFontLoading
 	{
 	}
 
 	// @interface MDCTimingFunction (UIView)
 	[Category]
-	[BaseType (typeof (UIView))]
+	[BaseType (typeof(UIView))]
 	interface UIView_MDCTimingFunction
 	{
 		// +(void)mdc_animateWithTimingFunction:(CAMediaTimingFunction * _Nullable)timingFunction duration:(NSTimeInterval)duration delay:(NSTimeInterval)delay options:(UIViewAnimationOptions)options animations:(void (^ _Nonnull)(void))animations completion:(void (^ _Nullable)(BOOL))completion;
@@ -4532,7 +4534,7 @@ namespace MaterialComponents
 
 	// @interface AppExtensions (UIApplication)
 	[Category]
-	[BaseType (typeof (UIApplication))]
+	[BaseType (typeof(UIApplication))]
 	interface UIApplication_AppExtensions
 	{
 		// +(UIApplication *)mdc_safeSharedApplication;
@@ -4548,17 +4550,17 @@ namespace MaterialComponents
 
 	// @interface MaterialBottomSheet (UIViewController)
 	[Category]
-	[BaseType (typeof (UIViewController))]
+	[BaseType (typeof(UIViewController))]
 	interface UIViewController_MaterialBottomSheet
 	{
 		// @property (readonly, nonatomic) MDCBottomSheetPresentationController * _Nullable mdc_bottomSheetPresentationController;
 		[NullAllowed, Export ("mdc_bottomSheetPresentationController")]
-		MDCBottomSheetPresentationController Mdc_bottomSheetPresentationController ();
+		BottomSheetPresentationController Mdc_bottomSheetPresentationController ();
 	}
 
 	// @interface ic_arrow_back (MDCIcons)
 	[Category]
-	[BaseType (typeof (MDCIcons))]
+	[BaseType (typeof(Icons))]
 	interface MDCIcons_ic_arrow_back
 	{
 		// +(NSString * _Nonnull)pathFor_ic_arrow_back;
@@ -4579,7 +4581,7 @@ namespace MaterialComponents
 
 	// @interface ic_check (MDCIcons)
 	[Category]
-	[BaseType (typeof (MDCIcons))]
+	[BaseType (typeof(Icons))]
 	interface MDCIcons_ic_check
 	{
 		// +(NSString * _Nonnull)pathFor_ic_check;
@@ -4595,7 +4597,7 @@ namespace MaterialComponents
 
 	// @interface ic_check_circle (MDCIcons)
 	[Category]
-	[BaseType (typeof (MDCIcons))]
+	[BaseType (typeof(Icons))]
 	interface MDCIcons_ic_check_circle
 	{
 		// +(NSString * _Nonnull)pathFor_ic_check_circle;
@@ -4611,7 +4613,7 @@ namespace MaterialComponents
 
 	// @interface ic_chevron_right (MDCIcons)
 	[Category]
-	[BaseType (typeof (MDCIcons))]
+	[BaseType (typeof(Icons))]
 	interface MDCIcons_ic_chevron_right
 	{
 		// +(NSString * _Nonnull)pathFor_ic_chevron_right;
@@ -4627,7 +4629,7 @@ namespace MaterialComponents
 
 	// @interface ic_info (MDCIcons)
 	[Category]
-	[BaseType (typeof (MDCIcons))]
+	[BaseType (typeof(Icons))]
 	interface MDCIcons_ic_info
 	{
 		// +(NSString * _Nonnull)pathFor_ic_info;
@@ -4643,7 +4645,7 @@ namespace MaterialComponents
 
 	// @interface ic_radio_button_unchecked (MDCIcons)
 	[Category]
-	[BaseType (typeof (MDCIcons))]
+	[BaseType (typeof(Icons))]
 	interface MDCIcons_ic_radio_button_unchecked
 	{
 		// +(NSString * _Nonnull)pathFor_ic_radio_button_unchecked;
@@ -4659,7 +4661,7 @@ namespace MaterialComponents
 
 	// @interface ic_reorder (MDCIcons)
 	[Category]
-	[BaseType (typeof (MDCIcons))]
+	[BaseType (typeof(Icons))]
 	interface MDCIcons_ic_reorder
 	{
 		// +(NSString * _Nonnull)pathFor_ic_reorder;
@@ -4675,24 +4677,24 @@ namespace MaterialComponents
 
 	// @interface MaterialTypography (UIFont)
 	[Category]
-	[BaseType (typeof (UIFont))]
+	[BaseType (typeof(UIFont))]
 	interface UIFont_MaterialTypography
 	{
 		// +(UIFont * _Nonnull)mdc_preferredFontForMaterialTextStyle:(MDCFontTextStyle)style;
 		[Static]
 		[Export ("mdc_preferredFontForMaterialTextStyle:")]
-		UIFont Mdc_preferredFontForMaterialTextStyle (MDCFontTextStyle style);
+		UIFont Mdc_preferredFontForMaterialTextStyle (FontTextStyle style);
 	}
 
 	// @interface MaterialTypography (UIFontDescriptor)
 	[Category]
-	[BaseType (typeof (UIFontDescriptor))]
+	[BaseType (typeof(UIFontDescriptor))]
 	interface UIFontDescriptor_MaterialTypography
 	{
 		// +(UIFontDescriptor * _Nonnull)mdc_preferredFontDescriptorForMaterialTextStyle:(MDCFontTextStyle)style;
 		[Static]
 		[Export ("mdc_preferredFontDescriptorForMaterialTextStyle:")]
-		UIFontDescriptor Mdc_preferredFontDescriptorForMaterialTextStyle (MDCFontTextStyle style);
+		UIFontDescriptor Mdc_preferredFontDescriptorForMaterialTextStyle (FontTextStyle style);
 	}
 
 
