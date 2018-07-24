@@ -1,36 +1,38 @@
-<?xml version="1.0" encoding="utf-8"?>
-<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project Sdk="Microsoft.NET.Sdk">
+
   <PropertyGroup>
-    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
-    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{B1ACDC87-F495-41DF-99CF-B56417EE57B1}</ProjectGuid>
-    <OutputType>Library</OutputType>
-    <RootNamespace>Mono.Options</RootNamespace>
-    <AssemblyName>Mono.Options</AssemblyName>
-    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
-    <TargetFrameworkProfile>Client</TargetFrameworkProfile>
+    <TargetFrameworks>net40-client;net40;netstandard1.3;netstandard2.0;portable-net45+win8+wpa81+wp8</TargetFrameworks>
   </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <DebugSymbols>true</DebugSymbols>
-    <DebugType>full</DebugType>
-    <Optimize>false</Optimize>
-    <OutputPath>bin\Debug</OutputPath>
-    <DefineConstants>DEBUG;LINQ</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-    <ConsolePause>false</ConsolePause>
+
+  <PropertyGroup>
+    <Authors>Microsoft</Authors>
+    <Owners>Microsoft</Owners>
+    <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
+    <Description>A Getopt::Long-inspired option parsing library for C#.</Description>
+    <Copyright>© Microsoft Corporation. All rights reserved.</Copyright>
+    <PackageLicenseUrl>https://go.microsoft.com/fwlink/?linkid=865025</PackageLicenseUrl>
+    <PackageIconUrl>https://cdn.rawgit.com/xamarin/XamarinComponents/60536db623beeeb7bb5d1e7a78f9c26da32e26b6/XPlat/Mono.Options/component/icons/icon_256x256.png</PackageIconUrl>
+    <PackageProjectUrl>https://go.microsoft.com/fwlink/?linkid=865059</PackageProjectUrl>
+    <RepositoryUrl>https://go.microsoft.com/fwlink/?linkid=865059</RepositoryUrl>
+    <PackageTags>mono, options, command line, terminal</PackageTags>
   </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <Optimize>true</Optimize>
-    <OutputPath>bin\Release</OutputPath>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-    <ConsolePause>false</ConsolePause>
-    <DefineConstants>LINQ</DefineConstants>
+
+  <PropertyGroup Condition=" $(TargetFramework.StartsWith('netstandard1')) or $(TargetFramework.StartsWith('portable')) ">
+    <DefineConstants>$(DefineConstants);PCL</DefineConstants>
   </PropertyGroup>
+
   <ItemGroup>
-    <Reference Include="System" />
+    <PackageReference Include="MSBuild.Sdk.Extras" Version="1.5.4" PrivateAssets="All" />
   </ItemGroup>
-  <Import Project="..\Mono.Options.Shared\Mono.Options.Shared.projitems" Label="Shared" Condition="Exists('..\Mono.Options.Shared\Mono.Options.Shared.projitems')" />
-  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+
+  <ItemGroup>
+    <Compile Include="..\..\externals\*.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="..\..\External-Dependency-Info.txt" PackagePath="THIRD-PARTY-NOTICES.txt" Pack="true" />
+  </ItemGroup>
+
+  <Import Project="$(MSBuildSdkExtrasTargets)" Condition="Exists('$(MSBuildSdkExtrasTargets)')" />
+
 </Project>

@@ -1,72 +1,60 @@
 
 #load "../../common.cake"
 
-var TARGET = Argument ("t", Argument ("target", "Default"));
+var TARGET = Argument("t", Argument("target", "Default"));
 
-var FileUrl = "https://raw.githubusercontent.com/mono/mono/{0}/mcs/class/Mono.Options/Mono.Options/Options.cs";
-var FileRevision = "7e2571ed334e9cee3f0d3bafeef02852310f4d3b";
-var OptionsUrl = string.Format (FileUrl, FileRevision);
+var MONO_TAG = "mono-5.12.0.273";
 
-var buildSpec = new BuildSpec {
+var ASSEMBLY_VERSION = "5.0.0.0";
+var ASSEMBLY_FILE_VERSION = "5.12.0.0";
+var ASSEMBLY_INFO_VERSION = "5.12.0.273";
+var NUGET_VERSION = "5.12.0.273";
 
-	Libs = new ISolutionBuilder [] {
-		new DefaultSolutionBuilder {
-			PreBuildAction = () => {
-				// restore netstandard
-				StartProcess("dotnet", new ProcessSettings {
-					Arguments = "restore ./source/Mono.Options.NetStandard.sln"
-				});
-			},
-			PostBuildAction = () => {
-				// restore netstandard
-				StartProcess("dotnet", new ProcessSettings {
-					Arguments = "build -c Release ./source/Mono.Options.NetStandard.sln"
-				});
-			},
-			SolutionPath = "./source/Mono.Options.sln",
-			Configuration = "Release",
-			OutputFiles = new [] { 
-				new OutputFileCopy {
-					FromFile = "./source/Mono.Options/bin/Release/Mono.Options.dll",
-					ToDirectory = "./output/net4"
-				},
-				new OutputFileCopy {
-					FromFile = "./source/Mono.Options.Portable/bin/Release/Mono.Options.dll",
-					ToDirectory = "./output/pcl"
-				},
-				new OutputFileCopy {
-					FromFile = "./source/Mono.Options.NetStandard/bin/Release/Mono.Options.dll",
-					ToDirectory = "./output/netstandard"
-				},
-			}
-		},
-	},
+var OUTPUT_PATH = (DirectoryPath)"./output/";
 
-	Samples = new ISolutionBuilder [] {
-		new DefaultSolutionBuilder { SolutionPath = "./samples/OptionsSample.sln" },
-	},
-
-	NuGets = new [] {
-		new NuGetInfo { NuSpec = "./nuget/Mono.Options.nuspec"},
-	},
-
-	Components = new [] {
-		new Component { ManifestDirectory = "./component/" },
-	},
-};
-
-Task ("externals").IsDependentOn ("externals-base").Does (() => 
+Task("externals")
+	.Does(() =>
 {
-	if (!DirectoryExists ("./externals/")) {
-		CreateDirectory ("./externals/");
-	}
-	
-	if (!FileExists ("./externals/Options.cs")) {
-		DownloadFile (OptionsUrl, "./externals/Options.cs");
-	}
+	DownloadMonoSources(MONO_TAG, "./externals/",
+		"mcs/class/Mono.Options/Mono.Options/Options.cs");
 });
 
-SetupXamarinBuildTasks (buildSpec, Tasks, Task);
+Task("libs")
+	.IsDependentOn("externals")
+	.Does(() =>
+{
+	EnsureDirectoryExists(OUTPUT_PATH);
 
-RunTarget (TARGET);
+	MSBuild("./source/Mono.Options/Mono.Options.csproj", c => c
+		.SetConfiguration("Release")
+		.WithRestore()
+		.WithTarget("Build")
+		.WithTarget("Pack")
+		.WithProperty("PackageVersion", NUGET_VERSION)
+		.WithProperty("AssemblyVersion", ASSEMBLY_VERSION)
+		.WithProperty("FileVersion", ASSEMBLY_FILE_VERSION)
+		.WithProperty("InformationalVersion", ASSEMBLY_INFO_VERSION)
+		.WithProperty("PackageOutputPath", MakeAbsolute(OUTPUT_PATH).FullPath));
+});
 
+Task("nuget").IsDependentOn("libs");
+
+Task("component");
+
+Task("samples")
+	.IsDependentOn("libs")
+	.Does(() =>
+{
+	MSBuild("./samples/OptionsSample.sln", c => c
+		.SetConfiguration("Release")
+		.WithRestore()
+		.WithTarget("Build"));
+});
+
+Task("clean")
+	.Does(() =>
+{
+	CleanDirectories("./externals/");
+});
+
+RunTarget(TARGET);
