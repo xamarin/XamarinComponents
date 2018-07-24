@@ -14,6 +14,7 @@
   <PropertyGroup>
     <Product>Mono.DataConverter (BitConvert)</Product>
     <Authors>Microsoft</Authors>
+    <Owners>Microsoft</Owners>
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
     <Description>The DataConverter class is a replacement for System.BitConvert in the .NET class libraries.</Description>
     <Copyright>© Microsoft Corporation. All rights reserved.</Copyright>

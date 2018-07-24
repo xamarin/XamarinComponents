@@ -6,6 +6,7 @@
 
   <PropertyGroup>
     <Authors>Microsoft</Authors>
+    <Owners>Microsoft</Owners>
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
     <Description>A Getopt::Long-inspired option parsing library for C#.</Description>
     <Copyright>© Microsoft Corporation. All rights reserved.</Copyright>
