@@ -884,20 +884,20 @@ namespace MaterialComponents
 	{
 		// @optional -(void)inkTouchController:(MDCInkTouchController * _Nonnull)inkTouchController insertInkView:(UIView * _Nonnull)inkView intoView:(UIView * _Nonnull)view;
 		[Export ("inkTouchController:insertInkView:intoView:")]
-		void InkTouchController (InkTouchController inkTouchController,UIView inkView,UIView view);
+		void InsertInkView (InkTouchController inkTouchController,UIView inkView,UIView view);
 
 		// @optional -(MDCInkView * _Nullable)inkTouchController:(MDCInkTouchController * _Nonnull)inkTouchController inkViewAtTouchLocation:(CGPoint)location;
 		[Export ("inkTouchController:inkViewAtTouchLocation:")]
 		[return: NullAllowed]
-		InkView InkTouchController (InkTouchController inkTouchController,CGPoint location);
+		InkView InkViewAtTouchLocation (InkTouchController inkTouchController,CGPoint location);
 
 		// @optional -(BOOL)inkTouchController:(MDCInkTouchController * _Nonnull)inkTouchController shouldProcessInkTouchesAtTouchLocation:(CGPoint)location;
 		[Export ("inkTouchController:shouldProcessInkTouchesAtTouchLocation:")]
-		bool InkTouchController2 (InkTouchController inkTouchController,CGPoint location);
+		bool ShouldProcessInkTouchesAtTouchLocation (InkTouchController inkTouchController,CGPoint location);
 
 		// @optional -(void)inkTouchController:(MDCInkTouchController * _Nonnull)inkTouchController didProcessInkView:(MDCInkView * _Nonnull)inkView atTouchLocation:(CGPoint)location;
 		[Export ("inkTouchController:didProcessInkView:atTouchLocation:")]
-		void InkTouchController (InkTouchController inkTouchController,InkView inkView,CGPoint location);
+		void DidProcessInkView (InkTouchController inkTouchController,InkView inkView,CGPoint location);
 	}
 
 	// typedef void (^MDCInkCompletionBlock)();
@@ -1309,11 +1309,11 @@ namespace MaterialComponents
 	{
 		// @optional -(BOOL)bottomNavigationBar:(MDCBottomNavigationBar * _Nonnull)bottomNavigationBar shouldSelectItem:(UITabBarItem * _Nonnull)item;
 		[Export ("bottomNavigationBar:shouldSelectItem:")]
-		bool BottomNavigationBar (BottomNavigationBar bottomNavigationBar,UITabBarItem item);
+		bool ShouldSelectItem (BottomNavigationBar bottomNavigationBar,UITabBarItem item);
 
 		// @optional -(void)bottomNavigationBar:(MDCBottomNavigationBar * _Nonnull)bottomNavigationBar didSelectItem:(UITabBarItem * _Nonnull)item;
 		[Export ("bottomNavigationBar:didSelectItem:")]
-		void BottomNavigationBar2 (BottomNavigationBar bottomNavigationBar,UITabBarItem item);
+		void DidSelectItem (BottomNavigationBar bottomNavigationBar,UITabBarItem item);
 	}
 
 	// @interface MDCBottomNavigationBarColorThemer : NSObject
@@ -1353,7 +1353,7 @@ namespace MaterialComponents
 		// @required -(void)bottomSheetControllerDidDismissBottomSheet:(MDCBottomSheetController * _Nonnull)controller;
 		[Abstract]
 		[Export ("bottomSheetControllerDidDismissBottomSheet:")]
-		void BottomSheetControllerDidDismissBottomSheet (BottomSheetController controller);
+		void DidDismissBottomSheet (BottomSheetController controller);
 	}
 
 	interface IBottomSheetPresentationControllerDelegate {}
@@ -1369,7 +1369,7 @@ namespace MaterialComponents
 
 		// @optional -(void)bottomSheetPresentationControllerDidDismissBottomSheet:(MDCBottomSheetPresentationController * _Nonnull)bottomSheet;
 		[Export ("bottomSheetPresentationControllerDidDismissBottomSheet:")]
-		void BottomSheetPresentationControllerDidDismissBottomSheet (BottomSheetPresentationController bottomSheet);
+		void DidDismissBottomSheet (BottomSheetPresentationController bottomSheet);
 	}
 
 	// @interface MDCBottomSheetPresentationController : UIPresentationController
@@ -1581,11 +1581,11 @@ namespace MaterialComponents
 
 		// @optional -(BOOL)collectionView:(UICollectionView * _Nonnull)collectionView canEditItemAtIndexPath:(NSIndexPath * _Nonnull)indexPath;
 		[Export ("collectionView:canEditItemAtIndexPath:")]
-		bool CollectionView100 (UICollectionView collectionView,NSIndexPath indexPath);
+		bool CanEditItemAtIndexPath (UICollectionView collectionView,NSIndexPath indexPath);
 
 		// @optional -(BOOL)collectionView:(UICollectionView * _Nonnull)collectionView canSelectItemDuringEditingAtIndexPath:(NSIndexPath * _Nonnull)indexPath;
 		[Export ("collectionView:canSelectItemDuringEditingAtIndexPath:")]
-		bool CollectionView268476 (UICollectionView collectionView,NSIndexPath indexPath);
+		bool CanSelectItemDuringEditingAtIndexPath (UICollectionView collectionView,NSIndexPath indexPath);
 
 		// @optional -(BOOL)collectionViewAllowsReordering:(UICollectionView * _Nonnull)collectionView;
 		[Export ("collectionViewAllowsReordering:")]
@@ -1593,7 +1593,7 @@ namespace MaterialComponents
 
 		// @optional -(BOOL)collectionView:(UICollectionView * _Nonnull)collectionView canMoveItemAtIndexPath:(NSIndexPath * _Nonnull)indexPath;
 		[Export ("collectionView:canMoveItemAtIndexPath:")]
-		bool CollectionView35634567 (UICollectionView collectionView,NSIndexPath indexPath);
+		bool CanMoveItemAtIndexPath (UICollectionView collectionView,NSIndexPath indexPath);
 
 		// @optional -(BOOL)collectionView:(UICollectionView * _Nonnull)collectionView canMoveItemAtIndexPath:(NSIndexPath * _Nonnull)indexPath toIndexPath:(NSIndexPath * _Nonnull)newIndexPath;
 		[Export ("collectionView:canMoveItemAtIndexPath:toIndexPath:")]
@@ -1601,75 +1601,75 @@ namespace MaterialComponents
 
 		// @optional -(void)collectionView:(UICollectionView * _Nonnull)collectionView willMoveItemAtIndexPath:(NSIndexPath * _Nonnull)indexPath toIndexPath:(NSIndexPath * _Nonnull)newIndexPath;
 		[Export ("collectionView:willMoveItemAtIndexPath:toIndexPath:")]
-		void CollectionView4 (UICollectionView collectionView,NSIndexPath indexPath,NSIndexPath newIndexPath);
+		void WillMoveItemAtIndexPath (UICollectionView collectionView,NSIndexPath indexPath,NSIndexPath newIndexPath);
 
 		// @optional -(void)collectionView:(UICollectionView * _Nonnull)collectionView didMoveItemAtIndexPath:(NSIndexPath * _Nonnull)indexPath toIndexPath:(NSIndexPath * _Nonnull)newIndexPath;
 		[Export ("collectionView:didMoveItemAtIndexPath:toIndexPath:")]
-		void CollectionView5 (UICollectionView collectionView,NSIndexPath indexPath,NSIndexPath newIndexPath);
+		void DidMoveItemAtIndexPath (UICollectionView collectionView,NSIndexPath indexPath,NSIndexPath newIndexPath);
 
 		// @optional -(void)collectionView:(UICollectionView * _Nonnull)collectionView willBeginDraggingItemAtIndexPath:(NSIndexPath * _Nonnull)indexPath;
 		[Export ("collectionView:willBeginDraggingItemAtIndexPath:")]
-		void CollectionView6564576 (UICollectionView collectionView,NSIndexPath indexPath);
+		void WillBeginDraggingItemAtIndexPath (UICollectionView collectionView,NSIndexPath indexPath);
 
 		// @optional -(void)collectionView:(UICollectionView * _Nonnull)collectionView didEndDraggingItemAtIndexPath:(NSIndexPath * _Nonnull)indexPath;
 		[Export ("collectionView:didEndDraggingItemAtIndexPath:")]
-		void CollectionView75636475478 (UICollectionView collectionView,NSIndexPath indexPath);
+		void DidEndDraggingItemAtIndexPath (UICollectionView collectionView,NSIndexPath indexPath);
 
 		// @optional -(void)collectionView:(UICollectionView * _Nonnull)collectionView willDeleteItemsAtIndexPaths:(NSArray<NSIndexPath *> * _Nonnull)indexPaths;
 		[Export ("collectionView:willDeleteItemsAtIndexPaths:")]
-		void CollectionView (UICollectionView collectionView,NSIndexPath[] indexPaths);
+		void WillDeleteItemsAtIndexPaths (UICollectionView collectionView,NSIndexPath[] indexPaths);
 
 		// @optional -(void)collectionView:(UICollectionView * _Nonnull)collectionView didDeleteItemsAtIndexPaths:(NSArray<NSIndexPath *> * _Nonnull)indexPaths;
 		[Export ("collectionView:didDeleteItemsAtIndexPaths:")]
-		void CollectionView8 (UICollectionView collectionView,NSIndexPath[] indexPaths);
+		void DidDeleteItemsAtIndexPaths (UICollectionView collectionView,NSIndexPath[] indexPaths);
 
 		// @optional -(void)collectionView:(UICollectionView * _Nonnull)collectionView willDeleteSections:(NSIndexSet * _Nonnull)sections;
 		[Export ("collectionView:willDeleteSections:")]
-		void CollectionView102 (UICollectionView collectionView,NSIndexSet sections);
+		void WillDeleteSections (UICollectionView collectionView,NSIndexSet sections);
 
 		// @optional -(void)collectionView:(UICollectionView * _Nonnull)collectionView didDeleteSections:(NSIndexSet * _Nonnull)sections;
 		[Export ("collectionView:didDeleteSections:")]
-		void CollectionView9 (UICollectionView collectionView,NSIndexSet sections);
+		void DidDeleteSections (UICollectionView collectionView,NSIndexSet sections);
 
 		// @optional -(BOOL)collectionViewAllowsSwipeToDismissItem:(UICollectionView * _Nonnull)collectionView;
 		[Export ("collectionViewAllowsSwipeToDismissItem:")]
-		bool CollectionViewAllowsSwipeToDismissItem (UICollectionView collectionView);
+		bool AllowsSwipeToDismissItem (UICollectionView collectionView);
 
 		// @optional -(BOOL)collectionView:(UICollectionView * _Nonnull)collectionView canSwipeToDismissItemAtIndexPath:(NSIndexPath * _Nonnull)indexPath;
 		[Export ("collectionView:canSwipeToDismissItemAtIndexPath:")]
-		bool CollectionView10 (UICollectionView collectionView,NSIndexPath indexPath);
+		bool CanSwipeToDismissItemAtIndexPath (UICollectionView collectionView,NSIndexPath indexPath);
 
 		// @optional -(void)collectionView:(UICollectionView * _Nonnull)collectionView willBeginSwipeToDismissItemAtIndexPath:(NSIndexPath * _Nonnull)indexPath;
 		[Export ("collectionView:willBeginSwipeToDismissItemAtIndexPath:")]
-		void CollectionView11 (UICollectionView collectionView,NSIndexPath indexPath);
+		void WillBeginSwipeToDismissItemAtIndexPath (UICollectionView collectionView,NSIndexPath indexPath);
 
 		// @optional -(void)collectionView:(UICollectionView * _Nonnull)collectionView didEndSwipeToDismissItemAtIndexPath:(NSIndexPath * _Nonnull)indexPath;
 		[Export ("collectionView:didEndSwipeToDismissItemAtIndexPath:")]
-		void CollectionView12 (UICollectionView collectionView,NSIndexPath indexPath);
+		void DidEndSwipeToDismissItemAtIndexPath (UICollectionView collectionView,NSIndexPath indexPath);
 
 		// @optional -(void)collectionView:(UICollectionView * _Nonnull)collectionView didCancelSwipeToDismissItemAtIndexPath:(NSIndexPath * _Nonnull)indexPath;
 		[Export ("collectionView:didCancelSwipeToDismissItemAtIndexPath:")]
-		void CollectionView13 (UICollectionView collectionView,NSIndexPath indexPath);
+		void DidCancelSwipeToDismissItemAtIndexPath (UICollectionView collectionView,NSIndexPath indexPath);
 
 		// @optional -(BOOL)collectionViewAllowsSwipeToDismissSection:(UICollectionView * _Nonnull)collectionView;
 		[Export ("collectionViewAllowsSwipeToDismissSection:")]
-		bool CollectionViewAllowsSwipeToDismissSection (UICollectionView collectionView);
+		bool AllowsSwipeToDismissSection (UICollectionView collectionView);
 
 		// @optional -(BOOL)collectionView:(UICollectionView * _Nonnull)collectionView canSwipeToDismissSection:(NSInteger)section;
 		[Export ("collectionView:canSwipeToDismissSection:")]
-		bool CollectionView1000 (UICollectionView collectionView,nint section);
+		bool CanSwipeToDismissSection (UICollectionView collectionView,nint section);
 
 		// @optional -(void)collectionView:(UICollectionView * _Nonnull)collectionView willBeginSwipeToDismissSection:(NSInteger)section;
 		[Export ("collectionView:willBeginSwipeToDismissSection:")]
-		void CollectionView14 (UICollectionView collectionView,nint section);
+		void WillBeginSwipeToDismissSection (UICollectionView collectionView,nint section);
 
 		// @optional -(void)collectionView:(UICollectionView * _Nonnull)collectionView didEndSwipeToDismissSection:(NSInteger)section;
 		[Export ("collectionView:didEndSwipeToDismissSection:")]
-		void CollectionView15 (UICollectionView collectionView,nint section);
+		void DidEndSwipeToDismissSection (UICollectionView collectionView,nint section);
 
 		// @optional -(void)collectionView:(UICollectionView * _Nonnull)collectionView didCancelSwipeToDismissSection:(NSInteger)section;
 		[Export ("collectionView:didCancelSwipeToDismissSection:")]
-		void CollectionView16 (UICollectionView collectionView,nint section);
+		void DidCancelSwipeToDismissSection (UICollectionView collectionView,nint section);
 	}
 
 	[Static]
@@ -1854,61 +1854,61 @@ namespace MaterialComponents
 	{
 		// @optional -(CGFloat)collectionView:(UICollectionView * _Nonnull)collectionView cellHeightAtIndexPath:(NSIndexPath * _Nonnull)indexPath;
 		[Export ("collectionView:cellHeightAtIndexPath:")]
-		nfloat CollectionView201 (UICollectionView collectionView,NSIndexPath indexPath);
+		nfloat CellHeightAtIndexPath (UICollectionView collectionView,NSIndexPath indexPath);
 
 		// @optional -(MDCCollectionViewCellStyle)collectionView:(UICollectionView * _Nonnull)collectionView cellStyleForSection:(NSInteger)section;
 		[Export ("collectionView:cellStyleForSection:")]
-		CollectionViewCellStyle CollectionView (UICollectionView collectionView,nint section);
+		CollectionViewCellStyle CellStyleForSection (UICollectionView collectionView,nint section);
 
 		// @optional -(UIColor * _Nullable)collectionView:(UICollectionView * _Nonnull)collectionView cellBackgroundColorAtIndexPath:(NSIndexPath * _Nonnull)indexPath;
 		[Export ("collectionView:cellBackgroundColorAtIndexPath:")]
 		[return: NullAllowed]
-		UIColor CollectionView2453457 (UICollectionView collectionView,NSIndexPath indexPath);
+		UIColor CellBackgroundColorAtIndexPath (UICollectionView collectionView,NSIndexPath indexPath);
 
 		// @optional -(BOOL)collectionView:(UICollectionView * _Nonnull)collectionView shouldHideItemBackgroundAtIndexPath:(NSIndexPath * _Nonnull)indexPath;
 		[Export ("collectionView:shouldHideItemBackgroundAtIndexPath:")]
-		bool CollectionView3574568 (UICollectionView collectionView,NSIndexPath indexPath);
+		bool ShouldHideItemBackgroundAtIndexPath (UICollectionView collectionView,NSIndexPath indexPath);
 
 		// @optional -(BOOL)collectionView:(UICollectionView * _Nonnull)collectionView shouldHideHeaderBackgroundForSection:(NSInteger)section;
 		[Export ("collectionView:shouldHideHeaderBackgroundForSection:")]
-		bool CollectionView4 (UICollectionView collectionView,nint section);
+		bool ShouldHideHeaderBackgroundForSection (UICollectionView collectionView,nint section);
 
 		// @optional -(BOOL)collectionView:(UICollectionView * _Nonnull)collectionView shouldHideFooterBackgroundForSection:(NSInteger)section;
 		[Export ("collectionView:shouldHideFooterBackgroundForSection:")]
-		bool CollectionView5 (UICollectionView collectionView,nint section);
+		bool ShouldHideFooterBackgroundForSection (UICollectionView collectionView,nint section);
 
 		// @optional -(BOOL)collectionView:(UICollectionView * _Nonnull)collectionView shouldHideItemSeparatorAtIndexPath:(NSIndexPath * _Nonnull)indexPath;
 		[Export ("collectionView:shouldHideItemSeparatorAtIndexPath:")]
-		bool CollectionView6345235 (UICollectionView collectionView,NSIndexPath indexPath);
+		bool ShouldHideItemSeparatorAtIndexPath (UICollectionView collectionView,NSIndexPath indexPath);
 
 		// @optional -(BOOL)collectionView:(UICollectionView * _Nonnull)collectionView shouldHideHeaderSeparatorForSection:(NSInteger)section;
 		[Export ("collectionView:shouldHideHeaderSeparatorForSection:")]
-		bool CollectionView7 (UICollectionView collectionView,nint section);
+		bool ShouldHideHeaderSeparatorForSection (UICollectionView collectionView,nint section);
 
 		// @optional -(BOOL)collectionView:(UICollectionView * _Nonnull)collectionView shouldHideFooterSeparatorForSection:(NSInteger)section;
 		[Export ("collectionView:shouldHideFooterSeparatorForSection:")]
-		bool CollectionView8 (UICollectionView collectionView,nint section);
+		bool ShouldHideFooterSeparatorForSection (UICollectionView collectionView,nint section);
 
 		// @optional -(void)collectionView:(UICollectionView * _Nonnull)collectionView didApplyInlayToItemAtIndexPaths:(NSArray<NSIndexPath *> * _Nonnull)indexPaths;
 		[Export ("collectionView:didApplyInlayToItemAtIndexPaths:")]
-		void CollectionView202 (UICollectionView collectionView,NSIndexPath[] indexPaths);
+		void DidApplyInlayToItemAtIndexPaths (UICollectionView collectionView,NSIndexPath[] indexPaths);
 
 		// @optional -(void)collectionView:(UICollectionView * _Nonnull)collectionView didRemoveInlayFromItemAtIndexPaths:(NSArray<NSIndexPath *> * _Nonnull)indexPaths;
 		[Export ("collectionView:didRemoveInlayFromItemAtIndexPaths:")]
-		void CollectionView9 (UICollectionView collectionView,NSIndexPath[] indexPaths);
+		void DidRemoveInlayFromItemAtIndexPaths (UICollectionView collectionView,NSIndexPath[] indexPaths);
 
 		// @optional -(BOOL)collectionView:(UICollectionView * _Nonnull)collectionView hidesInkViewAtIndexPath:(NSIndexPath * _Nonnull)indexPath;
 		[Export ("collectionView:hidesInkViewAtIndexPath:")]
-		bool CollectionView10000 (UICollectionView collectionView,NSIndexPath indexPath);
+		bool HidesInkViewAtIndexPath (UICollectionView collectionView,NSIndexPath indexPath);
 
 		// @optional -(UIColor * _Nullable)collectionView:(UICollectionView * _Nonnull)collectionView inkColorAtIndexPath:(NSIndexPath * _Nonnull)indexPath;
 		[Export ("collectionView:inkColorAtIndexPath:")]
 		[return: NullAllowed]
-		UIColor CollectionView1123546 (UICollectionView collectionView,NSIndexPath indexPath);
+		UIColor InkColorAtIndexPath (UICollectionView collectionView,NSIndexPath indexPath);
 
 		// @optional -(MDCInkView * _Nonnull)collectionView:(UICollectionView * _Nonnull)collectionView inkTouchController:(MDCInkTouchController * _Nonnull)inkTouchController inkViewAtIndexPath:(NSIndexPath * _Nonnull)indexPath;
 		[Export ("collectionView:inkTouchController:inkViewAtIndexPath:")]
-		InkView CollectionView203 (UICollectionView collectionView,InkTouchController inkTouchController,NSIndexPath indexPath);
+		InkView InkViewAtIndexPath (UICollectionView collectionView,InkTouchController inkTouchController,NSIndexPath indexPath);
 	}
 
 	// @interface MDCCollectionViewController : UICollectionViewController <MDCCollectionViewEditingDelegate, MDCCollectionViewStylingDelegate, UICollectionViewDelegateFlowLayout>
@@ -3344,15 +3344,15 @@ namespace MaterialComponents
 	{
 		// @optional -(BOOL)slider:(MDCSlider * _Nonnull)slider shouldJumpToValue:(CGFloat)value;
 		[Export ("slider:shouldJumpToValue:")]
-		bool Slider (Slider slider,nfloat value);
+		bool ShouldJumpToValue (Slider slider,nfloat value);
 
 		// @optional -(NSString * _Nonnull)slider:(MDCSlider * _Nonnull)slider displayedStringForValue:(CGFloat)value;
 		[Export ("slider:displayedStringForValue:")]
-		string Slider2 (Slider slider,nfloat value);
+		string DisplayedStringForValue (Slider slider,nfloat value);
 
 		// @optional -(NSString * _Nonnull)slider:(MDCSlider * _Nonnull)slider accessibilityLabelForValue:(CGFloat)value;
 		[Export ("slider:accessibilityLabelForValue:")]
-		string Slide3 (Slider slider,nfloat value);
+		string AccessibilityLabelForValue (Slider slider,nfloat value);
 	}
 
 	// @interface MDCSliderColorThemer : NSObject
@@ -3610,15 +3610,15 @@ namespace MaterialComponents
 	{
 		// @optional -(BOOL)tabBar:(MDCTabBar * _Nonnull)tabBar shouldSelectItem:(UITabBarItem * _Nonnull)item;
 		[Export ("tabBar:shouldSelectItem:")]
-		bool TabBar1 (TabBar tabBar,UITabBarItem item);
+		bool ShouldSelectItem (TabBar tabBar,UITabBarItem item);
 
 		// @optional -(void)tabBar:(MDCTabBar * _Nonnull)tabBar willSelectItem:(UITabBarItem * _Nonnull)item;
 		[Export ("tabBar:willSelectItem:")]
-		void TabBar2 (TabBar tabBar,UITabBarItem item);
+		void WillSelectItem (TabBar tabBar,UITabBarItem item);
 
 		// @optional -(void)tabBar:(MDCTabBar * _Nonnull)tabBar didSelectItem:(UITabBarItem * _Nonnull)item;
 		[Export ("tabBar:didSelectItem:")]
-		void TabBar3 (TabBar tabBar,UITabBarItem item);
+		void DidSelectItem (TabBar tabBar,UITabBarItem item);
 	}
 
 	[Static]
@@ -3668,11 +3668,11 @@ namespace MaterialComponents
 	{
 		// @optional -(BOOL)tabBarController:(MDCTabBarViewController * _Nonnull)tabBarController shouldSelectViewController:(UIViewController * _Nonnull)viewController;
 		[Export ("tabBarController:shouldSelectViewController:")]
-		bool TabBarController (TabBarViewController tabBarController,UIViewController viewController);
+		bool ShouldSelectViewController (TabBarViewController tabBarController,UIViewController viewController);
 
 		// @optional -(void)tabBarController:(MDCTabBarViewController * _Nonnull)tabBarController didSelectViewController:(UIViewController * _Nonnull)viewController;
 		[Export ("tabBarController:didSelectViewController:")]
-		void TabBarController2 (TabBarViewController tabBarController,UIViewController viewController);
+		void DidSelectViewController (TabBarViewController tabBarController,UIViewController viewController);
 	}
 
 	// @interface MDCTabBarColorThemer : NSObject
@@ -3724,11 +3724,11 @@ namespace MaterialComponents
 
 		// @optional -(void)textInputDidLayoutSubviews;
 		[Export ("textInputDidLayoutSubviews")]
-		void TextInputDidLayoutSubviews ();
+		void DidLayoutSubviews ();
 
 		// @optional -(void)textInputDidUpdateConstraints;
 		[Export ("textInputDidUpdateConstraints")]
-		void TextInputDidUpdateConstraints ();
+		void DidUpdateConstraints ();
 	}
 
 	interface ITextInputCharacterCounter {}
@@ -4265,23 +4265,23 @@ namespace MaterialComponents
 	{
 		// @optional -(NSString * _Nonnull)thumbTrack:(MDCThumbTrack * _Nonnull)thumbTrack stringForValue:(CGFloat)value;
 		[Export ("thumbTrack:stringForValue:")]
-		string ThumbTrack (ThumbTrack thumbTrack,nfloat value);
+		string StringForValue (ThumbTrack thumbTrack,nfloat value);
 
 		// @optional -(BOOL)thumbTrack:(MDCThumbTrack * _Nonnull)thumbTrack shouldJumpToValue:(CGFloat)value;
 		[Export ("thumbTrack:shouldJumpToValue:")]
-		bool ThumbTrack2 (ThumbTrack thumbTrack,nfloat value);
+		bool ShouldJumpToValue (ThumbTrack thumbTrack,nfloat value);
 
 		// @optional -(void)thumbTrack:(MDCThumbTrack * _Nonnull)thumbTrack willJumpToValue:(CGFloat)value;
 		[Export ("thumbTrack:willJumpToValue:")]
-		void ThumbTrack3 (ThumbTrack thumbTrack,nfloat value);
+		void WillJumpToValue (ThumbTrack thumbTrack,nfloat value);
 
 		// @optional -(void)thumbTrack:(MDCThumbTrack * _Nonnull)thumbTrack willAnimateToValue:(CGFloat)value;
 		[Export ("thumbTrack:willAnimateToValue:")]
-		void ThumbTrack4 (ThumbTrack thumbTrack,nfloat value);
+		void WillAnimateToValue (ThumbTrack thumbTrack,nfloat value);
 
 		// @optional -(void)thumbTrack:(MDCThumbTrack * _Nonnull)thumbTrack didAnimateToValue:(CGFloat)value;
 		[Export ("thumbTrack:didAnimateToValue:")]
-		void ThumbTrack5 (ThumbTrack thumbTrack,nfloat value);
+		void DidAnimateToValue (ThumbTrack thumbTrack,nfloat value);
 	}
 
 	// @interface MDCThumbView : UIView
