@@ -29,7 +29,7 @@
         -->
         <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
         <PackageId>Xamarin.Protobuf.Lite</PackageId>
-        <PackageVersion>3.0.1-alpha01</PackageVersion>
+        <PackageVersion>3.0.1</PackageVersion>
         <Title>Xamarin.Protobuf.Lite</Title>
         <Summary>
             Google Protobuf Lite bindings for Xamarin
@@ -37,9 +37,9 @@
         <Description>
             Bindings for Google's Protobuf Lite package (Google Play Services dependency)
         </Description>
-        <Owners>Microsoft Corporation</Owners>
-        <Authors>Microsoft / Xamarin</Authors>
-        <Copyright>Copyright 2018</Copyright>
+        <Owners>Xamarin, Microsoft</Owners>
+        <Authors>Microsoft</Authors>
+        <Copyright>© Microsoft Corporation. All rights reserved</Copyright>
         <PackageLicenseUrl>
             
         </PackageLicenseUrl>
