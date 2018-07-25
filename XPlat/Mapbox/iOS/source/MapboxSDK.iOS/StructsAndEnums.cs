@@ -79,12 +79,12 @@ namespace Mapbox
     [StructLayout (LayoutKind.Sequential)]
     public struct OfflinePackProgress 
     {
-        ulong CountOfResourcesCompleted;
-        ulong CountOfBytesCompleted;
-        ulong CountOfTilesCompleted;
-        ulong CountOfTileBytesCompleted;
-        ulong CountOfResourcesExpected;
-        ulong MaximumResourcesExpected;
+        public ulong CountOfResourcesCompleted;
+        public ulong CountOfBytesCompleted;
+        public ulong CountOfTilesCompleted;
+        public ulong CountOfTileBytesCompleted;
+        public ulong CountOfResourcesExpected;
+        public ulong MaximumResourcesExpected;
     }
 
 	[Native]
