@@ -58,7 +58,7 @@ string GetArg (string cmd, string env, string def = "")
 }
 string[] GetArgList (string cmd, string env, string def = "")
 {
-	return GetArg (cmd, env, def).Split (new [] { ',', ';', ' ' });
+	return GetArg (cmd, env, def).Split (new [] { ',', ';', ' ' }, StringSplitOptions.RemoveEmptyEntries);
 }
 bool GetArgBool (string cmd, string env, bool def = false)
 {
