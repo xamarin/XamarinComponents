@@ -29,7 +29,6 @@ samples:
     removeProjects:
       - Xamarin.SDWebImage
       - Xamarin.SDWebImage.tvOS
-      - Xamarin.SDWebImage.MacOS
     installNuGets:
       - project: SDWebImageSimpleSample
         packages:
@@ -39,19 +38,8 @@ samples:
     removeProjects:
       - Xamarin.SDWebImage
       - Xamarin.SDWebImage.tvOS
-      - Xamarin.SDWebImage.MacOS
     installNuGets:
       - project: SDWebImageSample
-        packages:
-          - Xamarin.SDWebImage
-  - name: "macOS Sample"
-    path: "../samples/SDWebImageSampleMac/SDWebImageSampleMac.sln"
-    removeProjects:
-      - Xamarin.SDWebImage
-      - Xamarin.SDWebImage.iOS
-      - Xamarin.SDWebImage.tvOS
-    installNuGets:
-      - project: SDWebImageSampleMac
         packages:
           - Xamarin.SDWebImage
   - name: "tvOS Sample"
@@ -59,7 +47,6 @@ samples:
     removeProjects:
       - Xamarin.SDWebImage
       - Xamarin.SDWebImage.iOS
-      - Xamarin.SDWebImage.MacOS
     installNuGets:
       - project: SDWebImageSampleTV
         packages:
@@ -73,7 +60,6 @@ packages:
     removeProjects:
       - Xamarin.SDWebImage
       - Xamarin.SDWebImage.tvOS
-      - Xamarin.SDWebImage.MacOS
     installNuGets:
       - project: SDWebImageMapKitSample
         packages:

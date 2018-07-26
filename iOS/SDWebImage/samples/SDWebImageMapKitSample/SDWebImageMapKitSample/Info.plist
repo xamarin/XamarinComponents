@@ -1,11 +1,11 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
 	<key>CFBundleName</key>
 	<string>SDWebImageMapKitSample</string>
 	<key>CFBundleIdentifier</key>
-	<string>com.companyname.SDWebImageMapKitSample</string>
+	<string>com.xamarin.SDWebImageMapKitSample</string>
 	<key>CFBundleShortVersionString</key>
 	<string>1.0</string>
 	<key>CFBundleVersion</key>
@@ -38,8 +38,6 @@
 	<string>Assets.xcassets/AppIcon.appiconset</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string>We want to use your location, bwahahaha!</string>
-	<key>CFBundleName</key>
-	<string>SDWebImageMapKitSample</string>
 	<key>NSAppTransportSecurity</key>
 	<dict>
 		<key>NSAllowsArbitraryLoads</key>

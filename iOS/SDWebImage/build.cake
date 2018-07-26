@@ -51,8 +51,7 @@ var buildSpec = new BuildSpec () {
 
 	Samples = new ISolutionBuilder [] {
 		new DefaultSolutionBuilder { SolutionPath = "./samples/SDWebImageMapKitSample/SDWebImageMapKitSample.sln", Platform = "iPhone" },
-		new DefaultSolutionBuilder { SolutionPath = "./samples/SDWebImageSample/SDWebImageSample.sln", Platform = "iPhone" },
-		new DefaultSolutionBuilder { SolutionPath = "./samples/SDWebImageSampleMac/SDWebImageSampleMac.sln", Platform = "x64" },
+		new DefaultSolutionBuilder { SolutionPath = "./samples/SDWebImageSample/SDWebImageSample.sln", Platform = "iPhone" },		
 		new DefaultSolutionBuilder { SolutionPath = "./samples/SDWebImageSampleTV/SDWebImageSampleTV.sln", Platform = "iPhone" },
 		new DefaultSolutionBuilder { SolutionPath = "./samples/SDWebImageSimpleSample/SDWebImageSimpleSample.sln", Platform = "iPhone" },
 	},

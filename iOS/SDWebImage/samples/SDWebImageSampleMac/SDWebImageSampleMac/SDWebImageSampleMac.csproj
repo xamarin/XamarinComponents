@@ -20,8 +20,8 @@
     <DefineConstants>DEBUG;</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <EnableCodeSigning>false</EnableCodeSigning>
-    <CodeSigningKey>Mac Developer</CodeSigningKey>
+    <EnableCodeSigning>true</EnableCodeSigning>
+    <CodeSigningKey>Mac Developer: Jesus Adlair Cerecedo Mendez (83Q48VP5BY)</CodeSigningKey>
     <CreatePackage>false</CreatePackage>
     <EnablePackageSigning>false</EnablePackageSigning>
     <IncludeMonoRuntime>false</IncludeMonoRuntime>
@@ -29,6 +29,9 @@
     <UseRefCounting>true</UseRefCounting>
     <Profiling>true</Profiling>
     <PlatformTarget>x64</PlatformTarget>
+    <LinkMode>SdkOnly</LinkMode>
+    <AOTMode>None</AOTMode>
+    <PackageSigningKey>3rd Party Mac Developer Installer</PackageSigningKey>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x64' ">
     <DebugType>pdbonly</DebugType>
@@ -36,7 +39,7 @@
     <OutputPath>bin\Release</OutputPath>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <EnableCodeSigning>false</EnableCodeSigning>
+    <EnableCodeSigning>true</EnableCodeSigning>
     <CreatePackage>true</CreatePackage>
     <EnablePackageSigning>false</EnablePackageSigning>
     <IncludeMonoRuntime>true</IncludeMonoRuntime>
@@ -44,6 +47,9 @@
     <UseRefCounting>true</UseRefCounting>
     <LinkMode>SdkOnly</LinkMode>
     <PlatformTarget>x64</PlatformTarget>
+    <AOTMode>None</AOTMode>
+    <CodeSigningKey>Mac Developer: Jesus Adlair Cerecedo Mendez (83Q48VP5BY)</CodeSigningKey>
+    <PackageSigningKey>3rd Party Mac Developer Installer</PackageSigningKey>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
