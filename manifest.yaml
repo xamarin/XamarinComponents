@@ -183,6 +183,16 @@
   TriggerPaths: [ Android/Google.LibPhoneNumber ]
   MacBuildTargets: [nuget]
 
+# will be XPlat in the future
+- Name: TensorFlow.Lite
+  BuildScript: ./XPlat/TensorFlow.Lite/build.cake
+  TriggerPaths: [ XPlat/TensorFlow.Lite ]
+  MacBuildTargets: [ libs, nuget]
+- Name: Protobuf.Lite
+  BuildScript: ./XPlat/Protobuf.Lite/build.cake
+  TriggerPaths: [ XPlat/Protobuf.Lite ]
+  MacBuildTargets: [ libs, nuget]
+
 #######################################################
 # iOS
 #######################################################
