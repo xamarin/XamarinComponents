@@ -113,7 +113,7 @@ namespace NugetAuditor.Core.Processors
             if (leaf.Published < SettingsHelper.CutOffDateTime)
                 return false;
 
-            var folderName = Path.Combine(Directory.GetCurrentDirectory(), $"{package.PackageId}-{LatestVersion.VersionString}");
+            var folderName = Path.Combine(System.IO.Path.GetTempPath(), $"{package.PackageId}-{LatestVersion.VersionString}");
             var nugetPackageName = Path.Combine(folderName, $"{package.PackageId}.{LatestVersion.VersionString}.nupkg");
 
             try
@@ -252,7 +252,7 @@ namespace NugetAuditor.Core.Processors
             if (leaf.Published < SettingsHelper.CutOffDateTime)
                 return false;
 
-            var folderName = Path.Combine(Directory.GetCurrentDirectory(), $"{package.PackageId}-{LatestVersion.VersionString}");
+            var folderName = Path.Combine(Path.GetTempPath(), $"{package.PackageId}-{LatestVersion.VersionString}");
             var nugetPackageName = Path.Combine(folderName, $"{package.PackageId}.{LatestVersion.VersionString}.nupkg");
 
             try
