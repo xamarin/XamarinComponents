@@ -198,7 +198,7 @@ namespace NugetAuditor.Core.Processors
             if (string.IsNullOrWhiteSpace(copyright))
                 return false;
 
-            return copyright.Equals(copyright);
+            return MSCopyright.Equals(copyright);
         }
 
         private RegistrationLeafResponse GetLeafResponse()

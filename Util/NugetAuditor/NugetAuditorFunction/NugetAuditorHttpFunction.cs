@@ -18,39 +18,20 @@ namespace NugetAuditorFunction
         public static async Task<HttpResponseMessage> Run([HttpTrigger(AuthorizationLevel.Function, "get", "post", Route = null)]HttpRequestMessage req, TraceWriter log, ExecutionContext context)
         {
             SettingsHelper.ConfigurationProvider = new ConfigurationProvider();
+            LogHelper.Logger = new LoggerProvider(log);
 
             var config = SettingsHelper.ConfigurationProvider.GetConnectionString("dbConn");
 
-            //log.Info($"db con string: {config}");
-
-            //log.Info("C# HTTP trigger function processed a request.");
-
-            log.Info("Initialising Database...");
+            LogHelper.WriteLine("Initialising Database...");
             await AuditorDbContext.InitializeAsync();
 
-            log.Info("Setting up Nuget Search Service Api...");
+            LogHelper.WriteLine("Setting up Nuget Search Service Api...");
             await NugetServiceIndex.SetupSearchApiAsync();
 
-            log.Info("Processing feed...");
+            LogHelper.WriteLine("Processing feed...");
             await NugetAuditRobot.ProcessAsync();
 
             return req.CreateResponse(HttpStatusCode.OK, "Boom!");
-
-            //// parse query parameter
-            //string name = req.GetQueryNameValuePairs()
-            //    .FirstOrDefault(q => string.Compare(q.Key, "name", true) == 0)
-            //    .Value;
-
-            //if (name == null)
-            //{
-            //    // Get request body
-            //    dynamic data = await req.Content.ReadAsAsync<object>();
-            //    name = data?.name;
-            //}
-
-            //return name == null
-            //    ? req.CreateResponse(HttpStatusCode.BadRequest, "Please pass a name on the query string or in the request body")
-            //    : req.CreateResponse(HttpStatusCode.OK, "Hello " + name);
         }
     }
 }

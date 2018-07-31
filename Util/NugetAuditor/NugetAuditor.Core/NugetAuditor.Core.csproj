@@ -15,10 +15,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Mono.Security\Mono.Security.Standard.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
     <Compile Update="Migrations\20180305230341_InitialDbLayout.designer.cs">
       <DependentUpon>20180305230341_InitialDbLayout.cs</DependentUpon>
     </Compile>

@@ -16,7 +16,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Mono.Security\Mono.Security.Standard.csproj" />
     <ProjectReference Include="..\NugetAuditor.Core\NugetAuditor.Core.csproj" />
   </ItemGroup>
 

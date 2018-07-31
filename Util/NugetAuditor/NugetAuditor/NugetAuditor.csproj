@@ -107,10 +107,6 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Mono.Security\Mono.Security.Standard.csproj">
-      <Project>{dd1928cd-8850-4cf4-a0a3-60289bfac4fe}</Project>
-      <Name>Mono.Security.Standard</Name>
-    </ProjectReference>
     <ProjectReference Include="..\NugetAuditor.Core\NugetAuditor.Core.csproj">
       <Project>{bb225e3a-f0dd-4e7b-a27e-80b7282a13f7}</Project>
       <Name>NugetAuditor.Core</Name>
