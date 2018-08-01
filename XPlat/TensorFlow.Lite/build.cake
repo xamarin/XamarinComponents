@@ -71,7 +71,7 @@ BuildSpec buildSpec = new BuildSpec ()
 				},
 				new OutputFileCopy 
 				{ 
-					FromFile = "source/Xamarin.TensorFlow.Lite.Bindings.XamarinAndroid/bin/Release/Xamarin.TensorFlow.Lite.1.9.0-alpha01.nupkg" 
+					FromFile = "source/Xamarin.TensorFlow.Lite.Bindings.XamarinAndroid/bin/Release/Xamarin.TensorFlow.Lite.1.9.0.nupkg" 
 				},
 				// new OutputFileCopy 
 				// { 
