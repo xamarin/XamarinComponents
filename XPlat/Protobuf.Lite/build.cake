@@ -56,8 +56,8 @@ var TARGET = Argument ("t", Argument ("target", "Default"));
 
 string ARTIFACT_VERSION="3.0.1";
 string JAR_URL=$"http://central.maven.org/maven2/com/google/protobuf/protobuf-lite/{ARTIFACT_VERSION}/protobuf-lite-{ARTIFACT_VERSION}.jar";
-string ARTIFACT_FILE = $"./externals/android/-{ARTIFACT_VERSION}.aar";
-string NUGET_VERSION=$"{ARTIFACT_VERSION}-alpha01";
+string ARTIFACT_FILE = $"./externals/android/protobuf-lite-{ARTIFACT_VERSION}.jar";
+string NUGET_VERSION=$"{ARTIFACT_VERSION}";
 
 
 BuildSpec buildSpec = new BuildSpec () 
@@ -75,7 +75,7 @@ BuildSpec buildSpec = new BuildSpec ()
 				},
 				new OutputFileCopy 
 				{ 
-					FromFile = $"source/Xamarin.Protobuf.Lite.Bindings.XamarinAndroid/bin/Release/Xamarin.Protobuf.Lite.{ARTIFACT_VERSION}-alpha01.nupkg" 
+					FromFile = $"source/Xamarin.Protobuf.Lite.Bindings.XamarinAndroid/bin/Release/Xamarin.Protobuf.Lite.{NUGET_VERSION}.nupkg" 
 				},
 			}
 		}
