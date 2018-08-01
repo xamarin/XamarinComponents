@@ -29,7 +29,7 @@
         -->
         <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
         <PackageId>Xamarin.TensorFlow.Lite</PackageId>
-        <PackageVersion>1.9.0-alpha01</PackageVersion>
+        <PackageVersion>1.9.0</PackageVersion>
         <Title>Xamarin.TensorFlow.Lite</Title>
         <Summary>
             Google TensorFlow Lite bindings for Xamarin
