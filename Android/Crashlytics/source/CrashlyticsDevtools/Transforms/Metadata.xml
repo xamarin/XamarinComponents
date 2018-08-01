@@ -1,0 +1,76 @@
+﻿<metadata>
+    <attr path="/api/package[@name='com.crashlytics.android']" name="managedName">Crashlytics.Devtools</attr>
+    <attr path="/api/package[@name='com.crashlytics.android.internal']" name="managedName">Crashlytics.Devtools.Internal</attr>
+    <attr path="/api/package[@name='xamarin.android.crashlytics']" name="managedName">Crashlytics.Devtools</attr>
+    <!-- Should be fun updating these obscured types every release. -->
+    <remove-node path="/api/package[@name='com.crashlytics.android.internal']/class[@name='aM']" />
+    <attr path="/api/package[@name='com.crashlytics.android.internal']/class[@name='u']" name="obfuscated">false</attr>
+    <attr path="/api/package[@name='com.crashlytics.android.internal']/class[@name='p']" name="obfuscated">false</attr>
+    <remove-node path="/api/package[@name='com.crashlytics.api.net']/class[@name='Constants.Http']" />
+
+    <add-node path="/api/package/class/implements[@name='com.crashlytics.api.net']/class[@name='Constants.Http']" >
+        <class abstract="false" deprecated="not deprecated" extends="java.lang.Object" extends-generic-aware="java.lang.Object" final="false" name="Constants" static="false" visibility="public">
+            <constructor deprecated="not deprecated" final="false" name="Constants" static="false" type="com.crashlytics.api.net.Constants" visibility="public">
+            </constructor>
+        </class>
+        <class abstract="false" deprecated="not deprecated" extends="java.lang.Object" extends-generic-aware="java.lang.Object" final="false" name="Constants.Http" static="true" visibility="public">
+            <constructor deprecated="not deprecated" final="false" name="Constants.Http" static="false" type="com.crashlytics.api.net.Constants.Http" visibility="public">
+            </constructor>
+            <field deprecated="not deprecated" final="true" name="ACCEPT_HEADER" static="true" transient="false" type="java.lang.String" type-generic-aware="java.lang.String" value="&quot;Accept&quot;" visibility="public" volatile="false">
+            </field>
+            <field deprecated="not deprecated" final="true" name="ACCESS_TOKEN_HEADER" static="true" transient="false" type="java.lang.String" type-generic-aware="java.lang.String" value="&quot;X-CRASHLYTICS-ACCESS-TOKEN&quot;" visibility="public" volatile="false">
+            </field>
+            <field deprecated="not deprecated" final="true" name="API_CLIENT_BUILD_VERSION" static="true" transient="false" type="java.lang.String" type-generic-aware="java.lang.String" value="&quot;X-CRASHLYTICS-API-CLIENT-BUILD-VERSION&quot;" visibility="public" volatile="false">
+            </field>
+            <field deprecated="not deprecated" final="true" name="API_CLIENT_DISPLAY_VERSION" static="true" transient="false" type="java.lang.String" type-generic-aware="java.lang.String" value="&quot;X-CRASHLYTICS-API-CLIENT-DISPLAY-VERSION&quot;" visibility="public" volatile="false">
+            </field>
+            <field deprecated="not deprecated" final="true" name="API_CLIENT_ID" static="true" transient="false" type="java.lang.String" type-generic-aware="java.lang.String" value="&quot;X-CRASHLYTICS-API-CLIENT-ID&quot;" visibility="public" volatile="false">
+            </field>
+            <field deprecated="not deprecated" final="true" name="API_CLIENT_TYPE_HEADER" static="true" transient="false" type="java.lang.String" type-generic-aware="java.lang.String" value="&quot;X-CRASHLYTICS-API-CLIENT-TYPE&quot;" visibility="public" volatile="false">
+            </field>
+            <field deprecated="not deprecated" final="true" name="API_CLIENT_VERSION_HEADER" static="true" transient="false" type="java.lang.String" type-generic-aware="java.lang.String" value="&quot;X-CRASHLYTICS-API-CLIENT-VERSION&quot;" visibility="public" volatile="false">
+            </field>
+            <field deprecated="not deprecated" final="true" name="API_ENVIRONMENT_ID_HEADER" static="true" transient="false" type="java.lang.String" type-generic-aware="java.lang.String" value="&quot;X-CRASHLYTICS-API-ENVIRONMENT-ID&quot;" visibility="public" volatile="false">
+            </field>
+            <field deprecated="not deprecated" final="true" name="API_ENVIRONMENT_VERSION_HEADER" static="true" transient="false" type="java.lang.String" type-generic-aware="java.lang.String" value="&quot;X-CRASHLYTICS-API-ENVIRONMENT-VERSION&quot;" visibility="public" volatile="false">
+            </field>
+            <field deprecated="not deprecated" final="true" name="API_KEY_HEADER" static="true" transient="false" type="java.lang.String" type-generic-aware="java.lang.String" value="&quot;X-CRASHLYTICS-API-KEY&quot;" visibility="public" volatile="false">
+            </field>
+            <field deprecated="not deprecated" final="true" name="API_OPERATING_SYSTEM_HEADER" static="true" transient="false" type="java.lang.String" type-generic-aware="java.lang.String" value="&quot;X-CRASHLYTICS-API-OPERATING-SYSTEM&quot;" visibility="public" volatile="false">
+            </field>
+            <field deprecated="not deprecated" final="true" name="APPLICATION_JSON" static="true" transient="false" type="java.lang.String" type-generic-aware="java.lang.String" value="&quot;application/json&quot;" visibility="public" volatile="false">
+            </field>
+            <field deprecated="not deprecated" final="true" name="APPLICATION_OCTET_STREAM" static="true" transient="false" type="java.lang.String" type-generic-aware="java.lang.String" value="&quot;application/octet-stream&quot;" visibility="public" volatile="false">
+            </field>
+            <field deprecated="not deprecated" final="true" name="APPLICATION_URL_ENCODED" static="true" transient="false" type="java.lang.String" type-generic-aware="java.lang.String" value="&quot;application/x-www-form-urlencoded&quot;" visibility="public" volatile="false">
+            </field>
+            <field deprecated="not deprecated" final="true" name="APP_NAME_POST_PART" static="true" transient="false" type="java.lang.String" type-generic-aware="java.lang.String" value="&quot;app_name&quot;" visibility="public" volatile="false">
+            </field>
+            <field deprecated="not deprecated" final="true" name="BASE_IDENTIFIER_POST_PART" static="true" transient="false" type="java.lang.String" type-generic-aware="java.lang.String" value="&quot;base_identifier&quot;" visibility="public" volatile="false">
+            </field>
+            <field deprecated="not deprecated" final="true" name="BUILD_SECRET_HEADER" static="true" transient="false" type="java.lang.String" type-generic-aware="java.lang.String" value="&quot;X-CRASHLYTICS-BUILD-SECRET&quot;" visibility="public" volatile="false">
+            </field>
+            <field deprecated="not deprecated" final="true" name="CONTENT_TYPE" static="true" transient="false" type="java.lang.String" type-generic-aware="java.lang.String" value="&quot;Content-Type&quot;" visibility="public" volatile="false">
+            </field>
+            <field deprecated="not deprecated" final="true" name="DEV_TOKEN_HEADER" static="true" transient="false" type="java.lang.String" type-generic-aware="java.lang.String" value="&quot;X-CRASHLYTICS-DEVELOPER-TOKEN&quot;" visibility="public" volatile="false">
+            </field>
+
+            <field deprecated="not deprecated" final="true" name="HTTPS" static="true" transient="false" type="java.lang.String" type-generic-aware="java.lang.String" value="&quot;HTTPS&quot;" visibility="public" volatile="false">
+            </field>
+            <field deprecated="not deprecated" final="true" name="REQUEST_ID_HEADER" static="true" transient="false" type="java.lang.String" type-generic-aware="java.lang.String" value="&quot;X-Request-Id&quot;" visibility="public" volatile="false">
+            </field>
+            <field deprecated="not deprecated" final="true" name="TEXT_PLAIN" static="true" transient="false" type="java.lang.String" type-generic-aware="java.lang.String" value="&quot;text/plain&quot;" visibility="public" volatile="false">
+            </field>
+            <field deprecated="not deprecated" final="true" name="TOOL_DETAIL_POST_PART" static="true" transient="false" type="java.lang.String" type-generic-aware="java.lang.String" value="&quot;tool_detail&quot;" visibility="public" volatile="false">
+            </field>
+            <field deprecated="not deprecated" final="true" name="TWITTER_ID_POST_PART" static="true" transient="false" type="java.lang.String" type-generic-aware="java.lang.String" value="&quot;twitter_client_application_id&quot;" visibility="public" volatile="false">
+            </field>
+            <field deprecated="not deprecated" final="true" name="TWITTER_TOKEN_ANDROID_PLATFORM" static="true" transient="false" type="java.lang.String" type-generic-aware="java.lang.String" value="&quot;android&quot;" visibility="public" volatile="false">
+            </field>
+            <field deprecated="not deprecated" final="true" name="TWITTER_TOKEN_PLATFORM" static="true" transient="false" type="java.lang.String" type-generic-aware="java.lang.String" value="&quot;platform&quot;" visibility="public" volatile="false">
+            </field>
+            <field deprecated="not deprecated" final="true" name="USER_AGENT_HEADER" static="true" transient="false" type="java.lang.String" type-generic-aware="java.lang.String" value="&quot;User-Agent&quot;" visibility="public" volatile="false">
+            </field>
+        </class>
+    </add-node>
+</metadata>
