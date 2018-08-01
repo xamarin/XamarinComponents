@@ -4,7 +4,7 @@
 var TARGET = Argument ("t", Argument ("target", "Default"));
 
 var IOS_PODS = new List<string> {
-	"platform :ios, '7.0'",
+	"platform :ios, '8.0'",
 	"install! 'cocoapods', :integrate_targets => false",
 	"target 'Xamarin' do",
 	"pod 'SDWebImage', '4.4'",
@@ -13,7 +13,7 @@ var IOS_PODS = new List<string> {
 	"end",
 };
 
-var POD_VERSION = "4.0.0";
+var POD_VERSION = "4.4.0";
 
 var CreatePodSpec = new Action<string, string> ((platform, version) => {
 	var v1 = CocoaPodVersion () >= new System.Version (1, 0);
@@ -78,7 +78,7 @@ Task ("externals")
 
 	// macOS
 	EnsureDirectoryExists ("./externals/osx");
-	CreatePodSpec ("osx", "10.8");
+	CreatePodSpec ("osx", "10.10");
 	BuildXCode ("./Pods/Pods.xcodeproj", "SDWebImage", "SDWebImage", "./externals/osx/", TargetOS.Mac);
 	BuildXCode ("./Pods/Pods.xcodeproj", "libwebp", "libwebp", "./externals/osx/", TargetOS.Mac);
 
