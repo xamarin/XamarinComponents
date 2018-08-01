@@ -80,8 +80,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <EmbeddedJar Include="..\..\externals\android\protobuf-lite-3.0.1.aar">
-      <Link>Jars\protobuf-lite-3.0.1.aar</Link>
+    <EmbeddedJar Include="..\..\externals\android\protobuf-lite-3.0.1.jar">
+      <Link>Jars\protobuf-lite-3.0.1.jar</Link>
     </EmbeddedJar>
   </ItemGroup>
   <ItemGroup>
