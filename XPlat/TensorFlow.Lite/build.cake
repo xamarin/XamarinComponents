@@ -97,13 +97,6 @@ BuildSpec buildSpec = new BuildSpec ()
 		},
 	},
 
-	NuGets = new [] 
-	{
-		new NuGetInfo 
-		{ 
-			NuSpec = "./nuget/HolisticWare.Xamarin.TensorFlow.Lite.nuspec" 
-		},
-	},
 };
 
 Task ("externals")
