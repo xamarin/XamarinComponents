@@ -4,6 +4,7 @@
     <AndroidCodegenTarget>XAJavaInterop1</AndroidCodegenTarget>
     <TargetFramework>MonoAndroid41</TargetFramework>
     <IsBindingProject>true</IsBindingProject>
+    <JavaOptions>$(JavaOptions) -noverify </JavaOptions>
   </PropertyGroup>
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>

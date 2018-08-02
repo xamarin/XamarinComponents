@@ -1,27 +1,27 @@
 ﻿using Android.App;
 using Android.Widget;
 using Android.OS;
+using Crashlytics.Devtools;
+using Fabric;
+using Java.Lang;
+using Android.Views;
 
 namespace CrashlyticsSample
 {
     [Activity(Label = "CrashlyticsSample", MainLauncher = true, Icon = "@mipmap/icon")]
     public class MainActivity : Activity
     {
-        int count = 1;
-
         protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
-
-            // Set our view from the "main" layout resource
+            //Fabric.Fabric.With(this, new Crashlytics.Devtools.Crashlytics());
             SetContentView(Resource.Layout.Main);
-
-            // Get our button from the layout resource,
-            // and attach an event to it
-            Button button = FindViewById<Button>(Resource.Id.myButton);
-
-            button.Click += delegate { button.Text = $"{count++} clicks!"; };
         }
+
+        public void ForceCrash(View view)
+        {
+            throw new RuntimeException("This is a crash");
+        }
+
     }
 }
-

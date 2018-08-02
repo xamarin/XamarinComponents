@@ -1,7 +1,13 @@
 
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CrashlyticsSample", "CrashlyticsSample\CrashlyticsSample.csproj", "{074F363D-04CF-4DB0-A6E2-CD299EDDDE67}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CrashlyticsSample", "CrashlyticsSample\CrashlyticsSample.csproj", "{EC21DA29-CC7B-48FD-96CF-BA975BE98E5E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Crashlytics", "..\..\source\Crashlytics\Crashlytics.csproj", "{944401E3-9378-402E-863C-BDA7C1CA61BF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fabric", "..\..\source\Fabric\Fabric.csproj", "{914533D8-95A9-4FB0-BC30-E6293C01BA07}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CrashlyticsDevtools", "..\..\source\CrashlyticsDevtools\CrashlyticsDevtools.csproj", "{0A4E93AE-863B-4373-8D95-BD6E5D24BFC1}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -9,9 +15,21 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{074F363D-04CF-4DB0-A6E2-CD299EDDDE67}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{074F363D-04CF-4DB0-A6E2-CD299EDDDE67}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{074F363D-04CF-4DB0-A6E2-CD299EDDDE67}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{074F363D-04CF-4DB0-A6E2-CD299EDDDE67}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EC21DA29-CC7B-48FD-96CF-BA975BE98E5E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EC21DA29-CC7B-48FD-96CF-BA975BE98E5E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EC21DA29-CC7B-48FD-96CF-BA975BE98E5E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EC21DA29-CC7B-48FD-96CF-BA975BE98E5E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{944401E3-9378-402E-863C-BDA7C1CA61BF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{944401E3-9378-402E-863C-BDA7C1CA61BF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{944401E3-9378-402E-863C-BDA7C1CA61BF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{944401E3-9378-402E-863C-BDA7C1CA61BF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{914533D8-95A9-4FB0-BC30-E6293C01BA07}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{914533D8-95A9-4FB0-BC30-E6293C01BA07}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{914533D8-95A9-4FB0-BC30-E6293C01BA07}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{914533D8-95A9-4FB0-BC30-E6293C01BA07}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0A4E93AE-863B-4373-8D95-BD6E5D24BFC1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0A4E93AE-863B-4373-8D95-BD6E5D24BFC1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0A4E93AE-863B-4373-8D95-BD6E5D24BFC1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0A4E93AE-863B-4373-8D95-BD6E5D24BFC1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
