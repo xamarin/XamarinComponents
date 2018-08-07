@@ -1,0 +1,95 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<metadata>
+    <attr
+        path="/api/package[@name='io.grpc']"
+        name="managedName"
+        >
+        Xamarin.Grpc
+    </attr>
+    <attr
+        path="/api/package[@name='io.grpc.inprocess']"
+        name="managedName"
+        >
+        Xamarin.Grpc.InProcess
+    </attr>
+    <attr
+        path="/api/package[@name='io.grpc.internal']"
+        name="managedName"
+        >
+        Xamarin.Grpc.Internal
+    </attr>
+    <attr
+        path="/api/package[@name='io.grpc.util']"
+        name="managedName"
+        >
+        Xamarin.Grpc.Util
+    </attr>
+
+    <attr
+        path="/api/package[@name='io.grpc.inprocess']/class[@name='InProcessServer']"
+        name="visibility"
+        >
+        public
+    </attr>
+    <attr
+        path="/api/package[@name='io.grpc']/class[@name='PartialForwardingClientCall']"
+        name="visibility"
+        >
+        public
+    </attr>
+    <attr
+        path="/api/package[@name='io.grpc']/class[@name='PartialForwardingClientCallListener']"
+        name="visibility"
+        >
+        public
+    </attr>
+    <attr
+        path="/api/package[@name='io.grpc']/class[@name='PartialForwardingServerCallListener']"
+        name="visibility"
+        >
+        public
+    </attr>
+    <attr
+        path="/api/package[@name='io.grpc']/class[@name='PartialForwardingServerCall']"
+        name="visibility"
+        >
+        public
+    </attr>
+
+    <remove-node
+        path="/api/package[@name='io.grpc']/class[@name='ForwardingClientCall']/method[@name='delegate' and count(parameter)=0]"
+        >
+    </remove-node>
+    <remove-node
+        path="/api/package[@name='io.grpc']/class[@name='PartialForwardingClientCall']/method[@name='delegate' and count(parameter)=0]"
+        >
+    </remove-node>
+    <remove-node
+        path="/api/package[@name='io.grpc']/class[@name='ForwardingClientCallListener']/method[@name='delegate' and count(parameter)=0]"
+        >
+    </remove-node>
+    <remove-node
+        path="/api/package[@name='io.grpc']/class[@name='ForwardingServerCall']/method[@name='delegate' and count(parameter)=0]"
+        >
+    </remove-node>
+    <remove-node
+        path="/api/package[@name='io.grpc']/class[@name='ForwardingServerCallListener']/method[@name='delegate' and count(parameter)=0]"
+        >
+    </remove-node>
+
+    
+    <remove-node
+        path="/api/package[@name='io.grpc']/interface[@name='Compressor']/method[@name='getMessageEncoding' and count(parameter)=0]"
+        >
+    </remove-node>
+    <remove-node
+        path="/api/package[@name='io.grpc']/interface[@name='Decompressor']/method[@name='getMessageEncoding' and count(parameter)=0]"
+        >
+    </remove-node>
+
+    <remove-node
+        path="/api/package[@name='io.grpc.internal']"
+        >
+    </remove-node>
+]
+</metadata>
