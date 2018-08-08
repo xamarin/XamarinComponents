@@ -8,7 +8,7 @@
     <OutputType>Library</OutputType>
     <RootNamespace>CrashlyticsDevtools</RootNamespace>
     <AssemblyName>CrashlyticsDevtools</AssemblyName>
-    <TargetFrameworkVersion>v4.1</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v6.0</TargetFrameworkVersion>
     <MonoAndroidResourcePrefix>Resources</MonoAndroidResourcePrefix>
     <MonoAndroidAssetsPrefix>Assets</MonoAndroidAssetsPrefix>
     <AndroidUseLatestPlatformSdk>false</AndroidUseLatestPlatformSdk>

@@ -2,9 +2,10 @@
 <Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <AndroidCodegenTarget>XAJavaInterop1</AndroidCodegenTarget>
-    <TargetFramework>MonoAndroid41</TargetFramework>
+    <TargetFramework>MonoAndroid60</TargetFramework>
     <IsBindingProject>true</IsBindingProject>
     <JavaOptions>$(JavaOptions) -noverify </JavaOptions>
+    <TargetFrameworkVersion>v6.0</TargetFrameworkVersion>
   </PropertyGroup>
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -14,7 +15,7 @@
     <OutputType>Library</OutputType>
     <RootNamespace>Crashlytics</RootNamespace>
     <AssemblyName>Crashlytics</AssemblyName>
-    <TargetFrameworkVersion>v4.1</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v6.0</TargetFrameworkVersion>
     <MonoAndroidResourcePrefix>Resources</MonoAndroidResourcePrefix>
     <MonoAndroidAssetsPrefix>Assets</MonoAndroidAssetsPrefix>
     <AndroidUseLatestPlatformSdk>false</AndroidUseLatestPlatformSdk>
@@ -48,6 +49,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Additions\Addtions.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Additions\AboutAdditions.txt" />
@@ -62,6 +64,20 @@
     <LibraryProjectZip Include="..\..\externals\Crashlytics.aar">
       <Link>Jars\Crashlytics.aar</Link>
     </LibraryProjectZip>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\CrashlyticsAnswers\CrashlyticsAnswers.csproj">
+      <Project>{2140CAF1-FAAC-440A-9315-8D4EA8577B79}</Project>
+      <Name>CrashlyticsAnswers</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CrashlyticsBeta\CrashlyticsBeta.csproj">
+      <Project>{61E9A6EA-D338-498D-A849-B7282D32C5D4}</Project>
+      <Name>CrashlyticsBeta</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Fabric\Fabric.csproj">
+      <Project>{914533D8-95A9-4FB0-BC30-E6293C01BA07}</Project>
+      <Name>Fabric</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.Bindings.targets" />
 </Project>

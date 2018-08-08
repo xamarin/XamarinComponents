@@ -110,9 +110,21 @@
       <Project>{914533D8-95A9-4FB0-BC30-E6293C01BA07}</Project>
       <Name>Fabric</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\..\source\CrashlyticsDevtools\CrashlyticsDevtools.csproj">
-      <Project>{0A4E93AE-863B-4373-8D95-BD6E5D24BFC1}</Project>
-      <Name>CrashlyticsDevtools</Name>
+    <ProjectReference Include="..\..\..\source\Crashlytics\Crashlytics.csproj">
+      <Project>{944401E3-9378-402E-863C-BDA7C1CA61BF}</Project>
+      <Name>Crashlytics</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\source\CrashlyticsAnswers\CrashlyticsAnswers.csproj">
+      <Project>{2140CAF1-FAAC-440A-9315-8D4EA8577B79}</Project>
+      <Name>CrashlyticsAnswers</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\source\CrashlyticsBeta\CrashlyticsBeta.csproj">
+      <Project>{61E9A6EA-D338-498D-A849-B7282D32C5D4}</Project>
+      <Name>CrashlyticsBeta</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\source\CrashlyticsCore\CrashlyticsCore.csproj">
+      <Project>{1FC0DBA9-1E40-4910-A1D0-4E64711185DA}</Project>
+      <Name>CrashlyticsCore</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
