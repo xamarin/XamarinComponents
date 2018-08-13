@@ -41,3 +41,16 @@ Google GRPC bindings for Xamarin.Android.
     *   Protobuf.Lite
 
         https://mvnrepository.com/artifact/io.grpc/grpc-protobuf-lite/1.14.0
+
+
+## fwlinks
+
+*   Project
+
+    https://go.microsoft.com/fwlink/?linkid=2009337
+
+*   License
+
+    https://go.microsoft.com/fwlink/?linkid=2009338
+
+    

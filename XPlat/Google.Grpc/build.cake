@@ -121,9 +121,6 @@ BuildSpec buildSpec = new BuildSpec ()
 				{ 
 					FromFile = $"source/Xamarin.Grpc.OkHttp.Bindings.XamarinAndroid/bin/Release/Xamarin.Grpc.OkHttp.{ARTIFACT_VERSION}.nupkg" 
 				},
-
-
-
 			}
 		}
 	},
@@ -159,8 +156,9 @@ Task ("externals")
 				{
 					DownloadFile (JAR_URL, ARTIFACT_FILE);
 				}
-
 			}
+
+			return;
 		}
 	);
 
@@ -188,7 +186,7 @@ Task("nuget")
 
 			MSBuild
 			(
-				"./source/Xamarin.Protobuf.Lite.Bindings.XamarinAndroid/Xamarin.Protobuf.Lite.Bindings.XamarinAndroid.csproj", 
+				"./source/Xamarin.Grpc.Core.Bindings.XamarinAndroid/Xamarin.Grpc.Core.Bindings.XamarinAndroid.csproj", 
 				configuration => 
 					configuration
 						.SetConfiguration("Release")
@@ -196,7 +194,38 @@ Task("nuget")
 						.WithProperty("PackageVersion", NUGET_VERSION)
 						.WithProperty("PackageOutputPath", "../../output")
 			);
-
+			MSBuild
+			(
+				"./source/Xamarin.Grpc.OkHttp.Bindings.XamarinAndroid/Xamarin.Grpc.OkHttp.Bindings.XamarinAndroid.csproj", 
+				configuration => 
+					configuration
+						.SetConfiguration("Release")
+						.WithTarget("Pack")
+						.WithProperty("PackageVersion", NUGET_VERSION)
+						.WithProperty("PackageOutputPath", "../../output")
+			);
+			MSBuild
+			(
+				"./source/Xamarin.Grpc.Stub.Bindings.XamarinAndroid/Xamarin.Grpc.Stub.Bindings.XamarinAndroid.csproj", 
+				configuration => 
+					configuration
+						.SetConfiguration("Release")
+						.WithTarget("Pack")
+						.WithProperty("PackageVersion", NUGET_VERSION)
+						.WithProperty("PackageOutputPath", "../../output")
+			);
+			MSBuild
+			(
+				"./source/Xamarin.Grpc.Protobuf.Lite.Bindings.XamarinAndroid/Xamarin.Grpc.Protobuf.Lite.Bindings.XamarinAndroid.csproj", 
+				configuration => 
+					configuration
+						.SetConfiguration("Release")
+						.WithTarget("Pack")
+						.WithProperty("PackageVersion", NUGET_VERSION)
+						.WithProperty("PackageOutputPath", "../../output")
+			);
+			
+			return;
 		}
 );
 

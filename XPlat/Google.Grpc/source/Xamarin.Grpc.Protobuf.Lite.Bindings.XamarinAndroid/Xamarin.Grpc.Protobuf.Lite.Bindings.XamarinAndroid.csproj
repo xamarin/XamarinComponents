@@ -37,17 +37,17 @@
         <Description>
             Bindings for Google's GRPC Protobuf.Lite package (Google Play Services dependency)
         </Description>
-        <Owners>Microsoft Corporation</Owners>
-        <Authors>Microsoft / Xamarin</Authors>
-        <Copyright>Copyright 2018</Copyright>
+        <Owners>Microsoft</Owners>
+        <Authors>Microsoft</Authors>
+        <Copyright>© Microsoft Corporation. All rights reserved.</Copyright>
         <PackageLicenseUrl>
-        https://github.com/grpc/grpc/blob/master/LICENSE
+        https://go.microsoft.com/fwlink/?linkid=2009338
         </PackageLicenseUrl>
         <PackageProjectUrl>
-        https://github.com/grpc/grpc
+        https://go.microsoft.com/fwlink/?linkid=2009337
         </PackageProjectUrl>
         <RepositoryUrl>
-        https://github.com/grpc/grpc            
+        https://go.microsoft.com/fwlink/?linkid=2009337            
         </RepositoryUrl>
         <PackageReleaseNotes>
             Initial bindings
