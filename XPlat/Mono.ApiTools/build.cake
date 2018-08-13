@@ -3,12 +3,12 @@
 
 var TARGET = Argument("t", Argument("target", "Default"));
 
-var MONO_TAG = "ffe4e3f7878fb1980a620f377d64a6129ab6a4ce";
+var MONO_TAG = "c32af8905b5d672f58acad6fc9e08bf61375b850";
 
 var ASSEMBLY_VERSION = "5.0.0.0";
 var ASSEMBLY_FILE_VERSION = "5.14.0.0";
 var ASSEMBLY_INFO_VERSION = "5.14.0.0";
-var NUGET_VERSION = "5.14.0";
+var NUGET_VERSION = "5.14.0.1";
 
 var OUTPUT_PATH = (DirectoryPath)"./output/";
 
@@ -40,10 +40,14 @@ Task("libs")
 		.WithProperty("FileVersion", ASSEMBLY_FILE_VERSION)
 		.WithProperty("InformationalVersion", ASSEMBLY_INFO_VERSION));
 
-	var outDir = OUTPUT_PATH.Combine("tools");
-	EnsureDirectoryExists(outDir);
-	CopyFiles("source/*/bin/Release/*/*.dll", outDir);
-	CopyFiles("source/*/bin/Release/*/*.exe", outDir);
+	var toolsDir = OUTPUT_PATH.Combine("tools");
+	EnsureDirectoryExists(toolsDir);
+	CopyFiles("source/mono-api-*/bin/Release/*/*.dll", toolsDir);
+	CopyFiles("source/mono-api-*/bin/Release/*/*.exe", toolsDir);
+
+	var libDir = OUTPUT_PATH.Combine("lib");
+	EnsureDirectoryExists(libDir);
+	CopyFiles("source/Mono.ApiTools.*/bin/Release/*/*.dll", libDir);
 });
 
 Task("nuget")
