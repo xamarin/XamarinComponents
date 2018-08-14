@@ -4,68 +4,95 @@
 var TARGET = Argument ("t", Argument ("target", "Default"));
 
 var IOS_PODS = new List<string> {
-	"platform :ios, '5.0'",
+	"platform :ios, '8.0'",
 	"install! 'cocoapods', :integrate_targets => false",
 	"target 'Xamarin' do",
-	"pod 'SDWebImage', '3.7.5'",
-	"pod 'SDWebImage/MapKit', '3.7.5'",
-	"pod 'SDWebImage/WebP', '3.7.5'",
+	"pod 'SDWebImage', '4.4'",
+	"pod 'SDWebImage/MapKit', '4.4'",
+	"pod 'SDWebImage/WebP', '4.4'",
 	"end",
 };
+
+var POD_VERSION = "4.4.0";
+
+var CreatePodSpec = new Action<string, string> ((platform, version) => {
+	var v1 = CocoaPodVersion () >= new System.Version (1, 0);
+
+	var mapkit = new [] { "ios", "osx", "tvos" }.Contains (platform);
+	var gif = new [] { "ios" }.Contains (platform);
+	var webp = new [] { "ios", "osx", "tvos" }.Contains (platform);
+
+	var podspec = new List<string> {
+		"platform :" + platform + ", '" + version + "'",
+		(v1 ? "install! 'cocoapods', :integrate_targets => false" : ""),
+		"target 'Xamarin' do",
+		"  pod 'SDWebImage', '" + POD_VERSION + "'",
+		(mapkit ? "  pod 'SDWebImage/MapKit', '" + POD_VERSION + "'" : ""),
+		(gif ? "  pod 'SDWebImage/GIF', '" + POD_VERSION + "'" : ""),
+		(webp ? "  pod 'SDWebImage/WebP', '" + POD_VERSION + "'" : ""),
+		"end",
+	};
+
+	FileWriteLines ("./externals/" + platform + "/Podfile", podspec.ToArray ());
+	CocoaPodInstall ("./externals/" + platform, new CocoaPodInstallSettings { NoIntegrate = true });
+});
 
 var buildSpec = new BuildSpec () {
 	Libs = new ISolutionBuilder [] {
 		new DefaultSolutionBuilder {
-			SolutionPath = "./source/SDWebImage/SDWebImage.sln",
-			Configuration = "Release",
-			BuildsOn = BuildPlatforms.Mac,
+			SolutionPath = "./source/SDWebImage.sln",
 			OutputFiles = new [] { 
-				new OutputFileCopy {
-					FromFile = "./source/SDWebImage/bin/unified/Release/SDWebImage.dll",
-					ToDirectory = "./output/unified/"
-				},
+				new OutputFileCopy { FromFile = "./source/SDWebImage.iOS/bin/Release/SDWebImage.iOS.dll" },
+				new OutputFileCopy { FromFile = "./source/SDWebImage.macOS/bin/Release/SDWebImage.macOS.dll" },
+				new OutputFileCopy { FromFile = "./source/SDWebImage.tvOS/bin/Release/SDWebImage.tvOS.dll" },
 			}
-		},	
+		},
 	},
 
 	Samples = new ISolutionBuilder [] {
-		new IOSSolutionBuilder { SolutionPath = "./samples/SDWebImageMTDialogSample/SDWebImageMTDialogSample.sln", Configuration = "Release", Platform="iPhone", BuildsOn = BuildPlatforms.Mac },
-		
-		new IOSSolutionBuilder { SolutionPath = "./samples/SDWebImageSample/SDWebImageSample.sln", Configuration = "Release", Platform="iPhone", BuildsOn = BuildPlatforms.Mac },
-		
-		new IOSSolutionBuilder { SolutionPath = "./samples/SDWebImageSimpleSample/SDWebImageSimpleSample.sln", Configuration = "Release", Platform="iPhone", BuildsOn = BuildPlatforms.Mac },
+		new DefaultSolutionBuilder { SolutionPath = "./samples/SDWebImageMapKitSample/SDWebImageMapKitSample.sln", Platform = "iPhone" },
+		new DefaultSolutionBuilder { SolutionPath = "./samples/SDWebImageSample/SDWebImageSample.sln", Platform = "iPhone" },		
+		new DefaultSolutionBuilder { SolutionPath = "./samples/SDWebImageSampleTV/SDWebImageSampleTV.sln", Platform = "iPhone" },
+		new DefaultSolutionBuilder { SolutionPath = "./samples/SDWebImageSimpleSample/SDWebImageSimpleSample.sln", Platform = "iPhone" },
 	},
 
 	NuGets = new [] {
-		new NuGetInfo { NuSpec = "./nuget/SDWebImage.nuspec", BuildsOn = BuildPlatforms.Mac },
+		new NuGetInfo { NuSpec = "./nuget/SDWebImage.nuspec" },
 	},
 
 	Components = new [] {
-		new Component {ManifestDirectory = "./component", BuildsOn = BuildPlatforms.Mac},
+		new Component { ManifestDirectory = "./component" },
 	},
 };
 
-Task ("externals").IsDependentOn ("externals-base").Does (() =>
+Task ("externals")
+	.IsDependentOn ("externals-base")
+	.Does (() =>
 {
-	EnsureDirectoryExists ("./externals");
+	// iOS
+	EnsureDirectoryExists ("./externals/ios");
+	CreatePodSpec ("ios", "8.0");
+	BuildXCode ("./Pods/Pods.xcodeproj", "SDWebImage", "SDWebImage", "./externals/ios/", TargetOS.iOS);
+	BuildXCode ("./Pods/Pods.xcodeproj", "libwebp", "libwebp", "./externals/ios/", TargetOS.iOS);
+	BuildXCode ("./Pods/Pods.xcodeproj", "FLAnimatedImage", "FLAnimatedImage", "./externals/ios/", TargetOS.iOS);
 
-	if (CocoaPodVersion () < new System.Version (1, 0))
-		IOS_PODS.RemoveAt (1);
+	// macOS
+	EnsureDirectoryExists ("./externals/osx");
+	CreatePodSpec ("osx", "10.10");
+	BuildXCode ("./Pods/Pods.xcodeproj", "SDWebImage", "SDWebImage", "./externals/osx/", TargetOS.Mac);
+	BuildXCode ("./Pods/Pods.xcodeproj", "libwebp", "libwebp", "./externals/osx/", TargetOS.Mac);
 
-	FileWriteLines ("./externals/Podfile", IOS_PODS.ToArray ());
-
-	CocoaPodInstall ("./externals", new CocoaPodInstallSettings { NoIntegrate = true });
-
-	BuildXCodeFatLibrary ("./Pods/Pods.xcodeproj", "libwebp", "libwebp", null, null, "libwebp");
-	BuildXCodeFatLibrary ("./Pods/Pods.xcodeproj", "SDWebImage", "SDWebImage", null, null, "SDWebImage");
-
-	RunLibtoolStatic("./externals/", "libSDWebImage.a", "libSDWebImage.a", "liblibwebp.a"); 
+	// tvOS
+	EnsureDirectoryExists ("./externals/tvos");
+	CreatePodSpec ("tvos", "9.0");
+	BuildXCode ("./Pods/Pods.xcodeproj", "SDWebImage", "SDWebImage", "./externals/tvos/", TargetOS.tvOS);
+	BuildXCode ("./Pods/Pods.xcodeproj", "libwebp", "libwebp", "./externals/tvos/", TargetOS.tvOS);
 });
 
 Task ("clean").IsDependentOn ("clean-base").Does (() =>
 {
-	DeleteFiles ("./externals/Podfile.lock");
-	CleanXCodeBuild ("./Pods/", null);
+	if (DirectoryExists ("./externals/"))
+		DeleteDirectory ("./externals", true);
 });
 
 SetupXamarinBuildTasks (buildSpec, Tasks, Task);
