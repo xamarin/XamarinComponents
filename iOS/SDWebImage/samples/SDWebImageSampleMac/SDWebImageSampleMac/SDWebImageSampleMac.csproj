@@ -48,7 +48,7 @@
     <LinkMode>SdkOnly</LinkMode>
     <PlatformTarget>x64</PlatformTarget>
     <AOTMode>None</AOTMode>
-    <CodeSigningKey>Mac Developer: Jesus Adlair Cerecedo Mendez (83Q48VP5BY)</CodeSigningKey>
+    <CodeSigningKey>Mac Developer</CodeSigningKey>
     <PackageSigningKey>3rd Party Mac Developer Installer</PackageSigningKey>
   </PropertyGroup>
   <ItemGroup>
