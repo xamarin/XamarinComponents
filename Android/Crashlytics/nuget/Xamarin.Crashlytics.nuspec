@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<package>
+  <metadata>
+    <id>Xamarin.Crashlytics</id>
+    <title>Crashlytics for Android</title>
+    <version>2.9.4</version>
+    <authors>Microsoft</authors>
+    <owners>Microsoft</owners>
+    <requireLicenseAcceptance>true</requireLicenseAcceptance>
+    <description>The most powerful, yet lightest weight crash reporting solution.</description>
+    <copyright>© Microsoft Corporation. All rights reserved.</copyright>
+    <projectUrl>https://go.microsoft.com/fwlink/?linkid=875057</projectUrl>
+    <licenseUrl>https://go.microsoft.com/fwlink/?linkid=875058</licenseUrl>
+  </metadata>
+  <files>
+    <file src="output/Crashlytics.dll" target="lib/MonoAndroid60" />
+    <file src="External-Dependency-Info.txt" target="THIRD-PARTY-NOTICES.txt" />
+  </files>
+</package>

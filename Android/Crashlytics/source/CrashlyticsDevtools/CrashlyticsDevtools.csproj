@@ -1,6 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
+    <PackageId>CrashlyticsDevtools</PackageId>
+    <Title>Crashlytics Devtools for Android</Title>
+    <Summary>Xamarin.Android bindings for Crashlytics Android - Devtools</Summary>
+    <Description>Xamarin.Android bindings for Crashlytics Android - Devtools</Description>
+    <PackageTags>Xamarin Android Xamarin.Android Crashlytics</PackageTags>
+    <Authors>Xamarin Inc.</Authors>
+    <Owners>Xamarin Inc.</Owners>
+    <Copyright>© Microsoft Corporation. All rights reserved.</Copyright>
+    <PackageProjectUrl>https://github.com/xamarin/XamarinComponents/tree/master/Android/Crashlytics</PackageProjectUrl>
+    <PackageLicenseUrl>https://github.com/xamarin/XamarinComponents/blob/master/Android/Crashlytics/LICENSE.md</PackageLicenseUrl>
+    
+    <PackageIconUrl>https://fabric.io/fabric.ico</PackageIconUrl>
+    <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
+  </PropertyGroup>
+  <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{0A4E93AE-863B-4373-8D95-BD6E5D24BFC1}</ProjectGuid>

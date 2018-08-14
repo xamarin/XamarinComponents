@@ -34,6 +34,15 @@ var buildSpec = new BuildSpec () {
 	},
 };
 
+NuGets = new [] {
+		new NuGetInfo { NuSpec = "./nuget/Xamarin.Crashlytics.nuspec" },
+		new NuGetInfo { NuSpec = "./nuget/Xamarin.CrashlyticsAnswers.nuspec" },
+		new NuGetInfo { NuSpec = "./nuget/Xamarin.CrashlyticsBeta.nuspec" },
+		new NuGetInfo { NuSpec = "./nuget/Xamarin.CrashlyticsCore.nuspec" },
+		new NuGetInfo { NuSpec = "./nuget/Xamarin.CrashlyticsDevtools.nuspec" },
+		new NuGetInfo { NuSpec = "./nuget/Xamarin.Fabric.nuspec" },
+	},
+
 Task ("externals")
 	.Does (() => 
 {

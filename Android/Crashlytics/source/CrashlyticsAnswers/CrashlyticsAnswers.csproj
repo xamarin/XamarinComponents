@@ -1,6 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
+    <PackageId>CrashlyticsAnswers</PackageId>
+    <Title>Crashlytics Answers for Android</Title>
+    <Summary>Xamarin.Android bindings for Crashlytics Android - Answers</Summary>
+    <Description>Xamarin.Android bindings for Crashlytics Android - Answers</Description>
+    <PackageTags>Xamarin Android Xamarin.Android Crashlytics</PackageTags>
+    <Authors>Xamarin Inc.</Authors>
+    <Owners>Xamarin Inc.</Owners>
+    <Copyright>© Microsoft Corporation. All rights reserved.</Copyright>
+    <PackageProjectUrl>https://github.com/xamarin/XamarinComponents/tree/master/Android/Crashlytics</PackageProjectUrl>
+    <PackageLicenseUrl>https://github.com/xamarin/XamarinComponents/blob/master/Android/Crashlytics/LICENSE.md</PackageLicenseUrl>
+    
+    <PackageIconUrl>https://fabric.io/fabric.ico</PackageIconUrl>
+    <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
+  </PropertyGroup>
+
+  <PropertyGroup>
     <AndroidCodegenTarget>XAJavaInterop1</AndroidCodegenTarget>
     <TargetFramework>MonoAndroid60</TargetFramework>
     <IsBindingProject>true</IsBindingProject>

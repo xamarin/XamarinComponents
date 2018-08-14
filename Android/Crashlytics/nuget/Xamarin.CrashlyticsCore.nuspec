@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<package>
+  <metadata>
+    <id>Xamarin.CrashlyticsCore</id>
+    <title>Crashlytics Core for Android</title>
+    <version>2.6.3</version>
+    <authors>Microsoft</authors>
+    <owners>Microsoft</owners>
+    <requireLicenseAcceptance>true</requireLicenseAcceptance>
+    <description>Crashlytics Core for Android.</description>
+    <copyright>© Microsoft Corporation. All rights reserved.</copyright>
+    <projectUrl>https://go.microsoft.com/fwlink/?linkid=875057</projectUrl>
+    <licenseUrl>https://go.microsoft.com/fwlink/?linkid=875058</licenseUrl>
+  </metadata>
+  <files>
+    <file src="output/CrashlyticsCore.dll" target="lib/MonoAndroid60" />
+    <file src="External-Dependency-Info.txt" target="THIRD-PARTY-NOTICES.txt" />
+  </files>
+</package>
