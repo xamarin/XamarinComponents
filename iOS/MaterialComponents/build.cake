@@ -5,8 +5,9 @@ var TARGET = Argument ("t", Argument ("target", "Default"));
 var IOS_PODS = new List<string> {
 	"platform :ios, '8.0'",
 	"install! 'cocoapods', :integrate_targets => false",
+	"use_frameworks!",
 	"target 'Xamarin' do",
-	"pod 'MaterialComponents', '39.0.0'",
+	"pod 'MaterialComponents', '59.1.1'",
 	"end",
 };
 
@@ -51,12 +52,19 @@ Task ("externals").IsDependentOn ("externals-base")
 
 	CocoaPodInstall ("./externals", new CocoaPodInstallSettings { NoIntegrate = true });
 
-	BuildXCodeFatLibrary ("./Pods/Pods.xcodeproj", "MotionInterchange", "MotionInterchange", null, null, "MotionInterchange");
-	BuildXCodeFatLibrary ("./Pods/Pods.xcodeproj", "MDFInternationalization", "MDFInternationalization", null, null, "MDFInternationalization");
-	BuildXCodeFatLibrary ("./Pods/Pods.xcodeproj", "MotionTransitioning", "MotionTransitioning", null, null, "MotionTransitioning");
-	BuildXCodeFatLibrary ("./Pods/Pods.xcodeproj", "MDFTextAccessibility", "MDFTextAccessibility", null, null, "MDFTextAccessibility");
-	BuildXCodeFatLibrary ("./Pods/Pods.xcodeproj", "MaterialComponents", "MaterialComponents", null, null, "MaterialComponents");
-	BuildXCodeFatLibrary ("./Pods/Pods.xcodeproj", "MotionAnimator", "MotionAnimator", null, null, "MotionAnimator");
+	BuildDynamicXCode ("./Pods/Pods.xcodeproj", "MotionInterchange", "MotionInterchange", "./externals/", TargetOS.iOS);
+	BuildDynamicXCode ("./Pods/Pods.xcodeproj", "MDFInternationalization", "MDFInternationalization", "./externals/", TargetOS.iOS);
+	BuildDynamicXCode ("./Pods/Pods.xcodeproj", "MotionTransitioning", "MotionTransitioning", "./externals/", TargetOS.iOS);
+	BuildDynamicXCode ("./Pods/Pods.xcodeproj", "MDFTextAccessibility", "MDFTextAccessibility", "./externals/", TargetOS.iOS);
+	BuildDynamicXCode ("./Pods/Pods.xcodeproj", "MaterialComponents", "MaterialComponents", "./externals/", TargetOS.iOS);
+	BuildDynamicXCode ("./Pods/Pods.xcodeproj", "MotionAnimator", "MotionAnimator", "./externals/", TargetOS.iOS);
+
+	// BuildXCodeFatLibrary ("./Pods/Pods.xcodeproj", "MotionInterchange", "MotionInterchange", null, null, "MotionInterchange");
+	// BuildXCodeFatLibrary ("./Pods/Pods.xcodeproj", "MDFInternationalization", "MDFInternationalization", null, null, "MDFInternationalization");
+	// BuildXCodeFatLibrary ("./Pods/Pods.xcodeproj", "MotionTransitioning", "MotionTransitioning", null, null, "MotionTransitioning");
+	// BuildXCodeFatLibrary ("./Pods/Pods.xcodeproj", "MDFTextAccessibility", "MDFTextAccessibility", null, null, "MDFTextAccessibility");
+	// BuildXCodeFatLibrary ("./Pods/Pods.xcodeproj", "MaterialComponents", "MaterialComponents", null, null, "MaterialComponents");
+	// BuildXCodeFatLibrary ("./Pods/Pods.xcodeproj", "MotionAnimator", "MotionAnimator", null, null, "MotionAnimator");
 });
 
 Task ("clean").IsDependentOn ("clean-base").Does (() => 
