@@ -22,7 +22,7 @@ namespace SDWebImageSimpleSample
 			{
 				// start the download
 				imageView.SetImage(
-					new NSUrl("http://goo.gl/1g7jP"),
+					new NSUrl("https://blog.xamarin.com/wp-content/uploads/2013/11/MicrosoftXamarin2.png"),
 					null,
 					SDWebImageOptions.ProgressiveDownload,
 					ProgressHandler,
