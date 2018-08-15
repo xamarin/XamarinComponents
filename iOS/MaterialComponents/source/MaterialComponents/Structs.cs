@@ -8,15 +8,23 @@ namespace MaterialComponents
 	[Native]
 	public enum AnimationTimingFunction : ulong
 	{
-		EaseInOut,
-		EaseOut,
-		EaseIn,
+		Standard,
+		Deceleration,
+		Acceleration,
 		Sharp,
-		Translate = EaseInOut,
-		TranslateOnScreen = EaseOut,
-		TranslateOffScreen = EaseIn,
-		FadeIn = EaseOut,
-		FadeOut = EaseIn
+		EaseInOut = Standard,
+		EaseOut = Deceleration,
+		EaseIn = Acceleration,
+		Translate = Standard,
+		TranslateOnScreen = Deceleration,
+		TranslateOffScreen = Acceleration,
+		FadeIn = Deceleration,
+		FadeOut = Acceleration
+	}
+
+	public enum MaterialFeatureHighlightStringId : int
+	{
+		DismissAccessibilityHint = 0
 	}
 
 	[Native]
@@ -24,51 +32,6 @@ namespace MaterialComponents
 	{
 		Indeterminate,
 		Determinate
-	}
-
-	[Native]
-	public enum FlexibleHeaderShiftBehavior : long
-	{
-		Disabled,
-		Enabled,
-		EnabledWithStatusBar
-	}
-
-	[Native]
-	public enum FlexibleHeaderContentImportance : long
-	{
-		Default,
-		High
-	}
-
-	[Native]
-	public enum FlexibleHeaderScrollPhase : long
-	{
-		Shifting,
-		Collapsing,
-		OverExtending
-	}
-
-	[Native]
-	public enum NavigationBarTitleAlignment : long
-	{
-		Center,
-		Leading
-	}
-
-	[Native]
-	public enum InkStyle : long
-	{
-		Bounded,
-		Unbounded
-	}
-
-	[Native]
-	public enum FloatingButtonShape : long
-	{
-		Default = 0,
-		Mini = 1,
-		LargeIcon = 2
 	}
 
 	[Native]
@@ -121,12 +84,61 @@ namespace MaterialComponents
 	}
 
 	[Native]
+	public enum CardCellState : long
+	{
+		Normal = 0,
+		Highlighted,
+		Selected
+	}
+
+	[Native]
+	public enum CardCellHorizontalImageAlignment : long
+	{
+		Right = 0,
+		Center,
+		Left
+	}
+
+	[Native]
+	public enum CardCellVerticalImageAlignment : long
+	{
+		Top = 0,
+		Center,
+		Bottom
+	}
+
+	[Flags]
+	[Native]
+	public enum ChipFieldDelimiter : ulong
+	{
+		None = 0,
+		Return = 1 << 0,
+		Space = 1 << 1,
+		DidEndEditing = 1 << 2,
+		Default = (Return | DidEndEditing),
+		All = 0xFFFFFFFF
+	}
+
+	[Native]
 	public enum CollectionViewCellAccessoryType : ulong
 	{
 		None,
 		DisclosureIndicator,
 		Checkmark,
 		DetailButton
+	}
+
+	[Flags]
+	[Native]
+	public enum CollectionViewOrdinalPosition : ulong
+	{
+		VerticalTop = 1 << 0,
+		VerticalCenter = 1 << 1,
+		VerticalBottom = 1 << 2,
+		VerticalTopBottom = (VerticalTop | VerticalBottom),
+		HorizontalLeft = 1 << 10,
+		HorizontalCenter = 1 << 11,
+		HorizontalRight = 1 << 12
 	}
 
 	[Native]
@@ -146,15 +158,47 @@ namespace MaterialComponents
 	}
 
 	[Native]
-	public enum CollectionViewOrdinalPosition : ulong
+	public enum FlexibleHeaderShiftBehavior : long
 	{
-		VerticalTop = 1 << 0,
-		VerticalCenter = 1 << 1,
-		VerticalBottom = 1 << 2,
-		VerticalTopBottom = (VerticalTop | VerticalBottom),
-		HorizontalLeft = 1 << 10,
-		HorizontalCenter = 1 << 11,
-		HorizontalRight = 1 << 12
+		Disabled,
+		Enabled,
+		EnabledWithStatusBar
+	}
+
+	[Native]
+	public enum FlexibleHeaderContentImportance : long
+	{
+		Default,
+		High
+	}
+
+	[Native]
+	public enum FlexibleHeaderScrollPhase : long
+	{
+		Shifting,
+		Collapsing,
+		OverExtending
+	}
+
+	[Native]
+	public enum FloatingButtonShape : long
+	{
+		Default = 0,
+		Mini = 1
+	}
+
+	[Native]
+	public enum FloatingButtonMode : long
+	{
+		Normal = 0,
+		Expanded = 1
+	}
+
+	[Native]
+	public enum FloatingButtonImageLocation : long
+	{
+		Leading = 0,
+		Trailing = 1
 	}
 
 	[Native]
@@ -171,6 +215,108 @@ namespace MaterialComponents
 		Display3,
 		Display4,
 		Button
+	}
+
+	[Native]
+	public enum InkStyle : long
+	{
+		Bounded,
+		Unbounded
+	}
+
+	[Native]
+	public enum NavigationBarTitleAlignment : long
+	{
+		Center,
+		Leading
+	}
+
+	[Native]
+	public enum NavigationBarTitleViewLayoutBehavior : long
+	{
+		Fill,
+		Center
+	}
+
+	[Native]
+	public enum ProgressViewBackwardAnimationMode : long
+	{
+		Reset,
+		Animate
+	}
+
+	[Native]
+	public enum ColorSchemeDefaults : long
+	{
+		Material201804
+	}
+
+	[Native]
+	public enum SheetState : ulong
+	{
+		Closed,
+		Preferred,
+		Extended
+	}
+
+	[Native]
+	public enum SnackbarAlignment : long
+	{
+		Center = 0,
+		Leading = 1
+	}
+
+	[Native]
+	public enum TabBarItemState : long
+	{
+		Normal,
+		Selected
+	}
+
+	[Native]
+	public enum TabBarAlignment : long
+	{
+		Leading,
+		Justified,
+		Center,
+		CenterSelected
+	}
+
+	[Native]
+	public enum TabBarItemAppearance : long
+	{
+		Titles,
+		Images,
+		TitledImages
+	}
+
+	[Native]
+	public enum TabBarTextTransform : long
+	{
+		Automatic = 0,
+		None = 1,
+		Uppercase = 2
+	}
+
+	[Native]
+	public enum TextInputTextInsetsMode : ulong
+	{
+		Never = 0,
+		IfContent,
+		Always
+	}
+
+	[Native]
+	public enum TriangleEdgeStyle : ulong
+	{
+		Handle,
+		Cut
+	}
+
+	[Native]
+	public enum TypographySchemeDefaults : long
+	{
+		Material201804
 	}
 
 	//static class CFunctions
@@ -265,44 +411,4 @@ namespace MaterialComponents
 	//	[Verify (PlatformInvoke)]
 	//	static extern CGPoint MDCRoundCenterWithBoundsAndScale (CGPoint center, CGRect bounds, nfloat scale);
 	//}
-
-	[Native]
-	public enum TextInputTextInsetsMode : ulong
-	{
-		Never = 0,
-		IfContent,
-		Always
-	}
-
-	[Native]
-	public enum ProgressViewBackwardAnimationMode : long
-	{
-		Reset,
-		Animate
-	}
-
-	[Native]
-	public enum TabBarAlignment : long
-	{
-		Leading,
-		Justified,
-		Center,
-		CenterSelected
-	}
-
-	[Native]
-	public enum TabBarItemAppearance : long
-	{
-		Titles,
-		Images,
-		TitledImages
-	}
-
-	[Native]
-	public enum TriangleEdgeStyle : ulong
-	{
-		Handle,
-		Cut
-	}
-
 }

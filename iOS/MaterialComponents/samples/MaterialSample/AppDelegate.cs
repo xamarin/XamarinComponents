@@ -18,7 +18,7 @@ namespace MaterialSample
 
 		public override bool FinishedLaunching (UIApplication application,NSDictionary launchOptions)
 		{
-			var tt = new MaterialComponents.MDCActivityIndicator ();
+			var tt = new MaterialComponents.CardScheme ().SemanticColorScheme;
 			return true;
 		}
 

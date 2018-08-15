@@ -58,13 +58,6 @@ Task ("externals").IsDependentOn ("externals-base")
 	BuildDynamicXCode ("./Pods/Pods.xcodeproj", "MDFTextAccessibility", "MDFTextAccessibility", "./externals/", TargetOS.iOS);
 	BuildDynamicXCode ("./Pods/Pods.xcodeproj", "MaterialComponents", "MaterialComponents", "./externals/", TargetOS.iOS);
 	BuildDynamicXCode ("./Pods/Pods.xcodeproj", "MotionAnimator", "MotionAnimator", "./externals/", TargetOS.iOS);
-
-	// BuildXCodeFatLibrary ("./Pods/Pods.xcodeproj", "MotionInterchange", "MotionInterchange", null, null, "MotionInterchange");
-	// BuildXCodeFatLibrary ("./Pods/Pods.xcodeproj", "MDFInternationalization", "MDFInternationalization", null, null, "MDFInternationalization");
-	// BuildXCodeFatLibrary ("./Pods/Pods.xcodeproj", "MotionTransitioning", "MotionTransitioning", null, null, "MotionTransitioning");
-	// BuildXCodeFatLibrary ("./Pods/Pods.xcodeproj", "MDFTextAccessibility", "MDFTextAccessibility", null, null, "MDFTextAccessibility");
-	// BuildXCodeFatLibrary ("./Pods/Pods.xcodeproj", "MaterialComponents", "MaterialComponents", null, null, "MaterialComponents");
-	// BuildXCodeFatLibrary ("./Pods/Pods.xcodeproj", "MotionAnimator", "MotionAnimator", null, null, "MotionAnimator");
 });
 
 Task ("clean").IsDependentOn ("clean-base").Does (() => 
