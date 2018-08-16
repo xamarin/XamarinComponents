@@ -232,3 +232,4 @@ Task("nuget")
 SetupXamarinBuildTasks (buildSpec, Tasks, Task);
 
 RunTarget (TARGET);
+
