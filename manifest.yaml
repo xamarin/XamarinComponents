@@ -192,6 +192,10 @@
   BuildScript: ./XPlat/Protobuf.Lite/build.cake
   TriggerPaths: [ XPlat/Protobuf.Lite ]
   MacBuildTargets: [ libs, nuget]
+- Name: Google.Grpc
+  BuildScript: ./XPlat/Google.Grpc/build.cake
+  TriggerPaths: [ XPlat/Google.Grpc ]
+  MacBuildTargets: [ libs, nuget]
 
 #######################################################
 # iOS
