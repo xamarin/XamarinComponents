@@ -24,11 +24,18 @@ var buildSpec = new BuildSpec () {
 		new DefaultSolutionBuilder {
 			SolutionPath = "./source/Crashlytics.sln",
 			OutputFiles = new [] { 
-				new OutputFileCopy { FromFile = "./source/Crashlytics/bin/Release/Crashlytics.dll" },
-				new OutputFileCopy { FromFile = "./source/CrashlyticsAnswers/bin/Release/CrashlyticsAnswers.dll" },
-				new OutputFileCopy { FromFile = "./source/CrashlyticsBeta/bin/Release/CrashlyticsBeta.dll" },
-				new OutputFileCopy { FromFile = "./source/CrashlyticsCore/bin/Release/CrashlyticsCore.dll" },
-				new OutputFileCopy { FromFile = "./source/Fabric/bin/Release/Fabric.dll" },				
+				new OutputFileCopy { FromFile = "./source/Crashlytics/bin/Release/monoandroid60/Crashlytics.dll" },				
+				new OutputFileCopy { FromFile = "./source/CrashlyticsAnswers/bin/Release/monoandroid60/CrashlyticsAnswers.dll" },
+				new OutputFileCopy { FromFile = "./source/CrashlyticsBeta/bin/Release/monoandroid60/CrashlyticsBeta.dll" },
+				new OutputFileCopy { FromFile = "./source/CrashlyticsCore/bin/Release/monoandroid60/CrashlyticsCore.dll" },
+				new OutputFileCopy { FromFile = "./source/CrashlyticsDevtools/bin/Release/monoandroid60/CrashlyticsDevtools.dll" },
+				new OutputFileCopy { FromFile = "./source/Fabric/bin/Release/monoandroid60/Fabric.dll" },		
+				new OutputFileCopy { FromFile = "./source/Crashlytics/bin/Release/Crashlytics.2.9.4.nupkg" },			
+				new OutputFileCopy { FromFile = "./source/CrashlyticsAnswers/bin/Release/CrashlyticsAnswers.1.4.2.nupkg" },				
+				new OutputFileCopy { FromFile = "./source/CrashlyticsBeta/bin/Release/CrashlyticsBeta.1.2.9.nupkg" },	
+				new OutputFileCopy { FromFile = "./source/CrashlyticsCore/bin/Release/CrashlyticsCore.2.6.3.nupkg" },	
+				new OutputFileCopy { FromFile = "./source/CrashlyticsDevtools/bin/Release/CrashlyticsDevtools.1.0.0.nupkg" },					
+				new OutputFileCopy { FromFile = "./source/Fabric/bin/Release/Fabric.1.4.3.nupkg" },	
 			}
 		}
 	},
