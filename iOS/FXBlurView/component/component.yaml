@@ -1,10 +1,11 @@
-version: 1.6.4.0
+version: 1.6.4.1
 name: FXBlurView
 id: FXBlurView
 publisher: Xamarin Inc
 publisher-url: https://xamarin.com
 src-url: https://github.com/xamarin/XamarinComponents/tree/master/iOS/FXBlurView
 summary: UIView subclass that replicates the iOS 7 realtime background blur effect, but works on iOS 5 and above.
+license: ../License.md
 icons:
   - icons/FXBlurView_128x128.png
   - icons/FXBlurView_512x512.png
@@ -13,4 +14,17 @@ libraries:
 samples:
   - name: "FXBlurView Sample"
     path:  ../samples/FXBlurViewSample.sln
+    removeProjects:
+        - FXBlurView
+    installNuGets:
+      - project: FXBlurViewSample
+        packages:
+          - Xamarin.FXBlurView
 no_build: true
+is_shell: true
+packages:
+  ios-unified: FXBlurView, Version=1.6.4
+local-nuget-repo: ../output
+additional-files:
+  - source: "../External-Dependency-Info.txt"
+    destination: "THIRD-PARTY-NOTICES.txt"
