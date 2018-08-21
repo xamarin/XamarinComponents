@@ -158,6 +158,14 @@ namespace MaterialComponents
 	}
 
 	[Native]
+	public enum FlexibleHeaderScrollPhase : long
+	{
+		Shifting,
+		Collapsing,
+		OverExtending
+	}
+
+	[Native]
 	public enum FlexibleHeaderShiftBehavior : long
 	{
 		Disabled,
@@ -170,14 +178,6 @@ namespace MaterialComponents
 	{
 		Default,
 		High
-	}
-
-	[Native]
-	public enum FlexibleHeaderScrollPhase : long
-	{
-		Shifting,
-		Collapsing,
-		OverExtending
 	}
 
 	[Native]

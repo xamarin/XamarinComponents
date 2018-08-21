@@ -32,7 +32,7 @@ namespace MaterialComponents {
 	[BaseType (typeof (UIView),
 		   Name = "MDCActivityIndicator",
 		   Delegates = new [] { "Delegate" },
-	           Events = new [] { typeof (ActivityIndicatorDelegate) })]
+		   Events = new [] { typeof (ActivityIndicatorDelegate) })]
 	interface ActivityIndicator {
 		// @property (nonatomic, weak) id<MDCActivityIndicatorDelegate> _Nullable delegate;
 		[NullAllowed]
@@ -298,42 +298,20 @@ namespace MaterialComponents {
 		void ApplyTypographyScheme (ITypographyScheming typographyScheme, AlertController alertController);
 	}
 
-	// @interface MDCAppBarTextColorAccessibilityMutator : NSObject
-	[BaseType (typeof (NSObject), Name = "MDCAppBarTextColorAccessibilityMutator")]
-	interface AppBarTextColorAccessibilityMutator {
-		// -(void)mutate:(MDCAppBar * _Nonnull)appBar;
-		[Export ("mutate:")]
-		void Mutate (AppBar appBar);
-	}
-
-	// @interface MDCAppBar : NSObject
-	[BaseType (typeof (NSObject), Name = "MDCAppBar")]
-	interface AppBar {
-		// -(void)addSubviewsToParent;
-		[Export ("addSubviewsToParent")]
-		void AddSubviewsToParent ();
-
-		// @property (readonly, nonatomic, strong) MDCFlexibleHeaderViewController * _Nonnull headerViewController;
-		[Export ("headerViewController", ArgumentSemantic.Strong)]
-		FlexibleHeaderViewController HeaderViewController { get; }
-
-		// @property (readonly, nonatomic, strong) MDCNavigationBar * _Nonnull navigationBar;
-		[Export ("navigationBar", ArgumentSemantic.Strong)]
-		NavigationBar NavigationBar { get; }
-
-		// @property (readonly, nonatomic, strong) MDCHeaderStackView * _Nonnull headerStackView;
-		[Export ("headerStackView", ArgumentSemantic.Strong)]
-		HeaderStackView HeaderStackView { get; }
-
-		// @property (nonatomic) BOOL inferTopSafeAreaInsetFromViewController;
-		[Export ("inferTopSafeAreaInsetFromViewController")]
-		bool InferTopSafeAreaInsetFromViewController { get; set; }
-	}
-
 	// @interface MDCAppBarColorThemer : NSObject
 	[DisableDefaultCtor]
 	[BaseType (typeof (NSObject), Name = "MDCAppBarColorThemer")]
 	interface AppBarColorThemer {
+		// +(void)applyColorScheme:(id<MDCColorScheming> _Nonnull)colorScheme toAppBarViewController:(MDCAppBarViewController * _Nonnull)appBarViewController;
+		[Static]
+		[Export ("applyColorScheme:toAppBarViewController:")]
+		void ApplyColorScheme (IColorScheming colorScheme, AppBarViewController appBarViewController);
+
+		// +(void)applySurfaceVariantWithColorScheme:(id<MDCColorScheming> _Nonnull)colorScheme toAppBarViewController:(MDCAppBarViewController * _Nonnull)appBarViewController;
+		[Static]
+		[Export ("applySurfaceVariantWithColorScheme:toAppBarViewController:")]
+		void ApplySurfaceVariant (IColorScheming colorScheme, AppBarViewController appBarViewController);
+
 		// +(void)applySemanticColorScheme:(id<MDCColorScheming> _Nonnull)colorScheme toAppBar:(MDCAppBar * _Nonnull)appBar;
 		[Static]
 		[Export ("applySemanticColorScheme:toAppBar:")]
@@ -360,9 +338,9 @@ namespace MaterialComponents {
 		[Export ("initWithContentViewController:")]
 		IntPtr Constructor (UIViewController contentViewController);
 
-		// @property (readonly, nonatomic, strong) MDCAppBar * _Nonnull appBar;
-		[Export ("appBar", ArgumentSemantic.Strong)]
-		AppBar AppBar { get; }
+		// @property (readonly, nonatomic, strong) MDCAppBarViewController * _Nonnull appBarViewController;
+		[Export ("appBarViewController", ArgumentSemantic.Strong)]
+		AppBarViewController AppBarViewController { get; }
 
 		// @property (readonly, nonatomic, strong) UIViewController * _Nonnull contentViewController;
 		[Export ("contentViewController", ArgumentSemantic.Strong)]
@@ -371,6 +349,11 @@ namespace MaterialComponents {
 		// @property (getter = isTopLayoutGuideAdjustmentEnabled, nonatomic) BOOL topLayoutGuideAdjustmentEnabled;
 		[Export ("topLayoutGuideAdjustmentEnabled")]
 		bool TopLayoutGuideAdjustmentEnabled { [Bind ("isTopLayoutGuideAdjustmentEnabled")] get; set; }
+
+		// @property (readonly, nonatomic, strong) MDCAppBar * _Nonnull appBar;
+		[Obsolete ("This API will eventually be deprecated. Use AppBarViewController property instead.")]
+		[Export ("appBar", ArgumentSemantic.Strong)]
+		AppBar AppBar { get; }
 	}
 
 	interface IAppBarNavigationControllerDelegate { }
@@ -380,7 +363,13 @@ namespace MaterialComponents {
 	[Protocol]
 	[BaseType (typeof (NSObject), Name = "MDCAppBarNavigationControllerDelegate")]
 	interface AppBarNavigationControllerDelegate : IUINavigationControllerDelegate {
+		// @optional -(void)appBarNavigationController:(MDCAppBarNavigationController * _Nonnull)navigationController willAddAppBarViewController:(MDCAppBarViewController * _Nonnull)appBarViewController asChildOfViewController:(UIViewController * _Nonnull)viewController;
+		[EventArgs ("AppBarNavigationControllerWillAddAppBarViewController")]
+		[Export ("appBarNavigationController:willAddAppBarViewController:asChildOfViewController:")]
+		void WillAddAppBarViewController (AppBarNavigationController navigationController, AppBarViewController appBarViewController, UIViewController viewController);
+
 		// @optional -(void)appBarNavigationController:(MDCAppBarNavigationController * _Nonnull)navigationController willAddAppBar:(MDCAppBar * _Nonnull)appBar asChildOfViewController:(UIViewController * _Nonnull)viewController;
+		[Obsolete ("This method will soon be deprecated. Please use WillAddAppBarViewController method instead.")]
 		[EventArgs ("AppBarNavigationControllerWillAddAppBar")]
 		[Export ("appBarNavigationController:willAddAppBar:asChildOfViewController:")]
 		void WillAddAppBar (AppBarNavigationController navigationController, AppBar appBar, UIViewController viewController);
@@ -395,20 +384,82 @@ namespace MaterialComponents {
 		[Export ("delegate", ArgumentSemantic.Weak)]
 		IAppBarNavigationControllerDelegate Delegate { get; set; }
 
+		// -(MDCAppBarViewController * _Nullable)appBarViewControllerForViewController:(UIViewController * _Nonnull)viewController;
+		[return: NullAllowed]
+		[Export ("appBarViewControllerForViewController:")]
+		AppBarViewController GetAppBarViewController (UIViewController viewController);
+
 		// -(MDCAppBar * _Nullable)appBarForViewController:(UIViewController * _Nonnull)viewController;
+		[Obsolete ("This method will eventually be deprecated. Use GetAppBarViewController method instead.")]
 		[return: NullAllowed]
 		[Export ("appBarForViewController:")]
-		AppBar AppBarForViewController (UIViewController viewController);
+		AppBar GetAppBar (UIViewController viewController);
 	}
 
 	// @interface MDCAppBarTypographyThemer : NSObject
 	[DisableDefaultCtor]
 	[BaseType (typeof (NSObject), Name = "MDCAppBarTypographyThemer")]
 	interface AppBarTypographyThemer {
+		// +(void)applyTypographyScheme:(id<MDCTypographyScheming> _Nonnull)typographyScheme toAppBarViewController:(MDCAppBarViewController * _Nonnull)appBarViewController;
+		[Static]
+		[Export ("applyTypographyScheme:toAppBarViewController:")]
+		void ApplyTypographyScheme (ITypographyScheming typographyScheme, AppBarViewController appBarViewController);
+
 		// +(void)applyTypographyScheme:(id<MDCTypographyScheming> _Nonnull)typographyScheme toAppBar:(MDCAppBar * _Nonnull)appBar;
+		[Obsolete ("To be deprecated.")]
 		[Static]
 		[Export ("applyTypographyScheme:toAppBar:")]
 		void ApplyTypographyScheme (ITypographyScheming typographyScheme, AppBar appBar);
+	}
+
+	// @interface MDCAppBarViewController : MDCFlexibleHeaderViewController
+	[BaseType (typeof (FlexibleHeaderViewController), Name = "MDCAppBarViewController")]
+	interface AppBarViewController {
+		// @property (nonatomic, strong) MDCNavigationBar * _Nonnull navigationBar;
+		[Export ("navigationBar", ArgumentSemantic.Strong)]
+		NavigationBar NavigationBar { get; set; }
+
+		// @property (nonatomic, strong) MDCHeaderStackView * _Nonnull headerStackView;
+		[Export ("headerStackView", ArgumentSemantic.Strong)]
+		HeaderStackView HeaderStackView { get; set; }
+	}
+
+	// @interface MDCAppBar : NSObject
+	[Obsolete ("This API will be deprecated in favor of AppBarViewController class.")]
+	[BaseType (typeof (NSObject), Name = "MDCAppBar")]
+	interface AppBar {
+		// -(void)addSubviewsToParent;
+		[Export ("addSubviewsToParent")]
+		void AddSubviewsToParent ();
+
+		// @property (readonly, nonatomic, strong) MDCFlexibleHeaderViewController * _Nonnull headerViewController;
+		[Export ("headerViewController", ArgumentSemantic.Strong)]
+		FlexibleHeaderViewController HeaderViewController { get; }
+
+		// @property (readonly, nonatomic, strong) MDCAppBarViewController * _Nonnull appBarViewController;
+		[Export ("appBarViewController", ArgumentSemantic.Strong)]
+		AppBarViewController AppBarViewController { get; }
+
+		// @property (readonly, nonatomic, strong) MDCNavigationBar * _Nonnull navigationBar;
+		[Export ("navigationBar", ArgumentSemantic.Strong)]
+		NavigationBar NavigationBar { get; }
+
+		// @property (readonly, nonatomic, strong) MDCHeaderStackView * _Nonnull headerStackView;
+		[Export ("headerStackView", ArgumentSemantic.Strong)]
+		HeaderStackView HeaderStackView { get; }
+
+		// @property (nonatomic) BOOL inferTopSafeAreaInsetFromViewController;
+		[Export ("inferTopSafeAreaInsetFromViewController")]
+		bool InferTopSafeAreaInsetFromViewController { get; set; }
+	}
+
+	// @interface MDCAppBarTextColorAccessibilityMutator : NSObject
+	[Obsolete ("This API will be deprecated with no replacement.")]
+	[BaseType (typeof (NSObject), Name = "MDCAppBarTextColorAccessibilityMutator")]
+	interface AppBarTextColorAccessibilityMutator {
+		// -(void)mutate:(MDCAppBar * _Nonnull)appBar;
+		[Export ("mutate:")]
+		void Mutate (AppBar appBar);
 	}
 
 	// @interface MDCBaseCell : UICollectionViewCell
@@ -490,7 +541,7 @@ namespace MaterialComponents {
 	[BaseType (typeof (UIView),
 		   Name = "MDCBottomNavigationBar",
 		   Delegates = new [] { "Delegate" },
-	           Events = new [] { typeof (BottomNavigationBarDelegate) })]
+		   Events = new [] { typeof (BottomNavigationBarDelegate) })]
 	interface BottomNavigationBar {
 		// @property (nonatomic, weak) id<MDCBottomNavigationBarDelegate> _Nullable delegate;
 		[NullAllowed]
@@ -604,7 +655,7 @@ namespace MaterialComponents {
 	[BaseType (typeof (UIViewController),
 		   Name = "MDCBottomSheetController",
 		   Delegates = new [] { "Delegate" },
-	           Events = new [] { typeof (BottomSheetControllerDelegate) })]
+		   Events = new [] { typeof (BottomSheetControllerDelegate) })]
 	interface BottomSheetController {
 		// @property (readonly, nonatomic, strong) UIViewController * _Nonnull contentViewController;
 		[Export ("contentViewController", ArgumentSemantic.Strong)]
@@ -703,7 +754,7 @@ namespace MaterialComponents {
 	[BaseType (typeof (UIPresentationController),
 		   Name = "MDCBottomSheetPresentationController",
 		   Delegates = new [] { "Delegate" },
-	           Events = new [] { typeof (BottomSheetPresentationControllerDelegate) })]
+		   Events = new [] { typeof (BottomSheetPresentationControllerDelegate) })]
 	interface BottomSheetPresentationController {
 		// @property (nonatomic, weak) UIScrollView * _Nullable trackingScrollView;
 		[NullAllowed]
@@ -1327,7 +1378,7 @@ namespace MaterialComponents {
 	[BaseType (typeof (UIView),
 		   Name = "MDCChipField",
 		   Delegates = new [] { "Delegate" },
-	           Events = new [] { typeof (ChipFieldDelegate) })]
+		   Events = new [] { typeof (ChipFieldDelegate) })]
 	interface ChipField {
 		// extern const CGFloat MDCChipFieldDefaultMinTextFieldWidth;
 		[Field ("MDCChipFieldDefaultMinTextFieldWidth", "__Internal")]
@@ -1539,7 +1590,7 @@ namespace MaterialComponents {
 		[return: NullAllowed]
 		[Export ("borderColorForState:")]
 		UIColor GetBorderColor (UIControlState state);
-		
+
 		// -(void)setBorderColor:(UIColor * _Nullable)borderColor forState:(UIControlState)state __attribute__((annotate("ui_appearance_selector")));
 		[Export ("setBorderColor:forState:")]
 		void SetBorderColor ([NullAllowed] UIColor borderColor, UIControlState state);
@@ -2671,7 +2722,7 @@ namespace MaterialComponents {
 	[BaseType (typeof (UIView),
 		   Name = "MDCFlexibleHeaderView",
 		   Delegates = new [] { "Delegate" },
-	           Events = new [] { typeof (FlexibleHeaderViewDelegate) })]
+		   Events = new [] { typeof (FlexibleHeaderViewDelegate) })]
 	interface FlexibleHeaderView {
 		// @property (nonatomic, strong) CALayer * _Nullable shadowLayer;
 		[NullAllowed]
@@ -2687,32 +2738,9 @@ namespace MaterialComponents {
 		[Export ("trackingScrollViewDidScroll")]
 		void TrackingScrollViewDidScroll ();
 
-		// -(void)trackingScrollViewDidEndDraggingWillDecelerate:(BOOL)willDecelerate;
-		[Advice ("Do not invoke this method if ObservesTrackingScrollViewScrollEvents property is set to true.")]
-		[Export ("trackingScrollViewDidEndDraggingWillDecelerate:")]
-		void TrackingScrollViewDidEndDragging (bool willDecelerate);
-
-		// -(void)trackingScrollViewDidEndDecelerating;
-		[Advice ("Do not invoke this method if ObservesTrackingScrollViewScrollEvents property is set to true.")]
-		[Export ("trackingScrollViewDidEndDecelerating")]
-		void TrackingScrollViewDidEndDecelerating ();
-
-		// -(BOOL)trackingScrollViewWillEndDraggingWithVelocity:(CGPoint)velocity targetContentOffset:(CGPoint * _Nonnull)targetContentOffset;
-		[Advice ("Do not invoke this method if ObservesTrackingScrollViewScrollEvents property is set to true.")]
-		[Export ("trackingScrollViewWillEndDraggingWithVelocity:targetContentOffset:")]
-		bool TrackingScrollViewWillEndDragging (CGPoint velocity, ref CGPoint targetContentOffset);
-
 		// -(void)trackingScrollWillChangeToScrollView:(UIScrollView * _Nullable)scrollView;
 		[Export ("trackingScrollWillChangeToScrollView:")]
 		void TrackingScrollWillChangeToScrollView ([NullAllowed] UIScrollView scrollView);
-
-		// -(void)shiftHeaderOnScreenAnimated:(BOOL)animated;
-		[Export ("shiftHeaderOnScreenAnimated:")]
-		void ShiftHeaderOnScreen (bool animated);
-
-		// -(void)shiftHeaderOffScreenAnimated:(BOOL)animated;
-		[Export ("shiftHeaderOffScreenAnimated:")]
-		void ShiftHeaderOffScreen (bool animated);
 
 		// @property (readonly, nonatomic) BOOL prefersStatusBarHidden;
 		[Export ("prefersStatusBarHidden")]
@@ -2774,29 +2802,9 @@ namespace MaterialComponents {
 		[Export ("topSafeAreaGuide")]
 		NSObject TopSafeAreaGuide { get; }
 
-		// @property (nonatomic) MDCFlexibleHeaderShiftBehavior shiftBehavior;
-		[Export ("shiftBehavior", ArgumentSemantic.Assign)]
-		FlexibleHeaderShiftBehavior ShiftBehavior { get; set; }
-
-		// -(void)hideViewWhenShifted:(UIView * _Nonnull)view;
-		[Export ("hideViewWhenShifted:")]
-		void HideViewWhenShifted (UIView view);
-
-		// -(void)stopHidingViewWhenShifted:(UIView * _Nonnull)view;
-		[Export ("stopHidingViewWhenShifted:")]
-		void StopHidingViewWhenShifted (UIView view);
-
-		// @property (nonatomic) MDCFlexibleHeaderContentImportance headerContentImportance;
-		[Export ("headerContentImportance", ArgumentSemantic.Assign)]
-		FlexibleHeaderContentImportance HeaderContentImportance { get; set; }
-
 		// @property (nonatomic) BOOL canOverExtend;
 		[Export ("canOverExtend")]
 		bool CanOverExtend { get; set; }
-
-		// @property (nonatomic) BOOL statusBarHintCanOverlapHeader;
-		[Export ("statusBarHintCanOverlapHeader")]
-		bool StatusBarHintCanOverlapHeader { get; set; }
 
 		// @property (nonatomic) float visibleShadowOpacity;
 		[Export ("visibleShadowOpacity")]
@@ -2811,10 +2819,6 @@ namespace MaterialComponents {
 		[Export ("observesTrackingScrollViewScrollEvents")]
 		bool ObservesTrackingScrollViewScrollEvents { get; set; }
 
-		// @property (nonatomic) BOOL trackingScrollViewIsBeingScrubbed;
-		[Export ("trackingScrollViewIsBeingScrubbed")]
-		bool TrackingScrollViewIsBeingScrubbed { get; set; }
-
 		// @property (getter = isInFrontOfInfiniteContent, nonatomic) BOOL inFrontOfInfiniteContent;
 		[Export ("inFrontOfInfiniteContent")]
 		bool InFrontOfInfiniteContent { [Bind ("isInFrontOfInfiniteContent")] get; set; }
@@ -2823,14 +2827,65 @@ namespace MaterialComponents {
 		[Export ("sharedWithManyScrollViews")]
 		bool SharedWithManyScrollViews { get; set; }
 
-		// @property (nonatomic) BOOL contentIsTranslucent;
-		[Export ("contentIsTranslucent")]
-		bool ContentIsTranslucent { get; set; }
-
 		// @property (nonatomic, weak) id<MDCFlexibleHeaderViewDelegate> _Nullable delegate;
 		[NullAllowed]
 		[Export ("delegate", ArgumentSemantic.Weak)]
 		IFlexibleHeaderViewDelegate Delegate { get; set; }
+
+		//
+		// From (MDCFlexibleHeaderView) Category
+		//
+
+		// @property (nonatomic) MDCFlexibleHeaderShiftBehavior shiftBehavior;
+		[Export ("shiftBehavior", ArgumentSemantic.Assign)]
+		FlexibleHeaderShiftBehavior ShiftBehavior { get; set; }
+
+		// @property (nonatomic) MDCFlexibleHeaderContentImportance headerContentImportance;
+		[Export ("headerContentImportance", ArgumentSemantic.Assign)]
+		FlexibleHeaderContentImportance HeaderContentImportance { get; set; }
+
+		// @property (nonatomic) BOOL trackingScrollViewIsBeingScrubbed;
+		[Export ("trackingScrollViewIsBeingScrubbed")]
+		bool TrackingScrollViewIsBeingScrubbed { get; set; }
+
+		// @property (nonatomic) BOOL contentIsTranslucent;
+		[Export ("contentIsTranslucent")]
+		bool ContentIsTranslucent { get; set; }
+
+		// @property (nonatomic) BOOL statusBarHintCanOverlapHeader;
+		[Export ("statusBarHintCanOverlapHeader")]
+		bool StatusBarHintCanOverlapHeader { get; set; }
+
+		// -(void)hideViewWhenShifted:(UIView * _Nonnull)view;
+		[Export ("hideViewWhenShifted:")]
+		void HideViewWhenShifted (UIView view);
+
+		// -(void)stopHidingViewWhenShifted:(UIView * _Nonnull)view;
+		[Export ("stopHidingViewWhenShifted:")]
+		void StopHidingViewWhenShifted (UIView view);
+
+		// -(void)shiftHeaderOnScreenAnimated:(BOOL)animated;
+		[Export ("shiftHeaderOnScreenAnimated:")]
+		void ShiftHeaderOnScreen (bool animated);
+
+		// -(void)shiftHeaderOffScreenAnimated:(BOOL)animated;
+		[Export ("shiftHeaderOffScreenAnimated:")]
+		void ShiftHeaderOffScreen (bool animated);
+
+		// -(void)trackingScrollViewDidEndDraggingWillDecelerate:(BOOL)willDecelerate;
+		[Advice ("Do not invoke this method if ObservesTrackingScrollViewScrollEvents property is set to true.")]
+		[Export ("trackingScrollViewDidEndDraggingWillDecelerate:")]
+		void TrackingScrollViewDidEndDragging (bool willDecelerate);
+
+		// -(void)trackingScrollViewDidEndDecelerating;
+		[Advice ("Do not invoke this method if ObservesTrackingScrollViewScrollEvents property is set to true.")]
+		[Export ("trackingScrollViewDidEndDecelerating")]
+		void TrackingScrollViewDidEndDecelerating ();
+
+		// -(BOOL)trackingScrollViewWillEndDraggingWithVelocity:(CGPoint)velocity targetContentOffset:(CGPoint * _Nonnull)targetContentOffset;
+		[Advice ("Do not invoke this method if ObservesTrackingScrollViewScrollEvents property is set to true.")]
+		[Export ("trackingScrollViewWillEndDraggingWithVelocity:targetContentOffset:")]
+		bool TrackingScrollViewWillEndDragging (CGPoint velocity, ref CGPoint targetContentOffset);
 	}
 
 	interface IFlexibleHeaderViewDelegate { }
@@ -2858,7 +2913,7 @@ namespace MaterialComponents {
 	[BaseType (typeof (UIViewController),
 		   Name = "MDCFlexibleHeaderViewController",
 		   Delegates = new [] { "LayoutDelegate" },
-	           Events = new [] { typeof (FlexibleHeaderViewLayoutDelegate) })]
+		   Events = new [] { typeof (FlexibleHeaderViewLayoutDelegate) })]
 	interface FlexibleHeaderViewController : IUIScrollViewDelegate, IUITableViewDelegate {
 		// @property (readonly, nonatomic, strong) MDCFlexibleHeaderView * _Nonnull headerView;
 		[Export ("headerView", ArgumentSemantic.Strong)]
@@ -2882,6 +2937,10 @@ namespace MaterialComponents {
 		[Export ("inferTopSafeAreaInsetFromViewController")]
 		bool InferTopSafeAreaInsetFromViewController { get; set; }
 
+		// @property (nonatomic) BOOL useAdditionalSafeAreaInsetsForWebKitScrollViews;
+		[Export ("useAdditionalSafeAreaInsetsForWebKitScrollViews")]
+		bool UseAdditionalSafeAreaInsetsForWebKitScrollViews { get; set; }
+
 		// -(BOOL)prefersStatusBarHidden;
 		[New]
 		[Export ("prefersStatusBarHidden")]
@@ -2891,6 +2950,10 @@ namespace MaterialComponents {
 		[New]
 		[Export ("preferredStatusBarStyle")]
 		UIStatusBarStyle PreferredStatusBarStyle { get; }
+
+		// @property (nonatomic) BOOL inferPreferredStatusBarStyle;
+		[Export ("inferPreferredStatusBarStyle")]
+		bool InferPreferredStatusBarStyle { get; set; }
 
 		//
 		// From ToBeDeprecated (MDCFlexibleHeaderViewController) Category
@@ -3200,7 +3263,7 @@ namespace MaterialComponents {
 		[Static]
 		[NullAllowed, Export ("imageFor_ic_settings")]
 		UIImage IcSettingsImage { get; }
-	
+
 		//
 		// From BundleLoader (MDCIcons) Category
 		//
@@ -3256,7 +3319,7 @@ namespace MaterialComponents {
 	[BaseType (typeof (NSObject),
 		   Name = "MDCInkTouchController",
 		   Delegates = new [] { "Delegate" },
-	           Events = new [] { typeof (InkTouchControllerDelegate)})]
+		   Events = new [] { typeof (InkTouchControllerDelegate) })]
 	interface InkTouchController : IUIGestureRecognizerDelegate {
 		// @property (readonly, nonatomic, weak) UIView * _Nullable view;
 		[NullAllowed]
@@ -3350,7 +3413,7 @@ namespace MaterialComponents {
 	[BaseType (typeof (UIView),
 		   Name = "MDCInkView",
 		   Delegates = new [] { "AnimationDelegate" },
-	           Events = new [] { typeof (InkViewDelegate) })]
+		   Events = new [] { typeof (InkViewDelegate) })]
 	interface InkView {
 		// @property (nonatomic, weak) id<MDCInkViewDelegate> _Nullable animationDelegate;
 		[NullAllowed]
@@ -3440,14 +3503,17 @@ namespace MaterialComponents {
 	[BaseType (typeof (NSObject), Name = "MDCKeyboardWatcher")]
 	interface KeyboardWatcher {
 		// extern NSString *const MDCKeyboardWatcherKeyboardWillShowNotification;
+		[Notification]
 		[Field ("MDCKeyboardWatcherKeyboardWillShowNotification", "__Internal")]
 		NSString KeyboardWillShowNotification { get; }
 
 		// extern NSString *const MDCKeyboardWatcherKeyboardWillHideNotification;
+		[Notification]
 		[Field ("MDCKeyboardWatcherKeyboardWillHideNotification", "__Internal")]
 		NSString KeyboardWillHideNotification { get; }
 
 		// extern NSString *const MDCKeyboardWatcherKeyboardWillChangeFrameNotification;
+		[Notification]
 		[Field ("MDCKeyboardWatcherKeyboardWillChangeFrameNotification", "__Internal")]
 		NSString KeyboardWillChangeFrameNotification { get; }
 
@@ -5267,106 +5333,92 @@ namespace MaterialComponents {
 	[DisableDefaultCtor]
 	[BaseType (typeof (NSObject), Name = "MDCSnackbarManager")]
 	interface SnackbarManager {
-		// @property (assign, nonatomic, class) MDCSnackbarAlignment alignment;
+		// @property (readonly, nonatomic, strong, class) MDCSnackbarManager * _Nonnull defaultManager;
 		[Static]
+		[Export ("defaultManager", ArgumentSemantic.Strong)]
+		SnackbarManager DefaultManager { get; }
+
+		// @property (assign, nonatomic, class) MDCSnackbarAlignment alignment;
 		[Export ("alignment", ArgumentSemantic.Assign)]
 		SnackbarAlignment Alignment { get; set; }
 
 		// +(void)showMessage:(MDCSnackbarMessage * _Nullable)message;
-		[Static]
 		[Export ("showMessage:")]
 		void ShowMessage ([NullAllowed] SnackbarMessage message);
 
 		// +(void)setPresentationHostView:(UIView * _Nullable)hostView;
-		[Static]
 		[Export ("setPresentationHostView:")]
 		void SetPresentationHostView ([NullAllowed] UIView hostView);
 
 		// +(BOOL)hasMessagesShowingOrQueued;
-		[Static]
 		[Export ("hasMessagesShowingOrQueued")]
 		bool HasMessagesShowingOrQueued { get; }
 
 		// +(void)dismissAndCallCompletionBlocksWithCategory:(NSString * _Nullable)category;
-		[Static]
 		[Export ("dismissAndCallCompletionBlocksWithCategory:")]
 		void DismissAndCallCompletionBlocks ([NullAllowed] string category);
 
 		// +(void)setBottomOffset:(CGFloat)offset;
-		[Static]
 		[Export ("setBottomOffset:")]
 		void SetBottomOffset (nfloat offset);
 
 		// +(id<MDCSnackbarSuspensionToken> _Nullable)suspendAllMessages;
-		[Static]
 		[NullAllowed]
 		[Export ("suspendAllMessages")]
 		ISnackbarSuspensionToken SuspendAllMessages ();
 
 		// +(id<MDCSnackbarSuspensionToken> _Nullable)suspendMessagesWithCategory:(NSString * _Nullable)category;
-		[Static]
 		[Export ("suspendMessagesWithCategory:")]
 		[return: NullAllowed]
 		ISnackbarSuspensionToken SuspendMessages ([NullAllowed] string category);
 
 		// +(void)resumeMessagesWithToken:(id<MDCSnackbarSuspensionToken> _Nullable)token;
-		[Static]
 		[Export ("resumeMessagesWithToken:")]
 		void ResumeMessages ([NullAllowed] ISnackbarSuspensionToken token);
 
 		// @property (nonatomic, strong, class) UIColor * _Nullable snackbarMessageViewBackgroundColor;
-		[Static]
 		[NullAllowed]
 		[Export ("snackbarMessageViewBackgroundColor", ArgumentSemantic.Strong)]
 		UIColor SnackbarMessageViewBackgroundColor { get; set; }
 
 		// @property (nonatomic, strong, class) UIColor * _Nullable snackbarMessageViewShadowColor;
-		[Static]
 		[NullAllowed]
 		[Export ("snackbarMessageViewShadowColor", ArgumentSemantic.Strong)]
 		UIColor SnackbarMessageViewShadowColor { get; set; }
 
 		// @property (nonatomic, strong, class) UIColor * _Nullable messageTextColor;
-		[Static]
 		[NullAllowed]
 		[Export ("messageTextColor", ArgumentSemantic.Strong)]
 		UIColor MessageTextColor { get; set; }
 
 		// @property (nonatomic, strong, class) UIFont * _Nullable messageFont;
-		[Static]
 		[NullAllowed]
 		[Export ("messageFont", ArgumentSemantic.Strong)]
 		UIFont MessageFont { get; set; }
 
 		// @property (nonatomic, strong, class) UIFont * _Nullable buttonFont;
-		[Static]
 		[NullAllowed]
 		[Export ("buttonFont", ArgumentSemantic.Strong)]
 		UIFont ButtonFont { get; set; }
 
 		// @property (assign, nonatomic, class) BOOL shouldApplyStyleChangesToVisibleSnackbars;
-		[Static]
 		[Export ("shouldApplyStyleChangesToVisibleSnackbars")]
 		bool ShouldApplyStyleChangesToVisibleSnackbars { get; set; }
 
 		// +(UIColor * _Nullable)buttonTitleColorForState:(UIControlState)state;
-		[Static]
 		[return: NullAllowed]
 		[Export ("buttonTitleColorForState:")]
 		UIColor GetButtonTitleColor (UIControlState state);
 
 		// +(void)setButtonTitleColor:(UIColor * _Nullable)titleColor forState:(UIControlState)state;
-		[Static]
 		[Export ("setButtonTitleColor:forState:")]
 		void SetButtonTitleColor ([NullAllowed] UIColor titleColor, UIControlState state);
 
 		// @property (readwrite, nonatomic, setter = mdc_setAdjustsFontForContentSizeCategory:, class) BOOL mdc_adjustsFontForContentSizeCategory;
-		[Static]
 		[Export ("mdc_adjustsFontForContentSizeCategory")]
 		bool MdcAdjustsFontForContentSizeCategory { get; [Bind ("mdc_setAdjustsFontForContentSizeCategory:")] set; }
 
 		// @property (nonatomic, weak, class) id<MDCSnackbarManagerDelegate> _Nullable delegate;
-		[Static]
 		[NullAllowed]
 		[Export ("delegate", ArgumentSemantic.Weak)]
 		ISnackbarManagerDelegate Delegate { get; set; }
@@ -5530,7 +5582,7 @@ namespace MaterialComponents {
 	[BaseType (typeof (UIView),
 		   Name = "MDCTabBar",
 		   Delegates = new [] { "Delegate" },
-	           Events = new [] { typeof (TabBarDelegate) })]
+		   Events = new [] { typeof (TabBarDelegate) })]
 	interface TabBar : IUIBarPositioning {
 		// +(CGFloat)defaultHeightForBarPosition:(UIBarPosition)position itemAppearance:(MDCTabBarItemAppearance)appearance;
 		[Static]
@@ -5765,7 +5817,7 @@ namespace MaterialComponents {
 	[BaseType (typeof (UIViewController),
 		   Name = "MDCTabBarViewController",
 		   Delegates = new [] { "Delegate" },
-	           Events = new [] { typeof(TabBarControllerDelegate) })]
+		   Events = new [] { typeof (TabBarControllerDelegate) })]
 	interface TabBarViewController : TabBarDelegate, IUIBarPositioningDelegate {
 		// extern const CGFloat MDCTabBarViewControllerAnimationDuration;
 		[Field ("MDCTabBarViewControllerAnimationDuration", "__Internal")]
@@ -5802,7 +5854,7 @@ namespace MaterialComponents {
 	interface ITabBarControllerDelegate { }
 
 	// @protocol MDCTabBarControllerDelegate <NSObject>
-	[Model (AutoGeneratedName = true) ]
+	[Model (AutoGeneratedName = true)]
 	[Protocol]
 	[BaseType (typeof (NSObject), Name = "MDCTabBarControllerDelegate")]
 	interface TabBarControllerDelegate {
@@ -5842,15 +5894,21 @@ namespace MaterialComponents {
 	[Static]
 	//[Verify (ConstantsInterfaceAssociation)]
 	partial interface Constants11 {
-		
+
 	}
 
 	// @interface MDCTextField : UITextField <MDCTextInput>
 	[BaseType (typeof (UITextField), Name = "MDCTextField")]
 	interface TextField : TextInput, LeadingViewTextInput {
 		// extern NSString *const _Nonnull MDCTextFieldTextDidSetTextNotification;
+		[Notification]
 		[Field ("MDCTextFieldTextDidSetTextNotification", "__Internal")]
 		NSString TextDidSetTextNotification { get; }
+
+		// extern NSString *const _Nonnull MDCTextInputDidToggleEnabledNotification;
+		[Notification]
+		[Field ("MDCTextInputDidToggleEnabledNotification", "__Internal")]
+		NSString TextInputDidToggleEnabledNotification { get; }
 
 		// @property (readonly, nonatomic, strong) UILabel * _Nonnull inputLayoutStrut;
 		[Export ("inputLayoutStrut", ArgumentSemantic.Strong)]
@@ -6427,6 +6485,11 @@ namespace MaterialComponents {
 		[Abstract]
 		[Export ("setErrorText:errorAccessibilityValue:")]
 		void SetErrorText ([NullAllowed] string errorText, [NullAllowed] string errorAccessibilityValue);
+
+		// @required -(void)setHelperText:(NSString * _Nullable)helperText helperAccessibilityLabel:(NSString * _Nullable)helperAccessibilityLabel;
+		[Abstract]
+		[Export ("setHelperText:helperAccessibilityLabel:")]
+		void SetHelperText ([NullAllowed] string helperText, [NullAllowed] string helperAccessibilityLabel);
 	}
 
 	// @interface MDCTextInputControllerBase : NSObject <MDCTextInputControllerFloatingPlaceholder>
@@ -6565,7 +6628,7 @@ namespace MaterialComponents {
 
 	// @interface MDCTextInputControllerLegacyFullWidth : NSObject <MDCTextInputController>
 	[BaseType (typeof (TextInputControllerFullWidth), Name = "MDCTextInputControllerLegacyFullWidth")]
-	interface TextInputControllerLegacyFullWidth : TextInputController { 
+	interface TextInputControllerLegacyFullWidth : TextInputController {
 		//
 		// From TextInputController Protocol
 		//
@@ -6577,7 +6640,7 @@ namespace MaterialComponents {
 
 	// @interface MDCTextInputControllerOutlined : MDCTextInputControllerBase
 	[BaseType (typeof (TextInputControllerBase), Name = "MDCTextInputControllerOutlined")]
-	interface TextInputControllerOutlined { 
+	interface TextInputControllerOutlined {
 		//
 		// From TextInputController Protocol
 		//
