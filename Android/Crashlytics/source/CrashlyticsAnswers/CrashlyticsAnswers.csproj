@@ -41,11 +41,12 @@
         <Reference Include="Mono.Android" />
     </ItemGroup>
     <ItemGroup>
-        <LibraryProjectZip Include="..\..\externals\CrashlyticsAnswers.aar">
-            <Link>Jars\CrashlyticsAnswers.aar</Link>
-        </LibraryProjectZip>
+        <InputJar Include="..\..\externals\CrashlyticsAnswers\classes.jar">
+            <Link>Jars\CrashlyticsAnswers.jar</Link>
+        </InputJar>
     </ItemGroup>
     <ItemGroup>
+        <PackageReference Include="Xamarin.Build.Download" Version="0.4.11" />
         <PackageReference Include="MSBuild.Sdk.Extras" Version="1.4.0" PrivateAssets="All" />
     </ItemGroup>
     <ItemGroup>
@@ -57,6 +58,9 @@
       <TransformFile Include="Transforms\Metadata.xml" />
       <TransformFile Include="Transforms\EnumMethods.xml" />
       <TransformFile Include="Transforms\EnumFields.xml" />
+    </ItemGroup>
+    <ItemGroup>
+        <None Include="Xamarin.Android.Crashlytics.Answers.targets" PackagePath="build\$(TargetFramework)" Pack="true" />
     </ItemGroup>
     <Import Project="$(MSBuildSDKExtrasTargets)" Condition="Exists('$(MSBuildSDKExtrasTargets)')" />
 </Project>
