@@ -7,6 +7,7 @@
   This sample removes the method: android.support.v4.content.CursorLoader.loadInBackground:
   <remove-node path="/api/package[@name='android.support.v4.content']/class[@name='CursorLoader']/method[@name='loadInBackground']" />
   -->
-    <remove-node path="/api/package[@name='com.crashlytics.android']/class[@name='Crashlytics']/method[@name='doInBackground' and count(parameter)=0]"/>
     <attr path="/api/package[@name='com.crashlytics.android']" name="managedName">Crashlytics</attr>
+    
+    <attr path="/api/package[@name='com.crashlytics.android']/class[@name='Crashlytics']/method[@name='doInBackground' and count(parameter)=0]" name="managedReturn">Java.Lang.Object</attr>
 </metadata>
