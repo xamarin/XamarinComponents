@@ -5,6 +5,8 @@ using Java.Lang;
 using Android.Views;
 using System;
 
+[assembly: MetaData("io.fabric.ApiKey", Value ="<FABRIC_API_KEY>")]
+
 namespace CrashlyticsSample
 {
     [Activity(Label = "Crashlytics Sample", MainLauncher = true, Icon = "@mipmap/icon")]
