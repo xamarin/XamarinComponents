@@ -1,4 +1,3 @@
-
 #load "../../common.cake"
 
 var TARGET = Argument ("t", Argument ("target", "Default"));
@@ -25,28 +24,90 @@ Task ("externals")
 	if (!DirectoryExists ("./externals/"))
 		CreateDirectory ("./externals");
 
-	if (!FileExists (Crashlytics_DEST))
+	if (!FileExists (Crashlytics_DEST)) {
 		DownloadFile (Crashlytics_URL, Crashlytics_DEST);
+		Unzip(Crashlytics_DEST, "./externals/Crashlytics/");
+	}
 
-	if (!FileExists (CrashlyticsCore_DEST))
+	if (!FileExists (CrashlyticsCore_DEST)) {
 		DownloadFile (CrashlyticsCore_URL, CrashlyticsCore_DEST);
+		Unzip(CrashlyticsCore_DEST, "./externals/CrashlyticsCore/");
+	}
 
-	if (!FileExists (CrashlyticsBeta_DEST))
+	if (!FileExists (CrashlyticsBeta_DEST)) {
 		DownloadFile (CrashlyticsBeta_URL, CrashlyticsBeta_DEST);
+		Unzip(CrashlyticsBeta_DEST, "./externals/CrashlyticsBeta/");
+	}
 
-	if (!FileExists (CrashlyticsAnswers_DEST))
+	if (!FileExists (CrashlyticsAnswers_DEST)) {
 		DownloadFile (CrashlyticsAnswers_URL, CrashlyticsAnswers_DEST);
+		Unzip(CrashlyticsAnswers_DEST, "./externals/CrashlyticsAnswers/");
+	}
 
-	if (!FileExists (Fabric_DEST))
+	if (!FileExists (Fabric_DEST)) {
 		DownloadFile (Fabric_URL, Fabric_DEST);
+		Unzip(Fabric_DEST, "./externals/Fabric/");
+	}
+
+	var msprojPokeSettings = new XmlPokeSettings {
+		Namespaces = new Dictionary<string, string> { { "ns", "http://schemas.microsoft.com/developer/msbuild/2003" } }
+	};
+
+	// Update versions in .targets file for xamarin.build.download .aar downloads
+	XmlPoke("./source/Crashlytics/Xamarin.Android.Crashlytics.targets", "/ns:Project/ns:PropertyGroup/ns:_XbdAarVersion_crashlytics", Crashlytics_VER, msprojPokeSettings);
+	XmlPoke("./source/CrashlyticsCore/Xamarin.Android.Crashlytics.Core.targets", "/ns:Project/ns:PropertyGroup/ns:_XbdAarVersion_crashlyticscore", CrashlyticsCore_VER, msprojPokeSettings);
+	XmlPoke("./source/CrashlyticsBeta/Xamarin.Android.Crashlytics.Beta.targets", "/ns:Project/ns:PropertyGroup/ns:_XbdAarVersion_crashlyticsbeta", CrashlyticsBeta_VER, msprojPokeSettings);
+	XmlPoke("./source/CrashlyticsAnswers/Xamarin.Android.Crashlytics.Answers.targets", "/ns:Project/ns:PropertyGroup/ns:_XbdAarVersion_crashlyticsanswers", CrashlyticsAnswers_VER, msprojPokeSettings);
+	XmlPoke("./source/Fabric/Xamarin.Android.Fabric.targets", "/ns:Project/ns:PropertyGroup/ns:_XbdAarVersion_fabric", Fabric_VER, msprojPokeSettings);
+
+	//Update PackageVersion in .csproj files
+	XmlPoke("./source/Crashlytics/Crashlytics.csproj", "/Project/PropertyGroup/PackageVersion", Crashlytics_VER);
+	XmlPoke("./source/CrashlyticsCore/CrashlyticsCore.csproj", "/Project/PropertyGroup/PackageVersion", CrashlyticsCore_VER);
+	XmlPoke("./source/CrashlyticsBeta/CrashlyticsBeta.csproj", "/Project/PropertyGroup/PackageVersion", CrashlyticsBeta_VER);
+	XmlPoke("./source/CrashlyticsAnswers/CrashlyticsAnswers.csproj", "/Project/PropertyGroup/PackageVersion", CrashlyticsAnswers_VER);
+	XmlPoke("./source/Fabric/Fabric.csproj", "/Project/PropertyGroup/PackageVersion", Fabric_VER);
 });
 
 
-Task ("clean").IsDependentOn ("clean-base").Does (() => 
+Task ("clean")
+	.Does (() => 
 {	
-	DeleteFiles ("./externals/*.aar");
+	if (DirectoryExists("./externals/"))
+		DeleteDirectory("./externals/", true);
 });
 
-SetupXamarinBuildTasks (buildSpec, Tasks, Task);
+Task("libs")
+	.IsDependentOn("externals")
+	.Does(() =>
+{
+	MSBuild("./source/Crashlytics.sln", c => 
+		c.SetConfiguration("Release")
+			.WithTarget("Restore"));
+
+	MSBuild("./source/Crashlytics.sln", c => 
+		c.SetConfiguration("Release")
+			.WithTarget("Build"));
+});
+
+Task("nuget")
+	.IsDependentOn("libs")
+	.Does(() =>
+{
+	EnsureDirectoryExists("./output");
+
+	MSBuild("./source/Crashlytics.sln", c => 
+		c.SetConfiguration("Release")
+			.WithTarget("Pack")
+			.WithProperty("PackageOutputPath", "../../output"));
+});
+
+Task("samples")
+	.Does(() => 
+{
+	MSBuild("./samples/CrashlyticsSample/CrashlyticsSample.sln", c =>
+		c.SetConfiguration("Release"));
+});
+
+Task("component");
 
 RunTarget (TARGET);
