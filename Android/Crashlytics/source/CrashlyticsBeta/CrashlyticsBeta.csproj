@@ -1,7 +1,7 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project Sdk="Microsoft.NET.Sdk">
     <PropertyGroup>
-        <AssemblyName>CrashlyticsBeta</AssemblyName>
+        <AssemblyName>Xamarin.Android.Crashlytics.Beta</AssemblyName>
         <MonoAndroidResourcePrefix>Resources</MonoAndroidResourcePrefix>
         <MonoAndroidAssetsPrefix>Assets</MonoAndroidAssetsPrefix>
         <AndroidUseLatestPlatformSdk>False</AndroidUseLatestPlatformSdk>
@@ -19,7 +19,7 @@
         nuget packaging
         -->
         <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-        <PackageId>CrashlyticsBeta</PackageId>
+        <PackageId>Xamarin.Android.Crashlytics.Beta</PackageId>
         <PackageVersion>1.2.9</PackageVersion>
         <Title>Crashlytics Beta for Android</Title>
         <Summary>Xamarin.Android bindings for Crashlytics Android - Beta</Summary>

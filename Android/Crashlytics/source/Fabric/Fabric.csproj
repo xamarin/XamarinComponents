@@ -1,7 +1,7 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project Sdk="Microsoft.NET.Sdk">
     <PropertyGroup>
-        <AssemblyName>Fabric</AssemblyName>
+        <AssemblyName>Xamarin.Android.Fabric</AssemblyName>
         <MonoAndroidResourcePrefix>Resources</MonoAndroidResourcePrefix>
         <MonoAndroidAssetsPrefix>Assets</MonoAndroidAssetsPrefix>
         <AndroidUseLatestPlatformSdk>False</AndroidUseLatestPlatformSdk>
@@ -19,7 +19,7 @@
         nuget packaging
         -->
         <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-        <PackageId>Fabric</PackageId>
+        <PackageId>Xamarin.Android.Fabric</PackageId>
         <PackageVersion>1.4.3</PackageVersion>
         <Title>Fabric for Android</Title>
         <Summary>Xamarin.Android bindings for Fabric Android</Summary>

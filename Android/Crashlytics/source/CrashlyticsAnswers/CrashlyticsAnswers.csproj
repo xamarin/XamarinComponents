@@ -1,7 +1,7 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project Sdk="Microsoft.NET.Sdk">
     <PropertyGroup>
-        <AssemblyName>CrashlyticsAnswers</AssemblyName>
+        <AssemblyName>Xamarin.Android.Crashlytics.Answers</AssemblyName>
         <MonoAndroidResourcePrefix>Resources</MonoAndroidResourcePrefix>
         <MonoAndroidAssetsPrefix>Assets</MonoAndroidAssetsPrefix>
         <AndroidUseLatestPlatformSdk>False</AndroidUseLatestPlatformSdk>
@@ -19,7 +19,7 @@
         nuget packaging
         -->
         <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-        <PackageId>CrashlyticsAnswers</PackageId>
+        <PackageId>Xamarin.Android.Crashlytics.Answers</PackageId>
         <PackageVersion>1.4.2</PackageVersion>
         <Title>Crashlytics Answers for Android</Title>
         <Summary>Xamarin.Android bindings for Crashlytics Android - Answers</Summary>

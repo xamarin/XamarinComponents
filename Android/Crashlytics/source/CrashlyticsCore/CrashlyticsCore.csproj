@@ -1,7 +1,7 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project Sdk="Microsoft.NET.Sdk">
     <PropertyGroup>
-        <AssemblyName>CrashlyticsCore</AssemblyName>
+        <AssemblyName>Xamarin.Android.Crashlytics.Core</AssemblyName>
         <MonoAndroidResourcePrefix>Resources</MonoAndroidResourcePrefix>
         <MonoAndroidAssetsPrefix>Assets</MonoAndroidAssetsPrefix>
         <AndroidUseLatestPlatformSdk>False</AndroidUseLatestPlatformSdk>
@@ -19,7 +19,7 @@
         nuget packaging
         -->
         <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-        <PackageId>CrashlyticsCore</PackageId>
+        <PackageId>Xamarin.Android.Crashlytics.Core</PackageId>
         <PackageVersion>2.6.3</PackageVersion>
         <Title>Crashlytics Core for Android</Title>
         <Summary>Xamarin.Android bindings for Crashlytics Android - Core</Summary>
