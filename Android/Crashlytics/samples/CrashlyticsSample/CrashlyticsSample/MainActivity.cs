@@ -5,7 +5,15 @@ using Java.Lang;
 using Android.Views;
 using System;
 
-[assembly: MetaData("io.fabric.ApiKey", Value ="<FABRIC_API_KEY>")]
+// OPTIONAL: Don't need this for firebase console integration
+//[assembly: MetaData("io.fabric.ApiKey", Value = "<FABRIC_API_KEY>")]
+
+// IMPORTANT: You must also be sure to add a `com.crashlytics.android.build_id` value as a string resource:
+// <resources>
+//     <string name="com.crashlytics.android.build_id">SOME-ID</string>
+// </resources>
+
+// IMPORTANT: You must add your google-services.json to your project as a 'GoogleServicesJson' build action
 
 namespace CrashlyticsSample
 {
@@ -16,8 +24,10 @@ namespace CrashlyticsSample
         {
             base.OnCreate(savedInstanceState);
 
+            // Initiate Fabric
             Fabric.Fabric.With(this, new Crashlytics.Crashlytics());
 
+            // Optional: Setup Xamarin / Mono Unhandled exception parsing / handling
             Crashlytics.Crashlytics.HandleManagedExceptions();
 
             SetContentView(Resource.Layout.Main);
@@ -32,6 +42,7 @@ namespace CrashlyticsSample
                 Crashlytics.Crashlytics.SetUserIdentifier("12345");
                 Crashlytics.Crashlytics.SetUserIdentifier("user@fabric.io");
                 Crashlytics.Crashlytics.SetUserName("Test User");
+
             };
 
             btnForceCrash.Click += (sender, args) =>
