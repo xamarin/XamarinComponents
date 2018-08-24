@@ -59,9 +59,6 @@
     <AndroidResource Include="Resources\mipmap-xhdpi\Icon.png" />
     <AndroidResource Include="Resources\mipmap-xxhdpi\Icon.png" />
     <AndroidResource Include="Resources\mipmap-xxxhdpi\Icon.png" />
-    <AndroidResource Include="Resources\drawable\Crashlytics_Icon.png" />
-    <AndroidResource Include="Resources\drawable\Fabric_Background.jpg" />
-    <AndroidResource Include="Resources\drawable\Fabric_Icon.png" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Resources\drawable\" />
