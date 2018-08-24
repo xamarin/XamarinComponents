@@ -61,6 +61,7 @@
     </ItemGroup>
     <ItemGroup>
         <None Include="Xamarin.Android.Fabric.targets" PackagePath="build\$(TargetFramework)" Pack="true" />
+        <None Include="..\..\External-Dependency-Info.txt" PackagePath="THIRD-PARTY-NOTICE.txt" Pack="true" />
     </ItemGroup>
     <Import Project="$(MSBuildSDKExtrasTargets)" Condition="Exists('$(MSBuildSDKExtrasTargets)')" />
 </Project>
