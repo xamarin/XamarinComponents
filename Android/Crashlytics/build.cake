@@ -54,11 +54,11 @@ Task ("externals")
 	};
 
 	// Update versions in .targets file for xamarin.build.download .aar downloads
-	XmlPoke("./source/Crashlytics/Xamarin.Android.Crashlytics.targets", "/ns:Project/ns:PropertyGroup/ns:_XbdAarVersion_crashlytics", Crashlytics_VER, msprojPokeSettings);
-	XmlPoke("./source/CrashlyticsCore/Xamarin.Android.Crashlytics.Core.targets", "/ns:Project/ns:PropertyGroup/ns:_XbdAarVersion_crashlyticscore", CrashlyticsCore_VER, msprojPokeSettings);
-	XmlPoke("./source/CrashlyticsBeta/Xamarin.Android.Crashlytics.Beta.targets", "/ns:Project/ns:PropertyGroup/ns:_XbdAarVersion_crashlyticsbeta", CrashlyticsBeta_VER, msprojPokeSettings);
-	XmlPoke("./source/CrashlyticsAnswers/Xamarin.Android.Crashlytics.Answers.targets", "/ns:Project/ns:PropertyGroup/ns:_XbdAarVersion_crashlyticsanswers", CrashlyticsAnswers_VER, msprojPokeSettings);
-	XmlPoke("./source/Fabric/Xamarin.Android.Fabric.targets", "/ns:Project/ns:PropertyGroup/ns:_XbdAarVersion_fabric", Fabric_VER, msprojPokeSettings);
+	XmlPoke("./source/Crashlytics/Xamarin.Android.Crashlytics.targets", "/ns:Project/ns:Target/ns:PropertyGroup/ns:_XbdAarVersion_crashlytics", Crashlytics_VER, msprojPokeSettings);
+	XmlPoke("./source/CrashlyticsCore/Xamarin.Android.Crashlytics.Core.targets", "/ns:Project/ns:Target/ns:PropertyGroup/ns:_XbdAarVersion_crashlyticscore", CrashlyticsCore_VER, msprojPokeSettings);
+	XmlPoke("./source/CrashlyticsBeta/Xamarin.Android.Crashlytics.Beta.targets", "/ns:Project/ns:Target/ns:PropertyGroup/ns:_XbdAarVersion_crashlyticsbeta", CrashlyticsBeta_VER, msprojPokeSettings);
+	XmlPoke("./source/CrashlyticsAnswers/Xamarin.Android.Crashlytics.Answers.targets", "/ns:Project/ns:Target/ns:PropertyGroup/ns:_XbdAarVersion_crashlyticsanswers", CrashlyticsAnswers_VER, msprojPokeSettings);
+	XmlPoke("./source/Fabric/Xamarin.Android.Fabric.targets", "/ns:Project/ns:Target/ns:PropertyGroup/ns:_XbdAarVersion_fabric", Fabric_VER, msprojPokeSettings);
 
 	//Update PackageVersion in .csproj files
 	XmlPoke("./source/Crashlytics/Crashlytics.csproj", "/Project/PropertyGroup/PackageVersion", Crashlytics_VER);
