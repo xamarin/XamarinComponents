@@ -30,11 +30,12 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Include="..\..\External-Dependency-Info.txt" Pack="True" PackagePath="THIRD-PARTY-NOTICES.txt" />
+    <None Remove="transforms\Metadata.xml" />
+    <None Remove="transforms\EnumMethods.xml" />
+    <None Remove="transforms\EnumFields.xml" />
   </ItemGroup>
-
   <ItemGroup>
-    <TransformFile Include="transforms\*.xml" />
+    <None Include="..\..\External-Dependency-Info.txt" Pack="True" PackagePath="THIRD-PARTY-NOTICES.txt" />
   </ItemGroup>
 
   <ItemGroup>
@@ -53,5 +54,18 @@
     <PackageReference Include="MSBuild.Sdk.Extras" Version="1.4.0" PrivateAssets="All" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Additions\" />
+    <Folder Include="transforms\" />
+    <Folder Include="Jars\" />
+  </ItemGroup>
+  <ItemGroup>
+    <TransformFile Remove="transforms\EnumFields.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <TransformFile Include="transforms\Metadata.xml" />
+    <TransformFile Include="transforms\EnumMethods.xml" />
+    <TransformFile Include="transforms\EnumFields.xml" />
+  </ItemGroup>
   <Import Project="$(MSBuildSDKExtrasTargets)" Condition="Exists('$(MSBuildSDKExtrasTargets)')" />
 </Project>
