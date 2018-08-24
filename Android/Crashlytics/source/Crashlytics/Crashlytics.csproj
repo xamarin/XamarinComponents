@@ -49,6 +49,7 @@
     <ItemGroup>
         <PackageReference Include="Xamarin.Build.Download" Version="0.4.11" />
         <PackageReference Include="MSBuild.Sdk.Extras" Version="1.4.0" PrivateAssets="All" />
+        <PackageReference Include="Xamarin.Firebase.Core" Version="60.1142.1" />
     </ItemGroup>
     <ItemGroup>
         <ProjectReference Include="..\CrashlyticsAnswers\CrashlyticsAnswers.csproj" />

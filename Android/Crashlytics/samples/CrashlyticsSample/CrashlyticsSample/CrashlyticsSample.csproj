@@ -86,9 +86,9 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="Xamarin.Android.Arch.Core.Common" Version="1.0.0" />
-    <PackageReference Include="Xamarin.Android.Arch.Lifecycle.Common" Version="1.0.3" />
-    <PackageReference Include="Xamarin.Android.Arch.Lifecycle.Runtime" Version="1.0.3" />
+    <PackageReference Include="Xamarin.Android.Arch.Core.Common" Version="1.0.0.1" />
+    <PackageReference Include="Xamarin.Android.Arch.Lifecycle.Common" Version="1.0.3.1" />
+    <PackageReference Include="Xamarin.Android.Arch.Lifecycle.Runtime" Version="1.0.3.1" />
     <PackageReference Include="Xamarin.Android.Support.Annotations" Version="27.0.2.1" />
     <PackageReference Include="Xamarin.Android.Support.Compat" Version="27.0.2.1" />
     <PackageReference Include="Xamarin.Android.Support.Core.UI" Version="27.0.2.1" />
@@ -99,6 +99,12 @@
     <PackageReference Include="Xamarin.Android.Support.Animated.Vector.Drawable" Version="27.0.2.1" />
     <PackageReference Include="Xamarin.Android.Support.v7.AppCompat" Version="27.0.2.1" />
     <PackageReference Include="Xamarin.Build.Download" Version="0.4.11" />
+    <PackageReference Include="Xamarin.Firebase.Core">
+      <Version>60.1142.1</Version>
+    </PackageReference>
+  </ItemGroup>
+  <ItemGroup>
+    <GoogleServicesJson Include="google-services.json" />
   </ItemGroup>
   <Import Project="..\..\..\source\Fabric\Xamarin.Android.Fabric.targets" />
   <Import Project="..\..\..\source\Crashlytics\Xamarin.Android.Crashlytics.targets" />
