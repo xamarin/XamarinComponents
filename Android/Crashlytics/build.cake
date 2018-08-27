@@ -86,7 +86,8 @@ Task("libs")
 
 	MSBuild("./source/Crashlytics.sln", c => 
 		c.SetConfiguration("Release")
-			.WithTarget("Build"));
+			.WithTarget("Build")
+			.WithProperty("DesignTimeBuild", "false"));
 });
 
 Task("nuget")
@@ -98,7 +99,8 @@ Task("nuget")
 	MSBuild("./source/Crashlytics.sln", c => 
 		c.SetConfiguration("Release")
 			.WithTarget("Pack")
-			.WithProperty("PackageOutputPath", "../../output"));
+			.WithProperty("PackageOutputPath", "../../output")
+			.WithProperty("DesignTimeBuild", "false"));
 });
 
 Task("samples")
@@ -110,7 +112,8 @@ Task("samples")
 			.WithTarget("Restore"));
 
 	MSBuild("./samples/CrashlyticsSample/CrashlyticsSample.sln", c =>
-		c.SetConfiguration("Release"));
+		c.SetConfiguration("Release")
+		.WithProperty("DesignTimeBuild", "false"));
 });
 
 Task("component");
