@@ -102,6 +102,7 @@ Task("nuget")
 });
 
 Task("samples")
+	.IsDependentOn("nuget")
 	.Does(() => 
 {
 	MSBuild("./samples/CrashlyticsSample/CrashlyticsSample.sln", c =>
