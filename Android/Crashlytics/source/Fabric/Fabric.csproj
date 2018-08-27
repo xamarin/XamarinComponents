@@ -25,8 +25,8 @@
         <Summary>Xamarin.Android bindings for Fabric Android</Summary>
         <Description>Xamarin.Android bindings for Fabric Android</Description>
         <PackageTags>Xamarin Android Xamarin.Android Fabric</PackageTags>
-        <Authors>Xamarin Inc.</Authors>
-        <Owners>Xamarin Inc.</Owners>
+        <Authors>Microsoft</Authors>
+        <Owners>Microsoft, Xamarin</Owners>
         <Copyright>© Microsoft Corporation. All rights reserved.</Copyright>
         <PackageProjectUrl>https://github.com/xamarin/XamarinComponents/tree/master/Android/Crashlytics</PackageProjectUrl>
         <PackageLicenseUrl>https://github.com/xamarin/XamarinComponents/blob/master/Android/Crashlytics/LICENSE.md</PackageLicenseUrl>
