@@ -105,6 +105,10 @@ Task("samples")
 	.Does(() => 
 {
 	MSBuild("./samples/CrashlyticsSample/CrashlyticsSample.sln", c =>
+		c.SetConfiguration("Release")
+			.WithTarget("Restore"));
+
+	MSBuild("./samples/CrashlyticsSample/CrashlyticsSample.sln", c =>
 		c.SetConfiguration("Release"));
 });
 
