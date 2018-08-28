@@ -1,0 +1,40 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+    <ItemGroup>
+        <XamarinBuildRestoreResources Include="_XbdRestoreItems_fabric" />
+    </ItemGroup>
+
+    <Target Name="_XbdRestoreItems_fabric">
+        <PropertyGroup>
+            <!-- Aar Version to download -->
+            <_XbdAarVersion_fabric>1.4.3</_XbdAarVersion_fabric>
+
+            <!-- Url to download from -->
+            <_XbdAarUrl_fabric>https://maven.google.com/io/fabric/sdk/android/fabric/$(_XbdAarVersion_fabric)/fabric-$(_XbdAarVersion_fabric).aar</_XbdAarUrl_fabric>
+
+            <!-- Unique key for cached download -->
+            <_XbdKey_fabric>fabric-$(_XbdAarVersion_fabric)</_XbdKey_fabric>
+
+            <!-- Full path to .aar file from the cache -->
+            <_XbdAarFileFullPath_fabric>$(XamarinBuildDownloadDir)$(_XbdKey_fabric)\fabric.aar</_XbdAarFileFullPath_fabric>
+
+            <!-- Assembly name to embed .aar in -->
+            <_XbdAssemblyName_fabric>Xamarin.Android.Fabric</_XbdAssemblyName_fabric>
+        </PropertyGroup>
+
+        <ItemGroup>
+            <XamarinBuildDownload Include="$(_XbdKey_fabric)">
+                <Url>$(_XbdAarUrl_fabric)</Url>
+                <ToFile>fabric.aar</ToFile>
+                <Kind>Uncompressed</Kind>
+            </XamarinBuildDownload>
+        </ItemGroup>
+
+        <ItemGroup>
+            <XamarinBuildDownloadRestoreAssemblyAar Include="$(_XbdAarFileFullPath_fabric)">
+                <LogicalName>__AndroidLibraryProjects__.zip</LogicalName>
+                <AssemblyName>$(_XbdAssemblyName_fabric)</AssemblyName>
+            </XamarinBuildDownloadRestoreAssemblyAar>
+        </ItemGroup>
+    </Target>
+</Project>
