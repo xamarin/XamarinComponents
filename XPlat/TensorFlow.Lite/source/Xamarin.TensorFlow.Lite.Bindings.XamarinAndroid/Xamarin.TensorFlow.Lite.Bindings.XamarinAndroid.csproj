@@ -36,15 +36,9 @@
         <Owners>Microsoft, Xamarin</Owners>
         <Authors>Microsoft</Authors>
         <Copyright>© Microsoft Corporation. All rights reserved.</Copyright>
-        <PackageLicenseUrl>
-            https://github.com/tensorflow/tensorflow/blob/master/LICENSE
-        </PackageLicenseUrl>
-        <PackageProjectUrl>
-            https://github.com/tensorflow/tensorflow/
-        </PackageProjectUrl>
-        <RepositoryUrl>
-            https://github.com/tensorflow/tensorflow/
-        </RepositoryUrl>
+        <PackageLicenseUrl>https://go.microsoft.com/fwlink/?linkid=2013315</PackageLicenseUrl>
+        <PackageProjectUrl>https://go.microsoft.com/fwlink/?linkid=2013420</PackageProjectUrl>
+        <RepositoryUrl>https://github.com/tensorflow/tensorflow/</RepositoryUrl>
         <PackageReleaseNotes>
             Initial bindings
         </PackageReleaseNotes>
