@@ -1,8 +1,4 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
-  <!--
-  https://montemagno.com/converting-xamarin-libraries-to-sdk-style-multi-targeted-projects/
-    
-  -->
     <PropertyGroup>
         <AssemblyName>Xamarin.TensorFlow.Lite</AssemblyName>
 
@@ -37,9 +33,9 @@
         <Description>
             Bindings for Google's TensorFlow Lite package (Google Play Services dependency)
         </Description>
-        <Owners>Microsoft Corporation</Owners>
-        <Authors>Microsoft / Xamarin</Authors>
-        <Copyright>Copyright 2018</Copyright>
+        <Owners>Microsoft, Xamarin</Owners>
+        <Authors>Microsoft</Authors>
+        <Copyright>© Microsoft Corporation. All rights reserved.</Copyright>
         <PackageLicenseUrl>
             https://github.com/tensorflow/tensorflow/blob/master/LICENSE
         </PackageLicenseUrl>
@@ -52,15 +48,9 @@
         <PackageReleaseNotes>
             Initial bindings
         </PackageReleaseNotes>
-        <PackageIconUrl>
-            ICON URL
-        </PackageIconUrl>
+        <PackageIconUrl></PackageIconUrl>
         <PackageTags>xamarin, android, bindings, google, tensorflow</PackageTags>
-
-
-
     </PropertyGroup>
-
 
     <ItemGroup>
         <TransformFile Include="transforms\*.xml" />
@@ -71,13 +61,6 @@
             <Link>Jars\tensorflow-lite-1.9.0.aar</Link>
         </LibraryProjectZip>
     </ItemGroup>
-
-  <ItemGroup>
-    <!--
-    <ProjectReference Include="..\things\Xamarin.Android.Things.csproj" />
-    -->
-  </ItemGroup>
-
 
   <ItemGroup>
     <PackageReference Include="MSBuild.Sdk.Extras" Version="1.4.0" PrivateAssets="All" />
