@@ -40,40 +40,20 @@
         <Owners>Xamarin, Microsoft</Owners>
         <Authors>Microsoft</Authors>
         <Copyright>© Microsoft Corporation. All rights reserved.</Copyright>
-        <PackageLicenseUrl>
-            
-        </PackageLicenseUrl>
-        <PackageProjectUrl>
-            
-        </PackageProjectUrl>
-        <RepositoryUrl>
-            
-        </RepositoryUrl>
+        <PackageLicenseUrl>https://go.microsoft.com/fwlink/?linkid=2013316</PackageLicenseUrl>
+        <PackageProjectUrl>https://go.microsoft.com/fwlink/?linkid=2013421</PackageProjectUrl>
+        <RepositoryUrl>https://github.com/xamarin/XamarinComponents/tree/master/XPlat/Protobuf.Lite/</RepositoryUrl>
         <PackageReleaseNotes>
             Initial bindings
         </PackageReleaseNotes>
-        <PackageIconUrl>
-            
-        </PackageIconUrl>
+        <PackageIconUrl></PackageIconUrl>
         <PackageTags>xamarin, android, bindings, google, protobuf, lite </PackageTags>
-
-
-
     </PropertyGroup>
 
 
     <ItemGroup>
-        <!--
-        -->
         <TransformFile Include="Transforms\*.xml" />
     </ItemGroup>
-
-  <ItemGroup>
-    <!--
-    <ProjectReference Include="..\things\Xamarin.Android.Things.csproj" />
-    -->
-  </ItemGroup>
-
 
   <ItemGroup>
     <PackageReference Include="MSBuild.Sdk.Extras" Version="1.4.0" PrivateAssets="All" />
