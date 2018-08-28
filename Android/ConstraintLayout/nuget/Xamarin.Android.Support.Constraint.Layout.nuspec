@@ -4,11 +4,11 @@
     <id>Xamarin.Android.Support.Constraint.Layout</id>
     <title>Xamarin Android Constraint Layout</title>
     <version>$version$</version>
-    <authors>Xamarin Inc.</authors>
-    <owners>Xamarin Inc.</owners>
+    <authors>Microsoft</authors>
+    <owners>Microsoft, Xamarin</owners>
     <requireLicenseAcceptance>true</requireLicenseAcceptance>
     <description>Android Constraint Layout C# bindings for Xamarin</description>
-    <copyright>Copyright © Microsoft Corporation</copyright>
+    <copyright>© Microsoft Corporation. All rights reserved.</copyright>
     <projectUrl>https://github.com/xamarin/AndroidSupportComponents/</projectUrl>
     <licenseUrl>https://github.com/xamarin/AndroidSupportComponents/blob/master/LICENSE.md</licenseUrl>
     <iconUrl>https://raw.githubusercontent.com/xamarin/AndroidSupportComponents/master/icons/constraint-layout_128x128.png</iconUrl>
