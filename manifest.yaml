@@ -50,6 +50,10 @@
   BuildScript: ./Android/Blurring/build.cake
   TriggerPaths: [ Android/Blurring ]
   MacBuildTargets: [ samples, nuget, component ]
+- Name: Crashlytics
+  BuildScript: ./Android/Crashlytics/build.cake
+  TriggerPaths: [ Android/Crashlytics ]
+  MacBuildTargets: [ samples, nuget ]
 - Name: ShimmerLayout
   BuildScript: ./Android/ShimmerLayout/build.cake
   TriggerPaths: [ Android/ShimmerLayout ]
