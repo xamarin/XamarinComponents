@@ -83,6 +83,9 @@
     <Reference Include="System.Xml" />
     <Reference Include="System.Core" />
     <Reference Include="Xamarin.iOS" />
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>packages\Newtonsoft.Json.9.0.1\lib\portable-net45+wp80+win8+wpa81\Newtonsoft.Json.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Contents.json" />
@@ -90,6 +93,10 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Resources\" />
+    <Folder Include="Models\" />
+    <Folder Include="ActivityIndicatorSamples\" />
+    <Folder Include="AnimationTimingSamples\" />
+    <Folder Include="ButtonsSamples\" />
   </ItemGroup>
   <ItemGroup>
     <InterfaceDefinition Include="LaunchScreen.storyboard" />
@@ -98,6 +105,7 @@
   <ItemGroup>
     <None Include="Info.plist" />
     <None Include="Entitlements.plist" />
+    <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Main.cs" />
@@ -106,12 +114,50 @@
     <Compile Include="ViewController.designer.cs">
       <DependentUpon>ViewController.cs</DependentUpon>
     </Compile>
+    <Compile Include="MenuCollectionViewController.cs" />
+    <Compile Include="MenuCollectionViewController.designer.cs">
+      <DependentUpon>MenuCollectionViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MenuCollectionViewCell.cs" />
+    <Compile Include="MenuCollectionViewCell.designer.cs">
+      <DependentUpon>MenuCollectionViewCell.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SamplesListTableViewController.cs" />
+    <Compile Include="SamplesListTableViewController.designer.cs">
+      <DependentUpon>SamplesListTableViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DescriptionTableViewCell.cs" />
+    <Compile Include="DescriptionTableViewCell.designer.cs">
+      <DependentUpon>DescriptionTableViewCell.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SampleTableViewCell.cs" />
+    <Compile Include="SampleTableViewCell.designer.cs">
+      <DependentUpon>SampleTableViewCell.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Sample.cs" />
+    <Compile Include="Models\SamplesManager.cs" />
+    <Compile Include="Models\Component.cs" />
+    <Compile Include="ActivityIndicatorSamples\ActivityIndicatorViewController.cs" />
+    <Compile Include="ActivityIndicatorSamples\ActivityIndicatorViewController.designer.cs">
+      <DependentUpon>ActivityIndicatorViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AnimationTimingSamples\AnimationTimingViewController.cs" />
+    <Compile Include="AnimationTimingSamples\AnimationTimingViewController.designer.cs">
+      <DependentUpon>AnimationTimingViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ButtonsSamples\ButtonsViewController.cs" />
+    <Compile Include="ButtonsSamples\ButtonsViewController.designer.cs">
+      <DependentUpon>ButtonsViewController.cs</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\source\MaterialComponents\MaterialComponents.csproj">
       <Project>{CC058B34-4817-4F51-95F9-B743A2C6F2C4}</Project>
       <Name>MaterialComponents</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\Samples.js" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
 </Project>
