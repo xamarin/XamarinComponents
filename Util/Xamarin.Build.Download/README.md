@@ -90,4 +90,3 @@ In this example, the download is only performed if the project is a Xamarin.iOS 
 * Implement download cache pruning
 * Reference counting for cleaning up old unpacked archives
 * Remove iOSReferenceMerge once Xamarin.iOS supports all the NativeReference metadata
-
