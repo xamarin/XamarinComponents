@@ -39,8 +39,11 @@ namespace Xamarin.Build.Download
 					// but a sanitized version with placeholders like ${applicationId} being escaped to _dollar blah
 					// we don't care about these for xamarin.android, which picks up both manifests and merges both
 					// This will ensure the 'sanitized' version doesn't get packaged
-					if (oldEntry.Name.TrimStart ('/').Equals ("aapt/AndroidManifest.xml", StringComparison.InvariantCultureIgnoreCase))
+					if (oldEntry.Name.TrimStart ('/').Equals ("aapt/AndroidManifest.xml", StringComparison.InvariantCultureIgnoreCase)) {
+						// Delete the entry entirely and continue
+						oldEntry.Delete();
 						continue;
+					}
 
 					// We are only re-adding non empty folders, otherwise we end up with a corrupt zip in mono
 					if (!string.IsNullOrEmpty (oldEntry.Name)) {
