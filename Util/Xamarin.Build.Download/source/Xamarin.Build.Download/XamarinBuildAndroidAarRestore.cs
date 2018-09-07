@@ -39,7 +39,8 @@ namespace Xamarin.Build.Download
 					// but a sanitized version with placeholders like ${applicationId} being escaped to _dollar blah
 					// we don't care about these for xamarin.android, which picks up both manifests and merges both
 					// This will ensure the 'sanitized' version doesn't get packaged
-					if (oldEntry.Name.TrimStart ('/').Equals ("aapt/AndroidManifest.xml", StringComparison.InvariantCultureIgnoreCase)) {
+					if (entryName.TrimStart ('/').Equals ("aapt/AndroidManifest.xml", StringComparison.InvariantCultureIgnoreCase)) {
+						Log.LogMessage("Found aapt/AndroidManifest.xml, skipping...");
 						// Delete the entry entirely and continue
 						oldEntry.Delete();
 						continue;
