@@ -3,6 +3,7 @@
 var TARGET = Argument ("t", Argument ("target", "Default"));
 
 var Crashlytics_VER = "2.9.4";
+var Crashlytics_NuGet_VER = Crashlytics_VER + ".1";
 var CrashlyticsCore_VER = "2.6.3";
 var CrashlyticsBeta_VER = "1.2.9";
 var CrashlyticsAnswers_VER = "1.4.2";
@@ -61,7 +62,7 @@ Task ("externals")
 	XmlPoke("./source/Fabric/Xamarin.Android.Fabric.targets", "/ns:Project/ns:Target/ns:PropertyGroup/ns:_XbdAarVersion_fabric", Fabric_VER, msprojPokeSettings);
 
 	//Update PackageVersion in .csproj files
-	XmlPoke("./source/Crashlytics/Crashlytics.csproj", "/Project/PropertyGroup/PackageVersion", Crashlytics_VER);
+	XmlPoke("./source/Crashlytics/Crashlytics.csproj", "/Project/PropertyGroup/PackageVersion", Crashlytics_NuGet_VER);
 	XmlPoke("./source/CrashlyticsCore/CrashlyticsCore.csproj", "/Project/PropertyGroup/PackageVersion", CrashlyticsCore_VER);
 	XmlPoke("./source/CrashlyticsBeta/CrashlyticsBeta.csproj", "/Project/PropertyGroup/PackageVersion", CrashlyticsBeta_VER);
 	XmlPoke("./source/CrashlyticsAnswers/CrashlyticsAnswers.csproj", "/Project/PropertyGroup/PackageVersion", CrashlyticsAnswers_VER);
