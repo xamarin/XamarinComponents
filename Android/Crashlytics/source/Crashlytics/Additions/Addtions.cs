@@ -35,18 +35,16 @@ namespace Crashlytics
 
 	public class MonoException : Java.Lang.Exception
 	{
-		public StackTraceElement[] Stack { get; private set; }
-
 		public MonoException(string message, StackTraceElement[] stack)
 			: base(message)
 		{
-			Stack = stack;
+			SetStackTrace(stack);
 		}
 
 		public MonoException(string message, StackTraceElement[] stack, Throwable cause)
 			: base(message, cause)
 		{
-			Stack = stack;
+			SetStackTrace(stack);
 		}
 	}
 
