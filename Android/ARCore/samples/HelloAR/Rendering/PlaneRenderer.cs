@@ -275,7 +275,7 @@ namespace HelloAR
 			float cameraZ = cameraPose.Tz();
 			foreach (var plane in allPlanes)
 			{
-				if (plane.TrackingState != TrackableTrackingState.Tracking || plane.SubsumedBy != null)
+				if (plane.TrackingState != TrackingState.Tracking || plane.SubsumedBy != null)
 					continue;
 
 				var center = plane.CenterPose;

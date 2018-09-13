@@ -248,7 +248,7 @@ namespace HelloAR
 				MotionEvent tap = null;
 				mQueuedSingleTaps.TryDequeue(out tap);
 
-				if (tap != null && camera.TrackingState == TrackableTrackingState.Tracking)
+				if (tap != null && camera.TrackingState == TrackingState.Tracking)
 				{
 					foreach (var hit in frame.HitTest(tap))
 					{
@@ -279,7 +279,7 @@ namespace HelloAR
 				mBackgroundRenderer.Draw(frame);
 
 				// If not tracking, don't draw 3d objects.
-				if (camera.TrackingState == TrackableTrackingState.Paused)
+				if (camera.TrackingState == TrackingState.Paused)
 					return;
 
 				// Get projection matrix.
@@ -313,7 +313,7 @@ namespace HelloAR
 					foreach (var plane in planes)
 					{
                         if (plane.GetType() == Plane.Type.HorizontalUpwardFacing
-								&& plane.TrackingState == TrackableTrackingState.Tracking)
+								&& plane.TrackingState == TrackingState.Tracking)
 						{
 							hideLoadingMessage();
 							break;
@@ -328,7 +328,7 @@ namespace HelloAR
 				float scaleFactor = 1.0f;
 				foreach (var anchor in mAnchors)
 				{
-					if (anchor.TrackingState != TrackableTrackingState.Tracking)
+					if (anchor.TrackingState != TrackingState.Tracking)
 						continue;
 
 					// Get the current combined pose of an Anchor and Plane in world space. The Anchor
