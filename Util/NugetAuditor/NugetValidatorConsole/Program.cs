@@ -25,8 +25,19 @@ namespace NugetValidatorConsole
             };
 
             var result = NugetValidator.Validate(nugetPath, options);
+            
+            if (result.Success == false)
+            {
+                Console.WriteLine($"Nuget at path: {nugetPath} failed validation" + Environment.NewLine;
 
-            Console.WriteLine("Completed");
+                Console.Write(result.ErrorMessages);
+
+            }
+            else
+            {
+                Console.WriteLine("Validation Passed");
+            }
+            
 
 
             Console.ReadLine();

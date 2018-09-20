@@ -4,6 +4,7 @@ using System;
 using System.IO;
 using System.Net;
 using System.Threading.Tasks;
+using Xamarin.Nuget.Validator;
 
 namespace NugetAuditor.Core.Processors
 {

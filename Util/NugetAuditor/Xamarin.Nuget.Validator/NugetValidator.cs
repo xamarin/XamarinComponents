@@ -9,8 +9,10 @@ namespace Xamarin.Nuget.Validator
 {
     public class NugetValidator
     {
-        public static bool Validate(string path, NugetValidatorOptions options)
+        public static ValidationResult Validate(string path, NugetValidatorOptions options)
         {
+            var result = new ValidationResult();
+
             ValidatePath(path);
             ValidateOptions(options);
 
@@ -26,17 +28,13 @@ namespace Xamarin.Nuget.Validator
 
             if (errors.Count > 0)
             {
-                var msg = $"Validation of {nugetFilePath} has failed" + Environment.NewLine + Environment.NewLine;
+                result.Success = false;
 
                 foreach (var aMsg in errors)
-                    msg += aMsg + Environment.NewLine;
-
-                Console.WriteLine(msg);
-
-                return false;
+                    result.Errors.Add(aMsg);
             }
 
-            return true;
+            return result;
         }
 
         private static string ExtractNuspecFile(string filePath, string folderName)
