@@ -7,7 +7,11 @@
     <Company>Microsoft</Company>
     <Authors>Microsoft</Authors>
     <Copyright>© Microsoft Corporation. All rights reserved.</Copyright>
-    <Description>Validates nuget</Description>
+    <Description>Validates nuget packages against requirements
+</Description>
+    <PackageProjectUrl>https://github.com/xamarin/XamarinComponents/tree/master/Util/NugetAuditor</PackageProjectUrl>
+    <PackageLicenseUrl>https://github.com/xamarin/XamarinComponents/blob/master/Util/NugetAuditor/LICENSE</PackageLicenseUrl>
+    <PackageReleaseNotes>Initial version</PackageReleaseNotes>
   </PropertyGroup>
 
 </Project>
