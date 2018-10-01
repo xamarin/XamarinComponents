@@ -498,3 +498,7 @@
   BuildScript: ./Util/Cake.Xamarin.Binding.Util/build.cake
   TriggerPaths: [ Util/Cake.Xamarin.Binding.Util ]
   MacBuildTargets: [ nuget ]
+- Name: Xamarin.Nuget.Validator
+  BuildScript: ./Util/NugetAuditor/build.cake
+  TriggerPaths: [ Util/NugetAuditor ]
+  MacBuildTargets: [ nuget ]
