@@ -3,7 +3,7 @@
 var TARGET = Argument ("t", Argument ("target", "Default"));
 
 var Crashlytics_VER = "2.9.4";
-var Crashlytics_NuGet_VER = Crashlytics_VER + ".1";
+var Crashlytics_NuGet_VER = Crashlytics_VER + ".2";
 var CrashlyticsCore_VER = "2.6.3";
 var CrashlyticsBeta_VER = "1.2.9";
 var CrashlyticsAnswers_VER = "1.4.2";
