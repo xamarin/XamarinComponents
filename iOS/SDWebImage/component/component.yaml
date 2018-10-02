@@ -1,31 +1,65 @@
-version: 3.7.5
-name: SDWebImage for Xamarin.iOS
+version: 4.4.0
+name: SDWebImage for Xamarin.iOS, Xamarin.tvOS, Xamarin.Mac
 id: sdwebimage
 publisher: Xamarin Inc
 publisher-url: https://xamarin.com/
 src-url: https://github.com/xamarin/XamarinComponents/tree/master/iOS/SDWebImage
 summary: Extensions for UIImageView allowing you to asynchronously load web images.
+license: ../License.md
 icons:
  - icons/sdwebimage_128x128.png
  - icons/sdwebimage_512x512.png
-libraries:
-  ios-unified:
-    - ../output/unified/SDWebImage.dll
-samples:
-  - name: "iOS Unified Sample Load Image"
-    path: "../samples/SDWebImageSimpleSample/SDWebImageSimpleSample.sln"
-    removeFiles:
-  - name: "iOS Unified Sample MTD"
-    path: "../samples/SDWebImageMTDialogSample/SDWebImageMTDialogSample.sln"
-    removeFiles:
-      - SDWebImageMTDialogSample/SDWebImageMTDialogSample-Classic.csproj
-  - name: "iOS Unified Sample TableView"
-    path: "../samples/SDWebImageSample/SDWebImageSample.sln"
-    removeFiles:
-      - SDWebImageSample/SDWebImageSample-Classic.csproj
-  - name: "iOS Unified MapKit Annotation Image"
-    path: "../samples/SDWebImageMapKitSample/SDWebImageMapKitSample.sln"
-no_build: true
+
 is_shell: true
+no_build: true
+local-nuget-repo: ../output
+libraries:
+  ios-unified: ../output/SDWebImage.iOS.dll
+  mac-unified: ../output/SDWebImage.macOS.dll
+  tvos: ../output/SDWebImage.tvOS.dll
 packages:
-  ios-unified: Xamarin.SDWebImage, Version=3.7.5
+  ios-unified: Xamarin.SDWebImage, Version=4.4.0
+  mac-unified: Xamarin.SDWebImage, Version=4.4.0
+  tvos: Xamarin.SDWebImage, Version=4.4.0
+
+samples:
+  - name: "iOS Simple Sample"
+    path: "../samples/SDWebImageSimpleSample/SDWebImageSimpleSample.sln"
+    removeProjects:
+      - Xamarin.SDWebImage
+      - Xamarin.SDWebImage.tvOS
+    installNuGets:
+      - project: SDWebImageSimpleSample
+        packages:
+          - Xamarin.SDWebImage
+  - name: "iOS Sample"
+    path: "../samples/SDWebImageSample/SDWebImageSample.sln"
+    removeProjects:
+      - Xamarin.SDWebImage
+      - Xamarin.SDWebImage.tvOS
+    installNuGets:
+      - project: SDWebImageSample
+        packages:
+          - Xamarin.SDWebImage
+  - name: "tvOS Sample"
+    path: "../samples/SDWebImageSampleTV/SDWebImageSampleTV.sln"
+    removeProjects:
+      - Xamarin.SDWebImage
+      - Xamarin.SDWebImage.iOS
+    installNuGets:
+      - project: SDWebImageSampleTV
+        packages:
+          - Xamarin.SDWebImage
+  - name: "iOS MapKit Annotation Image"
+    path: "../samples/SDWebImageMapKitSample/SDWebImageMapKitSample.sln"
+    removeProjects:
+      - Xamarin.SDWebImage
+      - Xamarin.SDWebImage.tvOS
+    installNuGets:
+      - project: SDWebImageMapKitSample
+        packages:
+          - Xamarin.SDWebImage
+
+additional-files:
+  - source: "../External-Dependency-Info.txt"
+    destination: "THIRD-PARTY-NOTICES.txt"

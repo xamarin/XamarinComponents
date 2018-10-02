@@ -1,40 +1,9 @@
 ﻿using System;
-using System.Runtime.CompilerServices;
-
-#if __UNIFIED__
 using Foundation;
 using ObjCRuntime;
-#else
-using MonoTouch.Foundation;
-using MonoTouch.ObjCRuntime;
-#endif
 
 namespace SDWebImage
 {
-	partial class ImageContentType
-	{
-		[CompilerGenerated]
-		static readonly IntPtr class_ptr = Class.GetHandle ("NSData");
-	}
-
-	partial class ForceDecodeUIImage
-	{
-		[CompilerGenerated]
-		static readonly IntPtr class_ptr = Class.GetHandle ("UIImage");
-	}
-
-	partial class AnimatedUIImage
-	{
-		[CompilerGenerated]
-		static readonly IntPtr class_ptr = Class.GetHandle ("UIImage");
-	}
-
-	partial class MultiFormatUIImage
-	{
-		[CompilerGenerated]
-		static readonly IntPtr class_ptr = Class.GetHandle ("UIImage");
-	}
-
 	partial class SDWebImageDownloader
 	{
 		[Obsolete ("Deprecated. Use SetHttpHeaderValue instead.")]
@@ -65,7 +34,7 @@ namespace SDWebImage
 	{
 		[Obsolete ("Deprecated. Use Request instead.")]
 		public NSUrlRequest request { 
-			get { return request; }
+			get { return Request; }
 		}
 	}
 
@@ -81,6 +50,14 @@ namespace SDWebImage
 		public void prefetchURLs (NSUrl[] urls, SDWebImagePrefetcherProgressHandler progressBlock, SDWebImagePrefetcherCompletionHandler completionBlock)
 		{
 			PrefetchUrls (urls, progressBlock, completionBlock);
+		}
+	}
+
+	partial class SDImageCache
+	{
+		public void ClearDisk ()
+		{
+			ClearDisk (null);
 		}
 	}
 

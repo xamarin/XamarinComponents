@@ -24,10 +24,10 @@
 	<remove-node path="/api/package[@name='com.google.android.things.pio']/class[@name='UartDeviceDriver']/method[@name='close' and count(parameter)=0]" />
 
 	<!-- More fixes for 'hides inherited abstract member' errors -->
+    <remove-node path="/api/package[@name='com.google.android.things.pio']/interface[@name='SpiDevice']" />
 	<remove-node path="/api/package[@name='com.google.android.things.pio']/class[@name='Gpio']/method[@name='close' and count(parameter)=0]" />
 	<remove-node path="/api/package[@name='com.google.android.things.pio']/class[@name='I2cDevice']/method[@name='close' and count(parameter)=0]" />
 	<remove-node path="/api/package[@name='com.google.android.things.pio']/class[@name='Pwm']/method[@name='close' and count(parameter)=0]" />
-	<remove-node path="/api/package[@name='com.google.android.things.pio']/class[@name='SpiDevice']/method[@name='close' and count(parameter)=0]" />
 	<remove-node path="/api/package[@name='com.google.android.things.pio']/class[@name='UartDevice']/method[@name='close' and count(parameter)=0]" />
 	<remove-node path="/api/package[@name='com.google.android.things.pio']/class[@name='GpioDriver']/method[@name='registerGpioCallback' and count(parameter)=2 and parameter[1][@type='com.google.android.things.pio.GpioCallback'] and parameter[2][@type='android.os.Handler']]" />
 	<remove-node path="/api/package[@name='com.google.android.things.pio']/class[@name='GpioDriver']/method[@name='unregisterGpioCallback' and count(parameter)=1 and parameter[1][@type='com.google.android.things.pio.GpioCallback']]" />

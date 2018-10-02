@@ -41,6 +41,8 @@ var CUSTOM_MAX_ATTEMPTS = 3;
 
 var GLOB_PATTERNS = GetArgList ("glob-patterns", "GLOBBER_FILE_PATTERNS", "./output/*.nupkg");
 
+var SKIP_FILE_PATTERNS = GetArgList ("skip-files", "SKIP_FILE_PATTERNS", "");
+
 DumpGlobPatterns (GLOB_PATTERNS);
 
 public partial class BuildManifest
@@ -56,7 +58,7 @@ string GetArg (string cmd, string env, string def = "")
 }
 string[] GetArgList (string cmd, string env, string def = "")
 {
-	return GetArg (cmd, env, def).Split (new [] { ',', ';', ' ' });
+	return GetArg (cmd, env, def).Split (new [] { ',', ';', ' ' }, StringSplitOptions.RemoveEmptyEntries);
 }
 bool GetArgBool (string cmd, string env, bool def = false)
 {
@@ -106,7 +108,16 @@ Task ("DownloadArtifacts")
 		var filename = System.IO.Path.GetFileName(uri.LocalPath);
 		var downloadedFile = downloadDir.CombineWithFilePath (filename);
 		
-		if (!downloadedFile.GetExtension().Equals(".nupkg", StringComparison.InvariantCultureIgnoreCase)) {
+		var skip = false;
+		
+		if (SKIP_FILE_PATTERNS != null && SKIP_FILE_PATTERNS.Any()) {
+			foreach (var rxSkip in SKIP_FILE_PATTERNS) {
+				if (System.Text.RegularExpressions.Regex.IsMatch(filename, rxSkip))
+					skip = true;
+			}
+		}
+		
+		if (skip || !downloadedFile.GetExtension().Equals(".nupkg", StringComparison.InvariantCultureIgnoreCase)) {
 			Information ("Skipping: {0}", filename);
 			continue;
 		}

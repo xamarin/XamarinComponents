@@ -88,12 +88,23 @@ var fetchers = new VersionFetcher[] {
 
 
     // Facebook
-    new XPath ("Facebook Android", "4.33.0", "https://repo1.maven.org/maven2/com/facebook/android/facebook-android-sdk/maven-metadata.xml", "/metadata/versioning/release", OWNER_CA1),
+    new XPath ("Facebook Android - SDK", "4.33.0", "https://repo1.maven.org/maven2/com/facebook/android/facebook-android-sdk/maven-metadata.xml", "/metadata/versioning/release", OWNER_CA1),
+    new XPath ("Facebook Android - AppLinks", "4.33.0", "https://repo1.maven.org/maven2/com/facebook/android/facebook-applinks/maven-metadata.xml", "/metadata/versioning/release", OWNER_CA1),
+    new XPath ("Facebook Android - Common", "4.33.0", "https://repo1.maven.org/maven2/com/facebook/android/facebook-common/maven-metadata.xml", "/metadata/versioning/release", OWNER_CA1),
+    new XPath ("Facebook Android - Core", "4.33.0", "https://repo1.maven.org/maven2/com/facebook/android/facebook-core/maven-metadata.xml", "/metadata/versioning/release", OWNER_CA1),
+    new XPath ("Facebook Android - Login", "4.33.0", "https://repo1.maven.org/maven2/com/facebook/android/facebook-login/maven-metadata.xml", "/metadata/versioning/release", OWNER_CA1),
+    new XPath ("Facebook Android - Messenger", "4.33.0", "https://repo1.maven.org/maven2/com/facebook/android/facebook-messenger/maven-metadata.xml", "/metadata/versioning/release", OWNER_CA1),
+    new XPath ("Facebook Android - Places", "4.33.0", "https://repo1.maven.org/maven2/com/facebook/android/facebook-places/maven-metadata.xml", "/metadata/versioning/release", OWNER_CA1),
+    new XPath ("Facebook Android - Share", "4.33.0", "https://repo1.maven.org/maven2/com/facebook/android/facebook-share/maven-metadata.xml", "/metadata/versioning/release", OWNER_CA1),
+    new XPath ("Facebook Android - Account Kit SDK", "4.28.0", "https://repo1.maven.org/maven2/com/facebook/android/facebook-common/maven-metadata.xml", "/metadata/versioning/release", OWNER_CA1),
+    new XPath ("Facebook Android - Audience Network SDK", "4.28.1", "https://repo1.maven.org/maven2/com/facebook/android/facebook-common/maven-metadata.xml", "/metadata/versioning/release", OWNER_CA1),
+    new XPath ("Facebook Android - Notifications", "1.0.2", "https://repo1.maven.org/maven2/com/facebook/android/facebook-common/maven-metadata.xml", "/metadata/versioning/release", OWNER_CA1),
+    
+
     new CocoaPods ("Facebook Pop", "1.0.9", "pop", OWNER_CA1),
-    new CocoaPods ("Facebook iOS CoreKit", "4.33.0", "FBSDKCoreKit", OWNER_MX1),
+    new CocoaPods ("Facebook iOS - CoreKit", "4.33.0", "FBSDKCoreKit", OWNER_MX1),
 
     // Google - Android
-    new XPath ("Google Play Services", "11.6.0", "https://dl.google.com/dl/android/maven2/com/google/android/gms/play-services/maven-metadata.xml", "/metadata/versioning/release", OWNER_CA1),
     new XPath ("Android Support Libraries", "27.0.2", "https://dl.google.com/dl/android/maven2/com/android/support/appcompat-v7/maven-metadata.xml", "/metadata/versioning/release", OWNER_CA1),
     new XPath ("Google Glass SDK", "11", "https://dl.google.com/android/repository/glass/addon2-1.xml", "//*[local-name() = 'remotePackage' and @path='add-ons;addon-google_gdk-google-19']/*[local-name() = 'revision']", OWNER_CA1),
     new XPath ("Google Android ARCore", "1.0.0", "https://dl.google.com/dl/android/maven2/com/google/ar/core/maven-metadata.xml", "/metadata/versioning/release", OWNER_CA1),

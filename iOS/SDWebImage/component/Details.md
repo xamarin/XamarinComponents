@@ -1,4 +1,4 @@
-Adds methods to `UIImageView` supporting asynchronous web image loading:
+Adds methods to `UIImageView` and `NSImageView` supporting asynchronous web image loading:
 
 ```csharp
 using SDWebImage;
@@ -23,16 +23,15 @@ public override UITableViewCell GetCell (UITableView tableView, NSIndexPath inde
 
 It provides:
 
-* `UIImageView` and `UIButton` extension methods adding web image loading and cache management.
-* An asynchronous image downloader
-* An asynchronous memory + disk image caching with automatic cache expiration handling
-* Animated GIF support
-* WebP format support
-* A background image decompression
-* A guarantee that the same URL won't be downloaded several times
-* A guarantee that bogus URLs won't be retried again and again
-* A guarantee that main thread will never be blocked
-* Performances!
-* Use GCD and ARC
-* Arm64 support
-
+ * `UIImageView`, `NSImageView` and `UIButton` extension methods adding web image loading and cache management.
+ * An asynchronous image downloader
+ * An asynchronous memory + disk image caching with automatic cache expiration handling
+ * Animated GIF support
+ * WebP format support
+ * A background image decompression
+ * A guarantee that the same URL won't be downloaded several times
+ * A guarantee that bogus URLs won't be retried again and again
+ * A guarantee that main thread will never be blocked
+ * Performances!
+ * Use GCD and ARC
+ * Arm64 support

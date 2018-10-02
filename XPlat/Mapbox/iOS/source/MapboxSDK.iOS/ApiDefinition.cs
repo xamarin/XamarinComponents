@@ -2380,6 +2380,10 @@ namespace Mapbox
     [BaseType(typeof(ForegroundStyleLayer), Name = "MGLRasterStyleLayer")]
     interface RasterStyleLayer
     {
+        // -(instancetype _Nonnull)initWithIdentifier:(NSString * _Nonnull)identifier source:(MGLSource * _Nonnull)source;
+        [Export("initWithIdentifier:source:")]
+        IntPtr Constructor(string identifier, Source source);
+
         // @property (nonatomic) MGLStyleValue<NSNumber *> * _Null_unspecified maximumRasterBrightness;
         [Export ("maximumRasterBrightness", ArgumentSemantic.Assign)]
         StyleValue MaximumRasterBrightness { get; set; }

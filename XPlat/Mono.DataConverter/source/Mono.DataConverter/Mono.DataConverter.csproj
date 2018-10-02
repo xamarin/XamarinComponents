@@ -1,37 +1,42 @@
-<?xml version="1.0" encoding="utf-8"?>
-<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project Sdk="Microsoft.NET.Sdk">
+
   <PropertyGroup>
-    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
-    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectTypeGuids>{786C830F-07A1-408B-BD7F-6EE04809D6DB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
-    <ProjectGuid>{026DBE00-3B55-47A6-A603-94BBC0D1F249}</ProjectGuid>
-    <OutputType>Library</OutputType>
-    <RootNamespace>Mono.DataConverter</RootNamespace>
-    <AssemblyName>Mono.DataConverter</AssemblyName>
-    <TargetFrameworkProfile>Profile78</TargetFrameworkProfile>
-    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <DebugSymbols>true</DebugSymbols>
-    <DebugType>full</DebugType>
-    <Optimize>false</Optimize>
-    <OutputPath>bin\Debug</OutputPath>
-    <DefineConstants>DEBUG;MONO_DATACONVERTER_PUBLIC;MONO_DATACONVERTER_STATIC_METHODS;PCL</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-    <ConsolePause>false</ConsolePause>
+    <TargetFrameworks>net40-client;net40;netstandard1.0;netstandard2.0;portable-net45+win8+wpa81+wp8</TargetFrameworks>
+    <DocumentationFile>bin\$(Configuration)\Mono.DataConverter.xml</DocumentationFile>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <DefineConstants>$(DefineConstants);MONO_DATACONVERTER_PUBLIC;MONO_DATACONVERTER_STATIC_METHODS</DefineConstants>
   </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <Optimize>true</Optimize>
-    <OutputPath>bin\Release</OutputPath>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-    <ConsolePause>false</ConsolePause>
-    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
-    <DefineConstants>MONO_DATACONVERTER_PUBLIC;MONO_DATACONVERTER_STATIC_METHODS;PCL</DefineConstants>
-    <DocumentationFile>bin\Release\Mono.DataConverter.xml</DocumentationFile>
+
+  <PropertyGroup Condition=" $(TargetFramework.StartsWith('netstandard1')) or $(TargetFramework.StartsWith('portable')) ">
+    <DefineConstants>$(DefineConstants);PCL</DefineConstants>
   </PropertyGroup>
-  <Import Project="..\Mono.DataConverter.Shared\Mono.DataConverter.Shared.projitems" Label="Shared" Condition="Exists('..\Mono.DataConverter.Shared\Mono.DataConverter.Shared.projitems')" />
-  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
+
+  <PropertyGroup>
+    <Product>Mono.DataConverter (BitConvert)</Product>
+    <Authors>Microsoft</Authors>
+    <Owners>Microsoft</Owners>
+    <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
+    <Description>The DataConverter class is a replacement for System.BitConvert in the .NET class libraries.</Description>
+    <Copyright>© Microsoft Corporation. All rights reserved.</Copyright>
+    <PackageLicenseUrl>https://go.microsoft.com/fwlink/?linkid=864976</PackageLicenseUrl>
+    <PackageIconUrl>https://xamarin-component-icons.s3.amazonaws.com/mono.dataconverter.png</PackageIconUrl>
+    <PackageProjectUrl>https://go.microsoft.com/fwlink/?linkid=865080</PackageProjectUrl>
+    <RepositoryUrl>https://go.microsoft.com/fwlink/?linkid=865080</RepositoryUrl>
+    <PackageTags>mono, data, converter, bitconvert</PackageTags>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="MSBuild.Sdk.Extras" Version="1.5.4" PrivateAssets="All" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Include="..\..\externals\*.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="..\..\External-Dependency-Info.txt" PackagePath="THIRD-PARTY-NOTICES.txt" Pack="true" />
+  </ItemGroup>
+
+  <Import Project="$(MSBuildSdkExtrasTargets)" Condition="Exists('$(MSBuildSdkExtrasTargets)')" />
+
 </Project>

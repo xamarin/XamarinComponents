@@ -1,10 +1,5 @@
 using System;
-
-#if __UNIFIED__
 using ObjCRuntime;
-#else
-using MonoTouch.ObjCRuntime;
-#endif
 
 namespace SDWebImage
 {
@@ -27,7 +22,8 @@ namespace SDWebImage
 		ContinueInBackground = 1 << 4,
 		HandleCookies = 1 << 5,
 		AllowInvalidSSLCertificates = 1 << 6,
-		HighPriority = 1 << 7
+		HighPriority = 1 << 7,
+		ScaleDownLargeImages = 1 << 8
 	}
 
 	[Native]
@@ -52,6 +48,18 @@ namespace SDWebImage
 		HighPriority = 1 << 8,
 		DelayPlaceholder = 1 << 9,
 		TransformAnimatedImage = 1 << 10,
-		AvoidAutoSetImage = 1 << 11
+		AvoidAutoSetImage = 1 << 11,
+		ScaleDownLargeImages = 1 << 12
+	}
+
+	[Native]
+	public enum SDImageFormat : long
+	{
+		Undefined = -1,
+		Jpeg = 0,
+		Png,
+		Gif,
+		Tiff,
+		WebP
 	}
 }

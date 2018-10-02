@@ -1,56 +1,60 @@
 
 #load "../../common.cake"
 
-var TARGET = Argument ("t", Argument ("target", "Default"));
+var TARGET = Argument("t", Argument("target", "Default"));
 
-var FileUrl = "https://raw.githubusercontent.com/mono/mono/{0}/mcs/tools/csharp/getline.cs";
-var FileRevision = "7e2571ed334e9cee3f0d3bafeef02852310f4d3b";
-var TerminalUrl = string.Format (FileUrl, FileRevision);
+var MONO_TAG = "mono-5.12.0.273";
 
-var buildSpec = new BuildSpec {
+var ASSEMBLY_VERSION = "5.0.0.0";
+var ASSEMBLY_FILE_VERSION = "5.12.0.0";
+var ASSEMBLY_INFO_VERSION = "5.12.0.273";
+var NUGET_VERSION = "5.12.0.273";
 
-	Libs = new ISolutionBuilder [] {
-		new DefaultSolutionBuilder {
-			SolutionPath = "./source/Mono.Terminal.sln",
-			Configuration = "Release",
-			OutputFiles = new [] { 
-				new OutputFileCopy {
-					FromFile = "./source/Mono.Terminal/bin/Release/Mono.Terminal.dll",
-					ToDirectory = "./output/net4"
-				},
-				new OutputFileCopy {
-					FromFile = "./source/Mono.Terminal/bin/Release/Mono.Terminal.xml",
-					ToDirectory = "./output/net4"
-				},
-			}
-		},
-	},
+var OUTPUT_PATH = (DirectoryPath)"./output/";
 
-	Samples = new ISolutionBuilder [] {
-		new DefaultSolutionBuilder { SolutionPath = "./samples/TerminalSample.sln" },
-	},
-
-	NuGets = new [] {
-		new NuGetInfo { NuSpec = "./nuget/Mono.Terminal.nuspec"},
-	},
-
-	Components = new [] {
-		new Component { ManifestDirectory = "./component/" },
-	},
-};
-
-Task ("externals").IsDependentOn ("externals-base").Does (() => 
+Task("externals")
+	.Does(() =>
 {
-	if (!DirectoryExists ("./externals/")) {
-		CreateDirectory ("./externals/");
-	}
-	
-	if (!FileExists ("./externals/getline.cs")) {
-		DownloadFile (TerminalUrl, "./externals/getline.cs");
-	}
+	DownloadMonoSources(MONO_TAG, "./externals/",
+		"mcs/tools/csharp/getline.cs");
 });
 
-SetupXamarinBuildTasks (buildSpec, Tasks, Task);
+Task("libs")
+	.IsDependentOn("externals")
+	.Does(() =>
+{
+	EnsureDirectoryExists(OUTPUT_PATH);
 
-RunTarget (TARGET);
+	MSBuild("./source/Mono.Terminal/Mono.Terminal.csproj", c => c
+		.SetConfiguration("Release")
+		.WithRestore()
+		.WithTarget("Build")
+		.WithTarget("Pack")
+		.WithProperty("PackageVersion", NUGET_VERSION)
+		.WithProperty("AssemblyVersion", ASSEMBLY_VERSION)
+		.WithProperty("FileVersion", ASSEMBLY_FILE_VERSION)
+		.WithProperty("InformationalVersion", ASSEMBLY_INFO_VERSION)
+		.WithProperty("PackageOutputPath", MakeAbsolute(OUTPUT_PATH).FullPath));
+});
 
+Task("nuget").IsDependentOn("libs");
+
+Task("component");
+
+Task("samples")
+	.IsDependentOn("libs")
+	.Does(() =>
+{
+	MSBuild("./samples/TerminalSample.sln", c => c
+		.SetConfiguration("Release")
+		.WithRestore()
+		.WithTarget("Build"));
+});
+
+Task("clean")
+	.Does(() =>
+{
+	CleanDirectories("./externals/");
+});
+
+RunTarget(TARGET);

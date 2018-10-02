@@ -1,15 +1,6 @@
-
 using System;
-using System.Drawing;
-
-#if __UNIFIED__
 using Foundation;
 using UIKit;
-#else
-using MonoTouch.Foundation;
-using MonoTouch.UIKit;
-using nint = System.Int32;
-#endif
 
 using SDWebImage;
 
@@ -17,58 +8,47 @@ namespace SDWebImageSample
 {
 	public partial class DetailViewController : UIViewController
 	{
+		public DetailViewController(IntPtr handle)
+			: base(handle)
+		{
+		}
+
 		public NSUrl ImageUrl { get; set; }
 
-		UIActivityIndicatorView activityIndicator;
-
-		public DetailViewController () : base ("DetailViewController", null)
+		public override void ViewDidLoad()
 		{
+			base.ViewDidLoad();
 
-		}
-		
-		public override void DidReceiveMemoryWarning ()
-		{
-			// Releases the view if it doesn't have a superview.
-			base.DidReceiveMemoryWarning ();
+			if (ImageUrl != null)
+			{
+				activity.StartAnimating();
+				progress.Hidden = false;
+				progress.Progress = 0;
 
-			// Release any cached data, images, etc that aren't in use.
-		}
-		
-		public override void ViewDidLoad ()
-		{
-			base.ViewDidLoad ();
-			
-			configureView ();
-		}
-
-		void configureView ()
-		{
-			if (ImageUrl != null) {
-				ImageView.SetImage (ImageUrl, null, SDWebImageOptions.ProgressiveDownload, ProgressHandler, CompletedHandler);
+				imageView.SetImage(
+					ImageUrl,
+					UIImage.FromBundle("placeholder"),
+					SDWebImageOptions.ProgressiveDownload,
+					ProgressHandler,
+					CompletedHandler);
 			}
 		}
 
-		void ProgressHandler (nint receivedSize, nint expectedSize)
+		private void ProgressHandler(nint receivedSize, nint expectedSize, NSUrl url)
 		{
-			if (activityIndicator == null) {
-				InvokeOnMainThread (() => {
-					activityIndicator = new UIActivityIndicatorView (UIActivityIndicatorViewStyle.Gray);
-					ImageView.AddSubview (activityIndicator);
-					activityIndicator.Center = ImageView.Center;
-					activityIndicator.StartAnimating ();
-				});
-			}
+			InvokeOnMainThread(() =>
+			{
+				progress.Progress = (float)receivedSize / (float)expectedSize;
+			});
 		}
 
-		void CompletedHandler (UIImage image, NSError error, SDImageCacheType cacheType, NSUrl url)
+		private void CompletedHandler(UIImage image, NSError error, SDImageCacheType cacheType, NSUrl url)
 		{
-			if (activityIndicator != null) {
-				InvokeOnMainThread (() => {
-					activityIndicator.RemoveFromSuperview ();
-					activityIndicator = null;
-				});
-			}
+			InvokeOnMainThread(() =>
+			{
+				activity.StopAnimating();
+				progress.Hidden = true;
+			});
 		}
 	}
 }
-

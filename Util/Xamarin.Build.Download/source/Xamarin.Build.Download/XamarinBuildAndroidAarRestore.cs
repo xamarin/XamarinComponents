@@ -35,6 +35,17 @@ namespace Xamarin.Build.Download
 					// Open the old entry
 					var oldEntry = zipArchive.GetEntry (entryName);
 
+					// Some .aars contain an AndroidManifest.xml in the aapt folder which is essentially a duplicate of the main one
+					// but a sanitized version with placeholders like ${applicationId} being escaped to _dollar blah
+					// we don't care about these for xamarin.android, which picks up both manifests and merges both
+					// This will ensure the 'sanitized' version doesn't get packaged
+					if (entryName.TrimStart ('/').Equals ("aapt/AndroidManifest.xml", StringComparison.InvariantCultureIgnoreCase)) {
+						Log.LogMessage("Found aapt/AndroidManifest.xml, skipping...");
+						// Delete the entry entirely and continue
+						oldEntry.Delete();
+						continue;
+					}
+
 					// We are only re-adding non empty folders, otherwise we end up with a corrupt zip in mono
 					if (!string.IsNullOrEmpty (oldEntry.Name)) {
 

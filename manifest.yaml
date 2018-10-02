@@ -50,6 +50,10 @@
   BuildScript: ./Android/Blurring/build.cake
   TriggerPaths: [ Android/Blurring ]
   MacBuildTargets: [ samples, nuget, component ]
+- Name: Crashlytics
+  BuildScript: ./Android/Crashlytics/build.cake
+  TriggerPaths: [ Android/Crashlytics ]
+  MacBuildTargets: [ samples, nuget ]
 - Name: ShimmerLayout
   BuildScript: ./Android/ShimmerLayout/build.cake
   TriggerPaths: [ Android/ShimmerLayout ]
@@ -183,6 +187,20 @@
   TriggerPaths: [ Android/Google.LibPhoneNumber ]
   MacBuildTargets: [nuget]
 
+# will be XPlat in the future
+- Name: TensorFlow.Lite
+  BuildScript: ./XPlat/TensorFlow.Lite/build.cake
+  TriggerPaths: [ XPlat/TensorFlow.Lite ]
+  MacBuildTargets: [ libs, nuget]
+- Name: Protobuf.Lite
+  BuildScript: ./XPlat/Protobuf.Lite/build.cake
+  TriggerPaths: [ XPlat/Protobuf.Lite ]
+  MacBuildTargets: [ libs, nuget]
+- Name: Google.Grpc
+  BuildScript: ./XPlat/Google.Grpc/build.cake
+  TriggerPaths: [ XPlat/Google.Grpc ]
+  MacBuildTargets: [ libs, nuget]
+
 #######################################################
 # iOS
 #######################################################
@@ -270,6 +288,10 @@
 - Name: Masonry
   BuildScript: ./iOS/Masonry/build.cake
   TriggerPaths: [ iOS/Masonry ]
+  MacBuildTargets: [ samples, nuget, component ]
+- Name: MaterialComponents
+  BuildScript: ./iOS/MaterialComponents/build.cake
+  TriggerPaths: [ iOS/MaterialComponents ]
   MacBuildTargets: [ samples, nuget, component ]
 - Name: MBAlertView
   BuildScript: ./iOS/MBAlertView/build.cake
@@ -444,6 +466,10 @@
   BuildScript: ./XPlat/Mono.Options/build.cake
   TriggerPaths: [ XPlat/Mono.Options ]
   MacBuildTargets: [ component, samples ]
+- Name: Mono.ApiTools
+  BuildScript: ./XPlat/Mono.ApiTools/build.cake
+  TriggerPaths: [ XPlat/Mono.ApiTools ]
+  MacBuildTargets: [ samples, nuget ]
 - Name: EstimoteAndroid
   BuildScript: ./XPlat/Estimote/Android/build.cake
   TriggerPaths: [ XPlat/Estimote/Android ]
