@@ -8,7 +8,7 @@ var MONO_TAG = "c32af8905b5d672f58acad6fc9e08bf61375b850";
 var ASSEMBLY_VERSION = "5.0.0.0";
 var ASSEMBLY_FILE_VERSION = "5.14.0.0";
 var ASSEMBLY_INFO_VERSION = "5.14.0.0";
-var NUGET_VERSION = "5.14.0.1";
+var NUGET_VERSION = "5.14.0.2";
 
 var OUTPUT_PATH = (DirectoryPath)"./output/";
 
@@ -45,9 +45,13 @@ Task("libs")
 	CopyFiles("source/mono-api-*/bin/Release/*/*.dll", toolsDir);
 	CopyFiles("source/mono-api-*/bin/Release/*/*.exe", toolsDir);
 
-	var libDir = OUTPUT_PATH.Combine("lib");
+	var libDir = OUTPUT_PATH.Combine("lib/netstandard2.0");
 	EnsureDirectoryExists(libDir);
-	CopyFiles("source/Mono.ApiTools.*/bin/Release/*/*.dll", libDir);
+	CopyFiles("source/Mono.ApiTools.*/bin/Release/netstandard2.0/Mono.ApiTools.*.dll", libDir);
+
+	libDir = OUTPUT_PATH.Combine("lib/net45");
+	EnsureDirectoryExists(libDir);
+	CopyFiles("source/Mono.ApiTools.*/bin/Release/net45/Mono.ApiTools.*.dll", libDir);
 });
 
 Task("nuget")

@@ -17,7 +17,8 @@
     </dependencies>
   </metadata>
   <files>
-    <file src="output\lib\*.dll" target="lib\netstandard2.0" />
+    <file src="output\lib\netstandard2.0\*.dll" target="lib\netstandard2.0" />
+    <file src="output\lib\net45\*.dll" target="lib\net45" />
     <file src="output\tools\*.*" target="tools" />
   </files>
 </package>
