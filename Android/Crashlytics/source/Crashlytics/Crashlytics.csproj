@@ -54,6 +54,7 @@
     <ItemGroup>
         <ProjectReference Include="..\CrashlyticsAnswers\CrashlyticsAnswers.csproj" />
         <ProjectReference Include="..\CrashlyticsBeta\CrashlyticsBeta.csproj" />
+        <ProjectReference Include="..\CrashlyticsCore\CrashlyticsCore.csproj" />
         <ProjectReference Include="..\Fabric\Fabric.csproj" />
     </ItemGroup>
     <ItemGroup>
