@@ -4,7 +4,7 @@ using System.IO;
 using System.IO.Compression;
 using System.Linq;
 
-namespace NugetAuditor.Core.Processors
+namespace Xamarin.Nuget.Validator
 {
     public class ZipProcessor : IDisposable
     {
@@ -65,6 +65,46 @@ namespace NugetAuditor.Core.Processors
 
 
             return results;
+        }
+
+        public string GetNuspecFile(string outputFolderPath)
+        {
+            var exportPath = Path.GetFullPath(outputFolderPath);
+
+            using (var fStream = new FileStream(this.filePath, FileMode.Open))
+            {
+                using (ZipArchive archive = new ZipArchive(fStream))
+                {
+                    var entry = archive.Entries.FirstOrDefault(x => x.FullName.EndsWith(".nuspec"));
+
+                    if (entry == null)
+                        throw new Exception($"The file {this.filePath} does not contain a nuspec file");
+
+                    var fileName = entry.FullName;
+
+                    //check to make sure there is no funny business going on
+                    if (!fileName.EndsWith(Path.DirectorySeparatorChar.ToString()))
+                    {
+                        var exportFilePath = Path.Combine(exportPath, fileName);
+
+
+                        if (!Directory.Exists(Path.GetDirectoryName(exportFilePath)))
+                            Directory.CreateDirectory(Path.GetDirectoryName(exportFilePath));
+
+                        var aStream = entry.Open();
+
+                        using (var eStream = new FileStream(exportFilePath, FileMode.Create, FileAccess.ReadWrite))
+                        {
+                            aStream.CopyTo(eStream);
+                        }
+
+                        return exportFilePath;
+
+                    }
+                }
+            }
+
+            return string.Empty;
         }
    }
 }

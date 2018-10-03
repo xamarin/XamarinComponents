@@ -16,3 +16,29 @@ It also collects data about each package which can be stored in a Azure or MS Sq
  - Total Versions
  
 
+# Nuget Validator example
+
+			var options = new NugetValidatorOptions()
+            {
+                Copyright = "© Microsoft Corporation. All rights reserved.",
+                Author = "Microsoft",
+                Owner = "Microsoft",
+                NeedsProjectUrl = true,
+                NeedsLicenseUrl = true,
+                ValidateRequireLicenseAcceptance = true,
+                ValidPackageNamespace = "Xamarin",
+            };
+
+            var result = NugetValidator.Validate(nugetPath, options);
+            
+            if (result.Success == false)
+            {
+                Console.WriteLine($"Nuget at path: {nugetPath} failed validation" + Environment.NewLine);
+
+                Console.Write(result.ErrorMessages);
+
+            }
+            else
+            {
+                Console.WriteLine("Validation Passed");
+            }

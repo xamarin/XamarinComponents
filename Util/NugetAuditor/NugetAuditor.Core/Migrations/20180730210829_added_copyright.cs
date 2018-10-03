@@ -1,8 +1,10 @@
 ﻿using Microsoft.EntityFrameworkCore.Migrations;
+using System;
+using System.Collections.Generic;
 
 namespace NugetAuditor.Core.Migrations
 {
-    public partial class addedcopyright : Migration
+    public partial class added_copyright : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
