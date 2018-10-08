@@ -4,6 +4,7 @@
 #addin "nuget:?package=Cake.Xamarin&version=3.0.0"
 #addin "nuget:?package=Cake.ExtendedNuGet&version=1.0.0.27"
 #addin "nuget:?package=NuGet.Core&version=2.14.0"
+#addin "nuget:?package=Xamarin.Nuget.Validator=1.0.0"
 
 var DEFAULT_SIGNTOOL_PATH = IsRunningOnWindows ()
 	? "C:\\Program Files (x86)\\Windows Kits\\10\\bin\\x64\\signtool.exe"
@@ -134,7 +135,8 @@ Task ("DownloadArtifacts")
 
 Task ("VerifyNuGets")
 	.IsDependentOn ("VerifyAuthenticode")
-	.IsDependentOn ("VerifyNuGetSigning");
+	.IsDependentOn ("VerifyNuGetSigning")
+	.IsDependentOn("VerifyNugetMetaData")
 
 Task ("VerifyNuGetSigning")
 	.IsDependentOn ("DownloadArtifacts")
@@ -159,6 +161,53 @@ Task ("VerifyNuGetSigning")
 
 			if (result != 0)
 				throw new Exception ($"Invalid Signature {nupkgFile.GetFilename ()}");
+		}
+	}
+});
+
+Task ("VerifyNugetMetaData")
+	.IsDependentOn ("DownloadArtifacts")
+	.Does (() => 
+{
+	var options = new NugetValidatorOptions()
+            {
+                Copyright = "© Microsoft Corporation. All rights reserved.",
+                Author = "Microsoft",
+                Owner = "Microsoft",
+                NeedsProjectUrl = true,
+                NeedsLicenseUrl = true,
+                ValidateRequireLicenseAcceptance = true,
+                ValidPackageNamespace = "Xamarin",
+            };
+
+	foreach (var globPattern in GLOB_PATTERNS) {
+		var nupkgFiles = GetFiles (globPattern);
+
+		foreach (var nupkgFile in nupkgFiles) {
+			Information ("Verifiying Metadata of {0}", nupkgFile.GetFilename ());
+
+			IEnumerable<string> stdout;
+			var stdoutput = string.Empty;
+
+			var result = NugetValidator.Validate(nupkgFile, options);
+            
+            if (result.Success == false)
+            {
+				var stdoutput = string.Join ("\n    ", result.ErrorMessages);
+
+				Information ("Metadata validation failed for: {0} \n\n", nupkgFile.GetFilename ());
+				Information (stdoutput);
+
+                if (result != 0)
+					throw new Exception ($"Invalid Metadata for: {nupkgFile.GetFilename ()}");
+
+            }
+            else
+            {
+				Information ("Metadata validation passed for: {0}", nupkgFile.GetFilename ());
+                
+            }
+			
 		}
 	}
 });
