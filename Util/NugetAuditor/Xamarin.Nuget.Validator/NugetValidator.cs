@@ -5,6 +5,7 @@ using System.Xml;
 using System.Xml.Linq;
 using System.Xml.Serialization;
 
+
 namespace Xamarin.Nuget.Validator
 {
     public class NugetValidator
@@ -71,38 +72,46 @@ namespace Xamarin.Nuget.Validator
 
             //var text = File.ReadAllLines(filePath);
 
+            var xml = new XmlDocument();
+            xml.Load(filePath);
 
-            var str = new XmlSerializer(typeof(Package));
+            //var str = new XmlSerializer(typeof(Package));
 
-            Package nuspec;
+            var nuspec = PackageDefinition.FromXml(xml);
 
-            using (var aStream = new FileStream(filePath, FileMode.Open))
-            {
-               nuspec = (Package)str.Deserialize(aStream);
-            }
+           
+
+
+
+            //using (var aStream = new FileStream(filePath, FileMode.Open))
+            //{
+
+
+            //   nuspec = (Package)str.Deserialize(aStream);
+            //}
 
             var errors = new List<string>();
 
             // var metEntry = xmlcontents.FirstChild;
-            if (!nuspec.Metadata.Authors.Contains(options.Author.ToLower()))
+            if (!nuspec.Authors.Contains(options.Author.ToLower()))
                 errors.Add($"{options.Author} is not an author of the package");
 
-            if (!nuspec.Metadata.Owners.Contains(options.Owner.ToLower()))
+            if (!nuspec.Owners.Contains(options.Owner.ToLower()))
                 errors.Add($"{options.Owner} is not an owner of the package");
 
-            if (!nuspec.Metadata.Copyright.Equals(options.Copyright, StringComparison.OrdinalIgnoreCase))
+            if (!nuspec.Copyright.Equals(options.Copyright, StringComparison.OrdinalIgnoreCase))
                 errors.Add($"{options.Copyright} is not used as the copyright for the package");
 
-            if (options.NeedsProjectUrl && string.IsNullOrWhiteSpace(nuspec.Metadata.ProjectUrl))
+            if (options.NeedsProjectUrl && string.IsNullOrWhiteSpace(nuspec.ProjectUrl))
                 errors.Add("You must have a project url");
 
-            if (options.NeedsLicenseUrl && string.IsNullOrWhiteSpace(nuspec.Metadata.LicenseUrl))
+            if (options.NeedsLicenseUrl && string.IsNullOrWhiteSpace(nuspec.LicenseUrl))
                 errors.Add("You must have a license url");
 
-            if (options.ValidateRequireLicenseAcceptance && nuspec.Metadata.RequireLicenseAcceptance != true)
+            if (options.ValidateRequireLicenseAcceptance && nuspec.RequireLicenseAcceptance != true)
                 errors.Add("You must have RequireLicenceAcceptance set to true");
 
-            if (!string.IsNullOrWhiteSpace(options.ValidPackageNamespace) && !nuspec.Metadata.Id.StartsWith(options.ValidPackageNamespace, StringComparison.OrdinalIgnoreCase))
+            if (!string.IsNullOrWhiteSpace(options.ValidPackageNamespace) && !nuspec.Id.StartsWith(options.ValidPackageNamespace, StringComparison.OrdinalIgnoreCase))
                 errors.Add($"The package does not start with the {options.ValidPackageNamespace} namespace");
 
             return errors;
