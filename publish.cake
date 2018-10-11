@@ -135,8 +135,8 @@ Task ("DownloadArtifacts")
 
 Task ("VerifyNuGets")
 	.IsDependentOn ("VerifyAuthenticode")
-	.IsDependentOn ("VerifyNuGetSigning")
-	.IsDependentOn ("VerifyNugetMetaData");
+	.IsDependentOn ("VerifyNuGetSigning");
+//	.IsDependentOn ("VerifyNugetMetaData");
 
 Task ("VerifyNuGetSigning")
 	.IsDependentOn ("DownloadArtifacts")
