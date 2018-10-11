@@ -136,7 +136,7 @@ Task ("DownloadArtifacts")
 Task ("VerifyNuGets")
 	.IsDependentOn ("VerifyAuthenticode")
 	.IsDependentOn ("VerifyNuGetSigning")
-	.IsDependentOn("VerifyNugetMetaData")
+	.IsDependentOn ("VerifyNugetMetaData");
 
 Task ("VerifyNuGetSigning")
 	.IsDependentOn ("DownloadArtifacts")
@@ -169,7 +169,7 @@ Task ("VerifyNugetMetaData")
 	.IsDependentOn ("DownloadArtifacts")
 	.Does (() => 
 {
-	var options = new NugetValidatorOptions()
+	var options = new Xamarin.Nuget.Validator.NugetValidatorOptions()
 	{
 		Copyright = "© Microsoft Corporation. All rights reserved.",
 		Author = "Microsoft",
@@ -189,7 +189,7 @@ Task ("VerifyNugetMetaData")
 			IEnumerable<string> stdout;
 			var stdoutput = string.Empty;
 
-			var result = NugetValidator.Validate(MakeAbsolute(nupkgFile).FullPath, options);
+			var result = Xamarin.Nuget.Validator.NugetValidator.Validate(MakeAbsolute(nupkgFile).FullPath, options);
 
 			if (result.Success == false)
 			{
