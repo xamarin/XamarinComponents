@@ -186,20 +186,13 @@ Task ("VerifyNugetMetaData")
 		foreach (var nupkgFile in nupkgFiles) {
 			Information ("Verifiying Metadata of {0}", nupkgFile.GetFilename ());
 
-			IEnumerable<string> stdout;
-			var stdoutput = string.Empty;
-
 			var result = Xamarin.Nuget.Validator.NugetValidator.Validate(MakeAbsolute(nupkgFile).FullPath, options);
 
-			if (result.Success == false)
+			if (!result.Success)
 			{
-				var stdoutput = string.Join ("\n    ", result.ErrorMessages);
-
 				Information ("Metadata validation failed for: {0} \n\n", nupkgFile.GetFilename ());
-				Information (stdoutput);
-
-				if (result != 0)
-					throw new Exception ($"Invalid Metadata for: {nupkgFile.GetFilename ()}");
+				Information (string.Join("\n    ", result.ErrorMessages));
+				throw new Exception ($"Invalid Metadata for: {nupkgFile.GetFilename ()}");
 
 			}
 			else
