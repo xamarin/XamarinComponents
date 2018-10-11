@@ -5,10 +5,10 @@ var TARGET = Argument("t", Argument("target", "Default"));
 
 var OUTPUT_PATH = (DirectoryPath)"./output/";
 
-var ASSEMBLY_VERSION = "1.0.0.0";
-var ASSEMBLY_FILE_VERSION = "1.0.0.0";
-var ASSEMBLY_INFO_VERSION = "1.0.0.0";
-var NUGET_VERSION = "1.0.0.0";
+var ASSEMBLY_VERSION = "1.1.0.0";
+var ASSEMBLY_FILE_VERSION = "1.1.0.0";
+var ASSEMBLY_INFO_VERSION = "1.1.0.0";
+var NUGET_VERSION = "1.1.0.0";
 
 Task("libs")
 	.Does(() =>
