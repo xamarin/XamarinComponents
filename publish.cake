@@ -4,7 +4,7 @@
 #addin "nuget:?package=Cake.Xamarin&version=3.0.0"
 #addin "nuget:?package=Cake.ExtendedNuGet&version=1.0.0.27"
 #addin "nuget:?package=NuGet.Core&version=2.14.0"
-#addin "nuget:?package=Xamarin.Nuget.Validator&version=1.1.0"
+#addin "nuget:?package=Xamarin.Nuget.Validator&version=1.1.1"
 
 var DEFAULT_SIGNTOOL_PATH = IsRunningOnWindows ()
 	? "C:\\Program Files (x86)\\Windows Kits\\10\\bin\\x64\\signtool.exe"
@@ -177,7 +177,7 @@ Task ("VerifyNugetMetaData")
 		NeedsProjectUrl = true,
 		NeedsLicenseUrl = true,
 		ValidateRequireLicenseAcceptance = true,
-		ValidPackageNamespace = "Xamarin",
+		ValidPackageNamespace = new [] { "Xamarin", "Mono", "SkiaSharp", "mdoc" },
 	};
 
 	foreach (var globPattern in GLOB_PATTERNS) {
