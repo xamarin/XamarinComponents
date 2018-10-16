@@ -20,7 +20,7 @@ namespace Xamarin.Nuget.Validator
 
         public bool ValidateRequireLicenseAcceptance { get; set; }
 
-        public string ValidPackageNamespace { get; set; }
+        public string[] ValidPackageNamespace { get; set; }
 
     }
 }

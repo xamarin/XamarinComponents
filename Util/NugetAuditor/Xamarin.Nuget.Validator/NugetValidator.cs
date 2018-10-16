@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Xml;
 using System.Xml.Linq;
 using System.Xml.Serialization;
@@ -111,8 +112,19 @@ namespace Xamarin.Nuget.Validator
             if (options.ValidateRequireLicenseAcceptance && nuspec.RequireLicenseAcceptance != true)
                 errors.Add("You must have RequireLicenceAcceptance set to true");
 
-            if (!string.IsNullOrWhiteSpace(options.ValidPackageNamespace) && !nuspec.Id.StartsWith(options.ValidPackageNamespace, StringComparison.OrdinalIgnoreCase))
-                errors.Add($"The package does not start with the {options.ValidPackageNamespace} namespace");
+            if (options.ValidPackageNamespace != null && options.ValidPackageNamespace.Length > 0)
+            {
+                // matching the following patterns:
+                //    'NameSpace' exactly. This is useful for the 'SkiaSharp' base package
+                //    'NameSpace.*' pattern. This is useful for the 'Xamarin.Forms' and 'SkiaSharp.Views' packages.
+
+                var match = options.ValidPackageNamespace.Any(valid =>
+                    nuspec.Id.StartsWith(valid + ".", StringComparison.OrdinalIgnoreCase) ||
+                    nuspec.Id.Equals(valid, StringComparison.OrdinalIgnoreCase));
+
+                if (!match)
+                    errors.Add($"The package does not start with any of the following namespaces: [ '{string.Join("', '", options.ValidPackageNamespace)}' ]");
+            }
 
             return errors;
 
