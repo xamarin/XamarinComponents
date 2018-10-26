@@ -1,8 +1,5 @@
 ﻿<metadata>
   <attr path="/api/package[@name='com.github.chrisbanes.photoview']" name="managedName">ImageViews.Photo</attr>
-  
-  <attr path="/api/package[@name='com.github.chrisbanes.photoview']/class[@name='PhotoViewAttacher']/method[@name='getScaleType']" name="propertyName"></attr>
-  <attr path="/api/package[@name='com.github.chrisbanes.photoview']/class[@name='PhotoViewAttacher']/method[@name='setScaleType']" name="propertyName"></attr>
 
   <attr path="/api/package[@name='com.github.chrisbanes.photoview']/interface[@name='OnMatrixChangedListener']/method[@name='onMatrixChanged']/parameter[1]" name="managedName">rect</attr>
   <attr path="/api/package[@name='com.github.chrisbanes.photoview']/interface[@name='OnScaleChangedListener']/method[@name='onScaleChange']/parameter[1]" name="managedName">scaleFactor</attr>
