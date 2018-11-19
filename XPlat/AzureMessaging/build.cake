@@ -33,8 +33,8 @@ var buildSpec = new BuildSpec {
 	},
 
 	NuGets = new [] {
-		new NuGetInfo { NuSpec = "./nuget/Xamarin.Azure.NotificationHubs.iOS.nuspec", Version = IOS_NUGET_VERSION },
-		new NuGetInfo { NuSpec = "./nuget/Xamarin.Azure.NotificationHubs.Android.nuspec", Version = ANDROID_NUGET_VERSION },
+		new NuGetInfo { NuSpec = "./nuget/Xamarin.Azure.NotificationHubs.iOS.nuspec", Version = IOS_NUGET_VERSION, RequireLicenseAcceptance = true  },
+		new NuGetInfo { NuSpec = "./nuget/Xamarin.Azure.NotificationHubs.Android.nuspec", Version = ANDROID_NUGET_VERSION , RequireLicenseAcceptance = true },
 	},
 
 	Components = new [] {
