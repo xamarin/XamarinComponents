@@ -12,7 +12,7 @@
     <OutputType>Library</OutputType>
     <RootNamespace>Android.Support.Constraints</RootNamespace>
     <AssemblyName>Xamarin.Android.Support.Constraint.Layout.Solver</AssemblyName>
-    <TargetFrameworkVersion>v8.0</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v9.0</TargetFrameworkVersion>
     <MonoAndroidResourcePrefix>Resources</MonoAndroidResourcePrefix>
     <MonoAndroidAssetsPrefix>Assets</MonoAndroidAssetsPrefix>
     <AndroidUseLatestPlatformSdk>false</AndroidUseLatestPlatformSdk>
