@@ -51,45 +51,19 @@
     <Reference Include="System.Xml" />
     <Reference Include="System.Core" />
     <Reference Include="Mono.Android" />
-    <Reference Include="Xamarin.Android.Support.Annotations">
-      <HintPath>..\..\samples\packages\Xamarin.Android.Support.Annotations.28.0.0-preview7\lib\monoandroid81\Xamarin.Android.Support.Annotations.dll</HintPath>
-    </Reference>
-    <Reference Include="Xamarin.Android.Arch.Core.Common">
-      <HintPath>..\..\samples\packages\Xamarin.Android.Arch.Core.Common.1.1.1-preview7\lib\monoandroid81\Xamarin.Android.Arch.Core.Common.dll</HintPath>
-    </Reference>
-    <Reference Include="Xamarin.Android.Arch.Lifecycle.Common">
-      <HintPath>..\..\samples\packages\Xamarin.Android.Arch.Lifecycle.Common.1.1.1-preview7\lib\monoandroid81\Xamarin.Android.Arch.Lifecycle.Common.dll</HintPath>
-    </Reference>
-    <Reference Include="Xamarin.Android.Arch.Lifecycle.Runtime">
-      <HintPath>..\..\samples\packages\Xamarin.Android.Arch.Lifecycle.Runtime.1.1.1-preview7\lib\monoandroid81\Xamarin.Android.Arch.Lifecycle.Runtime.dll</HintPath>
-    </Reference>
-    <Reference Include="Xamarin.Android.Support.Compat">
-      <HintPath>..\..\samples\packages\Xamarin.Android.Support.Compat.28.0.0-preview7\lib\monoandroid81\Xamarin.Android.Support.Compat.dll</HintPath>
-    </Reference>
-    <Reference Include="Xamarin.Android.Support.Core.UI">
-      <HintPath>..\..\samples\packages\Xamarin.Android.Support.Core.UI.28.0.0-preview7\lib\monoandroid81\Xamarin.Android.Support.Core.UI.dll</HintPath>
-    </Reference>
-    <Reference Include="Xamarin.Android.Support.Core.Utils">
-      <HintPath>..\..\samples\packages\Xamarin.Android.Support.Core.Utils.28.0.0-preview7\lib\monoandroid81\Xamarin.Android.Support.Core.Utils.dll</HintPath>
-    </Reference>
-    <Reference Include="Xamarin.Android.Support.Fragment">
-      <HintPath>..\..\samples\packages\Xamarin.Android.Support.Fragment.28.0.0-preview7\lib\monoandroid81\Xamarin.Android.Support.Fragment.dll</HintPath>
-    </Reference>
-    <Reference Include="Xamarin.Android.Support.Media.Compat">
-      <HintPath>..\..\samples\packages\Xamarin.Android.Support.Media.Compat.28.0.0-preview7\lib\monoandroid81\Xamarin.Android.Support.Media.Compat.dll</HintPath>
-    </Reference>
-    <Reference Include="Xamarin.Android.Support.Vector.Drawable">
-      <HintPath>..\..\samples\packages\Xamarin.Android.Support.Vector.Drawable.28.0.0-preview7\lib\monoandroid81\Xamarin.Android.Support.Vector.Drawable.dll</HintPath>
-    </Reference>
-    <Reference Include="Xamarin.Android.Support.Animated.Vector.Drawable">
-      <HintPath>..\..\samples\packages\Xamarin.Android.Support.Animated.Vector.Drawable.28.0.0-preview7\lib\monoandroid81\Xamarin.Android.Support.Animated.Vector.Drawable.dll</HintPath>
-    </Reference>
-    <Reference Include="Xamarin.Android.Support.v7.AppCompat">
-      <HintPath>..\..\samples\packages\Xamarin.Android.Support.v7.AppCompat.28.0.0-preview7\lib\monoandroid81\Xamarin.Android.Support.v7.AppCompat.dll</HintPath>
-    </Reference>
-    <Reference Include="Xamarin.Android.Support.v7.RecyclerView">
-      <HintPath>..\..\samples\packages\Xamarin.Android.Support.v7.RecyclerView.28.0.0-preview7\lib\monoandroid81\Xamarin.Android.Support.v7.RecyclerView.dll</HintPath>
-    </Reference>
+    <Reference Include="Xamarin.Android.Support.Annotations" />
+    <Reference Include="Xamarin.Android.Arch.Core.Common" />
+    <Reference Include="Xamarin.Android.Arch.Lifecycle.Common" />
+    <Reference Include="Xamarin.Android.Arch.Lifecycle.Runtime" />
+    <Reference Include="Xamarin.Android.Support.Compat" />
+    <Reference Include="Xamarin.Android.Support.Core.UI" />
+    <Reference Include="Xamarin.Android.Support.Core.Utils" />
+    <Reference Include="Xamarin.Android.Support.Fragment" />
+    <Reference Include="Xamarin.Android.Support.Media.Compat" />
+    <Reference Include="Xamarin.Android.Support.Vector.Drawable" />
+    <Reference Include="Xamarin.Android.Support.Animated.Vector.Drawable" />
+    <Reference Include="Xamarin.Android.Support.v7.AppCompat" />
+    <Reference Include="Xamarin.Android.Support.v7.RecyclerView" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -123,17 +97,4 @@
     </PackageReference>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.Bindings.targets" />
-  <Import Project="..\..\samples\packages\Xamarin.Android.Support.Annotations.28.0.0-preview7\build\monoandroid81\Xamarin.Android.Support.Annotations.targets" Condition="Exists('..\..\samples\packages\Xamarin.Android.Support.Annotations.28.0.0-preview7\build\monoandroid81\Xamarin.Android.Support.Annotations.targets')" />
-  <Import Project="..\..\samples\packages\Xamarin.Android.Arch.Core.Common.1.1.1-preview7\build\monoandroid81\Xamarin.Android.Arch.Core.Common.targets" Condition="Exists('..\..\samples\packages\Xamarin.Android.Arch.Core.Common.1.1.1-preview7\build\monoandroid81\Xamarin.Android.Arch.Core.Common.targets')" />
-  <Import Project="..\..\samples\packages\Xamarin.Android.Arch.Lifecycle.Common.1.1.1-preview7\build\monoandroid81\Xamarin.Android.Arch.Lifecycle.Common.targets" Condition="Exists('..\..\samples\packages\Xamarin.Android.Arch.Lifecycle.Common.1.1.1-preview7\build\monoandroid81\Xamarin.Android.Arch.Lifecycle.Common.targets')" />
-  <Import Project="..\..\samples\packages\Xamarin.Android.Arch.Lifecycle.Runtime.1.1.1-preview7\build\monoandroid81\Xamarin.Android.Arch.Lifecycle.Runtime.targets" Condition="Exists('..\..\samples\packages\Xamarin.Android.Arch.Lifecycle.Runtime.1.1.1-preview7\build\monoandroid81\Xamarin.Android.Arch.Lifecycle.Runtime.targets')" />
-  <Import Project="..\..\samples\packages\Xamarin.Android.Support.Compat.28.0.0-preview7\build\monoandroid81\Xamarin.Android.Support.Compat.targets" Condition="Exists('..\..\samples\packages\Xamarin.Android.Support.Compat.28.0.0-preview7\build\monoandroid81\Xamarin.Android.Support.Compat.targets')" />
-  <Import Project="..\..\samples\packages\Xamarin.Android.Support.Core.UI.28.0.0-preview7\build\monoandroid81\Xamarin.Android.Support.Core.UI.targets" Condition="Exists('..\..\samples\packages\Xamarin.Android.Support.Core.UI.28.0.0-preview7\build\monoandroid81\Xamarin.Android.Support.Core.UI.targets')" />
-  <Import Project="..\..\samples\packages\Xamarin.Android.Support.Core.Utils.28.0.0-preview7\build\monoandroid81\Xamarin.Android.Support.Core.Utils.targets" Condition="Exists('..\..\samples\packages\Xamarin.Android.Support.Core.Utils.28.0.0-preview7\build\monoandroid81\Xamarin.Android.Support.Core.Utils.targets')" />
-  <Import Project="..\..\samples\packages\Xamarin.Android.Support.Fragment.28.0.0-preview7\build\monoandroid81\Xamarin.Android.Support.Fragment.targets" Condition="Exists('..\..\samples\packages\Xamarin.Android.Support.Fragment.28.0.0-preview7\build\monoandroid81\Xamarin.Android.Support.Fragment.targets')" />
-  <Import Project="..\..\samples\packages\Xamarin.Android.Support.Media.Compat.28.0.0-preview7\build\monoandroid81\Xamarin.Android.Support.Media.Compat.targets" Condition="Exists('..\..\samples\packages\Xamarin.Android.Support.Media.Compat.28.0.0-preview7\build\monoandroid81\Xamarin.Android.Support.Media.Compat.targets')" />
-  <Import Project="..\..\samples\packages\Xamarin.Android.Support.Vector.Drawable.28.0.0-preview7\build\monoandroid81\Xamarin.Android.Support.Vector.Drawable.targets" Condition="Exists('..\..\samples\packages\Xamarin.Android.Support.Vector.Drawable.28.0.0-preview7\build\monoandroid81\Xamarin.Android.Support.Vector.Drawable.targets')" />
-  <Import Project="..\..\samples\packages\Xamarin.Android.Support.Animated.Vector.Drawable.28.0.0-preview7\build\monoandroid81\Xamarin.Android.Support.Animated.Vector.Drawable.targets" Condition="Exists('..\..\samples\packages\Xamarin.Android.Support.Animated.Vector.Drawable.28.0.0-preview7\build\monoandroid81\Xamarin.Android.Support.Animated.Vector.Drawable.targets')" />
-  <Import Project="..\..\samples\packages\Xamarin.Android.Support.v7.AppCompat.28.0.0-preview7\build\monoandroid81\Xamarin.Android.Support.v7.AppCompat.targets" Condition="Exists('..\..\samples\packages\Xamarin.Android.Support.v7.AppCompat.28.0.0-preview7\build\monoandroid81\Xamarin.Android.Support.v7.AppCompat.targets')" />
-  <Import Project="..\..\samples\packages\Xamarin.Android.Support.v7.RecyclerView.28.0.0-preview7\build\monoandroid81\Xamarin.Android.Support.v7.RecyclerView.targets" Condition="Exists('..\..\samples\packages\Xamarin.Android.Support.v7.RecyclerView.28.0.0-preview7\build\monoandroid81\Xamarin.Android.Support.v7.RecyclerView.targets')" />
 </Project>
