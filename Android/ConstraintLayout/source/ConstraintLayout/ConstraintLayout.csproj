@@ -51,19 +51,6 @@
     <Reference Include="System.Xml" />
     <Reference Include="System.Core" />
     <Reference Include="Mono.Android" />
-    <Reference Include="Xamarin.Android.Support.Annotations" />
-    <Reference Include="Xamarin.Android.Arch.Core.Common" />
-    <Reference Include="Xamarin.Android.Arch.Lifecycle.Common" />
-    <Reference Include="Xamarin.Android.Arch.Lifecycle.Runtime" />
-    <Reference Include="Xamarin.Android.Support.Compat" />
-    <Reference Include="Xamarin.Android.Support.Core.UI" />
-    <Reference Include="Xamarin.Android.Support.Core.Utils" />
-    <Reference Include="Xamarin.Android.Support.Fragment" />
-    <Reference Include="Xamarin.Android.Support.Media.Compat" />
-    <Reference Include="Xamarin.Android.Support.Vector.Drawable" />
-    <Reference Include="Xamarin.Android.Support.Animated.Vector.Drawable" />
-    <Reference Include="Xamarin.Android.Support.v7.AppCompat" />
-    <Reference Include="Xamarin.Android.Support.v7.RecyclerView" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
