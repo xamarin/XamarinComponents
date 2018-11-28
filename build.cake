@@ -357,7 +357,7 @@ Task("nuget-validation")
 
 	var nupkgFiles = GetFiles ("./**/output/*.nupkg");
 
-	Information ("Found ({0}) Nuget's to validate", dlls.Count ());
+	Information ("Found ({0}) Nuget's to validate", nupkgFiles.Count ());
 
 	foreach (var nupkgFile in nupkgFiles)
 	{
