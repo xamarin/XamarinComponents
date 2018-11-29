@@ -1,4 +1,5 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <metadata>
 	<attr path="/api/package[@name='android.support.constraint']" name="managedName">Android.Support.Constraints</attr>
+    <attr path="/api/package[@name='android.support.constraint.motion']" name="managedName">Android.Support.Constraints.Motion</attr>
 </metadata>
