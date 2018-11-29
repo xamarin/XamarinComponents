@@ -1,6 +1,7 @@
 #load "common.cake"
 
 #addin nuget:?package=redth.xunit.resultwriter&version=1.0.0
+#addin "nuget:?package=Xamarin.Nuget.Validator&version=1.1.1"
 
 var TARGET = Argument ("target", Argument ("t", Argument ("Target", "build")));
 
@@ -339,4 +340,44 @@ Task ("buildall")
 	
 });
 
+Task("nuget-validation")
+	.Does(()=>
+{
+	//setup validation options
+	var options = new Xamarin.Nuget.Validator.NugetValidatorOptions()
+	{
+		Copyright = "© Microsoft Corporation. All rights reserved.",
+		Author = "Microsoft",
+		Owner = "Microsoft",
+		NeedsProjectUrl = true,
+		NeedsLicenseUrl = true,
+		ValidateRequireLicenseAcceptance = true,
+		ValidPackageNamespace = new [] { "Xamarin", "Mono", "SkiaSharp", "HarfBuzzSharp", "mdoc" },
+	};
+
+	var nupkgFiles = GetFiles ("./**/output/*.nupkg");
+
+	Information ("Found ({0}) Nuget's to validate", nupkgFiles.Count ());
+
+	foreach (var nupkgFile in nupkgFiles)
+	{
+		Information ("Verifiying Metadata of {0}", nupkgFile.GetFilename ());
+
+		var result = Xamarin.Nuget.Validator.NugetValidator.Validate(MakeAbsolute(nupkgFile).FullPath, options);
+
+		if (!result.Success)
+		{
+			Information ("Metadata validation failed for: {0} \n\n", nupkgFile.GetFilename ());
+			Information (string.Join("\n    ", result.ErrorMessages));
+			throw new Exception ($"Invalid Metadata for: {nupkgFile.GetFilename ()}");
+
+		}
+		else
+		{
+			Information ("Metadata validation passed for: {0}", nupkgFile.GetFilename ());
+		}
+			
+	}
+
+});
 RunTarget (TARGET);
