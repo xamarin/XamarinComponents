@@ -5418,98 +5418,98 @@ namespace MaterialComponents {
 	// @protocol MDCColorScheming
 	[Protocol (Name = "MDCColorScheming")]
 	interface ColorScheming {
-		// @required @property (readonly, nonatomic) UIColor * _Nonnull primaryColor;
+		// @required @property (readonly, copy, nonatomic) UIColor * _Nonnull primaryColor;
 		[Abstract]
-		[Export ("primaryColor")]
+		[Export ("primaryColor", ArgumentSemantic.Copy)]
 		UIColor PrimaryColor { get; }
 
-		// @required @property (readonly, nonatomic) UIColor * _Nonnull primaryColorVariant;
+		// @required @property (readonly, copy, nonatomic) UIColor * _Nonnull primaryColorVariant;
 		[Abstract]
-		[Export ("primaryColorVariant")]
+		[Export ("primaryColorVariant", ArgumentSemantic.Copy)]
 		UIColor PrimaryColorVariant { get; }
 
-		// @required @property (readonly, nonatomic) UIColor * _Nonnull secondaryColor;
+		// @required @property (readonly, copy, nonatomic) UIColor * _Nonnull secondaryColor;
 		[Abstract]
-		[Export ("secondaryColor")]
+		[Export ("secondaryColor", ArgumentSemantic.Copy)]
 		UIColor SecondaryColor { get; }
 
-		// @required @property (readonly, nonatomic) UIColor * _Nonnull errorColor;
+		// @required @property (readonly, copy, nonatomic) UIColor * _Nonnull errorColor;
 		[Abstract]
-		[Export ("errorColor")]
+		[Export ("errorColor", ArgumentSemantic.Copy)]
 		UIColor ErrorColor { get; }
 
-		// @required @property (readonly, nonatomic) UIColor * _Nonnull surfaceColor;
+		// @required @property (readonly, copy, nonatomic) UIColor * _Nonnull surfaceColor;
 		[Abstract]
-		[Export ("surfaceColor")]
+		[Export ("surfaceColor", ArgumentSemantic.Copy)]
 		UIColor SurfaceColor { get; }
 
-		// @required @property (readonly, nonatomic) UIColor * _Nonnull backgroundColor;
+		// @required @property (readonly, copy, nonatomic) UIColor * _Nonnull backgroundColor;
 		[Abstract]
-		[Export ("backgroundColor")]
+		[Export ("backgroundColor", ArgumentSemantic.Copy)]
 		UIColor BackgroundColor { get; }
 
-		// @required @property (readonly, nonatomic) UIColor * _Nonnull onPrimaryColor;
+		// @required @property (readonly, copy, nonatomic) UIColor * _Nonnull onPrimaryColor;
 		[Abstract]
-		[Export ("onPrimaryColor")]
+		[Export ("onPrimaryColor", ArgumentSemantic.Copy)]
 		UIColor OnPrimaryColor { get; }
 
-		// @required @property (readonly, nonatomic) UIColor * _Nonnull onSecondaryColor;
+		// @required @property (readonly, copy, nonatomic) UIColor * _Nonnull onSecondaryColor;
 		[Abstract]
-		[Export ("onSecondaryColor")]
+		[Export ("onSecondaryColor", ArgumentSemantic.Copy)]
 		UIColor OnSecondaryColor { get; }
 
-		// @required @property (readonly, nonatomic) UIColor * _Nonnull onSurfaceColor;
+		// @required @property (readonly, copy, nonatomic) UIColor * _Nonnull onSurfaceColor;
 		[Abstract]
-		[Export ("onSurfaceColor")]
+		[Export ("onSurfaceColor", ArgumentSemantic.Copy)]
 		UIColor OnSurfaceColor { get; }
 
-		// @required @property (readonly, nonatomic) UIColor * _Nonnull onBackgroundColor;
+		// @required @property (readonly, copy, nonatomic) UIColor * _Nonnull onBackgroundColor;
 		[Abstract]
-		[Export ("onBackgroundColor")]
+		[Export ("onBackgroundColor", ArgumentSemantic.Copy)]
 		UIColor OnBackgroundColor { get; }
 	}
 
-	// @interface MDCSemanticColorScheme : NSObject <MDCColorScheming>
+	// @interface MDCSemanticColorScheme : NSObject <MDCColorScheming, NSCopying>
 	[BaseType (typeof (NSObject), Name = "MDCSemanticColorScheme")]
-	interface SemanticColorScheme : ColorScheming {
-		// @property (readwrite, nonatomic) UIColor * _Nonnull primaryColor;
-		[Export ("primaryColor", ArgumentSemantic.Assign)]
+	interface SemanticColorScheme : ColorScheming, INSCopying {
+		// @property (readwrite, copy, nonatomic) UIColor * _Nonnull primaryColor;
+		[Export ("primaryColor", ArgumentSemantic.Copy)]
 		new UIColor PrimaryColor { get; set; }
 
-		// @property (readwrite, nonatomic) UIColor * _Nonnull primaryColorVariant;
-		[Export ("primaryColorVariant", ArgumentSemantic.Assign)]
+		// @property (readwrite, copy, nonatomic) UIColor * _Nonnull primaryColorVariant;
+		[Export ("primaryColorVariant", ArgumentSemantic.Copy)]
 		new UIColor PrimaryColorVariant { get; set; }
 
-		// @property (readwrite, nonatomic) UIColor * _Nonnull secondaryColor;
-		[Export ("secondaryColor", ArgumentSemantic.Assign)]
+		// @property (readwrite, copy, nonatomic) UIColor * _Nonnull secondaryColor;
+		[Export ("secondaryColor", ArgumentSemantic.Copy)]
 		new UIColor SecondaryColor { get; set; }
 
-		// @property (readwrite, nonatomic) UIColor * _Nonnull errorColor;
-		[Export ("errorColor", ArgumentSemantic.Assign)]
+		// @property (readwrite, copy, nonatomic) UIColor * _Nonnull errorColor;
+		[Export ("errorColor", ArgumentSemantic.Copy)]
 		new UIColor ErrorColor { get; set; }
 
-		// @property (readwrite, nonatomic) UIColor * _Nonnull surfaceColor;
-		[Export ("surfaceColor", ArgumentSemantic.Assign)]
+		// @property (readwrite, copy, nonatomic) UIColor * _Nonnull surfaceColor;
+		[Export ("surfaceColor", ArgumentSemantic.Copy)]
 		new UIColor SurfaceColor { get; set; }
 
-		// @property (readwrite, nonatomic) UIColor * _Nonnull backgroundColor;
-		[Export ("backgroundColor", ArgumentSemantic.Assign)]
+		// @property (readwrite, copy, nonatomic) UIColor * _Nonnull backgroundColor;
+		[Export ("backgroundColor", ArgumentSemantic.Copy)]
 		new UIColor BackgroundColor { get; set; }
 
-		// @property (readwrite, nonatomic) UIColor * _Nonnull onPrimaryColor;
-		[Export ("onPrimaryColor", ArgumentSemantic.Assign)]
+		// @property (readwrite, copy, nonatomic) UIColor * _Nonnull onPrimaryColor;
+		[Export ("onPrimaryColor", ArgumentSemantic.Copy)]
 		new UIColor OnPrimaryColor { get; set; }
 
-		// @property (readwrite, nonatomic) UIColor * _Nonnull onSecondaryColor;
-		[Export ("onSecondaryColor", ArgumentSemantic.Assign)]
+		// @property (readwrite, copy, nonatomic) UIColor * _Nonnull onSecondaryColor;
+		[Export ("onSecondaryColor", ArgumentSemantic.Copy)]
 		new UIColor OnSecondaryColor { get; set; }
 
-		// @property (readwrite, nonatomic) UIColor * _Nonnull onSurfaceColor;
-		[Export ("onSurfaceColor", ArgumentSemantic.Assign)]
+		// @property (readwrite, copy, nonatomic) UIColor * _Nonnull onSurfaceColor;
+		[Export ("onSurfaceColor", ArgumentSemantic.Copy)]
 		new UIColor OnSurfaceColor { get; set; }
 
-		// @property (readwrite, nonatomic) UIColor * _Nonnull onBackgroundColor;
-		[Export ("onBackgroundColor", ArgumentSemantic.Assign)]
+		// @property (readwrite, copy, nonatomic) UIColor * _Nonnull onBackgroundColor;
+		[Export ("onBackgroundColor", ArgumentSemantic.Copy)]
 		new UIColor OnBackgroundColor { get; set; }
 
 		// -(instancetype _Nonnull)initWithDefaults:(MDCColorSchemeDefaults)defaults;
@@ -7681,125 +7681,125 @@ namespace MaterialComponents {
 	// @protocol MDCTypographyScheming
 	[Protocol (Name = "MDCTypographyScheming")]
 	interface TypographyScheming {
-		// @required @property (readonly, nonatomic) UIFont * _Nonnull headline1;
+		// @required @property (readonly, copy, nonatomic) UIFont * _Nonnull headline1;
 		[Abstract]
-		[Export ("headline1")]
+		[Export ("headline1", ArgumentSemantic.Copy)]
 		UIFont Headline1 { get; }
 
-		// @required @property (readonly, nonatomic) UIFont * _Nonnull headline2;
+		// @required @property (readonly, copy, nonatomic) UIFont * _Nonnull headline2;
 		[Abstract]
-		[Export ("headline2")]
+		[Export ("headline2", ArgumentSemantic.Copy)]
 		UIFont Headline2 { get; }
 
-		// @required @property (readonly, nonatomic) UIFont * _Nonnull headline3;
+		// @required @property (readonly, copy, nonatomic) UIFont * _Nonnull headline3;
 		[Abstract]
-		[Export ("headline3")]
+		[Export ("headline3", ArgumentSemantic.Copy)]
 		UIFont Headline3 { get; }
 
-		// @required @property (readonly, nonatomic) UIFont * _Nonnull headline4;
+		// @required @property (readonly, copy, nonatomic) UIFont * _Nonnull headline4;
 		[Abstract]
-		[Export ("headline4")]
+		[Export ("headline4", ArgumentSemantic.Copy)]
 		UIFont Headline4 { get; }
 
-		// @required @property (readonly, nonatomic) UIFont * _Nonnull headline5;
+		// @required @property (readonly, copy, nonatomic) UIFont * _Nonnull headline5;
 		[Abstract]
-		[Export ("headline5")]
+		[Export ("headline5", ArgumentSemantic.Copy)]
 		UIFont Headline5 { get; }
 
-		// @required @property (readonly, nonatomic) UIFont * _Nonnull headline6;
+		// @required @property (readonly, copy, nonatomic) UIFont * _Nonnull headline6;
 		[Abstract]
-		[Export ("headline6")]
+		[Export ("headline6", ArgumentSemantic.Copy)]
 		UIFont Headline6 { get; }
 
-		// @required @property (readonly, nonatomic) UIFont * _Nonnull subtitle1;
+		// @required @property (readonly, copy, nonatomic) UIFont * _Nonnull subtitle1;
 		[Abstract]
-		[Export ("subtitle1")]
+		[Export ("subtitle1", ArgumentSemantic.Copy)]
 		UIFont Subtitle1 { get; }
 
-		// @required @property (readonly, nonatomic) UIFont * _Nonnull subtitle2;
+		// @required @property (readonly, copy, nonatomic) UIFont * _Nonnull subtitle2;
 		[Abstract]
-		[Export ("subtitle2")]
+		[Export ("subtitle2", ArgumentSemantic.Copy)]
 		UIFont Subtitle2 { get; }
 
-		// @required @property (readonly, nonatomic) UIFont * _Nonnull body1;
+		// @required @property (readonly, copy, nonatomic) UIFont * _Nonnull body1;
 		[Abstract]
-		[Export ("body1")]
+		[Export ("body1", ArgumentSemantic.Copy)]
 		UIFont Body1 { get; }
 
-		// @required @property (readonly, nonatomic) UIFont * _Nonnull body2;
+		// @required @property (readonly, copy, nonatomic) UIFont * _Nonnull body2;
 		[Abstract]
-		[Export ("body2")]
+		[Export ("body2", ArgumentSemantic.Copy)]
 		UIFont Body2 { get; }
 
-		// @required @property (readonly, nonatomic) UIFont * _Nonnull caption;
+		// @required @property (readonly, copy, nonatomic) UIFont * _Nonnull caption;
 		[Abstract]
-		[Export ("caption")]
+		[Export ("caption", ArgumentSemantic.Copy)]
 		UIFont Caption { get; }
 
-		// @required @property (readonly, nonatomic) UIFont * _Nonnull button;
+		// @required @property (readonly, copy, nonatomic) UIFont * _Nonnull button;
 		[Abstract]
-		[Export ("button")]
+		[Export ("button", ArgumentSemantic.Copy)]
 		UIFont Button { get; }
 
-		// @required @property (readonly, nonatomic) UIFont * _Nonnull overline;
+		// @required @property (readonly, copy, nonatomic) UIFont * _Nonnull overline;
 		[Abstract]
-		[Export ("overline")]
+		[Export ("overline", ArgumentSemantic.Copy)]
 		UIFont Overline { get; }
 	}
 
-	// @interface MDCTypographyScheme : NSObject <MDCTypographyScheming>
+	// @interface MDCTypographyScheme : NSObject <MDCTypographyScheming, NSCopying>
 	[BaseType (typeof (NSObject), Name = "MDCTypographyScheme")]
-	interface TypographyScheme : TypographyScheming {
-		// @property (readwrite, nonatomic) UIFont * _Nonnull headline1;
-		[Export ("headline1", ArgumentSemantic.Assign)]
+	interface TypographyScheme : TypographyScheming, INSCopying {
+		// @property (readwrite, copy, nonatomic) UIFont * _Nonnull headline1;
+		[Export ("headline1", ArgumentSemantic.Copy)]
 		new UIFont Headline1 { get; set; }
 
-		// @property (readwrite, nonatomic) UIFont * _Nonnull headline2;
-		[Export ("headline2", ArgumentSemantic.Assign)]
+		// @property (readwrite, copy, nonatomic) UIFont * _Nonnull headline2;
+		[Export ("headline2", ArgumentSemantic.Copy)]
 		new UIFont Headline2 { get; set; }
 
-		// @property (readwrite, nonatomic) UIFont * _Nonnull headline3;
-		[Export ("headline3", ArgumentSemantic.Assign)]
+		// @property (readwrite, copy, nonatomic) UIFont * _Nonnull headline3;
+		[Export ("headline3", ArgumentSemantic.Copy)]
 		new UIFont Headline3 { get; set; }
 
-		// @property (readwrite, nonatomic) UIFont * _Nonnull headline4;
-		[Export ("headline4", ArgumentSemantic.Assign)]
+		// @property (readwrite, copy, nonatomic) UIFont * _Nonnull headline4;
+		[Export ("headline4", ArgumentSemantic.Copy)]
 		new UIFont Headline4 { get; set; }
 
-		// @property (readwrite, nonatomic) UIFont * _Nonnull headline5;
-		[Export ("headline5", ArgumentSemantic.Assign)]
+		// @property (readwrite, copy, nonatomic) UIFont * _Nonnull headline5;
+		[Export ("headline5", ArgumentSemantic.Copy)]
 		new UIFont Headline5 { get; set; }
 
-		// @property (readwrite, nonatomic) UIFont * _Nonnull headline6;
-		[Export ("headline6", ArgumentSemantic.Assign)]
+		// @property (readwrite, copy, nonatomic) UIFont * _Nonnull headline6;
+		[Export ("headline6", ArgumentSemantic.Copy)]
 		new UIFont Headline6 { get; set; }
 
-		// @property (readwrite, nonatomic) UIFont * _Nonnull subtitle1;
-		[Export ("subtitle1", ArgumentSemantic.Assign)]
+		// @property (readwrite, copy, nonatomic) UIFont * _Nonnull subtitle1;
+		[Export ("subtitle1", ArgumentSemantic.Copy)]
 		new UIFont Subtitle1 { get; set; }
 
-		// @property (readwrite, nonatomic) UIFont * _Nonnull subtitle2;
-		[Export ("subtitle2", ArgumentSemantic.Assign)]
+		// @property (readwrite, copy, nonatomic) UIFont * _Nonnull subtitle2;
+		[Export ("subtitle2", ArgumentSemantic.Copy)]
 		new UIFont Subtitle2 { get; set; }
 
-		// @property (readwrite, nonatomic) UIFont * _Nonnull body1;
-		[Export ("body1", ArgumentSemantic.Assign)]
+		// @property (readwrite, copy, nonatomic) UIFont * _Nonnull body1;
+		[Export ("body1", ArgumentSemantic.Copy)]
 		new UIFont Body1 { get; set; }
 
-		// @property (readwrite, nonatomic) UIFont * _Nonnull body2;
-		[Export ("body2", ArgumentSemantic.Assign)]
+		// @property (readwrite, copy, nonatomic) UIFont * _Nonnull body2;
+		[Export ("body2", ArgumentSemantic.Copy)]
 		new UIFont Body2 { get; set; }
 
-		// @property (readwrite, nonatomic) UIFont * _Nonnull caption;
-		[Export ("caption", ArgumentSemantic.Assign)]
+		// @property (readwrite, copy, nonatomic) UIFont * _Nonnull caption;
+		[Export ("caption", ArgumentSemantic.Copy)]
 		new UIFont Caption { get; set; }
 
-		// @property (readwrite, nonatomic) UIFont * _Nonnull button;
-		[Export ("button", ArgumentSemantic.Assign)]
+		// @property (readwrite, copy, nonatomic) UIFont * _Nonnull button;
+		[Export ("button", ArgumentSemantic.Copy)]
 		new UIFont Button { get; set; }
 
-		// @property (readwrite, nonatomic) UIFont * _Nonnull overline;
-		[Export ("overline", ArgumentSemantic.Assign)]
+		// @property (readwrite, copy, nonatomic) UIFont * _Nonnull overline;
+		[Export ("overline", ArgumentSemantic.Copy)]
 		new UIFont Overline { get; set; }
 
 		// -(instancetype _Nonnull)initWithDefaults:(MDCTypographySchemeDefaults)defaults;
