@@ -2,11 +2,89 @@
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 
+using CoreGraphics;
 using Foundation;
 using ObjCRuntime;
 using UIKit;
 
 namespace MaterialComponents {
+
+	public static class ShadowElevations {
+		/** The shadow elevation of the app bar. */
+		public static readonly nfloat AppBar = (nfloat)4.0;
+
+		/** The shadow elevation of the Bottom App Bar. */
+		public static readonly nfloat BottomNavigationBar = (nfloat)8.0;
+
+		/** The shadow elevation of a card in its picked up state. */
+		public static readonly nfloat CardPickedUp = (nfloat)8.0;
+
+		/** The shadow elevation of a card in its resting state. */
+		public static readonly nfloat CardResting = (nfloat)2.0;
+
+		/** The shadow elevation of dialogs. */
+		public static readonly nfloat Dialog = (nfloat)24.0;
+
+		/** The shadow elevation of the floating action button in its pressed state. */
+		public static readonly nfloat FloatingActionButtonPressed = (nfloat)12.0;
+
+		/** The shadow elevation of the floating action button in its resting state. */
+		public static readonly nfloat FloatingActionButtonResting = (nfloat)6.0;
+
+		/** The shadow elevation of a menu. */
+		public static readonly nfloat Menu = (nfloat)8.0;
+
+		/** The shadow elevation of a modal bottom sheet. */
+		public static readonly nfloat ModalBottomSheet = (nfloat)16.0;
+
+		/** The shadow elevation of the navigation drawer. */
+		public static readonly nfloat NavDrawer = (nfloat)16.0;
+
+		/** No shadow elevation at all. */
+		public static readonly nfloat None = (nfloat)0.0;
+
+		/** The shadow elevation of a picker. */
+		public static readonly nfloat Picker = (nfloat)24.0;
+
+		/** The shadow elevation of the quick entry in the scrolled state. */
+		public static readonly nfloat QuickEntry = (nfloat)3.0;
+
+		/** The shadow elevation of the quick entry in the resting state. */
+		public static readonly nfloat QuickEntryResting = (nfloat)2.0;
+
+		/** The shadow elevation of a raised button in the pressed state. */
+		public static readonly nfloat RaisedButtonPressed = (nfloat)8.0;
+
+		/** The shadow elevation of a raised button in the resting state. */
+		public static readonly nfloat RaisedButtonResting = (nfloat)2.0;
+
+		/** The shadow elevation of a refresh indicator. */
+		public static readonly nfloat Refresh = (nfloat)3.0;
+
+		/** The shadow elevation of the right drawer. */
+		public static readonly nfloat RightDrawer = (nfloat)16.0;
+
+		/** The shadow elevation of the search bar in the resting state. */
+		public static readonly nfloat SearchBarResting = (nfloat)2.0;
+
+		/** The shadow elevation of the search bar in the scrolled state. */
+		public static readonly nfloat SearchBarScrolled = (nfloat)3.0;
+
+		/** The shadow elevation of the snackbar. */
+		public static readonly nfloat Snackbar = (nfloat)6.0;
+
+		/** The shadow elevation of a sub menu (+1 for each additional sub menu). */
+		public static readonly nfloat SubMenu = (nfloat)9.0;
+
+		/** The shadow elevation of a switch. */
+		public static readonly nfloat Switch = (nfloat)1.0;
+	}
+
+	partial class ShapedView {
+		public ShapedView (CGRect frame) : this (frame, null) {
+		}
+	}
+
 	partial class CAMediaTimingFunctionAnimationTiming {
 		[CompilerGenerated]
 		static readonly IntPtr class_ptr = Class.GetHandle ("CAMediaTimingFunction");
@@ -35,20 +113,22 @@ namespace MaterialComponents {
 	}
 
 	public partial class CardScheme {
-		SemanticColorScheme semanticColorScheme;
 		public SemanticColorScheme SemanticColorScheme {
 			get {
-				if (semanticColorScheme == null)
-					semanticColorScheme = Runtime.GetNSObject<SemanticColorScheme> (ColorScheme.Handle, false);
-
-				return semanticColorScheme;
+				return Runtime.GetNSObject<SemanticColorScheme> (ColorScheme.Handle, false);
 			}
 			set {
-				semanticColorScheme?.Dispose ();
-				semanticColorScheme = null;
 				ColorScheme = value;
 			}
 		}
+		//public ShapeScheme ShapeScheme {
+		//	get {
+		//		return Runtime.GetNSObject<ShapeScheme> (ShapeScheme.Handle, false);
+		//	}
+		//	set {
+		//		ShapeScheme = value;
+		//	}
+		//}
 	}
 
 	public partial class ChipField {
@@ -95,5 +175,15 @@ namespace MaterialComponents {
 	partial class UIViewMDCTimingFunction {
 		[CompilerGenerated]
 		static readonly IntPtr class_ptr = Class.GetHandle ("UIView");
+	}
+
+	partial class UIViewMaterialRtl {
+		[CompilerGenerated]
+		static readonly IntPtr class_ptr = Class.GetHandle ("UIView");
+	}
+
+	partial class NSLocaleMaterialRtl {
+		[CompilerGenerated]
+		static readonly IntPtr class_ptr = Class.GetHandle ("NSLocale");
 	}
 }

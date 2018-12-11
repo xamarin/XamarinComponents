@@ -7,7 +7,7 @@ var IOS_PODS = new List<string> {
 	"install! 'cocoapods', :integrate_targets => false",
 	"use_frameworks!",
 	"target 'Xamarin' do",
-	"pod 'MaterialComponents', '60.1.0'",
+	"pod 'MaterialComponents', '70.1.0'",
 	"end",
 };
 
