@@ -102,7 +102,7 @@ namespace MaterialComponents {
 		}
 
 		// renamed/obsolete members
-		[Obsolete ("Use ApplySurfaceVariant instead.")]
+		[Obsolete ("Use ApplySemanticColorScheme instead.")]
 		public static void ApplySemanticColorSchemeToTextInputController (IColorScheming colorScheme, ITextInputController textInputController) {
 			ApplySemanticColorScheme (colorScheme, textInputController);
 		}
