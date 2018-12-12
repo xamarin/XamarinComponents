@@ -35,7 +35,7 @@ var buildSpec = new BuildSpec {
 	},
 
 	NuGets = new [] {
-		new NuGetInfo { NuSpec = "./nuget/Xamarin.iOS.MaterialComponents.nuspec", BuildsOn = BuildPlatforms.Mac },
+		new NuGetInfo { NuSpec = "./nuget/Xamarin.iOS.MaterialComponents.nuspec", BuildsOn = BuildPlatforms.Mac, RequireLicenseAcceptance = true },
 	},
 };
 
