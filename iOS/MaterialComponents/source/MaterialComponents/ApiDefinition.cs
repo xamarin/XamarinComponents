@@ -773,7 +773,7 @@ namespace MaterialComponents {
 		// +(void)applySurfaceVariantWithSemanticColorScheme:(id<MDCColorScheming> _Nonnull)colorScheme toBottomAppBarView:(MDCBottomAppBarView * _Nonnull)bottomAppBarView;
 		[Static]
 		[Export ("applySurfaceVariantWithSemanticColorScheme:toBottomAppBarView:")]
-		void ApplySurfaceVariantWithSemanticColorScheme (IColorScheming colorScheme, BottomAppBarView bottomAppBarView);
+		void ApplySurfaceVariant (IColorScheming colorScheme, BottomAppBarView bottomAppBarView);
 
 		//
 		// From MDCBottomAppBarColorThemer (ToBeDeprecated)
@@ -6481,29 +6481,29 @@ namespace MaterialComponents {
 		// +(void)applySemanticColorScheme:(id<MDCColorScheming> _Nonnull)colorScheme toTextInputController:(id<MDCTextInputController> _Nonnull)textInputController;
 		[Static]
 		[Export ("applySemanticColorScheme:toTextInputController:")]
-		void ApplySemanticColorSchemeToTextInputController (IColorScheming colorScheme, ITextInputController textInputController);
+		void ApplySemanticColorScheme (IColorScheming colorScheme, ITextInputController textInputController);
 
 		// +(void)applySemanticColorScheme:(id<MDCColorScheming> _Nonnull)colorScheme toAllTextInputControllersOfClass:(Class<MDCTextInputController> _Nonnull)textInputControllerClass;
 		[Static]
 		[Export ("applySemanticColorScheme:toAllTextInputControllersOfClass:")]
-		void ApplySemanticColorSchemeToAllTextInputControllersOfClass (IColorScheming colorScheme, ITextInputController textInputControllerClass);
+		void ApplySemanticColorSchemeToAll (IColorScheming colorScheme, Class textInputControllerClass);
 
 		// +(void)applySemanticColorScheme:(id<MDCColorScheming> _Nonnull)colorScheme toTextInput:(id<MDCTextInput> _Nonnull)textInput;
 		[Static]
 		[Export ("applySemanticColorScheme:toTextInput:")]
-		void ApplySemanticColorSchemeToTextInput (IColorScheming colorScheme, ITextInput textInput);
+		void ApplySemanticColorScheme (IColorScheming colorScheme, ITextInput textInput);
 
 		// +(void)applyColorScheme:(id<MDCColorScheme> _Nonnull)colorScheme toTextInputController:(id<MDCTextInputController> _Nonnull)textInputController;
-		[Obsolete ("This method will soon be deprecated. Consider using ApplySemanticColorSchemeToTextInputController method instead.")]
+		[Obsolete ("This method will soon be deprecated. Consider using ApplySemanticColorScheme method instead.")]
 		[Static]
 		[Export ("applyColorScheme:toTextInputController:")]
 		void ApplyColorSchemeToTextInputController (IColorScheme colorScheme, ITextInputController textInputController);
 
 		// +(void)applyColorScheme:(id<MDCColorScheme> _Nonnull)colorScheme toAllTextInputControllersOfClass:(Class<MDCTextInputController> _Nonnull)textInputControllerClass;
-		[Obsolete ("This method will soon be deprecated. Consider using ApplySemanticColorSchemeToAllTextInputControllersOfClass method instead.")]
+		[Obsolete ("This method will soon be deprecated. Consider using ApplySemanticColorSchemeToAll method instead.")]
 		[Static]
 		[Export ("applyColorScheme:toAllTextInputControllersOfClass:")]
-		void ApplyColorSchemeoAllTextInputControllersOfClass (IColorScheme colorScheme, ITextInputController textInputControllerClass);
+		void ApplyColorSchemeoAllTextInputControllersOfClass (IColorScheme colorScheme, Class textInputControllerClass);
 	}
 
 	// @interface MDCTextFieldFontThemer : NSObject
@@ -6514,17 +6514,17 @@ namespace MaterialComponents {
 		// +(void)applyFontScheme:(id<MDCFontScheme> _Nonnull)fontScheme toTextInputController:(id<MDCTextInputController> _Nonnull)textInputController;
 		[Static]
 		[Export ("applyFontScheme:toTextInputController:")]
-		void ApplyFontSchemeToTextInputController (IFontScheme fontScheme, ITextInputController textInputController);
+		void ApplyFontScheme (IFontScheme fontScheme, ITextInputController textInputController);
 
 		// +(void)applyFontScheme:(id<MDCFontScheme> _Nonnull)fontScheme toAllTextInputControllersOfClass:(Class<MDCTextInputController> _Nonnull)textInputControllerClass;
 		[Static]
 		[Export ("applyFontScheme:toAllTextInputControllersOfClass:")]
-		void ApplyFontSchemeToAllTextInputControllersOfClass (IFontScheme fontScheme, ITextInputController textInputControllerClass);
+		void ApplyFontSchemeToAll (IFontScheme fontScheme, Class textInputControllerClass);
 
 		// +(void)applyFontScheme:(id<MDCFontScheme> _Nonnull)fontScheme toTextField:(MDCTextField * _Nullable)textField;
 		[Static]
 		[Export ("applyFontScheme:toTextField:")]
-		void ApplyFontSchemeToTextField (IFontScheme fontScheme, [NullAllowed] TextField textField);
+		void ApplyFontScheme (IFontScheme fontScheme, [NullAllowed] TextField textField);
 	}
 
 	interface ITextInputPositioningDelegate { }
@@ -6574,17 +6574,17 @@ namespace MaterialComponents {
 		// +(void)applyTypographyScheme:(id<MDCTypographyScheming> _Nonnull)typographyScheme toTextInputController:(id<MDCTextInputController> _Nonnull)textInputController;
 		[Static]
 		[Export ("applyTypographyScheme:toTextInputController:")]
-		void ApplyTypographySchemeToTextInputController (ITypographyScheming typographyScheme, ITextInputController textInputController);
+		void ApplyTypographyScheme (ITypographyScheming typographyScheme, ITextInputController textInputController);
 
 		// +(void)applyTypographyScheme:(id<MDCTypographyScheming> _Nonnull)typographyScheme toAllTextInputControllersOfClass:(Class<MDCTextInputController> _Nonnull)textInputControllerClass;
 		[Static]
 		[Export ("applyTypographyScheme:toAllTextInputControllersOfClass:")]
-		void ApplyTypographySchemeToAllTextInputControllersOfClass (ITypographyScheming typographyScheme, ITextInputController textInputControllerClass);
+		void ApplyTypographySchemeToAll (ITypographyScheming typographyScheme, Class textInputControllerClass);
 
 		// +(void)applyTypographyScheme:(id<MDCTypographyScheming> _Nonnull)typographyScheme toTextInput:(id<MDCTextInput> _Nonnull)textInput;
 		[Static]
 		[Export ("applyTypographyScheme:toTextInput:")]
-		void ApplyTypographySchemeToTextInput (ITypographyScheming typographyScheme, ITextInput textInput);
+		void ApplyTypographyScheme (ITypographyScheming typographyScheme, ITextInput textInput);
 	}
 
 	interface ITextInput { }

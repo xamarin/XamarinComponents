@@ -85,6 +85,71 @@ namespace MaterialComponents {
 		}
 	}
 
+	partial class BottomAppBarColorThemer {
+		// renamed/obsolete members
+		[Obsolete ("Use ApplySurfaceVariant instead.")]
+		public static void ApplySurfaceVariantWithSemanticColorScheme (IColorScheming colorScheme, BottomAppBarView bottomAppBarView) {
+			ApplySurfaceVariant (colorScheme, bottomAppBarView);
+		}
+	}
+
+	partial class TextFieldColorThemer {
+		public static void ApplySemanticColorSchemeToAll (IColorScheming colorScheme, Type textInputControllerType) {
+			ApplySemanticColorSchemeToAll (colorScheme, new Class (textInputControllerType));
+		}
+		public static void ApplySemanticColorSchemeToAll<T> (IColorScheming colorScheme) where T : ITextInputController {
+			ApplySemanticColorSchemeToAll (colorScheme, typeof (T));
+		}
+
+		// renamed/obsolete members
+		[Obsolete ("Use ApplySurfaceVariant instead.")]
+		public static void ApplySemanticColorSchemeToTextInputController (IColorScheming colorScheme, ITextInputController textInputController) {
+			ApplySemanticColorScheme (colorScheme, textInputController);
+		}
+		[Obsolete ("Use ApplySemanticColorScheme instead.")]
+		public static void ApplySemanticColorSchemeToTextInput (IColorScheming colorScheme, ITextInput textInput) {
+			ApplySemanticColorScheme (colorScheme, textInput);
+		}
+	}
+
+	partial class TextFieldFontThemer {
+		public static void ApplyFontSchemeToAll (IFontScheme fontScheme, Type textInputControllerType) {
+			ApplyFontSchemeToAll (fontScheme, new Class (textInputControllerType));
+		}
+		public static void ApplyFontSchemeToAll<T> (IFontScheme fontScheme) where T : ITextInputController {
+			ApplyFontSchemeToAll (fontScheme, typeof (T));
+		}
+
+		// renamed/obsolete members
+		[Obsolete ("Use ApplyFontScheme instead.")]
+		public static void ApplyFontSchemeToTextInputController (IFontScheme fontScheme, ITextInputController textInputController) {
+			ApplyFontScheme (fontScheme, textInputController);
+		}
+		[Obsolete ("Use ApplyFontScheme instead.")]
+		public static void ApplyFontSchemeToTextField (IFontScheme fontScheme, TextField textField) {
+			ApplyFontScheme (fontScheme, textField);
+		}
+	}
+	
+	partial class TextFieldTypographyThemer {
+		public static void ApplyTypographySchemeToAll (ITypographyScheming typographyScheme, Type textInputControllerType) {
+			ApplyTypographySchemeToAll (typographyScheme, new Class (textInputControllerType));
+		}
+		public static void ApplyTypographySchemeToAll<T> (ITypographyScheming typographyScheme) where T : ITextInputController {
+			ApplyTypographySchemeToAll (typographyScheme, typeof (T));
+		}
+
+		// renamed/obsolete members
+		[Obsolete ("Use ApplyTypographyScheme instead.")]
+		public static void ApplyTypographySchemeToTextInputController (ITypographyScheming typographyScheme, ITextInputController textInputController) {
+			ApplyTypographyScheme (typographyScheme, textInputController);
+		}
+		[Obsolete ("Use ApplyTypographyScheme instead.")]
+		public static void ApplyTypographySchemeToTextInput (ITypographyScheming typographyScheme, ITextInput textInput) {
+			ApplyTypographyScheme (typographyScheme, textInput);
+		}
+	}
+
 	partial class CAMediaTimingFunctionAnimationTiming {
 		[CompilerGenerated]
 		static readonly IntPtr class_ptr = Class.GetHandle ("CAMediaTimingFunction");
