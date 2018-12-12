@@ -5,6 +5,8 @@ using Foundation;
 using ObjCRuntime;
 using UIKit;
 
+using NSTextAlignment = UIKit.UITextAlignment;
+
 namespace MaterialComponents {
 	// @interface MDCAnimationTiming (CAMediaTimingFunction)
 	[Static]
@@ -196,6 +198,18 @@ namespace MaterialComponents {
 		[Export ("titleColor", ArgumentSemantic.Strong)]
 		UIColor TitleColor { get; set; }
 
+		// @property (assign, nonatomic) NSTextAlignment titleAlignment;
+		[Export ("titleAlignment", ArgumentSemantic.Assign)]
+		NSTextAlignment TitleAlignment { get; set; }
+
+		// @property (nonatomic, strong) UIImage * _Nullable titleIcon;
+		[NullAllowed, Export ("titleIcon", ArgumentSemantic.Strong)]
+		UIImage TitleIcon { get; set; }
+
+		// @property (nonatomic, strong) UIColor * _Nullable titleIconTintColor;
+		[NullAllowed, Export ("titleIconTintColor", ArgumentSemantic.Strong)]
+		UIColor TitleIconTintColor { get; set; }
+
 		// @property (nonatomic, strong) UIFont * _Nullable messageFont;
 		[NullAllowed]
 		[Export ("messageFont", ArgumentSemantic.Strong)]
@@ -206,15 +220,29 @@ namespace MaterialComponents {
 		[Export ("messageColor", ArgumentSemantic.Strong)]
 		UIColor MessageColor { get; set; }
 
+		// b/117717380: Will be deprecated
 		// @property (nonatomic, strong) UIFont * _Nullable buttonFont;
 		[NullAllowed]
 		[Export ("buttonFont", ArgumentSemantic.Strong)]
 		UIFont ButtonFont { get; set; }
 
+		// b/117717380: Will be deprecated
 		// @property (nonatomic, strong) UIColor * _Nullable buttonTitleColor;
 		[NullAllowed]
 		[Export ("buttonTitleColor", ArgumentSemantic.Strong)]
 		UIColor ButtonTitleColor { get; set; }
+
+		// @property (nonatomic, strong) UIColor * _Nullable scrimColor;
+		[NullAllowed, Export ("scrimColor", ArgumentSemantic.Strong)]
+		UIColor ScrimColor { get; set; }
+
+		// @property (assign, nonatomic) CGFloat cornerRadius;
+		[Export ("cornerRadius")]
+		nfloat CornerRadius { get; set; }
+
+		// @property (assign, nonatomic) MDCShadowElevation elevation;
+		[Export ("elevation")]
+		nfloat Elevation { get; set; }
 
 		// @property (copy, nonatomic) NSString * _Nullable title;
 		[New]
@@ -235,19 +263,32 @@ namespace MaterialComponents {
 	// typedef void (^MDCActionHandler)(MDCAlertAction * _Nonnull);
 	delegate void ActionHandler (AlertAction action);
 
-	// @interface MDCAlertAction : NSObject <NSCopying>
+	// @interface MDCAlertAction : NSObject <NSCopying, UIAccessibilityIdentification>
 	[DisableDefaultCtor]
 	[BaseType (typeof (NSObject), Name = "MDCAlertAction")]
-	interface AlertAction : INSCopying {
+	interface AlertAction : INSCopying, IUIAccessibilityIdentification {
 		// +(instancetype _Nonnull)actionWithTitle:(NSString * _Nonnull)title handler:(MDCActionHandler _Nullable)handler;
 		[Static]
 		[Export ("actionWithTitle:handler:")]
 		AlertAction Create (string title, [NullAllowed] ActionHandler handler);
 
+		// +(instancetype _Nonnull)actionWithTitle:(NSString * _Nonnull)title emphasis:(MDCActionEmphasis)emphasis handler:(MDCActionHandler _Nullable)handler;
+		[Static]
+		[Export ("actionWithTitle:emphasis:handler:")]
+		AlertAction Create (string title, ActionEmphasis emphasis, [NullAllowed] ActionHandler handler);
+
 		// @property (readonly, nonatomic) NSString * _Nullable title;
 		[NullAllowed]
 		[Export ("title")]
 		string Title { get; }
+
+		// @property (readonly, nonatomic) MDCActionEmphasis emphasis;
+		[Export ("emphasis")]
+		ActionEmphasis Emphasis { get; }
+
+		// @property (copy, nonatomic) NSString * _Nullable accessibilityIdentifier;
+		[NullAllowed, Export ("accessibilityIdentifier")]
+		new string AccessibilityIdentifier { get; set; }
 	}
 
 	// @interface MDCAlertControllerView : UIView
@@ -262,6 +303,18 @@ namespace MaterialComponents {
 		[NullAllowed]
 		[Export ("titleColor", ArgumentSemantic.Strong)]
 		UIColor TitleColor { get; set; }
+		
+		// @property (assign, nonatomic) NSTextAlignment titleAlignment;
+		[Export ("titleAlignment", ArgumentSemantic.Assign)]
+		NSTextAlignment TitleAlignment { get; set; }
+
+		// @property (nonatomic, strong) UIImage * _Nullable titleIcon;
+		[NullAllowed, Export ("titleIcon", ArgumentSemantic.Strong)]
+		UIImage TitleIcon { get; set; }
+
+		// @property (nonatomic, strong) UIColor * _Nullable titleIconTintColor;
+		[NullAllowed, Export ("titleIconTintColor", ArgumentSemantic.Strong)]
+		UIColor TitleIconTintColor { get; set; }
 
 		// @property (nonatomic, strong) UIFont * _Nullable messageFont __attribute__((annotate("ui_appearance_selector")));
 		[NullAllowed]
@@ -282,10 +335,155 @@ namespace MaterialComponents {
 		[NullAllowed]
 		[Export ("buttonColor", ArgumentSemantic.Strong)]
 		UIColor ButtonColor { get; set; }
+		
+		// @property (assign, nonatomic) CGFloat cornerRadius;
+		[Export ("cornerRadius")]
+		nfloat CornerRadius { get; set; }
 
 		// @property (readwrite, nonatomic, setter = mdc_setAdjustsFontForContentSizeCategory:) BOOL mdc_adjustsFontForContentSizeCategory __attribute__((annotate("ui_appearance_selector")));
 		[Export ("mdc_adjustsFontForContentSizeCategory")]
 		bool MdcAdjustsFontForContentSizeCategory { get; [Bind ("mdc_setAdjustsFontForContentSizeCategory:")] set; }
+
+		//
+		// From ButtonForAction (MDCAlertController)
+		//
+
+		// -(MDCButton * _Nullable)buttonForAction:(MDCAlertAction * _Nonnull)action;
+		[Export ("buttonForAction:")]
+		[return: NullAllowed]
+		Button GetButton (AlertAction action);
+	}
+
+	// @interface MDCShapeCategory : NSObject
+	[BaseType (typeof(NSObject), Name = "MDCShapeCategory")]
+	interface ShapeCategory {
+		// @property (nonatomic, strong) MDCCornerTreatment * topLeftCorner;
+		[Export ("topLeftCorner", ArgumentSemantic.Strong)]
+		CornerTreatment TopLeftCorner { get; set; }
+
+		// @property (nonatomic, strong) MDCCornerTreatment * topRightCorner;
+		[Export ("topRightCorner", ArgumentSemantic.Strong)]
+		CornerTreatment TopRightCorner { get; set; }
+
+		// @property (nonatomic, strong) MDCCornerTreatment * bottomLeftCorner;
+		[Export ("bottomLeftCorner", ArgumentSemantic.Strong)]
+		CornerTreatment BottomLeftCorner { get; set; }
+
+		// @property (nonatomic, strong) MDCCornerTreatment * bottomRightCorner;
+		[Export ("bottomRightCorner", ArgumentSemantic.Strong)]
+		CornerTreatment BottomRightCorner { get; set; }
+
+		// -(instancetype)initCornersWithFamily:(MDCShapeCornerFamily)cornerFamily andSize:(CGFloat)cornerSize;
+		[Export ("initCornersWithFamily:andSize:")]
+		IntPtr Constructor (ShapeCornerFamily cornerFamily, nfloat cornerSize);
+	}
+
+	interface IShapeScheming { }
+
+	// @protocol MDCShapeScheming
+	[Protocol, Model]
+	[BaseType (typeof(NSObject), Name = "MDCShapeScheming")]
+	interface ShapeScheming {
+		// @required @property (readonly, nonatomic) MDCShapeCategory * _Nonnull smallComponentShape;
+		[Abstract]
+		[Export ("smallComponentShape")]
+		ShapeCategory SmallComponentShape { get; }
+
+		// @required @property (readonly, nonatomic) MDCShapeCategory * _Nonnull mediumComponentShape;
+		[Abstract]
+		[Export ("mediumComponentShape")]
+		ShapeCategory MediumComponentShape { get; }
+
+		// @required @property (readonly, nonatomic) MDCShapeCategory * _Nonnull largeComponentShape;
+		[Abstract]
+		[Export ("largeComponentShape")]
+		ShapeCategory LargeComponentShape { get; }
+	}
+	
+	// @interface MDCShapeScheme : NSObject <MDCShapeScheming>
+	[BaseType (typeof(NSObject), Name = "MDCShapeScheme")]
+	interface ShapeScheme : ShapeScheming {
+		// @property (readwrite, nonatomic) MDCShapeCategory * _Nonnull smallComponentShape;
+		[Export ("smallComponentShape", ArgumentSemantic.Assign)]
+		new ShapeCategory SmallComponentShape { get; set; }
+
+		// @property (readwrite, nonatomic) MDCShapeCategory * _Nonnull mediumComponentShape;
+		[Export ("mediumComponentShape", ArgumentSemantic.Assign)]
+		new ShapeCategory MediumComponentShape { get; set; }
+
+		// @property (readwrite, nonatomic) MDCShapeCategory * _Nonnull largeComponentShape;
+		[Export ("largeComponentShape", ArgumentSemantic.Assign)]
+		new ShapeCategory LargeComponentShape { get; set; }
+
+		// -(instancetype _Nonnull)initWithDefaults:(MDCShapeSchemeDefaults)defaults;
+		[Export ("initWithDefaults:")]
+		IntPtr Constructor (ShapeSchemeDefaults defaults);
+	}
+
+	interface IAlertScheming { }
+
+	// @protocol MDCAlertScheming
+	[Protocol, Model]
+	[BaseType (typeof(NSObject), Name = "MDCAlertScheming")]
+	interface AlertScheming {
+		// @required @property (readonly, nonatomic) id<MDCColorScheming> _Nonnull colorScheme;
+		[Abstract]
+		[Export ("colorScheme")]
+		IColorScheming ColorScheme { get; }
+
+		// @required @property (readonly, nonatomic) id<MDCTypographyScheming> _Nonnull typographyScheme;
+		[Abstract]
+		[Export ("typographyScheme")]
+		ITypographyScheming TypographyScheme { get; }
+
+		// @required @property (readonly, nonatomic) id<MDCButtonScheming> _Nonnull buttonScheme;
+		[Abstract]
+		[Export ("buttonScheme")]
+		IButtonScheming ButtonScheme { get; }
+
+		// @required @property (readonly, nonatomic) CGFloat cornerRadius;
+		[Abstract]
+		[Export ("cornerRadius")]
+		nfloat CornerRadius { get; }
+
+		// @required @property (readonly, nonatomic) CGFloat elevation;
+		[Abstract]
+		[Export ("elevation")]
+		nfloat Elevation { get; }
+	}
+
+	// @interface MDCAlertScheme : NSObject <MDCAlertScheming>
+	[BaseType (typeof(NSObject), Name = "MDCAlertScheme")]
+	interface AlertScheme : AlertScheming {
+		// @property (readwrite, nonatomic) id<MDCColorScheming> _Nonnull colorScheme;
+		[Export ("colorScheme", ArgumentSemantic.Assign)]
+		new IColorScheming ColorScheme { get; set; }
+
+		// @property (readwrite, nonatomic) id<MDCTypographyScheming> _Nonnull typographyScheme;
+		[Export ("typographyScheme", ArgumentSemantic.Assign)]
+		new ITypographyScheming TypographyScheme { get; set; }
+
+		// @property (readwrite, nonatomic) id<MDCButtonScheming> _Nonnull buttonScheme;
+		[Export ("buttonScheme", ArgumentSemantic.Assign)]
+		new IButtonScheming ButtonScheme { get; set; }
+
+		// @property (readwrite, nonatomic) CGFloat cornerRadius;
+		[Export ("cornerRadius")]
+		new nfloat CornerRadius { get; set; }
+
+		// @property (readwrite, nonatomic) MDCShadowElevation elevation;
+		[Export ("elevation")]
+		new nfloat Elevation { get; set; }
+	}
+
+	// @interface MDCAlertControllerThemer : NSObject
+	[DisableDefaultCtor]
+	[BaseType (typeof(NSObject), Name = "MDCAlertControllerThemer")]
+	interface AlertControllerThemer {
+		// +(void)applyScheme:(id<MDCAlertScheming> _Nonnull)alertScheme toAlertController:(MDCAlertController * _Nonnull)alertController;
+		[Static]
+		[Export ("applyScheme:toAlertController:")]
+		void ApplyScheme (IAlertScheming alertScheme, AlertController alertController);
 	}
 
 	// @interface MDCAlertTypographyThemer : NSObject
@@ -312,12 +510,18 @@ namespace MaterialComponents {
 		[Export ("applySurfaceVariantWithColorScheme:toAppBarViewController:")]
 		void ApplySurfaceVariant (IColorScheming colorScheme, AppBarViewController appBarViewController);
 
+		//
+		// From ToBeDeprecated (MDCAppBarColorThemer)
+		//
+
 		// +(void)applySemanticColorScheme:(id<MDCColorScheming> _Nonnull)colorScheme toAppBar:(MDCAppBar * _Nonnull)appBar;
+		[Obsolete ("To be deprecated.")]
 		[Static]
 		[Export ("applySemanticColorScheme:toAppBar:")]
 		void ApplySemanticColorScheme (IColorScheming colorScheme, AppBar appBar);
 
 		// +(void)applySurfaceVariantWithColorScheme:(id<MDCColorScheming> _Nonnull)colorScheme toAppBar:(MDCAppBar * _Nonnull)appBar;
+		[Obsolete ("To be deprecated.")]
 		[Static]
 		[Export ("applySurfaceVariantWithColorScheme:toAppBar:")]
 		void ApplySurfaceVariant (IColorScheming colorScheme, AppBar appBar);
@@ -405,6 +609,10 @@ namespace MaterialComponents {
 		[Export ("applyTypographyScheme:toAppBarViewController:")]
 		void ApplyTypographyScheme (ITypographyScheming typographyScheme, AppBarViewController appBarViewController);
 
+		//
+		// From ToBeDeprecated (MDCAppBarTypographyThemer)
+		//
+
 		// +(void)applyTypographyScheme:(id<MDCTypographyScheming> _Nonnull)typographyScheme toAppBar:(MDCAppBar * _Nonnull)appBar;
 		[Obsolete ("To be deprecated.")]
 		[Static]
@@ -453,13 +661,73 @@ namespace MaterialComponents {
 		bool InferTopSafeAreaInsetFromViewController { get; set; }
 	}
 
-	// @interface MDCAppBarTextColorAccessibilityMutator : NSObject
-	[Obsolete ("This API will be deprecated with no replacement.")]
-	[BaseType (typeof (NSObject), Name = "MDCAppBarTextColorAccessibilityMutator")]
-	interface AppBarTextColorAccessibilityMutator {
-		// -(void)mutate:(MDCAppBar * _Nonnull)appBar;
-		[Export ("mutate:")]
-		void Mutate (AppBar appBar);
+	// @interface MDCListColorThemer : NSObject
+	[DisableDefaultCtor]
+	[BaseType (typeof(NSObject), Name = "MDCListColorThemer")]
+	interface ListColorThemer {
+		// +(void)applySemanticColorScheme:(id<MDCColorScheming>)colorScheme toSelfSizingStereoCell:(MDCSelfSizingStereoCell *)cell;
+		[Static]
+		[Export ("applySemanticColorScheme:toSelfSizingStereoCell:")]
+		void ApplySemanticColorScheme (IColorScheming colorScheme, SelfSizingStereoCell cell);
+
+		// +(void)applySemanticColorScheme:(id<MDCColorScheming>)colorScheme toBaseCell:(MDCBaseCell *)cell;
+		[Static]
+		[Export ("applySemanticColorScheme:toBaseCell:")]
+		void ApplySemanticColorScheme (IColorScheming colorScheme, BaseCell cell);
+	}
+
+	interface IListScheming { }
+
+	// @protocol MDCListScheming
+	[Protocol, Model]
+	[BaseType (typeof(NSObject), Name = "MDCListScheming")]
+	interface ListScheming {
+		// @required @property (readonly, nonatomic) id<MDCColorScheming> _Nonnull colorScheme;
+		[Abstract]
+		[Export ("colorScheme")]
+		IColorScheming ColorScheme { get; }
+
+		// @required @property (readonly, nonatomic) id<MDCTypographyScheming> _Nonnull typographyScheme;
+		[Abstract]
+		[Export ("typographyScheme")]
+		ITypographyScheming TypographyScheme { get; }
+	}
+
+	// @interface MDCListScheme : NSObject <MDCListScheming>
+	[BaseType (typeof(NSObject), Name = "MDCListScheme")]
+	interface ListScheme : ListScheming {
+		// @property (readwrite, nonatomic) id<MDCColorScheming> _Nonnull colorScheme;
+		[Export ("colorScheme", ArgumentSemantic.Assign)]
+		new IColorScheming ColorScheme { get; set; }
+
+		// @property (readwrite, nonatomic) id<MDCTypographyScheming> _Nonnull typographyScheme;
+		[Export ("typographyScheme", ArgumentSemantic.Assign)]
+		new ITypographyScheming TypographyScheme { get; set; }
+	}
+
+	// @interface MDCListThemer : NSObject
+	[DisableDefaultCtor]
+	[BaseType (typeof(NSObject), Name = "MDCListThemer")]
+	interface ListThemer {
+		// +(void)applyScheme:(id<MDCListScheming>)scheme toSelfSizingStereoCell:(MDCSelfSizingStereoCell *)cell;
+		[Static]
+		[Export ("applyScheme:toSelfSizingStereoCell:")]
+		void ApplyScheme (IListScheming scheme, SelfSizingStereoCell cell);
+
+		// +(void)applyScheme:(id<MDCListScheming>)scheme toBaseCell:(MDCBaseCell *)cell;
+		[Static]
+		[Export ("applyScheme:toBaseCell:")]
+		void ApplyScheme (IListScheming scheme, BaseCell cell);
+	}
+
+	// @interface MDCListTypographyThemer : NSObject
+	[DisableDefaultCtor]
+	[BaseType (typeof(NSObject), Name = "MDCListTypographyThemer")]
+	interface ListTypographyThemer {
+		// +(void)applyTypographyScheme:(id<MDCTypographyScheming>)typographyScheme toSelfSizingStereoCell:(MDCSelfSizingStereoCell *)cell;
+		[Static]
+		[Export ("applyTypographyScheme:toSelfSizingStereoCell:")]
+		void ApplyTypographyScheme (ITypographyScheming typographyScheme, SelfSizingStereoCell cell);
 	}
 
 	// @interface MDCBaseCell : UICollectionViewCell
@@ -467,19 +735,52 @@ namespace MaterialComponents {
 	interface BaseCell {
 		// @property (assign, nonatomic) MDCShadowElevation elevation;
 		[Export ("elevation")]
-		double Elevation { get; set; }
+		nfloat Elevation { get; set; }
 
 		// @property (nonatomic, strong) UIColor * _Nonnull inkColor;
 		[Export ("inkColor", ArgumentSemantic.Strong)]
 		UIColor InkColor { get; set; }
+	}
+	
+	// @interface MDCSelfSizingStereoCell : MDCBaseCell
+	[BaseType (typeof(BaseCell), Name = "MDCSelfSizingStereoCell")]
+	interface SelfSizingStereoCell {
+		// @property (readonly, nonatomic, strong) UIImageView * leadingImageView;
+		[Export ("leadingImageView", ArgumentSemantic.Strong)]
+		UIImageView LeadingImageView { get; }
+
+		// @property (readonly, nonatomic, strong) UIImageView * trailingImageView;
+		[Export ("trailingImageView", ArgumentSemantic.Strong)]
+		UIImageView TrailingImageView { get; }
+
+		// @property (readonly, nonatomic, strong) UILabel * titleLabel;
+		[Export ("titleLabel", ArgumentSemantic.Strong)]
+		UILabel TitleLabel { get; }
+
+		// @property (readonly, nonatomic, strong) UILabel * detailLabel;
+		[Export ("detailLabel", ArgumentSemantic.Strong)]
+		UILabel DetailLabel { get; }
+
+		// @property (readwrite, nonatomic, setter = mdc_setAdjustsFontForContentSizeCategory:) BOOL mdc_adjustsFontForContentSizeCategory;
+		[Export ("mdc_adjustsFontForContentSizeCategory")]
+		bool MdcAdjustsFontForContentSizeCategory { get; [Bind ("mdc_setAdjustsFontForContentSizeCategory:")] set; }
 	}
 
 	// @interface MDCBottomAppBarColorThemer : NSObject
 	[DisableDefaultCtor]
 	[BaseType (typeof (NSObject), Name = "MDCBottomAppBarColorThemer")]
 	interface BottomAppBarColorThemer {
+		// +(void)applySurfaceVariantWithSemanticColorScheme:(id<MDCColorScheming> _Nonnull)colorScheme toBottomAppBarView:(MDCBottomAppBarView * _Nonnull)bottomAppBarView;
+		[Static]
+		[Export ("applySurfaceVariantWithSemanticColorScheme:toBottomAppBarView:")]
+		void ApplySurfaceVariant (IColorScheming colorScheme, BottomAppBarView bottomAppBarView);
+
+		//
+		// From MDCBottomAppBarColorThemer (ToBeDeprecated)
+		//
+
 		// +(void)applyColorScheme:(id<MDCColorScheme> _Nonnull)colorScheme toBottomAppBarView:(MDCBottomAppBarView * _Nonnull)bottomAppBarView;
-		[Obsolete ("This method will soon be deprecated. There is no replacement yet.")]
+		[Obsolete ("This method will soon be deprecated. Use ApplySurfaceVariantWithSemanticColorScheme instead.")]
 		[Static]
 		[Export ("applyColorScheme:toBottomAppBarView:")]
 		void ApplyColorScheme (IColorScheme colorScheme, BottomAppBarView bottomAppBarView);
@@ -504,6 +805,10 @@ namespace MaterialComponents {
 		[Export ("floatingButton", ArgumentSemantic.Strong)]
 		FloatingButton FloatingButton { get; }
 
+		// @property (assign, nonatomic) CGFloat floatingButtonVerticalOffset;
+		[Export ("floatingButtonVerticalOffset")]
+		nfloat FloatingButtonVerticalOffset { get; set; }
+
 		// @property (copy, nonatomic) NSArray<UIBarButtonItem *> * _Nullable leadingBarButtonItems;
 		[NullAllowed]
 		[Export ("leadingBarButtonItems", ArgumentSemantic.Copy)]
@@ -518,6 +823,14 @@ namespace MaterialComponents {
 		[NullAllowed]
 		[Export ("barTintColor", ArgumentSemantic.Strong)]
 		UIColor BarTintColor { get; set; }
+
+		// @property (nonatomic, strong) UIColor * _Nonnull leadingBarItemsTintColor;
+		[Export ("leadingBarItemsTintColor", ArgumentSemantic.Strong)]
+		UIColor LeadingBarItemsTintColor { get; set; }
+
+		 // @property (nonatomic, strong) UIColor * _Nonnull trailingBarItemsTintColor;
+		[Export ("trailingBarItemsTintColor", ArgumentSemantic.Strong)]
+		UIColor TrailingBarItemsTintColor { get; set; }
 
 		// @property (nonatomic, strong) UIColor * _Nullable shadowColor __attribute__((annotate("ui_appearance_selector")));
 		[NullAllowed]
@@ -535,6 +848,155 @@ namespace MaterialComponents {
 		// -(void)setFloatingButtonPosition:(MDCBottomAppBarFloatingButtonPosition)floatingButtonPosition animated:(BOOL)animated;
 		[Export ("setFloatingButtonPosition:animated:")]
 		void SetFloatingButtonPosition (BottomAppBarFloatingButtonPosition floatingButtonPosition, bool animated);
+	}
+
+	// @interface MDCBottomDrawerColorThemer : NSObject
+	[DisableDefaultCtor]
+	[BaseType (typeof(NSObject), Name = "MDCBottomDrawerColorThemer")]
+	interface BottomDrawerColorThemer {
+		// +(void)applySemanticColorScheme:(id<MDCColorScheming> _Nonnull)colorScheme toBottomDrawer:(MDCBottomDrawerViewController * _Nonnull)bottomDrawer;
+		[Static]
+		[Export ("applySemanticColorScheme:toBottomDrawer:")]
+		void ApplySemanticColorScheme (IColorScheming colorScheme, BottomDrawerViewController bottomDrawer);
+	}
+
+	interface IBottomDrawerHeader { }
+
+	// @protocol MDCBottomDrawerHeader
+	[Protocol, Model]
+	[BaseType (typeof(NSObject), Name = "MDCBottomDrawerHeader")]
+	interface BottomDrawerHeader {
+		// @optional -(void)updateDrawerHeaderTransitionRatio:(CGFloat)transitionToTopRatio;
+		[Export ("updateDrawerHeaderTransitionRatio:")]
+		void UpdateDrawerHeaderTransitionRatio (nfloat transitionToTopRatio);
+	}
+
+	// @interface MDCBottomDrawerPresentationController : UIPresentationController
+	[BaseType (typeof(UIPresentationController),
+		Name = "MDCBottomDrawerPresentationController",
+		Delegates = new[] { "Delegate" },
+		Events = new[] { typeof(BottomDrawerPresentationControllerDelegate) })]
+	interface BottomDrawerPresentationController {
+		// @property (nonatomic, weak) UIScrollView * _Nullable trackingScrollView;
+		[NullAllowed, Export ("trackingScrollView", ArgumentSemantic.Weak)]
+		UIScrollView TrackingScrollView { get; set; }
+
+		// @property (nonatomic, strong) UIColor * _Nullable scrimColor;
+		[NullAllowed, Export ("scrimColor", ArgumentSemantic.Strong)]
+		UIColor ScrimColor { get; set; }
+
+		// @property (nonatomic, weak) id<MDCBottomDrawerPresentationControllerDelegate> _Nullable delegate;
+		[NullAllowed]
+		[Export ("delegate", ArgumentSemantic.Weak)]
+		IBottomDrawerPresentationControllerDelegate Delegate { get; set; }
+
+		// @property (getter = isTopHandleHidden, assign, nonatomic) BOOL topHandleHidden;
+		[Export ("topHandleHidden")]
+		bool TopHandleHidden { [Bind ("isTopHandleHidden")] get; set; }
+
+		// @property (nonatomic, strong) UIColor * _Nullable topHandleColor;
+		[NullAllowed, Export ("topHandleColor", ArgumentSemantic.Strong)]
+		UIColor TopHandleColor { get; set; }
+
+		// @property (readonly, nonatomic) BOOL contentReachesFullscreen;
+		[Export ("contentReachesFullscreen")]
+		bool ContentReachesFullscreen { get; }
+
+		// -(void)setContentOffsetY:(CGFloat)contentOffsetY animated:(BOOL)animated;
+		[Export ("setContentOffsetY:animated:")]
+		void SetContentOffsetY (nfloat contentOffsetY, bool animated);
+	}
+
+	interface IBottomDrawerPresentationControllerDelegate { }
+
+	// @protocol MDCBottomDrawerPresentationControllerDelegate <UIAdaptivePresentationControllerDelegate>
+	[Protocol, Model]
+	[BaseType (typeof(NSObject), Name = "MDCBottomDrawerPresentationControllerDelegate")]
+	interface BottomDrawerPresentationControllerDelegate : IUIAdaptivePresentationControllerDelegate {
+		// @required -(void)bottomDrawerWillChangeState:(MDCBottomDrawerPresentationController * _Nonnull)presentationController drawerState:(MDCBottomDrawerState)drawerState;
+		[EventArgs ("BottomDrawerPresentationControllerWillChangeState")]
+		[Abstract]
+		[Export ("bottomDrawerWillChangeState:drawerState:")]
+		void WillChangeState (BottomDrawerPresentationController presentationController, BottomDrawerState drawerState);
+
+		// @required -(void)bottomDrawerTopTransitionRatio:(MDCBottomDrawerPresentationController * _Nonnull)presentationController transitionRatio:(CGFloat)transitionRatio;
+		[EventArgs ("BottomDrawerPresentationControllerTopTransitionRatio")]
+		[Abstract]
+		[Export ("bottomDrawerTopTransitionRatio:transitionRatio:")]
+		void TopTransitionRatio (BottomDrawerPresentationController presentationController, nfloat transitionRatio);
+	}
+
+	// @interface MDCBottomDrawerTransitionController : NSObject <UIViewControllerAnimatedTransitioning, UIViewControllerTransitioningDelegate>
+	[BaseType (typeof(NSObject), Name = "MDCBottomDrawerTransitionController")]
+	interface BottomDrawerTransitionController : IUIViewControllerAnimatedTransitioning, IUIViewControllerTransitioningDelegate {
+		// @property (nonatomic, weak) UIScrollView * _Nullable trackingScrollView;
+		[NullAllowed, Export ("trackingScrollView", ArgumentSemantic.Weak)]
+		UIScrollView TrackingScrollView { get; set; }
+	}
+
+	// @interface MDCBottomDrawerViewController : UIViewController <MDCBottomDrawerPresentationControllerDelegate>
+	[BaseType (typeof(UIViewController), 
+		Name = "MDCBottomDrawerViewController",
+		Delegates = new[] { "Delegate" },
+		Events = new[] { typeof(BottomDrawerViewControllerDelegate) })]
+	interface BottomDrawerViewController : IBottomDrawerPresentationControllerDelegate {
+		// @property (nonatomic) UIViewController * _Nullable contentViewController;
+		[NullAllowed, Export ("contentViewController", ArgumentSemantic.Assign)]
+		UIViewController ContentViewController { get; set; }
+
+		// @property (nonatomic) UIViewController<MDCBottomDrawerHeader> * _Nullable headerViewController;
+		[NullAllowed, Export ("headerViewController", ArgumentSemantic.Assign)]
+		BottomDrawerHeader HeaderViewController { get; set; }
+
+		// @property (nonatomic, weak) UIScrollView * _Nullable trackingScrollView;
+		[NullAllowed, Export ("trackingScrollView", ArgumentSemantic.Weak)]
+		UIScrollView TrackingScrollView { get; set; }
+
+		// @property (readonly, nonatomic) MDCBottomDrawerState drawerState;
+		[Export ("drawerState")]
+		BottomDrawerState DrawerState { get; }
+
+		// @property (nonatomic, strong) UIColor * _Nullable scrimColor;
+		[NullAllowed, Export ("scrimColor", ArgumentSemantic.Strong)]
+		UIColor ScrimColor { get; set; }
+
+		// @property (getter = isTopHandleHidden, assign, nonatomic) BOOL topHandleHidden;
+		[Export ("topHandleHidden")]
+		bool TopHandleHidden { [Bind ("isTopHandleHidden")] get; set; }
+
+		// @property (nonatomic, strong) UIColor * _Nullable topHandleColor;
+		[NullAllowed, Export ("topHandleColor", ArgumentSemantic.Strong)]
+		UIColor TopHandleColor { get; set; }
+
+		// @property (nonatomic, weak) id<MDCBottomDrawerViewControllerDelegate> _Nullable delegate;
+		[NullAllowed, Export ("delegate", ArgumentSemantic.Weak)]
+		IBottomDrawerViewControllerDelegate Delegate { get; set; }
+
+		// -(void)setTopCornersRadius:(CGFloat)radius forDrawerState:(MDCBottomDrawerState)drawerState;
+		[Export ("setTopCornersRadius:forDrawerState:")]
+		void SetTopCornersRadius (nfloat radius, BottomDrawerState drawerState);
+
+		// -(CGFloat)topCornersRadiusForDrawerState:(MDCBottomDrawerState)drawerState;
+		[Export ("topCornersRadiusForDrawerState:")]
+		nfloat GetTopCornersRadius (BottomDrawerState drawerState);
+
+		// -(void)setContentOffsetY:(CGFloat)contentOffsetY animated:(BOOL)animated;
+		[Export ("setContentOffsetY:animated:")]
+		void SetContentOffsetY (nfloat contentOffsetY, bool animated);
+	}
+
+	interface IBottomDrawerViewControllerDelegate { }
+
+	// @protocol MDCBottomDrawerViewControllerDelegate <NSObject>
+	[Protocol, Model]
+	[BaseType (typeof(NSObject), Name = "MDCBottomDrawerViewControllerDelegate")]
+	interface BottomDrawerViewControllerDelegate {
+		// @required -(void)bottomDrawerControllerDidChangeTopInset:(MDCBottomDrawerViewController * _Nonnull)controller topInset:(CGFloat)topInset;
+		[EventArgs ("BottomDrawerViewControllerDidChangeTopInset")]
+		[EventName ("TopInsetChanged")]
+		[Abstract]
+		[Export ("bottomDrawerControllerDidChangeTopInset:topInset:")]
+		void DidChangeTopInset(BottomDrawerViewController controller, nfloat topInset);
 	}
 
 	// @interface MDCBottomNavigationBar : UIView
@@ -603,6 +1065,15 @@ namespace MaterialComponents {
 		// @property (assign, nonatomic) CGFloat itemsContentHorizontalMargin;
 		[Export ("itemsContentHorizontalMargin")]
 		nfloat ItemsContentHorizontalMargin { get; set; }
+
+		// @property (assign, nonatomic) MDCShadowElevation elevation;
+		[Export ("elevation")]
+		nfloat Elevation { get; set; }
+
+		// -(UIView * _Nullable)viewForItem:(UITabBarItem * _Nonnull)item;
+		[Export ("viewForItem:")]
+		[return: NullAllowed]
+		UIView GetView (UITabBarItem item);
 	}
 
 	interface IBottomNavigationBarDelegate { }
@@ -651,6 +1122,16 @@ namespace MaterialComponents {
 		void ApplyTypographyScheme (ITypographyScheming typographyScheme, BottomNavigationBar bottomNavigationBar);
 	}
 
+	// @interface MDCBottomSheetControllerShapeThemer : NSObject
+	[DisableDefaultCtor]
+	[BaseType (typeof(NSObject), Name = "MDCBottomSheetControllerShapeThemer")]
+	interface BottomSheetControllerShapeThemer {
+		// +(void)applyShapeScheme:(id<MDCShapeScheming> _Nonnull)shapeScheme toBottomSheetController:(MDCBottomSheetController * _Nonnull)bottomSheetController;
+		[Static]
+		[Export ("applyShapeScheme:toBottomSheetController:")]
+		void ApplyShapeScheme (IShapeScheming shapeScheme, BottomSheetController bottomSheetController);
+	}
+
 	// @interface MDCBottomSheetController : UIViewController
 	[BaseType (typeof (UIViewController),
 		   Name = "MDCBottomSheetController",
@@ -669,6 +1150,10 @@ namespace MaterialComponents {
 		// @property (assign, nonatomic) BOOL dismissOnBackgroundTap;
 		[Export ("dismissOnBackgroundTap")]
 		bool DismissOnBackgroundTap { get; set; }
+
+		// @property (nonatomic, strong) UIColor * _Nullable scrimColor;
+		[NullAllowed, Export ("scrimColor", ArgumentSemantic.Strong)]
+		UIColor ScrimColor { get; set; }
 
 		// @property (assign, nonatomic) BOOL isScrimAccessibilityElement;
 		[Export ("isScrimAccessibilityElement")]
@@ -765,6 +1250,14 @@ namespace MaterialComponents {
 		[Export ("dismissOnBackgroundTap")]
 		bool DismissOnBackgroundTap { get; set; }
 
+		// @property (assign, nonatomic) CGFloat preferredSheetHeight;
+		[Export ("preferredSheetHeight")]
+		nfloat PreferredSheetHeight { get; set; }
+
+		// @property (nonatomic, strong) UIColor * _Nullable scrimColor;
+		[NullAllowed, Export ("scrimColor", ArgumentSemantic.Strong)]
+		UIColor ScrimColor { get; set; }
+
 		// @property (assign, nonatomic) BOOL isScrimAccessibilityElement;
 		[Export ("isScrimAccessibilityElement")]
 		bool IsScrimAccessibilityElement { get; set; }
@@ -802,9 +1295,17 @@ namespace MaterialComponents {
 		[Export ("dismissOnBackgroundTap")]
 		bool DismissOnBackgroundTap { get; set; }
 
+		// @property (assign, nonatomic) CGFloat preferredSheetHeight;
+		[Export ("preferredSheetHeight")]
+		nfloat PreferredSheetHeight { get; set; }
+
 		//
 		// From ScrimAccessibility (MDCBottomSheetTransitionController) Category
 		//
+
+		// @property (nonatomic, strong) UIColor * _Nullable scrimColor;
+		[NullAllowed, Export ("scrimColor", ArgumentSemantic.Strong)]
+		UIColor ScrimColor { get; set; }
 
 		// @property (assign, nonatomic) BOOL isScrimAccessibilityElement;
 		[Export ("isScrimAccessibilityElement")]
@@ -902,11 +1403,11 @@ namespace MaterialComponents {
 
 		// -(MDCShadowElevation)elevationForState:(UIControlState)state;
 		[Export ("elevationForState:")]
-		double GetElevation (UIControlState state);
+		nfloat GetElevation (UIControlState state);
 
 		// -(void)setElevation:(MDCShadowElevation)elevation forState:(UIControlState)state;
 		[Export ("setElevation:forState:")]
-		void SetElevation (double elevation, UIControlState state);
+		void SetElevation (nfloat elevation, UIControlState state);
 
 		// -(UIColor * _Nullable)borderColorForState:(UIControlState)state;
 		[Export ("borderColorForState:")]
@@ -945,8 +1446,15 @@ namespace MaterialComponents {
 	}
 
 	// @interface MDCButtonBar : UIView
-	[BaseType (typeof (UIView), Name = "MDCButtonBar")]
+	[BaseType (typeof (UIView),
+		Name = "MDCButtonBar",
+		Delegates = new [] { "Delegate" },
+		Events = new [] { typeof (ButtonBarDelegate) })]
 	interface ButtonBar {
+		// @property (nonatomic, weak) id<MDCButtonBarDelegate> _Nullable delegate;
+		[NullAllowed, Export ("delegate", ArgumentSemantic.Weak)]
+		IButtonBarDelegate Delegate { get; set; }
+
 		// @property (copy, nonatomic) NSArray<UIBarButtonItem *> * _Nullable items;
 		[NullAllowed]
 		[Export ("items", ArgumentSemantic.Copy)]
@@ -955,6 +1463,10 @@ namespace MaterialComponents {
 		// @property (nonatomic) CGFloat buttonTitleBaseline;
 		[Export ("buttonTitleBaseline")]
 		nfloat ButtonTitleBaseline { get; set; }
+
+		// @property (nonatomic) BOOL uppercasesButtonTitles;
+		[Export ("uppercasesButtonTitles")]
+		bool UppercasesButtonTitles { get; set; }
 
 		// -(void)setButtonsTitleFont:(UIFont * _Nullable)font forState:(UIControlState)state;
 		[Export ("setButtonsTitleFont:forState:")]
@@ -996,7 +1508,15 @@ namespace MaterialComponents {
 	[Protocol]
 	[BaseType (typeof (NSObject), Name = "MDCButtonBarDelegate")]
 	interface ButtonBarDelegate {
+		// @optional -(void)buttonBarDidInvalidateIntrinsicContentSize:(MDCButtonBar * _Nonnull)buttonBar;
+		[EventArgs ("ButtonBarDidInvalidateIntrinsicContentSize")]
+		[EventName ("IntrinsicContentSizeInvalidated")]
+		[Export ("buttonBarDidInvalidateIntrinsicContentSize:")]
+		void DidInvalidateIntrinsicContentSize(ButtonBar buttonBar);
+
 		// @required -(UIView * _Nonnull)buttonBar:(MDCButtonBar * _Nonnull)buttonBar viewForItem:(UIBarButtonItem * _Nonnull)barButtonItem layoutHints:(MDCBarButtonItemLayoutHints)layoutHints;
+		[DefaultValue (null)]
+		[DelegateName ("ButtonBarViewForItem")]
 		[Abstract]
 		[Export ("buttonBar:viewForItem:layoutHints:")]
 		UIView ViewForItem (ButtonBar buttonBar, UIBarButtonItem barButtonItem, BarButtonItemLayoutHints layoutHints);
@@ -1077,6 +1597,11 @@ namespace MaterialComponents {
 		[Export ("colorScheme")]
 		IColorScheming ColorScheme { get; }
 
+		// @required @property (readonly, nonatomic) id<MDCShapeScheming> _Nonnull shapeScheme;
+		[Abstract]
+		[Export ("shapeScheme")]
+		IShapeScheming ShapeScheme { get; }
+
 		// @required @property (readonly, nonatomic) id<MDCTypographyScheming> _Nonnull typographyScheme;
 		[Abstract]
 		[Export ("typographyScheme")]
@@ -1100,6 +1625,10 @@ namespace MaterialComponents {
 		[Export ("colorScheme", ArgumentSemantic.Assign)]
 		new IColorScheming ColorScheme { get; set; }
 
+		// @property (readwrite, nonatomic) id<MDCShapeScheming> _Nonnull shapeScheme;
+		[Export ("shapeScheme", ArgumentSemantic.Assign)]
+		new IShapeScheming ShapeScheme { get; set; }
+
 		// @property (readwrite, nonatomic) id<MDCTypographyScheming> _Nonnull typographyScheme;
 		[Export ("typographyScheme", ArgumentSemantic.Assign)]
 		new ITypographyScheming TypographyScheme { get; set; }
@@ -1111,6 +1640,16 @@ namespace MaterialComponents {
 		// @property (readwrite, nonatomic) CGFloat minimumHeight;
 		[Export ("minimumHeight")]
 		new nfloat MinimumHeight { get; set; }
+	}
+
+	// @interface MDCButtonShapeThemer : NSObject
+	[DisableDefaultCtor]
+	[BaseType (typeof(NSObject), Name = "MDCButtonShapeThemer")]
+	interface ButtonShapeThemer {
+		// +(void)applyShapeScheme:(id<MDCShapeScheming> _Nonnull)shapeScheme toButton:(MDCButton * _Nonnull)button;
+		[Static]
+		[Export ("applyShapeScheme:toButton:")]
+		void ApplyShapeScheme (IShapeScheming shapeScheme, Button button);
 	}
 
 	// @interface MDCButtonTitleColorAccessibilityMutator : NSObject
@@ -1150,11 +1689,11 @@ namespace MaterialComponents {
 
 		// -(void)setShadowElevation:(MDCShadowElevation)shadowElevation forState:(UIControlState)state __attribute__((annotate("ui_appearance_selector")));
 		[Export ("setShadowElevation:forState:")]
-		void SetShadowElevation (double shadowElevation, UIControlState state);
+		void SetShadowElevation (nfloat shadowElevation, UIControlState state);
 
 		// -(MDCShadowElevation)shadowElevationForState:(UIControlState)state __attribute__((annotate("ui_appearance_selector")));
 		[Export ("shadowElevationForState:")]
-		double GetShadowElevation (UIControlState state);
+		nfloat GetShadowElevation (UIControlState state);
 
 		// -(void)setBorderWidth:(CGFloat)borderWidth forState:(UIControlState)state __attribute__((annotate("ui_appearance_selector")));
 		[Export ("setBorderWidth:forState:")]
@@ -1214,11 +1753,11 @@ namespace MaterialComponents {
 
 		// -(void)setShadowElevation:(MDCShadowElevation)shadowElevation forState:(MDCCardCellState)state __attribute__((annotate("ui_appearance_selector")));
 		[Export ("setShadowElevation:forState:")]
-		void SetShadowElevation (double shadowElevation, CardCellState state);
+		void SetShadowElevation (nfloat shadowElevation, CardCellState state);
 
 		// -(MDCShadowElevation)shadowElevationForState:(MDCCardCellState)state __attribute__((annotate("ui_appearance_selector")));
 		[Export ("shadowElevationForState:")]
-		double GetShadowElevation (CardCellState state);
+		nfloat GetShadowElevation (CardCellState state);
 
 		// -(void)setBorderWidth:(CGFloat)borderWidth forState:(MDCCardCellState)state __attribute__((annotate("ui_appearance_selector")));
 		[Export ("setBorderWidth:forState:")]
@@ -1294,14 +1833,23 @@ namespace MaterialComponents {
 		[Abstract]
 		[Export ("colorScheme")]
 		IColorScheming ColorScheme { get; }
+
+		// @required @property (readonly, nonatomic) id<MDCShapeScheming> _Nonnull shapeScheme;
+		[Abstract]
+		[Export ("shapeScheme")]
+		IShapeScheming ShapeScheme { get; }
 	}
 
 	// @interface MDCCardScheme : NSObject <MDCCardScheming>
 	[BaseType (typeof (NSObject), Name = "MDCCardScheme")]
 	interface CardScheme : CardScheming {
 		// @property (readwrite, nonatomic) MDCSemanticColorScheme * _Nonnull colorScheme;
-		[Export ("colorScheme", ArgumentSemantic.Assign)]
-		IColorScheming ColorScheme { get; set; }
+		[Export("colorScheme", ArgumentSemantic.Assign)]
+		new IColorScheming ColorScheme { get; set; }
+
+		// @property (readwrite, nonatomic) MDCShapeScheme * _Nonnull shapeScheme;
+		[Export ("shapeScheme", ArgumentSemantic.Assign)]
+		new IShapeScheming ShapeScheme { get; set; }
 	}
 
 	// @interface MDCCardsColorThemer : NSObject
@@ -1327,6 +1875,21 @@ namespace MaterialComponents {
 		[Static]
 		[Export ("applyOutlinedVariantWithColorScheme:toCardCell:")]
 		void ApplyOutlinedVariant (IColorScheming colorScheme, CardCollectionCell cardCell);
+	}
+
+	// @interface MDCCardsShapeThemer : NSObject
+	[DisableDefaultCtor]
+	[BaseType (typeof(NSObject), Name = "MDCCardsShapeThemer")]
+	interface CardsShapeThemer {
+		// +(void)applyShapeScheme:(id<MDCShapeScheming> _Nonnull)shapeScheme toCard:(MDCCard * _Nonnull)card;
+		[Static]
+		[Export ("applyShapeScheme:toCard:")]
+		void ApplyShapeScheme (IShapeScheming shapeScheme, Card card);
+
+		// +(void)applyShapeScheme:(id<MDCShapeScheming> _Nonnull)shapeScheme toCardCell:(MDCCardCollectionCell * _Nonnull)cardCell;
+		[Static]
+		[Export ("applyShapeScheme:toCardCell:")]
+		void ApplyShapeScheme (IShapeScheming shapeScheme, CardCollectionCell cardCell);
 	}
 
 	// @interface MDCCardThemer : NSObject
@@ -1400,6 +1963,10 @@ namespace MaterialComponents {
 		// @property (assign, nonatomic) BOOL showPlaceholderWithChips;
 		[Export ("showPlaceholderWithChips")]
 		bool ShowPlaceholderWithChips { get; set; }
+
+		// @property (nonatomic) BOOL showChipsDeleteButton;
+		[Export ("showChipsDeleteButton")]
+		bool ShowChipsDeleteButton { get; set; }
 
 		// @property (assign, nonatomic) MDCChipFieldDelimiter delimiter;
 		[Export ("delimiter", ArgumentSemantic.Assign)]
@@ -1605,11 +2172,11 @@ namespace MaterialComponents {
 
 		// -(MDCShadowElevation)elevationForState:(UIControlState)state;
 		[Export ("elevationForState:")]
-		double GetElevation (UIControlState state);
+		nfloat GetElevation (UIControlState state);
 
 		// -(void)setElevation:(MDCShadowElevation)elevation forState:(UIControlState)state __attribute__((annotate("ui_appearance_selector")));
 		[Export ("setElevation:forState:")]
-		void SetElevation (double elevation, UIControlState state);
+		void SetElevation (nfloat elevation, UIControlState state);
 
 		// -(UIColor * _Nullable)inkColorForState:(UIControlState)state;
 		[return: NullAllowed]
@@ -1681,6 +2248,11 @@ namespace MaterialComponents {
 		[Export ("colorScheme")]
 		IColorScheming ColorScheme { get; }
 
+		// @required @property (readonly, nonatomic) id<MDCShapeScheming> _Nonnull shapeScheme;
+		[Abstract]
+		[Export ("shapeScheme")]
+		IShapeScheming ShapeScheme { get; }
+
 		// @required @property (readonly, nonatomic) id<MDCTypographyScheming> _Nonnull typographyScheme;
 		[Abstract]
 		[Export ("typographyScheme")]
@@ -1693,6 +2265,10 @@ namespace MaterialComponents {
 		// @property (readwrite, nonatomic) id<MDCColorScheming> _Nonnull colorScheme;
 		[Export ("colorScheme", ArgumentSemantic.Assign)]
 		new IColorScheming ColorScheme { get; set; }
+
+		// @property (readwrite, nonatomic) id<MDCShapeScheming> _Nonnull shapeScheme;
+		[Export ("shapeScheme", ArgumentSemantic.Assign)]
+		new IShapeScheming ShapeScheme { get; set; }
 
 		// @property (readwrite, nonatomic) id<MDCTypographyScheming> _Nonnull typographyScheme;
 		[Export ("typographyScheme", ArgumentSemantic.Assign)]
@@ -1722,6 +2298,16 @@ namespace MaterialComponents {
 		[Static]
 		[Export ("applyTypographyScheme:toChipView:")]
 		void ApplyTypographyScheme (ITypographyScheming typographyScheme, ChipView chipView);
+	}
+
+	// @interface MDCChipViewShapeThemer : NSObject
+	[DisableDefaultCtor]
+	[BaseType (typeof(NSObject), Name = "MDCChipViewShapeThemer")]
+	interface ChipViewShapeThemer {
+		// +(void)applyShapeScheme:(id<MDCShapeScheming> _Nonnull)shapeScheme toChipView:(MDCChipView * _Nonnull)chipView;
+		[Static]
+		[Export("applyShapeScheme:toChipView:")]
+		void ApplyShapeScheme(IShapeScheming shapeScheme, ChipView chipView);
 	}
 
 	// @interface MDCCollectionViewCell : UICollectionViewCell
@@ -1893,6 +2479,11 @@ namespace MaterialComponents {
 		[Abstract]
 		[Export ("setEditing:animated:")]
 		void SetEditing (bool editing, bool animated);
+
+		// @required -(void)updateReorderCellPosition;
+		[Abstract]
+		[Export ("updateReorderCellPosition")]
+		void UpdateReorderCellPosition ();
 	}
 
 	interface ICollectionViewEditingDelegate { }
@@ -2377,23 +2968,54 @@ namespace MaterialComponents {
 		void ApplyScheme (IButtonScheming scheme, Button button);
 	}
 
-	// @interface MDCCornerTreatment : NSObject <NSCopying, NSSecureCoding>
-	[DisableDefaultCtor]
+	// @interface MDCCornerTreatment : NSObject <NSCopying>
 	[BaseType (typeof (NSObject), Name = "MDCCornerTreatment")]
-	interface CornerTreatment : INSCopying, INSSecureCoding {
-		//// -(instancetype _Nullable)initWithCoder:(NSCoder * _Nonnull)aDecoder __attribute__((objc_designated_initializer));
-		//[Export ("initWithCoder:")]
-		//[DesignatedInitializer]
-		//IntPtr Constructor (NSCoder aDecoder); TODO not needed?
-
-		// -(instancetype)init __attribute__((objc_designated_initializer));
-		[DesignatedInitializer]
-		[Export ("init")]
-		IntPtr Constructor ();
+	interface CornerTreatment : INSCopying {
+		// @property (assign, nonatomic) MDCCornerTreatmentValueType valueType;
+		[Export ("valueType", ArgumentSemantic.Assign)]
+		CornerTreatmentValueType ValueType { get; set; }
 
 		// -(MDCPathGenerator * _Nonnull)pathGeneratorForCornerWithAngle:(CGFloat)angle;
 		[Export ("pathGeneratorForCornerWithAngle:")]
 		PathGenerator PathGeneratorForCornerWithAngle (nfloat angle);
+
+		// -(MDCPathGenerator * _Nonnull)pathGeneratorForCornerWithAngle:(CGFloat)angle forViewSize:(CGSize)size;
+		[Export ("pathGeneratorForCornerWithAngle:forViewSize:")]
+		PathGenerator PathGeneratorForCornerWithAngle (nfloat angle, CGSize size);
+
+		//
+		// From CornerTypeInitalizer (MDCCornerTreatment)
+		//
+
+		// +(MDCRoundedCornerTreatment *)cornerWithRadius:(CGFloat)value;
+		[Static]
+		[Export ("cornerWithRadius:")]
+		RoundedCornerTreatment CreateCornerWithRadius (nfloat value);
+
+		// +(MDCRoundedCornerTreatment *)cornerWithRadius:(CGFloat)value valueType:(MDCCornerTreatmentValueType)valueType;
+		[Static]
+		[Export ("cornerWithRadius:valueType:")]
+		RoundedCornerTreatment CreateCornerWithRadius (nfloat value, CornerTreatmentValueType valueType);
+
+		// +(MDCCutCornerTreatment *)cornerWithCut:(CGFloat)value;
+		[Static]
+		[Export ("cornerWithCut:")]
+		CutCornerTreatment CreateCornerWithCut (nfloat value);
+
+		// +(MDCCutCornerTreatment *)cornerWithCut:(CGFloat)value valueType:(MDCCornerTreatmentValueType)valueType;
+		[Static]
+		[Export ("cornerWithCut:valueType:")]
+		CutCornerTreatment CreateCornerWithCut (nfloat value, CornerTreatmentValueType valueType);
+
+		// +(MDCCurvedCornerTreatment *)cornerWithCurve:(CGSize)value;
+		[Static]
+		[Export ("cornerWithCurve:")]
+		CurvedCornerTreatment CreateCornerWithCurve (CGSize value);
+
+		// +(MDCCurvedCornerTreatment *)cornerWithCurve:(CGSize)value valueType:(MDCCornerTreatmentValueType)valueType;
+		[Static]
+		[Export ("cornerWithCurve:valueType:")]
+		CurvedCornerTreatment CreateCornerWithCurve (CGSize value, CornerTreatmentValueType valueType);
 	}
 
 	// @interface MDCCurvedCornerTreatment : MDCCornerTreatment
@@ -2407,11 +3029,6 @@ namespace MaterialComponents {
 		[DesignatedInitializer]
 		[Export ("initWithSize:")]
 		IntPtr Constructor (CGSize size);
-
-		// -(instancetype _Nullable)initWithCoder:(NSCoder * _Nonnull)aDecoder __attribute__((objc_designated_initializer));
-		//[DesignatedInitializer]
-		//[Export ("initWithCoder:")]
-		//IntPtr Constructor (NSCoder aDecoder);
 	}
 
 	// @interface MDCCurvedRectShapeGenerator : NSObject <MDCShapeGenerating>
@@ -2425,11 +3042,6 @@ namespace MaterialComponents {
 		[DesignatedInitializer]
 		[Export ("initWithCornerSize:")]
 		IntPtr Constructor (CGSize cornerSize);
-
-		//// -(instancetype)initWithCoder:(NSCoder *)aDecoder __attribute__((objc_designated_initializer));
-		//[Export ("initWithCoder:")]
-		//[DesignatedInitializer]
-		//IntPtr Constructor (NSCoder aDecoder); TODO not needed
 	}
 
 	// @interface MDCCutCornerTreatment : MDCCornerTreatment
@@ -2443,11 +3055,6 @@ namespace MaterialComponents {
 		[DesignatedInitializer]
 		[Export ("initWithCut:")]
 		IntPtr Constructor (nfloat cut);
-
-		//// -(instancetype _Nullable)initWithCoder:(NSCoder * _Nonnull)aDecoder __attribute__((objc_designated_initializer));
-		//[Export ("initWithCoder:")]
-		//[DesignatedInitializer]
-		//IntPtr Constructor (NSCoder aDecoder); TODO: not needed?
 	}
 
 	// @interface MDCDialogPresentationController : UIPresentationController
@@ -2460,6 +3067,14 @@ namespace MaterialComponents {
 		// @property (assign, nonatomic) CGFloat dialogCornerRadius;
 		[Export ("dialogCornerRadius")]
 		nfloat DialogCornerRadius { get; set; }
+
+		// @property (assign, nonatomic) MDCShadowElevation dialogElevation;
+		[Export ("dialogElevation")]
+		nfloat DialogElevation { get; set; }
+
+		// @property (nonatomic, strong) UIColor * _Nullable scrimColor;
+		[NullAllowed, Export ("scrimColor", ArgumentSemantic.Strong)]
+		UIColor ScrimColor { get; set; }
 
 		// -(CGSize)sizeForChildContentContainer:(id<UIContentContainer> _Nonnull)container withParentContainerSize:(CGSize)parentSize;
 		[New]
@@ -2475,14 +3090,9 @@ namespace MaterialComponents {
 	[BaseType (typeof (NSObject), Name = "MDCDialogTransitionController")]
 	interface DialogTransitionController : IUIViewControllerAnimatedTransitioning, IUIViewControllerTransitioningDelegate { }
 
-	// @interface MDCEdgeTreatment : NSObject <NSCopying, NSSecureCoding>
+	// @interface MDCEdgeTreatment : NSObject <NSCopying>
 	[BaseType (typeof (NSObject), Name = "MDCEdgeTreatment")]
-	interface EdgeTreatment : INSCopying, INSSecureCoding {
-		//// -(instancetype _Nullable)initWithCoder:(NSCoder * _Nonnull)aDecoder __attribute__((objc_designated_initializer));
-		//[DesignatedInitializer]
-		//[Export ("initWithCoder:")]
-		//IntPtr Constructor (NSCoder aDecoder); TODO not needed
-
+	interface EdgeTreatment : INSCopying {
 		// -(MDCPathGenerator * _Nonnull)pathGeneratorForEdgeWithLength:(CGFloat)length;
 		[Export ("pathGeneratorForEdgeWithLength:")]
 		PathGenerator GetPathGeneratorForEdge (nfloat length);
@@ -2810,6 +3420,10 @@ namespace MaterialComponents {
 		[Export ("visibleShadowOpacity")]
 		float VisibleShadowOpacity { get; set; }
 
+		// @property (nonatomic) BOOL resetShadowAfterTrackingScrollViewIsReset;
+		[Export ("resetShadowAfterTrackingScrollViewIsReset")]
+		bool ResetShadowAfterTrackingScrollViewIsReset { get; set; }
+
 		// @property (nonatomic, weak) UIScrollView * _Nullable trackingScrollView;
 		[NullAllowed]
 		[Export ("trackingScrollView", ArgumentSemantic.Weak)]
@@ -2827,6 +3441,12 @@ namespace MaterialComponents {
 		[Export ("sharedWithManyScrollViews")]
 		bool SharedWithManyScrollViews { get; set; }
 
+		// @property (nonatomic) BOOL disableContentInsetAdjustmentWhenContentInsetAdjustmentBehaviorIsNever __attribute__((availability(tvos, introduced=11.0))) __attribute__((availability(ios, introduced=11.0)));
+		[Introduced (PlatformName.iOS, 11,0)]
+		[Introduced (PlatformName.TvOS, 11, 0)]
+		[Export ("disableContentInsetAdjustmentWhenContentInsetAdjustmentBehaviorIsNever")]
+		bool DisableContentInsetAdjustmentWhenContentInsetAdjustmentBehaviorIsNever { get; set; }
+
 		// @property (nonatomic, weak) id<MDCFlexibleHeaderViewDelegate> _Nullable delegate;
 		[NullAllowed]
 		[Export ("delegate", ArgumentSemantic.Weak)]
@@ -2835,6 +3455,10 @@ namespace MaterialComponents {
 		//
 		// From (MDCFlexibleHeaderView) Category
 		//
+
+		// @property (nonatomic) BOOL canAlwaysExpandToMaximumHeight;
+		[Export ("canAlwaysExpandToMaximumHeight")]
+		bool CanAlwaysExpandToMaximumHeight { get; set; }
 
 		// @property (nonatomic) MDCFlexibleHeaderShiftBehavior shiftBehavior;
 		[Export ("shiftBehavior", ArgumentSemantic.Assign)]
@@ -3028,11 +3652,6 @@ namespace MaterialComponents {
 		[Export ("initWithFrame:")]
 		IntPtr Constructor (CGRect frame);
 
-		//// -(instancetype _Nullable)initWithCoder:(NSCoder * _Nonnull)aDecoder __attribute__((objc_designated_initializer));
-		//[Export ("initWithCoder:")]
-		//[DesignatedInitializer]
-		//IntPtr Constructor (NSCoder aDecoder); TODO not needed
-
 		// -(void)setMinimumSize:(CGSize)minimumSize forShape:(MDCFloatingButtonShape)shape inMode:(MDCFloatingButtonMode)mode __attribute__((annotate("ui_appearance_selector")));
 		[Export ("setMinimumSize:forShape:inMode:")]
 		void SetMinimumSize (CGSize minimumSize, FloatingButtonShape shape, FloatingButtonMode mode);
@@ -3070,6 +3689,16 @@ namespace MaterialComponents {
 		[Static]
 		[Export ("applySemanticColorScheme:toButton:")]
 		void ApplySemanticColorScheme (IColorScheming colorScheme, FloatingButton button);
+	}
+
+	// @interface MDCFloatingButtonShapeThemer : NSObject
+	[DisableDefaultCtor]
+	[BaseType (typeof(NSObject), Name = "MDCFloatingButtonShapeThemer")]
+	interface FloatingButtonShapeThemer {
+		// +(void)applyShapeScheme:(id<MDCShapeScheming> _Nonnull)shapeScheme toButton:(MDCFloatingButton * _Nonnull)button;
+		[Static]
+		[Export ("applyShapeScheme:toButton:")]
+		void ApplyShapeScheme (IShapeScheming shapeScheme, FloatingButton button);
 	}
 
 	// @interface MDCHeaderStackView : UIView
@@ -3281,6 +3910,7 @@ namespace MaterialComponents {
 	}
 
 	// @interface MDCInkColorThemer : NSObject
+	[DisableDefaultCtor]
 	[Obsolete ("This class will soon be deprecated. There is no direct replacement. Ink color needs to be set by the owning component in a context - specific manner.")]
 	[BaseType (typeof (NSObject), Name = "MDCInkColorThemer")]
 	interface InkColorThemer {
@@ -3576,27 +4206,27 @@ namespace MaterialComponents {
 	interface BasicColorScheme : ColorScheme, INSCopying {
 		// @property (readonly, nonatomic, strong) UIColor * _Nonnull primaryColor;
 		[Export ("primaryColor", ArgumentSemantic.Strong)]
-		UIColor PrimaryColor { get; }
+		new UIColor PrimaryColor { get; }
 
 		// @property (readonly, nonatomic, strong) UIColor * _Nonnull primaryLightColor;
 		[Export ("primaryLightColor", ArgumentSemantic.Strong)]
-		UIColor PrimaryLightColor { get; }
+		new UIColor PrimaryLightColor { get; }
 
 		// @property (readonly, nonatomic, strong) UIColor * _Nonnull primaryDarkColor;
 		[Export ("primaryDarkColor", ArgumentSemantic.Strong)]
-		UIColor PrimaryDarkColor { get; }
+		new UIColor PrimaryDarkColor { get; }
 
 		// @property (readonly, nonatomic, strong) UIColor * _Nonnull secondaryColor;
 		[Export ("secondaryColor", ArgumentSemantic.Strong)]
-		UIColor SecondaryColor { get; }
+		new UIColor SecondaryColor { get; }
 
 		// @property (readonly, nonatomic, strong) UIColor * _Nonnull secondaryLightColor;
 		[Export ("secondaryLightColor", ArgumentSemantic.Strong)]
-		UIColor SecondaryLightColor { get; }
+		new UIColor SecondaryLightColor { get; }
 
 		// @property (readonly, nonatomic, strong) UIColor * _Nonnull secondaryDarkColor;
 		[Export ("secondaryDarkColor", ArgumentSemantic.Strong)]
-		UIColor SecondaryDarkColor { get; }
+		new UIColor SecondaryDarkColor { get; }
 
 		// -(instancetype _Nonnull)initWithPrimaryColor:(UIColor * _Nonnull)primaryColor primaryLightColor:(UIColor * _Nonnull)primaryLightColor primaryDarkColor:(UIColor * _Nonnull)primaryDarkColor secondaryColor:(UIColor * _Nonnull)secondaryColor secondaryLightColor:(UIColor * _Nonnull)secondaryLightColor secondaryDarkColor:(UIColor * _Nonnull)secondaryDarkColor __attribute__((objc_designated_initializer));
 		[Export ("initWithPrimaryColor:primaryLightColor:primaryDarkColor:secondaryColor:secondaryLightColor:secondaryDarkColor:")]
@@ -3778,27 +4408,27 @@ namespace MaterialComponents {
 	interface TonalColorScheme : ColorScheme, INSCopying {
 		// @property (readonly, nonatomic, strong) UIColor * _Nonnull primaryColor;
 		[Export ("primaryColor", ArgumentSemantic.Strong)]
-		UIColor PrimaryColor { get; }
+		new UIColor PrimaryColor { get; }
 
 		// @property (readonly, nonatomic, strong) UIColor * _Nonnull primaryLightColor;
 		[Export ("primaryLightColor", ArgumentSemantic.Strong)]
-		UIColor PrimaryLightColor { get; }
+		new UIColor PrimaryLightColor { get; }
 
 		// @property (readonly, nonatomic, strong) UIColor * _Nonnull primaryDarkColor;
 		[Export ("primaryDarkColor", ArgumentSemantic.Strong)]
-		UIColor PrimaryDarkColor { get; }
+		new UIColor PrimaryDarkColor { get; }
 
 		// @property (readonly, nonatomic, strong) UIColor * _Nonnull secondaryColor;
 		[Export ("secondaryColor", ArgumentSemantic.Strong)]
-		UIColor SecondaryColor { get; }
+		new UIColor SecondaryColor { get; }
 
 		// @property (readonly, nonatomic, strong) UIColor * _Nonnull secondaryLightColor;
 		[Export ("secondaryLightColor", ArgumentSemantic.Strong)]
-		UIColor SecondaryLightColor { get; }
+		new UIColor SecondaryLightColor { get; }
 
 		// @property (readonly, nonatomic, strong) UIColor * _Nonnull secondaryDarkColor;
 		[Export ("secondaryDarkColor", ArgumentSemantic.Strong)]
-		UIColor SecondaryDarkColor { get; }
+		new UIColor SecondaryDarkColor { get; }
 
 		// @property (readonly, nonatomic, strong) MDCTonalPalette * _Nonnull primaryTonalPalette;
 		[Export ("primaryTonalPalette", ArgumentSemantic.Strong)]
@@ -3814,10 +4444,10 @@ namespace MaterialComponents {
 		IntPtr Constructor (TonalPalette primaryTonalPalette, TonalPalette secondaryTonalPalette);
 	}
 
-	// @interface MDCTonalPalette : NSObject <NSCoding, NSCopying>
+	// @interface MDCTonalPalette : NSObject <NSCopying>
 	[DisableDefaultCtor]
 	[BaseType (typeof (NSObject), Name = "MDCTonalPalette")]
-	interface TonalPalette : INSCoding, INSCopying {
+	interface TonalPalette : INSCopying {
 		// @property (readonly, copy, nonatomic) NSArray<UIColor *> * _Nonnull colors;
 		[Export ("colors", ArgumentSemantic.Copy)]
 		UIColor [] Colors { get; }
@@ -3850,11 +4480,6 @@ namespace MaterialComponents {
 		[DesignatedInitializer]
 		[Export ("initWithColors:mainColorIndex:lightColorIndex:darkColorIndex:")]
 		IntPtr Constructor (UIColor [] colors, nuint mainColorIndex, nuint lightColorIndex, nuint darkColorIndex);
-
-		//// -(instancetype _Nonnull)initWithCoder:(NSCoder * _Nonnull)coder __attribute__((objc_designated_initializer));
-		//[Export ("initWithCoder:")]
-		//[DesignatedInitializer]
-		//IntPtr Constructor (NSCoder coder); TODO not needed
 	}
 
 	// @interface MDCLibraryInfo : NSObject
@@ -4032,6 +4657,10 @@ namespace MaterialComponents {
 		[Export ("titleFont", ArgumentSemantic.Strong)]
 		UIFont TitleFont { get; set; }
 
+		// @property (nonatomic) BOOL allowAnyTitleFontSize;
+		[Export ("allowAnyTitleFontSize")]
+		bool AllowAnyTitleFontSize { get; set; }
+
 		// @property (nonatomic, strong) UIColor * _Nullable titleTextColor;
 		[NullAllowed]
 		[Export ("titleTextColor", ArgumentSemantic.Strong)]
@@ -4041,6 +4670,10 @@ namespace MaterialComponents {
 		[NullAllowed]
 		[Export ("inkColor", ArgumentSemantic.Strong)]
 		UIColor InkColor { get; set; }
+
+		// @property (nonatomic) BOOL uppercasesButtonTitles;
+		[Export ("uppercasesButtonTitles")]
+		bool UppercasesButtonTitles { get; set; }
 
 		// -(void)setButtonsTitleFont:(UIFont * _Nullable)font forState:(UIControlState)state;
 		[Export ("setButtonsTitleFont:forState:")]
@@ -4054,6 +4687,14 @@ namespace MaterialComponents {
 		// -(void)setButtonsTitleColor:(UIColor * _Nullable)color forState:(UIControlState)state;
 		[Export ("setButtonsTitleColor:forState:")]
 		void SetButtonsTitleColor ([NullAllowed] UIColor color, UIControlState state);
+
+		// @property (nonatomic, strong) UIColor * _Nullable leadingBarItemsTintColor;
+		[NullAllowed, Export ("leadingBarItemsTintColor", ArgumentSemantic.Strong)]
+		UIColor LeadingBarItemsTintColor { get; set; }
+
+		// @property (nonatomic, strong) UIColor * _Nullable trailingBarItemsTintColor;
+		[NullAllowed, Export ("trailingBarItemsTintColor", ArgumentSemantic.Strong)]
+		UIColor TrailingBarItemsTintColor { get; set; }
 
 		// -(UIColor * _Nullable)buttonsTitleColorForState:(UIControlState)state;
 		[return: NullAllowed]
@@ -4347,6 +4988,10 @@ namespace MaterialComponents {
 		// @property (nonatomic) BOOL defersCurrentPageDisplay;
 		[Export ("defersCurrentPageDisplay")]
 		bool DefersCurrentPageDisplay { get; set; }
+
+		// @property (nonatomic) BOOL respectsUserInterfaceLayoutDirection;
+		[Export ("respectsUserInterfaceLayoutDirection")]
+		bool RespectsUserInterfaceLayoutDirection { get; set; }
 
 		// -(void)updateCurrentPageDisplay;
 		[Export ("updateCurrentPageDisplay")]
@@ -4692,6 +5337,7 @@ namespace MaterialComponents {
 	}
 
 	// @interface MDCProgressViewColorThemer : NSObject
+	[DisableDefaultCtor]
 	[BaseType (typeof (NSObject), Name = "MDCProgressViewColorThemer")]
 	interface ProgressViewColorThemer {
 		// +(void)applyColorScheme:(NSObject<MDCColorScheme> *)colorScheme toProgressView:(MDCProgressView *)progressView;
@@ -4777,11 +5423,6 @@ namespace MaterialComponents {
 		[DesignatedInitializer]
 		[Export ("initWithRadius:")]
 		IntPtr Constructor (nfloat radius);
-
-		//// -(instancetype _Nullable)initWithCoder:(NSCoder * _Nonnull)aDecoder __attribute__((objc_designated_initializer));
-		//[DesignatedInitializer]
-		//[Export ("initWithCoder:")]
-		//IntPtr Constructor (NSCoder aDecoder); TODO not needed
 	}
 
 	interface IColorScheming { }
@@ -4789,98 +5430,98 @@ namespace MaterialComponents {
 	// @protocol MDCColorScheming
 	[Protocol (Name = "MDCColorScheming")]
 	interface ColorScheming {
-		// @required @property (readonly, nonatomic) UIColor * _Nonnull primaryColor;
+		// @required @property (readonly, copy, nonatomic) UIColor * _Nonnull primaryColor;
 		[Abstract]
-		[Export ("primaryColor")]
+		[Export ("primaryColor", ArgumentSemantic.Copy)]
 		UIColor PrimaryColor { get; }
 
-		// @required @property (readonly, nonatomic) UIColor * _Nonnull primaryColorVariant;
+		// @required @property (readonly, copy, nonatomic) UIColor * _Nonnull primaryColorVariant;
 		[Abstract]
-		[Export ("primaryColorVariant")]
+		[Export ("primaryColorVariant", ArgumentSemantic.Copy)]
 		UIColor PrimaryColorVariant { get; }
 
-		// @required @property (readonly, nonatomic) UIColor * _Nonnull secondaryColor;
+		// @required @property (readonly, copy, nonatomic) UIColor * _Nonnull secondaryColor;
 		[Abstract]
-		[Export ("secondaryColor")]
+		[Export ("secondaryColor", ArgumentSemantic.Copy)]
 		UIColor SecondaryColor { get; }
 
-		// @required @property (readonly, nonatomic) UIColor * _Nonnull errorColor;
+		// @required @property (readonly, copy, nonatomic) UIColor * _Nonnull errorColor;
 		[Abstract]
-		[Export ("errorColor")]
+		[Export ("errorColor", ArgumentSemantic.Copy)]
 		UIColor ErrorColor { get; }
 
-		// @required @property (readonly, nonatomic) UIColor * _Nonnull surfaceColor;
+		// @required @property (readonly, copy, nonatomic) UIColor * _Nonnull surfaceColor;
 		[Abstract]
-		[Export ("surfaceColor")]
+		[Export ("surfaceColor", ArgumentSemantic.Copy)]
 		UIColor SurfaceColor { get; }
 
-		// @required @property (readonly, nonatomic) UIColor * _Nonnull backgroundColor;
+		// @required @property (readonly, copy, nonatomic) UIColor * _Nonnull backgroundColor;
 		[Abstract]
-		[Export ("backgroundColor")]
+		[Export ("backgroundColor", ArgumentSemantic.Copy)]
 		UIColor BackgroundColor { get; }
 
-		// @required @property (readonly, nonatomic) UIColor * _Nonnull onPrimaryColor;
+		// @required @property (readonly, copy, nonatomic) UIColor * _Nonnull onPrimaryColor;
 		[Abstract]
-		[Export ("onPrimaryColor")]
+		[Export ("onPrimaryColor", ArgumentSemantic.Copy)]
 		UIColor OnPrimaryColor { get; }
 
-		// @required @property (readonly, nonatomic) UIColor * _Nonnull onSecondaryColor;
+		// @required @property (readonly, copy, nonatomic) UIColor * _Nonnull onSecondaryColor;
 		[Abstract]
-		[Export ("onSecondaryColor")]
+		[Export ("onSecondaryColor", ArgumentSemantic.Copy)]
 		UIColor OnSecondaryColor { get; }
 
-		// @required @property (readonly, nonatomic) UIColor * _Nonnull onSurfaceColor;
+		// @required @property (readonly, copy, nonatomic) UIColor * _Nonnull onSurfaceColor;
 		[Abstract]
-		[Export ("onSurfaceColor")]
+		[Export ("onSurfaceColor", ArgumentSemantic.Copy)]
 		UIColor OnSurfaceColor { get; }
 
-		// @required @property (readonly, nonatomic) UIColor * _Nonnull onBackgroundColor;
+		// @required @property (readonly, copy, nonatomic) UIColor * _Nonnull onBackgroundColor;
 		[Abstract]
-		[Export ("onBackgroundColor")]
+		[Export ("onBackgroundColor", ArgumentSemantic.Copy)]
 		UIColor OnBackgroundColor { get; }
 	}
 
-	// @interface MDCSemanticColorScheme : NSObject <MDCColorScheming>
+	// @interface MDCSemanticColorScheme : NSObject <MDCColorScheming, NSCopying>
 	[BaseType (typeof (NSObject), Name = "MDCSemanticColorScheme")]
-	interface SemanticColorScheme : ColorScheming {
-		// @property (readwrite, nonatomic) UIColor * _Nonnull primaryColor;
-		[Export ("primaryColor", ArgumentSemantic.Assign)]
+	interface SemanticColorScheme : ColorScheming, INSCopying {
+		// @property (readwrite, copy, nonatomic) UIColor * _Nonnull primaryColor;
+		[Export ("primaryColor", ArgumentSemantic.Copy)]
 		new UIColor PrimaryColor { get; set; }
 
-		// @property (readwrite, nonatomic) UIColor * _Nonnull primaryColorVariant;
-		[Export ("primaryColorVariant", ArgumentSemantic.Assign)]
+		// @property (readwrite, copy, nonatomic) UIColor * _Nonnull primaryColorVariant;
+		[Export ("primaryColorVariant", ArgumentSemantic.Copy)]
 		new UIColor PrimaryColorVariant { get; set; }
 
-		// @property (readwrite, nonatomic) UIColor * _Nonnull secondaryColor;
-		[Export ("secondaryColor", ArgumentSemantic.Assign)]
+		// @property (readwrite, copy, nonatomic) UIColor * _Nonnull secondaryColor;
+		[Export ("secondaryColor", ArgumentSemantic.Copy)]
 		new UIColor SecondaryColor { get; set; }
 
-		// @property (readwrite, nonatomic) UIColor * _Nonnull errorColor;
-		[Export ("errorColor", ArgumentSemantic.Assign)]
+		// @property (readwrite, copy, nonatomic) UIColor * _Nonnull errorColor;
+		[Export ("errorColor", ArgumentSemantic.Copy)]
 		new UIColor ErrorColor { get; set; }
 
-		// @property (readwrite, nonatomic) UIColor * _Nonnull surfaceColor;
-		[Export ("surfaceColor", ArgumentSemantic.Assign)]
+		// @property (readwrite, copy, nonatomic) UIColor * _Nonnull surfaceColor;
+		[Export ("surfaceColor", ArgumentSemantic.Copy)]
 		new UIColor SurfaceColor { get; set; }
 
-		// @property (readwrite, nonatomic) UIColor * _Nonnull backgroundColor;
-		[Export ("backgroundColor", ArgumentSemantic.Assign)]
+		// @property (readwrite, copy, nonatomic) UIColor * _Nonnull backgroundColor;
+		[Export ("backgroundColor", ArgumentSemantic.Copy)]
 		new UIColor BackgroundColor { get; set; }
 
-		// @property (readwrite, nonatomic) UIColor * _Nonnull onPrimaryColor;
-		[Export ("onPrimaryColor", ArgumentSemantic.Assign)]
+		// @property (readwrite, copy, nonatomic) UIColor * _Nonnull onPrimaryColor;
+		[Export ("onPrimaryColor", ArgumentSemantic.Copy)]
 		new UIColor OnPrimaryColor { get; set; }
 
-		// @property (readwrite, nonatomic) UIColor * _Nonnull onSecondaryColor;
-		[Export ("onSecondaryColor", ArgumentSemantic.Assign)]
+		// @property (readwrite, copy, nonatomic) UIColor * _Nonnull onSecondaryColor;
+		[Export ("onSecondaryColor", ArgumentSemantic.Copy)]
 		new UIColor OnSecondaryColor { get; set; }
 
-		// @property (readwrite, nonatomic) UIColor * _Nonnull onSurfaceColor;
-		[Export ("onSurfaceColor", ArgumentSemantic.Assign)]
+		// @property (readwrite, copy, nonatomic) UIColor * _Nonnull onSurfaceColor;
+		[Export ("onSurfaceColor", ArgumentSemantic.Copy)]
 		new UIColor OnSurfaceColor { get; set; }
 
-		// @property (readwrite, nonatomic) UIColor * _Nonnull onBackgroundColor;
-		[Export ("onBackgroundColor", ArgumentSemantic.Assign)]
+		// @property (readwrite, copy, nonatomic) UIColor * _Nonnull onBackgroundColor;
+		[Export ("onBackgroundColor", ArgumentSemantic.Copy)]
 		new UIColor OnBackgroundColor { get; set; }
 
 		// -(instancetype _Nonnull)initWithDefaults:(MDCColorSchemeDefaults)defaults;
@@ -4891,101 +5532,6 @@ namespace MaterialComponents {
 		[Static]
 		[Export ("blendColor:withBackgroundColor:")]
 		UIColor BlendColor (UIColor color, UIColor backgroundColor);
-	}
-
-	[Static]
-	interface ShadowElevations {
-		// extern const MDCShadowElevation MDCShadowElevationAppBar;
-		[Field ("MDCShadowElevationAppBar", "__Internal")]
-		nfloat AppBar { get; }
-
-		// extern const MDCShadowElevation MDCShadowElevationBottomNavigationBar;
-		[Field ("MDCShadowElevationBottomNavigationBar", "__Internal")]
-		nfloat NavigationBar { get; }
-
-		// extern const MDCShadowElevation MDCShadowElevationCardPickedUp;
-		[Field ("MDCShadowElevationCardPickedUp", "__Internal")]
-		nfloat PickedUp { get; }
-
-		// extern const MDCShadowElevation MDCShadowElevationCardResting;
-		[Field ("MDCShadowElevationCardResting", "__Internal")]
-		nfloat CardResting { get; }
-
-		// extern const MDCShadowElevation MDCShadowElevationDialog;
-		[Field ("MDCShadowElevationDialog", "__Internal")]
-		nfloat ElevationDialog { get; }
-
-		// extern const MDCShadowElevation MDCShadowElevationFABPressed;
-		[Field ("MDCShadowElevationFABPressed", "__Internal")]
-		nfloat BPressed { get; }
-
-		// extern const MDCShadowElevation MDCShadowElevationFABResting;
-		[Field ("MDCShadowElevationFABResting", "__Internal")]
-		nfloat BResting { get; }
-
-		// extern const MDCShadowElevation MDCShadowElevationMenu;
-		[Field ("MDCShadowElevationMenu", "__Internal")]
-		nfloat ElevationMenu { get; }
-
-		// extern const MDCShadowElevation MDCShadowElevationModalBottomSheet;
-		[Field ("MDCShadowElevationModalBottomSheet", "__Internal")]
-		nfloat BottomSheet { get; }
-
-		// extern const MDCShadowElevation MDCShadowElevationNavDrawer;
-		[Field ("MDCShadowElevationNavDrawer", "__Internal")]
-		nfloat NavDrawer { get; }
-
-		// extern const MDCShadowElevation MDCShadowElevationNone;
-		[Field ("MDCShadowElevationNone", "__Internal")]
-		nfloat ElevationNone { get; }
-
-		// extern const MDCShadowElevation MDCShadowElevationPicker;
-		[Field ("MDCShadowElevationPicker", "__Internal")]
-		nfloat ElevationPicker { get; }
-
-		// extern const MDCShadowElevation MDCShadowElevationQuickEntry;
-		[Field ("MDCShadowElevationQuickEntry", "__Internal")]
-		nfloat QuickEntry { get; }
-
-		// extern const MDCShadowElevation MDCShadowElevationQuickEntryResting;
-		[Field ("MDCShadowElevationQuickEntryResting", "__Internal")]
-		nfloat EntryResting { get; }
-
-		// extern const MDCShadowElevation MDCShadowElevationRaisedButtonPressed;
-		[Field ("MDCShadowElevationRaisedButtonPressed", "__Internal")]
-		nfloat ButtonPressed { get; }
-
-		// extern const MDCShadowElevation MDCShadowElevationRaisedButtonResting;
-		[Field ("MDCShadowElevationRaisedButtonResting", "__Internal")]
-		nfloat ButtonResting { get; }
-
-		// extern const MDCShadowElevation MDCShadowElevationRefresh;
-		[Field ("MDCShadowElevationRefresh", "__Internal")]
-		nfloat ElevationRefresh { get; }
-
-		// extern const MDCShadowElevation MDCShadowElevationRightDrawer;
-		[Field ("MDCShadowElevationRightDrawer", "__Internal")]
-		nfloat RightDrawer { get; }
-
-		// extern const MDCShadowElevation MDCShadowElevationSearchBarResting;
-		[Field ("MDCShadowElevationSearchBarResting", "__Internal")]
-		nfloat BarResting { get; }
-
-		// extern const MDCShadowElevation MDCShadowElevationSearchBarScrolled;
-		[Field ("MDCShadowElevationSearchBarScrolled", "__Internal")]
-		nfloat BarScrolled { get; }
-
-		// extern const MDCShadowElevation MDCShadowElevationSnackbar;
-		[Field ("MDCShadowElevationSnackbar", "__Internal")]
-		nfloat ElevationSnackbar { get; }
-
-		// extern const MDCShadowElevation MDCShadowElevationSubMenu;
-		[Field ("MDCShadowElevationSubMenu", "__Internal")]
-		nfloat SubMenu { get; }
-
-		// extern const MDCShadowElevation MDCShadowElevationSwitch;
-		[Field ("MDCShadowElevationSwitch", "__Internal")]
-		nfloat ElevationSwitch { get; }
 	}
 
 	// @interface MDCShadowMetrics : NSObject
@@ -5026,11 +5572,15 @@ namespace MaterialComponents {
 	interface ShadowLayer : ICALayerDelegate {
 		// @property (assign, nonatomic) MDCShadowElevation elevation;
 		[Export ("elevation")]
-		double Elevation { get; set; }
+		nfloat Elevation { get; set; }
 
 		// @property (getter = isShadowMaskEnabled, assign, nonatomic) BOOL shadowMaskEnabled;
 		[Export ("shadowMaskEnabled")]
 		bool ShadowMaskEnabled { [Bind ("isShadowMaskEnabled")] get; set; }
+
+		// -(void)animateCornerRadius:(CGFloat)cornerRadius withTimingFunction:(CAMediaTimingFunction * _Nonnull)timingFunction duration:(NSTimeInterval)duration;
+		[Export ("animateCornerRadius:withTimingFunction:duration:")]
+		void AnimateCornerRadius (nfloat cornerRadius, CAMediaTimingFunction timingFunction, double duration);
 	}
 
 	// @interface MDCShapedShadowLayer : MDCShadowLayer
@@ -5069,7 +5619,7 @@ namespace MaterialComponents {
 	interface ShapedView {
 		// @property (assign, nonatomic) MDCShadowElevation elevation;
 		[Export ("elevation")]
-		double Elevation { get; set; }
+		nfloat Elevation { get; set; }
 
 		// @property (nonatomic, strong) id<MDCShapeGenerating> _Nullable shapeGenerator __attribute__((iboutlet));
 		[NullAllowed]
@@ -5080,22 +5630,13 @@ namespace MaterialComponents {
 		[Export ("initWithFrame:shapeGenerator:")]
 		[DesignatedInitializer]
 		IntPtr Constructor (CGRect frame, [NullAllowed] IShapeGenerating shapeGenerator);
-
-		// -(instancetype _Nonnull)initWithFrame:(CGRect)frame;
-		[Export ("initWithFrame:")]
-		IntPtr Constructor (CGRect frame);
-
-		//// -(instancetype _Nullable)initWithCoder:(NSCoder * _Nullable)aDecoder __attribute__((objc_designated_initializer));
-		//[Export ("initWithCoder:")]
-		//[DesignatedInitializer]
-		//IntPtr Constructor ([NullAllowed] NSCoder aDecoder); TODO not needed
 	}
 
 	interface IShapeGenerating { }
 
-	// @protocol MDCShapeGenerating <NSCopying, NSSecureCoding>
+	// @protocol MDCShapeGenerating <NSCopying>
 	[Protocol (Name = "MDCShapeGenerating")]
-	interface ShapeGenerating : INSCopying, INSSecureCoding {
+	interface ShapeGenerating : INSCopying {
 		// TODO: Check this
 		// @required -(CGPathRef _Nullable)pathForSize:(CGSize)size;
 		[Abstract]
@@ -5112,9 +5653,9 @@ namespace MaterialComponents {
 		nfloat Slant { get; set; }
 	}
 
-	// @interface MDCSlider : UIControl <NSSecureCoding>
+	// @interface MDCSlider : UIControl
 	[BaseType (typeof (UIControl), Name = "MDCSlider")]
-	interface Slider : INSSecureCoding {
+	interface Slider {
 		// @property (getter = isStatefulAPIEnabled, assign, nonatomic) BOOL statefulAPIEnabled;
 		[Export ("statefulAPIEnabled")]
 		bool StatefulApiEnabled { [Bind ("isStatefulAPIEnabled")] get; set; }
@@ -5180,7 +5721,7 @@ namespace MaterialComponents {
 
 		// @property (assign, nonatomic) MDCShadowElevation thumbElevation __attribute__((annotate("ui_appearance_selector")));
 		[Export ("thumbElevation")]
-		double ThumbElevation { get; set; }
+		nfloat ThumbElevation { get; set; }
 
 		// @property (assign, nonatomic) NSUInteger numberOfDiscreteValues;
 		[Export ("numberOfDiscreteValues")]
@@ -5298,6 +5839,11 @@ namespace MaterialComponents {
 		[Static]
 		[Export ("applySemanticColorScheme:")]
 		void ApplySemanticColorScheme (IColorScheming colorScheme);
+
+		// +(void)applySemanticColorScheme:(id<MDCColorScheming> _Nonnull)colorScheme toSnackbarManager:(MDCSnackbarManager * _Nonnull)snackbarManager;
+		[Static]
+		[Export ("applySemanticColorScheme:toSnackbarManager:")]
+		void ApplySemanticColorScheme (IColorScheming colorScheme, SnackbarManager snackbarManager);
 	}
 
 	// @interface MDCSnackbarFontThemer : NSObject
@@ -5418,6 +5964,10 @@ namespace MaterialComponents {
 		[Export ("mdc_adjustsFontForContentSizeCategory")]
 		bool MdcAdjustsFontForContentSizeCategory { get; [Bind ("mdc_setAdjustsFontForContentSizeCategory:")] set; }
 
+		// @property (assign, nonatomic) BOOL shouldEnableAccessibilityViewIsModal;
+		[Export ("shouldEnableAccessibilityViewIsModal")]
+		bool ShouldEnableAccessibilityViewIsModal { get; set; }
+
 		// @property (nonatomic, weak, class) id<MDCSnackbarManagerDelegate> _Nullable delegate;
 		[NullAllowed]
 		[Export ("delegate", ArgumentSemantic.Weak)]
@@ -5501,6 +6051,10 @@ namespace MaterialComponents {
 		[Export ("accessibilityLabel")]
 		string AccessibilityLabel { get; set; }
 
+		// @property (copy, nonatomic) NSString * _Nullable accessibilityHint;
+		[NullAllowed, Export ("accessibilityHint")]
+		string AccessibilityHint { get; set; }
+
 		// @property (readonly, nonatomic) NSString * _Nullable voiceNotificationText;
 		[NullAllowed]
 		[Export ("voiceNotificationText")]
@@ -5553,6 +6107,14 @@ namespace MaterialComponents {
 		[NullAllowed]
 		[Export ("actionButtons", ArgumentSemantic.Strong)]
 		NSMutableArray<Button> ActionButtons { get; set; }
+
+		// @property (copy, nonatomic) NSString * _Nullable accessibilityLabel;
+		[NullAllowed, Export ("accessibilityLabel")]
+		string AccessibilityLabel { get; set; }
+
+		// @property (copy, nonatomic) NSString * _Nullable accessibilityHint;
+		[NullAllowed, Export ("accessibilityHint")]
+		string AccessibilityHint { get; set; }
 
 		// -(UIColor * _Nullable)buttonTitleColorForState:(UIControlState)state __attribute__((annotate("ui_appearance_selector")));
 		[return: NullAllowed]
@@ -5931,29 +6493,29 @@ namespace MaterialComponents {
 		// +(void)applySemanticColorScheme:(id<MDCColorScheming> _Nonnull)colorScheme toTextInputController:(id<MDCTextInputController> _Nonnull)textInputController;
 		[Static]
 		[Export ("applySemanticColorScheme:toTextInputController:")]
-		void ApplySemanticColorSchemeToTextInputController (IColorScheming colorScheme, ITextInputController textInputController);
+		void ApplySemanticColorScheme (IColorScheming colorScheme, ITextInputController textInputController);
 
 		// +(void)applySemanticColorScheme:(id<MDCColorScheming> _Nonnull)colorScheme toAllTextInputControllersOfClass:(Class<MDCTextInputController> _Nonnull)textInputControllerClass;
 		[Static]
 		[Export ("applySemanticColorScheme:toAllTextInputControllersOfClass:")]
-		void ApplySemanticColorSchemeToAllTextInputControllersOfClass (IColorScheming colorScheme, ITextInputController textInputControllerClass);
+		void ApplySemanticColorSchemeToAll (IColorScheming colorScheme, Class textInputControllerClass);
 
 		// +(void)applySemanticColorScheme:(id<MDCColorScheming> _Nonnull)colorScheme toTextInput:(id<MDCTextInput> _Nonnull)textInput;
 		[Static]
 		[Export ("applySemanticColorScheme:toTextInput:")]
-		void ApplySemanticColorSchemeToTextInput (IColorScheming colorScheme, ITextInput textInput);
+		void ApplySemanticColorScheme (IColorScheming colorScheme, ITextInput textInput);
 
 		// +(void)applyColorScheme:(id<MDCColorScheme> _Nonnull)colorScheme toTextInputController:(id<MDCTextInputController> _Nonnull)textInputController;
-		[Obsolete ("This method will soon be deprecated. Consider using ApplySemanticColorSchemeToTextInputController method instead.")]
+		[Obsolete ("This method will soon be deprecated. Consider using ApplySemanticColorScheme method instead.")]
 		[Static]
 		[Export ("applyColorScheme:toTextInputController:")]
 		void ApplyColorSchemeToTextInputController (IColorScheme colorScheme, ITextInputController textInputController);
 
 		// +(void)applyColorScheme:(id<MDCColorScheme> _Nonnull)colorScheme toAllTextInputControllersOfClass:(Class<MDCTextInputController> _Nonnull)textInputControllerClass;
-		[Obsolete ("This method will soon be deprecated. Consider using ApplySemanticColorSchemeToAllTextInputControllersOfClass method instead.")]
+		[Obsolete ("This method will soon be deprecated. Consider using ApplySemanticColorSchemeToAll method instead.")]
 		[Static]
 		[Export ("applyColorScheme:toAllTextInputControllersOfClass:")]
-		void ApplyColorSchemeoAllTextInputControllersOfClass (IColorScheme colorScheme, ITextInputController textInputControllerClass);
+		void ApplyColorSchemeoAllTextInputControllersOfClass (IColorScheme colorScheme, Class textInputControllerClass);
 	}
 
 	// @interface MDCTextFieldFontThemer : NSObject
@@ -5964,17 +6526,17 @@ namespace MaterialComponents {
 		// +(void)applyFontScheme:(id<MDCFontScheme> _Nonnull)fontScheme toTextInputController:(id<MDCTextInputController> _Nonnull)textInputController;
 		[Static]
 		[Export ("applyFontScheme:toTextInputController:")]
-		void ApplyFontSchemeToTextInputController (IFontScheme fontScheme, ITextInputController textInputController);
+		void ApplyFontScheme (IFontScheme fontScheme, ITextInputController textInputController);
 
 		// +(void)applyFontScheme:(id<MDCFontScheme> _Nonnull)fontScheme toAllTextInputControllersOfClass:(Class<MDCTextInputController> _Nonnull)textInputControllerClass;
 		[Static]
 		[Export ("applyFontScheme:toAllTextInputControllersOfClass:")]
-		void ApplyFontSchemeToAllTextInputControllersOfClass (IFontScheme fontScheme, ITextInputController textInputControllerClass);
+		void ApplyFontSchemeToAll (IFontScheme fontScheme, Class textInputControllerClass);
 
 		// +(void)applyFontScheme:(id<MDCFontScheme> _Nonnull)fontScheme toTextField:(MDCTextField * _Nullable)textField;
 		[Static]
 		[Export ("applyFontScheme:toTextField:")]
-		void ApplyFontSchemeToTextField (IFontScheme fontScheme, [NullAllowed] TextField textField);
+		void ApplyFontScheme (IFontScheme fontScheme, [NullAllowed] TextField textField);
 	}
 
 	interface ITextInputPositioningDelegate { }
@@ -6018,22 +6580,23 @@ namespace MaterialComponents {
 	}
 
 	// @interface MDCTextFieldTypographyThemer : NSObject
+	[DisableDefaultCtor]
 	[BaseType (typeof (NSObject), Name = "MDCTextFieldTypographyThemer")]
 	interface TextFieldTypographyThemer {
 		// +(void)applyTypographyScheme:(id<MDCTypographyScheming> _Nonnull)typographyScheme toTextInputController:(id<MDCTextInputController> _Nonnull)textInputController;
 		[Static]
 		[Export ("applyTypographyScheme:toTextInputController:")]
-		void ApplyTypographySchemeToTextInputController (ITypographyScheming typographyScheme, ITextInputController textInputController);
+		void ApplyTypographyScheme (ITypographyScheming typographyScheme, ITextInputController textInputController);
 
 		// +(void)applyTypographyScheme:(id<MDCTypographyScheming> _Nonnull)typographyScheme toAllTextInputControllersOfClass:(Class<MDCTextInputController> _Nonnull)textInputControllerClass;
 		[Static]
 		[Export ("applyTypographyScheme:toAllTextInputControllersOfClass:")]
-		void ApplyTypographySchemeToAllTextInputControllersOfClass (ITypographyScheming typographyScheme, ITextInputController textInputControllerClass);
+		void ApplyTypographySchemeToAll (ITypographyScheming typographyScheme, Class textInputControllerClass);
 
 		// +(void)applyTypographyScheme:(id<MDCTypographyScheming> _Nonnull)typographyScheme toTextInput:(id<MDCTextInput> _Nonnull)textInput;
 		[Static]
 		[Export ("applyTypographyScheme:toTextInput:")]
-		void ApplyTypographySchemeToTextInput (ITypographyScheming typographyScheme, ITextInput textInput);
+		void ApplyTypographyScheme (ITypographyScheming typographyScheme, ITextInput textInput);
 	}
 
 	interface ITextInput { }
@@ -6778,7 +7341,7 @@ namespace MaterialComponents {
 
 		// @property (assign, nonatomic) MDCShadowElevation thumbElevation;
 		[Export ("thumbElevation")]
-		double ThumbElevation { get; set; }
+		nfloat ThumbElevation { get; set; }
 
 		// @property (assign, nonatomic) BOOL thumbIsSmallerWhenDisabled;
 		[Export ("thumbIsSmallerWhenDisabled")]
@@ -6901,7 +7464,7 @@ namespace MaterialComponents {
 	interface ThumbView {
 		// @property (assign, nonatomic) MDCShadowElevation elevation;
 		[Export ("elevation")]
-		double Elevation { get; set; }
+		nfloat Elevation { get; set; }
 
 		// @property (assign, nonatomic) CGFloat borderWidth;
 		[Export ("borderWidth")]
@@ -6932,11 +7495,6 @@ namespace MaterialComponents {
 		[DesignatedInitializer]
 		[Export ("initWithSize:style:")]
 		IntPtr Constructor (nfloat size, TriangleEdgeStyle style);
-
-		//// -(instancetype _Nullable)initWithCoder:(NSCoder * _Nonnull)aDecoder __attribute__((objc_designated_initializer));
-		//[Export ("initWithCoder:")]
-		//[DesignatedInitializer]
-		//IntPtr Constructor (NSCoder aDecoder); TODO not needed
 	}
 
 	interface ITypographyFontLoading { }
@@ -7135,125 +7693,125 @@ namespace MaterialComponents {
 	// @protocol MDCTypographyScheming
 	[Protocol (Name = "MDCTypographyScheming")]
 	interface TypographyScheming {
-		// @required @property (readonly, nonatomic) UIFont * _Nonnull headline1;
+		// @required @property (readonly, copy, nonatomic) UIFont * _Nonnull headline1;
 		[Abstract]
-		[Export ("headline1")]
+		[Export ("headline1", ArgumentSemantic.Copy)]
 		UIFont Headline1 { get; }
 
-		// @required @property (readonly, nonatomic) UIFont * _Nonnull headline2;
+		// @required @property (readonly, copy, nonatomic) UIFont * _Nonnull headline2;
 		[Abstract]
-		[Export ("headline2")]
+		[Export ("headline2", ArgumentSemantic.Copy)]
 		UIFont Headline2 { get; }
 
-		// @required @property (readonly, nonatomic) UIFont * _Nonnull headline3;
+		// @required @property (readonly, copy, nonatomic) UIFont * _Nonnull headline3;
 		[Abstract]
-		[Export ("headline3")]
+		[Export ("headline3", ArgumentSemantic.Copy)]
 		UIFont Headline3 { get; }
 
-		// @required @property (readonly, nonatomic) UIFont * _Nonnull headline4;
+		// @required @property (readonly, copy, nonatomic) UIFont * _Nonnull headline4;
 		[Abstract]
-		[Export ("headline4")]
+		[Export ("headline4", ArgumentSemantic.Copy)]
 		UIFont Headline4 { get; }
 
-		// @required @property (readonly, nonatomic) UIFont * _Nonnull headline5;
+		// @required @property (readonly, copy, nonatomic) UIFont * _Nonnull headline5;
 		[Abstract]
-		[Export ("headline5")]
+		[Export ("headline5", ArgumentSemantic.Copy)]
 		UIFont Headline5 { get; }
 
-		// @required @property (readonly, nonatomic) UIFont * _Nonnull headline6;
+		// @required @property (readonly, copy, nonatomic) UIFont * _Nonnull headline6;
 		[Abstract]
-		[Export ("headline6")]
+		[Export ("headline6", ArgumentSemantic.Copy)]
 		UIFont Headline6 { get; }
 
-		// @required @property (readonly, nonatomic) UIFont * _Nonnull subtitle1;
+		// @required @property (readonly, copy, nonatomic) UIFont * _Nonnull subtitle1;
 		[Abstract]
-		[Export ("subtitle1")]
+		[Export ("subtitle1", ArgumentSemantic.Copy)]
 		UIFont Subtitle1 { get; }
 
-		// @required @property (readonly, nonatomic) UIFont * _Nonnull subtitle2;
+		// @required @property (readonly, copy, nonatomic) UIFont * _Nonnull subtitle2;
 		[Abstract]
-		[Export ("subtitle2")]
+		[Export ("subtitle2", ArgumentSemantic.Copy)]
 		UIFont Subtitle2 { get; }
 
-		// @required @property (readonly, nonatomic) UIFont * _Nonnull body1;
+		// @required @property (readonly, copy, nonatomic) UIFont * _Nonnull body1;
 		[Abstract]
-		[Export ("body1")]
+		[Export ("body1", ArgumentSemantic.Copy)]
 		UIFont Body1 { get; }
 
-		// @required @property (readonly, nonatomic) UIFont * _Nonnull body2;
+		// @required @property (readonly, copy, nonatomic) UIFont * _Nonnull body2;
 		[Abstract]
-		[Export ("body2")]
+		[Export ("body2", ArgumentSemantic.Copy)]
 		UIFont Body2 { get; }
 
-		// @required @property (readonly, nonatomic) UIFont * _Nonnull caption;
+		// @required @property (readonly, copy, nonatomic) UIFont * _Nonnull caption;
 		[Abstract]
-		[Export ("caption")]
+		[Export ("caption", ArgumentSemantic.Copy)]
 		UIFont Caption { get; }
 
-		// @required @property (readonly, nonatomic) UIFont * _Nonnull button;
+		// @required @property (readonly, copy, nonatomic) UIFont * _Nonnull button;
 		[Abstract]
-		[Export ("button")]
+		[Export ("button", ArgumentSemantic.Copy)]
 		UIFont Button { get; }
 
-		// @required @property (readonly, nonatomic) UIFont * _Nonnull overline;
+		// @required @property (readonly, copy, nonatomic) UIFont * _Nonnull overline;
 		[Abstract]
-		[Export ("overline")]
+		[Export ("overline", ArgumentSemantic.Copy)]
 		UIFont Overline { get; }
 	}
 
-	// @interface MDCTypographyScheme : NSObject <MDCTypographyScheming>
+	// @interface MDCTypographyScheme : NSObject <MDCTypographyScheming, NSCopying>
 	[BaseType (typeof (NSObject), Name = "MDCTypographyScheme")]
-	interface TypographyScheme : TypographyScheming {
-		// @property (readwrite, nonatomic) UIFont * _Nonnull headline1;
-		[Export ("headline1", ArgumentSemantic.Assign)]
+	interface TypographyScheme : TypographyScheming, INSCopying {
+		// @property (readwrite, copy, nonatomic) UIFont * _Nonnull headline1;
+		[Export ("headline1", ArgumentSemantic.Copy)]
 		new UIFont Headline1 { get; set; }
 
-		// @property (readwrite, nonatomic) UIFont * _Nonnull headline2;
-		[Export ("headline2", ArgumentSemantic.Assign)]
+		// @property (readwrite, copy, nonatomic) UIFont * _Nonnull headline2;
+		[Export ("headline2", ArgumentSemantic.Copy)]
 		new UIFont Headline2 { get; set; }
 
-		// @property (readwrite, nonatomic) UIFont * _Nonnull headline3;
-		[Export ("headline3", ArgumentSemantic.Assign)]
+		// @property (readwrite, copy, nonatomic) UIFont * _Nonnull headline3;
+		[Export ("headline3", ArgumentSemantic.Copy)]
 		new UIFont Headline3 { get; set; }
 
-		// @property (readwrite, nonatomic) UIFont * _Nonnull headline4;
-		[Export ("headline4", ArgumentSemantic.Assign)]
+		// @property (readwrite, copy, nonatomic) UIFont * _Nonnull headline4;
+		[Export ("headline4", ArgumentSemantic.Copy)]
 		new UIFont Headline4 { get; set; }
 
-		// @property (readwrite, nonatomic) UIFont * _Nonnull headline5;
-		[Export ("headline5", ArgumentSemantic.Assign)]
+		// @property (readwrite, copy, nonatomic) UIFont * _Nonnull headline5;
+		[Export ("headline5", ArgumentSemantic.Copy)]
 		new UIFont Headline5 { get; set; }
 
-		// @property (readwrite, nonatomic) UIFont * _Nonnull headline6;
-		[Export ("headline6", ArgumentSemantic.Assign)]
+		// @property (readwrite, copy, nonatomic) UIFont * _Nonnull headline6;
+		[Export ("headline6", ArgumentSemantic.Copy)]
 		new UIFont Headline6 { get; set; }
 
-		// @property (readwrite, nonatomic) UIFont * _Nonnull subtitle1;
-		[Export ("subtitle1", ArgumentSemantic.Assign)]
+		// @property (readwrite, copy, nonatomic) UIFont * _Nonnull subtitle1;
+		[Export ("subtitle1", ArgumentSemantic.Copy)]
 		new UIFont Subtitle1 { get; set; }
 
-		// @property (readwrite, nonatomic) UIFont * _Nonnull subtitle2;
-		[Export ("subtitle2", ArgumentSemantic.Assign)]
+		// @property (readwrite, copy, nonatomic) UIFont * _Nonnull subtitle2;
+		[Export ("subtitle2", ArgumentSemantic.Copy)]
 		new UIFont Subtitle2 { get; set; }
 
-		// @property (readwrite, nonatomic) UIFont * _Nonnull body1;
-		[Export ("body1", ArgumentSemantic.Assign)]
+		// @property (readwrite, copy, nonatomic) UIFont * _Nonnull body1;
+		[Export ("body1", ArgumentSemantic.Copy)]
 		new UIFont Body1 { get; set; }
 
-		// @property (readwrite, nonatomic) UIFont * _Nonnull body2;
-		[Export ("body2", ArgumentSemantic.Assign)]
+		// @property (readwrite, copy, nonatomic) UIFont * _Nonnull body2;
+		[Export ("body2", ArgumentSemantic.Copy)]
 		new UIFont Body2 { get; set; }
 
-		// @property (readwrite, nonatomic) UIFont * _Nonnull caption;
-		[Export ("caption", ArgumentSemantic.Assign)]
+		// @property (readwrite, copy, nonatomic) UIFont * _Nonnull caption;
+		[Export ("caption", ArgumentSemantic.Copy)]
 		new UIFont Caption { get; set; }
 
-		// @property (readwrite, nonatomic) UIFont * _Nonnull button;
-		[Export ("button", ArgumentSemantic.Assign)]
+		// @property (readwrite, copy, nonatomic) UIFont * _Nonnull button;
+		[Export ("button", ArgumentSemantic.Copy)]
 		new UIFont Button { get; set; }
 
-		// @property (readwrite, nonatomic) UIFont * _Nonnull overline;
-		[Export ("overline", ArgumentSemantic.Assign)]
+		// @property (readwrite, copy, nonatomic) UIFont * _Nonnull overline;
+		[Export ("overline", ArgumentSemantic.Copy)]
 		new UIFont Overline { get; set; }
 
 		// -(instancetype _Nonnull)initWithDefaults:(MDCTypographySchemeDefaults)defaults;
@@ -7357,5 +7915,82 @@ namespace MaterialComponents {
 		[return: NullAllowed]
 		[Export ("mdc_dialogPresentationController")]
 		DialogPresentationController MdcGetDialogPresentationController ();
+	}
+
+	[Static]
+	interface NSLocaleMaterialRtl {
+		// +(BOOL)mdf_isDefaultLanguageLTR;
+		[Static]
+		[Export ("mdf_isDefaultLanguageLTR")]
+		bool MdfIsDefaultLanguageLtr ();
+
+		// +(BOOL)mdf_isDefaultLanguageRTL;
+		[Static]
+		[Export ("mdf_isDefaultLanguageRTL")]
+		bool MdfIsDefaultLanguageRtl ();
+	}
+
+	[Category]
+	[BaseType (typeof(NSString))]
+	interface NSStringMaterialBidi {
+		// -(NSLocaleLanguageDirection)mdf_calculatedLanguageDirection;
+		[Export ("mdf_calculatedLanguageDirection")]
+		NSLocaleLanguageDirection MdfCalculatedLanguageDirection ();
+
+		// -(NSString * _Nonnull)mdf_stringWithBidiEmbedding:(NSLocaleLanguageDirection)languageDirection;
+		[Export ("mdf_stringWithBidiEmbedding:")]
+		string MdfGetStringWithBidiEmbedding (NSLocaleLanguageDirection languageDirection);
+
+		// -(NSString * _Nonnull)mdf_stringWithBidiEmbedding;
+		[Export ("mdf_stringWithBidiEmbedding")]
+		string MdfGetStringWithBidiEmbedding ();
+
+		// -(NSString * _Nonnull)mdf_stringWithStereoReset:(NSLocaleLanguageDirection)direction context:(NSLocaleLanguageDirection)contextDirection;
+		[Export ("mdf_stringWithStereoReset:context:")]
+		string MdfGetStringWithStereoReset (NSLocaleLanguageDirection direction, NSLocaleLanguageDirection contextDirection);
+
+		// -(NSString * _Nonnull)mdf_stringWithBidiMarkersStripped;
+		[Export ("mdf_stringWithBidiMarkersStripped")]
+		string MdfGetStringWithBidiMarkersStripped ();
+	}
+
+	[Category]
+	[BaseType (typeof(UIImage))]
+	interface UIImage_MaterialRtl {
+		// -(UIImage * _Nonnull)mdf_imageWithHorizontallyFlippedOrientation;
+		[Export ("mdf_imageWithHorizontallyFlippedOrientation")]
+		UIImage MdfGetImageWithHorizontallyFlippedOrientation ();
+	}
+
+	// @interface MaterialRTL (UIView)
+	[Category]
+	[BaseType (typeof(UIView))]
+	interface UIView_MaterialRtl
+	{
+		// @property (nonatomic, setter = mdf_setSemanticContentAttribute:) UISemanticContentAttribute mdf_semanticContentAttribute;
+		[Export ("mdf_semanticContentAttribute", ArgumentSemantic.Assign)]
+		UISemanticContentAttribute MdfGetSemanticContentAttribute ();
+
+		[Export ("mdf_setSemanticContentAttribute:", ArgumentSemantic.Assign)]
+		void MdfSetSemanticContentAttribute (UISemanticContentAttribute value);
+
+		// @property (readonly, nonatomic) UIUserInterfaceLayoutDirection mdf_effectiveUserInterfaceLayoutDirection
+		[Export ("mdf_effectiveUserInterfaceLayoutDirection")]
+		UIUserInterfaceLayoutDirection MdfGetEffectiveUserInterfaceLayoutDirection ();
+	}
+
+	// @interface MaterialRTL (UIView)
+	[Static]
+	interface UIViewMaterialRtl
+	{
+		// +(UIUserInterfaceLayoutDirection)mdf_userInterfaceLayoutDirectionForSemanticContentAttribute:(UISemanticContentAttribute)semanticContentAttribute;
+		[Static]
+		[Export ("mdf_userInterfaceLayoutDirectionForSemanticContentAttribute:")]
+		UIUserInterfaceLayoutDirection MdfGetUserInterfaceLayoutDirection (UISemanticContentAttribute semanticContentAttribute);
+
+		// +(UIUserInterfaceLayoutDirection)mdf_userInterfaceLayoutDirectionForSemanticContentAttribute:(UISemanticContentAttribute)semanticContentAttribute relativeToLayoutDirection:(UIUserInterfaceLayoutDirection)layoutDirection;
+		[Static]
+		[Export ("mdf_userInterfaceLayoutDirectionForSemanticContentAttribute:relativeToLayoutDirection:")]
+		UIUserInterfaceLayoutDirection MdfGetUserInterfaceLayoutDirection (UISemanticContentAttribute semanticContentAttribute, UIUserInterfaceLayoutDirection layoutDirection);
 	}
 }

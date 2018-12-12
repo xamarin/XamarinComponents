@@ -50,6 +50,14 @@ namespace MaterialComponents
 	}
 
 	[Native]
+	public enum BottomDrawerState : ulong
+	{
+		Collapsed = 0,
+		Expanded = 1,
+		FullScreen = 2
+	}
+
+	[Native]
 	public enum BottomNavigationBarTitleVisibility : long
 	{
 		Selected = 0,
@@ -202,6 +210,27 @@ namespace MaterialComponents
 	}
 
 	[Native]
+	public enum ActionEmphasis : long
+	{
+		Low = 0,
+		Medium = 1,
+		High = 2
+	}
+
+	[Native]
+	public enum ShapeCornerFamily : long
+	{
+		Rounded,
+		Cut
+	}
+
+	[Native]
+	public enum ShapeSchemeDefaults : long
+	{
+		Material201809
+	}
+
+	[Native]
 	public enum FontTextStyle : long
 	{
 		Body1,
@@ -222,6 +251,13 @@ namespace MaterialComponents
 	{
 		Bounded,
 		Unbounded
+	}
+
+	[Native]
+	public enum CornerTreatmentValueType : long
+	{
+		Absolute,
+		Percentage
 	}
 
 	[Native]
@@ -356,7 +392,7 @@ namespace MaterialComponents
 	//	[Verify (PlatformInvoke)]
 	//	static extern nfloat MDCDegreesToRadians (nfloat degrees);
 
-	//	// _Bool MDCCGFloatEqual (CGFloat a, CGFloat b);
+	//	// BOOL MDCCGFloatEqual (CGFloat a, CGFloat b);
 	//	[DllImport ("__Internal")]
 	//	[Verify (PlatformInvoke)]
 	//	static extern bool MDCCGFloatEqual (nfloat a, nfloat b);
@@ -396,6 +432,16 @@ namespace MaterialComponents
 	//	[Verify (PlatformInvoke)]
 	//	static extern nfloat MDCSqrt (nfloat value);
 
+	//	// CGFloat MDCCeilScaled (CGFloat value, CGFloat scale);
+	//	[DllImport ("__Internal")]
+	//	[Verify (PlatformInvoke)]
+	//	static extern nfloat MDCCeilScaled (nfloat value, nfloat scale);
+
+	//	// CGFloat MDCFloorScaled (CGFloat value, CGFloat scale);
+	//	[DllImport ("__Internal")]
+	//	[Verify (PlatformInvoke)]
+	//	static extern nfloat MDCFloorScaled (nfloat value, nfloat scale);
+
 	//	// CGRect MDCRectAlignToScale (CGRect rect, CGFloat scale);
 	//	[DllImport ("__Internal")]
 	//	[Verify (PlatformInvoke)]
@@ -406,9 +452,64 @@ namespace MaterialComponents
 	//	[Verify (PlatformInvoke)]
 	//	static extern CGPoint MDCPointRoundWithScale (CGPoint point, nfloat scale);
 
+	//	// CGSize MDCSizeCeilWithScale (CGSize size, CGFloat scale);
+	//	[DllImport ("__Internal")]
+	//	[Verify (PlatformInvoke)]
+	//	static extern CGSize MDCSizeCeilWithScale (CGSize size, nfloat scale);
+
 	//	// CGPoint MDCRoundCenterWithBoundsAndScale (CGPoint center, CGRect bounds, CGFloat scale);
 	//	[DllImport ("__Internal")]
 	//	[Verify (PlatformInvoke)]
 	//	static extern CGPoint MDCRoundCenterWithBoundsAndScale (CGPoint center, CGRect bounds, nfloat scale);
+
+	//	// extern UIViewAutoresizing MDFLeadingMarginAutoresizingMaskForLayoutDirection (UIUserInterfaceLayoutDirection layoutDirection);
+	//	[DllImport ("__Internal")]
+	//	[Verify (PlatformInvoke)]
+	//	static extern UIViewAutoresizing MDFLeadingMarginAutoresizingMaskForLayoutDirection (UIUserInterfaceLayoutDirection layoutDirection);
+
+	//	// extern UIViewAutoresizing MDFTrailingMarginAutoresizingMaskForLayoutDirection (UIUserInterfaceLayoutDirection layoutDirection);
+	//	[DllImport ("__Internal")]
+	//	[Verify (PlatformInvoke)]
+	//	static extern UIViewAutoresizing MDFTrailingMarginAutoresizingMaskForLayoutDirection (UIUserInterfaceLayoutDirection layoutDirection);
+
+	//	// extern CGRect MDFRectFlippedHorizontally (CGRect frame, CGFloat containerWidth);
+	//	[DllImport ("__Internal")]
+	//	[Verify (PlatformInvoke)]
+	//	static extern CGRect MDFRectFlippedHorizontally (CGRect frame, nfloat containerWidth);
+
+	//	// extern UIEdgeInsets MDFInsetsFlippedHorizontally (UIEdgeInsets insets);
+	//	[DllImport ("__Internal")]
+	//	[Verify (PlatformInvoke)]
+	//	static extern UIEdgeInsets MDFInsetsFlippedHorizontally (UIEdgeInsets insets);
+
+	//	// extern UIEdgeInsets MDFInsetsMakeWithLayoutDirection (CGFloat top, CGFloat leading, CGFloat bottom, CGFloat trailing, UIUserInterfaceLayoutDirection layoutDirection);
+	//	[DllImport ("__Internal")]
+	//	[Verify (PlatformInvoke)]
+	//	static extern UIEdgeInsets MDFInsetsMakeWithLayoutDirection (nfloat top, nfloat leading, nfloat bottom, nfloat trailing, UIUserInterfaceLayoutDirection layoutDirection);
+
+	//	// extern MDMMotionCurve MDMMotionCurveMakeBezier (CGFloat p1x, CGFloat p1y, CGFloat p2x, CGFloat p2y);
+	//	[DllImport ("__Internal")]
+	//	[Verify (PlatformInvoke)]
+	//	static extern MDMMotionCurve MDMMotionCurveMakeBezier (nfloat p1x, nfloat p1y, nfloat p2x, nfloat p2y);
+
+	//	// extern MDMMotionCurve MDMMotionCurveFromTimingFunction (CAMediaTimingFunction * _Nonnull timingFunction);
+	//	[DllImport ("__Internal")]
+	//	[Verify (PlatformInvoke)]
+	//	static extern MDMMotionCurve MDMMotionCurveFromTimingFunction (CAMediaTimingFunction timingFunction);
+
+	//	// extern MDMMotionCurve MDMMotionCurveMakeSpring (CGFloat mass, CGFloat tension, CGFloat friction);
+	//	[DllImport ("__Internal")]
+	//	[Verify (PlatformInvoke)]
+	//	static extern MDMMotionCurve MDMMotionCurveMakeSpring (nfloat mass, nfloat tension, nfloat friction);
+
+	//	// extern MDMMotionCurve MDMMotionCurveMakeSpringWithInitialVelocity (CGFloat mass, CGFloat tension, CGFloat friction, CGFloat initialVelocity);
+	//	[DllImport ("__Internal")]
+	//	[Verify (PlatformInvoke)]
+	//	static extern MDMMotionCurve MDMMotionCurveMakeSpringWithInitialVelocity (nfloat mass, nfloat tension, nfloat friction, nfloat initialVelocity);
+
+	//	// extern MDMMotionCurve MDMMotionCurveReversedBezier (MDMMotionCurve motionCurve);
+	//	[DllImport ("__Internal")]
+	//	[Verify (PlatformInvoke)]
+	//	static extern MDMMotionCurve MDMMotionCurveReversedBezier (MDMMotionCurve motionCurve);
 	//}
 }
