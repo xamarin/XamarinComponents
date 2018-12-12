@@ -1151,6 +1151,10 @@ namespace MaterialComponents {
 		[Export ("dismissOnBackgroundTap")]
 		bool DismissOnBackgroundTap { get; set; }
 
+		// @property (nonatomic, strong) UIColor * _Nullable scrimColor;
+		[NullAllowed, Export ("scrimColor", ArgumentSemantic.Strong)]
+		UIColor ScrimColor { get; set; }
+
 		// @property (assign, nonatomic) BOOL isScrimAccessibilityElement;
 		[Export ("isScrimAccessibilityElement")]
 		bool IsScrimAccessibilityElement { get; set; }
@@ -1250,6 +1254,10 @@ namespace MaterialComponents {
 		[Export ("preferredSheetHeight")]
 		nfloat PreferredSheetHeight { get; set; }
 
+		// @property (nonatomic, strong) UIColor * _Nullable scrimColor;
+		[NullAllowed, Export ("scrimColor", ArgumentSemantic.Strong)]
+		UIColor ScrimColor { get; set; }
+
 		// @property (assign, nonatomic) BOOL isScrimAccessibilityElement;
 		[Export ("isScrimAccessibilityElement")]
 		bool IsScrimAccessibilityElement { get; set; }
@@ -1294,6 +1302,10 @@ namespace MaterialComponents {
 		//
 		// From ScrimAccessibility (MDCBottomSheetTransitionController) Category
 		//
+
+		// @property (nonatomic, strong) UIColor * _Nullable scrimColor;
+		[NullAllowed, Export ("scrimColor", ArgumentSemantic.Strong)]
+		UIColor ScrimColor { get; set; }
 
 		// @property (assign, nonatomic) BOOL isScrimAccessibilityElement;
 		[Export ("isScrimAccessibilityElement")]
