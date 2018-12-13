@@ -3,6 +3,7 @@ using System.IO;
 using System.IO.Compression;
 using System.Linq;
 using System.Text.RegularExpressions;
+using Xamarin.Components.SampleBuilder.Models;
 
 namespace Xamarin.Components.SampleBuilder
 {
@@ -41,7 +42,21 @@ namespace Xamarin.Components.SampleBuilder
 
                 //start by copying the sample solution to temp.
 
-                var newSolution = CopyToTemp(projectPath, outputPath);
+                var projectSpec = CopyToTemp(projectPath, outputPath);
+
+                var sourceSolution = new SolutionSpec()
+                {
+                    Path = projectSpec.OriginalSolutionPath,
+                };
+
+                var targetSolution = new SolutionSpec()
+                {
+                    Path = projectSpec.TempSolutionPath,
+                };
+
+                sourceSolution.Build();
+                //targetSolution.Build();
+
 
             }
             
@@ -63,14 +78,14 @@ namespace Xamarin.Components.SampleBuilder
 
         #region Private Methods
 
-        public static string CopyToTemp(string projectPath, string outputPath)
+        private static ProjectSpec CopyToTemp(string projectPath, string outputPath)
         {
             var parentPath = Path.GetDirectoryName(projectPath);
 
-            var slnPath = string.Empty;
+            var slnFilePath = string.Empty;
             var loops = 0;
 
-            while (string.IsNullOrWhiteSpace(slnPath))
+            while (string.IsNullOrWhiteSpace(slnFilePath))
             {
                 if (loops > 1)
                     throw new Exception("Cannot find the sln file");
@@ -79,7 +94,7 @@ namespace Xamarin.Components.SampleBuilder
 
                 if (files.Count() > 0)
                 {
-                    slnPath = parentPath;
+                    slnFilePath = files[0];
                     break;
                 }
                 else
@@ -90,6 +105,7 @@ namespace Xamarin.Components.SampleBuilder
                 loops++;
             }
 
+            var slnPath = Path.GetDirectoryName(slnFilePath);
 
             var name = new DirectoryInfo(slnPath).Name;
 
@@ -101,11 +117,23 @@ namespace Xamarin.Components.SampleBuilder
             CopyDirectory(slnPath, tempPath);
 
             var newPath = projectPath.Replace(slnPath, tempPath);
+            var newSlPath = slnFilePath.Replace(slnPath, tempPath);
 
-            return newPath;
+            var projectName = Path.GetFileNameWithoutExtension(projectPath);
+
+            var aproj = new ProjectSpec()
+            {
+                Name = projectName,
+                SourceProjectPath = projectPath,
+                TempProjectPath = newPath,
+                OriginalSolutionPath = slnFilePath,
+                TempSolutionPath = newSlPath,
+            };
+
+            return aproj;
         }
 
-        public static void CopyDirectory(string projectPath, string target)
+        private static void CopyDirectory(string projectPath, string target)
         {
  
             if (!Directory.Exists(target))
