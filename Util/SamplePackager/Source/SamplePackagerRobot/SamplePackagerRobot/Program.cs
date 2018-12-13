@@ -16,9 +16,14 @@ namespace SamplePackagerRobot
                 //find the root path of the SamplePackager
                 var parent = new DirectoryInfo(cpPath).Parent.Parent.Parent.Parent.Parent.Parent;
 
-                var projectPath = Path.Combine(parent.FullName, @"TestSolution\SampleApplication\SampleApplication\SampleApplication.csproj");
+                var projectPath = new string[]
+                {
+                    Path.Combine(parent.FullName, @"TestSolution\SampleApplication\SampleApplication\SampleApplication.csproj"),
+                     Path.Combine(parent.FullName, @"TestSolution\SampleApplication\SampleApplicationCore\SampleApplicationCore.csproj"),
 
-                var outPutPath = @"C:\SamplePackagerOutput";
+                };
+
+                var outPutPath = @"C:\SamplePackagerOutput\BlahComponent";
 
                 SolutionProcessor.Process(projectPath, outPutPath);
 

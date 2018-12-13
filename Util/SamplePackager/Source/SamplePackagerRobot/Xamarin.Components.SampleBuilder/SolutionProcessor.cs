@@ -1,5 +1,6 @@
 ﻿using System;
 using System.IO;
+using System.IO.Compression;
 using System.Linq;
 using System.Text.RegularExpressions;
 
@@ -29,17 +30,33 @@ namespace Xamarin.Components.SampleBuilder
         #region Public Methods
 
 
-        public static string Process(string projectPath, string outputPath)
+        public static string Process(string[] projectPaths, string outputPath)
         {
-            ValidateParameters(projectPath, outputPath);
+            if (!Directory.Exists(outputPath))
+                Directory.CreateDirectory(outputPath);
 
-            //start by copying the sample solution to temp.
+            foreach (var projectPath in projectPaths)
+            {
+                ValidateParameters(projectPath, outputPath);
 
-            var newSolution = CopyToTemp(projectPath, outputPath);
+                //start by copying the sample solution to temp.
 
+                var newSolution = CopyToTemp(projectPath, outputPath);
 
+            }
+            
+            
+            //var zipOutPut = Directory.GetParent(outputPath);
+            var zipPath = outputPath + ".zip";
 
-            return string.Empty;
+            if (File.Exists(zipPath))
+                File.Delete(zipPath);
+
+            ZipFile.CreateFromDirectory(outputPath, zipPath);
+
+            Directory.Delete(outputPath,true);
+
+            return zipPath;
         }
 
         #endregion
@@ -73,8 +90,8 @@ namespace Xamarin.Components.SampleBuilder
                 loops++;
             }
 
-            
-            var name = Path.GetFileNameWithoutExtension(projectPath);
+
+            var name = new DirectoryInfo(slnPath).Name;
 
             var tempPath = Path.Combine(outputPath, name);
 
