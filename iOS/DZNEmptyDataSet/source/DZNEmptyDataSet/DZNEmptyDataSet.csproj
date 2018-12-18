@@ -46,15 +46,13 @@
     <ObjcBindingCoreSource Include="StructsAndEnums.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ObjcBindingNativeLibrary Include="..\..\externals\libDZNEmptyDataSet.a">
-      <Link>libDZNEmptyDataSet.a</Link>
-    </ObjcBindingNativeLibrary>
+    <Compile Include="Additions.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="libDZNEmptyDataSet.linkwith.cs">
-      <DependentUpon>libDZNEmptyDataSet.a</DependentUpon>
-    </Compile>
-    <Compile Include="Additions.cs" />
+    <NativeReference Include="DZNEmptyDataSet.framework">
+      <Kind>Framework</Kind>
+      <ForceLoad>True</ForceLoad>
+    </NativeReference>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.ObjCBinding.CSharp.targets" />
 </Project>
