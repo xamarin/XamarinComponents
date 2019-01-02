@@ -44,27 +44,28 @@ namespace Xamarin.Components.SampleBuilder.Models
 
                 var projectId = vals[2].Replace("\"", "").Trim();
 
-                Projects.Add(new SolutionProject()
+                var basePath = System.IO.Path.GetDirectoryName(Path);
+
+                var absPath = new FileInfo(System.IO.Path.Combine(basePath, csprojPath)).FullName;
+
+                var newSolutionP = new SolutionProject()
                 {
                     ProjectName = projectName,
                     RelativePath = csprojPath,
                     ProjectId = projectId,
-                });
+                    AbsolutePath = absPath,
+                };
 
+                newSolutionP.Build();
+
+                Projects.Add(newSolutionP);
             }
 
 
         }
 
-        private class SolutionProject
-        {
-            public string ProjectName { get; set; }
 
-            public string RelativePath { get; set; }
-
-            public string ProjectId { get; set; }
-
-        }
+        
     }
 
 

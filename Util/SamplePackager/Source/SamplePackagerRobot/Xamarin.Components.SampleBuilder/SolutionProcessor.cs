@@ -49,19 +49,21 @@ namespace Xamarin.Components.SampleBuilder
                     Path = projectSpec.OriginalSolutionPath,
                 };
 
-                var targetSolution = new SolutionSpec()
-                {
-                    Path = projectSpec.TempSolutionPath,
-                };
+                //var targetSolution = new SolutionSpec()
+                //{
+                //    Path = projectSpec.TempSolutionPath,
+                //};
 
                 sourceSolution.Build();
                 //targetSolution.Build();
+                var sourceProject = new Project(projectSpec.SourceProjectPath);
+                sourceProject.Build();
+
 
 
             }
             
-            
-            //var zipOutPut = Directory.GetParent(outputPath);
+           
             var zipPath = outputPath + ".zip";
 
             if (File.Exists(zipPath))

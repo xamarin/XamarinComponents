@@ -50,6 +50,10 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\StandardSampleTwo\StandardSampleTwo.csproj">
+      <Project>{81c230c4-64f2-419f-b039-9970e57e136f}</Project>
+      <Name>StandardSampleTwo</Name>
+    </ProjectReference>
     <ProjectReference Include="..\StandardSample\StandardSample.csproj">
       <Project>{09AC5E5B-4215-431F-ADC9-A32D9B352647}</Project>
       <Name>StandardSample</Name>
