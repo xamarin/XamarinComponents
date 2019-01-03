@@ -80,12 +80,12 @@ namespace Xamarin.Components.SampleBuilder
 
             var zipPath = outputPath + ".zip";
 
-            if (File.Exists(zipPath))
-                File.Delete(zipPath);
+            //if (File.Exists(zipPath))
+            //    File.Delete(zipPath);
 
-            ZipFile.CreateFromDirectory(outputPath, zipPath);
+            //ZipFile.CreateFromDirectory(outputPath, zipPath);
 
-            Directory.Delete(outputPath, true);
+            //Directory.Delete(outputPath, true);
 
             return zipPath;
         }

@@ -122,7 +122,23 @@ namespace Xamarin.Components.SampleBuilder.Models
                 {
                     foreach (var aReference in aProject.Project.ProjectReferences)
                     {
-                        var referencedProject = Projects.FirstOrDefault(x => x.ProjectId.Equals(aReference.Id, StringComparison.OrdinalIgnoreCase));
+                        SolutionProject referencedProject = null;
+
+                        switch (aReference.Type)
+                        {
+                            case Enums.ProjectType.Classic:
+                                {
+                                    referencedProject = Projects.FirstOrDefault(x => x.ProjectId.Equals(aReference.Id, StringComparison.OrdinalIgnoreCase));
+                                }
+                                break;
+                            case Enums.ProjectType.SDK:
+                                {
+                                    referencedProject = Projects.FirstOrDefault(x => x.ProjectName.Equals(aReference.Name, StringComparison.OrdinalIgnoreCase));
+                                }
+                                break;
+                            default:
+                                throw new Exception("Invalid project type");
+                        }
 
                         if (referencedProject != null)
                         {
@@ -135,10 +151,6 @@ namespace Xamarin.Components.SampleBuilder.Models
                     }
                 }
 
-                //if (sampleProjectNames.Contains(aProject.ProjectName))
-                //{
-                    
-                //}
             }
         }
     }

@@ -35,29 +35,7 @@ namespace Xamarin.Components.SampleBuilder.Models
             var xml = new XmlDocument();
             xml.Load(_path);
 
-            var loop = 0;
-
-            XmlNode projectNode = null;
-
-            while (projectNode == null && xml.ChildNodes.Count > loop)
-            {
-                var node = xml.ChildNodes[loop];
-
-                if (node.Name.Equals("Project", StringComparison.OrdinalIgnoreCase))
-                {
-                    projectNode = node;
-
-                    break;
-
-                }
-                else if (node.InnerXml.ToLower().Contains("project"))
-                {
-                    projectNode = xml.ChildNodes[loop];
-
-                }
-
-                loop++;
-            }
+            XmlNode projectNode = FindProjectNode(xml);
             
             var toolsVersion = projectNode.Attributes["ToolsVersion"];
             var sdkVersion = projectNode.Attributes["Sdk"];
@@ -89,6 +67,123 @@ namespace Xamarin.Components.SampleBuilder.Models
             }
         }
 
+        internal void RemoveReferenceClassic(string projectId)
+        {
+            var xml = new XmlDocument();
+            xml.Load(_path);
+
+            XmlNode projectNode = FindProjectNode(xml);
+
+            XmlNode lstProjectNode = null;
+
+            var references = new List<XmlNode>();
+
+            foreach (XmlNode aNode in projectNode.ChildNodes)
+            {
+                lstProjectNode = FindParentNode(aNode, "ProjectReference");
+
+                if (lstProjectNode != null)
+                {
+                    foreach (XmlNode aRef in lstProjectNode.ChildNodes)
+                    {
+                        references.Add(aRef);
+                    }
+                    break;
+                }
+                    
+            }
+
+            foreach (var xmlNode in references)
+            {
+                var xnprojectId = xmlNode.ChildNodes[0].InnerText;
+
+                if (xnprojectId.Equals(projectId, StringComparison.OrdinalIgnoreCase))
+                {
+                    lstProjectNode.RemoveChild(xmlNode);
+                }
+            }
+
+            if (lstProjectNode.ChildNodes.Count == 0)
+                projectNode.RemoveChild(lstProjectNode);
+
+            xml.Save(_path);
+        }
+
+        internal void RemoveReferenceSDK(string projectName)
+        {
+            var xml = new XmlDocument();
+            xml.Load(_path);
+
+            XmlNode projectNode = FindProjectNode(xml);
+
+            XmlNode lstProjectNode = null;
+
+            var references = new List<XmlNode>();
+
+            foreach (XmlNode aNode in projectNode.ChildNodes)
+            {
+                lstProjectNode = FindParentNode(aNode, "ProjectReference");
+
+                if (lstProjectNode != null)
+                {
+                    foreach (XmlNode aRef in lstProjectNode.ChildNodes)
+                    {
+                        references.Add(aRef);
+                    }
+                    break;
+                }
+
+            }
+
+            foreach (XmlNode aProject in references)
+            {
+                var link = aProject.Attributes["Include"];
+
+                if (link != null)
+                {
+                    var csProj = projectName.ToLower() + ".csproj";
+
+                    if (link.InnerText.ToLower().Contains(csProj))
+                    {
+                        lstProjectNode.RemoveChild(aProject);
+                    }
+
+                }
+            }
+
+            if (lstProjectNode.ChildNodes.Count == 0)
+                projectNode.RemoveChild(lstProjectNode);
+
+            xml.Save(_path);
+        }
+
+        private XmlNode FindProjectNode(XmlDocument xml)
+        {
+            XmlNode projectNode = null;
+            var loop = 0;
+
+            while (projectNode == null && xml.ChildNodes.Count > loop)
+            {
+                var node = xml.ChildNodes[loop];
+
+                if (node.Name.Equals("Project", StringComparison.OrdinalIgnoreCase))
+                {
+                    projectNode = node;
+
+                    break;
+
+                }
+                else if (node.InnerXml.ToLower().Contains("project"))
+                {
+                    projectNode = xml.ChildNodes[loop];
+
+                }
+
+                loop++;
+            }
+
+            return projectNode;
+        }
         private void FindSdkNugetDetails(XmlDocument node)
         {
             XmlNode propsProjectNode = null;
@@ -195,9 +290,13 @@ namespace Xamarin.Components.SampleBuilder.Models
 
                         var path = fileInfo.FullName;
 
+                        var name = Path.GetFileNameWithoutExtension(path);
+
                         ProjectReferences.Add(new ProjectReference()
                         {
+                            Type = ProjectType.SDK,
                             FullPath = path,
+                            Name = name,
                         });
                     }
                 }
@@ -227,6 +326,7 @@ namespace Xamarin.Components.SampleBuilder.Models
 
                     ProjectReferences.Add(new ProjectReference()
                     {
+                        Type = ProjectType.Classic,
                         Id = projectId,
                         Name = projectName,
                     });

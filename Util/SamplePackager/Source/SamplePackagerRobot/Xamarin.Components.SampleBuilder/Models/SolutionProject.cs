@@ -27,12 +27,19 @@ namespace Xamarin.Components.SampleBuilder.Models
 
         internal void AddPackageReference(string packageId, string packageVersion)
         {
-            throw new NotImplementedException();
+           
         }
 
         internal void RemoveProjectReference(SolutionProject referencedProject)
         {
-            throw new NotImplementedException();
+           if (Project.Type == Enums.ProjectType.SDK)
+            {
+                Project.RemoveReferenceSDK(referencedProject.ProjectName);
+            }
+           else
+            {
+                Project.RemoveReferenceClassic(referencedProject.ProjectId);
+            }
         }
     }
 }
