@@ -30,6 +30,67 @@ namespace Xamarin.Components.SampleBuilder.Models
             Name = Path.GetFileNameWithoutExtension(_path);
         }
 
+        internal void AddPackageReferenceSdk(string packageId, string packageVersion)
+        {
+            var xml = new XmlDocument();
+            xml.Load(_path);
+
+            var projectNode = FindProjectNode(xml);
+
+            var packageParent = FindParentNode(projectNode, "PackageReference");
+
+            if (packageParent == null)
+            {
+                packageParent = xml.CreateElement("ItemGroup", xml.DocumentElement.NamespaceURI);
+
+                projectNode.InsertAfter(packageParent, projectNode.LastChild);
+            }
+
+            var newPackage = xml.CreateElement("PackageReference", xml.DocumentElement.NamespaceURI);
+            var include = xml.CreateAttribute("Include");
+            include.Value = packageId;
+            newPackage.Attributes.Append(include);
+
+            var version = xml.CreateAttribute("Version");
+            version.Value = packageVersion;
+            newPackage.Attributes.Append(version);
+
+            packageParent.AppendChild(newPackage);
+
+            xml.Save(_path);
+        }
+
+        internal void AddPackageReferenceClassic(string packageId, string packageVersion)
+        {
+            var xml = new XmlDocument();
+            xml.Load(_path);
+
+            var projectNode = FindProjectNode(xml);
+
+            var packageParent = FindParentNode(projectNode, "PackageReference");
+
+            if (packageParent == null)
+            {
+                packageParent = xml.CreateElement("ItemGroup", xml.DocumentElement.NamespaceURI);
+
+                projectNode.InsertAfter(packageParent, projectNode.LastChild);
+            }
+
+            var newPackage = xml.CreateElement("PackageReference", xml.DocumentElement.NamespaceURI);
+            var include = xml.CreateAttribute("Include");
+            include.Value = packageId;
+            newPackage.Attributes.Append(include);
+
+            var verPackage = xml.CreateElement("Version", xml.DocumentElement.NamespaceURI);
+            verPackage.InnerText = packageVersion;
+
+            newPackage.AppendChild(verPackage);
+
+            packageParent.AppendChild(newPackage);
+
+            xml.Save(_path);
+        }
+
         internal void Build()
         {
             var xml = new XmlDocument();

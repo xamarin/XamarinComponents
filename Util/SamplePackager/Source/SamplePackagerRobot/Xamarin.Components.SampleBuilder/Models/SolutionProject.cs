@@ -27,7 +27,14 @@ namespace Xamarin.Components.SampleBuilder.Models
 
         internal void AddPackageReference(string packageId, string packageVersion)
         {
-           
+            if (Project.Type == Enums.ProjectType.SDK)
+            {
+                Project.AddPackageReferenceSdk(packageId, packageVersion);
+            }
+            else
+            {
+                Project.AddPackageReferenceClassic(packageId, packageVersion);
+            }
         }
 
         internal void RemoveProjectReference(SolutionProject referencedProject)
