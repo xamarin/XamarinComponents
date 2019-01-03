@@ -24,5 +24,15 @@ namespace Xamarin.Components.SampleBuilder.Models
 
 
         }
+
+        internal void AddPackageReference(string packageId, string packageVersion)
+        {
+            throw new NotImplementedException();
+        }
+
+        internal void RemoveProjectReference(SolutionProject referencedProject)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

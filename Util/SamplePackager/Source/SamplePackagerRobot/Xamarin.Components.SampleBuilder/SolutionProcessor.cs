@@ -3,30 +3,14 @@ using System.IO;
 using System.IO.Compression;
 using System.Linq;
 using System.Text.RegularExpressions;
+using Xamarin.Components.SampleBuilder.Helpers;
 using Xamarin.Components.SampleBuilder.Models;
 
 namespace Xamarin.Components.SampleBuilder
 {
     public class SolutionProcessor
     {
-        static readonly Regex[] IgnorePatterns = {
-            new Regex (@"Thumbs\.db", RegexOptions.IgnoreCase | RegexOptions.Compiled),
-            new Regex (@"^bin$", RegexOptions.IgnoreCase | RegexOptions.Compiled),
-            new Regex (@"^obj$", RegexOptions.IgnoreCase | RegexOptions.Compiled),
-            new Regex (@"^Debug$", RegexOptions.IgnoreCase | RegexOptions.Compiled),
-            new Regex (@"^Release$", RegexOptions.IgnoreCase | RegexOptions.Compiled),
-            new Regex (@"test\-results", RegexOptions.IgnoreCase | RegexOptions.Compiled),
-            new Regex (@"TestResults", RegexOptions.IgnoreCase | RegexOptions.Compiled),
-            new Regex (@"\.userprefs$", RegexOptions.IgnoreCase | RegexOptions.Compiled),
-            new Regex (@"\.suo$", RegexOptions.IgnoreCase | RegexOptions.Compiled),
-            new Regex (@"\.user$", RegexOptions.IgnoreCase | RegexOptions.Compiled),
-            new Regex (@"\.build$", RegexOptions.IgnoreCase | RegexOptions.Compiled),
-            new Regex (@"^\.", RegexOptions.IgnoreCase | RegexOptions.Compiled),
-            new Regex (@"\.DS_Store", RegexOptions.IgnoreCase | RegexOptions.Compiled),
-            new Regex (@"\.DotSettings", RegexOptions.IgnoreCase | RegexOptions.Compiled),
-            new Regex (@"\.pidb", RegexOptions.IgnoreCase | RegexOptions.Compiled),
-            new Regex (@"^packages$", RegexOptions.IgnoreCase | RegexOptions.Compiled),
-        };
+
 
         #region Public Methods
 
@@ -44,10 +28,8 @@ namespace Xamarin.Components.SampleBuilder
 
                 var projectSpec = CopyToTemp(projectPath, outputPath);
 
-                var sourceSolution = new SolutionSpec()
-                {
-                    Path = projectSpec.OriginalSolutionPath,
-                };
+                var sourceSolution = new SolutionSpec(projectSpec.OriginalSolutionPath);
+
 
                 //var targetSolution = new SolutionSpec()
                 //{
@@ -76,6 +58,37 @@ namespace Xamarin.Components.SampleBuilder
             return zipPath;
         }
 
+        public static string Process2(string solutionPath, string[] sampleProjectNames, string outputPath)
+        {
+            if (string.IsNullOrWhiteSpace(solutionPath))
+                throw new Exception("SolutionPath cannot be empty");
+
+            if (!File.Exists(solutionPath))
+                throw new Exception("SolutionPath cannot be found");
+
+            //get the soltion and process it
+            var sourceSolution = new SolutionSpec(solutionPath);
+            sourceSolution.Build();
+
+            //copy to a new solution and build again
+            var newSolutuion = sourceSolution.CopyTo(outputPath);
+            newSolutuion.Build();
+
+            //clean the temp solution and update the samples
+            newSolutuion.UpdateSampleReferencesAndClean(sampleProjectNames);
+
+
+            var zipPath = outputPath + ".zip";
+
+            if (File.Exists(zipPath))
+                File.Delete(zipPath);
+
+            ZipFile.CreateFromDirectory(outputPath, zipPath);
+
+            Directory.Delete(outputPath, true);
+
+            return zipPath;
+        }
         #endregion
 
         #region Private Methods
@@ -116,7 +129,7 @@ namespace Xamarin.Components.SampleBuilder
             if (!Directory.Exists(tempPath))
                 Directory.CreateDirectory(tempPath);
 
-            CopyDirectory(slnPath, tempPath);
+            FileHelper.CopyDirectory(slnPath, tempPath);
 
             var newPath = projectPath.Replace(slnPath, tempPath);
             var newSlPath = slnFilePath.Replace(slnPath, tempPath);
@@ -135,32 +148,7 @@ namespace Xamarin.Components.SampleBuilder
             return aproj;
         }
 
-        private static void CopyDirectory(string projectPath, string target)
-        {
- 
-            if (!Directory.Exists(target))
-                Directory.CreateDirectory(target);
-
-            var fsEntries = Directory.GetFileSystemEntries(projectPath);
-
-            foreach (string sysEntry in fsEntries)
-            {
-                var fileName = Path.GetFileName(sysEntry);
-
-
-                var targetPath = Path.Combine(target, fileName);
-
-                if (!IgnorePatterns.Any(x => x.IsMatch(fileName)))
-                {
-                    if (Directory.Exists(sysEntry))
-                        CopyDirectory(sysEntry, targetPath);
-                    else
-                    {
-                        File.Copy(sysEntry, targetPath, true);
-                    }
-                }
-            }
-        }
+        
 
         private static void ValidateParameters(string projectPath, string outputPath)
         {
