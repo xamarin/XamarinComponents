@@ -119,6 +119,8 @@ namespace Xamarin.Components.SampleBuilder.Models
                 case ProjectType.Classic:
                     {
                         FindProjectsClassic(projectNode);
+
+                        FindClassicNugetDetails(xml);
                     }
                     break;
                 default:
@@ -245,6 +247,65 @@ namespace Xamarin.Components.SampleBuilder.Models
 
             return projectNode;
         }
+
+        private void FindClassicNugetDetails(XmlDocument node)
+        {
+            XmlNode propsProjectNode = null;
+
+            foreach (XmlNode aNode in node.ChildNodes)
+            {
+                propsProjectNode = FindParentNode(aNode, "PackOnBuild");
+
+                if (propsProjectNode != null)
+                    break;
+
+
+
+            }
+
+            if (propsProjectNode != null)
+            {
+                var packageName = string.Empty;
+                var versionNo = string.Empty;
+
+                var pkgId = FindChildNode(propsProjectNode, "PackageId");
+
+                if (pkgId == null)
+                {
+                    pkgId = FindChildNode(propsProjectNode, "AssemblyName");
+
+                    if (pkgId == null)
+                    {
+                        packageName = Name;
+                    }
+                    else
+                    {
+                        packageName = pkgId.InnerText;
+                    }
+                }
+                else
+                {
+                    packageName = pkgId.InnerText;
+                }
+
+                var versonNo = string.Empty;
+
+                //
+                var verNode = FindChildNode(propsProjectNode, "Version");
+
+                if (verNode == null)
+                {
+                    versionNo = "1.0.0";
+                }
+                else
+                {
+                    versionNo = verNode.InnerText;
+                }
+
+                PackageId = packageName;
+                PackageVersion = versionNo;
+            }
+        }
         private void FindSdkNugetDetails(XmlDocument node)
         {
             XmlNode propsProjectNode = null;
@@ -255,6 +316,9 @@ namespace Xamarin.Components.SampleBuilder.Models
 
                 if (propsProjectNode != null)
                     break;
+
+
+
             }
 
             if (propsProjectNode != null)
