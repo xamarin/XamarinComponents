@@ -14,51 +14,7 @@ namespace Xamarin.Components.SampleBuilder
 
         #region Public Methods
 
-
-        public static string Process(string[] projectPaths, string outputPath)
-        {
-            if (!Directory.Exists(outputPath))
-                Directory.CreateDirectory(outputPath);
-
-            foreach (var projectPath in projectPaths)
-            {
-                ValidateParameters(projectPath, outputPath);
-
-                //start by copying the sample solution to temp.
-
-                var projectSpec = CopyToTemp(projectPath, outputPath);
-
-                var sourceSolution = new SolutionSpec(projectSpec.OriginalSolutionPath);
-
-
-                //var targetSolution = new SolutionSpec()
-                //{
-                //    Path = projectSpec.TempSolutionPath,
-                //};
-
-                sourceSolution.Build();
-                //targetSolution.Build();
-                var sourceProject = new Project(projectSpec.SourceProjectPath);
-                sourceProject.Build();
-
-
-
-            }
-            
-           
-            var zipPath = outputPath + ".zip";
-
-            if (File.Exists(zipPath))
-                File.Delete(zipPath);
-
-            ZipFile.CreateFromDirectory(outputPath, zipPath);
-
-            Directory.Delete(outputPath,true);
-
-            return zipPath;
-        }
-
-        public static string Process2(string solutionPath, string[] sampleProjectNames, string outputPath)
+        public static string Process(string solutionPath, string outputPath)
         {
             if (string.IsNullOrWhiteSpace(solutionPath))
                 throw new Exception("SolutionPath cannot be empty");
@@ -75,17 +31,17 @@ namespace Xamarin.Components.SampleBuilder
             newSolutuion.Build();
 
             //clean the temp solution and update the samples
-            newSolutuion.UpdateSampleReferencesAndClean(sampleProjectNames);
+            newSolutuion.UpdateSampleReferencesAndClean();
 
 
             var zipPath = outputPath + ".zip";
 
-            //if (File.Exists(zipPath))
-            //    File.Delete(zipPath);
+            if (File.Exists(zipPath))
+                File.Delete(zipPath);
 
-            //ZipFile.CreateFromDirectory(outputPath, zipPath);
+            ZipFile.CreateFromDirectory(outputPath, zipPath);
 
-            //Directory.Delete(outputPath, true);
+            Directory.Delete(outputPath, true);
 
             return zipPath;
         }

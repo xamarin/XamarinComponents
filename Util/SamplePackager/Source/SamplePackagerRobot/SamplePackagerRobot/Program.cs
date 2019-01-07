@@ -18,23 +18,9 @@ namespace SamplePackagerRobot
 
                 var solutionPath = Path.Combine(parent.FullName, @"TestSolution\SampleApplication\SampleApplication.sln");
 
-
-                var projectPath = new string[]
-                {
-                    Path.Combine(parent.FullName, @"TestSolution\SampleApplication\SampleApplication\SampleApplication.csproj"),
-                     Path.Combine(parent.FullName, @"TestSolution\SampleApplication\SampleApplicationCore\SampleApplicationCore.csproj"),
-
-                };
-
-                var projectNames = new string[]
-                {
-                    "SampleApplication",
-                    "SampleApplicationCore",
-                };
-
                 var outPutPath = @"C:\SamplePackagerOutput\BlahComponent";
 
-                SolutionProcessor.Process2(solutionPath, projectNames, outPutPath);
+                SolutionProcessor.Process(solutionPath, outPutPath);
 
                 Console.WriteLine("Complete");
             }

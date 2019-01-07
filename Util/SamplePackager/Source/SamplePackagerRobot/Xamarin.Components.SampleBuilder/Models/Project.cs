@@ -289,16 +289,7 @@ namespace Xamarin.Components.SampleBuilder.Models
 
                 if (verNode == null)
                 {
-                    verNode = FindChildNode(propsProjectNode, "AssemblyVersion");
-
-                    if (verNode == null)
-                    {
-                        versionNo = "1.0.0";
-                    }
-                    else
-                    {
-                        versionNo = verNode.InnerText;
-                    }
+                    versionNo = "1.0.0";
                 }
                 else
                 {

@@ -111,7 +111,7 @@ namespace Xamarin.Components.SampleBuilder.Models
             return newSolution;
         }
 
-        internal void UpdateSampleReferencesAndClean(string[] sampleProjectNames)
+        internal void UpdateSampleReferencesAndClean()
         {
             var projectsToRemove = new List<string>();
 
@@ -146,11 +146,82 @@ namespace Xamarin.Components.SampleBuilder.Models
                             {
                                 aProject.AddPackageReference(referencedProject.Project.PackageId, referencedProject.Project.PackageVersion);
                                 aProject.RemoveProjectReference(referencedProject);
+
+                                var exist = projectsToRemove.FirstOrDefault(x => x.Equals(referencedProject.ProjectName, StringComparison.OrdinalIgnoreCase));
+
+                                if (exist == null)
+                                    projectsToRemove.Add(referencedProject.ProjectName);
                             }
                         }
                     }
                 }
 
+            }
+
+            foreach (var proj in projectsToRemove)
+            {
+                var aProj = Projects.FirstOrDefault(x => x.ProjectName.Equals(proj));
+
+                if (aProj != null)
+                {
+                    var path = aProj.AbsolutePath;
+                    var projId = aProj.ProjectId;
+
+                    var parent = Path.GetDirectoryName(path);
+
+                    if (Directory.Exists(parent))
+                        Directory.Delete(parent, true);
+
+
+                    var lines = File.ReadAllLines(_path);
+
+                    //var projectLines = lines.Where(x => x.ToLower().Contains("project")
+                    //                            && !x.ToLower().Contains("end")
+                    //                            && !x.ToLower().Contains("projectconfiguration"));
+
+                    var projLine = -1;
+                    var endLing = -1;
+
+                    var loopindex = 0;
+
+                    var newLines = new List<string>();
+
+                    foreach (var aLine in lines)
+                    {
+                        if (projLine == -1)
+                        {
+                            if (aLine.Contains(projId))
+                                projLine = loopindex;
+                            else
+                                newLines.Add(aLine);
+                        }
+                        else
+                        {
+                           if (endLing == -1)
+                            {
+                                if (aLine.ToLower().Contains("endproject"))
+                                {
+                                    endLing = loopindex;
+                                }
+                                else if (aLine.ToLower().Contains("project"))
+                                {
+                                    endLing = loopindex;
+                                }
+                            }
+                           else
+                            {
+                                newLines.Add(aLine);
+                            }
+
+                        }
+
+                        loopindex++;
+                    }
+
+                    var its = newLines.Count;
+
+                    File.WriteAllLines(_path, newLines.ToArray());
+                }
             }
         }
     }
