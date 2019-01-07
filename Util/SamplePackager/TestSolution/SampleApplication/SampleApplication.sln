@@ -9,7 +9,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StandardSample", "StandardS
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SampleApplicationCore", "SampleApplicationCore\SampleApplicationCore.csproj", "{402FABC4-28E2-4201-86D2-E968B22D1AF8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StandardSampleTwo", "StandardSampleTwo\StandardSampleTwo.csproj", "{81C230C4-64F2-419F-B039-9970E57E136F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StandardSampleTwo", "StandardSampleTwo\StandardSampleTwo.csproj", "{81C230C4-64F2-419F-B039-9970E57E136F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AndroidLibrary", "AndroidLibrary\AndroidLibrary.csproj", "{EE9BBDE8-795A-401D-859B-FEF84BE658A8}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +35,10 @@ Global
 		{81C230C4-64F2-419F-B039-9970E57E136F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{81C230C4-64F2-419F-B039-9970E57E136F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{81C230C4-64F2-419F-B039-9970E57E136F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EE9BBDE8-795A-401D-859B-FEF84BE658A8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EE9BBDE8-795A-401D-859B-FEF84BE658A8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EE9BBDE8-795A-401D-859B-FEF84BE658A8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EE9BBDE8-795A-401D-859B-FEF84BE658A8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
