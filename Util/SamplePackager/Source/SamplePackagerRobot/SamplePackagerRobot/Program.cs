@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Reflection;
 using Xamarin.Components.SampleBuilder;
@@ -20,7 +21,14 @@ namespace SamplePackagerRobot
 
                 var outPutPath = @"C:\SamplePackagerOutput\BlahComponent";
 
-                SolutionProcessor.Process(solutionPath, outPutPath);
+                var packageVersions = new Dictionary<string, string>()
+                {
+                    {"StandardSample","1.1.0" },
+                    {"AndroidLibary","1.1.0" },
+
+                };
+
+                var outputfile = SolutionProcessor.Process(solutionPath, outPutPath, packageVersions);
 
                 Console.WriteLine("Complete");
             }

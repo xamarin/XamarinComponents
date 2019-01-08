@@ -258,9 +258,6 @@ namespace Xamarin.Components.SampleBuilder.Models
 
                 if (propsProjectNode != null)
                     break;
-
-
-
             }
 
             if (propsProjectNode != null)

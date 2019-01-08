@@ -111,7 +111,7 @@ namespace Xamarin.Components.SampleBuilder.Models
             return newSolution;
         }
 
-        internal void UpdateSampleReferencesAndClean()
+        internal void UpdateSampleReferencesAndClean(Dictionary<string, string> nugetPackageOverrides = null)
         {
             var projectsToRemove = new List<string>();
 
@@ -144,7 +144,11 @@ namespace Xamarin.Components.SampleBuilder.Models
                         {
                             if (!string.IsNullOrWhiteSpace(referencedProject.Project.PackageId))
                             {
-                                aProject.AddPackageReference(referencedProject.Project.PackageId, referencedProject.Project.PackageVersion);
+                                //check to see if a version overide has been provided
+                                var altVersion = (nugetPackageOverrides != null && nugetPackageOverrides.ContainsKey(referencedProject.Project.PackageId))
+                                    ? nugetPackageOverrides[referencedProject.Project.PackageId] : referencedProject.Project.PackageVersion;
+
+                                aProject.AddPackageReference(referencedProject.Project.PackageId, altVersion);
                                 aProject.RemoveProjectReference(referencedProject);
 
                                 var exist = projectsToRemove.FirstOrDefault(x => x.Equals(referencedProject.ProjectName, StringComparison.OrdinalIgnoreCase));

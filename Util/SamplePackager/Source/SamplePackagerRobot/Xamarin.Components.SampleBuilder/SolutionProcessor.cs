@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.IO.Compression;
 using System.Linq;
@@ -14,7 +15,7 @@ namespace Xamarin.Components.SampleBuilder
 
         #region Public Methods
 
-        public static string Process(string solutionPath, string outputPath)
+        public static string Process(string solutionPath, string outputPath, Dictionary<string, string> nugetPackageOverrides = null)
         {
             if (string.IsNullOrWhiteSpace(solutionPath))
                 throw new Exception("SolutionPath cannot be empty");
@@ -31,7 +32,7 @@ namespace Xamarin.Components.SampleBuilder
             newSolutuion.Build();
 
             //clean the temp solution and update the samples
-            newSolutuion.UpdateSampleReferencesAndClean();
+            newSolutuion.UpdateSampleReferencesAndClean(nugetPackageOverrides);
 
 
             var zipPath = outputPath + ".zip";
