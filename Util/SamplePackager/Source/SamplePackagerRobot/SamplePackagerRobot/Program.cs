@@ -25,10 +25,9 @@ namespace SamplePackagerRobot
                 {
                     {"StandardSample","1.1.0" },
                     {"AndroidLibary","1.1.0" },
-
                 };
 
-                var outputfile = SolutionProcessor.Process(solutionPath, outPutPath, packageVersions);
+                var outputfile = SolutionProcessor.Process(solutionPath, outPutPath);
 
                 Console.WriteLine("Complete");
             }
