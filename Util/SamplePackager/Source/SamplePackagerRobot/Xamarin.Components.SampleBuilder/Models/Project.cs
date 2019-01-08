@@ -291,7 +291,7 @@ namespace Xamarin.Components.SampleBuilder.Models
                 var versonNo = string.Empty;
 
                 //
-                var verNode = FindChildNode(propsProjectNode, "Version");
+                var verNode = FindChildNode(propsProjectNode, "PackageVersion");
 
                 if (verNode == null)
                 {
@@ -306,6 +306,7 @@ namespace Xamarin.Components.SampleBuilder.Models
                 PackageVersion = versionNo;
             }
         }
+
         private void FindSdkNugetDetails(XmlDocument node)
         {
             XmlNode propsProjectNode = null;
