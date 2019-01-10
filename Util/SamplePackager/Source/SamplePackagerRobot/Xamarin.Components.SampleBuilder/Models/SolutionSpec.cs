@@ -107,6 +107,7 @@ namespace Xamarin.Components.SampleBuilder.Models
             }
 
             var newSolution = new SolutionSpec(tempSlnPath);
+            newSolution.UpdateProjectsToBeRelative();
 
             return newSolution;
         }
@@ -227,6 +228,54 @@ namespace Xamarin.Components.SampleBuilder.Models
                     File.WriteAllLines(_path, newLines.ToArray());
                 }
             }
+        }
+
+        private void UpdateProjectsToBeRelative()
+        {
+            var lines = File.ReadAllLines(_path);
+
+           
+
+            var newLines = new List<string>();
+
+            foreach (var aLine in lines)
+            {
+                if (aLine.ToLower().Contains("project("))
+                {
+                    var lne = aLine.Substring(aLine.IndexOf("=")).Replace("=", "").Trim();
+
+                    var vals = lne.Split(',');
+
+                    var projectName = vals[0].Replace("\"", "").Trim();
+
+                    var csprojPath = vals[1].Replace("\"", "").Trim();
+
+                    if (!csprojPath.StartsWith(projectName))
+                    {
+                        //do a thing with the lines
+                        var line2 = csprojPath.IndexOf(projectName);
+
+                        var sub = csprojPath.Substring(line2);
+
+                        var newLine = aLine.Replace(csprojPath, sub);
+
+                        newLines.Add(newLine);
+
+                    }
+                    else
+                    {
+                        newLines.Add(aLine);
+                    }
+                }
+                else
+                {
+                    newLines.Add(aLine);
+                }
+                
+ 
+            }
+
+            File.WriteAllLines(_path, newLines.ToArray());
         }
     }
 
