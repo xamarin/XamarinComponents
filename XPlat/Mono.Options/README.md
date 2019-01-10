@@ -32,7 +32,7 @@ options expected:
     var names = new List<string> ();
     var repeat = 1;
 
-    // thses are the available options, not that they set the variables
+    // these are the available options, not that they set the variables
     var options = new OptionSet { 
         { "n|name=", "the name of someone to greet.", n => names.Add (n) }, 
         { "r|repeat=", "the number of times to repeat the greeting.", (int r) => repeat = r }, 
