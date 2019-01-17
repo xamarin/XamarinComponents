@@ -48,5 +48,10 @@ namespace Xamarin.Components.SampleBuilder.Models
                 Project.RemoveReferenceClassic(referencedProject.ProjectId);
             }
         }
+
+        internal void UpdateSdkProjectLocation(SolutionProject referencedProject, Dictionary<string, string> updatePaths)
+        {
+            Project.UpdateSdkProjectLocation(referencedProject.ProjectName, updatePaths);
+        }
     }
 }

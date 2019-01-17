@@ -60,6 +60,83 @@ namespace Xamarin.Components.SampleBuilder.Models
             xml.Save(_path);
         }
 
+        internal void UpdateSdkProjectLocation(string projectName, Dictionary<string, string> updatePaths)
+        {
+            var xml = new XmlDocument();
+            xml.Load(_path);
+
+            XmlNode projectNode = FindProjectNode(xml);
+
+            XmlNode lstProjectNode = null;
+
+            var references = new List<XmlNode>();
+
+            foreach (XmlNode aNode in projectNode.ChildNodes)
+            {
+                lstProjectNode = FindParentNode(aNode, "ProjectReference");
+
+                if (lstProjectNode != null)
+                {
+                    foreach (XmlNode aRef in lstProjectNode.ChildNodes)
+                    {
+                        references.Add(aRef);
+                    }
+                    break;
+                }
+
+            }
+
+            foreach (XmlNode aProject in references)
+            {
+                var link = aProject.Attributes["Include"];
+
+                if (link != null)
+                {
+                    var csProj = projectName.ToLower() + ".csproj";
+
+                    if (link.InnerText.ToLower().Contains(csProj))
+                    {
+                        var csprojPath = link.InnerText;
+
+                        if (updatePaths.ContainsKey(csprojPath))
+                        {
+                            var newLine = link.InnerText.Replace(csprojPath, updatePaths[csprojPath]);
+
+                            link.Value = newLine;
+                        }
+                        else
+                        {
+                            var newPAth = csprojPath.Replace(@"..\..\", @"..\");
+
+                            if (updatePaths.ContainsKey(newPAth))
+                            {
+                                var newRPath = @"..\" + updatePaths[newPAth];
+
+                                var newLine = link.InnerText.Replace(csprojPath, newRPath);
+
+                                link.Value = newLine;
+                            }
+                            else
+                            {
+                                var line2 = csprojPath.IndexOf(projectName);
+
+                                var sub = @"..\" + csprojPath.Substring(line2);
+
+                                var newLine = link.InnerText.Replace(csprojPath, sub);
+
+                                link.Value = newLine;
+                            }
+                                
+                        }
+
+                    }
+
+                }
+            }
+
+            xml.Save(_path);
+        }
+
         internal void AddPackageReferenceClassic(string packageId, string packageVersion)
         {
             var xml = new XmlDocument();

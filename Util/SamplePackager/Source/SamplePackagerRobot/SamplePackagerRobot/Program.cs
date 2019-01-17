@@ -19,13 +19,16 @@ namespace SamplePackagerRobot
 
                 //var solutionPath = Path.Combine(parent.FullName, @"TestSolution\SampleApplication\SampleApplication.sln");
                 var solutionPath = Path.Combine(parent.FullName, @"TestSolution2\Samples\SampleApplication.sln");
-                var outPutPath = @"C:\SamplePackagerOutput\BlahComponent";
 
-                var packageVersions = new Dictionary<string, string>()
-                {
-                    {"StandardSample","1.1.0" },
-                    {"AndroidLibary","1.1.0" },
-                };
+                //var solutionPath = @"C:\Users\dave\Desktop\ARCore\samples\HelloAR.sln";
+
+                var outPutPath = @"C:\SamplePackagerOutput\ARCoreSamples";
+
+                //var packageVersions = new Dictionary<string, string>()
+                //{
+                //    {"StandardSample","1.1.0" },
+                //    {"AndroidLibary","1.1.0" },
+                //};
 
                 var outputfile = SolutionProcessor.Process(solutionPath, outPutPath);
 

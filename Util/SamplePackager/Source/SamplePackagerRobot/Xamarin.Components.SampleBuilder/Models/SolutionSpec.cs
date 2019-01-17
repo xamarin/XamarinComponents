@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
+using Xamarin.Components.SampleBuilder.Enums;
 using Xamarin.Components.SampleBuilder.Helpers;
 
 namespace Xamarin.Components.SampleBuilder.Models
@@ -28,6 +29,14 @@ namespace Xamarin.Components.SampleBuilder.Models
 
                 return _projects;
             }
+        }
+
+        private Dictionary<string,string> _updatePaths;
+
+        public Dictionary<string,string> UpdatedPaths
+        {
+            get { return _updatePaths; }
+            private set { _updatePaths = value; }
         }
 
         internal void Build()
@@ -95,18 +104,34 @@ namespace Xamarin.Components.SampleBuilder.Models
             var basePath = System.IO.Path.GetDirectoryName(_path);
             //
 
+            var slnUri = new Uri(_path);
+            var tempSlnUri = new Uri(tempSlnPath);
+
+            var relativePaths = new Dictionary<string, string>();
+
+
             foreach (var aProject in Projects)
             {
+                var originalRelUri = slnUri.MakeRelativeUri(new Uri(aProject.AbsolutePath)).ToString();
+
+                var fileName = Path.GetFileName(aProject.AbsolutePath);
                 var projDir = Path.GetDirectoryName(aProject.AbsolutePath);
 
                 var folderName = new DirectoryInfo(projDir).Name;
 
                 var targetFolderPath = Path.Combine(tempPath, folderName);
 
+                var newProjPath = Path.Combine(targetFolderPath, fileName);
+
+                var targetRelUri = tempSlnUri.MakeRelativeUri(new Uri(newProjPath)).ToString();
+
                 FileHelper.CopyDirectory(projDir, targetFolderPath);
+
+                relativePaths.Add(originalRelUri.Replace("/",@"\"), targetRelUri.Replace("/", @"\"));
             }
 
             var newSolution = new SolutionSpec(tempSlnPath);
+            newSolution.UpdatedPaths = relativePaths;
             newSolution.UpdateProjectsToBeRelative();
 
             return newSolution;
@@ -157,6 +182,14 @@ namespace Xamarin.Components.SampleBuilder.Models
                                 if (exist == null)
                                     projectsToRemove.Add(referencedProject.ProjectName);
                             }
+                            else
+                            {
+                                //fix the references to point locally instead on an SDK project
+                                if (aProject.Project.Type == ProjectType.SDK)
+                                {
+                                    aProject.UpdateSdkProjectLocation(referencedProject, UpdatedPaths);
+                                }
+                            }
                         }
                     }
                 }
@@ -179,10 +212,6 @@ namespace Xamarin.Components.SampleBuilder.Models
 
 
                     var lines = File.ReadAllLines(_path);
-
-                    //var projectLines = lines.Where(x => x.ToLower().Contains("project")
-                    //                            && !x.ToLower().Contains("end")
-                    //                            && !x.ToLower().Contains("projectconfiguration"));
 
                     var projLine = -1;
                     var endLing = -1;
@@ -234,8 +263,6 @@ namespace Xamarin.Components.SampleBuilder.Models
         {
             var lines = File.ReadAllLines(_path);
 
-           
-
             var newLines = new List<string>();
 
             foreach (var aLine in lines)
@@ -250,22 +277,31 @@ namespace Xamarin.Components.SampleBuilder.Models
 
                     var csprojPath = vals[1].Replace("\"", "").Trim();
 
-                    if (!csprojPath.StartsWith(projectName))
+                    if (UpdatedPaths.ContainsKey(csprojPath))
                     {
-                        //do a thing with the lines
-                        var line2 = csprojPath.IndexOf(projectName);
+                        var item = UpdatedPaths[csprojPath];
 
-                        var sub = csprojPath.Substring(line2);
-
-                        var newLine = aLine.Replace(csprojPath, sub);
+                        var newLine = aLine.Replace(csprojPath, item);
 
                         newLines.Add(newLine);
-
                     }
                     else
                     {
                         newLines.Add(aLine);
                     }
+                    //if (!csprojPath.StartsWith(projectName))
+                    //{
+                    //    //do a thing with the lines
+                    //    var line2 = csprojPath.IndexOf(projectName);
+
+                    //    var sub = csprojPath.Substring(line2);
+
+                    //    var newLine = aLine.Replace(csprojPath, sub);
+
+                    //    newLines.Add(newLine);
+
+                    //}
+                    
                 }
                 else
                 {
