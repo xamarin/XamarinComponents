@@ -1,4 +1,4 @@
-version: 72.2.0
+version: 72.2.0.1
 name: Material Components
 id: materialcomponentsios
 publisher: Xamarin Inc
@@ -12,7 +12,7 @@ local-nuget-repo: ../output
 libraries:
   ios-unified: ../output/MaterialComponents.iOS.dll
 packages:
-  ios-unified: MaterialComponents, Version=72.2.0
+  ios-unified: MaterialComponents, Version=72.2.0.1
 samples:
   - name: "iOS Sample"
     path:  ../samples/MaterialSample.sln
