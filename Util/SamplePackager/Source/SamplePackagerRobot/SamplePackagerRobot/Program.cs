@@ -18,9 +18,9 @@ namespace SamplePackagerRobot
                 var parent = new DirectoryInfo(cpPath).Parent.Parent.Parent.Parent.Parent.Parent;
 
                 //var solutionPath = Path.Combine(parent.FullName, @"TestSolution\SampleApplication\SampleApplication.sln");
-                var solutionPath = Path.Combine(parent.FullName, @"TestSolution2\Samples\SampleApplication.sln");
+                //var solutionPath = Path.Combine(parent.FullName, @"TestSolution2\Samples\SampleApplication.sln");
 
-                //var solutionPath = @"C:\Users\dave\Desktop\ARCore\samples\HelloAR.sln";
+                var solutionPath = @"C:\Users\dave\Desktop\ARCore\samples\HelloAR.sln";
 
                 var outPutPath = @"C:\SamplePackagerOutput\ARCoreSamples";
 

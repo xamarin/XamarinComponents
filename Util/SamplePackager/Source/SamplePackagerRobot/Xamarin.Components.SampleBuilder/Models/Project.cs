@@ -153,17 +153,28 @@ namespace Xamarin.Components.SampleBuilder.Models
                 projectNode.InsertAfter(packageParent, projectNode.LastChild);
             }
 
+            //var newPackage = xml.CreateElement("PackageReference", xml.DocumentElement.NamespaceURI);
+            //var include = xml.CreateAttribute("Include");
+            //include.Value = packageId;
+            //newPackage.Attributes.Append(include);
+
+            //var verPackage = xml.CreateElement("Version", xml.DocumentElement.NamespaceURI);
+            //verPackage.InnerText = packageVersion;
+
+            //newPackage.AppendChild(verPackage);
+            //packageParent.AppendChild(newPackage);
             var newPackage = xml.CreateElement("PackageReference", xml.DocumentElement.NamespaceURI);
             var include = xml.CreateAttribute("Include");
             include.Value = packageId;
             newPackage.Attributes.Append(include);
 
-            var verPackage = xml.CreateElement("Version", xml.DocumentElement.NamespaceURI);
-            verPackage.InnerText = packageVersion;
-
-            newPackage.AppendChild(verPackage);
+            var version = xml.CreateAttribute("Version");
+            version.Value = packageVersion;
+            newPackage.Attributes.Append(version);
 
             packageParent.AppendChild(newPackage);
+
+
 
             xml.Save(_path);
         }
