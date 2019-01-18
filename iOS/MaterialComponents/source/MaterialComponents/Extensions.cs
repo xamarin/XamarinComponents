@@ -93,6 +93,30 @@ namespace MaterialComponents {
 		}
 	}
 
+	partial class Card {
+		public void SetShadowElevation (double shadowElevation, UIControlState state) {
+			SetShadowElevation ((nfloat)shadowElevation, state);
+		}
+	}
+
+	partial class CardCollectionCell {
+		public void SetShadowElevation (double shadowElevation, CardCellState state) {
+			SetShadowElevation ((nfloat)shadowElevation, state);
+		}
+	}
+
+	partial class ChipView {
+		public void SetElevation (double elevation, UIControlState state) {
+			SetElevation ((nfloat)elevation, state);
+		}
+	}
+
+	partial class Button {
+		public void SetElevation (double elevation, UIControlState state) {
+			SetElevation ((nfloat)elevation, state);
+		}
+	}
+
 	partial class TextFieldColorThemer {
 		public static void ApplySemanticColorSchemeToAll (IColorScheming colorScheme, Type textInputControllerType) {
 			ApplySemanticColorSchemeToAll (colorScheme, new Class (textInputControllerType));
