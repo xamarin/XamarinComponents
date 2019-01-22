@@ -1,0 +1,16 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
+    <Copyright>© Microsoft Corporation. All rights reserved.</Copyright>
+    <Authors>Microsoft</Authors>
+    <Company>Microsoft</Company>
+    <PackageProjectUrl>https://github.com/xamarin/XamarinComponents/tree/master/Util/SamplePackager</PackageProjectUrl>
+    <PackageLicenseUrl>https://github.com/xamarin/XamarinComponents/blob/master/Util/SamplePackager/LICENSE.md</PackageLicenseUrl>
+    <PackageTags>Xamarin Components Samples</PackageTags>
+    <Description>Library for creating samples from a solution</Description>
+  </PropertyGroup>
+
+</Project>

@@ -15,7 +15,7 @@ namespace SamplePackagerRobot
                 var cpPath = Path.GetDirectoryName(Assembly.GetEntryAssembly().Location);
 
                 //find the root path of the SamplePackager
-                var parent = new DirectoryInfo(cpPath).Parent.Parent.Parent.Parent.Parent.Parent;
+                var parent = new DirectoryInfo(cpPath).Parent.Parent.Parent.Parent.Parent;
 
                 //var solutionPath = Path.Combine(parent.FullName, @"TestSolution\SampleApplication\SampleApplication.sln");
                 //var solutionPath = Path.Combine(parent.FullName, @"TestSolution2\Samples\SampleApplication.sln");
