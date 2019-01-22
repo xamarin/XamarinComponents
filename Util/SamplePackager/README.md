@@ -1,42 +1,27 @@
-# Nuget Audit Robot
+# Sample Packager
 
-The Nuget Audit Robot is designed to verify and validate the Xamarin owned nugets.
+The Sample packager is designed to provide a zipped sample package after processing a solution containing packages that will produce Nugets.
 
-It will check the following:
+The sample packager is compatible with:
 
- - All dlls and exes are signed
- - Licence and Project urls are using FWLinks
- - Licence, Project and Icon urls are valid and working
+- SDK style project (.Net Core and .Net Standard)
+- Classic style projects (.Net Framework, Xamarin.iOS and Xamarin.Android)
 
-It also collects data about each package which can be stored in a Azure or MS Sql Database
+##  Setup
 
- - Total Downloads
- - Latest Version
- - Lastest Publish Date
- - Total Versions
- 
+The sample packager will detect any referenced project that is configured to produce a Nuget package.  It will removed  the references and re-added them as package references to the nugets that will be produced.
 
-# Nuget Validator example
+To do this it will detect the following properties in the csproj.
 
-    var options = new NugetValidatorOptions(
-    {
-        Copyright = "© Microsoft Corporation. All rights reserved.",
-        Author = "Microsoft",
-        Owner = "Microsoft",
-        NeedsProjectUrl = true,
-        NeedsLicenseUrl = true,
-        ValidateRequireLicenseAcceptance = true,
-        ValidPackageNamespace = new [] { "Xamarin" },
-    };
+- PackOnBuild (Classic)
+- GeneratePackageOnBuild (SDK)
 
-    var result = NugetValidator.Validate(nugetPath, options);
+If it detects these properties it will asssume the project is packaged for nuget.
 
-    if (!result.Success)
-    {
-        Console.WriteLine($"Nuget at path: {nugetPath} failed validation" + Environment.NewLine);
-        Console.Write(result.ErrorMessages);
-    }
-    else
-    {
-        Console.WriteLine("Validation Passed");
-    }
+It will then process the following properties to calculate the package Id and Package version.
+
+- PackageId (SDK and Classic)
+- Version (SDK)
+- PackageVersion (Classic)
+
+
