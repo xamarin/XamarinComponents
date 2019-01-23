@@ -51,10 +51,15 @@ Running Cake to Build targets
 #addin nuget:?package=Cake.Xamarin.Build
 #addin nuget:?package=Cake.Xamarin
 #addin nuget:?package=Cake.FileHelpers
+#addin nuget:?package=Mono.ApiTools.NuGetDiff&version=1.0.0&loaddependencies=true
 
 var TARGET = Argument ("t", Argument ("target", "Default"));
 
-string AAR_URL="https://bintray.com/google/tensorflow/download_file?file_path=org%2Ftensorflow%2Ftensorflow-lite%2F1.9.0%2Ftensorflow-lite-1.9.0.aar";
+string AAR_URL="https://bintray.com/google/tensorflow/download_file?file_path=org%2Ftensorflow%2Ftensorflow-lite%2F1.12.0%2Ftensorflow-lite-1.12.0.aar";
+
+var TRACKED_NUGETS = new Dictionary<string, Version> {
+    { "Xamarin.TensorFlow.Lite",                          new Version (1, 9, 0) },
+};
 
 BuildSpec buildSpec = new BuildSpec () 
 {
@@ -71,7 +76,7 @@ BuildSpec buildSpec = new BuildSpec ()
 				},
 				new OutputFileCopy 
 				{ 
-					FromFile = "source/Xamarin.TensorFlow.Lite.Bindings.XamarinAndroid/bin/Release/Xamarin.TensorFlow.Lite.1.9.0.nupkg" 
+					FromFile = "source/Xamarin.TensorFlow.Lite.Bindings.XamarinAndroid/bin/Release/Xamarin.TensorFlow.Lite.1.12.0.nupkg" 
 				},
 				// new OutputFileCopy 
 				// { 
@@ -110,7 +115,7 @@ Task ("externals")
 			EnsureDirectoryExists("./externals/android");
 			Information("    downloading ...");
 
-			string file = "./externals/android/tensorflow-lite-1.9.0.aar";
+			string file = "./externals/android/tensorflow-lite-1.12.0.aar";
 			if ( ! string.IsNullOrEmpty(AAR_URL) && ! FileExists(file))
 			{
 				DownloadFile (AAR_URL, file);
