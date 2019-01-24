@@ -495,6 +495,46 @@ namespace Masonry
 		[Export ("mas_attribute", ArgumentSemantic.Strong)]
 		Func<NSLayoutAttribute, ViewAttribute> Attribute ();
 
+		// @property (readonly, nonatomic, strong) MASViewAttribute * mas_safeAreaLayoutGuideLeft;
+		[Export ("mas_safeAreaLayoutGuideLeft", ArgumentSemantic.Strong)]
+		ViewAttribute SafeAreaLayoutGuideLeft ();
+
+		// @property (readonly, nonatomic, strong) MASViewAttribute * mas_safeAreaLayoutGuideTop;
+		[Export ("mas_safeAreaLayoutGuideTop", ArgumentSemantic.Strong)]
+		ViewAttribute SafeAreaLayoutGuideTop ();
+
+		// @property (readonly, nonatomic, strong) MASViewAttribute * mas_safeAreaLayoutGuideRight;
+		[Export ("mas_safeAreaLayoutGuideRight", ArgumentSemantic.Strong)]
+		ViewAttribute SafeAreaLayoutGuideRight ();
+
+		// @property (readonly, nonatomic, strong) MASViewAttribute * mas_safeAreaLayoutGuideBottom;
+		[Export ("mas_safeAreaLayoutGuideBottom", ArgumentSemantic.Strong)]
+		ViewAttribute SafeAreaLayoutGuideBottom ();
+
+		// @property (readonly, nonatomic, strong) MASViewAttribute * mas_safeAreaLayoutGuideLeading;
+		[Export ("mas_safeAreaLayoutGuideLeading", ArgumentSemantic.Strong)]
+		ViewAttribute SafeAreaLayoutGuideLeading ();
+		
+		// @property (readonly, nonatomic, strong) MASViewAttribute * mas_safeAreaLayoutGuideTrailing;
+		[Export ("mas_safeAreaLayoutGuideTrailing", ArgumentSemantic.Strong)]
+		ViewAttribute SafeAreaLayoutGuideTrailing ();
+
+		// @property (readonly, nonatomic, strong) MASViewAttribute * mas_safeAreaLayoutGuideWidth;
+		[Export ("mas_safeAreaLayoutGuideWidth", ArgumentSemantic.Strong)]
+		ViewAttribute SafeAreaLayoutGuideWidth ();
+
+		// @property (readonly, nonatomic, strong) MASViewAttribute * mas_safeAreaLayoutGuideHeight;
+		[Export ("mas_safeAreaLayoutGuideHeight", ArgumentSemantic.Strong)]
+		ViewAttribute SafeAreaLayoutGuideHeight ();
+
+		// @property (readonly, nonatomic, strong) MASViewAttribute * mas_safeAreaLayoutGuideCenterX;
+		[Export ("mas_safeAreaLayoutGuideCenterX", ArgumentSemantic.Strong)]
+		ViewAttribute SafeAreaLayoutGuideCenterX ();
+
+		// @property (readonly, nonatomic, strong) MASViewAttribute * mas_safeAreaLayoutGuideCenterY;
+		[Export ("mas_safeAreaLayoutGuideCenterY", ArgumentSemantic.Strong)]
+		ViewAttribute SafeAreaLayoutGuideCenterY ();
+
 #if __IOS__ || __TVOS__
 
 		// @property (readonly, nonatomic, strong) MASViewAttribute * mas_leftMargin;
@@ -586,6 +626,10 @@ namespace Masonry
 		// @property (readonly, nonatomic, strong) MASViewAttribute * mas_bottomLayoutGuideBottom;
 		[Export ("mas_bottomLayoutGuideBottom", ArgumentSemantic.Strong)]
 		ViewAttribute BottomLayoutGuideBottom ();
+		
+		// @property (readonly, nonatomic, strong) MASViewAttribute * mas_safeAreaLayoutGuide;
+		[Export ("mas_safeAreaLayoutGuide", ArgumentSemantic.Strong)]
+		ViewAttribute SafeAreaLayoutGuide ();
 	}
 
 #endif
