@@ -45,17 +45,15 @@ Running Cake to Build targets
 		mono tools/Cake/Cake.exe --verbosity=diagnostic --target=nuget
 #########################################################################################
 */
+#load "apidiffutils.cake"
+
 #tool nuget:?package=XamarinComponent
 
 #addin nuget:?package=Cake.XCode
 #addin nuget:?package=Cake.Xamarin.Build
 #addin nuget:?package=Cake.Xamarin
 #addin nuget:?package=Cake.FileHelpers
-#addin nuget:?package=Mono.ApiTools.NuGetDiff&version=1.0.1&loaddependencies=true
 
-using Mono.ApiTools;
-using NuGet.Packaging;
-using NuGet.Versioning;
 
 var TARGET = Argument ("t", Argument ("target", "Default"));
 
@@ -153,9 +151,7 @@ Task ("docs-api-diff")
     var baseDir = "./output/api-diff";
     CleanDirectories (baseDir);
 
-    var comparer = new NuGetDiff();
-    comparer.SaveAssemblyApiInfo = true;
-    comparer.SaveAssemblyMarkdownDiff = true;
+	var comparer = CreateNuGetDiff();
 
 	var version = NUGET_VERSION;
 	var latestVersion = (await NuGetVersions.GetLatestAsync (NUGET_PACKAGE_ID))?.ToNormalizedString ();

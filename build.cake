@@ -2,6 +2,11 @@
 
 #addin nuget:?package=redth.xunit.resultwriter&version=1.0.0
 #addin "nuget:?package=Xamarin.Nuget.Validator&version=1.1.1"
+#addin nuget:?package=Mono.ApiTools.NuGetDiff&version=1.0.1&loaddependencies=true
+
+using Mono.ApiTools;
+using NuGet.Packaging;
+using NuGet.Versioning;
 
 var TARGET = Argument ("target", Argument ("t", Argument ("Target", "build")));
 
