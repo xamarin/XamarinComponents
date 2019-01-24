@@ -43,6 +43,7 @@
             Initial bindings
         </PackageReleaseNotes>
         <PackageTags>xamarin, android, bindings, google, tensorflow</PackageTags>
+        <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
     </PropertyGroup>
 
     <ItemGroup>

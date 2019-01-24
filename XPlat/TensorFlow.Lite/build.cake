@@ -45,7 +45,8 @@ Running Cake to Build targets
 		mono tools/Cake/Cake.exe --verbosity=diagnostic --target=nuget
 #########################################################################################
 */
-#load "apidiffutils.cake"
+#load "../../common.cake"
+//#load "apidiffutils.cake"
 
 #tool nuget:?package=XamarinComponent
 
@@ -54,18 +55,19 @@ Running Cake to Build targets
 #addin nuget:?package=Cake.Xamarin
 #addin nuget:?package=Cake.FileHelpers
 
+var NUGET_VERSION = "1.12.0";
+var AAR_VERSION = "1.12.0";
+var NUGET_PACKAGE_ID = "Xamarin.TensorFlow.Lite";
 
 var TARGET = Argument ("t", Argument ("target", "Default"));
 
-string AAR_URL="https://bintray.com/google/tensorflow/download_file?file_path=org%2Ftensorflow%2Ftensorflow-lite%2F1.12.0%2Ftensorflow-lite-1.12.0.aar";
+string AAR_URL=$"https://bintray.com/google/tensorflow/download_file?file_path=org%2Ftensorflow%2Ftensorflow-lite%2F{AAR_VERSION}%2Ftensorflow-lite-{AAR_VERSION}.aar";
 
 var TRACKED_NUGETS = new Dictionary<string, Version> {
     { "Xamarin.TensorFlow.Lite",                          new Version (1, 9, 0) },
 };
 
-var NUGET_VERSION = "1.12.0";
-var AAR_VERSION = "1.12.0";
-var NUGET_PACKAGE_ID = "Xamarin.TensorFlow.Lite";
+
 
 
 BuildSpec buildSpec = new BuildSpec () 
@@ -83,7 +85,7 @@ BuildSpec buildSpec = new BuildSpec ()
 				},
 				new OutputFileCopy 
 				{ 
-					FromFile = "source/Xamarin.TensorFlow.Lite.Bindings.XamarinAndroid/bin/Release/" + NUGET_PACKAGE_ID + "." + NUGET_VERSION + ".nupkg" 
+					FromFile = $"source/Xamarin.TensorFlow.Lite.Bindings.XamarinAndroid/bin/Release/{NUGET_PACKAGE_ID}.{NUGET_VERSION}.nupkg" 
 				},
 				// new OutputFileCopy 
 				// { 
@@ -122,7 +124,7 @@ Task ("externals")
 			EnsureDirectoryExists("./externals/android");
 			Information("    downloading ...");
 
-			string file = "./externals/android/tensorflow-lite-1.12.0.aar";
+			string file = $"./externals/android/tensorflow-lite-{AAR_VERSION}.aar";
 			if ( ! string.IsNullOrEmpty(AAR_URL) && ! FileExists(file))
 			{
 				DownloadFile (AAR_URL, file);
@@ -177,7 +179,7 @@ Task ("docs-api-diff")
 		await comparer.SaveCompleteDiffToDirectoryAsync (NUGET_PACKAGE_ID, latestVersion, reader, diffRoot);
 	}
 
-	CopyChangelogs (diffRoot, NUGET_PACKAGE_ID, version);
+	CopyChangelogs (diffRoot, NUGET_PACKAGE_ID, version, "./output/changelogs");
 
     Information ($"Diff complete of '{NUGET_PACKAGE_ID}'.");
 
