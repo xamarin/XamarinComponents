@@ -51,8 +51,8 @@
     </ItemGroup>
 
     <ItemGroup>
-        <LibraryProjectZip Include="..\..\externals\android\tensorflow-lite-1.12.0.aar">
-            <Link>Jars\tensorflow-lite-1.12.0.aar</Link>
+        <LibraryProjectZip Include="..\..\externals\android\tensorflow-lite.aar">
+            <Link>Jars\tensorflow-lite.aar</Link>
         </LibraryProjectZip>
     </ItemGroup>
 

@@ -124,7 +124,7 @@ Task ("externals")
 			EnsureDirectoryExists("./externals/android");
 			Information("    downloading ...");
 
-			string file = $"./externals/android/tensorflow-lite-{AAR_VERSION}.aar";
+			string file = $"./externals/android/tensorflow-lite.aar";
 			if ( ! string.IsNullOrEmpty(AAR_URL) && ! FileExists(file))
 			{
 				DownloadFile (AAR_URL, file);
@@ -150,41 +150,7 @@ Task ("docs-api-diff")
 	.IsDependentOn ("nuget")
     .Does (async () =>
 {
-    var baseDir = "./output/api-diff";
-    CleanDirectories (baseDir);
-
-	var comparer = CreateNuGetDiff();
-	comparer.IgnoreResolutionErrors = true;
-
-	var version = NUGET_VERSION;
-	var latestVersion = (await NuGetVersions.GetLatestAsync (NUGET_PACKAGE_ID))?.ToNormalizedString ();
-
-	// pre-cache so we can have better logs
-	if (!string.IsNullOrEmpty (latestVersion)) {
-		Debug ($"Caching version '{latestVersion}' of '{NUGET_PACKAGE_ID}'...");
-		await comparer.ExtractCachedPackageAsync (NUGET_PACKAGE_ID, latestVersion);
-	}
-
-	Debug ($"Running a diff on '{latestVersion}' vs '{version}' of '{NUGET_PACKAGE_ID}'...");
-	var diffRoot = $"{baseDir}/{NUGET_PACKAGE_ID}";
-	using (var reader = new PackageArchiveReader ($"./output/{NUGET_PACKAGE_ID.ToLower ()}.{version}.nupkg")) 
-	{
-		// run the diff with just the breaking changes
-		comparer.MarkdownDiffFileExtension = ".breaking.md";
-		comparer.IgnoreNonBreakingChanges = true;
-		await comparer.SaveCompleteDiffToDirectoryAsync (NUGET_PACKAGE_ID, latestVersion, reader, diffRoot);
-		// run the diff on everything
-		comparer.MarkdownDiffFileExtension = null;
-		comparer.IgnoreNonBreakingChanges = false;
-		await comparer.SaveCompleteDiffToDirectoryAsync (NUGET_PACKAGE_ID, latestVersion, reader, diffRoot);
-	}
-
-	CopyChangelogs (diffRoot, NUGET_PACKAGE_ID, version, "./output/changelogs");
-
-    Information ($"Diff complete of '{NUGET_PACKAGE_ID}'.");
-
-    // clean up after working
-    CleanDirectories (baseDir);
+	await BuildApiDiff(NUGET_PACKAGE_ID, NUGET_VERSION);
 });
 
 SetupXamarinBuildTasks (buildSpec, Tasks, Task);

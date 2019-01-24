@@ -450,3 +450,42 @@ NuGetDiff CreateNuGetDiff()
 
     return comparer;
 }
+
+async Task BuildApiDiff(string packageId, string currentVersionNo)
+{
+	var baseDir = "./output/api-diff";
+    CleanDirectories (baseDir);
+
+	var comparer = CreateNuGetDiff();
+	comparer.IgnoreResolutionErrors = true;
+
+	var version = currentVersionNo;
+	var latestVersion = (await NuGetVersions.GetLatestAsync (packageId))?.ToNormalizedString ();
+
+	// pre-cache so we can have better logs
+	if (!string.IsNullOrEmpty (latestVersion)) {
+		Debug ($"Caching version '{latestVersion}' of '{packageId}'...");
+		await comparer.ExtractCachedPackageAsync (packageId, latestVersion);
+	}
+
+	Debug ($"Running a diff on '{latestVersion}' vs '{version}' of '{packageId}'...");
+	var diffRoot = $"{baseDir}/{packageId}";
+	using (var reader = new PackageArchiveReader ($"./output/{packageId.ToLower ()}.{version}.nupkg")) 
+	{
+		// run the diff with just the breaking changes
+		comparer.MarkdownDiffFileExtension = ".breaking.md";
+		comparer.IgnoreNonBreakingChanges = true;
+		await comparer.SaveCompleteDiffToDirectoryAsync (packageId, latestVersion, reader, diffRoot);
+		// run the diff on everything
+		comparer.MarkdownDiffFileExtension = null;
+		comparer.IgnoreNonBreakingChanges = false;
+		await comparer.SaveCompleteDiffToDirectoryAsync (packageId, latestVersion, reader, diffRoot);
+	}
+
+	CopyChangelogs (diffRoot, packageId, version, "./output/changelogs");
+
+    Information ($"Diff complete of '{packageId}'.");
+
+    // clean up after working
+    CleanDirectories (baseDir);
+}
