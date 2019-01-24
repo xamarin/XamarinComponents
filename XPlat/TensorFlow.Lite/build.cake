@@ -152,6 +152,7 @@ Task ("docs-api-diff")
     CleanDirectories (baseDir);
 
 	var comparer = CreateNuGetDiff();
+	comparer.IgnoreResolutionErrors = true;
 
 	var version = NUGET_VERSION;
 	var latestVersion = (await NuGetVersions.GetLatestAsync (NUGET_PACKAGE_ID))?.ToNormalizedString ();
@@ -176,7 +177,7 @@ Task ("docs-api-diff")
 		await comparer.SaveCompleteDiffToDirectoryAsync (NUGET_PACKAGE_ID, latestVersion, reader, diffRoot);
 	}
 
-	//CopyChangelogs (diffRoot, NUGET_PACKAGE_ID, version);
+	CopyChangelogs (diffRoot, NUGET_PACKAGE_ID, version);
 
     Information ($"Diff complete of '{NUGET_PACKAGE_ID}'.");
 
