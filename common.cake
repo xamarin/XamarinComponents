@@ -326,166 +326,48 @@ void DownloadMonoSources (string tag, DirectoryPath dest, params string[] urls)
 
 /// Api Diff Stuff
 
-DirectoryPath PACKAGE_CACHE_PATH = "externals/package_cache";
-
-IEnumerable<(DirectoryPath path, string platform)> GetPlatformDirectories (DirectoryPath rootDir)
+async Task BuildApiDiff (string packageId, string currentVersionNo)
 {
-    var platformDirs = GetDirectories ($"{rootDir}/*");
+	// prepare for working
+	var diffRoot = $"./output/api-diff/{packageId}";
+	CleanDirectories (diffRoot);
 
-    // try find any cross-platform frameworks
-    foreach (var dir in platformDirs) {
-        var d = dir.GetDirectoryName ().ToLower ();
-        if (d.StartsWith ("netstandard") || d.StartsWith ("portable")) {
-            // we just want this single platform
-            yield return (dir, null);
-            yield break;
-        }
-    }
-
-    // there were no cross-platform libraries, so process each platform
-    foreach (var dir in platformDirs) {
-        var d = dir.GetDirectoryName ().ToLower ();
-        if (d.StartsWith ("monoandroid"))
-            yield return (dir, "android");
-        else if (d.StartsWith ("net4"))
-            yield return (dir, "net");
-        else if (d.StartsWith ("uap"))
-            yield return (dir, "uwp");
-        else if (d.StartsWith ("xamarinios") || d.StartsWith ("xamarin.ios"))
-            yield return (dir, "ios");
-        else if (d.StartsWith ("xamarinmac") || d.StartsWith ("xamarin.mac"))
-            yield return (dir, "macos");
-        else if (d.StartsWith ("xamarintvos") || d.StartsWith ("xamarin.tvos"))
-            yield return (dir, "tvos");
-        else if (d.StartsWith ("xamarinwatchos") || d.StartsWith ("xamarin.watchos"))
-            yield return (dir, "watchos");
-        else if (d.StartsWith ("tizen"))
-            yield return (dir, "tizen");
-        else
-            throw new Exception ($"Unknown platform '{d}' found at '{dir}'.");
-    }
-}
-
-void CopyChangelogs (DirectoryPath diffRoot, string id, string version, string outputPath)
-{
-    foreach (var (path, platform) in GetPlatformDirectories (diffRoot)) {
-        // first, make sure to create markdown files for unchanged assemblies
-        var xmlFiles = $"{path}/*.new.info.xml";
-        foreach (var file in GetFiles (xmlFiles)) {
-            var dll = file.GetFilenameWithoutExtension ().GetFilenameWithoutExtension ().GetFilenameWithoutExtension ();
-            var md = $"{path}/{dll}.diff.md";
-            if (!FileExists (md)) {
-                var n = Environment.NewLine;
-                var noChangesText = $"# API diff: {dll}{n}{n}## {dll}{n}{n}> No changes.{n}";
-                FileWriteText (md, noChangesText);
-            }
-        }
-
-        // now copy the markdown files to the changelogs
-        var mdFiles = $"{path}/*.*.md";
-        ReplaceTextInFiles (mdFiles, "<h4>", "> ");
-        ReplaceTextInFiles (mdFiles, "</h4>", Environment.NewLine);
-        ReplaceTextInFiles (mdFiles, "\r\r", "\r");
-        foreach (var file in GetFiles (mdFiles)) {
-            var dllName = file.GetFilenameWithoutExtension ().GetFilenameWithoutExtension ().GetFilenameWithoutExtension ();
-            if (file.GetFilenameWithoutExtension ().GetExtension () == ".breaking") {
-                // skip over breaking changes without any breaking changes
-                if (!FindTextInFiles (file.FullPath, "###").Any ())
-                    continue;
-
-                dllName += ".breaking";
-            }
-            var changelogPath = (FilePath)$"./{outputPath}/{id}/{version}/{dllName}.md";
-            EnsureDirectoryExists (changelogPath.GetDirectory ());
-            CopyFile (file, changelogPath);
-        }
-    }
-}
-
-string[] GetReferenceSearchPaths ()
-{
-    var refs = new List<string> ();
-
-    if (IsRunningOnWindows ()) {
-        var vs = VSWhereLatest (new VSWhereLatestSettings { Requires = "Component.Xamarin" });
-        var referenceAssemblies = $"{vs}/Common7/IDE/ReferenceAssemblies/Microsoft/Framework";
-        var pf = Environment.GetFolderPath(Environment.SpecialFolder.ProgramFilesX86);
-
-        // HACK: https://github.com/mono/api-doc-tools/pull/401
-        if (!FileExists ("./externals/winmd/Windows.winmd")) {
-            EnsureDirectoryExists ("./externals/winmd/");
-            CopyFile ($"{pf}/Windows Kits/10/UnionMetadata/Facade/Windows.WinMD", "./externals/winmd/Windows.winmd");
-        }
-        refs.Add (MakeAbsolute ((FilePath)"./externals/winmd/").FullPath);
-
-        refs.AddRange (GetDirectories ("./output/docs/temp/*").Select (d => d.FullPath));
-        refs.Add ($"{referenceAssemblies}/MonoTouch/v1.0");
-        refs.Add ($"{referenceAssemblies}/MonoAndroid/v1.0");
-        refs.Add ($"{referenceAssemblies}/MonoAndroid/v4.0.3");
-        refs.Add ($"{referenceAssemblies}/Xamarin.iOS/v1.0");
-        refs.Add ($"{referenceAssemblies}/Xamarin.TVOS/v1.0");
-        refs.Add ($"{referenceAssemblies}/Xamarin.WatchOS/v1.0");
-        refs.Add ($"{referenceAssemblies}/Xamarin.Mac/v2.0");
-        refs.Add ($"{pf}/Windows Kits/10/UnionMetadata/Facade");
-        refs.Add ($"{pf}/Windows Kits/10/References/Windows.Foundation.UniversalApiContract/1.0.0.0");
-        refs.Add ($"{pf}/Windows Kits/10/References/Windows.Foundation.FoundationContract/1.0.0.0");
-        refs.Add ($"{pf}/GtkSharp/2.12/lib");
-        refs.Add ($"{vs}/Common7/IDE/PublicAssemblies");
-    } else {
-        // TODO
-    }
-
-    return refs.ToArray ();
-}
-
-
-
-NuGetDiff CreateNuGetDiff()
-{
-    var comparer = new NuGetDiff ();
-    comparer.SearchPaths.AddRange (GetReferenceSearchPaths ());
-    comparer.PackageCache = PACKAGE_CACHE_PATH.FullPath;
-    comparer.SaveAssemblyApiInfo = true;
-    comparer.SaveAssemblyMarkdownDiff = true;
-
-    return comparer;
-}
-
-async Task BuildApiDiff(string packageId, string currentVersionNo)
-{
-	var baseDir = "./output/api-diff";
-    CleanDirectories (baseDir);
-
-	var comparer = CreateNuGetDiff();
-	comparer.IgnoreResolutionErrors = true;
-
-	var version = currentVersionNo;
+	// get the latest version of this package - if any
 	var latestVersion = (await NuGetVersions.GetLatestAsync (packageId))?.ToNormalizedString ();
 
-	// pre-cache so we can have better logs
-	if (!string.IsNullOrEmpty (latestVersion)) {
-		Debug ($"Caching version '{latestVersion}' of '{packageId}'...");
-		await comparer.ExtractCachedPackageAsync (packageId, latestVersion);
-	}
+	// log what is going to happen
+	if (string.IsNullOrEmpty (latestVersion))
+		Information ($"Running a diff on a new package '{packageId}'...");
+	else
+		Information ($"Running a diff on '{latestVersion}' vs '{currentVersionNo}' of '{packageId}'...");
 
-	Debug ($"Running a diff on '{latestVersion}' vs '{version}' of '{packageId}'...");
-	var diffRoot = $"{baseDir}/{packageId}";
-	using (var reader = new PackageArchiveReader ($"./output/{packageId.ToLower ()}.{version}.nupkg")) 
+	// create comparer
+	var comparer = new NuGetDiff ();
+	comparer.PackageCache = "./externals/package_cache";
+	comparer.SaveAssemblyApiInfo = true;       // we don't keep this, but it lets us know if there were no changes
+	comparer.SaveAssemblyMarkdownDiff = true;  // we want markdown
+	comparer.IgnoreResolutionErrors = true;    // we don't care if frameowrk/platform types can't be found
+
+	// compare
+	using (var reader = new PackageArchiveReader ($"./output/{packageId.ToLower ()}.{currentVersionNo}.nupkg")) 
 	{
+		// run the diff on everything
+		await comparer.SaveCompleteDiffToDirectoryAsync (packageId, latestVersion, reader, diffRoot);
+
 		// run the diff with just the breaking changes
 		comparer.MarkdownDiffFileExtension = ".breaking.md";
 		comparer.IgnoreNonBreakingChanges = true;
 		await comparer.SaveCompleteDiffToDirectoryAsync (packageId, latestVersion, reader, diffRoot);
-		// run the diff on everything
-		comparer.MarkdownDiffFileExtension = null;
-		comparer.IgnoreNonBreakingChanges = false;
-		await comparer.SaveCompleteDiffToDirectoryAsync (packageId, latestVersion, reader, diffRoot);
 	}
 
-	CopyChangelogs (diffRoot, packageId, version, "./output/changelogs");
+	// TODO: there are two bugs in this version of mono-api-html
+	var mdFiles = $"{diffRoot}/*.*.md";
+	// 1. the <h4> doesn't look pretty in the markdown
+	ReplaceTextInFiles (mdFiles, "<h4>", "> ");
+	ReplaceTextInFiles (mdFiles, "</h4>", Environment.NewLine); 
+	// 2. newlines are inccorect on Windows: https://github.com/mono/mono/pull/9918
+	ReplaceTextInFiles (mdFiles, "\r\r", "\r");
 
-    Information ($"Diff complete of '{packageId}'.");
-
-    // clean up after working
-    CleanDirectories (baseDir);
+	// we are done
+	Information ($"Diff complete of '{packageId}'.");
 }
