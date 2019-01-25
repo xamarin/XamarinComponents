@@ -45,8 +45,6 @@ Running Cake to Build targets
 		mono tools/Cake/Cake.exe --verbosity=diagnostic --target=nuget
 #########################################################################################
 */
-#load "../../common.cake"
-
 #tool nuget:?package=XamarinComponent
 
 #addin nuget:?package=Cake.XCode
