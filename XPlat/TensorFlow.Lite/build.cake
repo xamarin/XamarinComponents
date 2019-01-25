@@ -46,7 +46,6 @@ Running Cake to Build targets
 #########################################################################################
 */
 #load "../../common.cake"
-//#load "apidiffutils.cake"
 
 #tool nuget:?package=XamarinComponent
 
