@@ -326,48 +326,52 @@ void DownloadMonoSources (string tag, DirectoryPath dest, params string[] urls)
 
 /// Api Diff Stuff
 
-async Task BuildApiDiff (string packageId, string currentVersionNo)
+async Task BuildApiDiff (FilePath nupkg)
 {
-	// prepare for working
-	var diffRoot = $"./output/api-diff/{packageId}";
-	CleanDirectories (diffRoot);
+	var baseDir = nupkg.GetDirectory(); //get the parent directory of the packge file
 
-	// get the latest version of this package - if any
-	var latestVersion = (await NuGetVersions.GetLatestAsync (packageId))?.ToNormalizedString ();
-
-	// log what is going to happen
-	if (string.IsNullOrEmpty (latestVersion))
-		Information ($"Running a diff on a new package '{packageId}'...");
-	else
-		Information ($"Running a diff on '{latestVersion}' vs '{currentVersionNo}' of '{packageId}'...");
-
-	// create comparer
-	var comparer = new NuGetDiff ();
-	comparer.PackageCache = "./externals/package_cache";
-	comparer.SaveAssemblyApiInfo = true;       // we don't keep this, but it lets us know if there were no changes
-	comparer.SaveAssemblyMarkdownDiff = true;  // we want markdown
-	comparer.IgnoreResolutionErrors = true;    // we don't care if frameowrk/platform types can't be found
-
-	// compare
-	using (var reader = new PackageArchiveReader ($"./output/{packageId.ToLower ()}.{currentVersionNo}.nupkg")) 
+	using (var reader = new PackageArchiveReader (nupkg.FullPath)) 
 	{
-		// run the diff on everything
+		//get the id from the package and the version number
+		 var packageId = reader.GetIdentity ().Id;
+		var currentVersionNo = reader.GetIdentity ().Version.ToNormalizedString();
+
+		//calculate the diff storage path from the location of the nuget
+		var diffRoot = $"{baseDir}/api-diff/{packageId}";
+		CleanDirectories (diffRoot);
+
+		// get the latest version of this package - if any
+		var latestVersion = (await NuGetVersions.GetLatestAsync (packageId))?.ToNormalizedString ();
+
+		// log what is going to happen
+		if (string.IsNullOrEmpty (latestVersion))
+			Information ($"Running a diff on a new package '{packageId}'...");
+		else
+			Information ($"Running a diff on '{latestVersion}' vs '{currentVersionNo}' of '{packageId}'...");
+
+		// create comparer
+		var comparer = new NuGetDiff ();
+		comparer.PackageCache = "./externals/package_cache"; // TODO: should this be a variable
+		comparer.SaveAssemblyApiInfo = true;       // we don't keep this, but it lets us know if there were no changes
+		comparer.SaveAssemblyMarkdownDiff = true;  // we want markdown
+		comparer.IgnoreResolutionErrors = true;    // we don't care if frameowrk/platform types can't be found
+
 		await comparer.SaveCompleteDiffToDirectoryAsync (packageId, latestVersion, reader, diffRoot);
 
 		// run the diff with just the breaking changes
 		comparer.MarkdownDiffFileExtension = ".breaking.md";
 		comparer.IgnoreNonBreakingChanges = true;
 		await comparer.SaveCompleteDiffToDirectoryAsync (packageId, latestVersion, reader, diffRoot);
+
+		// TODO: there are two bugs in this version of mono-api-html
+		var mdFiles = $"{diffRoot}/*.*.md";
+		// 1. the <h4> doesn't look pretty in the markdown
+		ReplaceTextInFiles (mdFiles, "<h4>", "> ");
+		ReplaceTextInFiles (mdFiles, "</h4>", Environment.NewLine); 
+		// 2. newlines are inccorect on Windows: https://github.com/mono/mono/pull/9918
+		ReplaceTextInFiles (mdFiles, "\r\r", "\r");
+
+		// we are done
+		Information ($"Diff complete of '{packageId}'.");
 	}
-
-	// TODO: there are two bugs in this version of mono-api-html
-	var mdFiles = $"{diffRoot}/*.*.md";
-	// 1. the <h4> doesn't look pretty in the markdown
-	ReplaceTextInFiles (mdFiles, "<h4>", "> ");
-	ReplaceTextInFiles (mdFiles, "</h4>", Environment.NewLine); 
-	// 2. newlines are inccorect on Windows: https://github.com/mono/mono/pull/9918
-	ReplaceTextInFiles (mdFiles, "\r\r", "\r");
-
-	// we are done
-	Information ($"Diff complete of '{packageId}'.");
 }

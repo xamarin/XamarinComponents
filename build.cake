@@ -380,4 +380,19 @@ Task("nuget-validation")
 	}
 
 });
+
+Task ("docs-api-diff")
+    .Does (async () =>
+{
+	var nupkgFiles = GetFiles ("./**/output/*.nupkg");
+
+	Information ("Found ({0}) Nuget's to Diff", nupkgFiles.Count ());
+
+	foreach (var nupkgFile in nupkgFiles)
+	{
+		await BuildApiDiff(nupkgFile);
+	}
+	
+});
+
 RunTarget (TARGET);

@@ -145,13 +145,6 @@ Task ("clean")
 		}
 	);
 
-Task ("docs-api-diff")
-	.IsDependentOn ("nuget")
-    .Does (async () =>
-{
-	await BuildApiDiff(NUGET_PACKAGE_ID, NUGET_VERSION);
-});
-
 SetupXamarinBuildTasks (buildSpec, Tasks, Task);
 
 RunTarget (TARGET);
