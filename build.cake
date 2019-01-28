@@ -352,7 +352,7 @@ Task("nuget-validation")
 		NeedsProjectUrl = true,
 		NeedsLicenseUrl = true,
 		ValidateRequireLicenseAcceptance = true,
-		ValidPackageNamespace = new [] { "Xamarin", "Mono", "SkiaSharp", "HarfBuzzSharp", "mdoc" },
+		ValidPackageNamespace = new [] { "Xamarin", "Mono", "SkiaSharp", "HarfBuzzSharp", "mdoc", "Masonry" },
 	};
 
 	var nupkgFiles = GetFiles ("./**/output/*.nupkg");
