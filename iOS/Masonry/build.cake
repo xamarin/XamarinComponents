@@ -39,7 +39,7 @@ var buildSpec = new BuildSpec () {
 	},
 
 	NuGets = new [] {
-		new NuGetInfo { NuSpec = "./nuget/Masonry.nuspec" },
+		new NuGetInfo { NuSpec = "./nuget/Masonry.nuspec", RequireLicenseAcceptance = true },
 	},
 
 	Components = new [] {
