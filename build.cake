@@ -2,7 +2,7 @@
 
 #addin nuget:?package=redth.xunit.resultwriter&version=1.0.0
 #addin "nuget:?package=Xamarin.Nuget.Validator&version=1.1.1"
-
+	
 var TARGET = Argument ("target", Argument ("t", Argument ("Target", "build")));
 
 var GIT_PREVIOUS_COMMIT = EnvironmentVariable ("GIT_PREVIOUS_SUCCESSFUL_COMMIT") ?? Argument ("gitpreviouscommit", "");
@@ -380,4 +380,19 @@ Task("nuget-validation")
 	}
 
 });
+
+Task ("docs-api-diff")
+    .Does (async () =>
+{
+	var nupkgFiles = GetFiles ("./**/output/*.nupkg");
+
+	Information ("Found ({0}) Nuget's to Diff", nupkgFiles.Count ());
+
+	foreach (var nupkgFile in nupkgFiles)
+	{
+		await BuildApiDiff(nupkgFile);
+	}
+	
+});
+
 RunTarget (TARGET);
