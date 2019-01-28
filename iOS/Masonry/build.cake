@@ -3,7 +3,7 @@
 
 var TARGET = Argument ("t", Argument ("target", "Default"));
 
-var POD_VERSION = "1.0.2";
+var POD_VERSION = "1.1.0";
 
 var CreatePodSpec = new Action<string, string> ((platform, version) => {
 	var v1 = CocoaPodVersion () >= new System.Version (1, 0);
@@ -39,7 +39,7 @@ var buildSpec = new BuildSpec () {
 	},
 
 	NuGets = new [] {
-		new NuGetInfo { NuSpec = "./nuget/Masonry.nuspec" },
+		new NuGetInfo { NuSpec = "./nuget/Masonry.nuspec", RequireLicenseAcceptance = true },
 	},
 
 	Components = new [] {
