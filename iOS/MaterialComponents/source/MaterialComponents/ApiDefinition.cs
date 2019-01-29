@@ -778,6 +778,11 @@ namespace MaterialComponents {
 		[Export ("applySurfaceVariantWithSemanticColorScheme:toBottomAppBarView:")]
 		void ApplySurfaceVariant (IColorScheming colorScheme, BottomAppBarView bottomAppBarView);
 
+		[Static]
+		[Wrap ("ApplySurfaceVariant (colorScheme, bottomAppBarView)")]
+		[Obsolete ("Use ApplySurfaceVariant instead.")]
+		void ApplySurfaceVariantWithSemanticColorScheme (IColorScheming colorScheme, BottomAppBarView bottomAppBarView);
+
 		//
 		// From MDCBottomAppBarColorThemer (ToBeDeprecated)
 		//
@@ -1410,6 +1415,9 @@ namespace MaterialComponents {
 		// -(MDCShadowElevation)elevationForState:(UIControlState)state;
 		[Export ("elevationForState:")]
 		nfloat GetElevation (UIControlState state);
+		
+		[Wrap ("SetElevation ((nfloat)elevation, state)")]
+		void SetElevation (double elevation, UIControlState state);
 
 		// -(void)setElevation:(MDCShadowElevation)elevation forState:(UIControlState)state;
 		[Export ("setElevation:forState:")]
@@ -1697,6 +1705,9 @@ namespace MaterialComponents {
 		[Export ("setShadowElevation:forState:")]
 		void SetShadowElevation (nfloat shadowElevation, UIControlState state);
 
+		[Wrap ("SetShadowElevation ((nfloat)shadowElevation, state)")]
+		void SetShadowElevation (double shadowElevation, UIControlState state);
+
 		// -(MDCShadowElevation)shadowElevationForState:(UIControlState)state __attribute__((annotate("ui_appearance_selector")));
 		[Export ("shadowElevationForState:")]
 		nfloat GetShadowElevation (UIControlState state);
@@ -1760,6 +1771,9 @@ namespace MaterialComponents {
 		// -(void)setShadowElevation:(MDCShadowElevation)shadowElevation forState:(MDCCardCellState)state __attribute__((annotate("ui_appearance_selector")));
 		[Export ("setShadowElevation:forState:")]
 		void SetShadowElevation (nfloat shadowElevation, CardCellState state);
+		
+		[Wrap ("SetShadowElevation ((nfloat)shadowElevation, state)")]
+		void SetShadowElevation (double shadowElevation, CardCellState state);
 
 		// -(MDCShadowElevation)shadowElevationForState:(MDCCardCellState)state __attribute__((annotate("ui_appearance_selector")));
 		[Export ("shadowElevationForState:")]
@@ -1850,7 +1864,7 @@ namespace MaterialComponents {
 	[BaseType (typeof (NSObject), Name = "MDCCardScheme")]
 	interface CardScheme : CardScheming {
 		// @property (readwrite, nonatomic) MDCSemanticColorScheme * _Nonnull colorScheme;
-		[Export("colorScheme", ArgumentSemantic.Assign)]
+		[Export ("colorScheme", ArgumentSemantic.Assign)]
 		new IColorScheming ColorScheme { get; set; }
 
 		// @property (readwrite, nonatomic) MDCShapeScheme * _Nonnull shapeScheme;
@@ -2184,6 +2198,9 @@ namespace MaterialComponents {
 		[Export ("setElevation:forState:")]
 		void SetElevation (nfloat elevation, UIControlState state);
 
+		[Wrap ("SetElevation ((nfloat)elevation, state)")]
+		void SetElevation (double elevation, UIControlState state);
+
 		// -(UIColor * _Nullable)inkColorForState:(UIControlState)state;
 		[return: NullAllowed]
 		[Export ("inkColorForState:")]
@@ -2312,7 +2329,7 @@ namespace MaterialComponents {
 	interface ChipViewShapeThemer {
 		// +(void)applyShapeScheme:(id<MDCShapeScheming> _Nonnull)shapeScheme toChipView:(MDCChipView * _Nonnull)chipView;
 		[Static]
-		[Export("applyShapeScheme:toChipView:")]
+		[Export ("applyShapeScheme:toChipView:")]
 		void ApplyShapeScheme(IShapeScheming shapeScheme, ChipView chipView);
 	}
 
@@ -5636,6 +5653,9 @@ namespace MaterialComponents {
 		[Export ("initWithFrame:shapeGenerator:")]
 		[DesignatedInitializer]
 		IntPtr Constructor (CGRect frame, [NullAllowed] IShapeGenerating shapeGenerator);
+
+		[Wrap ("this (frame, null)")]
+		IntPtr Constructor (CGRect frame);
 	}
 
 	interface IShapeGenerating { }
@@ -6502,15 +6522,29 @@ namespace MaterialComponents {
 		[Export ("applySemanticColorScheme:toTextInputController:")]
 		void ApplySemanticColorScheme (IColorScheming colorScheme, ITextInputController textInputController);
 
+		[Static]
+		[Wrap ("ApplySemanticColorScheme (colorScheme, textInputController)")]
+		[Obsolete ("Use ApplySemanticColorScheme instead.")]
+		void ApplySemanticColorSchemeToTextInputController (IColorScheming colorScheme, ITextInputController textInputController);
+
 		// +(void)applySemanticColorScheme:(id<MDCColorScheming> _Nonnull)colorScheme toAllTextInputControllersOfClass:(Class<MDCTextInputController> _Nonnull)textInputControllerClass;
 		[Static]
 		[Export ("applySemanticColorScheme:toAllTextInputControllersOfClass:")]
 		void ApplySemanticColorSchemeToAll (IColorScheming colorScheme, Class textInputControllerClass);
 
+		[Static]
+		[Wrap ("ApplySemanticColorSchemeToAll (colorScheme, new Class (textInputControllerType))")]
+		void ApplySemanticColorSchemeToAll (IColorScheming colorScheme, Type textInputControllerType);
+
 		// +(void)applySemanticColorScheme:(id<MDCColorScheming> _Nonnull)colorScheme toTextInput:(id<MDCTextInput> _Nonnull)textInput;
 		[Static]
 		[Export ("applySemanticColorScheme:toTextInput:")]
 		void ApplySemanticColorScheme (IColorScheming colorScheme, ITextInput textInput);
+
+		[Static]
+		[Wrap ("ApplySemanticColorScheme (colorScheme, textInput)")]
+		[Obsolete ("Use ApplySemanticColorScheme instead.")]
+		void ApplySemanticColorSchemeToTextInput (IColorScheming colorScheme, ITextInput textInput);
 
 		// +(void)applyColorScheme:(id<MDCColorScheme> _Nonnull)colorScheme toTextInputController:(id<MDCTextInputController> _Nonnull)textInputController;
 		[Obsolete ("This method will soon be deprecated. Consider using ApplySemanticColorScheme method instead.")]
@@ -6534,16 +6568,30 @@ namespace MaterialComponents {
 		[Static]
 		[Export ("applyFontScheme:toTextInputController:")]
 		void ApplyFontScheme (IFontScheme fontScheme, ITextInputController textInputController);
+		
+		[Static]
+		[Wrap ("ApplyFontScheme (fontScheme, textInputController)")]
+		[Obsolete ("Use ApplyFontScheme instead.")]
+		void ApplyFontSchemeToTextInputController (IFontScheme fontScheme, ITextInputController textInputController);
 
 		// +(void)applyFontScheme:(id<MDCFontScheme> _Nonnull)fontScheme toAllTextInputControllersOfClass:(Class<MDCTextInputController> _Nonnull)textInputControllerClass;
 		[Static]
 		[Export ("applyFontScheme:toAllTextInputControllersOfClass:")]
 		void ApplyFontSchemeToAll (IFontScheme fontScheme, Class textInputControllerClass);
+		
+		[Static]
+		[Wrap ("ApplyFontSchemeToAll (fontScheme, new Class (textInputControllerType))")]
+		void ApplyFontSchemeToAll (IFontScheme fontScheme, Type textInputControllerType);
 
 		// +(void)applyFontScheme:(id<MDCFontScheme> _Nonnull)fontScheme toTextField:(MDCTextField * _Nullable)textField;
 		[Static]
 		[Export ("applyFontScheme:toTextField:")]
 		void ApplyFontScheme (IFontScheme fontScheme, [NullAllowed] TextField textField);
+
+		[Static]
+		[Wrap ("ApplyFontScheme (fontScheme, textField)")]
+		[Obsolete ("Use ApplyFontScheme instead.")]
+		void ApplyFontSchemeToTextField (IFontScheme fontScheme, TextField textField);
 	}
 
 	interface ITextInputPositioningDelegate { }
@@ -6599,11 +6647,25 @@ namespace MaterialComponents {
 		[Static]
 		[Export ("applyTypographyScheme:toAllTextInputControllersOfClass:")]
 		void ApplyTypographySchemeToAll (ITypographyScheming typographyScheme, Class textInputControllerClass);
+		
+		[Static]
+		[Wrap ("ApplyTypographySchemeToAll (typographyScheme, new Class (textInputControllerType))")]
+		void ApplyTypographySchemeToAll (ITypographyScheming typographyScheme, Type textInputControllerType);
 
 		// +(void)applyTypographyScheme:(id<MDCTypographyScheming> _Nonnull)typographyScheme toTextInput:(id<MDCTextInput> _Nonnull)textInput;
 		[Static]
 		[Export ("applyTypographyScheme:toTextInput:")]
 		void ApplyTypographyScheme (ITypographyScheming typographyScheme, ITextInput textInput);
+
+		[Static]
+		[Wrap ("ApplyTypographyScheme (typographyScheme, textInputController)")]
+		[Obsolete ("Use ApplyTypographyScheme instead.")]
+		void ApplyTypographySchemeToTextInputController (ITypographyScheming typographyScheme, ITextInputController textInputController);
+
+		[Static]
+		[Wrap ("ApplyTypographyScheme (typographyScheme, textInput)")]
+		[Obsolete ("Use ApplyTypographyScheme instead.")]
+		void ApplyTypographySchemeToTextInput (ITypographyScheming typographyScheme, ITextInput textInput);
 	}
 
 	interface ITextInput { }
