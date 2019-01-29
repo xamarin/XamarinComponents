@@ -177,7 +177,7 @@ Task ("VerifyNugetMetaData")
 		NeedsProjectUrl = true,
 		NeedsLicenseUrl = true,
 		ValidateRequireLicenseAcceptance = true,
-		ValidPackageNamespace = new [] { "Xamarin", "Mono", "SkiaSharp", "HarfBuzzSharp", "mdoc", "UrhoSharp" },
+		ValidPackageNamespace = new [] { "Xamarin", "Mono", "SkiaSharp", "HarfBuzzSharp", "mdoc", "UrhoSharp", "Masonry" },
 	};
 
 	foreach (var globPattern in GLOB_PATTERNS) {
