@@ -1,6 +1,6 @@
 static class __GvrConsts
 {
-    public const string Url = "https://github.com/googlevr/gvr-android-sdk/archive/0954a01934199b8536755f06688d98e3d2a958e4.zip";
-    public const string LongVersion = "0954a01934199b8536755f06688d98e3d2a958e4";
-    public const string Version = "0.8.0";
+    public const string Url = "https://github.com/googlevr/gvr-android-sdk/archive/25a0c20415bd3854b76f3e0e55f73d36cdc076fd.zip";
+    public const string LongVersion = "25a0c20415bd3854b76f3e0e55f73d36cdc076fd";
+    public const string Version = "1.180.0";
 }

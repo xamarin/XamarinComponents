@@ -61,7 +61,7 @@
   </ItemGroup>
   <ItemGroup>
     <InputJar Include="..\..\..\externals\android\libraries\base\classes.jar">
-      <Link>classes.jar</Link>
+      <Link>Jars\classes.jar</Link>
     </InputJar>
   </ItemGroup>
   <ItemGroup>

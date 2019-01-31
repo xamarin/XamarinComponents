@@ -3,8 +3,8 @@
 
 var TARGET = Argument ("t", Argument ("target", "Default"));
 
-var ANDROID_VERSION = "0954a01934199b8536755f06688d98e3d2a958e4";
-var ANDROID_NUGET_VERSION = "0.8.0-beta1";
+var ANDROID_VERSION = "25a0c20415bd3854b76f3e0e55f73d36cdc076fd";
+var ANDROID_NUGET_VERSION = "1.180.0";
 var ANDROID_URL = string.Format ("https://github.com/googlevr/gvr-android-sdk/archive/{0}.zip", ANDROID_VERSION);
 
 var buildSpec = new BuildSpec {
@@ -44,13 +44,13 @@ Task ("externals")
 	Unzip ("./externals/android.zip", "./externals");
 	CopyDirectory ("./externals/gvr-android-sdk-" + ANDROID_VERSION, "./externals/android");
 	DeleteDirectory ("./externals/gvr-android-sdk-" + ANDROID_VERSION, true);
-	Unzip ("./externals/android/libraries/audio/audio.aar", "./externals/android/libraries/audio");
-	Unzip ("./externals/android/libraries/base/base.aar", "./externals/android/libraries/base");
-	Unzip ("./externals/android/libraries/common/common.aar", "./externals/android/libraries/common");
-	Unzip ("./externals/android/libraries/commonwidget/commonwidget.aar", "./externals/android/libraries/commonwidget");
-	Unzip ("./externals/android/libraries/controller/controller.aar", "./externals/android/libraries/controller");
-	Unzip ("./externals/android/libraries/panowidget/panowidget.aar", "./externals/android/libraries/panowidget");
-	Unzip ("./externals/android/libraries/videowidget/videowidget.aar", "./externals/android/libraries/videowidget");
+	Unzip ($"./externals/android/libraries/sdk-audio-{ANDROID_NUGET_VERSION}.aar", "./externals/android/libraries/audio");
+	Unzip ($"./externals/android/libraries/sdk-base-{ANDROID_NUGET_VERSION}.aar", "./externals/android/libraries/base");
+	Unzip ($"./externals/android/libraries/sdk-common-{ANDROID_NUGET_VERSION}.aar", "./externals/android/libraries/common");
+	Unzip ($"./externals/android/libraries/sdk-commonwidget-{ANDROID_NUGET_VERSION}.aar", "./externals/android/libraries/commonwidget");
+	Unzip ($"./externals/android/libraries/sdk-controller-{ANDROID_NUGET_VERSION}.aar", "./externals/android/libraries/controller");
+	Unzip ($"./externals/android/libraries/sdk-panowidget-{ANDROID_NUGET_VERSION}.aar", "./externals/android/libraries/panowidget");
+	Unzip ($"./externals/android/libraries/sdk-videowidget-{ANDROID_NUGET_VERSION}.aar", "./externals/android/libraries/videowidget");
 
 });
 
