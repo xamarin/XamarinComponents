@@ -9,7 +9,7 @@ The sample packager is compatible with:
 
 ##  Setup
 
-The sample packager will detect any referenced project that is configured to produce a Nuget package.  It will removed  the references and re-added them as package references to the nugets that will be produced.
+The sample packager will detect any referenced project that is configured to produce a Nuget package.  It will remove the references and re-add them as package references, linking to the nugets that will be produced.
 
 To do this it will detect the following properties in the csproj.
 
@@ -24,4 +24,44 @@ It will then process the following properties to calculate the package Id and Pa
 - Version (SDK)
 - PackageVersion (Classic)
 
+*NOTE: The sample packager does not currently process .nuspec files*
+
+##  API
+
+`SolutionProcessor.Process` is processing method to convert your solution into a sample package.
+
+It has two required parameters
+
+ - solutionPath
+   - This is the path to the .sln file containing the sample projects  
+ - outputPath
+   - This is the path were then temp folders and the final zip file will be created  
+
+ Below is an example:
+
+    using Xamarin.Components.SampleBuilder;
+
+    var solutionPath = @"C:\ARCore\samples\HelloAR.sln";
+
+    var outPutPath = @"C:\SamplePackagerOutput\ARCoreSamples";
+
+    var outputfile = SolutionProcessor.Process(solutionPath, outPutPath); 
+
+
+There is also an optional parameter called `nugetPackageOverrides`.  This takes a `Dictionary<string,string>` and allows you to override the version numbers of the calculated package version numbers(calculated from the csproj files).
+
+
+    using Xamarin.Components.SampleBuilder;
+
+    var solutionPath = @"C:\ARCore\samples\HelloAR.sln";
+
+    var outPutPath = @"C:\SamplePackagerOutput\ARCoreSamples";
+
+    var packageVersions = new Dictionary<string, string>()
+    {
+        {"StandardSample","1.1.0" },
+        {"AndroidLibary","1.1.0" },
+    };
+
+    var outputfile = SolutionProcessor.Process(solutionPath, outPutPath, packageVersions); 
 
