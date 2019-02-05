@@ -8,7 +8,7 @@ externals
 *.userprefs
 .vs/
 tmpnupkg/
-
+*.user
 .DS_Store
 XPlat/DropboxApiV2/samples/DropboxV2ApiSampleDroid/.vs/DropboxV2ApiSampleDroid/xs/UserPrefs.xml
 
