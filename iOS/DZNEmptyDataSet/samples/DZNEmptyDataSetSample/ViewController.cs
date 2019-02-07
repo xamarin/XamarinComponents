@@ -218,12 +218,12 @@ namespace DZNEmptyDataSetSample
 
             public override void EmptyDataSetDidTapView (UIScrollView scrollView, UIView view)
             {
-                Console.WriteLine ("Did tap view: " + view);
+                new UIAlertView("Tap View", "Not going to actually add a color...", null, "OK").Show();
             }
 
             public override void EmptyDataSetDidTapButton (UIScrollView scrollView, UIButton button)
             {
-                new UIAlertView ("Add Color", "Not going to actually add a color...", null, "OK").Show ();
+                new UIAlertView ("Tap Button", "Not going to actually add a color...", null, "OK").Show ();
             }
         }
     }

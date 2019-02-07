@@ -1,4 +1,4 @@
-version: 1.7.3.1
+version: 1.8.1
 name: DZNEmptyDataSet
 id: DZNEmptyDataSet
 publisher: Xamarin Inc
@@ -27,7 +27,7 @@ samples:
     configuration: "Release|iPhone"   
 is_shell: true 
 packages:
-  ios-unified: Xamarin.DZNEmptyDataSet, Version=1.7.3.1
+  ios-unified: Xamarin.DZNEmptyDataSet, Version=1.8.1
 monodoc: ../docs/
 local-nuget-repo: ../output
 additional-files:
