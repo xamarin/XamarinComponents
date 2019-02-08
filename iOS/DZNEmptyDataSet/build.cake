@@ -34,7 +34,7 @@ var buildSpec = new BuildSpec () {
 	},
 
 	NuGets = new [] {
-		new NuGetInfo { NuSpec = "./nuget/Xamarin.DZNEmptyDataSet.nuspec" },
+		new NuGetInfo { NuSpec = "./nuget/Xamarin.DZNEmptyDataSet.nuspec", RequireLicenseAcceptance = true },
 	},
 
 	Components = new [] {
