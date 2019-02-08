@@ -16,6 +16,7 @@ var BUILD_NAMES = Argument ("names", Argument ("name", Argument ("n", "")))
 var BUILD_TARGETS = Argument ("targets", Argument ("build-targets", Argument ("build-targets", Argument ("build", ""))))
 	.Split (new [] { ",", ";" }, StringSplitOptions.RemoveEmptyEntries);
 
+var COPY_OUTPUT_TO_ROOT = Argument("copyoutputtoroot", "false").ToLower().Equals("true");
 
 var FORCE_BUILD = Argument ("force", Argument ("forcebuild", Argument ("force-build", "false"))).ToLower ().Equals ("true");
 
@@ -218,6 +219,13 @@ void BuildGroups (List<BuildGroup> buildGroups, List<string> names, List<string>
 	Information ("Found DLL's ({0})", dlls.Count ());
 	foreach (var d in dlls)
 		Information ("{0}", d);
+	
+	// Copy all subdir output directories to a root level artifacts dir
+	if (COPY_OUTPUT_TO_ROOT) {
+		EnsureDirectoryExists("./artifacts");
+		CopyFiles("./**/output/*", "./artifacts", true);
+	}
+
 }
 
 
