@@ -54,9 +54,6 @@
     <Compile Include="Helpers\MSBuildExtensions.cs" />
     <Compile Include="Helpers\TestsBase.cs" />
     <Compile Include="Helpers\MSBuildTestLogger.cs" />
-    <Compile Include="..\Xamarin.Build.Download\PListObject.cs">
-      <Link>PListObject.cs</Link>
-    </Compile>
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

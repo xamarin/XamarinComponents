@@ -20,5 +20,7 @@ namespace Xamarin.Build.Download
 		public const string XbdInvalidRange = "XBD030";
 		public const string XbdInvalidRangeStart = "XBD031";
 		public const string XbdInvalidRangeEnd = "XBD032";
+
+		public const string XbdUnsecureUrl = "XBD040";
 	}
 }
