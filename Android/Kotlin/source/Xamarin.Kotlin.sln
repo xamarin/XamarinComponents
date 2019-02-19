@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Xamarin.Kotlin.StdLib", "Xamarin.Kotlin.StdLib\Xamarin.Kotlin.StdLib.csproj", "{A905D25B-A356-47F7-ACDD-70DA7596B1D1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Xamarin.Kotlin.StdLib.Jre8", "Xamarin.Kotlin.StdLib.Jre8\Xamarin.Kotlin.StdLib.Jre8.csproj", "{2B848B8A-8E51-4A01-A523-13B7451C6289}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Xamarin.Kotlin.StdLib.Jdk8", "Xamarin.Kotlin.StdLib.Jdk8\Xamarin.Kotlin.StdLib.Jdk8.csproj", "{2B848B8A-8E51-4A01-A523-13B7451C6289}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Xamarin.Kotlin.StdLib.Jre7", "Xamarin.Kotlin.StdLib.Jre7\Xamarin.Kotlin.StdLib.Jre7.csproj", "{B2E2FEF0-A260-433E-A747-485D6220D51C}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Xamarin.Kotlin.StdLib.Jdk7", "Xamarin.Kotlin.StdLib.Jdk7\Xamarin.Kotlin.StdLib.Jdk7.csproj", "{B2E2FEF0-A260-433E-A747-485D6220D51C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

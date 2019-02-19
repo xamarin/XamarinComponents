@@ -9,8 +9,8 @@
     <ProjectGuid>{B2E2FEF0-A260-433E-A747-485D6220D51C}</ProjectGuid>
     <ProjectTypeGuids>{10368E6C-D01B-4462-8E8B-01FC667A7035};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <OutputType>Library</OutputType>
-    <RootNamespace>Xamarin.Kotlin.StdLib.Jre7</RootNamespace>
-    <AssemblyName>Xamarin.Kotlin.StdLib.Jre7</AssemblyName>
+    <RootNamespace>Xamarin.Kotlin.StdLib.Jdk7</RootNamespace>
+    <AssemblyName>Xamarin.Kotlin.StdLib.Jdk7</AssemblyName>
     <TargetFrameworkVersion>v7.1</TargetFrameworkVersion>
     <MonoAndroidResourcePrefix>Resources</MonoAndroidResourcePrefix>
     <MonoAndroidAssetsPrefix>Assets</MonoAndroidAssetsPrefix>
@@ -57,8 +57,8 @@
     <Folder Include="Jars\" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedReferenceJar Include="..\..\externals\kotlin-stdlib-jre7.jar">
-      <Link>Jars\kotlin-stdlib-jre7.jar</Link>
+    <EmbeddedReferenceJar Include="..\..\externals\kotlin-stdlib-jdk7.jar">
+      <Link>Jars\kotlin-stdlib-jdk7.jar</Link>
     </EmbeddedReferenceJar>
   </ItemGroup>
   <ItemGroup>

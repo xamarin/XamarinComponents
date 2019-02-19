@@ -9,8 +9,8 @@
     <ProjectGuid>{2B848B8A-8E51-4A01-A523-13B7451C6289}</ProjectGuid>
     <ProjectTypeGuids>{10368E6C-D01B-4462-8E8B-01FC667A7035};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <OutputType>Library</OutputType>
-    <RootNamespace>Xamarin.Kotlin.StdLib.Jre8</RootNamespace>
-    <AssemblyName>Xamarin.Kotlin.StdLib.Jre8</AssemblyName>
+    <RootNamespace>Xamarin.Kotlin.StdLib.Jdk8</RootNamespace>
+    <AssemblyName>Xamarin.Kotlin.StdLib.Jdk8</AssemblyName>
     <TargetFrameworkVersion>v7.1</TargetFrameworkVersion>
     <MonoAndroidResourcePrefix>Resources</MonoAndroidResourcePrefix>
     <MonoAndroidAssetsPrefix>Assets</MonoAndroidAssetsPrefix>
@@ -57,14 +57,14 @@
     <Folder Include="Jars\" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedReferenceJar Include="..\..\externals\kotlin-stdlib-jre8.jar">
-      <Link>Jars\kotlin-stdlib-jre8.jar</Link>
+    <EmbeddedReferenceJar Include="..\..\externals\kotlin-stdlib-jdk8.jar">
+      <Link>Jars\kotlin-stdlib-jdk8.jar</Link>
     </EmbeddedReferenceJar>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Xamarin.Kotlin.StdLib.Jre7\Xamarin.Kotlin.StdLib.Jre7.csproj">
+    <ProjectReference Include="..\Xamarin.Kotlin.StdLib.Jdk7\Xamarin.Kotlin.StdLib.Jdk7.csproj">
       <Project>{B2E2FEF0-A260-433E-A747-485D6220D51C}</Project>
-      <Name>Xamarin.Kotlin.StdLib.Jre7</Name>
+      <Name>Xamarin.Kotlin.StdLib.Jdk7</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.Bindings.targets" />
