@@ -18,6 +18,8 @@ namespace Xamarin.Build.Download
 
 		public string CacheDirectory { get; set; }
 
+		public bool AllowUnsecureUrls { get; set; }
+
 		HttpClient http;
 
 		public override bool Execute ()
@@ -34,7 +36,7 @@ namespace Xamarin.Build.Download
 					var cacheDir = DownloadUtils.GetCacheDir (CacheDirectory);
 					var downloadUtils = new DownloadUtils (this, cacheDir);
 
-					parts = downloadUtils.ParsePartialZipDownloadItems (Parts);
+					parts = downloadUtils.ParsePartialZipDownloadItems (Parts, AllowUnsecureUrls);
 
 					await DownloadAll (cacheDir, parts).ConfigureAwait (false);
 
