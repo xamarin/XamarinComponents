@@ -7,9 +7,9 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KotlinSample", "KotlinSampl
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KotlinSampleLibrary", "KotlinSampleLibrary\KotlinSampleLibrary.csproj", "{7284601F-A95A-4707-9FF2-4618AB0A9AA9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Xamarin.Kotlin.StdLib.Jre7", "..\source\Xamarin.Kotlin.StdLib.Jre7\Xamarin.Kotlin.StdLib.Jre7.csproj", "{B2E2FEF0-A260-433E-A747-485D6220D51C}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Xamarin.Kotlin.StdLib.Jdk7", "..\source\Xamarin.Kotlin.StdLib.Jdk7\Xamarin.Kotlin.StdLib.Jdk7.csproj", "{B2E2FEF0-A260-433E-A747-485D6220D51C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Xamarin.Kotlin.StdLib.Jre8", "..\source\Xamarin.Kotlin.StdLib.Jre8\Xamarin.Kotlin.StdLib.Jre8.csproj", "{2B848B8A-8E51-4A01-A523-13B7451C6289}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Xamarin.Kotlin.StdLib.Jdk8", "..\source\Xamarin.Kotlin.StdLib.Jdk8\Xamarin.Kotlin.StdLib.Jdk8.csproj", "{2B848B8A-8E51-4A01-A523-13B7451C6289}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
