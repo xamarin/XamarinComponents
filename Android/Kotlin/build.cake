@@ -39,9 +39,9 @@ var buildSpec = new BuildSpec () {
 	},
 
 	NuGets = new [] {
-		new NuGetInfo { NuSpec = "./nuget/Xamarin.Kotlin.StdLib.nuspec" },
-		new NuGetInfo { NuSpec = "./nuget/Xamarin.Kotlin.StdLib.Jdk7.nuspec" },
-		new NuGetInfo { NuSpec = "./nuget/Xamarin.Kotlin.StdLib.Jdk8.nuspec" },
+		new NuGetInfo { NuSpec = "./nuget/Xamarin.Kotlin.StdLib.nuspec", RequireLicenseAcceptance = true },
+		new NuGetInfo { NuSpec = "./nuget/Xamarin.Kotlin.StdLib.Jdk7.nuspec", RequireLicenseAcceptance = true },
+		new NuGetInfo { NuSpec = "./nuget/Xamarin.Kotlin.StdLib.Jdk8.nuspec", RequireLicenseAcceptance = true },
 	},
 };
 
