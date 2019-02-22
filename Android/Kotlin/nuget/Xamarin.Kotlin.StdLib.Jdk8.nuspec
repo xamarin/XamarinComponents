@@ -1,22 +1,22 @@
 <?xml version="1.0"?>
 <package >
   <metadata>
-    <id>Xamarin.Kotlin.StdLib.Jre8</id>
-    <title>Kotlin Standard Library JRE 8 extension for Xamarin.Android</title>
-    <version>1.3.11.0</version>
+    <id>Xamarin.Kotlin.StdLib.Jdk8</id>
+    <title>Kotlin Standard Library JDK 8 extension for Xamarin.Android</title>
+    <version>1.3.21.0</version>
     <authors>Microsoft</authors>
     <owners>Microsoft</owners>
     <requireLicenseAcceptance>true</requireLicenseAcceptance>
-    <description>Xamarin.Android binding for Kotlin Standard Library JRE 8 extension</description>
+    <description>Xamarin.Android binding for Kotlin Standard Library JDK 8 extension</description>
     <copyright>© Microsoft Corporation. All rights reserved.</copyright>
     <projectUrl>https://go.microsoft.com/fwlink/?linkid=865005</projectUrl>
     <licenseUrl>https://go.microsoft.com/fwlink/?linkid=865054</licenseUrl>
     <dependencies>
-      <dependency id="Xamarin.Kotlin.StdLib.Jre7" version="1.3.11.0" />
+      <dependency id="Xamarin.Kotlin.StdLib.Jdk7" version="1.3.21.0" />
     </dependencies>
   </metadata>
   <files>
-    <file src="output/Xamarin.Kotlin.StdLib.Jre8.dll" target="lib/MonoAndroid" />
+    <file src="output/Xamarin.Kotlin.StdLib.Jdk8.dll" target="lib/MonoAndroid" />
     <file src="External-Dependency-Info.txt" target="THIRD-PARTY-NOTICES.txt" />
   </files>
 </package>
