@@ -288,8 +288,14 @@ namespace SDWebImage
 		void StoreImageDataToDisk ([NullAllowed] NSData imageData, [NullAllowed] string key);
 
 		// -(void)diskImageExistsWithKey:(NSString * _Nullable)key completion:(SDWebImageCheckCacheCompletionBlock _Nullable)completionBlock;
-		[Export ("diskImageExistsWithKey:completion:")]
+		[Export ("diskImageDataExistsWithKey:completion:")]
 		void DiskImageExists ([NullAllowed] string key, [NullAllowed] SDWebImageCheckCacheCompletionHandler completionHandler);
+
+		// - (nullable NSData *)diskImageDataForKey:(nullable NSString *)key;
+		[Export("diskImageDataForKey:")]
+		[return: NullAllowed]
+		NSData DiskImageData([NullAllowed] string key);
+
 
 		// -(NSOperation * _Nullable)queryCacheOperationForKey:(NSString * _Nullable)key done:(SDCacheQueryCompletedBlock _Nullable)doneBlock;
 		[Export ("queryCacheOperationForKey:done:")]
@@ -533,6 +539,10 @@ namespace SDWebImage
 		[Export ("shouldDisableiCloud")]
 		bool ShouldDisableiCloud { get; set; }
 
+		// @property (assign, nonatomic) BOOL shouldUseWeakMemoryCache;
+		[Export("shouldUseWeakMemoryCache")]
+		bool ShouldUseWeakMemoryCache { get; set; }
+
 		// @property (assign, nonatomic) BOOL shouldCacheImagesInMemory;
 		[Export ("shouldCacheImagesInMemory")]
 		bool ShouldCacheImagesInMemory { get; set; }
@@ -544,6 +554,10 @@ namespace SDWebImage
 		// @property (assign, nonatomic) NSUInteger maxCacheSize;
 		[Export ("maxCacheSize")]
 		nuint MaxCacheSize { get; set; }
+
+		// @property (assign, nonatomic) SDImageCacheConfigExpireType diskCacheExpireType;
+		[Export("diskCacheExpireType")]
+		SDImageCacheConfigExpireType DiskCacheExpireType { get;set; }
 	}
 
 	// @interface ForceDecode (UIImage)
@@ -649,6 +663,10 @@ namespace SDWebImage
 		// -(BOOL)cancel:(id _Nullable)token;
 		[Export ("cancel:")]
 		bool Cancel ([NullAllowed] NSObject token);
+
+		// @optional - (nullable NSURLSessionTask *)dataTask;
+		[Export("dataTask")]
+		NSUrlSessionTask DataTask { get; }
 	}
 
 	interface ISDWebImagePrefetcherDelegate { }
@@ -925,6 +943,9 @@ namespace SDWebImage
 
 	// typedef void (^SDSetImageBlock)(UIImage * _Nullable, NSData * _Nullable);
 	delegate void SDSetImageHandler ([NullAllowed] BoundUIImage image, [NullAllowed] NSData data);
+
+	// typedef void(^SDInternalSetImageBlock)(UIImage * _Nullable image, NSData * _Nullable imageData, SDImageCacheType cacheType, NSURL * _Nullable imageURL);
+	delegate void SDInternalSetImageHandler ([NullAllowed] UIImage image, [NullAllowed]NSData imageDate, SDImageCacheType cacheType, NSUrl imageUrl);
 
 	// @interface WebCache (UIView)
 	[Category]
