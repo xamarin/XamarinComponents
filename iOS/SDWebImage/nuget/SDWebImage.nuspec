@@ -3,7 +3,7 @@
   <metadata>
     <id>Xamarin.SDWebImage</id>
     <title>SDWebImage for Xamarin.iOS, Xamarin.tvOS, Xamarin.macOS</title>
-    <version>4.4.0</version>
+    <version>4.4.6</version>
     <authors>Microsoft</authors>
     <owners>Microsoft</owners>
     <requireLicenseAcceptance>true</requireLicenseAcceptance>
