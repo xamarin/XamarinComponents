@@ -621,8 +621,9 @@ namespace SDWebImage
 		bool Cancel ([NullAllowed] NSObject token);
 
 		// @optional - (nullable NSURLSessionTask *)dataTask;
+		[Abstract]
 		[Export ("dataTask")]
-		NSUrlSessionTask GetDataTask ();
+		NSUrlSessionTask DataTask { get; }
 	}
 
 	// @interface SDWebImageDownloaderOperation : NSOperation <SDWebImageDownloaderOperationInterface, SDWebImageOperation, NSURLSessionTaskDelegate, NSURLSessionDataDelegate>
