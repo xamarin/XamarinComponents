@@ -588,7 +588,7 @@ namespace SDWebImage
 	// @protocol SDWebImageDownloaderOperationInterface <NSObject>
 	[Protocol, Model]
 	[BaseType (typeof (NSObject))]
-	interface SDWebImageDownloaderOperationInterface
+	interface SDWebImageDownloaderOperationInterface : INSUrlSessionTaskDelegate, INSUrlSessionDataDelegate
 	{
 		// We can not represent a ctor on an interface.  Classes will have to implement
 		// manually
@@ -609,9 +609,20 @@ namespace SDWebImage
 		[Export ("shouldDecompressImages")]
 		bool ShouldDecompressImages { get; set; }
 
-		// @property (nonatomic, strong) NSURLCredential * _Nullable credential;
+		// @required - (nullable NSURLCredential *)credential;
+		// @required - (void) setCredential:(nullable NSURLCredential *)value;
+		[Abstract]
 		[NullAllowed, Export ("credential", ArgumentSemantic.Strong)]
 		NSUrlCredential Credential { get; set; }
+
+		// @required -(BOOL)cancel:(id _Nullable)token;
+		[Abstract]
+		[Export ("cancel:")]
+		bool Cancel ([NullAllowed] NSObject token);
+
+		// @optional - (nullable NSURLSessionTask *)dataTask;
+		[Export ("dataTask")]
+		NSUrlSessionTask GetDataTask ();
 	}
 
 	// @interface SDWebImageDownloaderOperation : NSOperation <SDWebImageDownloaderOperationInterface, SDWebImageOperation, NSURLSessionTaskDelegate, NSURLSessionDataDelegate>
@@ -663,10 +674,6 @@ namespace SDWebImage
 		// -(BOOL)cancel:(id _Nullable)token;
 		[Export ("cancel:")]
 		bool Cancel ([NullAllowed] NSObject token);
-
-		// @optional - (nullable NSURLSessionTask *)dataTask;
-		[Export("dataTask")]
-		NSUrlSessionTask DataTask { get; }
 	}
 
 	interface ISDWebImagePrefetcherDelegate { }
@@ -945,7 +952,7 @@ namespace SDWebImage
 	delegate void SDSetImageHandler ([NullAllowed] BoundUIImage image, [NullAllowed] NSData data);
 
 	// typedef void(^SDInternalSetImageBlock)(UIImage * _Nullable image, NSData * _Nullable imageData, SDImageCacheType cacheType, NSURL * _Nullable imageURL);
-	delegate void SDInternalSetImageHandler ([NullAllowed] UIImage image, [NullAllowed]NSData imageDate, SDImageCacheType cacheType, NSUrl imageUrl);
+	delegate void SDInternalSetImageHandler ([NullAllowed] BoundUIImage image, [NullAllowed]NSData imageDate, SDImageCacheType cacheType, NSUrl imageUrl);
 
 	// @interface WebCache (UIView)
 	[Category]
