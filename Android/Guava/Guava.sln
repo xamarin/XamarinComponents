@@ -1,7 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2012
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Guava", "source\Guava\Guava.csproj", "{8308A870-2FEF-484E-B4F7-58DE38C8B5B2}"
+# Visual Studio 15
+VisualStudioVersion = 15.0.28307.271
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Guava", "source\Guava\Guava.csproj", "{8308A870-2FEF-484E-B4F7-58DE38C8B5B2}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Guava.FailureAccess", "source\Guava.FailureAccess\Guava.FailureAccess.csproj", "{F77FD2C9-181F-43C9-9533-20EE845F74BC}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -13,5 +17,15 @@ Global
 		{8308A870-2FEF-484E-B4F7-58DE38C8B5B2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8308A870-2FEF-484E-B4F7-58DE38C8B5B2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8308A870-2FEF-484E-B4F7-58DE38C8B5B2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F77FD2C9-181F-43C9-9533-20EE845F74BC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F77FD2C9-181F-43C9-9533-20EE845F74BC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F77FD2C9-181F-43C9-9533-20EE845F74BC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F77FD2C9-181F-43C9-9533-20EE845F74BC}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {CAC0F9D3-A924-4A83-8ED8-6DE2B30345DE}
 	EndGlobalSection
 EndGlobal
