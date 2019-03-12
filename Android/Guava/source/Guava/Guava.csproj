@@ -62,11 +62,11 @@
 
   <ItemGroup>
     <EmbeddedReferenceJar Include="..\..\externals\guava.jar" />
-    <!-- <ReferenceJar Include="..\..\externals\animal-sniffer-annotations.jar" /> -->
-    <!-- <ReferenceJar Include="..\..\externals\checker-compat-qual-annotations.jar" /> -->
-    <!-- <ReferenceJar Include="..\..\externals\error-prone-annotations.jar" /> -->
-    <!-- <ReferenceJar Include="..\..\externals\j2objc-annotations.jar" /> -->
-    <!-- <ReferenceJar Include="..\..\externals\jsr305-annotations.jar" /> -->
+    <ReferenceJar Include="..\..\externals\animal-sniffer-annotations.jar" />
+    <ReferenceJar Include="..\..\externals\checker-compat-qual-annotations.jar" />
+    <ReferenceJar Include="..\..\externals\error-prone-annotations.jar" />
+    <ReferenceJar Include="..\..\externals\j2objc-annotations.jar" />
+    <ReferenceJar Include="..\..\externals\jsr305-annotations.jar" />
   </ItemGroup>
 
   <ItemGroup>
