@@ -1,0 +1,25 @@
+{
+  "Registrations":[ 
+    {
+      "Component": {
+        "Type": "Maven",
+        "Maven": {
+          "ArtifactId": "guava",
+          "GroupId": "com.google.guava",
+          "Version": "27.1-android"
+        }
+      }
+    },
+    {
+      "Component": {
+        "Type": "Maven",
+        "Maven": {
+          "ArtifactId": "failureaccess",
+          "GroupId": "com.google.guava",
+          "Version": "1.0.1"
+        }
+      }
+    }
+  ],
+  "Version": 1
+}
