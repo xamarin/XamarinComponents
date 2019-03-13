@@ -3,22 +3,22 @@
   <PropertyGroup>
     <TargetFrameworks>MonoAndroid50</TargetFrameworks>
     <IsBindingProject>true</IsBindingProject>
-    <AssemblyName>Xamarin.Google.Guava</AssemblyName>
+    <AssemblyName>Xamarin.Google.Guava.ListenableFuture</AssemblyName>
     <MonoAndroidResourcePrefix>Resources</MonoAndroidResourcePrefix>
     <MonoAndroidAssetsPrefix>Assets</MonoAndroidAssetsPrefix>
     <AndroidUseLatestPlatformSdk>False</AndroidUseLatestPlatformSdk>
     <AndroidUseIntermediateDesignerFile>True</AndroidUseIntermediateDesignerFile>
     <AndroidResgenFile>Resources\Resource.designer.cs</AndroidResgenFile>
-    <RootNamespace>Guava</RootNamespace>
+    <RootNamespace>Guava.ListenableFuture</RootNamespace>
     <AndroidClassParser>class-parse</AndroidClassParser>
     <AndroidCodegenTarget>XAJavaInterop1</AndroidCodegenTarget>
-    <Java7DocPaths>..\..\externals\guava-javadocs\</Java7DocPaths>
+    <Java7DocPaths>..\..\externals\guava-listenablefuture-javadocs\</Java7DocPaths>
   </PropertyGroup>
 
   <PropertyGroup>
-    <PackageId>Xamarin.Google.Guava</PackageId>
-    <Title>Google Guava reference library for Xamarin.Android</Title>
-    <Summary>Xamarin.Android bindings for Google Guava</Summary>
+    <PackageId>Xamarin.Google.Guava.ListenableFuture</PackageId>
+    <Title>Google Guava ListenableFuture reference library for Xamarin.Android</Title>
+    <Summary>Xamarin.Android bindings for Google Guava ListenableFuture</Summary>
     <Description>
     NOTE: This package is meant to be used as a reference only for other binding projects that depend on Guava.
     This package does not expose any useful API's in the .dll itself.
@@ -31,7 +31,7 @@
     <PackageProjectUrl>https://go.microsoft.com/fwlink/?linkid=865028</PackageProjectUrl>
     <PackageLicenseUrl>https://go.microsoft.com/fwlink/?linkid=865030</PackageLicenseUrl>
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
-    <PackageVersion>27.1.0.1</PackageVersion>
+    <PackageVersion>1.0</PackageVersion>
   </PropertyGroup>
 
   <ItemGroup>
@@ -39,43 +39,18 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Include="..\..\externals\guava.jar">
-      <Link>guava.jar</Link>
-    </None>
-    <None Include="..\..\externals\animal-sniffer-annotations.jar">
-      <Link>animal-sniffer-annotations.jar</Link>
-    </None>
-    <None Include="..\..\externals\checker-compat-qual-annotations.jar">
-      <Link>checker-compat-qual-annotations.jar</Link>
-    </None>
-    <None Include="..\..\externals\error-prone-annotations.jar">
-      <Link>error-prone-annotations.jar</Link>
-    </None>
-    <None Include="..\..\externals\j2objc-annotations.jar">
-      <Link>j2objc-annotations.jar</Link>
-    </None>
-    <None Include="..\..\externals\jsr305-annotations.jar">
-      <Link>jsr305-annotations.jar</Link>
+    <None Include="..\..\externals\guava-listenablefuture.jar">
+      <Link>guava-listenablefuture.jar</Link>
     </None>
     <None Include="..\..\External-Dependency-Info.txt" Pack="True" PackagePath="THIRD-PARTY-NOTICES.txt" />
   </ItemGroup>
 
   <ItemGroup>
-    <EmbeddedReferenceJar Include="..\..\externals\guava.jar" />
-    <ReferenceJar Include="..\..\externals\animal-sniffer-annotations.jar" />
-    <ReferenceJar Include="..\..\externals\checker-compat-qual-annotations.jar" />
-    <ReferenceJar Include="..\..\externals\error-prone-annotations.jar" />
-    <ReferenceJar Include="..\..\externals\j2objc-annotations.jar" />
-    <ReferenceJar Include="..\..\externals\jsr305-annotations.jar" />
+    <EmbeddedJar Include="..\..\externals\guava-listenablefuture.jar" />
   </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="MSBuild.Sdk.Extras" Version="1.4.0" PrivateAssets="All" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <ProjectReference Include="..\Guava.FailureAccess\Guava.FailureAccess.csproj" />
-    <ProjectReference Include="..\Guava.ListenableFuture\Guava.ListenableFuture.csproj" />
   </ItemGroup>
 
   <Import Project="$(MSBuildSDKExtrasTargets)" Condition="Exists('$(MSBuildSDKExtrasTargets)')" />

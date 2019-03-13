@@ -7,6 +7,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Guava", "source\Guava\Guava
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Guava.FailureAccess", "source\Guava.FailureAccess\Guava.FailureAccess.csproj", "{F77FD2C9-181F-43C9-9533-20EE845F74BC}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Guava.ListenableFuture", "source\Guava.ListenableFuture\Guava.ListenableFuture.csproj", "{6ADF0C2E-8513-40E6-921B-08AEFD7CBDD6}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{F77FD2C9-181F-43C9-9533-20EE845F74BC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F77FD2C9-181F-43C9-9533-20EE845F74BC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F77FD2C9-181F-43C9-9533-20EE845F74BC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6ADF0C2E-8513-40E6-921B-08AEFD7CBDD6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6ADF0C2E-8513-40E6-921B-08AEFD7CBDD6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6ADF0C2E-8513-40E6-921B-08AEFD7CBDD6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6ADF0C2E-8513-40E6-921B-08AEFD7CBDD6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
