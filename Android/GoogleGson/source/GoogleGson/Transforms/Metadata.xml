@@ -16,4 +16,9 @@
 	<remove-node path="/api/package/interface[@deprecated='deprecated']" />
 	<remove-node path="/api/package/class/method[@deprecated='deprecated']" />
 	<remove-node path="/api/package/interface/method[@deprecated='deprecated']" />
+
+	<attr path="/api/package[@name='com.google.gson']/class[@name='JsonArray']/method[@name='deepCopy' and count(parameter)=0]" name="managedReturn">GoogleGson.JsonElement</attr>
+	<attr path="/api/package[@name='com.google.gson']/class[@name='JsonNull']/method[@name='deepCopy' and count(parameter)=0]" name="managedReturn">GoogleGson.JsonElement</attr>
+	<attr path="/api/package[@name='com.google.gson']/class[@name='JsonObject']/method[@name='deepCopy' and count(parameter)=0]" name="managedReturn">GoogleGson.JsonElement</attr>
+	<attr path="/api/package[@name='com.google.gson']/class[@name='JsonPrimitive']/method[@name='deepCopy' and count(parameter)=0]" name="managedReturn">GoogleGson.JsonElement</attr>
 </metadata>
