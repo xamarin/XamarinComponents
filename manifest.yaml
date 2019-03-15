@@ -54,6 +54,11 @@
   BuildScript: ./Android/Crashlytics/build.cake
   TriggerPaths: [ Android/Crashlytics ]
   MacBuildTargets: [ samples, nuget ]
+- Name: RenderScriptV8
+  BuildScript: ./Android/RenderScriptV8/build.cake
+  TriggerPaths: [ Android/RenderScriptV8 ]
+  MacBuildTargets: [ nuget, samples ]
+  WindowsBuildTargets: [ nuget, samples ]
 - Name: ShimmerLayout
   BuildScript: ./Android/ShimmerLayout/build.cake
   TriggerPaths: [ Android/ShimmerLayout ]

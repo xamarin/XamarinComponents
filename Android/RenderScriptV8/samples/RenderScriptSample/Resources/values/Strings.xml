@@ -1,0 +1,7 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<resources>
+	<string name="app_name">RenderScriptSample</string>
+	<string name="blur_image_text">Blur!</string>
+	<string name="dialogtitle">Blur Image</string>
+  	<string name="dialogmessage">Working</string>
+</resources>

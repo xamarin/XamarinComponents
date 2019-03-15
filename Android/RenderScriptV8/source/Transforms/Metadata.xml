@@ -1,0 +1,39 @@
+﻿<metadata>
+	<!--
+  This sample removes the class: android.support.v4.content.AsyncTaskLoader.LoadTask:
+  <remove-node path="/api/package[@name='android.support.v4.content']/class[@name='AsyncTaskLoader.LoadTask']" />
+  
+  This sample removes the method: android.support.v4.content.CursorLoader.loadInBackground:
+  <remove-node path="/api/package[@name='android.support.v4.content']/class[@name='CursorLoader']/method[@name='loadInBackground']" />
+  -->
+
+  <attr path="/api/package[@name='android.support.v8.renderscript']/class[@name='RenderScript']/method[@name='create' and count(parameter)=2 and parameter[1][@type='android.content.Context'] and parameter[2][@type='android.support.v8.renderscript.RenderScript.ContextType']]/parameter[@name='p0']" name="managedName">ctx</attr>
+  <attr path="/api/package[@name='android.support.v8.renderscript']/class[@name='RenderScript']/method[@name='create' and count(parameter)=2 and parameter[1][@type='android.content.Context'] and parameter[2][@type='android.support.v8.renderscript.RenderScript.ContextType']]/parameter[@name='p1']" name="managedName">ct</attr>
+  <attr path="/api/package[@name='android.support.v8.renderscript']/class[@name='RenderScript']/method[@name='create' and count(parameter)=2 and parameter[1][@type='android.content.Context'] and parameter[2][@type='int']]/parameter[@name='p0']" name="managedName">ctx</attr>
+  <attr path="/api/package[@name='android.support.v8.renderscript']/class[@name='RenderScript']/method[@name='create' and count(parameter)=2 and parameter[1][@type='android.content.Context'] and parameter[2][@type='int']]/parameter[@name='p1']" name="managedName">sdkVersion</attr> 
+  <attr path="/api/package[@name='android.support.v8.renderscript']/class[@name='RenderScript']/method[@name='create' and count(parameter)=3 and parameter[1][@type='android.content.Context'] and parameter[2][@type='int'] and parameter[3][@type='android.support.v8.renderscript.RenderScript.ContextType']]/parameter[@name='p0']" name="managedName">ctx</attr>
+  <attr path="/api/package[@name='android.support.v8.renderscript']/class[@name='RenderScript']/method[@name='create' and count(parameter)=3 and parameter[1][@type='android.content.Context'] and parameter[2][@type='int'] and parameter[3][@type='android.support.v8.renderscript.RenderScript.ContextType']]/parameter[@name='p1']" name="managedName">sdkVersion</attr>
+  <attr path="/api/package[@name='android.support.v8.renderscript']/class[@name='RenderScript']/method[@name='create' and count(parameter)=3 and parameter[1][@type='android.content.Context'] and parameter[2][@type='int'] and parameter[3][@type='android.support.v8.renderscript.RenderScript.ContextType']]/parameter[@name='p2']" name="managedName">ct</attr> 
+  <attr path="/api/package[@name='android.support.v8.renderscript']/class[@name='RenderScript']/method[@name='sendMessage' and count(parameter)=2 and parameter[1][@type='int'] and parameter[2][@type='int[]']]/parameter[@name='p0']" name="managedName">id</attr>
+  <attr path="/api/package[@name='android.support.v8.renderscript']/class[@name='RenderScript']/method[@name='sendMessage' and count(parameter)=2 and parameter[1][@type='int'] and parameter[2][@type='int[]']]/parameter[@name='p1']" name="managedName">data</attr>
+  <attr path="/api/package[@name='android.support.v8.renderscript']/class[@name='RenderScript']/method[@name='setupDiskCache' and count(parameter)=1 and parameter[1][@type='java.io.File']]/parameter[@name='p0']" name="managedName">file</attr>
+
+  <attr path="/api/package[@name='android.support.v8.renderscript']/class[@name='ScriptIntrinsic3DLUT']/method[@name='create' and count(parameter)=2 and parameter[1][@type='android.support.v8.renderscript.RenderScript'] and parameter[2][@type='android.support.v8.renderscript.Element']]/parameter[@name='p0']" name="managedName">rs</attr>
+  <attr path="/api/package[@name='android.support.v8.renderscript']/class[@name='ScriptIntrinsic3DLUT']/method[@name='create' and count(parameter)=2 and parameter[1][@type='android.support.v8.renderscript.RenderScript'] and parameter[2][@type='android.support.v8.renderscript.Element']]/parameter[@name='p1']" name="managedName">e</attr>
+  <attr path="/api/package[@name='android.support.v8.renderscript']/class[@name='ScriptIntrinsic3DLUT']/method[@name='forEach' and count(parameter)=2 and parameter[1][@type='android.support.v8.renderscript.Allocation'] and parameter[2][@type='android.support.v8.renderscript.Allocation']]/parameter[@name='p0']" name="managedName">ain</attr>
+  <attr path="/api/package[@name='android.support.v8.renderscript']/class[@name='ScriptIntrinsic3DLUT']/method[@name='forEach' and count(parameter)=2 and parameter[1][@type='android.support.v8.renderscript.Allocation'] and parameter[2][@type='android.support.v8.renderscript.Allocation']]/parameter[@name='p1']" name="managedName">aout</attr>
+  <attr path="/api/package[@name='android.support.v8.renderscript']/class[@name='ScriptIntrinsic3DLUT']/method[@name='setLUT' and count(parameter)=1 and parameter[1][@type='android.support.v8.renderscript.Allocation']]/parameter[@name='p0']" name="managedName">lut</attr>
+
+  <attr path="/api/package[@name='android.support.v8.renderscript']/class[@name='Matrix4f']/method[@name='load' and count(parameter)=1 and parameter[1][@type='android.support.v8.renderscript.Matrix3f']]/parameter[@name='p0']" name="managedName">src</attr>
+
+  <attr path="/api/package[@name='android.support.v8.renderscript']/class[@name='Allocation']/method[@name='copy3DRangeFrom']/parameter[@name='p0']" name="managedName">xoff</attr>
+  <attr path="/api/package[@name='android.support.v8.renderscript']/class[@name='Allocation']/method[@name='copy3DRangeFrom']/parameter[@name='p1']" name="managedName">yoff</attr>
+  <attr path="/api/package[@name='android.support.v8.renderscript']/class[@name='Allocation']/method[@name='copy3DRangeFrom']/parameter[@name='p2']" name="managedName">zoff</attr>
+  <attr path="/api/package[@name='android.support.v8.renderscript']/class[@name='Allocation']/method[@name='copy3DRangeFrom']/parameter[@name='p3']" name="managedName">w</attr>
+  <attr path="/api/package[@name='android.support.v8.renderscript']/class[@name='Allocation']/method[@name='copy3DRangeFrom']/parameter[@name='p4']" name="managedName">h</attr>
+  <attr path="/api/package[@name='android.support.v8.renderscript']/class[@name='Allocation']/method[@name='copy3DRangeFrom']/parameter[@name='p5']" name="managedName">d</attr>
+  <attr path="/api/package[@name='android.support.v8.renderscript']/class[@name='Allocation']/method[@name='copy3DRangeFrom']/parameter[@name='p6']" name="managedName">data</attr>
+  <attr path="/api/package[@name='android.support.v8.renderscript']/class[@name='Allocation']/method[@name='copy3DRangeFrom']/parameter[@name='p7']" name="managedName">dataXoff</attr>
+  <attr path="/api/package[@name='android.support.v8.renderscript']/class[@name='Allocation']/method[@name='copy3DRangeFrom']/parameter[@name='p8']" name="managedName">dataYoff</attr>
+  <attr path="/api/package[@name='android.support.v8.renderscript']/class[@name='Allocation']/method[@name='copy3DRangeFrom']/parameter[@name='p9']" name="managedName">dataZoff</attr>
+</metadata>
