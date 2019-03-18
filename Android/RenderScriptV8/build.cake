@@ -57,9 +57,16 @@ Task("samples")
 	.IsDependentOn("nuget")
 	.Does(() =>
 {
+	MSBuild ("./samples/RenderScriptSample.sln", c => {
+		c.Configuration = "Release";
+		c.Targets.Clear();
+		c.Targets.Add("Restore");
+		c.Properties.Add("DesignTimeBuild", new [] { "false" });
+		c.Properties.Add("AndroidSdkBuildToolsVersion", new [] { "28.0.3" });
+	});
+
 	MSBuild("./samples/RenderScriptSample.sln", c => {
 		c.Configuration = "Release";
-		c.Restore = true;
 		c.Properties.Add("DesignTimeBuild", new [] { "false" });
 		c.Properties.Add("AndroidSdkBuildToolsVersion", new [] { "28.0.3" });
 	});
