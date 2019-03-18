@@ -1,0 +1,23 @@
+
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NugetDelister", "NugetDelister\NugetDelister.csproj", "{C509CA6A-3A06-4F01-AD35-3203537F8B10}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NugetListerRobot", "NugetListerRobot\NugetListerRobot.csproj", "{7A2C168C-EC38-49DE-9587-3DEF7992E255}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{C509CA6A-3A06-4F01-AD35-3203537F8B10}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C509CA6A-3A06-4F01-AD35-3203537F8B10}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C509CA6A-3A06-4F01-AD35-3203537F8B10}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C509CA6A-3A06-4F01-AD35-3203537F8B10}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7A2C168C-EC38-49DE-9587-3DEF7992E255}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7A2C168C-EC38-49DE-9587-3DEF7992E255}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7A2C168C-EC38-49DE-9587-3DEF7992E255}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7A2C168C-EC38-49DE-9587-3DEF7992E255}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
