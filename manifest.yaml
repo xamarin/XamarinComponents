@@ -54,6 +54,11 @@
   BuildScript: ./Android/Crashlytics/build.cake
   TriggerPaths: [ Android/Crashlytics ]
   MacBuildTargets: [ samples, nuget ]
+- Name: ReactiveStreams
+  BuildScript: ./Android/ReactiveStreams/build.cake
+  TriggerPaths: [ Android/ReactiveStreams ]
+  MacBuildTargets: [ nuget ]
+  WindowsBuildTargets: [ nuget ]
 - Name: RenderScriptV8
   BuildScript: ./Android/RenderScriptV8/build.cake
   TriggerPaths: [ Android/RenderScriptV8 ]
