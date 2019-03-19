@@ -12,16 +12,17 @@ namespace NugetListerRobot
         {
             Console.WriteLine("Processing....");
 
-            var dict = new Dictionary<string, string>()
+            var dict = new Dictionary<string, List<string>>()
             {
-                { "Xamarin.Firebase.Abt.","71.1501.0" },
-                 { "Xamarin.Firebase.Ads","71.1501.0" },
-                  { "Xamarin.Firebase.Ads.Lite.","71.1501.0" },
+                { "Xamarin.Firebase.Abt.",new List<string>() {"71.1501.0"} },
+                 { "Xamarin.Firebase.Ads", new List<string>(){"71.1501.0" } },
+                  { "Xamarin.Firebase.Ads.Lite.", new List<string>() {"71.1501.0"} },
             };
 
-            await NugetFeedProcessor.ProcessAsync(dict, "");
+            var nugetApiKey = string.Empty;
 
-
+            await NugetFeedProcessor.ProcessAsync(dict, nugetApiKey);
         }
     }
 }
+

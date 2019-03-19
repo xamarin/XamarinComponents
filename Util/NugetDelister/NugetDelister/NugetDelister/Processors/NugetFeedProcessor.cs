@@ -7,8 +7,11 @@ namespace NugetDelister.Processors
 {
     public class NugetFeedProcessor
     {
-        public async static Task ProcessAsync(Dictionary<string, string> dict, string nugetApiKey)
+        public async static Task ProcessAsync(Dictionary<string, List<string>> dict, string nugetApiKey, bool asTest = true)
         {
+            if (asTest == true)
+                Console.WriteLine("Operating in Test Mode....");
+
             await NugetServiceIndex.SetupSearchApiAsync();
 
             var newItems = new Dictionary<string, List<string>>();
@@ -18,7 +21,7 @@ namespace NugetDelister.Processors
             foreach (var aDictKey in dict.Keys)
             {
                 var packageId = aDictKey;
-                var latestVersion = dict[aDictKey];
+                var versionsToExclude = dict[aDictKey];
 
                 var packageData = await fProcessor.ProcessQueryAsync(packageId);
 
@@ -26,7 +29,7 @@ namespace NugetDelister.Processors
                 {
                     foreach (var aVer in aPackage.Versions)
                     {
-                        if (!aVer.VersionString.Equals(latestVersion, StringComparison.OrdinalIgnoreCase))
+                        if (!versionsToExclude.Contains(aVer.VersionString))
                         {
                             List<string> items = null;
 
@@ -55,7 +58,17 @@ namespace NugetDelister.Processors
 
                 foreach (var aVersion in vals)
                 {
-                    await fProcessor.DelistAsync(aPkgId, aVersion);
+                    if (!asTest)
+                    {
+                        await fProcessor.DelistAsync(aPkgId, aVersion);
+                    }
+                    else
+                    {
+                        var aUrl = $"https://www.nuget.org/api/v2/package/{aPkgId}/{aVersion}";
+
+                        Console.WriteLine($"Test Delisting: {aUrl}");
+                    }
+
                 }
 
 
