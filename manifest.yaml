@@ -141,6 +141,11 @@
   BuildScript: ./Android/PhotoView/build.cake
   TriggerPaths: [ Android/PhotoView ]
   MacBuildTargets: [ samples, component ]
+- Name: ReactiveX
+  BuildScript: ./Android/ReactiveX/build.cake
+  TriggerPaths: [ Android/ReactiveX ]
+  WindowsBuildTargets: [ nuget ]
+  MacBuildTargets: [ nuget ]
 - Name: RecyclerViewAnimators
   BuildScript: ./Android/RecyclerViewAnimators/build.cake
   TriggerPaths: [ Android/RecyclerViewAnimators ]

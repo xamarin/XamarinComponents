@@ -1,0 +1,25 @@
+{
+  "Registrations":[ 
+    {
+      "Component": {
+        "Type": "Maven",
+        "Maven": {
+          "ArtifactId": "rxjava",
+          "GroupId": "io.reactivex.rxjava2",
+          "Version": "2.2.7"
+        }
+      }
+    },
+    {
+      "Component": {
+        "Type": "Maven",
+        "Maven": {
+          "ArtifactId": "rxandroid",
+          "GroupId": "io.reactivex.rxjava2",
+          "Version": "2.1.1"
+        }
+      }
+    }
+  ],
+  "Version": 1
+}
