@@ -1,0 +1,26 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <PackageId>Xamarin.Nuget.Delister</PackageId>
+    <PackageVersion>1.0</PackageVersion>
+    <Authors>Microsoft</Authors>
+    <Owners>Microsoft</Owners>
+    <Product>Xamarin.Nuget.Delister</Product>
+    <Copyright>© Microsoft Corporation. All rights reserved.</Copyright>
+    <Description>Enables delisting of all packages on nuget expected those provided</Description>
+    <PackageProjectUrl>https://github.com/xamarin/XamarinComponents/tree/master/Util/NugetDelister</PackageProjectUrl>
+    <PackageLicenseUrl>https://github.com/xamarin/XamarinComponents/blob/master/Util/NugetDelister/LICENSE</PackageLicenseUrl>
+    <PackageReleaseNotes>Initial Release</PackageReleaseNotes>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Folder Include="Helpers\" />
+    <Folder Include="Models\" />
+    <Folder Include="Processors\" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Newtonsoft.Json" Version="12.0.1" />
+    <PackageReference Include="NuGet.Build.Packaging" Version="0.2.0" />
+  </ItemGroup>
+</Project>
