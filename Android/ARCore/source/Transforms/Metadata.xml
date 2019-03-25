@@ -3,7 +3,8 @@
 	<attr path="/api/package[@name='com.google.ar.core']" name="managedName">Google.AR.Core</attr>
 	<attr path="/api/package[@name='com.google.ar.core.annotations']" name="managedName">Google.AR.Core.Annotations</attr>
 	<attr path="/api/package[@name='com.google.ar.core.exceptions']" name="managedName">Google.AR.Core.Exceptions</attr>
-
+    
+	<attr path="/api/package[@name='com.google.vr.dynamite.client']" name="managedName">Google.VR.Dynamite.Client</attr>
       
     <attr path="/api/package[@name='com.google.ar.core']/class[@name='ArImage']" name="extends">Android.Media.Image</attr> 
      <attr path="/api/package[@name='com.google.vr.dynamite.client']/class[@name='ObjectWrapper']" name="extends">Java.Lang.Object</attr> 
@@ -14,5 +15,5 @@
 	
     <remove-node path="/api/package[@name='com.google.ar.core']/class[@name='Point']/method[@name='getAnchors' and count(parameter)=0]" />
 	<remove-node path="/api/package[@name='com.google.ar.core']/class[@name='Plane']/method[@name='getAnchors' and count(parameter)=0]" />
-	<remove-node path="/api/package[@name='com.google.ar.core']/class[@name='AugmentedImage']/method[@name='getAnchors' and count(parameter)=0]" />\
+	<remove-node path="/api/package[@name='com.google.ar.core']/class[@name='AugmentedImage']/method[@name='getAnchors' and count(parameter)=0]" />
 </metadata>
