@@ -6,32 +6,45 @@ var SF_VERSION = "1.7.0";
 
 var NUGET_VERSION = SF_VERSION;
 
-var BASE_JAR_URL = $"https://dl.google.com:443/dl/android/maven2/com/google/ar/sceneform/sceneform-base/{SF_VERSION}/sceneform-base-{SF_VERSION}.jar";
-var ANIMATION_JAR_URL = $"https://dl.google.com:443/dl/android/maven2/com/google/ar/sceneform/animation/{SF_VERSION}/animation-{SF_VERSION}.jar";
-var ASSETS_JAR_URL = $"https://dl.google.com:443/dl/android/maven2/com/google/ar/sceneform/assets/{SF_VERSION}/assets-{SF_VERSION}.jar";
-var CORE_JAR_URL = $"https://dl.google.com:443/dl/android/maven2/com/google/ar/sceneform/core/{SF_VERSION}/core-{SF_VERSION}.jar";
-var FILAMENT_JAR_URL = $"https://dl.google.com:443/dl/android/maven2/com/google/ar/sceneform/filament-android/{SF_VERSION}/filament-android-{SF_VERSION}.jar";
+var BASE_JAR_URL = $"https://dl.google.com/dl/android/maven2/com/google/ar/sceneform/sceneform-base/{SF_VERSION}/sceneform-base-{SF_VERSION}.aar";
+var ANIMATION_JAR_URL = $"https://dl.google.com:443/dl/android/maven2/com/google/ar/sceneform/animation/{SF_VERSION}/animation-{SF_VERSION}.aar";
+var ASSETS_JAR_URL = $"https://dl.google.com:443/dl/android/maven2/com/google/ar/sceneform/assets/{SF_VERSION}/assets-{SF_VERSION}.aar";
+var CORE_JAR_URL = $"https://dl.google.com:443/dl/android/maven2/com/google/ar/sceneform/core/{SF_VERSION}/core-{SF_VERSION}.aar";
+var FILAMENT_JAR_URL = $"https://dl.google.com:443/dl/android/maven2/com/google/ar/sceneform/filament-android/{SF_VERSION}/filament-android-{SF_VERSION}.aar";
 var PLUGIN_JAR_URL = $"https://dl.google.com:443/dl/android/maven2/com/google/ar/sceneform/plugin/{SF_VERSION}/plugin-{SF_VERSION}.jar";
-var RENDERING_JAR_URL = $"https://dl.google.com:443/dl/android/maven2/com/google/ar/sceneform/rendering/{SF_VERSION}/rendering-{SF_VERSION}.jar";
+var RENDERING_JAR_URL = $"https://dl.google.com:443/dl/android/maven2/com/google/ar/sceneform/rendering/{SF_VERSION}/rendering-{SF_VERSION}.aar";
 
 Task ("externals")
-	.WithCriteria (!FileExists ("./externals/sceneform-base.jar"))
+	.WithCriteria (!FileExists ("./externals/sceneform-base.aar"))
 	.Does (() =>
 {
 	EnsureDirectoryExists ("./externals/");
 
 	// Download Dependencies
-	DownloadFile (BASE_JAR_URL, "./externals/sceneform-base.jar");
-	DownloadFile (ANIMATION_JAR_URL, "./externals/animation.jar");
-	DownloadFile (ASSETS_JAR_URL, "./externals/assets.jar");
-	DownloadFile (CORE_JAR_URL, "./externals/core.jar");
-	DownloadFile (FILAMENT_JAR_URL, "./externals/filament-android.jar");
+	Information ("Base Path: {0}", BASE_JAR_URL);
+	DownloadFile (BASE_JAR_URL, "./externals/sceneform-base.aar");
+	Information ("Animation Path: {0}", ANIMATION_JAR_URL);
+	DownloadFile (ANIMATION_JAR_URL, "./externals/animation.aar");
+	Information ("Assets Path: {0}", ASSETS_JAR_URL);
+	DownloadFile (ASSETS_JAR_URL, "./externals/assets.aar");
+	Information ("Core Path: {0}", CORE_JAR_URL);
+	DownloadFile (CORE_JAR_URL, "./externals/core.aar");
+	Information ("Filament Path: {0}", FILAMENT_JAR_URL);
+	DownloadFile (FILAMENT_JAR_URL, "./externals/filament-android.aar");
+	Information ("Plugin Path: {0}", PLUGIN_JAR_URL);
 	DownloadFile (PLUGIN_JAR_URL, "./externals/plugin.jar");
-	DownloadFile (RENDERING_JAR_URL, "./externals/rendering.jar");
+	Information ("Rendering Path: {0}", RENDERING_JAR_URL);
+	DownloadFile (RENDERING_JAR_URL, "./externals/rendering.aar");
 
 	// Update .csproj nuget versions
-	XmlPoke("./source/RxJava/RxJava.csproj", "/Project/PropertyGroup/PackageVersion", RXJAVA_NUGET_VERSION);
-	XmlPoke("./source/RxAndroid/RxAndroid.csproj", "/Project/PropertyGroup/PackageVersion", RXANDROID_NUGET_VERSION);
+	XmlPoke("./source/Animation/Animation.csproj", "/Project/PropertyGroup/PackageVersion", NUGET_VERSION);
+	XmlPoke("./source/Assets/Assets.csproj", "/Project/PropertyGroup/PackageVersion", NUGET_VERSION);
+	XmlPoke("./source/Base/Base.csproj", "/Project/PropertyGroup/PackageVersion", NUGET_VERSION);
+	XmlPoke("./source/Core/Core.csproj", "/Project/PropertyGroup/PackageVersion", NUGET_VERSION);
+	XmlPoke("./source/Filament/Filament.csproj", "/Project/PropertyGroup/PackageVersion", NUGET_VERSION);
+	XmlPoke("./source/Plugin/Plugin.csproj", "/Project/PropertyGroup/PackageVersion", NUGET_VERSION);
+	XmlPoke("./source/Rendering/Rendering.csproj", "/Project/PropertyGroup/PackageVersion", NUGET_VERSION);
+
 });
 
 
@@ -39,7 +52,7 @@ Task("libs")
 	.IsDependentOn("externals")
 	.Does(() =>
 {
-	MSBuild("./ReactiveX.sln", c => {
+	MSBuild("./SceneForm.sln", c => {
 		c.Configuration = "Release";
 		c.Restore = true;
 		c.Properties.Add("DesignTimeBuild", new [] { "false" });
@@ -50,7 +63,7 @@ Task("nuget")
 	.IsDependentOn("libs")
 	.Does(() =>
 {
-	MSBuild ("./ReactiveX.sln", c => {
+	MSBuild ("./SceneForm.sln", c => {
 		c.Configuration = "Release";
 		c.Targets.Clear();
 		c.Targets.Add("Pack");
