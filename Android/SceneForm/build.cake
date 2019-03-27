@@ -2,34 +2,32 @@
 
 var TARGET = Argument ("t", Argument ("target", "Default"));
 
-var RXANDROID_VERSION = "2.1.1";
-var RXJAVA_VERSION = "2.2.7";
+var SF_VERSION = "1.7.0";
 
-var RXANDROID_NUGET_VERSION = RXANDROID_VERSION;
-var RXJAVA_NUGET_VERSION = RXJAVA_VERSION;
+var NUGET_VERSION = SF_VERSION;
 
-var RXANDROID_AAR_URL = $"https://search.maven.org/remotecontent?filepath=io/reactivex/rxjava2/rxandroid/{RXANDROID_VERSION}/rxandroid-{RXANDROID_VERSION}.aar";
-var RXANDROID_DOCS_URL = $"https://search.maven.org/remotecontent?filepath=io/reactivex/rxjava2/rxandroid/{RXANDROID_VERSION}/rxandroid-{RXANDROID_VERSION}-javadoc.jar";
-
-var RXJAVA_JAR_URL = $"https://search.maven.org/remotecontent?filepath=io/reactivex/rxjava2/rxjava/{RXJAVA_VERSION}/rxjava-{RXJAVA_VERSION}.jar";
-var RXJAVA_DOCS_URL = $"https://search.maven.org/remotecontent?filepath=io/reactivex/rxjava2/rxjava/{RXJAVA_VERSION}/rxjava-{RXJAVA_VERSION}-javadoc.jar";
+var BASE_JAR_URL = $"https://dl.google.com:443/dl/android/maven2/com/google/ar/sceneform/sceneform-base/{SF_VERSION}/sceneform-base-{SF_VERSION}.jar";
+var ANIMATION_JAR_URL = $"https://dl.google.com:443/dl/android/maven2/com/google/ar/sceneform/animation/{SF_VERSION}/animation-{SF_VERSION}.jar";
+var ASSETS_JAR_URL = $"https://dl.google.com:443/dl/android/maven2/com/google/ar/sceneform/assets/{SF_VERSION}/assets-{SF_VERSION}.jar";
+var CORE_JAR_URL = $"https://dl.google.com:443/dl/android/maven2/com/google/ar/sceneform/core/{SF_VERSION}/core-{SF_VERSION}.jar";
+var FILAMENT_JAR_URL = $"https://dl.google.com:443/dl/android/maven2/com/google/ar/sceneform/filament-android/{SF_VERSION}/filament-android-{SF_VERSION}.jar";
+var PLUGIN_JAR_URL = $"https://dl.google.com:443/dl/android/maven2/com/google/ar/sceneform/plugin/{SF_VERSION}/plugin-{SF_VERSION}.jar";
+var RENDERING_JAR_URL = $"https://dl.google.com:443/dl/android/maven2/com/google/ar/sceneform/rendering/{SF_VERSION}/rendering-{SF_VERSION}.jar";
 
 Task ("externals")
-	.WithCriteria (!FileExists ("./externals/rxjava.jar"))
+	.WithCriteria (!FileExists ("./externals/sceneform-base.jar"))
 	.Does (() =>
 {
 	EnsureDirectoryExists ("./externals/");
 
 	// Download Dependencies
-	DownloadFile (RXJAVA_JAR_URL, "./externals/rxjava.jar");
-	DownloadFile (RXJAVA_DOCS_URL, "./externals/rxjava-javadocs.jar");
-
-	DownloadFile (RXANDROID_AAR_URL, "./externals/rxandroid.aar");
-	DownloadFile (RXANDROID_DOCS_URL, "./externals/rxandroid-javadocs.jar");
-
-	Unzip ("./externals/rxjava-javadocs.jar", "./externals/rxjava-javadocs/");
-	Unzip ("./externals/rxandroid-javadocs.jar", "./externals/rxandroid-javadocs/");
-	Unzip ("./externals/rxandroid.aar", "./externals/rxandroid/");
+	DownloadFile (BASE_JAR_URL, "./externals/sceneform-base.jar");
+	DownloadFile (ANIMATION_JAR_URL, "./externals/animation.jar");
+	DownloadFile (ASSETS_JAR_URL, "./externals/assets.jar");
+	DownloadFile (CORE_JAR_URL, "./externals/core.jar");
+	DownloadFile (FILAMENT_JAR_URL, "./externals/filament-android.jar");
+	DownloadFile (PLUGIN_JAR_URL, "./externals/plugin.jar");
+	DownloadFile (RENDERING_JAR_URL, "./externals/rendering.jar");
 
 	// Update .csproj nuget versions
 	XmlPoke("./source/RxJava/RxJava.csproj", "/Project/PropertyGroup/PackageVersion", RXJAVA_NUGET_VERSION);
