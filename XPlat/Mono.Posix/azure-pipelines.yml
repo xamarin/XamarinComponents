@@ -2,11 +2,32 @@
 pool:
   vmImage: ubuntu-16.04
 
-steps:
-  - script: echo Hello, world!
-    displayName: 'Run a one-line script'
+resources:
+  repositories:
+    - repository: xamarin-templates
+      type: github
+      name: xamarin/yaml-templates
+      endpoint: xamarin
 
-  - script: |
-      echo Add other tasks to build, test, and deploy your project.
-      echo See https://aka.ms/yaml
-    displayName: 'Run a multi-line script'
+steps:
+
+  - bash: |
+      make -C XPlat/Mono.Posix
+    displayName: Run the build
+
+  - task: PublishBuildArtifacts@1
+    displayName: Publish the packages
+    inputs:
+      artifactName: nuget
+      pathToPublish: build
+
+  - bash: |
+      make test -C XPlat/Mono.Posix
+    displayName: Run the tests
+
+  - task: PublishTestResults@2
+    displayName: Publish test results
+    condition: always()
+    inputs:
+      testResultsFormat: xUnit
+      testResultsFiles: XPlat/Mono.Posix/Test/TestResult*.xml
