@@ -12,6 +12,10 @@ resources:
 steps:
 
   - bash: |
+      sudo apt update
+      sudo apt install -y curl mono-complete msbuild dotnet-sdk-2.2
+
+  - bash: |
       make -C XPlat/Mono.Posix
     displayName: Run the build
 
