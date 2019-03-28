@@ -30,6 +30,11 @@ $(eval DOCKER_TEST_CONTAINER_NAME=MonoPosixBuild-$(shell uuidgen))
 DISTRO_LIST=centos-6-x86 centos-6-x64 debian-8-arm debian-8-armel debian-8-arm64
 WINDOWS_LIST=win-7-x64 win-7-x86
 
+# Linux needs a little help in locating the assemblies for GenAPI
+ifeq ($(shell uname), Linux)
+LIB_PATH=-libPath:/usr/lib/mono/4.5,/usr/lib/mono/4.5/Facades
+endif
+
 all: build/Mono.Posix.NETStandard.$(MONOPOSIX_NUGET_VERSION).nupkg
 
 # Fetch mono from Github using tagged version
@@ -70,7 +75,7 @@ build/net40/Mono.Posix.NETStandard.dll: build/net40/Mono.Posix.generated.cs
 
 build/net40/Mono.Posix.generated.cs: tools/Microsoft.DotNet.BuildTools.GenAPI/tools/GenAPI.exe
 	mkdir -p build/net40
-	mono tools/Microsoft.DotNet.BuildTools.GenAPI/tools/GenAPI.exe -w:TypeForwards build/any/Mono.Posix.NETStandard.dll -out $@
+	mono tools/Microsoft.DotNet.BuildTools.GenAPI/tools/GenAPI.exe $(LIB_PATH) -w:TypeForwards build/any/Mono.Posix.NETStandard.dll -out $@
 
 tools/Microsoft.DotNet.BuildTools.GenAPI/tools/GenAPI.exe:
 	mkdir -p tools
