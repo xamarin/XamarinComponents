@@ -40,7 +40,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <EmbeddedJar Include="..\..\externals\sceneform-base.aar" />
+    <LibraryProjectZip Include="..\..\externals\sceneform-base.aar" />
   </ItemGroup>
 
   <ItemGroup>

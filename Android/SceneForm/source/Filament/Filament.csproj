@@ -40,7 +40,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <EmbeddedJar Include="..\..\externals\filament-android.aar" />
+    <LibraryProjectZip Include="..\..\externals\filament-android.aar" />
   </ItemGroup>
 
   <ItemGroup>

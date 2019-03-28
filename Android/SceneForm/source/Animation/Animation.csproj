@@ -40,7 +40,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <EmbeddedJar Include="..\..\externals\animation.aar" />
+    <LibraryProjectZip Include="..\..\externals\animation.aar" />
   </ItemGroup>
 
   <ItemGroup>

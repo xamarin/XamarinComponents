@@ -40,7 +40,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <EmbeddedJar Include="..\..\externals\rendering.aar" />
+    <LibraryProjectZip Include="..\..\externals\rendering.aar" />
   </ItemGroup>
 
   <ItemGroup>
