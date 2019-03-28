@@ -76,8 +76,6 @@ build/net40/Mono.Posix.NETStandard.dll: build/net40/Mono.Posix.generated.cs
 build/net40/Mono.Posix.generated.cs: tools/Microsoft.DotNet.BuildTools.GenAPI/tools/GenAPI.exe
 	mkdir -p build/net40
 	mono tools/Microsoft.DotNet.BuildTools.GenAPI/tools/GenAPI.exe $(LIB_PATH) -w:TypeForwards build/any/Mono.Posix.NETStandard.dll -out $@
-	ls -l build
-	ls -l build/net40
 
 tools/Microsoft.DotNet.BuildTools.GenAPI/tools/GenAPI.exe:
 	mkdir -p tools

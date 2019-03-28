@@ -5,17 +5,17 @@ pool:
 steps:
 
   - bash: |
-      make -C XPlat/Mono.Posix
+      (cd XPlat/Mono.Posix && make)
     displayName: Run the build
 
   - task: PublishBuildArtifacts@1
     displayName: Publish the packages
     inputs:
       artifactName: nuget
-      pathToPublish: build
+      pathToPublish: XPlat/Mono.Posix/build
 
   - bash: |
-      make test -C XPlat/Mono.Posix
+      (cd XPlat/Mono.Posix && make test)
     displayName: Run the tests
 
   - task: PublishTestResults@2
