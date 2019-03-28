@@ -1,6 +1,6 @@
 
 pool:
-  vmImage: macos-10.13
+  vmImage: ubuntu-16.04
 
 steps:
 
