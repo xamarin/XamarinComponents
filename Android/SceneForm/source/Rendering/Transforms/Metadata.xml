@@ -1,3 +1,13 @@
 ﻿<metadata>
-
+    
+    
+    <attr path="/api/package[@name='com.google.ar.sceneform.rendering']" name="managedName">Google.AR.Sceneform.Rendering</attr>
+    
+    <attr path="/api/package[@name='com.google.ar.sceneform.rendering']/class[@name='ViewRenderable.Builder']/method[@name='makeRenderable' and @return='com.google.ar.sceneform.rendering.ViewRenderable' and count(parameter)=0]" name="managedName">MakeViewRenderable</attr>
+     <attr path="/api/package[@name='com.google.ar.sceneform.rendering']/class[@name='ModelRenderable.Builder']/method[@name='makeRenderable' and @return='com.google.ar.sceneform.rendering.ModelRenderable' and count(parameter)=0]" name="managedName">MakeModelRenderable</attr>
+    
+    
+    <remove-node path="/api/package[@name='com.google.ar.sceneform.rendering']/class[@name='ViewRenderable.Builder']/method[@name='build' and count(parameter)=0]" />
+     <remove-node path="/api/package[@name='com.google.ar.sceneform.rendering']/class[@name='Renderable.Builder']/method[@name='build' and count(parameter)=0]" />
+    <remove-node path="/api/package[@name='com.google.ar.sceneform.rendering']/class[@name='Renderable.Builder']/method[@name='getRenderableClass' and count(parameter)=0]" />
 </metadata>
