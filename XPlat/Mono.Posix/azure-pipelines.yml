@@ -1,19 +1,8 @@
 
 pool:
-  vmImage: ubuntu-16.04
-
-resources:
-  repositories:
-    - repository: xamarin-templates
-      type: github
-      name: xamarin/yaml-templates
-      endpoint: xamarin
+  vmImage: macos-10.13
 
 steps:
-
-  - bash: |
-      sudo apt update
-      sudo apt install -y curl mono-complete msbuild dotnet-sdk-2.2
 
   - bash: |
       make -C XPlat/Mono.Posix
