@@ -2,4 +2,17 @@
     <attr path="/api/package[@name='com.google.ar.sceneform']" name="managedName">Google.AR.Sceneform</attr>
     <attr path="/api/package[@name='com.google.ar.sceneform.collision']" name="managedName">Google.AR.Sceneform.Collision</attr>
     <attr path="/api/package[@name='com.google.ar.sceneform.math']" name="managedName">Google.AR.Sceneform.Math</attr>
+    
+    <remove-node path="/api/package[@name='com.google.ar.sceneform.collision']/class[@name='Box']/method[@name='makeCopy' and count(parameter)=0]" />
+    <remove-node path="/api/package[@name='com.google.ar.sceneform.collision']/class[@name='Sphere']/method[@name='makeCopy' and count(parameter)=0]" />
+    
+    <add-node path="/api/package[@name='com.google.ar.sceneform.collision']/class[@name='Box']">        
+         <method abstract="false" deprecated="not deprecated" final="true" name="makeCopy" bridge="false" native="false" return="com.google.ar.sceneform.collision.CollisionShape" static="false" synchronized="false" synthetic="false" visibility="public">
+         </method>
+    </add-node>
+    
+     <add-node path="/api/package[@name='com.google.ar.sceneform.collision']/class[@name='Sphere']">        
+         <method abstract="false" deprecated="not deprecated" final="true" name="makeCopy" bridge="false" native="false" return="com.google.ar.sceneform.collision.CollisionShape" static="false" synchronized="false" synthetic="false" visibility="public">
+         </method>
+    </add-node>
 </metadata>
