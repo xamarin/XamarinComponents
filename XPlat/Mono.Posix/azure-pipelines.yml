@@ -22,5 +22,5 @@ steps:
     displayName: Publish test results
     condition: always()
     inputs:
-      testResultsFormat: xUnit
+      testResultsFormat: NUnit
       testResultsFiles: XPlat/Mono.Posix/Test/TestResult*.xml
