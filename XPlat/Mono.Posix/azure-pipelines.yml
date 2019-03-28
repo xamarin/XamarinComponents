@@ -1,7 +1,6 @@
 
 pool:
   vmImage: ubuntu-16.04
-  demands: docker
 
 steps:
   - script: echo Hello, world!
