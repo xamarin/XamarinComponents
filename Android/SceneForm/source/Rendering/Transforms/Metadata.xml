@@ -1,19 +1,10 @@
 ﻿<metadata>
     
-    <remove-node path="/api/package[@name='com.google.ar.sceneform.rendering']/class[@name='ViewRenderable']/method[@name='makeCopy' and count(parameter)=0]" />
-    <remove-node path="/api/package[@name='com.google.ar.sceneform.rendering']/class[@name='ModelRenderable']/method[@name='makeCopy' and count(parameter)=0]" />
-    
-   <add-node path="/api/package[@name='com.google.ar.sceneform.rendering']/class[@name='ViewRenderable']">        
-         <method abstract="false" deprecated="not deprecated" final="true" name="makeCopy" bridge="false" native="false" return="com.google.ar.sceneform.rendering.Renderable" static="false" synchronized="false" synthetic="false" visibility="public">
-         </method>
-    </add-node>
-    
-    <add-node path="/api/package[@name='com.google.ar.sceneform.rendering']/class[@name='ModelRenderable']">        
-         <method abstract="false" deprecated="not deprecated" final="true" name="makeCopy" bridge="false" native="false" return="com.google.ar.sceneform.rendering.Renderable" static="false" synchronized="false" synthetic="false" visibility="public">
-         </method>
-    </add-node>
-    
+       
     <attr path="/api/package[@name='com.google.ar.sceneform.rendering']" name="managedName">Google.AR.Sceneform.Rendering</attr>
+    
+    <attr path="/api/package[@name='com.google.ar.sceneform.rendering']/class[@name='ViewRenderable']/method[@name='makeCopy' and count(parameter)=0]" name="return">Google.AR.Sceneform.Rendering.Renderable</attr>
+     <attr path="/api/package[@name='com.google.ar.sceneform.rendering']/class[@name='ModelRenderable']/method[@name='makeCopy' and count(parameter)=0]" name="return">Google.AR.Sceneform.Rendering.Renderable</attr>
     
     <attr path="/api/package[@name='com.google.ar.sceneform.rendering']/class[@name='ViewRenderable.Builder']/method[@name='makeRenderable' and @return='com.google.ar.sceneform.rendering.ViewRenderable' and count(parameter)=0]" name="managedName">MakeViewRenderable</attr>
      <attr path="/api/package[@name='com.google.ar.sceneform.rendering']/class[@name='ModelRenderable.Builder']/method[@name='makeRenderable' and @return='com.google.ar.sceneform.rendering.ModelRenderable' and count(parameter)=0]" name="managedName">MakeModelRenderable</attr>

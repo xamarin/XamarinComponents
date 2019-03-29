@@ -3,16 +3,27 @@
     <attr path="/api/package[@name='com.google.ar.sceneform.collision']" name="managedName">Google.AR.Sceneform.Collision</attr>
     <attr path="/api/package[@name='com.google.ar.sceneform.math']" name="managedName">Google.AR.Sceneform.Math</attr>
     
-    <remove-node path="/api/package[@name='com.google.ar.sceneform.collision']/class[@name='Box']/method[@name='makeCopy' and count(parameter)=0]" />
-    <remove-node path="/api/package[@name='com.google.ar.sceneform.collision']/class[@name='Sphere']/method[@name='makeCopy' and count(parameter)=0]" />
+    <remove-node path="/api/package[@name='com.google.ar.sceneform.math']/class[@name='QuaternionEvaluator']/method[@name='evaluate' and count(parameter)=3 and parameter[1][@type='float'] and parameter[2][@type='com.google.ar.sceneform.math.Quaternion'] and parameter[3][@type='com.google.ar.sceneform.math.Quaternion']]" />
+    <remove-node path="/api/package[@name='com.google.ar.sceneform.math']/class[@name='Vector3Evaluator']/method[@name='evaluate' and count(parameter)=3 and parameter[1][@type='float'] and parameter[2][@type='com.google.ar.sceneform.math.Vector3'] and parameter[3][@type='com.google.ar.sceneform.math.Vector3']]" />
     
-    <add-node path="/api/package[@name='com.google.ar.sceneform.collision']/class[@name='Box']">        
-         <method abstract="false" deprecated="not deprecated" final="true" name="makeCopy" bridge="false" native="false" return="com.google.ar.sceneform.collision.CollisionShape" static="false" synchronized="false" synthetic="false" visibility="public">
-         </method>
+    <add-node path="/api/package[@name='com.google.ar.sceneform.math']/class[@name='QuaternionEvaluator']">        
+             <method abstract="false" deprecated="not deprecated" final="false" name="evaluate" bridge="false" native="false" return="Java.Lang.Object" static="false" synchronized="false" synthetic="false" visibility="public">
+                <parameter name="p0" type="float"></parameter>
+                <parameter name="p1" type="Java.Lang.Object"></parameter>
+                <parameter name="p2" type="Java.Lang.Object"></parameter>
+              </method>
     </add-node>
     
-     <add-node path="/api/package[@name='com.google.ar.sceneform.collision']/class[@name='Sphere']">        
-         <method abstract="false" deprecated="not deprecated" final="true" name="makeCopy" bridge="false" native="false" return="com.google.ar.sceneform.collision.CollisionShape" static="false" synchronized="false" synthetic="false" visibility="public">
-         </method>
+    <add-node path="/api/package[@name='com.google.ar.sceneform.math']/class[@name='Vector3Evaluator']">        
+             <method abstract="false" deprecated="not deprecated" final="false" name="evaluate" bridge="false" native="false" return="Java.Lang.Object" static="false" synchronized="false" synthetic="false" visibility="public">
+                <parameter name="p0" type="float"></parameter>
+                <parameter name="p1" type="Java.Lang.Object"></parameter>
+                <parameter name="p2" type="Java.Lang.Object"></parameter>
+              </method>
     </add-node>
+    
+    <attr path="/api/package[@name='com.google.ar.sceneform.collision']/class[@name='Box']/method[@name='makeCopy' and count(parameter)=0]" name="return">Google.AR.Sceneform.Collision.CollisionShape</attr>
+    <attr path="/api/package[@name='com.google.ar.sceneform.collision']/class[@name='Sphere']/method[@name='makeCopy' and count(parameter)=0]" name="return">Google.AR.Sceneform.Collision.CollisionShape</attr>
+    
+    <!-- <attr path="/api/package[@name='com.google.ar.sceneform.math']/class[@name='QuaternionEvaluator']/method[@name='evaluate' and count(parameter)=3 and parameter[1][@type='float'] and parameter[2][@type='com.google.ar.sceneform.math.Quaternion'] and parameter[3][@type='com.google.ar.sceneform.math.Quaternion']]" name="return">Google.AR.Sceneform.Math.QuaternionEvaluator</attr>-->
 </metadata>
