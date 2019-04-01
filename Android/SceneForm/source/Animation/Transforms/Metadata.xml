@@ -5,7 +5,7 @@
        <remove-node path="/api/package[@name='com.google.ar.sceneform.animation']/class[@name='ModelAnimator']/method[@name='setStartDelay' and count(parameter)=1 and parameter[1][@type='long']]" />
     
        <add-node path="/api/package[@name='com.google.ar.sceneform.animation']/class[@name='ModelAnimator']"> 
-            <method abstract="false" deprecated="not deprecated" final="false" name="setStartDelay" bridge="false" native="false" return="void" static="false" synchronized="false" synthetic="true" visibility="public">
+            <method abstract="false" deprecated="not deprecated" final="true" name="setStartDelay" bridge="false" native="false" return="void" static="false" synchronized="false" synthetic="true" visibility="public">
                 <parameter name="startDelay" type="long">
                 </parameter>
            </method>
