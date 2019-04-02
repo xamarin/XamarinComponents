@@ -2,7 +2,7 @@
 
 var TARGET = Argument ("t", Argument ("target", "Default"));
 
-var SF_VERSION = "1.8.0";
+var SF_VERSION = "1.7.0";
 
 var NUGET_VERSION = SF_VERSION;
 
@@ -14,7 +14,7 @@ var FILAMENT_JAR_URL = $"https://dl.google.com:443/dl/android/maven2/com/google/
 var PLUGIN_JAR_URL = $"https://dl.google.com:443/dl/android/maven2/com/google/ar/sceneform/plugin/{SF_VERSION}/plugin-{SF_VERSION}.jar";
 var RENDERING_JAR_URL = $"https://dl.google.com:443/dl/android/maven2/com/google/ar/sceneform/rendering/{SF_VERSION}/rendering-{SF_VERSION}.aar";
 var UX_JAR_URL = $"https://dl.google.com:443/dl/android/maven2/com/google/ar/sceneform/ux/sceneform-ux/{SF_VERSION}/sceneform-ux-{SF_VERSION}.aar";
-
+var UX_JAR_URL_DOCS = $"https://dl.google.com:443/dl/android/maven2/com/google/ar/sceneform/ux/sceneform-ux/{SF_VERSION}/sceneform-ux-{SF_VERSION}-javadoc.jar";
 
 Task ("externals")
 	.WithCriteria (!FileExists ("./externals/sceneform-base.aar"))
@@ -39,6 +39,10 @@ Task ("externals")
 	DownloadFile (RENDERING_JAR_URL, "./externals/rendering.aar");
 	Information ("Rendering Path: {0}", UX_JAR_URL);
 	DownloadFile (UX_JAR_URL, "./externals/ux.aar");
+//    DownloadFile (UX_JAR_URL_DOCS, "./externals/ux-javadocs.jar");
+
+	//extract javadocs
+	//Unzip ("./externals/ux-javadocs.jar", "./externals/ux-javadocs/");
 
 	// Update .csproj nuget versions
 	XmlPoke("./source/Animation/Animation.csproj", "/Project/PropertyGroup/PackageVersion", NUGET_VERSION);
@@ -48,7 +52,7 @@ Task ("externals")
 	XmlPoke("./source/Filament/Filament.csproj", "/Project/PropertyGroup/PackageVersion", NUGET_VERSION);
 	XmlPoke("./source/Plugin/Plugin.csproj", "/Project/PropertyGroup/PackageVersion", NUGET_VERSION);
 	XmlPoke("./source/Rendering/Rendering.csproj", "/Project/PropertyGroup/PackageVersion", NUGET_VERSION);
-	XmlPoke("./source/Rendering/UX.csproj", "/Project/PropertyGroup/PackageVersion", NUGET_VERSION);
+	XmlPoke("./source/UX/UX.csproj", "/Project/PropertyGroup/PackageVersion", NUGET_VERSION);
 });
 
 
