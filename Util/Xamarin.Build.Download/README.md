@@ -14,12 +14,12 @@ archive. However, multiple NuGets may refer to the the same archive using the sa
 
 The download URL must be specified in the `Url` metadata. A SHA1 hash may optionally be specified in the `Sha1`
 metadata, and will be verified if provided. The archive kind must be specified in the `Kind` metadata, if it cannot
-be inferred from the filename. Valid values are `Zip` or `Tgz`.
+be inferred from the filename. Valid values are `Zip` or `Tgz`.  Download Url's must be `https` unless you set the `XamarinBuildDownloadAllowUnsecure` msbuild property to `true`.
 
 ```xml
 <ItemGroup>
 	<XamarinBuildDownload Include="foo-1.2.3">
-		<Url>http://example.com/foo-1.2.3.tgz</Url>
+		<Url>https://example.com/foo-1.2.3.tgz</Url>
 		<Kind>Tgz</Kind>
 		<Sha1>0c4a8a9c12305e8d41e8e3c8a3a2ce066c508f68</Sha1>
 	</XamarinBuildDownload>
@@ -64,7 +64,7 @@ In this example, the download is only performed if the project is a Xamarin.iOS 
 <Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
 	<ItemGroup Condition="'$(OutputType)'!='Library' And '$(TargetFramework)'=='Xamarin.iOS'">
 		<XamarinBuildDownload Include="foo-1.2.3">
-			<Url>http://example.com/foo-1.2.3.tgz</Url>
+			<Url>https://example.com/foo-1.2.3.tgz</Url>
 			<Kind>Tgz</Kind>
 			<Sha1>0c4a8a9c12305e8d41e8e3c8a3a2ce066c508f68</Sha1>
 		</XamarinBuildDownload>
