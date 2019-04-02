@@ -2,7 +2,7 @@
 
 var TARGET = Argument ("t", Argument ("target", "Default"));
 
-var SF_VERSION = "1.7.0";
+var SF_VERSION = "1.8.0";
 
 var NUGET_VERSION = SF_VERSION;
 
@@ -13,6 +13,8 @@ var CORE_JAR_URL = $"https://dl.google.com:443/dl/android/maven2/com/google/ar/s
 var FILAMENT_JAR_URL = $"https://dl.google.com:443/dl/android/maven2/com/google/ar/sceneform/filament-android/{SF_VERSION}/filament-android-{SF_VERSION}.aar";
 var PLUGIN_JAR_URL = $"https://dl.google.com:443/dl/android/maven2/com/google/ar/sceneform/plugin/{SF_VERSION}/plugin-{SF_VERSION}.jar";
 var RENDERING_JAR_URL = $"https://dl.google.com:443/dl/android/maven2/com/google/ar/sceneform/rendering/{SF_VERSION}/rendering-{SF_VERSION}.aar";
+var UX_JAR_URL = $"https://dl.google.com:443/dl/android/maven2/com/google/ar/sceneform/ux/sceneform-ux/{SF_VERSION}/sceneform-ux-{SF_VERSION}.aar";
+
 
 Task ("externals")
 	.WithCriteria (!FileExists ("./externals/sceneform-base.aar"))
@@ -35,6 +37,8 @@ Task ("externals")
 	DownloadFile (PLUGIN_JAR_URL, "./externals/plugin.jar");
 	Information ("Rendering Path: {0}", RENDERING_JAR_URL);
 	DownloadFile (RENDERING_JAR_URL, "./externals/rendering.aar");
+	Information ("Rendering Path: {0}", UX_JAR_URL);
+	DownloadFile (UX_JAR_URL, "./externals/ux.aar");
 
 	// Update .csproj nuget versions
 	XmlPoke("./source/Animation/Animation.csproj", "/Project/PropertyGroup/PackageVersion", NUGET_VERSION);
@@ -44,7 +48,7 @@ Task ("externals")
 	XmlPoke("./source/Filament/Filament.csproj", "/Project/PropertyGroup/PackageVersion", NUGET_VERSION);
 	XmlPoke("./source/Plugin/Plugin.csproj", "/Project/PropertyGroup/PackageVersion", NUGET_VERSION);
 	XmlPoke("./source/Rendering/Rendering.csproj", "/Project/PropertyGroup/PackageVersion", NUGET_VERSION);
-
+	XmlPoke("./source/Rendering/UX.csproj", "/Project/PropertyGroup/PackageVersion", NUGET_VERSION);
 });
 
 
