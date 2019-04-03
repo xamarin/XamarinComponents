@@ -8,7 +8,9 @@
     
     <attr path="/api/package[@name='com.google.ar.sceneform.rendering']/class[@name='ViewRenderable.Builder']/method[@name='makeRenderable' and @return='com.google.ar.sceneform.rendering.ViewRenderable' and count(parameter)=0]" name="managedName">MakeViewRenderable</attr>
      <attr path="/api/package[@name='com.google.ar.sceneform.rendering']/class[@name='ModelRenderable.Builder']/method[@name='makeRenderable' and @return='com.google.ar.sceneform.rendering.ModelRenderable' and count(parameter)=0]" name="managedName">MakeModelRenderable</attr>
-    
+
+     <remove-node path="/api/package[@name='com.google.ar.sceneform.rendering']/interface[@name='Light.LightChangedListener']" />
+  
     <attr path="/api/package[@name='com.google.ar.sceneform.rendering']/class[@name='ModelRenderable']/method[@name='makeCopy' and count(parameter)=0]" name="final">true</attr>
     
     <remove-node path="/api/package[@name='com.google.ar.sceneform.rendering']/class[@name='ViewRenderable.Builder']/method[@name='build' and count(parameter)=0]" />
