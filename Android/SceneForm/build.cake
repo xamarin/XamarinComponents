@@ -39,10 +39,6 @@ Task ("externals")
 	DownloadFile (RENDERING_JAR_URL, "./externals/rendering.aar");
 	Information ("Rendering Path: {0}", UX_JAR_URL);
 	DownloadFile (UX_JAR_URL, "./externals/ux.aar");
-//    DownloadFile (UX_JAR_URL_DOCS, "./externals/ux-javadocs.jar");
-
-	//extract javadocs
-	//Unzip ("./externals/ux-javadocs.jar", "./externals/ux-javadocs/");
 
 	// Update .csproj nuget versions
 	XmlPoke("./source/Animation/Animation.csproj", "/Project/PropertyGroup/PackageVersion", NUGET_VERSION);
@@ -50,7 +46,6 @@ Task ("externals")
 	XmlPoke("./source/Base/Base.csproj", "/Project/PropertyGroup/PackageVersion", NUGET_VERSION);
 	XmlPoke("./source/Core/Core.csproj", "/Project/PropertyGroup/PackageVersion", NUGET_VERSION);
 	XmlPoke("./source/Filament/Filament.csproj", "/Project/PropertyGroup/PackageVersion", NUGET_VERSION);
-	XmlPoke("./source/Plugin/Plugin.csproj", "/Project/PropertyGroup/PackageVersion", NUGET_VERSION);
 	XmlPoke("./source/Rendering/Rendering.csproj", "/Project/PropertyGroup/PackageVersion", NUGET_VERSION);
 	XmlPoke("./source/UX/UX.csproj", "/Project/PropertyGroup/PackageVersion", NUGET_VERSION);
 });
