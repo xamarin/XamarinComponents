@@ -25,7 +25,7 @@ var buildSpec = new BuildSpec () {
 	},
 
 	NuGets = new [] {
-		new NuGetInfo { NuSpec = "./nuget/Xamarin.JakeWharton.Timber.nuspec", Version = ANDROID_NUGET_VERSION },
+		new NuGetInfo { NuSpec = "./nuget/Xamarin.JakeWharton.Timber.nuspec", Version = ANDROID_NUGET_VERSION, RequireLicenseAcceptance = true },
 	},
 };
 
