@@ -2,4 +2,12 @@
     
        <attr path="/api/package[@name='com.google.ar.sceneform.ux']" name="managedName">Google.AR.Sceneform.UX</attr>
   
+       <remove-node path="/api/package[@name='com.google.ar.sceneform.ux']/class[@name='TranslationController']/method[@name='onEndTransformation' and count(parameter)=1 and parameter[1][@type='com.google.ar.sceneform.ux.DragGesture']]" />
+    
+<!--       <add-node path="/api/package[@name='com.google.ar.sceneform.ux']/class[@name='TranslationController']"> 
+                 <method abstract="false" deprecated="not deprecated" final="false" name="onEndTransformation" bridge="false" native="false" return="void" static="false" synchronized="false" synthetic="false" visibility="public">
+                    <parameter name="gesture" type="Java.Lang.Object">
+                    </parameter>
+                  </method>
+        </add-node>-->
 </metadata>
