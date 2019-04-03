@@ -1,12 +1,14 @@
-﻿using System;
-using Java.Interop;
+﻿using Java.Interop;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace Google.AR.Sceneform.UX
 {
-
-    public partial class TranslationController
+    public partial class RotationController
     {
-        
         protected override unsafe void OnEndTransformation(global::Java.Lang.Object gesture)
         {
             const string __id = "onEndTransformation.(Ljava/lang/Object;)V";
@@ -14,7 +16,7 @@ namespace Google.AR.Sceneform.UX
             {
                 JniArgumentValue* __args = stackalloc JniArgumentValue[1];
                 __args[0] = new JniArgumentValue((gesture == null) ? IntPtr.Zero : ((global::Java.Lang.Object)gesture).Handle);
-               _members.InstanceMethods.InvokeVirtualVoidMethod(__id, this, __args);
+                _members.InstanceMethods.InvokeVirtualVoidMethod(__id, this, __args);
             }
             finally
             {
@@ -49,6 +51,5 @@ namespace Google.AR.Sceneform.UX
             {
             }
         }
-
     }
 }
