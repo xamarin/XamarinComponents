@@ -1,417 +1,412 @@
-﻿namespace Bumptech.Glide.Request.Transition
+﻿using System.Collections;
+using System.Linq;
+using Android.Content;
+using Android.Content.Res;
+using Android.Graphics;
+using Android.Graphics.Drawables;
+using Android.Net;
+using Android.OS;
+using Android.Runtime;
+using Bumptech.Glide.Load;
+using Bumptech.Glide.Load.Engine;
+using Bumptech.Glide.Load.Resource.Bitmap;
+using Bumptech.Glide.Request;
+using Bumptech.Glide.Request.Transition;
+using Java.IO;
+using Java.Lang;
+using Java.Util.Concurrent;
+
+namespace Bumptech.Glide
 {
-	partial class BitmapTransitionFactory
-	{
-		protected override Android.Graphics.Bitmap GetBitmap(Java.Lang.Object p0)
-		{
-			return GetBitmap((Android.Graphics.Bitmap)p0);
-		}
-	}
+    public partial class RequestBuilder
+    {
+        public virtual RequestBuilder Apply(BaseRequestOptions o) => (RequestBuilder)Apply_T(o);
+
+        public virtual RequestBuilder AutoClone() => (RequestBuilder)AutoClone_T();
+
+        public virtual RequestBuilder CenterCrop() => (RequestBuilder)CenterCrop_T();
+
+        public virtual RequestBuilder CenterInside() => (RequestBuilder)CenterInside_T();
+
+        public virtual RequestBuilder CircleCrop() => (RequestBuilder)CircleCrop_T();
+
+        public new virtual RequestBuilder Clone() => (RequestBuilder)Clone_T();
+
+        public virtual RequestBuilder Decode(Class resourceClass) => (RequestBuilder)Decode_T(resourceClass);
+
+        public virtual RequestBuilder DisallowHardwareConfig() => (RequestBuilder)DisallowHardwareConfig_T();
+        
+        public virtual RequestBuilder Downsample(DownsampleStrategy strategy) => (RequestBuilder)Downsample_T(strategy);
+
+        public virtual RequestBuilder EncodeFormat(Bitmap.CompressFormat format) => (RequestBuilder)EncodeFormat_T(format);
+
+        public virtual RequestBuilder EncodeQuality(int quality) => (RequestBuilder)EncodeQuality_T(quality);
+
+        public virtual RequestBuilder Error(int resourceId) => (RequestBuilder)Error_T(resourceId);
+
+        public virtual RequestBuilder Fallback(Drawable drawable) => (RequestBuilder)Fallback_T(drawable);
+
+        public virtual RequestBuilder Fallback(int resourceId) => (RequestBuilder)Fallback_T(resourceId);
+
+        public virtual RequestBuilder FitCenter() => (RequestBuilder)FitCenter_T();
+
+        public virtual RequestBuilder Format(DecodeFormat format) => (RequestBuilder)Format_T(format);
+
+        public virtual RequestBuilder Frame(long frameTimeMicros) => (RequestBuilder)Frame_T(frameTimeMicros);
+
+        public virtual RequestBuilder Lock() => (RequestBuilder)Lock_T();
+        
+        public virtual RequestBuilder OptionalCenterCrop() => (RequestBuilder)OptionalCenterCrop_T();
+
+        public virtual RequestBuilder OptionalCenterInside() => (RequestBuilder)OptionalCenterInside_T();
+
+        public virtual RequestBuilder OptionalCircleCrop() => (RequestBuilder)OptionalCircleCrop_T();
+
+        public virtual RequestBuilder OptionalFitCenter() => (RequestBuilder)OptionalFitCenter_T();
+
+        public virtual RequestBuilder OptionalTransform(Class resourceClass, ITransformation transformation) => (RequestBuilder)OptionalTransform_T(resourceClass, transformation);
+
+        public virtual RequestBuilder OptionalTransform(ITransformation transformation) => (RequestBuilder)OptionalTransform_T(transformation);
+
+        public virtual RequestBuilder Override(int width, int height) => (RequestBuilder)Override_T(width, height);
+
+        public virtual RequestBuilder Override(int size) => (RequestBuilder)Override_T(size);
+
+        public virtual RequestBuilder Placeholder(Drawable drawable) => (RequestBuilder)Placeholder_T(drawable);
+
+        public virtual RequestBuilder Placeholder(int resourceId) => (RequestBuilder)Placeholder_T(resourceId);
+        
+        public virtual RequestBuilder Set(Option option, Object value) => (RequestBuilder)Set_T(option, value);
+
+        public virtual RequestBuilder SetDiskCacheStrategy(DiskCacheStrategy strategy) => (RequestBuilder)DiskCacheStrategy_T(strategy);
+
+        public virtual RequestBuilder SetOnlyRetrieveFromCache(bool flag) => (RequestBuilder)OnlyRetrieveFromCache_T(flag);
+
+        public virtual RequestBuilder SetPriority(Priority priority) => (RequestBuilder)Priority_T(priority);
+
+        public virtual RequestBuilder SetSignature(IKey signature) => (RequestBuilder)Signature_T(signature);
+
+        public virtual RequestBuilder SetSizeMultiplier(float sizeMultiplier) => (RequestBuilder)SizeMultiplier_T(sizeMultiplier);
+
+        public virtual RequestBuilder SetTheme(Resources.Theme theme) => (RequestBuilder)Theme_T(theme);
+
+        public virtual RequestBuilder SetUseAnimationPool(bool flag) => (RequestBuilder)UseAnimationPool_T(flag);
+
+        public virtual RequestBuilder SetUseUnlimitedSourceGeneratorsPool(bool flag) => (RequestBuilder)UseUnlimitedSourceGeneratorsPool_T(flag);
+
+        public virtual RequestBuilder SkipMemoryCache(bool skip) => (RequestBuilder)SkipMemoryCache_T(skip);
+
+        public virtual RequestBuilder Timeout(int timeoutMs) => (RequestBuilder)Timeout_T(timeoutMs);
+
+        public virtual RequestBuilder Transform(Class resourceClass, ITransformation transformation) => (RequestBuilder)Transform_T(resourceClass, transformation);
+
+        public virtual RequestBuilder Transform(params ITransformation[] transformations) => (RequestBuilder)Transform_T(transformations);
+
+        public virtual RequestBuilder Transform(ITransformation transformation) => (RequestBuilder)Transform_T(transformation);
+    }
 }
 
 namespace Bumptech.Glide.Load.Data
 {
-	partial class FileDescriptorAssetPathFetcher
+    public partial class AssetFileDescriptorLocalUriFetcher
+    {
+        protected override void Close(Object data) => Close((AssetFileDescriptor)data);
+
+        protected override Object LoadResource(Uri uri, ContentResolver contentResolver) => LoadResource_T(uri, contentResolver);
+    }
+
+    public partial class FileDescriptorAssetPathFetcher
 	{
-		protected override Java.Lang.Object LoadResource(Android.Content.Res.AssetManager p0, string p1)
-		{
-			return LoadFile(p0, p1);
-		}
+        protected override void Close(Object data) => Close((ParcelFileDescriptor)data);
 
-		protected override unsafe void Close(Java.Lang.Object p0)
-		{
-			Close((Android.OS.ParcelFileDescriptor)p0);
-		}
-	}
+        protected override Object LoadResource(AssetManager assetManager, string path) => LoadResource_T(assetManager, path);
+    }
 
-	partial class FileDescriptorLocalUriFetcher
+	public partial class FileDescriptorLocalUriFetcher
 	{
-		protected override unsafe void Close(global::Java.Lang.Object p0)
-		{
-			Close((Android.OS.ParcelFileDescriptor)p0);
-		}
+		protected override void Close(Object data) => Close((ParcelFileDescriptor)data);
 
-		protected override unsafe Java.Lang.Object LoadResource(global::Android.Net.Uri p0, global::Android.Content.ContentResolver p1)
-		{
-			return LoadFile(p0, p1);
-		}
+        protected override Object LoadResource(Uri uri, ContentResolver contentResolver) => LoadResource_T(uri, contentResolver);
+    }
 
-	}
-
-	partial class StreamAssetPathFetcher
+    public partial class StreamAssetPathFetcher
 	{
-		protected override unsafe void Close(global::Java.Lang.Object p0)
-		{
-			Close((Android.OS.ParcelFileDescriptor)p0);
-		}
+		protected override void Close(Object data)
+        {
+            var stream = InputStreamInvoker.FromJniHandle(((InputStream)data).Handle, JniHandleOwnership.DoNotTransfer);
 
-		protected override Java.Lang.Object LoadResource(Android.Content.Res.AssetManager p0, string p1)
+            Close(stream);
+        }
+
+        protected override Object LoadResource(AssetManager assetManager, string path)
 		{
-			var handle = Android.Runtime.InputStreamAdapter.ToLocalJniHandle(LoadFile(p0, p1));
+			var handle = InputStreamAdapter.ToLocalJniHandle(LoadResource_T(assetManager, path));
 
 			try
 			{
-				return new Java.Lang.Object(handle, Android.Runtime.JniHandleOwnership.TransferLocalRef);
+				return new Object(handle, JniHandleOwnership.TransferLocalRef);
 			}
 			finally
 			{
-				Android.Runtime.JNIEnv.DeleteLocalRef(handle);
+				JNIEnv.DeleteLocalRef(handle);
 			}
 		}
 	}
 
-	partial class StreamLocalUriFetcher
+    public partial class StreamLocalUriFetcher
 	{
-		protected override unsafe void Close(global::Java.Lang.Object p0)
-		{
-			Close((Android.OS.ParcelFileDescriptor)p0);
-		}
+		protected override void Close(Object data)
+        {
+            var stream = InputStreamInvoker.FromJniHandle(((InputStream)data).Handle, JniHandleOwnership.DoNotTransfer);
 
-		protected override unsafe Java.Lang.Object LoadResource(global::Android.Net.Uri p0, global::Android.Content.ContentResolver p1)
+            Close(stream);
+        }
+
+        protected override Object LoadResource(Uri uri, ContentResolver contentResolver)
 		{
-			var handle = Android.Runtime.InputStreamAdapter.ToLocalJniHandle(LoadFile(p0, p1));
+			var handle = InputStreamAdapter.ToLocalJniHandle(LoadResource_T(uri, contentResolver));
 
 			try
 			{
-				return new Java.Lang.Object(handle, Android.Runtime.JniHandleOwnership.TransferLocalRef);
+				return new Object(handle, JniHandleOwnership.TransferLocalRef);
 			}
 			finally
 			{
-				Android.Runtime.JNIEnv.DeleteLocalRef(handle);
+				JNIEnv.DeleteLocalRef(handle);
 			}
 		}
-
 	}
+}
+
+namespace Bumptech.Glide.Load.Engine.Executor
+{
+    public partial class GlideExecutor
+    {
+        IList IExecutorService.InvokeAll(ICollection tasks) => InvokeAll(tasks.Cast<ICallable>().ToList()).ToList();
+
+        IList IExecutorService.InvokeAll(ICollection tasks, long timeout, TimeUnit unit) => InvokeAll(tasks.Cast<ICallable>().ToList(), timeout, unit).ToList();
+
+        Object IExecutorService.InvokeAny(ICollection tasks) => InvokeAny(tasks.Cast<ICallable>().ToList());
+
+        Object IExecutorService.InvokeAny(ICollection tasks, long timeout, TimeUnit unit) => InvokeAny(tasks.Cast<ICallable>().ToList(), timeout, unit);
+    }
 }
 
 namespace Bumptech.Glide.Load.Model
 {
 	public partial class AssetUriLoader
 	{
-		public virtual unsafe Model.ModelLoaderLoadData BuildLoadData(Java.Lang.Object model, int width, int height, Load.Options options)
-		{
-			return BuildLoadData((Android.Net.Uri)model, width, height, options);
-		}
+		public virtual ModelLoaderLoadData BuildLoadData(Object model, int width, int height, Options options) =>
+            BuildLoadData((Uri)model, width, height, options);
 
-		public virtual unsafe bool Handles(Java.Lang.Object model)
-		{
-			return Handles((global::Android.Net.Uri)model);
-		}
-	}
+        public virtual bool Handles(Object model) => Handles((Uri)model);
+    }
 
-	partial class ByteArrayLoader
+    public partial class ByteArrayLoader
 	{
-		public virtual unsafe Model.ModelLoaderLoadData BuildLoadData(Java.Lang.Object model, int width, int height, Load.Options options)
-		{
-			return BuildLoadData(model?.ToArray<byte>(), width, height, options);
-		}
+		public virtual ModelLoaderLoadData BuildLoadData(Object model, int width, int height, Options options) =>
+            BuildLoadData(model?.ToArray<byte>(), width, height, options);
 
-		public virtual unsafe bool Handles(Java.Lang.Object model)
-		{
-			return Handles(model?.ToArray<byte>());
-		}
-	}
-	partial class DataUriLoader
+        public virtual bool Handles(Object model) => Handles(model?.ToArray<byte>());
+    }
+
+	public partial class StringLoader
 	{
-		public virtual unsafe Model.ModelLoaderLoadData BuildLoadData(Java.Lang.Object model, int width, int height, Load.Options options)
-		{
-			return BuildLoadData(model?.ToString(), width, height, options);
-		}
+		public virtual ModelLoaderLoadData BuildLoadData(Object model, int width, int height, Options options) =>
+            BuildLoadData(model?.ToString(), width, height, options);
 
-		public virtual unsafe bool Handles(Java.Lang.Object model)
-		{
-			return Handles(model?.ToString());
-		}
-	}
-	partial class DataUrlLoader
+        public virtual bool Handles(Object model) => Handles(model?.ToString());
+    }
+    public partial class FileLoader
 	{
-		public unsafe Model.ModelLoaderLoadData BuildLoadData(Java.Lang.Object model, int width, int height, Load.Options options)
-		{
-			return BuildLoadData(model?.ToString(), width, height, options);
-		}
+		public virtual ModelLoaderLoadData BuildLoadData(Object model, int width, int height, Options options) =>
+            BuildLoadData((File)model, width, height, options);
 
-		public unsafe bool Handles(Java.Lang.Object model)
-		{
-			return Handles(model?.ToString());
-		}
-	}
-	partial class StringLoader
+        public virtual bool Handles(Object model) => Handles((File)model);
+    }
+
+    public partial class ResourceLoader
+    {
+        public virtual ModelLoaderLoadData BuildLoadData(Object model, int width, int height, Options options) =>
+            BuildLoadData((Integer)model, width, height, options);
+
+        public virtual bool Handles(Object model) => Handles((Integer)model);
+    }
+
+    public partial class UriLoader
 	{
-		public virtual unsafe Model.ModelLoaderLoadData BuildLoadData(Java.Lang.Object model, int width, int height, Load.Options options)
-		{
-			return BuildLoadData(model?.ToString(), width, height, options);
-		}
+		public virtual ModelLoaderLoadData BuildLoadData(Object model, int width, int height, Options options) =>
+            BuildLoadData((Uri)model, width, height, options);
 
-		public virtual unsafe bool Handles(Java.Lang.Object model)
-		{
-			return Handles(model?.ToString());
-		}
-	}
-	partial class FileLoader
+        public virtual bool Handles(Object model) => Handles((Uri)model);
+    }
+
+    public partial class UrlUriLoader
 	{
-		public virtual unsafe Model.ModelLoaderLoadData BuildLoadData(Java.Lang.Object model, int width, int height, Load.Options options)
-		{
-			return BuildLoadData((Java.IO.File)model, width, height, options);
-		}
+		public virtual ModelLoaderLoadData BuildLoadData(Object model, int width, int height, Options options) =>
+            BuildLoadData((Uri)model, width, height, options);
 
-		public virtual unsafe bool Handles(Java.Lang.Object model)
-		{
-			return Handles((Java.IO.File)model);
-		}
-	}
-	partial class UriLoader
-	{
-		public virtual unsafe Model.ModelLoaderLoadData BuildLoadData(Java.Lang.Object model, int width, int height, Load.Options options)
-		{
-			return BuildLoadData((Android.Net.Uri)model, width, height, options);
-		}
-
-		public virtual unsafe bool Handles(Java.Lang.Object model)
-		{
-			return Handles((Android.Net.Uri)model);
-		}
-	}
-	partial class UrlUriLoader
-	{
-		public virtual unsafe Model.ModelLoaderLoadData BuildLoadData(Java.Lang.Object model, int width, int height, Load.Options options)
-		{
-			return BuildLoadData((Android.Net.Uri)model, width, height, options);
-		}
-
-		public virtual unsafe bool Handles(Java.Lang.Object model)
-		{
-			return Handles((Android.Net.Uri)model);
-		}
-	}
-	partial class ResourceLoader
-	{
-		public virtual unsafe Model.ModelLoaderLoadData BuildLoadData(Java.Lang.Object model, int width, int height, Load.Options options)
-		{
-			return BuildLoadData((Java.Lang.Integer)model, width, height, options);
-		}
-
-		public virtual unsafe bool Handles(Java.Lang.Object model)
-		{
-			return Handles((Java.Lang.Integer)model);
-		}
-	}
+        public virtual bool Handles(Object model) => Handles((Uri)model);
+    }
 }
 
 namespace Bumptech.Glide.Load.Resource.Bitmap
 {
-	partial class BitmapDrawableEncoder
+	public partial class BitmapDrawableEncoder
 	{
-		public virtual unsafe bool Encode(Java.Lang.Object data, Java.IO.File file, Load.Options options)
-		{
-			return Encode((Load.Engine.IResource)data, file, options);
-		}
-	}
+		public virtual bool Encode(Object data, Java.IO.File file, Options options) => Encode((IResource)data, file, options);
+    }
 
-	partial class BitmapEncoder
+    public partial class BitmapEncoder
 	{
-		public virtual unsafe bool Encode(Java.Lang.Object data, Java.IO.File file, Load.Options options)
-		{
-			return Encode((Load.Engine.IResource)data, file, options);
-		}
-	}
+		public virtual bool Encode(Object data, Java.IO.File file, Options options) => Encode((IResource)data, file, options);
+    }
 
-	partial class StreamBitmapDecoder : Load.IResourceDecoder
+    public partial class StreamBitmapDecoder : IResourceDecoder
 	{
-		Engine.IResource Load.IResourceDecoder.Decode(Java.Lang.Object p0, int p1, int p2, Load.Options p3)
+		IResource IResourceDecoder.Decode(Object source, int width, int height, Options options)
 		{
-			var stream = Android.Runtime.InputStreamInvoker.FromJniHandle(p0.Handle, Android.Runtime.JniHandleOwnership.DoNotTransfer);
+			var stream = InputStreamInvoker.FromJniHandle(source.Handle, JniHandleOwnership.DoNotTransfer);
 
-			return Java.Interop.JavaObjectExtensions.JavaCast<Engine.IResource>(Decode(stream, p1, p2, p3));
+			return Decode(stream, width, height, options);
 		}
 
-		bool Load.IResourceDecoder.Handles(global::Java.Lang.Object p0, Load.Options p1)
+		bool IResourceDecoder.Handles(Object source, Options options)
 		{
-			var stream = Android.Runtime.InputStreamInvoker.FromJniHandle(p0.Handle, Android.Runtime.JniHandleOwnership.DoNotTransfer);
+			var stream = InputStreamInvoker.FromJniHandle(source.Handle, JniHandleOwnership.DoNotTransfer);
 
-			return Handles(stream, p1);
+			return Handles(stream, options);
 		}
 	}
 }
 
-
-namespace Bumptech.Glide.Load.Resource.Gif
+namespace Bumptech.Glide.Request
 {
-	partial class GifDrawableEncoder
-	{
-		public virtual unsafe bool Encode(Java.Lang.Object data, Java.IO.File file, Load.Options options)
-		{
-			return Encode((Load.Engine.IResource)data, file, options);
-		}
-	}
+    public partial class RequestOptions
+    {
+        public virtual RequestOptions Apply(BaseRequestOptions o) => (RequestOptions)Apply_T(o);
+
+        public virtual RequestOptions AutoClone() => (RequestOptions)AutoClone_T();
+
+        public virtual RequestOptions CenterCrop() => (RequestOptions)CenterCrop_T();
+
+        public virtual RequestOptions CenterInside() => (RequestOptions)CenterInside_T();
+
+        public virtual RequestOptions CircleCrop() => (RequestOptions)CircleCrop_T();
+
+        public new virtual RequestOptions Clone() => (RequestOptions)Clone_T();
+
+        public virtual RequestOptions Decode(Class resourceClass) => (RequestOptions)Decode_T(resourceClass);
+
+        public virtual RequestOptions DisallowHardwareConfig() => (RequestOptions)DisallowHardwareConfig_T();
+
+        public virtual RequestOptions Downsample(DownsampleStrategy strategy) => (RequestOptions)Downsample_T(strategy);
+
+        public virtual RequestOptions EncodeFormat(Bitmap.CompressFormat format) => (RequestOptions)EncodeFormat_T(format);
+
+        public virtual RequestOptions EncodeQuality(int quality) => (RequestOptions)EncodeQuality_T(quality);
+
+        public virtual RequestOptions Error(int resourceId) => (RequestOptions)Error_T(resourceId);
+
+        public virtual RequestOptions Fallback(Drawable drawable) => (RequestOptions)Fallback_T(drawable);
+
+        public virtual RequestOptions Fallback(int resourceId) => (RequestOptions)Fallback_T(resourceId);
+
+        public virtual RequestOptions FitCenter() => (RequestOptions)FitCenter_T();
+
+        public virtual RequestOptions Format(DecodeFormat format) => (RequestOptions)Format_T(format);
+
+        public virtual RequestOptions Frame(long frameTimeMicros) => (RequestOptions)Frame_T(frameTimeMicros);
+
+        public virtual RequestOptions Lock() => (RequestOptions)Lock_T();
+
+        public virtual RequestOptions OptionalCenterCrop() => (RequestOptions)OptionalCenterCrop_T();
+
+        public virtual RequestOptions OptionalCenterInside() => (RequestOptions)OptionalCenterInside_T();
+
+        public virtual RequestOptions OptionalCircleCrop() => (RequestOptions)OptionalCircleCrop_T();
+
+        public virtual RequestOptions OptionalFitCenter() => (RequestOptions)OptionalFitCenter_T();
+
+        public virtual RequestOptions OptionalTransform(Class resourceClass, ITransformation transformation) => (RequestOptions)OptionalTransform_T(resourceClass, transformation);
+
+        public virtual RequestOptions OptionalTransform(ITransformation transformation) => (RequestOptions)OptionalTransform_T(transformation);
+
+        public virtual RequestOptions Override(int width, int height) => (RequestOptions)Override_T(width, height);
+
+        public virtual RequestOptions Override(int size) => (RequestOptions)Override_T(size);
+
+        public virtual RequestOptions Placeholder(Drawable drawable) => (RequestOptions)Placeholder_T(drawable);
+
+        public virtual RequestOptions Placeholder(int resourceId) => (RequestOptions)Placeholder_T(resourceId);
+
+        public virtual RequestOptions Set(Option option, Object value) => (RequestOptions)Set_T(option, value);
+
+        public virtual RequestOptions SetDiskCacheStrategy(DiskCacheStrategy strategy) => (RequestOptions)DiskCacheStrategy_T(strategy);
+
+        public virtual RequestOptions SetOnlyRetrieveFromCache(bool flag) => (RequestOptions)OnlyRetrieveFromCache_T(flag);
+
+        public virtual RequestOptions SetPriority(Priority priority) => (RequestOptions)Priority_T(priority);
+
+        public virtual RequestOptions SetSignature(IKey signature) => (RequestOptions)Signature_T(signature);
+
+        public virtual RequestOptions SetSizeMultiplier(float sizeMultiplier) => (RequestOptions)SizeMultiplier_T(sizeMultiplier);
+
+        public virtual RequestOptions SetTheme(Resources.Theme theme) => (RequestOptions)Theme_T(theme);
+
+        public virtual RequestOptions SetUseAnimationPool(bool flag) => (RequestOptions)UseAnimationPool_T(flag);
+
+        public virtual RequestOptions SetUseUnlimitedSourceGeneratorsPool(bool flag) => (RequestOptions)UseUnlimitedSourceGeneratorsPool_T(flag);
+
+        public virtual RequestOptions SkipMemoryCache(bool skip) => (RequestOptions)SkipMemoryCache_T(skip);
+
+        public virtual RequestOptions Timeout(int timeoutMs) => (RequestOptions)Timeout_T(timeoutMs);
+
+        public virtual RequestOptions Transform(Class resourceClass, ITransformation transformation) => (RequestOptions)Transform_T(resourceClass, transformation);
+
+        public virtual RequestOptions Transform(params ITransformation[] transformations) => (RequestOptions)Transform_T(transformations);
+
+        public virtual RequestOptions Transform(ITransformation transformation) => (RequestOptions)Transform_T(transformation);
+    }
 }
 
 namespace Bumptech.Glide.Request.Target
 {
-	partial class AppWidgetTarget
-	{
-		public override unsafe void OnResourceReady(Java.Lang.Object resource, Transition.ITransition transition)
-		{
-			OnResourceReady((Android.Graphics.Bitmap)resource, transition);
-		}
-	}
+    public partial class AppWidgetTarget
+    {
+        public override void OnResourceReady(Object resource, ITransition transition) => OnResourceReady((Bitmap)resource, transition);
+    }
 
-	partial class BitmapImageViewTarget
-	{
-		protected override unsafe void SetResource(Java.Lang.Object resource)
-		{
-			SetResource((Android.Graphics.Bitmap)resource);
-		}
-	}
+    public partial class BitmapImageViewTarget
+    {
+        protected override void SetResource(Object resource) => SetResource((Bitmap)resource);
+    }
 
-	partial class DrawableThumbnailImageViewTarget
-	{
-		protected override unsafe Android.Graphics.Drawables.Drawable GetDrawable(Java.Lang.Object resource)
-		{
-			return GetDrawable((Android.Graphics.Drawables.Drawable)resource);
-		}
-	}
+    public partial class BitmapThumbnailImageViewTarget
+    {
+        protected override Drawable GetDrawable(Object resource) => GetDrawable((Bitmap)resource);
+    }
 
-	partial class BitmapThumbnailImageViewTarget
-	{
-		protected override unsafe Android.Graphics.Drawables.Drawable GetDrawable(Java.Lang.Object resource)
-		{
-			return GetDrawable((Android.Graphics.Drawables.Drawable)resource);
-		}
-	}
+    public partial class DrawableImageViewTarget
+    {
+        protected override void SetResource(Object resource) => SetResource((Drawable)resource);
+    }
 
-	partial class DrawableImageViewTarget
-	{
-		protected override unsafe void SetResource(Java.Lang.Object resource)
-		{
-			SetResource((Android.Graphics.Bitmap)resource);
-		}
-	}
+    public partial class DrawableThumbnailImageViewTarget
+    {
+        protected override Drawable GetDrawable(Object resource) => GetDrawable((Drawable)resource);
+    }
 
-	partial class NotificationTarget
-	{
-		public override unsafe void OnResourceReady(Java.Lang.Object resource, Transition.ITransition transition)
-		{
-			OnResourceReady((Android.Graphics.Bitmap)resource, transition);
-		}
-	}
+    public partial class NotificationTarget
+    {
+        public override void OnResourceReady(Object resource, ITransition transition) => OnResourceReady((Bitmap)resource, transition);
+    }
 }
 
-namespace Bumptech.Glide.Load.Engine.Bitmap_recycle
+namespace Bumptech.Glide.Request.Transition
 {
-	partial class SizeConfigStrategy
-	{
-		partial class KeyPool
-		{
-			protected override unsafe Java.Lang.Object Create()
-			{
-				return CreateKey();
-			}
-		}
-	}
-}
-
-namespace Bumptech.Glide.Load.Data
-{
-	partial class InputStreamRewinder : Data.IDataRewinder
-	{
-		Java.Lang.Object Data.IDataRewinder.RewindAndGet()
-		{
-			var handle = Android.Runtime.InputStreamAdapter.ToLocalJniHandle(RewindAndGet());
-
-			try
-			{
-				return new Java.Lang.Object(handle, Android.Runtime.JniHandleOwnership.TransferLocalRef);
-			}
-			finally
-			{
-				Android.Runtime.JNIEnv.DeleteLocalRef(handle);
-			}
-		}
-
-		partial class Factory : Data.IDataRewinderFactory
-		{
-			Data.IDataRewinder Data.IDataRewinderFactory.Build(Java.Lang.Object p0)
-			{
-				var obj = Build(Android.Runtime.InputStreamInvoker.FromJniHandle(p0.Handle, Android.Runtime.JniHandleOwnership.DoNotTransfer));
-
-				return global::Java.Interop.JavaObjectExtensions.JavaCast<Data.IDataRewinder>(obj);
-			}
-		}
-	}
-}
-
-namespace Bumptech.Glide.Load.Model
-{
-	partial class StreamEncoder : Load.IEncoder
-	{
-		bool Load.IEncoder.Encode(Java.Lang.Object p0, Java.IO.File p1, Load.Options p2)
-		{
-			var stream = Android.Runtime.InputStreamInvoker.FromJniHandle(p0.Handle, Android.Runtime.JniHandleOwnership.DoNotTransfer);
-			return Encode(stream, p1, p2);
-		}
-	}
-}
-
-namespace Bumptech.Glide.Load.Resource.Bytes
-{
-	partial class BytesResource : Engine.IResource
-	{
-		Java.Lang.Object Engine.IResource.Get()
-		{
-			var bytes = Get();
-
-			return Android.Runtime.JavaArray<byte>.FromArray<byte>(bytes);
-		}
-	}
-}
-
-namespace Bumptech.Glide.Load.Engine.Bitmap_recycle
-{
-	partial class IntegerArrayAdapter : IArrayAdapterInterface
-	{
-		int IArrayAdapterInterface.GetArrayLength(Java.Lang.Object p0)
-		{
-			return GetArrayLength(p0.ToArray<int>());
-		}
-
-		Java.Lang.Object IArrayAdapterInterface.NewArray(int p0)
-		{
-			var ints = NewArray(p0);
-			return Android.Runtime.JavaArray<int>.FromArray<int>(ints);
-		}
-	}
-
-	partial class ByteArrayAdapter : IArrayAdapterInterface
-	{
-		int IArrayAdapterInterface.GetArrayLength(Java.Lang.Object p0)
-		{
-			return GetArrayLength(p0.ToArray<byte>());
-		}
-
-		Java.Lang.Object IArrayAdapterInterface.NewArray(int p0)
-		{
-			var bytes = NewArray(p0);
-			return Android.Runtime.JavaArray<byte>.FromArray<byte>(bytes);
-		}
-	}
-}
-
-namespace Bumptech.Glide.Load.Resource.Gif
-{
-	partial class StreamGifDecoder : Load.IResourceDecoder
-	{
-		Engine.IResource Load.IResourceDecoder.Decode(Java.Lang.Object p0, int p1, int p2, Load.Options p3)
-		{
-			var stream = Android.Runtime.InputStreamInvoker.FromJniHandle(p0.Handle, Android.Runtime.JniHandleOwnership.DoNotTransfer);
-
-			return Java.Interop.JavaObjectExtensions.JavaCast<Engine.IResource>(Decode(stream, p1, p2, p3));
-		}
-
-		bool Load.IResourceDecoder.Handles(global::Java.Lang.Object p0, Load.Options p1)
-		{
-			var stream = Android.Runtime.InputStreamInvoker.FromJniHandle(p0.Handle, Android.Runtime.JniHandleOwnership.DoNotTransfer);
-
-			return Handles(stream, p1);
-		}
-	}
+    public partial class BitmapTransitionFactory
+    {
+        protected override Bitmap GetBitmap(Object current) => GetBitmap((Bitmap)current);
+    }
 }
