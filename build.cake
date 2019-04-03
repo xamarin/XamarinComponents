@@ -223,7 +223,7 @@ void BuildGroups (List<BuildGroup> buildGroups, List<string> names, List<string>
 	// Copy all subdir output directories to a root level artifacts dir
 	if (COPY_OUTPUT_TO_ROOT) {
 		EnsureDirectoryExists("./artifacts");
-		CopyFiles("./**/output/*", "./artifacts", true);
+		CopyFiles("./**/output/*", "./artifacts", false);
 	}
 
 }
