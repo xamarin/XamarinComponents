@@ -1,0 +1,7 @@
+newmtl unlit_material
+illum 2
+Kd 0.00 0.00 0.00
+Ka 0.00 0.00 0.00
+Tf 1.00 1.00 1.00
+map_Kd andy.png
+Ni 1.00
