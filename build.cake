@@ -6,8 +6,8 @@
 var TARGET = Argument ("target", Argument ("t", Argument ("Target", "build")));
 
 var GIT_PREVIOUS_COMMIT = EnvironmentVariable ("GIT_PREVIOUS_SUCCESSFUL_COMMIT") ?? Argument ("gitpreviouscommit", "");
-var GIT_COMMIT = EnvironmentVariable ("GIT_COMMIT") ?? Argument("gitcommit", "");
-var GIT_BRANCH = EnvironmentVariable ("GIT_BRANCH") ?? "origin/master";
+var GIT_COMMIT = EnvironmentVariable ("GIT_COMMIT") ?? EnvironmentVariable("BUILD_SOURCEVERSION") ?? Argument("gitcommit", "");
+var GIT_BRANCH = EnvironmentVariable ("GIT_BRANCH") ?? EnvironmentVariable("BUILD_SOURCEBRANCH") ?? Argument("gitbranch", "origin/master");
 var GIT_PATH = EnvironmentVariable ("GIT_EXE") ?? Argument("gitexe", (IsRunningOnWindows () ? "C:\\Program Files (x86)\\Git\\bin\\git.exe" : "git"));
 
 var BUILD_GROUPS = DeserializeYamlFromFile<List<BuildGroup>> ("./manifest.yaml");
@@ -35,6 +35,7 @@ LogSystemInfo ();
 Information ("Git Path: {0}", GIT_PATH);
 Information ("Git Previous Commit: {0}", GIT_PREVIOUS_COMMIT);
 Information ("Git Commit: {0}", GIT_COMMIT);
+Information ("Git Branch: {0}", GIT_BRANCH);
 Information ("Force Build: {0}", FORCE_BUILD);
 
 public class CakeStealer
@@ -288,6 +289,20 @@ Task ("build").Does (() =>
 		BUILD_NAMES = (from bg in buildInfo.BuiltGroups select bg.Name).ToArray ();
 		
 		Information ("Overriding build group names to: {0}", string.Join (", ", BUILD_NAMES));
+	}
+
+	// Tagged build might contain the group name to build specifically if no setting was specified
+	if (GIT_BRANCH.StartsWith("refs/tags/") && !BUILD_NAMES.Any()) {
+		var tagName = GIT_BRANCH.Substring(10);
+		var buildName = tagName;
+		if (tagName.Contains('-'))
+			buildName = tagName.Substring(0, tagName.LastIndexOf('-'));
+
+		// If we found a build name from the tag name, let's force a build
+		if (!string.IsNullOrWhiteSpace(buildName)) {
+			BUILD_NAMES = new string[] { buildName };
+			FORCE_BUILD = true;
+		}
 	}
 
 	BuildGroups (BUILD_GROUPS, BUILD_NAMES.ToList (), buildTargets, GIT_PATH, GIT_BRANCH, GIT_PREVIOUS_COMMIT, GIT_COMMIT, FORCE_BUILD);		
