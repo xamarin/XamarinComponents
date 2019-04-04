@@ -1,4 +1,4 @@
-﻿
+
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.28307.271
@@ -16,8 +16,6 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Rendering", "source\Rendering\Rendering.csproj", "{457B5D9C-E5EC-49CD-AAE8-5B0C1C794F39}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UX", "source\UX\UX.csproj", "{ACECE654-15B5-4B2B-BF1E-14CA3D0FC6CA}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SceneFormSample", "SceneFormSample\SceneFormSample.csproj", "{5C856B2B-C3FD-4349-A319-D1A7B12A5B0A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
