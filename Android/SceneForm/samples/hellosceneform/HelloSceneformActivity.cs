@@ -11,18 +11,28 @@ using Android.Runtime;
 using Android.Support.V7.App;
 using Android.Views;
 using Android.Widget;
+using Google.AR.Sceneform.UX;
+using Google.AR.Sceneform.Rendering;
 
 namespace HelloSceneForm
 {
-    [Activity(Label = "@string/app_name", Theme = "@style/AppTheme.NoActionBar", MainLauncher = true)]
+    [Activity(Label = "@string/app_name", Theme = "@style/AppTheme.NoActionBar", MainLauncher = true, ScreenOrientation = Android.Content.PM.ScreenOrientation.Locked, Exported = true, ConfigurationChanges = Android.Content.PM.ConfigChanges.Orientation | Android.Content.PM.ConfigChanges.ScreenSize)]
     public class HelloSceneformActivity : AppCompatActivity
     {
+        private ArFragment arFragment;
+        private ModelRenderable andyRenderable;
+
         protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
             Xamarin.Essentials.Platform.Init(this, savedInstanceState);
 
+            SetContentView(Resource.Layout.activity_ux);
+
+            arFragment = SupportFragmentManager.FindFragmentById(Resource.Id.ux_fragment);
             // Create your application here
+
+            //ModelRenderable
         }
     }
 }
