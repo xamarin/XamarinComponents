@@ -15,6 +15,10 @@ var DISKLRUCACHE_VERSION = GLIDE_VERSION;
 var DISKLRUCACHE_NUGET_VERSION = DISKLRUCACHE_VERSION;
 var DISKLRUCACHE_URL = $"http://central.maven.org/maven2/com/github/bumptech/glide/disklrucache/{DISKLRUCACHE_VERSION}/disklrucache-{DISKLRUCACHE_VERSION}.jar";
 
+var RECYCLERVIEW_VERSION = GLIDE_VERSION;
+var RECYCLERVIEW_NUGET_VERSION = RECYCLERVIEW_VERSION;
+var RECYCLERVIEW_URL = $"http://central.maven.org/maven2/com/github/bumptech/glide/recyclerview-integration/{RECYCLERVIEW_VERSION}/recyclerview-integration-{RECYCLERVIEW_VERSION}.aar";
+
 Task ("externals")
 	.WithCriteria (!FileExists ("./externals/guava.jar"))
 	.Does (() =>
@@ -29,12 +33,14 @@ Task ("externals")
 
 	DownloadFile(DISKLRUCACHE_URL, "./externals/disklrucache.jar");
 
+	DownloadFile(RECYCLERVIEW_URL, "./externals/recyclerview-integration.aar");
+
 	// Update .csproj nuget versions
 	XmlPoke("./source/Xamarin.Android.Glide/Xamarin.Android.Glide.csproj", "/Project/PropertyGroup/PackageVersion", GLIDE_NUGET_VERSION);
 	XmlPoke("./source/Xamarin.Android.Glide.DiskLruCache/Xamarin.Android.Glide.DiskLruCache.csproj", "/Project/PropertyGroup/PackageVersion", DISKLRUCACHE_NUGET_VERSION);
 	XmlPoke("./source/Xamarin.Android.Glide.GifDecoder/Xamarin.Android.Glide.GifDecoder.csproj", "/Project/PropertyGroup/PackageVersion", GIFDECODER_NUGET_VERSION);
+	XmlPoke("./source/Xamarin.Android.Glide.RecyclerViewIntegration/Xamarin.Android.Glide.RecyclerViewIntegration.csproj", "/Project/PropertyGroup/PackageVersion", RECYCLERVIEW_NUGET_VERSION);
 });
-
 
 Task("libs")
 	.IsDependentOn("externals")

@@ -29,6 +29,16 @@
             "Version": "4.9.0"
           }
         }
+      },
+      {
+        "Component": {
+          "Type": "Maven",
+          "Maven": {
+            "ArtifactId": "recyclerview-integration",
+            "GroupId": "com.github.bumptech.glide",
+            "Version": "4.9.0"
+          }
+        }
       }
     ],
     "Version": 1
