@@ -29,7 +29,7 @@ namespace HelloSceneForm
 
             SetContentView(Resource.Layout.activity_ux);
 
-            arFragment = SupportFragmentManager.FindFragmentById(Resource.Id.ux_fragment);
+            arFragment = (ArFragment)SupportFragmentManager.FindFragmentById(Resource.Id.ux_fragment);
             // Create your application here
 
             //ModelRenderable
