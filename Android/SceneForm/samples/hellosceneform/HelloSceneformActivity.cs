@@ -32,7 +32,8 @@ namespace HelloSceneForm
             arFragment = (ArFragment)SupportFragmentManager.FindFragmentById(Resource.Id.ux_fragment);
             // Create your application here
 
-            //ModelRenderable
+
+            ModelRenderable.InvokeBuilder().SetSource(Resource.Raw.andy).Build();
         }
     }
 }

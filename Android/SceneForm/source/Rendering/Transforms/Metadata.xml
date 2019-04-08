@@ -6,6 +6,8 @@
     <attr path="/api/package[@name='com.google.ar.sceneform.rendering']/class[@name='ViewRenderable']/method[@name='makeCopy' and count(parameter)=0]" name="return">Google.AR.Sceneform.Rendering.Renderable</attr>
      <attr path="/api/package[@name='com.google.ar.sceneform.rendering']/class[@name='ModelRenderable']/method[@name='makeCopy' and count(parameter)=0]" name="return">Google.AR.Sceneform.Rendering.Renderable</attr>
     
+    <attr path="/api/package[@name='com.google.ar.sceneform.rendering']/class[@name='ModelRenderable.Builder']" name="extends">Google.AR.Sceneform.Rendering.Renderable.Builder</attr>
+    
     <attr path="/api/package[@name='com.google.ar.sceneform.rendering']/class[@name='ViewRenderable.Builder']/method[@name='makeRenderable' and @return='com.google.ar.sceneform.rendering.ViewRenderable' and count(parameter)=0]" name="managedName">MakeViewRenderable</attr>
      <attr path="/api/package[@name='com.google.ar.sceneform.rendering']/class[@name='ModelRenderable.Builder']/method[@name='makeRenderable' and @return='com.google.ar.sceneform.rendering.ModelRenderable' and count(parameter)=0]" name="managedName">MakeModelRenderable</attr>
 
