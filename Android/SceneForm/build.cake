@@ -2,7 +2,7 @@
 
 var TARGET = Argument ("t", Argument ("target", "Default"));
 
-var SF_VERSION = "1.7.0";
+var SF_VERSION = "1.8.0";
 
 var NUGET_VERSION = SF_VERSION;
 
@@ -11,7 +11,6 @@ var ANIMATION_JAR_URL = $"https://dl.google.com:443/dl/android/maven2/com/google
 var ASSETS_JAR_URL = $"https://dl.google.com:443/dl/android/maven2/com/google/ar/sceneform/assets/{SF_VERSION}/assets-{SF_VERSION}.aar";
 var CORE_JAR_URL = $"https://dl.google.com:443/dl/android/maven2/com/google/ar/sceneform/core/{SF_VERSION}/core-{SF_VERSION}.aar";
 var FILAMENT_JAR_URL = $"https://dl.google.com:443/dl/android/maven2/com/google/ar/sceneform/filament-android/{SF_VERSION}/filament-android-{SF_VERSION}.aar";
-var PLUGIN_JAR_URL = $"https://dl.google.com:443/dl/android/maven2/com/google/ar/sceneform/plugin/{SF_VERSION}/plugin-{SF_VERSION}.jar";
 var RENDERING_JAR_URL = $"https://dl.google.com:443/dl/android/maven2/com/google/ar/sceneform/rendering/{SF_VERSION}/rendering-{SF_VERSION}.aar";
 var UX_JAR_URL = $"https://dl.google.com:443/dl/android/maven2/com/google/ar/sceneform/ux/sceneform-ux/{SF_VERSION}/sceneform-ux-{SF_VERSION}.aar";
 var UX_JAR_URL_DOCS = $"https://dl.google.com:443/dl/android/maven2/com/google/ar/sceneform/ux/sceneform-ux/{SF_VERSION}/sceneform-ux-{SF_VERSION}-javadoc.jar";
@@ -33,8 +32,6 @@ Task ("externals")
 	DownloadFile (CORE_JAR_URL, "./externals/core.aar");
 	Information ("Filament Path: {0}", FILAMENT_JAR_URL);
 	DownloadFile (FILAMENT_JAR_URL, "./externals/filament-android.aar");
-	Information ("Plugin Path: {0}", PLUGIN_JAR_URL);
-	DownloadFile (PLUGIN_JAR_URL, "./externals/plugin.jar");
 	Information ("Rendering Path: {0}", RENDERING_JAR_URL);
 	DownloadFile (RENDERING_JAR_URL, "./externals/rendering.aar");
 	Information ("Rendering Path: {0}", UX_JAR_URL);
