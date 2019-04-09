@@ -37,7 +37,7 @@ Task("nuget")
 	.IsDependentOn("libs")
 	.Does(() =>
 {
-	MSBuild ("./Glide.sln", c => {
+	MSBuild ("./Volley.sln", c => {
 		c.Configuration = "Release";
 		c.MaxCpuCount = 0;
 		c.Targets.Clear();
