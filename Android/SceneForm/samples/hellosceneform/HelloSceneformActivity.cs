@@ -33,7 +33,8 @@ namespace HelloSceneForm
             // Create your application here
 
 
-            ((ModelRenderable.Builder)ModelRenderable.InvokeBuilder().SetSource(this, Resource.Raw.andy)).Build();
+            ModelRenderable.InvokeBuilder().SetSource(this, Resource.Raw.andy).Build();
+            
         }
     }
 }
