@@ -13,6 +13,7 @@ using Android.Views;
 using Android.Widget;
 using Google.AR.Sceneform.UX;
 using Google.AR.Sceneform.Rendering;
+using Google.AR.Schemas.Sceneform;
 
 namespace HelloSceneForm
 {
@@ -25,16 +26,19 @@ namespace HelloSceneForm
         protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
-            Xamarin.Essentials.Platform.Init(this, savedInstanceState);
-
+            
+        
             SetContentView(Resource.Layout.activity_ux);
 
             arFragment = (ArFragment)SupportFragmentManager.FindFragmentById(Resource.Id.ux_fragment);
             // Create your application here
 
 
-            ModelRenderable.InvokeBuilder().SetSource(this, Resource.Raw.andy).Build();
+            andyRenderable = (ModelRenderable)ModelRenderable.InvokeBuilder().SetSource(this, Resource.Raw.andy).Build().Get();
+
             
         }
     }
 }
+
+
