@@ -17,6 +17,7 @@ using Google.AR.Schemas.Sceneform;
 using Google.AR.Core;
 using Google.AR.Sceneform;
 
+
 namespace HelloSceneForm
 {
     [Activity(Label = "@string/app_name", Theme = "@style/AppTheme.NoActionBar", MainLauncher = true, ScreenOrientation = Android.Content.PM.ScreenOrientation.Locked, Exported = true, ConfigurationChanges = Android.Content.PM.ConfigChanges.Orientation | Android.Content.PM.ConfigChanges.ScreenSize)]
@@ -40,14 +41,29 @@ namespace HelloSceneForm
             // Create your application here
 
 
-            var builder = ModelRenderable.InvokeBuilder().SetSource(this, Resource.Raw.andy).Build();
+            var builder = ModelRenderable.InvokeBuilder();//.SetSource(this, Resource.Raw.andy).Build();
+            var rbuilder = builder.JavaCast<Renderable.Builder>();
+            var think = rbuilder.SetSource(this, Resource.Raw.andy);
 
-            while (!builder.IsDone)
+            bool hasSource = builder.HasSource().BooleanValue();
+
+            if (!hasSource)
             {
-                //wait until the model is built
+                Toast.MakeText(this, "No source was set", ToastLength.Long).Show();
+
+                this.Finish();
             }
 
-            andyRenderable = (ModelRenderable)builder.Get();
+
+
+            builder.Build().ThenAccept(new ModelConsumer((renderable)=>
+            {
+                andyRenderable = renderable;
+
+            }));
+       
+
+            ///andyRenderable = (ModelRenderable)aBuild.Get(60, Java.Util.Concurrent.TimeUnit.Seconds);
 
             arFragment.TapArPlane += OnTapArPlane;
 
@@ -93,6 +109,23 @@ namespace HelloSceneForm
 
             return true;
 
+        }
+
+
+    }
+
+    public class ModelConsumer :  Java.Lang.Object, Java.Util.Functions.IConsumer
+    {
+        Action<ModelRenderable> _completed;
+
+        public ModelConsumer(Action<ModelRenderable> action)
+        {
+            _completed = action;
+        }
+
+        public void Accept(Java.Lang.Object t)
+        {
+            _completed(t.JavaCast<ModelRenderable>());
         }
     }
 }
