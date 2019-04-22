@@ -1,21 +1,22 @@
-
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.28803.202
+MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HelloSceneForm", "HelloSceneForm\HelloSceneForm.csproj", "{D2961DCD-7D34-4384-B4F4-C2EA480B96D5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Animation", "..\source\Animation\Animation.csproj", "{021F2090-2D5F-4066-A3CC-104769418397}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Animation", "..\source\Animation\Animation.csproj", "{021F2090-2D5F-4066-A3CC-104769418397}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Assets", "..\source\Assets\Assets.csproj", "{F8EC1E62-5D44-4DB8-BA1E-8A59E036A239}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Assets", "..\source\Assets\Assets.csproj", "{F8EC1E62-5D44-4DB8-BA1E-8A59E036A239}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Base", "..\source\Base\Base.csproj", "{95DC2A93-4000-4131-B3BF-F1D251DC3707}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Base", "..\source\Base\Base.csproj", "{95DC2A93-4000-4131-B3BF-F1D251DC3707}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Core", "..\source\Core\Core.csproj", "{078DD4B3-E876-4787-B2C7-A15FBFEB6A40}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Core", "..\source\Core\Core.csproj", "{078DD4B3-E876-4787-B2C7-A15FBFEB6A40}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Filament", "..\source\Filament\Filament.csproj", "{E1CC4DD6-C5AC-4D9B-A567-B818F80829CB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Filament", "..\source\Filament\Filament.csproj", "{E1CC4DD6-C5AC-4D9B-A567-B818F80829CB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Rendering", "..\source\Rendering\Rendering.csproj", "{B60915B6-78B9-4676-9685-9CF9FFB98319}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Rendering", "..\source\Rendering\Rendering.csproj", "{B60915B6-78B9-4676-9685-9CF9FFB98319}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UX", "..\source\UX\UX.csproj", "{D645B4FE-10D7-49A8-BCBC-0ABBACABAB2C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UX", "..\source\UX\UX.csproj", "{D645B4FE-10D7-49A8-BCBC-0ABBACABAB2C}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Source", "Source", "{AE7DF79D-6BAA-43FE-898A-134CB3C9157B}"
 EndProject
@@ -25,12 +26,9 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{2F107DE6-A5AE-4016-8C67-E94E7074E5AA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{2F107DE6-A5AE-4016-8C67-E94E7074E5AA}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{2F107DE6-A5AE-4016-8C67-E94E7074E5AA}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{2F107DE6-A5AE-4016-8C67-E94E7074E5AA}.Release|Any CPU.Build.0 = Release|Any CPU
 		{D2961DCD-7D34-4384-B4F4-C2EA480B96D5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{D2961DCD-7D34-4384-B4F4-C2EA480B96D5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D2961DCD-7D34-4384-B4F4-C2EA480B96D5}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
 		{D2961DCD-7D34-4384-B4F4-C2EA480B96D5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D2961DCD-7D34-4384-B4F4-C2EA480B96D5}.Release|Any CPU.Build.0 = Release|Any CPU
 		{021F2090-2D5F-4066-A3CC-104769418397}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
@@ -62,6 +60,9 @@ Global
 		{D645B4FE-10D7-49A8-BCBC-0ABBACABAB2C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D645B4FE-10D7-49A8-BCBC-0ABBACABAB2C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{021F2090-2D5F-4066-A3CC-104769418397} = {AE7DF79D-6BAA-43FE-898A-134CB3C9157B}
 		{F8EC1E62-5D44-4DB8-BA1E-8A59E036A239} = {AE7DF79D-6BAA-43FE-898A-134CB3C9157B}
@@ -70,5 +71,8 @@ Global
 		{E1CC4DD6-C5AC-4D9B-A567-B818F80829CB} = {AE7DF79D-6BAA-43FE-898A-134CB3C9157B}
 		{B60915B6-78B9-4676-9685-9CF9FFB98319} = {AE7DF79D-6BAA-43FE-898A-134CB3C9157B}
 		{D645B4FE-10D7-49A8-BCBC-0ABBACABAB2C} = {AE7DF79D-6BAA-43FE-898A-134CB3C9157B}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {6F9BAABA-E0A8-4F2A-B84E-3142D1DA28CB}
 	EndGlobalSection
 EndGlobal
