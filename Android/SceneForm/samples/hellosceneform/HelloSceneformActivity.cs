@@ -63,8 +63,6 @@ namespace HelloSceneForm
             }));
        
 
-            ///andyRenderable = (ModelRenderable)aBuild.Get(60, Java.Util.Concurrent.TimeUnit.Seconds);
-
             arFragment.TapArPlane += OnTapArPlane;
 
         }
