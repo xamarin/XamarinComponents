@@ -41,9 +41,7 @@ namespace HelloSceneForm
             // Create your application here
 
 
-            var builder = ModelRenderable.InvokeBuilder();//.SetSource(this, Resource.Raw.andy).Build();
-            var rbuilder = builder.JavaCast<Renderable.Builder>();
-            var think = rbuilder.SetSource(this, Resource.Raw.andy);
+            var builder = ModelRenderable.InvokeBuilder().SetSource(this, Resource.Raw.andy);
 
             bool hasSource = builder.HasSource().BooleanValue();
 
