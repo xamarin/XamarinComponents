@@ -1,21 +1,14 @@
 ﻿
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
 using Android.App;
 using Android.Content;
 using Android.OS;
-using Android.Runtime;
 using Android.Support.V7.App;
-using Android.Views;
 using Android.Widget;
-using Google.AR.Sceneform.UX;
-using Google.AR.Sceneform.Rendering;
-using Google.AR.Schemas.Sceneform;
 using Google.AR.Core;
 using Google.AR.Sceneform;
+using Google.AR.Sceneform.Rendering;
+using Google.AR.Sceneform.UX;
+using System;
 
 
 namespace HelloSceneForm
@@ -32,35 +25,24 @@ namespace HelloSceneForm
         {
             base.OnCreate(savedInstanceState);
 
+            //check to see if the device supports SceneForm
             if (!CheckIsSupportedDeviceOrFinish(this))
                 return;
         
+            //set the content
             SetContentView(Resource.Layout.activity_ux);
 
+            //set the fragment
             arFragment = (ArFragment)SupportFragmentManager.FindFragmentById(Resource.Id.ux_fragment);
-            // Create your application here
 
-
-            var builder = ModelRenderable.InvokeBuilder().SetSource(this, Resource.Raw.andy);
-
-            bool hasSource = builder.HasSource().BooleanValue();
-
-            if (!hasSource)
-            {
-                Toast.MakeText(this, "No source was set", ToastLength.Long).Show();
-
-                this.Finish();
-            }
-
-
-
-            builder.Build().ThenAccept(new ModelConsumer((renderable)=>
+            //load and build the model
+            ModelRenderable.InvokeBuilder().SetSource(this, Resource.Raw.andy).Build(((renderable) =>
             {
                 andyRenderable = renderable;
 
             }));
-       
 
+            //add the event handler
             arFragment.TapArPlane += OnTapArPlane;
 
         }
@@ -108,21 +90,6 @@ namespace HelloSceneForm
         }
 
 
-    }
-
-    public class ModelConsumer :  Java.Lang.Object, Java.Util.Functions.IConsumer
-    {
-        Action<ModelRenderable> _completed;
-
-        public ModelConsumer(Action<ModelRenderable> action)
-        {
-            _completed = action;
-        }
-
-        public void Accept(Java.Lang.Object t)
-        {
-            _completed(t.JavaCast<ModelRenderable>());
-        }
     }
 }
 

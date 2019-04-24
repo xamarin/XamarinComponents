@@ -31,9 +31,9 @@
   
     <attr path="/api/package[@name='com.google.ar.sceneform.rendering']/class[@name='ModelRenderable']/method[@name='makeCopy' and count(parameter)=0]" name="final">true</attr>
     
-    <remove-node path="/api/package[@name='com.google.ar.sceneform.rendering']/class[@name='ViewRenderable.Builder']/method[@name='build' and count(parameter)=0]" />
+    <!--<remove-node path="/api/package[@name='com.google.ar.sceneform.rendering']/class[@name='ViewRenderable.Builder']/method[@name='build' and count(parameter)=0]" />-->
+  
      <remove-node path="/api/package[@name='com.google.ar.sceneform.rendering']/class[@name='Renderable.Builder']/method[@name='build' and count(parameter)=0]" />
     <remove-node path="/api/package[@name='com.google.ar.sceneform.rendering']/class[@name='Renderable.Builder']/method[@name='getRenderableClass' and count(parameter)=0]" />
 
-    <attr path="/api/package[@name='com.google.ar.sceneform.rendering']/class[@name='ModelRenderable.Builder']" name="extends">Google.AR.Sceneform.Rendering.Renderable.Builder</attr>
 </metadata>
