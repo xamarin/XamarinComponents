@@ -60,6 +60,15 @@ namespace SDWebImage
 		Png,
 		Gif,
 		Tiff,
-		WebP
+		WebP,
+		Heic,
+		Heif
+	}
+
+	[Native]
+	public enum SDImageCacheConfigExpireType : long
+	{
+		AccessDate,
+		ModificationDate
 	}
 }
