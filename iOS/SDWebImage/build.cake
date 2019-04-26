@@ -57,7 +57,7 @@ var buildSpec = new BuildSpec () {
 	},
 
 	NuGets = new [] {
-		new NuGetInfo { NuSpec = "./nuget/SDWebImage.nuspec" },
+		new NuGetInfo { NuSpec = "./nuget/SDWebImage.nuspec", RequireLicenseAcceptance = true  },
 	},
 
 	Components = new [] {
