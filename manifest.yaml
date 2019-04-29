@@ -202,6 +202,10 @@
   BuildScript: ./Android/Google.LibPhoneNumber/build.cake
   TriggerPaths: [ Android/Google.LibPhoneNumber ]
   MacBuildTargets: [nuget]
+- Name: SceneForm
+  BuildScript: ./Android/SceneForm/build.cake
+  TriggerPaths: [ Android/SceneForm ]
+  MacBuildTargets: [ libs, nuget ]
 
 # will be XPlat in the future
 - Name: TensorFlow.Lite
