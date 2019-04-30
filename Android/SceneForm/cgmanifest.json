@@ -1,0 +1,75 @@
+{
+  "Registrations": [
+    {
+      "Component": {
+        "Type": "Maven",
+        "Maven": {
+          "ArtifactId": "assets",
+          "GroupId": "com.google.ar.sceneform",
+          "Version": "1.8.0"
+        }
+      }
+    },
+    {
+      "Component": {
+        "Type": "Maven",
+        "Maven": {
+          "ArtifactId": "animation",
+          "GroupId": "com.google.ar.sceneform",
+          "Version": "1.8.0"
+        }
+      }
+    },
+    {
+      "Component": {
+        "Type": "Maven",
+        "Maven": {
+          "ArtifactId": "core",
+          "GroupId": "com.google.ar.sceneform",
+          "Version": "1.8.0"
+        }
+      }
+    },
+    {
+      "Component": {
+        "Type": "Maven",
+        "Maven": {
+          "ArtifactId": "filament-android",
+          "GroupId": "com.google.ar.sceneform",
+          "Version": "1.8.0"
+        }
+      }
+    },
+    {
+      "Component": {
+        "Type": "Maven",
+        "Maven": {
+          "ArtifactId": "rendering",
+          "GroupId": "com.google.ar.sceneform",
+          "Version": "1.8.0"
+        }
+      }
+    },
+    {
+      "Component": {
+        "Type": "Maven",
+        "Maven": {
+          "ArtifactId": "sceneform-base",
+          "GroupId": "com.google.ar.sceneform",
+          "Version": "1.8.0"
+        }
+      }
+    },
+    {
+      "Component": {
+        "Type": "Maven",
+        "Maven": {
+          "ArtifactId": "sceneform-ux",
+          "GroupId": "com.google.ar.sceneform.ux",
+          "Version": "1.8.0"
+        }
+      }
+    }
+  ],
+  "Version": 1
+}

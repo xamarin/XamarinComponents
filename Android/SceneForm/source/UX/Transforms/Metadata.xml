@@ -1,0 +1,17 @@
+﻿<metadata>
+    
+       <attr path="/api/package[@name='com.google.ar.sceneform.ux']" name="managedName">Google.AR.Sceneform.UX</attr>
+  
+       <remove-node path="/api/package[@name='com.google.ar.sceneform.ux']/class[@name='TranslationController']/method[@name='onEndTransformation' and count(parameter)=1 and parameter[1][@type='com.google.ar.sceneform.ux.DragGesture']]" />
+    <remove-node path="/api/package[@name='com.google.ar.sceneform.ux']/class[@name='TranslationController']/method[@name='canStartTransformation' and count(parameter)=1 and parameter[1][@type='com.google.ar.sceneform.ux.DragGesture']]" />
+  <remove-node path="/api/package[@name='com.google.ar.sceneform.ux']/class[@name='TranslationController']/method[@name='onContinueTransformation' and count(parameter)=1 and parameter[1][@type='com.google.ar.sceneform.ux.DragGesture']]"/>
+  
+         <remove-node path="/api/package[@name='com.google.ar.sceneform.ux']/class[@name='RotationController']/method[@name='onEndTransformation' and count(parameter)=1 and parameter[1][@type='com.google.ar.sceneform.ux.TwistGesture']]"/>
+    <remove-node path="/api/package[@name='com.google.ar.sceneform.ux']/class[@name='RotationController']/method[@name='onContinueTransformation' and count(parameter)=1 and parameter[1][@type='com.google.ar.sceneform.ux.TwistGesture']]" />
+  <remove-node path="/api/package[@name='com.google.ar.sceneform.ux']/class[@name='RotationController']/method[@name='canStartTransformation' and count(parameter)=1 and parameter[1][@type='com.google.ar.sceneform.ux.TwistGesture']]"/>
+  
+           <remove-node path="/api/package[@name='com.google.ar.sceneform.ux']/class[@name='ScaleController']/method[@name='onEndTransformation' and count(parameter)=1 and parameter[1][@type='com.google.ar.sceneform.ux.PinchGesture']]"/>
+    <remove-node path="/api/package[@name='com.google.ar.sceneform.ux']/class[@name='ScaleController']/method[@name='onContinueTransformation' and count(parameter)=1 and parameter[1][@type='com.google.ar.sceneform.ux.PinchGesture']]" />
+  <remove-node path="/api/package[@name='com.google.ar.sceneform.ux']/class[@name='ScaleController']/method[@name='canStartTransformation' and count(parameter)=1 and parameter[1][@type='com.google.ar.sceneform.ux.PinchGesture']]"/>
+
+</metadata>

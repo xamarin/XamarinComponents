@@ -1,0 +1,17 @@
+﻿<metadata>
+    
+       <attr path="/api/package[@name='com.google.ar.sceneform.animation']" name="managedName">Google.AR.Sceneform.Animation</attr>
+
+       <remove-node path="/api/package[@name='com.google.ar.sceneform.animation']/class[@name='ModelAnimator']/method[@name='getStartDelay' and count(parameter)=0]" />
+       <remove-node path="/api/package[@name='com.google.ar.sceneform.animation']/class[@name='ModelAnimator']/method[@name='setStartDelay' and count(parameter)=1 and parameter[1][@type='long']]" />
+    
+       <!--<add-node path="/api/package[@name='com.google.ar.sceneform.animation']/class[@name='ModelAnimator']"> 
+            <method abstract="false" deprecated="not deprecated" final="true" name="setStartDelay" bridge="false" native="false" return="void" static="false" synchronized="false" synthetic="true" visibility="public">
+                <parameter name="startDelay" type="long">
+                </parameter>
+           </method>
+        </add-node>-->
+    
+
+    <attr path="/api/package[@name='com.google.ar.sceneform.animation']/class[@name='ModelAnimator']/method[@name='setDuration' and count(parameter)=1 and parameter[1][@type='long']]" name="return">Android.Animation.Animator</attr>
+</metadata>
