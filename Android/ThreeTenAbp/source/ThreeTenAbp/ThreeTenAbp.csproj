@@ -21,8 +21,8 @@
     <Authors>Microsoft</Authors>
     <Owners>Microsoft</Owners>
     <Copyright>© Microsoft Corporation. All rights reserved.</Copyright>
-    <PackageProjectUrl></PackageProjectUrl>
-    <PackageLicenseUrl></PackageLicenseUrl>
+    <PackageProjectUrl>https://go.microsoft.com/fwlink/?linkid=2091413</PackageProjectUrl>
+    <PackageLicenseUrl>https://go.microsoft.com/fwlink/?linkid=2091045</PackageLicenseUrl>
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
     <PackageVersion>1.2.0</PackageVersion>
   </PropertyGroup>
