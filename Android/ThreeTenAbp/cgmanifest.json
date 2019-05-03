@@ -1,0 +1,15 @@
+{
+  "Registrations":[ 
+    {
+      "Component": {
+        "Type": "Maven",
+        "Maven": {
+          "ArtifactId": "threetenabp",
+          "GroupId": "com.jakewharton.threetenabp",
+          "Version": "1.2.0"
+        }
+      }
+    }
+  ],
+  "Version": 1
+}

@@ -1,0 +1,15 @@
+{
+  "Registrations":[ 
+    {
+      "Component": {
+        "Type": "Maven",
+        "Maven": {
+          "ArtifactId": "tokenautocomplete",
+          "GroupId": "com.splitwise",
+          "Version": "2.0.8"
+        }
+      }
+    }
+  ],
+  "Version": 1
+}

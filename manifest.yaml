@@ -216,6 +216,16 @@
   BuildScript: ./XPlat/TensorFlow.Lite/build.cake
   TriggerPaths: [ XPlat/TensorFlow.Lite ]
   MacBuildTargets: [ libs, nuget]
+- Name: ThreeTenAbp
+  BuildScript: ./Android/ThreeTenAbp/build.cake
+  TriggerPaths: [ Android/ThreeTenAbp ]
+  MacBuildTargets: [ libs, nuget]
+  WindowsBuildTargets: [ libs, nuget]
+- Name: TokenAutoComplete
+  BuildScript: ./Android/TokenAutoComplete/build.cake
+  TriggerPaths: [ Android/TokenAutoComplete ]
+  MacBuildTargets: [ libs, nuget]
+  WindowsBuildTargets: [ libs, nuget]
 - Name: Protobuf.Lite
   BuildScript: ./XPlat/Protobuf.Lite/build.cake
   TriggerPaths: [ XPlat/Protobuf.Lite ]
