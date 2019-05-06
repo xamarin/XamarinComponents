@@ -26,7 +26,7 @@ Task("libs")
 	.IsDependentOn("externals")
 	.Does(() =>
 {
-	MSBuild("./ThreeTenAbp.sln", c => {
+	MSBuild("./TokenAutoComplete.sln", c => {
 		c.Configuration = "Release";
 		c.Restore = true;
 		c.MaxCpuCount = 0;
@@ -38,7 +38,7 @@ Task("nuget")
 	.IsDependentOn("libs")
 	.Does(() =>
 {
-	MSBuild ("./ThreeTenAbp.sln", c => {
+	MSBuild ("./TokenAutoComplete.sln", c => {
 		c.Configuration = "Release";
 		c.MaxCpuCount = 0;
 		c.Targets.Clear();
