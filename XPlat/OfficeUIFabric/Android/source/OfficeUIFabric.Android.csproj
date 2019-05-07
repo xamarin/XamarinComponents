@@ -3,7 +3,7 @@
   <PropertyGroup>
     <TargetFrameworks>MonoAndroid80</TargetFrameworks>
     <IsBindingProject>true</IsBindingProject>
-    <AssemblyName>Xamarin.OfficeUIFabric</AssemblyName>
+    <AssemblyName>Xamarin.Microsoft.OfficeUIFabric</AssemblyName>
     <MonoAndroidResourcePrefix>Resources</MonoAndroidResourcePrefix>
     <MonoAndroidAssetsPrefix>Assets</MonoAndroidAssetsPrefix>
     <AndroidUseLatestPlatformSdk>False</AndroidUseLatestPlatformSdk>
@@ -15,14 +15,14 @@
   </PropertyGroup>
 
   <PropertyGroup>
-    <PackageId>Xamarin.OfficeUIFabric.Android</PackageId>
+    <PackageId>Xamarin.Microsoft.OfficeUIFabric.Android</PackageId>
     <Title>Office UI Fabric SDK for Xamarin.Android</Title>
     <Summary>Xamarin.Android bindings for Office UI Fabric</Summary>
     <Authors>Microsoft</Authors>
     <Owners>Microsoft</Owners>
     <Copyright>© Microsoft Corporation. All rights reserved.</Copyright>
-    <PackageProjectUrl></PackageProjectUrl>
-    <PackageLicenseUrl></PackageLicenseUrl>
+    <PackageProjectUrl>https://go.microsoft.com/fwlink/?linkid=2091993</PackageProjectUrl>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
     <PackageVersion>0.2.3</PackageVersion>
   </PropertyGroup>
