@@ -1,0 +1,14 @@
+{
+  "Registrations":[ 
+    {
+      "component": {
+        "type": "git",
+        "git": {
+          "repositoryUrl": "",
+          "commitHash": ""
+        }
+      }
+    }
+  ],
+  "Version": 1
+}
