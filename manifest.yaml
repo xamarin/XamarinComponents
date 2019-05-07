@@ -536,6 +536,14 @@
   BuildScript: ./XPlat/DropboxApiV2/build.cake
   TriggerPaths: [ XPlat/DropboxApiV2 ]
   MacBuildTargets: [ samples, component ]
+- Name: OfficeUIFabricAndroid
+  BuildScript: ./XPlat/OfficeUIFabric/Android/build.cake
+  TriggerPaths: [ XPlat/OfficeUIFabric/Android ]
+  MacBuildTargets: [ samples, nuget ]
+- Name: OfficeUIFabriciOS
+  BuildScript: ./XPlat/OfficeUIFabric/iOS/build.cake
+  TriggerPaths: [ XPlat/OfficeUIFabric/iOS ]
+  MacBuildTargets: [ samples, nuget ]
 
 #######################################################
 # Mac
