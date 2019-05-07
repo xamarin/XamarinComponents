@@ -1,0 +1,9 @@
+source 'https://github.com/CocoaPods/Specs.git'
+
+platform :ios, '11.0'
+install! 'cocoapods', :integrate_targets => false
+use_frameworks!
+
+target 'OfficeUIFabric' do
+	pod 'OfficeUIFabric', '0.2.2'
+end
