@@ -3,7 +3,7 @@
   <metadata>
     <id>Xamarin.TwitterImagePipeline</id>
     <title>Twitter Image Pipeline (TIP)</title>
-    <version>2.2.2</version>
+    <version>2.2.2.1</version>
     <authors>Microsoft</authors>
     <owners>Microsoft</owners>
     <requireLicenseAcceptance>true</requireLicenseAcceptance>
