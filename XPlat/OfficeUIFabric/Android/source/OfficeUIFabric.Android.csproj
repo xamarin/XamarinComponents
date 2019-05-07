@@ -22,7 +22,7 @@
     <Owners>Microsoft</Owners>
     <Copyright>© Microsoft Corporation. All rights reserved.</Copyright>
     <PackageProjectUrl>https://go.microsoft.com/fwlink/?linkid=2091993</PackageProjectUrl>
-    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <PackageLicenseFile>LICENSE.md</PackageLicenseFile>
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
     <PackageVersion>0.2.3</PackageVersion>
   </PropertyGroup>
@@ -36,6 +36,7 @@
       <Link>OfficeUIFabric.aar</Link>
     </None>
     <None Include="..\External-Dependency-Info.txt" Pack="True" PackagePath="THIRD-PARTY-NOTICES.txt" />
+    <None Include="..\License.md" Pack="True" PackagePath="LICENSE.md" />
   </ItemGroup>
 
   <ItemGroup>
