@@ -4,8 +4,8 @@
       "component": {
         "type": "git",
         "git": {
-          "repositoryUrl": "",
-          "commitHash": ""
+          "repositoryUrl": "https://github.com/xamarin/XamarinComponents/tree/master/iOS/SwiftRuntimeSupport",
+          "commitHash": "8c800385f9486239c0f604051b78c388b31f0988"
         }
       }
     }
