@@ -427,6 +427,10 @@
   BuildScript: ./iOS/JVMenuPopover/build.cake
   TriggerPaths: [ iOS/JVMenuPopover ]
   MacBuildTargets: [ samples, nuget, component ]
+- Name: SwiftRuntimeSupport
+  BuildScript: ./iOS/SwiftRuntimeSupport/build.cake
+  TriggerPaths: [ iOS/SwiftRuntimeSupport ]
+  MacBuildTargets: [ samples, nuget ]
 
 #######################################################
 # XPlat
