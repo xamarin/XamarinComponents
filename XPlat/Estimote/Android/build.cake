@@ -1,11 +1,12 @@
 
 #load "../../../common.cake"
 
-var NUGET_VERSION = "1.0.3";
+var NUGET_VERSION = "1.4.6";
 
-var ESTIMOTES_VERSION = "1.0.3";
-var ESTIMOTES_SDK_URL = "http://search.maven.org/remotecontent?filepath=com/estimote/sdk/" + ESTIMOTES_VERSION + "/sdk-" + ESTIMOTES_VERSION + ".aar";
-var ESTIMOTES_DOC_URL = "http://search.maven.org/remotecontent?filepath=com/estimote/sdk/" + ESTIMOTES_VERSION + "/sdk-" + ESTIMOTES_VERSION + "-javadoc.jar";
+var ESTIMOTES_VERSION = "1.4.6";
+
+var ESTIMOTES_SDK_URL = "https://dl.bintray.com/estimote/android/com/estimote/sdk/" + ESTIMOTES_VERSION + "/sdk-" + ESTIMOTES_VERSION + ".aar";
+//var ESTIMOTES_DOC_URL = "http://search.maven.org/remotecontent?filepath=com/estimote/sdk/" + ESTIMOTES_VERSION + "/sdk-" + ESTIMOTES_VERSION + "-javadoc.jar";
 
 var TARGET = Argument ("t", Argument ("target", "libs"));
 
@@ -25,7 +26,7 @@ var buildSpec = new BuildSpec {
 	},
 
 	NuGets = new [] {
-		new NuGetInfo { NuSpec = "./nuget/Xamarin.Estimote.Android.nuspec", Version = NUGET_VERSION },
+		new NuGetInfo { NuSpec = "./nuget/Xamarin.Estimote.Android.nuspec", Version = NUGET_VERSION, RequireLicenseAcceptance = true  },
 	},
 
 	Components = new [] {
