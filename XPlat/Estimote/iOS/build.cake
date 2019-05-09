@@ -1,10 +1,10 @@
 #load "../../../common.cake"
 
-var NUGET_VERSION = "4.26.3.0";
-var ESTIMOTE_SDK_VERSION = "4.26.3";
+var NUGET_VERSION = "4.28.0";
+var ESTIMOTE_SDK_VERSION = "4.28.0";
 
 var COCOAPODS = new List<string> {
-	"platform :ios, '7.0'",
+	"platform :ios, '9.0'",
 	"install! 'cocoapods', :integrate_targets => false",
 	"target 'Xamarin' do",
 	"pod 'EstimoteSDK', '" + ESTIMOTE_SDK_VERSION + "'",
@@ -30,7 +30,7 @@ var buildSpec = new BuildSpec {
 	},
 
 	NuGets  = new [] {
-		new NuGetInfo { NuSpec = "./nuget/Xamarin.Estimote.iOS.nuspec", Version = NUGET_VERSION },
+		new NuGetInfo { NuSpec = "./nuget/Xamarin.Estimote.iOS.nuspec", Version = NUGET_VERSION, RequireLicenseAcceptance = true },
 	},
 
 	Components = new [] {
