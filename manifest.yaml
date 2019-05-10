@@ -210,6 +210,10 @@
   BuildScript: ./Android/SceneForm/build.cake
   TriggerPaths: [ Android/SceneForm ]
   MacBuildTargets: [ libs, nuget ]
+- Name: GoogleAutoValue
+  BuildScript: ./Android/GoogleAutoValue/build.cake
+  TriggerPaths: [ Android/GoogleAutoValue ]
+  MacBuildTargets: [ libs, nuget ]
 
 # will be XPlat in the future
 - Name: TensorFlow.Lite
