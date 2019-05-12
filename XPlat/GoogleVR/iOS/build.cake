@@ -2,8 +2,8 @@
 
 var TARGET = Argument ("t", Argument ("target", "Default"));
 
-var IOS_VERSION = "0.8.0";
-var IOS_NUGET_VERSION = "0.8.0-beta1";
+var IOS_VERSION = "1.170.0";
+var IOS_NUGET_VERSION = "1.170.0";
 var IOS_PODS = new List<string> {
 	"platform :ios, '8.0'",
 	"install! 'cocoapods', :integrate_targets => false",

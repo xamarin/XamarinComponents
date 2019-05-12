@@ -13,8 +13,18 @@
 	<remove-node path="/api/package[@name='com.google.vr.ndk.base.proto.nano']/class[@name='GvrApiData.RenderTextureParamsListData']" />
 	<remove-node path="/api/package[@name='com.google.vr.ndk.base.proto.nano']/class[@name='GvrApiData.RenderTextureParamsListData.RenderTextureParamsData']" />
 	<remove-node path="/api/package[@name='com.google.vrtoolkit.cardboard.proto.nano']/class[@name='CardboardDevice.CardboardInternalParams']" />
-
-
+    
+    <remove-node path="/api/package[@name='com.google.vr.ndk.base']/class[@name='Event']/method[@name='finalize' and count(parameter)=0]" />
+    <remove-node path="/api/package[@name='com.google.vr.ndk.base']/class[@name='Value']/method[@name='finalize' and count(parameter)=0]" />
+    
+    <attr path="/api/package[@name='com.google.vr.vrcore.controller.api.nano']/interface[@name='Maintenance.MaintenanceEvent.OtaEvent.EventType']" name="managedName">OtaEventType</attr>
+    <attr path="/api/package[@name='com.google.vr.vrcore.controller.api.nano']/interface[@name='Maintenance.MaintenanceEvent.SetupEvent.EventType']" name="managedName">SetupEventType</attr>
+    
+     <attr path="/api/package[@name='com.google.vr.vrcore.controller.api.nano']/interface[@name='Maintenance.MaintenanceRequest.FirmwareUpdate.Action']" name="managedName">FirmwareUpdateAction</attr>
+     <attr path="/api/package[@name='com.google.vr.vrcore.controller.api.nano']/interface[@name='Maintenance.MaintenanceRequest.Setup.Action']" name="managedName">SetupAction</attr>
+    
+    <attr path="/api/package[@name='com.google.common.logging.nano']/interface[@name='Vr.VREvent.JumpInspector.MediaDetails.VideoCodec']" name="managedName">MediaDetailsVideoCodec</attr>
+    <attr path="/api/package[@name='com.google.common.logging.nano']/interface[@name='Vr.VREvent.EarthVr.ControllerState.Role']" name="managedName">StateRole</attr>
 	<attr path="/api/package[@name='com.google.vrtoolkit.cardboard.proto.nano']/class[@name='CardboardDevice.DeviceParams']/method[@name='mergeFrom' and count(parameter)=1 and parameter[1][@type='com.google.protobuf.nano.CodedInputByteBufferNano']]" name="managedReturn">Google.Protobuf.Nano.MessageNano</attr>
 	<attr path="/api/package[@name='com.google.vrtoolkit.cardboard.proto.nano']/class[@name='Phone.PhoneParams']/method[@name='mergeFrom' and count(parameter)=1 and parameter[1][@type='com.google.protobuf.nano.CodedInputByteBufferNano']]" name="managedReturn">Google.Protobuf.Nano.MessageNano</attr>
 </metadata>

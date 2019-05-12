@@ -2,6 +2,7 @@
 <Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <AndroidCodeGenTarget>XAJavaInterop1</AndroidCodeGenTarget>
+    <TargetFrameworkVersion>v7.1</TargetFrameworkVersion>
   </PropertyGroup>
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -61,7 +62,7 @@
   </ItemGroup>
   <ItemGroup>
     <InputJar Include="..\..\..\externals\android\libraries\base\classes.jar">
-      <Link>classes.jar</Link>
+      <Link>Jars\classes.jar</Link>
     </InputJar>
   </ItemGroup>
   <ItemGroup>
