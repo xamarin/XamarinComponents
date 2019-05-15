@@ -214,6 +214,10 @@
   BuildScript: ./Android/GoogleAutoValue/build.cake
   TriggerPaths: [ Android/GoogleAutoValue ]
   MacBuildTargets: [ libs, nuget ]
+- Name: GooglePlaces
+  BuildScript: ./Android/GooglePlaces/build.cake
+  TriggerPaths: [ Android/GooglePlaces ]
+  MacBuildTargets: [ samples, nuget ]
 
 # will be XPlat in the future
 - Name: TensorFlow.Lite
