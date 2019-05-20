@@ -4,7 +4,8 @@
 var TARGET = Argument ("t", Argument ("target", "Default"));
 
 var VOLLEY_VERSION = "1.1.1";
-var VOLLEY_NUGET_VERSION = VOLLEY_VERSION;
+var XAMARIN_FIX_VERSION = "1";
+var VOLLEY_NUGET_VERSION = $"{VOLLEY_VERSION}.{XAMARIN_FIX_VERSION}";
 var VOLLEY_URL = $"http://repo.spring.io/libs-release/com/android/volley/volley/{VOLLEY_VERSION}/volley-{VOLLEY_VERSION}.aar";
 
 Task ("externals")
