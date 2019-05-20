@@ -1,9 +1,9 @@
-/* 
-Error: Could not resolve type with token 01000016 from typeref (expected class 
-'Cake.Core.CakeTaskBuilder`1' in assembly 
+/*
+Error: Could not resolve type with token 01000016 from typeref (expected class
+'Cake.Core.CakeTaskBuilder`1' in assembly
 'Cake.Core, Version=0.26.1.0, Culture=neutral, PublicKeyToken=null')
 */
-//#load "../../common.cake" // 
+//#load "../../common.cake" //
 
 var TARGET = Argument ("t", Argument ("target", "Default"));
 
@@ -17,28 +17,28 @@ var JAR_STDLIB_DEST = "./externals/kotlin-stdlib.jar";
 var JAR_STDLIB_JDK7_DEST = "./externals/kotlin-stdlib-jdk7.jar";
 var JAR_STDLIB_JDK8_DEST = "./externals/kotlin-stdlib-jdk8.jar";
 
-string[] configs = new string[] 
-{ 
-	"Debug", 
-	"Release" 
+string[] configs = new string[]
+{
+	"Debug",
+	"Release"
 };
 
 Task ("externals")
-	.Does 
+	.Does
 	(
-		() => 
+		() =>
 		{
 			EnsureDirectoryExists ("./externals/");
 
-			if (!FileExists (JAR_STDLIB_DEST)) 
+			if (!FileExists (JAR_STDLIB_DEST))
 			{
 				DownloadFile (JAR_STDLIB_URL, JAR_STDLIB_DEST);
 			}
-			if (!FileExists (JAR_STDLIB_JDK7_DEST)) 
+			if (!FileExists (JAR_STDLIB_JDK7_DEST))
 			{
 				DownloadFile (JAR_STDLIB_JDK7_URL, JAR_STDLIB_JDK7_DEST);
 			}
-			if (!FileExists (JAR_STDLIB_JDK8_DEST)) 
+			if (!FileExists (JAR_STDLIB_JDK8_DEST))
 			{
 				DownloadFile (JAR_STDLIB_JDK8_URL, JAR_STDLIB_JDK8_DEST);
 			}
@@ -49,7 +49,7 @@ Task ("externals")
 									StartProcess
 									(
 										"gradle",
-										new ProcessSettings 
+										new ProcessSettings
 										{
 											Arguments = "build",
 											RedirectStandardOutput = false,
@@ -94,7 +94,7 @@ Task("samples")
 			RestorePackages("./samples/**/*.sln");
 			Build("./samples/**/*.sln");
 			Build("./samples/**/*.csproj");
-			
+
         }
     );
 
@@ -126,70 +126,74 @@ public void Build(string pattern)
 				}
 				//.WithProperty("DefineConstants", "TRACE;DEBUG;NETCOREAPP2_0;NUNIT")
 				.WithProperty("AndroidClassParser", "jar2xml")
-				
+
 			);
 		}
 	}
-	
+
+	return;
+}
+
+public void Package(string pattern)
+{
+	NuGetPackSettings settings = new NuGetPackSettings
+	{
+		BasePath = "./",
+		OutputDirectory         = "./output/"
+		/*
+		Id                      = "TestNuGet",
+		Version                 = "0.0.0.1",
+		Title                   = "The tile of the package",
+		Authors                 = new string[] {"John Doe"},
+		Owners                  = new string[] {"Contoso"},
+		Description             = "The description of the package",
+		Summary                 = "Excellent summary of what the package does",
+		ProjectUrl              = new Uri("https://github.com/SomeUser/TestNuGet/"),
+		IconUrl                 = new Uri("http://cdn.rawgit.com/SomeUser/TestNuGet/master/icons/testNuGet.png"),
+		LicenseUrl              = new Uri("https://github.com/SomeUser/TestNuGet/blob/master/LICENSE.md"),
+		Copyright               = "Some company 2015",
+		ReleaseNotes            = new string[] {"Bug fixes", "Issue fixes", "Typos"},
+		Tags                    = new string[] {"Cake", "Script", "Build"},
+		RequireLicenseAcceptance= false,
+		Symbols                 = false,
+		NoPackageAnalysis       = true,
+		Files                   = new string[]
+		{
+			new NuSpecContent {Source = "bin/TestNuGet.dll", Target = "bin"},
+		},
+		BasePath                = "./src/TestNuGet/bin/release",
+		*/
+	};
+
+	FilePathCollection files = GetFiles(pattern);
+
+	foreach(FilePath file in files)
+	{
+		foreach (string config in configs)
+		{
+			NuGetPack(file.ToString(), settings);
+		}
+	}
+
 	return;
 }
 Task ("nuget")
 	.IsDependentOn("libs")
-	.Does 
+	.Does
 	(
-		() => 
-		{	
-			NuGetPackSettings settings = new NuGetPackSettings 
-			{
-				BasePath = "./",
-				OutputDirectory         = "./output/"
-				/* 
-				Id                      = "TestNuGet",
-				Version                 = "0.0.0.1",
-				Title                   = "The tile of the package",
-				Authors                 = new string[] {"John Doe"},
-				Owners                  = new string[] {"Contoso"},
-				Description             = "The description of the package",
-				Summary                 = "Excellent summary of what the package does",
-				ProjectUrl              = new Uri("https://github.com/SomeUser/TestNuGet/"),
-				IconUrl                 = new Uri("http://cdn.rawgit.com/SomeUser/TestNuGet/master/icons/testNuGet.png"),
-				LicenseUrl              = new Uri("https://github.com/SomeUser/TestNuGet/blob/master/LICENSE.md"),
-				Copyright               = "Some company 2015",
-				ReleaseNotes            = new string[] {"Bug fixes", "Issue fixes", "Typos"},
-				Tags                    = new string[] {"Cake", "Script", "Build"},
-				RequireLicenseAcceptance= false,
-				Symbols                 = false,
-				NoPackageAnalysis       = true,
-				Files                   = new string[]
-				{
-					new NuSpecContent {Source = "bin/TestNuGet.dll", Target = "bin"},
-				},
-				BasePath                = "./src/TestNuGet/bin/release",
-				*/
-			};
-			NuGetPack
-				(
-					"./nuget/Xamarin.Kotlin.StdLib.nuspec", 
-					settings
-				);
-			NuGetPack
-				(
-					"./nuget/Xamarin.Kotlin.StdLib.Jdk8.nuspec", 
-					settings
-				);
-			NuGetPack
-				(
-					"./nuget/Xamarin.Kotlin.StdLib.Jdk8.nuspec", 
-					settings
-				);
+		() =>
+		{
+			Package("./nuget/*.nuspec");
+
+			return;
 		}
 	);
 
 Task ("clean")
-	.Does 
+	.Does
 	(
-		() => 
-		{	
+		() =>
+		{
 			DeleteFiles ("./externals/*.jar");
 		}
 	);
