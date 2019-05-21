@@ -62,7 +62,8 @@ Task ("externals")
 
 
 Task("libs")
-.Does
+	.IsDependentOn("externals")
+	.Does
     (
         () =>
         {
