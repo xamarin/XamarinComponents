@@ -29,6 +29,8 @@ Task("libs")
 		c.Configuration = "Release";
 		c.Restore = true;
 		c.MaxCpuCount = 0;
+		c.Targets.Clear();
+		c.Targets.Add("GooglePlaces");
 		c.Properties.Add("DesignTimeBuild", new [] { "false" });
 	});
 });
@@ -41,7 +43,7 @@ Task("nuget")
 		c.Configuration = "Release";
 		c.MaxCpuCount = 0;
 		c.Targets.Clear();
-		c.Targets.Add("Pack");
+		c.Targets.Add("GooglePlaces:Pack");
 		c.Properties.Add("PackageOutputPath", new [] { MakeAbsolute(new FilePath("./output")).FullPath });
 		c.Properties.Add("PackageRequireLicenseAcceptance", new [] { "true" });
 		c.Properties.Add("DesignTimeBuild", new [] { "false" });
@@ -49,7 +51,17 @@ Task("nuget")
 });
 
 Task("samples")
-	.IsDependentOn("nuget");
+	.IsDependentOn("nuget")
+	.Does(() =>
+{	
+	MSBuild ("./GooglePlaces.sln", c => {
+		c.Configuration = "Release";
+		c.MaxCpuCount = 0;
+		c.Targets.Clear();
+		c.Targets.Add("PlacesSample");
+		c.Properties.Add("DesignTimeBuild", new [] { "false" });
+	});
+});
 
 Task ("clean")
 	.Does (() =>
