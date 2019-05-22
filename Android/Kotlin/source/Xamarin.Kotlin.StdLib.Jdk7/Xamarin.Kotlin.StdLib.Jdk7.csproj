@@ -2,6 +2,7 @@
 <Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <AndroidCodegenTarget>XAJavaInterop1</AndroidCodegenTarget>
+    <TargetFrameworkVersion>v9.0</TargetFrameworkVersion>
   </PropertyGroup>
   <PropertyGroup>    
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -57,15 +58,15 @@
     <Folder Include="Jars\" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedReferenceJar Include="..\..\externals\kotlin-stdlib-jdk7.jar">
-      <Link>Jars\kotlin-stdlib-jdk7.jar</Link>
-    </EmbeddedReferenceJar>
-  </ItemGroup>
-  <ItemGroup>
     <ProjectReference Include="..\Xamarin.Kotlin.StdLib\Xamarin.Kotlin.StdLib.csproj">
       <Project>{A905D25B-A356-47F7-ACDD-70DA7596B1D1}</Project>
       <Name>Xamarin.Kotlin.StdLib</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedJar Include="..\..\externals\kotlin-stdlib-jdk7.jar">
+      <Link>Jars\kotlin-stdlib-jdk7.jar</Link>
+    </EmbeddedJar>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.Bindings.targets" />
 </Project>

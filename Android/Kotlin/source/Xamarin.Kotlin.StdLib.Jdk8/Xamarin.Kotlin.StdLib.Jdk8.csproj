@@ -1,7 +1,9 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <AndroidCodegenTarget>XAJavaInterop1</AndroidCodegenTarget>
+    <TargetFrameworkVersion>v9.0</TargetFrameworkVersion>
+    <AndroidClassParser>class-parse</AndroidClassParser>
   </PropertyGroup>
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -11,11 +13,13 @@
     <OutputType>Library</OutputType>
     <RootNamespace>Xamarin.Kotlin.StdLib.Jdk8</RootNamespace>
     <AssemblyName>Xamarin.Kotlin.StdLib.Jdk8</AssemblyName>
-    <TargetFrameworkVersion>v7.1</TargetFrameworkVersion>
     <MonoAndroidResourcePrefix>Resources</MonoAndroidResourcePrefix>
     <MonoAndroidAssetsPrefix>Assets</MonoAndroidAssetsPrefix>
     <AndroidUseLatestPlatformSdk>true</AndroidUseLatestPlatformSdk>
-    <AndroidClassParser>class-parse</AndroidClassParser>
+    <TargetFrameworkVersion>v9.0</TargetFrameworkVersion>
+    <AndroidEnableDesugar>true</AndroidEnableDesugar>
+    <AndroidDexTool>d8</AndroidDexTool>    
+    <AndroidClassParser>jar2xml</AndroidClassParser>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -57,15 +61,15 @@
     <Folder Include="Jars\" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedReferenceJar Include="..\..\externals\kotlin-stdlib-jdk8.jar">
-      <Link>Jars\kotlin-stdlib-jdk8.jar</Link>
-    </EmbeddedReferenceJar>
+    <ProjectReference Include="..\Xamarin.Kotlin.StdLib\Xamarin.Kotlin.StdLib.csproj">
+      <Project>{A905D25B-A356-47F7-ACDD-70DA7596B1D1}</Project>
+      <Name>Xamarin.Kotlin.StdLib</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Xamarin.Kotlin.StdLib.Jdk7\Xamarin.Kotlin.StdLib.Jdk7.csproj">
-      <Project>{B2E2FEF0-A260-433E-A747-485D6220D51C}</Project>
-      <Name>Xamarin.Kotlin.StdLib.Jdk7</Name>
-    </ProjectReference>
+    <EmbeddedJar Include="..\..\externals\kotlin-stdlib-jdk8.jar">
+      <Link>Jars\kotlin-stdlib-jdk8.jar</Link>
+    </EmbeddedJar>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.Bindings.targets" />
 </Project>
