@@ -6,6 +6,7 @@ var TARGET = Argument ("t", Argument ("target", "Default"));
 var PLACES_VERSION = "1.1.0";
 var PLACES_NUGET_VERSION = PLACES_VERSION;
 var PLACES_URL = $"https://maven.google.com/com/google/android/libraries/places/places/{PLACES_VERSION}/places-{PLACES_VERSION}.aar";
+var ANDROID_SDK_BUILD_TOOLS_VERSION = "28.0.3";
 
 Task ("externals")
 	.WithCriteria (!FileExists ("./externals/places.aar"))
@@ -32,6 +33,7 @@ Task("libs")
 		c.Targets.Clear();
 		c.Targets.Add("GooglePlaces");
 		c.Properties.Add("DesignTimeBuild", new [] { "false" });
+		c.Properties.Add("AndroidSdkBuildToolsVersion", new [] { ANDROID_SDK_BUILD_TOOLS_VERSION });
 	});
 });
 
@@ -47,6 +49,7 @@ Task("nuget")
 		c.Properties.Add("PackageOutputPath", new [] { MakeAbsolute(new FilePath("./output")).FullPath });
 		c.Properties.Add("PackageRequireLicenseAcceptance", new [] { "true" });
 		c.Properties.Add("DesignTimeBuild", new [] { "false" });
+		c.Properties.Add("AndroidSdkBuildToolsVersion", new [] { ANDROID_SDK_BUILD_TOOLS_VERSION });
 	});
 });
 
@@ -60,6 +63,7 @@ Task("samples")
 		c.Targets.Clear();
 		c.Targets.Add("PlacesSample");
 		c.Properties.Add("DesignTimeBuild", new [] { "false" });
+		c.Properties.Add("AndroidSdkBuildToolsVersion", new [] { ANDROID_SDK_BUILD_TOOLS_VERSION });
 	});
 });
 
