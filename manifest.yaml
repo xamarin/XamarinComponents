@@ -177,7 +177,7 @@
 - Name: Kotlin
   BuildScript: ./Android/Kotlin/build.cake
   TriggerPaths: [ Android/Kotlin ]
-  MacBuildTargets: [ nuget, samples ]
+  MacBuildTargets: [ nuget ]
 - Name: UniversalImageLoader
   BuildScript: ./Android/UniversalImageLoader/build.cake
   TriggerPaths: [ Android/UniversalImageLoader ]
