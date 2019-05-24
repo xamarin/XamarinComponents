@@ -42,7 +42,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <EmbeddedReferenceJar Include="..\..\externals\threetenbp-no-tzdb.jar" />
+    <EmbeddedJar Include="..\..\externals\threetenbp-no-tzdb.jar" />
     <LibraryProjectZip Include="..\..\externals\threetenabp.aar" />
   </ItemGroup>
 
