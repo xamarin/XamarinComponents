@@ -4,7 +4,8 @@
 var TARGET = Argument ("t", Argument ("target", "Default"));
 
 var PLACES_VERSION = "1.1.0";
-var PLACES_NUGET_VERSION = PLACES_VERSION;
+var XAMARIN_FIX_VERSION = "1";
+var PLACES_NUGET_VERSION = $"{PLACES_VERSION}.{XAMARIN_FIX_VERSION}";
 var PLACES_URL = $"https://maven.google.com/com/google/android/libraries/places/places/{PLACES_VERSION}/places-{PLACES_VERSION}.aar";
 var ANDROID_SDK_BUILD_TOOLS_VERSION = "28.0.3";
 
