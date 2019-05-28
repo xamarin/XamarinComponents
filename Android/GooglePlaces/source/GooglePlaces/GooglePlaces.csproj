@@ -24,7 +24,7 @@
     <PackageProjectUrl>https://go.microsoft.com/fwlink/?linkid=2087149</PackageProjectUrl>
     <PackageLicenseUrl>https://go.microsoft.com/fwlink/?linkid=2087221</PackageLicenseUrl>
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
-    <PackageVersion>1.1.0</PackageVersion>
+    <PackageVersion>1.1.0.1</PackageVersion>
   </PropertyGroup>
 
   <ItemGroup>
@@ -42,20 +42,20 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Xamarin.Android.Support.v7.AppCompat" Version="28.0.0.1" PrivateAssets="All" />
-    <PackageReference Include="Xamarin.Android.Support.v7.CardView" Version="28.0.0.1" PrivateAssets="All" />
-    <PackageReference Include="Xamarin.Android.Support.v7.RecyclerView" Version="28.0.0.1" PrivateAssets="All" />
-    <PackageReference Include="Xamarin.Android.Support.v4" Version="28.0.0.1" PrivateAssets="All" />
-    <PackageReference Include="Xamarin.Android.Volley" Version="1.1.1" PrivateAssets="All" />
-    <PackageReference Include="Xamarin.Android.Glide" Version="4.9.0" PrivateAssets="All" />
-    <PackageReference Include="Xamarin.GooglePlayServices.Base" Version="71.1601.0-preview3" PrivateAssets="All" />
-    <PackageReference Include="Xamarin.GooglePlayServices.Basement" Version="71.1610.0-preview3" PrivateAssets="All" />
-    <PackageReference Include="Xamarin.GooglePlayServices.Clearcut" Version="71.1600.0-preview3" PrivateAssets="All" />
-    <PackageReference Include="Xamarin.GooglePlayServices.Location" Version="71.1600.0-preview3" PrivateAssets="All" />
-    <PackageReference Include="Xamarin.GooglePlayServices.Maps" Version="71.1600.0-preview3" PrivateAssets="All" />
-    <PackageReference Include="Xamarin.GooglePlayServices.Tasks" Version="71.1601.0-preview3" PrivateAssets="All" />
-    <PackageReference Include="Xamarin.Google.AutoValue.Annotations" Version="1.6.5" PrivateAssets="All" />
-    <PackageReference Include="GoogleGson" Version="2.8.5" PrivateAssets="All" />
+    <PackageReference Include="Xamarin.Android.Support.v7.AppCompat" Version="28.0.0.1" />
+    <PackageReference Include="Xamarin.Android.Support.v7.CardView" Version="28.0.0.1" />
+    <PackageReference Include="Xamarin.Android.Support.v7.RecyclerView" Version="28.0.0.1" />
+    <PackageReference Include="Xamarin.Android.Support.v4" Version="28.0.0.1" />
+    <PackageReference Include="Xamarin.Android.Volley" Version="1.1.1" />
+    <PackageReference Include="Xamarin.Android.Glide" Version="4.9.0" />
+    <PackageReference Include="Xamarin.GooglePlayServices.Base" Version="71.1601.0-preview3" />
+    <PackageReference Include="Xamarin.GooglePlayServices.Basement" Version="71.1610.0-preview3" />
+    <PackageReference Include="Xamarin.GooglePlayServices.Clearcut" Version="71.1600.0-preview3" />
+    <PackageReference Include="Xamarin.GooglePlayServices.Location" Version="71.1600.0-preview3" />
+    <PackageReference Include="Xamarin.GooglePlayServices.Maps" Version="71.1600.0-preview3" />
+    <PackageReference Include="Xamarin.GooglePlayServices.Tasks" Version="71.1601.0-preview3" />
+    <PackageReference Include="Xamarin.Google.AutoValue.Annotations" Version="1.6.5" />
+    <PackageReference Include="GoogleGson" Version="2.8.5" />
     <PackageReference Include="MSBuild.Sdk.Extras" Version="1.4.0" PrivateAssets="All" />
   </ItemGroup>
 
