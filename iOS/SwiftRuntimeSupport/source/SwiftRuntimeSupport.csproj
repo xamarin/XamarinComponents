@@ -24,6 +24,7 @@
   <ItemGroup>
     <None Include="SwiftRuntimeSupport.targets" Pack="True" PackagePath="build/Xamarin.iOS.SwiftRuntimeSupport.targets" />
     <None Include="..\License.md" Pack="True" PackagePath="LICENSE.md" />
+    <None Include="..\readme.txt" Pack="True" PackagePath="readme.txt" />
   </ItemGroup>
 
   <ItemGroup>
