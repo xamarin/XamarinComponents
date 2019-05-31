@@ -1,0 +1,13 @@
+﻿<metadata>
+	<!-- namespaces -->
+	<attr path="/api/package[@name='com.android.billingclient']" name="managedName">Android.BillingClient</attr>
+  <attr path="/api/package[@name='com.android.billingclient.api']" name="managedName">Android.BillingClient.Api</attr>
+  <attr path="/api/package[@name='com.android.billingclient.util']" name="managedName">Android.BillingClient.Util</attr>
+  <attr path="/api/package[@name='com.android.vending.billing']" name="managedName">Android.Vending.Billing</attr>
+
+  <!-- These were made into enums -->
+  <remove-node path="/api/package[@name='com.android.billingclient.api']/interface[@name='BillingClient.ChildDirected']" />
+  <remove-node path="/api/package[@name='com.android.billingclient.api']/interface[@name='BillingClient.UnderAgeOfConsent']" />
+  <remove-node path="/api/package[@name='com.android.billingclient.api']/interface[@name='Purchase.PurchaseState']" />
+  
+</metadata>
