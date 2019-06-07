@@ -7,13 +7,13 @@ var IOS_PODS = new List<string> {
 	"platform :ios, '8.0'",
 	"install! 'cocoapods', :integrate_targets => false",
 	"target 'Xamarin' do",
-	"pod 'SDWebImage', '4.4.6'",
-	"pod 'SDWebImage/MapKit', '4.4.6'",
-	"pod 'SDWebImage/WebP', '4.4.6'",
+	"pod 'SDWebImage', '5.0.2'",
+	"pod 'SDWebImage/MapKit', '5.0.2'",
+	"pod 'SDWebImage/WebP', '5.0.2'",
 	"end",
 };
 
-var POD_VERSION = "4.4.6";
+var POD_VERSION = "5.0.2";
 
 var CreatePodSpec = new Action<string, string> ((platform, version) => {
 	var v1 = CocoaPodVersion () >= new System.Version (1, 0);
