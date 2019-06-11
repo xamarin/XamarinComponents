@@ -574,3 +574,7 @@
   BuildScript: ./Util/NugetAuditor/build.cake
   TriggerPaths: [ Util/NugetAuditor ]
   MacBuildTargets: [ nuget ]
+- Name: SamplePackager
+  BuildScript: ./Util/SamplePackager/build.cake
+  TriggerPaths: [ Util/SamplePackager ]
+  MacBuildTargets: [ nuget ]
