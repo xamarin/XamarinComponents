@@ -35,5 +35,5 @@
   
      <remove-node path="/api/package[@name='com.google.ar.sceneform.rendering']/class[@name='Renderable.Builder']/method[@name='build' and count(parameter)=0]" />
     <remove-node path="/api/package[@name='com.google.ar.sceneform.rendering']/class[@name='Renderable.Builder']/method[@name='getRenderableClass' and count(parameter)=0]" />
-
+    <remove-node path="/api/package[@name='com.google.ar.sceneform.rendering']/class[@name='Renderable.Builder']/method[@name='getRenderableRegistry' and count(parameter)=0]" />
 </metadata>
