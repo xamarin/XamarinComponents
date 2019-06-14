@@ -14,7 +14,7 @@
     <OutputType>Library</OutputType>
     <RootNamespace>YouTube.Player.Android</RootNamespace>
     <AssemblyName>YouTube.Player.Android</AssemblyName>
-    <TargetFrameworkVersion>v9.0</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v8.1</TargetFrameworkVersion>
     <MonoAndroidResourcePrefix>Resources</MonoAndroidResourcePrefix>
     <MonoAndroidAssetsPrefix>Assets</MonoAndroidAssetsPrefix>
     <AndroidTlsProvider>
