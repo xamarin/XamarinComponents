@@ -3,17 +3,18 @@
 
 var TARGET = Argument ("t", Argument ("target", "Default"));
 
-var IOS_PODS = new List<string> {
-	"platform :ios, '8.0'",
-	"install! 'cocoapods', :integrate_targets => false",
-	"target 'Xamarin' do",
-	"pod 'SDWebImage', '5.0.2'",
-	"pod 'SDWebImage/MapKit', '5.0.2'",
-	"pod 'SDWebImage/WebP', '5.0.2'",
-	"end",
-};
+// var IOS_PODS = new List<string> {
+// 	"platform :ios, '8.0'",
+// 	"install! 'cocoapods', :integrate_targets => false",
+// 	"target 'Xamarin' do",
+// 	"pod 'SDWebImage', '5.0.2'",
+// 	"pod 'SDWebImage/MapKit', '5.0.2'",
+// 	"pod 'SDWebImage/WebP', '5.0.2'",
+// 	"end",
+// };
 
-var POD_VERSION = "5.0.2";
+var POD_VERSION = "5.0.6";
+var WebP_VERSION = "0.2.3";
 
 var CreatePodSpec = new Action<string, string> ((platform, version) => {
 	var v1 = CocoaPodVersion () >= new System.Version (1, 0);
@@ -28,8 +29,7 @@ var CreatePodSpec = new Action<string, string> ((platform, version) => {
 		"target 'Xamarin' do",
 		"  pod 'SDWebImage', '" + POD_VERSION + "'",
 		(mapkit ? "  pod 'SDWebImage/MapKit', '" + POD_VERSION + "'" : ""),
-		(gif ? "  pod 'SDWebImage/GIF', '" + POD_VERSION + "'" : ""),
-		(webp ? "  pod 'SDWebImage/WebP', '" + POD_VERSION + "'" : ""),
+		(webp ? "  pod 'SDWebImageWebPCoder', '" + WebP_VERSION + "'" : ""),
 		"end",
 	};
 
@@ -74,7 +74,7 @@ Task ("externals")
 	CreatePodSpec ("ios", "8.0");
 	BuildXCode ("./Pods/Pods.xcodeproj", "SDWebImage", "SDWebImage", "./externals/ios/", TargetOS.iOS);
 	BuildXCode ("./Pods/Pods.xcodeproj", "libwebp", "libwebp", "./externals/ios/", TargetOS.iOS);
-	BuildXCode ("./Pods/Pods.xcodeproj", "FLAnimatedImage", "FLAnimatedImage", "./externals/ios/", TargetOS.iOS);
+	// BuildXCode ("./Pods/Pods.xcodeproj", "FLAnimatedImage", "FLAnimatedImage", "./externals/ios/", TargetOS.iOS);
 
 	// macOS
 	EnsureDirectoryExists ("./externals/osx");
@@ -84,7 +84,7 @@ Task ("externals")
 
 	// tvOS
 	EnsureDirectoryExists ("./externals/tvos");
-	CreatePodSpec ("tvos", "9.0");
+	CreatePodSpec ("tvos", "9.2");
 	BuildXCode ("./Pods/Pods.xcodeproj", "SDWebImage", "SDWebImage", "./externals/tvos/", TargetOS.tvOS);
 	BuildXCode ("./Pods/Pods.xcodeproj", "libwebp", "libwebp", "./externals/tvos/", TargetOS.tvOS);
 });
