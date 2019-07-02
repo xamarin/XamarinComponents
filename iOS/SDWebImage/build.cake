@@ -15,6 +15,7 @@ var TARGET = Argument ("t", Argument ("target", "Default"));
 
 var POD_VERSION = "5.0.6";
 var WebP_VERSION = "0.2.3";
+var FLP_VERSION = "0.3.0"; 
 
 var CreatePodSpec = new Action<string, string> ((platform, version) => {
 	var v1 = CocoaPodVersion () >= new System.Version (1, 0);
@@ -29,6 +30,7 @@ var CreatePodSpec = new Action<string, string> ((platform, version) => {
 		"target 'Xamarin' do",
 		"  pod 'SDWebImage', '" + POD_VERSION + "'",
 		(mapkit ? "  pod 'SDWebImage/MapKit', '" + POD_VERSION + "'" : ""),
+		(gif ? "  pod 'SDWebImageFLPlugin', '" + FLP_VERSION + "'" : ""),
 		(webp ? "  pod 'SDWebImageWebPCoder', '" + WebP_VERSION + "'" : ""),
 		"end",
 	};
@@ -74,7 +76,7 @@ Task ("externals")
 	CreatePodSpec ("ios", "8.0");
 	BuildXCode ("./Pods/Pods.xcodeproj", "SDWebImage", "SDWebImage", "./externals/ios/", TargetOS.iOS);
 	BuildXCode ("./Pods/Pods.xcodeproj", "libwebp", "libwebp", "./externals/ios/", TargetOS.iOS);
-	// BuildXCode ("./Pods/Pods.xcodeproj", "FLAnimatedImage", "FLAnimatedImage", "./externals/ios/", TargetOS.iOS);
+	BuildXCode ("./Pods/Pods.xcodeproj", "FLAnimatedImage", "FLAnimatedImage", "./externals/ios/", TargetOS.iOS);
 
 	// macOS
 	EnsureDirectoryExists ("./externals/osx");

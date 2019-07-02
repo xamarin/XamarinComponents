@@ -35,6 +35,11 @@
     <Reference Include="Xamarin.iOS" />
   </ItemGroup>
   <ItemGroup>
+    <NativeReference Include="..\..\externals\ios\libFLAnimatedImage.a">
+      <Kind>Static</Kind>
+      <SmartLink>True</SmartLink>
+      <ForceLoad>True</ForceLoad>
+    </NativeReference>
     <NativeReference Include="..\..\externals\ios\liblibwebp.a">
       <Kind>Static</Kind>
       <SmartLink>True</SmartLink>
