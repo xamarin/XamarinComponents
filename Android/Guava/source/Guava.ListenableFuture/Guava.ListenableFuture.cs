@@ -1,0 +1,2 @@
+// A single @(Compile) item is required for MSBuild to put [assembly:TargetFramework] in the output assembly
+// See: https://github.com/microsoft/msbuild/blob/0cd0e92a7243088977d31b56626b56d6116de016/src/Tasks/Microsoft.Common.CurrentVersion.targets#L3341-L3344
