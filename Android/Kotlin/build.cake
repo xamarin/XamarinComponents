@@ -44,18 +44,13 @@ Task ("externals")
 			}
 
 
-			string dir = "./native/KotlinSample/kotlinsamplelibrary/";
-			int exitCodeWithArgument =
-									StartProcess
-									(
-										"gradle",
-										new ProcessSettings
-										{
-											Arguments = "build",
-											RedirectStandardOutput = false,
-											WorkingDirectory = dir
-										}
-									);
+			string dir = "./native/KotlinSample/";
+			var gradlew = MakeAbsolute((FilePath)"./native/KotlinSample/gradlew");
+
+			int exitCodeWithArgument = StartProcess (gradlew, new ProcessSettings {
+				Arguments = "build",
+				WorkingDirectory = dir
+			});
 
 		}
 );
