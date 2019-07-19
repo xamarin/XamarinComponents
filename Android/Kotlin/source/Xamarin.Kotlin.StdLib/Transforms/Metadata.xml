@@ -208,8 +208,7 @@
     </remove-node>
     
     <remove-node
-        path="/api/package[@name='kotlin.jvm.internal']"
-        >
+        path="/api/package[@name='kotlin.jvm.internal']/class[not(starts-with(@name,'Intrinsics'))]">
     </remove-node>
 
     <remove-node
