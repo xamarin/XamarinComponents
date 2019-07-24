@@ -46,6 +46,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="Xamarin.iOS.SwiftRuntimeSupport" Version="0.1.0" />
     <PackageReference Include="MSBuild.Sdk.Extras" Version="1.4.0" PrivateAssets="All" />
   </ItemGroup>
 
@@ -54,9 +55,11 @@
     <Compile Remove="Enums.cs" />
     <Compile Remove="ApiDefinition.cs" />
   </ItemGroup>
+
   <ItemGroup>
     <ObjcBindingCoreSource Include="ApiDefConstants.cs" Condition=" '$(EnableDefaultCompileItems)' == 'true' " />
   </ItemGroup>
+  
   <ItemGroup>
     <ObjcBindingApiDefinition Include="Enums.cs" Condition=" '$(EnableDefaultCompileItems)' == 'true' " />
     <ObjcBindingApiDefinition Include="ApiDefinition.cs" Condition=" '$(EnableDefaultCompileItems)' == 'true' " />
