@@ -1,12 +1,12 @@
 PODS:
-  - OfficeUIFabric (0.2.2)
+  - OfficeUIFabric (0.2.13)
 
 DEPENDENCIES:
-  - OfficeUIFabric (= 0.2.2)
+  - OfficeUIFabric (= 0.2.13)
 
 SPEC CHECKSUMS:
-  OfficeUIFabric: 511e603a9807706b6688b9a2178f3cc5a356a3d1
+  OfficeUIFabric: 7bfed91a2705eeedfbcb2f8034b427b545e67df7
 
-PODFILE CHECKSUM: a158827ed8e45884de6e91a4a0676e9f262db24d
+PODFILE CHECKSUM: 46cc09dc3dd02fcc3c78f71016a80de4732b5acd
 
 COCOAPODS: 1.4.0

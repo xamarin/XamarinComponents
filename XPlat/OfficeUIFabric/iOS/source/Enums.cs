@@ -36,6 +36,20 @@ namespace Microsoft.OfficeUIFabric {
 	}
 
 	[Native]
+	public enum MSBadgeViewSize : long {
+		Small = 0,
+		Medium = 1
+	}
+
+	[Native]
+	public enum MSTableViewCellCustomViewSize : long {
+		Default = 0,
+		Zero = 1,
+		Small = 2,
+		Medium = 3,
+	}
+
+	[Native]
 	public enum MSButtonStyle : long {
 		PrimaryFilled = 0,
 		PrimaryOutline = 1,
@@ -65,6 +79,12 @@ namespace Microsoft.OfficeUIFabric {
 	}
 
 	[Native]
+	public enum MSDateTimePickerDateRangePresentation : long {
+		Paged = 0,
+		Tabbed = 1
+	}
+
+	[Native]
 	public enum MSDateTimePickerMode : long {
 		Date = 0,
 		Time = 1,
@@ -73,9 +93,29 @@ namespace Microsoft.OfficeUIFabric {
 	}
 
 	[Native]
+	public enum MSDimmingViewType : long {
+		White = 1,
+		Black = 2,
+		None = 3
+	}
+
+	[Native]
+	public enum MSDrawerPresentationBackground : long {
+		None = 0,
+		Black = 1
+	}
+
+	[Native]
 	public enum MSDrawerPresentationDirection : long {
 		Down = 0,
 		Up = 1,
+	}
+
+	[Native]
+	public enum MSDrawerPresentationStyle : long {
+		Automatic = -1,
+		Slideover = 0,
+		Popover = 1
 	}
 
 	[Native]
@@ -86,46 +126,16 @@ namespace Microsoft.OfficeUIFabric {
 	}
 
 	[Native]
-	public enum MSTextColorStyle : long {
-		Regular = 0,
-		Secondary = 1,
-		White = 2,
-		Primary = 3,
-		Error = 4,
-		Warning = 5,
-	}
-
-	[Native]
-	public enum MSTextStyle : long {
-		Title1 = 0,
-		Title2 = 1,
-		Headline = 2,
-		Body = 3,
-		Subhead = 4,
-		Footnote = 5,
-		Caption1 = 6,
-		Caption2 = 7,
-	}
-
-	[Native]
-	public enum MSCustomViewSize : long {
-		Default = 0,
-		Zero = 1,
-		Small = 2,
-		Medium = 3,
-	}
-
-	[Native]
-	public enum MSTableViewCellAccessoryType : long {
-		None = 0,
-		DisclosureIndicator = 1,
-		DetailButton = 2,
-	}
-
-	[Native]
 	public enum MSPersonaListViewSelectionDirection : long {
 		Next = 1,
 		Prev = -1,
+	}
+
+	[Native]
+	public enum MSPopupMenuItemExecutionMode : long {
+		OnSelection = 0,
+		AfterPopupMenuDismissal = 1,
+		AfterPopupMenuDismissalCompleted = 2
 	}
 
 	[Native]
@@ -141,21 +151,87 @@ namespace Microsoft.OfficeUIFabric {
 	}
 
 	[Native]
+	public enum MSTableViewCellAccessoryType : long {
+		None = 0,
+		DisclosureIndicator = 1,
+		DetailButton = 2,
+		Checkmark = 3
+	}
+
+	[Native]
+	public enum MSTableViewHeaderFooterViewStyle : long {
+		Header = 0,
+		Divider = 1,
+		DividerHighlighted = 2,
+		Footer = 3
+	}
+
+	[Native]
+	public enum MSTextColorStyle : long {
+		Regular = 0,
+		Secondary = 1,
+		White = 2,
+		Primary = 3,
+		Error = 4,
+		Warning = 5,
+		Disabled = 6
+	}
+
+	[Native]
+	public enum MSTextStyle : long {
+		LargeTitle = 0,
+		Title1 = 1,
+		Title2 = 2,
+		Headline = 3,
+		Body = 4,
+		Subhead = 5,
+		Footnote = 6,
+		Button1 = 7,
+		Button2 = 8,
+		Button3 = 9,
+		Caption1 = 10,
+		Caption2 = 11
+	}
+
+	[Native]
 	public enum MSTimeStringCompactness : long {
 		ColumnsMinutes = 1,
 		MSTimeStringCompactnessHours = 2,
 	}
 
 	[Native]
-	public enum MSTwoLinesTitleStyle : long {
-		Light = 0,
-		Dark = 1,
+	public enum MSArrowDirection : long {
+		Up = 0,
+		Down = 1,
+		Left = 2,
+		Right = 3
 	}
 
 	[Native]
-	public enum MSTwoLinesTitleViewButtonStyle : long {
-		Disclosure = 0,
-		DownArrow = 1,
+	public enum MSDismissMode : long {
+		Anywhere = 0,
+		OnTooltip = 1,
+		OnTooltipOrAnchor = 2
+	}
+
+	[Native]
+	public enum MSTwoLineTitleViewStyle : long {
+		Light = 0,
+		Dark = 1
+	}
+
+	[Native]
+	public enum MSTwoLineTitleViewInteractivePart : long {
+		None = 0,
+		Title = 1,
+		Subtitle = 2
+	}
+
+	[Native]
+	public enum MSTwoLineTitleViewAccessoryType : long {
+		None = 0,
+		Disclosure = 1,
+		DownArrow = 2
 	}
 
 	[Native]
@@ -163,6 +239,4 @@ namespace Microsoft.OfficeUIFabric {
 		Blur = 0,
 		Dim = 1,
 	}
-
-
 }

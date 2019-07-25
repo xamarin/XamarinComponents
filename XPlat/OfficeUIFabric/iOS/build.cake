@@ -1,7 +1,7 @@
 
 var TARGET = Argument ("t", Argument ("target", "Default"));
 
-var PODFILE_VERSION = "0.2.2";
+var PODFILE_VERSION = "0.2.13";
 var NUGET_VERSION = PODFILE_VERSION;
 
 Task ("externals")

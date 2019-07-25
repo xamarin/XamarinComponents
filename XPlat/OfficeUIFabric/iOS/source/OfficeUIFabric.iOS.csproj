@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <TargetFrameworks>Xamarin.iOS10</TargetFrameworks>
@@ -20,7 +20,7 @@
     <PackageProjectUrl>https://go.microsoft.com/fwlink/?linkid=2092028</PackageProjectUrl>
     <PackageLicenseFile>LICENSE.md</PackageLicenseFile>
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
-    <PackageVersion>0.2.2</PackageVersion>
+    <PackageVersion>0.2.13</PackageVersion>
   </PropertyGroup>
 
   <ItemGroup>
