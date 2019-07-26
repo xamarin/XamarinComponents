@@ -1,7 +1,7 @@
 
 var TARGET = Argument ("t", Argument ("target", "Default"));
 
-var AAR_VERSION = "0.2.3";
+var AAR_VERSION = "0.2.10";
 var NUGET_VERSION = AAR_VERSION;
 var AAR_URL = $"http://jcenter.bintray.com/com/microsoft/uifabric/OfficeUIFabric/{AAR_VERSION}/OfficeUIFabric-{AAR_VERSION}.aar";
 
@@ -23,9 +23,10 @@ Task("libs")
 	.IsDependentOn("externals")
 	.Does(() =>
 {
+	NuGetRestore("./OfficeUIFabric.sln", new NuGetRestoreSettings { });
+
 	MSBuild("./OfficeUIFabric.sln", c => {
 		c.Configuration = "Release";
-		c.Restore = true;
 		c.MaxCpuCount = 0;
 		c.Properties.Add("DesignTimeBuild", new [] { "false" });
 	});
