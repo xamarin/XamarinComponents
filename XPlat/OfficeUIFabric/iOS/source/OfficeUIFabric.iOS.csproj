@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFrameworks>Xamarin.iOS10</TargetFrameworks>
+    <IsBindingProject>true</IsBindingProject>
+    <AssemblyName>Xamarin.Microsoft.OfficeUIFabric</AssemblyName>
+    <IPhoneResourcePrefix>Resources</IPhoneResourcePrefix>
+    <RootNamespace>Microsoft.OfficeUIFabric</RootNamespace>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <ProcessEnums>true</ProcessEnums>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <PackageId>Xamarin.Microsoft.OfficeUIFabric.iOS</PackageId>
+    <Title>Office UI Fabric SDK for Xamarin.iOS</Title>
+    <Summary>Xamarin.iOS bindings for Office UI Fabric</Summary>
+    <Authors>Microsoft</Authors>
+    <Owners>Microsoft</Owners>
+    <Copyright>© Microsoft Corporation. All rights reserved.</Copyright>
+    <PackageProjectUrl>https://go.microsoft.com/fwlink/?linkid=2092028</PackageProjectUrl>
+    <PackageLicenseFile>LICENSE.md</PackageLicenseFile>
+    <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
+    <PackageVersion>0.2.13</PackageVersion>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Include="..\externals\OfficeUIFabric.framework\*">
+      <Link>OfficeUIFabric.framework</Link>
+    </None>
+    <None Include="..\External-Dependency-Info.txt" Pack="True" PackagePath="THIRD-PARTY-NOTICES.txt" />
+    <None Include="..\License.md" Pack="True" PackagePath="LICENSE.md" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="Xamarin.iOS" />
+  </ItemGroup>
+  
+  <ItemGroup>
+    <Folder Include="Resources\" />
+  </ItemGroup>
+  
+  <ItemGroup>
+    <NativeReference Include="..\externals\OfficeUIFabric.framework">
+      <Kind>Framework</Kind>
+    </NativeReference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Xamarin.iOS.SwiftRuntimeSupport" Version="0.1.0" />
+    <PackageReference Include="MSBuild.Sdk.Extras" Version="1.4.0" PrivateAssets="All" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Remove="ApiDefConstants.cs" />
+    <Compile Remove="Enums.cs" />
+    <Compile Remove="ApiDefinition.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ObjcBindingCoreSource Include="ApiDefConstants.cs" Condition=" '$(EnableDefaultCompileItems)' == 'true' " />
+  </ItemGroup>
+  
+  <ItemGroup>
+    <ObjcBindingApiDefinition Include="Enums.cs" Condition=" '$(EnableDefaultCompileItems)' == 'true' " />
+    <ObjcBindingApiDefinition Include="ApiDefinition.cs" Condition=" '$(EnableDefaultCompileItems)' == 'true' " />
+  </ItemGroup>
+  
+  <Import Project="$(MSBuildSDKExtrasTargets)" Condition="Exists('$(MSBuildSDKExtrasTargets)')" />
+
+<!-- We are embedding a framework using NativeReference tag but, on Windows with .NET Core project, 
+     this tags means another thing. On windows, if a NativeReference exists it creates a file named
+     Native.$(AssemblyName).manifest which on macOS is not being generated. This is just to satisfy
+     the MSBuild packing process as it's looking for it. It seems not to be packed in the end. -->
+  <Target Name="_TouchNativeManifestWorkaround" BeforeTargets="GenerateNuspec" Condition="!Exists('$(OutputPath)$(TargetFrameworks)\Native.$(AssemblyName).manifest')">
+    <Touch Files="$(OutputPath)$(TargetFrameworks)\Native.$(AssemblyName).manifest" AlwaysCreate="True" />
+  </Target>
+</Project>

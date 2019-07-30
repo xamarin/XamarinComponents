@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<metadata>
+  <attr path="/api/package[@name='com.microsoft.officeuifabric']" name="managedName">Microsoft.OfficeUIFabric</attr>
+  <attr path="/api/package[@name='com.microsoft.officeuifabric.calendar']" name="managedName">Microsoft.OfficeUIFabric</attr>
+  <attr path="/api/package[@name='com.microsoft.officeuifabric.datetimepicker']" name="managedName">Microsoft.OfficeUIFabric</attr>
+  <attr path="/api/package[@name='com.microsoft.officeuifabric.managers']" name="managedName">Microsoft.OfficeUIFabric</attr>
+  <attr path="/api/package[@name='com.microsoft.officeuifabric.peoplepicker']" name="managedName">Microsoft.OfficeUIFabric</attr>
+  <attr path="/api/package[@name='com.microsoft.officeuifabric.persona']" name="managedName">Microsoft.OfficeUIFabric</attr>
+  <attr path="/api/package[@name='com.microsoft.officeuifabric.snackbar']" name="managedName">Microsoft.OfficeUIFabric</attr>
+  <attr path="/api/package[@name='com.microsoft.officeuifabric.tooltip']" name="managedName">Microsoft.OfficeUIFabric</attr>
+  <attr path="/api/package[@name='com.microsoft.officeuifabric.util']" name="managedName">Microsoft.OfficeUIFabric</attr>
+  <attr path="/api/package[@name='com.microsoft.officeuifabric.view']" name="managedName">Microsoft.OfficeUIFabric</attr>
+  <attr path="/api/package[@name='com.microsoft.officeuifabric.bottomsheet']" name="managedName">Microsoft.OfficeUIFabric</attr>
+  <attr path="/api/package[@name='com.microsoft.officeuifabric.drawer']" name="managedName">Microsoft.OfficeUIFabric</attr>
+  <attr path="/api/package[@name='com.microsoft.officeuifabric.listitem']" name="managedName">Microsoft.OfficeUIFabric</attr>
+
+  <attr path="/api/package[@name='com.microsoft.officeuifabric.calendar']/class[@name='CalendarAdapter']/method[@name='onCreateViewHolder' and count(parameter)=2 and parameter[1][@type='android.view.ViewGroup'] and parameter[2][@type='int']]" name="managedReturn">Android.Support.V7.Widget.RecyclerView.ViewHolder</attr>
+  <attr path="/api/package[@name='com.microsoft.officeuifabric.persona']/class[@name='PersonaListAdapter']/method[@name='onCreateViewHolder' and count(parameter)=2 and parameter[1][@type='android.view.ViewGroup'] and parameter[2][@type='int']]" name="managedReturn">Android.Support.V7.Widget.RecyclerView.ViewHolder</attr>
+
+  <remove-node path="/api/package[@name='com.microsoft.officeuifabric.calendar']/class[@name='CalendarAdapter']/method[@name='onBindViewHolder' and count(parameter)=2 and parameter[1][@type='com.microsoft.officeuifabric.calendar.CalendarAdapter.CalendarDayViewHolder'] and parameter[2][@type='int']]" />
+  <remove-node path="/api/package[@name='com.microsoft.officeuifabric.persona']/class[@name='PersonaListAdapter']/method[@name='onBindViewHolder' and count(parameter)=2 and parameter[1][@type='com.microsoft.officeuifabric.persona.PersonaListAdapter.ViewHolder'] and parameter[2][@type='int']]" />
+
+  <attr path="/api/package[@name='com.microsoft.officeuifabric.util']/class[@name='ColorProperty']/method[@name='setValue' and count(parameter)=2 and parameter[1][@type='android.view.View'] and parameter[2][@type='float']]/parameter[1]" name="managedType">Java.Lang.Object</attr>
+  <attr path="/api/package[@name='com.microsoft.officeuifabric.util']/class[@name='ColorProperty']/method[@name='get' and count(parameter)=1 and parameter[1][@type='android.view.View']]/parameter[1]" name="managedType">Java.Lang.Object</attr>
+  <attr path="/api/package[@name='com.microsoft.officeuifabric.util']/class[@name='ColorProperty']/method[@name='get' and count(parameter)=1 and parameter[1][@type='android.view.View']]" name="managedReturn">Java.Lang.Object</attr>
+
+  <attr path="/api/package[@name='com.microsoft.officeuifabric.peoplepicker']/class[@name='PeoplePickerTextView']/method[@name='getViewForObject' and count(parameter)=1 and parameter[1][@type='com.microsoft.officeuifabric.persona.IPersona']]/parameter[1]" name="managedType">Java.Lang.Object</attr>
+  <attr path="/api/package[@name='com.microsoft.officeuifabric.peoplepicker']/class[@name='PeoplePickerTextView']/method[@name='defaultObject' and count(parameter)=1 and parameter[1][@type='java.lang.String']]" name="managedReturn">Java.Lang.Object</attr>
+
+  <remove-node path="/api/package[@name='com.microsoft.officeuifabric.bottomsheet']/class[@name='BottomSheetItem.CREATOR']" />
+</metadata>
