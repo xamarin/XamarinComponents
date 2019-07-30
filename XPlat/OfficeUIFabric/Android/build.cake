@@ -2,7 +2,7 @@
 var TARGET = Argument ("t", Argument ("target", "Default"));
 
 var AAR_VERSION = "0.2.10";
-var NUGET_VERSION = AAR_VERSION;
+var NUGET_VERSION = AAR_VERSION + "-pre1";
 var AAR_URL = $"http://jcenter.bintray.com/com/microsoft/uifabric/OfficeUIFabric/{AAR_VERSION}/OfficeUIFabric-{AAR_VERSION}.aar";
 
 Task ("externals")
