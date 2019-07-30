@@ -1,0 +1,15 @@
+{
+  "Registrations":[ 
+    {
+      "Component": {
+        "Type": "Maven",
+        "Maven": {
+          "ArtifactId": "places",
+          "GroupId": "com.google.android.libraries.places",
+          "Version": "1.1.0"
+        }
+      }
+    }
+  ],
+  "Version": 1
+}

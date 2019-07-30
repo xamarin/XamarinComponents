@@ -1,0 +1,69 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFrameworks>MonoAndroid90</TargetFrameworks>
+    <IsBindingProject>true</IsBindingProject>
+    <AssemblyName>Xamarin.Google.Places</AssemblyName>
+    <MonoAndroidResourcePrefix>Resources</MonoAndroidResourcePrefix>
+    <MonoAndroidAssetsPrefix>Assets</MonoAndroidAssetsPrefix>
+    <AndroidUseLatestPlatformSdk>False</AndroidUseLatestPlatformSdk>
+    <AndroidUseIntermediateDesignerFile>True</AndroidUseIntermediateDesignerFile>
+    <AndroidResgenFile>Resources\Resource.designer.cs</AndroidResgenFile>
+    <RootNamespace>Google.Places</RootNamespace>
+    <AndroidClassParser>class-parse</AndroidClassParser>
+    <AndroidCodegenTarget>XAJavaInterop1</AndroidCodegenTarget>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <PackageId>Xamarin.Google.Android.Places</PackageId>
+    <Title>Google Places for Xamarin.Android</Title>
+    <Summary>Xamarin.Android bindings for Google Places</Summary>
+    <Authors>Microsoft</Authors>
+    <Owners>Microsoft</Owners>
+    <Copyright>© Microsoft Corporation. All rights reserved.</Copyright>
+    <PackageProjectUrl>https://go.microsoft.com/fwlink/?linkid=2087149</PackageProjectUrl>
+    <PackageLicenseUrl>https://go.microsoft.com/fwlink/?linkid=2087221</PackageLicenseUrl>
+    <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
+    <PackageVersion>1.1.0.1</PackageVersion>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <TransformFile Include="Transforms\*.xml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="..\..\externals\places.aar">
+      <Link>places.aar</Link>
+    </None>
+  </ItemGroup>
+
+  <ItemGroup>
+    <LibraryProjectZip Include="..\..\externals\places.aar" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Xamarin.Android.Support.v7.AppCompat" Version="28.0.0.1" />
+    <PackageReference Include="Xamarin.Android.Support.v7.CardView" Version="28.0.0.1" />
+    <PackageReference Include="Xamarin.Android.Support.v7.RecyclerView" Version="28.0.0.1" />
+    <PackageReference Include="Xamarin.Android.Support.v4" Version="28.0.0.1" />
+    <PackageReference Include="Xamarin.Android.Volley" Version="1.1.1.1" />
+    <PackageReference Include="Xamarin.Android.Glide" Version="4.9.0" />
+    <PackageReference Include="Xamarin.GooglePlayServices.Base" Version="71.1601.0-preview3" />
+    <PackageReference Include="Xamarin.GooglePlayServices.Basement" Version="71.1610.0-preview3" />
+    <PackageReference Include="Xamarin.GooglePlayServices.Clearcut" Version="71.1600.0-preview3" />
+    <PackageReference Include="Xamarin.GooglePlayServices.Location" Version="71.1600.0-preview3" />
+    <PackageReference Include="Xamarin.GooglePlayServices.Maps" Version="71.1600.0-preview3" />
+    <PackageReference Include="Xamarin.GooglePlayServices.Tasks" Version="71.1601.0-preview3" />
+    <PackageReference Include="Xamarin.Google.AutoValue.Annotations" Version="1.6.5" />
+    <PackageReference Include="GoogleGson" Version="2.8.5" />
+    <PackageReference Include="MSBuild.Sdk.Extras" Version="1.4.0" PrivateAssets="All" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Remove="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="Mono.Android" />
+  </ItemGroup>
+  <Import Project="$(MSBuildSDKExtrasTargets)" Condition="Exists('$(MSBuildSDKExtrasTargets)')" />
+</Project>

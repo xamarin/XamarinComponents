@@ -25,13 +25,17 @@
     <PackageProjectUrl>https://go.microsoft.com/fwlink/?linkid=2083771</PackageProjectUrl>
     <PackageLicenseUrl>https://go.microsoft.com/fwlink/?linkid=2083684</PackageLicenseUrl>
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
-    <PackageVersion>1.8.0-alpha</PackageVersion>
+    <PackageVersion>1.9.0-preview1</PackageVersion>
   </PropertyGroup>
 
   <ItemGroup>
     <TransformFile Include="Transforms\Metadata.xml" />
+    <TransformFile Include="Transforms\EnumMethods.xml" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Remove="Transforms\EnumMethods.xml" />
+  </ItemGroup>
   <ItemGroup>
     <None Include="..\..\externals\animation.aar">
       <Link>animation.aar</Link>

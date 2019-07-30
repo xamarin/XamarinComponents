@@ -6,7 +6,7 @@ var TARGET = Argument ("t", Argument ("target", "Default"));
 var AAR_VERSION = "1.2.0";
 var JAR_VERSION = "1.3.8";
 
-var NUGET_VERSION = AAR_VERSION;
+var NUGET_VERSION = AAR_VERSION + ".1";
 var AAR_URL = $"https://search.maven.org/remotecontent?filepath=com/jakewharton/threetenabp/threetenabp/{AAR_VERSION}/threetenabp-{AAR_VERSION}.aar";
 var JAR_URL = $"https://search.maven.org/remotecontent?filepath=org/threeten/threetenbp/{JAR_VERSION}/threetenbp-{JAR_VERSION}-no-tzdb.jar";
 

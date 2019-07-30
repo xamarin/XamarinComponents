@@ -1,7 +1,11 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <AndroidCodegenTarget>XAJavaInterop1</AndroidCodegenTarget>
+    <TargetFrameworkVersion>v9.0</TargetFrameworkVersion>
+    <AndroidEnableDesugar>true</AndroidEnableDesugar>
+    <AndroidDexTool>d8</AndroidDexTool>    
+    <AndroidClassParser>jar2xml</AndroidClassParser>
   </PropertyGroup>
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -11,11 +15,13 @@
     <OutputType>Library</OutputType>
     <RootNamespace>Xamarin.Kotlin.StdLib</RootNamespace>
     <AssemblyName>Xamarin.Kotlin.StdLib</AssemblyName>
-    <TargetFrameworkVersion>v7.1</TargetFrameworkVersion>
     <MonoAndroidResourcePrefix>Resources</MonoAndroidResourcePrefix>
     <MonoAndroidAssetsPrefix>Assets</MonoAndroidAssetsPrefix>
     <AndroidUseLatestPlatformSdk>true</AndroidUseLatestPlatformSdk>
-    <AndroidClassParser>class-parse</AndroidClassParser>
+    <TargetFrameworkVersion>v9.0</TargetFrameworkVersion>
+    <AndroidEnableDesugar>true</AndroidEnableDesugar>
+    <AndroidDexTool>d8</AndroidDexTool>    
+    <AndroidClassParser>jar2xml</AndroidClassParser>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -27,6 +33,7 @@
     <WarningLevel>4</WarningLevel>
     <AndroidLinkMode>None</AndroidLinkMode>
     <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
+    <LangVersion>latest</LangVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -38,6 +45,7 @@
     <AndroidManagedSymbols>true</AndroidManagedSymbols>
     <AndroidUseSharedRuntime>false</AndroidUseSharedRuntime>
     <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
+    <LangVersion>latest</LangVersion>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -47,6 +55,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Additions\Additions.cs" />
   </ItemGroup>
   <ItemGroup>
     <TransformFile Include="Transforms\EnumFields.xml" />
@@ -55,11 +64,12 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Jars\" />
+    <Folder Include="Additions\" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedReferenceJar Include="..\..\externals\kotlin-stdlib.jar">
+    <EmbeddedJar Include="..\..\externals\kotlin-stdlib.jar">
       <Link>Jars\kotlin-stdlib.jar</Link>
-    </EmbeddedReferenceJar>
+    </EmbeddedJar>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.Bindings.targets" />
 </Project>
