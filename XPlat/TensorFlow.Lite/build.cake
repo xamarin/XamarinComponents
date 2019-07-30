@@ -52,8 +52,8 @@ Running Cake to Build targets
 #addin nuget:?package=Cake.Xamarin
 #addin nuget:?package=Cake.FileHelpers
 
-var NUGET_VERSION = "1.12.0";
-var AAR_VERSION = "1.12.0";
+var NUGET_VERSION = "1.14.0";
+var AAR_VERSION = "1.14.0";
 var NUGET_PACKAGE_ID = "Xamarin.TensorFlow.Lite";
 
 var TARGET = Argument ("t", Argument ("target", "Default"));
