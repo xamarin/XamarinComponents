@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <TargetFrameworks>Xamarin.iOS10</TargetFrameworks>
@@ -18,9 +18,9 @@
     <Owners>Microsoft</Owners>
     <Copyright>© Microsoft Corporation. All rights reserved.</Copyright>
     <PackageProjectUrl>https://go.microsoft.com/fwlink/?linkid=2092028</PackageProjectUrl>
-    <PackageLicenseFile>LICENSE.md</PackageLicenseFile>
+    <PackageLicenseUrl>https://go.microsoft.com/fwlink/?linkid=2100039</PackageLicenseUrl>
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
-    <PackageVersion>0.2.13</PackageVersion>
+    <PackageVersion>0.2.13-pre1</PackageVersion>
   </PropertyGroup>
 
   <ItemGroup>
