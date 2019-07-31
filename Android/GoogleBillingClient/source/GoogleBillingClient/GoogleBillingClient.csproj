@@ -1,0 +1,55 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFrameworks>MonoAndroid90</TargetFrameworks>
+    <IsBindingProject>true</IsBindingProject>
+    <AssemblyName>Xamarin.Android.BillingClient</AssemblyName>
+    <MonoAndroidResourcePrefix>Resources</MonoAndroidResourcePrefix>
+    <MonoAndroidAssetsPrefix>Assets</MonoAndroidAssetsPrefix>
+    <AndroidUseLatestPlatformSdk>False</AndroidUseLatestPlatformSdk>
+    <AndroidUseIntermediateDesignerFile>True</AndroidUseIntermediateDesignerFile>
+    <AndroidResgenFile>Resources\Resource.designer.cs</AndroidResgenFile>
+    <RootNamespace>Android.BillingClient</RootNamespace>
+    <AndroidClassParser>class-parse</AndroidClassParser>
+    <AndroidCodegenTarget>XAJavaInterop1</AndroidCodegenTarget>
+    <AndroidSdkBuildToolsVersion>28.0.3</AndroidSdkBuildToolsVersion>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <PackageId>Xamarin.Android.BillingClient</PackageId>
+    <Title>Google Android Billing Client bindings for Xamarin.Android</Title>
+    <Summary>Xamarin.Android bindings for Google's Android Billing Client</Summary>
+    <Description>Xamarin.Android bindings for Google's Android Billing Client.</Description>
+    <Authors>Microsoft</Authors>
+    <Owners>Microsoft</Owners>
+    <Copyright>© Microsoft Corporation. All rights reserved.</Copyright>
+    <PackageProjectUrl></PackageProjectUrl>
+    <PackageLicenseUrl>https://go.microsoft.com/fwlink/?linkid=2099698</PackageLicenseUrl>
+    <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
+    <PackageVersion>2.0.0</PackageVersion>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <TransformFile Include="Transforms\Metadata.xml" />
+    <TransformFile Include="Transforms\EnumFields.xml" />
+    <TransformFile Include="Transforms\EnumMethods.xml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="..\..\externals\billing.aar">
+      <Link>billing.jar</Link>
+    </None>
+    <None Include="..\..\External-Dependency-Info.txt" Pack="True" PackagePath="THIRD-PARTY-NOTICES.txt" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <LibraryProjectZip Include="..\..\externals\billing.aar" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="MSBuild.Sdk.Extras" Version="1.6.40" PrivateAssets="All" />
+    <PackageReference Include="Xamarin.Android.Support.Annotations" Version="28.0.0.1" />
+  </ItemGroup>
+
+  <Import Project="$(MSBuildSDKExtrasTargets)" Condition="Exists('$(MSBuildSDKExtrasTargets)')" />
+</Project>
