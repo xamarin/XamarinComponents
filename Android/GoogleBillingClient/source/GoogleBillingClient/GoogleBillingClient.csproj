@@ -3,7 +3,7 @@
   <PropertyGroup>
     <TargetFrameworks>MonoAndroid90</TargetFrameworks>
     <IsBindingProject>true</IsBindingProject>
-    <AssemblyName>Xamarin.Android.BillingClient</AssemblyName>
+    <AssemblyName>Xamarin.Android.Google.BillingClient</AssemblyName>
     <MonoAndroidResourcePrefix>Resources</MonoAndroidResourcePrefix>
     <MonoAndroidAssetsPrefix>Assets</MonoAndroidAssetsPrefix>
     <AndroidUseLatestPlatformSdk>False</AndroidUseLatestPlatformSdk>
@@ -16,14 +16,14 @@
   </PropertyGroup>
 
   <PropertyGroup>
-    <PackageId>Xamarin.Android.BillingClient</PackageId>
+    <PackageId>Xamarin.Android.Google.BillingClient</PackageId>
     <Title>Google Android Billing Client bindings for Xamarin.Android</Title>
     <Summary>Xamarin.Android bindings for Google's Android Billing Client</Summary>
     <Description>Xamarin.Android bindings for Google's Android Billing Client.</Description>
     <Authors>Microsoft</Authors>
     <Owners>Microsoft</Owners>
     <Copyright>© Microsoft Corporation. All rights reserved.</Copyright>
-    <PackageProjectUrl></PackageProjectUrl>
+    <PackageProjectUrl>https://go.microsoft.com/fwlink/?linkid=2100110</PackageProjectUrl>
     <PackageLicenseUrl>https://go.microsoft.com/fwlink/?linkid=2099698</PackageLicenseUrl>
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
     <PackageVersion>2.0.0</PackageVersion>
