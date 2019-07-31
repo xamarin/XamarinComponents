@@ -22,7 +22,7 @@
     <Owners>Microsoft</Owners>
     <Copyright>© Microsoft Corporation. All rights reserved.</Copyright>
     <PackageProjectUrl>https://go.microsoft.com/fwlink/?linkid=2091993</PackageProjectUrl>
-    <PackageLicenseFile>LICENSE.md</PackageLicenseFile>
+    <PackageLicenseUrl>https://go.microsoft.com/fwlink/?linkid=2099940</PackageLicenseUrl>
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
     <PackageVersion>0.2.10</PackageVersion>
   </PropertyGroup>
