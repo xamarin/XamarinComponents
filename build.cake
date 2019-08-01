@@ -20,6 +20,8 @@ var COPY_OUTPUT_TO_ROOT = Argument("copyoutputtoroot", "false").ToLower().Equals
 
 var FORCE_BUILD = Argument ("force", Argument ("forcebuild", Argument ("force-build", "false"))).ToLower ().Equals ("true");
 
+var POD_REPO_UPDATE = Argument ("update", Argument ("repo-update", Argument ("pod-repo-update", false)));
+
 // Print out environment variables to console
 var ENV_VARS = EnvironmentVariables ();
 Information ("Environment Variables: {0}", "");
@@ -37,6 +39,12 @@ Information ("Git Previous Commit: {0}", GIT_PREVIOUS_COMMIT);
 Information ("Git Commit: {0}", GIT_COMMIT);
 Information ("Git Branch: {0}", GIT_BRANCH);
 Information ("Force Build: {0}", FORCE_BUILD);
+
+public enum PodRepoUpdate {
+	NotRequired,
+	Required,
+	Forced
+}
 
 public class CakeStealer
 {
@@ -80,7 +88,7 @@ IEnumerable<string> ExecuteProcess (string file, string args)
 	return stdout;
 }
 
-void BuildGroups (List<BuildGroup> buildGroups, List<string> names, List<string> buildTargets, string gitPath, string gitBranch, string gitPreviousCommit, string gitCommit, bool forceBuild)
+void BuildGroups (List<BuildGroup> buildGroups, List<string> names, List<string> buildTargets, string gitPath, string gitBranch, string gitPreviousCommit, string gitCommit, bool forceBuild, PodRepoUpdate podRepoUpdate)
 {
 	bool runningOnMac = IsRunningOnUnix ();
 	bool runningOnWin = IsRunningOnWindows ();
@@ -127,6 +135,9 @@ void BuildGroups (List<BuildGroup> buildGroups, List<string> names, List<string>
 		Information ("Changed Files:");
 		foreach (var file in changedFiles) {
 			Information ("\t{0}", file);
+			if (podRepoUpdate == PodRepoUpdate.NotRequired && file.EndsWith ("Podfile"))
+
+				podRepoUpdate = PodRepoUpdate.Required;
 
 			foreach (var buildGroup in buildGroups) {
 				// If ignore triggers for the platform this is running on, do not add the group even if the trigger is matched
@@ -152,6 +163,7 @@ void BuildGroups (List<BuildGroup> buildGroups, List<string> names, List<string>
 			}
 		}
 	} else {
+		podRepoUpdate = PodRepoUpdate.Forced;
 		Information ("Groups To Build: {0}", string.Join (", ", buildGroups));
 		groupsToBuild.AddRange (buildGroups);
 	}
@@ -178,6 +190,25 @@ void BuildGroups (List<BuildGroup> buildGroups, List<string> names, List<string>
 				buildGroup.BuildTargets.Clear ();
 				buildGroup.BuildTargets.AddRange (buildTargets);				
 			}	
+		}
+
+		if (podRepoUpdate != PodRepoUpdate.NotRequired) {
+			string message = string.Empty;
+			if (podRepoUpdate == PodRepoUpdate.Forced)
+				message = "Forcing Cocoapods repo update...";
+			else
+				message = "A modified Podfile was found...";
+
+			Information ("////////////////////////////////////////");
+			Information ("// Pods Repo Update Started           //");
+			Information ("////////////////////////////////////////");
+			
+			Information ($"{message}\nUpdating Cocoapods repo...");
+			CocoaPodRepoUpdate ();
+
+			Information ("////////////////////////////////////////");
+			Information ("// Pods Repo Update Ended             //");
+			Information ("////////////////////////////////////////");
 		}
 		
 		if (!DirectoryExists ("./output/"))
@@ -305,7 +336,9 @@ Task ("build").Does (() =>
 		}
 	}
 
-	BuildGroups (BUILD_GROUPS, BUILD_NAMES.ToList (), buildTargets, GIT_PATH, GIT_BRANCH, GIT_PREVIOUS_COMMIT, GIT_COMMIT, FORCE_BUILD);		
+	PodRepoUpdate podRepoUpdate = POD_REPO_UPDATE ? PodRepoUpdate.Forced : PodRepoUpdate.NotRequired;
+
+	BuildGroups (BUILD_GROUPS, BUILD_NAMES.ToList (), buildTargets, GIT_PATH, GIT_BRANCH, GIT_PREVIOUS_COMMIT, GIT_COMMIT, FORCE_BUILD, podRepoUpdate);
 });
 
 Task ("buildall")
