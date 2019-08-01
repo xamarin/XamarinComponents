@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ Copyright (c) Microsoft Corporation. All rights reserved.
+  ~ Licensed under the MIT License.
+  -->
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/persona_chip_layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:paddingStart="@dimen/default_layout_margin"
+    android:paddingEnd="@dimen/default_layout_margin"
+    android:paddingBottom="@dimen/default_layout_margin">
+
+    <TextView
+        style="@style/Widget.DemoSubHeader"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/persona_chip_example_basic" />
+
+    <com.microsoft.officeuifabric.persona.PersonaChipView
+        android:id="@+id/persona_chip_example_basic"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:email="@string/persona_email_mauricio_august"
+        app:name="@string/persona_name_mauricio_august" />
+
+    <TextView
+        style="@style/Widget.DemoSubHeader"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/persona_chip_example_no_icon" />
+
+    <com.microsoft.officeuifabric.persona.PersonaChipView
+        android:id="@+id/persona_chip_example_no_icon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:avatarImageDrawable="@drawable/avatar_cecil_folk"
+        app:email="@string/persona_email_cecil_folk"
+        app:name="@string/persona_name_cecil_folk"
+        app:showCloseIconWhenSelected="false" />
+
+    <TextView
+        style="@style/Widget.DemoSubHeader"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/persona_chip_example_error" />
+
+    <com.microsoft.officeuifabric.persona.PersonaChipView
+        android:id="@+id/persona_chip_example_error"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:email="@string/persona_email_mona_kane"
+        app:name="@string/persona_name_mona_kane" />
+
+    <TextView
+        style="@style/Widget.DemoSubHeader"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/persona_chip_example_disabled" />
+
+</LinearLayout>

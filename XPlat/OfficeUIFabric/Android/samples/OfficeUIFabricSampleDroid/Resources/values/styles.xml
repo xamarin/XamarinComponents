@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ Copyright (c) Microsoft Corporation. All rights reserved.
+  ~ Licensed under the MIT License.
+  -->
+
+<resources xmlns:tools="http://schemas.android.com/tools">
+
+    <style name="AppTheme" parent="Theme.UIFabric">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+        <item name="android:windowBackground">@color/demo_background</item>
+        <!--Launch Screen: Remove the background that was set in the launch screen theme-->
+        <item name="android:background">@null</item>
+        <item name="android:statusBarColor" tools:targetApi="21">?android:colorPrimaryDark</item>
+        <item name="android:windowLightStatusBar" tools:targetApi="23">false</item>
+    </style>
+
+    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+
+    <!--Launch Screen: This theme sets the launch screen for the app-->
+    <style name="AppTheme.Launcher">
+        <!--Use background instead of windowBackground to account for differences in bottom nav bar height treatment-->
+        <item name="android:background">@drawable/uifabric_launch_screen</item>
+        <item name="android:statusBarColor" tools:targetApi="21">@color/uifabric_white</item>
+        <item name="android:windowLightStatusBar" tools:targetApi="23">true</item>
+    </style>
+
+    <!--Demo-->
+    <style name="Widget.DemoSubHeader" parent="@android:style/Widget.TextView">
+        <item name="android:textAppearance">@style/TextAppearance.DemoSubHeader</item>
+        <item name="android:layout_marginTop">16dp</item>
+        <item name="android:layout_marginBottom">16dp</item>
+    </style>
+
+    <!--Demo font-->
+    <style name="TextAppearance.Toolbar.Subtitle" parent="TextAppearance.UIFabric.Caption">
+        <item name="android:textColor">@color/uifabric_white</item>
+    </style>
+    <style name="TextAppearance.DemoListItem" parent="@style/TextAppearance.UIFabric.SubHeading">
+        <item name="android:textColor">@color/uifabric_black</item>
+    </style>
+    <style name="TextAppearance.ListItemValue" parent="@style/TextAppearance.UIFabric.SubHeading">
+        <item name="android:textColor">@color/uifabric_gray</item>
+    </style>
+    <style name="TextAppearance.DemoListItemSubtitle" parent="TextAppearance.UIFabric.Body1">
+        <item name="android:textColor">@color/uifabric_gray</item>
+    </style>
+    <style name="TextAppearance.DemoSubHeader" parent="@style/TextAppearance.UIFabric.Body2">
+        <item name="android:textColor">@color/uifabric_primary</item>
+    </style>
+    <style name="TextAppearance.DemoDescription" parent="@style/TextAppearance.UIFabric.SubHeading">
+        <item name="android:textColor">@color/uifabric_black</item>
+    </style>
+    <style name="TextAppearance.DemoDescription.Label" parent="@style/TextAppearance.UIFabric.SubHeading">
+        <item name="android:textColor">@color/uifabric_gray</item>
+    </style>
+
+</resources>
