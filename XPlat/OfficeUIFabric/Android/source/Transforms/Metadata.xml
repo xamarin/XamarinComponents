@@ -28,4 +28,6 @@
   <attr path="/api/package[@name='com.microsoft.officeuifabric.peoplepicker']/class[@name='PeoplePickerTextView']/method[@name='defaultObject' and count(parameter)=1 and parameter[1][@type='java.lang.String']]" name="managedReturn">Java.Lang.Object</attr>
 
   <remove-node path="/api/package[@name='com.microsoft.officeuifabric.bottomsheet']/class[@name='BottomSheetItem.CREATOR']" />
+
+  <remove-node path="/api/package[@name='com.microsoft.officeuifabric.peoplepicker']/interface[@name='PeoplePickerView.PersonaSuggestionsListener']" />
 </metadata>

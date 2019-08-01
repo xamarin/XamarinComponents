@@ -1,9 +1,88 @@
 ﻿using Android.Runtime;
+using Android.Views;
 using Java.Interop;
 using System;
 
 namespace Microsoft.OfficeUIFabric
 {
+    public partial class Drawer
+    {
+        public partial class Companion
+        {
+            static Companion instance;
+            public static Companion Instance
+            {
+                get
+                {
+                    if (instance == null)
+                        instance = new Companion();
+                    return instance;
+                }
+            }
+
+            public Companion() : base()
+            {
+            }
+        }
+
+        public static Drawer NewInstance(int contentLayoutId)
+            => Companion.Instance.NewInstance(contentLayoutId);
+    }
+
+    public partial class Snackbar
+    {
+        public partial class Companion
+        {
+            static Companion instance;
+            public static Companion Instance
+            {
+                get
+                {
+                    if (instance == null)
+                        instance = new Companion();
+                    return instance;
+                }
+            }
+
+            public Companion() : base()
+            {
+            }
+        }
+
+        public static Snackbar Make(Android.Views.View view, Java.Lang.ICharSequence text, int duration, Style style)
+            => Companion.Instance.Make(view, text, duration, style);
+
+        public static Snackbar Make(Android.Views.View view, string text, int duration, Style style)
+            => Companion.Instance.Make(view, text, duration, style);
+
+        public static Snackbar Make(Android.Views.View view, string text)
+            => Companion.Instance.Make(view, text, Snackbar.LengthShort, Snackbar.Style.Regular);
+
+        public static Snackbar Make(Android.Views.View view, string text, int duration)
+            => Companion.Instance.Make(view, text, duration, Snackbar.Style.Regular);
+
+
+        public Snackbar SetCustomView(View view)
+            => SetCustomView(view, Snackbar.CustomViewSize.Small);
+
+        public Snackbar SetAction(string text, Action action)
+        {
+            var listener = new SnackbarActionClickListener
+            {
+                ClickHandler = action
+            };
+
+            return SetAction(text, listener);
+        }
+
+        class SnackbarActionClickListener : Java.Lang.Object, Android.Views.View.IOnClickListener
+        {
+            public Action ClickHandler { get; set; }
+
+            public void OnClick(View v)
+                => ClickHandler?.Invoke();
+        }
+    }
 
     public partial class CalendarAdapter
     {
