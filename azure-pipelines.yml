@@ -19,7 +19,6 @@ jobs:
     displayName: 'Prepare for builds'
     variables:
       skipComponentGovernanceDetection: true
-      SYSTEM_ACCESSTOKEN: $(System.AccessToken)
     pool:
       name: Hosted Ubuntu 1604
     steps:
@@ -55,6 +54,8 @@ jobs:
 
           Write-Host "##vso[task.setvariable variable=GitLastSuccessfulCommit;isOutput=true]$lastSuccessfulBuildCommit"
         name: lastSuccessful
+        env:
+          SYSTEM_ACCESSTOKEN: $(System.AccessToken)
         displayName: 'Find last successful commit'
 
   - job: macos
