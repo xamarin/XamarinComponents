@@ -1,10 +1,10 @@
-#addin "nuget:?package=Cake.Http&version=0.5.0"
-#addin "nuget:?package=Cake.Json&version=3.0.1"
-#addin "nuget:?package=Newtonsoft.Json&version=9.0.1"
-#addin "nuget:?package=Cake.Xamarin&version=3.0.0"
-#addin "nuget:?package=Cake.ExtendedNuGet&version=1.0.0.27"
-#addin "nuget:?package=NuGet.Core&version=2.14.0"
-#addin "nuget:?package=Xamarin.Nuget.Validator&version=1.1.1"
+#addin nuget:?package=Cake.Http&version=0.6.1
+#addin nuget:?package=Cake.Json&version=4.0.0
+#addin nuget:?package=Newtonsoft.Json&version=12.0.2
+#addin nuget:?package=Cake.Xamarin&version=3.0.1
+#addin nuget:?package=Cake.ExtendedNuGet&version=1.0.0.27
+#addin nuget:?package=NuGet.Core&version=2.14.0
+#addin nuget:?package=Xamarin.Nuget.Validator&version=1.1.1
 
 var DEFAULT_SIGNTOOL_PATH = IsRunningOnWindows ()
 	? "C:\\Program Files (x86)\\Windows Kits\\10\\bin\\x64\\signtool.exe"

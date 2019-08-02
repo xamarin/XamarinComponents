@@ -1,7 +1,7 @@
 #load "common.cake"
 
 #addin nuget:?package=redth.xunit.resultwriter&version=1.0.0
-#addin "nuget:?package=Xamarin.Nuget.Validator&version=1.1.1"
+#addin nuget:?package=Xamarin.Nuget.Validator&version=1.1.1
 	
 var TARGET = Argument ("target", Argument ("t", Argument ("Target", "build")));
 
