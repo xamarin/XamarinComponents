@@ -18,7 +18,7 @@ jobs:
   - job: prepare
     displayName: Prepare for builds
     pool:
-      name: ubuntu-16.04
+      name: Hosted Ubuntu 1604
     steps:
       - checkout: none
       - powershell: |
@@ -60,7 +60,7 @@ jobs:
     variables:
       GitLastSuccessfulCommit: $[ dependencies.prepare.outputs['lastSuccessful.GitLastSuccessfulCommit'] ]
     pool:
-      name: macos-10.14
+      name: Hosted Mac Internal Mojave
     steps:
       - bash: sudo $AGENT_HOMEDIRECTORY/scripts/select-xamarin-sdk.sh $(MONO_VERSION)
         displayName: Switch to the latest Xamarin SDK
@@ -78,3 +78,9 @@ jobs:
       - task: ms.vss-governance-buildtask.governance-build-task-component-detection.ComponentGovernanceComponentDetection@0
         displayName: 'Component Detection'
         condition: and(succeeded(), not(startsWith(variables['Build.SourceBranch'],'refs/tags/')))
+
+  - job: windows
+    pool: Hosted Windows 2019 with VS2019
+    steps:
+      - checkout: none
+      - powershell: echo "Hello World!"
