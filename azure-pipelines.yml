@@ -16,7 +16,7 @@ resources:
 
 jobs:
   - job: prepare
-    displayName: Prepare for builds
+    displayName: 'Prepare for builds'
     pool:
       name: Hosted Ubuntu 1604
     steps:
@@ -52,10 +52,10 @@ jobs:
 
           Write-Host "##vso[task.setvariable variable=GitLastSuccessfulCommit;isOutput=true]$lastSuccessfulBuildCommit"
         name: lastSuccessful
-        displayName: Find Last Successful Commit
+        displayName: 'Find last successful commit'
 
   - job: macos
-    displayName: Mac Build
+    displayName: 'Mac Build'
     dependsOn: prepare
     variables:
       GitLastSuccessfulCommit: $[ dependencies.prepare.outputs['lastSuccessful.GitLastSuccessfulCommit'] ]
@@ -63,24 +63,24 @@ jobs:
       name: Hosted Mac Internal Mojave
     steps:
       - bash: sudo $AGENT_HOMEDIRECTORY/scripts/select-xamarin-sdk.sh $(MONO_VERSION)
-        displayName: Switch to the latest Xamarin SDK
+        displayName: 'Switch to the latest Xamarin SDK'
       - bash: echo '##vso[task.setvariable variable=MD_APPLE_SDK_ROOT;]'/Applications/Xcode_$(XCODE_VERSION).app;sudo xcode-select --switch /Applications/Xcode_$(XCODE_VERSION).app/Contents/Developer
-        displayName: Switch to the latest Xcode
+        displayName: 'Switch to the latest Xcode'
       - bash: ./build.sh --target=build --gitpreviouscommit=$(GitLastSuccessfulCommit) --gitcommit=$(Build.SourceVersion) --forcebuild=$(ForceBuild) --names="$(BuildManifestNames)" --targets="$(BuildManifestTargets)" --copyoutputtoroot=true --verbosity=diagnostic
-        displayName: Build
+        displayName: 'Run build'
       - bash: ./build.sh --target=docs-api-diff --gitpreviouscommit=$(GitLastSuccessfulCommit) --gitcommit=$(Build.SourceVersion)
-        displayName: 'API Diff'
+        displayName: 'API diff'
       - task: PublishBuildArtifacts@1
-        displayName: Publish Artifacts
+        displayName: 'Publish artifacts'
         inputs:
           PathtoPublish: artifacts
           ArtifactName: nuget
       - task: ms.vss-governance-buildtask.governance-build-task-component-detection.ComponentGovernanceComponentDetection@0
-        displayName: 'Component Detection'
+        displayName: 'Component detection'
         condition: and(succeeded(), not(startsWith(variables['Build.SourceBranch'], 'refs/tags/')))
 
   - job: windows
-    displayName: Windows Build
+    displayName: 'Windows Build'
     dependsOn: prepare
     variables:
       GitLastSuccessfulCommit: $[ dependencies.prepare.outputs['lastSuccessful.GitLastSuccessfulCommit'] ]
@@ -88,21 +88,21 @@ jobs:
     steps:
       - checkout: none
       - powershell: .\build.ps1 --target=build --gitpreviouscommit=$(GitLastSuccessfulCommit) --gitcommit=$(Build.SourceVersion) --forcebuild=$(ForceBuild) --names="$(BuildManifestNames)" --targets="$(BuildManifestTargets)" --copyoutputtoroot=true --verbosity=diagnostic --gitexe=git
-        displayName: Build
+        displayName: 'Run build'
       - powershell: .\build.ps1 --target=docs-api-diff --gitpreviouscommit=$(GitLastSuccessfulCommit) --gitcommit=$(Build.SourceVersion)
-        displayName: API Diff
+        displayName: API diff
       - task: PublishBuildArtifacts@1
-        displayName: Publish Artifacts
+        displayName: 'Publish artifacts'
         inputs:
           PathtoPublish: artifacts
           ArtifactName: nuget
       - task: ms.vss-governance-buildtask.governance-build-task-component-detection.ComponentGovernanceComponentDetection@0
-        displayName: 'Component Detection'
+        displayName: 'Component detection'
         condition: and(succeeded(), not(startsWith(variables['Build.SourceBranch'], 'refs/tags/')))
 
   - ${{ if eq(variables['System.TeamProject'], 'devdiv') }}:
     - job: signing
-      displayName: Sign NuGets
+      displayName: 'Sign NuGets'
       dependsOn:
         - macos
         - windows
@@ -117,7 +117,7 @@ jobs:
           parameters:
             targetFolder: '$(Build.ArtifactStagingDirectory)/signed'
         - task: PublishBuildArtifacts@1
-          displayName: Publish the nuget-signed artifacts
+          displayName: 'Publish the nuget-signed artifacts'
           inputs:
             artifactName: nuget-signed
             pathToPublish: '$(Build.ArtifactStagingDirectory)/signed'
