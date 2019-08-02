@@ -24,32 +24,37 @@ jobs:
     steps:
       - checkout: none
       - powershell: |
-          Write-Host "Branch: $env:BUILD_SOURCEBRANCH"
+          $branch = $env:BUILD_SOURCEBRANCHNAME
+          if ($env:SYSTEM_PULLREQUEST_TARGETBRANCH) {
+            $branch = $env:SYSTEM_PULLREQUEST_TARGETBRANCH"
+          }
 
-          if ($env:BUILD_SOURCEBRANCH -eq "refs/heads/master" -Or $env:BUILD_SOURCEBRANCH -eq "master") {
-              Write-Host "Branch is master, fetching last successful build commit..."
-          
-              # Must check allow scripts to have oauth token access in devops
-              $url = "$env:SYSTEM_TEAMFOUNDATIONCOLLECTIONURI$env:SYSTEM_TEAMPROJECTID/_apis/build/builds/?definitions=$env:SYSTEM_DEFINITIONID&branchName=refs%2Fheads%2Fmaster&statusFilter=completed&resultFilter=succeeded&api-version=5.0"
-              Write-Host "URL: $url"
+          Write-Host "Branch: $branch"
 
-              $json = Invoke-RestMethod -Uri $url -Headers @{
-                  Authorization = "Bearer $env:SYSTEM_ACCESSTOKEN"
-              }
-              Write-Host "$json"
+          if ($branch -eq "master") {
+            Write-Host "Branch is master, fetching last successful build commit..."
+        
+            # Must check allow scripts to have oauth token access in devops
+            $url = "$env:SYSTEM_TEAMFOUNDATIONCOLLECTIONURI$env:SYSTEM_TEAMPROJECTID/_apis/build/builds/?definitions=$env:SYSTEM_DEFINITIONID&branchName=refs%2Fheads%2Fmaster&statusFilter=completed&resultFilter=succeeded&api-version=5.0"
+            Write-Host "URL: $url"
 
-              Try {
-                  $lastSuccessfulBuildCommit = $json.value[0].sourceVersion;
-              }
-              Catch {
-              }
+            $json = Invoke-RestMethod -Uri $url -Headers @{
+                Authorization = "Bearer $env:SYSTEM_ACCESSTOKEN"
+            }
+            Write-Host "$json"
+
+            Try {
+                $lastSuccessfulBuildCommit = $json.value[0].sourceVersion;
+            }
+            Catch {
+            }
           }
 
           if ($lastSuccessfulBuildCommit) {
-              Write-Host "Last Successful Commit: $lastSuccessfulBuildCommit"
+            Write-Host "Last Successful Commit: $lastSuccessfulBuildCommit"
           } else {
-              $lastSuccessfulBuildCommit = $env:BUILD_SOURCEVERSION
-              Write-Host "No previously successful build found, using this commit: $lastSuccessfulBuildCommit"
+            $lastSuccessfulBuildCommit = $env:BUILD_SOURCEVERSION
+            Write-Host "No previously successful build found, using this commit: $lastSuccessfulBuildCommit"
           }
 
           Write-Host "##vso[task.setvariable variable=GitLastSuccessfulCommit;isOutput=true]$lastSuccessfulBuildCommit"
