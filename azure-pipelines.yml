@@ -55,7 +55,7 @@ jobs:
         displayName: Find Last Successful Commit
 
   - job: macos
-    displayName: Mac Builds
+    displayName: Mac Build
     dependsOn: prepare
     variables:
       GitLastSuccessfulCommit: $[ dependencies.prepare.outputs['lastSuccessful.GitLastSuccessfulCommit'] ]
@@ -77,10 +77,47 @@ jobs:
           ArtifactName: nuget
       - task: ms.vss-governance-buildtask.governance-build-task-component-detection.ComponentGovernanceComponentDetection@0
         displayName: 'Component Detection'
-        condition: and(succeeded(), not(startsWith(variables['Build.SourceBranch'],'refs/tags/')))
+        condition: and(succeeded(), not(startsWith(variables['Build.SourceBranch'], 'refs/tags/')))
 
   - job: windows
+    displayName: Windows Build
+    dependsOn: prepare
+    variables:
+      GitLastSuccessfulCommit: $[ dependencies.prepare.outputs['lastSuccessful.GitLastSuccessfulCommit'] ]
     pool: Hosted Windows 2019 with VS2019
     steps:
       - checkout: none
-      - powershell: echo "Hello World!"
+      - powershell: .\build.ps1 --target=build --gitpreviouscommit=$(GitLastSuccessfulCommit) --gitcommit=$(Build.SourceVersion) --forcebuild=$(ForceBuild) --names="$(BuildManifestNames)" --targets="$(BuildManifestTargets)" --copyoutputtoroot=true --verbosity=diagnostic --gitexe=git
+        displayName: Build
+      - powershell: .\build.ps1 --target=docs-api-diff --gitpreviouscommit=$(GitLastSuccessfulCommit) --gitcommit=$(Build.SourceVersion)
+        displayName: API Diff
+      - task: PublishBuildArtifacts@1
+        displayName: Publish Artifacts
+        inputs:
+          PathtoPublish: artifacts
+          ArtifactName: nuget
+      - task: ms.vss-governance-buildtask.governance-build-task-component-detection.ComponentGovernanceComponentDetection@0
+        displayName: 'Component Detection'
+        condition: and(succeeded(), not(startsWith(variables['Build.SourceBranch'], 'refs/tags/')))
+
+  - ${{ if eq(variables['System.TeamProject'], 'devdiv') }}:
+    - job: signing
+      displayName: Sign NuGets
+      dependsOn:
+        - macos
+        - windows
+      pool:
+        name: VSEng-XamarinCustom
+        demands:
+          - corpnet
+      condition: and(succeeded(), or(startsWith(variables['Build.SourceBranch'],'refs/tags/'), eq(variables['CodeSign'], 'true')))
+      steps:
+        - checkout: none
+        - template: sign-artifacts.yml@xamarin-templates
+          parameters:
+            targetFolder: '$(Build.ArtifactStagingDirectory)/signed'
+        - task: PublishBuildArtifacts@1
+          displayName: Publish the nuget-signed artifacts
+          inputs:
+            artifactName: nuget-signed
+            pathToPublish: '$(Build.ArtifactStagingDirectory)/signed'
