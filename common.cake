@@ -7,7 +7,7 @@
 #addin nuget:?package=Cake.Yaml&version=2.1.0
 #addin nuget:?package=Newtonsoft.Json&version=9.0.1
 #addin nuget:?package=Cake.Json&version=3.0.1
-#addin nuget:?package=Mono.ApiTools.NuGetDiff&version=1.0.1&loaddependencies=true
+#addin nuget:?package=Mono.ApiTools.NuGetDiff&version=1.0.2-preview.4&loaddependencies=true
 
 using Mono.ApiTools;
 using NuGet.Packaging;
