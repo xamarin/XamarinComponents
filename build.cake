@@ -333,9 +333,9 @@ Task ("docs-api-diff")
 	.Does (async () =>
 {
 	var nupkgFiles = GetFiles ("./**/output/*.nupkg");
-	Information ("Found ({0}) Nuget's to Diff", nupkgFiles.Count ());
+	Information ("Found ({0}) NuGet's to Diff", nupkgFiles.Count);
 	foreach (var nupkgFile in nupkgFiles) {
-		await BuildApiDiff(nupkgFile);
+		await BuildApiDiff (nupkgFile);
 	}
 });
 

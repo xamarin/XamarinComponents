@@ -5,7 +5,6 @@ trigger:
 variables:
   MONO_VERSION: 5_18_1
   XCODE_VERSION: 10.2.1
-  CAKE_NUGET_USEINPROCESSCLIENT: false
   VERBOSITY: diagnostic
 
 resources:
@@ -77,13 +76,17 @@ jobs:
       - bash: echo '##vso[task.setvariable variable=MD_APPLE_SDK_ROOT;]'/Applications/Xcode_$(XCODE_VERSION).app;sudo xcode-select --switch /Applications/Xcode_$(XCODE_VERSION).app/Contents/Developer
         displayName: 'Switch to the latest Xcode'
       - bash: ./build.sh --target=build --gitpreviouscommit=$(GitLastSuccessfulCommit) --gitcommit=$(Build.SourceVersion) --forcebuild=$(ForceBuild) --names="$(BuildManifestNames)" --targets="$(BuildManifestTargets)" --copyoutputtoroot=true --verbosity=$(VERBOSITY)
+        env:
+          CAKE_NUGET_USEINPROCESSCLIENT: false
         displayName: 'Run build'
-      - bash: ./build.sh --target=docs-api-diff --gitpreviouscommit=$(GitLastSuccessfulCommit) --gitcommit=$(Build.SourceVersion)
+      - bash: |
+          cp cake.latest.config cake.packages.config 
+          ./build.sh --script nuget-diff.cake
         displayName: 'API diff'
       - task: PublishBuildArtifacts@1
         displayName: 'Publish artifacts'
         inputs:
-          PathtoPublish: artifacts
+          PathToPublish: artifacts
           ArtifactName: nuget
 
   - job: windows
@@ -94,13 +97,17 @@ jobs:
     pool: Hosted Windows 2019 with VS2019
     steps:
       - powershell: .\build.ps1 --target=build --gitpreviouscommit=$(GitLastSuccessfulCommit) --gitcommit=$(Build.SourceVersion) --forcebuild=$(ForceBuild) --names="$(BuildManifestNames)" --targets="$(BuildManifestTargets)" --copyoutputtoroot=true --verbosity=$(VERBOSITY)
+        env:
+          CAKE_NUGET_USEINPROCESSCLIENT: false
         displayName: 'Run build'
-      - powershell: .\build.ps1 --target=docs-api-diff --gitpreviouscommit=$(GitLastSuccessfulCommit) --gitcommit=$(Build.SourceVersion)
-        displayName: API diff
+      - powershell: |
+          Copy-Item cake.latest.config cake.packages.config 
+          .\build.ps1 -Script nuget-diff.cake
+        displayName: 'API diff'
       - task: PublishBuildArtifacts@1
         displayName: 'Publish artifacts'
         inputs:
-          PathtoPublish: artifacts
+          PathToPublish: artifacts
           ArtifactName: nuget
 
   - ${{ if eq(variables['System.TeamProject'], 'devdiv') }}:
