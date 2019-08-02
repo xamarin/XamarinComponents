@@ -9,6 +9,12 @@
 #addin nuget:?package=Cake.Json&version=3.0.1
 #addin nuget:?package=Mono.ApiTools.NuGetDiff&version=1.0.2-preview.4&loaddependencies=true
 
+// if using the out-of-process nuget client:
+#addin nuget:?package=NuGet.Packaging&version=4.6.0
+#addin nuget:?package=NuGet.Versioning&version=4.6.0
+#addin nuget:?package=NuGet.Frameworks&version=4.6.0
+#addin nuget:?package=NuGet.Packaging.Core&version=4.6.0
+
 using Mono.ApiTools;
 using NuGet.Packaging;
 using NuGet.Versioning;
