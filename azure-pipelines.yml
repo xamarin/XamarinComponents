@@ -18,6 +18,8 @@ resources:
 jobs:
   - job: prepare
     displayName: 'Prepare for builds'
+    variables:
+      skipComponentGovernanceDetection: true
     pool:
       name: Hosted Ubuntu 1604
     steps:
@@ -76,9 +78,6 @@ jobs:
         inputs:
           PathtoPublish: artifacts
           ArtifactName: nuget
-      - task: ms.vss-governance-buildtask.governance-build-task-component-detection.ComponentGovernanceComponentDetection@0
-        displayName: 'Component detection'
-        condition: and(succeeded(), not(startsWith(variables['Build.SourceBranch'], 'refs/tags/')))
 
   - job: windows
     displayName: 'Windows Build'
@@ -96,13 +95,12 @@ jobs:
         inputs:
           PathtoPublish: artifacts
           ArtifactName: nuget
-      - task: ms.vss-governance-buildtask.governance-build-task-component-detection.ComponentGovernanceComponentDetection@0
-        displayName: 'Component detection'
-        condition: and(succeeded(), not(startsWith(variables['Build.SourceBranch'], 'refs/tags/')))
 
   - ${{ if eq(variables['System.TeamProject'], 'devdiv') }}:
     - job: signing
       displayName: 'Sign NuGets'
+      variables:
+        skipComponentGovernanceDetection: true
       dependsOn:
         - macos
         - windows
