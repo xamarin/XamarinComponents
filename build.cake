@@ -192,7 +192,7 @@ void BuildGroups (List<BuildGroup> buildGroups, List<string> names, List<string>
 			}	
 		}
 
-		if (podRepoUpdate != PodRepoUpdate.NotRequired) {
+		if (podRepoUpdate != PodRepoUpdate.NotRequired && IsRunningOnUnix ()) {
 			string message = string.Empty;
 			if (podRepoUpdate == PodRepoUpdate.Forced)
 				message = "Forcing Cocoapods repo update...";
