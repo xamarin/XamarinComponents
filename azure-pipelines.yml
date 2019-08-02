@@ -6,7 +6,6 @@ variables:
   MONO_VERSION: 5_18_1
   XCODE_VERSION: 10.2.1
   CAKE_NUGET_USEINPROCESSCLIENT: false
-  SYSTEM_ACCESSTOKEN: $(System.AccessToken)
 
 resources:
   repositories:
@@ -20,6 +19,7 @@ jobs:
     displayName: 'Prepare for builds'
     variables:
       skipComponentGovernanceDetection: true
+      SYSTEM_ACCESSTOKEN: $(System.AccessToken)
     pool:
       name: Hosted Ubuntu 1604
     steps:
