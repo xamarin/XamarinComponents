@@ -6,7 +6,6 @@ variables:
   MONO_VERSION: 5_18_1
   XCODE_VERSION: 10.2.1
   CAKE_NUGET_USEINPROCESSCLIENT: false
-  SYSTEM_ACCESSTOKEN: $(System.AccessToken)
 
 resources:
   repositories:
@@ -55,6 +54,8 @@ jobs:
 
           Write-Host "##vso[task.setvariable variable=GitLastSuccessfulCommit;isOutput=true]$lastSuccessfulBuildCommit"
         name: lastSuccessful
+        env:
+          SYSTEM_ACCESSTOKEN: $(System.AccessToken)
         displayName: 'Find last successful commit'
 
   - job: macos
