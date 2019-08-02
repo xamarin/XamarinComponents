@@ -26,7 +26,7 @@ jobs:
       - powershell: |
           $branch = $env:BUILD_SOURCEBRANCHNAME
           if ($env:SYSTEM_PULLREQUEST_TARGETBRANCH) {
-            $branch = $env:SYSTEM_PULLREQUEST_TARGETBRANCH"
+            $branch = $env:SYSTEM_PULLREQUEST_TARGETBRANCH
           }
 
           Write-Host "Branch: $branch"
