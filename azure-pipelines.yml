@@ -1,0 +1,120 @@
+
+trigger:
+  - master
+
+variables:
+  MONO_VERSION: 5_18_1
+  XCODE_VERSION: 10.2.1
+  CAKE_NUGET_USEINPROCESSCLIENT: false
+
+resources:
+  repositories:
+    - repository: xamarin-templates
+      type: github
+      name: xamarin/yaml-templates
+      endpoint: xamarin
+
+jobs:
+  - job: prepare
+    displayName: 'Prepare for builds'
+    variables:
+      skipComponentGovernanceDetection: true
+    pool:
+      name: Hosted Ubuntu 1604
+    steps:
+      - checkout: none
+      - powershell: |
+          Write-Host "Branch: $env:BUILD_SOURCEBRANCH"
+
+          if ($env:BUILD_SOURCEBRANCH -eq "refs/heads/master" -Or $env:BUILD_SOURCEBRANCH -eq "master") {
+              Write-Host "Branch is master, fetching last successful build commit..."
+          
+              # Must check allow scripts to have oauth token access in devops
+              $url = "$env:SYSTEM_TEAMFOUNDATIONCOLLECTIONURI$env:SYSTEM_TEAMPROJECTID/_apis/build/builds/?definitions=$env:SYSTEM_DEFINITIONID&branchName=refs%2Fheads%2Fmaster&statusFilter=completed&resultFilter=succeeded&api-version=5.0"
+              Write-Host "URL: $url"
+
+              $json = Invoke-RestMethod -Uri $url -Headers @{
+                  Authorization = "Bearer $env:SYSTEM_ACCESSTOKEN"
+              }
+              Write-Host "$json"
+
+              Try {
+                  $lastSuccessfulBuildCommit = $json.value[0].sourceVersion;
+              }
+              Catch {
+              }
+          }
+
+          if ($lastSuccessfulBuildCommit) {
+              Write-Host "Last Successful Commit: $lastSuccessfulBuildCommit"
+          } else {
+              $lastSuccessfulBuildCommit = $env:BUILD_SOURCEVERSION
+              Write-Host "No previously successful build found, using this commit: $lastSuccessfulBuildCommit"
+          }
+
+          Write-Host "##vso[task.setvariable variable=GitLastSuccessfulCommit;isOutput=true]$lastSuccessfulBuildCommit"
+        name: lastSuccessful
+        displayName: 'Find last successful commit'
+
+  - job: macos
+    displayName: 'Mac Build'
+    dependsOn: prepare
+    variables:
+      GitLastSuccessfulCommit: $[ dependencies.prepare.outputs['lastSuccessful.GitLastSuccessfulCommit'] ]
+    pool:
+      name: Hosted Mac Internal Mojave
+    steps:
+      - bash: sudo $AGENT_HOMEDIRECTORY/scripts/select-xamarin-sdk.sh $(MONO_VERSION)
+        displayName: 'Switch to the latest Xamarin SDK'
+      - bash: echo '##vso[task.setvariable variable=MD_APPLE_SDK_ROOT;]'/Applications/Xcode_$(XCODE_VERSION).app;sudo xcode-select --switch /Applications/Xcode_$(XCODE_VERSION).app/Contents/Developer
+        displayName: 'Switch to the latest Xcode'
+      - bash: ./build.sh --target=build --gitpreviouscommit=$(GitLastSuccessfulCommit) --gitcommit=$(Build.SourceVersion) --forcebuild=$(ForceBuild) --names="$(BuildManifestNames)" --targets="$(BuildManifestTargets)" --copyoutputtoroot=true --verbosity=diagnostic
+        displayName: 'Run build'
+      - bash: ./build.sh --target=docs-api-diff --gitpreviouscommit=$(GitLastSuccessfulCommit) --gitcommit=$(Build.SourceVersion)
+        displayName: 'API diff'
+      - task: PublishBuildArtifacts@1
+        displayName: 'Publish artifacts'
+        inputs:
+          PathtoPublish: artifacts
+          ArtifactName: nuget
+
+  - job: windows
+    displayName: 'Windows Build'
+    dependsOn: prepare
+    variables:
+      GitLastSuccessfulCommit: $[ dependencies.prepare.outputs['lastSuccessful.GitLastSuccessfulCommit'] ]
+    pool: Hosted Windows 2019 with VS2019
+    steps:
+      - powershell: .\build.ps1 --target=build --gitpreviouscommit=$(GitLastSuccessfulCommit) --gitcommit=$(Build.SourceVersion) --forcebuild=$(ForceBuild) --names="$(BuildManifestNames)" --targets="$(BuildManifestTargets)" --copyoutputtoroot=true --verbosity=diagnostic --gitexe=git
+        displayName: 'Run build'
+      - powershell: .\build.ps1 --target=docs-api-diff --gitpreviouscommit=$(GitLastSuccessfulCommit) --gitcommit=$(Build.SourceVersion)
+        displayName: API diff
+      - task: PublishBuildArtifacts@1
+        displayName: 'Publish artifacts'
+        inputs:
+          PathtoPublish: artifacts
+          ArtifactName: nuget
+
+  - ${{ if eq(variables['System.TeamProject'], 'devdiv') }}:
+    - job: signing
+      displayName: 'Sign NuGets'
+      variables:
+        skipComponentGovernanceDetection: true
+      dependsOn:
+        - macos
+        - windows
+      pool:
+        name: VSEng-XamarinCustom
+        demands:
+          - corpnet
+      condition: and(succeeded(), or(startsWith(variables['Build.SourceBranch'],'refs/tags/'), eq(variables['CodeSign'], 'true')))
+      steps:
+        - checkout: none
+        - template: sign-artifacts.yml@xamarin-templates
+          parameters:
+            targetFolder: '$(Build.ArtifactStagingDirectory)/signed'
+        - task: PublishBuildArtifacts@1
+          displayName: 'Publish the nuget-signed artifacts'
+          inputs:
+            artifactName: nuget-signed
+            pathToPublish: '$(Build.ArtifactStagingDirectory)/signed'
