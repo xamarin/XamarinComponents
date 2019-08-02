@@ -1,0 +1,79 @@
+
+trigger:
+  - master
+
+variables:
+  MONO_VERSION: 5_18_1
+  XCODE_VERSION: 10.2.1
+
+resources:
+  repositories:
+    - repository: xamarin-templates
+      type: github
+      name: xamarin/yaml-templates
+      endpoint: xamarin
+
+jobs:
+  - job: prepare
+    displayName: Prepare for builds
+    pool:
+      name: ubuntu-16.04
+    steps:
+      - checkout: none
+      - powershell: |
+          Write-Host "Branch: $env:BUILD_SOURCEBRANCH"
+
+          if ($env:BUILD_SOURCEBRANCH -eq "refs/heads/master" -Or $env:BUILD_SOURCEBRANCH -eq "master") {
+              Write-Host "Branch is master, fetching last successful build commit..."
+          
+              # Must check allow scripts to have oauth token access in devops
+              $url = "$env:SYSTEM_TEAMFOUNDATIONCOLLECTIONURI$env:SYSTEM_TEAMPROJECTID/_apis/build/builds/?definitions=$env:SYSTEM_DEFINITIONID&branchName=refs%2Fheads%2Fmaster&statusFilter=completed&resultFilter=succeeded&api-version=5.0"
+              Write-Host "URL: $url"
+
+              $json = Invoke-RestMethod -Uri $url -Headers @{
+                  Authorization = "Bearer $env:SYSTEM_ACCESSTOKEN"
+              }
+              Write-Host "$json"
+
+              Try {
+                  $lastSuccessfulBuildCommit = $json.value[0].sourceVersion;
+              }
+              Catch {
+              }
+          }
+
+          if ($lastSuccessfulBuildCommit) {
+              Write-Host "Last Successful Commit: $lastSuccessfulBuildCommit"
+          } else {
+              $lastSuccessfulBuildCommit = $env:BUILD_SOURCEVERSION
+              Write-Host "No previously successful build found, using this commit: $lastSuccessfulBuildCommit"
+          }
+
+          Write-Host "##vso[task.setvariable variable=GitLastSuccessfulCommit;isOutput=true]$lastSuccessfulBuildCommit"
+        name: lastSuccessful
+        displayName: Find Last Successful Commit
+
+  - job: macos
+    displayName: Mac Builds
+    dependsOn: prepare
+    variables:
+      GitLastSuccessfulCommit: $[ dependencies.prepare.outputs['lastSuccessful.GitLastSuccessfulCommit'] ]
+    pool:
+      name: macos-10.14
+    steps:
+      - bash: sudo $AGENT_HOMEDIRECTORY/scripts/select-xamarin-sdk.sh $(MONO_VERSION)
+        displayName: Switch to the latest Xamarin SDK
+      - bash: echo '##vso[task.setvariable variable=MD_APPLE_SDK_ROOT;]'/Applications/Xcode_$(XCODE_VERSION).app;sudo xcode-select --switch /Applications/Xcode_$(XCODE_VERSION).app/Contents/Developer
+        displayName: Switch to the latest Xcode
+      - bash: ./build.sh --target=build --gitpreviouscommit=$(GitLastSuccessfulCommit) --gitcommit=$(Build.SourceVersion) --forcebuild=$(ForceBuild) --names="$(BuildManifestNames)" --targets="$(BuildManifestTargets)" --copyoutputtoroot=true --verbosity=diagnostic
+        displayName: Build
+      - bash: ./build.sh --target=docs-api-diff --gitpreviouscommit=$(GitLastSuccessfulCommit) --gitcommit=$(Build.SourceVersion)
+        displayName: 'API Diff'
+      - task: PublishBuildArtifacts@1
+        displayName: Publish Artifacts
+        inputs:
+          PathtoPublish: artifacts
+          ArtifactName: nuget
+      - task: ms.vss-governance-buildtask.governance-build-task-component-detection.ComponentGovernanceComponentDetection@0
+        displayName: 'Component Detection'
+        condition: and(succeeded(), not(startsWith(variables['Build.SourceBranch'],'refs/tags/')))
