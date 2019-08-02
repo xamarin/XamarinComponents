@@ -6,6 +6,7 @@ variables:
   MONO_VERSION: 5_18_1
   XCODE_VERSION: 10.2.1
   CAKE_NUGET_USEINPROCESSCLIENT: false
+  VERBOSITY: diagnostic
 
 resources:
   repositories:
@@ -75,7 +76,7 @@ jobs:
         displayName: 'Switch to the latest Xamarin SDK'
       - bash: echo '##vso[task.setvariable variable=MD_APPLE_SDK_ROOT;]'/Applications/Xcode_$(XCODE_VERSION).app;sudo xcode-select --switch /Applications/Xcode_$(XCODE_VERSION).app/Contents/Developer
         displayName: 'Switch to the latest Xcode'
-      - bash: ./build.sh --target=build --gitpreviouscommit=$(GitLastSuccessfulCommit) --gitcommit=$(Build.SourceVersion) --forcebuild=$(ForceBuild) --names="$(BuildManifestNames)" --targets="$(BuildManifestTargets)" --copyoutputtoroot=true --verbosity=diagnostic
+      - bash: ./build.sh --target=build --gitpreviouscommit=$(GitLastSuccessfulCommit) --gitcommit=$(Build.SourceVersion) --forcebuild=$(ForceBuild) --names="$(BuildManifestNames)" --targets="$(BuildManifestTargets)" --copyoutputtoroot=true --verbosity=$(VERBOSITY)
         displayName: 'Run build'
       - bash: ./build.sh --target=docs-api-diff --gitpreviouscommit=$(GitLastSuccessfulCommit) --gitcommit=$(Build.SourceVersion)
         displayName: 'API diff'
@@ -92,7 +93,7 @@ jobs:
       GitLastSuccessfulCommit: $[ dependencies.prepare.outputs['lastSuccessful.GitLastSuccessfulCommit'] ]
     pool: Hosted Windows 2019 with VS2019
     steps:
-      - powershell: .\build.ps1 --target=build --gitpreviouscommit=$(GitLastSuccessfulCommit) --gitcommit=$(Build.SourceVersion) --forcebuild=$(ForceBuild) --names="$(BuildManifestNames)" --targets="$(BuildManifestTargets)" --copyoutputtoroot=true --verbosity=diagnostic --gitexe=git
+      - powershell: .\build.ps1 --target=build --gitpreviouscommit=$(GitLastSuccessfulCommit) --gitcommit=$(Build.SourceVersion) --forcebuild=$(ForceBuild) --names="$(BuildManifestNames)" --targets="$(BuildManifestTargets)" --copyoutputtoroot=true --verbosity=$(VERBOSITY)
         displayName: 'Run build'
       - powershell: .\build.ps1 --target=docs-api-diff --gitpreviouscommit=$(GitLastSuccessfulCommit) --gitcommit=$(Build.SourceVersion)
         displayName: API diff
