@@ -78,12 +78,12 @@ jobs:
     pool:
       name: $(imageName)
     steps:
-      - ${{ if eq(variables['imageName'], 'Hosted Mac Internal Mojave') }}:
+      - ${{ if eq(variables['System.JobName'], 'macos') }}:
         - bash: sudo $AGENT_HOMEDIRECTORY/scripts/select-xamarin-sdk.sh $(MONO_VERSION)
           displayName: 'Switch to the latest Xamarin SDK'
         - bash: echo '##vso[task.setvariable variable=MD_APPLE_SDK_ROOT;]'/Applications/Xcode_$(XCODE_VERSION).app;sudo xcode-select --switch /Applications/Xcode_$(XCODE_VERSION).app/Contents/Developer
           displayName: 'Switch to the latest Xcode'
-        - bash: echo '##vso[task.setvariable variable=PATH;]'$PATH:$AGENT_HOMEDIRECTORY/.dotnet/tools
+        - bash: echo '##vso[task.setvariable variable=PATH;]'$PATH:~/.dotnet/tools
           displayName: 'Add ~/.dotnet/tools to the PATH environment variable'
       - powershell: dotnet tool install -g api-tools --version $(API_TOOLS_VERSION)
         displayName: 'Install api-tools'
