@@ -83,13 +83,15 @@ jobs:
           displayName: 'Switch to the latest Xamarin SDK'
         - bash: echo '##vso[task.setvariable variable=MD_APPLE_SDK_ROOT;]'/Applications/Xcode_$(XCODE_VERSION).app;sudo xcode-select --switch /Applications/Xcode_$(XCODE_VERSION).app/Contents/Developer
           displayName: 'Switch to the latest Xcode'
+        - bash: echo '##vso[task.setvariable variable=PATH;]'$PATH:$AGENT_HOMEDIRECTORY/.dotnet/tools
+          displayName: 'Add ~/.dotnet/tools to the PATH environment variable'
       - powershell: dotnet tool install -g api-tools --version $(API_TOOLS_VERSION)
         displayName: 'Install api-tools'
       - powershell: .\build.ps1 --target=build --gitpreviouscommit=$(GitLastSuccessfulCommit) --gitcommit=$(Build.SourceVersion) --forcebuild=$(ForceBuild) --names="$(BuildManifestNames)" --targets="$(BuildManifestTargets)" --copyoutputtoroot=true --verbosity=$(VERBOSITY)
         env:
           CAKE_NUGET_USEINPROCESSCLIENT: false
         displayName: 'Run build'
-      - powershell: dotnet api-tools nuget-diff artifacts --latest --group-ids --output artifacts/api-diff --cache externals/package_cache
+      - powershell: api-tools nuget-diff artifacts --latest --group-ids --output artifacts/api-diff --cache externals/package_cache
         displayName: 'API diff'
       - task: PublishBuildArtifacts@1
         displayName: 'Publish artifacts'
