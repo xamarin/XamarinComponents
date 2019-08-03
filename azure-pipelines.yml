@@ -91,7 +91,10 @@ jobs:
         env:
           CAKE_NUGET_USEINPROCESSCLIENT: false
         displayName: 'Run build'
-      - powershell: api-tools nuget-diff artifacts --latest --group-ids --output artifacts/api-diff --cache externals/package_cache
+      - powershell: |
+          if (Get-ChildItem artifacts -Filter *.nupkg) {
+            api-tools nuget-diff artifacts --latest --group-ids --output artifacts/api-diff --cache externals/package_cache
+          }
         displayName: 'API diff'
       - task: PublishBuildArtifacts@1
         displayName: 'Publish artifacts'
