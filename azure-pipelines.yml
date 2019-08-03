@@ -87,6 +87,11 @@ jobs:
       - bash: echo '##vso[task.setvariable variable=PATH;]'$PATH:$HOME/.dotnet/tools
         displayName: 'Add ~/.dotnet/tools to the PATH environment variable'
         condition: eq(variables['System.JobName'], 'macos')
+      - task: UseDotNet@2
+        displayName: 'Use .NET Core 2.2 SDK'
+        condition: eq(variables['System.JobName'], 'macos')
+        inputs:
+          version: 2.2.x
       - powershell: dotnet tool install -g api-tools --version $(API_TOOLS_VERSION)
         displayName: 'Install api-tools'
       - powershell: .\build.ps1 --target=build --gitpreviouscommit=$(GitLastSuccessfulCommit) --gitcommit=$(Build.SourceVersion) --forcebuild=$(ForceBuild) --names="$(BuildManifestNames)" --targets="$(BuildManifestTargets)" --copyoutputtoroot=true --verbosity=$(VERBOSITY)
