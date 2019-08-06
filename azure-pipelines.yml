@@ -1,6 +1,7 @@
 
 trigger:
   - master
+  - refs/tags/*
 
 variables:
   MONO_VERSION: 5_18_1
