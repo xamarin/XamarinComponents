@@ -55,7 +55,7 @@ jobs:
           if ($lastSuccessfulBuildCommit) {
             Write-Host "Last Successful Commit: $lastSuccessfulBuildCommit"
           } else {
-            $lastSuccessfulBuildCommit = $env:BUILD_SOURCEVERSION
+            $lastSuccessfulBuildCommit = "origin/master"
             Write-Host "No previously successful build found, using this commit: $lastSuccessfulBuildCommit"
           }
 
