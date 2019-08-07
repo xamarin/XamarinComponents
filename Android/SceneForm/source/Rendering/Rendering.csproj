@@ -25,7 +25,7 @@
     <PackageProjectUrl>https://go.microsoft.com/fwlink/?linkid=2083771</PackageProjectUrl>
     <PackageLicenseUrl>https://go.microsoft.com/fwlink/?linkid=2083684</PackageLicenseUrl>
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
-    <PackageVersion>1.9.0-preview1</PackageVersion>
+    <PackageVersion>1.10.0-preview1</PackageVersion>
   </PropertyGroup>
 
   <ItemGroup>
@@ -42,14 +42,14 @@
   <ItemGroup>
     <LibraryProjectZip Include="..\..\externals\rendering.aar" />
   </ItemGroup>
-  
+
   <ItemGroup>
     <ProjectReference Include="..\Base\Base.csproj" />
   </ItemGroup>
-    
+
   <ItemGroup>
     <PackageReference Include="MSBuild.Sdk.Extras" Version="1.6.40" PrivateAssets="All" />
-    <PackageReference Include="Xamarin.Google.ARCore" Version="1.9.0" />
+    <PackageReference Include="Xamarin.Google.ARCore" Version="1.10.0" />
   </ItemGroup>
 
   <Import Project="$(MSBuildSDKExtrasTargets)" Condition="Exists('$(MSBuildSDKExtrasTargets)')" />
