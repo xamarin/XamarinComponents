@@ -1,0 +1,122 @@
+﻿@using System.Linq
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFrameworks>MonoAndroid81</TargetFrameworks>
+    <IsBindingProject>true</IsBindingProject>
+
+    <AssemblyName>@(Model.NuGetPackageId)</AssemblyName>
+    <MonoAndroidResourcePrefix>Resources</MonoAndroidResourcePrefix>
+    <MonoAndroidAssetsPrefix>Assets</MonoAndroidAssetsPrefix>
+    <AndroidUseLatestPlatformSdk>False</AndroidUseLatestPlatformSdk>
+    <AndroidUseIntermediateDesignerFile>True</AndroidUseIntermediateDesignerFile>
+    <AndroidResgenFile>Resources\Resource.designer.cs</AndroidResgenFile>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <PackageId>@(Model.NuGetPackageId)</PackageId>
+    <Title>Xamarin Android Support Library - @(Model.Name)</Title>
+    <Summary>Xamarin.Android bindings for Android Support Library - @(Model.Name)</Summary>
+    <Description>Xamarin.Android bindings for Android Support Library - @(Model.Name)</Description>
+    <PackageTags>Xamarin Android Xamarin.Android Support</PackageTags>
+    <Authors>Xamarin Inc.</Authors>
+    <Owners>Xamarin Inc.</Owners>
+    <Copyright>© Microsoft Corporation. All rights reserved.</Copyright>
+    <PackageProjectUrl>https://go.microsoft.com/fwlink/?linkid=865352</PackageProjectUrl>
+    <PackageLicenseUrl>https://go.microsoft.com/fwlink/?linkid=865381</PackageLicenseUrl>
+    <PackageIconUrl>https://raw.githubusercontent.com/xamarin/AndroidSupportComponents/master/icons/@(Model.Name)_128x128.png</PackageIconUrl>
+    <PackageVersion>@(Model.NuGetVersion)</PackageVersion>
+    <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <AndroidClassParser>class-parse</AndroidClassParser>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <TransformFile Include="..\..\..\Metadata.common.xml" />
+    <TransformFile Include="..\..\..\source\@(Model.MavenGroupId)\@(Model.Name)\transforms\*.xml" />
+  </ItemGroup>
+
+  <ItemGroup>
+      @foreach (var art in @Model.MavenArtifacts) {
+      <TransformFile Include="..\..\..\externals\@(art.MavenGroupId)\@(art.MavenArtifactId)-paramnames.xml" />
+      }
+  </ItemGroup>
+
+  @*<ItemGroup>
+    @foreach (var art in @Model.MavenArtifacts) {
+    <JavaSourceJar Include="..\..\..\externals\@(art.MavenGroupId)\@(art.MavenArtifactId)-sources.jar" Condition="Exists('..\..\..\externals\@(art.MavenGroupId)\@(art.MavenArtifactId)-sources.jar')" />
+    }   
+  </ItemGroup>*@
+
+    
+  <ItemGroup>
+    @foreach (var art in @Model.MavenArtifacts) {
+    <_AndroidDocumentationPath Include="..\..\..\externals\@(art.MavenGroupId)\@(art.MavenArtifactId)-paramnames.txt" Condition="Exists('..\..\..\externals\@(art.MavenGroupId)\@(art.MavenArtifactId)-paramnames.txt')" />
+    }
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Include="..\..\..\source\AssemblyInfo.cs" />
+    <Compile Include="..\..\..\source\@(Model.MavenGroupId)\@(Model.Name)\additions\*.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="@(Model.NuGetPackageId).targets" Pack="True" PackagePath="build\" />
+  </ItemGroup>
+
+  @if (@Model.MavenArtifacts.Count > 0) {
+  <ItemGroup>
+    @foreach (var art in @Model.MavenArtifacts) {
+      if (art.ProguardFile != null) {
+    <None Include="..\..\..\@(art.ProguardFile)" Pack="True" PackagePath="proguard\" />
+      }
+    }
+  </ItemGroup>
+  }
+
+
+  <ItemGroup>
+    @foreach (var art in @Model.MavenArtifacts) {
+      if (art.MavenArtifactPackaging == "aar") {
+    <None Include="..\..\..\externals\@(art.MavenGroupId)\@(art.MavenArtifactId).aar" Pack="True" PackagePath="aar\" />
+      }
+    }   
+  </ItemGroup>
+
+
+  @if (@Model.MavenArtifacts.Count > 0) {
+  <ItemGroup>
+    @foreach (var art in @Model.MavenArtifacts) {
+      if (art.MavenArtifactPackaging == "aar") {
+    <InputJar Include="..\..\..\externals\@(art.MavenGroupId)\@(art.MavenArtifactId)\classes.jar" />
+      } else {
+    <EmbeddedJar Include="..\..\..\externals\@(art.MavenGroupId)\@(art.MavenArtifactId).jar" />
+      }
+    }
+  </ItemGroup>
+  }
+
+  <ItemGroup>
+    @foreach (var dep in @Model.NuGetDependencies) {
+      if (dep.IsProjectReference) {
+    <ProjectReference Include="..\..\..@(dep.ProjectFile)" />
+      }
+    }
+  </ItemGroup>
+
+  <ItemGroup>
+    @foreach (var dep in @Model.NuGetDependencies) {
+      if (!dep.IsProjectReference) {
+      <PackageReference Include="@(dep.NuGetPackageId)" Version="@(dep.NuGetVersion)" />
+      }
+    }
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="MSBuild.Sdk.Extras" Version="1.3.1" PrivateAssets="All" />
+  </ItemGroup>
+
+  <Import Project="$(MSBuildSDKExtrasTargets)" Condition="Exists('$(MSBuildSDKExtrasTargets)')" />
+</Project>

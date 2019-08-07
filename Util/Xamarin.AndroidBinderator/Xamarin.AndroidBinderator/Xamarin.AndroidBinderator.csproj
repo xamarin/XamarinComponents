@@ -1,0 +1,34 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>netstandard2.0</TargetFramework>
+        <LangVersion>7.1</LangVersion>
+        <PreserveCompilationContext>true</PreserveCompilationContext>
+        <RootNamespace>AndroidBinderator</RootNamespace>
+    </PropertyGroup>
+
+    <PropertyGroup>
+        <PackageVersion>2.0.0</PackageVersion>
+        <PackageId>Xamarin.AndroidBinderator</PackageId>
+        <Title>Xamarin.AndroidBinderator</Title>
+        <Description>An engine to generate Xamarin Binding projects from Maven repositories with a JSON config and razor templates</Description>
+        <Summary>An engine to generate Xamarin Binding projects from Maven repositories with a JSON config and razor templates</Summary>
+        <PackageProjectUrl>https://go.microsoft.com/fwlink/?linkid=2100525</PackageProjectUrl>
+        <PackageLicenseUrl>https://go.microsoft.com/fwlink/?linkid=2100608</PackageLicenseUrl>
+        <PackageTags>Maven Xamarin.Android Binding</PackageTags>
+        <Authors>Redth</Authors>
+        <Owners>Redth</Owners>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <PackageReference Include="Newtonsoft.Json" Version="11.*" />
+        <PackageReference Include="RazorLight" Version="2.0.0-beta1" />
+        <PackageReference Include="MavenNet" Version="2.1.1" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Folder Include="Config\" />
+      <Folder Include="Model\" />
+      <None Include="..\External-Dependency-Info.txt" Pack="True" PackagePath="THIRD-PARTY-NOTICES.txt" />
+    </ItemGroup>
+</Project>
