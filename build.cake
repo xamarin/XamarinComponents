@@ -104,12 +104,16 @@ Task ("build")
 	// Tagged build might contain the group name to build specifically if no setting was specified
 	if (GIT_BRANCH.StartsWith("refs/tags/") && !BUILD_NAMES.Any()) {
 		var tagName = GIT_BRANCH.Substring(10);
+		Information ("Trying to build tag: {0}", tagName);
+
 		var buildName = tagName;
 		if (tagName.Contains('-'))
-			buildName = tagName.Substring(0, tagName.LastIndexOf('-'));
+			buildName = tagName.Substring(0, tagName.IndexOf('-'));
 
 		// If we found a build name from the tag name, let's force a build
 		if (!string.IsNullOrWhiteSpace(buildName)) {
+			Information ("Going to be building tagged item: {0}", buildName);
+
 			BUILD_NAMES = new string[] { buildName };
 			FORCE_BUILD = true;
 		}
