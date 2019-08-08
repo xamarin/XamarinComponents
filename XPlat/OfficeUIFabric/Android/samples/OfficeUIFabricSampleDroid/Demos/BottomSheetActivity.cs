@@ -168,6 +168,6 @@ namespace OfficeUIFabricSampleDroid.Demos
         }
 
         void ShowSnackbar(string message)
-            => Snackbar.Companion.Instance.Make(root_view, message, Snackbar.LengthLong, Snackbar.Style.Regular).Show();
+            => Snackbar.Companion.Make(root_view, message, Snackbar.LengthLong, Snackbar.Style.Regular).Show();
     }
 }

@@ -1,14 +1,15 @@
 
 trigger:
   - master
+  - refs/tags/*
 
 variables:
   MONO_VERSION: 5_18_1
   XCODE_VERSION: 10.2.1
   VERBOSITY: diagnostic
-  API_TOOLS_VERSION: 1.0.2-preview.5
   DOTNET_CORE_VERSION: 2.2.401
   CAKE_VERSION: 0.34.1
+  API_TOOLS_VERSION: 1.0.2-preview.10
 
 resources:
   repositories:
@@ -56,7 +57,7 @@ jobs:
           if ($lastSuccessfulBuildCommit) {
             Write-Host "Last Successful Commit: $lastSuccessfulBuildCommit"
           } else {
-            $lastSuccessfulBuildCommit = $env:BUILD_SOURCEVERSION
+            $lastSuccessfulBuildCommit = "origin/master"
             Write-Host "No previously successful build found, using this commit: $lastSuccessfulBuildCommit"
           }
 
