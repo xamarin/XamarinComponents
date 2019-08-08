@@ -54,7 +54,9 @@ Task("libs")
 {
 	MSBuild("./SceneForm.sln", c => {
 		c.Configuration = "Release";
-		c.Restore = true;
+		c.Targets.Clear();
+		c.Targets.Add("Restore");
+		c.Targets.Add("Build");
 		c.Properties.Add("DesignTimeBuild", new [] { "false" });
 	});
 });
