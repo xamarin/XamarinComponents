@@ -69,7 +69,7 @@ namespace OfficeUIFabricSampleDroid.Demos.List
 
             void ListItemView_Click(object sender, EventArgs e)
             {
-                Snackbar.Companion.Instance.Make(listItemView, Context.Resources.GetString(Resource.String.list_item_click), Snackbar.LengthShort, Snackbar.Style.Regular).Show();
+                Snackbar.Make(listItemView, Context.Resources.GetString(Resource.String.list_item_click), Snackbar.LengthShort, Snackbar.Style.Regular).Show();
             }
             
             public void SetListItem(IListItem listItem)

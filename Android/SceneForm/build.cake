@@ -2,9 +2,9 @@
 
 var TARGET = Argument ("t", Argument ("target", "Default"));
 
-var SF_VERSION = "1.9.0";
+var SF_VERSION = "1.11.0";
 
-var NUGET_VERSION = "1.9.0-preview1";
+var NUGET_VERSION = "1.11.0";
 
 var BASE_JAR_URL = $"https://dl.google.com/dl/android/maven2/com/google/ar/sceneform/sceneform-base/{SF_VERSION}/sceneform-base-{SF_VERSION}.aar";
 var ANIMATION_JAR_URL = $"https://dl.google.com:443/dl/android/maven2/com/google/ar/sceneform/animation/{SF_VERSION}/animation-{SF_VERSION}.aar";
@@ -54,7 +54,9 @@ Task("libs")
 {
 	MSBuild("./SceneForm.sln", c => {
 		c.Configuration = "Release";
-		c.Restore = true;
+		c.Targets.Clear();
+		c.Targets.Add("Restore");
+		c.Targets.Add("Build");
 		c.Properties.Add("DesignTimeBuild", new [] { "false" });
 	});
 });
@@ -74,7 +76,16 @@ Task("nuget")
 });
 
 Task("samples")
-	.IsDependentOn("nuget");
+	.IsDependentOn("nuget")
+	.Does (() =>
+{
+	MSBuild("./samples/HelloSceneform.sln", c => {
+		c.Configuration = "Release";
+		c.Targets.Clear();
+		c.Targets.Add("Restore");
+		c.Targets.Add("Build");		
+	});
+});
 
 Task ("clean")
 	.Does (() =>
