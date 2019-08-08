@@ -9,7 +9,8 @@ Task("libs")
 
 	MSBuild("./Xamarin.AndroidBinderator.sln", c => c
 		.SetConfiguration("Release")
-		.WithRestore()
+		.WithTarget("Restore")
+		.WithTarget("Rebuild")
 		.WithTarget("Pack")
 		.WithProperty("PackageOutputPath", MakeAbsolute(OUTPUT_PATH).FullPath));
 });
