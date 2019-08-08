@@ -209,7 +209,7 @@
 - Name: SceneForm
   BuildScript: ./Android/SceneForm/build.cake
   TriggerPaths: [ Android/SceneForm ]
-  MacBuildTargets: [ libs, nuget ]
+  MacBuildTargets: [ nuget, samples ]
 - Name: GoogleAutoValue
   BuildScript: ./Android/GoogleAutoValue/build.cake
   TriggerPaths: [ Android/GoogleAutoValue ]
