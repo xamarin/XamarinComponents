@@ -1,6 +1,3 @@
-
-#load "../../common.cake"
-
 var TARGET = Argument ("t", Argument ("target", "Default"));
 
 var PLACES_VERSION = "1.1.0";
@@ -77,5 +74,8 @@ Task ("clean")
 			Force = true
 		});
 });
+
+Task ("Default")
+	.IsDependentOn("samples");
 
 RunTarget (TARGET);
