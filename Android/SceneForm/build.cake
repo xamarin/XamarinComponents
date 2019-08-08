@@ -74,7 +74,16 @@ Task("nuget")
 });
 
 Task("samples")
-	.IsDependentOn("nuget");
+	.IsDependentOn("nuget")
+	.Does (() =>
+{
+	MSBuild("./HelloSceneform.sln", c => {
+		c.Configuration = "Release";
+		c.Targets.Clear();
+		c.Targets.Add("Restore");
+		c.Targets.Add("Build");		
+	});
+});
 
 Task ("clean")
 	.Does (() =>
