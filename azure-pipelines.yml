@@ -94,10 +94,10 @@ jobs:
         displayName: 'Use the correct version of the .NET Core SDK'
         inputs:
           version: $(DOTNET_CORE_VERSION)
-      - powershell: dotnet tool install -g api-tools --version $(API_TOOLS_VERSION)
-        displayName: 'Install api-tools'
-      - powershell: dotnet tool install -g cake.tool --version $(CAKE_VERSION)
-        displayName: 'Install cake'
+      - powershell: |
+          dotnet tool install -g api-tools --version $(API_TOOLS_VERSION)
+          dotnet tool install -g cake.tool --version $(CAKE_VERSION)
+        displayName: 'Install .NET Core global tools'
       - powershell: dotnet-cake --target=build --gitpreviouscommit=$(GitLastSuccessfulCommit) --gitcommit=$(Build.SourceVersion) --forcebuild=$(ForceBuild) --names="$(BuildManifestNames)" --targets="$(BuildManifestTargets)" --copyoutputtoroot=true --verbosity=$(VERBOSITY)
         displayName: 'Run build'
       - powershell: |
