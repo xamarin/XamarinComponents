@@ -41,7 +41,7 @@ namespace OfficeUIFabricSampleDroid.Demos
             {
                 ClickHandler = () =>
                 {
-                    Snackbar.Companion.Instance.Make(root_view, GetString(Resource.String.persona_chip_example_click), Snackbar.LengthShort, Snackbar.Style.Regular).Show();
+                    Snackbar.Make(root_view, GetString(Resource.String.persona_chip_example_click), Snackbar.LengthShort, Snackbar.Style.Regular).Show();
                 }
             };
 

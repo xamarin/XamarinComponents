@@ -29,7 +29,7 @@ namespace OfficeUIFabricSampleDroid.Demos
             show_drawer_dialog_button = FindViewById<Button>(Resource.Id.show_drawer_dialog_button);
 
             show_drawer_button.Click += delegate {
-                var drawerDemo = Drawer.NewInstance(Resource.Layout.demo_drawer_content);
+                var drawerDemo = Drawer.Companion.NewInstance(Resource.Layout.demo_drawer_content);
                 drawerDemo.Show(SupportFragmentManager, null);
             };
 
