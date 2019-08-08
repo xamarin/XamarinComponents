@@ -5,61 +5,56 @@ using System;
 
 namespace Microsoft.OfficeUIFabric
 {
-    public partial class Drawer
+    public partial class PersonaView
     {
-        public partial class Companion
+        public partial class PersonaViewCompanion
         {
-            static Companion instance;
-            public static Companion Instance
+            public partial class Spacing
             {
-                get
+                // When we rename PersonaView.Companion to PersonaView.PersonaViewCompanion
+                // the nested Spacing type gets emitted as a type in this method as
+                //   PersonaViewCompanion.Spacing instead of PersonaView.PersonaViewCompanion.Spacing
+                // So we manually remove the method and implement it manually
+
+                // Metadata.xml XPath method reference: path="/api/package[@name='com.microsoft.officeuifabric.persona']/class[@name='PersonaView.Companion.Spacing']/method[@name='copy' and count(parameter)=2 and parameter[1][@type='int'] and parameter[2][@type='int']]"
+                [Register("copy", "(II)Lcom/microsoft/officeuifabric/persona/PersonaView$Companion$Spacing;", "")]
+                public unsafe global::Microsoft.OfficeUIFabric.PersonaView.PersonaViewCompanion.Spacing Copy(int cellPadding, int insetLeft)
                 {
-                    if (instance == null)
-                        instance = new Companion();
-                    return instance;
+                    const string __id = "copy.(II)Lcom/microsoft/officeuifabric/persona/PersonaView$Companion$Spacing;";
+                    try
+                    {
+                        JniArgumentValue* __args = stackalloc JniArgumentValue[2];
+                        __args[0] = new JniArgumentValue(cellPadding);
+                        __args[1] = new JniArgumentValue(insetLeft);
+                        var __rm = _members.InstanceMethods.InvokeNonvirtualObjectMethod(__id, this, __args);
+                        return global::Java.Lang.Object.GetObject<global::Microsoft.OfficeUIFabric.PersonaView.PersonaViewCompanion.Spacing>(__rm.Handle, JniHandleOwnership.TransferLocalRef);
+                    }
+                    finally
+                    {
+                    }
                 }
             }
-
-            public Companion() : base()
-            {
-            }
         }
-
+    }
+    public partial class Drawer
+    {
         public static Drawer NewInstance(int contentLayoutId)
-            => Companion.Instance.NewInstance(contentLayoutId);
+            => Companion.NewInstance(contentLayoutId);
     }
 
     public partial class Snackbar
     {
-        public partial class Companion
-        {
-            static Companion instance;
-            public static Companion Instance
-            {
-                get
-                {
-                    if (instance == null)
-                        instance = new Companion();
-                    return instance;
-                }
-            }
-
-            public Companion() : base()
-            {
-            }
-        }
-
         public static Snackbar Make(Android.Views.View view, Java.Lang.ICharSequence text, int duration, Style style)
-            => Companion.Instance.Make(view, text, duration, style);
+            => Companion.Make(view, text, duration, style);
 
         public static Snackbar Make(Android.Views.View view, string text, int duration, Style style)
-            => Companion.Instance.Make(view, text, duration, style);
+            => Companion.Make(view, text, duration, style);
 
         public static Snackbar Make(Android.Views.View view, string text)
-            => Companion.Instance.Make(view, text, Snackbar.LengthShort, Snackbar.Style.Regular);
+            => Companion.Make(view, text, Snackbar.LengthShort, Snackbar.Style.Regular);
 
         public static Snackbar Make(Android.Views.View view, string text, int duration)
-            => Companion.Instance.Make(view, text, duration, Snackbar.Style.Regular);
+            => Companion.Make(view, text, duration, Snackbar.Style.Regular);
 
 
         public Snackbar SetCustomView(View view)
