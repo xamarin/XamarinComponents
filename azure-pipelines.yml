@@ -9,7 +9,7 @@ variables:
   VERBOSITY: diagnostic
   DOTNET_CORE_VERSION: 2.2.401
   CAKE_VERSION: 0.34.1
-  API_TOOLS_VERSION: 1.0.2-preview.10
+  API_TOOLS_VERSION: 1.0.2-preview.13
 
 resources:
   repositories:
