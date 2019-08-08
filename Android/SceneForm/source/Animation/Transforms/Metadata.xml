@@ -14,4 +14,7 @@
     
 
     <attr path="/api/package[@name='com.google.ar.sceneform.animation']/class[@name='ModelAnimator']/method[@name='setDuration' and count(parameter)=1 and parameter[1][@type='long']]" name="return">Android.Animation.Animator</attr>
+
+  <remove-node path="/api/package[@name='com.google.ar.sceneform.animation']/interface[@name='AnimationEngine$AnimationEngineListener']" />
+  <remove-node path="/api/package[@name='com.google.ar.sceneform.animation']/interface[@name='AnimationEngine.AnimationEngineListener']" />
 </metadata>
