@@ -6,6 +6,8 @@
     <TargetFramework>netcoreapp2.1</TargetFramework>
     <ToolCommandName>xamarin-android-binderator</ToolCommandName>
     <AssemblyName>Xamarin.AndroidBinderator.Tool</AssemblyName>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <PreserveCompilationContext>true</PreserveCompilationContext>
   </PropertyGroup>
 
   <PropertyGroup>

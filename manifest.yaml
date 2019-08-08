@@ -594,4 +594,4 @@
 - Name: Xamarin.AndroidBinderator
   BuildScript: ./Util/Xamarin.AndroidBinderator/build.cake
   TriggerPaths: [ Util/Xamarin.AndroidBinderator ]
-  MacBuildTargets: [ nuget ]
+  WindowsBuildTargets: [ nuget ]
