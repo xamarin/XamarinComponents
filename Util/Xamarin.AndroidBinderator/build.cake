@@ -15,8 +15,26 @@ Task("libs")
 		.WithProperty("PackageOutputPath", MakeAbsolute(OUTPUT_PATH).FullPath));
 });
 
-Task("nuget").IsDependentOn("libs");
-Task("samples").IsDependentOn("nuget");
-Task("Default").IsDependentOn("nuget");
+Task("tests")
+	.IsDependentOn("libs")
+	.Does(() =>
+{
+	var csproj = "./Xamarin.AndroidBinderator.Tests/Xamarin.AndroidBinderator.Tests.csproj";
+	DotNetCoreTest(csproj, new DotNetCoreTestSettings {
+		Configuration = "Release",
+		NoBuild = true,
+	});
+});;
+
+Task("nuget")
+	.IsDependentOn("libs");
+
+Task("samples")
+	.IsDependentOn("nuget");
+
+Task("Default")
+	.IsDependentOn("libs")
+	.IsDependentOn("nuget")
+	.IsDependentOn("tests");
 
 RunTarget(TARGET);

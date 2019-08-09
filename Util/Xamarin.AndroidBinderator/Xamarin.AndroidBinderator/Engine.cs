@@ -43,9 +43,12 @@ namespace AndroidBinderator
 
 			await maven.Refresh(config.MavenArtifacts.Where(ma => !ma.DependencyOnly).Select(ma => ma.GroupId).Distinct().ToArray());
 
-			var artifactDir = Path.Combine(config.BasePath, config.ExternalsDir);
-			if (!Directory.Exists(artifactDir))
-				Directory.CreateDirectory(artifactDir);
+			if (config.DownloadExternals)
+			{
+				var artifactDir = Path.Combine(config.BasePath, config.ExternalsDir);
+				if (!Directory.Exists(artifactDir))
+					Directory.CreateDirectory(artifactDir);
+			}
 
 			await ProcessConfig(maven, config);
 		}
@@ -90,8 +93,6 @@ namespace AndroidBinderator
 				var engine = new RazorLightEngineBuilder()
 					.UseMemoryCachingProvider()
 					.Build();
-
-				var slnFileInfo = new FileInfo(config.SolutionFile);
 
 				foreach (var model in models)
 				{
@@ -205,7 +206,8 @@ namespace AndroidBinderator
 				{
 					Name = mavenArtifact.ArtifactId,
 					NuGetPackageId = mavenArtifact.NugetPackageId,
-					NuGetVersion = mavenArtifact.NugetVersion,
+					NuGetVersionBase = mavenArtifact.NugetVersion,
+					NuGetVersionSuffix = config.NugetVersionSuffix,
 					MavenGroupId = mavenArtifact.GroupId,
 					AssemblyName = mavenArtifact.AssemblyName,
 					Config = config
@@ -250,7 +252,8 @@ namespace AndroidBinderator
 					{
 						IsProjectReference = !depMapping.DependencyOnly,
 						NuGetPackageId = depMapping.NugetPackageId,
-						NuGetVersion = depMapping.NugetVersion,
+						NuGetVersionBase = depMapping.NugetVersion,
+						NuGetVersionSuffix = config.NugetVersionSuffix,
 
 						MavenArtifact = new MavenArtifactModel
 						{
