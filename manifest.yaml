@@ -591,3 +591,7 @@
   BuildScript: ./Util/SamplePackager/build.cake
   TriggerPaths: [ Util/SamplePackager ]
   MacBuildTargets: [ nuget ]
+- Name: Xamarin.AndroidBinderator
+  BuildScript: ./Util/Xamarin.AndroidBinderator/build.cake
+  TriggerPaths: [ Util/Xamarin.AndroidBinderator ]
+  WindowsBuildTargets: [ nuget ]
