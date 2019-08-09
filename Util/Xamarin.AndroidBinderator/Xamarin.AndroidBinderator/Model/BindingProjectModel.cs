@@ -20,7 +20,7 @@ namespace AndroidBinderator
 		public string NuGetVersion =>
 			string.IsNullOrWhiteSpace(NuGetVersionSuffix)
 				? NuGetVersionBase
-				: $"{NuGetVersionBase}-{NuGetVersionSuffix}";
+				: NuGetVersionBase + NuGetVersionSuffix;
 
 		public string AssemblyName { get; set; }
 

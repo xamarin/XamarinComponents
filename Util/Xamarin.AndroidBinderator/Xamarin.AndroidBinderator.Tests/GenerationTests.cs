@@ -99,75 +99,80 @@ namespace Xamarin.AndroidBinderator.Tests
 		}
 
 		[Fact]
-		public async Task NuGetVersionOverridesArtifactVersion()
+		public Task NuGetVersionOverridesArtifactVersion()
 		{
-			var generated = Path.Combine(RootDirectory, "generated");
-
-			var template = CreateTemplate(@"
+			return ProcessAndAssertTemplate(@"
 <Project Sdk=""Microsoft.NET.Sdk"">
 	<PropertyGroup>
 		<PackageVersion>@(Model.NuGetVersion)</PackageVersion>
 	</PropertyGroup>
-</Project>");
-
-			const string expected = @"
+</Project>",
+			new BindingConfig
+			{
+				DownloadExternals = false,
+				MavenArtifacts =
+				{
+					new MavenArtifactConfig
+					{
+						GroupId = "androidx.annotation",
+						ArtifactId = "annotation",
+						Version = "1.0.2",
+						NugetPackageId = "Xamarin.AndroidX.Annotation",
+						NugetVersion = "1.2.3",
+					}
+				}
+			}, @"
 <Project Sdk=""Microsoft.NET.Sdk"">
 	<PropertyGroup>
 		<PackageVersion>1.2.3</PackageVersion>
 	</PropertyGroup>
-</Project>";
-
-			var config = new BindingConfig
-			{
-				DownloadExternals = false,
-				BasePath = RootDirectory,
-				Templates = { new TemplateConfig(template, "generated/{artifactid}.csproj") },
-				MavenArtifacts =
-				{
-					new MavenArtifactConfig
-					{
-						GroupId = "androidx.annotation",
-						ArtifactId = "annotation",
-						Version = "1.0.2",
-						NugetPackageId = "Xamarin.AndroidX.Annotation",
-						NugetVersion = "1.2.3",
-					}
-				}
-			};
-
-			await Engine.BinderateAsync(config);
-
-			var csproj = Path.Combine(generated, "annotation.csproj");
-
-			Assert.True(File.Exists(csproj));
-			Assert.Equal(expected, File.ReadAllText(csproj));
+</Project>");
 		}
 
 		[Fact]
-		public async Task NuGetVersionBaseCanAccessTheOriginalVersion()
+		public Task NuGetVersionBaseCanAccessTheOriginalVersion()
 		{
-			var generated = Path.Combine(RootDirectory, "generated");
-
-			var template = CreateTemplate(@"
+			return ProcessAndAssertTemplate(@"
 <Project Sdk=""Microsoft.NET.Sdk"">
 	<PropertyGroup>
 		<PackageVersion>@(Model.NuGetVersionBase)</PackageVersion>
 	</PropertyGroup>
-</Project>");
-
-			const string expected = @"
+</Project>",
+			new BindingConfig
+			{
+				DownloadExternals = false,
+				NugetVersionSuffix = "-preview",
+				MavenArtifacts =
+				{
+					new MavenArtifactConfig
+					{
+						GroupId = "androidx.annotation",
+						ArtifactId = "annotation",
+						Version = "1.0.2",
+						NugetPackageId = "Xamarin.AndroidX.Annotation",
+					}
+				}
+			}, @"
 <Project Sdk=""Microsoft.NET.Sdk"">
 	<PropertyGroup>
 		<PackageVersion>1.0.2</PackageVersion>
 	</PropertyGroup>
-</Project>";
+</Project>");
+		}
 
-			var config = new BindingConfig
+		[Fact]
+		public Task NuGetVersionSuffixIsAppendedForImplicitVersions()
+		{
+			return ProcessAndAssertTemplate(@"
+<Project Sdk=""Microsoft.NET.Sdk"">
+	<PropertyGroup>
+		<PackageVersion>@(Model.NuGetVersion)</PackageVersion>
+	</PropertyGroup>
+</Project>",
+			new BindingConfig
 			{
 				DownloadExternals = false,
-				BasePath = RootDirectory,
-				Templates = { new TemplateConfig(template, "generated/{artifactid}.csproj") },
-				NugetVersionSuffix = "preview",
+				NugetVersionSuffix = "-preview",
 				MavenArtifacts =
 				{
 					new MavenArtifactConfig
@@ -178,86 +183,27 @@ namespace Xamarin.AndroidBinderator.Tests
 						NugetPackageId = "Xamarin.AndroidX.Annotation",
 					}
 				}
-			};
-
-			await Engine.BinderateAsync(config);
-
-			var csproj = Path.Combine(generated, "annotation.csproj");
-
-			Assert.True(File.Exists(csproj));
-			Assert.Equal(expected, File.ReadAllText(csproj));
-		}
-
-		[Fact]
-		public async Task NuGetVersionSuffixIsAppendedForImplicitVersions()
-		{
-			var generated = Path.Combine(RootDirectory, "generated");
-
-			var template = CreateTemplate(@"
-<Project Sdk=""Microsoft.NET.Sdk"">
-	<PropertyGroup>
-		<PackageVersion>@(Model.NuGetVersion)</PackageVersion>
-	</PropertyGroup>
-</Project>");
-
-			const string expected = @"
+			}, @"
 <Project Sdk=""Microsoft.NET.Sdk"">
 	<PropertyGroup>
 		<PackageVersion>1.0.2-preview</PackageVersion>
 	</PropertyGroup>
-</Project>";
-
-			var config = new BindingConfig
-			{
-				DownloadExternals = false,
-				BasePath = RootDirectory,
-				Templates = { new TemplateConfig(template, "generated/{artifactid}.csproj") },
-				NugetVersionSuffix = "preview",
-				MavenArtifacts =
-				{
-					new MavenArtifactConfig
-					{
-						GroupId = "androidx.annotation",
-						ArtifactId = "annotation",
-						Version = "1.0.2",
-						NugetPackageId = "Xamarin.AndroidX.Annotation",
-					}
-				}
-			};
-
-			await Engine.BinderateAsync(config);
-
-			var csproj = Path.Combine(generated, "annotation.csproj");
-
-			Assert.True(File.Exists(csproj));
-			Assert.Equal(expected, File.ReadAllText(csproj));
+</Project>");
 		}
 
 		[Fact]
-		public async Task NuGetVersionSuffixIsAppendedForOverrideVersions()
+		public Task NuGetVersionSuffixIsAppendedForOverrideVersions()
 		{
-			var generated = Path.Combine(RootDirectory, "generated");
-
-			var template = CreateTemplate(@"
+			return ProcessAndAssertTemplate(@"
 <Project Sdk=""Microsoft.NET.Sdk"">
 	<PropertyGroup>
 		<PackageVersion>@(Model.NuGetVersion)</PackageVersion>
 	</PropertyGroup>
-</Project>");
-
-			const string expected = @"
-<Project Sdk=""Microsoft.NET.Sdk"">
-	<PropertyGroup>
-		<PackageVersion>1.2.3-preview</PackageVersion>
-	</PropertyGroup>
-</Project>";
-
-			var config = new BindingConfig
+</Project>",
+			new BindingConfig
 			{
 				DownloadExternals = false,
-				BasePath = RootDirectory,
-				Templates = { new TemplateConfig(template, "generated/{artifactid}.csproj") },
-				NugetVersionSuffix = "preview",
+				NugetVersionSuffix = "-preview",
 				MavenArtifacts =
 				{
 					new MavenArtifactConfig
@@ -269,14 +215,126 @@ namespace Xamarin.AndroidBinderator.Tests
 						NugetVersion = "1.2.3",
 					}
 				}
-			};
+			}, @"
+<Project Sdk=""Microsoft.NET.Sdk"">
+	<PropertyGroup>
+		<PackageVersion>1.2.3-preview</PackageVersion>
+	</PropertyGroup>
+</Project>");
+		}
+
+		[Fact]
+		public Task NuGetVersionSuffixIsAppendedForDependencies()
+		{
+			return ProcessAndAssertTemplate(@"
+<Project Sdk=""Microsoft.NET.Sdk"">
+	<PropertyGroup>
+		<PackageId>@(Model.NuGetPackageId)</PackageId>
+		<PackageVersion>@(Model.NuGetVersion)</PackageVersion>
+	</PropertyGroup>
+	<ItemGroup>
+	@foreach (var dep in @Model.NuGetDependencies) {
+		<PackageReference Include=""@(dep.NuGetPackageId)"" Version=""@(dep.NuGetVersion)"" />
+	}
+	</ItemGroup>
+</Project>",
+			new BindingConfig
+			{
+				DownloadExternals = false,
+				NugetVersionSuffix = "-preview",
+				MavenArtifacts =
+				{
+					new MavenArtifactConfig
+					{
+						GroupId = "androidx.annotation",
+						ArtifactId = "annotation",
+						Version = "1.0.2",
+						NugetPackageId = "Xamarin.AndroidX.Annotation",
+					},
+					new  MavenArtifactConfig
+					{
+						GroupId = "androidx.arch.core",
+						ArtifactId = "core-common",
+						Version = "2.0.1",
+						NugetPackageId = "Xamarin.AndroidX.Arch.Core.Common",
+					}
+				}
+			}, @"
+<Project Sdk=""Microsoft.NET.Sdk"">
+	<PropertyGroup>
+		<PackageId>Xamarin.AndroidX.Arch.Core.Common</PackageId>
+		<PackageVersion>2.0.1-preview</PackageVersion>
+	</PropertyGroup>
+	<ItemGroup>
+		<PackageReference Include=""Xamarin.AndroidX.Annotation"" Version=""1.0.2-preview"" />
+	</ItemGroup>
+</Project>");
+		}
+
+		[Fact]
+		public Task NuGetVersionSuffixIsNotAppendedForDependencyOnly()
+		{
+			return ProcessAndAssertTemplate(@"
+<Project Sdk=""Microsoft.NET.Sdk"">
+	<PropertyGroup>
+		<PackageId>@(Model.NuGetPackageId)</PackageId>
+		<PackageVersion>@(Model.NuGetVersion)</PackageVersion>
+	</PropertyGroup>
+	<ItemGroup>
+	@foreach (var dep in @Model.NuGetDependencies) {
+		<PackageReference Include=""@(dep.NuGetPackageId)"" Version=""@(dep.NuGetVersion)"" />
+	}
+	</ItemGroup>
+</Project>",
+			new BindingConfig
+			{
+				DownloadExternals = false,
+				NugetVersionSuffix = "-preview",
+				MavenArtifacts =
+				{
+					new MavenArtifactConfig
+					{
+						GroupId = "androidx.annotation",
+						ArtifactId = "annotation",
+						Version = "1.0.2",
+						NugetPackageId = "Xamarin.AndroidX.Annotation",
+						DependencyOnly = true,
+					},
+					new  MavenArtifactConfig
+					{
+						GroupId = "androidx.arch.core",
+						ArtifactId = "core-common",
+						Version = "2.0.1",
+						NugetPackageId = "Xamarin.AndroidX.Arch.Core.Common",
+					}
+				}
+			}, @"
+<Project Sdk=""Microsoft.NET.Sdk"">
+	<PropertyGroup>
+		<PackageId>Xamarin.AndroidX.Arch.Core.Common</PackageId>
+		<PackageVersion>2.0.1-preview</PackageVersion>
+	</PropertyGroup>
+	<ItemGroup>
+		<PackageReference Include=""Xamarin.AndroidX.Annotation"" Version=""1.0.2"" />
+	</ItemGroup>
+</Project>");
+		}
+
+		public async Task ProcessAndAssertTemplate(string input, BindingConfig config, string output)
+		{
+			var generated = Path.Combine(RootDirectory, "generated");
+			var outputFile = Path.Combine(generated, "Generated.csproj");
+			var templateFile = CreateTemplate(input);
+
+			config.BasePath = RootDirectory;
+			config.Templates.Add(new TemplateConfig(templateFile, outputFile));
 
 			await Engine.BinderateAsync(config);
 
-			var csproj = Path.Combine(generated, "annotation.csproj");
+			Assert.True(File.Exists(outputFile));
 
-			Assert.True(File.Exists(csproj));
-			Assert.Equal(expected, File.ReadAllText(csproj));
+			var actual = File.ReadAllText(outputFile);
+			Assert.Equal(output, actual);
 		}
 	}
 }

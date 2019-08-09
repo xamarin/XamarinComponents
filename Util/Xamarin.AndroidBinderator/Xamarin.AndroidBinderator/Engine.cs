@@ -252,7 +252,8 @@ namespace AndroidBinderator
 					{
 						IsProjectReference = !depMapping.DependencyOnly,
 						NuGetPackageId = depMapping.NugetPackageId,
-						NuGetVersion = depMapping.NugetVersion,
+						NuGetVersionBase = depMapping.NugetVersion,
+						NuGetVersionSuffix = config.NugetVersionSuffix,
 
 						MavenArtifact = new MavenArtifactModel
 						{
