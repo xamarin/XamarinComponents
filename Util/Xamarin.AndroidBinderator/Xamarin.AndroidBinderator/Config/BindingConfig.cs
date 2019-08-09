@@ -29,6 +29,9 @@ namespace AndroidBinderator
 		[JsonProperty("templates")]
 		public List<TemplateConfig> Templates { get; set; } = new List<TemplateConfig>();
 
+		[JsonProperty("nugetVersionSuffix")]
+		public string NugetVersionSuffix { get; set; } = null;
+
 		[JsonProperty("slnFile")]
 		public string SolutionFile { get; set; } = null;
 

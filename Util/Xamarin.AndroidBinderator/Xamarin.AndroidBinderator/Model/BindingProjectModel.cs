@@ -14,7 +14,13 @@ namespace AndroidBinderator
 		public List<MavenArtifactModel> MavenArtifacts { get; set; } = new List<MavenArtifactModel>();
 
 		public string NuGetPackageId { get; set; }
-		public string NuGetVersion { get; set; }
+		public string NuGetVersionBase { get; set; }
+		public string NuGetVersionSuffix { get; set; }
+
+		public string NuGetVersion =>
+			string.IsNullOrWhiteSpace(NuGetVersionSuffix)
+				? NuGetVersionBase
+				: $"{NuGetVersionBase}-{NuGetVersionSuffix}";
 
 		public string AssemblyName { get; set; }
 

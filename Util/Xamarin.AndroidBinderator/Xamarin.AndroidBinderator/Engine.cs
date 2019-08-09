@@ -206,7 +206,8 @@ namespace AndroidBinderator
 				{
 					Name = mavenArtifact.ArtifactId,
 					NuGetPackageId = mavenArtifact.NugetPackageId,
-					NuGetVersion = mavenArtifact.NugetVersion,
+					NuGetVersionBase = mavenArtifact.NugetVersion,
+					NuGetVersionSuffix = config.NugetVersionSuffix,
 					MavenGroupId = mavenArtifact.GroupId,
 					AssemblyName = mavenArtifact.AssemblyName,
 					Config = config
