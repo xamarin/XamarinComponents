@@ -43,9 +43,12 @@ namespace AndroidBinderator
 
 			await maven.Refresh(config.MavenArtifacts.Where(ma => !ma.DependencyOnly).Select(ma => ma.GroupId).Distinct().ToArray());
 
-			var artifactDir = Path.Combine(config.BasePath, config.ExternalsDir);
-			if (!Directory.Exists(artifactDir))
-				Directory.CreateDirectory(artifactDir);
+			if (config.DownloadExternals)
+			{
+				var artifactDir = Path.Combine(config.BasePath, config.ExternalsDir);
+				if (!Directory.Exists(artifactDir))
+					Directory.CreateDirectory(artifactDir);
+			}
 
 			await ProcessConfig(maven, config);
 		}
@@ -90,8 +93,6 @@ namespace AndroidBinderator
 				var engine = new RazorLightEngineBuilder()
 					.UseMemoryCachingProvider()
 					.Build();
-
-				var slnFileInfo = new FileInfo(config.SolutionFile);
 
 				foreach (var model in models)
 				{

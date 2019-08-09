@@ -1,10 +1,21 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using Newtonsoft.Json;
 
 namespace AndroidBinderator
 {
 	public class TemplateConfig
 	{
+		public TemplateConfig()
+		{
+		}
+
+		public TemplateConfig(string templateFile, string outputFileRule)
+		{
+			TemplateFile = templateFile ?? throw new ArgumentNullException(nameof(templateFile));
+			OutputFileRule = outputFileRule ?? throw new ArgumentNullException(nameof(outputFileRule));
+		}
+
 		[JsonProperty("templateFile")]
 		public string TemplateFile { get; set; }
 

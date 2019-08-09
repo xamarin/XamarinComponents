@@ -6,7 +6,7 @@ namespace AndroidBinderator
 	public class BindingConfig
 	{
 		[JsonProperty("basePath")]
-		public string BasePath { get; set; }
+		public string BasePath { get; set; } = null;
 
 		[JsonProperty("mavenRepositoryType")]
 		public MavenRepoType MavenRepositoryType { get; set; } = MavenRepoType.Google;
@@ -30,16 +30,16 @@ namespace AndroidBinderator
 		public List<TemplateConfig> Templates { get; set; } = new List<TemplateConfig>();
 
 		[JsonProperty("slnFile")]
-		public string SolutionFile { get; set; }
+		public string SolutionFile { get; set; } = null;
 
 		[JsonProperty("artifacts")]
-		public List<MavenArtifactConfig> MavenArtifacts { get; set; }
+		public List<MavenArtifactConfig> MavenArtifacts { get; set; } = new List<MavenArtifactConfig>();
 
 		[JsonProperty("debug")]
 		public BindingConfigDebug Debug { get; set; } = new BindingConfigDebug();
 
 		[JsonProperty("additionalProjects")]
-		public List<string> AdditionalProjects { get; set; }
+		public List<string> AdditionalProjects { get; set; } = new List<string>();
 	}
 
 	public class BindingConfigDebug
