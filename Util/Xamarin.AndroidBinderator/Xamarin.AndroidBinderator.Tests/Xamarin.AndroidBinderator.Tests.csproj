@@ -15,4 +15,5 @@
   <ItemGroup>
     <ProjectReference Include="..\Xamarin.AndroidBinderator\Xamarin.AndroidBinderator.csproj" />
   </ItemGroup>
+
 </Project>
