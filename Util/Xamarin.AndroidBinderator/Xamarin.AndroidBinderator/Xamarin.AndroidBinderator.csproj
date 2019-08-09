@@ -16,8 +16,10 @@
         <PackageProjectUrl>https://go.microsoft.com/fwlink/?linkid=2100525</PackageProjectUrl>
         <PackageLicenseUrl>https://go.microsoft.com/fwlink/?linkid=2100608</PackageLicenseUrl>
         <PackageTags>Maven Xamarin.Android Binding</PackageTags>
-        <Authors>Redth</Authors>
-        <Owners>Redth</Owners>
+        <Authors>Microsoft</Authors>
+        <Owners>Microsoft</Owners>
+        <Copyright>© Microsoft Corporation. All rights reserved.</Copyright>
+        <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
     </PropertyGroup>
 
     <ItemGroup>
