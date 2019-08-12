@@ -1,9 +1,10 @@
+﻿using System;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.Security.Cryptography;
 
-namespace testing
+namespace thisisatest
 {
-	public class Test
+	public class MyClass
 	{
 		public static object DeserializeItemString(string str)
 		{
