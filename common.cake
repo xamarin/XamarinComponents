@@ -1,6 +1,6 @@
 
 #addin nuget:?package=Cake.XCode&version=4.1.0
-#addin nuget:?package=Cake.Xamarin.Build&version=4.1.0
+#addin nuget:?package=Cake.Xamarin.Build&version=4.1.1
 #addin nuget:?package=Cake.Xamarin&version=3.0.1
 #addin nuget:?package=Cake.FileHelpers&version=3.2.0
 //#addin nuget:?package=YamlDotNet&version=4.2.1
