@@ -55,6 +55,7 @@ namespace AndroidBinderator
 	{
 		Url,
 		Directory,
-		Google
+		Google,
+		MavenCentral
 	}
 }

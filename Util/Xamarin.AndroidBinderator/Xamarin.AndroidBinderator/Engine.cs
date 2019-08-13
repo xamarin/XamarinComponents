@@ -38,6 +38,8 @@ namespace AndroidBinderator
 				maven = MavenRepository.FromDirectory(config.MavenRepositoryLocation);
 			else if (config.MavenRepositoryType == MavenRepoType.Url)
 				maven = MavenRepository.FromUrl(config.MavenRepositoryLocation);
+			else if (config.MavenRepositoryType == MavenRepoType.MavenCentral)
+				maven = MavenRepository.FromMavenCentral();
 			else
 				maven = MavenRepository.FromGoogle();
 
