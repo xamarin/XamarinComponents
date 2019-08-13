@@ -1,4 +1,6 @@
-﻿namespace AndroidBinderator
+﻿using System.Collections.Generic;
+
+namespace AndroidBinderator
 {
 	public class MavenArtifactModel
 	{
@@ -10,5 +12,7 @@
 
 		public string DownloadedArtifact { get; set; }
 		public string ProguardFile { get; set; }
+
+		public Dictionary<string, string> Metadata { get; set; } = new Dictionary<string, string>();
 	}
 }

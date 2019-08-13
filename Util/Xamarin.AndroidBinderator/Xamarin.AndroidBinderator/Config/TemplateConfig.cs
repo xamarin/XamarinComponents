@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using Newtonsoft.Json;
 
@@ -21,6 +22,9 @@ namespace AndroidBinderator
 
 		[JsonProperty("outputFileRule")]
 		public string OutputFileRule { get; set; }
+
+		[JsonProperty("metadata")]
+		public Dictionary<string, string> Metadata { get; set; } = new Dictionary<string, string>();
 
 		public string GetOutputFile(BindingConfig config, BindingProjectModel model)
 		{
