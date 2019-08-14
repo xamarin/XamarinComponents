@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json;
+﻿using System.Collections.Generic;
+using Newtonsoft.Json;
 
 namespace AndroidBinderator
 {
@@ -42,5 +43,8 @@ namespace AndroidBinderator
 
 		[JsonProperty("assemblyName")]
 		public string AssemblyName { get; set; } = null;
+
+		[JsonProperty("metadata")]
+		public Dictionary<string, string> Metadata { get; set; } = new Dictionary<string, string>();
 	}
 }

@@ -43,6 +43,9 @@ namespace AndroidBinderator
 
 		[JsonProperty("additionalProjects")]
 		public List<string> AdditionalProjects { get; set; } = new List<string>();
+
+		[JsonProperty("metadata")]
+		public Dictionary<string, string> Metadata { get; set; } = new Dictionary<string, string>();
 	}
 
 	public class BindingConfigDebug
@@ -55,6 +58,7 @@ namespace AndroidBinderator
 	{
 		Url,
 		Directory,
-		Google
+		Google,
+		MavenCentral
 	}
 }

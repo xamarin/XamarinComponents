@@ -1,4 +1,6 @@
-﻿namespace AndroidBinderator
+﻿using System.Collections.Generic;
+
+namespace AndroidBinderator
 {
 	public class NuGetDependencyModel
 	{
@@ -14,5 +16,7 @@
 				: NuGetVersionBase + NuGetVersionSuffix;
 
 		public MavenArtifactModel MavenArtifact { get; set; }
+
+		public Dictionary<string, string> Metadata { get; set; } = new Dictionary<string, string>();
 	}
 }

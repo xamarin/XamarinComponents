@@ -28,6 +28,8 @@ namespace AndroidBinderator
 
 		public List<string> ProjectReferences { get; set; } = new List<string>();
 
+		public Dictionary<string, string> Metadata { get; set; } = new Dictionary<string, string>();
+
 		public BindingConfig Config { get; set; }
 	}
 }

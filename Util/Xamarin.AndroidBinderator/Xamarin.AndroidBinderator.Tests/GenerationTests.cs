@@ -99,6 +99,142 @@ namespace Xamarin.AndroidBinderator.Tests
 		}
 
 		[Fact]
+		public Task MetadataIsPassedAlong()
+		{
+			return ProcessAndAssertTemplate(@"
+<Project Sdk=""Microsoft.NET.Sdk"">
+	<PropertyGroup>
+		<PackageVersion>@(Model.NuGetVersion)</PackageVersion>
+		<RandomProperty>@(Model.Metadata[""More""])</RandomProperty>
+	</PropertyGroup>
+</Project>",
+			new BindingConfig
+			{
+				DownloadExternals = false,
+				MavenArtifacts =
+				{
+					new MavenArtifactConfig
+					{
+						GroupId = "androidx.annotation",
+						ArtifactId = "annotation",
+						Version = "1.0.2",
+						NugetPackageId = "Xamarin.AndroidX.Annotation",
+						NugetVersion = "1.2.3",
+						Metadata = new Dictionary<string, string>
+						{
+							{ "More", "Yay!" }
+						}
+					}
+				}
+			}, @"
+<Project Sdk=""Microsoft.NET.Sdk"">
+	<PropertyGroup>
+		<PackageVersion>1.2.3</PackageVersion>
+		<RandomProperty>Yay!</RandomProperty>
+	</PropertyGroup>
+</Project>");
+		}
+
+		[Fact]
+		public Task MetadataIsMergedBetweenConfigAndTemplateAndArtifact()
+		{
+			return ProcessAndAssertTemplate(@"
+<Project Sdk=""Microsoft.NET.Sdk"">
+	<PropertyGroup>
+		<PackageVersion>@(Model.NuGetVersion)</PackageVersion>
+		<RandomProperty>@(Model.Metadata[""More""])</RandomProperty>
+		<RandomProperty>@(Model.Metadata[""Spare""])</RandomProperty>
+		<RandomProperty>@(Model.Metadata[""Again""])</RandomProperty>
+	</PropertyGroup>
+</Project>",
+			new BindingConfig
+			{
+				DownloadExternals = false,
+				Metadata = new Dictionary<string, string>
+				{
+					{ "More", "Bad Value" },
+					{ "Spare", "Keys" },
+				},
+				MavenArtifacts =
+				{
+					new MavenArtifactConfig
+					{
+						GroupId = "androidx.annotation",
+						ArtifactId = "annotation",
+						Version = "1.0.2",
+						NugetPackageId = "Xamarin.AndroidX.Annotation",
+						NugetVersion = "1.2.3",
+						Metadata = new Dictionary<string, string>
+						{
+							{ "More", "Yay!" },
+							{ "Again", "Good Value" },
+						}
+					}
+				}
+			}, @"
+<Project Sdk=""Microsoft.NET.Sdk"">
+	<PropertyGroup>
+		<PackageVersion>1.2.3</PackageVersion>
+		<RandomProperty>Yay!</RandomProperty>
+		<RandomProperty>Change</RandomProperty>
+		<RandomProperty>Good Value</RandomProperty>
+	</PropertyGroup>
+</Project>",
+			new Dictionary<string, string>
+			{
+				{ "More", "Intermediate" },
+				{ "Spare", "Change" },
+			});
+		}
+
+		[Fact]
+		public Task MetadataIsMergedBetweenConfigAndArtifact()
+		{
+			return ProcessAndAssertTemplate(@"
+<Project Sdk=""Microsoft.NET.Sdk"">
+	<PropertyGroup>
+		<PackageVersion>@(Model.NuGetVersion)</PackageVersion>
+		<RandomProperty>@(Model.Metadata[""More""])</RandomProperty>
+		<RandomProperty>@(Model.Metadata[""Spare""])</RandomProperty>
+		<RandomProperty>@(Model.Metadata[""Again""])</RandomProperty>
+	</PropertyGroup>
+</Project>",
+			new BindingConfig
+			{
+				DownloadExternals = false,
+				Metadata = new Dictionary<string, string>
+				{
+					{ "More", "Bad Value" },
+					{ "Spare", "Keys" },
+				},
+				MavenArtifacts =
+				{
+					new MavenArtifactConfig
+					{
+						GroupId = "androidx.annotation",
+						ArtifactId = "annotation",
+						Version = "1.0.2",
+						NugetPackageId = "Xamarin.AndroidX.Annotation",
+						NugetVersion = "1.2.3",
+						Metadata = new Dictionary<string, string>
+						{
+							{ "More", "Yay!" },
+							{ "Again", "Good Value" },
+						}
+					}
+				}
+			}, @"
+<Project Sdk=""Microsoft.NET.Sdk"">
+	<PropertyGroup>
+		<PackageVersion>1.2.3</PackageVersion>
+		<RandomProperty>Yay!</RandomProperty>
+		<RandomProperty>Keys</RandomProperty>
+		<RandomProperty>Good Value</RandomProperty>
+	</PropertyGroup>
+</Project>");
+		}
+
+		[Fact]
 		public Task NuGetVersionOverridesArtifactVersion()
 		{
 			return ProcessAndAssertTemplate(@"
@@ -320,14 +456,82 @@ namespace Xamarin.AndroidBinderator.Tests
 </Project>");
 		}
 
-		public async Task ProcessAndAssertTemplate(string input, BindingConfig config, string output)
+		[Fact]
+		public Task MetadataIsAppendedToDependencies()
+		{
+			return ProcessAndAssertTemplate(@"
+<Project Sdk=""Microsoft.NET.Sdk"">
+	<PropertyGroup>
+		<PackageId>@(Model.NuGetPackageId)</PackageId>
+		<Metadata>@(Model.Metadata[""First""])</Metadata>
+		<Metadata>@(Model.Metadata[""Second""])</Metadata>
+		<Metadata>@(Model.Metadata[""Third""])</Metadata>
+	</PropertyGroup>
+	<ItemGroup>
+	@foreach (var dep in @Model.NuGetDependencies) {
+		<PackageReference Metadata1=""@(dep.Metadata[""First""])"" Metadata2=""@(dep.Metadata[""Second""])"" Metadata3=""@(dep.Metadata[""Third""])"" />
+	}
+	</ItemGroup>
+</Project>",
+			new BindingConfig
+			{
+				DownloadExternals = false,
+				NugetVersionSuffix = "-preview",
+				Metadata = new Dictionary<string, string>
+				{
+					{ "First", "One" },
+					{ "Third", "Three" }
+				},
+				MavenArtifacts =
+				{
+					new MavenArtifactConfig
+					{
+						GroupId = "androidx.annotation",
+						ArtifactId = "annotation",
+						Version = "1.0.2",
+						NugetPackageId = "Xamarin.AndroidX.Annotation",
+						DependencyOnly = true,
+						Metadata = new Dictionary<string, string>
+						{
+							{ "First", "wun" },
+							{ "Second", "too" },
+						},
+					},
+					new  MavenArtifactConfig
+					{
+						GroupId = "androidx.arch.core",
+						ArtifactId = "core-common",
+						Version = "2.0.1",
+						NugetPackageId = "Xamarin.AndroidX.Arch.Core.Common",
+						Metadata = new Dictionary<string, string>
+						{
+							{ "First", "1" },
+							{ "Second", "2" },
+						},
+					}
+				}
+			}, @"
+<Project Sdk=""Microsoft.NET.Sdk"">
+	<PropertyGroup>
+		<PackageId>Xamarin.AndroidX.Arch.Core.Common</PackageId>
+		<Metadata>1</Metadata>
+		<Metadata>2</Metadata>
+		<Metadata>Three</Metadata>
+	</PropertyGroup>
+	<ItemGroup>
+		<PackageReference Metadata1=""wun"" Metadata2=""too"" Metadata3=""Three"" />
+	</ItemGroup>
+</Project>");
+		}
+
+		public async Task ProcessAndAssertTemplate(string input, BindingConfig config, string output, Dictionary<string, string> metadata = null)
 		{
 			var generated = Path.Combine(RootDirectory, "generated");
 			var outputFile = Path.Combine(generated, "Generated.csproj");
 			var templateFile = CreateTemplate(input);
 
 			config.BasePath = RootDirectory;
-			config.Templates.Add(new TemplateConfig(templateFile, outputFile));
+			config.Templates.Add(new TemplateConfig(templateFile, outputFile) { Metadata = metadata });
 
 			await Engine.BinderateAsync(config);
 

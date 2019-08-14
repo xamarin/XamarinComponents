@@ -13,7 +13,6 @@ using Microsoft.AspNetCore.Razor.Language;
 using Microsoft.AspNetCore.Razor.Language.Extensions;
 using RazorLight;
 using MavenGroup = MavenNet.Models.Group;
-using ArtifactInfo = System.Collections.Generic.Dictionary<string, string>;
 using System.Security.Cryptography;
 
 namespace AndroidBinderator
@@ -38,6 +37,8 @@ namespace AndroidBinderator
 				maven = MavenRepository.FromDirectory(config.MavenRepositoryLocation);
 			else if (config.MavenRepositoryType == MavenRepoType.Url)
 				maven = MavenRepository.FromUrl(config.MavenRepositoryLocation);
+			else if (config.MavenRepositoryType == MavenRepoType.MavenCentral)
+				maven = MavenRepository.FromMavenCentral();
 			else
 				maven = MavenRepository.FromGoogle();
 
@@ -80,7 +81,7 @@ namespace AndroidBinderator
 
 			foreach (var template in config.Templates)
 			{
-				var models = BuildProjectModels(config, mavenProjects);
+				var models = BuildProjectModels(config, template, mavenProjects);
 
 				var json = Newtonsoft.Json.JsonConvert.SerializeObject(models);
 
@@ -189,9 +190,13 @@ namespace AndroidBinderator
 			}
 		}
 
-		static List<BindingProjectModel> BuildProjectModels(BindingConfig config, Dictionary<string, Project> mavenProjects)
+		static List<BindingProjectModel> BuildProjectModels(BindingConfig config, TemplateConfig template, Dictionary<string, Project> mavenProjects)
 		{
 			var projectModels = new List<BindingProjectModel>();
+
+			var baseMetadata = new Dictionary<string, string>();
+			MergeValues(baseMetadata, config.Metadata);
+			MergeValues(baseMetadata, template.Metadata);
 
 			foreach (var mavenArtifact in config.MavenArtifacts)
 			{
@@ -202,6 +207,10 @@ namespace AndroidBinderator
 				if (mavenArtifact.DependencyOnly)
 					continue;
 
+				var artifactMetadata = new Dictionary<string, string>();
+				MergeValues(artifactMetadata, baseMetadata);
+				MergeValues(artifactMetadata, mavenArtifact.Metadata);
+
 				var projectModel = new BindingProjectModel
 				{
 					Name = mavenArtifact.ArtifactId,
@@ -210,6 +219,7 @@ namespace AndroidBinderator
 					NuGetVersionSuffix = config.NugetVersionSuffix,
 					MavenGroupId = mavenArtifact.GroupId,
 					AssemblyName = mavenArtifact.AssemblyName,
+					Metadata = artifactMetadata,
 					Config = config
 				};
 				projectModels.Add(projectModel);
@@ -231,6 +241,7 @@ namespace AndroidBinderator
 					MavenArtifactVersion = mavenArtifact.Version,
 					MavenArtifactMd5 = md5,
 					ProguardFile = File.Exists(proguardFile) ? GetRelativePath(proguardFile, config.BasePath).Replace("/", "\\") : null,
+					Metadata = artifactMetadata,
 				});
 
 				// Gather maven dependencies to try and map out nuget dependencies
@@ -248,12 +259,17 @@ namespace AndroidBinderator
 					if (depMapping == null)
 						throw new Exception($"No matching artifact config found for: {mavenDep.GroupId}.{mavenDep.ArtifactId}:{mavenDep.Version} to satisfy dependency of: {mavenArtifact.GroupId}.{mavenArtifact.ArtifactId}:{mavenArtifact.Version}");
 
+					var dependencyMetadata = new Dictionary<string, string>();
+					MergeValues(dependencyMetadata, baseMetadata);
+					MergeValues(dependencyMetadata, depMapping.Metadata);
+
 					projectModel.NuGetDependencies.Add(new NuGetDependencyModel
 					{
 						IsProjectReference = !depMapping.DependencyOnly,
 						NuGetPackageId = depMapping.NugetPackageId,
 						NuGetVersionBase = depMapping.NugetVersion,
 						NuGetVersionSuffix = config.NugetVersionSuffix,
+						Metadata = dependencyMetadata,
 
 						MavenArtifact = new MavenArtifactModel
 						{
@@ -262,6 +278,7 @@ namespace AndroidBinderator
 							MavenArtifactVersion = mavenDep.Version,
 							MavenArtifactMd5 = md5,
 							DownloadedArtifact = artifactFile,
+							Metadata = dependencyMetadata,
 						}
 					});
 				}
@@ -284,6 +301,19 @@ namespace AndroidBinderator
 		{
 			using (var md5 = MD5.Create())
 				return BitConverter.ToString(md5.ComputeHash(value)).Replace("-", "").ToLowerInvariant();
+		}
+
+		static Dictionary<string, string> MergeValues(Dictionary<string, string> dest, Dictionary<string, string> src)
+		{
+			dest = dest ?? new Dictionary<string, string>();
+			if (src != null)
+			{
+				foreach (var kvp in src)
+				{
+					dest[kvp.Key] = kvp.Value;
+				}
+			}
+			return dest;
 		}
 	}
 }
