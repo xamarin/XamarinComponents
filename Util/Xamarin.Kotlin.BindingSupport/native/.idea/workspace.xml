@@ -2,9 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="344e621a-6e9f-4cca-bd31-7f332c5182fe" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/.name" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/kotlin/xamarin/binding/kotlin/bindingsupport/Program.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../../Android/Kotlin/build.cake" beforeDir="false" afterPath="$PROJECT_DIR$/../../../Android/Kotlin/build.cake" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../../Android/Kotlin/source/Xamarin.Kotlin.StdLib.Jdk7/Properties/AssemblyInfo.cs" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../../../Android/Kotlin/source/Xamarin.Kotlin.StdLib.Jdk7/Transforms/EnumFields.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../../Android/Kotlin/source/Xamarin.Kotlin.StdLib.Jdk7/Transforms/EnumFields.xml" afterDir="false" />
@@ -23,20 +20,7 @@
       <change beforePath="$PROJECT_DIR$/../../../Android/Kotlin/source/Xamarin.Kotlin.StdLib/Transforms/Metadata.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../../Android/Kotlin/source/Xamarin.Kotlin.StdLib/Transforms/Metadata.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../../Android/Kotlin/source/Xamarin.Kotlin.StdLib/Xamarin.Kotlin.StdLib.csproj" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../../../Android/Kotlin/source/Xamarin.Kotlin.sln" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../KotlinBindingHelper/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../KotlinBindingHelper/.idea/artifacts/KotlinBindingHelper_jar.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../KotlinBindingHelper/.idea/codeStyles/Project.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../KotlinBindingHelper/.idea/codeStyles/codeStyleConfig.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../KotlinBindingHelper/.idea/kotlinc.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../KotlinBindingHelper/.idea/libraries/KotlinJavaRuntime.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../KotlinBindingHelper/.idea/libraries/com_github_ajalt_clikt_2_1_0.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../KotlinBindingHelper/.idea/misc.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../KotlinBindingHelper/.idea/modules.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../KotlinBindingHelper/.idea/vcs.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../KotlinBindingHelper/KotlinBindingHelper.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../KotlinBindingHelper/src/META-INF/MANIFEST.MF" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../KotlinBindingHelper/src/Program.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../manifest.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/../../../manifest.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -109,7 +93,9 @@
       <map>
         <entry key="MAIN">
           <value>
-            <State />
+            <State>
+              <option name="COLUMN_ORDER" />
+            </State>
           </value>
         </entry>
       </map>

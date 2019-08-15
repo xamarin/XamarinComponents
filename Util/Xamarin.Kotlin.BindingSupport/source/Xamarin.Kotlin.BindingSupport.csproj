@@ -8,9 +8,9 @@
 
   <PropertyGroup>
     <PackageId>Xamarin.Kotlin.BindingSupport</PackageId>
-    <PackageVersion>0.1.0</PackageVersion>
+    <PackageVersion>0.1.0-preview</PackageVersion>
     <Title>Kotlin binding tools for Xamarin.Android</Title>
-    <Summary>Various tools to support binding Kotlin libraries for Xamarin.Android</Summary>
+    <Description>Various tools to support binding Kotlin libraries for Xamarin.Android</Description>
     <PackageTags>Xamarin Kotlin Xamarin.Kotlin</PackageTags>
     <Authors>Microsoft</Authors>
     <Owners>Microsoft</Owners>
