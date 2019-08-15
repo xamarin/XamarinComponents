@@ -1,3 +1,5 @@
+package xamarin.binding.kotlin.bindingsupport
+
 import com.github.ajalt.clikt.core.CliktCommand
 import com.github.ajalt.clikt.parameters.options.*
 import com.github.ajalt.clikt.parameters.types.*
@@ -12,30 +14,35 @@ import java.net.URLClassLoader
 import javax.xml.parsers.DocumentBuilderFactory
 import javax.xml.xpath.XPathConstants
 import javax.xml.xpath.XPathFactory
+import kotlin.random.Random
+import kotlin.random.nextULong
 import kotlin.reflect.KVisibility
+
+// Warning/Error Codes:
+//  - XKT1010 (WARNING) : Multiple companion fields found for "<class-name>".
+//  - XKT1020 (WARNING) : Reflecting "<class-name>" is not yet supported: Packages and file facades are not yet supported in Kotlin reflection.
+//  - XKT1021 (WARNING) : Class "<class-name>" is unresolved: <exception-message>
+//  - XKT1030 (ERROR)   : Error reflecting "<class-name>": <exception-message>
+//  - XKT1011 (ERROR)   : Multiple classes match the full name "<class-name>"
 
 fun main(args: Array<String>) =
     ProcessXmlCommand().main(args)
 
-class ProcessXmlCommand : CliktCommand(name = "KotlinBindingHelper") {
+class ProcessXmlCommand : CliktCommand(name = "KotlinBindingSupport") {
 
     val xmlFile: File by option("-x", "--xml", help = "path to the generated api.xml file")
         .file(exists = true)
-//        .required()
-        .default(File("/Users/matthew/Projects/XamarinComponents/Android/Kotlin/generated/org.jetbrains.kotlin.kotlin-stdlib/obj/Release/monoandroid90/api.xml"))
+        .required()
 
     val jarFiles: List<File> by option("-j", "--jar", help = "paths to the various .jar files being bound")
         .file(exists = true)
-//        .multiple(required = true)
-        .multiple(default = arrayListOf(File("/Users/matthew/Projects/XamarinComponents/Android/Kotlin/externals/org.jetbrains.kotlin/kotlin-stdlib.jar")))
+        .multiple(required = true)
 
     val outputFile: File? by option("-o", "--output", help = "path to the output transform file")
-        .file(fileOkay = false)
-        .default(File("/Users/matthew/Projects/XamarinComponents/Android/Kotlin/source/Xamarin.Kotlin.StdLib/Transforms/Metadata.generated.xml"))
+        .file(fileOkay = true, folderOkay = false)
 
     val verbose: Boolean by option("-v", "--verbose", help = "output verbose information")
-//        .flag(default = false)
-        .flag(default = true)
+        .flag(default = false)
 
     private val docBuilderFac = DocumentBuilderFactory.newInstance()
     private val docBuilder = docBuilderFac.newDocumentBuilder()
@@ -50,8 +57,6 @@ class ProcessXmlCommand : CliktCommand(name = "KotlinBindingHelper") {
         "/api/package[@name='%s']/class[@name='%s']/field[@name='Companion' and @type='%s']"
 
     private val potentialRemoveNodes = arrayOf(
-        "/api/package/class[starts-with(@name,'-')]",
-        "/api/package/class/method[starts-with(@name,'-')]",
         "/api/package/class/method[contains(@name,'\$default')]",
         "/api/package/class/method[contains(@name,'\$annotations')]",
         "/api/package/class/method[contains(@name,'\$kotlin_stdlib')]",
@@ -141,7 +146,8 @@ class ProcessXmlCommand : CliktCommand(name = "KotlinBindingHelper") {
         outputWriter?.flush()
         outputWriter?.close()
 
-        println("Processing complete.")
+        if (verbose)
+            println("Processing complete.")
     }
 
     private fun shouldRemoveClass(xdoc: Document, xclass: Node, loader: URLClassLoader): ProcessResult {
@@ -171,33 +177,48 @@ class ProcessXmlCommand : CliktCommand(name = "KotlinBindingHelper") {
                 return ProcessResult.RemoveCompanion
             } else if (companionFields.second.length > 1) {
                 if (verbose)
-                    println("WARNING: Multiple companion fields found for \"${xpackage}.${xname}\".")
+                    println("WARNING XKT1010: Multiple companion fields found for \"${xpackage}.${xname}\".")
             }
         }
 
         // first try names with periods, but they may be private, so try again with dollars
-        var jclass: Class<*>
+        var jclass: Class<*>?
         var xfullname = "${xpackage}.${xname}"
         try {
             jclass = loader.loadClass(xfullname)
         } catch (ex: Exception) {
-            xfullname = "${xpackage}.${xname.replace(".", "\$")}"
-            jclass = loader.loadClass(xfullname)
+            try {
+                xfullname = "${xpackage}.${xname.replace(".", "\$")}"
+                jclass = loader.loadClass(xfullname)
+            } catch (ex: Exception) {
+                jclass = null
+            }
         }
 
-        // get the kotlin class
-        val kclass = jclass.kotlin
-
-        // determine if this is some internal method
-        try {
-            if (kclass.visibility != KVisibility.PUBLIC)
-                return ProcessResult.RemoveInternal
-        } catch (ex: Exception) {
-            if (ex is UnsupportedOperationException && ex.message != null && ex.message!!.startsWith("Packages and file facades are not yet supported in Kotlin reflection.")) {
-                if (verbose)
-                    println("WARNING: \"${xfullname}\" is bad: ${ex.localizedMessage}")
-            } else {
-                println("ERROR: \"${xfullname}\" is bad: ${ex.localizedMessage}")
+        if (jclass != null) {
+            // determine if this is some internal method
+            try {
+                val kclass = jclass.kotlin
+                if (kclass.visibility != KVisibility.PUBLIC)
+                    return ProcessResult.RemoveInternal
+            } catch (ex: Exception) {
+                if (ex is UnsupportedOperationException && ex.message != null) {
+                    if (ex.message!!.contains("This class is an internal synthetic class generated by the Kotlin compiler")) {
+                        return ProcessResult.RemoveGenerated
+                    } else if (ex.message!!.contains("Packages and file facades are not yet supported in Kotlin reflection.")) {
+                        if (verbose)
+                            println("WARNING XKT1020: Reflecting \"${xfullname}\" is not yet supported: ${ex.localizedMessage}")
+                    } else {
+                        println("ERROR XKT1030: Error reflecting \"${xfullname}\": ${ex.localizedMessage}")
+                    }
+                } else {
+                    println("ERROR XKT1030: Error reflecting \"${xfullname}\": ${ex.localizedMessage}")
+                }
+            } catch (ex: Throwable) {
+                if (ex.message!!.contains("Unresolved class:"))
+                    println("WARNING XKT1021: Class \"${xfullname}\" is unresolved: ${ex.localizedMessage}")
+                else
+                    println("ERROR XKT1030: Error reflecting \"${xfullname}\": ${ex.localizedMessage}")
             }
         }
 
@@ -215,10 +236,10 @@ class ProcessXmlCommand : CliktCommand(name = "KotlinBindingHelper") {
                 if (removeParent != ProcessResult.Preserve && removeParent != ProcessResult.Ignore)
                     return ProcessResult.RemoveInternalParent
             } else if (parentClasses.length > 1) {
-                println("ERROR: multiple classes match the full name \"${xpackage}.${xparentname}\"")
+                println("ERROR XKT1011: Multiple classes match the full name \"${xpackage}.${xparentname}\".")
             } else {
                 if (verbose)
-                    println("INFO: \"${xpackage}.${xparentname}\" is not a real parent for \"${xpackage}.${xname}\".")
+                    println("INFO: Class \"${xpackage}.${xparentname}\" is not a real parent for \"${xpackage}.${xname}\".")
             }
             lastPeriod = xparentname.lastIndexOf(".")
         }
@@ -237,8 +258,8 @@ class ProcessXmlCommand : CliktCommand(name = "KotlinBindingHelper") {
         Ignore,                 // IGNORE this class in further processing
         RemoveJavaInternal,     // REMOVE this class because it is private in Java
         RemoveInternal,         // REMOVE this class because it is internal
+        RemoveGenerated,        // REMOVE this class as it is generated by the Kotlin compiler for internal use
         RemoveCompanion,        // REMOVE this class as it is a "generated" type
         RemoveInternalParent    // REMOVE this class as the parent is removed
     }
 }
-

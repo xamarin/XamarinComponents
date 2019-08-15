@@ -595,3 +595,7 @@
   BuildScript: ./Util/Xamarin.AndroidBinderator/build.cake
   TriggerPaths: [ Util/Xamarin.AndroidBinderator ]
   WindowsBuildTargets: [ nuget ]
+- Name: Xamarin.Kotlin.BindingSupport
+  BuildScript: ./Util/Xamarin.Kotlin.BindingSupport/build.cake
+  TriggerPaths: [ Util/Xamarin.Kotlin.BindingSupport ]
+  MacBuildTargets: [ nuget, tests ]
