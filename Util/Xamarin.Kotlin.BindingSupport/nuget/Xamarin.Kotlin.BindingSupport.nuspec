@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2011/10/nuspec.xsd">
+  <metadata>
+    <id>Xamarin.Kotlin.BindingSupport</id>
+    <version>1.0.0</version>
+    <title>Kotlin binding tools for Xamarin.Android</title>
+    <authors>Microsoft</authors>
+    <owners>Microsoft</owners>
+    <requireLicenseAcceptance>true</requireLicenseAcceptance>
+    <license type="expression">MIT</license>
+    <licenseUrl>https://licenses.nuget.org/MIT</licenseUrl>
+    <projectUrl>https://go.microsoft.com/fwlink/?linkid=864997</projectUrl>
+    <description>Various tools to support binding Kotlin libraries for Xamarin.Android</description>
+    <copyright>© Microsoft Corporation. All rights reserved.</copyright>
+    <tags>Xamarin Kotlin Xamarin.Kotlin</tags>
+  </metadata>
+  <files>
+    <file src="..\native\build\libs\binding-support-1.0.jar" target="build\monoandroid1.0\binding-support-1.0.jar" />
+    <file src="..\source\Xamarin.Kotlin.BindingSupport.targets" target="build\monoandroid1.0\Xamarin.Kotlin.BindingSupport.targets" />
+  </files>
+</package>

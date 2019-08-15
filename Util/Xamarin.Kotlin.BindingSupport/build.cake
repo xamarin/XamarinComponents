@@ -1,6 +1,8 @@
 
 var TARGET = Argument("t", Argument("target", "Default"));
 
+var PACAKGE_VERSION = "0.1.0-preview";
+
 Task("externals")
 	.Does(() =>
 {
@@ -29,14 +31,10 @@ Task("nuget")
 	.IsDependentOn("libs")
 	.Does(() =>
 {
-	var settings = new MSBuildSettings()
-		.SetConfiguration("Release")
-		.SetVerbosity(Verbosity.Minimal)
-		.WithRestore()
-		.WithProperty("PackageOutputPath", MakeAbsolute((DirectoryPath)"./output/").FullPath)
-		.WithTarget("Pack");
-
-	MSBuild("./source/Xamarin.Kotlin.BindingSupport.csproj", settings);
+	NuGetPack("./nuget/Xamarin.Kotlin.BindingSupport.nuspec", new NuGetPackSettings {
+		Version = PACAKGE_VERSION,
+		OutputDirectory = "./output"
+	});
 });
 
 Task("samples");
