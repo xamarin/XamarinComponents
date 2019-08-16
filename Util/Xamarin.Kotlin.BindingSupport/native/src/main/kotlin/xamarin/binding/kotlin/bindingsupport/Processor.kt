@@ -195,15 +195,19 @@ class Processor(xmlFile: File, jarFiles: List<File>, outputFile: File?) {
         for (xmember in xmembers) {
             val result = shouldRemove(xmember)
             if (result != ProcessResult.Ignore) {
-                val parameters = getMemberParameters(xmember, true)
-                val paramString = parameters.joinToString(", ")
                 val xmembername = xmember.getAttributeValue("name")
+                val parameters = getMemberParameters(xmember, true)
+                val params = listOf(
+                    "@name='${xmembername}'",
+                    "count(parameter)=${parameters.size}"
+                ).union(
+                    parameters.mapIndexed { idx, p -> "parameter[${idx}][@type='${p}']" }
+                )
+                val paramsString = params.joinToString(" and ")
 
-                // TODO
-                // @name='copy' and count(parameter)=2 and parameter[1][@type='java.lang.String'] and parameter[2][@type='kotlin.ranges.IntRange']
-
-                logVerbose("Removing ${memberType} \"${xpackage}.${xclassname}.${xmembername}(${paramString}))\" because is not meant to be bound (${result})...")
-                writeRemoveNode("/api/package[@name='${xpackage}']/${xclasstype}[@name='${xclassname}']/${memberType}[@name='${xmembername}' and ${paramString}]")
+                val ps = parameters.joinToString(", ")
+                logVerbose("Removing ${memberType} \"${xpackage}.${xclassname}.${xmembername}(${ps}))\" because is not meant to be bound (${result})...")
+                writeRemoveNode("/api/package[@name='${xpackage}']/${xclasstype}[@name='${xclassname}']/${memberType}[${paramsString}]")
             }
         }
     }
