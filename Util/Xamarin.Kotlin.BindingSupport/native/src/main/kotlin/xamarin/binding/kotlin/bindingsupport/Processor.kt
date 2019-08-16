@@ -517,7 +517,7 @@ class Processor(xmlFile: File, jarFiles: List<File>, outputFile: File?) {
 
     private fun writeRemoveNode(path: String) {
         val xroot = xtransformsdoc.rootElement
-        val xele = Element("attr")
+        val xele = Element("remove-node")
         xele.addAttribute(Attribute("path", path))
         xroot.appendChild(xele)
     }
