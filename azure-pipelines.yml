@@ -81,6 +81,10 @@ jobs:
     pool:
       name: $(imageName)
     steps:
+      - task: UseDotNet@2
+        inputs:
+          packageType: 'sdk'
+          useGlobalJson: true
       - bash: sudo $AGENT_HOMEDIRECTORY/scripts/select-xamarin-sdk.sh $(MONO_VERSION)
         displayName: 'Switch to the latest Xamarin SDK'
         condition: eq(variables['System.JobName'], 'macos')
