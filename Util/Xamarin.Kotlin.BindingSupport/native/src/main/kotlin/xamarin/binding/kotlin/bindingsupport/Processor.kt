@@ -52,7 +52,7 @@ class Processor(xmlFile: File, jarFiles: List<File>, outputFile: File?) {
         val builder = Builder()
         xapidoc = builder.build(xmlFile.canonicalFile)
 
-        xtransformsdoc = Document(Element("manifest"))
+        xtransformsdoc = Document(Element("metadata"))
         this.outputFile = outputFile
     }
 
