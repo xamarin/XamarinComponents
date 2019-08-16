@@ -10,6 +10,7 @@
     <description>Gson is a library that can be used to convert Java Objects into their JSON representation. It can also be used to convert a JSON string to an equivalent Java object.</description>
     <copyright>© Microsoft Corporation. All rights reserved.</copyright>
     <projectUrl>https://go.microsoft.com/fwlink/?linkid=865089</projectUrl>
+    <license type="expression">MIT</license>
     <licenseUrl>https://go.microsoft.com/fwlink/?linkid=865037</licenseUrl>
   </metadata>
   <files>  
