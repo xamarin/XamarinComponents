@@ -1,0 +1,546 @@
+@file:Suppress("RemoveCurlyBracesFromTemplate")
+
+package xamarin.binding.kotlin.bindingsupport
+
+import nu.xom.*
+import java.io.File
+import java.lang.reflect.Constructor
+import java.lang.reflect.Executable
+import java.lang.reflect.Field
+import java.lang.reflect.Method
+import java.net.URL
+import java.net.URLClassLoader
+import kotlin.reflect.KFunction
+import kotlin.reflect.KVisibility
+import kotlin.reflect.jvm.kotlinFunction
+import kotlin.reflect.jvm.kotlinProperty
+
+class Processor(xmlFile: File, jarFiles: List<File>, outputFile: File?) {
+
+    private fun expressionClasses() =
+        "/api/package/*[(local-name()='class')or(local-name()='interface')]"
+
+    private fun expressionSpecificClass(xpackage: String, xclasstype: String, xname: String) =
+        "/api/package[@name='${xpackage}']/${xclasstype}[@name='${xname}']"
+
+    private fun expressionMember(xpackage: String, xclasstype: String, xname: String, xtype: String) =
+        "/api/package[@name='${xpackage}']/${xclasstype}[@name='${xname}']/${xtype}"
+
+    private fun expressionCompanion() =
+        "/api/package/class/field[@type=concat(../../@name,'.',../@name,'.',@name)]"
+
+    private val invalidKeywords = arrayOf(
+        "\$default",
+        "\$annotations",
+        "\$kotlin_stdlib",
+        "\$EnumSwitchMapping\$"
+    )
+
+    var companions: CompanionProcessing = CompanionProcessing.Default
+    var verbose: Boolean = false
+
+    private val loader: URLClassLoader
+    private val xapidoc: Document
+
+    private val outputFile: File?
+    private val xtransformsdoc: Document
+
+    init {
+        val urls = jarFiles.map { file -> URL("file://${file.canonicalPath}") }
+        loader = URLClassLoader(urls.toTypedArray())
+
+        val builder = Builder()
+        xapidoc = builder.build(xmlFile.canonicalFile)
+
+        xtransformsdoc = Document(Element("manifest"))
+        this.outputFile = outputFile
+    }
+
+    fun process() {
+        // fix typical cases
+        processSuggestedFixes()
+
+        // process companion classes and related fields
+        processCompanions()
+
+        // remove specific cases
+        processClasses()
+
+        // finish up
+        if (outputFile != null) {
+            val serializer = Serializer(outputFile.outputStream())
+            serializer.indent = 4
+            serializer.write(xtransformsdoc)
+            serializer.flush()
+        }
+
+        logVerbose("Processing complete.")
+    }
+
+    private fun processCompanions() {
+        writeComment("fix Kotlin companion objects")
+
+        // find all the companion FIELDS
+        val xcompanions = xapidoc.rootElement.queryElements(expressionCompanion())
+
+        for (xcompanionfield in xcompanions) {
+            val xname = xcompanionfield.getAttributeValue("name")
+            val xcontainer = xcompanionfield.parentElement
+            val xcontainername = xcontainer.getAttributeValue("name")
+            val xclassname = "${xcontainername}.${xname}"
+            val xpackage = xcontainer.parentElement.getAttributeValue("name")
+
+            val pair = getJavaClass(xpackage, xclassname)
+            if (pair == null) {
+                ProcessorErrors.errorResolvingJavaClass("${xpackage}.${xclassname}")
+                continue
+            }
+            val jclass = pair.first
+
+            val withoutJvmStatic = jclass.declaredMethods.filter { method ->
+                method.declaredAnnotations.all { ann ->
+                    ann.annotationClass.qualifiedName != "kotlin.jvm.JvmStatic"
+                }
+            }
+
+            fun rename() {
+                logVerbose("Renaming companion object \"${xpackage}.${xclassname}\" because it will clash with the related field...")
+                writeAttrManagedName(
+                    "/api/package[@name='${xpackage}']/class[@name='${xclassname}']",
+                    "${xclassname}Static"
+                )
+            }
+
+            fun remove() {
+                logVerbose("Removing companion object \"${xpackage}.${xclassname}\" because all the methods are static...")
+                writeRemoveNode("/api/package[@name='${xpackage}']/class[@name='${xclassname}']")
+                writeRemoveNode("/api/package[@name='${xpackage}']/class[@name='${xcontainername}']/field[@name='${xname}']")
+            }
+
+            when (companions) {
+                CompanionProcessing.Default -> {
+                    if (withoutJvmStatic.isEmpty())
+                        remove()
+                    else
+                        rename()
+                }
+                CompanionProcessing.Rename -> rename()
+                CompanionProcessing.Remove -> remove()
+            }
+        }
+    }
+
+    private fun processSuggestedFixes() {
+        // fix up any Kotlin things
+        writeComment("fix Kotlin-specific elements")
+
+        // Kotlin v1.2 names the extension method parameters to $receiver
+        if (xapidoc.rootElement.queryElements("/api/package/class/method[count(parameter)>0 and parameter[1][@name='\$receiver']]").any()) {
+            logVerbose("Renaming the \"\$receiver\" parameter names to \"parameter\"...")
+            writeAttrManagedName("/api/package/class/method[parameter[1][@name='\$receiver']]/parameter[1]", "receiver")
+        }
+    }
+
+    private fun processClasses() {
+        writeComment("remove Kotlin internal classes and members")
+
+        val classes = xapidoc.rootElement.queryElements(expressionClasses())
+        for (xclass in classes) {
+            val removeClass = shouldRemoveClass(xclass)
+            if (removeClass == ProcessResult.Ignore) {
+                processMembers(xclass)
+                continue
+            }
+
+            // this class needs to be removed
+            val xpackage = xclass.parentElement.getAttributeValue("name")
+            val xname = xclass.getAttributeValue("name")
+            val xtype = xclass.localName
+
+            // handle the cases where the parent is internal
+            logVerbose("Removing \"${xpackage}.${xname}\" because is not meant to be bound (${removeClass})...")
+            writeRemoveNode("/api/package[@name='${xpackage}']/${xtype}[@name='${xname}']")
+        }
+    }
+
+    private fun processMembers(xclass: Element) {
+        val xpackage = xclass.parentElement.getAttributeValue("name")
+        val xname = xclass.getAttributeValue("name")
+
+        val pair = getJavaClass(xpackage, xname)
+        if (pair == null) {
+            ProcessorErrors.errorResolvingJavaClass("${xpackage}.${xname}")
+            return
+        }
+
+        val jclass = pair.first
+
+        processMember(xclass, "constructor") {
+            shouldRemoveMember(it, jclass.declaredConstructors)
+        }
+        processMember(xclass, "method") {
+            shouldRemoveMember(it, jclass.declaredMethods)
+        }
+        processMember(xclass, "field") {
+            shouldRemoveMember(it, jclass.declaredFields)
+        }
+    }
+
+    private fun processMember(xclass: Element, memberType: String, shouldRemove: (Element) -> ProcessResult) {
+        val xpackage = xclass.parentElement.getAttributeValue("name")
+        val xclassname = xclass.getAttributeValue("name")
+        val xclasstype = xclass.localName
+
+        val xmembers = xapidoc.rootElement.queryElements(expressionMember(xpackage, xclasstype, xclassname, memberType))
+        for (xmember in xmembers) {
+            val result = shouldRemove(xmember)
+            if (result != ProcessResult.Ignore) {
+                val parameters = getMemberParameters(xmember, true)
+                val paramString = parameters.joinToString(", ")
+                val xmembername = xmember.getAttributeValue("name")
+
+                // TODO
+                // @name='copy' and count(parameter)=2 and parameter[1][@type='java.lang.String'] and parameter[2][@type='kotlin.ranges.IntRange']
+
+                logVerbose("Removing ${memberType} \"${xpackage}.${xclassname}.${xmembername}(${paramString}))\" because is not meant to be bound (${result})...")
+                writeRemoveNode("/api/package[@name='${xpackage}']/${xclasstype}[@name='${xclassname}']/${memberType}[@name='${xmembername}' and ${paramString}]")
+            }
+        }
+    }
+
+    private fun shouldRemoveClass(xclass: Element): ProcessResult {
+        // read the xml
+        val xpackage = xclass.parentElement.getAttributeValue("name")
+        val xname = xclass.getAttributeValue("name")
+        val xtype = xclass.localName
+
+        logVerbose("Checking the class \"${xpackage}.${xname}\"...")
+
+        // before we check anything, make sure that the parent class is visible
+        var lastPeriod = xname.lastIndexOf(".")
+        while (lastPeriod != -1) {
+            val xparentname = xname.substring(0, lastPeriod)
+            val parentClasses = xapidoc.rootElement.queryElements(expressionSpecificClass(xpackage, xtype, xparentname))
+            if (parentClasses.size == 1) {
+                logVerbose("Checking the parent class \"${xpackage}.${xparentname}\"...")
+
+                val removeParent = shouldRemoveClass(parentClasses.first())
+                if (removeParent != ProcessResult.Ignore)
+                    return ProcessResult.RemoveInternalParent
+            } else if (parentClasses.size > 1) {
+                ProcessorErrors.multipleClassesInXml("${xpackage}.${xparentname}")
+            }
+            lastPeriod = xparentname.lastIndexOf(".")
+        }
+
+        // optional
+        val xextends = xclass.getAttributeValue("extends")
+        val xvisibility = xclass.getAttributeValue("visibility")
+
+        // ignore already hidden items
+        if (xvisibility != "public")
+            return ProcessResult.RemoveJavaInternal
+
+        // some things we know are not good to check
+        if (xextends == "java.lang.Enum")
+            return ProcessResult.Ignore
+
+        // now check this type and see what we can do
+        val pair = getJavaClass(xpackage, xname)
+
+        // this class could not be loaded, so do nothing
+        if (pair == null) {
+            ProcessorErrors.errorResolvingJavaClass("${xpackage}.${xname}")
+            return ProcessResult.Ignore
+        }
+        val (jclass, xfullname) = pair
+
+        try {
+            val kclass = jclass.kotlin
+
+            // determine if this is some internal class
+            if (kclass.visibility != KVisibility.PUBLIC)
+                return ProcessResult.RemoveInternal
+        } catch (ex: Exception) {
+            if (ex is UnsupportedOperationException && ex.message != null) {
+                if (ex.message!!.contains("This class is an internal synthetic class generated by the Kotlin compiler")) {
+                    return ProcessResult.RemoveGenerated
+                } else if (ex.message!!.contains("Packages and file facades are not yet supported in Kotlin reflection.")) {
+                    if (verbose)
+                        ProcessorErrors.unableToResolveKotlinClass(xfullname, ex)
+                } else {
+                    ProcessorErrors.errorInspectingKotlinClass(xfullname, ex)
+                }
+            } else {
+                ProcessorErrors.errorInspectingKotlinClass(xfullname, ex)
+            }
+        } catch (ex: Throwable) {
+            if (ex.message!!.contains("Unresolved class:"))
+                ProcessorErrors.unableToResolveKotlinClass(xfullname, ex)
+            else
+                ProcessorErrors.errorInspectingKotlinClass(xfullname, ex)
+        }
+
+        // this class is public
+        return ProcessResult.Ignore
+    }
+
+    private fun shouldRemoveMember(xmember: Element, jmembers: Array<out Executable>): ProcessResult {
+        val xclass = xmember.parentElement
+        val xclassname = xclass.getAttributeValue("name")
+        val xpackage = xclass.parentElement.getAttributeValue("name")
+        val xname = xmember.getAttributeValue("name")
+        val xtype = xmember.localName
+        val xfullname = "${xpackage}.${xclassname}.${xname}"
+
+        // before doing any complex checks, make sure it is not an invalid member
+        if (invalidKeywords.any { xname.contains(it) }) {
+            return ProcessResult.RemoveGenerated
+        }
+
+        // optional
+        val xvisibility = xmember.getAttributeValue("visibility")
+
+        // ignore already hidden items
+        if (xvisibility != "public")
+            return ProcessResult.RemoveJavaInternal
+
+        // get a list of all the parameters
+        val xparameters = getMemberParameters(xmember)
+        val jmembersfiltered = jmembers.filter { jm ->
+            when (jm) {
+                is Constructor<*> -> jm.normalizedName == "${xpackage}.${xname}"
+                is Method -> jm.normalizedName == xname
+                else -> false
+            }
+        }
+
+        // match the member signature
+        var jmember = jmembersfiltered.firstOrNull { jm ->
+            val jnames = jm.parameterTypes.map { it.normalizedName }.toTypedArray()
+            xparameters contentEquals jnames
+        }
+
+        // try and replace all the generic types
+        if (jmember == null) {
+            val typeparams = getTypeParameters(xclass, xmember)
+            if (typeparams.isNotEmpty()) {
+                val xmapped = xparameters.map { xp ->
+                    val (type, suffix) = if (xp.endsWith("[]")) (xp.substring(0, xp.length - 2) to "[]") else (xp to "")
+                    if (typeparams.containsKey(type))
+                        typeparams[type] + suffix
+                    else
+                        xp
+                }.toTypedArray()
+                jmember = jmembersfiltered.firstOrNull { jm ->
+                    val jnames = jm.parameterTypes.map { it.normalizedName }.toTypedArray()
+                    xmapped contentEquals jnames
+                }
+            }
+        }
+
+        // there was a problem loading this member
+        if (jmember == null) {
+            ProcessorErrors.errorResolvingJavaMember(xtype, xfullname)
+            return ProcessResult.Ignore
+        }
+
+        try {
+            val kmember: KFunction<*>?
+            when (jmember) {
+                is Constructor<*> -> kmember = jmember.kotlinFunction
+                is Method -> kmember = jmember.kotlinFunction
+                else -> kmember = null
+            }
+
+            // kotlin can't read this one
+            if (kmember == null) {
+                ProcessorErrors.unableToResolveKotlinMember(xtype, xfullname)
+                return ProcessResult.Ignore
+            }
+
+            // check to see if it is visible
+            if (kmember.visibility != KVisibility.PUBLIC && kmember.visibility != KVisibility.PROTECTED)
+                return ProcessResult.RemoveInternal
+        } catch (ex: Exception) {
+            ProcessorErrors.errorInspectingKotlinMember(xtype, xfullname, ex)
+        } catch (ex: Throwable) {
+            if (ex.message!!.startsWith("Unknown origin of "))
+                ProcessorErrors.unableToResolveKotlinMember(xtype, xfullname)
+            else
+                ProcessorErrors.errorInspectingKotlinMember(xtype, xfullname, ex)
+        }
+
+        return ProcessResult.Ignore
+    }
+
+    private fun shouldRemoveMember(xmember: Element, jmembers: Array<Field>): ProcessResult {
+        val xclass = xmember.parentElement
+        val xclassname = xclass.getAttributeValue("name")
+        val xpackage = xclass.parentElement.getAttributeValue("name")
+        val xname = xmember.getAttributeValue("name")
+        val xtype = xmember.getAttributeValue("type")
+        val xfullname = "${xpackage}.${xclassname}.${xname}"
+
+        // before doing any complex checks, make sure it is not an invalid member
+        if (invalidKeywords.any { xname.contains(it) }) {
+            return ProcessResult.RemoveGenerated
+        }
+
+        // match the field
+        val jmember = jmembers.firstOrNull { jm -> jm.name == xname && jm.type.normalizedName == xtype }
+
+        // there was a problem loading this field
+        if (jmember == null) {
+            ProcessorErrors.errorResolvingJavaMember("field", xfullname)
+            return ProcessResult.Ignore
+        }
+
+        try {
+            val kmember = jmember.kotlinProperty
+
+            // there was a problem loading this field
+            if (kmember == null) {
+                ProcessorErrors.unableToResolveKotlinMember("field", xfullname)
+                return ProcessResult.Ignore
+            }
+
+            // check to see if it is visible
+            if (kmember.visibility != KVisibility.PUBLIC && kmember.visibility != KVisibility.PROTECTED)
+                return ProcessResult.RemoveInternal
+        } catch (ex: Exception) {
+            ProcessorErrors.errorInspectingKotlinMember("field", xfullname, ex)
+        } catch (ex: Throwable) {
+            ProcessorErrors.errorInspectingKotlinMember("field", xfullname, ex)
+        }
+
+        return ProcessResult.Ignore
+    }
+
+    private fun getMemberParameters(xmember: Element, preserve: Boolean = false): Array<String> {
+        val jparameters = mutableListOf<String>()
+        val xparameters = xmember.getChildElements("parameter")
+        for (xparam in xparameters) {
+            var xparamtype = xparam.getAttributeValue("type")
+
+            if (preserve) {
+                jparameters.add(xparamtype)
+            } else {
+                // remove generic
+                val idx = xparamtype.indexOf("<")
+                if (idx != -1)
+                    xparamtype = xparamtype.substring(0, idx)
+
+                // remove ellipsis
+                jparameters.add(xparamtype.replace("...", "[]"))
+            }
+        }
+        return jparameters.toTypedArray()
+    }
+
+    private fun getTypeParameters(xclass: Element, xmember: Element): MutableMap<String, String> {
+        val typeparams = mutableMapOf<String, String>()
+
+        fun merge(xtypeparameters: List<Element>) {
+            for (xparam in xtypeparameters) {
+                val name = xparam.getAttributeValue("name")
+                val xgen = xparam.queryElements("genericConstraints/genericConstraint")
+                var type = xgen.firstOrNull()?.getAttributeValue("type")
+
+                // remove generic
+                if (type != null) {
+                    val idx = type.indexOf("<")
+                    if (idx != -1)
+                        type = type.substring(0, idx)
+                }
+
+                typeparams[name] = type ?: "java.lang.Object"
+            }
+        }
+
+        merge(xclass.queryElements("typeParameters/typeParameter"))
+        merge(xmember.queryElements("typeParameters/typeParameter"))
+
+        return typeparams
+    }
+
+    private fun getJavaClass(xpackage: String?, xname: String): Pair<Class<*>, String>? {
+        // try exact match
+        var xfullname = "${xpackage}.${xname}"
+        var jclass = getJavaClass(xfullname)
+        if (jclass != null)
+            return Pair(jclass, xfullname)
+
+        // try an alternative
+        xfullname = "${xpackage}.${xname.replace(".", "\$")}"
+        jclass = getJavaClass(xfullname)
+        if (jclass != null)
+            return Pair(jclass, xfullname)
+
+        // we can't do anything
+        return null
+    }
+
+    private fun getJavaClass(xfullname: String): Class<*>? {
+        return try {
+            loader.loadClass(xfullname)
+        } catch (ex: Exception) {
+            null
+        }
+    }
+
+    private fun logVerbose(message: String) {
+        if (verbose)
+            println(message)
+    }
+
+    private fun writeComment(comment: String) {
+        val xroot = xtransformsdoc.rootElement
+        xroot.appendChild(Comment(comment))
+    }
+
+    private fun writeAttrManagedName(path: String, value: String) =
+        writeAttr(path, "managedName", value)
+
+    private fun writeAttr(path: String, name: String, value: String) {
+        val xroot = xtransformsdoc.rootElement
+        val xele = Element("attr")
+        xele.addAttribute(Attribute("path", path))
+        xele.addAttribute(Attribute("name", name))
+        xele.appendChild(value)
+        xroot.appendChild(xele)
+    }
+
+    private fun writeRemoveNode(path: String) {
+        val xroot = xtransformsdoc.rootElement
+        val xele = Element("attr")
+        xele.addAttribute(Attribute("path", path))
+        xroot.appendChild(xele)
+    }
+
+    enum class ProcessResult {
+        Ignore,                 // IGNORE this class in further processing
+        RemoveJavaInternal,     // REMOVE this class because it is private in Java
+        RemoveInternal,         // REMOVE this class because it is internal
+        RemoveGenerated,        // REMOVE this class as it is generated by the Kotlin compiler for internal use
+        RemoveInternalParent    // REMOVE this class as the parent is removed
+    }
+
+    enum class CompanionProcessing {
+        Default,
+        Rename,
+        Remove,
+    }
+}
+
+private val <T> Class<T>.normalizedName: String
+    get() = this.typeName.replace("$", ".")
+
+private val Executable.normalizedName: String
+    get() = this.name.replace("$", ".")
+
+private val Element.parentElement: Element
+    get() = this.parent as Element
+
+private fun Element.queryElements(expression: String): List<Element> =
+    this.query(expression).map { it as Element }

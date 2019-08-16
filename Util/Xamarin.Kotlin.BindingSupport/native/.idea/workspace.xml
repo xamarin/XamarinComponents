@@ -1,45 +1,47 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="ChangeListManager">
-    <list default="true" id="344e621a-6e9f-4cca-bd31-7f332c5182fe" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/../../../Android/Kotlin/build.cake" beforeDir="false" afterPath="$PROJECT_DIR$/../../../Android/Kotlin/build.cake" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../Android/Kotlin/source/Xamarin.Kotlin.StdLib.Jdk7/Properties/AssemblyInfo.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../Android/Kotlin/source/Xamarin.Kotlin.StdLib.Jdk7/Transforms/EnumFields.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../../Android/Kotlin/source/Xamarin.Kotlin.StdLib.Jdk7/Transforms/EnumFields.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../Android/Kotlin/source/Xamarin.Kotlin.StdLib.Jdk7/Transforms/EnumMethods.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../../Android/Kotlin/source/Xamarin.Kotlin.StdLib.Jdk7/Transforms/EnumMethods.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../Android/Kotlin/source/Xamarin.Kotlin.StdLib.Jdk7/Transforms/Metadata.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../../Android/Kotlin/source/Xamarin.Kotlin.StdLib.Jdk7/Transforms/Metadata.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../Android/Kotlin/source/Xamarin.Kotlin.StdLib.Jdk7/Xamarin.Kotlin.StdLib.Jdk7.csproj" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../Android/Kotlin/source/Xamarin.Kotlin.StdLib.Jdk8/Properties/AssemblyInfo.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../Android/Kotlin/source/Xamarin.Kotlin.StdLib.Jdk8/Transforms/EnumFields.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../../Android/Kotlin/source/Xamarin.Kotlin.StdLib.Jdk8/Transforms/EnumFields.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../Android/Kotlin/source/Xamarin.Kotlin.StdLib.Jdk8/Transforms/EnumMethods.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../../Android/Kotlin/source/Xamarin.Kotlin.StdLib.Jdk8/Transforms/EnumMethods.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../Android/Kotlin/source/Xamarin.Kotlin.StdLib.Jdk8/Transforms/Metadata.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../../Android/Kotlin/source/Xamarin.Kotlin.StdLib.Jdk8/Transforms/Metadata.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../Android/Kotlin/source/Xamarin.Kotlin.StdLib.Jdk8/Xamarin.Kotlin.StdLib.Jdk8.csproj" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../Android/Kotlin/source/Xamarin.Kotlin.StdLib/Additions/Additions.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../Android/Kotlin/source/Xamarin.Kotlin.StdLib/Properties/AssemblyInfo.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../Android/Kotlin/source/Xamarin.Kotlin.StdLib/Transforms/EnumFields.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../../Android/Kotlin/source/Xamarin.Kotlin.StdLib/Transforms/EnumFields.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../Android/Kotlin/source/Xamarin.Kotlin.StdLib/Transforms/EnumMethods.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../../Android/Kotlin/source/Xamarin.Kotlin.StdLib/Transforms/EnumMethods.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../Android/Kotlin/source/Xamarin.Kotlin.StdLib/Transforms/Metadata.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../../Android/Kotlin/source/Xamarin.Kotlin.StdLib/Transforms/Metadata.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../Android/Kotlin/source/Xamarin.Kotlin.StdLib/Xamarin.Kotlin.StdLib.csproj" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../Android/Kotlin/source/Xamarin.Kotlin.sln" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-    </list>
-    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
-    <option name="SHOW_DIALOG" value="false" />
-    <option name="HIGHLIGHT_CONFLICTS" value="true" />
-    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
-    <option name="LAST_RESOLUTION" value="IGNORE" />
-  </component>
   <component name="ExternalProjectsData">
     <projectState path="$PROJECT_DIR$">
       <ProjectState />
     </projectState>
   </component>
-  <component name="Git.Settings">
-    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../../.." />
+  <component name="ExternalProjectsManager">
+    <system id="GRADLE">
+      <state>
+        <task path="$PROJECT_DIR$">
+          <activation />
+        </task>
+        <projects_view>
+          <tree_state>
+            <expand>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="binding-support" type="f1a62948:ProjectNode" />
+              </path>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="binding-support" type="f1a62948:ProjectNode" />
+                <item name="Source Sets" type="e897c970:GradleViewContributor$SourceSetsNode" />
+              </path>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="binding-support" type="f1a62948:ProjectNode" />
+                <item name="Tasks" type="e4a08cd1:TasksNode" />
+              </path>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="binding-support" type="f1a62948:ProjectNode" />
+                <item name="Tasks" type="e4a08cd1:TasksNode" />
+                <item name="build" type="c8890929:TasksNode$1" />
+              </path>
+            </expand>
+            <select />
+          </tree_state>
+        </projects_view>
+      </state>
+    </system>
   </component>
   <component name="ProjectId" id="1PRSN7irY32nr1xVPk76kAL48kQ" />
-  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
-    <ConfirmationsSetting value="2" id="Add" />
-  </component>
   <component name="PropertiesComponent">
     <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
     <property name="ASKED_SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
@@ -60,7 +62,26 @@
       </list>
     </option>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Kotlin.xamarin.binding.kotlin.bindingsupport.ProgramKt">
+    <configuration name="native [jar]" type="GradleRunConfiguration" factoryName="Gradle">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value="jar" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <GradleScriptDebugEnabled>true</GradleScriptDebugEnabled>
+      <method v="2" />
+    </configuration>
     <configuration name="xamarin.binding.kotlin.bindingsupport.ProgramKt" type="JetRunConfigurationType" factoryName="Kotlin" nameIsGenerated="true">
       <module name="binding-support.main" />
       <option name="VM_PARAMETERS" />
@@ -75,33 +96,15 @@
       </method>
     </configuration>
   </component>
-  <component name="SvnConfiguration">
-    <configuration />
-  </component>
-  <component name="TaskManager">
-    <task active="true" id="Default" summary="Default task">
-      <changelist id="344e621a-6e9f-4cca-bd31-7f332c5182fe" name="Default Changelist" comment="" />
-      <created>1565835372104</created>
-      <option name="number" value="Default" />
-      <option name="presentableId" value="Default" />
-      <updated>1565835372104</updated>
-    </task>
-    <servers />
-  </component>
-  <component name="Vcs.Log.Tabs.Properties">
-    <option name="TAB_STATES">
-      <map>
-        <entry key="MAIN">
-          <value>
-            <State>
-              <option name="COLUMN_ORDER" />
-            </State>
-          </value>
-        </entry>
-      </map>
-    </option>
-  </component>
-  <component name="VcsManagerConfiguration">
-    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <default-breakpoints>
+        <breakpoint enabled="true" type="java-exception">
+          <properties>
+            <option name="NOTIFY_CAUGHT" value="false" />
+          </properties>
+        </breakpoint>
+      </default-breakpoints>
+    </breakpoint-manager>
   </component>
 </project>

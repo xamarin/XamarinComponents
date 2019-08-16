@@ -37,9 +37,7 @@ Task("nuget")
 	});
 });
 
-Task("samples");
-
-Task("tests")
+Task("samples")
 	.IsDependentOn("nuget")
 	.Does(() =>
 {
@@ -65,7 +63,6 @@ Task("Default")
 	.IsDependentOn("externals")
 	.IsDependentOn("libs")
 	.IsDependentOn("nuget")
-	.IsDependentOn("samples")
-	.IsDependentOn("tests");
+	.IsDependentOn("samples");
 
 RunTarget(TARGET);
