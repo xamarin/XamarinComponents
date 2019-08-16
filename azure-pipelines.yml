@@ -7,7 +7,6 @@ variables:
   MONO_VERSION: 5_18_1
   XCODE_VERSION: 10.2.1
   VERBOSITY: diagnostic
-  DOTNET_CORE_VERSION: 2.2.401
   CAKE_VERSION: 0.34.1
   API_TOOLS_VERSION: 1.0.2-preview.14
 
@@ -81,10 +80,6 @@ jobs:
     pool:
       name: $(imageName)
     steps:
-      - task: UseDotNet@2
-        inputs:
-          packageType: 'sdk'
-          useGlobalJson: true
       - bash: sudo $AGENT_HOMEDIRECTORY/scripts/select-xamarin-sdk.sh $(MONO_VERSION)
         displayName: 'Switch to the latest Xamarin SDK'
         condition: eq(variables['System.JobName'], 'macos')
@@ -97,7 +92,8 @@ jobs:
       - task: UseDotNet@2
         displayName: 'Use the correct version of the .NET Core SDK'
         inputs:
-          version: $(DOTNET_CORE_VERSION)
+          packageType: 'sdk'
+          useGlobalJson: true
       - powershell: |
           dotnet tool install -g api-tools --version $(API_TOOLS_VERSION)
           dotnet tool install -g cake.tool --version $(CAKE_VERSION)
