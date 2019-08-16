@@ -94,6 +94,9 @@ jobs:
         inputs:
           packageType: 'sdk'
           useGlobalJson: true
+          includePreviewVersions: true
+          installationPath: '$(Agent.ToolsDirectory)'
+          performMultiLevelLookup: true
       - powershell: |
           dotnet tool install -g api-tools --version $(API_TOOLS_VERSION)
           dotnet tool install -g cake.tool --version $(CAKE_VERSION)
