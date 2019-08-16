@@ -90,12 +90,19 @@ jobs:
         displayName: 'Add ~/.dotnet/tools to the PATH environment variable'
         condition: eq(variables['System.JobName'], 'macos')
       - task: UseDotNet@2
+        inputs:
+          packageType: 'sdk'
+          version: '2.2.401'
+          includePreviewVersions: true
+          installationPath: '$(Agent.ToolsDirectory)/dotnet'
+          performMultiLevelLookup: true
+      - task: UseDotNet@2
         displayName: 'Use the correct version of the .NET Core SDK'
         inputs:
           packageType: 'sdk'
-          useGlobalJson: true
+          version: '3.0.100-preview8-013656'
           includePreviewVersions: true
-          installationPath: '$(Agent.ToolsDirectory)'
+          installationPath: '$(Agent.ToolsDirectory)/dotnet'
           performMultiLevelLookup: true
       - powershell: |
           dotnet tool install -g api-tools --version $(API_TOOLS_VERSION)
