@@ -26,7 +26,12 @@
     <Exec Command="&quot;$(_KotlinBindingJavaPath)&quot; -jar &quot;$(KotlinBindingSupportJar)&quot; --xml &quot;$(ApiOutputFile)&quot; --jar &quot;@(_KotlinBindingReferenceJar, '&quot; --jar &quot;')&quot; --output &quot;$(KotlinBindingSupportOutputPath)&quot; $(KotlinBindingSupportExtraArgs)" />
 
     <ItemGroup>
+      <!-- insert the generated transform at the beginning -->
+      <_KotlinBindingTransformFile Include="@(TransformFile)" />
+      <TransformFile Remove="@(TransformFile)" />
       <TransformFile Include="$(KotlinBindingSupportOutputPath)" />
+      <TransformFile Include="@(_KotlinBindingTransformFile)" />
+
       <FileWrites Include="$(KotlinBindingSupportOutputPath)" />
     </ItemGroup>
 

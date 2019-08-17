@@ -363,6 +363,13 @@ class Processor(xmlFile: File, jarFiles: List<File>, outputFile: File?) {
         if (xvisibility != "public" && xvisibility != "protected")
             return ProcessResult.RemoveJavaInternal
 
+        // optional
+        val xextends = xclass.getAttributeValue("extends")
+
+        // some things we know are not good to check
+        if (xextends == "java.lang.Enum")
+            return ProcessResult.Ignore
+
         // get a list of all the parameters
         val xparameters = getMemberParameters(xmember)
         val jmembersfiltered = jmembers.filter { jm ->

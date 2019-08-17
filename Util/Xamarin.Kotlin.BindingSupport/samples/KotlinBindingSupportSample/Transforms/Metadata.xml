@@ -39,4 +39,9 @@
   <remove-node path="/api/package/class[substring(@name,string-length(@name)-3)='Impl']" />
   <remove-node path="/api/package/class[substring(@name,string-length(@name)-4)='Impls']" />
 
+  <!-- remove conflicting members -->
+  <remove-node path="/api/package[@name='kotlin.sequences']/class[@name='SequencesKt___SequencesKt']" />
+  <remove-node path="/api/package[@name='kotlin.collections']/class[@name='CollectionsKt___CollectionsKt']" />
+  <remove-node path="/api/package[@name='kotlin.text']/class[@name='StringsKt___StringsKt']" />
+  
 </metadata>
