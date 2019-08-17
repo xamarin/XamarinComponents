@@ -35,11 +35,15 @@
   </PropertyGroup>
 
   <PropertyGroup>
+    @if(Model.NuGetPackageId == "Xamarin.Kotlin.StdLib") {
     <!--
       TODO: https://github.com/xamarin/java.interop/issues/466
       <AndroidClassParser>class-parse</AndroidClassParser>
     -->
     <AndroidClassParser>jar2xml</AndroidClassParser>
+    } else {
+    <AndroidClassParser>class-parse</AndroidClassParser>
+    }
     <AndroidCodegenTarget>XAJavaInterop1</AndroidCodegenTarget>
   </PropertyGroup>
 
@@ -66,7 +70,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Include="@(Model.NuGetPackageId).targets" Pack="True" PackagePath="build\$(TargetFramework)" />
+    <None Update="@(Model.NuGetPackageId).targets" Pack="True" PackagePath="build\$(TargetFramework)" />
   </ItemGroup>
 
   <ItemGroup>
@@ -80,8 +84,9 @@
 
   <ItemGroup>
     @foreach (var art in @Model.MavenArtifacts) {
-    <None Include="..\..\externals\@(art.MavenGroupId)\@(art.MavenArtifactId).jar" Pack="True" PackagePath="jar\@(art.MavenGroupId).@(art.MavenArtifactId).jar" />
-    <InputJar Include="..\..\externals\@(art.MavenGroupId)\@(art.MavenArtifactId).jar" />
+    <None Remove="..\..\externals\@(art.MavenGroupId)\@(art.MavenArtifactId).jar" />
+    <None Include="..\..\externals\@(art.MavenGroupId)\@(art.MavenArtifactId).jar" Pack="True" PackagePath="jar\@(art.MavenGroupId).@(art.MavenArtifactId).jar" Visible="false" />
+    <InputJar Include="..\..\externals\@(art.MavenGroupId)\@(art.MavenArtifactId).jar" Link="Jars\@(art.MavenGroupId)\@(art.MavenArtifactId).jar" />
     }
   </ItemGroup>
 
