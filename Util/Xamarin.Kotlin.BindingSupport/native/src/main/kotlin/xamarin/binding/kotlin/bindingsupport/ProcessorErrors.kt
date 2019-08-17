@@ -2,25 +2,32 @@ package xamarin.binding.kotlin.bindingsupport
 
 class ProcessorErrors {
     companion object {
-        fun errorResolvingJavaClass(className: String) =
-            println("ERROR XKT1010: Error resolving Java class \"${className}\".")
+        fun errorResolvingJavaClass(classType: String, className: String, exception: Throwable? = null) =
+            println("ERROR XKT1010: Error resolving Java ${classType} \"${className}\"" + getEnd(exception))
 
-        fun errorResolvingJavaMember(memberType: String, memberName: String) =
-            println("ERROR XKT1011: Error resolving Java ${memberType} \"${memberName}\".")
+        fun errorResolvingJavaMember(memberType: String, memberName: String, exception: Throwable? = null) =
+            println("ERROR XKT1011: Error resolving Java ${memberType} \"${memberName}\"" + getEnd(exception))
 
-        fun unableToResolveKotlinClass(className: String, exception: Throwable) =
-            println("WARNING XKT1020: Unable to resolve Kotlin class \"${className}\": ${exception.localizedMessage}")
+        fun unableToResolveKotlinClass(classType: String, className: String, exception: Throwable? = null) =
+            println("WARNING XKT1020: Unable to resolve Kotlin ${classType} \"${className}\"" + getEnd(exception))
 
-        fun errorInspectingKotlinClass(className: String, exception: Throwable) =
-            println("ERROR XKT1022: Error inspecting Kotlin class \"${className}\": ${exception.localizedMessage}")
+        fun errorInspectingKotlinClass(classType: String, className: String, exception: Throwable? = null) =
+            println("ERROR XKT1021: Error inspecting Kotlin ${classType} \"${className}\"" + getEnd(exception))
 
-        fun unableToResolveKotlinMember(memberType: String, memberName: String) =
-            println("WARNING XKT1023: Unable to resolve Kotlin ${memberType} \"${memberName}\".")
+        fun unableToResolveKotlinMember(memberType: String, memberName: String, exception: Throwable? = null) =
+            println("WARNING XKT1022: Unable to resolve Kotlin ${memberType} \"${memberName}\"" + getEnd(exception))
 
-        fun errorInspectingKotlinMember(memberType: String, memberName: String, exception: Throwable) =
-            println("ERROR XKT1024: Error inspecting Kotlin ${memberType} \"${memberName}\": ${exception.localizedMessage}")
+        fun errorInspectingKotlinMember(memberType: String, memberName: String, exception: Throwable? = null) =
+            println("ERROR XKT1023: Error inspecting Kotlin ${memberType} \"${memberName}\"" + getEnd(exception))
 
         fun multipleClassesInXml(className: String) =
             println("ERROR XKT1030: Multiple classes in the XML match the full name \"${className}\".")
+
+        private fun getEnd(exception: Throwable?): String {
+            if (exception == null)
+                return "."
+            else
+                return ": ${exception.localizedMessage}"
+        }
     }
 }

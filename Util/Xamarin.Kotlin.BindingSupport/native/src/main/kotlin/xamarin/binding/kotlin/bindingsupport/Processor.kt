@@ -18,7 +18,22 @@ import kotlin.reflect.jvm.kotlinProperty
 class Processor(xmlFile: File, jarFiles: List<File>, outputFile: File?) {
 
     private fun expressionClasses() =
-        "/api/package/*[(local-name()='class')or(local-name()='interface')]"
+        "/api/package/*[local-name()='class' or local-name()='interface']"
+
+    private fun expressionEmptyClasses() =
+        "/api/package/class[not(*)]"
+
+    private fun expressionClassExtenders(xfullname: String) =
+        "/api/package/*[contains(@extends,'${xfullname}') or count(implements[contains(@name,'${xfullname}')])!=0]"
+
+    private fun expressionClassUserFields(xfullname: String) =
+        "/api/package/*/field[contains(@type,'${xfullname}')]"
+
+    private fun expressionClassUserMethods(xfullname: String) =
+        "/api/package/*/*[contains(@return,'${xfullname}') or count(parameter[contains(@type,'${xfullname}')])!=0]"
+
+    private fun expressionClassUserGenerics(xfullname: String) =
+        "/api/package//genericConstraint[contains(@type,'${xfullname}')]"
 
     private fun expressionSpecificClass(xpackage: String, xclasstype: String, xname: String) =
         "/api/package[@name='${xpackage}']/${xclasstype}[@name='${xname}']"
@@ -29,11 +44,12 @@ class Processor(xmlFile: File, jarFiles: List<File>, outputFile: File?) {
     private fun expressionCompanion() =
         "/api/package/class/field[@type=concat(../../@name,'.',../@name,'.',@name)]"
 
-    private val invalidKeywords = arrayOf(
-        "\$default",
-        "\$annotations",
-        "\$kotlin_stdlib",
-        "\$EnumSwitchMapping\$"
+    private val invalidKeywords = arrayOf<(String) -> Boolean>(
+        { x -> x.endsWith("\$default") },
+        { x -> x.endsWith("\$annotations") },
+        { x -> x.endsWith("\$kotlin_stdlib") },
+        { x -> x.startsWith("\$EnumSwitchMapping\$") },
+        { x -> x.startsWith("access\$") }
     )
 
     var companions: CompanionProcessing = CompanionProcessing.Default
@@ -63,6 +79,9 @@ class Processor(xmlFile: File, jarFiles: List<File>, outputFile: File?) {
         // process companion classes and related fields
         processCompanions()
 
+        // process the generated *Kt classes
+        processExtensionClasses()
+
         // remove specific cases
         processClasses()
 
@@ -77,22 +96,63 @@ class Processor(xmlFile: File, jarFiles: List<File>, outputFile: File?) {
         logVerbose("Processing complete.")
     }
 
+    private fun processExtensionClasses() {
+        writeComment("fix Kotlin extension classes")
+
+        val classes = xapidoc.queryElements(expressionEmptyClasses())
+        for (xclass in classes) {
+            val xpackage = xclass.parentElement.getAttributeValue("name")
+            val xname = xclass.getAttributeValue("name")
+            val xfullname = "${xpackage}.${xname}"
+            val xtype = xclass.localName
+
+            // extension classes are in the form *Kt
+            if (xtype != "class" || !xname.endsWith("Kt"))
+                continue
+
+            // make sure this class is not a base class for something
+            val xextends = xapidoc.queryElements(expressionClassExtenders(xfullname))
+            if (xextends.isNotEmpty())
+                continue
+
+            // make sure this class is not used in any fields
+            val xfields = xapidoc.queryElements(expressionClassUserFields(xfullname))
+            if (xfields.isNotEmpty())
+                continue
+
+            // make sure this class is not used in any methods
+            val xmethods = xapidoc.queryElements(expressionClassUserMethods(xfullname))
+            if (xmethods.isNotEmpty())
+                continue
+
+            // make sure this class is not used in any generics
+            val xgenerics = xapidoc.queryElements(expressionClassUserGenerics(xfullname))
+            if (xgenerics.isNotEmpty())
+                continue
+
+            // this class needs to be removed for some reason
+            logVerbose("Removing \"${xfullname}\" because is is a generated extensions class...")
+            writeRemoveNode("/api/package[@name='${xpackage}']/${xtype}[@name='${xname}']")
+        }
+    }
+
     private fun processCompanions() {
         writeComment("fix Kotlin companion objects")
 
         // find all the companion FIELDS
-        val xcompanions = xapidoc.rootElement.queryElements(expressionCompanion())
+        val xcompanions = xapidoc.queryElements(expressionCompanion())
 
         for (xcompanionfield in xcompanions) {
             val xname = xcompanionfield.getAttributeValue("name")
             val xcontainer = xcompanionfield.parentElement
             val xcontainername = xcontainer.getAttributeValue("name")
+            val xcontainertype = xcontainer.localName
             val xclassname = "${xcontainername}.${xname}"
             val xpackage = xcontainer.parentElement.getAttributeValue("name")
 
             val pair = getJavaClass(xpackage, xclassname)
             if (pair == null) {
-                ProcessorErrors.errorResolvingJavaClass("${xpackage}.${xclassname}")
+                ProcessorErrors.errorResolvingJavaClass(xcontainertype, "${xpackage}.${xclassname}")
                 continue
             }
             val jclass = pair.first
@@ -135,7 +195,7 @@ class Processor(xmlFile: File, jarFiles: List<File>, outputFile: File?) {
         writeComment("fix Kotlin-specific elements")
 
         // Kotlin v1.2 names the extension method parameters to $receiver
-        if (xapidoc.rootElement.queryElements("/api/package/class/method[count(parameter)>0 and parameter[1][@name='\$receiver']]").any()) {
+        if (xapidoc.queryElements("/api/package/class/method[count(parameter)>0 and parameter[1][@name='\$receiver']]").any()) {
             logVerbose("Renaming the \"\$receiver\" parameter names to \"parameter\"...")
             writeAttrManagedName("/api/package/class/method[parameter[1][@name='\$receiver']]/parameter[1]", "receiver")
         }
@@ -144,32 +204,31 @@ class Processor(xmlFile: File, jarFiles: List<File>, outputFile: File?) {
     private fun processClasses() {
         writeComment("remove Kotlin internal classes and members")
 
-        val classes = xapidoc.rootElement.queryElements(expressionClasses())
+        val classes = xapidoc.queryElements(expressionClasses())
         for (xclass in classes) {
             val removeClass = shouldRemoveClass(xclass)
-            if (removeClass == ProcessResult.Ignore) {
+            if (removeClass != ProcessResult.Ignore) {
+                val xpackage = xclass.parentElement.getAttributeValue("name")
+                val xname = xclass.getAttributeValue("name")
+                val xtype = xclass.localName
+
+                // this class needs to be removed for some reason
+                logVerbose("Removing \"${xpackage}.${xname}\" because is not meant to be bound (${removeClass})...")
+                writeRemoveNode("/api/package[@name='${xpackage}']/${xtype}[@name='${xname}']")
+            } else {
                 processMembers(xclass)
-                continue
             }
-
-            // this class needs to be removed
-            val xpackage = xclass.parentElement.getAttributeValue("name")
-            val xname = xclass.getAttributeValue("name")
-            val xtype = xclass.localName
-
-            // handle the cases where the parent is internal
-            logVerbose("Removing \"${xpackage}.${xname}\" because is not meant to be bound (${removeClass})...")
-            writeRemoveNode("/api/package[@name='${xpackage}']/${xtype}[@name='${xname}']")
         }
     }
 
     private fun processMembers(xclass: Element) {
         val xpackage = xclass.parentElement.getAttributeValue("name")
         val xname = xclass.getAttributeValue("name")
+        val xtype = xclass.localName
 
         val pair = getJavaClass(xpackage, xname)
         if (pair == null) {
-            ProcessorErrors.errorResolvingJavaClass("${xpackage}.${xname}")
+            ProcessorErrors.errorResolvingJavaClass(xtype, "${xpackage}.${xname}")
             return
         }
 
@@ -191,7 +250,7 @@ class Processor(xmlFile: File, jarFiles: List<File>, outputFile: File?) {
         val xclassname = xclass.getAttributeValue("name")
         val xclasstype = xclass.localName
 
-        val xmembers = xapidoc.rootElement.queryElements(expressionMember(xpackage, xclasstype, xclassname, memberType))
+        val xmembers = xapidoc.queryElements(expressionMember(xpackage, xclasstype, xclassname, memberType))
         for (xmember in xmembers) {
             val result = shouldRemove(xmember)
             if (result != ProcessResult.Ignore) {
@@ -201,7 +260,7 @@ class Processor(xmlFile: File, jarFiles: List<File>, outputFile: File?) {
                     "@name='${xmembername}'",
                     "count(parameter)=${parameters.size}"
                 ).union(
-                    parameters.mapIndexed { idx, p -> "parameter[${idx}][@type='${p}']" }
+                    parameters.mapIndexed { idx, p -> "parameter[${idx + 1}][@type='${p}']" }
                 )
                 val paramsString = params.joinToString(" and ")
 
@@ -224,7 +283,7 @@ class Processor(xmlFile: File, jarFiles: List<File>, outputFile: File?) {
         var lastPeriod = xname.lastIndexOf(".")
         while (lastPeriod != -1) {
             val xparentname = xname.substring(0, lastPeriod)
-            val parentClasses = xapidoc.rootElement.queryElements(expressionSpecificClass(xpackage, xtype, xparentname))
+            val parentClasses = xapidoc.queryElements(expressionSpecificClass(xpackage, xtype, xparentname))
             if (parentClasses.size == 1) {
                 logVerbose("Checking the parent class \"${xpackage}.${xparentname}\"...")
 
@@ -239,11 +298,6 @@ class Processor(xmlFile: File, jarFiles: List<File>, outputFile: File?) {
 
         // optional
         val xextends = xclass.getAttributeValue("extends")
-        val xvisibility = xclass.getAttributeValue("visibility")
-
-        // ignore already hidden items
-        if (xvisibility != "public")
-            return ProcessResult.RemoveJavaInternal
 
         // some things we know are not good to check
         if (xextends == "java.lang.Enum")
@@ -254,7 +308,7 @@ class Processor(xmlFile: File, jarFiles: List<File>, outputFile: File?) {
 
         // this class could not be loaded, so do nothing
         if (pair == null) {
-            ProcessorErrors.errorResolvingJavaClass("${xpackage}.${xname}")
+            ProcessorErrors.errorResolvingJavaClass(xtype, "${xpackage}.${xname}")
             return ProcessResult.Ignore
         }
         val (jclass, xfullname) = pair
@@ -271,18 +325,18 @@ class Processor(xmlFile: File, jarFiles: List<File>, outputFile: File?) {
                     return ProcessResult.RemoveGenerated
                 } else if (ex.message!!.contains("Packages and file facades are not yet supported in Kotlin reflection.")) {
                     if (verbose)
-                        ProcessorErrors.unableToResolveKotlinClass(xfullname, ex)
+                        ProcessorErrors.unableToResolveKotlinClass(xtype, xfullname, ex)
                 } else {
-                    ProcessorErrors.errorInspectingKotlinClass(xfullname, ex)
+                    ProcessorErrors.errorInspectingKotlinClass(xtype, xfullname, ex)
                 }
             } else {
-                ProcessorErrors.errorInspectingKotlinClass(xfullname, ex)
+                ProcessorErrors.errorInspectingKotlinClass(xtype, xfullname, ex)
             }
         } catch (ex: Throwable) {
             if (ex.message!!.contains("Unresolved class:"))
-                ProcessorErrors.unableToResolveKotlinClass(xfullname, ex)
+                ProcessorErrors.unableToResolveKotlinClass(xtype, xfullname, ex)
             else
-                ProcessorErrors.errorInspectingKotlinClass(xfullname, ex)
+                ProcessorErrors.errorInspectingKotlinClass(xtype, xfullname, ex)
         }
 
         // this class is public
@@ -298,7 +352,7 @@ class Processor(xmlFile: File, jarFiles: List<File>, outputFile: File?) {
         val xfullname = "${xpackage}.${xclassname}.${xname}"
 
         // before doing any complex checks, make sure it is not an invalid member
-        if (invalidKeywords.any { xname.contains(it) }) {
+        if (invalidKeywords.any { check -> check(xname) }) {
             return ProcessResult.RemoveGenerated
         }
 
@@ -306,7 +360,7 @@ class Processor(xmlFile: File, jarFiles: List<File>, outputFile: File?) {
         val xvisibility = xmember.getAttributeValue("visibility")
 
         // ignore already hidden items
-        if (xvisibility != "public")
+        if (xvisibility != "public" && xvisibility != "protected")
             return ProcessResult.RemoveJavaInternal
 
         // get a list of all the parameters
@@ -329,13 +383,7 @@ class Processor(xmlFile: File, jarFiles: List<File>, outputFile: File?) {
         if (jmember == null) {
             val typeparams = getTypeParameters(xclass, xmember)
             if (typeparams.isNotEmpty()) {
-                val xmapped = xparameters.map { xp ->
-                    val (type, suffix) = if (xp.endsWith("[]")) (xp.substring(0, xp.length - 2) to "[]") else (xp to "")
-                    if (typeparams.containsKey(type))
-                        typeparams[type] + suffix
-                    else
-                        xp
-                }.toTypedArray()
+                val xmapped = resolveGenerics(xparameters, typeparams)
                 jmember = jmembersfiltered.firstOrNull { jm ->
                     val jnames = jm.parameterTypes.map { it.normalizedName }.toTypedArray()
                     xmapped contentEquals jnames
@@ -367,10 +415,17 @@ class Processor(xmlFile: File, jarFiles: List<File>, outputFile: File?) {
             if (kmember.visibility != KVisibility.PUBLIC && kmember.visibility != KVisibility.PROTECTED)
                 return ProcessResult.RemoveInternal
         } catch (ex: Exception) {
-            ProcessorErrors.errorInspectingKotlinMember(xtype, xfullname, ex)
+            if (ex is UnsupportedOperationException && ex.message != null) {
+                if (ex.message!!.contains("Packages and file facades are not yet supported in Kotlin reflection.")) {
+                    if (verbose)
+                        ProcessorErrors.unableToResolveKotlinMember(xtype, xfullname, ex)
+                } else {
+                    ProcessorErrors.errorInspectingKotlinMember(xtype, xfullname, ex)
+                }
+            }
         } catch (ex: Throwable) {
             if (ex.message!!.startsWith("Unknown origin of "))
-                ProcessorErrors.unableToResolveKotlinMember(xtype, xfullname)
+                ProcessorErrors.unableToResolveKotlinMember(xtype, xfullname, ex)
             else
                 ProcessorErrors.errorInspectingKotlinMember(xtype, xfullname, ex)
         }
@@ -387,7 +442,7 @@ class Processor(xmlFile: File, jarFiles: List<File>, outputFile: File?) {
         val xfullname = "${xpackage}.${xclassname}.${xname}"
 
         // before doing any complex checks, make sure it is not an invalid member
-        if (invalidKeywords.any { xname.contains(it) }) {
+        if (invalidKeywords.any { check -> check(xname) }) {
             return ProcessResult.RemoveGenerated
         }
 
@@ -431,9 +486,7 @@ class Processor(xmlFile: File, jarFiles: List<File>, outputFile: File?) {
                 jparameters.add(xparamtype)
             } else {
                 // remove generic
-                val idx = xparamtype.indexOf("<")
-                if (idx != -1)
-                    xparamtype = xparamtype.substring(0, idx)
+                xparamtype = removeGenerics(xparamtype)
 
                 // remove ellipsis
                 jparameters.add(xparamtype.replace("...", "[]"))
@@ -449,16 +502,13 @@ class Processor(xmlFile: File, jarFiles: List<File>, outputFile: File?) {
             for (xparam in xtypeparameters) {
                 val name = xparam.getAttributeValue("name")
                 val xgen = xparam.queryElements("genericConstraints/genericConstraint")
-                var type = xgen.firstOrNull()?.getAttributeValue("type")
+                var xtype = xgen.firstOrNull()?.getAttributeValue("type")
 
                 // remove generic
-                if (type != null) {
-                    val idx = type.indexOf("<")
-                    if (idx != -1)
-                        type = type.substring(0, idx)
-                }
+                if (xtype != null)
+                    xtype = removeGenerics(xtype)
 
-                typeparams[name] = type ?: "java.lang.Object"
+                typeparams[name] = xtype ?: "java.lang.Object"
             }
         }
 
@@ -466,6 +516,42 @@ class Processor(xmlFile: File, jarFiles: List<File>, outputFile: File?) {
         merge(xmember.queryElements("typeParameters/typeParameter"))
 
         return typeparams
+    }
+
+    private fun removeGenerics(xparamtype: String): String {
+        val idxStart = xparamtype.indexOf("<")
+        val idxEnd = xparamtype.lastIndexOf(">")
+        if (idxStart == -1 || idxEnd == -1)
+            return xparamtype
+        return xparamtype.removeRange(idxStart, idxEnd + 1)
+    }
+
+    private fun resolveGenerics(parameters: Array<String>, typeparams: MutableMap<String, String>): Array<String> {
+        fun resolve(type: String, suffix: String): String? {
+            if (!typeparams.containsKey(type))
+                return null
+
+            var resolvedType = type
+            while (typeparams.containsKey(resolvedType))
+                resolvedType = typeparams[resolvedType]!!
+            return resolvedType + suffix
+        }
+
+        val mapped = parameters.map { xp ->
+            val type: String
+            val suffix: String
+            val idx = xp.indexOf("[")
+            if (idx != -1) {
+                type = xp.substring(0, idx)
+                suffix = xp.substring(idx)
+            } else {
+                type = xp
+                suffix = ""
+            }
+            resolve(type, suffix) ?: xp
+        }
+
+        return mapped.toTypedArray()
     }
 
     private fun getJavaClass(xpackage: String?, xname: String): Pair<Class<*>, String>? {
@@ -545,6 +631,9 @@ private val Executable.normalizedName: String
 
 private val Element.parentElement: Element
     get() = this.parent as Element
+
+private fun Document.queryElements(expression: String): List<Element> =
+    this.rootElement.queryElements(expression)
 
 private fun Element.queryElements(expression: String): List<Element> =
     this.query(expression).map { it as Element }

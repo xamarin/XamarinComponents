@@ -29,7 +29,7 @@ class ProcessXmlCommand : CliktCommand(name = "KotlinBindingSupport") {
         .default(Processor.CompanionProcessing.Default)
 
     val verbose: Boolean by option("-v", "--verbose", help = "output verbose information")
-        .flag(default = true)
+        .flag(default = false)
 
     override fun run() {
         val proc = Processor(xmlFile, jarFiles, outputFile)
