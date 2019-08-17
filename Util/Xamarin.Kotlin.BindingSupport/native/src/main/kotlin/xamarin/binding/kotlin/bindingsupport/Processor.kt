@@ -333,10 +333,12 @@ class Processor(xmlFile: File, jarFiles: List<File>, outputFile: File?) {
                 ProcessorErrors.errorInspectingKotlinClass(xtype, xfullname, ex)
             }
         } catch (ex: Throwable) {
-            if (ex.message!!.contains("Unresolved class:"))
-                ProcessorErrors.unableToResolveKotlinClass(xtype, xfullname, ex)
-            else
+            if (ex.message!!.contains("Unresolved class:")) {
+                if (verbose)
+                    ProcessorErrors.unableToResolveKotlinClass(xtype, xfullname, ex)
+            } else {
                 ProcessorErrors.errorInspectingKotlinClass(xtype, xfullname, ex)
+            }
         }
 
         // this class is public
@@ -431,10 +433,12 @@ class Processor(xmlFile: File, jarFiles: List<File>, outputFile: File?) {
                 }
             }
         } catch (ex: Throwable) {
-            if (ex.message!!.startsWith("Unknown origin of "))
-                ProcessorErrors.unableToResolveKotlinMember(xtype, xfullname, ex)
-            else
+            if (ex.message!!.startsWith("Unknown origin of ")) {
+                if (verbose)
+                    ProcessorErrors.unableToResolveKotlinMember(xtype, xfullname, ex)
+            } else {
                 ProcessorErrors.errorInspectingKotlinMember(xtype, xfullname, ex)
+            }
         }
 
         return ProcessResult.Ignore
