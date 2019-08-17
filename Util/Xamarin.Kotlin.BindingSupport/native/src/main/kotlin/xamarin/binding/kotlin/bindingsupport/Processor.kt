@@ -20,9 +20,6 @@ class Processor(xmlFile: File, jarFiles: List<File>, outputFile: File?) {
     private fun expressionClasses() =
         "/api/package/*[local-name()='class' or local-name()='interface']"
 
-    private fun expressionEmptyClasses() =
-        "/api/package/class[not(*)]"
-
     private fun expressionClassExtenders(xfullname: String) =
         "/api/package/*[contains(@extends,'${xfullname}') or count(implements[contains(@name,'${xfullname}')])!=0]"
 
@@ -45,11 +42,11 @@ class Processor(xmlFile: File, jarFiles: List<File>, outputFile: File?) {
         "/api/package/class/field[@type=concat(../../@name,'.',../@name,'.',@name)]"
 
     private val invalidKeywords = arrayOf<(String) -> Boolean>(
-        { x -> x.endsWith("\$default") },
+        { x -> x.endsWith("\$default") }, // Kotlin 1.2: method overloads with default parameters
         { x -> x.endsWith("\$annotations") },
         { x -> x.endsWith("\$kotlin_stdlib") },
         { x -> x.startsWith("\$EnumSwitchMapping\$") },
-        { x -> x.startsWith("access\$") }
+        { x -> x.startsWith("access\$") } // Kotlin 1.2: private methods
     )
 
     var companions: CompanionProcessing = CompanionProcessing.Default
@@ -79,9 +76,6 @@ class Processor(xmlFile: File, jarFiles: List<File>, outputFile: File?) {
         // process companion classes and related fields
         processCompanions()
 
-        // process the generated *Kt classes
-        processExtensionClasses()
-
         // remove specific cases
         processClasses()
 
@@ -96,49 +90,7 @@ class Processor(xmlFile: File, jarFiles: List<File>, outputFile: File?) {
         logVerbose("Processing complete.")
     }
 
-    private fun processExtensionClasses() {
-        writeComment("fix Kotlin extension classes")
-
-        val classes = xapidoc.queryElements(expressionEmptyClasses())
-        for (xclass in classes) {
-            val xpackage = xclass.parentElement.getAttributeValue("name")
-            val xname = xclass.getAttributeValue("name")
-            val xfullname = "${xpackage}.${xname}"
-            val xtype = xclass.localName
-
-            // extension classes are in the form *Kt
-            if (xtype != "class" || !xname.endsWith("Kt"))
-                continue
-
-            // make sure this class is not a base class for something
-            val xextends = xapidoc.queryElements(expressionClassExtenders(xfullname))
-            if (xextends.isNotEmpty())
-                continue
-
-            // make sure this class is not used in any fields
-            val xfields = xapidoc.queryElements(expressionClassUserFields(xfullname))
-            if (xfields.isNotEmpty())
-                continue
-
-            // make sure this class is not used in any methods
-            val xmethods = xapidoc.queryElements(expressionClassUserMethods(xfullname))
-            if (xmethods.isNotEmpty())
-                continue
-
-            // make sure this class is not used in any generics
-            val xgenerics = xapidoc.queryElements(expressionClassUserGenerics(xfullname))
-            if (xgenerics.isNotEmpty())
-                continue
-
-            // this class needs to be removed for some reason
-            logVerbose("Removing \"${xfullname}\" because is is a generated extensions class...")
-            writeRemoveNode("/api/package[@name='${xpackage}']/${xtype}[@name='${xname}']")
-        }
-    }
-
     private fun processCompanions() {
-        writeComment("fix Kotlin companion objects")
-
         // find all the companion FIELDS
         val xcompanions = xapidoc.queryElements(expressionCompanion())
 
@@ -191,9 +143,6 @@ class Processor(xmlFile: File, jarFiles: List<File>, outputFile: File?) {
     }
 
     private fun processSuggestedFixes() {
-        // fix up any Kotlin things
-        writeComment("fix Kotlin-specific elements")
-
         // Kotlin v1.2 names the extension method parameters to $receiver
         if (xapidoc.queryElements("/api/package/class/method[count(parameter)>0 and parameter[1][@name='\$receiver']]").any()) {
             logVerbose("Renaming the \"\$receiver\" parameter names to \"parameter\"...")
@@ -202,18 +151,45 @@ class Processor(xmlFile: File, jarFiles: List<File>, outputFile: File?) {
     }
 
     private fun processClasses() {
-        writeComment("remove Kotlin internal classes and members")
-
         val classes = xapidoc.queryElements(expressionClasses())
         for (xclass in classes) {
+            val xpackage = xclass.parentElement.getAttributeValue("name")
+            val xname = xclass.getAttributeValue("name")
+            val xfullname = "${xpackage}.${xname}"
+            val xtype = xclass.localName
+
             val removeClass = shouldRemoveClass(xclass)
             if (removeClass != ProcessResult.Ignore) {
-                val xpackage = xclass.parentElement.getAttributeValue("name")
-                val xname = xclass.getAttributeValue("name")
-                val xtype = xclass.localName
-
                 // this class needs to be removed for some reason
                 logVerbose("Removing \"${xpackage}.${xname}\" because is not meant to be bound (${removeClass})...")
+                writeRemoveNode("/api/package[@name='${xpackage}']/${xtype}[@name='${xname}']")
+            } else if (xclass.childElements.size() == 0) {
+                // extension classes are in the form *Kt
+                if (xtype != "class" || !xname.endsWith("Kt"))
+                    continue
+
+                // make sure this class is not a base class for something
+                val xextends = xapidoc.queryElements(expressionClassExtenders(xfullname))
+                if (xextends.isNotEmpty())
+                    continue
+
+                // make sure this class is not used in any fields
+                val xfields = xapidoc.queryElements(expressionClassUserFields(xfullname))
+                if (xfields.isNotEmpty())
+                    continue
+
+                // make sure this class is not used in any methods
+                val xmethods = xapidoc.queryElements(expressionClassUserMethods(xfullname))
+                if (xmethods.isNotEmpty())
+                    continue
+
+                // make sure this class is not used in any generics
+                val xgenerics = xapidoc.queryElements(expressionClassUserGenerics(xfullname))
+                if (xgenerics.isNotEmpty())
+                    continue
+
+                // this class needs to be removed for some reason
+                logVerbose("Removing \"${xfullname}\" because is is a generated extensions class...")
                 writeRemoveNode("/api/package[@name='${xpackage}']/${xtype}[@name='${xname}']")
             } else {
                 processMembers(xclass)
@@ -234,39 +210,53 @@ class Processor(xmlFile: File, jarFiles: List<File>, outputFile: File?) {
 
         val jclass = pair.first
 
-        processMember(xclass, "constructor") {
+        // remove the members that are not meant to be used
+        processMembers(xclass, "constructor") {
             shouldRemoveMember(it, jclass.declaredConstructors)
         }
-        processMember(xclass, "method") {
+        processMembers(xclass, "method") {
             shouldRemoveMember(it, jclass.declaredMethods)
         }
-        processMember(xclass, "field") {
-            shouldRemoveMember(it, jclass.declaredFields)
+        processMembers(xclass, "field") {
+            shouldRemoveField(it, jclass.declaredFields)
         }
     }
 
-    private fun processMember(xclass: Element, memberType: String, shouldRemove: (Element) -> ProcessResult) {
+    private fun processMembers(xclass: Element, xtype: String, shouldRemove: (Element) -> ProcessResult) {
         val xpackage = xclass.parentElement.getAttributeValue("name")
         val xclassname = xclass.getAttributeValue("name")
         val xclasstype = xclass.localName
 
-        val xmembers = xapidoc.queryElements(expressionMember(xpackage, xclasstype, xclassname, memberType))
+        val xmembers = xapidoc.queryElements(expressionMember(xpackage, xclasstype, xclassname, xtype))
         for (xmember in xmembers) {
+            val xname = xmember.getAttributeValue("name")
+            val xparams = getMemberParameters(xmember, true)
+            val params = listOf(
+                "@name='${xname}'",
+                "count(parameter)=${xparams.size}"
+            ).union(
+                xparams.mapIndexed { idx, p -> "parameter[${idx + 1}][@type='${p}']" }
+            )
+            val paramsStr = params.joinToString(" and ")
+            val friendly = "${xpackage}.${xclassname}.${xname}(${xparams.joinToString(", ")}))"
+            val xpath = "/api/package[@name='${xpackage}']/${xclasstype}[@name='${xclassname}']/${xtype}[${paramsStr}]"
+
             val result = shouldRemove(xmember)
             if (result != ProcessResult.Ignore) {
-                val xmembername = xmember.getAttributeValue("name")
-                val parameters = getMemberParameters(xmember, true)
-                val params = listOf(
-                    "@name='${xmembername}'",
-                    "count(parameter)=${parameters.size}"
-                ).union(
-                    parameters.mapIndexed { idx, p -> "parameter[${idx + 1}][@type='${p}']" }
-                )
-                val paramsString = params.joinToString(" and ")
-
-                val ps = parameters.joinToString(", ")
-                logVerbose("Removing ${memberType} \"${xpackage}.${xclassname}.${xmembername}(${ps}))\" because is not meant to be bound (${result})...")
-                writeRemoveNode("/api/package[@name='${xpackage}']/${xclasstype}[@name='${xclassname}']/${memberType}[${paramsString}]")
+                // this member needs to be removed for some reason
+                logVerbose("Removing ${xtype} \"$friendly\" because is not meant to be bound (${result})...")
+                writeRemoveNode(xpath)
+            } else {
+                val dashIndex = xname.indexOf("-")
+                if (dashIndex != -1) {
+                    // Kotlin 1.3: generated methods have a generated -* suffix
+                    logVerbose("Renaming ${xtype} \"$friendly\" because is a generated method overload...")
+                    val managedName = xname.substring(0, dashIndex)
+                    if (managedName.length == 1)
+                        writeAttrManagedName(xpath, managedName.toUpperCase())
+                    else
+                        writeAttrManagedName(xpath, managedName[0].toUpperCase() + managedName.substring(1))
+                }
             }
         }
     }
@@ -319,21 +309,13 @@ class Processor(xmlFile: File, jarFiles: List<File>, outputFile: File?) {
             // determine if this is some internal class
             if (kclass.visibility != KVisibility.PUBLIC)
                 return ProcessResult.RemoveInternal
-        } catch (ex: Exception) {
-            if (ex is UnsupportedOperationException && ex.message != null) {
-                if (ex.message!!.contains("This class is an internal synthetic class generated by the Kotlin compiler")) {
-                    return ProcessResult.RemoveGenerated
-                } else if (ex.message!!.contains("Packages and file facades are not yet supported in Kotlin reflection.")) {
-                    if (verbose)
-                        ProcessorErrors.unableToResolveKotlinClass(xtype, xfullname, ex)
-                } else {
-                    ProcessorErrors.errorInspectingKotlinClass(xtype, xfullname, ex)
-                }
-            } else {
-                ProcessorErrors.errorInspectingKotlinClass(xtype, xfullname, ex)
-            }
         } catch (ex: Throwable) {
-            if (ex.message!!.contains("Unresolved class:")) {
+            if (ex.message!!.contains("This class is an internal synthetic class generated by the Kotlin compiler")) {
+                return ProcessResult.RemoveGenerated
+            } else if (ex.message!!.contains("Packages and file facades are not yet supported in Kotlin reflection")) {
+                if (verbose)
+                    ProcessorErrors.unableToResolveKotlinClass(xtype, xfullname, ex)
+            } else if (ex.message!!.contains("Unresolved class:")) {
                 if (verbose)
                     ProcessorErrors.unableToResolveKotlinClass(xtype, xfullname, ex)
             } else {
@@ -406,6 +388,11 @@ class Processor(xmlFile: File, jarFiles: List<File>, outputFile: File?) {
             return ProcessResult.Ignore
         }
 
+        // Kotlin 1.3:
+        if (xname.contains("-impl") && jmember.declaredAnnotations.all { it.annotationClass.qualifiedName != "kotlin.PublishedApi" }) {
+            return ProcessResult.RemoveImplementation
+        }
+
         try {
             val kmember: KFunction<*>?
             when (jmember) {
@@ -423,17 +410,11 @@ class Processor(xmlFile: File, jarFiles: List<File>, outputFile: File?) {
             // check to see if it is visible
             if (kmember.visibility != KVisibility.PUBLIC && kmember.visibility != KVisibility.PROTECTED)
                 return ProcessResult.RemoveInternal
-        } catch (ex: Exception) {
-            if (ex is UnsupportedOperationException && ex.message != null) {
-                if (ex.message!!.contains("Packages and file facades are not yet supported in Kotlin reflection.")) {
-                    if (verbose)
-                        ProcessorErrors.unableToResolveKotlinMember(xtype, xfullname, ex)
-                } else {
-                    ProcessorErrors.errorInspectingKotlinMember(xtype, xfullname, ex)
-                }
-            }
         } catch (ex: Throwable) {
-            if (ex.message!!.startsWith("Unknown origin of ")) {
+            if (ex.message!!.contains("Packages and file facades are not yet supported in Kotlin reflection.")) {
+                if (verbose)
+                    ProcessorErrors.unableToResolveKotlinMember(xtype, xfullname, ex)
+            } else if (ex.message!!.startsWith("Unknown origin of ")) {
                 if (verbose)
                     ProcessorErrors.unableToResolveKotlinMember(xtype, xfullname, ex)
             } else {
@@ -444,7 +425,7 @@ class Processor(xmlFile: File, jarFiles: List<File>, outputFile: File?) {
         return ProcessResult.Ignore
     }
 
-    private fun shouldRemoveMember(xmember: Element, jmembers: Array<Field>): ProcessResult {
+    private fun shouldRemoveField(xmember: Element, jmembers: Array<Field>): ProcessResult {
         val xclass = xmember.parentElement
         val xclassname = xclass.getAttributeValue("name")
         val xpackage = xclass.parentElement.getAttributeValue("name")
@@ -458,25 +439,25 @@ class Processor(xmlFile: File, jarFiles: List<File>, outputFile: File?) {
         }
 
         // match the field
-        val jmember = jmembers.firstOrNull { jm -> jm.name == xname && jm.type.normalizedName == xtype }
+        val jfield = jmembers.firstOrNull { jm -> jm.name == xname && jm.type.normalizedName == xtype }
 
         // there was a problem loading this field
-        if (jmember == null) {
+        if (jfield == null) {
             ProcessorErrors.errorResolvingJavaMember("field", xfullname)
             return ProcessResult.Ignore
         }
 
         try {
-            val kmember = jmember.kotlinProperty
+            val kfield = jfield.kotlinProperty
 
             // there was a problem loading this field
-            if (kmember == null) {
+            if (kfield == null) {
                 ProcessorErrors.unableToResolveKotlinMember("field", xfullname)
                 return ProcessResult.Ignore
             }
 
             // check to see if it is visible
-            if (kmember.visibility != KVisibility.PUBLIC && kmember.visibility != KVisibility.PROTECTED)
+            if (kfield.visibility != KVisibility.PUBLIC && kfield.visibility != KVisibility.PROTECTED)
                 return ProcessResult.RemoveInternal
         } catch (ex: Exception) {
             ProcessorErrors.errorInspectingKotlinMember("field", xfullname, ex)
@@ -595,11 +576,6 @@ class Processor(xmlFile: File, jarFiles: List<File>, outputFile: File?) {
             println(message)
     }
 
-    private fun writeComment(comment: String) {
-        val xroot = xtransformsdoc.rootElement
-        xroot.appendChild(Comment(comment))
-    }
-
     private fun writeAttrManagedName(path: String, value: String) =
         writeAttr(path, "managedName", value)
 
@@ -623,6 +599,7 @@ class Processor(xmlFile: File, jarFiles: List<File>, outputFile: File?) {
         Ignore,                 // IGNORE this class in further processing
         RemoveJavaInternal,     // REMOVE this class because it is private in Java
         RemoveInternal,         // REMOVE this class because it is internal
+        RemoveImplementation,   // REMOVE this class because it is an implementation method
         RemoveGenerated,        // REMOVE this class as it is generated by the Kotlin compiler for internal use
         RemoveInternalParent    // REMOVE this class as the parent is removed
     }

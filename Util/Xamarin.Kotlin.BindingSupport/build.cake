@@ -6,12 +6,15 @@ var PACAKGE_VERSION = "0.1.0-preview";
 Task("externals")
 	.Does(() =>
 {
-	if (!FileExists("./externals/kotlin-stdlib.jar")) {
-		EnsureDirectoryExists("./externals/");
+	EnsureDirectoryExists("./externals/");
+	if (!FileExists("./externals/kotlin-stdlib-1.2.jar"))
 		DownloadFile(
 			"https://search.maven.org/remotecontent?filepath=org/jetbrains/kotlin/kotlin-stdlib/1.2.71/kotlin-stdlib-1.2.71.jar",
-			"./externals/kotlin-stdlib.jar");
-	}
+			"./externals/kotlin-stdlib-1.2.jar");
+	if (!FileExists("./externals/kotlin-stdlib-1.3.jar"))
+		DownloadFile(
+			"https://search.maven.org/remotecontent?filepath=org/jetbrains/kotlin/kotlin-stdlib/1.3.41/kotlin-stdlib-1.3.41.jar",
+			"./externals/kotlin-stdlib-1.3.jar");
 });
 
 Task("libs")

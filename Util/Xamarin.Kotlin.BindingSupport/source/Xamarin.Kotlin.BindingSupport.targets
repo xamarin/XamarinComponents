@@ -7,7 +7,7 @@
 
     <!-- public properties -->
     <PropertyGroup>
-      <KotlinBindingSupportJar Condition="'$(KotlinBindingSupportJar)' == ''">$(MSBuildThisFileDirectory)binding-Support-1.0.jar</KotlinBindingSupportJar>
+      <KotlinBindingSupportJar Condition="'$(KotlinBindingSupportJar)' == ''">$(MSBuildThisFileDirectory)binding-support-1.0.jar</KotlinBindingSupportJar>
       <KotlinBindingSupportExtraArgs Condition="'$(KotlinBindingSupportExtraArgs)' == ''"></KotlinBindingSupportExtraArgs>
       <KotlinBindingSupportOutputPath Condition="'$(KotlinBindingSupportOutputPath)' == ''">$(IntermediateOutputPath)\KotlinBindingSupport.generated.xml</KotlinBindingSupportOutputPath>
     </PropertyGroup>

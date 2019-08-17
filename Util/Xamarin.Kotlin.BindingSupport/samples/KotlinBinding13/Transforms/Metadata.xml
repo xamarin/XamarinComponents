@@ -1,0 +1,57 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<metadata>
+  <!--
+  This sample removes the class: android.support.v4.content.AsyncTaskLoader.LoadTask:
+  <remove-node path="/api/package[@name='android.support.v4.content']/class[@name='AsyncTaskLoader.LoadTask']" />
+  
+  This sample removes the method: android.support.v4.content.CursorLoader.loadInBackground:
+  <remove-node path="/api/package[@name='android.support.v4.content']/class[@name='CursorLoader']/method[@name='loadInBackground']" />
+  -->
+
+  <!-- remove internal namespaces -->
+  <remove-node path="/api/package[starts-with(@name,'kotlin.internal')]" /> 
+  <remove-node path="/api/package[starts-with(@name,'kotlin.jvm.internal')]" /> 
+
+  <!-- this is not really worth it -->
+  <remove-node path="/api/package[starts-with(@name,'kotlin.reflect')]" /> 
+
+  <!-- fix inheritance -->
+  <attr path="/api/package/class[implements[@name='java.lang.Comparable']]/method[@name='compareTo' and count(parameter)=1]/parameter[1]" name="managedType">Java.Lang.Object</attr> 
+  <attr path="/api/package/class[implements[@name='java.util.Collection']]/method[@name='iterator' and count(parameter)=0]" name="managedReturn">Java.Util.IIterator</attr> 
+  <attr path="/api/package/class[implements[@name='java.util.Collection'] and count(method[starts-with(@name,'add-') and count(parameter)=1])=1]/method[starts-with(@name,'add-') and count(parameter)=1]/parameter[1]" name="managedType">Java.Lang.Object</attr> 
+  <attr path="/api/package/class[implements[@name='java.util.Collection']]/method[@name='addAll' and count(parameter)=1 and parameter[1][starts-with(@type,'java.util.Collection')]]/parameter[1]" name="managedType">System.Collections.ICollection</attr> 
+  <attr path="/api/package/class[implements[@name='java.util.Collection']]/method[@name='containsAll' and count(parameter)=1 and parameter[1][starts-with(@type,'java.util.Collection')]]/parameter[1]" name="managedType">System.Collections.ICollection</attr> 
+  <attr path="/api/package/class[implements[@name='java.util.Collection']]/method[@name='removeAll' and count(parameter)=1 and parameter[1][starts-with(@type,'java.util.Collection')]]/parameter[1]" name="managedType">System.Collections.ICollection</attr> 
+  <attr path="/api/package/class[implements[@name='java.util.Collection']]/method[@name='retainAll' and count(parameter)=1 and parameter[1][starts-with(@type,'java.util.Collection')]]/parameter[1]" name="managedType">System.Collections.ICollection</attr> 
+  <attr path="/api/package/class[implements[@name='java.lang.Iterable']]/method[@name='iterator' and count(parameter)=0]" name="managedReturn">Java.Util.IIterator</attr> 
+  <attr path="/api/package/class[implements[@name='java.util.Iterator']]/method[@name='next' and count(parameter)=0]" name="managedReturn">Java.Lang.Object</attr> 
+  <attr path="/api/package/class[implements[@name='java.util.Map']]/method[@name='entrySet' and count(parameter)=0]" name="return">java.util.Set</attr> 
+  <add-node path="/api/package/class[implements[@name='java.lang.Comparable'] and count(method[@name='compareTo' and count(parameter)=1])=0]">
+    <method abstract="false" deprecated="not deprecated" final="false" name="compareTo" native="false" return="int" static="false" synchronized="false" visibility="public">
+      <parameter name="p0" type="java.lang.Object" />
+    </method>
+  </add-node>
+
+  <attr path="/api/package[@name='kotlin.ranges']/class[@name='CharRange']/method[@name='contains' and count(parameter)=1 and parameter[1][@type='char']]/parameter[1]" name="managedType">Java.Lang.Character</attr>
+  <attr path="/api/package[@name='kotlin.ranges']/class[@name='IntRange']/method[@name='contains' and count(parameter)=1 and parameter[1][@type='int']]/parameter[1]" name="managedType">Java.Lang.Integer</attr>
+  <attr path="/api/package[@name='kotlin.ranges']/class[@name='LongRange']/method[@name='contains' and count(parameter)=1 and parameter[1][@type='long']]/parameter[1]" name="managedType">Java.Lang.Long</attr>
+  <attr path="/api/package[@name='kotlin.ranges']/class[@name='UIntRange']/method[starts-with(@name,'contains-') and count(parameter)=1 and parameter[1][@type='int']]/parameter[1]" name="managedType">Kotlin.UInt</attr>
+  <attr path="/api/package[@name='kotlin.ranges']/class[@name='ULongRange']/method[starts-with(@name,'contains-') and count(parameter)=1 and parameter[1][@type='long']]/parameter[1]" name="managedType">Kotlin.ULong</attr>
+
+  <!--  Kotlin creates second method "getSize" that does the same thing because "size" is unconventional? -->
+  <remove-node path="/api/package/class[implements[@name='java.util.Collection']]/method[@name='getSize' and count(parameter)=0]" /> 
+  <remove-node path="/api/package/class[implements[@name='java.util.Map']]/method[@name='getSize' and count(parameter)=0]" /> 
+  <remove-node path="/api/package/class[implements[@name='java.util.Map']]/method[@name='getValues' and count(parameter)=0]" /> 
+  <remove-node path="/api/package[@name='kotlin.collections']/class[@name='AbstractMutableList']/method[@name='getSize' and count(parameter)=0]" /> 
+  <remove-node path="/api/package[@name='kotlin.collections']/class[@name='AbstractMutableSet']/method[@name='getSize' and count(parameter)=0]" /> 
+
+  <!-- remove *Impl classes -->
+  <remove-node path="/api/package/class[substring(@name,string-length(@name)-3)='Impl']" />
+  <remove-node path="/api/package/class[substring(@name,string-length(@name)-4)='Impls']" />
+
+  <!-- remove conflicting members -->
+  <remove-node path="/api/package[@name='kotlin.sequences']/class[@name='SequencesKt___SequencesKt']" /> 
+  <remove-node path="/api/package[@name='kotlin.collections']/class[@name='CollectionsKt___CollectionsKt']" /> 
+  <remove-node path="/api/package[@name='kotlin.text']/class[@name='StringsKt___StringsKt']" /> 
+
+</metadata>
