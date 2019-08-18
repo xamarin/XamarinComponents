@@ -45,7 +45,7 @@
   <!-- remove *Impl classes -->
   <remove-node path="/api/package/class[substring(@name,string-length(@name)-3)='Impl']" />
 
-  <!-- remove some conflicting members -->
+  <!-- fix some conflicting members -->
   <attr path="/api/package[@name='kotlin.sequences']/class[@name='SequencesKt___SequencesKt']/method[@name='max' and count(parameter)=1 and parameter[1][@type='kotlin.sequences.Sequence&lt;java.lang.Double&gt;']]" name="managedName">MaxOfDouble</attr>
   <attr path="/api/package[@name='kotlin.sequences']/class[@name='SequencesKt___SequencesKt']/method[@name='max' and count(parameter)=1 and parameter[1][@type='kotlin.sequences.Sequence&lt;java.lang.Float&gt;']]" name="managedName">MaxOfFloat</attr>
   <attr path="/api/package[@name='kotlin.sequences']/class[@name='SequencesKt___SequencesKt']/method[@name='min' and count(parameter)=1 and parameter[1][@type='kotlin.sequences.Sequence&lt;java.lang.Double&gt;']]" name="managedName">MinOfDouble</attr>
@@ -82,5 +82,5 @@
   <remove-node path="/api/package[@name='kotlin.text']/class[@name='StringsKt__StringsKt']/method[@name='trimEnd' and count(parameter)=2 and parameter[1][@type='java.lang.String'] and parameter[2][@type='kotlin.jvm.functions.Function1&lt;? super java.lang.Character, java.lang.Boolean&gt;']]" />
   <remove-node path="/api/package[@name='kotlin.text']/class[@name='StringsKt__StringsKt']/method[@name='trimStart' and count(parameter)=2 and parameter[1][@type='java.lang.String'] and parameter[2][@type='char...']]" />
   <remove-node path="/api/package[@name='kotlin.text']/class[@name='StringsKt__StringsKt']/method[@name='trimStart' and count(parameter)=2 and parameter[1][@type='java.lang.String'] and parameter[2][@type='kotlin.jvm.functions.Function1&lt;? super java.lang.Character, java.lang.Boolean&gt;']]" />
-    
+
 </metadata>

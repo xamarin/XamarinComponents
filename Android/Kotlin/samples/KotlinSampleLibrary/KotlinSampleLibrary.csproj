@@ -40,15 +40,9 @@
     <Reference Include="System.Xml" />
     <Reference Include="System.Core" />
     <Reference Include="Mono.Android" />
-    <Reference Include="Xamarin.Kotlin.StdLib">
-      <HintPath>..\..\generated\org.jetbrains.kotlin.kotlin-stdlib\bin\Debug\monoandroid90\Xamarin.Kotlin.StdLib.dll</HintPath>
-    </Reference>
-    <Reference Include="Xamarin.Jetbrains.Annotations">
-      <HintPath>..\..\generated\org.jetbrains.kotlin.kotlin-stdlib\bin\Debug\monoandroid90\Xamarin.Jetbrains.Annotations.dll</HintPath>
-    </Reference>
-    <Reference Include="Xamarin.Kotlin.StdLib.Common">
-      <HintPath>..\..\generated\org.jetbrains.kotlin.kotlin-stdlib\bin\Debug\monoandroid90\Xamarin.Kotlin.StdLib.Common.dll</HintPath>
-    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Xamarin.Kotlin.StdLib" Version="1.2.71" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
