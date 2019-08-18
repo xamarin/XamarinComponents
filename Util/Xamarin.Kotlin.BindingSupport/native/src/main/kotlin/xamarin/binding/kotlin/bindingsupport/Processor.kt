@@ -155,7 +155,6 @@ class Processor(xmlFile: File, jarFiles: List<File>, outputFile: File?) {
         for (xclass in classes) {
             val xpackage = xclass.parentElement.getAttributeValue("name")
             val xname = xclass.getAttributeValue("name")
-            val xfullname = "${xpackage}.${xname}"
             val xtype = xclass.localName
 
             val removeClass = shouldRemoveClass(xclass)
@@ -163,37 +162,32 @@ class Processor(xmlFile: File, jarFiles: List<File>, outputFile: File?) {
                 // this class needs to be removed for some reason
                 logVerbose("Removing \"${xpackage}.${xname}\" because is not meant to be bound (${removeClass})...")
                 writeRemoveNode("/api/package[@name='${xpackage}']/${xtype}[@name='${xname}']")
-            } else if (xclass.childElements.size() == 0) {
-                // extension classes are in the form *Kt
-                if (xtype != "class" || !xname.endsWith("Kt"))
-                    continue
-
-                // make sure this class is not a base class for something
-                val xextends = xapidoc.queryElements(expressionClassExtenders(xfullname))
-                if (xextends.isNotEmpty())
-                    continue
-
-                // make sure this class is not used in any fields
-                val xfields = xapidoc.queryElements(expressionClassUserFields(xfullname))
-                if (xfields.isNotEmpty())
-                    continue
-
-                // make sure this class is not used in any methods
-                val xmethods = xapidoc.queryElements(expressionClassUserMethods(xfullname))
-                if (xmethods.isNotEmpty())
-                    continue
-
-                // make sure this class is not used in any generics
-                val xgenerics = xapidoc.queryElements(expressionClassUserGenerics(xfullname))
-                if (xgenerics.isNotEmpty())
-                    continue
-
-                // this class needs to be removed for some reason
-                logVerbose("Removing \"${xfullname}\" because is is a generated extensions class...")
-                writeRemoveNode("/api/package[@name='${xpackage}']/${xtype}[@name='${xname}']")
-            } else {
-                processMembers(xclass)
+                continue
             }
+
+            // extension classes are in the form *Kt which extend *Kt__*
+            val xextends = xclass.getAttributeValue("extends")
+            if (xtype == "class" && xname.endsWith("Kt") && !xname.contains("__") && xextends.startsWith("${xpackage}.${xname}__"))
+                processExtensionClass(xclass)
+
+            // now process all the members of the class
+            processMembers(xclass)
+        }
+    }
+
+    private fun processExtensionClass(xclass: Element) {
+        val xpackage = xclass.parentElement.getAttributeValue("name")
+        val xname = xclass.getAttributeValue("name")
+
+        var xcurrentclass: Element? = xclass
+        var xextends: String? = xcurrentclass?.getAttributeValue("extends")
+        while (xextends?.isNotEmpty() == true && xextends.startsWith("${xpackage}.${xname}__")) {
+            val xextname = xextends.substring(xpackage.length + 1)
+            logVerbose("Updating \"${xextends}\" because is the base of an extension class...")
+            writeAttr("/api/package[@name='${xpackage}']/class[@name='${xextname}']", "visibility", "public")
+
+            xcurrentclass = xapidoc.queryElements(expressionSpecificClass(xpackage, "class", xextname)).firstOrNull()
+            xextends = xcurrentclass?.getAttributeValue("extends")
         }
     }
 

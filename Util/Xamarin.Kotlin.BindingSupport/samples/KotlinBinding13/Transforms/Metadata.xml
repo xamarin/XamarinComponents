@@ -38,20 +38,19 @@
   <attr path="/api/package[@name='kotlin.ranges']/class[@name='UIntRange']/method[starts-with(@name,'contains-') and count(parameter)=1 and parameter[1][@type='int']]/parameter[1]" name="managedType">Kotlin.UInt</attr>
   <attr path="/api/package[@name='kotlin.ranges']/class[@name='ULongRange']/method[starts-with(@name,'contains-') and count(parameter)=1 and parameter[1][@type='long']]/parameter[1]" name="managedType">Kotlin.ULong</attr>
 
-  <!--  Kotlin creates second method "getSize" that does the same thing because "size" is unconventional? -->
+  <!-- remove *Impl classes -->
+  <remove-node path="/api/package/class[substring(@name,string-length(@name)-3)='Impl']" />
+  <remove-node path="/api/package/class[substring(@name,string-length(@name)-4)='Impls']" />
+
+  <!-- remove conflicting classes and members so the sample builds -->
+  <remove-node path="/api/package[@name='kotlin.sequences']/class[@name='SequencesKt___SequencesKt']" /> 
+  <remove-node path="/api/package[@name='kotlin.collections']/class[@name='CollectionsKt___CollectionsKt']" /> 
+  <remove-node path="/api/package[@name='kotlin.text']/class[@name='StringsKt__StringsKt']" /> 
+  <remove-node path="/api/package[@name='kotlin.text']/class[@name='StringsKt___StringsKt']" /> 
   <remove-node path="/api/package/class[implements[@name='java.util.Collection']]/method[@name='getSize' and count(parameter)=0]" /> 
   <remove-node path="/api/package/class[implements[@name='java.util.Map']]/method[@name='getSize' and count(parameter)=0]" /> 
   <remove-node path="/api/package/class[implements[@name='java.util.Map']]/method[@name='getValues' and count(parameter)=0]" /> 
   <remove-node path="/api/package[@name='kotlin.collections']/class[@name='AbstractMutableList']/method[@name='getSize' and count(parameter)=0]" /> 
   <remove-node path="/api/package[@name='kotlin.collections']/class[@name='AbstractMutableSet']/method[@name='getSize' and count(parameter)=0]" /> 
-
-  <!-- remove *Impl classes -->
-  <remove-node path="/api/package/class[substring(@name,string-length(@name)-3)='Impl']" />
-  <remove-node path="/api/package/class[substring(@name,string-length(@name)-4)='Impls']" />
-
-  <!-- remove conflicting members -->
-  <remove-node path="/api/package[@name='kotlin.sequences']/class[@name='SequencesKt___SequencesKt']" /> 
-  <remove-node path="/api/package[@name='kotlin.collections']/class[@name='CollectionsKt___CollectionsKt']" /> 
-  <remove-node path="/api/package[@name='kotlin.text']/class[@name='StringsKt___StringsKt']" /> 
 
 </metadata>
