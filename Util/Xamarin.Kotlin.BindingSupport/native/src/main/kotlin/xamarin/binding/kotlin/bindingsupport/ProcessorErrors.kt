@@ -23,6 +23,9 @@ class ProcessorErrors {
         fun multipleClassesInXml(className: String) =
             println("ERROR XKT1030: Multiple classes in the XML match the full name \"${className}\".")
 
+        fun errorInProcessor(message: String, exception: Throwable? = null) =
+            println("ERROR XKT1031: Error occurred during processing: \"${message}\"" + getEnd(exception))
+
         private fun getEnd(exception: Throwable?): String {
             if (exception == null)
                 return "."

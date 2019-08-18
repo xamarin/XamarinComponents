@@ -2,6 +2,8 @@
 
 package xamarin.binding.kotlin.bindingsupport
 
+import kotlinx.metadata.*
+import kotlinx.metadata.jvm.*
 import nu.xom.*
 import java.io.File
 import java.lang.reflect.Constructor
@@ -19,18 +21,6 @@ class Processor(xmlFile: File, jarFiles: List<File>, outputFile: File?) {
 
     private fun expressionClasses() =
         "/api/package/*[local-name()='class' or local-name()='interface']"
-
-    private fun expressionClassExtenders(xfullname: String) =
-        "/api/package/*[contains(@extends,'${xfullname}') or count(implements[contains(@name,'${xfullname}')])!=0]"
-
-    private fun expressionClassUserFields(xfullname: String) =
-        "/api/package/*/field[contains(@type,'${xfullname}')]"
-
-    private fun expressionClassUserMethods(xfullname: String) =
-        "/api/package/*/*[contains(@return,'${xfullname}') or count(parameter[contains(@type,'${xfullname}')])!=0]"
-
-    private fun expressionClassUserGenerics(xfullname: String) =
-        "/api/package//genericConstraint[contains(@type,'${xfullname}')]"
 
     private fun expressionSpecificClass(xpackage: String, xclasstype: String, xname: String) =
         "/api/package[@name='${xpackage}']/${xclasstype}[@name='${xname}']"
@@ -330,51 +320,21 @@ class Processor(xmlFile: File, jarFiles: List<File>, outputFile: File?) {
         val xfullname = "${xpackage}.${xclassname}.${xname}"
 
         // before doing any complex checks, make sure it is not an invalid member
-        if (invalidKeywords.any { check -> check(xname) }) {
+        if (invalidKeywords.any { check -> check(xname) })
             return ProcessResult.RemoveGenerated
-        }
-
-        // optional
-        val xvisibility = xmember.getAttributeValue("visibility")
 
         // ignore already hidden items
+        val xvisibility = xmember.getAttributeValue("visibility")
         if (xvisibility != "public" && xvisibility != "protected")
             return ProcessResult.RemoveJavaInternal
 
-        // optional
-        val xextends = xclass.getAttributeValue("extends")
-
         // some things we know are not good to check
+        val xextends = xclass.getAttributeValue("extends")
         if (xextends == "java.lang.Enum")
             return ProcessResult.Ignore
 
-        // get a list of all the parameters
-        val xparameters = getMemberParameters(xmember)
-        val jmembersfiltered = jmembers.filter { jm ->
-            when (jm) {
-                is Constructor<*> -> jm.normalizedName == "${xpackage}.${xname}"
-                is Method -> jm.normalizedName == xname
-                else -> false
-            }
-        }
-
-        // match the member signature
-        var jmember = jmembersfiltered.firstOrNull { jm ->
-            val jnames = jm.parameterTypes.map { it.normalizedName }.toTypedArray()
-            xparameters contentEquals jnames
-        }
-
-        // try and replace all the generic types
-        if (jmember == null) {
-            val typeparams = getTypeParameters(xclass, xmember)
-            if (typeparams.isNotEmpty()) {
-                val xmapped = resolveGenerics(xparameters, typeparams)
-                jmember = jmembersfiltered.firstOrNull { jm ->
-                    val jnames = jm.parameterTypes.map { it.normalizedName }.toTypedArray()
-                    xmapped contentEquals jnames
-                }
-            }
-        }
+        // try and find this member in the Java object
+        val jmember = resolveMember(xmember, jmembers)
 
         // there was a problem loading this member
         if (jmember == null) {
@@ -382,11 +342,11 @@ class Processor(xmlFile: File, jarFiles: List<File>, outputFile: File?) {
             return ProcessResult.Ignore
         }
 
-        // Kotlin 1.3:
-        if (xname.contains("-impl") && jmember.declaredAnnotations.all { it.annotationClass.qualifiedName != "kotlin.PublishedApi" }) {
+        // Kotlin 1.3: methods with the -impl suffix are internal, unless they have the @PublishedApi annotation
+        if (xname.contains("-impl") && jmember.declaredAnnotations.all { it.annotationClass.qualifiedName != "kotlin.PublishedApi" })
             return ProcessResult.RemoveImplementation
-        }
 
+        // try the declared visibility in Kotlin
         try {
             val kmember: KFunction<*>?
             when (jmember) {
@@ -394,16 +354,12 @@ class Processor(xmlFile: File, jarFiles: List<File>, outputFile: File?) {
                 is Method -> kmember = jmember.kotlinFunction
                 else -> kmember = null
             }
-
-            // kotlin can't read this one
-            if (kmember == null) {
-                ProcessorErrors.unableToResolveKotlinMember(xtype, xfullname)
-                return ProcessResult.Ignore
+            if (kmember != null) {
+                return when (kmember.visibility) {
+                    KVisibility.PUBLIC, KVisibility.PROTECTED -> ProcessResult.Ignore
+                    else -> ProcessResult.RemoveInternal
+                }
             }
-
-            // check to see if it is visible
-            if (kmember.visibility != KVisibility.PUBLIC && kmember.visibility != KVisibility.PROTECTED)
-                return ProcessResult.RemoveInternal
         } catch (ex: Throwable) {
             if (ex.message!!.contains("Packages and file facades are not yet supported in Kotlin reflection.")) {
                 if (verbose)
@@ -416,6 +372,33 @@ class Processor(xmlFile: File, jarFiles: List<File>, outputFile: File?) {
             }
         }
 
+        if (xtype == "method") {
+            // it may be a generated method from a property
+            val propVisibility = getJvmPropertyVisibility(jmember)
+            if (propVisibility != null) {
+                return when (propVisibility) {
+                    KVisibility.PUBLIC, KVisibility.PROTECTED -> ProcessResult.Ignore
+                    else -> ProcessResult.RemoveInternal
+                }
+            }
+        } else if (xtype == "constructor") {
+            // it may be a generated default constructor
+            if (jmember.isSynthetic && jmember.parameterTypes.lastOrNull()?.normalizedName == "kotlin.jvm.internal.DefaultConstructorMarker") {
+                return ProcessResult.RemoveGenerated
+            }
+        }
+
+        // check the default overloads
+        val memberVisibility = getJvmMethodVisibility(jmember)
+        if (memberVisibility != null) {
+            return when (memberVisibility) {
+                KVisibility.PUBLIC, KVisibility.PROTECTED -> ProcessResult.Ignore
+                else -> ProcessResult.RemoveInternal
+            }
+        }
+
+        // kotlin can't read this one
+        ProcessorErrors.unableToResolveKotlinMember(xtype, xfullname)
         return ProcessResult.Ignore
     }
 
@@ -504,6 +487,42 @@ class Processor(xmlFile: File, jarFiles: List<File>, outputFile: File?) {
         return typeparams
     }
 
+    private fun resolveMember(xmember: Element, jmembers: Array<out Executable>): Executable? {
+        val xclass = xmember.parentElement
+        val xpackage = xclass.parentElement.getAttributeValue("name")
+        val xname = xmember.getAttributeValue("name")
+
+        // get a list of all the parameters
+        val xparameters = getMemberParameters(xmember)
+        val jmembersfiltered = jmembers.filter { jm ->
+            when (jm) {
+                is Constructor<*> -> jm.normalizedName == "${xpackage}.${xname}"
+                is Method -> jm.normalizedName == xname
+                else -> false
+            }
+        }
+
+        // match the member signature
+        var jmember = jmembersfiltered.firstOrNull { jm ->
+            val jnames = jm.parameterTypes.map { it.normalizedName }.toTypedArray()
+            xparameters contentEquals jnames
+        }
+
+        // try and replace all the generic types
+        if (jmember == null) {
+            val typeparams = getTypeParameters(xclass, xmember)
+            if (typeparams.isNotEmpty()) {
+                val xmapped = resolveGenerics(xparameters, typeparams)
+                jmember = jmembersfiltered.firstOrNull { jm ->
+                    val jnames = jm.parameterTypes.map { it.normalizedName }.toTypedArray()
+                    xmapped contentEquals jnames
+                }
+            }
+        }
+
+        return jmember
+    }
+
     private fun removeGenerics(xparamtype: String): String {
         val idxStart = xparamtype.indexOf("<")
         val idxEnd = xparamtype.lastIndexOf(">")
@@ -589,6 +608,74 @@ class Processor(xmlFile: File, jarFiles: List<File>, outputFile: File?) {
         xroot.appendChild(xele)
     }
 
+    private fun getJvmPropertyVisibility(jmember: Executable): KVisibility? {
+        val properties = when (val md = jmember.declaringClass.getMetadata()) {
+            is KotlinClassMetadata.Class -> md.toKmClass().properties
+            is KotlinClassMetadata.FileFacade -> md.toKmPackage().properties
+            is KotlinClassMetadata.MultiFileClassPart -> md.toKmPackage().properties
+            else -> null
+        }
+        if (properties != null) {
+            val p = jmember.parameterTypes.joinToString { it.name }
+            val filtered = properties.filter {
+                (it.getterSignature?.name == jmember.name && it.getterSignature?.parameters == p) ||
+                        (it.setterSignature?.name == jmember.name && it.setterSignature?.parameters == p)
+            }
+            if (filtered.size > 1) {
+                ProcessorErrors.errorInProcessor("More than 1 matching property found for ${jmember}")
+            } else if (filtered.size == 1) {
+                val prop = filtered[0]
+                if (prop.getterSignature?.name == jmember.name && prop.setterSignature?.name == jmember.name) {
+                    ProcessorErrors.errorInProcessor("Matched both the getter and the setter for ${jmember}")
+                } else {
+                    return if (prop.getterSignature?.name == jmember.name)
+                        prop.getterVisibility
+                    else
+                        prop.setterVisibility
+                }
+            }
+        }
+        return null
+    }
+
+    private fun getJvmMethodVisibility(jmember: Executable): KVisibility? {
+        val methods = when (val md = jmember.declaringClass.getMetadata()) {
+            is KotlinClassMetadata.Class -> when (jmember) {
+                is Constructor<*> -> md.toKmClass().constructors.map { it to it.valueParameters }
+                is Method -> md.toKmClass().functions.filter { it.name == jmember.name }.map { it to it.valueParameters }
+                else -> null
+            }
+            is KotlinClassMetadata.FileFacade -> when (jmember) {
+                is Constructor<*> -> null
+                is Method -> md.toKmPackage().functions.filter { it.name == jmember.name }.map { it to it.valueParameters }
+                else -> null
+            }
+            is KotlinClassMetadata.MultiFileClassPart -> when (jmember) {
+                is Constructor<*> -> null
+                is Method -> md.toKmPackage().functions.filter { it.name == jmember.name }.map { it to it.valueParameters }
+                else -> null
+            }
+            else -> null
+        }
+        if (methods != null) {
+            val filtered = methods.filter { params ->
+                val types = params.second.map { (it.type ?: it.varargElementType)!!.javaName }.toTypedArray()
+                val jtypes = jmember.parameterTypes.map { it.name }.toTypedArray()
+                types contentEquals jtypes
+            }
+            if (filtered.size > 1) {
+                ProcessorErrors.errorInProcessor("More than 1 matching property found for ${jmember}")
+            } else if (filtered.size == 1) {
+                return when (val m = filtered[0].first) {
+                    is KmConstructor -> m.visibility
+                    is KmFunction -> m.visibility
+                    else -> null
+                }
+            }
+        }
+        return null
+    }
+
     enum class ProcessResult {
         Ignore,                 // IGNORE this class in further processing
         RemoveJavaInternal,     // REMOVE this class because it is private in Java
@@ -606,10 +693,79 @@ class Processor(xmlFile: File, jarFiles: List<File>, outputFile: File?) {
 }
 
 private val <T> Class<T>.normalizedName: String
-    get() = this.typeName.replace("$", ".")
+    get() = this.typeName.replace("$", ".").replace("/", ".")
 
 private val Executable.normalizedName: String
-    get() = this.name.replace("$", ".")
+    get() = this.name.replace("$", ".").replace("/", ".")
+
+private val JvmMethodSignature.normalizedDesc: String
+    get() = this.desc.replace("$", ".").replace("/", ".")
+
+private val JvmMethodSignature.parameters: String
+    get() {
+        val d = this.normalizedDesc
+        return d.substring(d.indexOf("(") + 1, d.indexOf(")"))
+    }
+
+private fun Class<*>.getMetadata(): KotlinClassMetadata? {
+    val metadataAnnotation = this.declaredAnnotations.firstOrNull {
+        it.annotationClass.qualifiedName == "kotlin.Metadata"
+    } as Metadata?
+    if (metadataAnnotation == null)
+        return null
+    val header = KotlinClassHeader(
+        metadataAnnotation.kind,
+        metadataAnnotation.metadataVersion,
+        metadataAnnotation.bytecodeVersion,
+        metadataAnnotation.data1,
+        metadataAnnotation.data2,
+        metadataAnnotation.extraString,
+        metadataAnnotation.packageName,
+        metadataAnnotation.extraInt
+    )
+    return KotlinClassMetadata.read(header)
+}
+
+private val KmProperty.getterVisibility: KVisibility
+    get() = when {
+        Flag.IS_PUBLIC(this.getterFlags) -> KVisibility.PUBLIC
+        Flag.IS_PROTECTED(this.getterFlags) -> KVisibility.PROTECTED
+        Flag.IS_INTERNAL(this.getterFlags) -> KVisibility.INTERNAL
+        else -> KVisibility.PRIVATE
+    }
+
+private val KmProperty.setterVisibility: KVisibility
+    get() = when {
+        Flag.IS_PUBLIC(this.setterFlags) -> KVisibility.PUBLIC
+        Flag.IS_PROTECTED(this.setterFlags) -> KVisibility.PROTECTED
+        Flag.IS_INTERNAL(this.setterFlags) -> KVisibility.INTERNAL
+        else -> KVisibility.PRIVATE
+    }
+
+private val KmConstructor.visibility: KVisibility
+    get() = when {
+        Flag.IS_PUBLIC(this.flags) -> KVisibility.PUBLIC
+        Flag.IS_PROTECTED(this.flags) -> KVisibility.PROTECTED
+        Flag.IS_INTERNAL(this.flags) -> KVisibility.INTERNAL
+        else -> KVisibility.PRIVATE
+    }
+
+private val KmFunction.visibility: KVisibility
+    get() = when {
+        Flag.IS_PUBLIC(this.flags) -> KVisibility.PUBLIC
+        Flag.IS_PROTECTED(this.flags) -> KVisibility.PROTECTED
+        Flag.IS_INTERNAL(this.flags) -> KVisibility.INTERNAL
+        else -> KVisibility.PRIVATE
+    }
+
+private val KmType.javaName: String
+    get() = when (val c = this.classifier) {
+        is KmClassifier.Class -> when (c.name) {
+            "kotlin/UByte" -> "byte"
+            else -> c.name
+        }
+        else -> ""
+    }
 
 private val Element.parentElement: Element
     get() = this.parent as Element
