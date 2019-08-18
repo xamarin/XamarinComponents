@@ -18,12 +18,26 @@
   <!-- fix inheritance -->
   <attr path="/api/package/class[implements[@name='java.lang.Comparable']]/method[@name='compareTo' and count(parameter)=1]/parameter[1]" name="managedType">Java.Lang.Object</attr>
   <attr path="/api/package/class[implements[@name='java.lang.Iterable']]/method[@name='iterator' and count(parameter)=0]" name="managedReturn">Java.Util.IIterator</attr>
+  <attr path="/api/package/class[implements[@name='java.util.Collection']]/method[starts-with(@name,'add-') and count(parameter)=1]/parameter[1]" name="managedType">Java.Lang.Object</attr>
+  <attr path="/api/package/class[implements[@name='java.util.Collection']]/method[@name='addAll' and count(parameter)=1 and parameter[1][starts-with(@type,'java.util.Collection')]]/parameter[1]" name="managedType">System.Collections.ICollection</attr>
+  <attr path="/api/package/class[implements[@name='java.util.Collection']]/method[@name='containsAll' and count(parameter)=1 and parameter[1][starts-with(@type,'java.util.Collection')]]/parameter[1]" name="managedType">System.Collections.ICollection</attr>
+  <attr path="/api/package/class[implements[@name='java.util.Collection']]/method[@name='removeAll' and count(parameter)=1 and parameter[1][starts-with(@type,'java.util.Collection')]]/parameter[1]" name="managedType">System.Collections.ICollection</attr>
+  <attr path="/api/package/class[implements[@name='java.util.Collection']]/method[@name='retainAll' and count(parameter)=1 and parameter[1][starts-with(@type,'java.util.Collection')]]/parameter[1]" name="managedType">System.Collections.ICollection</attr>
+  <remove-node path="/api/package/class[implements[@name='java.util.Collection'] and @final='true']/method[@name='getSize' and count(parameter)=0]" />
+  <add-node path="/api/package/class[implements[@name='java.lang.Comparable'] and @final='true' and count(method[@name='compareTo'])=0]">
+    <method abstract="false" deprecated="not deprecated" final="false" name="compareTo" native="false" return="int" static="false" synchronized="false" visibility="public">
+      <parameter name="p0" type="java.lang.Object" />
+    </method>
+  </add-node>
+  <attr path="/api/package/class[implements[@name='java.util.Collection']]/method[@name='iterator' and count(parameter)=0]" name="managedReturn">Java.Util.IIterator</attr>
   <attr path="/api/package/class[implements[@name='java.util.Iterator']]/method[@name='next' and count(parameter)=0]" name="managedReturn">Java.Lang.Object</attr>
   <attr path="/api/package/class[implements[@name='java.util.Map']]/method[@name='entrySet' and count(parameter)=0]" name="return">java.util.Set</attr>
 
   <attr path="/api/package[@name='kotlin.ranges']/class[@name='CharRange']/method[@name='contains' and count(parameter)=1 and parameter[1][@type='char']]/parameter[1]" name="managedType">Java.Lang.Character</attr>
   <attr path="/api/package[@name='kotlin.ranges']/class[@name='IntRange']/method[@name='contains' and count(parameter)=1 and parameter[1][@type='int']]/parameter[1]" name="managedType">Java.Lang.Integer</attr>
   <attr path="/api/package[@name='kotlin.ranges']/class[@name='LongRange']/method[@name='contains' and count(parameter)=1 and parameter[1][@type='long']]/parameter[1]" name="managedType">Java.Lang.Long</attr>
+  <attr path="/api/package[@name='kotlin.ranges']/class[@name='UIntRange']/method[starts-with(@name,'contains-') and count(parameter)=1 and parameter[1][@type='int']]/parameter[1]" name="managedType">Kotlin.UInt</attr>
+  <attr path="/api/package[@name='kotlin.ranges']/class[@name='ULongRange']/method[starts-with(@name,'contains-') and count(parameter)=1 and parameter[1][@type='long']]/parameter[1]" name="managedType">Kotlin.ULong</attr>
 
   <!--  fix up the clash with the abstract members -->
   <attr path="/api/package[@name='kotlin.collections']/class[@name='AbstractCollection']/method[@name='getSize' and count(parameter)=0]" name="managedName">GetSize</attr>
