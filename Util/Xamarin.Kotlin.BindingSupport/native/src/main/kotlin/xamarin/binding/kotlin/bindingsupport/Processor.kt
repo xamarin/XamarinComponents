@@ -242,7 +242,7 @@ class Processor(xmlFile: File, jarFiles: List<File>, outputFile: File?) {
                 writeRemoveNode(xpath)
             } else {
                 val dashIndex = xname.indexOf("-")
-                if (dashIndex != -1) {
+                if (dashIndex > 0) {
                     // Kotlin 1.3: generated methods have a generated -* suffix
                     logVerbose("Renaming ${xtype} \"$friendly\" because is a generated method overload...")
                     val managedName = xname.substring(0, dashIndex)
