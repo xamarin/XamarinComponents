@@ -43,10 +43,18 @@
     <Reference Include="System.Xml" />
     <Reference Include="System.Core" />
     <Reference Include="Mono.Android" />
+    <Reference Include="Xamarin.Kotlin.StdLib">
+      <HintPath>..\..\generated\org.jetbrains.kotlin.kotlin-stdlib\bin\Debug\monoandroid90\Xamarin.Kotlin.StdLib.dll</HintPath>
+    </Reference>
+    <Reference Include="Xamarin.Jetbrains.Annotations">
+      <HintPath>..\..\generated\org.jetbrains.kotlin.kotlin-stdlib\bin\Debug\monoandroid90\Xamarin.Jetbrains.Annotations.dll</HintPath>
+    </Reference>
+    <Reference Include="Xamarin.Kotlin.StdLib.Common">
+      <HintPath>..\..\generated\org.jetbrains.kotlin.kotlin-stdlib\bin\Debug\monoandroid90\Xamarin.Kotlin.StdLib.Common.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Xamarin.Android.Support.v7.AppCompat" Version="28.0.0.1" />
-    <PackageReference Include="Xamarin.Kotlin.StdLib" Version="1.2.71" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\KotlinSampleLibrary\KotlinSampleLibrary.csproj">
@@ -73,6 +81,17 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Resources\drawable\" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidJavaLibrary Include="..\..\externals\org.jetbrains\annotations.jar">
+      <Link>annotations.jar</Link>
+    </AndroidJavaLibrary>
+    <AndroidJavaLibrary Include="..\..\externals\org.jetbrains.kotlin\kotlin-stdlib-common.jar">
+      <Link>kotlin-stdlib-common.jar</Link>
+    </AndroidJavaLibrary>
+    <AndroidJavaLibrary Include="..\..\externals\org.jetbrains.kotlin\kotlin-stdlib.jar">
+      <Link>kotlin-stdlib.jar</Link>
+    </AndroidJavaLibrary>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
 </Project>

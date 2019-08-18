@@ -25,15 +25,22 @@
   <attr path="/api/package[@name='kotlin.ranges']/class[@name='IntRange']/method[@name='contains' and count(parameter)=1 and parameter[1][@type='int']]/parameter[1]" name="managedType">Java.Lang.Integer</attr>
   <attr path="/api/package[@name='kotlin.ranges']/class[@name='LongRange']/method[@name='contains' and count(parameter)=1 and parameter[1][@type='long']]/parameter[1]" name="managedType">Java.Lang.Long</attr>
 
-  <!--  Kotlin creates second method "getSize" that does the same thing because "size" is unconventional? -->
-  <remove-node path="/api/package[@name='kotlin.collections']/class[@name='AbstractCollection']/method[@name='getSize' and count(parameter)=0]" />
+  <!--  fix up the clash with the abstract members -->
+  <attr path="/api/package[@name='kotlin.collections']/class[@name='AbstractCollection']/method[@name='getSize' and count(parameter)=0]" name="managedName">GetSize</attr>
+  <attr path="/api/package[@name='kotlin.collections']/class[@name='AbstractCollection']/method[@name='getSize' and count(parameter)=0]" name="propertyName"></attr>
+  <remove-node path="/api/package[@name='kotlin.collections']/class[@name='AbstractList']/method[@name='getSize' and count(parameter)=0]" />
   <remove-node path="/api/package[@name='kotlin.collections']/class[@name='AbstractMap']/method[@name='getSize' and count(parameter)=0]" />
   <remove-node path="/api/package[@name='kotlin.collections']/class[@name='AbstractMap']/method[@name='getValues' and count(parameter)=0]" />
-  <remove-node path="/api/package[@name='kotlin.collections']/class[@name='AbstractMutableCollection']/method[@name='getSize' and count(parameter)=0]" />
-  <remove-node path="/api/package[@name='kotlin.collections']/class[@name='AbstractMutableMap']/method[@name='getSize' and count(parameter)=0]" />
-  <remove-node path="/api/package[@name='kotlin.collections']/class[@name='AbstractMutableMap']/method[@name='getValues' and count(parameter)=0]" />
-  <remove-node path="/api/package[@name='kotlin.collections']/class[@name='AbstractMutableList']/method[@name='getSize' and count(parameter)=0]" />
-  <remove-node path="/api/package[@name='kotlin.collections']/class[@name='AbstractMutableSet']/method[@name='getSize' and count(parameter)=0]" />
+  <attr path="/api/package[@name='kotlin.collections']/class[@name='AbstractMutableCollection']/method[@name='getSize' and count(parameter)=0]" name="managedName">GetSize</attr>
+  <attr path="/api/package[@name='kotlin.collections']/class[@name='AbstractMutableCollection']/method[@name='getSize' and count(parameter)=0]" name="propertyName"></attr>
+  <attr path="/api/package[@name='kotlin.collections']/class[@name='AbstractMutableMap']/method[@name='getSize' and count(parameter)=0]" name="managedName">GetSize</attr>
+  <attr path="/api/package[@name='kotlin.collections']/class[@name='AbstractMutableMap']/method[@name='getSize' and count(parameter)=0]" name="propertyName"></attr>
+  <attr path="/api/package[@name='kotlin.collections']/class[@name='AbstractMutableMap']/method[@name='getValues' and count(parameter)=0]" name="managedName">GetValues</attr>
+  <attr path="/api/package[@name='kotlin.collections']/class[@name='AbstractMutableMap']/method[@name='getValues' and count(parameter)=0]" name="propertyName"></attr>
+  <attr path="/api/package[@name='kotlin.collections']/class[@name='AbstractMutableList']/method[@name='getSize' and count(parameter)=0]" name="managedName">GetSize</attr>
+  <attr path="/api/package[@name='kotlin.collections']/class[@name='AbstractMutableList']/method[@name='getSize' and count(parameter)=0]" name="propertyName"></attr>
+  <attr path="/api/package[@name='kotlin.collections']/class[@name='AbstractMutableSet']/method[@name='getSize' and count(parameter)=0]" name="managedName">GetSize</attr>
+  <attr path="/api/package[@name='kotlin.collections']/class[@name='AbstractMutableSet']/method[@name='getSize' and count(parameter)=0]" name="propertyName"></attr>
 
   <!-- remove *Impl classes -->
   <remove-node path="/api/package/class[substring(@name,string-length(@name)-3)='Impl']" />
