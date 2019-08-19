@@ -234,7 +234,7 @@ class Processor(xmlFile: File, jarFiles: List<File>, outputFile: File?) {
                 val dashIndex = xname.indexOf("-")
                 if (dashIndex > 0) {
                     // Kotlin 1.3: generated methods have a generated -* suffix
-                    logVerbose("Renaming ${xtype} \"$friendly\" because is a generated method overload...")
+                    logVerbose("Renaming ${xtype} \"$friendly\" because is a generated method overload (${result})...")
                     val managedName = xname.substring(0, dashIndex)
                     if (managedName.length == 1)
                         writeAttrManagedName(xpath, managedName.toUpperCase())
@@ -616,7 +616,7 @@ class Processor(xmlFile: File, jarFiles: List<File>, outputFile: File?) {
             else -> null
         }
         if (properties != null) {
-            val p = jmember.parameterTypes.joinToString { it.name }
+            val p = jmember.parameterTypes.joinToString { ClassMapper.map(it.name) }
             val filtered = properties.filter {
                 (it.getterSignature?.name == jmember.name && it.getterSignature?.parameters == p) ||
                         (it.setterSignature?.name == jmember.name && it.setterSignature?.parameters == p)
@@ -633,6 +633,8 @@ class Processor(xmlFile: File, jarFiles: List<File>, outputFile: File?) {
                     else
                         prop.setterVisibility
                 }
+            } else {
+                ProcessorErrors.unableToMatchKotlinMember("property", jmember)
             }
         }
         return null
@@ -641,36 +643,44 @@ class Processor(xmlFile: File, jarFiles: List<File>, outputFile: File?) {
     private fun getJvmMethodVisibility(jmember: Executable): KVisibility? {
         val methods = when (val md = jmember.declaringClass.getMetadata()) {
             is KotlinClassMetadata.Class -> when (jmember) {
-                is Constructor<*> -> md.toKmClass().constructors.map { it to it.valueParameters }
-                is Method -> md.toKmClass().functions.filter { it.name == jmember.name }.map { it to it.valueParameters }
+                is Constructor<*> -> md.toKmClass().constructorOverloads
+                is Method -> md.toKmClass().functionOverloads.filter {
+                    it.first.name == jmember.name || it.first.signature?.name == jmember.name
+                }
                 else -> null
             }
             is KotlinClassMetadata.FileFacade -> when (jmember) {
                 is Constructor<*> -> null
-                is Method -> md.toKmPackage().functions.filter { it.name == jmember.name }.map { it to it.valueParameters }
+                is Method -> md.toKmPackage().functionOverloads.filter {
+                    it.first.name == jmember.name || it.first.signature?.name == jmember.name
+                }
                 else -> null
             }
             is KotlinClassMetadata.MultiFileClassPart -> when (jmember) {
                 is Constructor<*> -> null
-                is Method -> md.toKmPackage().functions.filter { it.name == jmember.name }.map { it to it.valueParameters }
+                is Method -> md.toKmPackage().functionOverloads.filter {
+                    it.first.name == jmember.name || it.first.signature?.name == jmember.name
+                }
                 else -> null
             }
             else -> null
         }
         if (methods != null) {
             val filtered = methods.filter { params ->
-                val types = params.second.map { (it.type ?: it.varargElementType)!!.javaName }.toTypedArray()
-                val jtypes = jmember.parameterTypes.map { it.name }.toTypedArray()
+                val types = params.second.map { ClassMapper.map(it) }.toTypedArray()
+                val jtypes = jmember.parameterTypes.map { ClassMapper.map(it.name) }.toTypedArray()
                 types contentEquals jtypes
             }
             if (filtered.size > 1) {
-                ProcessorErrors.errorInProcessor("More than 1 matching property found for ${jmember}")
+                ProcessorErrors.errorInProcessor("More than 1 matching method found for ${jmember}")
             } else if (filtered.size == 1) {
                 return when (val m = filtered[0].first) {
                     is KmConstructor -> m.visibility
                     is KmFunction -> m.visibility
                     else -> null
                 }
+            } else {
+                ProcessorErrors.unableToMatchKotlinMember("method", jmember)
             }
         }
         return null
@@ -698,14 +708,8 @@ private val <T> Class<T>.normalizedName: String
 private val Executable.normalizedName: String
     get() = this.name.replace("$", ".").replace("/", ".")
 
-private val JvmMethodSignature.normalizedDesc: String
-    get() = this.desc.replace("$", ".").replace("/", ".")
-
 private val JvmMethodSignature.parameters: String
-    get() {
-        val d = this.normalizedDesc
-        return d.substring(d.indexOf("(") + 1, d.indexOf(")"))
-    }
+    get() = this.desc.substring(this.desc.indexOf("(") + 1, this.desc.indexOf(")"))
 
 private fun Class<*>.getMetadata(): KotlinClassMetadata? {
     val metadataAnnotation = this.declaredAnnotations.firstOrNull {
@@ -758,17 +762,39 @@ private val KmFunction.visibility: KVisibility
         else -> KVisibility.PRIVATE
     }
 
-private val KmType.javaName: String
-    get() = when (val c = this.classifier) {
-        is KmClassifier.Class -> when (c.name) {
-            "kotlin/UByte" -> "byte"
-            else -> c.name
-        }
-        else -> ""
-    }
-
 private val Element.parentElement: Element
     get() = this.parent as Element
+
+private val KmPackage.functionOverloads: List<Pair<KmFunction, List<KmValueParameter>>>
+    get() = this.functions.map {
+        it to it.valueParameters.getOverloads()
+    }.flatMap { overload ->
+        overload.second.map { params -> overload.first to params }
+    }
+
+private val KmClass.functionOverloads: List<Pair<KmFunction, List<KmValueParameter>>>
+    get() = this.functions.map {
+        it to it.valueParameters.getOverloads()
+    }.flatMap { overload ->
+        overload.second.map { params -> overload.first to params }
+    }
+
+private val KmClass.constructorOverloads: List<Pair<KmConstructor, List<KmValueParameter>>>
+    get() = this.constructors.map {
+        it to it.valueParameters.getOverloads()
+    }.flatMap { overload ->
+        overload.second.map { params -> overload.first to params }
+    }
+
+private fun List<KmValueParameter>.getOverloads(): List<List<KmValueParameter>> {
+    val overloads = mutableListOf<List<KmValueParameter>>()
+    overloads.add(this)
+    while (Flag.ValueParameter.DECLARES_DEFAULT_VALUE(overloads.last().lastOrNull()?.flags ?: 0)) {
+        val l = overloads.last()
+        overloads.add(l.take(l.size - 1))
+    }
+    return overloads
+}
 
 private fun Document.queryElements(expression: String): List<Element> =
     this.rootElement.queryElements(expression)
