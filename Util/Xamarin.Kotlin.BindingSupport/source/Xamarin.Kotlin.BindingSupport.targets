@@ -14,8 +14,8 @@
 
     <!-- private properties -->
     <PropertyGroup>
-      <_KotlinBindingJavaPath Condition="'$(_AndroidXJavaPath)' == '' and '$(OS)' == 'Unix'">$(JavaSdkDirectory)\bin\java</_KotlinBindingJavaPath>
-      <_KotlinBindingJavaPath Condition="'$(_AndroidXJavaPath)' == '' and '$(OS)' != 'Unix'">$(JavaSdkDirectory)\bin\java.exe</_KotlinBindingJavaPath>
+      <_KotlinBindingJavaPath Condition="'$(_KotlinBindingJavaPath)' == '' and '$(OS)' == 'Unix'">$(JavaSdkDirectory)\bin\java</_KotlinBindingJavaPath>
+      <_KotlinBindingJavaPath Condition="'$(_KotlinBindingJavaPath)' == '' and '$(OS)' != 'Unix'">$(JavaSdkDirectory)\bin\java.exe</_KotlinBindingJavaPath>
     </PropertyGroup>
 
     <ItemGroup>
