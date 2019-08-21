@@ -7,8 +7,9 @@
     <authors>Microsoft</authors>
     <owners>Microsoft</owners>
     <requireLicenseAcceptance>true</requireLicenseAcceptance>
-    <licenseUrl>https://go.microsoft.com/fwlink/?linkid=864999</licenseUrl>
-    <projectUrl>https://go.microsoft.com/fwlink/?linkid=864997</projectUrl>
+    <license type="expression">MIT</license>
+    <licenseUrl>https://go.microsoft.com/fwlink/?linkid=2101385</licenseUrl>
+    <projectUrl>https://go.microsoft.com/fwlink/?linkid=2101075</projectUrl>
     <description>Various tools to support binding Kotlin libraries for Xamarin.Android</description>
     <copyright>© Microsoft Corporation. All rights reserved.</copyright>
     <tags>Xamarin Kotlin Xamarin.Kotlin</tags>
