@@ -1,7 +1,7 @@
 
 var TARGET = Argument("t", Argument("target", "Default"));
 
-var PACAKGE_VERSION = "0.1.0-preview";
+var PACKAGE_VERSION = "0.1.0-preview";
 
 Task("externals")
 	.Does(() =>
@@ -35,7 +35,7 @@ Task("nuget")
 	.Does(() =>
 {
 	NuGetPack("./nuget/Xamarin.Kotlin.BindingSupport.nuspec", new NuGetPackSettings {
-		Version = PACAKGE_VERSION,
+		Version = PACKAGE_VERSION,
 		OutputDirectory = "./output"
 	});
 });
