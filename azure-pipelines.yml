@@ -99,9 +99,13 @@ jobs:
           dotnet tool install -g cake.tool --version $(CAKE_VERSION)
         displayName: 'Install .NET Core global tools'
       - powershell: |
-          $env:JavaSdkDirectory = $env:JAVA_HOME # https://github.com/xamarin/xamarin-android-tools/pull/74
-          dotnet-cake --target=build --gitpreviouscommit=$(GitLastSuccessfulCommit) --gitcommit=$(Build.SourceVersion) --forcebuild=$(ForceBuild) --names="$(BuildManifestNames)" --targets="$(BuildManifestTargets)" --copyoutputtoroot=true --verbosity=$(VERBOSITY)
+          New-Item -Path 'tools' -ItemType Directory | Out-Null
+          Invoke-WebRequest -Uri https://dist.nuget.org/win-x86-commandline/latest/nuget.exe -OutFile ./tools/nuget.exe
+        displayName: 'Download the latest nuget.exe to the tools directory'
+      - powershell: dotnet cake --target=build --gitpreviouscommit=$(GitLastSuccessfulCommit) --gitcommit=$(Build.SourceVersion) --forcebuild=$(ForceBuild) --names="$(BuildManifestNames)" --targets="$(BuildManifestTargets)" --copyoutputtoroot=true --verbosity=$(VERBOSITY)
         displayName: 'Run build'
+        env:
+          JavaSdkDirectory: $(JAVA_HOME)
       - powershell: |
           if (Get-ChildItem artifacts -Filter *.nupkg) {
             api-tools nuget-diff artifacts --latest --group-ids --output artifacts/api-diff --cache externals/package_cache
