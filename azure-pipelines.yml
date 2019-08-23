@@ -31,7 +31,7 @@ jobs:
       - powershell: |
           # determine the "master" branch
           $masterBranch = "$(MASTER_BRANCH)"
-          $encodedBranch = [System.Web.HttpUtility].UrlEncode(masterBranch)
+          $encodedBranch = [System.Web.HttpUtility]::UrlEncode(masterBranch)
           Write-Host "Master branch: $masterBranch"
 
           # determine the "current" branch
