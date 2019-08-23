@@ -39,9 +39,6 @@ foreach (var ev in ENV_VARS)
 
 CakeStealer.CakeContext = Context;
 
-// From Cake.Xamarin.Build, dumps out versions of things
-LogSystemInfo ();
-
 // Print out git commit info
 Information ("Git Path: {0}", GIT_PATH);
 Information ("Git Previous Commit: {0}", GIT_PREVIOUS_COMMIT);
