@@ -3,7 +3,7 @@
   <metadata>
     <id>Xamarin.Android.ManifestMerger</id>
     <version>1.0.0</version>
-    <licenseUrl>https://go.microsoft.com/fwlink/?linkid=2102131</licenseUrl>
+    <license type="expression">MIT</license>
     <projectUrl>https://go.microsoft.com/fwlink/?linkid=2102130</projectUrl>
     <description>A set of tools and MSBuild tasks to merge several AndroidManifest.xml files.</description>
     <authors>Microsoft</authors>
@@ -15,7 +15,6 @@
   <files>
     <file src="..\externals\merger\*.jar" target="build/monoandroid" />
     <file src="..\source\*.targets" target="build/monoandroid" />
-    <file src="..\..\..\LICENSE" target="LICENSE" />
     <file src="..\External-Dependency-Info.txt" target="THIRD-PARTY-NOTICES.txt" />
   </files>
 </package>

@@ -5,7 +5,7 @@ trigger:
 
 variables:
   MONO_VERSION: 5_18_1
-  XCODE_VERSION: 10.2.1
+  XCODE_VERSION: 10.3
   VERBOSITY: diagnostic
   DOTNET_CORE_VERSION: 2.2.401
   CAKE_VERSION: 0.34.1
@@ -71,7 +71,7 @@ jobs:
     strategy:
       matrix:
         macos:
-          imageName: 'Hosted Mac Internal Mojave'
+          imageName: 'Hosted macOS'
         windows:
           imageName: 'Hosted Windows 2019 with VS2019'
     displayName: 'Build'
