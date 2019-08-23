@@ -98,10 +98,10 @@ jobs:
           dotnet tool install -g api-tools --version $(API_TOOLS_VERSION)
           dotnet tool install -g cake.tool --version $(CAKE_VERSION)
         displayName: 'Install .NET Core global tools'
-      - powershell: |
-          New-Item -Path 'tools' -ItemType Directory | Out-Null
-          Invoke-WebRequest -Uri https://dist.nuget.org/win-x86-commandline/latest/nuget.exe -OutFile ./tools/nuget.exe
-        displayName: 'Download the latest nuget.exe to the tools directory'
+      - task: NuGetToolInstaller@1
+        inputs:
+          checkLatest: true
+        displayName: 'Download the latest nuget.exe'
       - powershell: dotnet cake --target=build --gitpreviouscommit=$(GitLastSuccessfulCommit) --gitcommit=$(Build.SourceVersion) --forcebuild=$(ForceBuild) --names="$(BuildManifestNames)" --targets="$(BuildManifestTargets)" --copyoutputtoroot=true --verbosity=$(VERBOSITY)
         displayName: 'Run build'
         env:
