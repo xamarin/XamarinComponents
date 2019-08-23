@@ -1,3 +1,4 @@
+using System.Xml.Linq;
 
 var target = Argument("target", "Default");
 
@@ -43,7 +44,7 @@ Task("nuget")
     });
 });
 
-Task("samples")
+Task("tests")
     .IsDependentOn("nuget")
     .Does(() =>
 {
@@ -56,11 +57,30 @@ Task("samples")
         .WithRestore();
 
     MSBuild("./samples/FancyMergingApp.sln", settings);
+
+    // TODO: actually create real tests that build the APK and test that as well
+    //       as ensuring that the target is properly skipped on subsequent builds.
+
+    var android = (XNamespace)"http://schemas.android.com/apk/res/android";
+    var xdoc = XDocument.Load("./samples/FancyMergingApp/obj/Release/90/android/AndroidManifest.xml");
+
+    var serviceName = "com.google.firebase.components.ComponentDiscoveryService";
+    var services = xdoc
+        .Element("manifest")
+        .Element("application")
+        .Elements("service")
+        .Where(x => x.Attribute(android + "name")?.Value == serviceName);
+    if (services.Count() != 1)
+        throw new Exception("Manifests were not merged.");
+
+    var contents = services.Elements("meta-data");
+    if (contents.Count() != 3)
+        throw new Exception("Manifests were merged, but data was lost.");
 });
 
 Task("Default")
     .IsDependentOn("externals")
     .IsDependentOn("nuget")
-    .IsDependentOn("samples");
+    .IsDependentOn("tests");
 
 RunTarget(target);
