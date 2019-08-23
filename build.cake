@@ -138,10 +138,12 @@ Task ("build")
 
 		// Get all the changed files in this commit
 		IEnumerable<string> changedFiles = new List<string> ();
-		StartProcess (GIT_PATH, new ProcessSettings {
+		var exitCode = StartProcess (GIT_PATH, new ProcessSettings {
 			Arguments = gitArgs,
 			RedirectStandardOutput = true },
 			out changedFiles);
+		if (exitCode != 0)
+			throw new Exception($"git exited with error code {exitCode}.");
 
 		// Determine which group each file belongs to
 		Information ("Changed Files:");
