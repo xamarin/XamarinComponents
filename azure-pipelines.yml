@@ -26,11 +26,11 @@ resources:
 
 jobs:
 
-  - template: templates/test.yml@xamarin-components
+  - template: templates/sign.yml@xamarin-components
     parameters:
-      signTags: true
+      signTags: True
       forceSignVariable: 'CodeSign'
-      signBranches: [ 'master', 'testing' ]
+      additionalConditions: 'build'
 
   # - template: templates/prepare.yml@xamarin-components
   #   parameters:

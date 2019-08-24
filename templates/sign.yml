@@ -1,8 +1,8 @@
 parameters:
   dependsOn: 'build'
-  signTags: true
+  signTags: True
   forceSignVariable: 'CodeSign'
-  signBranches: [ 'master' ]
+  additionalConditions: False
 
 jobs:
   - ${{ if eq(variables['System.TeamProject'], 'devdiv') }}:
@@ -20,17 +20,14 @@ jobs:
         succeeded(),
         or(
           and(
-            eq('${{ parameters.signTags }}', 'true'),
+            eq('${{ parameters.signTags }}', True),
             startsWith(variables['Build.SourceBranch'], 'refs/tags/')
           ),
           and(
-            ne('${{ parameters.signBranches }}', ''),
-            in(variables['Build.SourceBranch'], ${{ parameters.signBranches }})
-          ),
-          and(
             ne('${{ parameters.forceSignVariable }}', ''),
-            eq(variables['${{ parameters.forceSignVariable }}'], 'true')
-          )
+            eq(variables['${{ parameters.forceSignVariable }}'], True)
+          ),
+          eq('${{ parameters.additionalConditions }}', True)
         ))
       steps:
         - checkout: none
