@@ -1,8 +1,8 @@
 parameters:
   dependsOn: 'build'
-  signTags: True
+  signTags: 'true'
   forceSignVariable: 'CodeSign'
-  additionalConditions: False
+  additionalConditions: 'false'
 
 resources:
   repositories:
@@ -27,14 +27,14 @@ jobs:
         succeeded(),
         or(
           and(
-            eq('${{ parameters.signTags }}', True),
+            eq('${{ parameters.signTags }}', 'true'),
             startsWith(variables['Build.SourceBranch'], 'refs/tags/')
           ),
           and(
             ne('${{ parameters.forceSignVariable }}', ''),
-            eq(variables['${{ parameters.forceSignVariable }}'], True)
+            eq(variables['${{ parameters.forceSignVariable }}'], 'true')
           ),
-          eq('${{ parameters.additionalConditions }}', True)
+          eq('${{ parameters.additionalConditions }}', 'true')
         ))
       steps:
         - checkout: none

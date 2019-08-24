@@ -24,7 +24,7 @@ jobs:
 
   - template: templates/sign.yml@xamarin-components
     parameters:
-      signTags: True
+      signTags: 'true'
       forceSignVariable: 'CodeSign'
       additionalConditions: 'build'
 
