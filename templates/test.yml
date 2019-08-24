@@ -1,7 +1,7 @@
 parameters:
   signTags: true
   forceSignVariable: 'CodeSign'
-  signBranches: [ 'master' ]
+  signBranches: [ 'refs/heads/master' ]
 
 jobs:
   - job: test
@@ -11,12 +11,13 @@ jobs:
       succeeded(),
       or(
         and(
-          eq('${{ parameters.signTags }}', 'true'),
+          eq('${{ parameters.signTags }}', True),
           startsWith(variables['Build.SourceBranch'], 'refs/tags/')
         ),
+        containsValue(${{ parameters.signBranches }}, variables['Build.SourceBranch']),
         and(
           ne('${{ parameters.forceSignVariable }}', ''),
-          eq(variables['${{ parameters.forceSignVariable }}'], 'true')
+          eq(variables['${{ parameters.forceSignVariable }}'], True)
         )
       ))
     steps:
