@@ -3,13 +3,7 @@ parameters:
   signTags: 'true'
   forceSignVariable: 'CodeSign'
   additionalConditions: 'false'
-
-resources:
-  repositories:
-    - repository: xamarin-templates
-      type: github
-      name: xamarin/yaml-templates
-      endpoint: xamarin
+  signingTemplate: 'sign-artifacts.yml@xamarin-templates'
 
 jobs:
   - ${{ if eq(variables['System.TeamProject'], 'devdiv') }}:
@@ -38,7 +32,7 @@ jobs:
         ))
       steps:
         - checkout: none
-        - template: sign-artifacts.yml@xamarin-templates
+        - template: ${{ parameters.signingTemplate }}
           parameters:
             targetFolder: '$(Build.ArtifactStagingDirectory)/signed'
         - task: PublishBuildArtifacts@1
