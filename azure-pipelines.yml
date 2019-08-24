@@ -33,7 +33,7 @@ jobs:
       forceSignVariable: 'CodeSign'
       additionalConditions: 'build'
       signingStep:
-        - template: sign-artifacts.yml@xamarin-templates
+        - template: sign-artifacts.yml
 
   # - template: templates/prepare.yml@xamarin-components
   #   parameters:
