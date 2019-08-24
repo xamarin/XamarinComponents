@@ -28,9 +28,14 @@ jobs:
 
   - template: templates/sign.yml@xamarin-components
     parameters:
+      # dependsOn: 'build'
       signTags: 'true'
       forceSignVariable: 'CodeSign'
       additionalConditions: 'build'
+      signingStep:
+        - template: sign-artifacts.yml@xamarin-templates
+          parameters:
+            githubToken: 'invalid token'
 
   # - template: templates/prepare.yml@xamarin-components
   #   parameters:
