@@ -10,7 +10,7 @@ jobs:
       name: Hosted Ubuntu 1604
     steps:
       - checkout: none
-      - powershell: |
+      - pwsh: |
           # determine the "master" branch
           $masterBranch = "${{ parameters.masterBranchName }}"
           $encodedBranch = [Uri]::EscapeDataString("refs/heads/$masterBranch")

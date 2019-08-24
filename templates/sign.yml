@@ -3,7 +3,6 @@ parameters:
   signTags: 'true'
   forceSignVariable: 'CodeSign'
   additionalConditions: 'false'
-  signingStep: [ ]
 
 jobs:
   - ${{ if eq(variables['System.TeamProject'], 'devdiv') }}:
@@ -32,11 +31,9 @@ jobs:
         ))
       steps:
         - checkout: none
-        - ${{ each step in parameters.signingStep }}:
-          - ${{ each pair in step }}:
-              ${{ pair.key }}: ${{ pair.value }}
-            parameters:
-              targetFolder: '$(Build.ArtifactStagingDirectory)/signed'
+        - template: sign-artifacts.yml
+          parameters:
+            targetFolder: '$(Build.ArtifactStagingDirectory)/signed'
         - task: PublishBuildArtifacts@1
           displayName: 'Publish the nuget-signed artifacts'
           inputs:
