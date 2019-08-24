@@ -38,8 +38,8 @@ jobs:
                 ${{ pair.key }}: ${{ pair.value }}
             parameters:
               targetFolder: '$(Build.ArtifactStagingDirectory)/signed'
-              ${{ if job.parameters }}:
-              - ${{ job.parameters }}
+              ${{ if step.parameters }}:
+              - ${{ step.parameters }}
         - task: PublishBuildArtifacts@1
           displayName: 'Publish the nuget-signed artifacts'
           inputs:
