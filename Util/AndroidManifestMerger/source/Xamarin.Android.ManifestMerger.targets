@@ -11,6 +11,8 @@
 
   </Target>
 
+<!-- DUMMY -->
+
   <Target Name="_After_GenerateJavaStubs" AfterTargets="_GenerateJavaStubs"
           Inputs="$(IntermediateOutputPath)android\AndroidManifest.xml;@(_Proxy_ExtractedManifestDocuments)"
           Outputs="$(_AndroidStampDirectory)_After_GenerateJavaStubs.stamp"

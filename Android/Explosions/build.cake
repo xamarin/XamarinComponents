@@ -31,3 +31,5 @@ var buildSpec = new BuildSpec () {
 SetupXamarinBuildTasks (buildSpec, Tasks, Task);
 
 RunTarget (TARGET);
+
+// DUMMY
