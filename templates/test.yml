@@ -7,8 +7,36 @@ jobs:
   - job: test
     pool:
       name: Hosted Ubuntu 1604
-    condition: and(succeeded(), or(  and(eq('${{ parameters.signTags }}', 'true'), startsWith(variables['Build.SourceBranch'], 'refs/tags/')),  and(ne('${{ parameters.signBranches }}', ''), in(variables['Build.SourceBranch'], ${{ parameters.signBranches }})),  and(ne('${{ parameters.forceSignVariable }}', ''), eq(variables['${{ parameters.forceSignVariable }}'], 'true'))  ))
+    condition: and(
+      succeeded(),
+      or(
+        and(
+          eq('${{ parameters.signTags }}', 'true'),
+          startsWith(variables['Build.SourceBranch'], 'refs/tags/')
+        ),
+        and(
+          ne('${{ parameters.forceSignVariable }}', ''),
+          eq(variables['${{ parameters.forceSignVariable }}'], 'true')
+        )
+      ))
     steps:
       - checkout: none
+
+    # condition: and(
+    #   succeeded(),
+    #   or(
+    #     and(
+    #       eq('${{ parameters.signTags }}', 'true'),
+    #       startsWith(variables['Build.SourceBranch'], 'refs/tags/')
+    #     ),
+    #     and(
+    #       ne('${{ parameters.signBranches }}', ''),
+    #       in(variables['Build.SourceBranch'], ${{ parameters.signBranches }})
+    #     ),
+    #     and(
+    #       ne('${{ parameters.forceSignVariable }}', ''),
+    #       eq(variables['${{ parameters.forceSignVariable }}'], 'true')
+    #     )
+    #   ))
 
 #          containsValue(${{ parameters.signBranches }}, variables['Build.SourceBranch'])
