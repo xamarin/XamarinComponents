@@ -34,8 +34,6 @@ jobs:
       additionalConditions: 'build'
       signingStep:
         - template: sign-artifacts.yml@xamarin-templates
-          parameters:
-            githubToken: 'invalid token'
 
   # - template: templates/prepare.yml@xamarin-components
   #   parameters:

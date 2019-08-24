@@ -34,12 +34,9 @@ jobs:
         - checkout: none
         - ${{ each step in parameters.signingStep }}:
           - ${{ each pair in step }}:
-              ${{ if ne(pair.key, 'parameters') }}:
-                ${{ pair.key }}: ${{ pair.value }}
+              ${{ pair.key }}: ${{ pair.value }}
             parameters:
               targetFolder: '$(Build.ArtifactStagingDirectory)/signed'
-              ${{ if step.parameters }}:
-              - ${{ step.parameters }}
         - task: PublishBuildArtifacts@1
           displayName: 'Publish the nuget-signed artifacts'
           inputs:
