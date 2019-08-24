@@ -16,7 +16,7 @@ jobs:
         ),
         and(
           ne('${{ parameters.signBranches }}', ''),
-          in(variables['Build.SourceBranch'], ${{ parameters.signBranches }})
+          containsValue(${{ parameters.signBranches }}, variables['Build.SourceBranch'])
         ),
         and(
           ne('${{ parameters.forceSignVariable }}', ''),
