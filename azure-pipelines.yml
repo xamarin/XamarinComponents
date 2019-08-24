@@ -14,10 +14,6 @@ variables:
 
 resources:
   repositories:
-    - repository: xamarin-templates
-      type: github
-      name: xamarin/yaml-templates
-      endpoint: xamarin
     - repository: xamarin-components
       type: github
       name: xamarin/XamarinComponents

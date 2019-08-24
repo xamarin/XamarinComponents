@@ -4,6 +4,13 @@ parameters:
   forceSignVariable: 'CodeSign'
   additionalConditions: False
 
+resources:
+  repositories:
+    - repository: xamarin-templates
+      type: github
+      name: xamarin/yaml-templates
+      endpoint: xamarin
+
 jobs:
   - ${{ if eq(variables['System.TeamProject'], 'devdiv') }}:
     - job: signing
