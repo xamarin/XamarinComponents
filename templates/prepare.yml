@@ -1,13 +1,15 @@
 parameters:
-  masterBranchName: 'master'
+  name: 'prepare'                       # in the form type_platform_host
+  displayName: 'Prepare for builds'     # the human name
+  masterBranchName: 'master'            # the "master" branch that should be used - can be something other than "master"
 
 jobs:
-  - job: prepare
-    displayName: 'Prepare for builds'
+  - job: ${{ parameters.name }}
+    displayName: ${{ parameters.displayName }}
     variables:
       skipComponentGovernanceDetection: true
     pool:
-      name: Hosted Ubuntu 1604
+      name: 'Hosted Ubuntu 1604'
     steps:
       - checkout: none
       - pwsh: |

@@ -10,57 +10,36 @@ variables:
   DOTNET_CORE_VERSION: 2.2.401
   CAKE_VERSION: 0.34.1
   API_TOOLS_VERSION: 1.0.2-preview.14
-  MASTER_BRANCH: master
 
 resources:
   repositories:
-    - repository: xamarin-templates
+    - repository: internal-templates
       type: github
       name: xamarin/yaml-templates
       endpoint: xamarin
       ref: refs/heads/dev/signing-job
-    - repository: xamarin-components
+    - repository: components
       type: github
       name: xamarin/XamarinComponents
       endpoint: xamarin
       ref: refs/heads/dev/templating
 
 jobs:
-  # - template: templates/prepare.yml@xamarin-components
 
-  # - job: build
-  #   dependsOn: 'prepare'
-  #   pool:
-  #     name: 'Hosted Windows 2019 with VS2019'
-  #   steps:
-  #     - pwsh: echo "hello world"
+  - template: templates/prepare.yml@components
+
+  - job: build
+    dependsOn: 'prepare'
+    pool:
+      name: 'Hosted Windows 2019 with VS2019'
+    steps:
+      - pwsh: echo "hello world"
 
   - ${{ if eq(variables['System.TeamProject'], 'devdiv') }}:
-    - job: signing
-      displayName: 'Sign NuGets'
-      variables:
-        skipComponentGovernanceDetection: true
-      # dependsOn:
-      #   - build
-      pool:
-        name: VSEng-XamarinCustom
-        demands:
-          - corpnet
-      # condition: and(succeeded(), or(startsWith(variables['Build.SourceBranch'],'refs/tags/'), eq(variables['CodeSign'], 'true')))
-      steps:
-        - checkout: none
-        - template: sign-artifacts.yml@xamarin-templates
-          parameters:
-            targetFolder: '$(Build.ArtifactStagingDirectory)/signed'
-        - task: PublishBuildArtifacts@1
-          displayName: 'Publish the nuget-signed artifacts'
-          inputs:
-            artifactName: nuget-signed
-            pathToPublish: '$(Build.ArtifactStagingDirectory)/signed'
+    - template: sign-artifacts/jobs/v1.yml@internal-templates
+      parameters:
+        dependsOn: [ 'build' ]
 
-      # - template: templates/prepare.yml@xamarin-components
-      #   parameters:
-      #     masterBranchName: $(MASTER_BRANCH)
 
       # - job: build
       #   strategy:
@@ -111,7 +90,3 @@ jobs:
       #       inputs:
       #         PathToPublish: artifacts
       #         ArtifactName: nuget
-
-      # - template: templates/sign.yml@xamarin-components
-      #   parameters:
-      #     dependsOn: 'build'
