@@ -3,6 +3,7 @@ parameters:
   signTags: 'true'
   forceSignVariable: 'CodeSign'
   additionalConditions: 'false'
+  signingTemplate: 'sign-artifacts.yml@xamarin-templates'
 
 jobs:
   - ${{ if eq(variables['System.TeamProject'], 'devdiv') }}:
@@ -31,7 +32,7 @@ jobs:
         ))
       steps:
         - checkout: none
-        - template: sign-artifacts.yml
+        - template: $[ parameters.signingTemplate ]
           parameters:
             targetFolder: '$(Build.ArtifactStagingDirectory)/signed'
         - task: PublishBuildArtifacts@1
