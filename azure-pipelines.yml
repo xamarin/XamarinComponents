@@ -26,27 +26,27 @@ resources:
       ref: refs/heads/dev/templating
 
 jobs:
-  - template: templates/prepare.yml@xamarin-components
+  # - template: templates/prepare.yml@xamarin-components
 
-  - job: build
-    dependsOn: 'prepare'
-    pool:
-      name: 'Hosted Windows 2019 with VS2019'
-    steps:
-      - pwsh: echo "hello world"
+  # - job: build
+  #   dependsOn: 'prepare'
+  #   pool:
+  #     name: 'Hosted Windows 2019 with VS2019'
+  #   steps:
+  #     - pwsh: echo "hello world"
 
   - ${{ if eq(variables['System.TeamProject'], 'devdiv') }}:
     - job: signing
       displayName: 'Sign NuGets'
       variables:
         skipComponentGovernanceDetection: true
-      dependsOn:
-        - build
+      # dependsOn:
+      #   - build
       pool:
         name: VSEng-XamarinCustom
         demands:
           - corpnet
-      condition: and(succeeded(), or(startsWith(variables['Build.SourceBranch'],'refs/tags/'), eq(variables['CodeSign'], 'true')))
+      # condition: and(succeeded(), or(startsWith(variables['Build.SourceBranch'],'refs/tags/'), eq(variables['CodeSign'], 'true')))
       steps:
         - checkout: none
         - template: sign-artifacts.yml@xamarin-templates
