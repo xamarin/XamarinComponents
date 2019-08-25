@@ -31,7 +31,7 @@ jobs:
   - job: build
     dependsOn: 'prepare'
     pool:
-      name: Hosted Ubuntu 1604
+      name: 'Hosted Windows 2019 with VS2019'
     steps:
       - pwsh: echo "hello world"
 
