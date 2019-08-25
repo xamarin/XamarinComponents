@@ -25,22 +25,48 @@ resources:
       ref: refs/heads/dev/templating
 
 stages:
-  - stage: beforeprepare
-    jobs:
-      - job: things
-        steps:
-          - pwsh: echo "hello world"
 
   - stage: prepare
-    dependsOn: beforeprepare
     jobs:
-
       - template: templates/sign.yml@xamarin-components
         parameters:
           # dependsOn: 'build'
           signTags: 'true'
           forceSignVariable: 'CodeSign'
           additionalConditions: 'build'
+
+  - stage: build
+    jobs:
+      - job: build
+        pool:
+          name: Hosted Ubuntu 1604
+        steps:
+          - pwsh: echo "hello world"
+
+  - stage: signing
+    jobs:
+      - ${{ if eq(variables['System.TeamProject'], 'devdiv') }}:
+        - job: signing
+          displayName: 'Sign NuGets'
+          variables:
+            skipComponentGovernanceDetection: true
+          dependsOn:
+            - build
+          pool:
+            name: VSEng-XamarinCustom
+            demands:
+              - corpnet
+          condition: and(succeeded(), or(startsWith(variables['Build.SourceBranch'],'refs/tags/'), eq(variables['CodeSign'], 'true')))
+          steps:
+            - checkout: none
+            - template: sign-artifacts.yml@xamarin-templates
+              parameters:
+                targetFolder: '$(Build.ArtifactStagingDirectory)/signed'
+            - task: PublishBuildArtifacts@1
+              displayName: 'Publish the nuget-signed artifacts'
+              inputs:
+                artifactName: nuget-signed
+                pathToPublish: '$(Build.ArtifactStagingDirectory)/signed'
 
       # - template: templates/prepare.yml@xamarin-components
       #   parameters:
