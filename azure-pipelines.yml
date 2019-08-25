@@ -41,6 +41,7 @@ jobs:
       parameters:
         dependsOn: [ 'build' ]
         forceSignVariable: ''
+        additionalConditions: eq(variables['Build.Repository.Name'], 'XamarinComponents')
 
 
       # - job: build
