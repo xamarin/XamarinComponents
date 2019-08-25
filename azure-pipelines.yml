@@ -40,6 +40,7 @@ jobs:
     - template: sign-artifacts/jobs/v1.yml@internal-templates
       parameters:
         dependsOn: [ 'build' ]
+        forceSignVariable: ''
 
 
       # - job: build
