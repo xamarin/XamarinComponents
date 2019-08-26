@@ -333,5 +333,3 @@ Task("nuget-validation")
 });
 
 RunTarget (TARGET);
-
-// DUMMY
