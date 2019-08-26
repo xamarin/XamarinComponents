@@ -330,7 +330,7 @@ if (groupsToBuild.Count == 0) {
 	var resultWriter = new Xunit.ResultWriter.XunitV2Writer();
 	resultWriter.Write(
 		new List<Xunit.ResultWriter.Assembly> { assembly },
-		ROOT_DIR.CombineWithFilePath ("./output/TestResults.xml").FullPath);
+		ROOT_OUTPUT_DIR.CombineWithFilePath ("TestResults.xml").FullPath);
 
 	Information ("################################################################################");
 	Information ("#                             ALL BUILDS COMPLETE                              #");
