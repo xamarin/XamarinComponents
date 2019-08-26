@@ -10,7 +10,6 @@ jobs:
     dependsOn: ${{ parameters.dependsOn }}
     variables:
       skipComponentGovernanceDetection: true
-      prTargetBranch: '$(System.PullRequest.TargetBranch)' # does not exist on non-PR builds
     pool:
       name: 'Hosted Ubuntu 1604'
     steps:
@@ -23,8 +22,8 @@ jobs:
 
           # determine the "current" branch
           $branch = "$(Build.SourceBranchName)"
-          if ("$(prTargetBranch)") {
-            $branch = "$(prTargetBranch)"
+          if ("$env:SYSTEM_PULLREQUEST_TARGETBRANCH") {
+            $branch = "$env:SYSTEM_PULLREQUEST_TARGETBRANCH"
           }
           Write-Host "Current branch: $branch"
 
