@@ -1,0 +1,80 @@
+parameters:
+  name: 'build'
+  displayName: 'Build'
+  dependsOn: []
+  verbosity: 'normal'
+  macosImage: 'Hosted macOS'
+  windowsImage: 'Hosted Windows 2019 with VS2019'
+  mono: '5_18_1'
+  xcode: '10.3'
+  dotnet: '2.2.401'
+  cake: '0.34.1'
+  apiTools: '1.0.2-preview.14'
+  lastSuccessfulCommit: '$(GitLastSuccessfulCommit)'
+  preBuildSteps: []
+  postBuildSteps: []
+  forceBuild: '$(ForceBuild)'
+  namesFilter: '$(BuildManifestNames)'
+  targetsFilter: '$(BuildManifestTargets)'
+
+jobs:
+  - job: ${{ parameters.name }}
+    strategy:
+      matrix:
+        ${{ if ne(parameters.macosImage, '') }}:
+          macos:
+            imageName: ${{ parameters.macosImage }}
+        ${{ if ne(parameters.windowsImage, '') }}:
+          windows:
+            imageName: ${{ parameters.windowsImage }}
+    displayName: ${{ parameters.displayName }}
+    dependsOn: ${{ parameters.dependsOn }}
+    pool:
+      name: $(imageName)
+    steps:
+      - bash: sudo $AGENT_HOMEDIRECTORY/scripts/select-xamarin-sdk.sh ${{ parameters.mono }}
+        displayName: 'Switch to the latest Xamarin SDK'
+        condition: eq(variables['System.JobName'], 'macos')
+      - bash: echo '##vso[task.setvariable variable=MD_APPLE_SDK_ROOT;]'/Applications/Xcode_${{ parameters.xcode }}.app;sudo xcode-select --switch /Applications/Xcode_${{ parameters.xcode }}.app/Contents/Developer
+        displayName: 'Switch to the latest Xcode'
+        condition: eq(variables['System.JobName'], 'macos')
+      - bash: echo '##vso[task.setvariable variable=PATH;]'$PATH:$HOME/.dotnet/tools
+        displayName: 'Add ~/.dotnet/tools to the PATH environment variable'
+        condition: eq(variables['System.JobName'], 'macos')
+      - task: UseDotNet@2
+        displayName: 'Switch to the correct version of the .NET Core SDK'
+        inputs:
+          version: ${{ parameters.dotnet }}
+      - powershell: |
+          dotnet tool install -g api-tools --version ${{ parameters.apiTools }}
+          dotnet tool install -g cake.tool --version ${{ parameters.cake }}
+        displayName: 'Install .NET Core global tools'
+      - task: NuGetToolInstaller@1
+        inputs:
+          checkLatest: true
+        displayName: 'Download the latest nuget.exe'
+      - ${{ parameters.preBuildSteps }}
+      - powershell: |
+          dotnet cake templates/build-manifest.cake `
+            --root="$(Build.SourcesDirectory)" `
+            --gitpreviouscommit=${{ parameters.lastSuccessfulCommit }} `
+            --gitcommit=$(Build.SourceVersion) `
+            --forcebuild=${{ parameters.forceBuild }} `
+            --names="${{ parameters.namesFilter }}" `
+            --targets="${{ parameters.targetsFilter }}" `
+            --copyoutputtoroot=true `
+            --verbosity=${{ parameters.verbosity }}
+        displayName: 'Run build'
+        env:
+          JavaSdkDirectory: $(JAVA_HOME)
+      - ${{ parameters.postBuildSteps }}
+      - powershell: |
+          if (Get-ChildItem artifacts -Filter *.nupkg) {
+            api-tools nuget-diff artifacts --latest --group-ids --output artifacts/api-diff --cache externals/package_cache
+          }
+        displayName: 'Generate API diff'
+      - task: PublishBuildArtifacts@1
+        displayName: 'Publish artifacts'
+        inputs:
+          PathToPublish: artifacts
+          ArtifactName: nuget

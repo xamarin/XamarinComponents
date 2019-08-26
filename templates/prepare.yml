@@ -1,11 +1,13 @@
 parameters:
-  name: 'prepare'                       # in the form type_platform_host
-  displayName: 'Prepare for builds'     # the human name
-  masterBranchName: 'master'            # the "master" branch that should be used - can be something other than "master"
+  name: 'prepare'                                           # the name of the job
+  displayName: 'Prepare for building'                       # the human name
+  dependsOn: []                                             # the dependencies
+  masterBranchName: 'master'                                # the "master" branch that should be used - can be something other than "master"
 
 jobs:
   - job: ${{ parameters.name }}
     displayName: ${{ parameters.displayName }}
+    dependsOn: ${{ parameters.dependsOn }}
     variables:
       skipComponentGovernanceDetection: true
     pool:
