@@ -21,7 +21,10 @@ jobs:
           Write-Host "Master branch: $masterBranch"
 
           # determine the "current" branch
-          $branch = if ("$(System.PullRequest.TargetBranch)") { "$(System.PullRequest.TargetBranch)" } else { "$(Build.SourceBranchName)" }
+          $branch = "$(Build.SourceBranchName)"
+          if ("$(System.PullRequest.TargetBranch)") {
+            $branch = "$(System.PullRequest.TargetBranch)"
+          }
           Write-Host "Current branch: $branch"
 
           if ($branch -eq $masterBranch) {

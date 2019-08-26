@@ -233,18 +233,18 @@ if (groupsToBuild.Count == 0) {
 		Information ("================================================================================");
 		Information ("");
 
-		// Information ("Building {0} ({1}) with Targets {2}...",
-		// 	buildGroup.Name,
-		// 	buildGroup.BuildScript,
-		// 	string.Join (", ", targets));
-		// foreach (var target in targets) {
-		// 	var cakeSettings = new CakeSettings {
-		// 		Arguments = new Dictionary<string, string> { { "target", target } },
-		// 		Verbosity = VERBOSITY,
-		// 		WorkingDirectory = ROOT_DIR
-		// 	};
-		// 	CakeExecuteScript (ROOT_DIR.CombineWithFilePath (buildGroup.BuildScript), cakeSettings);
-		// }
+		Information ("Building {0} ({1}) with Targets {2}...",
+			buildGroup.Name,
+			buildGroup.BuildScript,
+			string.Join (", ", targets));
+		foreach (var target in targets) {
+			var cakeSettings = new CakeSettings {
+				Arguments = new Dictionary<string, string> { { "target", target } },
+				Verbosity = VERBOSITY,
+				WorkingDirectory = ROOT_DIR
+			};
+			CakeExecuteScript (ROOT_DIR.CombineWithFilePath (buildGroup.BuildScript), cakeSettings);
+		}
 	}
 
 	Information ("");
@@ -260,7 +260,7 @@ Information ("Found {0} Artifacts:" + Environment.NewLine +
 	" - " + string.Join (Environment.NewLine + " - ", artifacts),
 	artifacts.Count);
 
-var dlls = GetFiles ("./**/*.dll");
+var dlls = GetFiles ("./**/*.dll") - GetFiles ("./tools/**/*.dll");
 Information ("Found {0} DLLs:" + Environment.NewLine +
 	" - " + string.Join (Environment.NewLine + " - ", dlls),
 	dlls.Count);

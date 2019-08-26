@@ -1,9 +1,12 @@
 parameters:
+  # job parameters
   name: 'build'
   displayName: 'Build'
-  dependsOn: [ ]
+  dependsOn: []
+  preBuildSteps: []
+  postBuildSteps: []
   prepareJobName: 'prepare'
-  verbosity: 'normal'
+  # job software version parameters
   macosImage: 'Hosted macOS'
   windowsImage: 'Hosted Windows 2019 with VS2019'
   mono: '5_18_1'
@@ -11,8 +14,8 @@ parameters:
   dotnet: '2.2.401'
   cake: '0.34.1'
   apiTools: '1.0.2-preview.14'
-  preBuildSteps: []
-  postBuildSteps: []
+  # build parameters
+  verbosity: 'normal'
   forceBuild: '$(ForceBuild)'
   namesFilter: '$(BuildManifestNames)'
   targetsFilter: '$(BuildManifestTargets)'
