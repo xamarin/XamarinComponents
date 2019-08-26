@@ -293,7 +293,7 @@ if (groupsToBuild.Count == 0) {
 				Method = $"{buildGroup.Name} ({target})",
 			};
 			var start = DateTime.UtcNow;
-throw new Exception ($"{buildGroup.Name} ({target})");
+
 			try {
 				// Run the actual build
 				var cakeSettings = new CakeSettings {
