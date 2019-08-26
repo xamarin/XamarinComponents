@@ -10,7 +10,6 @@ parameters:
   dotnet: '2.2.401'
   cake: '0.34.1'
   apiTools: '1.0.2-preview.14'
-  lastSuccessfulCommit: '$(GitLastSuccessfulCommit)'
   preBuildSteps: []
   postBuildSteps: []
   forceBuild: '$(ForceBuild)'
@@ -57,7 +56,7 @@ jobs:
       - powershell: |
           dotnet cake templates/build-manifest.cake `
             --root="$(Build.SourcesDirectory)" `
-            --gitpreviouscommit="${{ parameters.lastSuccessfulCommit }}" `
+            --gitpreviouscommit="$(GitLastSuccessfulCommit)" `
             --gitcommit="$(Build.SourceVersion)" `
             --forcebuild="${{ parameters.forceBuild }}" `
             --names="${{ parameters.namesFilter }}" `
