@@ -343,7 +343,7 @@ if (groupsToBuild.Count == 0) {
 // SECTION: Copy Output
 
 // Log all the things that were found after a build
-var artifacts = GetFiles ($"{ROOT_DIR}/**/output/**/*");
+var artifacts = GetFiles ($"{ROOT_DIR}/**/output/**/*") - GetFiles ($"{ROOT_DIR}/output/**");
 Information ("Found {0} Artifacts:" + Environment.NewLine +
 	" - " + string.Join (Environment.NewLine + " - ", artifacts),
 	artifacts.Count);
