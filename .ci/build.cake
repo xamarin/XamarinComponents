@@ -18,7 +18,8 @@ var GIT_EXE = Argument ("gitexe", "git");
 
 var ROOT_DIR = (DirectoryPath)Argument ("root", ".");
 
-var ROOT_ARTIFACTS_DIR = (DirectoryPath)Argument ("artifacts", ROOT_DIR.Combine ("artifacts").FullPath);
+var ROOT_OUTPUT_DIR = ROOT_DIR.Combine ("output");
+var COPY_OUTPUT_TO_ROOT = Argument ("copyoutputtoroot", false);
 
 var MANIFEST_YAML = (FilePath)Argument ("manifest", ROOT_DIR.CombineWithFilePath ("manifest.yaml").FullPath);
 var BUILD_GROUPS = DeserializeYamlFromFile<List<BuildGroup>> (MANIFEST_YAML);
@@ -29,7 +30,6 @@ var BUILD_TARGETS = Argument ("targets", Argument ("build-targets", Argument ("b
 	.Split (new [] { ",", ";" }, StringSplitOptions.RemoveEmptyEntries);
 
 var FORCE_BUILD = Argument ("force", Argument ("forcebuild", Argument ("force-build", false)));
-var COPY_OUTPUT_TO_ROOT = Argument ("copyoutputtoroot", false);
 var POD_REPO_UPDATE = Argument ("update", Argument ("repo-update", Argument ("pod-repo-update", false)));
 
 var VALIDATE_PACKAGE_NAMESPACES = Argument ("validatenamespaces", true);
@@ -55,11 +55,11 @@ Information ("  Current commit: {0}", GIT_COMMIT);
 Information ("  Current branch: {0}", GIT_BRANCH);
 Information ("  Root directory: {0}", MakeAbsolute (ROOT_DIR));
 Information ("  Path to manifest.yaml: {0}", MakeAbsolute (MANIFEST_YAML));
-Information ("  Root artifacts directory: {0}", MakeAbsolute (ROOT_ARTIFACTS_DIR));
 Information ("  Build names: {0}", string.Join (", ", BUILD_NAMES));
 Information ("  Build targets: {0}", string.Join (", ", BUILD_TARGETS));
 Information ("  Force build of all items: {0}", FORCE_BUILD);
 Information ("  Copy build output to root: {0}", COPY_OUTPUT_TO_ROOT);
+Information ("  Root output directory: {0}", ROOT_OUTPUT_DIR);
 Information ("  Update Cocoapods repository: {0}", POD_REPO_UPDATE);
 Information ("  Should validate package namespaces: {0}", VALIDATE_PACKAGE_NAMESPACES);
 Information ("  Valid package namespaces: {0}", string.Join (", ", PACKAGE_NAMESPACES));
@@ -289,7 +289,7 @@ if (groupsToBuild.Count == 0) {
 // SECTION: Copy Output
 
 // Log all the things that were found after a build
-var artifacts = GetFiles (ROOT_DIR + "/**/output/**/*");
+var artifacts = GetFiles ($"{ROOT_DIR}/**/output/**/*");
 Information ("Found {0} Artifacts:" + Environment.NewLine +
 	" - " + string.Join (Environment.NewLine + " - ", artifacts),
 	artifacts.Count);
@@ -297,9 +297,9 @@ Information ("");
 
 // Copy all child "output" directories to a root level artifacts dir
 if (COPY_OUTPUT_TO_ROOT) {
-	Information ("Copying all {0} artifacts to the root artifact directory...", artifacts.Count);
-	EnsureDirectoryExists (ROOT_ARTIFACTS_DIR);
-	CopyFiles (artifacts, ROOT_ARTIFACTS_DIR, false);
+	Information ("Copying all {0} artifacts to the root output directory...", artifacts.Count);
+	EnsureDirectoryExists (ROOT_OUTPUT_DIR);
+	CopyFiles (artifacts, ROOT_OUTPUT_DIR, false);
 	Information ("Copy complete.");
 }
 Information ("");
@@ -318,7 +318,7 @@ if (VALIDATE_PACKAGE_NAMESPACES) {
 		ValidPackageNamespace = PACKAGE_NAMESPACES.ToArray (),
 	};
 
-	var nupkgFiles = GetFiles (ROOT_ARTIFACTS_DIR + "/**/*.nupkg");
+	var nupkgFiles = GetFiles (ROOT_OUTPUT_DIR + "/**/*.nupkg");
 
 	Information ("Found {0} NuGet packages to validate.", nupkgFiles.Count);
 
