@@ -49,7 +49,7 @@ jobs:
         displayName: 'Switch to the correct version of the .NET Core SDK'
         inputs:
           version: ${{ parameters.dotnet }}
-      - powershell: |
+      - pwsh: |
           dotnet tool install -g api-tools --version ${{ parameters.apiTools }}
           dotnet tool install -g cake.tool --version ${{ parameters.cake }}
         displayName: 'Install .NET Core global tools'
@@ -58,8 +58,10 @@ jobs:
           checkLatest: true
         displayName: 'Download the latest nuget.exe'
       - ${{ parameters.preBuildSteps }}
-      - powershell: |
-          dotnet cake templates/build-manifest.cake `
+      - pwsh: Invoke-WebRequest -Uri "https://raw.githubusercontent.com/xamarin/XamarinComponents/$(Build.SourceBranchName)/templates/build-manifest.cake" -OutFile "build-manifest.cake"
+        displayName: 'Download the cake script'
+      - pwsh: |
+          dotnet cake build-manifest.cake `
             --root="$(Build.SourcesDirectory)" `
             --gitpreviouscommit="$(GitLastSuccessfulCommit)" `
             --gitcommit="$(Build.SourceVersion)" `
@@ -72,7 +74,7 @@ jobs:
         env:
           JavaSdkDirectory: $(JAVA_HOME)
       - ${{ parameters.postBuildSteps }}
-      - powershell: |
+      - pwsh: |
           if (Get-ChildItem artifacts -Filter *.nupkg) {
             api-tools nuget-diff artifacts --latest --group-ids --output artifacts/api-diff --cache externals/package_cache
           }
