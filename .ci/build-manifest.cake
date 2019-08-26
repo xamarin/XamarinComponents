@@ -288,9 +288,9 @@ if (groupsToBuild.Count == 0) {
 		foreach (var target in targets) {
 			// Create a test run for this build
 			var test = new Xunit.ResultWriter.Test {
-				Name = buildGroup.Name,
+				Name = Guid.NewGuid().ToString(),
 				Type = "ComponentsBuilder",
-				Method = $"{buildGroup.Name} ({target})",
+				Method = Guid.NewGuid().ToString(),
 			};
 			var start = DateTime.UtcNow;
 
