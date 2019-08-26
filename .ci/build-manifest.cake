@@ -245,9 +245,9 @@ if (groupsToBuild.Count == 0) {
 			};
 			CakeExecuteScript (ROOT_DIR.CombineWithFilePath (buildGroup.BuildScript), cakeSettings);
 		}
+		Information ("");
 	}
 
-	Information ("");
 	Information ("################################################################################");
 	Information ("#                             ALL BUILDS COMPLETE                              #");
 	Information ("################################################################################");
@@ -255,23 +255,19 @@ if (groupsToBuild.Count == 0) {
 }
 
 // Log all the things that were found after a build
-var artifacts = GetFiles ("./**/output/**/*");
+var artifacts = GetFiles (ROOT_DIR + "/**/output/**/*");
 Information ("Found {0} Artifacts:" + Environment.NewLine +
 	" - " + string.Join (Environment.NewLine + " - ", artifacts),
 	artifacts.Count);
-
-var dlls = GetFiles ("./**/*.dll") - GetFiles ("./tools/**/*.dll");
-Information ("Found {0} DLLs:" + Environment.NewLine +
-	" - " + string.Join (Environment.NewLine + " - ", dlls),
-	dlls.Count);
+Information ("");
 
 // Copy all child "output" directories to a root level artifacts dir
 if (COPY_OUTPUT_TO_ROOT) {
 	Information ("Copying all {0} artifacts to the root artifact directory...", artifacts.Count);
 	EnsureDirectoryExists(ROOT_ARTIFACTS_DIR);
 	CopyFiles(artifacts, ROOT_ARTIFACTS_DIR, false);
+	Information ("Copy complete.");
 }
-Information ("Copy complete.");
 Information ("");
 
 bool IsRunningOnMac () => !IsRunningOnWindows ();
