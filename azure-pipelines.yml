@@ -5,11 +5,12 @@ trigger:
 
 variables:
   MONO_VERSION: 5_18_1
-  XCODE_VERSION: 10.2.1
+  XCODE_VERSION: 10.3
   VERBOSITY: diagnostic
   DOTNET_CORE_VERSION: 2.2.401
   CAKE_VERSION: 0.34.1
   API_TOOLS_VERSION: 1.0.2-preview.14
+  MASTER_BRANCH: master
 
 resources:
   repositories:
@@ -28,50 +29,46 @@ jobs:
     steps:
       - checkout: none
       - powershell: |
-          $branch = $env:BUILD_SOURCEBRANCHNAME
-          if ($env:SYSTEM_PULLREQUEST_TARGETBRANCH) {
-            $branch = $env:SYSTEM_PULLREQUEST_TARGETBRANCH
-          }
+          # determine the "master" branch
+          $masterBranch = "$(MASTER_BRANCH)"
+          $encodedBranch = [Uri]::EscapeDataString("refs/heads/$masterBranch")
+          Write-Host "Master branch: $masterBranch"
 
-          Write-Host "Branch: $branch"
+          # determine the "current" branch
+          $branch = if ("$(System.PullRequest.TargetBranch)") { "$(System.PullRequest.TargetBranch)" } else { "$(Build.SourceBranchName)" }
+          Write-Host "Current branch: $branch"
 
-          if ($branch -eq "master") {
+          if ($branch -eq $masterBranch) {
             Write-Host "Branch is master, fetching last successful build commit..."
-        
-            # Must check allow scripts to have oauth token access in devops
-            $url = "$env:SYSTEM_TEAMFOUNDATIONCOLLECTIONURI$env:SYSTEM_TEAMPROJECTID/_apis/build/builds/?definitions=$env:SYSTEM_DEFINITIONID&branchName=refs%2Fheads%2Fmaster&statusFilter=completed&resultFilter=succeeded&api-version=5.0"
-            Write-Host "URL: $url"
+
+            $url = "$(System.TeamFoundationCollectionUri)$(System.TeamProjectId)/_apis/build/builds/?definitions=$(System.DefinitionId)&branchName=$encodedBranch&statusFilter=completed&resultFilter=succeeded&api-version=5.0"
+            Write-Host "URL for last successful master build: $url"
 
             $json = Invoke-RestMethod -Uri $url -Headers @{
-                Authorization = "Bearer $env:SYSTEM_ACCESSTOKEN"
+                Authorization = "Bearer $(System.AccessToken)"
             }
+            Write-Host "JSON response:"
             Write-Host "$json"
 
-            Try {
-                $lastSuccessfulBuildCommit = $json.value[0].sourceVersion;
-            }
-            Catch {
-            }
+            $lastSuccessfulBuildCommit = try { $json.value[0].sourceVersion; } catch { $null }
           }
 
           if ($lastSuccessfulBuildCommit) {
-            Write-Host "Last Successful Commit: $lastSuccessfulBuildCommit"
+            Write-Host "Last successful commit: $lastSuccessfulBuildCommit"
           } else {
-            $lastSuccessfulBuildCommit = "origin/master"
-            Write-Host "No previously successful build found, using this commit: $lastSuccessfulBuildCommit"
+            $lastSuccessfulBuildCommit = $masterBranch
+            Write-Host "No previously successful build found, using this branch: $lastSuccessfulBuildCommit"
           }
 
           Write-Host "##vso[task.setvariable variable=GitLastSuccessfulCommit;isOutput=true]$lastSuccessfulBuildCommit"
         name: lastSuccessful
-        env:
-          SYSTEM_ACCESSTOKEN: $(System.AccessToken)
         displayName: 'Find last successful commit'
 
   - job: build
     strategy:
       matrix:
         macos:
-          imageName: 'Hosted Mac Internal Mojave'
+          imageName: 'Hosted macOS'
         windows:
           imageName: 'Hosted Windows 2019 with VS2019'
     displayName: 'Build'
@@ -98,10 +95,14 @@ jobs:
           dotnet tool install -g api-tools --version $(API_TOOLS_VERSION)
           dotnet tool install -g cake.tool --version $(CAKE_VERSION)
         displayName: 'Install .NET Core global tools'
-      - powershell: |
-          $env:JavaSdkDirectory = $env:JAVA_HOME # https://github.com/xamarin/xamarin-android-tools/pull/74
-          dotnet-cake --target=build --gitpreviouscommit=$(GitLastSuccessfulCommit) --gitcommit=$(Build.SourceVersion) --forcebuild=$(ForceBuild) --names="$(BuildManifestNames)" --targets="$(BuildManifestTargets)" --copyoutputtoroot=true --verbosity=$(VERBOSITY)
+      - task: NuGetToolInstaller@1
+        inputs:
+          checkLatest: true
+        displayName: 'Download the latest nuget.exe'
+      - powershell: dotnet cake --target=build --gitpreviouscommit=$(GitLastSuccessfulCommit) --gitcommit=$(Build.SourceVersion) --forcebuild=$(ForceBuild) --names="$(BuildManifestNames)" --targets="$(BuildManifestTargets)" --copyoutputtoroot=true --verbosity=$(VERBOSITY)
         displayName: 'Run build'
+        env:
+          JavaSdkDirectory: $(JAVA_HOME)
       - powershell: |
           if (Get-ChildItem artifacts -Filter *.nupkg) {
             api-tools nuget-diff artifacts --latest --group-ids --output artifacts/api-diff --cache externals/package_cache

@@ -39,9 +39,6 @@ foreach (var ev in ENV_VARS)
 
 CakeStealer.CakeContext = Context;
 
-// From Cake.Xamarin.Build, dumps out versions of things
-LogSystemInfo ();
-
 // Print out git commit info
 Information ("Git Path: {0}", GIT_PATH);
 Information ("Git Previous Commit: {0}", GIT_PREVIOUS_COMMIT);
@@ -141,10 +138,12 @@ Task ("build")
 
 		// Get all the changed files in this commit
 		IEnumerable<string> changedFiles = new List<string> ();
-		StartProcess (GIT_PATH, new ProcessSettings {
+		var exitCode = StartProcess (GIT_PATH, new ProcessSettings {
 			Arguments = gitArgs,
 			RedirectStandardOutput = true },
 			out changedFiles);
+		if (exitCode != 0)
+			throw new Exception($"git exited with error code {exitCode}.");
 
 		// Determine which group each file belongs to
 		Information ("Changed Files:");
