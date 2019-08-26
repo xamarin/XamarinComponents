@@ -36,19 +36,6 @@ var BUILD_TARGETS = Argument ("targets", Argument ("build-targets", Argument ("b
 var FORCE_BUILD = Argument ("force", Argument ("forcebuild", Argument ("force-build", false)));
 var POD_REPO_UPDATE = Argument ("update", Argument ("repo-update", Argument ("pod-repo-update", false)));
 
-var VALIDATE_PACKAGE_NAMESPACES = Argument ("validatenamespaces", true);
-var PACKAGE_NAMESPACES = Argument ("n", Argument ("namespaces", ""))
-	.Split (new [] { ",", ";" }, StringSplitOptions.RemoveEmptyEntries)
-	.ToList ();
-PACKAGE_NAMESPACES.AddRange (new [] {
-	"Xamarin",
-	"Mono",
-	"SkiaSharp",
-	"HarfBuzzSharp",
-	"mdoc",
-	"Masonry"
-});
-
 
 // SECTION: Main Script
 
@@ -65,8 +52,6 @@ Information ("  Force build of all items: {0}", FORCE_BUILD);
 Information ("  Copy build output to root: {0}", COPY_OUTPUT_TO_ROOT);
 Information ("  Root output directory: {0}", ROOT_OUTPUT_DIR);
 Information ("  Update Cocoapods repository: {0}", POD_REPO_UPDATE);
-Information ("  Should validate package namespaces: {0}", VALIDATE_PACKAGE_NAMESPACES);
-Information ("  Valid package namespaces: {0}", string.Join (", ", PACKAGE_NAMESPACES));
 Information ("");
 
 // Tagged build might contain the group name to build specifically if no setting was specified
@@ -358,38 +343,6 @@ if (COPY_OUTPUT_TO_ROOT) {
 	Information ("Copy complete.");
 }
 Information ("");
-
-
-// SECTION: Validate Output
-
-if (VALIDATE_PACKAGE_NAMESPACES) {
-	var options = new NugetValidatorOptions {
-		Copyright = "© Microsoft Corporation. All rights reserved.",
-		Author = "Microsoft",
-		Owner = "Microsoft",
-		NeedsProjectUrl = true,
-		NeedsLicenseUrl = true,
-		ValidateRequireLicenseAcceptance = true,
-		ValidPackageNamespace = PACKAGE_NAMESPACES.ToArray (),
-	};
-
-	var nupkgFiles = GetFiles (ROOT_OUTPUT_DIR + "/**/*.nupkg");
-
-	Information ("Found {0} NuGet packages to validate.", nupkgFiles.Count);
-
-	foreach (var nupkgFile in nupkgFiles) {
-		Information ("Verifying NuGet metadata of {0}...", nupkgFile);
-		var result = NugetValidator.Validate (nupkgFile.FullPath, options);
-		if (result.Success) {
-			Information ("NuGet metadata validation passed.");
-		} else {
-			Error ("NuGet metadata validation failed:");
-			Error (string.Join (Environment.NewLine + "    ", result.ErrorMessages));
-
-			throw new Exception ($"Invalid NuGet metadata for: {nupkgFile}");
-		}
-	}
-}
 
 
 // SECTION: Helper Methods and Types

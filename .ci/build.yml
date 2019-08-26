@@ -19,10 +19,11 @@ parameters:
   buildType: 'basic'
   verbosity: 'normal'
   configuration: 'Release'
-  cakeFile: 'build.cake'
-  cakeExtraArgs: ''
+  validPackageNamespaces: []
   # basic cake build parameters
   target: 'ci'
+  cakeFile: 'build.cake'
+  cakeExtraArgs: ''
   # manifest-based build parameters
   forceBuild: $(ForceBuild)
   namesFilter: $(BuildManifestNames)
@@ -73,6 +74,22 @@ jobs:
         inputs:
           checkLatest: true
         displayName: 'Download the latest nuget.exe'
+      - pwsh: |
+          $branch = "master"
+          if ("$(Build.Repository.Id)" -eq "xamarin/XamarinComponents") {
+            if ("$(System.PullRequest.SourceBranch)") {
+              $branch = "$(System.PullRequest.SourceBranch)"
+            } else {
+              $branch = "$(Build.SourceBranchName)"
+            }
+          }
+          Write-Host "##vso[task.setvariable variable=TemplateRootUri]https://raw.githubusercontent.com/xamarin/XamarinComponents/$branch/.ci"
+        displayName: 'Resolve the cake templates URL'
+      - pwsh: |
+          $uri = "$(TemplateRootUri)/validation.cake"
+          Write-Host "Downloading script from $uri..."
+          Invoke-WebRequest -Uri $uri -OutFile "validation.cake"
+        displayName: 'Download the cake script to validate NuGet packages'
       # custom pre-build steps
       - ${{ parameters.preBuildSteps }}
       # the basic build
@@ -90,20 +107,12 @@ jobs:
       # the manifest-based build
       - ${{ if eq(parameters.buildType, 'manifest') }}:
         - pwsh: |
-            $branch = "master"
-            if ("$(Build.Repository.Id)" -eq "xamarin/XamarinComponents") {
-              if ("$(System.PullRequest.SourceBranch)") {
-                $branch = "$(System.PullRequest.SourceBranch)"
-              } else {
-                $branch = "$(Build.SourceBranchName)"
-              }
-            }
-            $uri = "https://raw.githubusercontent.com/xamarin/XamarinComponents/$branch/.ci/build-manifest.cake"
+            $uri = "$(TemplateRootUri)/build-manifest.cake"
             Write-Host "Downloading script from $uri..."
-            Invoke-WebRequest -Uri $uri -OutFile "${{ parameters.cakeFile }}"
-          displayName: 'Download the cake script'
+            Invoke-WebRequest -Uri $uri -OutFile "build-manifest.cake"
+          displayName: 'Download the cake script to build manifest-based repositories'
         - pwsh: |
-            dotnet cake ${{ parameters.cakeFile }} ${{ parameters.cakeExtraArgs }} `
+            dotnet cake build-manifest.cake `
               --gitpreviouscommit="$(GitLastSuccessfulCommit)" `
               --gitcommit="$(Build.SourceVersion)" `
               --forcebuild="${{ parameters.forceBuild }}" `
@@ -121,6 +130,9 @@ jobs:
           inputs:
             testResultsFormat: xUnit
             testResultsFiles: 'output/tests/TestResults.xml'
+      # post-build steps
+      - pwsh: dotnet cake validation.cake --namespaces="${{ join(',', parameters.validPackageNamespaces) }}"
+        displayName: 'Run NuGet package validation'
       # custom post-build steps
       - ${{ parameters.postBuildSteps }}
       # after the build is complete
