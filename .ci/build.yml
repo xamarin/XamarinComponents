@@ -130,6 +130,7 @@ jobs:
           inputs:
             testResultsFormat: xUnit
             testResultsFiles: 'output/tests/TestResults.xml'
+            testRunTitle: 'Test results for $(System.JobName)'
       # post-build steps
       - pwsh: dotnet cake validation.cake --namespaces="${{ join(',', parameters.validPackageNamespaces) }}"
         displayName: 'Run NuGet package validation'

@@ -51,4 +51,4 @@ jobs:
 
           Write-Host "##vso[task.setvariable variable=GitLastSuccessfulCommit;isOutput=true]$lastSuccessfulBuildCommit"
         name: lastSuccessful
-        displayName: 'Find last successful commit'
+        displayName: 'Find the last successful commit'
