@@ -18,8 +18,8 @@ parameters:
   # build parameters
   buildType: 'basic'
   verbosity: 'normal'
-  cakeExtraArgs: ''
   cakeFile: 'build.cake'
+  cakeExtraArgs: ''
   # basic cake build parameters
   target: 'ci'
   # manifest-based build parameters
@@ -77,12 +77,11 @@ jobs:
       # the basic build
       - ${{ if eq(parameters.buildType, 'basic') }}:
         - pwsh: |
-            dotnet cake ${{ parameters.cakeFile }} `
+            dotnet cake ${{ parameters.cakeFile }} ${{ parameters.cakeExtraArgs }} `
               --gitpreviouscommit="$(GitLastSuccessfulCommit)" `
               --gitcommit="$(Build.SourceVersion)" `
               --target="${{ parameters.cakeTarget }}" `
-              --verbosity="${{ parameters.verbosity }}" `
-              ${{ parameters.cakeExtraArgs }}
+              --verbosity="${{ parameters.verbosity }}"
           displayName: 'Run build'
           env:
             JavaSdkDirectory: $(JAVA_HOME)
@@ -102,15 +101,14 @@ jobs:
             Invoke-WebRequest -Uri $uri -OutFile "${{ parameters.cakeFile }}"
           displayName: 'Download the cake script'
         - pwsh: |
-            dotnet cake ${{ parameters.cakeFile }} `
+            dotnet cake ${{ parameters.cakeFile }} ${{ parameters.cakeExtraArgs }} `
               --gitpreviouscommit="$(GitLastSuccessfulCommit)" `
               --gitcommit="$(Build.SourceVersion)" `
               --forcebuild="${{ parameters.forceBuild }}" `
               --names="${{ parameters.namesFilter }}" `
               --targets="${{ parameters.targetsFilter }}" `
               --copyoutputtoroot=true `
-              --verbosity="${{ parameters.verbosity }}" `
-              ${{ parameters.cakeExtraArgs }}
+              --verbosity="${{ parameters.verbosity }}"
           displayName: 'Run build'
           env:
             JavaSdkDirectory: $(JAVA_HOME)
