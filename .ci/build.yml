@@ -21,6 +21,8 @@ parameters:
   configuration: 'Release'
   cakeFile: 'build.cake'
   cakeExtraArgs: ''
+  artifactsDir: 'artifacts'
+  diffDir: 'artifacts/api-diff'
   # basic cake build parameters
   target: 'ci'
   # manifest-based build parameters
@@ -119,12 +121,12 @@ jobs:
       - ${{ parameters.postBuildSteps }}
       # after the build is complete
       - pwsh: |
-          if (Get-ChildItem artifacts -Filter *.nupkg) {
-            api-tools nuget-diff artifacts --latest --group-ids --output artifacts/api-diff --cache externals/package_cache
+          if (Get-ChildItem ${{ parameters.artifactsDir }} -Filter *.nupkg) {
+            api-tools nuget-diff ${{ parameters.artifactsDir }} --latest --group-ids --output ${{ parameters.diffDir }} --cache $(Agent.TempDirectory)/api-diff/package-cache
           }
         displayName: 'Generate API diff'
       - task: PublishBuildArtifacts@1
         displayName: 'Publish artifacts'
         inputs:
-          PathToPublish: artifacts
+          PathToPublish: ${{ parameters.artifactsDir }}
           ArtifactName: nuget
