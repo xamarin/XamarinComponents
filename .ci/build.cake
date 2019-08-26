@@ -1,6 +1,12 @@
 #addin nuget:?package=Cake.XCode&version=4.1.0
 #addin nuget:?package=Cake.Yaml&version=3.1.0&loadDependencies=true
 #addin nuget:?package=Cake.Json&version=4.0.0&loadDependencies=true
+#addin nuget:?package=Xamarin.Nuget.Validator&version=1.1.1
+
+using Xamarin.Nuget.Validator;
+
+
+// SECTION: Arguments and Settings
 
 var VERBOSITY = Argument ("v", Argument ("verbosity", Verbosity.Normal));
 var CONFIGURATION = Argument ("c", Argument ("configuration", "Release"));
@@ -26,6 +32,22 @@ var FORCE_BUILD = Argument ("force", Argument ("forcebuild", Argument ("force-bu
 var COPY_OUTPUT_TO_ROOT = Argument ("copyoutputtoroot", false);
 var POD_REPO_UPDATE = Argument ("update", Argument ("repo-update", Argument ("pod-repo-update", false)));
 
+var VALIDATE_PACKAGE_NAMESPACES = Argument ("validatenamespaces", true);
+var PACKAGE_NAMESPACES = Argument ("n", Argument ("namespaces", ""))
+	.Split (new [] { ",", ";" }, StringSplitOptions.RemoveEmptyEntries)
+	.ToList ();
+PACKAGE_NAMESPACES.AddRange (new [] {
+	"Xamarin",
+	"Mono",
+	"SkiaSharp",
+	"HarfBuzzSharp",
+	"mdoc",
+	"Masonry"
+});
+
+
+// SECTION: Main Script
+
 Information ("");
 Information ("Script Arguments:");
 Information ("  Previous commit: {0}", GIT_PREVIOUS_COMMIT);
@@ -39,6 +61,8 @@ Information ("  Build targets: {0}", string.Join (", ", BUILD_TARGETS));
 Information ("  Force build of all items: {0}", FORCE_BUILD);
 Information ("  Copy build output to root: {0}", COPY_OUTPUT_TO_ROOT);
 Information ("  Update Cocoapods repository: {0}", POD_REPO_UPDATE);
+Information ("  Should validate package namespaces: {0}", VALIDATE_PACKAGE_NAMESPACES);
+Information ("  Valid package namespaces: {0}", string.Join (", ", PACKAGE_NAMESPACES));
 Information ("");
 
 // Tagged build might contain the group name to build specifically if no setting was specified
@@ -193,6 +217,9 @@ if (groupsToBuild.Count > 0) {
 }
 Information ("");
 
+
+// SECTION: Build
+
 if (groupsToBuild.Count == 0) {
 	// Make a note if nothing changed...
 	Warning ("No changed files affected any of the paths from the manifest.yaml.");
@@ -242,7 +269,6 @@ if (groupsToBuild.Count == 0) {
 			var cakeSettings = new CakeSettings {
 				Arguments = new Dictionary<string, string> {
 					{ "target", target },
-					{ "verbosity", VERBOSITY.ToString () },
 					{ "configuration", CONFIGURATION },
 				},
 				Verbosity = VERBOSITY,
@@ -258,6 +284,9 @@ if (groupsToBuild.Count == 0) {
 	Information ("################################################################################");
 	Information ("");
 }
+
+
+// SECTION: Copy Output
 
 // Log all the things that were found after a build
 var artifacts = GetFiles (ROOT_DIR + "/**/output/**/*");
@@ -275,7 +304,40 @@ if (COPY_OUTPUT_TO_ROOT) {
 }
 Information ("");
 
-bool IsRunningOnMac () => !IsRunningOnWindows ();
+
+// SECTION: Validate Output
+
+if (VALIDATE_PACKAGE_NAMESPACES) {
+	var options = new NugetValidatorOptions {
+		Copyright = "© Microsoft Corporation. All rights reserved.",
+		Author = "Microsoft",
+		Owner = "Microsoft",
+		NeedsProjectUrl = true,
+		NeedsLicenseUrl = true,
+		ValidateRequireLicenseAcceptance = true,
+		ValidPackageNamespace = PACKAGE_NAMESPACES,
+	};
+
+	var nupkgFiles = GetFiles (ROOT_ARTIFACTS_DIR + "/**/*.nupkg");
+
+	Information ("Found {0} NuGet packages to validate.", nupkgFiles.Count);
+
+	foreach (var nupkgFile in nupkgFiles) {
+		Information ("Verifying NuGet metadata of {0}...", nupkgFile);
+		var result = NugetValidator.Validate (nupkgFile.FullPath, options);
+		if (result.Success) {
+			Information ("NuGet metadata validation passed.");
+		} else {
+			Error ("NuGet metadata validation failed:");
+			Error (string.Join (Environment.NewLine + "    ", result.ErrorMessages));
+
+			throw new Exception ($"Invalid NuGet metadata for: {nupkgFile}");
+		}
+	}
+}
+
+
+// SECTION: Helper Methods and Types
 
 public enum PodRepoUpdate {
 	NotRequired,
@@ -297,6 +359,10 @@ public class BuildGroup {
 	public bool BuildOnMac => MacBuildTargets?.Any () == true;
 
 	public override string ToString () => Name;
+}
+
+bool IsRunningOnMac () {
+	return !IsRunningOnWindows ();
 }
 
 string[] GetGitOutput (string args) {
