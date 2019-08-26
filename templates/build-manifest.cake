@@ -233,7 +233,7 @@ if (groupsToBuild.Count == 0) {
 		Information ("================================================================================");
 		Information ("");
 
-		Information ("Building {0} ({1}) with Targets {2}...",
+		Information (@"Building ""{0}"" ({1}) with Targets: {2}...",
 			buildGroup.Name,
 			buildGroup.BuildScript,
 			string.Join (", ", targets));
