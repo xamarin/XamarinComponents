@@ -327,11 +327,12 @@ if (groupsToBuild.Count == 0) {
 	}
 
 	// Write the test output
-	EnsureDirectoryExists (ROOT_OUTPUT_DIR);
+	var testsDir = ROOT_OUTPUT_DIR.Combine ("tests");
+	EnsureDirectoryExists (testsDir);
 	var resultWriter = new Xunit.ResultWriter.XunitV2Writer();
 	resultWriter.Write(
 		new List<Xunit.ResultWriter.Assembly> { assembly },
-		ROOT_OUTPUT_DIR.CombineWithFilePath ("TestResults.xml").FullPath);
+		testsDir.CombineWithFilePath ("TestResults.xml").FullPath);
 
 	Information ("################################################################################");
 	Information ("#                             ALL BUILDS COMPLETE                              #");

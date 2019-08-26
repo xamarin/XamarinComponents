@@ -120,7 +120,7 @@ jobs:
           condition: always()
           inputs:
             testResultsFormat: xUnit
-            testResultsFiles: 'output/TestResults.xml'
+            testResultsFiles: 'output/tests/TestResults.xml'
       # custom post-build steps
       - ${{ parameters.postBuildSteps }}
       # after the build is complete
