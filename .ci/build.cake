@@ -315,7 +315,7 @@ if (VALIDATE_PACKAGE_NAMESPACES) {
 		NeedsProjectUrl = true,
 		NeedsLicenseUrl = true,
 		ValidateRequireLicenseAcceptance = true,
-		ValidPackageNamespace = PACKAGE_NAMESPACES,
+		ValidPackageNamespace = PACKAGE_NAMESPACES.ToArray (),
 	};
 
 	var nupkgFiles = GetFiles (ROOT_ARTIFACTS_DIR + "/**/*.nupkg");
