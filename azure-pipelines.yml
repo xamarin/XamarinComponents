@@ -24,6 +24,7 @@ jobs:
     displayName: 'Prepare for builds'
     variables:
       skipComponentGovernanceDetection: true
+      prTargetBranch: '$(System.PullRequest.TargetBranch)' # does not exist on non-PR builds
     pool:
       name: Hosted Ubuntu 1604
     steps:
@@ -35,7 +36,7 @@ jobs:
           Write-Host "Master branch: $masterBranch"
 
           # determine the "current" branch
-          $branch = if ("$(System.PullRequest.TargetBranch)") { "$(System.PullRequest.TargetBranch)" } else { "$(Build.SourceBranchName)" }
+          $branch = if ("$(prTargetBranch)") { "$(prTargetBranch)" } else { "$(Build.SourceBranchName)" }
           Write-Host "Current branch: $branch"
 
           if ($branch -eq $masterBranch) {
