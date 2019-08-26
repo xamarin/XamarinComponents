@@ -290,7 +290,7 @@ if (groupsToBuild.Count == 0) {
 			var test = new Xunit.ResultWriter.Test {
 				Name = buildGroup.Name,
 				Type = "ComponentsBuilder",
-				Method = $"Build ({target})",
+				Method = $"{buildGroup.Name} ({target})",
 			};
 			var start = DateTime.UtcNow;
 
