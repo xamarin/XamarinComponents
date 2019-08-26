@@ -2,6 +2,8 @@
 #addin nuget:?package=Cake.Yaml&version=3.1.0&loadDependencies=true
 #addin nuget:?package=Cake.Json&version=4.0.0&loadDependencies=true
 #addin nuget:?package=Xamarin.Nuget.Validator&version=1.1.1
+#addin nuget:?package=redth.xunit.resultwriter&version=1.0.0
+
 
 using Xamarin.Nuget.Validator;
 
@@ -10,6 +12,8 @@ using Xamarin.Nuget.Validator;
 
 var VERBOSITY = Argument ("v", Argument ("verbosity", Verbosity.Normal));
 var CONFIGURATION = Argument ("c", Argument ("configuration", "Release"));
+
+var FAIL_ON_BUILD_FAIL = Argument ("failonbuildfail", true);
 
 var GIT_PREVIOUS_COMMIT = Argument ("gitpreviouscommit", "");
 var GIT_COMMIT = Argument ("gitcommit", "");
@@ -88,12 +92,14 @@ var groupsToBuild = new List<BuildGroup> ();
 var podRepoUpdate = POD_REPO_UPDATE ? PodRepoUpdate.Forced : PodRepoUpdate.NotRequired;
 if (FORCE_BUILD) {
 	Information ("Forcing a build of all the items...");
+	Information ("");
 
 	podRepoUpdate = PodRepoUpdate.Forced;
 	groupsToBuild.AddRange (BUILD_GROUPS);
 	Debug ("Found {0} items to build:" + Environment.NewLine +
 		" - " + string.Join (Environment.NewLine + " - ", BUILD_GROUPS),
 		BUILD_GROUPS.Count);
+	Debug ("");
 } else {
 	Information ("Determining which items to build based on the changes...");
 
@@ -210,10 +216,10 @@ groupsToBuild = groupsToBuild
 	.Where (bg => (bg.BuildOnWindows && IsRunningOnWindows ()) || (bg.BuildOnMac && IsRunningOnMac ()))
 	.ToList ();
 if (groupsToBuild.Count > 0) {
-	Information ("Removed the builds that cannot run on this platform, leaving:" + Environment.NewLine +
+	Information ("Removed the items that cannot build on this platform, leaving:" + Environment.NewLine +
 		" - " + string.Join (Environment.NewLine + " - ", groupsToBuild));
 } else {
-	Information ("Removing the builds that cannot run on this platform...");
+	Information ("Removing the items that cannot build on this platform...");
 }
 Information ("");
 
@@ -244,8 +250,22 @@ if (groupsToBuild.Count == 0) {
 	Information ("################################################################################");
 	Information ("");
 
+	// Prepare the test output
+	var assembly = new Xunit.ResultWriter.Assembly {
+		Name = "ComponentsBuilder",
+		TestFramework = "xUnit",
+		Environment = "CI",
+		RunDate = DateTime.UtcNow.ToString("yyyy-MM-dd"),
+		RunTime = DateTime.UtcNow.ToString("hh:mm:ss")
+	};
+	var col = new Xunit.ResultWriter.Collection {
+		Name = "Components"
+	};
+	assembly.CollectionItems.Add(col);
+
 	// Build each group
 	foreach (var buildGroup in groupsToBuild) {
+		// Determine the targets to build
 		List<string> targets;
 		if (BUILD_TARGETS.Length > 0)
 			targets = BUILD_TARGETS.ToList ();
@@ -266,18 +286,51 @@ if (groupsToBuild.Count == 0) {
 			buildGroup.BuildScript,
 			string.Join (", ", targets));
 		foreach (var target in targets) {
-			var cakeSettings = new CakeSettings {
-				Arguments = new Dictionary<string, string> {
-					{ "target", target },
-					{ "configuration", CONFIGURATION },
-				},
-				Verbosity = VERBOSITY,
-				WorkingDirectory = ROOT_DIR
+			// Create a test run for this build
+			var test = new Xunit.ResultWriter.Test {
+				Name = buildGroup.Name,
+				Type = "ComponentsBuilder",
+				Method = $"Build ({target})",
 			};
-			CakeExecuteScript (ROOT_DIR.CombineWithFilePath (buildGroup.BuildScript), cakeSettings);
+			var start = DateTime.UtcNow;
+
+			try {
+				// Run the actual build
+				var cakeSettings = new CakeSettings {
+					Arguments = new Dictionary<string, string> {
+						{ "target", target },
+						{ "configuration", CONFIGURATION },
+					},
+					Verbosity = VERBOSITY
+				};
+				CakeExecuteScript (ROOT_DIR.CombineWithFilePath (buildGroup.BuildScript), cakeSettings);
+
+				// The build was a success
+				test.Result = Xunit.ResultWriter.ResultType.Pass;
+			} catch (Exception ex) {
+				// The test was a failure
+				test.Result = Xunit.ResultWriter.ResultType.Fail;
+				test.Failure = new Xunit.ResultWriter.Failure {
+					Message = ex.Message,
+					StackTrace = ex.ToString()
+				};
+
+				if (FAIL_ON_BUILD_FAIL)
+					throw;
+			}
+
+			// Add the test run to the collection
+			test.Time = (decimal)(DateTime.UtcNow - start).TotalSeconds;
+			col.TestItems.Add(test);
 		}
 		Information ("");
 	}
+
+	// Write the test output
+	var resultWriter = new Xunit.ResultWriter.XunitV2Writer();
+	resultWriter.Write(
+		new List<Xunit.ResultWriter.Assembly> { assembly },
+		ROOT_DIR.CombineWithFilePath ("./output/TestResults.xml").FullPath);
 
 	Information ("################################################################################");
 	Information ("#                             ALL BUILDS COMPLETE                              #");

@@ -20,6 +20,7 @@ jobs:
   - template: .ci/build.yml@components
     parameters:
       buildType: 'manifest'
+      cakeFile: 'build-manifest.cake'
   - ${{ if eq(variables['System.TeamProject'], 'devdiv') }}:
     - template: sign-artifacts/jobs/v1.yml@internal-templates
       parameters:

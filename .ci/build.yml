@@ -98,7 +98,7 @@ jobs:
                 $branch = "$(Build.SourceBranchName)"
               }
             }
-            $uri = "https://raw.githubusercontent.com/xamarin/XamarinComponents/$branch/.ci/build.cake"
+            $uri = "https://raw.githubusercontent.com/xamarin/XamarinComponents/$branch/.ci/build-manifest.cake"
             Write-Host "Downloading script from $uri..."
             Invoke-WebRequest -Uri $uri -OutFile "${{ parameters.cakeFile }}"
           displayName: 'Download the cake script'
@@ -115,6 +115,12 @@ jobs:
           displayName: 'Run build'
           env:
             JavaSdkDirectory: $(JAVA_HOME)
+        - task: PublishTestResults@2
+          displayName: Publish the test results
+          condition: always()
+          inputs:
+            testResultsFormat: xUnit
+            testResultsFiles: 'output/TestResults.xml'
       # custom post-build steps
       - ${{ parameters.postBuildSteps }}
       # after the build is complete
