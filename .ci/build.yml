@@ -14,7 +14,7 @@ parameters:
   dotnet: '2.2.401'
   cake: '0.34.1'
   apiTools: '1.0.2-preview.14'
-  tools: {}
+  tools: []
   # build parameters
   buildType: 'basic'
   verbosity: 'normal'

@@ -21,8 +21,8 @@ jobs:
     parameters:
       buildType: 'manifest'
       tools:
-        'xamarin.androidbinderator.tool': '0.3.0'
-        'xamarin.androidx.migration.tool': '1.0.0-preview03'
+        - 'xamarin.androidbinderator.tool': '0.3.0'
+        - 'xamarin.androidx.migration.tool': '1.0.0-preview03'
   - ${{ if eq(variables['System.TeamProject'], 'devdiv') }}:
     - template: sign-artifacts/jobs/v1.yml@internal-templates
       parameters:
