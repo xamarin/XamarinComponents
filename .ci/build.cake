@@ -3,17 +3,18 @@
 #addin nuget:?package=Cake.Json&version=4.0.0&loadDependencies=true
 
 var VERBOSITY = Argument ("v", Argument ("verbosity", Verbosity.Normal));
+var CONFIGURATION = Argument ("c", Argument ("configuration", "Release"));
 
 var GIT_PREVIOUS_COMMIT = Argument ("gitpreviouscommit", "");
-var GIT_COMMIT = Argument("gitcommit", "");
-var GIT_BRANCH = Argument("gitbranch", "origin/master");
-var GIT_EXE = Argument("gitexe", "git");
+var GIT_COMMIT = Argument ("gitcommit", "");
+var GIT_BRANCH = Argument ("gitbranch", "origin/master");
+var GIT_EXE = Argument ("gitexe", "git");
 
-var ROOT_DIR = (DirectoryPath)Argument("root", ".");
+var ROOT_DIR = (DirectoryPath)Argument ("root", ".");
 
-var ROOT_ARTIFACTS_DIR = (DirectoryPath)Argument("artifacts", ROOT_DIR.Combine ("artifacts").FullPath);
+var ROOT_ARTIFACTS_DIR = (DirectoryPath)Argument ("artifacts", ROOT_DIR.Combine ("artifacts").FullPath);
 
-var MANIFEST_YAML = (FilePath)Argument("manifest", ROOT_DIR.CombineWithFilePath ("manifest.yaml").FullPath);
+var MANIFEST_YAML = (FilePath)Argument ("manifest", ROOT_DIR.CombineWithFilePath ("manifest.yaml").FullPath);
 var BUILD_GROUPS = DeserializeYamlFromFile<List<BuildGroup>> (MANIFEST_YAML);
 
 var BUILD_NAMES = Argument ("names", Argument ("name", Argument ("n", "")))
@@ -22,7 +23,7 @@ var BUILD_TARGETS = Argument ("targets", Argument ("build-targets", Argument ("b
 	.Split (new [] { ",", ";" }, StringSplitOptions.RemoveEmptyEntries);
 
 var FORCE_BUILD = Argument ("force", Argument ("forcebuild", Argument ("force-build", false)));
-var COPY_OUTPUT_TO_ROOT = Argument("copyoutputtoroot", false);
+var COPY_OUTPUT_TO_ROOT = Argument ("copyoutputtoroot", false);
 var POD_REPO_UPDATE = Argument ("update", Argument ("repo-update", Argument ("pod-repo-update", false)));
 
 Information ("");
@@ -41,16 +42,16 @@ Information ("  Update Cocoapods repository: {0}", POD_REPO_UPDATE);
 Information ("");
 
 // Tagged build might contain the group name to build specifically if no setting was specified
-if (GIT_BRANCH.StartsWith("refs/tags/") && !BUILD_NAMES.Any()) {
-	var tagName = GIT_BRANCH.Substring(10);
+if (GIT_BRANCH.StartsWith ("refs/tags/") && !BUILD_NAMES.Any ()) {
+	var tagName = GIT_BRANCH.Substring (10);
 	Information ("Trying to build tag: {0}", tagName);
 
 	var buildName = tagName;
-	if (tagName.Contains('-'))
-		buildName = tagName.Substring(0, tagName.IndexOf('-'));
+	if (tagName.Contains ('-'))
+		buildName = tagName.Substring (0, tagName.IndexOf ('-'));
 
 	// If we found a build name from the tag name, let's force a build
-	if (!string.IsNullOrWhiteSpace(buildName)) {
+	if (!string.IsNullOrWhiteSpace (buildName)) {
 		Information ("Going to be building tagged item: {0}", buildName);
 
 		BUILD_NAMES = new string[] { buildName };
@@ -148,7 +149,7 @@ if (FORCE_BUILD) {
 		matchedFiles.Values.Sum (m => m.Count),
 		matchedFiles.Keys.Count);
 	foreach (var match in matchedFiles) {
-		var platforms = new List<string>();
+		var platforms = new List<string> ();
 		if (match.Key.BuildOnWindows)
 			platforms.Add ("windows");
 		if (match.Key.BuildOnMac)
@@ -221,9 +222,9 @@ if (groupsToBuild.Count == 0) {
 		List<string> targets;
 		if (BUILD_TARGETS.Length > 0)
 			targets = BUILD_TARGETS.ToList ();
-		else if (IsRunningOnWindows())
+		else if (IsRunningOnWindows ())
 			targets = buildGroup.WindowsBuildTargets.ToList ();
-		else if (IsRunningOnMac())
+		else if (IsRunningOnMac ())
 			targets = buildGroup.MacBuildTargets.ToList ();
 		else
 			throw new Exception ("Unable to determine the target to build.");
@@ -239,7 +240,11 @@ if (groupsToBuild.Count == 0) {
 			string.Join (", ", targets));
 		foreach (var target in targets) {
 			var cakeSettings = new CakeSettings {
-				Arguments = new Dictionary<string, string> { { "target", target } },
+				Arguments = new Dictionary<string, string> {
+					{ "target", target },
+					{ "verbosity", VERBOSITY.ToString () },
+					{ "configuration", CONFIGURATION },
+				},
 				Verbosity = VERBOSITY,
 				WorkingDirectory = ROOT_DIR
 			};
@@ -264,8 +269,8 @@ Information ("");
 // Copy all child "output" directories to a root level artifacts dir
 if (COPY_OUTPUT_TO_ROOT) {
 	Information ("Copying all {0} artifacts to the root artifact directory...", artifacts.Count);
-	EnsureDirectoryExists(ROOT_ARTIFACTS_DIR);
-	CopyFiles(artifacts, ROOT_ARTIFACTS_DIR, false);
+	EnsureDirectoryExists (ROOT_ARTIFACTS_DIR);
+	CopyFiles (artifacts, ROOT_ARTIFACTS_DIR, false);
 	Information ("Copy complete.");
 }
 Information ("");
@@ -281,12 +286,12 @@ public enum PodRepoUpdate {
 public class BuildGroup {
 	public string Name { get; set; }
 	public FilePath BuildScript { get; set; }
-	public List<DirectoryPath> TriggerPaths { get; set; } = new List<DirectoryPath>();
-	public List<FilePath> TriggerFiles { get; set; } = new List<FilePath>();
+	public List<DirectoryPath> TriggerPaths { get; set; } = new List<DirectoryPath> ();
+	public List<FilePath> TriggerFiles { get; set; } = new List<FilePath> ();
 	public bool IgnoreTriggersOnMac { get; set; } = false;
 	public bool IgnoreTriggersOnWindows { get; set; } = false;
-	public List<string> WindowsBuildTargets { get; set; } = new List<string>();
-	public List<string> MacBuildTargets { get; set; } = new List<string>();
+	public List<string> WindowsBuildTargets { get; set; } = new List<string> ();
+	public List<string> MacBuildTargets { get; set; } = new List<string> ();
 
 	public bool BuildOnWindows => WindowsBuildTargets?.Any () == true;
 	public bool BuildOnMac => MacBuildTargets?.Any () == true;
@@ -294,7 +299,7 @@ public class BuildGroup {
 	public override string ToString () => Name;
 }
 
-string[] GetGitOutput(string args) {
+string[] GetGitOutput (string args) {
 	var settings = new ProcessSettings {
 		Arguments = args,
 		RedirectStandardOutput = true
@@ -302,7 +307,7 @@ string[] GetGitOutput(string args) {
 
 	var exitCode = StartProcess (GIT_EXE, settings, out var changedFiles);
 	if (exitCode != 0)
-		throw new Exception($"git exited with error code {exitCode}.");
+		throw new Exception ($"git exited with error code {exitCode}.");
 	
-	return changedFiles.ToArray();
+	return changedFiles.ToArray ();
 }

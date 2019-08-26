@@ -18,6 +18,7 @@ parameters:
   # build parameters
   buildType: 'basic'
   verbosity: 'normal'
+  configuration: 'Release'
   cakeFile: 'build.cake'
   cakeExtraArgs: ''
   # basic cake build parameters
@@ -81,6 +82,7 @@ jobs:
               --gitpreviouscommit="$(GitLastSuccessfulCommit)" `
               --gitcommit="$(Build.SourceVersion)" `
               --target="${{ parameters.cakeTarget }}" `
+              --configuration="${{ parameters.configuration }}" `
               --verbosity="${{ parameters.verbosity }}"
           displayName: 'Run build'
           env:
@@ -108,6 +110,7 @@ jobs:
               --names="${{ parameters.namesFilter }}" `
               --targets="${{ parameters.targetsFilter }}" `
               --copyoutputtoroot=true `
+              --configuration="${{ parameters.configuration }}" `
               --verbosity="${{ parameters.verbosity }}"
           displayName: 'Run build'
           env:
