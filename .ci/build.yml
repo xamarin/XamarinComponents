@@ -14,8 +14,15 @@ parameters:
   dotnet: '2.2.401'
   cake: '0.34.1'
   apiTools: '1.0.2-preview.14'
+  tools: {}
   # build parameters
+  buildType: 'basic'
   verbosity: 'normal'
+  cakeExtraArgs: ''
+  cakeFile: 'build.cake'
+  # basic cake build parameters
+  target: 'ci'
+  # manifest-based build parameters
   forceBuild: $(ForceBuild)
   namesFilter: $(BuildManifestNames)
   targetsFilter: $(BuildManifestTargets)
@@ -39,6 +46,7 @@ jobs:
     pool:
       name: $(imageName)
     steps:
+      # before the build starts
       - bash: sudo $AGENT_HOMEDIRECTORY/scripts/select-xamarin-sdk.sh ${{ parameters.mono }}
         displayName: 'Switch to the latest Xamarin SDK'
         condition: eq(variables['System.JobName'], 'macos')
@@ -55,39 +63,60 @@ jobs:
       - pwsh: |
           dotnet tool install -g api-tools --version ${{ parameters.apiTools }}
           dotnet tool install -g cake.tool --version ${{ parameters.cake }}
-        displayName: 'Install .NET Core global tools'
+        displayName: 'Install required .NET Core global tools'
+      - ${{ each tool in parameters.tools }}:
+        - ${{ each pair in tool }}:
+          - pwsh: dotnet tool install -g ${{ pair.key }} --version ${{ pair.value }}
+            displayName: 'Install additional .NET Core global tool: ${{ pair.key }}'
       - task: NuGetToolInstaller@1
         inputs:
           checkLatest: true
         displayName: 'Download the latest nuget.exe'
+      # custom pre-build steps
       - ${{ parameters.preBuildSteps }}
-      - pwsh: |
-          $branch = "master"
-          if ("$(Build.Repository.Id)" -eq "xamarin/XamarinComponents") {
-            if ("$(System.PullRequest.SourceBranch)") {
-              $branch = "$(System.PullRequest.SourceBranch)"
-            } else {
-              $branch = "$(Build.SourceBranchName)"
+      # the basic build
+      - ${{ if eq(parameters.buildType, 'basic') }}:
+        - pwsh: |
+            dotnet cake ${{ parameters.cakeFile }} `
+              --gitpreviouscommit="$(GitLastSuccessfulCommit)" `
+              --gitcommit="$(Build.SourceVersion)" `
+              --target="${{ parameters.cakeTarget }}" `
+              --verbosity="${{ parameters.verbosity }}" `
+              ${{ parameters.cakeExtraArgs }}
+          displayName: 'Run build'
+          env:
+            JavaSdkDirectory: $(JAVA_HOME)
+      # the manifest-based build
+      - ${{ if eq(parameters.buildType, 'manifest') }}:
+        - pwsh: |
+            $branch = "master"
+            if ("$(Build.Repository.Id)" -eq "xamarin/XamarinComponents") {
+              if ("$(System.PullRequest.SourceBranch)") {
+                $branch = "$(System.PullRequest.SourceBranch)"
+              } else {
+                $branch = "$(Build.SourceBranchName)"
+              }
             }
-          }
-          $uri = "https://raw.githubusercontent.com/xamarin/XamarinComponents/$branch/.ci/build-manifest.cake"
-          Write-Host "Downloading script from $uri..."
-          Invoke-WebRequest -Uri $uri -OutFile "build-manifest.cake"
-        displayName: 'Download the cake script'
-      - pwsh: |
-          dotnet cake build-manifest.cake `
-            --root="$(Build.SourcesDirectory)" `
-            --gitpreviouscommit="$(GitLastSuccessfulCommit)" `
-            --gitcommit="$(Build.SourceVersion)" `
-            --forcebuild="${{ parameters.forceBuild }}" `
-            --names="${{ parameters.namesFilter }}" `
-            --targets="${{ parameters.targetsFilter }}" `
-            --copyoutputtoroot=true `
-            --verbosity="${{ parameters.verbosity }}"
-        displayName: 'Run build'
-        env:
-          JavaSdkDirectory: $(JAVA_HOME)
+            $uri = "https://raw.githubusercontent.com/xamarin/XamarinComponents/$branch/.ci/build.cake"
+            Write-Host "Downloading script from $uri..."
+            Invoke-WebRequest -Uri $uri -OutFile "${{ parameters.cakeFile }}"
+          displayName: 'Download the cake script'
+        - pwsh: |
+            dotnet cake ${{ parameters.cakeFile }} `
+              --gitpreviouscommit="$(GitLastSuccessfulCommit)" `
+              --gitcommit="$(Build.SourceVersion)" `
+              --forcebuild="${{ parameters.forceBuild }}" `
+              --names="${{ parameters.namesFilter }}" `
+              --targets="${{ parameters.targetsFilter }}" `
+              --copyoutputtoroot=true `
+              --verbosity="${{ parameters.verbosity }}" `
+              ${{ parameters.cakeExtraArgs }}
+          displayName: 'Run build'
+          env:
+            JavaSdkDirectory: $(JAVA_HOME)
+      # custom post-build steps
       - ${{ parameters.postBuildSteps }}
+      # after the build is complete
       - pwsh: |
           if (Get-ChildItem artifacts -Filter *.nupkg) {
             api-tools nuget-diff artifacts --latest --group-ids --output artifacts/api-diff --cache externals/package_cache
