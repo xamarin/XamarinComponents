@@ -16,8 +16,8 @@ resources:
       ref: refs/heads/dev/templating
 
 jobs:
-  - template: templates/prepare.yml@components
-  - template: templates/build-manifest.yml@components
+  - template: .ci/prepare.yml@components
+  - template: .ci/build-manifest.yml@components
   - ${{ if eq(variables['System.TeamProject'], 'devdiv') }}:
     - template: sign-artifacts/jobs/v1.yml@internal-templates
       parameters:

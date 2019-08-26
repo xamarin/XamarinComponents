@@ -70,7 +70,7 @@ jobs:
               $branch = "$(Build.SourceBranchName)"
             }
           }
-          $uri = "https://raw.githubusercontent.com/xamarin/XamarinComponents/$branch/templates/build-manifest.cake"
+          $uri = "https://raw.githubusercontent.com/xamarin/XamarinComponents/$branch/.ci/build-manifest.cake"
           Write-Host "Downloading script from $uri..."
           Invoke-WebRequest -Uri $uri -OutFile "build-manifest.cake"
         displayName: 'Download the cake script'
