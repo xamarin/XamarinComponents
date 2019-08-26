@@ -18,10 +18,6 @@ resources:
 jobs:
   - template: templates/prepare.yml@components
   - template: templates/build-manifest.yml@components
-    variables:
-      GitLastSuccessfulCommit: $[ dependencies.prepare.outputs['lastSuccessful.GitLastSuccessfulCommit'] ]
-    parameters:
-      dependsOn: [ 'prepare' ]
   - ${{ if eq(variables['System.TeamProject'], 'devdiv') }}:
     - template: sign-artifacts/jobs/v1.yml@internal-templates
       parameters:
