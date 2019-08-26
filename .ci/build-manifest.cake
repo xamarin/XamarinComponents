@@ -252,9 +252,9 @@ if (groupsToBuild.Count == 0) {
 
 	// Prepare the test output
 	var assembly = new Xunit.ResultWriter.Assembly {
-		Name = "ComponentsBuilder",
+		Name = "Components",
 		TestFramework = "xUnit",
-		Environment = "CI",
+		Environment = "Components",
 		RunDate = DateTime.UtcNow.ToString("yyyy-MM-dd"),
 		RunTime = DateTime.UtcNow.ToString("hh:mm:ss")
 	};
@@ -288,9 +288,9 @@ if (groupsToBuild.Count == 0) {
 		foreach (var target in targets) {
 			// Create a test run for this build
 			var test = new Xunit.ResultWriter.Test {
-				Name = Guid.NewGuid().ToString(),
-				Type = "ComponentsBuilder",
-				Method = Guid.NewGuid().ToString(),
+				Name = buildGroup.Name,
+				Type = "Components",
+				Method = $"{buildGroup.Name} ({target})",
 			};
 			var start = DateTime.UtcNow;
 
