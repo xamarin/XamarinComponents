@@ -1,7 +1,8 @@
 parameters:
   name: 'build'
   displayName: 'Build'
-  dependsOn: [ 'prepare' ]
+  dependsOn: [ ]
+  prepareJobName: 'prepare'
   verbosity: 'normal'
   macosImage: 'Hosted macOS'
   windowsImage: 'Hosted Windows 2019 with VS2019'
@@ -27,7 +28,11 @@ jobs:
           windows:
             imageName: ${{ parameters.windowsImage }}
     displayName: ${{ parameters.displayName }}
-    dependsOn: ${{ parameters.dependsOn }}
+    dependsOn:
+     - ${{ parameters.prepareJobName }}
+     - ${{ parameters.dependsOn }}
+    variables:
+      GitLastSuccessfulCommit: $[ dependencies['${{ parameters.prepareJobName }}'].outputs['lastSuccessful.GitLastSuccessfulCommit'] ]
     pool:
       name: $(imageName)
     steps:
@@ -56,7 +61,7 @@ jobs:
       - powershell: |
           dotnet cake templates/build-manifest.cake `
             --root="$(Build.SourcesDirectory)" `
-            --gitpreviouscommit="$env:GitLastSuccessfulCommit" `
+            --gitpreviouscommit="$(GitLastSuccessfulCommit)" `
             --gitcommit="$(Build.SourceVersion)" `
             --forcebuild="${{ parameters.forceBuild }}" `
             --names="${{ parameters.namesFilter }}" `
@@ -66,7 +71,6 @@ jobs:
         displayName: 'Run build'
         env:
           JavaSdkDirectory: $(JAVA_HOME)
-          GitLastSuccessfulCommit: $[ dependencies.prepare.outputs['lastSuccessful.GitLastSuccessfulCommit'] ]
       - ${{ parameters.postBuildSteps }}
       - powershell: |
           if (Get-ChildItem artifacts -Filter *.nupkg) {
