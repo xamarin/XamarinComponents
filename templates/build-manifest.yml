@@ -54,7 +54,8 @@ jobs:
           checkLatest: true
         displayName: 'Download the latest nuget.exe'
       - ${{ parameters.preBuildSteps }}
-      - powershell: dotnet cake templates/build-manifest.cake --root="$(Build.SourcesDirectory)" --gitpreviouscommit=${{ parameters.lastSuccessfulCommit }} --gitcommit=$(Build.SourceVersion) --forcebuild=${{ parameters.forceBuild }} --names="${{ parameters.namesFilter }}" --targets="${{ parameters.targetsFilter }}" --copyoutputtoroot=true --verbosity=${{ parameters.verbosity }}
+      - powershell: dotnet cake templates/build-manifest.cake 
+      #--root="$(Build.SourcesDirectory)" --gitpreviouscommit=${{ parameters.lastSuccessfulCommit }} --gitcommit=$(Build.SourceVersion) --forcebuild=${{ parameters.forceBuild }} --names="${{ parameters.namesFilter }}" --targets="${{ parameters.targetsFilter }}" --copyoutputtoroot=true --verbosity=${{ parameters.verbosity }}
         displayName: 'Run build'
         env:
           JavaSdkDirectory: $(JAVA_HOME)
