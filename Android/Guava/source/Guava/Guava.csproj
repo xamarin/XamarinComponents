@@ -41,8 +41,8 @@ Guava is a set of core libraries that includes new collection types (such as mul
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Guava.FailureAccess\Guava.FailureAccess.csproj" />
-    <ProjectReference Include="..\Guava.ListenableFuture\Guava.ListenableFuture.csproj" />
+    <ProjectReference Include="..\Guava.FailureAccess\Guava.FailureAccess.csproj" PrivateAssets="None" />
+    <ProjectReference Include="..\Guava.ListenableFuture\Guava.ListenableFuture.csproj" PrivateAssets="None" />
   </ItemGroup>
 
   <ItemGroup>
