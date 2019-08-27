@@ -15,6 +15,7 @@ parameters:
   cake: '0.34.1'
   apiTools: '1.0.2-preview.14'
   tools: []
+  cakeTemplatesBranch: 'master'
   # build parameters
   buildType: 'basic'
   verbosity: 'normal'
@@ -75,7 +76,7 @@ jobs:
           checkLatest: true
         displayName: 'Download the latest nuget.exe'
       - pwsh: |
-          $branch = "master"
+          $branch = "${{ parameters.cakeTemplatesBranch }}"
           if ("$(Build.Repository.Id)" -eq "xamarin/XamarinComponents") {
             if ("$(System.PullRequest.SourceBranch)") {
               $branch = "$(System.PullRequest.SourceBranch)"
