@@ -22,7 +22,7 @@ parameters:
   configuration: 'Release'
   validPackageNamespaces: []
   # basic cake build parameters
-  target: 'ci'
+  cakeTarget: 'ci'
   cakeFile: 'build.cake'
   cakeExtraArgs: ''
   # manifest-based build parameters
