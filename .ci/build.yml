@@ -148,3 +148,8 @@ jobs:
         inputs:
           PathToPublish: output
           ArtifactName: nuget
+      - task: PublishBuildArtifacts@1
+        displayName: 'Publish platform artifacts'
+        inputs:
+          PathToPublish: output
+          ArtifactName: output-$(System.JobName)
