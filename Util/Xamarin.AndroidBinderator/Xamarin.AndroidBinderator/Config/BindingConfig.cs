@@ -8,6 +8,9 @@ namespace AndroidBinderator
 		[JsonProperty("basePath")]
 		public string BasePath { get; set; } = null;
 
+		[JsonProperty("downloadExternalsWithFullName")]
+		public bool DownloadExternalsWithFullName { get; set; } = false;
+
 		[JsonProperty("mavenRepositoryType")]
 		public MavenRepoType MavenRepositoryType { get; set; } = MavenRepoType.Google;
 

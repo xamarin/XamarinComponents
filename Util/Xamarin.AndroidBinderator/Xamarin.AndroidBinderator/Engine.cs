@@ -138,9 +138,11 @@ namespace AndroidBinderator
 					config.BasePath,
 					config.ExternalsDir,
 					mavenArtifact.GroupId);
-				var artifactFile = Path.Combine(artifactDir, $"{mavenArtifact.ArtifactId}.{mavenProject.Packaging}");
+				var artifactFile = Path.Combine(artifactDir, config.DownloadExternalsWithFullName ? $"{mavenArtifact.GroupId}.{mavenArtifact.ArtifactId}.{mavenProject.Packaging}"
+					: $"{mavenArtifact.ArtifactId}.{mavenProject.Packaging}");
 				var md5File = artifactFile + ".md5";
-				var sourcesFile = Path.Combine(artifactDir, $"{mavenArtifact.ArtifactId}-sources.jar");
+				var sourcesFile = Path.Combine(artifactDir, config.DownloadExternalsWithFullName ? $"{mavenArtifact.GroupId}.{mavenArtifact.ArtifactId}-sources.jar"
+					: $"{mavenArtifact.ArtifactId}-sources.jar");
 				var artifactExtractDir = Path.Combine(artifactDir, mavenArtifact.ArtifactId);
 
 				if (!Directory.Exists(artifactDir))
