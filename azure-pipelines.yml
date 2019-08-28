@@ -8,7 +8,6 @@ resources:
       type: github
       name: xamarin/yaml-templates
       endpoint: xamarin
-      ref: refs/heads/dev/signing-job
     - repository: components
       type: github
       name: xamarin/XamarinComponents
