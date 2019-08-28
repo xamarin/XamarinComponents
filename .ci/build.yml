@@ -152,6 +152,7 @@ jobs:
           ArtifactName: nuget
       - task: PublishBuildArtifacts@1
         displayName: 'Publish platform artifacts'
+        condition: always()
         inputs:
           PathToPublish: output
           ArtifactName: output-$(System.JobName)
