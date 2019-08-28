@@ -14,7 +14,7 @@
     <AndroidCodegenTarget>XAJavaInterop1</AndroidCodegenTarget>
     <Java7DocPaths>..\..\externals\guava-javadocs\</Java7DocPaths>
   </PropertyGroup>
-<!-- DUMMY -->
+
   <PropertyGroup>
     <PackageId>Xamarin.Google.Guava</PackageId>
     <Title>Google Guava reference library for Xamarin.Android</Title>
