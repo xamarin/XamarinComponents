@@ -20,7 +20,7 @@ jobs:
     parameters:
       buildType: 'manifest'
       cakeFile: 'build-manifest.cake'
-      validPackageNamespaces: [ 'Mono', 'mdoc', 'Masonry', 'SkiaSharp', 'HarfBuzzSharp' ]
+      validPackagePrefixes: [ 'Mono', 'mdoc', 'Masonry', 'SkiaSharp', 'HarfBuzzSharp' ]
   - ${{ if eq(variables['System.TeamProject'], 'devdiv') }}:
     - template: sign-artifacts/jobs/v1.yml@internal-templates
       parameters:

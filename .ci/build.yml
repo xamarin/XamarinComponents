@@ -1,34 +1,34 @@
 parameters:
   # job parameters
-  name: 'build'
-  displayName: 'Build'
-  dependsOn: []
-  preBuildSteps: []
-  postBuildSteps: []
-  prepareJobName: 'prepare'
+  name: 'build'                                             # the name of the build job for dependency purposes
+  displayName: 'Build'                                      # the human name of the job
+  dependsOn: []                                             # any jobs this job depends on
+  preBuildSteps: []                                         # any steps that need to run just before the main compilation starts
+  postBuildSteps: []                                        # any steps that need to run just after the main compilation ends
+  prepareJobName: 'prepare'                                 # the name of the job which provides the `lastSuccessful.GitLastSuccessfulCommit` value
   # job software version parameters
-  macosImage: 'Hosted macOS'
-  windowsImage: 'Hosted Windows 2019 with VS2019'
-  mono: '5_18_1'
-  xcode: '10.3'
-  dotnet: '2.2.401'
-  cake: '0.34.1'
-  apiTools: '1.0.2-preview.14'
-  tools: []
-  cakeTemplatesBranch: 'master'
+  macosImage: 'Hosted macOS'                                # the name of the macOS VM image
+  windowsImage: 'Hosted Windows 2019 with VS2019'           # the name of the Windows VM image
+  mono: '5_18_1'                                            # the version of mono to use
+  xcode: '10.3'                                             # the version of Xcode to use
+  dotnet: '2.2.401'                                         # the version of .NET Core to use
+  cake: '0.34.1'                                            # the version of Cake to use
+  apiTools: '1.0.2-preview.14'                              # the version of the api-tools CLI to use
+  tools: []                                                 # a list of any additional .NET Core tools needed
+  cakeTemplatesBranch: 'master'                             # the branch of XamarinComponents that has the templates
   # build parameters
-  buildType: 'basic'
-  verbosity: 'normal'
-  configuration: 'Release'
-  validPackageNamespaces: []
+  buildType: 'basic'                                        # the type of build: 'basic', 'manifest', 'none'
+  verbosity: 'normal'                                       # the build verbosity: 'minimal', 'normal', 'diagnostic'
+  configuration: 'Release'                                  # the build configuration: 'Debug', 'Release'
+  validPackagePrefixes: []                                  # any NuGet prefixes that should pass validation (always includes Xamarin)
   # basic cake build parameters
-  cakeTarget: 'ci'
-  cakeFile: 'build.cake'
-  cakeExtraArgs: ''
+  cakeTarget: 'ci'                                          # [basic] the Cake target to run (defaults to 'ci')
+  cakeFile: 'build.cake'                                    # [basic] the path to the build.cake file (can be any filename)
+  cakeExtraArgs: ''                                         # [basic] any additional cake CLI arguments
   # manifest-based build parameters
-  forceBuild: $(ForceBuild)
-  namesFilter: $(BuildManifestNames)
-  targetsFilter: $(BuildManifestTargets)
+  forceBuild: $(ForceBuild)                                 # [manifest] whether or not to force the build
+  namesFilter: $(BuildManifestNames)                        # [manifest] the names of the items to build
+  targetsFilter: $(BuildManifestTargets)                    # [manifest] the targets of the items to build
 
 jobs:
   - job: ${{ parameters.name }}
@@ -133,7 +133,7 @@ jobs:
             testResultsFiles: 'output/tests/TestResults.xml'
             testRunTitle: 'Test results for $(System.JobName)'
       # post-build steps
-      - pwsh: dotnet cake validation.cake --namespaces="${{ join(',', parameters.validPackageNamespaces) }}"
+      - pwsh: dotnet cake validation.cake --namespaces="${{ join(',', parameters.validPackagePrefixes) }}"
         displayName: 'Run NuGet package validation'
       # custom post-build steps
       - ${{ parameters.postBuildSteps }}
