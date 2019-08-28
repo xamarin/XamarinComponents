@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+
+  <Target Name="_KotlinBindingFixups" AfterTargets="ExportJarToXml"
+          Inputs="$(ApiOutputFile);@(EmbeddedJar);@(InputJar);@(EmbeddedReferenceJar);@(ReferenceJar);@(_AdditionalJavaLibraryReferences)"
+          Outputs="$(IntermediateOutputPath)\KotlinBindingSupport.generated.xml">
+
+    <!-- public properties -->
+    <PropertyGroup>
+      <KotlinBindingSupportJar Condition="'$(KotlinBindingSupportJar)' == ''">$(MSBuildThisFileDirectory)binding-support-1.0.jar</KotlinBindingSupportJar>
+      <KotlinBindingSupportExtraArgs Condition="'$(KotlinBindingSupportExtraArgs)' == ''"></KotlinBindingSupportExtraArgs>
+      <KotlinBindingSupportOutputPath Condition="'$(KotlinBindingSupportOutputPath)' == ''">$(IntermediateOutputPath)\KotlinBindingSupport.generated.xml</KotlinBindingSupportOutputPath>
+    </PropertyGroup>
+
+    <!-- private properties -->
+    <PropertyGroup>
+      <_KotlinBindingJavaPath Condition="'$(_KotlinBindingJavaPath)' == '' and '$(OS)' == 'Unix'">$(JavaSdkDirectory)\bin\java</_KotlinBindingJavaPath>
+      <_KotlinBindingJavaPath Condition="'$(_KotlinBindingJavaPath)' == '' and '$(OS)' != 'Unix'">$(JavaSdkDirectory)\bin\java.exe</_KotlinBindingJavaPath>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <_KotlinBindingReferenceJar Include="@(EmbeddedJar);@(InputJar)" />
+      <_KotlinBindingReferenceJar Include="@(EmbeddedReferenceJar);@(ReferenceJar);@(_AdditionalJavaLibraryReferences)" />
+    </ItemGroup>
+
+    <Exec Command="&quot;$(_KotlinBindingJavaPath)&quot; -jar &quot;$(KotlinBindingSupportJar)&quot; --xml &quot;$(ApiOutputFile)&quot; --jar &quot;@(_KotlinBindingReferenceJar, '&quot; --jar &quot;')&quot; --output &quot;$(KotlinBindingSupportOutputPath)&quot; $(KotlinBindingSupportExtraArgs)" />
+
+    <ItemGroup>
+      <!-- insert the generated transform at the beginning -->
+      <_KotlinBindingTransformFile Include="@(TransformFile)" />
+      <TransformFile Remove="@(TransformFile)" />
+      <TransformFile Include="$(KotlinBindingSupportOutputPath)" />
+      <TransformFile Include="@(_KotlinBindingTransformFile)" />
+
+      <FileWrites Include="$(KotlinBindingSupportOutputPath)" />
+    </ItemGroup>
+
+  </Target>
+
+</Project>
