@@ -80,8 +80,8 @@ jobs:
       - pwsh: |
           $branch = "${{ parameters.cakeTemplatesBranch }}"
           if ("$(Build.Repository.Id)" -eq "xamarin/XamarinComponents") {
-            if ("$(System.PullRequest.SourceBranch)") {
-              $branch = "$(System.PullRequest.SourceBranch)"
+            if ("$env:SYSTEM_PULLREQUEST_SOURCEBRANCH") {
+              $branch = "$env:SYSTEM_PULLREQUEST_SOURCEBRANCH"
             } else {
               $branch = "$(Build.SourceBranchName)"
             }
