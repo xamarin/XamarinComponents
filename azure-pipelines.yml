@@ -1,141 +1,26 @@
-
 trigger:
   - master
   - refs/tags/*
 
-variables:
-  MONO_VERSION: 5_18_1
-  XCODE_VERSION: 10.3
-  VERBOSITY: diagnostic
-  DOTNET_CORE_VERSION: 2.2.401
-  CAKE_VERSION: 0.34.1
-  API_TOOLS_VERSION: 1.0.2-preview.14
-  MASTER_BRANCH: master
-
 resources:
   repositories:
-    - repository: xamarin-templates
+    - repository: internal-templates
       type: github
       name: xamarin/yaml-templates
       endpoint: xamarin
+    - repository: components
+      type: github
+      name: xamarin/XamarinComponents
+      endpoint: xamarin
 
 jobs:
-  - job: prepare
-    displayName: 'Prepare for builds'
-    variables:
-      skipComponentGovernanceDetection: true
-    pool:
-      name: Hosted Ubuntu 1604
-    steps:
-      - checkout: none
-      - powershell: |
-          # determine the "master" branch
-          $masterBranch = "$(MASTER_BRANCH)"
-          $encodedBranch = [Uri]::EscapeDataString("refs/heads/$masterBranch")
-          Write-Host "Master branch: $masterBranch"
-
-          # determine the "current" branch
-          $branch = "$(Build.SourceBranchName)"
-          if ("$env:SYSTEM_PULLREQUEST_TARGETBRANCH") {
-            $branch = "$env:SYSTEM_PULLREQUEST_TARGETBRANCH"
-          }
-          Write-Host "Current branch: $branch"
-
-          if ($branch -eq $masterBranch) {
-            Write-Host "Branch is master, fetching last successful build commit..."
-
-            $url = "$(System.TeamFoundationCollectionUri)$(System.TeamProjectId)/_apis/build/builds/?definitions=$(System.DefinitionId)&branchName=$encodedBranch&statusFilter=completed&resultFilter=succeeded&api-version=5.0"
-            Write-Host "URL for last successful master build: $url"
-
-            $json = Invoke-RestMethod -Uri $url -Headers @{
-                Authorization = "Bearer $(System.AccessToken)"
-            }
-            Write-Host "JSON response:"
-            Write-Host "$json"
-
-            $lastSuccessfulBuildCommit = try { $json.value[0].sourceVersion; } catch { $null }
-          }
-
-          if ($lastSuccessfulBuildCommit) {
-            Write-Host "Last successful commit: $lastSuccessfulBuildCommit"
-          } else {
-            $lastSuccessfulBuildCommit = $masterBranch
-            Write-Host "No previously successful build found, using this branch: $lastSuccessfulBuildCommit"
-          }
-
-          Write-Host "##vso[task.setvariable variable=GitLastSuccessfulCommit;isOutput=true]$lastSuccessfulBuildCommit"
-        name: lastSuccessful
-        displayName: 'Find last successful commit'
-
-  - job: build
-    strategy:
-      matrix:
-        macos:
-          imageName: 'Hosted macOS'
-        windows:
-          imageName: 'Hosted Windows 2019 with VS2019'
-    displayName: 'Build'
-    dependsOn: prepare
-    variables:
-      GitLastSuccessfulCommit: $[ dependencies.prepare.outputs['lastSuccessful.GitLastSuccessfulCommit'] ]
-    pool:
-      name: $(imageName)
-    steps:
-      - bash: sudo $AGENT_HOMEDIRECTORY/scripts/select-xamarin-sdk.sh $(MONO_VERSION)
-        displayName: 'Switch to the latest Xamarin SDK'
-        condition: eq(variables['System.JobName'], 'macos')
-      - bash: echo '##vso[task.setvariable variable=MD_APPLE_SDK_ROOT;]'/Applications/Xcode_$(XCODE_VERSION).app;sudo xcode-select --switch /Applications/Xcode_$(XCODE_VERSION).app/Contents/Developer
-        displayName: 'Switch to the latest Xcode'
-        condition: eq(variables['System.JobName'], 'macos')
-      - bash: echo '##vso[task.setvariable variable=PATH;]'$PATH:$HOME/.dotnet/tools
-        displayName: 'Add ~/.dotnet/tools to the PATH environment variable'
-        condition: eq(variables['System.JobName'], 'macos')
-      - task: UseDotNet@2
-        displayName: 'Use the correct version of the .NET Core SDK'
-        inputs:
-          version: $(DOTNET_CORE_VERSION)
-      - powershell: |
-          dotnet tool install -g api-tools --version $(API_TOOLS_VERSION)
-          dotnet tool install -g cake.tool --version $(CAKE_VERSION)
-        displayName: 'Install .NET Core global tools'
-      - task: NuGetToolInstaller@1
-        inputs:
-          checkLatest: true
-        displayName: 'Download the latest nuget.exe'
-      - powershell: dotnet cake --target=build --gitpreviouscommit=$(GitLastSuccessfulCommit) --gitcommit=$(Build.SourceVersion) --forcebuild=$(ForceBuild) --names="$(BuildManifestNames)" --targets="$(BuildManifestTargets)" --copyoutputtoroot=true --verbosity=$(VERBOSITY)
-        displayName: 'Run build'
-        env:
-          JavaSdkDirectory: $(JAVA_HOME)
-      - powershell: |
-          if (Get-ChildItem artifacts -Filter *.nupkg) {
-            api-tools nuget-diff artifacts --latest --group-ids --output artifacts/api-diff --cache externals/package_cache
-          }
-        displayName: 'API diff'
-      - task: PublishBuildArtifacts@1
-        displayName: 'Publish artifacts'
-        inputs:
-          PathToPublish: artifacts
-          ArtifactName: nuget
-
+  - template: .ci/prepare.yml@components
+  - template: .ci/build.yml@components
+    parameters:
+      buildType: 'manifest'
+      cakeFile: 'build-manifest.cake'
+      validPackagePrefixes: [ 'Mono', 'mdoc', 'Masonry', 'SkiaSharp', 'HarfBuzzSharp' ]
   - ${{ if eq(variables['System.TeamProject'], 'devdiv') }}:
-    - job: signing
-      displayName: 'Sign NuGets'
-      variables:
-        skipComponentGovernanceDetection: true
-      dependsOn:
-        - build
-      pool:
-        name: VSEng-XamarinCustom
-        demands:
-          - corpnet
-      condition: and(succeeded(), or(startsWith(variables['Build.SourceBranch'],'refs/tags/'), eq(variables['CodeSign'], 'true')))
-      steps:
-        - checkout: none
-        - template: sign-artifacts.yml@xamarin-templates
-          parameters:
-            targetFolder: '$(Build.ArtifactStagingDirectory)/signed'
-        - task: PublishBuildArtifacts@1
-          displayName: 'Publish the nuget-signed artifacts'
-          inputs:
-            artifactName: nuget-signed
-            pathToPublish: '$(Build.ArtifactStagingDirectory)/signed'
+    - template: sign-artifacts/jobs/v1.yml@internal-templates
+      parameters:
+        dependsOn: [ 'build' ]
