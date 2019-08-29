@@ -43,15 +43,19 @@ var nupkgFiles = GetFiles (ROOT_OUTPUT_DIR + "/**/*.nupkg");
 
 Information ("Found {0} NuGet packages to validate.", nupkgFiles.Count);
 
+var hasErrors = false;
+
 foreach (var nupkgFile in nupkgFiles) {
 	Information ("Verifying NuGet metadata of {0}...", nupkgFile);
 	var result = NugetValidator.Validate (nupkgFile.FullPath, options);
 	if (result.Success) {
 		Information ("NuGet metadata validation passed.");
 	} else {
-		Error ("NuGet metadata validation failed:");
+		Error ($"NuGet metadata validation failed for {nupkgFile}:");
 		Error (string.Join (Environment.NewLine + "    ", result.ErrorMessages));
-
-		throw new Exception ($"Invalid NuGet metadata for: {nupkgFile}");
+		hasErrors = true;
 	}
 }
+
+if (hasErrors)
+	throw new Exception ($"Invalid NuGet metadata found.");
