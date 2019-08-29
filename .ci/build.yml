@@ -22,6 +22,7 @@ parameters:
   verbosity: 'normal'                                       # the build verbosity: 'minimal', 'normal', 'diagnostic'
   configuration: 'Release'                                  # the build configuration: 'Debug', 'Release'
   validPackagePrefixes: []                                  # any NuGet prefixes that should pass validation (always includes Xamarin)
+  artifactsPath: 'output'                                   # the path to the NuGet packages that need to be signed, verified and published
   # basic cake build parameters
   cakeTarget: 'ci'                                          # [basic] the Cake target to run (defaults to 'ci')
   cakeFile: 'build.cake'                                    # [basic] the path to the build.cake file (can be any filename)
@@ -141,14 +142,14 @@ jobs:
       - ${{ parameters.postBuildSteps }}
       # after the build is complete
       - pwsh: |
-          if (Get-ChildItem output -Filter *.nupkg) {
-            api-tools nuget-diff output --latest --group-ids --output output/api-diff --cache $(Agent.TempDirectory)/api-diff/package-cache
+          if (Get-ChildItem ${{ parameters.artifactsPath }} -Filter *.nupkg) {
+            api-tools nuget-diff ${{ parameters.artifactsPath }} --latest --group-ids --output output/api-diff --cache $(Agent.TempDirectory)/api-diff/package-cache
           }
         displayName: 'Generate API diff'
       - task: PublishBuildArtifacts@1
         displayName: 'Publish artifacts'
         inputs:
-          PathToPublish: output
+          PathToPublish: ${{ parameters.artifactsPath }}
           ArtifactName: nuget
       - task: PublishBuildArtifacts@1
         displayName: 'Publish platform artifacts'
