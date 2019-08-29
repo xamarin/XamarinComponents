@@ -18,7 +18,6 @@ jobs:
   - template: .ci/build.yml@components
     parameters:
       buildType: 'manifest'
-      cakeFile: 'build-manifest.cake'
       validPackagePrefixes: [ 'Mono', 'mdoc', 'Masonry', 'SkiaSharp', 'HarfBuzzSharp' ]
   - ${{ if eq(variables['System.TeamProject'], 'devdiv') }}:
     - template: sign-artifacts/jobs/v1.yml@internal-templates
