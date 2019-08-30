@@ -166,9 +166,9 @@ jobs:
             Invoke-WebRequest -Uri $uri -OutFile "build-manifest.cake"
           displayName: 'Download the cake script to build manifest-based repositories'
         - pwsh: |
-            $force = if ("$env:ForceBuild") { "$env:ForceBuild" } else { "${{ parameters.forceBuild }}" }
-            $names = if ("$env:BuildManifestNames") { "$env:BuildManifestNames" } else { "${{ parameters.namesFilter }}" }
-            $targets = if ("$env:BuildManifestTargets") { "$env:BuildManifestTargets" } else { "${{ parameters.targetsFilter }}" }
+            $force = if ("$env:FORCEBUILD") { "$env:FORCEBUILD" } else { "${{ parameters.forceBuild }}" }
+            $names = if ("$env:BUILDMANIFESTNAMES") { "$env:BUILDMANIFESTNAMES" } else { "${{ parameters.namesFilter }}" }
+            $targets = if ("$env:BUILDMANIFESTTARGETS") { "$env:BUILDMANIFESTTARGETS" } else { "${{ parameters.targetsFilter }}" }
             dotnet cake build-manifest.cake `
               --gitpreviouscommit="$(GitLastSuccessfulCommit)" `
               --gitcommit="$(Build.SourceVersion)" `
