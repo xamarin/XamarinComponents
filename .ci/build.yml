@@ -52,6 +52,7 @@ jobs:
     pool:
       name: $(imageName)
     steps:
+      - pwsh: echo "prev $(GitLastSuccessfulCommit)"
       # before the build starts
       - bash: sudo $AGENT_HOMEDIRECTORY/scripts/select-xamarin-sdk.sh ${{ parameters.mono }}
         displayName: 'Switch to the latest Xamarin SDK'
