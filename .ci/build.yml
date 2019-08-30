@@ -200,7 +200,7 @@ jobs:
       # after the build is complete
       - pwsh: |
           if (Get-ChildItem ${{ parameters.artifactsPath }} -Filter *.nupkg) {
-            api-tools nuget-diff ${{ parameters.artifactsPath }} --latest --group-ids --output output/api-diff --cache $(Agent.TempDirectory)/api-diff/package-cache
+            api-tools nuget-diff ${{ parameters.artifactsPath }} --latest --group-ids --ignore-unchanged --output output/api-diff --cache $(Agent.TempDirectory)/api-diff/package-cache
           }
         displayName: 'Generate API diff'
       - task: PublishBuildArtifacts@1
