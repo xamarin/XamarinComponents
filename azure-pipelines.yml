@@ -16,6 +16,7 @@ resources:
 jobs:
   - template: .ci/build.yml@components
     parameters:
+      timeoutInMinutes: 360
       buildType: 'manifest'
       validPackagePrefixes: [ 'Mono', 'mdoc', 'Masonry', 'SkiaSharp', 'HarfBuzzSharp' ]
   - ${{ if eq(variables['System.TeamProject'], 'devdiv') }}:
