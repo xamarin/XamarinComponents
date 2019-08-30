@@ -49,7 +49,6 @@ jobs:
       name: $(imageName)
     steps:
       # before the build starts, make sure the tooling is as expected
-      - pwsh: get-childitem -path env:* | sort-object { $_.key } | foreach-object { echo $_ }
       - bash: sudo $AGENT_HOMEDIRECTORY/scripts/select-xamarin-sdk.sh ${{ parameters.mono }}
         displayName: 'Switch to the latest Xamarin SDK'
         condition: eq(variables['System.JobName'], 'macos')
@@ -136,10 +135,10 @@ jobs:
           }
 
           if ($lastSuccessfulBuildCommit) {
-            Write-Host "Last successful commit: $lastSuccessfulBuildCommit"
+            Write-Host "Last successful commit found: $lastSuccessfulBuildCommit"
           } else {
-            $lastSuccessfulBuildCommit = ""
-            Write-Host "No previously successful build found."
+            $lastSuccessfulBuildCommit = "refs/heads/$masterBranch"
+            Write-Host "No previously successful build found, using $lastSuccessfulBuildCommit."
           }
 
           Write-Host "##vso[task.setvariable variable=GitLastSuccessfulCommit]$lastSuccessfulBuildCommit"
