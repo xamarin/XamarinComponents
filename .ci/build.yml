@@ -82,7 +82,7 @@ jobs:
       - pwsh: |
           $branch = "${{ parameters.cakeTemplatesBranch }}"
           if ("$(Build.Repository.Id)" -eq "xamarin/XamarinComponents") {
-            $branch = ${{ coalesce(variables['System.PullRequest.SourceBranch'], variables['Build.SourceBranchName']) }}"
+            $branch = "${{ coalesce(variables['System.PullRequest.SourceBranch'], variables['Build.SourceBranchName']) }}"
           }
           Write-Host "##vso[task.setvariable variable=TemplateRootUri]https://raw.githubusercontent.com/xamarin/XamarinComponents/$branch/.ci"
         displayName: 'Resolve the cake templates URL'
