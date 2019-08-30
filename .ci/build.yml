@@ -172,8 +172,6 @@ jobs:
               --gitpreviouscommit="$(GitLastSuccessfulCommit)" `
               --gitcommit="$(Build.SourceVersion)" `
               --gitbranch="$(Build.SourceBranch)" `
-              --exitcode="$(ForceBuild)" `
-              --exitcode="$(BuildManifestNames)" `
               --forcebuild="$env:ForceBuild" `
               --names="$env:BuildManifestNames" `
               --targets="$env:BuildManifestTargets" `
