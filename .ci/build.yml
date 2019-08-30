@@ -6,6 +6,7 @@ parameters:
   dependsOn: []                                             # any jobs this job depends on
   preBuildSteps: []                                         # any steps that need to run just before the main compilation starts
   postBuildSteps: []                                        # any steps that need to run just after the main compilation ends
+  masterBranchName: 'master'                                # the "master" branch that should be used - can be something other than "master"
   # job software version parameters
   macosImage: 'Hosted macOS'                                # the name of the macOS VM image
   windowsImage: 'Hosted Windows 2019 with VS2019'           # the name of the Windows VM image
