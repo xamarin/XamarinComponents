@@ -6,7 +6,6 @@ parameters:
   dependsOn: []                                             # any jobs this job depends on
   preBuildSteps: []                                         # any steps that need to run just before the main compilation starts
   postBuildSteps: []                                        # any steps that need to run just after the main compilation ends
-  prepareJobName: 'prepare'                                 # the name of the job which provides the `lastSuccessful.GitLastSuccessfulCommit` value
   # job software version parameters
   macosImage: 'Hosted macOS'                                # the name of the macOS VM image
   windowsImage: 'Hosted Windows 2019 with VS2019'           # the name of the Windows VM image
@@ -44,14 +43,48 @@ jobs:
             imageName: ${{ parameters.windowsImage }}
     displayName: ${{ parameters.displayName }}
     timeoutInMinutes: ${{ parameters.timeoutInMinutes }}
-    dependsOn:
-     - ${{ parameters.prepareJobName }}
-     - ${{ parameters.dependsOn }}
-    variables:
-      GitLastSuccessfulCommit: $[ dependencies.prepare.outputs['lastSuccessful.GitLastSuccessfulCommit'] ]
+    dependsOn: ${{ parameters.dependsOn }}
     pool:
       name: $(imageName)
     steps:
+      - pwsh: |
+          # determine the "master" branch
+          $masterBranch = "${{ parameters.masterBranchName }}"
+          $encodedBranch = [Uri]::EscapeDataString("refs/heads/$masterBranch")
+          Write-Host "Master branch: $masterBranch"
+
+          # determine the "current" branch
+          $branch = "$(Build.SourceBranchName)"
+          if ("$env:SYSTEM_PULLREQUEST_TARGETBRANCH") {
+            $branch = "$env:SYSTEM_PULLREQUEST_TARGETBRANCH"
+          }
+          Write-Host "Current branch: $branch"
+
+          if ($branch -eq $masterBranch) {
+            Write-Host "Branch is master, fetching last successful build commit..."
+
+            $url = "$(System.TeamFoundationCollectionUri)$(System.TeamProjectId)/_apis/build/builds/?definitions=$(System.DefinitionId)&branchName=$encodedBranch&statusFilter=completed&resultFilter=succeeded&api-version=5.0"
+            Write-Host "URL for last successful master build: $url"
+
+            $json = Invoke-RestMethod -Uri $url -Headers @{
+                Authorization = "Bearer $(System.AccessToken)"
+            }
+            Write-Host "JSON response:"
+            Write-Host "$json"
+
+            $lastSuccessfulBuildCommit = try { $json.value[0].sourceVersion; } catch { $null }
+          }
+
+          if ($lastSuccessfulBuildCommit) {
+            Write-Host "Last successful commit: $lastSuccessfulBuildCommit"
+          } else {
+            $lastSuccessfulBuildCommit = $masterBranch
+            Write-Host "No previously successful build found, using this branch: $lastSuccessfulBuildCommit"
+          }
+
+          Write-Host "##vso[task.setvariable variable=GitLastSuccessfulCommit]$lastSuccessfulBuildCommit"
+        displayName: 'Find the last successful commit'
+      - pwsh: echo "cc = $(GitLastSuccessfulCommit)"
       - pwsh: get-childitem -path env:* | sort-object { $_.key } | foreach-object { echo $_ }
       # before the build starts
       - bash: sudo $AGENT_HOMEDIRECTORY/scripts/select-xamarin-sdk.sh ${{ parameters.mono }}

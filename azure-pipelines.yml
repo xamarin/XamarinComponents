@@ -15,7 +15,6 @@ resources:
       ref: refs/heads/dev/variables
 
 jobs:
-  - template: .ci/prepare.yml@components
   - template: .ci/build.yml@components
     parameters:
       buildType: 'manifest'
