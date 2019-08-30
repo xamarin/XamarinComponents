@@ -42,6 +42,13 @@ jobs:
         ${{ if ne(parameters.windowsImage, '') }}:
           windows:
             imageName: ${{ parameters.windowsImage }}
+    variables:
+      ${{ if ne(parameters.forceBuild, '') }}:
+        ForceBuild: ${{ parameters.forceBuild }}
+      ${{ if ne(parameters.namesFilter, '') }}:
+        BuildManifestNames: ${{ parameters.namesFilter }}
+      ${{ if ne(parameters.targetsFilter, '') }}:
+        BuildManifestTargets: ${{ parameters.targetsFilter }}
     displayName: ${{ parameters.displayName }}
     timeoutInMinutes: ${{ parameters.timeoutInMinutes }}
     dependsOn: ${{ parameters.dependsOn }}
@@ -181,12 +188,6 @@ jobs:
           displayName: 'Run build'
           env:
             JavaSdkDirectory: $(JAVA_HOME)
-            ${{ if eq(variables['ForceBuild'], '') }}:
-              ForceBuild: ${{ parameters.forceBuild }}
-            ${{ if eq(variables['BuildManifestNames'], '') }}:
-              BuildManifestNames: ${{ parameters.namesFilter }}
-            ${{ if eq(variables['BuildManifestTargets'], '') }}:
-              BuildManifestTargets: ${{ parameters.targetsFilter }}
         - task: PublishTestResults@2
           displayName: Publish the test results
           condition: always()
