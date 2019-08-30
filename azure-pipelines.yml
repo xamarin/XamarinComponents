@@ -14,7 +14,6 @@ resources:
       endpoint: xamarin
 
 jobs:
-  - template: .ci/prepare.yml@components
   - template: .ci/build.yml@components
     parameters:
       buildType: 'manifest'
