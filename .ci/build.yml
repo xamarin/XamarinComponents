@@ -49,6 +49,7 @@ jobs:
       name: $(imageName)
     steps:
       # before the build starts, make sure the tooling is as expected
+      - pwsh: get-childitem -path env:* | sort-object { $_.key } | foreach-object { echo $_ }
       - bash: sudo $AGENT_HOMEDIRECTORY/scripts/select-xamarin-sdk.sh ${{ parameters.mono }}
         displayName: 'Switch to the latest Xamarin SDK'
         condition: eq(variables['System.JobName'], 'macos')
