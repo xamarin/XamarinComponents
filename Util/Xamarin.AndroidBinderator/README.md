@@ -21,6 +21,7 @@ Here is what a basic config file might look like:
     {
         "mavenRepositoryType" : "Google",
         "slnFile" : "generated/AndroidSupport.sln",
+        "downloadExternalsWithFullName" : true,
         "additionalProjects" : [
             "source/buildtasks/support-annotations/Support-Annotations-BuildTasks.csproj"
         ],

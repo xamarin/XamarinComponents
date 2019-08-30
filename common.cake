@@ -1,11 +1,9 @@
 
-#addin nuget:?package=Cake.XCode&version=4.1.0
-#addin nuget:?package=Cake.Xamarin.Build&version=4.1.1
-#addin nuget:?package=Cake.Xamarin&version=3.0.1
-#addin nuget:?package=Cake.FileHelpers&version=3.2.0
-//#addin nuget:?package=YamlDotNet&version=4.2.1
-#addin nuget:?package=Cake.Yaml&version=3.1.0&loadDependencies=true
-//#addin nuget:?package=Newtonsoft.Json&version=9.0.1
+#addin nuget:?package=Cake.XCode&version=4.1.1
+#addin nuget:?package=Cake.Xamarin.Build&version=4.1.2
+#addin nuget:?package=Cake.Xamarin&version=3.0.2
+#addin nuget:?package=Cake.FileHelpers&version=3.2.1
+#addin nuget:?package=Cake.Yaml&version=3.1.1&loadDependencies=true
 #addin nuget:?package=Cake.Json&version=4.0.0&loadDependencies=true
 
 public enum TargetOS {
