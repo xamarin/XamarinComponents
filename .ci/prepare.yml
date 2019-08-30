@@ -14,7 +14,7 @@ jobs:
       name: 'Hosted Ubuntu 1604'
     steps:
       - checkout: none
-      - pwsh: get-childitem -path env:* | get-member
+      - pwsh: get-childitem -path env:* | foreach-object { echo $_ }
       - pwsh: |
           # determine the "master" branch
           $masterBranch = "${{ parameters.masterBranchName }}"
