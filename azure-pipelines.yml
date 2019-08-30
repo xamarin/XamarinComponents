@@ -12,7 +12,6 @@ resources:
       type: github
       name: xamarin/XamarinComponents
       endpoint: xamarin
-      ref: refs/heads/dev/variables
 
 jobs:
   - template: .ci/build.yml@components
