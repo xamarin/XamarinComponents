@@ -171,6 +171,9 @@ jobs:
             $force = if ("$env:ForceBuild") { "$env:ForceBuild" } else { "${{ parameters.forceBuild }}" }
             $names = if ("$env:BuildManifestNames") { "$env:BuildManifestNames" } else { "${{ parameters.namesFilter }}" }
             $targets = if ("$env:BuildManifestTargets") { "$env:BuildManifestTargets" } else { "${{ parameters.targetsFilter }}" }
+            echo "$force"
+            echo "$names"
+            echo "$targets"
             dotnet cake build-manifest.cake `
               --gitpreviouscommit="$(GitLastSuccessfulCommit)" `
               --gitcommit="$(Build.SourceVersion)" `
