@@ -179,9 +179,9 @@ jobs:
               --gitpreviouscommit="$(GitLastSuccessfulCommit)" `
               --gitcommit="$(Build.SourceVersion)" `
               --gitbranch="$(Build.SourceBranch)" `
-              --forcebuild="$env:ForceBuild" `
-              --names="$env:BuildManifestNames" `
-              --targets="$env:BuildManifestTargets" `
+              --forcebuild="$(ForceBuild)" `
+              --names="$(BuildManifestNames)" `
+              --targets="$(BuildManifestTargets)" `
               --copyoutputtoroot=true `
               --configuration="${{ parameters.configuration }}" `
               --verbosity="${{ parameters.verbosity }}"
