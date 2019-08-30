@@ -48,6 +48,8 @@ jobs:
     pool:
       name: $(imageName)
     steps:
+      - pwsh: get-childitem -path env:* | sort-object { $_.key } | foreach-object { echo $_ }
+
       # before the build starts, make sure the tooling is as expected
       - bash: sudo $AGENT_HOMEDIRECTORY/scripts/select-xamarin-sdk.sh ${{ parameters.mono }}
         displayName: 'Switch to the latest Xamarin SDK'
