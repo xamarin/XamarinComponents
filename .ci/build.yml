@@ -174,15 +174,21 @@ jobs:
               --gitbranch="$(Build.SourceBranch)" `
               --exitcode="$(ForceBuild)" `
               --exitcode="$(BuildManifestNames)" `
-              --forcebuild="${{ coalesce(parameters.forceBuild, variables['ForceBuild'], 'false') }}" `
-              --names="${{ coalesce(parameters.namesFilter, variables['BuildManifestNames'], '') }}" `
-              --targets="${{ coalesce(parameters.targetsFilter, variables['BuildManifestTargets'], '') }}" `
+              --forcebuild="$env:ForceBuild" `
+              --names="$env:BuildManifestNames" `
+              --targets="$env:BuildManifestTargets" `
               --copyoutputtoroot=true `
               --configuration="${{ parameters.configuration }}" `
               --verbosity="${{ parameters.verbosity }}"
           displayName: 'Run build'
           env:
             JavaSdkDirectory: $(JAVA_HOME)
+            ${{ if eq(variables['ForceBuild'], '') }}:
+              ForceBuild: ${{ parameters.forceBuild }}
+            ${{ if eq(variables['BuildManifestNames'], '') }}:
+              BuildManifestNames: ${{ parameters.namesFilter }}
+            ${{ if eq(variables['BuildManifestTargets'], '') }}:
+              BuildManifestTargets: ${{ parameters.targetsFilter }}
         - task: PublishTestResults@2
           displayName: Publish the test results
           condition: always()

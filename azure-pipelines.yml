@@ -19,6 +19,7 @@ jobs:
     parameters:
       buildType: 'manifest'
       validPackagePrefixes: [ 'Mono', 'mdoc', 'Masonry', 'SkiaSharp', 'HarfBuzzSharp' ]
+      targetsFilter: testers
   - ${{ if eq(variables['System.TeamProject'], 'devdiv') }}:
     - template: sign-artifacts/jobs/v1.yml@internal-templates
       parameters:
