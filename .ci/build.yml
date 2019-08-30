@@ -31,6 +31,7 @@ parameters:
   forceBuild: 'false'                                       # [manifest] whether or not to force the build
   namesFilter: ''                                           # [manifest] the names of the items to build
   targetsFilter: ''                                         # [manifest] the targets of the items to build
+  failOnBuildFail: 'true'                                   # [manifest] whether or not to fail the build when a single build fails
 
 jobs:
   - job: ${{ parameters.name }}
@@ -169,6 +170,7 @@ jobs:
             $force = if ("$env:FORCEBUILD") { "$env:FORCEBUILD" } else { "${{ parameters.forceBuild }}" }
             $names = if ("$env:BUILDMANIFESTNAMES") { "$env:BUILDMANIFESTNAMES" } else { "${{ parameters.namesFilter }}" }
             $targets = if ("$env:BUILDMANIFESTTARGETS") { "$env:BUILDMANIFESTTARGETS" } else { "${{ parameters.targetsFilter }}" }
+            $fail = if ("$env:FAILONBUILDFAIL") { "$env:FAILONBUILDFAIL" } else { "${{ parameters.failOnBuildFail }}" }
             dotnet cake build-manifest.cake `
               --gitpreviouscommit="$(GitLastSuccessfulCommit)" `
               --gitcommit="$(Build.SourceVersion)" `
@@ -176,6 +178,7 @@ jobs:
               --forcebuild="$force" `
               --names="$names" `
               --targets="$targets" `
+              --failonbuildfail="$fail"
               --copyoutputtoroot=true `
               --configuration="${{ parameters.configuration }}" `
               --verbosity="${{ parameters.verbosity }}"
