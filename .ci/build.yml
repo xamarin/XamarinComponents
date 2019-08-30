@@ -122,7 +122,7 @@ jobs:
           if ($lastSuccessfulBuildCommit) {
             Write-Host "Last successful commit: $lastSuccessfulBuildCommit"
           } else {
-            $lastSuccessfulBuildCommit = $masterBranch
+            $lastSuccessfulBuildCommit = "refs/heads/$masterBranch"
             Write-Host "No previously successful build found, using this branch: $lastSuccessfulBuildCommit"
           }
 
