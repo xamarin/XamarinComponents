@@ -21,7 +21,10 @@ jobs:
           Write-Host "Master branch: $masterBranch"
 
           # determine the "current" branch
-          $branch = "${{ coalesce(variables['System.PullRequest.TargetBranch'], variables['Build.SourceBranchName']) }}"
+          $branch = "$(Build.SourceBranchName)"
+          if ("$env:SYSTEM_PULLREQUEST_TARGETBRANCH") {
+            $branch = "$env:SYSTEM_PULLREQUEST_TARGETBRANCH"
+          }
           Write-Host "Current branch: $branch"
 
           if ($branch -eq $masterBranch) {
