@@ -80,10 +80,18 @@ jobs:
             if ("$env:SYSTEM_PULLREQUEST_SOURCEBRANCH") {
               $branch = "$env:SYSTEM_PULLREQUEST_SOURCEBRANCH"
             } else {
-              $branch = "$(Build.SourceBranchName)"
+              $branch = "$(Build.SourceBranch)"
             }
           }
-          Write-Host "##vso[task.setvariable variable=TemplateRootUri]https://raw.githubusercontent.com/xamarin/XamarinComponents/$branch/.ci"
+          if ($branch.StartsWith("refs/heads/")) {
+            $branch = $branch.Substring(11)
+          }
+          if ($branch.StartsWith("refs/tags/")) {
+            $branch = $branch.Substring(10)
+          }
+          $root = "https://raw.githubusercontent.com/xamarin/XamarinComponents/$branch/.ci"
+          Write-Host "##vso[task.setvariable variable=TemplateRootUri]$root"
+          Write-Host "URL root for templates: $root"
         displayName: 'Resolve the cake templates URL'
       - pwsh: |
           $uri = "$(TemplateRootUri)/validation.cake"
@@ -98,11 +106,18 @@ jobs:
           Write-Host "Master branch: $masterBranch"
 
           # determine the "current" branch
-          $branch = "$(Build.SourceBranchName)"
+          $branch = "$(Build.SourceBranch)"
           if ("$env:SYSTEM_PULLREQUEST_TARGETBRANCH") {
             $branch = "$env:SYSTEM_PULLREQUEST_TARGETBRANCH"
           }
-          Write-Host "Current branch: $branch"
+          if ($branch.StartsWith("refs/heads/")) {
+            $branch = $branch.Substring(11)
+            Write-Host "Current branch: $branch"
+          }
+          if ($branch.StartsWith("refs/tags/")) {
+            $branch = $branch.Substring(10)
+            Write-Host "Current tag: $branch"
+          }
 
           if ($branch -eq $masterBranch) {
             Write-Host "Branch is master, fetching last successful build commit..."
@@ -120,10 +135,10 @@ jobs:
           }
 
           if ($lastSuccessfulBuildCommit) {
-            Write-Host "Last successful commit: $lastSuccessfulBuildCommit"
+            Write-Host "Last successful commit found: $lastSuccessfulBuildCommit"
           } else {
-            $lastSuccessfulBuildCommit = $masterBranch
-            Write-Host "No previously successful build found, using this branch: $lastSuccessfulBuildCommit"
+            $lastSuccessfulBuildCommit = "origin/$masterBranch"
+            Write-Host "No previously successful build found, using $lastSuccessfulBuildCommit."
           }
 
           Write-Host "##vso[task.setvariable variable=GitLastSuccessfulCommit]$lastSuccessfulBuildCommit"
@@ -136,6 +151,7 @@ jobs:
             dotnet cake ${{ parameters.cakeFile }} ${{ parameters.cakeExtraArgs }} `
               --gitpreviouscommit="$(GitLastSuccessfulCommit)" `
               --gitcommit="$(Build.SourceVersion)" `
+              --gitbranch="$(Build.SourceBranch)" `
               --target="${{ parameters.cakeTarget }}" `
               --configuration="${{ parameters.configuration }}" `
               --verbosity="${{ parameters.verbosity }}"
@@ -153,6 +169,7 @@ jobs:
             dotnet cake build-manifest.cake `
               --gitpreviouscommit="$(GitLastSuccessfulCommit)" `
               --gitcommit="$(Build.SourceVersion)" `
+              --gitbranch="$(Build.SourceBranch)" `
               --forcebuild="${{ coalesce(parameters.forceBuild, variables['ForceBuild'], 'false') }}" `
               --names="${{ coalesce(parameters.namesFilter, variables['BuildManifestNames'], '') }}" `
               --targets="${{ coalesce(parameters.targetsFilter, variables['BuildManifestTargets'], '') }}" `
