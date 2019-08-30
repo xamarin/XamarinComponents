@@ -48,12 +48,11 @@ jobs:
      - ${{ parameters.prepareJobName }}
      - ${{ parameters.dependsOn }}
     variables:
-      GitLastSuccessfulCommit: $[ dependencies['${{ parameters.prepareJobName }}'].outputs['lastSuccessful.GitLastSuccessfulCommit'] ]
+      GitLastSuccessfulCommit: 123 #$[ dependencies['${{ parameters.prepareJobName }}'].outputs['lastSuccessful.GitLastSuccessfulCommit'] ]
     pool:
       name: $(imageName)
     steps:
       - pwsh: get-childitem -path env:* | sort-object { $_.key } | foreach-object { echo $_ }
-      - pwsh: echo "prev $[ GitLastSuccessfulCommit ] || $(Build.SourceVersion)"
       # before the build starts
       - bash: sudo $AGENT_HOMEDIRECTORY/scripts/select-xamarin-sdk.sh ${{ parameters.mono }}
         displayName: 'Switch to the latest Xamarin SDK'
