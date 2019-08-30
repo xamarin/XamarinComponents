@@ -43,12 +43,9 @@ jobs:
           windows:
             imageName: ${{ parameters.windowsImage }}
     variables:
-      ${{ if ne(parameters.forceBuild, '') }}:
-        ForceBuild: ${{ parameters.forceBuild }}
-      ${{ if ne(parameters.namesFilter, '') }}:
-        BuildManifestNames: ${{ parameters.namesFilter }}
-      ${{ if ne(parameters.targetsFilter, '') }}:
-        BuildManifestTargets: ${{ parameters.targetsFilter }}
+      ForceBuild: ${{ coalesce(variables['ForceBuild'], parameters.forceBuild, 'false') }}
+      BuildManifestNames: ${{ coalesce(variables['BuildManifestNames'], parameters.namesFilter, '') }}
+      BuildManifestTargets: ${{ coalesce(variables['BuildManifestTargets'], parameters.targetsFilter, '') }}
     displayName: ${{ parameters.displayName }}
     timeoutInMinutes: ${{ parameters.timeoutInMinutes }}
     dependsOn: ${{ parameters.dependsOn }}
