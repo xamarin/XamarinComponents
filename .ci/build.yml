@@ -48,7 +48,7 @@ jobs:
      - ${{ parameters.prepareJobName }}
      - ${{ parameters.dependsOn }}
     variables:
-      GitLastSuccessfulCommit: 123 #$[ dependencies['${{ parameters.prepareJobName }}'].outputs['lastSuccessful.GitLastSuccessfulCommit'] ]
+      GitLastSuccessfulCommit: $[ dependencies.prepare.outputs['lastSuccessful.GitLastSuccessfulCommit'] ]
     pool:
       name: $(imageName)
     steps:
