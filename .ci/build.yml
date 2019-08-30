@@ -28,7 +28,7 @@ parameters:
   cakeFile: 'build.cake'                                    # [basic] the path to the build.cake file (can be any filename)
   cakeExtraArgs: ''                                         # [basic] any additional cake CLI arguments
   # manifest-based build parameters
-  forceBuild: ''                                            # [manifest] whether or not to force the build
+  forceBuild: 'false'                                       # [manifest] whether or not to force the build
   namesFilter: ''                                           # [manifest] the names of the items to build
   targetsFilter: ''                                         # [manifest] the targets of the items to build
 
@@ -166,13 +166,16 @@ jobs:
             Invoke-WebRequest -Uri $uri -OutFile "build-manifest.cake"
           displayName: 'Download the cake script to build manifest-based repositories'
         - pwsh: |
+            $force = if ("$env:FORCEBUILD") { "$env:FORCEBUILD" } else { "${{ parameters.forceBuild }}" }
+            $names = if ("$env:BUILDMANIFESTNAMES") { "$env:BUILDMANIFESTNAMES" } else { "${{ parameters.namesFilter }}" }
+            $targets = if ("$env:BUILDMANIFESTTARGETS") { "$env:BUILDMANIFESTTARGETS" } else { "${{ parameters.targetsFilter }}" }
             dotnet cake build-manifest.cake `
               --gitpreviouscommit="$(GitLastSuccessfulCommit)" `
               --gitcommit="$(Build.SourceVersion)" `
               --gitbranch="$(Build.SourceBranch)" `
-              --forcebuild="${{ coalesce(parameters.forceBuild, variables['ForceBuild'], 'false') }}" `
-              --names="${{ coalesce(parameters.namesFilter, variables['BuildManifestNames'], '') }}" `
-              --targets="${{ coalesce(parameters.targetsFilter, variables['BuildManifestTargets'], '') }}" `
+              --forcebuild="$force" `
+              --names="$names" `
+              --targets="$targets" `
               --copyoutputtoroot=true `
               --configuration="${{ parameters.configuration }}" `
               --verbosity="${{ parameters.verbosity }}"
