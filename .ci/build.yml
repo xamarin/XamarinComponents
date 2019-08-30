@@ -52,6 +52,7 @@ jobs:
     pool:
       name: $(imageName)
     steps:
+      - pwsh: get-childitem -path env:* | get-member
       - pwsh: echo "prev $(GitLastSuccessfulCommit) || $(Build.SourceVersion)"
       # before the build starts
       - bash: sudo $AGENT_HOMEDIRECTORY/scripts/select-xamarin-sdk.sh ${{ parameters.mono }}
