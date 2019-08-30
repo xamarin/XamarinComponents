@@ -137,7 +137,7 @@ jobs:
           if ($lastSuccessfulBuildCommit) {
             Write-Host "Last successful commit found: $lastSuccessfulBuildCommit"
           } else {
-            $lastSuccessfulBuildCommit = "refs/heads/$masterBranch"
+            $lastSuccessfulBuildCommit = "origin/$masterBranch"
             Write-Host "No previously successful build found, using $lastSuccessfulBuildCommit."
           }
 
