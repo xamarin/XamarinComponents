@@ -76,7 +76,7 @@ Dictionary<string, string> JAR_URLS_ARTIFACT_FILES= new Dictionary<string, strin
 	},
 };
 string ARTIFACT_FILE = "";
-string NUGET_VERSION=$"{ARTIFACT_VERSION}";
+string NUGET_VERSION=$"{ARTIFACT_VERSION}.1";
 
 
 BuildSpec buildSpec = new BuildSpec () 
@@ -94,7 +94,7 @@ BuildSpec buildSpec = new BuildSpec ()
 				},
 				new OutputFileCopy 
 				{ 
-					FromFile = $"source/Xamarin.Grpc.Core.Bindings.XamarinAndroid/bin/Release/Xamarin.Grpc.Core.{ARTIFACT_VERSION}.nupkg" 
+					FromFile = $"source/Xamarin.Grpc.Core.Bindings.XamarinAndroid/bin/Release/Xamarin.Grpc.Core.{NUGET_VERSION}.nupkg" 
 				},
 				new OutputFileCopy 
 				{ 
@@ -102,7 +102,7 @@ BuildSpec buildSpec = new BuildSpec ()
 				},
 				new OutputFileCopy 
 				{ 
-					FromFile = $"source/Xamarin.Grpc.Stub.Bindings.XamarinAndroid/bin/Release/Xamarin.Grpc.Stub.{ARTIFACT_VERSION}.nupkg" 
+					FromFile = $"source/Xamarin.Grpc.Stub.Bindings.XamarinAndroid/bin/Release/Xamarin.Grpc.Stub.{NUGET_VERSION}.nupkg" 
 				},
 
 				new OutputFileCopy 
@@ -111,7 +111,7 @@ BuildSpec buildSpec = new BuildSpec ()
 				},
 				new OutputFileCopy 
 				{ 
-					FromFile = $"source/Xamarin.Grpc.Protobuf.Lite.Bindings.XamarinAndroid/bin/Release/Xamarin.Grpc.Protobuf.Lite.{ARTIFACT_VERSION}.nupkg" 
+					FromFile = $"source/Xamarin.Grpc.Protobuf.Lite.Bindings.XamarinAndroid/bin/Release/Xamarin.Grpc.Protobuf.Lite.{NUGET_VERSION}.nupkg" 
 				},
 				new OutputFileCopy 
 				{ 
@@ -119,7 +119,7 @@ BuildSpec buildSpec = new BuildSpec ()
 				},
 				new OutputFileCopy 
 				{ 
-					FromFile = $"source/Xamarin.Grpc.OkHttp.Bindings.XamarinAndroid/bin/Release/Xamarin.Grpc.OkHttp.{ARTIFACT_VERSION}.nupkg" 
+					FromFile = $"source/Xamarin.Grpc.OkHttp.Bindings.XamarinAndroid/bin/Release/Xamarin.Grpc.OkHttp.{NUGET_VERSION}.nupkg" 
 				},
 			}
 		}

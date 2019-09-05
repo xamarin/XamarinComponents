@@ -29,7 +29,7 @@
         -->
         <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
         <PackageId>Xamarin.Grpc.Core</PackageId>
-        <PackageVersion>1.14.0</PackageVersion>
+        <PackageVersion>1.14.0.1</PackageVersion>
         <Title>Xamarin.Grpc.Core</Title>
         <Summary>
             Google GRPC Core bindings for Xamarin
@@ -52,10 +52,8 @@
         <PackageReleaseNotes>
             Initial bindings
         </PackageReleaseNotes>
-        <PackageIconUrl>
-            
-        </PackageIconUrl>
         <PackageTags>xamarin, android, bindings, google, grpc, core </PackageTags>
+        <PackOnBuild>true</PackOnBuild>
     </PropertyGroup>
 
 
