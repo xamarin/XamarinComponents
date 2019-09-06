@@ -59,7 +59,7 @@
         <LicenseUrl>
             https://go.microsoft.com/fwlink/?linkid=2102972
         </LicenseUrl>
-        
+        <RequireLicenceAcceptance>true</RequireLicenceAcceptance>
         <PackageReleaseNotes>
             Initial bindings
         </PackageReleaseNotes>
