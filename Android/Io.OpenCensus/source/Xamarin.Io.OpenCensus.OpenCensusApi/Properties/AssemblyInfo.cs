@@ -5,12 +5,12 @@ using Android.App;
 // Information about this assembly is defined by the following attributes. 
 // Change them to the values specific to your project.
 
-[assembly: AssemblyTitle("Xamarin.Protobuf.Lite.")]
-[assembly: AssemblyDescription("Xamarin bindings for Protobuf Lite package")]
+[assembly: AssemblyTitle("Xamarin.Io.OpenCensus.OpenCensusApi")]
+[assembly: AssemblyDescription("Xamarin bindings for Io.OpenCensus.OpenCensusApi package")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Microsoft Corporation")]
 [assembly: AssemblyProduct("")]
-[assembly: AssemblyCopyright("Microsoft Corporation 2018")]
+[assembly: AssemblyCopyright("Microsoft Corporation 2019. All Rights Reserved")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
