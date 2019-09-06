@@ -60,6 +60,7 @@
             https://go.microsoft.com/fwlink/?linkid=2102972
         </LicenseUrl>
         <RequireLicenceAcceptance>true</RequireLicenceAcceptance>
+        <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
         <PackageReleaseNotes>
             Initial bindings
         </PackageReleaseNotes>
