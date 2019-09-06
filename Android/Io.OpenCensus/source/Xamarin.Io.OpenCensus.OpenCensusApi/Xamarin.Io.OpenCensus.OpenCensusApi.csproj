@@ -95,6 +95,9 @@
       <Link>Jars\opencensus-api-0.12.3.jar</Link>
     </EmbeddedJar>
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Xamarin.Io.OpenCensus.OpenCensusContribGrpcMetrics\Xamarin.Io.OpenCensus.OpenCensusContribGrpcMetrics.csproj" />
+  </ItemGroup>
   <Import Project="$(MSBuildSDKExtrasTargets)" Condition="Exists('$(MSBuildSDKExtrasTargets)')" />
 
     
