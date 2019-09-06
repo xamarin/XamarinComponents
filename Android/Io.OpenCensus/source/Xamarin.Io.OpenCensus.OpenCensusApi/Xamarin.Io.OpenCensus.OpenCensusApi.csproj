@@ -42,22 +42,22 @@
         <Authors>Microsoft</Authors>
         <Copyright>© Microsoft Corporation. All rights reserved.</Copyright>
         <PackageLicenseUrl>
-        https://go.microsoft.com/fwlink/?linkid=2102972&amp;clcid=0x409
+        https://go.microsoft.com/fwlink/?linkid=2102972
         </PackageLicenseUrl>
         <PackageProjectUrl>
-        https://go.microsoft.com/fwlink/?linkid=2103038&amp;clcid=0x409
+        https://go.microsoft.com/fwlink/?linkid=2103038
         </PackageProjectUrl>
         <RepositoryUrl>
-        https://go.microsoft.com/fwlink/?linkid=2103038&amp;clcid=0x409         
+        https://go.microsoft.com/fwlink/?linkid=2103038    
         </RepositoryUrl>
         <ProjectyUrl>
-            https://go.microsoft.com/fwlink/?linkid=2103038&amp;clcid=0x409
+            https://go.microsoft.com/fwlink/?linkid=2103038
         </ProjectyUrl>
         <RepositoryUrl>
-            https://go.microsoft.com/fwlink/?linkid=2103038&amp;clcid=0x409
+            https://go.microsoft.com/fwlink/?linkid=2103038
         </RepositoryUrl>
         <LicenseUrl>
-            https://go.microsoft.com/fwlink/?linkid=2102972&amp;clcid=0x409
+            https://go.microsoft.com/fwlink/?linkid=2102972
         </LicenseUrl>
         <PackageReleaseNotes>
             Initial bindings

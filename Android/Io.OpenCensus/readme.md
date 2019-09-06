@@ -2,20 +2,24 @@
 
 IO.OpenCensus bindings for Xamarin.Android which are Grpc dependencies (Grpc.Core).
 
+*   https://repo1.maven.org/maven2/io/opencensus/
+
+*   https://mvnrepository.com/artifact/io.opencensus
+
 *   packages bound
 
     *   `OpenCensusApi` (`io.opencensus-api`)
 
-        *   https://repo1.maven.org/maven2/io/opencensus/opencensus-api/0.12.3/opencensus-api-0.12.3.jar
+        *   https://mvnrepository.com/artifact/io.opencensus/opencensus-api
 
-        *   https://search.maven.org/remotecontent?filepath=io/opencensus/opencensus-contrib-grpc-metrics/0.12.2/opencensus-contrib-grpc-metrics-0.12.2.jar
+        *   https://search.maven.org/search?q=a:opencensus-api
+
+        *   https://search.maven.org/remotecontent?filepath=io/opencensus/opencensus-api/
 
     *   `OpenCensusContribGrpcMetrics` (`opencensus-contrib-grpc-metrics`)
 
-## fwlinks
+        *   https://mvnrepository.com/artifact/io.opencensus/opencensus-contrib-grpc-metrics
 
-*   Project
+        *   https://search.maven.org/search?q=a:opencensus-contrib-grpc-metrics
 
-
-*   License
-
+        *   https://search.maven.org/remotecontent?filepath=io/opencensus/opencensus-contrib-grpc-metrics/
