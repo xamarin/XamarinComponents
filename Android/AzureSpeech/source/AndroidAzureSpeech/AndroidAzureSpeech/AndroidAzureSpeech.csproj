@@ -10,8 +10,8 @@
         <TemplateGuid>{77efb91c-a7e9-4b0e-a7c5-31eeec3c6d46}</TemplateGuid>
         <OutputType>Library</OutputType>
         <AppDesignerFolder>Properties</AppDesignerFolder>
-        <RootNamespace>AndroidAzureSpeach</RootNamespace>
-        <AssemblyName>AndroidAzureSpeach</AssemblyName>
+        <RootNamespace>AndroidAzureSpeech</RootNamespace>
+        <AssemblyName>AndroidAzureSpeech</AssemblyName>
         <FileAlignment>512</FileAlignment>
         <TargetFrameworkVersion>v9.0</TargetFrameworkVersion>
         <AndroidClassParser>class-parse</AndroidClassParser>
