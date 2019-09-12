@@ -34,11 +34,12 @@ namespace AndroidAzureSpeachSample
             // Note: currently, the Speech SDK support 16 kHz sample rate, 16 bit samples, mono (single-channel) only.
             AudioFormat af = new AudioFormat.Builder()
                     .SetSampleRate(SAMPLE_RATE)
-                    .SetEncoding(Encoding.Pcm16bit) // ENCODING_PCM_16BIT
-                    .SetChannelMask(ChannelOut.Mono) // CHANNEL_IN_MONO
+                    .SetEncoding(Encoding.Pcm16bit)
+                    .SetChannelMask(ChannelOut.Default)
                     .Build();
+
             recorder = new AudioRecord.Builder()
-                .SetAudioSource(AudioSource.VoiceRecognition) // VOICE_RECOGNITION
+                .SetAudioSource(AudioSource.VoiceRecognition)
                 .SetAudioFormat(af)
                 .Build();
 

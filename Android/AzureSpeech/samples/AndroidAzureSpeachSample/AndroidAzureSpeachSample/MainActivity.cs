@@ -1,10 +1,8 @@
 ﻿using System;
-using System.Threading.Tasks;
 using Android.App;
 using Android.OS;
 using Android.Runtime;
 using Android.Support.V7.App;
-using Android.Text;
 using Android.Views;
 using Android.Widget;
 using CognitiveServices.Speech;
@@ -17,33 +15,17 @@ namespace AndroidAzureSpeachSample
     public class MainActivity : AppCompatActivity
     {
         // Replace below with your own subscription key
-        private static readonly string SpeechSubscriptionKey = "YourSubscriptionKey";
+        private static readonly string SpeechSubscriptionKey = "YourKey";
         // Replace below with your own service region (e.g., "westus").
-        private static readonly string SpeechRegion = "YourServiceRegion";
-
-        //
-        // Configuration for intent recognition
-        //
-
-        // Replace below with your own Language Understanding subscription key
-        // The intent recognition service calls the required key 'endpoint key'.
-        private static readonly string LanguageUnderstandingSubscriptionKey = "YourLanguageUnderstandingSubscriptionKey";
-        // Replace below with the deployment region of your Language Understanding application
-        private static readonly string LanguageUnderstandingServiceRegion = "YourLanguageUnderstandingServiceRegion";
-        // Replace below with the application ID of your Language Understanding application
-        private static readonly string LanguageUnderstandingAppId = "YourLanguageUnderstandingAppId";
+        private static readonly string SpeechRegion = "westus";
 
         private TextView recognizedTextView;
         private Button recognizeButton;
-        private Button recognizeIntermediateButton;
-        private Button recognizeContinuousButton;
-        private Button recognizeIntentButton;
 
         private MicrophoneStream microphoneStream;
         private SpeechConfig speechConfig;
-        private readonly SpeechRecognizer reco;
-        private readonly AudioConfig audioInput;
-        private event EventHandler<SpeechRecognitionResult> OnSpeechRecognized;
+        private SpeechRecognizer reco;
+        private AudioConfig audioInput;
 
         protected override void OnCreate(Bundle savedInstanceState)
         {
@@ -55,13 +37,33 @@ namespace AndroidAzureSpeachSample
             SetSupportActionBar(toolbar);
 
             recognizedTextView = (TextView)FindViewById(Resource.Id.recognizedText);
+            recognizedTextView.Text = "Recognized text goes here!";
 
             recognizeButton = (Button)FindViewById(Resource.Id.buttonRecognize);
-            recognizeIntermediateButton = (Button)FindViewById(Resource.Id.buttonRecognizeIntermediate);
-            recognizeContinuousButton = (Button)FindViewById(Resource.Id.buttonRecognizeContinuous);
-            recognizeIntentButton = (Button)FindViewById(Resource.Id.buttonRecognizeIntent);
 
             // Initialize SpeechSDK and request required permissions.
+            HandlePermissions();
+
+            InitSpeechConfig();
+
+            recognizeButton.Click += RecognizeButton_Click;
+        }
+
+        private void InitSpeechConfig()
+        {
+            try
+            {
+                speechConfig = SpeechConfig.FromSubscription(SpeechSubscriptionKey, SpeechRegion);
+            }
+            catch (Exception ex)
+            {
+                DisplayException(ex);
+                return;
+            }
+        }
+
+        private void HandlePermissions()
+        {
             try
             {
                 // a unique number within the application to allow
@@ -80,71 +82,41 @@ namespace AndroidAzureSpeachSample
                 Console.WriteLine("SpeechSDK: ", ex.Message);
                 recognizedTextView.Text = ex.ToString();
             }
+        }
+
+        private void RecognizeButton_Click(object sender, EventArgs e)
+        {
+            audioInput = AudioConfig.FromStreamInput(CreateMicrophoneStream());
+            reco = new SpeechRecognizer(speechConfig, audioInput);
+
+            DisableButtons();
+            ClearTextBox();
 
             try
             {
-                speechConfig = SpeechConfig.FromSubscription(SpeechSubscriptionKey, SpeechRegion);
+                audioInput = AudioConfig.FromStreamInput(CreateMicrophoneStream());
+                reco = new SpeechRecognizer(speechConfig, audioInput);
+
+                IFuture task = reco.RecognizeOnceAsync();
+                SpeechRecognitionResult obj = (SpeechRecognitionResult)task.Get();
+
+                string s = obj.Text;
+                if (obj.Reason != ResultReason.RecognizedSpeech)
+                {
+                    string errorDetails = (obj.Reason == ResultReason.Canceled) ? CancellationDetails.FromResult(obj).ErrorDetails : string.Empty;
+                    s = "Recognition failed with " + obj.Reason + ". Did you enter your subscription?" + System.Environment.NewLine + errorDetails;
+                }
+
+                reco.Close();
+                Console.WriteLine("Recognizer returned: " + s);
+
+                SetRecognizedText(s);
+                EnableButtons();
             }
             catch (Exception ex)
             {
                 DisplayException(ex);
-                return;
-            }
-
-            recognizeButton.Click += RecognizeButton_Click;
-
-        }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void MainActivity_OnSpeechRecognized(object sender, SpeechRecognitionResult e)
-        {
-            string s = e.Text;
-            if (e.Reason != ResultReason.RecognizedSpeech)
-            {
-                string errorDetails = (e.Reason == ResultReason.Canceled) ? CancellationDetails.FromResult(e).ErrorDetails : string.Empty;
-                _ = "Recognition failed with " + e.Reason + ". Did you enter your subscription?" + System.Environment.NewLine + errorDetails;
-            }
-
-            reco.Close();
-            Console.WriteLine("Reco 1 ****** Recognizer returned: " + s);
-
-            //setRecognizedText(s);
-            //enableButtons();
-        }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void RecognizeButton_Click(object sender, EventArgs e)
-        {
-            AudioConfig audioInput = AudioConfig.FromStreamInput(CreateMicrophoneStream());
-            SpeechRecognizer reco = new SpeechRecognizer(speechConfig, audioInput);
-
-            OnSpeechRecognized += MainActivity_OnSpeechRecognized;
-
-            //disableButtons();
-            //clearTextBox();
-
-            try
-            {
-                // final AudioConfig audioInput = AudioConfig.fromDefaultMicrophoneInput();
-                audioInput = AudioConfig.FromStreamInput(CreateMicrophoneStream());
-                reco = new SpeechRecognizer(speechConfig, audioInput);
-
-                Task<SpeechRecognitionResult> task = (Task<SpeechRecognitionResult>) reco.RecognizeOnceAsync();
-                OnSpeechRecognized?.Invoke(this, task.Result);
-
-            }
-            catch (Exception ex)
-            {
-            //    System.out.println(ex.getMessage());
-            //    displayException(ex);
+                EnableButtons();
             }
         }
 
@@ -172,19 +144,11 @@ namespace AndroidAzureSpeachSample
             base.OnRequestPermissionsResult(requestCode, permissions, grantResults);
         }
 
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="ex"></param>
         private void DisplayException(Exception ex)
         {
             recognizedTextView.Text = ex.Message + System.Environment.NewLine + string.Join(System.Environment.NewLine, ex.StackTrace);
         }
 
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <returns></returns>
         private MicrophoneStream CreateMicrophoneStream()
         {
             if (microphoneStream != null)
@@ -196,6 +160,47 @@ namespace AndroidAzureSpeachSample
             microphoneStream = new MicrophoneStream();
             return microphoneStream;
         }
+
+        private void ClearTextBox()
+        {
+            AppendTextLine(string.Empty, true);
+        }
+
+        private void SetRecognizedText(string s)
+        {
+            AppendTextLine(s, true);
+        }
+
+        private void AppendTextLine(string s, bool erase)
+        {
+            RunOnUiThread(() =>
+            {
+                if (erase)
+                {
+                    recognizedTextView.Text = s;
+                }
+                else
+                {
+                    string txt = recognizedTextView.Text;
+                    recognizedTextView.Text = txt + System.Environment.NewLine + s;
+                }
+            });
+        }
+
+        private void DisableButtons()
+        {
+            RunOnUiThread(() =>
+            {
+                recognizeButton.Enabled = false;
+            });
+        }
+
+        private void EnableButtons()
+        {
+            RunOnUiThread(() =>
+            {
+                recognizeButton.Enabled = true;
+            });
+        }
     }
 }
-

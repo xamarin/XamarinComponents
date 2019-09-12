@@ -18,43 +18,10 @@
 		android:text="Recognize"
 		android:textAllCaps="false"
 		/>
-
-	<Button
-		android:id="@+id/buttonRecognizeIntermediate"
-		android:layout_width="336dp"
-		android:layout_height="wrap_content"
-		android:layout_marginEnd="8dp"
-		android:layout_marginStart="8dp"
-		android:text="Recognize with intermediate results"
-		android:textAllCaps="false"
-		/>
-
-	<Button
-		android:id="@+id/buttonRecognizeContinuous"
-		android:layout_width="336dp"
-		android:layout_height="wrap_content"
-		android:layout_marginBottom="8dp"
-		android:layout_marginEnd="8dp"
-		android:layout_marginStart="8dp"
-		android:text="Recognize continuously"
-		android:textAllCaps="false"
-/>
-
-	<Button
-		android:id="@+id/buttonRecognizeIntent"
-		android:layout_width="336dp"
-		android:layout_height="wrap_content"
-		android:layout_marginBottom="8dp"
-		android:layout_marginEnd="8dp"
-		android:layout_marginStart="8dp"
-		android:text="Recognize intent"
-		android:textAllCaps="false"
-/>
-
 	<TextView
 		android:id="@+id/recognizedText"
-		android:layout_width="263dp"
-		android:layout_height="157dp"
+		android:layout_width="match_parent"
+		android:layout_height="match_parent"
 		android:layout_marginBottom="8dp"
 		android:layout_marginEnd="27dp"
 		android:layout_marginStart="32dp"
