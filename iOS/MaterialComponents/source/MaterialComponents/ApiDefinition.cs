@@ -4977,6 +4977,10 @@ namespace MaterialComponents {
 		// -(void)deactivateOverlay:(UIView *)overlay;
 		[Export ("deactivateOverlay:")]
 		void DeactivateOverlay (UIView overlay);
+
+		// -(instancetype _Nonnull)initWithFrame:(CGRect)frame;
+		[Export("initWithFrame:")]
+		IntPtr Constructor(CGRect frame);
 	}
 
 	// @interface MDCPageControl : UIControl <UIScrollViewDelegate>
