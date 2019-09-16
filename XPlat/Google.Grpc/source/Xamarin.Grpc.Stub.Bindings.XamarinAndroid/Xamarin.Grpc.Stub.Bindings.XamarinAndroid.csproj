@@ -16,6 +16,8 @@
         <AndroidCodegenTarget>XAJavaInterop1</AndroidCodegenTarget>
          
         <GenerateAssemblyInfo>false</GenerateAssemblyInfo>        
+        <RootNamespace>Xamarin.Grpc.Stub</RootNamespace>
+        <TargetFramework>monoandroid8.1</TargetFramework>
     </PropertyGroup>
 
     <PropertyGroup>

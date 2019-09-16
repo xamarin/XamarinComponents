@@ -5,8 +5,8 @@ using Android.App;
 // Information about this assembly is defined by the following attributes. 
 // Change them to the values specific to your project.
 
-[assembly: AssemblyTitle("Xamarin.Grpc.Stub")]
-[assembly: AssemblyDescription("Xamarin bindings for Xamarin.Grpc.Stub package")]
+[assembly: AssemblyTitle("Xamarin.Grpc.Context")]
+[assembly: AssemblyDescription("Xamarin bindings for Xamarin.Grpc.Context package")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Microsoft Corporation")]
 [assembly: AssemblyProduct("")]

@@ -4,7 +4,7 @@
     
   -->
     <PropertyGroup>
-        <AssemblyName>Xamarin.Grpc.OkHttp</AssemblyName>
+        <AssemblyName>Xamarin.Grpc.Context</AssemblyName>
 
         <MonoAndroidResourcePrefix>Resources</MonoAndroidResourcePrefix>
         <MonoAndroidAssetsPrefix>Assets</MonoAndroidAssetsPrefix>
@@ -16,7 +16,8 @@
         <AndroidCodegenTarget>XAJavaInterop1</AndroidCodegenTarget>
          
         <GenerateAssemblyInfo>false</GenerateAssemblyInfo>        
-        <RootNamespace>Xamarin.Grpc.OkHttp</RootNamespace>
+        <Description>Bindings for Google's GRPC Context package (Google Play Services dependency)</Description>
+        <RootNamespace>Xamarin.Grpc.Context</RootNamespace>
         <TargetFramework>monoandroid8.1</TargetFramework>
     </PropertyGroup>
 
@@ -25,19 +26,19 @@
         <AndroidClassParser>class-parse</AndroidClassParser>
     </PropertyGroup>
 
-     <PropertyGroup>
+    <PropertyGroup>
         <!-- 
         nuget packaging
         -->
         <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-        <PackageId>Xamarin.Grpc.OkHttp</PackageId>
+        <PackageId>Xamarin.Grpc.Context</PackageId>
         <PackageVersion>1.14.0.1</PackageVersion>
-        <Title>Xamarin.Grpc.OkHttp</Title>
+        <Title>Xamarin.Grpc.Context</Title>
         <Summary>
-            Google GRPC OkHttp bindings for Xamarin
+            Google GRPC Context bindings for Xamarin
         </Summary>
         <Description>
-            Bindings for Google's GRPC OkHttp package (Google Play Services dependency)
+            Bindings for Google's GRPC Context package (Google Play Services dependency)
         </Description>
         <Owners>Microsoft</Owners>
         <Authors>Microsoft</Authors>
@@ -56,7 +57,7 @@
         <PackageReleaseNotes>
             Initial bindings
         </PackageReleaseNotes>
-        <PackageTags>xamarin, android, bindings, google, grpc, okhttp </PackageTags>
+        <PackageTags>xamarin, android, bindings, google, grpc, context </PackageTags>
         <PackOnBuild>true</PackOnBuild>
     </PropertyGroup>
 
@@ -76,8 +77,6 @@
 
   <ItemGroup>
     <PackageReference Include="MSBuild.Sdk.Extras" Version="1.4.0" PrivateAssets="All" />
-    <PackageReference Include="Square.OkHttp3" Version="3.8.1" />
-    <PackageReference Include="Xamarin.Google.Guava" Version="23.2.0" />
   </ItemGroup>
 
   <ItemGroup>
@@ -91,25 +90,11 @@
     <Compile Remove="Additions\LazyStringArrayList.cs" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedJar Include="..\..\externals\android\grpc-okhttp-1.14.0.jar">
-      <Link>Jars\grpc-okhttp-1.14.0.jar</Link>
+    <EmbeddedJar Include="..\..\externals\android\grpc-core-1.14.0.jar">
+      <Link>Jars\grpc-core-1.14.0.jar</Link>
     </EmbeddedJar>
   </ItemGroup>
   <Import Project="$(MSBuildSDKExtrasTargets)" Condition="Exists('$(MSBuildSDKExtrasTargets)')" />
 
-  <!--
-  Xamarin Android Bindings csproj trick 
-  Enable code navigation in generated code.
-  Remove that after bindings are done! 
-  Otherwise duplicate symbol (definition) errors might arise
-  -->
-  <ItemGroup>
-      <Compile Include="obj\Debug\generated\src\*.cs" />
-      <Compile Include="obj\Release\generated\src\*.cs" />
-      <None Include="obj\Debug\api.xml" />
-      <None Include="obj\Release\api.xml" />
-  </ItemGroup> 
-  <ItemGroup>
-    <ProjectReference Include="..\Xamarin.Grpc.Core.Bindings.XamarinAndroid\Xamarin.Grpc.Core.Bindings.XamarinAndroid.csproj" />
-  </ItemGroup>
+    
 </Project>
