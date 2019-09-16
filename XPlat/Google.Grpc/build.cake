@@ -94,7 +94,7 @@ BuildSpec buildSpec = new BuildSpec ()
 			{
 				new OutputFileCopy
 				{
-					FromFile = "./source/Xamarin.Grpc.Core.Bindings.XamarinAndroid/bin/Release/monoandroid8.1/Xamarin.Grpc.Core.dll"
+					FromFile = "./source/Xamarin.Grpc.Core.Bindings.XamarinAndroid/bin/Release/monoandroid81/Xamarin.Grpc.Core.dll"
 				},
 				new OutputFileCopy
 				{
@@ -102,7 +102,7 @@ BuildSpec buildSpec = new BuildSpec ()
 				},
 				new OutputFileCopy
 				{
-					FromFile = "./source/Xamarin.Grpc.Stub.Bindings.XamarinAndroid/bin/Release/monoandroid8.1/Xamarin.Grpc.Stub.dll"
+					FromFile = "./source/Xamarin.Grpc.Stub.Bindings.XamarinAndroid/bin/Release/monoandroid81/Xamarin.Grpc.Stub.dll"
 				},
 				new OutputFileCopy
 				{
@@ -111,7 +111,7 @@ BuildSpec buildSpec = new BuildSpec ()
 
 				new OutputFileCopy
 				{
-					FromFile = "./source/Xamarin.Grpc.Protobuf.Lite.Bindings.XamarinAndroid/bin/Release/monoandroid8.1/Xamarin.Grpc.Protobuf.Lite.dll"
+					FromFile = "./source/Xamarin.Grpc.Protobuf.Lite.Bindings.XamarinAndroid/bin/Release/monoandroid81/Xamarin.Grpc.Protobuf.Lite.dll"
 				},
 				new OutputFileCopy
 				{
@@ -119,7 +119,7 @@ BuildSpec buildSpec = new BuildSpec ()
 				},
 				new OutputFileCopy
 				{
-					FromFile = "./source/Xamarin.Grpc.OkHttp.Bindings.XamarinAndroid/bin/Release/monoandroid8.1/Xamarin.Grpc.OkHttp.dll"
+					FromFile = "./source/Xamarin.Grpc.OkHttp.Bindings.XamarinAndroid/bin/Release/monoandroid81/Xamarin.Grpc.OkHttp.dll"
 				},
 				new OutputFileCopy
 				{
@@ -127,7 +127,7 @@ BuildSpec buildSpec = new BuildSpec ()
 				},
 				new OutputFileCopy
 				{
-					FromFile = "./source/Xamarin.Grpc.Context.Bindings.XamarinAndroid/bin/Release/monoandroid8.1/Xamarin.Grpc.Context.dll"
+					FromFile = "./source/Xamarin.Grpc.Context.Bindings.XamarinAndroid/bin/Release/monoandroid81/Xamarin.Grpc.Context.dll"
 				},
 				new OutputFileCopy
 				{
