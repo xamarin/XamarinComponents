@@ -246,6 +246,10 @@
   BuildScript: ./XPlat/Google.Grpc/build.cake
   TriggerPaths: [ XPlat/Google.Grpc ]
   MacBuildTargets: [ libs, nuget]
+- Name: Io.OpenCensus
+  BuildScript: ./Android/Io.OpenCensus/build.cake
+  TriggerPaths: [ Android/Io.OpenCensus ]
+  MacBuildTargets: [ libs, nuget]
 
 
 #######################################################
@@ -591,7 +595,15 @@
   BuildScript: ./Util/SamplePackager/build.cake
   TriggerPaths: [ Util/SamplePackager ]
   MacBuildTargets: [ nuget ]
+- Name: AndroidManifestMerger
+  BuildScript: ./Util/AndroidManifestMerger/build.cake
+  TriggerPaths: [ Util/AndroidManifestMerger ]
+  WindowsBuildTargets: [ Default ]
 - Name: Xamarin.AndroidBinderator
   BuildScript: ./Util/Xamarin.AndroidBinderator/build.cake
   TriggerPaths: [ Util/Xamarin.AndroidBinderator ]
   WindowsBuildTargets: [ nuget ]
+- Name: Xamarin.Kotlin.BindingSupport
+  BuildScript: ./Util/Xamarin.Kotlin.BindingSupport/build.cake
+  TriggerPaths: [ Util/Xamarin.Kotlin.BindingSupport ]
+  MacBuildTargets: [ nuget, samples ]
