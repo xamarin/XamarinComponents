@@ -9,6 +9,10 @@
 		{
 			"templateFile": "source/Targets.cshtml",
 			"outputFileRule" : "generated/{groupid}.{artifactid}/{nugetid}.targets"
+		},
+		{
+			"templateFile": "source/Pom.cshtml",
+			"outputFileRule" : "generated/{groupid}.{artifactid}/dependencies.pom"
 		}
 	],
 	"artifacts" : [
