@@ -246,6 +246,10 @@
   BuildScript: ./XPlat/Google.Grpc/build.cake
   TriggerPaths: [ XPlat/Google.Grpc ]
   MacBuildTargets: [ libs, nuget]
+- Name: Io.OpenCensus
+  BuildScript: ./Android/Io.OpenCensus/build.cake
+  TriggerPaths: [ Android/Io.OpenCensus ]
+  MacBuildTargets: [ libs, nuget]
 
 
 #######################################################

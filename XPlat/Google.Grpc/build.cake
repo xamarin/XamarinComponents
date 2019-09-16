@@ -100,10 +100,11 @@ BuildSpec buildSpec = new BuildSpec ()
 				{
 					FromFile = $"source/Xamarin.Grpc.Core.Bindings.XamarinAndroid/bin/Release/Xamarin.Grpc.Core.{NUGET_VERSION}.nupkg"
 				},
+
 				new OutputFileCopy
 				{
 					FromFile = "./source/Xamarin.Grpc.Stub.Bindings.XamarinAndroid/bin/Release/monoandroid81/Xamarin.Grpc.Stub.dll"
-				},
+				},				
 				new OutputFileCopy
 				{
 					FromFile = $"source/Xamarin.Grpc.Stub.Bindings.XamarinAndroid/bin/Release/Xamarin.Grpc.Stub.{NUGET_VERSION}.nupkg"
@@ -117,6 +118,7 @@ BuildSpec buildSpec = new BuildSpec ()
 				{
 					FromFile = $"source/Xamarin.Grpc.Protobuf.Lite.Bindings.XamarinAndroid/bin/Release/Xamarin.Grpc.Protobuf.Lite.{NUGET_VERSION}.nupkg"
 				},
+
 				new OutputFileCopy
 				{
 					FromFile = "./source/Xamarin.Grpc.OkHttp.Bindings.XamarinAndroid/bin/Release/monoandroid81/Xamarin.Grpc.OkHttp.dll"
@@ -125,6 +127,7 @@ BuildSpec buildSpec = new BuildSpec ()
 				{
 					FromFile = $"source/Xamarin.Grpc.OkHttp.Bindings.XamarinAndroid/bin/Release/Xamarin.Grpc.OkHttp.{NUGET_VERSION}.nupkg"
 				},
+				
 				new OutputFileCopy
 				{
 					FromFile = "./source/Xamarin.Grpc.Context.Bindings.XamarinAndroid/bin/Release/monoandroid81/Xamarin.Grpc.Context.dll"
