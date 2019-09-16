@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
   <!--
   https://montemagno.com/converting-xamarin-libraries-to-sdk-style-multi-targeted-projects/
     
@@ -16,9 +16,7 @@
         <AndroidCodegenTarget>XAJavaInterop1</AndroidCodegenTarget>
          
         <GenerateAssemblyInfo>false</GenerateAssemblyInfo>        
-        <Description>Bindings for Google's GRPC Context package (Google Play Services dependency)</Description>
-        <RootNamespace>Xamarin.Grpc.Context</RootNamespace>
-        <TargetFramework>monoandroid8.1</TargetFramework>
+        <Description>Bindings for Google GRPC Context package</Description>
     </PropertyGroup>
 
     <PropertyGroup>
@@ -38,7 +36,7 @@
             Google GRPC Context bindings for Xamarin
         </Summary>
         <Description>
-            Bindings for Google's GRPC Context package (Google Play Services dependency)
+            Bindings for Google's GRPC Context package
         </Description>
         <Owners>Microsoft</Owners>
         <Authors>Microsoft</Authors>
@@ -59,6 +57,8 @@
         </PackageReleaseNotes>
         <PackageTags>xamarin, android, bindings, google, grpc, context </PackageTags>
         <PackOnBuild>true</PackOnBuild>
+        <RequireLicenceAcceptance>true</RequireLicenceAcceptance>
+        <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
     </PropertyGroup>
 
 
@@ -84,14 +84,11 @@
     <Folder Include="Jars\" />
   </ItemGroup>
   <ItemGroup>
-    <None Remove="Jars\AboutJars.txt" />
-  </ItemGroup>
-  <ItemGroup>
     <Compile Remove="Additions\LazyStringArrayList.cs" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedJar Include="..\..\externals\android\grpc-core-1.14.0.jar">
-      <Link>Jars\grpc-core-1.14.0.jar</Link>
+    <EmbeddedJar Include="..\..\externals\android\grpc-context-1.14.0.jar">
+      <Link>Jars\grpc-context-1.14.0.jar</Link>
     </EmbeddedJar>
   </ItemGroup>
   <Import Project="$(MSBuildSDKExtrasTargets)" Condition="Exists('$(MSBuildSDKExtrasTargets)')" />

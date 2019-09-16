@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
   <!--
   https://montemagno.com/converting-xamarin-libraries-to-sdk-style-multi-targeted-projects/
     
@@ -16,8 +16,7 @@
         <AndroidCodegenTarget>XAJavaInterop1</AndroidCodegenTarget>
          
         <GenerateAssemblyInfo>false</GenerateAssemblyInfo>        
-        <RootNamespace>Xamarin.Grpc.Stub</RootNamespace>
-        <TargetFramework>monoandroid8.1</TargetFramework>
+        <Description>Bindings for Google GRPC Stub package</Description>
     </PropertyGroup>
 
     <PropertyGroup>
@@ -37,7 +36,7 @@
             Google GRPC Stub bindings for Xamarin
         </Summary>
         <Description>
-            Bindings for Google's GRPC Stub package (Google Play Services dependency)
+            Bindings for Google's GRPC Stub package
         </Description>
         <Owners>Microsoft</Owners>
         <Authors>Microsoft</Authors>
@@ -53,14 +52,13 @@
         </RepositoryUrl>
         <RequireLicenceAcceptance>true</RequireLicenceAcceptance>
         <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
-       <PackageReleaseNotes>
+        <PackageReleaseNotes>
             Initial bindings
         </PackageReleaseNotes>
-        <PackageIconUrl>
-            
-        </PackageIconUrl>
         <PackageTags>xamarin, android, bindings, google, grpc, stub </PackageTags>
         <PackOnBuild>true</PackOnBuild>
+        <RequireLicenceAcceptance>true</RequireLicenceAcceptance>
+        <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
     </PropertyGroup>
 
 
@@ -84,9 +82,6 @@
   <ItemGroup>
     <Folder Include="Additions\" />
     <Folder Include="Jars\" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Remove="Jars\AboutJars.txt" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedJar Include="..\..\externals\android\grpc-stub-1.14.0.jar">
