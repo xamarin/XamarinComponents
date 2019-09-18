@@ -2,6 +2,17 @@
 
 Open Source Components for Xamarin are a collection of open source components (including bindings and plugins) created by Xamarin and others in the community.
 
+ - [Building](#building)
+    - [Prerequisites](#prerequisites)
+    - [Compiling](#compiling)
+    - [Working in Visual Studio](#working-in-visual-studio)
+ - [Xamarin Supported Open Source Components](#xamarin-supported-open-source-components)
+    - [Xamarin.Essentials](#xamarinessentials)
+ - [Community Provided Open Source Plugins](#community-provided-open-source-plugins)
+    - [Popular Plugins](#popular-plugins)
+    - [Data Caching & Databases](#data-caching--databases)
+    - [Create a Plugin for Xamarin](#create-a-plugin-for-xamarin)
+
 ## Building
 
 ### Prerequisites
