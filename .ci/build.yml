@@ -7,6 +7,7 @@ parameters:
   preBuildSteps: []                                         # any steps that need to run just before the main compilation starts
   postBuildSteps: []                                        # any steps that need to run just after the main compilation ends
   masterBranchName: 'master'                                # the "master" branch that should be used - can be something other than "master"
+  installAppleCertificates: 'true'                          # whether or not to install the Apple certificates and provisioning profiles
   # job software version parameters
   macosImage: 'Hosted macOS'                                # the name of the macOS VM image
   windowsImage: 'Hosted Windows 2019 with VS2019'           # the name of the Windows VM image
@@ -56,6 +57,32 @@ jobs:
       - bash: echo '##vso[task.setvariable variable=MD_APPLE_SDK_ROOT;]'/Applications/Xcode_${{ parameters.xcode }}.app;sudo xcode-select --switch /Applications/Xcode_${{ parameters.xcode }}.app/Contents/Developer
         displayName: 'Switch to the latest Xcode'
         condition: eq(variables['System.JobName'], 'macos')
+      - ${{ if eq(parameters.installAppleCertificates, 'true') }}:
+        - task: InstallAppleProvisioningProfile@1
+          condition: eq(variables['System.JobName'], 'macos')
+          displayName: 'Install the iOS provisioning profile'
+          inputs:
+            provProfileSecureFile: 'Components iOS Provisioning.mobileprovision'
+        - task: InstallAppleProvisioningProfile@1
+          condition: eq(variables['System.JobName'], 'macos')
+          displayName: 'Install the iOS provisioning profile'
+          inputs:
+            provProfileSecureFile: 'Components Mac Provisioning.provisionprofile'
+        - task: InstallAppleProvisioningProfile@1
+          condition: eq(variables['System.JobName'], 'macos')
+          displayName: 'Install the iOS provisioning profile'
+          inputs:
+            provProfileSecureFile: 'Components tvOS Provisioning.mobileprovision'
+        - task: InstallAppleCertificate@2
+          condition: eq(variables['System.JobName'], 'macos')
+          displayName: 'Install the iOS certificate'
+          inputs:
+            certSecureFile: 'Components iOS Certificate.p12'
+        - task: InstallAppleCertificate@2
+          condition: eq(variables['System.JobName'], 'macos')
+          displayName: 'Install the iOS certificate'
+          inputs:
+            certSecureFile: 'Components Mac Certificate.p12'
       - bash: echo '##vso[task.setvariable variable=PATH;]'$PATH:$HOME/.dotnet/tools
         displayName: 'Add ~/.dotnet/tools to the PATH environment variable'
         condition: eq(variables['System.JobName'], 'macos')
