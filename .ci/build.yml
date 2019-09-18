@@ -65,12 +65,12 @@ jobs:
             provProfileSecureFile: 'Components iOS Provisioning.mobileprovision'
         - task: InstallAppleProvisioningProfile@1
           condition: eq(variables['System.JobName'], 'macos')
-          displayName: 'Install the iOS provisioning profile'
+          displayName: 'Install the macOS provisioning profile'
           inputs:
             provProfileSecureFile: 'Components Mac Provisioning.provisionprofile'
         - task: InstallAppleProvisioningProfile@1
           condition: eq(variables['System.JobName'], 'macos')
-          displayName: 'Install the iOS provisioning profile'
+          displayName: 'Install the tvOS provisioning profile'
           inputs:
             provProfileSecureFile: 'Components tvOS Provisioning.mobileprovision'
         - task: InstallAppleCertificate@2
@@ -80,7 +80,7 @@ jobs:
             certSecureFile: 'Components iOS Certificate.p12'
         - task: InstallAppleCertificate@2
           condition: eq(variables['System.JobName'], 'macos')
-          displayName: 'Install the iOS certificate'
+          displayName: 'Install the macOS certificate'
           inputs:
             certSecureFile: 'Components Mac Certificate.p12'
       - bash: echo '##vso[task.setvariable variable=PATH;]'$PATH:$HOME/.dotnet/tools
