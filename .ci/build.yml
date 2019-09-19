@@ -195,9 +195,6 @@ jobs:
       # post-build steps
       - pwsh: dotnet cake validation.cake --namespaces="${{ join(',', parameters.validPackagePrefixes) }}"
         displayName: 'Run NuGet package validation'
-      - task: ms.vss-governance-buildtask.governance-build-task-component-detection.ComponentGovernanceComponentDetection@0
-        displayName: 'Run component detection'
-        condition: and(succeeded(), in(variables['Build.Reason'], 'IndividualCI', 'BatchedCI'))
       # custom post-build steps
       - ${{ parameters.postBuildSteps }}
       # after the build is complete
