@@ -230,6 +230,9 @@ jobs:
             api-tools nuget-diff ${{ parameters.artifactsPath }} --latest --group-ids --ignore-unchanged --output output/api-diff --cache $(Agent.TempDirectory)/api-diff/package-cache
           }
         displayName: 'Generate API diff'
+      - task: ms.vss-governance-buildtask.governance-build-task-component-detection.ComponentGovernanceComponentDetection@0
+        displayName: 'Run component detection'
+        condition: and(succeeded(), in(variables['Build.Reason'], 'IndividualCI', 'BatchedCI'))
       - task: PublishBuildArtifacts@1
         displayName: 'Publish artifacts'
         inputs:
