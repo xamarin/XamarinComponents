@@ -4,7 +4,7 @@
     
   -->
     <PropertyGroup>
-        <AssemblyName>Xamarin.Grpc.OkHttp</AssemblyName>
+        <AssemblyName>Xamarin.Grpc.Context</AssemblyName>
 
         <MonoAndroidResourcePrefix>Resources</MonoAndroidResourcePrefix>
         <MonoAndroidAssetsPrefix>Assets</MonoAndroidAssetsPrefix>
@@ -16,7 +16,7 @@
         <AndroidCodegenTarget>XAJavaInterop1</AndroidCodegenTarget>
          
         <GenerateAssemblyInfo>false</GenerateAssemblyInfo>        
-        <Description>Bindings for Google GRPC OkHttp package</Description>
+        <Description>Bindings for Google GRPC Context package</Description>
     </PropertyGroup>
 
     <PropertyGroup>
@@ -29,14 +29,14 @@
         nuget packaging
         -->
         <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-        <PackageId>Xamarin.Grpc.OkHttp</PackageId>
+        <PackageId>Xamarin.Grpc.Context</PackageId>
         <PackageVersion>1.14.0.1</PackageVersion>
-        <Title>Xamarin.Grpc.OkHttp</Title>
+        <Title>Xamarin.Grpc.Context</Title>
         <Summary>
-            Google GRPC OkHttp bindings for Xamarin
+            Google GRPC Context bindings for Xamarin
         </Summary>
         <Description>
-            Bindings for Google's GRPC OkHttp package
+            Bindings for Google's GRPC Context package
         </Description>
         <Owners>Microsoft</Owners>
         <Authors>Microsoft</Authors>
@@ -55,7 +55,7 @@
         <PackageReleaseNotes>
             Initial bindings
         </PackageReleaseNotes>
-        <PackageTags>xamarin, android, bindings, google, grpc, okhttp </PackageTags>
+        <PackageTags>xamarin, android, bindings, google, grpc, context </PackageTags>
         <PackOnBuild>true</PackOnBuild>
         <RequireLicenceAcceptance>true</RequireLicenceAcceptance>
         <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
@@ -87,8 +87,8 @@
     <Compile Remove="Additions\LazyStringArrayList.cs" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedJar Include="..\..\externals\android\grpc-okhttp-1.14.0.jar">
-      <Link>Jars\grpc-okhttp-1.14.0.jar</Link>
+    <EmbeddedJar Include="..\..\externals\android\grpc-context-1.14.0.jar">
+      <Link>Jars\grpc-context-1.14.0.jar</Link>
     </EmbeddedJar>
   </ItemGroup>
   <Import Project="$(MSBuildSDKExtrasTargets)" Condition="Exists('$(MSBuildSDKExtrasTargets)')" />
