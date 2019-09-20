@@ -1,5 +1,86 @@
 # Open Source Components for Xamarin
+
 Open Source Components for Xamarin are a collection of open source components (including bindings and plugins) created by Xamarin and others in the community.
+
+ - [Building](#building)
+    - [Prerequisites](#prerequisites)
+    - [Compiling](#compiling)
+    - [Working in Visual Studio](#working-in-visual-studio)
+ - [Xamarin Supported Open Source Components](#xamarin-supported-open-source-components)
+    - [Xamarin.Essentials](#xamarinessentials)
+ - [Community Provided Open Source Plugins](#community-provided-open-source-plugins)
+    - [Popular Plugins](#popular-plugins)
+    - [Data Caching & Databases](#data-caching--databases)
+    - [Create a Plugin for Xamarin](#create-a-plugin-for-xamarin)
+
+## Building
+
+### Prerequisites
+
+Before building the libraries and samples in this repository, you will need to install [.NET Core](https://dotnet.microsoft.com/download) and the [Cake .NET Core Tool](http://cakebuild.net):
+
+```sh
+dotnet tool install -g cake.tool
+```
+
+When building on macOS, you may also need to install [CocoaPods](https://cocoapods.org/):
+
+```sh
+# Homebrew
+brew install cocoapods
+
+# Ruby Gems
+gem install cocoapods
+```
+
+### Compiling
+
+You can either build all the libraries and samples in the repository from the root:
+
+```sh
+dotnet cake --name=<name-from-manifest>
+```
+
+Or, you can build each component separately:
+
+```sh
+cd <path-to-component>
+dotnet cake
+```
+
+The name of each component can be [found in the manifest.yaml](https://github.com/xamarin/XamarinComponents/blob/master/manifest.yaml). For example, to build the `ARCore` component, you can either start the build from the root:
+
+```sh
+dotnet cake --name=ARCore --target=nuget
+```
+
+Or, you can navigate to the folder and run it from there:
+
+```sh
+cd Android/ARCore
+dotnet cake --target=nuget
+```
+
+The following targets can be specified using the `--target=<target-name>`:
+
+ - `libs` builds the class library bindings (depends on `externals`)
+ - `externals` downloads and builds the external dependencies
+ - `samples` builds all of the samples (depends on `libs`)
+ - `nuget` builds the nuget packages (depends on `libs`)
+ - `clean` cleans up everything
+
+
+### Working in Visual Studio
+
+Before the `.sln` files will compile in the IDEs, the external dependencies need to be downloaded. This can be done by running the `externals` target:
+
+```sh
+dotnet cake --target=externals
+```
+
+After the externals are downloaded and built, the `.sln` files should compile in your IDE.
+
+---
 
 ## Xamarin Supported Open Source Components
 
@@ -14,15 +95,19 @@ Xamarin Supported Open Source components are a collection of Xamarin built bindi
 | Xamarin.Auth                          | Cross-platform API for authenticating users and storing their accounts.          | [GitHub](https://github.com/xamarin/Xamarin.Auth)                |
 
 
-### [Xamarin.Essentials](https://github.com/xamarin/essentials)
+### Xamarin.Essentials
 
 Xamarin.Essentials gives developers essential cross-platform APIs for their mobile applications. Xamarin.Essentials exposes over 25 native APIs in a single cross-platform package for developers to consume in their iOS, Android, UWP, or Xamarin.Forms application. Browse through the [documentation](https://docs.microsoft.com/en-us/xamarin/essentials) on how to get started today.
+
+The repository for Xamarin.Essentials can be found at https://github.com/xamarin/Essentials. If you have any suggestions or feature requests, or if you find any issues, please open a new issue.
+
+---
 
 ## Community Provided Open Source Plugins
 
 Plugins for Xamarin are community built NuGet and Components that add cross-platform functionality or abstracts platform specific functionality to a common API. These are both completely cross-platform and extremely small (i.e., they do 1 or 2 things really well with minimal-to-no dependencies). The Plugin API can be accessed on each platform, however, you will most likely only use the common API in a Portable Class Library or Shared Code project.
 
-**Notice**: Plugins for Xamarin featured here are produced by the amazing open source community of Xamarin developers. Xamarin does not provide official support for these plugins, please contact their creator with any issues.
+> **Notice**: Plugins for Xamarin featured here are produced by the amazing open source community of Xamarin developers. Xamarin does not provide official support for these plugins, please contact their creator with any issues.
 
 
 ### Popular Plugins
@@ -112,7 +197,7 @@ If you are looking to create a plugin be sure to browse through NuGet first and 
 * No dependency on Xamarin.Forms
 * Have a list of supported and unsupported OSs in its GitHub wiki
 
-#### Perks
+**Perks**
 * Help out fellow developers speed up development
 * Have fun and learn new tools
 * Our undying love

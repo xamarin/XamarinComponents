@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
   <!--
   https://montemagno.com/converting-xamarin-libraries-to-sdk-style-multi-targeted-projects/
     
@@ -16,6 +16,7 @@
         <AndroidCodegenTarget>XAJavaInterop1</AndroidCodegenTarget>
          
         <GenerateAssemblyInfo>false</GenerateAssemblyInfo>        
+        <Description>Bindings for Google GRPC Core package</Description>
     </PropertyGroup>
 
     <PropertyGroup>
@@ -29,13 +30,13 @@
         -->
         <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
         <PackageId>Xamarin.Grpc.Core</PackageId>
-        <PackageVersion>1.14.0</PackageVersion>
+        <PackageVersion>1.14.0.1</PackageVersion>
         <Title>Xamarin.Grpc.Core</Title>
         <Summary>
             Google GRPC Core bindings for Xamarin
         </Summary>
         <Description>
-            Bindings for Google's GRPC Core package (Google Play Services dependency)
+            Bindings for Google's GRPC Core package
         </Description>
         <Owners>Microsoft</Owners>
         <Authors>Microsoft</Authors>
@@ -52,12 +53,12 @@
         <RequireLicenceAcceptance>true</RequireLicenceAcceptance>
         <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
         <PackageReleaseNotes>
-            Initial bindings
+            Dependency update
         </PackageReleaseNotes>
-        <PackageIconUrl>
-            
-        </PackageIconUrl>
         <PackageTags>xamarin, android, bindings, google, grpc, core </PackageTags>
+        <PackOnBuild>true</PackOnBuild>
+        <RequireLicenceAcceptance>true</RequireLicenceAcceptance>
+        <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
     </PropertyGroup>
 
 
@@ -83,15 +84,15 @@
     <Folder Include="Jars\" />
   </ItemGroup>
   <ItemGroup>
-    <None Remove="Jars\AboutJars.txt" />
-  </ItemGroup>
-  <ItemGroup>
     <Compile Remove="Additions\LazyStringArrayList.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedJar Include="..\..\externals\android\grpc-core-1.14.0.jar">
       <Link>Jars\grpc-core-1.14.0.jar</Link>
     </EmbeddedJar>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Xamarin.Grpc.Context.Bindings.XamarinAndroid\Xamarin.Grpc.Context.Bindings.XamarinAndroid.csproj" />
   </ItemGroup>
   <Import Project="$(MSBuildSDKExtrasTargets)" Condition="Exists('$(MSBuildSDKExtrasTargets)')" />
 
