@@ -91,5 +91,5 @@
         path="/api/package[@name='io.grpc.internal']"
         >
     </remove-node>
-]
+    
 </metadata>

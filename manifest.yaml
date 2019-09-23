@@ -177,7 +177,7 @@
 - Name: Kotlin
   BuildScript: ./Android/Kotlin/build.cake
   TriggerPaths: [ Android/Kotlin ]
-  MacBuildTargets: [ nuget ]
+  MacBuildTargets: [ Default ]
 - Name: UniversalImageLoader
   BuildScript: ./Android/UniversalImageLoader/build.cake
   TriggerPaths: [ Android/UniversalImageLoader ]
@@ -245,6 +245,10 @@
 - Name: Google.Grpc
   BuildScript: ./XPlat/Google.Grpc/build.cake
   TriggerPaths: [ XPlat/Google.Grpc ]
+  MacBuildTargets: [ libs, nuget]
+- Name: Io.OpenCensus
+  BuildScript: ./Android/Io.OpenCensus/build.cake
+  TriggerPaths: [ Android/Io.OpenCensus ]
   MacBuildTargets: [ libs, nuget]
 
 
