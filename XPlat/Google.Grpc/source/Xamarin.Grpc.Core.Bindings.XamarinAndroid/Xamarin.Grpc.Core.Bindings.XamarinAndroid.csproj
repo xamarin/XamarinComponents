@@ -30,7 +30,7 @@
         -->
         <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
         <PackageId>Xamarin.Grpc.Core</PackageId>
-        <PackageVersion>1.14.0.1</PackageVersion>
+        <PackageVersion>1.14.0.2</PackageVersion>
         <Title>Xamarin.Grpc.Core</Title>
         <Summary>
             Google GRPC Core bindings for Xamarin
@@ -53,7 +53,7 @@
         <RequireLicenceAcceptance>true</RequireLicenceAcceptance>
         <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
         <PackageReleaseNotes>
-            Dependency update
+            transitive dependencies fixed
         </PackageReleaseNotes>
         <PackageTags>xamarin, android, bindings, google, grpc, core </PackageTags>
         <PackOnBuild>true</PackOnBuild>
@@ -77,6 +77,8 @@
 
   <ItemGroup>
     <PackageReference Include="MSBuild.Sdk.Extras" Version="1.4.0" PrivateAssets="All" />
+    <PackageReference Include="Xamarin.Io.OpenCensus.OpenCensusApi" Version="0.12.3" />
+    <PackageReference Include="Xamarin.Io.OpenCensus.OpenCensusContribGrpcMetrics" Version="0.12.3" />
   </ItemGroup>
 
   <ItemGroup>
