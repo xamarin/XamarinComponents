@@ -8,3 +8,8 @@ jobs:
       name: Hosted macOS
     steps:
       - bash: sudo $AGENT_HOMEDIRECTORY/scripts/select-xamarin-sdk.sh 6_0_0
+      - bash: |
+          ls -l /Library/Frameworks/Mono.framework/Versions
+          ls -l /Library/Frameworks/Xamarin.iOS.framework/Versions
+          ls -l /Library/Frameworks/Xamarin.Android.framework/Versions
+          ls -l /Library/Frameworks/Xamarin.Mac.framework/Versions
