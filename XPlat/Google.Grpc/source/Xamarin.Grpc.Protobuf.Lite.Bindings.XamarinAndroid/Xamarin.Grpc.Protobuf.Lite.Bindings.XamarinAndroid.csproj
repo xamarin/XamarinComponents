@@ -30,7 +30,7 @@
         -->
         <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
         <PackageId>Xamarin.Grpc.Protobuf.Lite</PackageId>
-        <PackageVersion>1.14.0.1</PackageVersion>
+        <PackageVersion>1.14.0.2</PackageVersion>
         <Title>Xamarin.Grpc.Protobuf.Lite</Title>
         <Summary>
             Google GRPC Protobuf.Lite bindings for Xamarin
@@ -53,7 +53,7 @@
         <RequireLicenceAcceptance>true</RequireLicenceAcceptance>
         <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
         <PackageReleaseNotes>
-            Initial bindings
+            transitive dependencies fixed
         </PackageReleaseNotes>
         <PackageTags>xamarin, android, bindings, google, grpc, protobuf, lite </PackageTags>
         <PackOnBuild>true</PackOnBuild>
@@ -87,6 +87,10 @@
     <EmbeddedJar Include="..\..\externals\android\grpc-protobuf-lite-1.14.0.jar">
       <Link>Jars\grpc-protobuf-lite-1.14.0.jar</Link>
     </EmbeddedJar>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Xamarin.Grpc.Core.Bindings.XamarinAndroid\Xamarin.Grpc.Core.Bindings.XamarinAndroid.csproj" />
+    <ProjectReference Include="..\Xamarin.Grpc.Context.Bindings.XamarinAndroid\Xamarin.Grpc.Context.Bindings.XamarinAndroid.csproj" />
   </ItemGroup>
   <Import Project="$(MSBuildSDKExtrasTargets)" Condition="Exists('$(MSBuildSDKExtrasTargets)')" />
 
