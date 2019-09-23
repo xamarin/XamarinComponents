@@ -13,3 +13,6 @@ jobs:
           ls -l /Library/Frameworks/Xamarin.iOS.framework/Versions
           ls -l /Library/Frameworks/Xamarin.Android.framework/Versions
           ls -l /Library/Frameworks/Xamarin.Mac.framework/Versions
+      - bash: |
+          mono --version
+          msbuild /version
