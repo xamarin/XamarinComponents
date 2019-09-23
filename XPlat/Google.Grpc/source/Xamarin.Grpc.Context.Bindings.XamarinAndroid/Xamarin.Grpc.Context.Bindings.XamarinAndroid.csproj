@@ -30,7 +30,7 @@
         -->
         <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
         <PackageId>Xamarin.Grpc.Context</PackageId>
-        <PackageVersion>1.14.0.1</PackageVersion>
+        <PackageVersion>1.14.0.2</PackageVersion>
         <Title>Xamarin.Grpc.Context</Title>
         <Summary>
             Google GRPC Context bindings for Xamarin
@@ -53,7 +53,7 @@
         <RequireLicenceAcceptance>true</RequireLicenceAcceptance>
         <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
         <PackageReleaseNotes>
-            Initial bindings
+            transitive dependencies fixed
         </PackageReleaseNotes>
         <PackageTags>xamarin, android, bindings, google, grpc, context </PackageTags>
         <PackOnBuild>true</PackOnBuild>

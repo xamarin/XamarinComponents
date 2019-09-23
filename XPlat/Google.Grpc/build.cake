@@ -80,7 +80,7 @@ Dictionary<string, string> JAR_URLS_ARTIFACT_FILES= new Dictionary<string, strin
 	},
 };
 string ARTIFACT_FILE = "";
-string NUGET_VERSION=$"{ARTIFACT_VERSION}.1";
+string NUGET_VERSION=$"{ARTIFACT_VERSION}.2";
 
 
 BuildSpec buildSpec = new BuildSpec ()
