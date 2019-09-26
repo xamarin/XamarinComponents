@@ -74,9 +74,13 @@ Dictionary<string, string> JAR_URLS_ARTIFACT_FILES= new Dictionary<string, strin
 		$"http://central.maven.org/maven2/io/grpc/grpc-protobuf-lite/{ARTIFACT_VERSION}/grpc-protobuf-lite-{ARTIFACT_VERSION}.jar",
 		$"./externals/android/grpc-protobuf-lite-{ARTIFACT_VERSION}.jar"
 	},
+	{
+		$"http://central.maven.org/maven2/io/grpc/grpc-context/{ARTIFACT_VERSION}/grpc-context-{ARTIFACT_VERSION}.jar",
+		$"./externals/android/grpc-context-{ARTIFACT_VERSION}.jar"
+	},
 };
 string ARTIFACT_FILE = "";
-string NUGET_VERSION=$"{ARTIFACT_VERSION}";
+string NUGET_VERSION=$"{ARTIFACT_VERSION}.2";
 
 
 BuildSpec buildSpec = new BuildSpec ()
@@ -94,15 +98,16 @@ BuildSpec buildSpec = new BuildSpec ()
 				},
 				new OutputFileCopy
 				{
-					FromFile = $"source/Xamarin.Grpc.Core.Bindings.XamarinAndroid/bin/Release/Xamarin.Grpc.Core.{ARTIFACT_VERSION}.nupkg"
+					FromFile = $"source/Xamarin.Grpc.Core.Bindings.XamarinAndroid/bin/Release/Xamarin.Grpc.Core.{NUGET_VERSION}.nupkg"
 				},
+
 				new OutputFileCopy
 				{
 					FromFile = "./source/Xamarin.Grpc.Stub.Bindings.XamarinAndroid/bin/Release/monoandroid81/Xamarin.Grpc.Stub.dll"
-				},
+				},				
 				new OutputFileCopy
 				{
-					FromFile = $"source/Xamarin.Grpc.Stub.Bindings.XamarinAndroid/bin/Release/Xamarin.Grpc.Stub.{ARTIFACT_VERSION}.nupkg"
+					FromFile = $"source/Xamarin.Grpc.Stub.Bindings.XamarinAndroid/bin/Release/Xamarin.Grpc.Stub.{NUGET_VERSION}.nupkg"
 				},
 
 				new OutputFileCopy
@@ -111,15 +116,25 @@ BuildSpec buildSpec = new BuildSpec ()
 				},
 				new OutputFileCopy
 				{
-					FromFile = $"source/Xamarin.Grpc.Protobuf.Lite.Bindings.XamarinAndroid/bin/Release/Xamarin.Grpc.Protobuf.Lite.{ARTIFACT_VERSION}.nupkg"
+					FromFile = $"source/Xamarin.Grpc.Protobuf.Lite.Bindings.XamarinAndroid/bin/Release/Xamarin.Grpc.Protobuf.Lite.{NUGET_VERSION}.nupkg"
 				},
+
 				new OutputFileCopy
 				{
 					FromFile = "./source/Xamarin.Grpc.OkHttp.Bindings.XamarinAndroid/bin/Release/monoandroid81/Xamarin.Grpc.OkHttp.dll"
 				},
 				new OutputFileCopy
 				{
-					FromFile = $"source/Xamarin.Grpc.OkHttp.Bindings.XamarinAndroid/bin/Release/Xamarin.Grpc.OkHttp.{ARTIFACT_VERSION}.nupkg"
+					FromFile = $"source/Xamarin.Grpc.OkHttp.Bindings.XamarinAndroid/bin/Release/Xamarin.Grpc.OkHttp.{NUGET_VERSION}.nupkg"
+				},
+				
+				new OutputFileCopy
+				{
+					FromFile = "./source/Xamarin.Grpc.Context.Bindings.XamarinAndroid/bin/Release/monoandroid81/Xamarin.Grpc.Context.dll"
+				},
+				new OutputFileCopy
+				{
+					FromFile = $"source/Xamarin.Grpc.Context.Bindings.XamarinAndroid/bin/Release/Xamarin.Grpc.Context.{NUGET_VERSION}.nupkg"
 				},
 			}
 		}
@@ -217,6 +232,16 @@ Task("nuget")
 			MSBuild
 			(
 				"./source/Xamarin.Grpc.Protobuf.Lite.Bindings.XamarinAndroid/Xamarin.Grpc.Protobuf.Lite.Bindings.XamarinAndroid.csproj",
+				configuration =>
+					configuration
+						.SetConfiguration("Release")
+						.WithTarget("Pack")
+						.WithProperty("PackageVersion", NUGET_VERSION)
+						.WithProperty("PackageOutputPath", "../../output")
+			);
+			MSBuild
+			(
+				"./source/Xamarin.Grpc.Context.Bindings.XamarinAndroid/Xamarin.Grpc.Context.Bindings.XamarinAndroid.csproj",
 				configuration =>
 					configuration
 						.SetConfiguration("Release")

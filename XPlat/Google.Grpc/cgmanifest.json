@@ -1,0 +1,55 @@
+{
+  "Registrations":[ 
+    {
+      "Component": {
+        "Type": "Maven",
+        "Maven": {
+          "ArtifactId": "google-context",
+          "GroupId": "io.grpc",
+          "Version": "1.14.0"
+        }
+      }
+    },
+    {
+      "Component": {
+        "Type": "Maven",
+        "Maven": {
+          "ArtifactId": "google-core",
+          "GroupId": "io.grpc",
+          "Version": "1.14.0"
+        }
+      }
+    },
+    {
+      "Component": {
+        "Type": "Maven",
+        "Maven": {
+          "ArtifactId": "google-stub",
+          "GroupId": "io.grpc",
+          "Version": "1.14.0"
+        }
+      }
+    },
+    {
+      "Component": {
+        "Type": "Maven",
+        "Maven": {
+          "ArtifactId": "google-okhttp",
+          "GroupId": "io.grpc",
+          "Version": "1.14.0"
+        }
+      }
+    },
+    {
+      "Component": {
+        "Type": "Maven",
+        "Maven": {
+          "ArtifactId": "google-protobuf",
+          "GroupId": "io.grpc",
+          "Version": "1.14.0"
+        }
+      }
+    },
+  ],
+  "Version": 1
+}
