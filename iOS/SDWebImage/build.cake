@@ -83,10 +83,13 @@ Task ("externals")
 	BuildXCode ("./Pods/Pods.xcodeproj", "libwebp", "libwebp", "./externals/osx/", TargetOS.Mac);
 
 	// tvOS
+	var buildSettings = new Dictionary<string, string> {
+		{ "BITCODE_GENERATION_MODE", "bitcode" },
+	};
 	EnsureDirectoryExists ("./externals/tvos");
 	CreatePodSpec ("tvos", "9.0");
-	BuildXCode ("./Pods/Pods.xcodeproj", "SDWebImage", "SDWebImage", "./externals/tvos/", TargetOS.tvOS);
-	BuildXCode ("./Pods/Pods.xcodeproj", "libwebp", "libwebp", "./externals/tvos/", TargetOS.tvOS);
+	BuildXCode ("./Pods/Pods.xcodeproj", "SDWebImage", "SDWebImage", "./externals/tvos/", TargetOS.tvOS, buildSettings);
+	BuildXCode ("./Pods/Pods.xcodeproj", "libwebp", "libwebp", "./externals/tvos/", TargetOS.tvOS, buildSettings);
 });
 
 Task ("clean").IsDependentOn ("clean-base").Does (() =>
