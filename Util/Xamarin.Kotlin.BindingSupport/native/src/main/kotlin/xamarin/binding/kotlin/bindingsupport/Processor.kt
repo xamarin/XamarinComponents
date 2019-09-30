@@ -49,7 +49,7 @@ class Processor(xmlFile: File, jarFiles: List<File>, outputFile: File?) {
     private val xtransformsdoc: Document
 
     init {
-        val urls = jarFiles.map { file -> file.toURI().toURL() }
+        val urls = jarFiles.map { file -> URL("file://${file.canonicalPath}") }
         loader = URLClassLoader(urls.toTypedArray())
 
         val builder = Builder()
