@@ -21,7 +21,8 @@ Task("libs")
 	.IsDependentOn("externals")
 	.Does(() =>
 {
-	var gradlew = MakeAbsolute((FilePath)"./native/gradlew");
+	var fn = IsRunningOnWindows() ? "gradlew.bat" : "gradlew";
+	var gradlew = MakeAbsolute((FilePath)("./native/" + fn));
 	var exitCode = StartProcess(gradlew, new ProcessSettings {
 		Arguments = "jar",
 		WorkingDirectory = "./native/"
