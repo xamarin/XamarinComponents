@@ -12,6 +12,11 @@ resources:
       type: github
       name: xamarin/XamarinComponents
       endpoint: xamarin
+      ref: refs/heads/dev/update-binderator
+
+variables:
+  DOTNET_ROLL_FORWARD_ON_NO_CANDIDATE_FX: 2
+  DOTNET_ROLL_FORWARD: LatestMajor
 
 jobs:
   - template: .ci/build.yml@components
