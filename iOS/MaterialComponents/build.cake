@@ -7,7 +7,7 @@ var IOS_PODS = new List<string> {
 	"install! 'cocoapods', :integrate_targets => false",
 	"use_frameworks!",
 	"target 'Xamarin' do",
-	"pod 'MaterialComponents', '88.2.0'",
+	"pod 'MaterialComponents', '92.0.0'",
 	"end",
 };
 
@@ -49,6 +49,9 @@ Task ("externals").IsDependentOn ("externals-base")
 		IOS_PODS.RemoveAt (1);
 
 	FileWriteLines ("./externals/Podfile", IOS_PODS.ToArray ());
+
+	//Update cocoapods
+	CocoaPodRepoUpdate();
 
 	CocoaPodInstall ("./externals", new CocoaPodInstallSettings { NoIntegrate = true });
 
