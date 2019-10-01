@@ -36,9 +36,7 @@
         <PackageLicenseUrl>https://go.microsoft.com/fwlink/?linkid=2013316</PackageLicenseUrl>
         <PackageProjectUrl>https://go.microsoft.com/fwlink/?linkid=2013421</PackageProjectUrl>
         <RepositoryUrl>https://github.com/xamarin/XamarinComponents/tree/master/XPlat/Protobuf.Lite/</RepositoryUrl>
-        <PackageReleaseNotes>
-            Initial bindings
-        </PackageReleaseNotes>
+        <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
         <PackageIconUrl></PackageIconUrl>
         <PackageTags>xamarin, android, bindings, google, protobuf, lite </PackageTags>
     </PropertyGroup>
