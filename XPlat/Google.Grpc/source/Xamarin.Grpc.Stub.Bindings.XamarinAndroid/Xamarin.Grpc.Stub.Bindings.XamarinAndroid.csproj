@@ -1,8 +1,4 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
-  <!--
-  https://montemagno.com/converting-xamarin-libraries-to-sdk-style-multi-targeted-projects/
-    
-  -->
+﻿<Project Sdk="MSBuild.Sdk.Extras/2.0.54">
     <PropertyGroup>
         <AssemblyName>Xamarin.Grpc.Stub</AssemblyName>
 
@@ -25,9 +21,6 @@
     </PropertyGroup>
 
     <PropertyGroup>
-        <!-- 
-        nuget packaging
-        -->
         <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
         <PackageId>Xamarin.Grpc.Stub</PackageId>
         <PackageVersion>1.14.0.2</PackageVersion>
@@ -63,36 +56,21 @@
 
 
     <ItemGroup>
-        <!--
-        -->
         <TransformFile Include="Transforms\*.xml" />
     </ItemGroup>
 
-  <ItemGroup>
-    <!--
-    <ProjectReference Include="..\things\Xamarin.Android.Things.csproj" />
-    -->
-  </ItemGroup>
+    <ItemGroup>
+      <Folder Include="Additions\" />
+      <Folder Include="Jars\" />
+    </ItemGroup>
+    <ItemGroup>
+      <EmbeddedJar Include="..\..\externals\android\grpc-stub-1.14.0.jar">
+        <Link>Jars\grpc-stub-1.14.0.jar</Link>
+      </EmbeddedJar>
+    </ItemGroup>
+    <ItemGroup>
+      <ProjectReference Include="..\Xamarin.Grpc.Core.Bindings.XamarinAndroid\Xamarin.Grpc.Core.Bindings.XamarinAndroid.csproj" />
+      <ProjectReference Include="..\Xamarin.Grpc.Context.Bindings.XamarinAndroid\Xamarin.Grpc.Context.Bindings.XamarinAndroid.csproj" />
+    </ItemGroup>
 
-
-  <ItemGroup>
-    <PackageReference Include="MSBuild.Sdk.Extras" Version="1.4.0" PrivateAssets="All" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Additions\" />
-    <Folder Include="Jars\" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedJar Include="..\..\externals\android\grpc-stub-1.14.0.jar">
-      <Link>Jars\grpc-stub-1.14.0.jar</Link>
-    </EmbeddedJar>
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Xamarin.Grpc.Core.Bindings.XamarinAndroid\Xamarin.Grpc.Core.Bindings.XamarinAndroid.csproj" />
-    <ProjectReference Include="..\Xamarin.Grpc.Context.Bindings.XamarinAndroid\Xamarin.Grpc.Context.Bindings.XamarinAndroid.csproj" />
-  </ItemGroup>
-  <Import Project="$(MSBuildSDKExtrasTargets)" Condition="Exists('$(MSBuildSDKExtrasTargets)')" />
-
-    
 </Project>
