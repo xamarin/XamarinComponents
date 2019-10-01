@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="MSBuild.Sdk.Extras/2.0.54">
     <PropertyGroup>
         <AssemblyName>Xamarin.Android.Crashlytics</AssemblyName>
         <AssemblyTitle>Xamarin.Android.Crashlytics</AssemblyTitle>
@@ -48,7 +48,6 @@
     </ItemGroup>
     <ItemGroup>
         <PackageReference Include="Xamarin.Build.Download" Version="0.4.11" />
-        <PackageReference Include="MSBuild.Sdk.Extras" Version="1.4.0" PrivateAssets="All" />
         <PackageReference Include="Xamarin.Firebase.Core" Version="60.1142.1" />
     </ItemGroup>
     <ItemGroup>
@@ -75,5 +74,4 @@
         <XamarinBuildResourceMergeThrowOnMissingAssembly>false</XamarinBuildResourceMergeThrowOnMissingAssembly>
     </PropertyGroup>
     <Import Project="Xamarin.Android.Crashlytics.targets" />
-    <Import Project="$(MSBuildSDKExtrasTargets)" Condition="Exists('$(MSBuildSDKExtrasTargets)')" />
 </Project>
