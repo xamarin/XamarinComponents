@@ -18,6 +18,11 @@ jobs:
     parameters:
       timeoutInMinutes: 360
       buildType: 'manifest'
+      mono: '6_4_0'
+      xcode: '11'
+      dotnet: '3.0.x'
+      cake: '0.35.0'
+      apiTools: '1.1.0-preview.1'
       validPackagePrefixes: [ 'Mono', 'mdoc', 'Masonry', 'SkiaSharp', 'HarfBuzzSharp' ]
       tools:
         - 'Xamarin.AndroidBinderator.Tool': '0.4.1'
