@@ -16,7 +16,7 @@ Task("native")
 	.Does(() =>
 {
 	var fn = IsRunningOnWindows() ? "gradlew.bat" : "gradlew";
-	var gradlew = MakeAbsolute((FilePath)("./native/" + fn));
+	var gradlew = MakeAbsolute((FilePath)("./native/KotlinSample/" + fn));
 	var exit = StartProcess(gradlew, new ProcessSettings {
 		Arguments = "assemble",
 		WorkingDirectory = "./native/KotlinSample/"
