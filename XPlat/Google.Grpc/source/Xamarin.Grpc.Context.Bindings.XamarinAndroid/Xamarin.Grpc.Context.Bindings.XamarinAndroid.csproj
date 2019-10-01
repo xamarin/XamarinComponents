@@ -1,8 +1,4 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
-  <!--
-  https://montemagno.com/converting-xamarin-libraries-to-sdk-style-multi-targeted-projects/
-    
-  -->
+﻿<Project Sdk="MSBuild.Sdk.Extras/2.0.54">
     <PropertyGroup>
         <AssemblyName>Xamarin.Grpc.Context</AssemblyName>
 
@@ -25,9 +21,6 @@
     </PropertyGroup>
 
     <PropertyGroup>
-        <!-- 
-        nuget packaging
-        -->
         <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
         <PackageId>Xamarin.Grpc.Context</PackageId>
         <PackageVersion>1.14.0.2</PackageVersion>
@@ -63,21 +56,8 @@
 
 
     <ItemGroup>
-        <!--
-        -->
         <TransformFile Include="Transforms\*.xml" />
     </ItemGroup>
-
-  <ItemGroup>
-    <!--
-    <ProjectReference Include="..\things\Xamarin.Android.Things.csproj" />
-    -->
-  </ItemGroup>
-
-
-  <ItemGroup>
-    <PackageReference Include="MSBuild.Sdk.Extras" Version="1.4.0" PrivateAssets="All" />
-  </ItemGroup>
 
   <ItemGroup>
     <Folder Include="Additions\" />
@@ -91,7 +71,5 @@
       <Link>Jars\grpc-context-1.14.0.jar</Link>
     </EmbeddedJar>
   </ItemGroup>
-  <Import Project="$(MSBuildSDKExtrasTargets)" Condition="Exists('$(MSBuildSDKExtrasTargets)')" />
 
-    
 </Project>
