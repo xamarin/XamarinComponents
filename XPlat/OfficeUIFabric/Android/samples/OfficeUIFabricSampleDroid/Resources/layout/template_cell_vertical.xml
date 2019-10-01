@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ Copyright (c) Microsoft Corporation. All rights reserved.
+  ~ Licensed under the MIT License.
+  -->
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/template_view_cell_background_vertical"
+    android:orientation="vertical"
+    android:padding="@dimen/default_view_margin">
+
+    <android.support.v7.widget.AppCompatTextView
+        android:id="@+id/cell_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textAppearance="@style/TextAppearance.DemoListItem"
+        tools:text="@string/cell_sample_title" />
+
+    <android.support.v7.widget.AppCompatTextView
+        android:id="@+id/cell_description"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/cell_vertical_spacing"
+        android:textAppearance="@style/TextAppearance.DemoListItemSubtitle"
+        tools:text="@string/cell_sample_description" />
+
+</LinearLayout>

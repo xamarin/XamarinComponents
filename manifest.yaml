@@ -177,7 +177,7 @@
 - Name: Kotlin
   BuildScript: ./Android/Kotlin/build.cake
   TriggerPaths: [ Android/Kotlin ]
-  MacBuildTargets: [ nuget ]
+  MacBuildTargets: [ Default ]
 - Name: UniversalImageLoader
   BuildScript: ./Android/UniversalImageLoader/build.cake
   TriggerPaths: [ Android/UniversalImageLoader ]
@@ -209,7 +209,7 @@
 - Name: SceneForm
   BuildScript: ./Android/SceneForm/build.cake
   TriggerPaths: [ Android/SceneForm ]
-  MacBuildTargets: [ libs, nuget ]
+  MacBuildTargets: [ nuget, samples ]
 - Name: GoogleAutoValue
   BuildScript: ./Android/GoogleAutoValue/build.cake
   TriggerPaths: [ Android/GoogleAutoValue ]
@@ -218,7 +218,11 @@
   BuildScript: ./Android/GooglePlaces/build.cake
   TriggerPaths: [ Android/GooglePlaces ]
   MacBuildTargets: [ nuget, samples ]
-
+- Name: GoogleBillingClient
+  BuildScript: ./Android/GoogleBillingClient/build.cake
+  TriggerPaths: [ Android/GoogleBillingClient ]
+  MacBuildTargets: [ libs, nuget]
+  
 # will be XPlat in the future
 - Name: TensorFlow.Lite
   BuildScript: ./XPlat/TensorFlow.Lite/build.cake
@@ -242,6 +246,11 @@
   BuildScript: ./XPlat/Google.Grpc/build.cake
   TriggerPaths: [ XPlat/Google.Grpc ]
   MacBuildTargets: [ libs, nuget]
+- Name: Io.OpenCensus
+  BuildScript: ./Android/Io.OpenCensus/build.cake
+  TriggerPaths: [ Android/Io.OpenCensus ]
+  MacBuildTargets: [ libs, nuget]
+
 
 #######################################################
 # iOS
@@ -548,6 +557,14 @@
   BuildScript: ./XPlat/DropboxApiV2/build.cake
   TriggerPaths: [ XPlat/DropboxApiV2 ]
   MacBuildTargets: [ nuget, samples ]
+- Name: OfficeUIFabricAndroid
+  BuildScript: ./XPlat/OfficeUIFabric/Android/build.cake
+  TriggerPaths: [ XPlat/OfficeUIFabric/Android ]
+  MacBuildTargets: [ nuget, samples ]
+- Name: OfficeUIFabriciOS
+  BuildScript: ./XPlat/OfficeUIFabric/iOS/build.cake
+  TriggerPaths: [ XPlat/OfficeUIFabric/iOS ]
+  MacBuildTargets: [ nuget, samples ]
 
 #######################################################
 # Mac
@@ -574,3 +591,20 @@
   BuildScript: ./Util/NugetAuditor/build.cake
   TriggerPaths: [ Util/NugetAuditor ]
   MacBuildTargets: [ nuget ]
+- Name: SamplePackager
+  BuildScript: ./Util/SamplePackager/build.cake
+  TriggerPaths: [ Util/SamplePackager ]
+  MacBuildTargets: [ nuget ]
+- Name: AndroidManifestMerger
+  BuildScript: ./Util/AndroidManifestMerger/build.cake
+  TriggerPaths: [ Util/AndroidManifestMerger ]
+  WindowsBuildTargets: [ Default ]
+- Name: Xamarin.AndroidBinderator
+  BuildScript: ./Util/Xamarin.AndroidBinderator/build.cake
+  TriggerPaths: [ Util/Xamarin.AndroidBinderator ]
+  WindowsBuildTargets: [ nuget ]
+- Name: Xamarin.Kotlin.BindingSupport
+  BuildScript: ./Util/Xamarin.Kotlin.BindingSupport/build.cake
+  TriggerPaths: [ Util/Xamarin.Kotlin.BindingSupport ]
+  WindowsBuildTargets: [ nuget, samples ]
+  MacBuildTargets: [ nuget, samples ]

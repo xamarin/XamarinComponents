@@ -1,0 +1,15 @@
+{
+  "Registrations": [
+    {
+      "Component": {
+        "Type": "Maven",
+        "Maven": {
+          "ArtifactId": "core",
+          "GroupId": "com.google.ar",
+          "Version": "1.11.0"
+        }
+      }
+    }
+  ],
+  "Version": 1
+}

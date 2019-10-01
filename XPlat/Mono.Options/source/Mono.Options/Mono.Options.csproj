@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="MSBuild.Sdk.Extras/2.0.54">
 
   <PropertyGroup>
     <TargetFrameworks>net40-client;net40;netstandard1.3;netstandard2.0;portable-net45+win8+wpa81+wp8</TargetFrameworks>
@@ -22,17 +22,11 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="MSBuild.Sdk.Extras" Version="1.5.4" PrivateAssets="All" />
-  </ItemGroup>
-
-  <ItemGroup>
     <Compile Include="..\..\externals\*.cs" />
   </ItemGroup>
 
   <ItemGroup>
     <None Include="..\..\External-Dependency-Info.txt" PackagePath="THIRD-PARTY-NOTICES.txt" Pack="true" />
   </ItemGroup>
-
-  <Import Project="$(MSBuildSdkExtrasTargets)" Condition="Exists('$(MSBuildSdkExtrasTargets)')" />
 
 </Project>

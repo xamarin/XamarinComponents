@@ -1,10 +1,7 @@
-
-#load "../../common.cake"
-
 var TARGET = Argument ("t", Argument ("target", "Default"));
 
 var PLACES_VERSION = "1.1.0";
-var XAMARIN_FIX_VERSION = "1";
+var XAMARIN_FIX_VERSION = "2";
 var PLACES_NUGET_VERSION = $"{PLACES_VERSION}.{XAMARIN_FIX_VERSION}";
 var PLACES_URL = $"https://maven.google.com/com/google/android/libraries/places/places/{PLACES_VERSION}/places-{PLACES_VERSION}.aar";
 var ANDROID_SDK_BUILD_TOOLS_VERSION = "28.0.3";
@@ -77,5 +74,8 @@ Task ("clean")
 			Force = true
 		});
 });
+
+Task ("Default")
+	.IsDependentOn("samples");
 
 RunTarget (TARGET);

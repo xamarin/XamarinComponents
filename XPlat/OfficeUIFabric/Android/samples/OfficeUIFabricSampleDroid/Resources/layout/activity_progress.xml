@@ -1,0 +1,197 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ Copyright (c) Microsoft Corporation. All rights reserved.
+  ~ Licensed under the MIT License.
+  -->
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:divider="@drawable/demo_divider"
+    android:orientation="vertical"
+    android:padding="@dimen/default_layout_margin"
+    android:showDividers="middle"
+    tools:context=".demos.ProgressActivity">
+
+    <TextView
+        style="@style/TextAppearance.UIFabric.Headline"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingBottom="@dimen/demo_headline_padding_bottom"
+        android:text="@string/circular_progress" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/demo_headline_divider_height"
+        android:background="@drawable/ms_row_divider" />
+
+    <TableLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:divider="@drawable/demo_divider"
+        android:showDividers="middle">
+
+        <!--Large-->
+
+        <TableRow>
+
+            <LinearLayout
+                android:layout_gravity="center_vertical"
+                android:gravity="center_vertical"
+                android:minHeight="@dimen/circular_progress_text_area_min_height"
+                android:layout_marginEnd="@dimen/circular_progress_text_area_spacing"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/progress_bar_label_large"
+                    style="@style/TextAppearance.DemoDescription"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/circular_progress_large" />
+
+                <TextView
+                    android:id="@+id/progress_bar_label_large_size"
+                    style="@style/TextAppearance.DemoDescription.Label"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/circular_progress_large_size" />
+
+            </LinearLayout>
+
+            <ProgressBar
+                android:id="@+id/progress_bar_large"
+                style="@style/Widget.UIFabric.CircularProgress.Large"
+                android:layout_gravity="start|center_vertical"
+                android:layout_marginEnd="@dimen/circular_progress_spacing" />
+
+            <ProgressBar
+                android:id="@+id/progress_bar_large_primary"
+                style="@style/Widget.UIFabric.CircularProgress.Large.Primary"
+                android:layout_gravity="start|center_vertical" />
+
+        </TableRow>
+
+        <!--Medium-->
+
+        <TableRow android:layout_marginTop="@dimen/circular_progress_margin_top_medium">
+
+            <LinearLayout
+                android:layout_gravity="center_vertical"
+                android:gravity="center_vertical"
+                android:minHeight="@dimen/circular_progress_text_area_min_height"
+                android:layout_marginEnd="@dimen/circular_progress_text_area_spacing"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/progress_bar_label_medium"
+                    style="@style/TextAppearance.DemoDescription"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/circular_progress_medium" />
+
+                <TextView
+                    android:id="@+id/progress_bar_label_medium_size"
+                    style="@style/TextAppearance.DemoDescription.Label"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/circular_progress_medium_size" />
+
+            </LinearLayout>
+
+            <ProgressBar
+                android:id="@+id/progress_bar_medium"
+                style="@style/Widget.UIFabric.CircularProgress.Medium"
+                android:layout_gravity="start|center_vertical"
+                android:layout_marginEnd="@dimen/circular_progress_spacing" />
+
+            <ProgressBar
+                android:id="@+id/progress_bar_medium_primary"
+                style="@style/Widget.UIFabric.CircularProgress.Medium.Primary"
+                android:layout_gravity="start|center_vertical" />
+
+        </TableRow>
+
+        <!--Small / Default-->
+
+        <TableRow android:layout_marginTop="@dimen/circular_progress_margin_top_small">
+
+            <LinearLayout
+                android:layout_gravity="center_vertical"
+                android:gravity="center_vertical"
+                android:minHeight="@dimen/circular_progress_text_area_min_height"
+                android:layout_marginEnd="@dimen/circular_progress_text_area_spacing"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/progress_bar_label"
+                    style="@style/TextAppearance.DemoDescription"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/circular_progress_small" />
+
+                <TextView
+                    android:id="@+id/progress_bar_label_size"
+                    style="@style/TextAppearance.DemoDescription.Label"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/circular_progress_small_size" />
+
+            </LinearLayout>
+
+            <ProgressBar
+                android:id="@+id/progress_bar"
+                style="@style/Widget.UIFabric.CircularProgress.Small"
+                android:layout_gravity="start|center_vertical"
+                android:layout_marginEnd="@dimen/circular_progress_spacing" />
+
+            <ProgressBar
+                android:id="@+id/progress_bar_small_primary"
+                style="@style/Widget.UIFabric.CircularProgress.Small.Primary"
+                android:layout_gravity="start|center_vertical" />
+
+        </TableRow>
+
+        <!--XSmall-->
+
+        <TableRow>
+
+            <LinearLayout
+                android:layout_gravity="center_vertical"
+                android:gravity="center_vertical"
+                android:minHeight="@dimen/circular_progress_text_area_min_height"
+                android:layout_marginEnd="@dimen/circular_progress_text_area_spacing"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/progress_bar_label_xsmall"
+                    style="@style/TextAppearance.DemoDescription"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/circular_progress_xsmall" />
+
+                <TextView
+                    android:id="@+id/progress_bar_label_xsmall_size"
+                    style="@style/TextAppearance.DemoDescription.Label"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/circular_progress_xsmall_size" />
+
+            </LinearLayout>
+
+            <ProgressBar
+                android:id="@+id/progress_bar_xsmall"
+                style="@style/Widget.UIFabric.CircularProgress.XSmall"
+                android:layout_gravity="start|center_vertical"
+                android:layout_marginEnd="@dimen/circular_progress_spacing" />
+
+            <ProgressBar
+                android:id="@+id/progress_bar_xsmall_primary"
+                style="@style/Widget.UIFabric.CircularProgress.XSmall.Primary"
+                android:layout_gravity="start|center_vertical" />
+
+        </TableRow>
+
+    </TableLayout>
+
+</LinearLayout>

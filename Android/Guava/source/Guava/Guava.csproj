@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="MSBuild.Sdk.Extras/2.0.54">
   <PropertyGroup>
-    <TargetFrameworks>MonoAndroid50</TargetFrameworks>
+    <TargetFramework>MonoAndroid50</TargetFramework>
     <IsBindingProject>true</IsBindingProject>
     <AssemblyName>Xamarin.Google.Guava</AssemblyName>
     <MonoAndroidResourcePrefix>Resources</MonoAndroidResourcePrefix>
@@ -20,10 +20,10 @@
     <Title>Google Guava reference library for Xamarin.Android</Title>
     <Summary>Xamarin.Android bindings for Google Guava</Summary>
     <Description>
-    NOTE: This package is meant to be used as a reference only for other binding projects that depend on Guava.
-    This package does not expose any useful API's in the .dll itself.
-    
-    Guava is a set of core libraries that includes new collection types (such as multimap and multiset), immutable collections, a graph library, functional types, an in-memory cache, and APIs/utilities for concurrency, I/O, hashing, primitives, reflection, string processing, and much more!
+NOTE: This package is meant to be used as a reference only for other binding projects that depend on Guava.
+This package does not expose any useful API's in the .dll itself.
+
+Guava is a set of core libraries that includes new collection types (such as multimap and multiset), immutable collections, a graph library, functional types, an in-memory cache, and APIs/utilities for concurrency, I/O, hashing, primitives, reflection, string processing, and much more!
     </Description>
     <Authors>Microsoft</Authors>
     <Owners>Microsoft</Owners>
@@ -31,52 +31,18 @@
     <PackageProjectUrl>https://go.microsoft.com/fwlink/?linkid=865028</PackageProjectUrl>
     <PackageLicenseUrl>https://go.microsoft.com/fwlink/?linkid=865030</PackageLicenseUrl>
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
-    <PackageVersion>27.1.0.1</PackageVersion>
+    <PackageVersion>27.1.0.2</PackageVersion>
   </PropertyGroup>
 
   <ItemGroup>
-    <TransformFile Include="Transforms\Metadata.xml" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <None Include="..\..\externals\guava.jar">
-      <Link>guava.jar</Link>
-    </None>
-    <None Include="..\..\externals\animal-sniffer-annotations.jar">
-      <Link>animal-sniffer-annotations.jar</Link>
-    </None>
-    <None Include="..\..\externals\checker-compat-qual-annotations.jar">
-      <Link>checker-compat-qual-annotations.jar</Link>
-    </None>
-    <None Include="..\..\externals\error-prone-annotations.jar">
-      <Link>error-prone-annotations.jar</Link>
-    </None>
-    <None Include="..\..\externals\j2objc-annotations.jar">
-      <Link>j2objc-annotations.jar</Link>
-    </None>
-    <None Include="..\..\externals\jsr305-annotations.jar">
-      <Link>jsr305-annotations.jar</Link>
-    </None>
+    <None Include="Guava.targets" Pack="True" PackagePath="build\$(TargetFramework)\$(PackageId).targets" />
+    <None Include="..\..\externals\guava.jar" Pack="True" PackagePath="build\$(TargetFramework)\guava.jar" />
     <None Include="..\..\External-Dependency-Info.txt" Pack="True" PackagePath="THIRD-PARTY-NOTICES.txt" />
   </ItemGroup>
 
   <ItemGroup>
-    <EmbeddedReferenceJar Include="..\..\externals\guava.jar" />
-    <ReferenceJar Include="..\..\externals\animal-sniffer-annotations.jar" />
-    <ReferenceJar Include="..\..\externals\checker-compat-qual-annotations.jar" />
-    <ReferenceJar Include="..\..\externals\error-prone-annotations.jar" />
-    <ReferenceJar Include="..\..\externals\j2objc-annotations.jar" />
-    <ReferenceJar Include="..\..\externals\jsr305-annotations.jar" />
+    <ProjectReference Include="..\Guava.FailureAccess\Guava.FailureAccess.csproj" PrivateAssets="None" />
+    <ProjectReference Include="..\Guava.ListenableFuture\Guava.ListenableFuture.csproj" PrivateAssets="None" />
   </ItemGroup>
 
-  <ItemGroup>
-    <PackageReference Include="MSBuild.Sdk.Extras" Version="1.4.0" PrivateAssets="All" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <ProjectReference Include="..\Guava.FailureAccess\Guava.FailureAccess.csproj" />
-    <ProjectReference Include="..\Guava.ListenableFuture\Guava.ListenableFuture.csproj" />
-  </ItemGroup>
-
-  <Import Project="$(MSBuildSDKExtrasTargets)" Condition="Exists('$(MSBuildSDKExtrasTargets)')" />
 </Project>

@@ -12,42 +12,47 @@ time to get the right "blend" of parsing, but I think we have achieved it.
 There are a few steps to get everything in place. First, we need to set up the 
 options expected:
 
-    // these variables will be set when the command line is parsed
-    var verbosity = 0;
-    var shouldShowHelp = false;
-    var names = new List<string> ();
-    var repeat = 1;
-
-    // thses are the available options, not that they set the variables
-    var options = new OptionSet { 
-        { "n|name=", "the name of someone to greet.", n => names.Add (n) }, 
-        { "r|repeat=", "the number of times to repeat the greeting.", (int r) => repeat = r }, 
-        { "v", "increase debug message verbosity", v => { 
-            if (v != null) 
-                ++verbosity; 
-        } }, 
-        { "h|help", "show this message and exit", h => shouldShowHelp = h != null },
-    };
+```c#
+// these variables will be set when the command line is parsed
+var verbosity = 0;
+var shouldShowHelp = false;
+var names = new List<string> ();
+var repeat = 1;
+// thses are the available options, not that they set the variables
+var options = new OptionSet { 
+    { "n|name=", "the name of someone to greet.", n => names.Add (n) }, 
+    { "r|repeat=", "the number of times to repeat the greeting.", (int r) => repeat = r }, 
+    { "v", "increase debug message verbosity", v => { 
+        if (v != null) 
+            ++verbosity; 
+    } }, 
+    { "h|help", "show this message and exit", h => shouldShowHelp = h != null },
+};
+```
 
 Then, in the `static void Main (string[] args)` method, we parse the incoming 
 arguments and get a list of any extras:
 
-    List<string> extra;
-    try {
-        // parse the command line
-        extra = options.Parse (args);
-    } catch (OptionException e) {
-        // output some error message
-        Console.Write ("greet: ");
-        Console.WriteLine (e.Message);
-        Console.WriteLine ("Try `greet --help' for more information.");
-        return;
-    }
+```c#
+List<string> extra;
+try {
+    // parse the command line
+    extra = options.Parse (args);
+} catch (OptionException e) {
+    // output some error message
+    Console.Write ("greet: ");
+    Console.WriteLine (e.Message);
+    Console.WriteLine ("Try `greet --help' for more information.");
+    return;
+}
+```
 
 This will read in the argements from the command line and set the variables. For
 example, if the command line is:
 
-    > greet.exe -n Matthew Welcome to Xamarin {0}!
+```console
+> greet.exe -n Matthew Welcome to Xamarin {0}!
+```
 
 Then, the variables will be processed and result in:
 
@@ -60,15 +65,17 @@ Then, the variables will be processed and result in:
 Finally, to show a "help" screen / output the available arguments to
 console, there is a nifty `WriteOptionDescriptions` method:
 
-    // show some app description message
-    Console.WriteLine ("Usage: OptionsSample.exe [OPTIONS]+ message");
-    Console.WriteLine ("Greet a list of individuals with an optional message.");
-    Console.WriteLine ("If no message is specified, a generic greeting is used.");
-    Console.WriteLine ();
-    
-    // output the options
-    Console.WriteLine ("Options:");
-    options.WriteOptionDescriptions (Console.Out);
+```c#
+// show some app description message
+Console.WriteLine ("Usage: OptionsSample.exe [OPTIONS]+ message");
+Console.WriteLine ("Greet a list of individuals with an optional message.");
+Console.WriteLine ("If no message is specified, a generic greeting is used.");
+Console.WriteLine ();
+
+// output the options
+Console.WriteLine ("Options:");
+options.WriteOptionDescriptions (Console.Out);
+```
 
 ## Using OptionSet and Option
  
@@ -82,9 +89,11 @@ to perform when the `Option` requirements are met (e.g. when a required value ha
 encountered). This phase is not thread safe. All options added during this phase are considered 
 to have been _registered_.
  
-    OptionSet p = new OptionSet () {
-      { "option-a", v => { /* action to perform */ } },
-    };
+```c#
+OptionSet p = new OptionSet () {
+  { "option-a", v => { /* action to perform */ } },
+};
+```
 
 There are three ways to add `Option`s to the `OptionSet`:
 
@@ -114,57 +123,66 @@ Subclasses can override the following `virtual` methods to customize option pars
 
 The following example demonstrates some simple usage of `OptionSet`:
 
-    // these variables will be set when the command line is parsed
-    var verbosity = 0;
-    var shouldShowHelp = false;
-    var names = new List<string> ();
-    var repeat = 1;
-
-    // thses are the available options, not that they set the variables
-    var options = new OptionSet { 
-        { "n|name=", "the name of someone to greet.", n => names.Add (n) }, 
-        { "r|repeat=", "the number of times to repeat the greeting.", (int r) => repeat = r }, 
-        { "v", "increase debug message verbosity", v => { 
-            if (v != null) 
-                ++verbosity; 
-        } }, 
-        { "h|help", "show this message and exit", h => shouldShowHelp = h != null },
-    };
+```c#
+// these variables will be set when the command line is parsed
+var verbosity = 0;
+var shouldShowHelp = false;
+var names = new List<string> ();
+var repeat = 1;
+// thses are the available options, not that they set the variables
+var options = new OptionSet { 
+    { "n|name=", "the name of someone to greet.", n => names.Add (n) }, 
+    { "r|repeat=", "the number of times to repeat the greeting.", (int r) => repeat = r }, 
+    { "v", "increase debug message verbosity", v => { 
+        if (v != null) 
+            ++verbosity; 
+    } }, 
+    { "h|help", "show this message and exit", h => shouldShowHelp = h != null },
+};
+```
 
 The output (under the influence of different command-line arguments) is:
 
-    $ mono greet.exe --help
-    Usage: greet [OPTIONS]+ message
-    Greet a list of individuals with an optional message.
-    If no message is specified, a generic greeting is used.
-    
-    Options:
-      -n, --name=NAME            the NAME of someone to greet.
-      -r, --repeat=TIMES         the number of TIMES to repeat the greeting.
-                                   this must be an integer.
-      -v                         increase debug message verbosity
-      -h, --help                 show this message and exit
+```console
+$ mono greet.exe --help
+Usage: greet [OPTIONS]+ message
+Greet a list of individuals with an optional message.
+If no message is specified, a generic greeting is used.
+
+Options:
+  -n, --name=NAME            the NAME of someone to greet.
+  -r, --repeat=TIMES         the number of TIMES to repeat the greeting.
+                               this must be an integer.
+  -v                         increase debug message verbosity
+  -h, --help                 show this message and exit
+```
 
 Different forms of arguments can be parsed:
 
-    $ mono greet.exe -v- -n A -name=B --name=C /name D -nE
-    Hello A!
-    Hello B!
-    Hello C!
-    Hello D!
-    Hello E!
+```console
+$ mono greet.exe -v- -n A -name=B --name=C /name D -nE
+Hello A!
+Hello B!
+Hello C!
+Hello D!
+Hello E!
+```
 
 Extras are parsed:
 
-    $ mono greet.exe -v -n E custom greeting for: {0}
-    # Using new message: custom greeting for: {0}
-    custom greeting for: E
-    
+```console
+$ mono greet.exe -v -n E custom greeting for: {0}
+# Using new message: custom greeting for: {0}
+custom greeting for: E
+```
+
 Errors are handled:
 
-    $ mono greet.exe -r not-an-int
-    greet: Could not convert string `not-an-int' to type Int32 for option `-r'.
-    Try `greet --help' for more information.
+```console
+$ mono greet.exe -r not-an-int
+greet: Could not convert string `not-an-int' to type Int32 for option `-r'.
+Try `greet --help' for more information.
+```
 
 Notice how the output produced by `--help` uses the descriptions provided during `OptionSet` 
 initialization. Notice that the `Option` requiring a value (`n|name=`) can use multiple 
@@ -187,75 +205,79 @@ Finally, note that the action can specify a type to use. If no type is provided,
 parameter will be a `string`. If a type is provided, then `System.ComponentModel.TypeConverter`
 will be used to convert a string to the specified type.
 
-    var show_help = false;
-    var macros = new Dictionary<string, string>();
-    bool create = false, extract = false, list = false;
-    string output = null, input = null;
-    string color  = null;
-
-    var p = new OptionSet {
-        // gcc-like options
-        { "D:", "Predefine a macro with an (optional) value.", (m, v) => {
-            if (m == null)
-                throw new OptionException ("Missing macro name for option -D.", "-D");
-            macros.Add (m, v);
-        } },
-        { "d={-->}{=>}", "Alternate macro syntax.", (m, v) => macros.Add (m, v) },
-        { "o=", "Specify the output file", v => output = v },
-
-        // tar-like options
-        { "f=", "The input file", v => input = v },
-        { "x", "Extract the file", v => extract = v != null },
-        { "c", "Create the file", v => create = v != null },
-        { "t", "List the file", v => list = v != null },
-
-        // ls-like optional values
-        { "color:", "control whether and when color is used", 
-            v => color = v },
-
-        // other...
-        { "h|help", "show this message and exit", v => show_help = v != null },
-        
-        // default
-        { "<>", v => Console.WriteLine ("def handler: color={0}; arg={1}", color, v)},
-    };
-
-The output (under the influence of different command-line arguments) is:
-
-    $ mono bundling.exe --help
-    Usage: bundling [OPTIONS]+
-    Demo program to show the effects of bundling options and their values
+```c#
+var show_help = false;
+var macros = new Dictionary<string, string>();
+bool create = false, extract = false, list = false;
+string output = null, input = null;
+string color  = null;
+var p = new OptionSet {
+    // gcc-like options
+    { "D:", "Predefine a macro with an (optional) value.", (m, v) => {
+        if (m == null)
+            throw new OptionException ("Missing macro name for option -D.", "-D");
+        macros.Add (m, v);
+    } },
+    { "d={-->}{=>}", "Alternate macro syntax.", (m, v) => macros.Add (m, v) },
+    { "o=", "Specify the output file", v => output = v },
+    // tar-like options
+    { "f=", "The input file", v => input = v },
+    { "x", "Extract the file", v => extract = v != null },
+    { "c", "Create the file", v => create = v != null },
+    { "t", "List the file", v => list = v != null },
+    // ls-like optional values
+    { "color:", "control whether and when color is used", 
+        v => color = v },
+    // other...
+    { "h|help", "show this message and exit", v => show_help = v != null },
     
-    Options:
-      -D[=VALUE1:VALUE2]         Predefine a macro with an (optional) value.
-      -d=VALUE1-->VALUE2         Alternate macro syntax.
-      -o=VALUE                   Specify the output file
-      -f=VALUE                   The input file
-      -x                         Extract the file
-      -c                         Create the file
-      -t                         List the file
-          --color[=VALUE]        control whether and when color is used
-      -h, --help                 show this message and exit
+    // default
+    { "<>", v => Console.WriteLine ("def handler: color={0}; arg={1}", color, v)},
+};
+```
 
 The output (under the influence of different command-line arguments) is:
 
-    $ mono bundling.exe -D
-    bundling: Missing macro name for option -D.
-    Try `greet --help' for more information.
+```console
+$ mono bundling.exe --help
+Usage: bundling [OPTIONS]+
+Demo program to show the effects of bundling options and their values
+
+Options:
+  -D[=VALUE1:VALUE2]         Predefine a macro with an (optional) value.
+  -d=VALUE1-->VALUE2         Alternate macro syntax.
+  -o=VALUE                   Specify the output file
+  -f=VALUE                   The input file
+  -x                         Extract the file
+  -c                         Create the file
+  -t                         List the file
+      --color[=VALUE]        control whether and when color is used
+  -h, --help                 show this message and exit
+```
+
+The output (under the influence of different command-line arguments) is:
+
+```console
+$ mono bundling.exe -D
+bundling: Missing macro name for option -D.
+Try `greet --help' for more information.
+```
 
 Macros can also be parsed now:
 
-    $ mono bundling.exe -DA -DB=C "-dD-->E" "-dF=>G" -d "H=>I" -cf input --color -ooutput
-    Macros:
-      A=<null>
-      B=C
-      D=E
-      F=G
-      H=I
-    Options:
-      Input File: input
-      Ouptut File: output
-      Create: True
-      Extract: False
-      List: False
-      Color: <null>
+```console
+$ mono bundling.exe -DA -DB=C "-dD-->E" "-dF=>G" -d "H=>I" -cf input --color -ooutput
+Macros:
+  A=<null>
+  B=C
+  D=E
+  F=G
+  H=I
+Options:
+  Input File: input
+  Ouptut File: output
+  Create: True
+  Extract: False
+  List: False
+  Color: <null>
+```

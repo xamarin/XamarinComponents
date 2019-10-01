@@ -5,12 +5,12 @@ using Android.App;
 // Information about this assembly is defined by the following attributes. 
 // Change them to the values specific to your project.
 
-[assembly: AssemblyTitle("Xamarin.Protobuf.Lite.")]
-[assembly: AssemblyDescription("Xamarin bindings for Protobuf Lite package")]
+[assembly: AssemblyTitle("Xamarin.Grpc.Stub")]
+[assembly: AssemblyDescription("Xamarin bindings for Xamarin.Grpc.Stub package")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Microsoft Corporation")]
 [assembly: AssemblyProduct("")]
-[assembly: AssemblyCopyright("Microsoft Corporation 2018")]
+[assembly: AssemblyCopyright("© Microsoft Corporation. All rights reserved.")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
