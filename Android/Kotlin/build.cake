@@ -15,7 +15,8 @@ Task("binderate")
 Task("native")
 	.Does(() =>
 {
-	var gradlew = MakeAbsolute((FilePath)"./native/KotlinSample/gradlew");
+	var fn = IsRunningOnWindows() ? "gradlew.bat" : "gradlew";
+	var gradlew = MakeAbsolute((FilePath)("./native/" + fn));
 	var exit = StartProcess(gradlew, new ProcessSettings {
 		Arguments = "assemble",
 		WorkingDirectory = "./native/KotlinSample/"
