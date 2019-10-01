@@ -18,9 +18,9 @@ jobs:
     parameters:
       timeoutInMinutes: 360
       buildType: 'manifest'
-      validPackagePrefixes: [ 'Mono', 'mdoc', 'Masonry', 'SkiaSharp', 'HarfBuzzSharp' ]
+      validPackagePrefixes: [ 'Mono', 'mdoc', 'Masonry', 'SkiaSharp', 'HarfBuzzSharp', 'GoogleGson' ]
       tools:
-        - 'Xamarin.AndroidBinderator.Tool': '0.4.0'
+        - 'Xamarin.AndroidBinderator.Tool': '0.4.1'
   - ${{ if eq(variables['System.TeamProject'], 'devdiv') }}:
     - template: sign-artifacts/jobs/v1.yml@internal-templates
       parameters:

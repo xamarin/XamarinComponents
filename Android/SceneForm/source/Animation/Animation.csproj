@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project Sdk="MSBuild.Sdk.Extras/1.6.68">
+<Project Sdk="MSBuild.Sdk.Extras/2.0.54">
   <PropertyGroup>
     <TargetFramework>MonoAndroid81</TargetFramework>
     <IsBindingProject>true</IsBindingProject>
@@ -52,5 +52,4 @@
     <ProjectReference Include="..\Rendering\Rendering.csproj" />
   </ItemGroup>
 
-  <Import Project="$(MSBuildSDKExtrasTargets)" Condition="Exists('$(MSBuildSDKExtrasTargets)')" />
 </Project>

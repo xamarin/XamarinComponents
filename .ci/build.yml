@@ -11,11 +11,11 @@ parameters:
   # job software version parameters
   macosImage: 'Hosted macOS'                                # the name of the macOS VM image
   windowsImage: 'Hosted Windows 2019 with VS2019'           # the name of the Windows VM image
-  mono: '5_18_1'                                            # the version of mono to use
-  xcode: '10.3'                                             # the version of Xcode to use
-  dotnet: '2.2.401'                                         # the version of .NET Core to use
-  cake: '0.34.1'                                            # the version of Cake to use
-  apiTools: '1.0.2-preview.14'                              # the version of the api-tools CLI to use
+  mono: '6_4_0'                                             # the version of mono to use
+  xcode: '11'                                               # the version of Xcode to use
+  dotnet: '3.0.x'                                           # the version of .NET Core to use
+  cake: '0.35.0'                                            # the version of Cake to use
+  apiTools: '1.1.0-preview.1'                               # the version of the api-tools CLI to use
   tools: []                                                 # a list of any additional .NET Core tools needed
   cakeTemplatesBranch: 'master'                             # the branch of XamarinComponents that has the templates
   # build parameters
