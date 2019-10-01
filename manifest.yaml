@@ -606,4 +606,5 @@
 - Name: Xamarin.Kotlin.BindingSupport
   BuildScript: ./Util/Xamarin.Kotlin.BindingSupport/build.cake
   TriggerPaths: [ Util/Xamarin.Kotlin.BindingSupport ]
+  WindowsBuildTargets: [ nuget, samples ]
   MacBuildTargets: [ nuget, samples ]
