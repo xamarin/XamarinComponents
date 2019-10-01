@@ -20,7 +20,7 @@ jobs:
       buildType: 'manifest'
       validPackagePrefixes: [ 'Mono', 'mdoc', 'Masonry', 'SkiaSharp', 'HarfBuzzSharp' ]
       tools:
-        - 'Xamarin.AndroidBinderator.Tool': '0.4.0'
+        - 'Xamarin.AndroidBinderator.Tool': '0.4.1'
   - ${{ if eq(variables['System.TeamProject'], 'devdiv') }}:
     - template: sign-artifacts/jobs/v1.yml@internal-templates
       parameters:
