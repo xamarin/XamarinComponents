@@ -17,7 +17,8 @@
 - Name: ConstraintLayout
   BuildScript: ./Android/ConstraintLayout/build.cake
   TriggerPaths: [ Android/ConstraintLayout ]
-  MacBuildTargets: [ nuget, samples ]
+  MacBuildTargets: [ samples ]
+  WindowsBuildTargets: [ samples ]
 - Name: GoogleAndroidVending
   BuildScript: ./Android/GoogleAndroidVending/build.cake
   TriggerPaths: [ Android/GoogleAndroidVending ]
