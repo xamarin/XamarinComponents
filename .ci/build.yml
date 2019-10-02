@@ -72,7 +72,7 @@ jobs:
           condition: eq(variables['System.JobName'], 'macos')
           displayName: 'Install the tvOS provisioning profile'
           inputs:
-            provProfileSecureFile: 'Components tvOS Development.mobileprovision'
+            provProfileSecureFile: 'Components tvOS Provisioning.mobileprovision'
         - task: InstallAppleCertificate@2
           condition: eq(variables['System.JobName'], 'macos')
           displayName: 'Install the iOS certificate'
