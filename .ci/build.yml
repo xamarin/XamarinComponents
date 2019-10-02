@@ -219,11 +219,11 @@ jobs:
             testResultsFormat: xUnit
             testResultsFiles: 'output/tests/TestResults.xml'
             testRunTitle: 'Test results for $(System.JobName)'
+      # custom post-build steps
+      - ${{ parameters.postBuildSteps }}
       # post-build steps
       - pwsh: dotnet cake validation.cake --namespaces="${{ join(',', parameters.validPackagePrefixes) }}"
         displayName: 'Run NuGet package validation'
-      # custom post-build steps
-      - ${{ parameters.postBuildSteps }}
       # after the build is complete
       - pwsh: |
           if (Get-ChildItem ${{ parameters.artifactsPath }} -Filter *.nupkg) {
