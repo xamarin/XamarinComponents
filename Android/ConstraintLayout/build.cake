@@ -16,6 +16,10 @@ Task("libs")
 		c.Targets.Add("Restore");
 		c.Targets.Add("Rebuild");
 		c.Properties.Add("DesignTimeBuild", new [] { "false" });
+		c.BinaryLogger = new MSBuildBinaryLogSettings {
+			Enabled = true,
+			FileName = "./output/libs.binlog"
+		};
 	});
 });
 
@@ -28,6 +32,10 @@ Task("samples")
 		c.Targets.Clear();
 		c.Targets.Add("Restore");
 		c.Targets.Add("Build");
+		c.BinaryLogger = new MSBuildBinaryLogSettings {
+			Enabled = true,
+			FileName = "./output/samples.binlog"
+		};
 	});
 });
 
@@ -43,6 +51,10 @@ Task("nuget")
 		c.Properties.Add("PackageOutputPath", new [] { MakeAbsolute(new FilePath("./output")).FullPath });
 		c.Properties.Add("PackageRequireLicenseAcceptance", new [] { "true" });
 		c.Properties.Add("DesignTimeBuild", new [] { "false" });
+		c.BinaryLogger = new MSBuildBinaryLogSettings {
+			Enabled = true,
+			FileName = "./output/nuget.binlog"
+		};
 	});
 });
 
