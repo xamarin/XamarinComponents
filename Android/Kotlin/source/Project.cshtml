@@ -69,6 +69,10 @@
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
   </PropertyGroup>
 
+  <PropertyGroup Condition="Exists('..\..\source\@(Model.NuGetPackageId)\ignore.txt')">
+    <KotlinBindingSupportIgnorePath>..\..\source\@(Model.NuGetPackageId)\ignore.txt</KotlinBindingSupportIgnorePath>
+  </PropertyGroup>
+
   <ItemGroup>
     <None Update="@(Model.NuGetPackageId).targets" Pack="True" PackagePath="build\$(TargetFramework)" />
   </ItemGroup>
@@ -98,7 +102,7 @@
     <PackageReference Include="@(dep.NuGetPackageId)" Version="@(dep.NuGetVersion)" />
       }
     }
-    <PackageReference Include="Xamarin.Kotlin.BindingSupport" Version="0.2.0-preview" PrivateAssets="All" />
+    <PackageReference Include="Xamarin.Kotlin.BindingSupport" Version="0.3.0-preview" PrivateAssets="All" />
   </ItemGroup>
 
 </Project>
