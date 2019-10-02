@@ -39,76 +39,47 @@ namespace RenderScriptSample
 				// We don't want to blur, so just load the un-altered image.
 				_imageView.SetImageResource (Resource.Drawable.dog_and_monkeys);
 			} else {
-				DisplayBlurredImage (radius);
+                BlurImage(radius);
 			}
 
 		}
 
-		private void CreateBlurredImage (int radius)
-		{
-			// Load a clean bitmap and work from that.
-			Bitmap originalBitmap = BitmapFactory.DecodeResource (Resources, Resource.Drawable.dog_and_monkeys);
+        void BlurImage(int radius)
+        {
+            // Disable the event handler and the Seekbar to prevent this from 
+            // happening multiple times.
+            _seekbar.ProgressChanged -= BlurImageHandler;
+            _seekbar.Enabled = false;
 
-			if (blurredBmp != null) {
-				blurredBmp.Recycle ();
-				blurredBmp.Dispose ();
-				blurredBmp = null;
-			}
+            _imageView.SetImageDrawable(null);
 
-			// Create another bitmap that will hold the results of the filter.
-			blurredBmp = Bitmap.CreateBitmap (originalBitmap);
+            Task.Run(() =>
+            {
+                // Load a clean bitmap and work from that.
+                var sentBitmap = BitmapFactory.DecodeResource(Resources, Resource.Drawable.dog_and_monkeys);
 
-			// Create the Renderscript instance that will do the work.
-			RenderScript rs = RenderScript.Create (this);
+                var bitmap = sentBitmap.Copy(sentBitmap.GetConfig(), true);
+                var rs = RenderScript.Create(this);
+                var input = Allocation.CreateFromBitmap(rs, sentBitmap, Allocation.MipmapControl.MipmapNone, Allocation.UsageScript);
+                var output = Allocation.CreateTyped(rs, input.Type);
+                var script = ScriptIntrinsicBlur.Create(rs, Element.U8_4(rs));
+                script.SetRadius(radius);
+                script.SetInput(input);
+                script.ForEach(output);
+                output.CopyTo(bitmap);
+                // clean up renderscript resources
+                rs.Destroy();
+                input.Destroy();
+                output.Destroy();
+                script.Destroy();
 
-			// Allocate memory for Renderscript to work with
-			Allocation input = Allocation.CreateFromBitmap (rs, originalBitmap, Allocation.MipmapControl.MipmapFull, Allocation.UsageScript);
-			Allocation output = Allocation.CreateTyped (rs, input.Type);
-
-			// Load up an instance of the specific script that we want to use.
-			ScriptIntrinsicBlur script = ScriptIntrinsicBlur.Create (rs, Element.U8_4 (rs));
-			script.SetInput (input);
-
-			// Set the blur radius
-			script.SetRadius (radius);
-
-			// Start Renderscript working.
-			script.ForEach (output);
-
-			// Copy the output to the blurred bitmap
-			output.CopyTo (blurredBmp);
-
-			input.Destroy ();
-			input.Dispose ();
-
-			output.Destroy ();
-			output.Dispose ();
-		}
-
-		Bitmap blurredBmp;
-
-		private void DisplayBlurredImage (int radius)
-		{
-			// Disable the event handler and the Seekbar to prevent this from 
-			// happening multiple times.
-			_seekbar.ProgressChanged -= BlurImageHandler;
-			_seekbar.Enabled = false;
-
-			_imageView.SetImageDrawable (null);
-
-			// Do the processing in a background thread.
-			Task.Factory.StartNew (() => {
-				CreateBlurredImage (radius);
-			}).ContinueWith (task => {
-				// Processing is done - display the image and re-enable all of our
-				// event handlers and widgets. This work is done on the UI thread.
-				RunOnUiThread (() => {
-					_imageView.SetImageBitmap (blurredBmp);
-				});
-
-				_seekbar.ProgressChanged += BlurImageHandler;
-				_seekbar.Enabled = true;
-			}, TaskScheduler.FromCurrentSynchronizationContext ());
-		}
+                RunOnUiThread(() =>
+                {
+                    _imageView.SetImageBitmap(bitmap);
+                    _seekbar.ProgressChanged += BlurImageHandler;
+                    _seekbar.Enabled = true;
+                });
+            });
+        }
 	}
 }
