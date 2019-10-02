@@ -1,4 +1,4 @@
-Adds methods to `UIImageView` supporting asynchronous web image loading:
+Adds methods to `UIImageView` and `NSImageView` supporting asynchronous web image loading:
 
 ```csharp
 using SDWebImage;
@@ -23,18 +23,18 @@ public override UITableViewCell GetCell (UITableView tableView, NSIndexPath inde
 
 It provides:
 
-* `UIImageView` and `UIButton` extension methods adding web image loading and cache management.
-* An asynchronous image downloader
-* An asynchronous memory + disk image caching with automatic cache expiration handling
-* Animated GIF support
-* WebP format support
-* A background image decompression
-* A guarantee that the same URL won't be downloaded several times
-* A guarantee that bogus URLs won't be retried again and again
-* A guarantee that main thread will never be blocked
-* Performances!
-* Use GCD and ARC
-* Arm64 support
+ * `UIImageView`, `NSImageView` and `UIButton` extension methods adding web image loading and cache management.
+ * An asynchronous image downloader
+ * An asynchronous memory + disk image caching with automatic cache expiration handling
+ * Animated GIF support
+ * WebP format support
+ * A background image decompression
+ * A guarantee that the same URL won't be downloaded several times
+ * A guarantee that bogus URLs won't be retried again and again
+ * A guarantee that main thread will never be blocked
+ * Performances!
+ * Use GCD and ARC
+ * Arm64 support
 
 ## iOS 9 Support
 
@@ -56,14 +56,14 @@ in your app's `Info.plist` file.
 For example, if you are loading images from `http://example.org`, you will need to add that domain
 in the `Info.plist` file:
 
-    <key>NSAppTransportSecurity</key>
+	<key>NSAppTransportSecurity</key>
 	<dict>
-        <key>NSExceptionDomains</key>
+		<key>NSExceptionDomains</key>
 		<dict>
-		    <key>example.org</key>
+			<key>example.org</key>
 			<dict>
-			    <key>NSIncludesSubdomains</key> <false/>
-			    <key>NSTemporaryExceptionAllowsInsecureHTTPLoads</key> <true/>
+				<key>NSIncludesSubdomains</key> <false/>
+				<key>NSTemporaryExceptionAllowsInsecureHTTPLoads</key> <true/>
 			</dict>
 		</dict>
 	</dict>
@@ -71,10 +71,10 @@ in the `Info.plist` file:
 However, in the case where you need to access arbitrary domains, you can allow all requests 
 to go through. However, this is not advised if using HTTPS is possible:
 
-    <key>NSAppTransportSecurity</key>  
-    <dict>
-        <key>NSAllowsArbitraryLoads</key> <true/> 
-    </dict>
+	<key>NSAppTransportSecurity</key>  
+	<dict>
+		<key>NSAllowsArbitraryLoads</key> <true/> 
+	</dict>
 
 
 ## Callbacks
@@ -86,7 +86,7 @@ and whenever the image retrieval has completed:
 cell.ImageView.SetImage (
 	url: new NSUrl ("http://db.tt/ayAqtbFy"), 
 	placeholder: UIImage.FromBundle ("placeholder.png"),
-	completedHandler: (image, error, cacheType) => {
+	completedHandler: (image, error, cacheType, url) => {
 		// Handle download completed...
 	}
 );
@@ -102,13 +102,13 @@ can reuse this class directly for cached web image downloading in other
 contexts.
 
 ```csharp
-SDWebImageManager.SharedManager.Download (
+SDWebImageManager.SharedManager.LoadImage (
 	url: new NSUrl ("http://db.tt/ayAqtbFy"), 
 	options: SDWebImageOptions.CacheMemoryOnly,
-	progressHandler: (recievedSize, expectedSize) => {
+	progressHandler: (recievedSize, expectedSize, url) => {
 		// Track progress...
 	},
-	completedHandler: (image, error, cacheType, finished) => {
+	completedHandler: (image, data, error, cacheType, finished, url) => {
 		if (image != null) {
 			// do something with the image
 		}
@@ -124,7 +124,7 @@ It's also possible to use the asynchronous image downloader independently:
 SDWebImageDownloader.SharedDownloader.DownloadImage (
 	url: new NSUrl ("http://db.tt/ayAqtbFy"),
 	options: SDWebImageDownloaderOptions.LowPriority,
-	progressHandler: (receivedSize, expectedSize) => {
+	progressHandler: (receivedSize, expectedSize, url) => {
 		// Track progress...
 	},
 	completedHandler: (image, data, error, finished) => {
@@ -148,7 +148,7 @@ caches.
 ```csharp
 var myCache = new SDImageCache ("MyUniqueCacheKey");
 
-myCache.QueryDiskCache ("UniqueImageKey", image => {
+myCache.QueryCacheOperation ("UniqueImageKey", (image, DataMisalignedException, cacheType)=>
 	// If image is not null, image was found
 	if (image != null) {
 		// Do something with the image
@@ -163,7 +163,7 @@ calling the alternative method `ImageFromMemoryCache`.
 To store an image into the cache, you use the `StoreImage` method:
 
 ```csharp
-SDImageCache.SharedImageCache.StoreImage (image: myImage, key: "myKey");
+SDImageCache.SharedImageCache.StoreImage (image: myImage, key: "myKey", completionHandler: null);
 ```
 
 By default, the image will be stored in memory cache as well as on disk
@@ -171,7 +171,11 @@ cache. If you want only the memory cache use:
 
 
 ```csharp
-SDImageCache.SharedImageCache.StoreImage (image: myImage, key: "myKey", toDisk: false);
+SDImageCache.SharedImageCache.StoreImage (
+	image: myImage, 
+	key: "myKey", 
+	toDisk: false, 
+	completionHandler: null);
 ```
 
 ## Using cache key filter
@@ -190,10 +194,10 @@ using SDWebImage;
 
 public override bool FinishedLaunching (UIApplication app, NSDictionary options)
 {
-	SDWebImageManager.SharedManager.SetCacheKeyFilter (url => {
+	SDWebImageManager.SharedManager.CacheKeyFilter = url => {
 		var stableUrl = new NSUrl (scheme: url.Scheme, host: url.Host, path: url.Path);  
 		return stableUrl.AbsoluteString;
-	});
+	};
 	...
 }
 ```

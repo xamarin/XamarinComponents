@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<package>
+  <metadata>
+    <id>Xamarin.Explosions</id>
+    <title>Explosions for Android</title>
+    <version>1.0.0.2</version>
+    <authors>Microsoft</authors>
+    <owners>Microsoft</owners>
+    <requireLicenseAcceptance>true</requireLicenseAcceptance>
+    <description>An Android library that provides explosions for any and all your Android views.</description>
+    <copyright>© Microsoft Corporation. All rights reserved.</copyright>
+    <projectUrl>https://go.microsoft.com/fwlink/?linkid=875057</projectUrl>
+    <licenseUrl>https://go.microsoft.com/fwlink/?linkid=875058</licenseUrl>
+  </metadata>
+  <files>
+    <file src="output/Explosions.dll" target="lib/MonoAndroid23" />
+    <file src="External-Dependency-Info.txt" target="THIRD-PARTY-NOTICES.txt" />
+  </files>
+</package>

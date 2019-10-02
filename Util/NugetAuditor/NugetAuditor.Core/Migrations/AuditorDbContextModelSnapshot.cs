@@ -17,13 +17,15 @@ namespace NugetAuditor.Core.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "2.0.2-rtm-10011")
+                .HasAnnotation("ProductVersion", "2.0.3-rtm-10026")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
             modelBuilder.Entity("NugetAuditor.Core.ProcessResult", b =>
                 {
                     b.Property<string>("PackageId")
                         .ValueGeneratedOnAdd();
+
+                    b.Property<string>("Copyright");
 
                     b.Property<string>("CurrentVersion");
 
@@ -34,6 +36,8 @@ namespace NugetAuditor.Core.Migrations
                     b.Property<bool>("IconUrlIsValid");
 
                     b.Property<bool>("IsSigned");
+
+                    b.Property<bool>("IsValidCopyright");
 
                     b.Property<bool>("LicenceUrlIsFWLink");
 

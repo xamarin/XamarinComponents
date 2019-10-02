@@ -1,0 +1,41 @@
+
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CrashlyticsCore", "CrashlyticsCore\CrashlyticsCore.csproj", "{1FC0DBA9-1E40-4910-A1D0-4E64711185DA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CrashlyticsBeta", "CrashlyticsBeta\CrashlyticsBeta.csproj", "{61E9A6EA-D338-498D-A849-B7282D32C5D4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CrashlyticsAnswers", "CrashlyticsAnswers\CrashlyticsAnswers.csproj", "{2140CAF1-FAAC-440A-9315-8D4EA8577B79}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fabric", "Fabric\Fabric.csproj", "{914533D8-95A9-4FB0-BC30-E6293C01BA07}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Crashlytics", "Crashlytics\Crashlytics.csproj", "{B1D76425-6C10-4D48-9903-D9B2AF55D115}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{1FC0DBA9-1E40-4910-A1D0-4E64711185DA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1FC0DBA9-1E40-4910-A1D0-4E64711185DA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1FC0DBA9-1E40-4910-A1D0-4E64711185DA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1FC0DBA9-1E40-4910-A1D0-4E64711185DA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{61E9A6EA-D338-498D-A849-B7282D32C5D4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{61E9A6EA-D338-498D-A849-B7282D32C5D4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{61E9A6EA-D338-498D-A849-B7282D32C5D4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{61E9A6EA-D338-498D-A849-B7282D32C5D4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2140CAF1-FAAC-440A-9315-8D4EA8577B79}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2140CAF1-FAAC-440A-9315-8D4EA8577B79}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2140CAF1-FAAC-440A-9315-8D4EA8577B79}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2140CAF1-FAAC-440A-9315-8D4EA8577B79}.Release|Any CPU.Build.0 = Release|Any CPU
+		{914533D8-95A9-4FB0-BC30-E6293C01BA07}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{914533D8-95A9-4FB0-BC30-E6293C01BA07}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{914533D8-95A9-4FB0-BC30-E6293C01BA07}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{914533D8-95A9-4FB0-BC30-E6293C01BA07}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B1D76425-6C10-4D48-9903-D9B2AF55D115}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B1D76425-6C10-4D48-9903-D9B2AF55D115}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B1D76425-6C10-4D48-9903-D9B2AF55D115}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B1D76425-6C10-4D48-9903-D9B2AF55D115}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal

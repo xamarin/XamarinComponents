@@ -12,10 +12,7 @@ namespace ImageViews.Photo
 				GetDisplayMatrix(matrix);
 				return matrix;
 			}
-			set
-			{
-				SetDisplayMatrix(value);
-			}
+			set => SetDisplayMatrix(value);
 		}
 
 		public Matrix SuppMatrix

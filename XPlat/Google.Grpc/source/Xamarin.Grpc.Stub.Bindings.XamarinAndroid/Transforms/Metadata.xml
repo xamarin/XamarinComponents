@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<metadata>
+
+    <attr
+        path="/api/package[@name='io.grpc.stub']"
+        name="managedName"
+        >
+        Xamarin.Grpc.Stub
+    </attr>
+    
+    <remove-node
+        path="/api/package[@name='io.grpc.stub']/class[@name='CallStreamObserver']/implements[@name='io.grpc.stub.StreamObserver']"
+        >        
+    </remove-node>
+
+    <attr
+        path="/api/package[@name='io.grpc.stub']/interface[@name='ServerCalls.StreamingRequestMethod']"
+        name="visibility"
+        >
+        public
+    </attr>
+    <attr
+        path="/api/package[@name='io.grpc.stub']/interface[@name='ServerCalls.UnaryRequestMethod']"
+        name="visibility"
+        >
+        public
+    </attr>
+
+
+</metadata>

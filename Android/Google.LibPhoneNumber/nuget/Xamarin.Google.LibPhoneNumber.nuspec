@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<package>
+  <metadata>
+    <id>Xamarin.Google.LibPhoneNumber</id>
+    <title>Xamarin.Google.LibPhoneNumber</title>
+    <version>$version$</version>
+    <authors>Microsoft</authors>
+    <owners>Microsoft</owners>
+    <requireLicenseAcceptance>true</requireLicenseAcceptance>
+    <summary>Xamarin.Android Bindings for Google LibPhoneNumber</summary>
+    <description>
+      Xamarin.Android Bindings for Google LibPhoneNumber
+    </description>
+    <copyright>© Microsoft Corporation. All rights reserved.</copyright>
+    <projectUrl>https://go.microsoft.com/fwlink/?linkid=875162</projectUrl>
+    <licenseUrl>https://go.microsoft.com/fwlink/?linkid=875163</licenseUrl>
+  </metadata>
+  <files>
+    <file src="output/Xamarin.Google.LibPhoneNumber.dll" target="lib/MonoAndroid70" />
+    <file src="External-Dependency-Info.txt" target="THIRD-PARTY-NOTICES.txt" />
+  </files>
+</package>

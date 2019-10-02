@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ Copyright (c) Microsoft Corporation. All rights reserved.
+  ~ Licensed under the MIT License.
+  -->
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:divider="@drawable/demo_divider"
+    android:showDividers="middle"
+    android:orientation="vertical"
+    android:padding="@dimen/default_layout_margin"
+    tools:context=".demos.BottomSheetActivity">
+
+    <!--BottomSheet-->
+
+    <TextView
+        style="@style/TextAppearance.UIFabric.Headline"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingBottom="@dimen/demo_headline_padding_bottom"
+        android:text="@string/bottom_sheet" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/demo_headline_divider_height"
+        android:background="@drawable/ms_row_divider" />
+
+
+    <Button
+        android:id="@+id/show_with_single_line_items_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/bottom_sheet_with_single_line_items" />
+
+    <Button
+        android:id="@+id/show_with_double_line_items_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/bottom_sheet_with_double_line_items" />
+
+    <!--BottomSheetDialog-->
+
+    <TextView
+        style="@style/TextAppearance.UIFabric.Headline"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/default_layout_margin"
+        android:paddingBottom="@dimen/demo_headline_padding_bottom"
+        android:text="@string/bottom_sheet_dialog" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/demo_headline_divider_height"
+        android:background="@drawable/ms_row_divider" />
+
+    <Button
+        android:id="@+id/show_bottom_sheet_dialog_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/bottom_sheet_dialog_button" />
+
+</LinearLayout>

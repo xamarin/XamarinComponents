@@ -6,8 +6,8 @@ var IOS_VERSION = "423aaba626e3eccdc4770bee8861a8ab8518563b";
 var IOS_NUGET_VERSION = "1.2.5.2";
 var IOS_URL = string.Format ("https://github.com/Azure/azure-notificationhubs/raw/{0}/iOS/bin/WindowsAzureMessaging.framework.zip", IOS_VERSION);
 
-var ANDROID_VERSION = "0.4";
-var ANDROID_NUGET_VERSION = "0.4.0";
+var ANDROID_VERSION = "0.5";
+var ANDROID_NUGET_VERSION = "0.5.0";
 var ANDROID_URL = string.Format ("https://dl.bintray.com/microsoftazuremobile/SDK/com/microsoft/azure/notification-hubs-android-sdk/{0}/notification-hubs-android-sdk-{0}.aar", ANDROID_VERSION);
 
 var buildSpec = new BuildSpec {
@@ -33,8 +33,8 @@ var buildSpec = new BuildSpec {
 	},
 
 	NuGets = new [] {
-		new NuGetInfo { NuSpec = "./nuget/Xamarin.Azure.NotificationHubs.iOS.nuspec", Version = IOS_NUGET_VERSION },
-		new NuGetInfo { NuSpec = "./nuget/Xamarin.Azure.NotificationHubs.Android.nuspec", Version = ANDROID_NUGET_VERSION },
+		new NuGetInfo { NuSpec = "./nuget/Xamarin.Azure.NotificationHubs.iOS.nuspec", Version = IOS_NUGET_VERSION, RequireLicenseAcceptance = true  },
+		new NuGetInfo { NuSpec = "./nuget/Xamarin.Azure.NotificationHubs.Android.nuspec", Version = ANDROID_NUGET_VERSION , RequireLicenseAcceptance = true },
 	},
 
 	Components = new [] {

@@ -1,14 +1,10 @@
-#tool nuget:?package=XamarinComponent&version=1.1.0.65
 
-#addin nuget:?package=Cake.XCode&version=4.0.0
-#addin nuget:?package=Cake.Xamarin.Build&version=4.0.0
-#addin nuget:?package=Cake.Xamarin&version=3.0.0
-#addin nuget:?package=Cake.FileHelpers&version=3.0.0
-#addin nuget:?package=YamlDotNet&version=4.2.1
-#addin nuget:?package=Cake.Yaml&version=2.1.0
-#addin nuget:?package=Newtonsoft.Json&version=9.0.1
-#addin nuget:?package=Cake.Json&version=3.0.1
-
+#addin nuget:?package=Cake.XCode&version=4.1.1
+#addin nuget:?package=Cake.Xamarin.Build&version=4.1.2
+#addin nuget:?package=Cake.Xamarin&version=3.0.2
+#addin nuget:?package=Cake.FileHelpers&version=3.2.1
+#addin nuget:?package=Cake.Yaml&version=3.1.1&loadDependencies=true
+#addin nuget:?package=Cake.Json&version=4.0.0&loadDependencies=true
 
 public enum TargetOS {
 	Windows,
@@ -285,6 +281,37 @@ void BuildDynamicXCode (FilePath project, string target, string libraryTitle, Di
 			RunLipoCreate (workingDirectory, fatLibrary.CombineWithFilePath (libraryTitle), 
 				x86_64.CombineWithFilePath (libraryTitle),
 				arm64.CombineWithFilePath (libraryTitle));
+		}
+	}
+}
+
+void DownloadMonoSources (string tag, DirectoryPath dest, params string[] urls)
+{
+	var rootUrl = $"https://github.com/mono/mono/raw/{tag}";
+
+	EnsureDirectoryExists (dest);
+	foreach (var originalUrl in urls) {
+		// make sure the urls are rooted
+		var url = originalUrl;
+		if (!url.StartsWith ("http:") && !url.StartsWith ("https:")) {
+			url = $"{rootUrl}/{url}";
+		}
+		// get the path parts
+		var file = url.Substring (url.LastIndexOf ("/") + 1);
+		var dir = url.Substring (0, url.LastIndexOf ("/"));
+		var destFile = dest.CombineWithFilePath (file);
+		// download the file
+		if (!FileExists (destFile)) {
+			Information ($"Downloading '{url}' to '{destFile}'...");
+			DownloadFile (url, destFile);
+		}
+		// if this is a .sources file, download all the listed files too
+		if (file.EndsWith (".sources")) {
+			var listedFiles = FileReadLines (destFile)
+				.Where (f => !f.StartsWith (".."))
+				.Select (f => $"{dir}/{f}")
+				.ToArray ();
+			DownloadMonoSources (tag, dest, listedFiles);
 		}
 	}
 }

@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<package>
+  <metadata>
+    <id>Xamarin.RZTransitions</id>
+    <title>RZTransitions for Xamarin.iOS</title>
+    <version>1.2.1.1</version>
+    <authors>Microsoft</authors>
+    <owners>Microsoft</owners>
+    <requireLicenseAcceptance>true</requireLicenseAcceptance>
+    <description>RZTransitions is a library to help make iOS custom View Controller transitions slick and simple.</description>
+    <copyright>© Microsoft Corporation. All rights reserved.</copyright>
+    <projectUrl>https://go.microsoft.com/fwlink/?linkid=874671</projectUrl>
+    <licenseUrl>https://go.microsoft.com/fwlink/?linkid=874672</licenseUrl>
+  </metadata>
+  <files>
+    <file src="output/unified/RZTransitions.dll" target="lib/Xamarin.iOS" />
+    <file src="External-Dependency-Info.txt" target="THIRD-PARTY-NOTICES.txt" />
+  </files>
+</package>

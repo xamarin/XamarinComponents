@@ -1,17 +1,35 @@
-version: 1.2.1.0
+version: 1.2.1.1
 name: RZTransitions
 id: RZTransitions
 publisher: Xamarin Inc
 publisher-url: https://xamarin.com
 src-url: https://github.com/xamarin/XamarinComponents/tree/master/iOS/RZTransitions
 summary: RZTransitions is a library to help make iOS custom View Controller transitions slick and simple.
+license: ../License.md
+no_build: true
+
 icons:
   - icons/icon_128x128.png
   - icons/icon_512x512.png
+
 libraries:
-  ios-unified: ../output/RZTransitions.dll
+  ios-unified: ../output/unified/RZTransitions.dll
+
 samples:
   - name: "RZTransitions Sample"
     path:  ../samples/RZTransitionsDemo.sln
-no_build: true
- 
+    removeProjects:
+      - RZTransitions
+    installNuGets:
+      - project: RZTransitionsDemo
+        packages:
+          - Xamarin.RZTransitions
+    configuration: "Release|iPhone"
+is_shell: true
+packages:
+  ios-unified: Xamarin.RZTransitions, Version=1.2.1.1
+monodoc: ../docs/
+local-nuget-repo: ../output
+additional-files:
+  - source: "../External-Dependency-Info.txt"
+    destination: "THIRD-PARTY-NOTICES.txt"

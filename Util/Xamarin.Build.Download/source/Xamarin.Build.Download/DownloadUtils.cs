@@ -21,7 +21,7 @@ namespace Xamarin.Build.Download
 		public ILogger Log { get; private set; }
 		public string CacheDir { get; private set; }
 
-		public IEnumerable<XamarinBuildDownload> ParseDownloadItems (ITaskItem[] items)
+		public IEnumerable<XamarinBuildDownload> ParseDownloadItems (ITaskItem[] items, bool allowUnsecureUrls)
 		{
 			if (items == null || items.Length <= 0)
 				return new List<XamarinBuildDownload> ();
@@ -45,6 +45,9 @@ namespace Xamarin.Build.Download
 				xbd.Kind = GetKind (xbd.Url, item.GetMetadata ("Kind"));
 				if (xbd.Kind == ArchiveKind.Unknown) {
 					//TODO we may be able to determine the kind from the server response
+					continue;
+				}
+				if (!EnsureSecureUrl (item, xbd.Url, allowUnsecureUrls)) {
 					continue;
 				}
 
@@ -77,7 +80,7 @@ namespace Xamarin.Build.Download
 			return results.GroupBy (item => item.Id).Select ((kvp) => kvp.FirstOrDefault ()).ToArray ();
 		}
 
-		public List<PartialZipDownload> ParsePartialZipDownloadItems (ITaskItem [] items)
+		public List<PartialZipDownload> ParsePartialZipDownloadItems (ITaskItem [] items, bool allowUnsecureUrls)
 		{
 			if (items == null || items.Length <= 0)
 				return new List<PartialZipDownload> ();
@@ -100,6 +103,9 @@ namespace Xamarin.Build.Download
 				var url = part.GetMetadata ("Url");
 				if (string.IsNullOrEmpty (url)) {
 					Log.LogCodedError (ErrorCodes.XbdInvalidUrl, "Missing required Url metadata on item {0}", id);
+					continue;
+				}
+				if (!EnsureSecureUrl (part, url, allowUnsecureUrls)) {
 					continue;
 				}
 
@@ -143,6 +149,18 @@ namespace Xamarin.Build.Download
 			var uniqueParts = result.GroupBy (p => p.Id).Select (kvp => kvp.FirstOrDefault ());
 
 			return uniqueParts.ToList ();
+		}
+
+		public bool EnsureSecureUrl (ITaskItem item, string url, bool allowUnsecureUrls)
+		{
+			if (!allowUnsecureUrls) {
+				if (url.StartsWith ("http:", StringComparison.OrdinalIgnoreCase)) {
+					Log.LogCodedError (ErrorCodes.XbdUnsecureUrl, "Unsecure download url '{0}' not allowed, unless 'XamarinBuildDownloadAllowUnsecure' is set to 'true' for the project, for {1}", url, item.ItemSpec);
+					return false;
+				}
+			}
+
+			return true;
 		}
 
 		public static string GetCacheDir (string overrideCacheDir = null)

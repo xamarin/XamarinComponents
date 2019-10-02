@@ -1,9 +1,14 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6211" systemVersion="14A298i" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="46">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="46">
+    <device id="retina5_9" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6204"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
+        <!--Navigation Controller-->
         <scene sceneID="45">
             <objects>
                 <navigationController definesPresentationContext="YES" id="46" sceneMemberID="viewController">
@@ -18,9 +23,10 @@
             </objects>
             <point key="canvasLocation" x="-26" y="92"/>
         </scene>
+        <!--Root View Controller-->
         <scene sceneID="51">
             <objects>
-                <viewController id="48" sceneMemberID="viewController" customClass="ViewController">
+                <viewController id="48" customClass="ViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="43"/>
                         <viewControllerLayoutGuide type="bottom" id="44"/>
@@ -28,37 +34,37 @@
                     <view key="view" contentMode="scaleToFill" id="53">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <subviews>
-                            <control opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" customClass="TextSwitch" translatesAutoresizingMaskIntoConstraints="NO" id="59">
+                            <control opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="59" customClass="TextSwitch">
                                 <rect key="frame" x="20" y="530" width="560" height="50"/>
+                                <color key="backgroundColor" red="0.47843137254901963" green="0.79607843137254897" blue="0.42352941176470588" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
-                                    <constraint id="62" firstItem="59" firstAttribute="height" constant="50"/>
+                                    <constraint firstAttribute="height" constant="50" id="62"/>
                                 </constraints>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="string" keyPath="LeftTitle" value="Apple"/>
                                     <userDefinedRuntimeAttribute type="string" keyPath="RightTitle" value="Google"/>
                                     <userDefinedRuntimeAttribute type="boolean" keyPath="On" value="NO"/>
                                     <userDefinedRuntimeAttribute type="color" keyPath="TitleColor">
-                                        <color key="value" colorSpace="calibratedWhite" white="1" alpha="1"/>
+                                        <color key="value" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     </userDefinedRuntimeAttribute>
                                     <userDefinedRuntimeAttribute type="color" keyPath="SelectedBackgroundColor">
-                                        <color key="value" colorSpace="calibratedWhite" white="1" alpha="1"/>
+                                        <color key="value" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     </userDefinedRuntimeAttribute>
                                     <userDefinedRuntimeAttribute type="color" keyPath="SelectedTitleColor">
-                                        <color key="value" colorSpace="calibratedRGB" red="0.52941176470588236" green="0.8901960784313725" blue="0.47058823529411764" alpha="1"/>
+                                        <color key="value" red="0.52941176470588236" green="0.8901960784313725" blue="0.47058823529411764" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
-                                <color key="backgroundColor" colorSpace="calibratedRGB" red="0.47843137254901963" green="0.796078431372549" blue="0.42352941176470588" alpha="1"/>
                                 <connections>
-                                    <action selector="OnCompanyChanged:" destination="48" id="70" eventType="valueChanged"/>
+                                    <action selector="OnCompanyChanged:" destination="48" eventType="valueChanged" id="70"/>
                                 </connections>
                             </control>
                         </subviews>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="59" firstAttribute="leading" secondItem="53" secondAttribute="leading" constant="20" id="60"/>
-                            <constraint firstItem="53" firstAttribute="bottom" secondItem="59" secondAttribute="bottom" constant="20" id="61"/>
-                            <constraint firstItem="53" firstAttribute="trailing" secondItem="59" secondAttribute="trailing" constant="20" id="63"/>
+                            <constraint firstAttribute="bottom" secondItem="59" secondAttribute="bottom" constant="20" id="61"/>
+                            <constraint firstAttribute="trailing" secondItem="59" secondAttribute="trailing" constant="20" id="63"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Root View Controller" id="52"/>
@@ -71,8 +77,4 @@
             <point key="canvasLocation" x="756" y="95"/>
         </scene>
     </scenes>
-    <resources>
-        <image name="wallpaper.png" width="2048" height="1536"/>
-        <image name="Wallpaper.png" width="2048" height="1536"/>
-    </resources>
 </document>

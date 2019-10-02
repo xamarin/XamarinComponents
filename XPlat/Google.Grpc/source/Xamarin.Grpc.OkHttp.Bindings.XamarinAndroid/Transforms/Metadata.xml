@@ -1,0 +1,40 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<metadata>
+    <attr
+        path="/api/package[@name='io.grpc.okhttp']"
+        name="managedName"
+        >
+        Xamarin.Grpc.OkHttp
+    </attr>
+]
+    <remove-node
+        path="/api/package[@name='io.grpc.okhttp.internal']"
+        >        
+    </remove-node>
+    <remove-node
+        path="/api/package[@name='io.grpc.okhttp.internal.framed']"
+        >        
+    </remove-node>
+
+    
+    <attr
+        path="/api/package[@name='io.grpc.okhttp']/class[@name='OkHttpChannelProvider']/method[@name='isAvailable' and count(parameter)=0]"
+        name="visibility"
+        >
+        public
+    </attr>
+    <attr
+        path="/api/package[@name='io.grpc.okhttp']/class[@name='OkHttpChannelProvider']/method[@name='priority' and count(parameter)=0]"
+        name="visibility"
+        >
+        public
+    </attr>
+
+
+
+
+    <remove-node
+        path="/api/package[@name='io.grpc.okhttp']/class[@name='OkHttpChannelProvider']"
+        >        
+    </remove-node>
+</metadata>

@@ -1,0 +1,40 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+    <ItemGroup>
+        <XamarinBuildRestoreResources Include="_XbdRestoreItems_crashlyticsbeta" />
+    </ItemGroup>
+
+    <Target Name="_XbdRestoreItems_crashlyticsbeta">
+        <PropertyGroup>
+            <!-- Aar Version to download -->
+            <_XbdAarVersion_crashlyticsbeta>1.2.9</_XbdAarVersion_crashlyticsbeta>
+
+            <!-- Url to download from -->
+            <_XbdAarUrl_crashlyticsbeta>https://maven.google.com/com/crashlytics/sdk/android/beta/$(_XbdAarVersion_crashlyticsbeta)/beta-$(_XbdAarVersion_crashlyticsbeta).aar</_XbdAarUrl_crashlyticsbeta>
+
+            <!-- Unique key for cached download -->
+            <_XbdKey_crashlyticsbeta>crashlyticsbeta-$(_XbdAarVersion_crashlyticsbeta)</_XbdKey_crashlyticsbeta>
+
+            <!-- Full path to .aar file from the cache -->
+            <_XbdAarFileFullPath_crashlyticsbeta>$(XamarinBuildDownloadDir)$(_XbdKey_crashlyticsbeta)\crashlytics-beta.aar</_XbdAarFileFullPath_crashlyticsbeta>
+
+            <!-- Assembly name to embed .aar in -->
+            <_XbdAssemblyName_crashlyticsbeta>Xamarin.Android.Crashlytics.Beta</_XbdAssemblyName_crashlyticsbeta>
+        </PropertyGroup>
+
+        <ItemGroup>
+            <XamarinBuildDownload Include="$(_XbdKey_crashlyticsbeta)">
+                <Url>$(_XbdAarUrl_crashlyticsbeta)</Url>
+                <ToFile>crashlytics-beta.aar</ToFile>
+                <Kind>Uncompressed</Kind>
+            </XamarinBuildDownload>
+        </ItemGroup>
+
+        <ItemGroup>
+            <XamarinBuildDownloadRestoreAssemblyAar Include="$(_XbdAarFileFullPath_crashlyticsbeta)">
+                <LogicalName>__AndroidLibraryProjects__.zip</LogicalName>
+                <AssemblyName>$(_XbdAssemblyName_crashlyticsbeta)</AssemblyName>
+            </XamarinBuildDownloadRestoreAssemblyAar>
+        </ItemGroup>
+    </Target>
+</Project>

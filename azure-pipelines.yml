@@ -1,0 +1,27 @@
+trigger:
+  - master
+  - refs/tags/*
+
+resources:
+  repositories:
+    - repository: internal-templates
+      type: github
+      name: xamarin/yaml-templates
+      endpoint: xamarin
+    - repository: components
+      type: github
+      name: xamarin/XamarinComponents
+      endpoint: xamarin
+
+jobs:
+  - template: .ci/build.yml@components
+    parameters:
+      timeoutInMinutes: 360
+      buildType: 'manifest'
+      validPackagePrefixes: [ 'Mono', 'mdoc', 'Masonry', 'SkiaSharp', 'HarfBuzzSharp', 'GoogleGson' ]
+      tools:
+        - 'Xamarin.AndroidBinderator.Tool': '0.4.1'
+  - ${{ if eq(variables['System.TeamProject'], 'devdiv') }}:
+    - template: sign-artifacts/jobs/v1.yml@internal-templates
+      parameters:
+        dependsOn: [ 'build' ]

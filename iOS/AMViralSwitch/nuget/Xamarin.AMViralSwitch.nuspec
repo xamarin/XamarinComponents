@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<package>
+  <metadata>
+    <id>Xamarin.AMViralSwitch</id>
+    <title>AMViralSwitch for Xamarin.iOS</title>
+    <version>1.0.0.1</version>
+    <authors>Microsoft</authors>
+    <owners>Microsoft</owners>
+    <requireLicenseAcceptance>true</requireLicenseAcceptance>
+    <description>AMViralSwitch is a UISwitch subclass that 'infects' the parent view with the OnTintColor when the switch is turned on.
+Inspired by this Dribble by Ramotion.</description>
+    <copyright>© Microsoft Corporation. All rights reserved.</copyright>
+    <projectUrl>https://go.microsoft.com/fwlink/?linkid=874687</projectUrl>
+    <licenseUrl>https://go.microsoft.com/fwlink/?linkid=874688</licenseUrl>
+  </metadata>
+  <files>
+    <file src="output/unified/AMViralSwitch.dll" target="lib/Xamarin.iOS" />
+    <file src="External-Dependency-Info.txt" target="THIRD-PARTY-NOTICES.txt" />
+  </files>
+</package>

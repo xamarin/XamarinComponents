@@ -1,4 +1,4 @@
-version: "1.0.2"
+version: "1.1.0"
 name: Masonry
 id: Masonry
 publisher: Xamarin Inc
@@ -17,9 +17,9 @@ libraries:
   mac-unified: ../output/Masonry.macOS.dll
   tvos: ../output/Masonry.tvOS.dll
 packages:
-  ios-unified: Masonry, Version=1.0.2
-  mac-unified: Masonry, Version=1.0.2
-  tvos: Masonry, Version=1.0.2
+  ios-unified: Masonry, Version=1.1.0
+  mac-unified: Masonry, Version=1.1.0
+  tvos: Masonry, Version=1.1.0
 
 samples:
   - name: "iOS Sample"

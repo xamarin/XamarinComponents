@@ -1,4 +1,4 @@
-version: 1.0.7
+version: 1.0.8
 name: KenBurnsView
 id: KenBurnsView
 publisher: Xamarin Inc
@@ -6,7 +6,7 @@ publisher-url: http://xamarin.com/
 src-url: https://github.com/xamarin/XamarinComponents/tree/master/Android/KenBurnsView
 summary: An extension to ImageView with an animated drawable using the Ken Burns Effect.
 
-license: License.md
+license: ../License.md
 details: Details.md
 getting-started: GettingStarted.md
 
@@ -21,3 +21,17 @@ libraries:
 samples:
   - name: "Android Sample"
     path: ../samples/KenBurnsViewSample.sln
+    removeProjects:
+        - KenBurnsView
+    installNuGets:
+      - project: KenBurnsViewSample
+        packages:
+          - Xamarin.KenBurnsView
+
+is_shell: true 
+packages:
+  ios-unified: Xamarin.KenBurnsView, Version=1.0.8
+local-nuget-repo: ../output
+additional-files:
+  - source: "../External-Dependency-Info.txt"
+    destination: "THIRD-PARTY-NOTICES.txt"

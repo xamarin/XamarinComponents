@@ -1,0 +1,71 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<metadata>
+  <attr path="/api/package[@name='com.microsoft.officeuifabric']" name="managedName">Microsoft.OfficeUIFabric</attr>
+  <attr path="/api/package[@name='com.microsoft.officeuifabric.calendar']" name="managedName">Microsoft.OfficeUIFabric</attr>
+  <attr path="/api/package[@name='com.microsoft.officeuifabric.datetimepicker']" name="managedName">Microsoft.OfficeUIFabric</attr>
+  <attr path="/api/package[@name='com.microsoft.officeuifabric.managers']" name="managedName">Microsoft.OfficeUIFabric</attr>
+  <attr path="/api/package[@name='com.microsoft.officeuifabric.peoplepicker']" name="managedName">Microsoft.OfficeUIFabric</attr>
+  <attr path="/api/package[@name='com.microsoft.officeuifabric.persona']" name="managedName">Microsoft.OfficeUIFabric</attr>
+  <attr path="/api/package[@name='com.microsoft.officeuifabric.snackbar']" name="managedName">Microsoft.OfficeUIFabric</attr>
+  <attr path="/api/package[@name='com.microsoft.officeuifabric.tooltip']" name="managedName">Microsoft.OfficeUIFabric</attr>
+  <attr path="/api/package[@name='com.microsoft.officeuifabric.util']" name="managedName">Microsoft.OfficeUIFabric</attr>
+  <attr path="/api/package[@name='com.microsoft.officeuifabric.view']" name="managedName">Microsoft.OfficeUIFabric</attr>
+  <attr path="/api/package[@name='com.microsoft.officeuifabric.bottomsheet']" name="managedName">Microsoft.OfficeUIFabric</attr>
+  <attr path="/api/package[@name='com.microsoft.officeuifabric.drawer']" name="managedName">Microsoft.OfficeUIFabric</attr>
+  <attr path="/api/package[@name='com.microsoft.officeuifabric.listitem']" name="managedName">Microsoft.OfficeUIFabric</attr>
+
+  <!-- Fix types -->
+  <attr path="/api/package[@name='com.microsoft.officeuifabric.calendar']/class[@name='CalendarAdapter']/method[@name='onCreateViewHolder' and count(parameter)=2 and parameter[1][@type='android.view.ViewGroup'] and parameter[2][@type='int']]" name="managedReturn">Android.Support.V7.Widget.RecyclerView.ViewHolder</attr>
+  <attr path="/api/package[@name='com.microsoft.officeuifabric.persona']/class[@name='PersonaListAdapter']/method[@name='onCreateViewHolder' and count(parameter)=2 and parameter[1][@type='android.view.ViewGroup'] and parameter[2][@type='int']]" name="managedReturn">Android.Support.V7.Widget.RecyclerView.ViewHolder</attr>
+
+  <!-- Manually implement these to get the correct types -->
+  <remove-node path="/api/package[@name='com.microsoft.officeuifabric.calendar']/class[@name='CalendarAdapter']/method[@name='onBindViewHolder' and count(parameter)=2 and parameter[1][@type='com.microsoft.officeuifabric.calendar.CalendarAdapter.CalendarDayViewHolder'] and parameter[2][@type='int']]" />
+  <remove-node path="/api/package[@name='com.microsoft.officeuifabric.persona']/class[@name='PersonaListAdapter']/method[@name='onBindViewHolder' and count(parameter)=2 and parameter[1][@type='com.microsoft.officeuifabric.persona.PersonaListAdapter.ViewHolder'] and parameter[2][@type='int']]" />
+
+  <!-- Fix to use base types -->
+  <attr path="/api/package[@name='com.microsoft.officeuifabric.util']/class[@name='ColorProperty']/method[@name='setValue' and count(parameter)=2 and parameter[1][@type='android.view.View'] and parameter[2][@type='float']]/parameter[1]" name="managedType">Java.Lang.Object</attr>
+  <attr path="/api/package[@name='com.microsoft.officeuifabric.util']/class[@name='ColorProperty']/method[@name='get' and count(parameter)=1 and parameter[1][@type='android.view.View']]/parameter[1]" name="managedType">Java.Lang.Object</attr>
+  <attr path="/api/package[@name='com.microsoft.officeuifabric.util']/class[@name='ColorProperty']/method[@name='get' and count(parameter)=1 and parameter[1][@type='android.view.View']]" name="managedReturn">Java.Lang.Object</attr>
+
+  <!-- Fix to use base types -->
+  <attr path="/api/package[@name='com.microsoft.officeuifabric.peoplepicker']/class[@name='PeoplePickerTextView']/method[@name='getViewForObject' and count(parameter)=1 and parameter[1][@type='com.microsoft.officeuifabric.persona.IPersona']]/parameter[1]" name="managedType">Java.Lang.Object</attr>
+  <attr path="/api/package[@name='com.microsoft.officeuifabric.peoplepicker']/class[@name='PeoplePickerTextView']/method[@name='defaultObject' and count(parameter)=1 and parameter[1][@type='java.lang.String']]" name="managedReturn">Java.Lang.Object</attr>
+
+  
+  <!-- Fix collision on type name and field name (we don't really need this type) -->
+  <remove-node path="/api/package[@name='com.microsoft.officeuifabric.bottomsheet']/class[@name='BottomSheetItem.CREATOR']" />
+
+  <!-- This thing exposes Kotlin types (Unit) which we don't have bound, so removing -->
+  <remove-node path="/api/package[@name='com.microsoft.officeuifabric.peoplepicker']/interface[@name='PeoplePickerView.PersonaSuggestionsListener']" />
+
+  <!-- Remove this method and manually add.  See comment in the additions for more info. -->
+  <remove-node path="/api/package[@name='com.microsoft.officeuifabric.persona']/class[@name='PersonaView.Companion.Spacing']/method[@name='copy' and count(parameter)=2 and parameter[1][@type='int'] and parameter[2][@type='int']]" />
+
+  <!-- *.Companion has the same name as the field Companion so we rename the class -->
+  <attr path="/api/package[@name='com.microsoft.officeuifabric.bottomsheet']/class[@name='BottomSheet.Companion']" name="managedName">BottomSheetCompanion</attr>
+  <attr path="/api/package[@name='com.microsoft.officeuifabric.drawer']/class[@name='Drawer.Companion']" name="managedName">DrawerCompanion</attr>
+  <attr path="/api/package[@name='com.microsoft.officeuifabric.snackbar']/class[@name='Snackbar.Companion']" name="managedName">SnackbarCompanion</attr>
+  <attr path="/api/package[@name='com.microsoft.officeuifabric.calendar']/class[@name='CalendarAdapter.Companion']" name="managedName">CalendarAdapterCompanion</attr>
+  <attr path="/api/package[@name='com.microsoft.officeuifabric.calendar']/class[@name='CalendarView.Companion']" name="managedName">CalendarViewCompanion</attr>
+  <attr path="/api/package[@name='com.microsoft.officeuifabric.calendar']/class[@name='WeeksView.Companion']" name="managedName">WeeksViewCompanion</attr>
+  <attr path="/api/package[@name='com.microsoft.officeuifabric.datetimepicker']/class[@name='DateTimePicker.Companion']" name="managedName">DateTimePickerCompanion</attr>
+  <attr path="/api/package[@name='com.microsoft.officeuifabric.datetimepicker']/class[@name='DateTimePickerDialog.Companion']" name="managedName">DateTimePickerDialogCompanion</attr>
+  <attr path="/api/package[@name='com.microsoft.officeuifabric.drawer']/class[@name='DrawerDialog.Companion']" name="managedName">DrawerDialogCompanion</attr>
+  <attr path="/api/package[@name='com.microsoft.officeuifabric.drawer']/class[@name='DrawerView.Companion']" name="managedName">DrawerViewCompanion</attr>
+  <attr path="/api/package[@name='com.microsoft.officeuifabric.listitem']/class[@name='ListItemView.Companion']" name="managedName">ListItemCompanion</attr>
+  <attr path="/api/package[@name='com.microsoft.officeuifabric.listitem']/class[@name='ListSubHeaderView.Companion']" name="managedName">ListSubHeaderViewCompanion</attr>
+  <attr path="/api/package[@name='com.microsoft.officeuifabric.peoplepicker']/class[@name='PeoplePickerTextView.Companion']" name="managedName">PeoplePickerTextViewCompanion</attr>
+  <attr path="/api/package[@name='com.microsoft.officeuifabric.persona']/class[@name='AvatarView.Companion']" name="managedName">AvatarViewCompanion</attr>
+  <attr path="/api/package[@name='com.microsoft.officeuifabric.persona']/class[@name='InitialsDrawable.Companion']" name="managedName">InitialsDrawableCompanion</attr>
+  <attr path="/api/package[@name='com.microsoft.officeuifabric.persona']/class[@name='PersonaChipView.Companion']" name="managedName">PersonaChipViewCompanion</attr>
+  <attr path="/api/package[@name='com.microsoft.officeuifabric.persona']/class[@name='PersonaView.Companion']" name="managedName">PersonaViewCompanion</attr>
+  <attr path="/api/package[@name='com.microsoft.officeuifabric.view']/class[@name='MSRecyclerView.Companion']" name="managedName">MSRecyclerViewCompanion</attr>
+  <attr path="/api/package[@name='com.microsoft.officeuifabric.view']/class[@name='NumberPicker.Companion']" name="managedName">NumberPickerCompanion</attr>
+  <attr path="/api/package[@name='com.microsoft.officeuifabric.view']/class[@name='Scroller.Companion']" name="managedName">ScrollerCompanion</attr>
+  <attr path="/api/package[@name='com.microsoft.officeuifabric.view']/class[@name='WrapContentViewPager.Companion']" name="managedName">WrapContentViewPagerCompanion</attr>
+  <attr path="/api/package[@name='com.microsoft.officeuifabric.view']/class[@name='Scroller.ViscousFluidInterpolator.Companion']" name="managedName">ScrollerViscousFluidInterpolatorCompanion</attr>
+  
+
+
+
+</metadata>

@@ -1,5 +1,86 @@
 # Open Source Components for Xamarin
+
 Open Source Components for Xamarin are a collection of open source components (including bindings and plugins) created by Xamarin and others in the community.
+
+ - [Building](#building)
+    - [Prerequisites](#prerequisites)
+    - [Compiling](#compiling)
+    - [Working in Visual Studio](#working-in-visual-studio)
+ - [Xamarin Supported Open Source Components](#xamarin-supported-open-source-components)
+    - [Xamarin.Essentials](#xamarinessentials)
+ - [Community Provided Open Source Plugins](#community-provided-open-source-plugins)
+    - [Popular Plugins](#popular-plugins)
+    - [Data Caching & Databases](#data-caching--databases)
+    - [Create a Plugin for Xamarin](#create-a-plugin-for-xamarin)
+
+## Building
+
+### Prerequisites
+
+Before building the libraries and samples in this repository, you will need to install [.NET Core](https://dotnet.microsoft.com/download) and the [Cake .NET Core Tool](http://cakebuild.net):
+
+```sh
+dotnet tool install -g cake.tool
+```
+
+When building on macOS, you may also need to install [CocoaPods](https://cocoapods.org/):
+
+```sh
+# Homebrew
+brew install cocoapods
+
+# Ruby Gems
+gem install cocoapods
+```
+
+### Compiling
+
+You can either build all the libraries and samples in the repository from the root:
+
+```sh
+dotnet cake --name=<name-from-manifest>
+```
+
+Or, you can build each component separately:
+
+```sh
+cd <path-to-component>
+dotnet cake
+```
+
+The name of each component can be [found in the manifest.yaml](https://github.com/xamarin/XamarinComponents/blob/master/manifest.yaml). For example, to build the `ARCore` component, you can either start the build from the root:
+
+```sh
+dotnet cake --name=ARCore --target=nuget
+```
+
+Or, you can navigate to the folder and run it from there:
+
+```sh
+cd Android/ARCore
+dotnet cake --target=nuget
+```
+
+The following targets can be specified using the `--target=<target-name>`:
+
+ - `libs` builds the class library bindings (depends on `externals`)
+ - `externals` downloads and builds the external dependencies
+ - `samples` builds all of the samples (depends on `libs`)
+ - `nuget` builds the nuget packages (depends on `libs`)
+ - `clean` cleans up everything
+
+
+### Working in Visual Studio
+
+Before the `.sln` files will compile in the IDEs, the external dependencies need to be downloaded. This can be done by running the `externals` target:
+
+```sh
+dotnet cake --target=externals
+```
+
+After the externals are downloaded and built, the `.sln` files should compile in your IDE.
+
+---
 
 ## Xamarin Supported Open Source Components
 
@@ -14,15 +95,19 @@ Xamarin Supported Open Source components are a collection of Xamarin built bindi
 | Xamarin.Auth                          | Cross-platform API for authenticating users and storing their accounts.          | [GitHub](https://github.com/xamarin/Xamarin.Auth)                |
 
 
-### [Xamarin.Essentials](https://github.com/xamarin/essentials)
+### Xamarin.Essentials
 
 Xamarin.Essentials gives developers essential cross-platform APIs for their mobile applications. Xamarin.Essentials exposes over 25 native APIs in a single cross-platform package for developers to consume in their iOS, Android, UWP, or Xamarin.Forms application. Browse through the [documentation](https://docs.microsoft.com/en-us/xamarin/essentials) on how to get started today.
+
+The repository for Xamarin.Essentials can be found at https://github.com/xamarin/Essentials. If you have any suggestions or feature requests, or if you find any issues, please open a new issue.
+
+---
 
 ## Community Provided Open Source Plugins
 
 Plugins for Xamarin are community built NuGet and Components that add cross-platform functionality or abstracts platform specific functionality to a common API. These are both completely cross-platform and extremely small (i.e., they do 1 or 2 things really well with minimal-to-no dependencies). The Plugin API can be accessed on each platform, however, you will most likely only use the common API in a Portable Class Library or Shared Code project.
 
-**Notice**: Plugins for Xamarin featured here are produced by the amazing open source community of Xamarin developers. Xamarin does not provide official support for these plugins, please contact their creator with any issues.
+> **Notice**: Plugins for Xamarin featured here are produced by the amazing open source community of Xamarin developers. Xamarin does not provide official support for these plugins, please contact their creator with any issues.
 
 
 ### Popular Plugins
@@ -35,16 +120,15 @@ Browse through the most popular plugins out there today!
 |Barcode Scanner|Scan and create barcodes with ZXing.NET.Mobile.|[NuGet](https://www.nuget.org/packages/ZXing.Net.Mobile)|[GitHub](https://github.com/Redth/ZXing.Net.Mobile)|[@Redth](https://twitter.com/redth)|
 |Bluetooth LE|Scan and connect to Bluetooth devices.|[NuGet](https://www.nuget.org/packages/Plugin.BluetoothLE/)|[GitHub](https://github.com/aritchie/bluetoothle)|[@allanritchie911](https://twitter.com/allanritchie911)|
 |Calendar|Query and modify device calendars|[NuGet](https://www.nuget.org/packages/CClarke.Plugin.Calendars)|[GitHub](https://github.com/TheAlmightyBob/Calendars/)|[Caleb Clarke](https://github.com/TheAlmightyBob)|
-|Compass|Access device compass heading.|[NuGet](https://www.nuget.org/packages/Plugin.Compass/)|[GitHub](https://github.com/JarleySoft/Xamarin.Plugins/tree/master/Compass)|[@cbartonnh](http://www.twitter.com/cbartonnh) & [@JamesMontemagno](http://www.twitter.com/jamesmontemagno)|
+|Compass|Access device compass heading.|[NuGet](https://www.nuget.org/packages/Plugin.Compass/)|[GitHub](https://github.com/JarleySoft/CompassPlugin)|[@cbartonnh](http://www.twitter.com/cbartonnh) & [@JamesMontemagno](http://www.twitter.com/jamesmontemagno)|
 |Config|Define the settings of the application for each environment in which it will run.|[NuGet](https://www.nuget.org/packages/Xamarin.ConfigPlugin/)|[GitHub](https://github.com/AgustinBonilla/ConfigPlugin)|[@abonilla93](https://twitter.com/abonilla93)|
 |Connectivity|Get network connectivity info such as type and if connection is available.|[NuGet](https://www.nuget.org/packages/Xam.Plugin.Connectivity/)|[GitHub](https://github.com/jamesmontemagno/ConnectivityPlugin)|[@JamesMontemagno](http://www.twitter.com/jamesmontemagno)|
 |Cryptography|PCL Crypto provides a consistent, portable set of crypto APIs.|[NuGet](https://www.nuget.org/packages/pclcrypto)|[GitHub](https://github.com/aarnott/pclcrypto)|[@aarnott](https://twitter.com/aarnott)|
 |Custom Vision|Runs CoreML and TensorFlow models from https://CustomVision.ai on device|[NuGet](https://www.nuget.org/packages/Xam.Plugins.OnDeviceCustomVision/)|[GitHub](https://github.com/jimbobbennett/Xam.Plugins.OnDeviceCustomVision)|[@JimBobBennett](https://twitter.com/jimbobbennett)|
 |Device Info|Properties about device such as OS, Model, and Id.|[NuGet](https://www.nuget.org/packages/Xam.Plugin.DeviceInfo/)|[GitHub](https://github.com/jamesmontemagno/DeviceInfoPlugin)|[@JamesMontemagno](http://www.twitter.com/jamesmontemagno)|
-|Device Motion|Provides access to Accelerometer, Gyroscope, Magnetometer, and Compass.|[NuGet](https://www.nuget.org/packages/Xam.Plugin.DeviceMotion/)|[GitHub](https://github.com/rdelrosario/xamarin-plugins/tree/master/DeviceMotion)|[@rdelrosario](https://github.com/rdelrosario)|
+|Device Motion|Provides access to Accelerometer, Gyroscope, Magnetometer, and Compass.|[NuGet](https://www.nuget.org/packages/Xam.Plugin.DeviceMotion/)|[GitHub](https://github.com/CrossGeeks/DeviceSensorsPlugin)|[@rdelrosario](https://github.com/rdelrosario)|
 |Embedded Resource|Unpack embedded resource cross-platform.|[NuGet](https://www.nuget.org/packages/Xam.Plugin.EmbeddedResource/)|[GitHub](https://github.com/JosephHill/EmbeddedResourcePlugin)|[@JosephHill](http://www.twitter.com/josephhill)|
 |External Maps|Launch external maps from Lat/Long or Address.|[NuGet](https://www.nuget.org/packages/Xam.Plugin.ExternalMaps/)|[GitHub](https://github.com/jamesmontemagno/LaunchMapsPlugin)|[@JamesMontemagno](http://www.twitter.com/jamesmontemagno)|
-|File Storage/File System|PCL Storage offers cross platform storage APIs.|[NuGet](https://www.nuget.org/packages/PCLStorage/)|[GitHub](https://github.com/dsplaisted/PCLStorage)|[@dsplaisted](http://www.twitter.com/dsplaisted)|
 |File Picker|Pick and save files.|[NuGet](https://www.nuget.org/packages/Xam.Plugin.FilePicker)|[GitHub](https://github.com/Studyxnet/FilePicker-Plugin-for-Xamarin-and-Windows)|[@studyxnet](http://www.twitter.com/studyxnet)|
 |File Uploader|Upload files using multipart request.|[NuGet](https://www.nuget.org/packages/Plugin.FileUploader/)|[GitHub](https://github.com/CrossGeeks/FileUploaderPlugin)|[@rdelrosario](http://www.twitter.com/rdelrosario)|
 |Fingerprint|Access Fingerprint sensor on iOS, Android, and Windows.|[NuGet](https://www.nuget.org/packages/Plugin.Fingerprint/)|[GitHub](https://github.com/smstuebe/xamarin-fingerprint)|[@smstuebe](https://github.com/smstuebe)|
@@ -53,6 +137,7 @@ Browse through the most popular plugins out there today!
 |Geolocator|Easily detect GPS location of device.|[NuGet](https://www.nuget.org/packages/Xam.Plugin.Geolocator/)|[GitHub](https://github.com/jamesmontemagno/GeolocatorPlugin)|[@JamesMontemagno](http://www.twitter.com/jamesmontemagno)|
 |HTTP Transfers|Download or upload files in the background. Provides speed metrics and estimates|[NuGet](https://www.nuget.org/packages/Plugin.HttpTransferTasks/)|[GitHub](https://github.com/aritchie/httptransfertasks)|[@allanritchie911](https://twitter.com/allanritchie911)|
 |iBeacon & Estimote|Range and monitor Bluetooth beacons.|[NuGet](https://www.nuget.org/packages/Estimotes.Xplat/)|[GitHub](https://github.com/aritchie/estimotes-xplat)|[@allanritchie911](https://twitter.com/allanritchie911)|
+|Identity document scanning|Enable scanning of various identity documents in your app.|[NuGet](https://www.nuget.org/packages/BlinkID.Forms/)|[GitHub](https://github.com/blinkid/blinkid-xamarin)|[@microblink](https://twitter.com/microblink)|
 |In-App Billing|Make, Query, and get In-App Purchases and Subscriptions.|[NuGet](https://www.nuget.org/packages/Plugin.InAppBilling/)|[GitHub](https://github.com/jamesmontemagno/InAppBillingPlugin)|[@JamesMontemagno](http://www.twitter.com/jamesmontemagno)|
 |Lamp|Access to LED|[NuGet](https://www.nuget.org/packages/kphillpotts.Lamp.Plugin/)|[GitHub](https://github.com/kphillpotts/Xamarin.Plugins/tree/master/Lamp)|[@kphillpotts](http://www.twitter.com/kphillpotts)|
 |Latest Version|Detect if your users are using the latest version of your app.|[NuGet](https://www.nuget.org/packages/Xam.Plugin.LatestVersion/)|[GitHub](https://github.com/edsnider/LatestVersionPlugin)|[@EdSnider](http://www.twitter.com/EdSnider)|
@@ -112,7 +197,7 @@ If you are looking to create a plugin be sure to browse through NuGet first and 
 * No dependency on Xamarin.Forms
 * Have a list of supported and unsupported OSs in its GitHub wiki
 
-#### Perks
+**Perks**
 * Help out fellow developers speed up development
 * Have fun and learn new tools
 * Our undying love

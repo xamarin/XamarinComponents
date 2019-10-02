@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<package>
+  <metadata>
+    <id>Xamarin.DZNEmptyDataSet</id>
+    <title>DZNEmptyDataSet for Xamarin.iOS</title>
+    <version>1.8.1</version>
+    <authors>Microsoft</authors>
+    <owners>Microsoft</owners>
+    <requireLicenseAcceptance>true</requireLicenseAcceptance>
+    <description>DZNEmptyDataSet is a drop-in UITableView/UICollectionView superclass category for showing empty datasets whenever the view has no content to display.</description>
+    <copyright>© Microsoft Corporation. All rights reserved.</copyright>
+    <projectUrl>https://go.microsoft.com/fwlink/?linkid=874676</projectUrl>
+    <licenseUrl>https://go.microsoft.com/fwlink/?linkid=874677</licenseUrl>
+  </metadata>
+  <files>
+    <file src="output/unified/DZNEmptyDataSet.dll" target="lib/Xamarin.iOS" />
+    <file src="External-Dependency-Info.txt" target="THIRD-PARTY-NOTICES.txt" />
+  </files>
+</package>

@@ -4,11 +4,13 @@ VisualStudioVersion = 15.0.27130.2036
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NugetAuditor", "NugetAuditor\NugetAuditor.csproj", "{608A3670-F0E5-4EFD-8143-653F3E8F9950}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Mono.Security.Standard", "Mono.Security\Mono.Security.Standard.csproj", "{DD1928CD-8850-4CF4-A0A3-60289BFAC4FE}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NugetAuditor.Core", "NugetAuditor.Core\NugetAuditor.Core.csproj", "{BB225E3A-F0DD-4E7B-A27E-80B7282A13F7}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NugetAuditor.Core", "NugetAuditor.Core\NugetAuditor.Core.csproj", "{BB225E3A-F0DD-4E7B-A27E-80B7282A13F7}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NugetAuditorNetcore", "NugetAuditorNetcore\NugetAuditorNetcore.csproj", "{AE40764D-91BE-46C0-A96F-C8560610B889}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NugetAuditorFunction", "NugetAuditorFunction\NugetAuditorFunction.csproj", "{80CF6FEE-A847-48C9-A244-6C4C80F53F4D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Xamarin.Nuget.Validator", "Xamarin.Nuget.Validator\Xamarin.Nuget.Validator.csproj", "{4E8D1005-3F60-4E05-8474-6471988585E3}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -30,6 +32,7 @@ Global
 		{608A3670-F0E5-4EFD-8143-653F3E8F9950}.Release|x64.ActiveCfg = Release|x64
 		{608A3670-F0E5-4EFD-8143-653F3E8F9950}.Release|x86.ActiveCfg = Release|x86
 		{608A3670-F0E5-4EFD-8143-653F3E8F9950}.Release|x86.Build.0 = Release|x86
+		{608A3670-F0E5-4EFD-8143-653F3E8F9950}.Release|Any CPU.Build.0 = Release|x86
 		{DD1928CD-8850-4CF4-A0A3-60289BFAC4FE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{DD1928CD-8850-4CF4-A0A3-60289BFAC4FE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DD1928CD-8850-4CF4-A0A3-60289BFAC4FE}.Debug|x64.ActiveCfg = Debug|Any CPU
@@ -66,6 +69,30 @@ Global
 		{AE40764D-91BE-46C0-A96F-C8560610B889}.Release|x64.Build.0 = Release|Any CPU
 		{AE40764D-91BE-46C0-A96F-C8560610B889}.Release|x86.ActiveCfg = Release|Any CPU
 		{AE40764D-91BE-46C0-A96F-C8560610B889}.Release|x86.Build.0 = Release|Any CPU
+		{80CF6FEE-A847-48C9-A244-6C4C80F53F4D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{80CF6FEE-A847-48C9-A244-6C4C80F53F4D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{80CF6FEE-A847-48C9-A244-6C4C80F53F4D}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{80CF6FEE-A847-48C9-A244-6C4C80F53F4D}.Debug|x64.Build.0 = Debug|Any CPU
+		{80CF6FEE-A847-48C9-A244-6C4C80F53F4D}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{80CF6FEE-A847-48C9-A244-6C4C80F53F4D}.Debug|x86.Build.0 = Debug|Any CPU
+		{80CF6FEE-A847-48C9-A244-6C4C80F53F4D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{80CF6FEE-A847-48C9-A244-6C4C80F53F4D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{80CF6FEE-A847-48C9-A244-6C4C80F53F4D}.Release|x64.ActiveCfg = Release|Any CPU
+		{80CF6FEE-A847-48C9-A244-6C4C80F53F4D}.Release|x64.Build.0 = Release|Any CPU
+		{80CF6FEE-A847-48C9-A244-6C4C80F53F4D}.Release|x86.ActiveCfg = Release|Any CPU
+		{80CF6FEE-A847-48C9-A244-6C4C80F53F4D}.Release|x86.Build.0 = Release|Any CPU
+		{4E8D1005-3F60-4E05-8474-6471988585E3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4E8D1005-3F60-4E05-8474-6471988585E3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4E8D1005-3F60-4E05-8474-6471988585E3}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{4E8D1005-3F60-4E05-8474-6471988585E3}.Debug|x64.Build.0 = Debug|Any CPU
+		{4E8D1005-3F60-4E05-8474-6471988585E3}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{4E8D1005-3F60-4E05-8474-6471988585E3}.Debug|x86.Build.0 = Debug|Any CPU
+		{4E8D1005-3F60-4E05-8474-6471988585E3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4E8D1005-3F60-4E05-8474-6471988585E3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4E8D1005-3F60-4E05-8474-6471988585E3}.Release|x64.ActiveCfg = Release|Any CPU
+		{4E8D1005-3F60-4E05-8474-6471988585E3}.Release|x64.Build.0 = Release|Any CPU
+		{4E8D1005-3F60-4E05-8474-6471988585E3}.Release|x86.ActiveCfg = Release|Any CPU
+		{4E8D1005-3F60-4E05-8474-6471988585E3}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

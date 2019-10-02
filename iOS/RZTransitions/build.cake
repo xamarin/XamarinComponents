@@ -20,6 +20,7 @@ var buildSpec = new BuildSpec () {
 			OutputFiles = new [] { 
 				new OutputFileCopy {
 					FromFile = "./source/RZTransitions/bin/Release/RZTransitions.dll",
+					ToDirectory = "./output/unified/"
 				},
 			}
 		},	
@@ -27,6 +28,10 @@ var buildSpec = new BuildSpec () {
 
 	Samples = new ISolutionBuilder [] {
 		new IOSSolutionBuilder { SolutionPath = "./samples/RZTransitionsDemo.sln", Configuration = "Release", Platform="iPhone", BuildsOn = BuildPlatforms.Mac },	
+	},
+
+	NuGets = new [] {
+		new NuGetInfo { NuSpec = "./nuget/Xamarin.RZTransitions.nuspec" },
 	},
 
 	Components = new [] {

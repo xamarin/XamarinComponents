@@ -1,4 +1,4 @@
-version: 1.0.0.1
+version: 1.0.0.2
 name: Explosions
 id: Explosions
 publisher: Xamarin Inc
@@ -6,7 +6,7 @@ publisher-url: http://xamarin.com/
 src-url: https://github.com/xamarin/XamarinComponents/tree/master/Android/Explosions
 summary: An explosive dust effect for all your Android views.
 
-license: License.md
+license: ../License.md
 details: Details.md
 getting-started: GettingStarted.md
 
@@ -21,3 +21,17 @@ libraries:
 samples:
   - name: "Android Sample"
     path: ../samples/ExplosionsSample.sln
+    removeProjects:
+        - Explosions
+    installNuGets:
+      - project: ExplosionsSample
+        packages:
+          - Xamarin.Explosions
+
+is_shell: true
+packages:
+  android: Xamarin.Explosions, Version=1.0.0.2
+local-nuget-repo: ../output
+additional-files:
+  - source: "../External-Dependency-Info.txt"
+    destination: "THIRD-PARTY-NOTICES.txt"

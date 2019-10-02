@@ -1,0 +1,23 @@
+
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GooglePlaces", "source\GooglePlaces\GooglePlaces.csproj", "{BB3D056D-E18B-4139-B6CD-6BB7B773E289}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PlacesSample", "samples\PlacesSample\PlacesSample.csproj", "{FB5C2173-C5E8-472A-AE1C-3E78A4C4967D}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{BB3D056D-E18B-4139-B6CD-6BB7B773E289}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BB3D056D-E18B-4139-B6CD-6BB7B773E289}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BB3D056D-E18B-4139-B6CD-6BB7B773E289}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BB3D056D-E18B-4139-B6CD-6BB7B773E289}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FB5C2173-C5E8-472A-AE1C-3E78A4C4967D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FB5C2173-C5E8-472A-AE1C-3E78A4C4967D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FB5C2173-C5E8-472A-AE1C-3E78A4C4967D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FB5C2173-C5E8-472A-AE1C-3E78A4C4967D}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal

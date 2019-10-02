@@ -1,0 +1,246 @@
+parameters:
+  # job parameters
+  name: 'build'                                             # the name of the build job for dependency purposes
+  displayName: 'Build'                                      # the human name of the job
+  timeoutInMinutes: 60                                      # the timeout in minutes
+  dependsOn: []                                             # any jobs this job depends on
+  preBuildSteps: []                                         # any steps that need to run just before the main compilation starts
+  postBuildSteps: []                                        # any steps that need to run just after the main compilation ends
+  masterBranchName: 'master'                                # the "master" branch that should be used - can be something other than "master"
+  installAppleCertificates: 'true'                          # whether or not to install the Apple certificates and provisioning profiles
+  # job software version parameters
+  macosImage: 'Hosted macOS'                                # the name of the macOS VM image
+  windowsImage: 'Hosted Windows 2019 with VS2019'           # the name of the Windows VM image
+  mono: '6_4_0'                                             # the version of mono to use
+  xcode: '11'                                               # the version of Xcode to use
+  dotnet: '3.0.x'                                           # the version of .NET Core to use
+  cake: '0.35.0'                                            # the version of Cake to use
+  apiTools: '1.1.0-preview.1'                               # the version of the api-tools CLI to use
+  tools: []                                                 # a list of any additional .NET Core tools needed
+  cakeTemplatesBranch: 'master'                             # the branch of XamarinComponents that has the templates
+  # build parameters
+  buildType: 'basic'                                        # the type of build: 'basic', 'manifest', 'none'
+  verbosity: 'normal'                                       # the build verbosity: 'minimal', 'normal', 'diagnostic'
+  configuration: 'Release'                                  # the build configuration: 'Debug', 'Release'
+  validPackagePrefixes: []                                  # any NuGet prefixes that should pass validation (always includes Xamarin)
+  artifactsPath: 'output'                                   # the path to the NuGet packages that need to be signed, verified and published
+  # basic cake build parameters
+  cakeTarget: 'ci'                                          # [basic] the Cake target to run (defaults to 'ci')
+  cakeFile: 'build.cake'                                    # [basic] the path to the build.cake file (can be any filename)
+  cakeExtraArgs: ''                                         # [basic] any additional cake CLI arguments
+  # manifest-based build parameters
+  forceBuild: 'false'                                       # [manifest] whether or not to force the build
+  namesFilter: ''                                           # [manifest] the names of the items to build
+  targetsFilter: ''                                         # [manifest] the targets of the items to build
+  failOnBuildFail: 'true'                                   # [manifest] whether or not to fail the build when a single build fails
+
+jobs:
+  - job: ${{ parameters.name }}
+    strategy:
+      matrix:
+        ${{ if ne(parameters.macosImage, '') }}:
+          macos:
+            imageName: ${{ parameters.macosImage }}
+        ${{ if ne(parameters.windowsImage, '') }}:
+          windows:
+            imageName: ${{ parameters.windowsImage }}
+    displayName: ${{ parameters.displayName }}
+    timeoutInMinutes: ${{ parameters.timeoutInMinutes }}
+    dependsOn: ${{ parameters.dependsOn }}
+    pool:
+      name: $(imageName)
+    steps:
+      # before the build starts, make sure the tooling is as expected
+      - bash: sudo $AGENT_HOMEDIRECTORY/scripts/select-xamarin-sdk.sh ${{ parameters.mono }}
+        displayName: 'Switch to the latest Xamarin SDK'
+        condition: eq(variables['System.JobName'], 'macos')
+      - bash: echo '##vso[task.setvariable variable=MD_APPLE_SDK_ROOT;]'/Applications/Xcode_${{ parameters.xcode }}.app;sudo xcode-select --switch /Applications/Xcode_${{ parameters.xcode }}.app/Contents/Developer
+        displayName: 'Switch to the latest Xcode'
+        condition: eq(variables['System.JobName'], 'macos')
+      - ${{ if eq(parameters.installAppleCertificates, 'true') }}:
+        - task: InstallAppleProvisioningProfile@1
+          condition: eq(variables['System.JobName'], 'macos')
+          displayName: 'Install the iOS provisioning profile'
+          inputs:
+            provProfileSecureFile: 'Components iOS Provisioning.mobileprovision'
+        - task: InstallAppleProvisioningProfile@1
+          condition: eq(variables['System.JobName'], 'macos')
+          displayName: 'Install the macOS provisioning profile'
+          inputs:
+            provProfileSecureFile: 'Components Mac Provisioning.provisionprofile'
+        - task: InstallAppleProvisioningProfile@1
+          condition: eq(variables['System.JobName'], 'macos')
+          displayName: 'Install the tvOS provisioning profile'
+          inputs:
+            provProfileSecureFile: 'Components tvOS Provisioning.mobileprovision'
+        - task: InstallAppleCertificate@2
+          condition: eq(variables['System.JobName'], 'macos')
+          displayName: 'Install the iOS certificate'
+          inputs:
+            certSecureFile: 'Components iOS Certificate.p12'
+        - task: InstallAppleCertificate@2
+          condition: eq(variables['System.JobName'], 'macos')
+          displayName: 'Install the macOS certificate'
+          inputs:
+            certSecureFile: 'Components Mac Certificate.p12'
+      - bash: echo '##vso[task.setvariable variable=PATH;]'$PATH:$HOME/.dotnet/tools
+        displayName: 'Add ~/.dotnet/tools to the PATH environment variable'
+        condition: eq(variables['System.JobName'], 'macos')
+      - task: UseDotNet@2
+        displayName: 'Switch to the correct version of the .NET Core SDK'
+        inputs:
+          version: ${{ parameters.dotnet }}
+      - pwsh: |
+          dotnet tool install -g api-tools --version ${{ parameters.apiTools }}
+          dotnet tool install -g cake.tool --version ${{ parameters.cake }}
+        displayName: 'Install required .NET Core global tools'
+      - ${{ each tool in parameters.tools }}:
+        - ${{ each pair in tool }}:
+          - pwsh: dotnet tool install -g ${{ pair.key }} --version ${{ pair.value }}
+            displayName: 'Install additional .NET Core global tool: ${{ pair.key }}'
+      - task: NuGetToolInstaller@1
+        inputs:
+          checkLatest: true
+        displayName: 'Download the latest nuget.exe'
+      - pwsh: |
+          $branch = "${{ parameters.cakeTemplatesBranch }}"
+          if ("$(Build.Repository.Id)" -eq "xamarin/XamarinComponents") {
+            if ("$env:SYSTEM_PULLREQUEST_SOURCEBRANCH") {
+              $branch = "$env:SYSTEM_PULLREQUEST_SOURCEBRANCH"
+            } else {
+              $branch = "$(Build.SourceBranch)"
+            }
+          }
+          if ($branch.StartsWith("refs/heads/")) {
+            $branch = $branch.Substring(11)
+          }
+          if ($branch.StartsWith("refs/tags/")) {
+            $branch = $branch.Substring(10)
+          }
+          $root = "https://raw.githubusercontent.com/xamarin/XamarinComponents/$branch/.ci"
+          Write-Host "##vso[task.setvariable variable=TemplateRootUri]$root"
+          Write-Host "URL root for templates: $root"
+        displayName: 'Resolve the cake templates URL'
+      - pwsh: |
+          $uri = "$(TemplateRootUri)/validation.cake"
+          Write-Host "Downloading script from $uri..."
+          Invoke-WebRequest -Uri $uri -OutFile "validation.cake"
+        displayName: 'Download the cake script to validate NuGet packages'
+      # determine the last successful build for "master" branch
+      - pwsh: |
+          # determine the "master" branch
+          $masterBranch = "${{ parameters.masterBranchName }}"
+          $encodedBranch = [Uri]::EscapeDataString("refs/heads/$masterBranch")
+          Write-Host "Master branch: $masterBranch"
+
+          # determine the "current" branch
+          $branch = "$(Build.SourceBranch)"
+          if ("$env:SYSTEM_PULLREQUEST_TARGETBRANCH") {
+            $branch = "$env:SYSTEM_PULLREQUEST_TARGETBRANCH"
+          }
+          if ($branch.StartsWith("refs/heads/")) {
+            $branch = $branch.Substring(11)
+            Write-Host "Current branch: $branch"
+          }
+          if ($branch.StartsWith("refs/tags/")) {
+            $branch = $branch.Substring(10)
+            Write-Host "Current tag: $branch"
+          }
+
+          if ($branch -eq $masterBranch) {
+            Write-Host "Branch is master, fetching last successful build commit..."
+
+            $url = "$(System.TeamFoundationCollectionUri)$(System.TeamProjectId)/_apis/build/builds/?definitions=$(System.DefinitionId)&branchName=$encodedBranch&statusFilter=completed&resultFilter=succeeded&api-version=5.0"
+            Write-Host "URL for last successful master build: $url"
+
+            $json = Invoke-RestMethod -Uri $url -Headers @{
+                Authorization = "Bearer $(System.AccessToken)"
+            }
+            Write-Host "JSON response:"
+            Write-Host "$json"
+
+            $lastSuccessfulBuildCommit = try { $json.value[0].sourceVersion; } catch { $null }
+          }
+
+          if ($lastSuccessfulBuildCommit) {
+            Write-Host "Last successful commit found: $lastSuccessfulBuildCommit"
+          } else {
+            $lastSuccessfulBuildCommit = "origin/$masterBranch"
+            Write-Host "No previously successful build found, using $lastSuccessfulBuildCommit."
+          }
+
+          Write-Host "##vso[task.setvariable variable=GitLastSuccessfulCommit]$lastSuccessfulBuildCommit"
+        displayName: 'Find the last successful commit'
+      # custom pre-build steps
+      - ${{ parameters.preBuildSteps }}
+      # the basic build
+      - ${{ if eq(parameters.buildType, 'basic') }}:
+        - pwsh: |
+            dotnet cake ${{ parameters.cakeFile }} ${{ parameters.cakeExtraArgs }} `
+              --gitpreviouscommit="$(GitLastSuccessfulCommit)" `
+              --gitcommit="$(Build.SourceVersion)" `
+              --gitbranch="$(Build.SourceBranch)" `
+              --target="${{ parameters.cakeTarget }}" `
+              --configuration="${{ parameters.configuration }}" `
+              --verbosity="${{ parameters.verbosity }}"
+          displayName: 'Run build'
+          env:
+            JavaSdkDirectory: $(JAVA_HOME)
+      # the manifest-based build
+      - ${{ if eq(parameters.buildType, 'manifest') }}:
+        - pwsh: |
+            $uri = "$(TemplateRootUri)/build-manifest.cake"
+            Write-Host "Downloading script from $uri..."
+            Invoke-WebRequest -Uri $uri -OutFile "build-manifest.cake"
+          displayName: 'Download the cake script to build manifest-based repositories'
+        - pwsh: |
+            $force = if ("$env:FORCEBUILD") { "$env:FORCEBUILD" } else { "${{ parameters.forceBuild }}" }
+            $names = if ("$env:BUILDMANIFESTNAMES") { "$env:BUILDMANIFESTNAMES" } else { "${{ parameters.namesFilter }}" }
+            $targets = if ("$env:BUILDMANIFESTTARGETS") { "$env:BUILDMANIFESTTARGETS" } else { "${{ parameters.targetsFilter }}" }
+            $fail = if ("$env:FAILONBUILDFAIL") { "$env:FAILONBUILDFAIL" } else { "${{ parameters.failOnBuildFail }}" }
+            dotnet cake build-manifest.cake `
+              --gitpreviouscommit="$(GitLastSuccessfulCommit)" `
+              --gitcommit="$(Build.SourceVersion)" `
+              --gitbranch="$(Build.SourceBranch)" `
+              --forcebuild="$force" `
+              --names="$names" `
+              --targets="$targets" `
+              --failonbuildfail="$fail" `
+              --copyoutputtoroot=true `
+              --configuration="${{ parameters.configuration }}" `
+              --verbosity="${{ parameters.verbosity }}"
+          displayName: 'Run build'
+          env:
+            JavaSdkDirectory: $(JAVA_HOME)
+        - task: PublishTestResults@2
+          displayName: Publish the test results
+          condition: always()
+          inputs:
+            testResultsFormat: xUnit
+            testResultsFiles: 'output/tests/TestResults.xml'
+            testRunTitle: 'Test results for $(System.JobName)'
+      # custom post-build steps
+      - ${{ parameters.postBuildSteps }}
+      # post-build steps
+      - pwsh: dotnet cake validation.cake --namespaces="${{ join(',', parameters.validPackagePrefixes) }}"
+        displayName: 'Run NuGet package validation'
+      # after the build is complete
+      - pwsh: |
+          if (Get-ChildItem ${{ parameters.artifactsPath }} -Filter *.nupkg) {
+            api-tools nuget-diff ${{ parameters.artifactsPath }} --latest --group-ids --ignore-unchanged --output output/api-diff --cache $(Agent.TempDirectory)/api-diff/package-cache
+          }
+        displayName: 'Generate API diff'
+      - task: ms.vss-governance-buildtask.governance-build-task-component-detection.ComponentGovernanceComponentDetection@0
+        displayName: 'Run component detection'
+        condition: and(succeeded(), in(variables['Build.Reason'], 'IndividualCI', 'BatchedCI'))
+      - task: PublishBuildArtifacts@1
+        displayName: 'Publish artifacts'
+        inputs:
+          PathToPublish: ${{ parameters.artifactsPath }}
+          ArtifactName: nuget
+      - task: PublishBuildArtifacts@1
+        displayName: 'Publish platform artifacts'
+        condition: always()
+        inputs:
+          PathToPublish: output
+          ArtifactName: output-$(System.JobName)

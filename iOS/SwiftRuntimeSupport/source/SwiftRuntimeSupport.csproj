@@ -1,0 +1,45 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project Sdk="MSBuild.Sdk.Extras/2.0.54">
+  <PropertyGroup>
+    <TargetFrameworks>Xamarin.iOS10</TargetFrameworks>
+    <IsBindingProject>true</IsBindingProject>
+    <AssemblyName>Xamarin.iOS.SwiftRuntimeSupport</AssemblyName>
+    <IPhoneResourcePrefix>Resources</IPhoneResourcePrefix>
+    <RootNamespace>Xamarin.iOS.SwiftRuntimeSupport</RootNamespace>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <PackageId>Xamarin.iOS.SwiftRuntimeSupport</PackageId>
+    <Title>Swift Runtime Support for Xamarin.iOS</Title>
+    <Summary>Xamarin.iOS Swift Runtime Support</Summary>
+    <Authors>Microsoft</Authors>
+    <Owners>Microsoft</Owners>
+    <Copyright>© Microsoft Corporation. All rights reserved.</Copyright>
+    <PackageProjectUrl>https://go.microsoft.com/fwlink/?linkid=2092210</PackageProjectUrl>
+    <PackageLicenseFile>LICENSE.md</PackageLicenseFile>
+    <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
+    <PackageVersion>0.1.0</PackageVersion>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Include="SwiftRuntimeSupport.targets" Pack="True" PackagePath="build/Xamarin.iOS.SwiftRuntimeSupport.targets" />
+    <None Include="..\License.md" Pack="True" PackagePath="LICENSE.md" />
+    <None Include="..\readme.txt" Pack="True" PackagePath="readme.txt" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="Xamarin.iOS" />
+  </ItemGroup>
+  
+  <ItemGroup>
+    <Folder Include="Resources\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Remove="ApiDefinition.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ObjcBindingApiDefinition Include="ApiDefinition.cs" />
+  </ItemGroup>
+
+</Project>

@@ -2,8 +2,8 @@
 <package>
   <metadata>
     <id>Xamarin.SDWebImage</id>
-    <title>SDWebImage for Xamarin.iOS</title>
-    <version>3.7.5</version>
+    <title>SDWebImage for Xamarin.iOS, Xamarin.tvOS, Xamarin.macOS</title>
+    <version>4.4.6</version>
     <authors>Microsoft</authors>
     <owners>Microsoft</owners>
     <requireLicenseAcceptance>true</requireLicenseAcceptance>
@@ -13,6 +13,9 @@
     <licenseUrl>https://go.microsoft.com/fwlink/?linkid=865072</licenseUrl>
   </metadata>
   <files>
-    <file src="output/unified/SDWebImage.dll" target="lib/Xamarin.iOS" />
+    <file src="output/SDWebImage.iOS.dll" target="lib/Xamarin.iOS" />
+    <file src="output/SDWebImage.macOS.dll" target="lib/Xamarin.Mac" />
+    <file src="output/SDWebImage.tvOS.dll" target="lib/Xamarin.tvOS" />
+    <file src="External-Dependency-Info.txt" target="THIRD-PARTY-NOTICES.txt" />
   </files>
 </package>

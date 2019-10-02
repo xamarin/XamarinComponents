@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ Copyright (c) Microsoft Corporation. All rights reserved.
+  ~ Licensed under the MIT License.
+  -->
+
+<!--Launch Screen: To use this drawable for your own launch screen, replace the bitmap src attribute values with your own logo(s)-->
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android"
+    android:opacity="opaque">
+    <item android:drawable="@color/uifabric_white" />
+    <item android:bottom="@dimen/uifabric_launch_logo_bottom_spacing">
+        <bitmap
+            android:gravity="center"
+            android:src="@drawable/uifabric_launch_fabric_logo" />
+    </item>
+    <item android:bottom="@dimen/uifabric_launch_microsoft_logo_bottom_spacing">
+        <bitmap
+            android:gravity="bottom|center_horizontal"
+            android:src="@drawable/uifabric_launch_microsoft_logo" />
+    </item>
+</layer-list>
