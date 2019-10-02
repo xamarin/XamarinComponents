@@ -19,7 +19,7 @@
     <Title>Xamarin Android V8 RenderScript</Title>
     <Summary>V8 RenderScript Android Library C# bindings for Xamarin</Summary>
     <description>V8 RenderScript Android Library C# bindings for Xamarin</description>    
-    <PackageVersion>28.0.0.1</PackageVersion>
+    <PackageVersion>28.0.0.3</PackageVersion>
     <Authors>Microsoft</Authors>
     <Owners>Microsoft</Owners>
     <Copyright>© Microsoft Corporation. All rights reserved.</Copyright>    
@@ -40,7 +40,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Xamarin.Android.Support.Annotations" Version="28.0.0.1" PrivateAssets="All" />
+    <PackageReference Include="Xamarin.Android.Support.Annotations" Version="28.0.0.3" PrivateAssets="All" />
   </ItemGroup>
 
 </Project>
