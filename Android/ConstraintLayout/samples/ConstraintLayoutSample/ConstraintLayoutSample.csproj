@@ -82,5 +82,9 @@
   <ItemGroup>
     <Folder Include="Assets\" />
   </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Xamarin.Android.Support.Constraint.Layout" Version="2.0.0-beta2" />
+    <PackageReference Include="Xamarin.Android.Support.Constraint.Layout.Solver" Version="2.0.0-beta2" />
+  </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
 </Project>

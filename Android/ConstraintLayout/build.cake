@@ -80,7 +80,12 @@ Task ("externals")
 
 	XmlPoke("./source/ConstraintLayout/ConstraintLayout.csproj", "/Project/PropertyGroup/PackageVersion", NUGET_VERSION);
 	XmlPoke("./source/ConstraintLayoutSolver/ConstraintLayoutSolver.csproj", "/Project/PropertyGroup/PackageVersion", NUGET_VERSION);
-	
+
+	// Update sample references
+	XmlPoke("./samples/ConstraintLayoutSample/ConstraintLayoutSample.csproj",
+		"/ns:Project/ns:ItemGroup/ns:PackageReference[contains(@Include, 'Xamarin.Android.Support.Constraint.Layout')]/@Version",
+		NUGET_VERSION,
+		new XmlPokeSettings { Namespaces = new Dictionary<string, string> { { "ns", "http://schemas.microsoft.com/developer/msbuild/2003" }}});
 });
 
 Task ("clean")
