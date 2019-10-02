@@ -3,16 +3,6 @@
 
 var TARGET = Argument ("t", Argument ("target", "Default"));
 
-// var IOS_PODS = new List<string> {
-// 	"platform :ios, '8.0'",
-// 	"install! 'cocoapods', :integrate_targets => false",
-// 	"target 'Xamarin' do",
-// 	"pod 'SDWebImage', '5.0.2'",
-// 	"pod 'SDWebImage/MapKit', '5.0.2'",
-// 	"pod 'SDWebImage/WebP', '5.0.2'",
-// 	"end",
-// };
-
 var POD_VERSION = "5.0.6";
 var WebP_VERSION = "0.2.3";
 var FLP_VERSION = "0.3.0"; 
