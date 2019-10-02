@@ -68,6 +68,7 @@ Task ("externals")
 {
 	var path = "./externals/";
 
+	EnsureDirectoryExists("./output/");
 	EnsureDirectoryExists (path);
 
 	if (!FileExists (path + "constraint-layout.aar")) {
