@@ -1,35 +1,53 @@
-#load "../../common.cake"
+var TARGET = Argument ("target", Argument ("t", "ci"));
 
-var TARGET = Argument ("target", Argument ("t", "Default"));
-
-var NUGET_VERSION = "2.0.0-alpha2";
-var AAR_VERSION = "2.0.0-alpha2";
+var NUGET_VERSION = "2.0.0-beta2";
+var AAR_VERSION = "2.0.0-beta2";
 
 var CONSTRAINT_LAYOUT_URL = string.Format ("https://dl.google.com/dl/android/maven2/com/android/support/constraint/constraint-layout/{0}/constraint-layout-{0}.aar", AAR_VERSION);
 var CONSTRAINT_LAYOUT_SOLVER_URL = string.Format ("https://dl.google.com/dl/android/maven2/com/android/support/constraint/constraint-layout-solver/{0}/constraint-layout-solver-{0}.jar", AAR_VERSION);
 
+Task("libs")
+	.IsDependentOn("externals")
+	.Does (() =>
+{
+	MSBuild("./source/ConstraintLayout.sln", c => {
+		c.Configuration = "Release";
+		c.Targets.Clear();
+		c.Targets.Add("Restore");
+		c.Targets.Add("Rebuild");
+		c.Properties.Add("DesignTimeBuild", new [] { "false" });
+	});
+});
 
-var buildSpec = new BuildSpec {
-	Libs = new [] {
-		new DefaultSolutionBuilder {
-			SolutionPath = "./source/ConstraintLayout.sln",
-			BuildsOn = BuildPlatforms.Windows | BuildPlatforms.Mac,
-			OutputFiles = new [] {
-				new OutputFileCopy { FromFile = "./source/ConstraintLayout/bin/Release/Xamarin.Android.Support.Constraint.Layout.dll", ToDirectory = "./output/" },
-				new OutputFileCopy { FromFile = "./source/ConstraintLayoutSolver/bin/Release/Xamarin.Android.Support.Constraint.Layout.Solver.dll", ToDirectory = "./output/" },
-			}
-		}
-	},
+Task("samples")
+	.IsDependentOn("nuget")
+	.Does (() =>
+{
+	MSBuild("./samples/ConstraintLayoutSample.sln", c => {
+		c.Configuration = "Release";
+		c.Targets.Clear();
+		c.Targets.Add("Restore");
+		c.Targets.Add("Build");
+	});
+});
 
-	Samples = new [] {
-		new DefaultSolutionBuilder { SolutionPath = "./samples/ConstraintLayoutSample.sln", BuildsOn = BuildPlatforms.Windows | BuildPlatforms.Mac },
-	},
 
-	NuGets = new [] {
-		new NuGetInfo { NuSpec = "./nuget/Xamarin.Android.Support.Constraint.Layout.nuspec", Version = NUGET_VERSION, RequireLicenseAcceptance = true },
-		new NuGetInfo { NuSpec = "./nuget/Xamarin.Android.Support.Constraint.Layout.Solver.nuspec", Version = NUGET_VERSION, RequireLicenseAcceptance = true },
-	},
-};
+Task("nuget")
+	.IsDependentOn("libs")
+	.Does (() =>
+{
+	MSBuild ("./source/ConstraintLayout.sln", c => {
+		c.Configuration = "Release";
+		c.Targets.Clear();
+		c.Targets.Add("Pack");
+		c.Properties.Add("PackageOutputPath", new [] { MakeAbsolute(new FilePath("./output")).FullPath });
+		c.Properties.Add("PackageRequireLicenseAcceptance", new [] { "true" });
+		c.Properties.Add("DesignTimeBuild", new [] { "false" });
+	});
+});
+
+Task("ci")
+	.IsDependentOn("samples");
 
 
 Task ("externals")
@@ -46,9 +64,14 @@ Task ("externals")
 	}
 	if (!FileExists (path + "constraint-layout-solver.jar"))
 		DownloadFile (CONSTRAINT_LAYOUT_SOLVER_URL, path + "constraint-layout-solver.jar");
+
+	XmlPoke("./source/ConstraintLayout/ConstraintLayout.csproj", "/Project/PropertyGroup/PackageVersion", NUGET_VERSION);
+	XmlPoke("./source/ConstraintLayoutSolver/ConstraintLayoutSolver.csproj", "/Project/PropertyGroup/PackageVersion", NUGET_VERSION);
+	
 });
 
-Task ("clean").IsDependentOn ("clean-base").Does (() => 
+Task ("clean")
+	.Does (() => 
 {
 	if (DirectoryExists ("./externals/"))
 		DeleteDirectory("./externals/", true);
@@ -56,7 +79,5 @@ Task ("clean").IsDependentOn ("clean-base").Does (() =>
 	if (DirectoryExists ("./output"))
 		DeleteDirectory ("./output", true);
 });
-
-SetupXamarinBuildTasks (buildSpec, Tasks, Task);
 
 RunTarget (TARGET);
