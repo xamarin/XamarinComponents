@@ -196,13 +196,13 @@ class Processor(xmlFile: File, jarFiles: List<File>, outputFile: File?) {
 
         // remove the members that are not meant to be used
         processMembers(xclass, "constructor") {
-            shouldRemoveMember(it, jclass.declaredConstructors)
+            shouldRemoveMember(it, jclass.declaredConstructors + jclass.constructors)
         }
         processMembers(xclass, "method") {
-            shouldRemoveMember(it, jclass.declaredMethods)
+            shouldRemoveMember(it, jclass.declaredMethods + jclass.methods)
         }
         processMembers(xclass, "field") {
-            shouldRemoveField(it, jclass.declaredFields)
+            shouldRemoveField(it, jclass.declaredFields + jclass.fields)
         }
     }
 
