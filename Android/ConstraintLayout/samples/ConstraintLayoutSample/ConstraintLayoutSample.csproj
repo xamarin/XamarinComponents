@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -15,7 +15,8 @@
     <AndroidManifest>Properties\AndroidManifest.xml</AndroidManifest>
     <MonoAndroidResourcePrefix>Resources</MonoAndroidResourcePrefix>
     <MonoAndroidAssetsPrefix>Assets</MonoAndroidAssetsPrefix>
-    <AndroidUseLatestPlatformSdk>true</AndroidUseLatestPlatformSdk>
+    <RestoreNoCache>true</RestoreNoCache>
+    <RestorePackagesPath>$(MSBuildThisFileDirectory)..\..\externals\packages</RestorePackagesPath>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -26,6 +27,7 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <AndroidLinkMode>None</AndroidLinkMode>
+    <AndroidDexTool>d8</AndroidDexTool>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -36,9 +38,12 @@
     <WarningLevel>4</WarningLevel>
     <AndroidManagedSymbols>true</AndroidManagedSymbols>
     <AndroidUseSharedRuntime>false</AndroidUseSharedRuntime>
-    <AndroidSupportedAbis>armeabi-v7a;armeabi;x86;arm64-v8a;x86_64</AndroidSupportedAbis>
+    <AndroidSupportedAbis>armeabi-v7a;x86;x86_64;arm64-v8a</AndroidSupportedAbis>
+    <AndroidDexTool>d8</AndroidDexTool>
+    <AndroidLinkTool>r8</AndroidLinkTool>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Java.Interop" />
     <Reference Include="System" />
     <Reference Include="System.Xml" />
     <Reference Include="System.Core" />
@@ -75,20 +80,11 @@
     <AndroidResource Include="Resources\drawable\info_background.xml" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Resources\drawable\" />
-    <Folder Include="Resources\drawable-xxhdpi\" />
-    <Folder Include="Resources\values-w820dp\" />
     <Folder Include="Assets\" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\source\ConstraintLayout\ConstraintLayout.csproj">
-      <Project>{045F2ED1-9752-4CC2-A73C-86A5B9E28C8F}</Project>
-      <Name>ConstraintLayout</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\source\ConstraintLayoutSolver\ConstraintLayoutSolver.csproj">
-      <Project>{84FD66DF-C448-425E-860F-C0B076EED150}</Project>
-      <Name>ConstraintLayoutSolver</Name>
-    </ProjectReference>
+    <PackageReference Include="Xamarin.Android.Support.Constraint.Layout" Version="2.0.0-beta2" />
+    <PackageReference Include="Xamarin.Android.Support.Constraint.Layout.Solver" Version="2.0.0-beta2" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
 </Project>

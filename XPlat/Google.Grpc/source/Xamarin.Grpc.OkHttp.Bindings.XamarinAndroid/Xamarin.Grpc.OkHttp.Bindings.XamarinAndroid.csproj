@@ -1,8 +1,4 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
-  <!--
-  https://montemagno.com/converting-xamarin-libraries-to-sdk-style-multi-targeted-projects/
-    
-  -->
+﻿<Project Sdk="MSBuild.Sdk.Extras/2.0.54">
     <PropertyGroup>
         <AssemblyName>Xamarin.Grpc.OkHttp</AssemblyName>
 
@@ -76,7 +72,6 @@
 
 
   <ItemGroup>
-    <PackageReference Include="MSBuild.Sdk.Extras" Version="1.4.0" PrivateAssets="All" />
     <PackageReference Include="Square.OkIO" Version="1.13.0.1" />
     <PackageReference Include="Square.OkHttp" Version="2.5.0" />
   </ItemGroup>
@@ -97,7 +92,5 @@
     <ProjectReference Include="..\Xamarin.Grpc.Core.Bindings.XamarinAndroid\Xamarin.Grpc.Core.Bindings.XamarinAndroid.csproj" />
     <ProjectReference Include="..\Xamarin.Grpc.Context.Bindings.XamarinAndroid\Xamarin.Grpc.Context.Bindings.XamarinAndroid.csproj" />
   </ItemGroup>
-  <Import Project="$(MSBuildSDKExtrasTargets)" Condition="Exists('$(MSBuildSDKExtrasTargets)')" />
 
-    
 </Project>

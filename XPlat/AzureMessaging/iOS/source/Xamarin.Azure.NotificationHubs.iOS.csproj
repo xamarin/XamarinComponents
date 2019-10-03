@@ -1,59 +1,66 @@
-<?xml version="1.0" encoding="utf-8"?>
-<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project Sdk="MSBuild.Sdk.Extras/2.0.54">
   <PropertyGroup>
-    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
-    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectTypeGuids>{8FFB629D-F513-41CE-95D2-7ECE97B6EEEC};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
-    <ProjectGuid>{99ECFF92-CA4E-4473-ADFC-5D7F3ABBC4C6}</ProjectGuid>
-    <OutputType>Library</OutputType>
+    <TargetFramework>Xamarin.iOS10</TargetFramework>
+    <IsBindingProject>true</IsBindingProject>
     <RootNamespace>WindowsAzure.Messaging</RootNamespace>
-    <IPhoneResourcePrefix>Resources</IPhoneResourcePrefix>
     <AssemblyName>Xamarin.Azure.NotificationHubs.iOS</AssemblyName>
-    <TargetFrameworkIdentifier>Xamarin.iOS</TargetFrameworkIdentifier>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <DebugSymbols>true</DebugSymbols>
-    <DebugType>full</DebugType>
-    <Optimize>false</Optimize>
-    <OutputPath>bin\unified\Debug</OutputPath>
-    <DefineConstants>DEBUG;__UNIFIED__</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-    <ConsolePause>false</ConsolePause>
+    <AssemblyVersion>1.0.0.0</AssemblyVersion>
+    <FileVersion>2.0.4</FileVersion>
+    <IPhoneResourcePrefix>Resources</IPhoneResourcePrefix>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
-    <IntermediateOutputPath>obj\unified\Debug\</IntermediateOutputPath>
   </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <Optimize>true</Optimize>
-    <OutputPath>bin\unified\Release</OutputPath>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-    <ConsolePause>false</ConsolePause>
-    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
-    <DefineConstants>__UNIFIED__</DefineConstants>
-    <IntermediateOutputPath>obj\unified\Release\</IntermediateOutputPath>
+
+  <PropertyGroup>
+    <PackageId>Xamarin.Azure.NotificationHubs.iOS</PackageId>
+    <Title>Azure Notification Hubs for Xamarin.iOS</Title>
+    <Summary>Xamarin.iOS Bindings for Azure Notification Hubs</Summary>
+    <Description>Xamarin.iOS Bindings for Azure Notification Hubs</Description>
+    <Authors>Microsoft</Authors>
+    <Owners>Microsoft</Owners>
+    <Copyright>© Microsoft Corporation. All rights reserved.</Copyright>
+    <PackageIconUrl>https://raw.githubusercontent.com/xamarin/GoogleApisForiOSComponents/master/icons/firebaseiosauth_128x128.png</PackageIconUrl>
+    <PackageProjectUrl>https://go.microsoft.com/fwlink/?linkid=864962</PackageProjectUrl>
+    <PackageLicenseUrl>https://go.microsoft.com/fwlink/?linkid=865062</PackageLicenseUrl>
+    <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
+    <PackageVersion>2.0.4</PackageVersion>
   </PropertyGroup>
+
   <ItemGroup>
-    <Reference Include="System" />
     <Reference Include="Xamarin.iOS" />
   </ItemGroup>
+  
   <ItemGroup>
     <Folder Include="Resources\" />
   </ItemGroup>
+  
   <ItemGroup>
-    <ObjcBindingApiDefinition Include="ApiDefinition.cs" />
+    <None Include="..\externals\WindowsAzureMessaging.framework">
+      <Link>WindowsAzureMessaging.framework</Link>
+    </None>
+    <None Include="..\..\External-Dependency-Info.txt" Pack="True" PackagePath="THIRD-PARTY-NOTICES.txt" />
   </ItemGroup>
-  <ItemGroup>
-    <ObjcBindingCoreSource Include="StructsAndEnums.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="Additions.cs" />
-  </ItemGroup>
+
   <ItemGroup>
     <NativeReference Include="..\externals\WindowsAzureMessaging.framework">
       <Kind>Framework</Kind>
-      <SmartLink>False</SmartLink>
+      <Frameworks>Security</Frameworks>
+      <LinkerFlags>-ObjC -lc++</LinkerFlags>
+      <ForceLoad>True</ForceLoad>
     </NativeReference>
   </ItemGroup>
-  <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.ObjCBinding.CSharp.targets" />
+
+  <ItemGroup>
+    <Compile Remove="StructsAndEnums.cs" />
+    <Compile Remove="ApiDefinition.cs" />
+  </ItemGroup>
+  
+  <ItemGroup>
+    <ObjcBindingCoreSource Include="StructsAndEnums.cs" Condition=" '$(EnableDefaultCompileItems)' == 'true'" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ObjcBindingApiDefinition Include="ApiDefinition.cs" Condition=" '$(EnableDefaultCompileItems)' == 'true'" />
+  </ItemGroup>
+
 </Project>

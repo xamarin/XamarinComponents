@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -12,11 +12,10 @@
     <AndroidResgenClass>Resource</AndroidResgenClass>
     <AndroidResgenFile>Resources\Resource.designer.cs</AndroidResgenFile>
     <AndroidApplication>True</AndroidApplication>
-    <AndroidUseLatestPlatformSdk>True</AndroidUseLatestPlatformSdk>
     <AssemblyName>AzureMessagingSampleAndroid</AssemblyName>
-    <TargetFrameworkVersion>v6.0</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v9.0</TargetFrameworkVersion>
     <AndroidManifest>Properties\AndroidManifest.xml</AndroidManifest>
-    <AndroidSupportedAbis>armeabi;armeabi-v7a;x86;arm64-v8a;x86_64</AndroidSupportedAbis>
+    <AndroidSupportedAbis>armeabi-v7a;x86;arm64-v8a;x86_64</AndroidSupportedAbis>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -39,26 +38,15 @@
     <AndroidUseSharedRuntime>false</AndroidUseSharedRuntime>
     <ConsolePause>false</ConsolePause>
   </PropertyGroup>
+  <PropertyGroup>
+    <RestoreNoCache>true</RestoreNoCache>
+    <RestorePackagesPath>$(MSBuildThisFileDirectory)..\..\externals\packages</RestorePackagesPath>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Xml" />
     <Reference Include="System.Core" />
     <Reference Include="Mono.Android" />
-    <Reference Include="Xamarin.Android.Support.v4">
-      <HintPath>..\packages\Xamarin.Android.Support.v4.23.1.1.1\lib\MonoAndroid403\Xamarin.Android.Support.v4.dll</HintPath>
-    </Reference>
-    <Reference Include="Xamarin.GooglePlayServices.Basement">
-      <HintPath>..\packages\Xamarin.GooglePlayServices.Basement.29.0.0.2\lib\MonoAndroid41\Xamarin.GooglePlayServices.Basement.dll</HintPath>
-    </Reference>
-    <Reference Include="Xamarin.GooglePlayServices.Base">
-      <HintPath>..\packages\Xamarin.GooglePlayServices.Base.29.0.0.2\lib\MonoAndroid41\Xamarin.GooglePlayServices.Base.dll</HintPath>
-    </Reference>
-    <Reference Include="Xamarin.GooglePlayServices.Measurement">
-      <HintPath>..\packages\Xamarin.GooglePlayServices.Measurement.29.0.0.2\lib\MonoAndroid41\Xamarin.GooglePlayServices.Measurement.dll</HintPath>
-    </Reference>
-    <Reference Include="Xamarin.GooglePlayServices.Gcm">
-      <HintPath>..\packages\Xamarin.GooglePlayServices.Gcm.29.0.0.2\lib\MonoAndroid41\Xamarin.GooglePlayServices.Gcm.dll</HintPath>
-    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="MainActivity.cs" />
@@ -66,22 +54,24 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\AboutResources.txt" />
-    <None Include="Assets\AboutAssets.txt" />
     <None Include="Properties\AndroidManifest.xml" />
-    <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\layout\Main.axml" />
     <AndroidResource Include="Resources\values\Strings.xml" />
     <AndroidResource Include="Resources\drawable\Icon.png" />
   </ItemGroup>
-  <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
-  <Import Project="..\packages\Xamarin.GooglePlayServices.Basement.29.0.0.2\build\Xamarin.GooglePlayServices.Basement.targets" Condition="Exists('..\packages\Xamarin.GooglePlayServices.Basement.29.0.0.2\build\Xamarin.GooglePlayServices.Basement.targets')" />
   <ItemGroup>
-    <ProjectReference Include="..\..\source\Xamarin.Azure.NotificationHubs.Android.csproj">
-      <Project>{94785639-56A7-4292-81F9-51BD5E2A403C}</Project>
-      <Name>Xamarin.Azure.NotificationHubs.Android</Name>
-    </ProjectReference>
+    <PackageReference Include="Xamarin.GooglePlayServices.Gcm" Version="71.1600.0" />
+    <PackageReference Include="Xamarin.Android.Support.v7.AppCompat" Version="28.0.0.3" />
+    <PackageReference Include="Xamarin.Android.Support.v4" Version="28.0.0.3" />
+    <PackageReference Include="Xamarin.Android.Support.Compat" Version="28.0.0.3" />
+    <PackageReference Include="Xamarin.Android.Support.Core.UI" Version="28.0.0.3" />
+    <PackageReference Include="Xamarin.Android.Support.Core.Utils" Version="28.0.0.3" />
+    <PackageReference Include="Xamarin.Android.Support.Fragment" Version="28.0.0.3" />
+    <PackageReference Include="Xamarin.Android.Support.Media.Compat" Version="28.0.0.3" />
+    <PackageReference Include="Xamarin.Azure.NotificationHubs.Android" Version="0.6.0" />
+    <PackageReference Include="Xamarin.GooglePlayServices.Iid" Version="71.1600.0" />
   </ItemGroup>
+  <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
 </Project>

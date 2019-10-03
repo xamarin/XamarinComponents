@@ -1,8 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
-  <!--
-  https://montemagno.com/converting-xamarin-libraries-to-sdk-style-multi-targeted-projects/
-    
-  -->
+<Project Sdk="MSBuild.Sdk.Extras/2.0.54">
     <PropertyGroup>
         <AssemblyName>Xamarin.Protobuf.Lite</AssemblyName>
 
@@ -24,9 +20,6 @@
     </PropertyGroup>
 
     <PropertyGroup>
-        <!-- 
-        nuget packaging
-        -->
         <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
         <PackageId>Xamarin.Protobuf.Lite</PackageId>
         <PackageVersion>3.0.1</PackageVersion>
@@ -43,9 +36,7 @@
         <PackageLicenseUrl>https://go.microsoft.com/fwlink/?linkid=2013316</PackageLicenseUrl>
         <PackageProjectUrl>https://go.microsoft.com/fwlink/?linkid=2013421</PackageProjectUrl>
         <RepositoryUrl>https://github.com/xamarin/XamarinComponents/tree/master/XPlat/Protobuf.Lite/</RepositoryUrl>
-        <PackageReleaseNotes>
-            Initial bindings
-        </PackageReleaseNotes>
+        <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
         <PackageIconUrl></PackageIconUrl>
         <PackageTags>xamarin, android, bindings, google, protobuf, lite </PackageTags>
     </PropertyGroup>
@@ -54,10 +45,6 @@
     <ItemGroup>
         <TransformFile Include="Transforms\*.xml" />
     </ItemGroup>
-
-  <ItemGroup>
-    <PackageReference Include="MSBuild.Sdk.Extras" Version="1.4.0" PrivateAssets="All" />
-  </ItemGroup>
 
   <ItemGroup>
     <EmbeddedJar Include="..\..\externals\android\protobuf-lite-3.0.1.jar">
@@ -70,7 +57,4 @@
   <ItemGroup>
     <None Remove="Jars\AboutJars.txt" />
   </ItemGroup>
-  <Import Project="$(MSBuildSDKExtrasTargets)" Condition="Exists('$(MSBuildSDKExtrasTargets)')" />
-
-    
 </Project>
