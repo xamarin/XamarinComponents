@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Project Sdk="MSBuild.Sdk.Extras/2.0.54">
   <PropertyGroup>
-    <TargetFramework>MonoAndroid60</TargetFramework>
+    <TargetFramework>MonoAndroid80</TargetFramework>
     <IsBindingProject>true</IsBindingProject>
     <AssemblyName>Xamarin.Azure.NotificationHubs.Android</AssemblyName>
     <MonoAndroidResourcePrefix>Resources</MonoAndroidResourcePrefix>
