@@ -21,7 +21,7 @@ Task("libs-ios")
 		c.Properties.Add("DesignTimeBuild", new [] { "false" });
 		c.BinaryLogger = new MSBuildBinaryLogSettings {
 			Enabled = true,
-			FileName = "./output/libs.binlog"
+			FileName = "./output/libs-ios.binlog"
 		};
 	});
 });
@@ -38,7 +38,7 @@ Task("libs-android")
 		c.Properties.Add("DesignTimeBuild", new [] { "false" });
 		c.BinaryLogger = new MSBuildBinaryLogSettings {
 			Enabled = true,
-			FileName = "./output/libs.binlog"
+			FileName = "./output/libs-android.binlog"
 		};
 	});
 });
@@ -57,7 +57,7 @@ Task("nuget-ios")
 		c.Properties.Add("DesignTimeBuild", new [] { "false" });
 		c.BinaryLogger = new MSBuildBinaryLogSettings {
 			Enabled = true,
-			FileName = "./output/nuget.binlog"
+			FileName = "./output/nuget-ios.binlog"
 		};
 	});
 });
@@ -76,7 +76,7 @@ Task("nuget-android")
 		c.Properties.Add("DesignTimeBuild", new [] { "false" });
 		c.BinaryLogger = new MSBuildBinaryLogSettings {
 			Enabled = true,
-			FileName = "./output/nuget.binlog"
+			FileName = "./output/nuget-android.binlog"
 		};
 	});
 });
@@ -94,7 +94,7 @@ Task("samples-ios")
 		c.Targets.Add("Build");
 		c.BinaryLogger = new MSBuildBinaryLogSettings {
 			Enabled = true,
-			FileName = "./output/samples.binlog"
+			FileName = "./output/samples-ios.binlog"
 		};
 	});
 });
@@ -111,7 +111,7 @@ Task("samples-android")
 		c.Targets.Add("Build");
 		c.BinaryLogger = new MSBuildBinaryLogSettings {
 			Enabled = true,
-			FileName = "./output/samples.binlog"
+			FileName = "./output/samples-android.binlog"
 		};
 	});
 });
