@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project Sdk="MSBuild.Sdk.Extras/2.0.54">
   <PropertyGroup>
-    <TargetFrameworks>MonoAndroid90</TargetFrameworks>
+    <TargetFramework>MonoAndroid90</TargetFramework>
     <IsBindingProject>true</IsBindingProject>
     <MonoAndroidResourcePrefix>Resources</MonoAndroidResourcePrefix>
     <MonoAndroidAssetsPrefix>Assets</MonoAndroidAssetsPrefix>
@@ -19,7 +19,7 @@
     <Title>Xamarin Android V8 RenderScript</Title>
     <Summary>V8 RenderScript Android Library C# bindings for Xamarin</Summary>
     <description>V8 RenderScript Android Library C# bindings for Xamarin</description>    
-    <PackageVersion>28.0.0.1</PackageVersion>
+    <PackageVersion>28.0.0.3</PackageVersion>
     <Authors>Microsoft</Authors>
     <Owners>Microsoft</Owners>
     <Copyright>© Microsoft Corporation. All rights reserved.</Copyright>    
@@ -33,14 +33,41 @@
   </ItemGroup>
 
   <ItemGroup>
-    <InputJar Include="..\externals\build-tools\renderscript\lib\renderscript-v8.jar">
+    <EmbeddedJar Include="..\externals\build-tools\renderscript\lib\renderscript-v8.jar">
       <Link>renderscript-v8.jar</Link>
-    </InputJar>
+    </EmbeddedJar>
+    <None Include="..\externals\build-tools\renderscript\lib\packaged\arm64-v8a\librsjni.so" Pack="True" PackagePath="build\$(TargetFramework)\libs\arm64-v8a\librsjni.so">
+      <Link>libs\arm64-v8a\librsjni.so</Link>
+    </None>
+    <None Include="..\externals\build-tools\renderscript\lib\packaged\arm64-v8a\libRSSupport.so" Pack="True" PackagePath="build\$(TargetFramework)\libs\arm64-v8a\libRSSupport.so">
+      <Link>libs\arm64-v8a\libRSSupport.so</Link>
+    </None>
+    <None Include="..\externals\build-tools\renderscript\lib\packaged\armeabi-v7a\librsjni.so" Pack="True" PackagePath="build\$(TargetFramework)\libs\armeabi-v7a\librsjni.so">
+      <Link>libs\armeabi-v7a\librsjni.so</Link>
+    </None>
+    <None Include="..\externals\build-tools\renderscript\lib\packaged\armeabi-v7a\libRSSupport.so" Pack="True" PackagePath="build\$(TargetFramework)\libs\armeabi-v7a\libRSSupport.so">
+      <Link>libs\armeabi-v7a\libRSSupport.so</Link>
+    </None>
+    <None Include="..\externals\build-tools\renderscript\lib\packaged\x86\librsjni.so" Pack="True" PackagePath="build\$(TargetFramework)\libs\x86\librsjni.so">
+      <Link>libs\x86\librsjni.so</Link>
+    </None>
+    <None Include="..\externals\build-tools\renderscript\lib\packaged\x86\libRSSupport.so" Pack="True" PackagePath="build\$(TargetFramework)\libs\x86\libRSSupport.so">
+      <Link>libs\x86\libRSSupport.so</Link>
+    </None>
+    <None Include="..\externals\build-tools\renderscript\lib\packaged\x86_64\librsjni.so" Pack="True" PackagePath="build\$(TargetFramework)\libs\x86_64\librsjni.so">
+      <Link>libs\x86_64\librsjni.so</Link>
+    </None>
+    <None Include="..\externals\build-tools\renderscript\lib\packaged\x86_64\libRSSupport.so" Pack="True" PackagePath="build\$(TargetFramework)\libs\x86_64\libRSSupport.so">
+      <Link>libs\x86_64\libRSSupport.so</Link>
+    </None>
+
     <None Include="..\External-Dependency-Info.txt" Pack="True" PackagePath="THIRD-PARTY-NOTICES.txt" />
+
+    <None Include="Xamarin.Android.Support.v8.RenderScript.targets" Pack="True" PackagePath="build\$(TargetFramework)\Xamarin.Android.Support.v8.RenderScript.targets" />
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Xamarin.Android.Support.Annotations" Version="28.0.0.1" PrivateAssets="All" />
+    <PackageReference Include="Xamarin.Android.Support.Annotations" Version="28.0.0.3" PrivateAssets="All" />
   </ItemGroup>
 
 </Project>
