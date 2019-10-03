@@ -792,14 +792,14 @@ private val Element.parentElement: Element
 
 private val KmPackage.functionOverloads: List<Pair<KmFunction, List<KmValueParameter>>>
     get() = this.functions.map {
-        it to it.valueParameters.getOverloads()
+        it to it.valueParameters.getOverloads(it.receiverParameterType)
     }.flatMap { overload ->
         overload.second.map { params -> overload.first to params }
     }
 
 private val KmClass.functionOverloads: List<Pair<KmFunction, List<KmValueParameter>>>
     get() = this.functions.map {
-        it to it.valueParameters.getOverloads()
+        it to it.valueParameters.getOverloads(it.receiverParameterType)
     }.flatMap { overload ->
         overload.second.map { params -> overload.first to params }
     }
@@ -811,9 +811,15 @@ private val KmClass.constructorOverloads: List<Pair<KmConstructor, List<KmValueP
         overload.second.map { params -> overload.first to params }
     }
 
-private fun List<KmValueParameter>.getOverloads(): List<List<KmValueParameter>> {
+private fun List<KmValueParameter>.getOverloads(receiverParameterType: KmType? = null): List<List<KmValueParameter>> {
     val overloads = mutableListOf<List<KmValueParameter>>()
-    overloads.add(this)
+    if (receiverParameterType == null) {
+        overloads.add(this)
+    } else {
+        val t = KmValueParameter(0, "this")
+        t.type = receiverParameterType
+        overloads.add(listOf(t) + this)
+    }
     while (Flag.ValueParameter.DECLARES_DEFAULT_VALUE(overloads.last().lastOrNull()?.flags ?: 0)) {
         val l = overloads.last()
         overloads.add(l.take(l.size - 1))
