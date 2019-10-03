@@ -12,8 +12,8 @@ Task("libs")
 {
 	MSBuild("./source/ConstraintLayout.sln", c => {
 		c.Configuration = "Release";
+		c.Restore = true;
 		c.Targets.Clear();
-		c.Targets.Add("Restore");
 		c.Targets.Add("Rebuild");
 		c.Properties.Add("DesignTimeBuild", new [] { "false" });
 		c.BinaryLogger = new MSBuildBinaryLogSettings {
@@ -29,8 +29,8 @@ Task("samples")
 {
 	MSBuild("./samples/ConstraintLayoutSample.sln", c => {
 		c.Configuration = "Release";
+		c.Restore = true;
 		c.Targets.Clear();
-		c.Targets.Add("Restore");
 		c.Targets.Add("Build");
 		c.BinaryLogger = new MSBuildBinaryLogSettings {
 			Enabled = true,
