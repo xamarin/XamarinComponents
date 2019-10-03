@@ -19,6 +19,7 @@
     <JavaMaximumHeapSize>1G</JavaMaximumHeapSize>
     <SchemaVersion>2.0</SchemaVersion>
     <AndroidSupportedAbis>armeabi-v7a;x86;arm64-v8a;x86_64</AndroidSupportedAbis>
+    <RestoreNoCache>true</RestoreNoCache>
     <RestorePackagesPath>$(MSBuildThisFileDirectory)..\..\externals\packages</RestorePackagesPath>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
