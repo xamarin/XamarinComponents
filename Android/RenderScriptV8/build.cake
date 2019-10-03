@@ -1,4 +1,4 @@
-var NUGET_VERSION = "28.0.0.1";
+var NUGET_VERSION = "28.0.0.3";
 
 var TARGET = Argument ("t", Argument ("target", "Default"));
 var BUILD_TOOLS_URL = "https://dl-ssl.google.com/android/repository/build-tools_r28-macosx.zip";
@@ -78,5 +78,8 @@ Task ("clean")
 	if (DirectoryExists ("./externals/"))
 		DeleteDirectory ("./externals", true);
 });
+
+Task ("ci")
+	.IsDependentOn("samples");
 
 RunTarget (TARGET);

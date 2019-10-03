@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="MSBuild.Sdk.Extras/2.0.54">
   <PropertyGroup>
     <TargetFrameworks>MonoAndroid90</TargetFrameworks>
     <IsBindingProject>true</IsBindingProject>
@@ -56,7 +56,6 @@
     <PackageReference Include="Xamarin.GooglePlayServices.Tasks" Version="71.1601.0-preview3" />
     <PackageReference Include="Xamarin.Google.AutoValue.Annotations" Version="1.6.5" />
     <PackageReference Include="GoogleGson" Version="2.8.5" />
-    <PackageReference Include="MSBuild.Sdk.Extras" Version="1.4.0" PrivateAssets="All" />
   </ItemGroup>
 
   <ItemGroup>
@@ -65,5 +64,4 @@
   <ItemGroup>
     <Reference Include="Mono.Android" />
   </ItemGroup>
-  <Import Project="$(MSBuildSDKExtrasTargets)" Condition="Exists('$(MSBuildSDKExtrasTargets)')" />
 </Project>
