@@ -477,7 +477,8 @@
 - Name: AzureMessaging
   BuildScript: ./XPlat/AzureMessaging/build.cake
   TriggerPaths: [ XPlat/AzureMessaging ]
-  MacBuildTargets: [ nuget, samples ]
+  MacBuildTargets: [ ci ]
+  WindowsBuildTargets: [ ci ]
 - Name: YouTube.Player.Android
   BuildScript: ./XPlat/YouTube.Player/android/build.cake
   TriggerPaths: [ XPlat/YouTube.Player/android ]
