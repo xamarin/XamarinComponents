@@ -2,4 +2,6 @@
 <metadata>
 	<attr path="/api/package[@name='android.support.constraint']" name="managedName">Android.Support.Constraints</attr>
     <attr path="/api/package[@name='android.support.constraint.motion']" name="managedName">Android.Support.Constraints.Motion</attr>
+
+    <remove-node path="/api/package[@name='android.support.constraint.motion']/class[@name='DesignTool']" />
 </metadata>
