@@ -38,7 +38,7 @@
     <None Include="..\externals\WindowsAzureMessaging.framework">
       <Link>WindowsAzureMessaging.framework</Link>
     </None>
-    <None Include="..\External-Dependency-Info.txt" Pack="True" PackagePath="THIRD-PARTY-NOTICES.txt" />
+    <None Include="..\..\External-Dependency-Info.txt" Pack="True" PackagePath="THIRD-PARTY-NOTICES.txt" />
   </ItemGroup>
 
   <ItemGroup>
