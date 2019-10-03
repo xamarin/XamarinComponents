@@ -19,6 +19,8 @@
     <JavaMaximumHeapSize>1G</JavaMaximumHeapSize>
     <SchemaVersion>2.0</SchemaVersion>
     <AndroidSupportedAbis>armeabi-v7a;x86;arm64-v8a;x86_64</AndroidSupportedAbis>
+    <RestoreNoCache>true</RestoreNoCache>
+    <RestorePackagesPath>$(MSBuildThisFileDirectory)..\..\externals\packages</RestorePackagesPath>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -41,6 +43,7 @@
     <ConsolePause>false</ConsolePause>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Java.Interop" />
     <Reference Include="System" />
     <Reference Include="System.Xml" />
     <Reference Include="System.Core" />
@@ -63,10 +66,9 @@
     <AndroidResource Include="Resources\drawable\dog_and_monkeys.png" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\source\RenderScriptV8.csproj">
-      <Project>{6f602453-5a78-4fcd-865e-eb3f136fd047}</Project>
-      <Name>RenderScriptV8</Name>
-    </ProjectReference>
+    <PackageReference Include="Xamarin.Android.Support.v8.RenderScript">
+      <Version>28.0.0.3</Version>
+    </PackageReference>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
 </Project>
