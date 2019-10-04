@@ -54,7 +54,7 @@
         path="/api/package[@name='io.opencensus.trace.export']"
         name="managedName"
         >
-        Xamarin.Io.OpenCensus.Export
+        Xamarin.Io.OpenCensus.Trace.Export
     </attr>
     
     <attr
@@ -75,6 +75,32 @@
         name="managedName"
         >
         Xamarin.Io.OpenCensus.Trace.Unsafe
+    </attr>    
+    
+    <attr
+        path="/api/package[@name='io.opencensus.metrics']"
+        name="managedName"
+        >
+        Xamarin.Io.OpenCensus.Metrics
+    </attr>    
+    <attr
+        path="/api/package[@name='io.opencensus.metrics.export']"
+        name="managedName"
+        >
+        Xamarin.Io.OpenCensus.Metrics.Export
+    </attr>    
+    <attr
+        path="/api/package[@name='io.opencensus.metrics.data']"
+        name="managedName"
+        >
+        Xamarin.Io.OpenCensus.Metrics.Data
+    </attr>    
+    
+    <attr
+        path="/api/package[@name='io.opencensus.trace.internal']"
+        name="managedName"
+        >
+        Xamarin.Io.OpenCensus.Trace.Internal
     </attr>    
     
     
@@ -149,5 +175,24 @@
         >
         Xamarin.Io.OpenCensus.Stats.Measure
     </attr>
+
+
+    <!--
+    Changing parameter type - Does not work 
+    -->
+    <attr
+        path="/api/package[@name='io.opencensus.stats']/class[@name='ViewData']/method[@name='create' and count(parameter)=4]/parameter[2]"
+        name="managedType"
+        >
+        System.Collections.Generic.IDictionary &lt; System.Collections.Generic.IList &lt; Xamarin.Io.OpenCensus.Tags.TagValue &gt; , Java.Lang.Object &gt;
+    </attr>
+    <!--
+    System.Collections.Generic.IDictionary &lt; System.Collections.Generic.IList &lt; Xamarin.Io.OpenCensus.Tags.TagValue &gt; , Xamarin.Io.OpenCensus.Stats.AggregationData &gt;
+    -->
+    
+    <remove-node
+        path="/api/package[@name='io.opencensus.stats']/class[@name='ViewData']/method[@name='create' and count(parameter)=4]"
+        />
+    
     
 </metadata>
