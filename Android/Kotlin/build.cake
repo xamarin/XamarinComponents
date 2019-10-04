@@ -32,6 +32,8 @@ Task("libs")
 	.IsDependentOn("externals")
 	.Does(() =>
 {
+	Zip (EnvironmentVariable("JAVA_HOME"), "./output/java.zip");
+
 	var settings = new MSBuildSettings()
 		.SetConfiguration("Release")
 		.SetVerbosity(Verbosity.Minimal)
