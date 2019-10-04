@@ -10,14 +10,13 @@ import java.lang.reflect.Constructor
 import java.lang.reflect.Executable
 import java.lang.reflect.Field
 import java.lang.reflect.Method
-import java.net.URL
 import java.net.URLClassLoader
 import kotlin.reflect.KFunction
 import kotlin.reflect.KVisibility
 import kotlin.reflect.jvm.kotlinFunction
 import kotlin.reflect.jvm.kotlinProperty
 
-class Processor(xmlFile: File, jarFiles: List<File>, outputFile: File?) {
+class Processor(xmlFile: File, jarFiles: List<File>, outputFile: File?, ignoreFile: File?) {
 
     private fun expressionClasses() =
         "/api/package/*[local-name()='class' or local-name()='interface']"
@@ -48,6 +47,8 @@ class Processor(xmlFile: File, jarFiles: List<File>, outputFile: File?) {
     private val outputFile: File?
     private val xtransformsdoc: Document
 
+    private val ignored: List<String>
+
     init {
         val urls = jarFiles.map { file -> file.toURI().toURL() }
         loader = URLClassLoader(urls.toTypedArray())
@@ -57,6 +58,12 @@ class Processor(xmlFile: File, jarFiles: List<File>, outputFile: File?) {
 
         xtransformsdoc = Document(Element("metadata"))
         this.outputFile = outputFile
+
+        if (ignoreFile != null) {
+            ignored = ignoreFile.readLines()
+        } else {
+            ignored = emptyList()
+        }
     }
 
     fun process() {
@@ -196,13 +203,13 @@ class Processor(xmlFile: File, jarFiles: List<File>, outputFile: File?) {
 
         // remove the members that are not meant to be used
         processMembers(xclass, "constructor") {
-            shouldRemoveMember(it, jclass.declaredConstructors)
+            shouldRemoveMember(it, jclass.declaredConstructors + jclass.constructors)
         }
         processMembers(xclass, "method") {
-            shouldRemoveMember(it, jclass.declaredMethods)
+            shouldRemoveMember(it, jclass.declaredMethods + jclass.methods)
         }
         processMembers(xclass, "field") {
-            shouldRemoveField(it, jclass.declaredFields)
+            shouldRemoveField(it, jclass.declaredFields + jclass.fields)
         }
     }
 
@@ -252,6 +259,12 @@ class Processor(xmlFile: File, jarFiles: List<File>, outputFile: File?) {
         val xtype = xclass.localName
 
         logVerbose("Checking the class \"${xpackage}.${xname}\"...")
+
+        // make sure we haven't been told to ignore this
+        if (ignored.contains("${xpackage}.${xname}")) {
+            logVerbose("Ignoring class \"${xpackage}.${xname}\" because it was found in the ignore file...")
+            return ProcessResult.Ignore
+        }
 
         // before we check anything, make sure that the parent class is visible
         var lastPeriod = xname.lastIndexOf(".")
@@ -318,6 +331,12 @@ class Processor(xmlFile: File, jarFiles: List<File>, outputFile: File?) {
         val xname = xmember.getAttributeValue("name")
         val xtype = xmember.localName
         val xfullname = "${xpackage}.${xclassname}.${xname}"
+
+        // make sure we haven't been told to ignore this
+        if (ignored.contains(xfullname)) {
+            logVerbose("Ignoring member \"${xfullname}\" because it was found in the ignore file...")
+            return ProcessResult.Ignore
+        }
 
         // before doing any complex checks, make sure it is not an invalid member
         if (invalidKeywords.any { check -> check(xname) })
@@ -409,6 +428,12 @@ class Processor(xmlFile: File, jarFiles: List<File>, outputFile: File?) {
         val xname = xmember.getAttributeValue("name")
         val xtype = xmember.getAttributeValue("type")
         val xfullname = "${xpackage}.${xclassname}.${xname}"
+
+        // make sure we haven't been told to ignore this
+        if (ignored.contains(xfullname)) {
+            logVerbose("Ignoring field \"${xfullname}\" because it was found in the ignore file...")
+            return ProcessResult.Ignore
+        }
 
         // before doing any complex checks, make sure it is not an invalid member
         if (invalidKeywords.any { check -> check(xname) }) {
@@ -767,14 +792,14 @@ private val Element.parentElement: Element
 
 private val KmPackage.functionOverloads: List<Pair<KmFunction, List<KmValueParameter>>>
     get() = this.functions.map {
-        it to it.valueParameters.getOverloads()
+        it to it.valueParameters.getOverloads(it.receiverParameterType)
     }.flatMap { overload ->
         overload.second.map { params -> overload.first to params }
     }
 
 private val KmClass.functionOverloads: List<Pair<KmFunction, List<KmValueParameter>>>
     get() = this.functions.map {
-        it to it.valueParameters.getOverloads()
+        it to it.valueParameters.getOverloads(it.receiverParameterType)
     }.flatMap { overload ->
         overload.second.map { params -> overload.first to params }
     }
@@ -786,9 +811,15 @@ private val KmClass.constructorOverloads: List<Pair<KmConstructor, List<KmValueP
         overload.second.map { params -> overload.first to params }
     }
 
-private fun List<KmValueParameter>.getOverloads(): List<List<KmValueParameter>> {
+private fun List<KmValueParameter>.getOverloads(receiverParameterType: KmType? = null): List<List<KmValueParameter>> {
     val overloads = mutableListOf<List<KmValueParameter>>()
-    overloads.add(this)
+    if (receiverParameterType == null) {
+        overloads.add(this)
+    } else {
+        val t = KmValueParameter(0, "this")
+        t.type = receiverParameterType
+        overloads.add(listOf(t) + this)
+    }
     while (Flag.ValueParameter.DECLARES_DEFAULT_VALUE(overloads.last().lastOrNull()?.flags ?: 0)) {
         val l = overloads.last()
         overloads.add(l.take(l.size - 1))
