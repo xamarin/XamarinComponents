@@ -32,8 +32,6 @@ Task("libs")
 	.IsDependentOn("externals")
 	.Does(() =>
 {
-	Zip (EnvironmentVariable("JAVA_HOME"), "./output/java.zip");
-
 	var settings = new MSBuildSettings()
 		.SetConfiguration("Release")
 		.SetVerbosity(Verbosity.Minimal)
@@ -44,6 +42,8 @@ Task("libs")
 		.WithTarget("Build");
 
 	MSBuild("./generated/org.jetbrains.kotlin.kotlin-stdlib/org.jetbrains.kotlin.kotlin-stdlib.csproj", settings);
+
+	Zip (EnvironmentVariable("JAVA_HOME"), "./output/java.zip");
 });
 
 Task("nuget")
