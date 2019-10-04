@@ -9,7 +9,6 @@
     <PropertyGroup>
       <KotlinBindingSupportJar Condition="'$(KotlinBindingSupportJar)' == ''">$(MSBuildThisFileDirectory)binding-support-1.0.jar</KotlinBindingSupportJar>
       <KotlinBindingSupportExtraArgs Condition="'$(KotlinBindingSupportExtraArgs)' == ''"></KotlinBindingSupportExtraArgs>
-      <KotlinBindingSupportIgnorePath Condition="'$(KotlinBindingSupportIgnorePath)' == ''"></KotlinBindingSupportIgnorePath>
       <KotlinBindingSupportOutputPath Condition="'$(KotlinBindingSupportOutputPath)' == ''">$(IntermediateOutputPath)\KotlinBindingSupport.generated.xml</KotlinBindingSupportOutputPath>
     </PropertyGroup>
 
@@ -17,7 +16,6 @@
     <PropertyGroup>
       <_KotlinBindingJavaPath Condition="'$(_KotlinBindingJavaPath)' == '' and '$(OS)' == 'Unix'">$(JavaSdkDirectory)\bin\java</_KotlinBindingJavaPath>
       <_KotlinBindingJavaPath Condition="'$(_KotlinBindingJavaPath)' == '' and '$(OS)' != 'Unix'">$(JavaSdkDirectory)\bin\java.exe</_KotlinBindingJavaPath>
-      <_KotlinBindingSupportIgnore Condition="'$(KotlinBindingSupportIgnorePath)' != ''">--ignore &quot;$(KotlinBindingSupportIgnorePath)&quot;</_KotlinBindingSupportIgnore>
     </PropertyGroup>
 
     <ItemGroup>
@@ -25,7 +23,7 @@
       <_KotlinBindingReferenceJar Include="@(EmbeddedReferenceJar);@(ReferenceJar);@(_AdditionalJavaLibraryReferences)" />
     </ItemGroup>
 
-    <Exec Command="&quot;$(_KotlinBindingJavaPath)&quot; -jar &quot;$(KotlinBindingSupportJar)&quot; --xml &quot;$(ApiOutputFile)&quot; --jar &quot;@(_KotlinBindingReferenceJar, '&quot; --jar &quot;')&quot; --output &quot;$(KotlinBindingSupportOutputPath)&quot; $(_KotlinBindingSupportIgnore) $(KotlinBindingSupportExtraArgs)" />
+    <Exec Command="&quot;$(_KotlinBindingJavaPath)&quot; -jar &quot;$(KotlinBindingSupportJar)&quot; --xml &quot;$(ApiOutputFile)&quot; --jar &quot;@(_KotlinBindingReferenceJar, '&quot; --jar &quot;')&quot; --output &quot;$(KotlinBindingSupportOutputPath)&quot; $(KotlinBindingSupportExtraArgs)" />
 
     <ItemGroup>
       <!-- insert the generated transform at the beginning -->
