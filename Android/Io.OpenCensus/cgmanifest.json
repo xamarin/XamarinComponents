@@ -6,7 +6,8 @@
         "Maven": {
           "ArtifactId": "opencensus-api",
           "GroupId": "io.opencensus",
-          "Version": "0.21.0"
+          "Version": "0.21.0",
+          "NuGetId": "Xamarin.Io.OpenCensus.OpenCensusApi"
         }
       }
     },
@@ -16,7 +17,8 @@
         "Maven": {
           "ArtifactId": "opencensus-contrib-grpc-metrics",
           "GroupId": "io.opencensus",
-          "Version": "0.21.0"
+          "Version": "0.21.0",
+          "NuGetId": "Xamarin.Io.OpenCensus.OpenCensusContribGrpcMetrics"
         }
       }
     }
