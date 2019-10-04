@@ -1,0 +1,25 @@
+{
+  "Registrations":[ 
+    {
+      "Component": {
+        "Type": "Maven",
+        "Maven": {
+          "ArtifactId": "tensorflow-lite",
+          "GroupId": "org.tensorflow",
+          "Version": "1.14.0"
+        }
+      }
+    },
+    {
+      "Component": {
+        "Type": "Maven",
+        "Maven": {
+          "ArtifactId": "tensorflow-lite-gpu",
+          "GroupId": "org.tensorflow",
+          "Version": "1.14.0"
+        }
+      }
+    }
+  ],
+  "Version": 1
+}
