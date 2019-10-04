@@ -30,7 +30,7 @@
         -->
         <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
         <PackageId>Xamarin.Grpc.Core</PackageId>
-        <PackageVersion>1.14.0.2</PackageVersion>
+        <PackageVersion>1.21.1.0</PackageVersion>
         <Title>Xamarin.Grpc.Core</Title>
         <Summary>
             Google GRPC Core bindings for Xamarin
@@ -88,8 +88,8 @@
     <Compile Remove="Additions\LazyStringArrayList.cs" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedJar Include="..\..\externals\android\grpc-core-1.14.0.jar">
-      <Link>Jars\grpc-core-1.14.0.jar</Link>
+    <EmbeddedJar Include="..\..\externals\android\grpc-core-1.21.1.jar">
+      <Link>Jars\grpc-core-1.21.1.jar</Link>
     </EmbeddedJar>
   </ItemGroup>
   <ItemGroup>
