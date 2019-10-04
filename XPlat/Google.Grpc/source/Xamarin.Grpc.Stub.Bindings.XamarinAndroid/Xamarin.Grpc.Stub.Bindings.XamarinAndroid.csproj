@@ -1,7 +1,6 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <!--
   https://montemagno.com/converting-xamarin-libraries-to-sdk-style-multi-targeted-projects/
-
   -->
     <PropertyGroup>
         <AssemblyName>Xamarin.Grpc.Stub</AssemblyName>
@@ -63,8 +62,6 @@
 
 
     <ItemGroup>
-        <!--
-        -->
         <TransformFile Include="Transforms\*.xml" />
     </ItemGroup>
 
@@ -93,6 +90,5 @@
     <ProjectReference Include="..\Xamarin.Grpc.Context.Bindings.XamarinAndroid\Xamarin.Grpc.Context.Bindings.XamarinAndroid.csproj" />
   </ItemGroup>
   <Import Project="$(MSBuildSDKExtrasTargets)" Condition="Exists('$(MSBuildSDKExtrasTargets)')" />
-
 
 </Project>

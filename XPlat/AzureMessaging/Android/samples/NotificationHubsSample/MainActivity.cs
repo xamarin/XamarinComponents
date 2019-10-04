@@ -7,9 +7,9 @@ using Android.Views;
 using Android.Widget;
 using Android.OS;
 using Android.Gms.Gcm;
-using Android.Gms.Gcm.Iid;
+using Android.Gms.Iid;
 using WindowsAzure.Messaging;
-
+using Android.Gms.Iid;
 
 [assembly: Permission (Name = "@PACKAGE_NAME@.permission.C2D_MESSAGE")] //, ProtectionLevel = Android.Content.PM.Protection.Signature)]
 [assembly: UsesPermission (Name = "@PACKAGE_NAME@.permission.C2D_MESSAGE")]

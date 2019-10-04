@@ -1,4 +1,5 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="MSBuild.Sdk.Extras/2.0.54">
+
     <PropertyGroup>
         <AssemblyName>Xamarin.TensorFlow.Lite</AssemblyName>
 
@@ -56,9 +57,4 @@
         </LibraryProjectZip>
     </ItemGroup>
 
-  <ItemGroup>
-    <PackageReference Include="MSBuild.Sdk.Extras" Version="1.4.0" PrivateAssets="All" />
-  </ItemGroup>
-
-  <Import Project="$(MSBuildSDKExtrasTargets)" Condition="Exists('$(MSBuildSDKExtrasTargets)')" />
 </Project>

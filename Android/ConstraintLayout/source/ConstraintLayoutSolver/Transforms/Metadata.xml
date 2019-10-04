@@ -2,6 +2,7 @@
 <metadata>
 	<attr path="/api/package[@name='android.support.constraint.solver']" name="managedName">Android.Support.Constraints.Solver</attr>
 	<attr path="/api/package[@name='android.support.constraint.solver.widgets']" name="managedName">Android.Support.Constraints.Solver.Widgets</attr>
+	<attr path="/api/package[@name='android.support.constraint.solver.widgets.analyzer']" name="managedName">Android.Support.Constraints.Solver.Widgets.Analyzer</attr>
 
 	<attr path="/api/package[@name='android.support.constraint.solver.widgets']/class[@name='ConstraintAnchor']/method[@name='getType' and count(parameter)=0]" name="managedName">GetAnchorType</attr>
 

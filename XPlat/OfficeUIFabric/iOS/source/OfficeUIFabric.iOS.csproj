@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="MSBuild.Sdk.Extras/2.0.54">
   <PropertyGroup>
     <TargetFrameworks>Xamarin.iOS10</TargetFrameworks>
     <IsBindingProject>true</IsBindingProject>
@@ -47,7 +47,6 @@
 
   <ItemGroup>
     <PackageReference Include="Xamarin.iOS.SwiftRuntimeSupport" Version="0.1.0" />
-    <PackageReference Include="MSBuild.Sdk.Extras" Version="1.4.0" PrivateAssets="All" />
   </ItemGroup>
 
   <ItemGroup>
@@ -65,7 +64,6 @@
     <ObjcBindingApiDefinition Include="ApiDefinition.cs" Condition=" '$(EnableDefaultCompileItems)' == 'true' " />
   </ItemGroup>
   
-  <Import Project="$(MSBuildSDKExtrasTargets)" Condition="Exists('$(MSBuildSDKExtrasTargets)')" />
 
 <!-- We are embedding a framework using NativeReference tag but, on Windows with .NET Core project, 
      this tags means another thing. On windows, if a NativeReference exists it creates a file named
