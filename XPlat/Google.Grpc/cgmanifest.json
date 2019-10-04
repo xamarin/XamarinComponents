@@ -6,7 +6,8 @@
         "Maven": {
           "ArtifactId": "google-context",
           "GroupId": "io.grpc",
-          "Version": "1.14.0"
+          "Version": "1.21.1",
+          "NuGetId": "Xamarin.Grpc.Context"
         }
       }
     },
@@ -16,7 +17,8 @@
         "Maven": {
           "ArtifactId": "google-core",
           "GroupId": "io.grpc",
-          "Version": "1.14.0"
+          "Version": "1.21.1",
+          "NuGetId": "Xamarin.Grpc.Core"
         }
       }
     },
@@ -26,7 +28,8 @@
         "Maven": {
           "ArtifactId": "google-stub",
           "GroupId": "io.grpc",
-          "Version": "1.14.0"
+          "Version": "1.21.1",
+          "NuGetId": "Xamarin.Grpc.Stub"
         }
       }
     },
@@ -36,7 +39,8 @@
         "Maven": {
           "ArtifactId": "google-okhttp",
           "GroupId": "io.grpc",
-          "Version": "1.14.0"
+          "Version": "1.21.1",
+          "NuGetId": "Xamarin.Grpc.OkHttp"
         }
       }
     },
@@ -46,7 +50,30 @@
         "Maven": {
           "ArtifactId": "google-protobuf",
           "GroupId": "io.grpc",
-          "Version": "1.14.0"
+          "Version": "1.21.1",
+          "NuGetId": "Xamarin.Grpc.Protobuf.Lite"
+        }
+      }
+    },
+    {
+      "Component": {
+        "Type": "Maven",
+        "Maven": {
+          "ArtifactId": "google-android",
+          "GroupId": "io.grpc",
+          "Version": "1.21.1",
+          "NuGetId": "Xamarin.Grpc.Android"
+        }
+      }
+    },
+    {
+      "Component": {
+        "Type": "Maven",
+        "Maven": {
+          "ArtifactId": "google-api",
+          "GroupId": "io.grpc",
+          "Version": "1.21.1",
+          "NuGetId": "Xamarin.Grpc.Api"
         }
       }
     },

@@ -1,7 +1,7 @@
 ﻿<Project Sdk="MSBuild.Sdk.Extras/2.0.54">
 
     <PropertyGroup>
-        <AssemblyName>Xamarin.TensorFlow.Lite</AssemblyName>
+        <AssemblyName>Xamarin.TensorFlow.Lite.Gpu</AssemblyName>
 
         <MonoAndroidResourcePrefix>Resources</MonoAndroidResourcePrefix>
         <MonoAndroidAssetsPrefix>Assets</MonoAndroidAssetsPrefix>
@@ -25,14 +25,14 @@
         nuget packaging
         -->
         <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-        <PackageId>Xamarin.TensorFlow.Lite</PackageId>
+        <PackageId>Xamarin.TensorFlow.Lite.Gpu</PackageId>
         <PackageVersion>1.14.0</PackageVersion>
-        <Title>Xamarin.TensorFlow.Lite</Title>
+        <Title>Xamarin.TensorFlow.Lite.Gpu</Title>
         <Summary>
-            Google TensorFlow Lite bindings for Xamarin
+            Google TensorFlow Lite GPU bindings for Xamarin
         </Summary>
         <Description>
-            Bindings for Google's TensorFlow Lite package (Google Play Services dependency)
+            Bindings for Google's TensorFlow Lite GPU package (Google Play Services dependency)
         </Description>
         <Owners>Microsoft</Owners>
         <Authors>Microsoft</Authors>
@@ -41,9 +41,9 @@
         <PackageProjectUrl>https://go.microsoft.com/fwlink/?linkid=2013420</PackageProjectUrl>
         <RepositoryUrl>https://github.com/tensorflow/tensorflow/</RepositoryUrl>
         <PackageReleaseNotes>
-            Initial GPU bindings
+            Initial bindings
         </PackageReleaseNotes>
-        <PackageTags>xamarin, android, bindings, google, tensorflow, lite</PackageTags>
+        <PackageTags>xamarin, android, bindings, google, tensorflow, lite, gpu</PackageTags>
         <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
     </PropertyGroup>
 
@@ -52,8 +52,8 @@
     </ItemGroup>
 
     <ItemGroup>
-        <LibraryProjectZip Include="..\..\externals\tensorflow-lite.aar">
-            <Link>Jars\tensorflow-lite.aar</Link>
+        <LibraryProjectZip Include="..\..\externals\tensorflow-lite-gpu.aar">
+            <Link>Jars\tensorflow-lite-gpu.aar</Link>
         </LibraryProjectZip>
     </ItemGroup>
 

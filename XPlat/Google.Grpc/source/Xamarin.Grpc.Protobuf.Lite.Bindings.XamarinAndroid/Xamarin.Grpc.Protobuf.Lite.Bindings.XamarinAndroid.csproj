@@ -23,7 +23,7 @@
     <PropertyGroup>
         <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
         <PackageId>Xamarin.Grpc.Protobuf.Lite</PackageId>
-        <PackageVersion>1.14.0.2</PackageVersion>
+        <PackageVersion>1.21.1.0</PackageVersion>
         <Title>Xamarin.Grpc.Protobuf.Lite</Title>
         <Summary>
             Google GRPC Protobuf.Lite bindings for Xamarin
@@ -64,12 +64,11 @@
     <Folder Include="Jars\" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedJar Include="..\..\externals\android\grpc-protobuf-lite-1.14.0.jar">
-      <Link>Jars\grpc-protobuf-lite-1.14.0.jar</Link>
+    <EmbeddedJar Include="..\..\externals\android\grpc-protobuf-lite-1.21.1.jar">
+      <Link>Jars\grpc-protobuf-lite-1.21.1.jar</Link>
     </EmbeddedJar>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Xamarin.Grpc.Core.Bindings.XamarinAndroid\Xamarin.Grpc.Core.Bindings.XamarinAndroid.csproj" />
-    <ProjectReference Include="..\Xamarin.Grpc.Context.Bindings.XamarinAndroid\Xamarin.Grpc.Context.Bindings.XamarinAndroid.csproj" />
+    <ProjectReference Include="..\Xamarin.Grpc.Api.Bindings.XamarinAndroid\Xamarin.Grpc.Api.Bindings.XamarinAndroid.csproj" />
   </ItemGroup>
 </Project>
