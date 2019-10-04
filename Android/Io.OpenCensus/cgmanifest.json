@@ -6,7 +6,7 @@
         "Maven": {
           "ArtifactId": "opencensus-api",
           "GroupId": "io.opencensus",
-          "Version": "0.12.3"
+          "Version": "0.21.0"
         }
       }
     },
@@ -16,7 +16,7 @@
         "Maven": {
           "ArtifactId": "opencensus-contrib-grpc-metrics",
           "GroupId": "io.opencensus",
-          "Version": "0.12.3"
+          "Version": "0.21.0"
         }
       }
     }
