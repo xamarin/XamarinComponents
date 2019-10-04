@@ -13,6 +13,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Xamarin.Grpc.Stub.Bindings.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Xamarin.Grpc.Context.Bindings.XamarinAndroid", "Xamarin.Grpc.Context.Bindings.XamarinAndroid\Xamarin.Grpc.Context.Bindings.XamarinAndroid.csproj", "{4EE8AC46-24DA-4317-92B5-5D85AA391831}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Xamarin.Grpc.Api.Bindings.XamarinAndroid", "Xamarin.Grpc.Api.Bindings.XamarinAndroid\Xamarin.Grpc.Api.Bindings.XamarinAndroid.csproj", "{6E3B429D-CEC9-45B7-9E0D-266B0B2B0CB0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Xamarin.Grpc.Android.Bindings.XamarinAndroid", "Xamarin.Grpc.Android.Bindings.XamarinAndroid\Xamarin.Grpc.Android.Bindings.XamarinAndroid.csproj", "{73876684-C0E8-4D5F-99E4-6C577958F46F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,5 +43,13 @@ Global
 		{4EE8AC46-24DA-4317-92B5-5D85AA391831}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4EE8AC46-24DA-4317-92B5-5D85AA391831}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4EE8AC46-24DA-4317-92B5-5D85AA391831}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6E3B429D-CEC9-45B7-9E0D-266B0B2B0CB0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6E3B429D-CEC9-45B7-9E0D-266B0B2B0CB0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6E3B429D-CEC9-45B7-9E0D-266B0B2B0CB0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6E3B429D-CEC9-45B7-9E0D-266B0B2B0CB0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{73876684-C0E8-4D5F-99E4-6C577958F46F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{73876684-C0E8-4D5F-99E4-6C577958F46F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{73876684-C0E8-4D5F-99E4-6C577958F46F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{73876684-C0E8-4D5F-99E4-6C577958F46F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

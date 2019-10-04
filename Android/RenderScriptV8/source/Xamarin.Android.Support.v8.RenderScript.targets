@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <AndroidNativeLibrary Include="$(MSBuildThisFileDirectory)\libs\arm64-v8a\librsjni.so" />
+    <AndroidNativeLibrary Include="$(MSBuildThisFileDirectory)\libs\arm64-v8a\libRSSupport.so" />
+    <AndroidNativeLibrary Include="$(MSBuildThisFileDirectory)\libs\armeabi-v7a\librsjni.so" />
+    <AndroidNativeLibrary Include="$(MSBuildThisFileDirectory)\libs\armeabi-v7a\libRSSupport.so" />
+    <AndroidNativeLibrary Include="$(MSBuildThisFileDirectory)\libs\x86\librsjni.so" />
+    <AndroidNativeLibrary Include="$(MSBuildThisFileDirectory)\libs\x86\libRSSupport.so" />
+    <AndroidNativeLibrary Include="$(MSBuildThisFileDirectory)\libs\x86_64\librsjni.so" />
+    <AndroidNativeLibrary Include="$(MSBuildThisFileDirectory)\libs\x86_64\libRSSupport.so" />
+  </ItemGroup>
+</Project>
