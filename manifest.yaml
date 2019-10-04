@@ -178,8 +178,8 @@
 - Name: Kotlin
   BuildScript: ./Android/Kotlin/build.cake
   TriggerPaths: [ Android/Kotlin ]
-  WindowsBuildTargets: [ Default ]
-  MacBuildTargets: [ Default ]
+  WindowsBuildTargets: [ ci ]
+  MacBuildTargets: [ ci ]
 - Name: UniversalImageLoader
   BuildScript: ./Android/UniversalImageLoader/build.cake
   TriggerPaths: [ Android/UniversalImageLoader ]

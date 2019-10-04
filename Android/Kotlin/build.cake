@@ -1,5 +1,5 @@
 
-var TARGET = Argument("t", Argument("target", "Default"));
+var TARGET = Argument("t", Argument("target", "ci"));
 
 Task("binderate")
 	.Does(() =>
@@ -71,7 +71,7 @@ Task("clean")
 	CleanDirectories("./native/**/build");
 });
 
-Task("Default")
+Task("ci")
 	.IsDependentOn("externals")
 	.IsDependentOn("libs")
 	.IsDependentOn("nuget")
