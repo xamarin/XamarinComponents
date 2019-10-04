@@ -69,8 +69,8 @@
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
   </PropertyGroup>
 
-  <PropertyGroup Condition="Exists('..\..\source\@(Model.NuGetPackageId)\ignore.txt')">
-    <KotlinBindingSupportIgnorePath>..\..\source\@(Model.NuGetPackageId)\ignore.txt</KotlinBindingSupportIgnorePath>
+  <PropertyGroup>
+    <KotlinBindingSupportIgnorePath Condition="Exists('..\..\source\@(Model.NuGetPackageId)\ignore.txt')">..\..\source\@(Model.NuGetPackageId)\ignore.txt</KotlinBindingSupportIgnorePath>
   </PropertyGroup>
 
   <ItemGroup>
@@ -84,6 +84,10 @@
 
   <ItemGroup>
     <Compile Include="..\..\source\@(Model.NuGetPackageId)\Additions\*.cs" Link="Additions\%(Filename)%(Extension)" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Condition="Exists('..\..\source\@(Model.NuGetPackageId)\ignore.txt')" Include="..\..\source\@(Model.NuGetPackageId)\ignore.txt" />
   </ItemGroup>
 
   <ItemGroup>
