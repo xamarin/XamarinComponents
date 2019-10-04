@@ -203,13 +203,13 @@ class Processor(xmlFile: File, jarFiles: List<File>, outputFile: File?, ignoreFi
 
         // remove the members that are not meant to be used
         processMembers(xclass, "constructor") {
-            shouldRemoveMember(it, jclass.declaredConstructors + jclass.constructors)
+            shouldRemoveMember(it, jclass.declaredConstructors.union(jclass.constructors.asIterable()).toTypedArray())
         }
         processMembers(xclass, "method") {
-            shouldRemoveMember(it, jclass.declaredMethods + jclass.methods)
+            shouldRemoveMember(it, jclass.declaredMethods.union(jclass.methods.asIterable()).toTypedArray())
         }
         processMembers(xclass, "field") {
-            shouldRemoveField(it, jclass.declaredFields + jclass.fields)
+            shouldRemoveField(it, jclass.declaredFields.union(jclass.fields.asIterable()).toTypedArray())
         }
     }
 
