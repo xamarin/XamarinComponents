@@ -41,9 +41,9 @@ Task("libs")
 		.WithRestore()
 		.WithProperty("DesignTimeBuild", "false")
 		.WithProperty("PackageOutputPath", MakeAbsolute((DirectoryPath)"./output/").FullPath)
-		.WithTarget("Pack");
+		.WithTarget("Build");
 
-	MSBuild("./generated/Xamarin.Kotlin.sln", settings);
+	MSBuild("./generated/org.jetbrains.kotlin.kotlin-stdlib/org.jetbrains.kotlin.kotlin-stdlib.csproj", settings);
 });
 
 Task("nuget")
