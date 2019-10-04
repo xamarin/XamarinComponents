@@ -12,6 +12,7 @@
     <AndroidEnableDesugar>true</AndroidEnableDesugar>
     <KotlinBindingSupportJar>..\..\native\build\libs\binding-support-1.0.jar</KotlinBindingSupportJar>
     <KotlinBindingSupportExtraArgs>--verbose</KotlinBindingSupportExtraArgs>
+    <KotlinBindingSupportIgnorePath>ignore.txt</KotlinBindingSupportIgnorePath>
   </PropertyGroup>
 
   <PropertyGroup>
