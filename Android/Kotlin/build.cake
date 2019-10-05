@@ -42,15 +42,15 @@ Task("libs")
 
 	// MSBuild("./generated/org.jetbrains.kotlin.kotlin-stdlib/org.jetbrains.kotlin.kotlin-stdlib.csproj", settings1);
 
-	var settings = new MSBuildSettings()
-		.SetConfiguration("Release")
-		.SetVerbosity(Verbosity.Minimal)
-		.EnableBinaryLogger("./output/libs.binlog")
-		.WithRestore()
-		.WithProperty("DesignTimeBuild", "false")
-		.WithTarget("Build");
+	// var settings = new MSBuildSettings()
+	// 	.SetConfiguration("Release")
+	// 	.SetVerbosity(Verbosity.Minimal)
+	// 	.EnableBinaryLogger("./output/libs.binlog")
+	// 	.WithRestore()
+	// 	.WithProperty("DesignTimeBuild", "false")
+	// 	.WithTarget("Build");
 
-	MSBuild("./generated/Xamarin.Kotlin.sln", settings);
+	// MSBuild("./generated/Xamarin.Kotlin.sln", settings);
 });
 
 Task("nuget")
@@ -61,7 +61,7 @@ Task("nuget")
 		.SetConfiguration("Release")
 		.SetVerbosity(Verbosity.Minimal)
 		.EnableBinaryLogger("./output/nuget.binlog")
-		.WithProperty("NoBuild", "true")
+		// .WithProperty("NoBuild", "true")
 		.WithProperty("DesignTimeBuild", "false")
 		.WithProperty("PackageOutputPath", MakeAbsolute((DirectoryPath)"./output/").FullPath)
 		.WithTarget("Pack");
