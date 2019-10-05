@@ -32,33 +32,33 @@ Task("libs")
 	.IsDependentOn("externals")
 	.Does(() =>
 {
-	EnsureDirectoryExists("./output/");
-
-	Zip (EnvironmentVariable("JAVA_HOME"), "./output/java.zip");
-
-	var settings1 = new MSBuildSettings()
+	var settings = new MSBuildSettings()
 		.SetConfiguration("Release")
 		.SetVerbosity(Verbosity.Minimal)
 		.EnableBinaryLogger("./output/libs.binlog")
 		.WithRestore()
 		.WithProperty("DesignTimeBuild", "false")
+		.WithProperty("PackageOutputPath", MakeAbsolute((DirectoryPath)"./output/").FullPath)
 		.WithTarget("Build");
 
-	MSBuild("./generated/org.jetbrains.kotlin.kotlin-stdlib/org.jetbrains.kotlin.kotlin-stdlib.csproj", settings1);
+	MSBuild("./generated/Xamarin.Kotlin.sln", settings);
+});
 
+Task("nuget")
+	.IsDependentOn("libs")
+	.Does(() =>
+{
 	var settings = new MSBuildSettings()
 		.SetConfiguration("Release")
 		.SetVerbosity(Verbosity.Minimal)
-		.WithRestore()
+		.EnableBinaryLogger("./output/nuget.binlog")
+		.WithProperty("NoBuild", "true")
 		.WithProperty("DesignTimeBuild", "false")
 		.WithProperty("PackageOutputPath", MakeAbsolute((DirectoryPath)"./output/").FullPath)
 		.WithTarget("Pack");
 
 	MSBuild("./generated/Xamarin.Kotlin.sln", settings);
 });
-
-Task("nuget")
-	.IsDependentOn("libs");
 
 Task("samples")
 	.IsDependentOn("libs")
