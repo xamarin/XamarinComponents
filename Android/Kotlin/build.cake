@@ -41,8 +41,6 @@ Task("libs")
 		.WithTarget("Build");
 
 	MSBuild("./generated/Xamarin.Kotlin.sln", settings);
-
-	Zip("./generated/org.jetbrains.kotlin.kotlin-stdlib/", "./output/libs-obj.zip");
 });
 
 Task("nuget")
@@ -59,8 +57,6 @@ Task("nuget")
 		.WithTarget("Pack");
 
 	MSBuild("./generated/Xamarin.Kotlin.sln", settings);
-
-	Zip("./generated/org.jetbrains.kotlin.kotlin-stdlib/", "./output/nuget-obj.zip");
 });
 
 Task("samples")
