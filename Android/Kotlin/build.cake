@@ -38,55 +38,30 @@ Task("libs")
 		.EnableBinaryLogger("./output/libs.binlog")
 		.WithRestore()
 		.WithProperty("DesignTimeBuild", "false")
+		.WithTarget("Build");
+
+	MSBuild("./generated/Xamarin.Kotlin.sln", settings);
+
+	Zip("./generated/org.jetbrains.kotlin.kotlin-stdlib/", "./output/libs-obj.zip");
+});
+
+Task("nuget")
+	.IsDependentOn("libs")
+	.Does(() =>
+{
+	var settings = new MSBuildSettings()
+		.SetConfiguration("Release")
+		.SetVerbosity(Verbosity.Minimal)
+		.EnableBinaryLogger("./output/nuget.binlog")
+		.WithProperty("NoBuild", "true")
+		.WithProperty("DesignTimeBuild", "false")
 		.WithProperty("PackageOutputPath", MakeAbsolute((DirectoryPath)"./output/").FullPath)
 		.WithTarget("Pack");
 
 	MSBuild("./generated/Xamarin.Kotlin.sln", settings);
+
+	Zip("./generated/org.jetbrains.kotlin.kotlin-stdlib/", "./output/nuget-obj.zip");
 });
-
-Task("nuget")
-	.IsDependentOn("libs");
-
-// Task("libs")
-// 	.IsDependentOn("externals")
-// 	.Does(() =>
-// {
-// 	var settings1 = new MSBuildSettings()
-// 		.SetConfiguration("Release")
-// 		.SetVerbosity(Verbosity.Minimal)
-// 		.EnableBinaryLogger("./output/libs1.binlog")
-// 		.WithRestore()
-// 		.WithProperty("DesignTimeBuild", "false")
-// 		.WithTarget("Build");
-
-// 	MSBuild("./generated/org.jetbrains.kotlin.kotlin-stdlib/org.jetbrains.kotlin.kotlin-stdlib.csproj", settings1);
-
-// 	var settings = new MSBuildSettings()
-// 		.SetConfiguration("Release")
-// 		.SetVerbosity(Verbosity.Minimal)
-// 		.EnableBinaryLogger("./output/libs.binlog")
-// 		.WithRestore()
-// 		.WithProperty("DesignTimeBuild", "false")
-// 		.WithTarget("Build");
-
-// 	MSBuild("./generated/Xamarin.Kotlin.sln", settings);
-// });
-
-// Task("nuget")
-// 	.IsDependentOn("libs")
-// 	.Does(() =>
-// {
-// 	var settings = new MSBuildSettings()
-// 		.SetConfiguration("Release")
-// 		.SetVerbosity(Verbosity.Minimal)
-// 		.EnableBinaryLogger("./output/nuget.binlog")
-// 		// .WithProperty("NoBuild", "true")
-// 		.WithProperty("DesignTimeBuild", "false")
-// 		.WithProperty("PackageOutputPath", MakeAbsolute((DirectoryPath)"./output/").FullPath)
-// 		.WithTarget("Pack");
-
-// 	MSBuild("./generated/Xamarin.Kotlin.sln", settings);
-// });
 
 Task("samples")
 	.IsDependentOn("libs")
