@@ -35,10 +35,19 @@ Task("libs")
 	var settings = new MSBuildSettings()
 		.SetConfiguration("Release")
 		.SetVerbosity(Verbosity.Minimal)
+		.EnableBinaryLogger("./output/libs1.binlog")
+		.WithRestore()
+		.WithProperty("DesignTimeBuild", "false")
+		.WithTarget("Build");
+
+	MSBuild("./generated/org.jetbrains.kotlin.kotlin-stdlib/org.jetbrains.kotlin.kotlin-stdlib.csproj", settings);
+
+	var settings = new MSBuildSettings()
+		.SetConfiguration("Release")
+		.SetVerbosity(Verbosity.Minimal)
 		.EnableBinaryLogger("./output/libs.binlog")
 		.WithRestore()
 		.WithProperty("DesignTimeBuild", "false")
-		.WithProperty("PackageOutputPath", MakeAbsolute((DirectoryPath)"./output/").FullPath)
 		.WithTarget("Build");
 
 	MSBuild("./generated/Xamarin.Kotlin.sln", settings);
