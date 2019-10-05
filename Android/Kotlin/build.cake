@@ -32,15 +32,15 @@ Task("libs")
 	.IsDependentOn("externals")
 	.Does(() =>
 {
-	var settings1 = new MSBuildSettings()
-		.SetConfiguration("Release")
-		.SetVerbosity(Verbosity.Minimal)
-		.EnableBinaryLogger("./output/libs1.binlog")
-		.WithRestore()
-		.WithProperty("DesignTimeBuild", "false")
-		.WithTarget("Build");
+	// var settings1 = new MSBuildSettings()
+	// 	.SetConfiguration("Release")
+	// 	.SetVerbosity(Verbosity.Minimal)
+	// 	.EnableBinaryLogger("./output/libs1.binlog")
+	// 	.WithRestore()
+	// 	.WithProperty("DesignTimeBuild", "false")
+	// 	.WithTarget("Build");
 
-	MSBuild("./generated/org.jetbrains.kotlin.kotlin-stdlib/org.jetbrains.kotlin.kotlin-stdlib.csproj", settings1);
+	// MSBuild("./generated/org.jetbrains.kotlin.kotlin-stdlib/org.jetbrains.kotlin.kotlin-stdlib.csproj", settings1);
 
 	var settings = new MSBuildSettings()
 		.SetConfiguration("Release")
