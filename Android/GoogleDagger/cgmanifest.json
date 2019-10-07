@@ -1,0 +1,15 @@
+{
+  "Registrations":[ 
+    {
+      "Component": {
+        "Type": "Maven",
+        "Maven": {
+          "ArtifactId": "dagger",
+          "GroupId": "com.google.dagger",
+          "Version": "2.13"
+        }
+      }
+    }
+  ],
+  "Version": 1
+}

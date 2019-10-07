@@ -24,6 +24,11 @@
   BuildScript: ./Android/GoogleAndroidVending/build.cake
   TriggerPaths: [ Android/GoogleAndroidVending ]
   MacBuildTargets: [ nuget, samples ]
+- Name: GoogleDagger
+  BuildScript: ./Android/GoogleDagger/build.cake
+  TriggerPaths: [ Android/GoogleDagger ]
+  MacBuildTargets: [ ci ]
+  WindowsBuildTargets: [ ci ]
 - Name: AndroidThings
   BuildScript: ./Android/AndroidThings/build.cake
   TriggerPaths: [ Android/AndroidThings ]
