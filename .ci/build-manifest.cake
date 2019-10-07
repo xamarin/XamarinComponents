@@ -13,8 +13,6 @@ using Xamarin.Nuget.Validator;
 var VERBOSITY = Argument ("v", Argument ("verbosity", Verbosity.Normal));
 var CONFIGURATION = Argument ("c", Argument ("configuration", "Release"));
 
-var FAIL_ON_BUILD_FAIL = Argument ("failonbuildfail", true);
-
 var GIT_PREVIOUS_COMMIT = Argument ("gitpreviouscommit", "");
 var GIT_COMMIT = Argument ("gitcommit", "");
 var GIT_BRANCH = Argument ("gitbranch", "origin/master");
@@ -211,6 +209,8 @@ Information ("");
 
 // SECTION: Build
 
+var buildExceptions = new List<Exception> ();
+
 if (groupsToBuild.Count == 0) {
 	// Make a note if nothing changed...
 	Warning ("No changed files affected any of the paths from the manifest.yaml.");
@@ -300,8 +300,8 @@ if (groupsToBuild.Count == 0) {
 					StackTrace = ex.ToString()
 				};
 
-				if (FAIL_ON_BUILD_FAIL)
-					throw;
+				// Record that failure so we can throw later
+				buildExceptions.Add (ex);
 			}
 
 			// Add the test run to the collection
@@ -343,6 +343,14 @@ if (COPY_OUTPUT_TO_ROOT) {
 	Information ("Copy complete.");
 }
 Information ("");
+
+
+// SECTION: Clean up
+
+// There were exceptions, so throw them now
+if (buildExceptions.Count > 0) {
+	throw new AggregateException (buildExceptions);
+}
 
 
 // SECTION: Helper Methods and Types
