@@ -214,14 +214,14 @@ jobs:
         condition: always()
         inputs:
           testResultsFormat: xUnit
-          testResultsFiles: '**/output/**/*TestResults.xml'
+          testResultsFiles: 'output/**/*TestResults.xml'
           testRunTitle: 'xUnit Test results for $(System.JobName)'
       - task: PublishTestResults@2
         displayName: Publish the test results
         condition: always()
         inputs:
           testResultsFormat: VSTest
-          testResultsFiles: '**/output/**/*.trx'
+          testResultsFiles: 'output/**/*.trx'
           testRunTitle: 'VS Test results for $(System.JobName)'
       # custom post-build steps
       - ${{ parameters.postBuildSteps }}

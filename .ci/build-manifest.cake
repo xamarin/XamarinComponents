@@ -329,7 +329,7 @@ if (groupsToBuild.Count == 0) {
 // SECTION: Copy Output
 
 // Log all the things that were found after a build
-var artifacts = GetFiles ($"{ROOT_DIR}/**/output/**/*") - GetFiles ($"{ROOT_OUTPUT_DIR}/**/*");
+var artifacts = GetFiles ($"{ROOT_DIR}/*/**/output/**/*");
 Information ("Found {0} Artifacts:" + Environment.NewLine +
 	" - " + string.Join (Environment.NewLine + " - ", artifacts),
 	artifacts.Count);
@@ -339,7 +339,11 @@ Information ("");
 if (COPY_OUTPUT_TO_ROOT) {
 	Information ("Copying all {0} artifacts to the root output directory...", artifacts.Count);
 	EnsureDirectoryExists (ROOT_OUTPUT_DIR);
-	CopyFiles (artifacts, ROOT_OUTPUT_DIR, false);
+	var dirs = GetDirectories ($"{ROOT_DIR}/*/**/output");
+	foreach (var dir in dirs) {
+		Information ("Copying {0}...", dir);
+		CopyDirectory (dir, ROOT_OUTPUT_DIR);
+	}
 	Information ("Copy complete.");
 }
 Information ("");
