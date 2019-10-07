@@ -1,7 +1,7 @@
 
 #load "../../common.cake"
 
-var TARGET = Argument ("t", Argument ("target", "Default"));
+var TARGET = Argument ("t", Argument ("target", "ci"));
 
 var DAGGERS_VERSION = "2.13";
 var DAGGERS_NUGET_VERSION = DAGGERS_VERSION;
@@ -50,6 +50,9 @@ Task("nuget")
 
 Task("samples")
 	.IsDependentOn("nuget");
+
+Task("ci")
+	.IsDependentOn("samples");
 
 Task ("clean")
 	.Does (() =>
