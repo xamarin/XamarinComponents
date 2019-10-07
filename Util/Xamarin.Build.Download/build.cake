@@ -33,7 +33,7 @@ Task("tests")
 	.IsDependentOn("nuget")
 	.Does(() =>
 {
-	XUnit2("./source/Xamarin.Build.Download.Tests/**/bin/Release/*.Tests.dll",
+	XUnit2("./source/Xamarin.Build.Download.Tests/bin/**/Release/**/*.Tests.dll",
 		new XUnit2Settings { OutputDirectory = "./output" });
 });
 
