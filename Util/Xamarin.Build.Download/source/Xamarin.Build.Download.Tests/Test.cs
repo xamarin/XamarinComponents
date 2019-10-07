@@ -380,7 +380,6 @@ namespace NativeLibraryDownloaderTests
 				"XamarinBuildDownload", "androidsupport-25.0.0", new Dictionary<string, string> {
 					{ "Url", "https://dl-ssl.google.com/android/repository/android_m2repository_r39.zip" },
 					{ "Kind", "Zip" },
-					{ "Sha1", "89ad37d67a1018c42be36933cec3d7712141d42c" },
 				});
 
 			if (useAndroidSdk)
@@ -480,7 +479,6 @@ namespace NativeLibraryDownloaderTests
 					{ "ToFile", "cardview.v7.aar" },
 					{ "RangeStart", "196438127" },
 					{ "RangeEnd", "196460160" },
-					{ "Md5", "b44eb88f7cc621ae616744c6646f5b64" }
 				});
 
 			AddCoreTargets (prel);
@@ -520,7 +518,6 @@ namespace NativeLibraryDownloaderTests
 					{ "ToFile", "cardview.v7.aar" },
 					{ "RangeStart", "196438127" },
 					{ "RangeEnd", "196460160" },
-					{ "Md5", "b44eb88f7cc621ae616744c6646f5b64" }
 				});
 
 			AddCoreTargets (prel);
@@ -657,7 +654,6 @@ namespace NativeLibraryDownloaderTests
 					{ "ToFile", "cardview.v7.aar" },
 					{ "RangeStart", "196438127" },
 					{ "RangeEnd", "196460160" },
-					{ "Md5", "b44eb88f7cc621ae616744c6646f5b64" }
 				});
 
 			AddCoreTargets (prel);
@@ -689,7 +685,6 @@ namespace NativeLibraryDownloaderTests
 					{ "ToFile", "cardview.v7.aar" },
 					{ "RangeStart", "196438127" },
 					{ "RangeEnd", "196460160" },
-					{ "Md5", "b44eb88f7cc621ae616744c6646f5b64" }
 				});
 
 			prel.AddItem (
@@ -698,7 +693,6 @@ namespace NativeLibraryDownloaderTests
 					{ "ToFile", "recyclerview.v7.aar" },
 					{ "RangeStart", "199278205" },
 					{ "RangeEnd", "199589731" },
-					{ "Md5", "9be3f5e09877f1f308037659cb2a7636" }
 				});
 
 			AddCoreTargets (prel);
@@ -734,7 +728,6 @@ namespace NativeLibraryDownloaderTests
 					{ "ToFile", "cardview.v7.aar" },
 					{ "RangeStart", "196438127" },
 					{ "RangeEnd", "196460160" },
-					{ "Md5", "b44eb88f7cc621ae616744c6646f5b64" }
 				});
 
 			prel.AddItem (
@@ -743,7 +736,6 @@ namespace NativeLibraryDownloaderTests
 					{ "ToFile", "recyclerview.v7.aar" },
 					{ "RangeStart", "199278205" },
 					{ "RangeEnd", "199589731" },
-					{ "Md5", "9be3f5e09877f1f308037659cb2a7636" }
 				});
 			
 			AddCoreTargets (prel);
@@ -800,7 +792,6 @@ namespace NativeLibraryDownloaderTests
 					{ "ToFile", "cardview.v7.aar" },
 					{ "RangeStart", "196438127" },
 					{ "RangeEnd", "196460160" },
-					{ "Md5", "b44eb88f7cc621ae616744c6646f5b64" }
 				});
 
 
@@ -873,7 +864,6 @@ namespace NativeLibraryDownloaderTests
 					{ "ToFile", "play-services-auth-10.2.1.aar" },
 					{ "RangeStart", "12694130" },
 					{ "RangeEnd", "12770642" },
-					{ "Md5", "f4d814a0a434c09577a9b5a9d62da1f6" }
 				});
 
 
@@ -961,7 +951,6 @@ namespace NativeLibraryDownloaderTests
 					{ "ToFile", "play-services-basement-10.2.1.aar" },
 					{ "RangeStart", "100833740" },
 					{ "RangeEnd", "101168014" },
-					{ "Md5", "1ddf95b31e73f7a79e39df81875797ae" }
 				});
 
 			const string resourceName = "__AndroidLibraryProjects__.zip";
