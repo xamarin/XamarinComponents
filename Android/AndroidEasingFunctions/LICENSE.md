@@ -1,6 +1,6 @@
 **Xamarin is not responsible for, nor does it grant any licenses to, third-party packages. Some packages may require or install dependencies which are governed by additional licenses.**
 
-Note: This component depends on [Android Easing Functions](https://github.com/daimajia/AnimationEasingFunctions), which is subject to the [MIT License](https://github.com/daimajia/AnimationEasingFunctions/blob/master/library/src/main/java/com/daimajia/easing/BaseEasingMethod.java#L1-L23)
+Note: This component depends on [Android Easing Functions](https://github.com/daimajia/AnimationEasingFunctions), which is subject to the [MIT License](https://github.com/daimajia/AnimationEasingFunctions/blob/master/LICENSE)
 
 ### Xamarin Component for Easing Functions
 
