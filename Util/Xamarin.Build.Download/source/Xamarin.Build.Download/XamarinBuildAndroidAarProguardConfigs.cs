@@ -58,7 +58,7 @@ namespace Xamarin.Build.Download
 				}
 
 				// Use a hash for the assembly name to keep paths shorter
-				var saveNameHash = DownloadUtils.HashMd5 (asmName.Name)?.Substring (0, 8);
+				var saveNameHash = DownloadUtils.Crc64(asmName.Name)?.Substring (0, 8);
 
 				// We keep a stamp file around to avoid reprocessing, so skip if it exists
 				var stampPath = Path.Combine (outputDir, saveNameHash + ".proguard.stamp");

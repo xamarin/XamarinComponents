@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Security.Cryptography;
+using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading;
 using Microsoft.Build.Framework;
@@ -109,7 +110,7 @@ namespace Xamarin.Build.Download
 					continue;
 				}
 
-				var md5 = part.GetMetadata ("Md5");
+				var sha256 = part.GetMetadata ("Sha256");
 
 				long rangeStart = -1L;
 				long.TryParse (part.GetMetadata ("RangeStart"), out rangeStart);
@@ -137,7 +138,7 @@ namespace Xamarin.Build.Download
 					Id = id,
 					ToFile = toFile,
 					Url = url,
-					Md5 = md5,
+					Sha256 = sha256,
 					RangeStart = rangeStart,
 					RangeEnd = rangeEnd,
 					CustomErrorMessage = customErrorMsg,
@@ -271,30 +272,64 @@ namespace Xamarin.Build.Download
 			return null;
 		}
 
-		public static string HashSha1 (string value)
+        public static string Crc64(string s)
+        {
+            var bytes = Encoding.UTF8.GetBytes(s);
+            return HashBytes(bytes);
+        }
+
+        public static string HashBytes(byte[] bytes)
+        {
+            using (var hashAlg = new Crc64())
+            {
+                byte[] hash = hashAlg.ComputeHash(bytes);
+                return ToHexString(hash);
+            }
+        }
+
+        public static string ToHexString(byte[] hash)
+        {
+            char[] array = new char[hash.Length * 2];
+            for (int i = 0, j = 0; i < hash.Length; i += 1, j += 2)
+            {
+                byte b = hash[i];
+                array[j] = GetHexValue(b / 16);
+                array[j + 1] = GetHexValue(b % 16);
+            }
+            return new string(array);
+        }
+
+        static char GetHexValue(int i) => (char)(i < 10 ? i + 48 : i - 10 + 65);
+
+		public static string HashSha256 (string value)
 		{
-			using (HashAlgorithm hashAlg = new SHA1Managed ()) {
-				var hash = hashAlg.ComputeHash (System.Text.Encoding.ASCII.GetBytes (value));
-				return BitConverter.ToString (hash).Replace ("-", string.Empty);
-			}
+			return HashSha256 (Encoding.UTF8.GetBytes (value));
 		}
 
-		public static string HashMd5 (string value)
+		public static string HashSha256 (byte[] value)
 		{
-			return HashMd5 (System.Text.Encoding.Default.GetBytes (value));
-		}
+            using (var sha256 = new SHA256Managed())
+            {
+                var hash = new StringBuilder();
+                var hashData = sha256.ComputeHash(value);
+                foreach (var b in hashData)
+                    hash.Append(b.ToString("x2"));
 
-		public static string HashMd5 (byte[] value)
+                return hash.ToString();
+            }
+        }
+
+		public static string HashSha256 (Stream value)
 		{
-			using (var md5 = MD5.Create ())
-				return BitConverter.ToString (md5.ComputeHash (value)).Replace ("-", "").ToLowerInvariant ();
-		}
+            using (var sha256 = new SHA256Managed())
+            {
+                var hash = new StringBuilder();
+                var hashData = sha256.ComputeHash(value);
+                foreach (var b in hashData)
+                    hash.Append(b.ToString("x2"));
 
-		public static string HashMd5 (Stream value)
-		{
-			using (var md5 = MD5.Create ())
-				return BitConverter.ToString (md5.ComputeHash (value)).Replace ("-", "").ToLowerInvariant ();
+                return hash.ToString();
+            }
 		}
-
 	}
 }

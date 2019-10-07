@@ -60,7 +60,7 @@ namespace Xamarin.Build.Download
 						var newDir = Path.GetDirectoryName (newName);
 
 						if (newFile.StartsWith ("internal_impl", StringComparison.InvariantCulture))
-							newName = Path.Combine (newDir, "internal_impl-" + DownloadUtils.HashSha1 (assemblyName).Substring (0, 6) + ".jar");
+							newName = Path.Combine (newDir, "internal_impl-" + DownloadUtils.Crc64 (assemblyName).Substring (0, 6) + ".jar");
 
 						Log.LogMessage ("Renaming: {0} to {1}", entryName, newName);
 

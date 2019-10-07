@@ -57,8 +57,8 @@ namespace Xamarin.Build.Download
 					taskItem.SetMetadata ("RangeStart", partialZipDownload.RangeStart.ToString ());
 					taskItem.SetMetadata ("RangeEnd", partialZipDownload.RangeEnd.ToString ());
 
-					if (!string.IsNullOrEmpty (partialZipDownload.Md5))
-						taskItem.SetMetadata ("Md5", partialZipDownload.Md5);
+					if (!string.IsNullOrEmpty (partialZipDownload.Sha256))
+						taskItem.SetMetadata ("Sha256", partialZipDownload.Sha256);
 
 					results.Add (taskItem);
 				}
