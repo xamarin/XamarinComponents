@@ -22,18 +22,18 @@ namespace NativeLibraryDownloaderTests
 		public static string Configuration = "Release";
 
 		public void AddCoreTargets (ProjectRootElement el)
-        {
-            var baseDir = new Uri(System.Reflection.Assembly.GetExecutingAssembly().CodeBase).LocalPath;
+		{
+			var baseDir = new Uri(System.Reflection.Assembly.GetExecutingAssembly().CodeBase).LocalPath;
 
-            var props = Path.Combine (baseDir, "..", "..", "source", "Xamarin.Build.Download", "bin", Configuration, "netstandard20", "Xamarin.Build.Download.props");
+			var props = Path.Combine (baseDir, "..", "..", "source", "Xamarin.Build.Download", "bin", Configuration, "netstandard20", "Xamarin.Build.Download.props");
 
-            if (!File.Exists(props))
-                props = Path.Combine(baseDir, "..", "Xamarin.Build.Download.props");
+			if (!File.Exists(props))
+				props = Path.Combine(baseDir, "..", "Xamarin.Build.Download.props");
 
 			el.AddImport (props);
 			var targets = Path.Combine (baseDir, "..", "..", "source", "Xamarin.Build.Download", "bin", Configuration, "netstandard20", "Xamarin.Build.Download.targets");
-            if (!File.Exists(targets))
-                targets = Path.Combine(baseDir, "..", "Xamarin.Build.Download.targets");
+			if (!File.Exists(targets))
+				targets = Path.Combine(baseDir, "..", "Xamarin.Build.Download.targets");
 
 			el.AddImport (targets);
 
@@ -121,7 +121,7 @@ namespace NativeLibraryDownloaderTests
 
 			var success = BuildProject (engine, project, "_XamarinBuildDownload", log);
 
-            var ignorePatterns = new[] { "*.overridetasks", "*.tasks" };
+			var ignorePatterns = new[] { "*.overridetasks", "*.tasks" };
 
 			AssertNoMessagesOrWarnings (log, ignorePatterns);
 			Assert.True (success);
@@ -247,8 +247,8 @@ namespace NativeLibraryDownloaderTests
 		public void TestResourcesAdded ()
 		{
 			// Tests won't run on windows due to file locking issues with assemblies
-            if (IsWindows)
-                return;
+			if (IsWindows)
+				return;
 
 			var engine = new ProjectCollection ();
 			var prel = ProjectRootElement.Create (Path.Combine (TempDir, "project.csproj"), engine);
@@ -342,16 +342,16 @@ namespace NativeLibraryDownloaderTests
 		[Fact]
 		public void TestAndroidAarAddedFromCache ()
 		{
-            // Tests won't run on windows due to file locking issues with assemblies
-            if (!IsWindows)
+			// Tests won't run on windows due to file locking issues with assemblies
+			if (!IsWindows)
 				testAndroidAarAdded (false);
 		}
 
 		[Fact]
 		public void TestAndroidAarAddedFromAndroidSdk ()
 		{
-            // Tests won't run on windows due to file locking issues with assemblies
-            if (!IsWindows)
+			// Tests won't run on windows due to file locking issues with assemblies
+			if (!IsWindows)
 				testAndroidAarAdded (true);
 		}
 
@@ -763,9 +763,9 @@ namespace NativeLibraryDownloaderTests
 		[Fact]
 		public void TestAndroidAarResourceMergeModifyInPlaceAndStampFile ()
 		{
-            // Tests won't run on windows due to file locking issues with assemblies
-            if (IsWindows)
-                return;
+			// Tests won't run on windows due to file locking issues with assemblies
+			if (IsWindows)
+				return;
 
 			var engine = new ProjectCollection ();
 			var prel = ProjectRootElement.Create (Path.Combine (TempDir, "project.csproj"), engine);
@@ -835,9 +835,9 @@ namespace NativeLibraryDownloaderTests
 		[Fact]
 		public void TestAndroidAarManifestFixup ()
 		{
-            // Tests won't run on windows due to file locking issues with assemblies
-            if (IsWindows)
-                return;
+			// Tests won't run on windows due to file locking issues with assemblies
+			if (IsWindows)
+				return;
 
 			var engine = new ProjectCollection ();
 			var prel = ProjectRootElement.Create (Path.Combine (TempDir, "project.csproj"), engine);
@@ -924,9 +924,9 @@ namespace NativeLibraryDownloaderTests
 		[Fact]
 		public void TestProguardText ()
 		{
-            // Tests won't run on windows due to file locking issues with assemblies
-            if (IsWindows)
-                return;
+			// Tests won't run on windows due to file locking issues with assemblies
+			if (IsWindows)
+				return;
 
 			var engine = new ProjectCollection ();
 			var prel = ProjectRootElement.Create (Path.Combine (TempDir, "project.csproj"), engine);

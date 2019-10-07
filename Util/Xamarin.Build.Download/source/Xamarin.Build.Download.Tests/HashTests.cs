@@ -9,16 +9,16 @@ using Xunit;
 
 namespace NativeLibraryDownloaderTests
 {
-    public class HashTests
-    {
-        [Theory]
-        [InlineData("C:\\path\\to\\file.aar")]
-        public void Test_CRC64_Safety(string value)
-        {
-            var crc = DownloadUtils.Crc64(value);
+	public class HashTests
+	{
+		[Theory]
+		[InlineData("C:\\path\\to\\file.aar")]
+		public void Test_CRC64_Safety(string value)
+		{
+			var crc = DownloadUtils.Crc64(value);
 
-            Assert.Matches("^[0-9a-zA-Z]+$", crc);
-        }
-        
-    }
+			Assert.Matches("^[0-9a-zA-Z]+$", crc);
+		}
+		
+	}
 }

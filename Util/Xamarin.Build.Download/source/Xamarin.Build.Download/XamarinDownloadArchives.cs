@@ -28,7 +28,7 @@ namespace Xamarin.Build.Download
 
 		public bool AllowUnsecureUrls { get; set; }
 
-        public string VsInstallRoot { get; set; }
+		public string VsInstallRoot { get; set; }
 
 		DownloadUtils downloadUtils;
 
@@ -227,8 +227,9 @@ namespace Xamarin.Build.Download
 				}
 				LogCodedError (
 					ThisOrThat (xbd.CustomErrorCode, ErrorCodes.ExtractionFailed),
-					ThisOrThat (xbd.CustomErrorMessage, () => string.Format ("Unpacking failed. Please download '{0}' and extract it to the '{1}' directory " +
-																			 "and create an empty file called '{2}'.", xbd.Url, xbd.DestinationDir, flagFile)));
+					ThisOrThat (xbd.CustomErrorMessage, () => string.Format (
+						"Unpacking failed. Please download '{0}' and extract it to the '{1}' directory " +
+						"and create an empty file called '{2}'.", xbd.Url, xbd.DestinationDir, flagFile)));
 				LogMessage ("Unpacking failure reason: " + output.ToString (), MessageImportance.High);
 			} catch (Exception ex) {
 				LogErrorFromException (ex);
@@ -307,12 +308,12 @@ namespace Xamarin.Build.Download
 			if (!string.IsNullOrEmpty (user7ZipPath) && File.Exists (user7ZipPath))
 				return user7ZipPath;
 
-            var path7z = VS7ZipLocator.Locate7Zip(vsInstallRoot);
+			var path7z = VS7ZipLocator.Locate7Zip(vsInstallRoot);
 
 			if (string.IsNullOrEmpty(path7z))
-    			throw new Exception ("Could not find 7zip.exe in Xamarin installation");
+				throw new Exception ("Could not find 7zip.exe in Xamarin installation");
 
-            return path7z;
+			return path7z;
 		}
 
 		static ProcessArgumentBuilder BuildZipExtractionArgs (string file, string contentDir)

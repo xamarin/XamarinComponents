@@ -27,10 +27,10 @@ namespace Xamarin.ContentPipeline.Tests
 			Environment.CurrentDirectory = tempDir;
 		}
 
-        public bool IsWindows
-            => System.Runtime.InteropServices.RuntimeInformation.IsOSPlatform(System.Runtime.InteropServices.OSPlatform.Windows);
+		public bool IsWindows
+			=> System.Runtime.InteropServices.RuntimeInformation.IsOSPlatform(System.Runtime.InteropServices.OSPlatform.Windows);
 
-        public void Dispose ()
+		public void Dispose ()
 		{
 			Environment.CurrentDirectory = originalWorkingDir;
 			Directory.Delete (tempDir, true);
@@ -48,15 +48,15 @@ namespace Xamarin.ContentPipeline.Tests
 
 		protected static void AssertNoMessagesOrWarnings (MSBuildTestLogger logger, params string[] ignorePatterns)
 		{
-            // Skip some msbuild test harness warnings that we truly don't care about
-            var errors = logger.Errors.ToList();
-            errors.RemoveAll(e => ignorePatterns.Any(p => e.Message.Contains(p)));
-            var warnings = logger.Warnings.ToList();
-            warnings.RemoveAll(w => ignorePatterns.Any(p => w.Message.Contains(p)));
+			// Skip some msbuild test harness warnings that we truly don't care about
+			var errors = logger.Errors.ToList();
+			errors.RemoveAll(e => ignorePatterns.Any(p => e.Message.Contains(p)));
+			var warnings = logger.Warnings.ToList();
+			warnings.RemoveAll(w => ignorePatterns.Any(p => w.Message.Contains(p)));
 
-            BuildEventArgs err = errors.FirstOrDefault ();
+			BuildEventArgs err = errors.FirstOrDefault ();
 
-            if (err == null) {
+			if (err == null) {
 				err = warnings.FirstOrDefault ();
 				if (err == null) {
 					return;

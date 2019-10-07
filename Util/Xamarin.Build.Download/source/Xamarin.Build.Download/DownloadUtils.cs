@@ -256,7 +256,7 @@ namespace Xamarin.Build.Download
 		{
 			var linkedCancelTokenSource = CancellationTokenSource.CreateLinkedTokenSource (
 				cancelToken,
-				 new CancellationTokenSource (timeout).Token);
+				new CancellationTokenSource (timeout).Token);
 			
 			while (!linkedCancelTokenSource.IsCancellationRequested) {
 				try {
@@ -272,34 +272,34 @@ namespace Xamarin.Build.Download
 			return null;
 		}
 
-        public static string Crc64(string s)
-        {
-            var bytes = Encoding.UTF8.GetBytes(s);
-            return HashBytes(bytes);
-        }
+		public static string Crc64(string s)
+		{
+			var bytes = Encoding.UTF8.GetBytes(s);
+			return HashBytes(bytes);
+		}
 
-        public static string HashBytes(byte[] bytes)
-        {
-            using (var hashAlg = new Crc64())
-            {
-                byte[] hash = hashAlg.ComputeHash(bytes);
-                return ToHexString(hash);
-            }
-        }
+		public static string HashBytes(byte[] bytes)
+		{
+			using (var hashAlg = new Crc64())
+			{
+				byte[] hash = hashAlg.ComputeHash(bytes);
+				return ToHexString(hash);
+			}
+		}
 
-        public static string ToHexString(byte[] hash)
-        {
-            char[] array = new char[hash.Length * 2];
-            for (int i = 0, j = 0; i < hash.Length; i += 1, j += 2)
-            {
-                byte b = hash[i];
-                array[j] = GetHexValue(b / 16);
-                array[j + 1] = GetHexValue(b % 16);
-            }
-            return new string(array);
-        }
+		public static string ToHexString(byte[] hash)
+		{
+			char[] array = new char[hash.Length * 2];
+			for (int i = 0, j = 0; i < hash.Length; i += 1, j += 2)
+			{
+				byte b = hash[i];
+				array[j] = GetHexValue(b / 16);
+				array[j + 1] = GetHexValue(b % 16);
+			}
+			return new string(array);
+		}
 
-        static char GetHexValue(int i) => (char)(i < 10 ? i + 48 : i - 10 + 65);
+		static char GetHexValue(int i) => (char)(i < 10 ? i + 48 : i - 10 + 65);
 
 		public static string HashSha256 (string value)
 		{
@@ -308,28 +308,28 @@ namespace Xamarin.Build.Download
 
 		public static string HashSha256 (byte[] value)
 		{
-            using (var sha256 = new SHA256Managed())
-            {
-                var hash = new StringBuilder();
-                var hashData = sha256.ComputeHash(value);
-                foreach (var b in hashData)
-                    hash.Append(b.ToString("x2"));
+			using (var sha256 = new SHA256Managed())
+			{
+				var hash = new StringBuilder();
+				var hashData = sha256.ComputeHash(value);
+				foreach (var b in hashData)
+					hash.Append(b.ToString("x2"));
 
-                return hash.ToString();
-            }
-        }
+				return hash.ToString();
+			}
+		}
 
 		public static string HashSha256 (Stream value)
 		{
-            using (var sha256 = new SHA256Managed())
-            {
-                var hash = new StringBuilder();
-                var hashData = sha256.ComputeHash(value);
-                foreach (var b in hashData)
-                    hash.Append(b.ToString("x2"));
+			using (var sha256 = new SHA256Managed())
+			{
+				var hash = new StringBuilder();
+				var hashData = sha256.ComputeHash(value);
+				foreach (var b in hashData)
+					hash.Append(b.ToString("x2"));
 
-                return hash.ToString();
-            }
+				return hash.ToString();
+			}
 		}
 	}
 }
