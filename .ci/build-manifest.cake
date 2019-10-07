@@ -317,7 +317,7 @@ if (groupsToBuild.Count == 0) {
 	var resultWriter = new Xunit.ResultWriter.XunitV2Writer();
 	resultWriter.Write(
 		new List<Xunit.ResultWriter.Assembly> { assembly },
-		testsDir.CombineWithFilePath ("TestResults.xml").FullPath);
+		testsDir.CombineWithFilePath ("ManifestBuildTestResults.xml").FullPath);
 
 	Information ("################################################################################");
 	Information ("#                             ALL BUILDS COMPLETE                              #");
