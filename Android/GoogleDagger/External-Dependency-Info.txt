@@ -9,7 +9,7 @@ expressly granted, whether by implication, estoppel or otherwise.
 
 ########################################
 # Google Dagger
-# https://github.com/google/auto
+# https://github.com/google/dagger
 ########################################
 
 
