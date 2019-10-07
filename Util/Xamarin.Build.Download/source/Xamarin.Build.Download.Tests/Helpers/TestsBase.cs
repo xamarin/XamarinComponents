@@ -27,7 +27,10 @@ namespace Xamarin.ContentPipeline.Tests
 			Environment.CurrentDirectory = tempDir;
 		}
 
-		public void Dispose ()
+        public bool IsWindows
+            => System.Runtime.InteropServices.RuntimeInformation.IsOSPlatform(System.Runtime.InteropServices.OSPlatform.Windows);
+
+        public void Dispose ()
 		{
 			Environment.CurrentDirectory = originalWorkingDir;
 			Directory.Delete (tempDir, true);
