@@ -23,9 +23,9 @@ Task("nuget")
 		c.Targets.Add("Pack");
 		c.Properties.Add("PackageOutputPath", new [] { MakeAbsolute(new FilePath("./output")).FullPath });
 		if (!string.IsNullOrEmpty(SOURCE_BRANCH))
-			c.Properties.Add("RepositoryBranch", SOURCE_BRANCH);
+			c.Properties.Add("RepositoryBranch", new [] { SOURCE_BRANCH });
 		if (!string.IsNullOrEmpty(SOURCE_COMMIT))
-			c.Properties.Add("RepositoryCommit", SOURCE_COMMIT);
+			c.Properties.Add("RepositoryCommit", new [] { SOURCE_COMMIT });
 	});
 });
 
