@@ -3,17 +3,7 @@
 
 var TARGET = Argument ("t", Argument ("target", "Default"));
 
-var IOS_PODS = new List<string> {
-	"platform :ios, '8.0'",
-	"install! 'cocoapods', :integrate_targets => false",
-	"target 'Xamarin' do",
-	"pod 'SDWebImage', '4.4.6'",
-	"pod 'SDWebImage/MapKit', '4.4.6'",
-	"pod 'SDWebImage/WebP', '4.4.6'",
-	"end",
-};
-
-var POD_VERSION = "4.4.6";
+var POD_VERSION = "4.4.7";
 
 var CreatePodSpec = new Action<string, string> ((platform, version) => {
 	var v1 = CocoaPodVersion () >= new System.Version (1, 0);
@@ -83,10 +73,13 @@ Task ("externals")
 	BuildXCode ("./Pods/Pods.xcodeproj", "libwebp", "libwebp", "./externals/osx/", TargetOS.Mac);
 
 	// tvOS
+	var buildSettings = new Dictionary<string, string> {
+		{ "BITCODE_GENERATION_MODE", "bitcode" },
+	};
 	EnsureDirectoryExists ("./externals/tvos");
-	CreatePodSpec ("tvos", "9.0");
-	BuildXCode ("./Pods/Pods.xcodeproj", "SDWebImage", "SDWebImage", "./externals/tvos/", TargetOS.tvOS);
-	BuildXCode ("./Pods/Pods.xcodeproj", "libwebp", "libwebp", "./externals/tvos/", TargetOS.tvOS);
+	CreatePodSpec ("tvos", "9.2");
+	BuildXCode ("./Pods/Pods.xcodeproj", "SDWebImage", "SDWebImage", "./externals/tvos/", TargetOS.tvOS, buildSettings);
+	BuildXCode ("./Pods/Pods.xcodeproj", "libwebp", "libwebp", "./externals/tvos/", TargetOS.tvOS, buildSettings);
 });
 
 Task ("clean").IsDependentOn ("clean-base").Does (() =>
