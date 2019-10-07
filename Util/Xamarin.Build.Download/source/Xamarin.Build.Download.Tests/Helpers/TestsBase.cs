@@ -9,17 +9,16 @@ using Microsoft.Build.Evaluation;
 using Microsoft.Build.Execution;
 using Microsoft.Build.Framework;
 using Microsoft.Build.Logging;
-using NUnit.Framework;
+using Xunit;
 
 namespace Xamarin.ContentPipeline.Tests
 {
-	class TestsBase
+	public class TestsBase : IDisposable
 	{
 		string originalWorkingDir;
 		string tempDir;
 
-		[OneTimeSetUp]
-		public void SetUp ()
+		public TestsBase ()
 		{
 			originalWorkingDir = Environment.CurrentDirectory;
 			tempDir = Path.GetTempFileName ();
@@ -28,8 +27,7 @@ namespace Xamarin.ContentPipeline.Tests
 			Environment.CurrentDirectory = tempDir;
 		}
 
-		[OneTimeTearDown]
-		public void TearDown ()
+		public void Dispose ()
 		{
 			Environment.CurrentDirectory = originalWorkingDir;
 			Directory.Delete (tempDir, true);
@@ -54,7 +52,7 @@ namespace Xamarin.ContentPipeline.Tests
 					return;
 				}
 			}
-			Assert.Fail (err.Message);
+			throw new Exception (err.Message);
 		}
 
 		// work around Mono's ProjectInstance.Build using a separate BuildManager and not shutting it down

@@ -11,31 +11,30 @@ using Microsoft.Build.Construction;
 using Microsoft.Build.Evaluation;
 using Microsoft.Build.Execution;
 using Mono.Cecil;
-using NUnit.Framework;
 using Xamarin.ContentPipeline.Tests;
 using Xamarin.MacDev;
+using Xunit;
 
 namespace NativeLibraryDownloaderTests
 {
-	[TestFixture]
-	class Test : TestsBase
+	public class Test : TestsBase
 	{
 		public void AddCoreTargets (ProjectRootElement el)
 		{
 			var props = Path.Combine (
 				Path.GetDirectoryName (GetType ().Assembly.Location),
-				"..", "..", "..", "Xamarin.Build.Download", "bin", "Debug", "Xamarin.Build.Download.props"
+				"..", "..", "..", "..", "Xamarin.Build.Download", "bin", "Debug", "netstandard20", "Xamarin.Build.Download.props"
 			);
 			el.AddImport (props);
 			var targets = Path.Combine (
 				Path.GetDirectoryName (GetType ().Assembly.Location),
-				"..", "..", "..", "Xamarin.Build.Download", "bin", "Debug", "Xamarin.Build.Download.targets"
+				"..", "..", "..", "..", "Xamarin.Build.Download", "bin", "Debug", "netstandard20", "Xamarin.Build.Download.targets"
 			);
 			el.AddImport (targets);
 
 		}
 
-		[Test]
+		[Fact]
 		public void NoArchivesOrTargets ()
 		{
 			var engine = new ProjectCollection ();
@@ -49,10 +48,10 @@ namespace NativeLibraryDownloaderTests
 			var success = BuildProject (engine, project, "_XamarinBuildDownload", log);
 
 			AssertNoMessagesOrWarnings (log);
-			Assert.IsTrue (success);
+			Assert.True (success);
 		}
 
-		[Test]
+		[Fact]
 		public void InvalidArchiveMetadata ()
 		{
 			var engine = new ProjectCollection ();
@@ -86,16 +85,16 @@ namespace NativeLibraryDownloaderTests
 			var success = BuildProject (engine, project, "_XamarinBuildDownload", log);
 
 			var errors = log.Errors.Select (e => e.Message).ToList ();
-			Assert.AreEqual (4, errors.Count);
-			Assert.AreEqual ("Invalid item ID -----", errors[0]);
-			Assert.AreEqual ("Unknown archive kind 'Cabbage' for 'https://www.example.com/bar.zip'", errors[1]);
-			Assert.AreEqual ("Unknown archive kind '' for 'https://www.example.com/bar.unknown'", errors[2]);
-			Assert.AreEqual ("Missing required Url metadata on item foo-1.2", errors[3]);
+			Assert.Equal (4, errors.Count);
+			Assert.Equal ("Invalid item ID -----", errors[0]);
+			Assert.Equal ("Unknown archive kind 'Cabbage' for 'https://www.example.com/bar.zip'", errors[1]);
+			Assert.Equal ("Unknown archive kind '' for 'https://www.example.com/bar.unknown'", errors[2]);
+			Assert.Equal ("Missing required Url metadata on item foo-1.2", errors[3]);
 
-			Assert.IsFalse (success);
+			Assert.False (success);
 		}
 
-		[Test]
+		[Fact]
 		public void TestZipDownload ()
 		{
 			var engine = new ProjectCollection ();
@@ -118,12 +117,12 @@ namespace NativeLibraryDownloaderTests
 			var success = BuildProject (engine, project, "_XamarinBuildDownload", log);
 
 			AssertNoMessagesOrWarnings (log);
-			Assert.IsTrue (success);
+			Assert.True (success);
 
-			Assert.IsTrue (File.Exists (Path.Combine (unpackDir, "ILRepack-2.0.10", "ILRepack.nuspec")));
+			Assert.True (File.Exists (Path.Combine (unpackDir, "ILRepack-2.0.10", "ILRepack.nuspec")));
 		}
 
-		[Test]
+		[Fact]
 		public void TestTgzDownload ()
 		{
 			var engine = new ProjectCollection ();
@@ -146,12 +145,12 @@ namespace NativeLibraryDownloaderTests
 			var success = BuildProject (engine, project, "_XamarinBuildDownload", log);
 
 			AssertNoMessagesOrWarnings (log);
-			Assert.IsTrue (success);
+			Assert.True (success);
 
-			Assert.IsTrue (File.Exists (Path.Combine (unpackDir, "GoogleSymbolUtilities-1.0.3", "Libraries", "libGSDK_Overload.a")));
+			Assert.True (File.Exists (Path.Combine (unpackDir, "GoogleSymbolUtilities-1.0.3", "Libraries", "libGSDK_Overload.a")));
 		}
 
-		[Test]
+		[Fact]
 		public void TestUncompressedNamedDownload ()
 		{
 			var engine = new ProjectCollection ();
@@ -175,12 +174,12 @@ namespace NativeLibraryDownloaderTests
 			var success = BuildProject (engine, project, "_XamarinBuildDownload", log);
 
 			AssertNoMessagesOrWarnings (log);
-			Assert.IsTrue (success);
+			Assert.True (success);
 
-			Assert.IsTrue (File.Exists (Path.Combine (unpackDir, "FacebookAndroid-4.17.0", "facebook-android-sdk.aar")));
+			Assert.True (File.Exists (Path.Combine (unpackDir, "FacebookAndroid-4.17.0", "facebook-android-sdk.aar")));
 		}
 
-		[Test]
+		[Fact]
 		public void TestUncompressedUnnamedDownload ()
 		{
 			var engine = new ProjectCollection ();
@@ -203,13 +202,13 @@ namespace NativeLibraryDownloaderTests
 			var success = BuildProject (engine, project, "_XamarinBuildDownload", log);
 
 			AssertNoMessagesOrWarnings (log);
-			Assert.IsTrue (success);
+			Assert.True (success);
 
-			Assert.IsTrue (File.Exists (Path.Combine (unpackDir, "FacebookAndroid-4.17.0", "FacebookAndroid-4.17.0.uncompressed")));
+			Assert.True (File.Exists (Path.Combine (unpackDir, "FacebookAndroid-4.17.0", "FacebookAndroid-4.17.0.uncompressed")));
 		}
 
 		//in google maps, the tar inside the tgz doesn't match the tgz name
-		[Test]
+		[Fact]
 		public void TestGMapsDownload ()
 		{
 			var engine = new ProjectCollection ();
@@ -232,12 +231,12 @@ namespace NativeLibraryDownloaderTests
 			var success = BuildProject (engine, project, "_XamarinBuildDownload", log);
 
 			AssertNoMessagesOrWarnings (log);
-			Assert.IsTrue (success);
+			Assert.True (success);
 
-			Assert.IsTrue (File.Exists (Path.Combine (unpackDir, "GMaps-1.11.1", "CHANGELOG")));
+			Assert.True (File.Exists (Path.Combine (unpackDir, "GMaps-1.11.1", "CHANGELOG")));
 		}
 
-		[Test]
+		[Fact]
 		public void TestResourcesAdded ()
 		{
 			var engine = new ProjectCollection ();
@@ -288,28 +287,28 @@ namespace NativeLibraryDownloaderTests
 			var success = BuildProject (engine, project, "_XamariniOSBuildResourceRestore", log);
 
 			AssertNoMessagesOrWarnings (log);
-			Assert.IsTrue (success);
+			Assert.True (success);
 
-			Assert.IsTrue (File.Exists (plist));
+			Assert.True (File.Exists (plist));
 
 			//check the referencepath has been replaced by the processed one
 			var items = project.GetItems ("ReferencePath");
 
 			var mergedItem = items.FirstOrDefault (i => !string.IsNullOrEmpty (i.EvaluatedInclude) && i.EvaluatedInclude != dll);
-			Assert.IsTrue (mergedItem != null);
+			Assert.True (mergedItem != null);
 
 			var itemPath = mergedItem.EvaluatedInclude;
 
-			Assert.AreNotEqual (dll, itemPath);
+			Assert.NotEqual (dll, itemPath);
 
 			//check the assembly has the processed resource
 			var processedAsm = AssemblyDefinition.ReadAssembly (itemPath);
 			var resource = processedAsm.MainModule.Resources.FirstOrDefault () as EmbeddedResource;
 			Assert.NotNull (resource);
-			Assert.AreEqual (resourceName, resource.Name);
+			Assert.Equal (resourceName, resource.Name);
 			var ps = PObject.FromStream (resource.GetResourceStream ()) as PDictionary;
-			Assert.IsFalse (ps.ContainsKey ("CFBundleExecutable"));
-			Assert.Greater (ps.Count, 0);
+			Assert.False (ps.ContainsKey ("CFBundleExecutable"));
+			Assert.True (ps.Count > 0);
 			var processedAsmMtime = File.GetLastWriteTime (itemPath);
 
 			// check incremental build works
@@ -318,24 +317,24 @@ namespace NativeLibraryDownloaderTests
 			var newSuccess = BuildProject (engine, project, "_XamariniOSBuildResourceRestore", log);
 
 			AssertNoMessagesOrWarnings (log);
-			Assert.IsTrue (success);
+			Assert.True (success);
 
 			var newItems = project.GetItems ("ReferencePath");
 			var newItem = newItems.FirstOrDefault (i => !string.IsNullOrEmpty (i.EvaluatedInclude) && i.EvaluatedInclude != dll);
 			var newItemPath = newItem.EvaluatedInclude;
 
-			Assert.AreEqual (itemPath, newItemPath);
-			Assert.AreEqual (processedAsmMtime, File.GetLastWriteTime (newItemPath));
+			Assert.Equal (itemPath, newItemPath);
+			Assert.Equal (processedAsmMtime, File.GetLastWriteTime (newItemPath));
 		}
 
 
-		[Test]
+		[Fact]
 		public void TestAndroidAarAddedFromCache ()
 		{
 			testAndroidAarAdded (false);
 		}
 
-		[Test]
+		[Fact]
 		public void TestAndroidAarAddedFromAndroidSdk ()
 		{
 			testAndroidAarAdded (true);
@@ -403,7 +402,7 @@ namespace NativeLibraryDownloaderTests
 			var success = BuildProject (engine, project, "_XamarinAndroidBuildAarRestore", log);
 
 			AssertNoMessagesOrWarnings (log);
-			Assert.IsTrue (success);
+			Assert.True (success);
 
 			//Assert.IsTrue (File.Exists (aar));
 
@@ -411,7 +410,7 @@ namespace NativeLibraryDownloaderTests
 			var items = project.GetItems ("ReferencePath");
 
 			var mergedItem = items.FirstOrDefault (i => !string.IsNullOrEmpty (i.EvaluatedInclude) && i.EvaluatedInclude != dll);
-			Assert.IsTrue (mergedItem != null);
+			Assert.True (mergedItem != null);
 
 			var itemPath = mergedItem.EvaluatedInclude;
 
@@ -419,14 +418,14 @@ namespace NativeLibraryDownloaderTests
 			var processedAsm = AssemblyDefinition.ReadAssembly (itemPath);
 			var resource = processedAsm.MainModule.Resources.FirstOrDefault () as EmbeddedResource;
 			Assert.NotNull (resource);
-			Assert.AreEqual (resourceName, resource.Name);
+			Assert.Equal (resourceName, resource.Name);
 
 			// Check that the embedded .aar has an appropriate prefix for each entry's path
 			var hasWrongEntryNames = false;
 			using (var zip = new ZipArchive (resource.GetResourceStream ())) {
 				hasWrongEntryNames = zip.Entries.Any (ze => !ze.FullName.StartsWith ("library_project_imports", System.StringComparison.InvariantCulture));
 			}
-			Assert.IsFalse (hasWrongEntryNames);
+			Assert.False (hasWrongEntryNames);
 
 			var processedAsmMtime = File.GetLastWriteTime (itemPath);
 
@@ -437,17 +436,17 @@ namespace NativeLibraryDownloaderTests
 			var newSuccess = BuildProject (engine, project, "_XamarinAndroidBuildAarRestore", log);
 
 			AssertNoMessagesOrWarnings (log);
-			Assert.IsTrue (newSuccess);
+			Assert.True (newSuccess);
 
 			var newItems = project.GetItems ("ReferencePath");
 			var newItem = newItems.FirstOrDefault (i => !string.IsNullOrEmpty (i.EvaluatedInclude) && i.EvaluatedInclude != dll);
-			Assert.IsTrue (newItem != null);
+			Assert.True (newItem != null);
 			var newItemPath = newItem.EvaluatedInclude;
-			Assert.AreEqual (itemPath, newItemPath);
-			Assert.AreEqual (processedAsmMtime, File.GetLastWriteTime (newItemPath));
+			Assert.Equal (itemPath, newItemPath);
+			Assert.Equal (processedAsmMtime, File.GetLastWriteTime (newItemPath));
 		}
 
-		[Test]
+		[Fact]
 		public void TestDisallowUnsafeGetItemsToDownload ()
 		{
 			var itemUrl = "http://search.maven.org/remotecontent?filepath=com/facebook/android/facebook-android-sdk/4.17.0/facebook-android-sdk-4.17.0.aar";
@@ -483,10 +482,10 @@ namespace NativeLibraryDownloaderTests
 
 			var itemToDownload = project.GetItems ("XamarinBuildDownloadItemToDownload");
 
-			Assert.IsEmpty (itemToDownload);
+			Assert.Empty (itemToDownload);
 		}
 
-		[Test]
+		[Fact]
 		public void TestAllowUnsafeGetItemsToDownload ()
 		{
 			var itemUrl = "http://search.maven.org/remotecontent?filepath=com/facebook/android/facebook-android-sdk/4.17.0/facebook-android-sdk-4.17.0.aar";
@@ -523,12 +522,12 @@ namespace NativeLibraryDownloaderTests
 
 			var itemToDownload = project.GetItems ("XamarinBuildDownloadItemToDownload");
 
-			Assert.AreEqual (2, itemToDownload.Count);
-			Assert.IsTrue (itemToDownload.Any (i => i.GetMetadata ("Url").EvaluatedValue == itemUrl));
-			Assert.IsTrue (itemToDownload.Any (i => i.GetMetadata ("Url").EvaluatedValue == zipUrl));
+			Assert.Equal (2, itemToDownload.Count);
+			Assert.True (itemToDownload.Any (i => i.GetMetadata ("Url").EvaluatedValue == itemUrl));
+			Assert.True (itemToDownload.Any (i => i.GetMetadata ("Url").EvaluatedValue == zipUrl));
 		}
 
-		[Test]
+		[Fact]
 		public void TestGetItemsToDownload ()
 		{
 			var itemUrl = "https://search.maven.org/remotecontent?filepath=com/facebook/android/facebook-android-sdk/4.17.0/facebook-android-sdk-4.17.0.aar";
@@ -553,15 +552,15 @@ namespace NativeLibraryDownloaderTests
 			var success = BuildProject (engine, project, "XamarinBuildDownloadGetItemsToDownload", log);
 
 			AssertNoMessagesOrWarnings (log);
-			Assert.IsTrue (success);
+			Assert.True (success);
 
 			var itemToDownload = project.GetItems ("XamarinBuildDownloadItemToDownload");
 
-			Assert.AreEqual (1, itemToDownload.Count);
-			Assert.IsTrue (itemToDownload.First ().GetMetadata ("Url").EvaluatedValue == itemUrl);
+			Assert.Equal (1, itemToDownload.Count);
+			Assert.True (itemToDownload.First ().GetMetadata ("Url").EvaluatedValue == itemUrl);
 		}
 
-		[Test]
+		[Fact]
 		public void TestDeduplicateGetItemsToDownload ()
 		{
 			var itemUrl = "https://search.maven.org/remotecontent?filepath=com/facebook/android/facebook-android-sdk/4.17.0/facebook-android-sdk-4.17.0.aar";
@@ -592,15 +591,15 @@ namespace NativeLibraryDownloaderTests
 			var success = BuildProject (engine, project, "XamarinBuildDownloadGetItemsToDownload", log);
 
 			AssertNoMessagesOrWarnings (log);
-			Assert.IsTrue (success);
+			Assert.True (success);
 
 			var itemToDownload = project.GetItems ("XamarinBuildDownloadItemToDownload");
 
-			Assert.AreEqual (1, itemToDownload.Count);
-			Assert.IsTrue (itemToDownload.First ().GetMetadata ("Url").EvaluatedValue == itemUrl);
+			Assert.Equal (1, itemToDownload.Count);
+			Assert.True (itemToDownload.First ().GetMetadata ("Url").EvaluatedValue == itemUrl);
 		}
 
-		[Test]
+		[Fact]
 		public void TestTimesOutWaitingOnExclusiveLock ()
 		{
 			var unpackDir = GetTempPath ("unpacked");
@@ -628,12 +627,12 @@ namespace NativeLibraryDownloaderTests
 
 				var success = BuildProject (engine, project, "_XamarinBuildDownload", log);
 
-				Assert.IsFalse (success);
-				Assert.IsNull (log.Errors.FirstOrDefault (err => err.Code == "XBD005"));
+				Assert.False (success);
+				Assert.Null (log.Errors.FirstOrDefault (err => err.Code == "XBD005"));
 			}
 		}
 
-		[Test]
+		[Fact]
 		public void TestAndroidSupportSinglePartialZipDownload ()
 		{
 			var engine = new ProjectCollection ();
@@ -659,13 +658,13 @@ namespace NativeLibraryDownloaderTests
 			var success = BuildProject (engine, project, "_XamarinBuildDownload", log);
 
 			AssertNoMessagesOrWarnings (log);
-			Assert.IsTrue (success);
+			Assert.True (success);
 
-			Assert.IsTrue (File.Exists (Path.Combine (unpackDir, "androidsupport-25.0.1", "cardview.v7", "cardview.v7.aar")));
+			Assert.True (File.Exists (Path.Combine (unpackDir, "androidsupport-25.0.1", "cardview.v7", "cardview.v7.aar")));
 		}
 
 
-		[Test]
+		[Fact]
 		public void TestAndroidSupportMultiplePartialZipDownload ()
 		{
 			var engine = new ProjectCollection ();
@@ -700,15 +699,15 @@ namespace NativeLibraryDownloaderTests
 			var success = BuildProject (engine, project, "_XamarinBuildDownload", log);
 
 			AssertNoMessagesOrWarnings (log);
-			Assert.IsTrue (success);
+			Assert.True (success);
 
-			Assert.IsTrue (File.Exists (Path.Combine (unpackDir, "androidsupport-25.0.1", "cardview.v7", "cardview.v7.aar")));
-			Assert.IsTrue (File.Exists (Path.Combine (unpackDir, "androidsupport-25.0.1", "recyclerview.v7", "recyclerview.v7.aar")));
+			Assert.True (File.Exists (Path.Combine (unpackDir, "androidsupport-25.0.1", "cardview.v7", "cardview.v7.aar")));
+			Assert.True (File.Exists (Path.Combine (unpackDir, "androidsupport-25.0.1", "recyclerview.v7", "recyclerview.v7.aar")));
 		}
 
 
 
-		[Test]
+		[Fact]
 		public void TestGetPartialZipItemsToDownload ()
 		{
 			var itemUrl = "https://dl-ssl.google.com/android/repository/android_m2repository_r40.zip";
@@ -745,16 +744,16 @@ namespace NativeLibraryDownloaderTests
 			var success = BuildProject (engine, project, "XamarinBuildDownloadGetItemsToDownload", log);
 
 			AssertNoMessagesOrWarnings (log);
-			Assert.IsTrue (success);
+			Assert.True (success);
 
 			var itemToDownload = project.GetItems ("XamarinBuildDownloadItemToDownload");
 
-			Assert.AreEqual (2, itemToDownload.Count);
-			Assert.IsTrue (itemToDownload.First ().GetMetadata ("Url").EvaluatedValue == itemUrl);
+			Assert.Equal (2, itemToDownload.Count);
+			Assert.True (itemToDownload.First ().GetMetadata ("Url").EvaluatedValue == itemUrl);
 		}
 
 
-		[Test]
+		[Fact]
 		public void TestAndroidAarResourceMergeModifyInPlaceAndStampFile ()
 		{
 			var engine = new ProjectCollection ();
@@ -812,18 +811,18 @@ namespace NativeLibraryDownloaderTests
 			var success = BuildProject (engine, project, "_XamarinAndroidBuildAarRestore", log);
 
 //			AssertNoMessagesOrWarnings (log);
-			Assert.IsTrue (success);
+			Assert.True (success);
 			//Assert.IsTrue (File.Exists (Path.Combine (unpackDir, "androidsupport-25.0.1", "cardview.v7", "cardview.v7.aar")));
 
 			success = BuildProject (engine, project, "_XamarinAndroidBuildAarRestore", log);
 
-			Assert.IsTrue (File.Exists (Path.Combine (intermediateDir, "XbdMerge", "Xamarin.Android.Support.v7.CardView.dll.stamp")));
+			Assert.True (File.Exists (Path.Combine (intermediateDir, "XbdMerge", "Xamarin.Android.Support.v7.CardView.dll.stamp")));
 
-			Assert.IsTrue (File.GetLastWriteTimeUtc (dll) > originalAsmDate);
+			Assert.True (File.GetLastWriteTimeUtc (dll) > originalAsmDate);
 		}
 
 
-		[Test]
+		[Fact]
 		public void TestAndroidAarManifestFixup ()
 		{
 			var engine = new ProjectCollection ();
@@ -879,20 +878,20 @@ namespace NativeLibraryDownloaderTests
 
 			var success = BuildProject (engine, project, "_XamarinAndroidBuildAarRestore", log);
 
-			Assert.IsTrue (success);
+			Assert.True (success);
 
 			//check the assembly has the processed resource
 			var processedAsm = AssemblyDefinition.ReadAssembly (dll);
 			var resource = processedAsm.MainModule.Resources.FirstOrDefault () as EmbeddedResource;
 			Assert.NotNull (resource);
-			Assert.AreEqual (resourceName, resource.Name);
+			Assert.Equal (resourceName, resource.Name);
 
 			// Check the embedded .aar to see if all the manifest entries were fixed up
 			using (var zip = new ZipArchive (resource.GetResourceStream ())) {
 
 				var manifestEntry = zip.Entries.FirstOrDefault (ze => ze.Name.EndsWith ("AndroidManifest.xml", StringComparison.OrdinalIgnoreCase));
 
-				Assert.IsNotNull (manifestEntry);
+				Assert.NotNull (manifestEntry);
 
 				// android: namespace
 				XNamespace xns = "http://schemas.android.com/apk/res/android";
@@ -903,13 +902,13 @@ namespace NativeLibraryDownloaderTests
 					var anyUnfixed = xdoc.Document.Descendants ()
 										.Any (elem => elem.Attribute (xns + "name")?.Value?.StartsWith (".", StringComparison.Ordinal) ?? false);
 
-					Assert.IsFalse (anyUnfixed);
+					Assert.False (anyUnfixed);
 				}
 			}
 		}
 
 
-		[Test]
+		[Fact]
 		public void TestProguardText ()
 		{
 			var engine = new ProjectCollection ();
@@ -965,8 +964,8 @@ namespace NativeLibraryDownloaderTests
 			var proguardConfigItems = project.GetItems ("ProguardConfiguration");
 
 			AssertNoMessagesOrWarnings (log);
-			Assert.IsTrue (success);
-			Assert.IsTrue (proguardConfigItems.Any ());
+			Assert.True (success);
+			Assert.True (proguardConfigItems.Any ());
 		}
 	}
 }
