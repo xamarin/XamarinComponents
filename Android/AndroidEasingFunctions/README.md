@@ -6,23 +6,28 @@ of animation easier.
 
 Animations can be created quickly:
 
-    var animator = Glider.Glide (
-        Skill.BounceEaseInOut, 
-        1200, 
-        ObjectAnimator.OfFloat (targetView, "translationY", 0, 100))
-    animator.SetDuration (1200);
-    animator.Start ();
+```csharp
+var animator = Glider.Glide (
+    Skill.BounceEaseInOut, 
+    1200, 
+    ObjectAnimator.OfFloat (targetView, "translationY", 0, 100))
+animator.SetDuration (1200);
+animator.Start ();
+```
 
 Multiple animations can also be combined in an `AnimatorSet`:
 
-    var set = new AnimatorSet ();
-    set.PlayTogether (
-        Glider.Glide (Skill.BounceEaseInOut, 1200, ObjectAnimator.OfFloat (targetView, "translationY", 0, 100)),
-        Glider.Glide (Skill.BounceEaseInOut, 1200, ObjectAnimator.OfFloat (targetView, "translationX", 0, 100)));
-    set.SetDuration (1200);
-    set.Start ();
+```csharp
+var set = new AnimatorSet ();
+set.PlayTogether (
+    Glider.Glide (Skill.BounceEaseInOut, 1200, ObjectAnimator.OfFloat (targetView, "translationY", 0, 100)),
+    Glider.Glide (Skill.BounceEaseInOut, 1200, ObjectAnimator.OfFloat (targetView, "translationX", 0, 100)));
+set.SetDuration (1200);
+set.Start ();
+```
 
 ## Easing Functions
+
 These easing functions are based on the [Easing Functions](http://easings.net/) 
 by [Robert Penne](http://robertpenner.com/).
 

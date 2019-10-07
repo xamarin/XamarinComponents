@@ -1,0 +1,15 @@
+{
+  "Registrations":[ 
+    {
+      "Component": {
+        "Type": "Maven",
+        "Maven": {
+          "ArtifactId": "library",
+          "GroupId": "com.daimajia.easing",
+          "Version": "2.1"
+        }
+      }
+    }
+  ],
+  "Version": 1
+}
