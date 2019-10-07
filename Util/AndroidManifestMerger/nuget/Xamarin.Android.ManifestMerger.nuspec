@@ -15,6 +15,7 @@
   <files>
     <file src="..\externals\merger\*.jar" target="build/monoandroid" />
     <file src="..\source\*.targets" target="build/monoandroid" />
+    <file src="..\source\_._" target="lib/monoandroid/_._" />
     <file src="..\External-Dependency-Info.txt" target="THIRD-PARTY-NOTICES.txt" />
   </files>
 </package>
