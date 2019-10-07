@@ -1,8 +1,8 @@
 using System.Xml.Linq;
 
-var target = Argument("target", "Default");
+var target = Argument("target", "ci");
 
-var PACKAGE_VERSION = "1.0.0-preview02";
+var PACKAGE_VERSION = "1.0.0-preview03";
 
 var TOOL_VERSION = "26.5.0";
 
@@ -78,7 +78,7 @@ Task("tests")
 		throw new Exception("Manifests were merged, but data was lost.");
 });
 
-Task("Default")
+Task("ci")
 	.IsDependentOn("externals")
 	.IsDependentOn("nuget")
 	.IsDependentOn("tests");
