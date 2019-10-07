@@ -28,6 +28,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Transforms\*.xml" />
     <TransformFile Include="Transforms\*.xml" />
   </ItemGroup>
 
