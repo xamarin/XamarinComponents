@@ -43,11 +43,18 @@ namespace Xamarin.ContentPipeline.Tests
 			return Path.Combine (tempDir, Path.Combine (components));
 		}
 
-		protected static void AssertNoMessagesOrWarnings (MSBuildTestLogger logger)
+		protected static void AssertNoMessagesOrWarnings (MSBuildTestLogger logger, params string[] ignorePatterns)
 		{
-			BuildEventArgs err = logger.Errors.FirstOrDefault ();
-			if (err == null) {
-				err = logger.Warnings.FirstOrDefault ();
+            // Skip some msbuild test harness warnings that we truly don't care about
+            var errors = logger.Errors.ToList();
+            errors.RemoveAll(e => ignorePatterns.Any(p => e.Message.Contains(p)));
+            var warnings = logger.Warnings.ToList();
+            warnings.RemoveAll(w => ignorePatterns.Any(p => w.Message.Contains(p)));
+
+            BuildEventArgs err = errors.FirstOrDefault ();
+
+            if (err == null) {
+				err = warnings.FirstOrDefault ();
 				if (err == null) {
 					return;
 				}
