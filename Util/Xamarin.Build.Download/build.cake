@@ -33,8 +33,12 @@ Task("tests")
 	.IsDependentOn("nuget")
 	.Does(() =>
 {
-	XUnit2("./source/Xamarin.Build.Download.Tests/bin/**/Release/**/*.Tests.dll",
-		new XUnit2Settings { OutputDirectory = "./output" });
+	DotNetCoreTest("./source/Xamarin.Build.Download.Tests/", new DotNetCoreTestSettings {
+		Configuration = "Release",
+		OutputDirectory = "./output",
+		ResultsDirectory = "./output",
+		VSTestReportPath = "./output/tests/TestResults.xml"
+	});
 });
 
 Task ("clean")
