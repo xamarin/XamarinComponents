@@ -116,7 +116,9 @@ namespace NativeLibraryDownloaderTests
 
 			var success = BuildProject (engine, project, "_XamarinBuildDownload", log);
 
-			AssertNoMessagesOrWarnings (log);
+            var ignorePatterns = new[] { "*.overridetasks", "*.tasks" };
+
+			AssertNoMessagesOrWarnings (log, ignorePatterns);
 			Assert.True (success);
 
 			Assert.True (File.Exists (Path.Combine (unpackDir, "ILRepack-2.0.10", "ILRepack.nuspec")));
