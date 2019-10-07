@@ -2,26 +2,40 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard20</TargetFramework>
+    <AssemblyName>Xamarin.Build.Download</AssemblyName>
+    <!-- Don't include the assembly in the lib\ folder in the nupkg -->
+    <IncludeBuildOutput>false</IncludeBuildOutput>
 
-        <AssemblyName>Xamarin.Build.Download</AssemblyName>
-
+    <PackageId>Xamarin.Build.Download</PackageId>
+    <Title>Xamarin Build-time Download Support</Title>
+    <PackageVersion>0.6.0-rc1</PackageVersion>
+    <Authors>Microsoft</Authors>
+    <Owners>Microsoft</Owners>
+    <PackageProjectUrl>https://go.microsoft.com/fwlink/?linkid=865061</PackageProjectUrl>
+    <PackageLicenseUrl>https://go.microsoft.com/fwlink/?linkid=864965</PackageLicenseUrl>
+    <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
+    <Description>Support for downloading and unpacking archives when building MSBuild projects</Description>
+    <Copyright>© Microsoft Corporation. All rights reserved.</Copyright>
+    <RepositoryUrl>https://github.com/xamarin/XamarinComponents.git</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
   </PropertyGroup>
+
   <ItemGroup>
-    <None Include="Xamarin.Build.Download.targets">
+    <None Include="Xamarin.Build.Download.targets" Pack="True" PackagePath="build\Xamarin.Build.Download.targets">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Xamarin.Build.Download.props">
+    <None Include="Xamarin.Build.Download.props" Pack="True" PackagePath="build\Xamarin.Build.Download.props">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+    <None Include="$(TargetPath)" Pack="True" PackagePath="build\Xamarin.Build.Download.dll" />
+    <None Include="$(PkgMono_Cecil)\lib\netstandard2.0\Mono.Cecil.dll" Pack="True" PackagePath="build\Mono.Cecil.dll" />
+    <None Include="$(PkgNewtonsoft_Json)\lib\netstandard2.0\Newtonsoft.Json.dll" Pack="True" PackagePath="build\Newtonsoft.Json.dll" />
+    <None Include="..\..\External-Dependency-Info.txt" Pack="True" PackagePath="THIRD-PARTY-NOTICE.txt" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="Microsoft.Build.Framework" Version="16.0.461" />
-    <PackageReference Include="Microsoft.Build.Utilities.Core" Version="16.0.461" />
-    <PackageReference Include="Mono.Cecil">
-      <Version>0.11.0</Version>
-    </PackageReference>
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Properties\" />
+    <PackageReference Include="Microsoft.Build.Framework" Version="16.0.461" PrivateAssets="alln" />
+    <PackageReference Include="Microsoft.Build.Utilities.Core" Version="16.0.461" PrivateAssets="all" />
+    <PackageReference Include="Mono.Cecil" Version="0.11.0" PrivateAssets="all" GeneratePathProperty="true" />
+    <PackageReference Include="Newtonsoft.Json" Version="12.0.2" PrivateAssets="all" GeneratePathProperty="true" />
   </ItemGroup>
 </Project>
