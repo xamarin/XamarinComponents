@@ -1,0 +1,51 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project Sdk="MSBuild.Sdk.Extras/2.0.54">
+  <PropertyGroup>
+    <TargetFrameworks>MonoAndroid90</TargetFrameworks>
+    <IsBindingProject>true</IsBindingProject>
+    <AssemblyName>Xamarin.Google.Dagger.Dagger</AssemblyName>
+    <MonoAndroidResourcePrefix>Resources</MonoAndroidResourcePrefix>
+    <MonoAndroidAssetsPrefix>Assets</MonoAndroidAssetsPrefix>
+    <AndroidUseLatestPlatformSdk>False</AndroidUseLatestPlatformSdk>
+    <AndroidUseIntermediateDesignerFile>True</AndroidUseIntermediateDesignerFile>
+    <AndroidResgenFile>Resources\Resource.designer.cs</AndroidResgenFile>
+    <RootNamespace>Annotations</RootNamespace>
+    <AndroidClassParser>class-parse</AndroidClassParser>
+    <AndroidCodegenTarget>XAJavaInterop1</AndroidCodegenTarget>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <PackageId>Xamarin.Google.Dagger.Dagger</PackageId>
+    <Title>Google Dagger for Xamarin.Android</Title>
+    <Summary>Xamarin.Android bindings for Google Dagger</Summary>
+    <Authors>Microsoft</Authors>
+    <Owners>Microsoft</Owners>
+    <Copyright>© Microsoft Corporation. All rights reserved.</Copyright>
+    <PackageLicenseUrl>https://go.microsoft.com/fwlink/?linkid=2091801</PackageLicenseUrl>
+    <!-- TODO: Add Final Url  -->
+    <PackageProjectUrl>https://go.microsoft.com/fwlink/?linkid=</PackageProjectUrl>
+    <PackageLicenseUrl>https://go.microsoft.com/fwlink/?linkid=</PackageLicenseUrl>
+    <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
+    <PackageVersion>2.13</PackageVersion>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <TransformFile Include="Transforms\*.xml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="..\..\externals\dagger.jar">
+      <Link>dagger.jar</Link>
+    </None>
+    <None Include="..\..\External-Dependency-Info.txt" Pack="True" PackagePath="THIRD-PARTY-NOTICES.txt" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedJar Include="..\..\externals\dagger.jar" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="Mono.Android" />
+  </ItemGroup>
+
+</Project>
