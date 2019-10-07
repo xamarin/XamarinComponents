@@ -33,14 +33,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Include="..\..\externals\dagger.jar">
-      <Link>dagger.jar</Link>
-    </None>
+    <EmbeddedJar Include="..\..\externals\dagger.jar" Link="dagger.jar" />
     <None Include="..\..\External-Dependency-Info.txt" Pack="True" PackagePath="THIRD-PARTY-NOTICES.txt" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <EmbeddedJar Include="..\..\externals\dagger.jar" />
   </ItemGroup>
 
   <ItemGroup>
