@@ -185,6 +185,10 @@ jobs:
           displayName: 'Run build'
           env:
             JavaSdkDirectory: $(JAVA_HOME)
+            RepositoryCommit: $(Build.SourceVersion)
+            RepositoryBranch: $(Build.SourceBranchName)
+            RepositoryUrl: $(Build.Repository.Uri)
+            RepositoryType: $(Build.Repository.Provider)
       # the manifest-based build
       - ${{ if eq(parameters.buildType, 'manifest') }}:
         - pwsh: |
@@ -209,6 +213,10 @@ jobs:
           displayName: 'Run build'
           env:
             JavaSdkDirectory: $(JAVA_HOME)
+            RepositoryCommit: $(Build.SourceVersion)
+            RepositoryBranch: $(Build.SourceBranchName)
+            RepositoryUrl: $(Build.Repository.Uri)
+            RepositoryType: $(Build.Repository.Provider)
       - task: PublishTestResults@2
         displayName: Publish the test results
         condition: always()

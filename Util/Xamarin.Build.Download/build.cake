@@ -1,8 +1,5 @@
 var TARGET = Argument ("t", Argument ("target", "ci"));
 
-var SOURCE_COMMIT = EnvironmentVariable("BUILD_SOURCEVERSION") ?? "";
-var SOURCE_BRANCH = EnvironmentVariable("BUIlD_SOURCEBRANCHNAME") ?? "";
-
 Task("libs")
 	.Does(() =>
 {
@@ -22,10 +19,6 @@ Task("nuget")
 		c.Targets.Clear();
 		c.Targets.Add("Pack");
 		c.Properties.Add("PackageOutputPath", new [] { MakeAbsolute(new FilePath("./output")).FullPath });
-		if (!string.IsNullOrEmpty(SOURCE_BRANCH))
-			c.Properties.Add("RepositoryBranch", new [] { SOURCE_BRANCH });
-		if (!string.IsNullOrEmpty(SOURCE_COMMIT))
-			c.Properties.Add("RepositoryCommit", new [] { SOURCE_COMMIT });
 	});
 });
 
@@ -35,9 +28,7 @@ Task("tests")
 {
 	DotNetCoreTest("./source/Xamarin.Build.Download.Tests/", new DotNetCoreTestSettings {
 		Configuration = "Release",
-		OutputDirectory = "./output",
-		ResultsDirectory = "./output",
-		VSTestReportPath = "./output/tests/TestResults.xml"
+		VSTestReportPath = "./output/tests/TestResults.trx"
 	});
 });
 
