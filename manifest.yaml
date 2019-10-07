@@ -600,7 +600,8 @@
 - Name: AndroidManifestMerger
   BuildScript: ./Util/AndroidManifestMerger/build.cake
   TriggerPaths: [ Util/AndroidManifestMerger ]
-  WindowsBuildTargets: [ Default ]
+  WindowsBuildTargets: [ ci ]
+  MacBuildTargets: [ ci ]
 - Name: Xamarin.AndroidBinderator
   BuildScript: ./Util/Xamarin.AndroidBinderator/build.cake
   TriggerPaths: [ Util/Xamarin.AndroidBinderator ]

@@ -100,7 +100,7 @@
     <PackageReference Include="Xamarin.Firebase.Perf" Version="71.1620.0" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="Xamarin.Android.ManifestMerger" Version="1.0.0-preview02" />
+    <PackageReference Include="Xamarin.Android.ManifestMerger" Version="1.0.0-preview03" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
 </Project>
