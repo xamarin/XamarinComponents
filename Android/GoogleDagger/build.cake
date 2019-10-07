@@ -1,6 +1,3 @@
-
-#load "../../common.cake"
-
 var TARGET = Argument ("t", Argument ("target", "ci"));
 
 var DAGGERS_VERSION = "2.13";
