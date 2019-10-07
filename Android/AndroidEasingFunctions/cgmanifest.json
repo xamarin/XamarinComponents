@@ -6,7 +6,8 @@
         "Maven": {
           "ArtifactId": "library",
           "GroupId": "com.daimajia.easing",
-          "Version": "2.1"
+          "Version": "2.1",
+          "NugetId": "AndroidEasingFunctions"
         }
       }
     }
