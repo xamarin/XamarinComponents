@@ -41,9 +41,9 @@
         <PackageProjectUrl>https://go.microsoft.com/fwlink/?linkid=2013420</PackageProjectUrl>
         <RepositoryUrl>https://github.com/tensorflow/tensorflow/</RepositoryUrl>
         <PackageReleaseNotes>
-            Initial bindings
+            Initial GPU bindings
         </PackageReleaseNotes>
-        <PackageTags>xamarin, android, bindings, google, tensorflow</PackageTags>
+        <PackageTags>xamarin, android, bindings, google, tensorflow, lite</PackageTags>
         <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
     </PropertyGroup>
 

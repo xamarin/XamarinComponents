@@ -1,8 +1,8 @@
 using System.Xml.Linq;
 
-var target = Argument("target", "Default");
+var target = Argument("target", "ci");
 
-var PACKAGE_VERSION = "1.0.0-preview02";
+var PACKAGE_VERSION = "1.0.0-preview03";
 
 var TOOL_VERSION = "26.5.0";
 
@@ -62,7 +62,8 @@ Task("tests")
 	//       as ensuring that the target is properly skipped on subsequent builds.
 
 	var android = (XNamespace)"http://schemas.android.com/apk/res/android";
-	var xdoc = XDocument.Load("./samples/FancyMergingApp/obj/Release/90/android/AndroidManifest.xml");
+	var files = GetFiles("./samples/FancyMergingApp/obj/Release/**/android/AndroidManifest.xml");
+	var xdoc = XDocument.Load(files.Single().FullPath);
 
 	var serviceName = "com.google.firebase.components.ComponentDiscoveryService";
 	var services = xdoc
@@ -78,7 +79,7 @@ Task("tests")
 		throw new Exception("Manifests were merged, but data was lost.");
 });
 
-Task("Default")
+Task("ci")
 	.IsDependentOn("externals")
 	.IsDependentOn("nuget")
 	.IsDependentOn("tests");

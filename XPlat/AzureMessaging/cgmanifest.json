@@ -1,0 +1,26 @@
+{
+    "Registrations":[ 
+    {
+      "component": { 
+       "type": "git", 
+       "git": { 
+         "repositoryUrl": "https://github.com/Azure/azure-notificationhubs-ios.git", 
+         "commitHash": "17b825dc6b44391be853a4a65c935b641f62ad20" 
+         },
+        "nugetId" : "Xamarin.Azure.NotificationHubs.iOS"
+       }
+    },
+    {
+      "Component": {
+         "Type": "Maven",
+         "Maven": {
+           "ArtifactId": "notification-hubs-android-sdk",
+           "GroupId": "com.microsoft.azure",
+           "Version": "0.6"
+         },
+         "nugetId" : "Xamarin.Azure.NotificationHubs.Android"
+       }
+    }
+ ],
+ "Version": 1
+}
