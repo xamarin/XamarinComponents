@@ -19,17 +19,22 @@ namespace NativeLibraryDownloaderTests
 {
 	public class Test : TestsBase
 	{
+		public static string Configuration = "Release";
+
 		public void AddCoreTargets (ProjectRootElement el)
-		{
-			var props = Path.Combine (
-				Path.GetDirectoryName (GetType ().Assembly.Location),
-				"..", "..", "..", "..", "Xamarin.Build.Download", "bin", "Debug", "netstandard20", "Xamarin.Build.Download.props"
-			);
+        {
+            var baseDir = new Uri(System.Reflection.Assembly.GetExecutingAssembly().CodeBase).LocalPath;
+
+            var props = Path.Combine (baseDir, "..", "..", "source", "Xamarin.Build.Download", "bin", Configuration, "netstandard20", "Xamarin.Build.Download.props");
+
+            if (!File.Exists(props))
+                props = Path.Combine(baseDir, "..", "Xamarin.Build.Download.props");
+
 			el.AddImport (props);
-			var targets = Path.Combine (
-				Path.GetDirectoryName (GetType ().Assembly.Location),
-				"..", "..", "..", "..", "Xamarin.Build.Download", "bin", "Debug", "netstandard20", "Xamarin.Build.Download.targets"
-			);
+			var targets = Path.Combine (baseDir, "..", "..", "source", "Xamarin.Build.Download", "bin", Configuration, "netstandard20", "Xamarin.Build.Download.targets");
+            if (!File.Exists(targets))
+                targets = Path.Combine(baseDir, "..", "Xamarin.Build.Download.targets");
+
 			el.AddImport (targets);
 
 		}
