@@ -62,7 +62,7 @@ Task("tests")
 	//       as ensuring that the target is properly skipped on subsequent builds.
 
 	var android = (XNamespace)"http://schemas.android.com/apk/res/android";
-	var xdoc = XDocument.Load("./samples/FancyMergingApp/obj/Release/90/android/AndroidManifest.xml");
+	var xdoc = XDocument.Load("./samples/FancyMergingApp/obj/Release/android/AndroidManifest.xml");
 
 	var serviceName = "com.google.firebase.components.ComponentDiscoveryService";
 	var services = xdoc
