@@ -97,4 +97,8 @@
   <remove-node path="/api/package[@name='kotlin.text']/class[@name='StringsKt__StringsKt']/method[@name='trimStart' and count(parameter)=2 and parameter[1][@type='java.lang.String'] and parameter[2][@type='char...']]" />
   <remove-node path="/api/package[@name='kotlin.text']/class[@name='StringsKt__StringsKt']/method[@name='trimStart' and count(parameter)=2 and parameter[1][@type='java.lang.String'] and parameter[2][@type='kotlin.jvm.functions.Function1&lt;? super java.lang.Character, java.lang.Boolean&gt;']]" />
 
+  <!-- TODO: WORKAROUND FOR https://github.com/xamarin/java.interop/issues/496 -->
+  <remove-node path="/api/package[@name='kotlin.time']/class[@name='ClockMark']/method[@name='minus-LRDsOJo' and count(parameter)=1 and parameter[1][@type='double']]" />
+  <remove-node path="/api/package[@name='kotlin.time']/class[@name='ClockMark']/method[@name='plus-LRDsOJo' and count(parameter)=1 and parameter[1][@type='double']]" />
+
 </metadata>
