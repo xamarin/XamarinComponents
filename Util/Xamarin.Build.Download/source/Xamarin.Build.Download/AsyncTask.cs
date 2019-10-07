@@ -58,7 +58,7 @@ namespace Xamarin.Build.Download
 			completed.Set ();
 		}
 
-		public void LogDebugTaskItems (string message, params string [] items)
+        public void LogDebugTaskItems (string message, params string [] items)
 		{
 			LogDebugMessage (message);
 
