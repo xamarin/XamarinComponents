@@ -229,10 +229,6 @@
   BuildScript: ./Android/GoogleBillingClient/build.cake
   TriggerPaths: [ Android/GoogleBillingClient ]
   MacBuildTargets: [ libs, nuget]
-- Name: Dagger
-  BuildScript: ./Android/GoogleDagger/build.cake
-  TriggerPaths: [ Android/GoogleDagger ]
-  MacBuildTargets: [ libs, nuget]
   
 # will be XPlat in the future
 - Name: TensorFlow.Lite
