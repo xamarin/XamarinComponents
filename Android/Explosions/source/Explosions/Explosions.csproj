@@ -15,7 +15,7 @@
   <PropertyGroup>
     <PackageId>Xamarin.Explosions</PackageId>
     <Title>Explosions for Xamarin.Android</Title>
-    <Description>A library that provides explosions for any and all of your Xamarin.Android views.</Description>
+    <PackageDescription>A library that provides explosions for any and all of your Xamarin.Android views.</PackageDescription>
     <Authors>Microsoft</Authors>
     <Owners>Microsoft</Owners>
     <Copyright>© Microsoft Corporation. All rights reserved.</Copyright>
