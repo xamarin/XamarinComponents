@@ -9,7 +9,6 @@
         <AndroidResgenFile>Resources\Resource.designer.cs</AndroidResgenFile>
         <TargetFrameworks>MonoAndroid60</TargetFrameworks>
         <AndroidCodegenTarget>XAJavaInterop1</AndroidCodegenTarget>
-        <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
         <IsBindingProject>true</IsBindingProject>
         <AndroidClassParser>class-parse</AndroidClassParser>
         <JavaOptions>$(JavaOptions) -noverify </JavaOptions>
