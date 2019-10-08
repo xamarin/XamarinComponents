@@ -242,7 +242,7 @@ jobs:
             api-tools nuget-diff ${{ parameters.artifactsPath }} --latest --group-ids --ignore-unchanged --output output/api-diff --cache $(Agent.TempDirectory)/api-diff/package-cache
 
             (Get-ChildItem output/api-diff -Recurse -Filter *.diff.md) | ForEach-Object {
-              Write-Host "##vso[task.uploadsummary]" + $_.FullName
+              Write-Host "##vso[task.uploadsummary]$($_.FullName)"
             }
           }
         displayName: 'Generate API diff'
