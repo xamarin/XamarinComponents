@@ -169,10 +169,7 @@ namespace Explosions
             set.AnimationEnd += delegate
             {
                 view.Visibility = ViewStates.Invisible;
-                if (onHidden != null)
-                {
-                    onHidden();
-                }
+                onHidden?.Invoke();
             };
             view.StartAnimation(set);
 
