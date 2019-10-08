@@ -13,6 +13,7 @@ namespace NativeLibraryDownloaderTests
 	{
 		[Theory]
 		[InlineData("C:\\path\\to\\file.aar")]
+		[InlineData ("/path/to/file.aar")]
 		public void Test_CRC64_Safety(string value)
 		{
 			var crc = DownloadUtils.Crc64(value);
