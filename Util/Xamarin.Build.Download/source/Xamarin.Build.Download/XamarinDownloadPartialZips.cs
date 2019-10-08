@@ -169,7 +169,7 @@ namespace Xamarin.Build.Download
 			if (!string.IsNullOrEmpty (part.Sha256) && !part.Sha256.Equals (fileHash, StringComparison.InvariantCultureIgnoreCase)) {
 
 				// TODO: HANDLE 
-				LogMessage ("File MD5 Hash was invalid, deleting file: {0}", part.ToFile);
+				LogMessage ("File SHA256 Hash was invalid, deleting file: {0}", part.ToFile);
 				File.Delete (outputPath);
 				return false;
 			}
