@@ -18,8 +18,7 @@
   <PropertyGroup>
     <PackageId>Xamarin.Android.ReactiveX.RxAndroid</PackageId>
     <Title>ReactiveX RxAndroid reference library for Xamarin.Android</Title>
-    <Summary>Xamarin.Android bindings for ReactiveX RxAndroid</Summary>
-    <Description></Description>
+    <PackageDescription>Xamarin.Android bindings for ReactiveX RxAndroid</PackageDescription>
     <Authors>Microsoft</Authors>
     <Owners>Microsoft</Owners>
     <Copyright>© Microsoft Corporation. All rights reserved.</Copyright>

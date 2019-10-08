@@ -17,8 +17,7 @@
   <PropertyGroup>
     <PackageId>GoogleGson</PackageId>
     <Title>Google Gson bindings for Xamarin.Android</Title>
-    <Summary>Xamarin.Android bindings for Google Gson</Summary>
-    <Description>Gson is a library that can be used to convert Java Objects into their JSON representation. It can also be used to convert a JSON string to an equivalent Java object.</Description>
+    <PackageDescription>Gson is a library that can be used to convert Java Objects into their JSON representation. It can also be used to convert a JSON string to an equivalent Java object.</PackageDescription>
     <Authors>Microsoft</Authors>
     <Owners>Microsoft</Owners>
     <Copyright>© Microsoft Corporation. All rights reserved.</Copyright>

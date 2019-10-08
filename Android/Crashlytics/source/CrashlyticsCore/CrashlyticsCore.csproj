@@ -22,8 +22,7 @@
         <PackageId>Xamarin.Android.Crashlytics.Core</PackageId>
         <PackageVersion>2.6.3</PackageVersion>
         <Title>Crashlytics Core for Android</Title>
-        <Summary>Xamarin.Android bindings for Crashlytics Android - Core</Summary>
-        <Description>Xamarin.Android bindings for Crashlytics Android - Core</Description>
+        <PackageDescription>Xamarin.Android bindings for Crashlytics Android - Core</PackageDescription>
         <PackageTags>Xamarin Android Xamarin.Android Crashlytics</PackageTags>
         <Authors>Microsoft</Authors>
         <Owners>Microsoft, Xamarin</Owners>

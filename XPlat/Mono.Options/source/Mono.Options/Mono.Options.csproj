@@ -8,7 +8,7 @@
     <Authors>Microsoft</Authors>
     <Owners>Microsoft</Owners>
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
-    <Description>A Getopt::Long-inspired option parsing library for C#.</Description>
+    <PackageDescription>A Getopt::Long-inspired option parsing library for C#.</PackageDescription>
     <Copyright>© Microsoft Corporation. All rights reserved.</Copyright>
     <PackageLicenseUrl>https://go.microsoft.com/fwlink/?linkid=865025</PackageLicenseUrl>
     <PackageIconUrl>https://cdn.rawgit.com/xamarin/XamarinComponents/60536db623beeeb7bb5d1e7a78f9c26da32e26b6/XPlat/Mono.Options/component/icons/icon_256x256.png</PackageIconUrl>

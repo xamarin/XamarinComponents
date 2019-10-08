@@ -22,8 +22,7 @@
         <PackageId>Xamarin.Android.Fabric</PackageId>
         <PackageVersion>1.4.3</PackageVersion>
         <Title>Fabric for Android</Title>
-        <Summary>Xamarin.Android bindings for Fabric Android</Summary>
-        <Description>Xamarin.Android bindings for Fabric Android</Description>
+        <PackageDescription>Xamarin.Android bindings for Fabric Android</PackageDescription>
         <PackageTags>Xamarin Android Xamarin.Android Fabric</PackageTags>
         <Authors>Microsoft</Authors>
         <Owners>Microsoft, Xamarin</Owners>
