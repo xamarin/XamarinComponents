@@ -125,6 +125,11 @@ jobs:
           Write-Host "Downloading script from $uri..."
           Invoke-WebRequest -Uri $uri -OutFile "validation.cake"
         displayName: 'Download the cake script to validate NuGet packages'
+      - pwsh: |
+          $uri = "$(TemplateRootUri)/nuget-diff.cake"
+          Write-Host "Downloading script from $uri..."
+          Invoke-WebRequest -Uri $uri -OutFile "nuget-diff.cake"
+        displayName: 'Download the cake script to diff NuGet packages'
       # determine the last successful build for "master" branch
       - pwsh: |
           # determine the "master" branch
@@ -234,18 +239,17 @@ jobs:
       # custom post-build steps
       - ${{ parameters.postBuildSteps }}
       # post-build steps
-      - pwsh: dotnet cake validation.cake --namespaces="${{ join(',', parameters.validPackagePrefixes) }}"
-        displayName: 'Run NuGet package validation'
-      # after the build is complete
       - pwsh: |
-          if (Get-ChildItem ${{ parameters.artifactsPath }} -Filter *.nupkg) {
-            api-tools nuget-diff ${{ parameters.artifactsPath }} --latest --group-ids --ignore-unchanged --output output/api-diff --cache $(Agent.TempDirectory)/api-diff/package-cache
-
-            (Get-ChildItem output/api-diff -Recurse -Filter *.diff.md) | ForEach-Object {
-              Write-Host "##vso[task.uploadsummary]$($_.FullName)"
-            }
-          }
+          dotnet cake validation.cake `
+            --namespaces="${{ join(',', parameters.validPackagePrefixes) }}"
+        displayName: 'Run NuGet package validation'
+      - pwsh: |
+          dotnet cake nuget-diff.cake `
+            --artifacts="${{ parameters.artifactsPath }}" `
+            --output="${{ parameters.artifactsPath }}/api-diff" `
+            --cache="$(Agent.TempDirectory)/api-diff"
         displayName: 'Generate API diff'
+      # after the build is complete
       - task: ms.vss-governance-buildtask.governance-build-task-component-detection.ComponentGovernanceComponentDetection@0
         displayName: 'Run component detection'
         condition: and(succeeded(), in(variables['Build.Reason'], 'IndividualCI', 'BatchedCI'))
