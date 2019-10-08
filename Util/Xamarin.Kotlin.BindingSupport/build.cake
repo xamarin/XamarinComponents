@@ -1,7 +1,7 @@
 
 var TARGET = Argument("t", Argument("target", "Default"));
 
-var PACKAGE_VERSION = "0.1.0-preview";
+var PACKAGE_VERSION = "0.3.0-preview";
 
 Task("externals")
 	.Does(() =>
@@ -21,7 +21,8 @@ Task("libs")
 	.IsDependentOn("externals")
 	.Does(() =>
 {
-	var gradlew = MakeAbsolute((FilePath)"./native/gradlew");
+	var fn = IsRunningOnWindows() ? "gradlew.bat" : "gradlew";
+	var gradlew = MakeAbsolute((FilePath)("./native/" + fn));
 	var exitCode = StartProcess(gradlew, new ProcessSettings {
 		Arguments = "jar",
 		WorkingDirectory = "./native/"

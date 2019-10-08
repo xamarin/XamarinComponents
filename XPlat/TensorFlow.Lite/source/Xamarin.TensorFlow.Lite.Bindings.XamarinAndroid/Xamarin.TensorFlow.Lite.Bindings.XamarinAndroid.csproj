@@ -1,4 +1,5 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="MSBuild.Sdk.Extras/2.0.54">
+
     <PropertyGroup>
         <AssemblyName>Xamarin.TensorFlow.Lite</AssemblyName>
 
@@ -40,9 +41,9 @@
         <PackageProjectUrl>https://go.microsoft.com/fwlink/?linkid=2013420</PackageProjectUrl>
         <RepositoryUrl>https://github.com/tensorflow/tensorflow/</RepositoryUrl>
         <PackageReleaseNotes>
-            Initial bindings
+            Initial GPU bindings
         </PackageReleaseNotes>
-        <PackageTags>xamarin, android, bindings, google, tensorflow</PackageTags>
+        <PackageTags>xamarin, android, bindings, google, tensorflow, lite</PackageTags>
         <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
     </PropertyGroup>
 
@@ -56,9 +57,4 @@
         </LibraryProjectZip>
     </ItemGroup>
 
-  <ItemGroup>
-    <PackageReference Include="MSBuild.Sdk.Extras" Version="1.4.0" PrivateAssets="All" />
-  </ItemGroup>
-
-  <Import Project="$(MSBuildSDKExtrasTargets)" Condition="Exists('$(MSBuildSDKExtrasTargets)')" />
 </Project>

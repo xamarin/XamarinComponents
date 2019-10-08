@@ -1,7 +1,6 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
   <!--
   https://montemagno.com/converting-xamarin-libraries-to-sdk-style-multi-targeted-projects/
-    
   -->
     <PropertyGroup>
         <AssemblyName>Xamarin.Grpc.Stub</AssemblyName>
@@ -14,8 +13,9 @@
 
         <TargetFrameworks>MonoAndroid81</TargetFrameworks>
         <AndroidCodegenTarget>XAJavaInterop1</AndroidCodegenTarget>
-         
-        <GenerateAssemblyInfo>false</GenerateAssemblyInfo>        
+
+        <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+        <Description>Bindings for Google GRPC Stub package</Description>
     </PropertyGroup>
 
     <PropertyGroup>
@@ -24,18 +24,18 @@
     </PropertyGroup>
 
     <PropertyGroup>
-        <!-- 
+        <!--
         nuget packaging
         -->
         <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
         <PackageId>Xamarin.Grpc.Stub</PackageId>
-        <PackageVersion>1.14.0</PackageVersion>
+        <PackageVersion>1.21.1.0</PackageVersion>
         <Title>Xamarin.Grpc.Stub</Title>
         <Summary>
             Google GRPC Stub bindings for Xamarin
         </Summary>
         <Description>
-            Bindings for Google's GRPC Stub package (Google Play Services dependency)
+            Bindings for Google's GRPC Stub package
         </Description>
         <Owners>Microsoft</Owners>
         <Authors>Microsoft</Authors>
@@ -47,23 +47,21 @@
         https://go.microsoft.com/fwlink/?linkid=2009337
         </PackageProjectUrl>
         <RepositoryUrl>
-        https://go.microsoft.com/fwlink/?linkid=2009337            
+        https://go.microsoft.com/fwlink/?linkid=2009337
         </RepositoryUrl>
         <RequireLicenceAcceptance>true</RequireLicenceAcceptance>
         <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
         <PackageReleaseNotes>
-            Initial bindings
+            transitive dependencies fixed
         </PackageReleaseNotes>
-        <PackageIconUrl>
-            
-        </PackageIconUrl>
         <PackageTags>xamarin, android, bindings, google, grpc, stub </PackageTags>
+        <PackOnBuild>true</PackOnBuild>
+        <RequireLicenceAcceptance>true</RequireLicenceAcceptance>
+        <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
     </PropertyGroup>
 
 
     <ItemGroup>
-        <!--
-        -->
         <TransformFile Include="Transforms\*.xml" />
     </ItemGroup>
 
@@ -83,14 +81,14 @@
     <Folder Include="Jars\" />
   </ItemGroup>
   <ItemGroup>
-    <None Remove="Jars\AboutJars.txt" />
+    <EmbeddedJar Include="..\..\externals\android\grpc-stub-1.21.1.jar">
+      <Link>Jars\grpc-stub-1.21.1.jar</Link>
+    </EmbeddedJar>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedJar Include="..\..\externals\android\grpc-stub-1.14.0.jar">
-      <Link>Jars\grpc-stub-1.14.0.jar</Link>
-    </EmbeddedJar>
+    <ProjectReference Include="..\Xamarin.Grpc.Core.Bindings.XamarinAndroid\Xamarin.Grpc.Core.Bindings.XamarinAndroid.csproj" />
+    <ProjectReference Include="..\Xamarin.Grpc.Context.Bindings.XamarinAndroid\Xamarin.Grpc.Context.Bindings.XamarinAndroid.csproj" />
   </ItemGroup>
   <Import Project="$(MSBuildSDKExtrasTargets)" Condition="Exists('$(MSBuildSDKExtrasTargets)')" />
 
-    
 </Project>

@@ -1,50 +1,3 @@
-/*
-#########################################################################################
-Installing
-
-	Windows - powershell
-
-        Invoke-WebRequest http://cakebuild.net/download/bootstrapper/windows -OutFile build.ps1
-        .\build.ps1
-
-	Windows - cmd.exe prompt
-
-        powershell ^
-			Invoke-WebRequest http://cakebuild.net/download/bootstrapper/windows -OutFile build.ps1
-        powershell ^
-			.\build.ps1
-
-	Mac OSX
-
-        rm -fr tools/; mkdir ./tools/ ; \
-        cp cake.packages.config ./tools/packages.config ; \
-        curl -Lsfo build.sh http://cakebuild.net/download/bootstrapper/osx ; \
-        chmod +x ./build.sh ;
-        ./build.sh
-
-	Linux
-
-        curl -Lsfo build.sh http://cakebuild.net/download/bootstrapper/linux
-        chmod +x ./build.sh && ./build.sh
-
-Running Cake to Build targets
-
-	Windows
-
-		tools\Cake\Cake.exe --verbosity=diagnostic --target=libs
-		tools\Cake\Cake.exe --verbosity=diagnostic --target=nuget
-		tools\Cake\Cake.exe --verbosity=diagnostic --target=samples
-
-		tools\Cake\Cake.exe -experimental --verbosity=diagnostic --target=libs
-		tools\Cake\Cake.exe -experimental --verbosity=diagnostic --target=nuget
-		tools\Cake\Cake.exe -experimental --verbosity=diagnostic --target=samples
-
-	Mac OSX
-
-		mono tools/Cake/Cake.exe --verbosity=diagnostic --target=libs
-		mono tools/Cake/Cake.exe --verbosity=diagnostic --target=nuget
-#########################################################################################
-*/
 #tool nuget:?package=XamarinComponent
 
 #addin nuget:?package=Cake.XCode
@@ -54,10 +7,18 @@ Running Cake to Build targets
 
 var TARGET = Argument ("t", Argument ("target", "Default"));
 
-string ARTIFACT_VERSION="1.14.0";
+string ARTIFACT_VERSION="1.21.1";
 string JAR_URL = "";
 Dictionary<string, string> JAR_URLS_ARTIFACT_FILES= new Dictionary<string, string>()
 {
+	{
+		$"http://central.maven.org/maven2/io/grpc/grpc-android/{ARTIFACT_VERSION}/grpc-android-{ARTIFACT_VERSION}.aar",
+		$"./externals/android/grpc-android-{ARTIFACT_VERSION}.aar"
+	},
+	{
+		$"http://central.maven.org/maven2/io/grpc/grpc-api/{ARTIFACT_VERSION}/grpc-api-{ARTIFACT_VERSION}.jar",
+		$"./externals/android/grpc-api-{ARTIFACT_VERSION}.jar"
+	},
 	{
 		$"http://central.maven.org/maven2/io/grpc/grpc-stub/{ARTIFACT_VERSION}/grpc-stub-{ARTIFACT_VERSION}.jar",
 		$"./externals/android/grpc-stub-{ARTIFACT_VERSION}.jar"
@@ -73,6 +34,10 @@ Dictionary<string, string> JAR_URLS_ARTIFACT_FILES= new Dictionary<string, strin
 	{
 		$"http://central.maven.org/maven2/io/grpc/grpc-protobuf-lite/{ARTIFACT_VERSION}/grpc-protobuf-lite-{ARTIFACT_VERSION}.jar",
 		$"./externals/android/grpc-protobuf-lite-{ARTIFACT_VERSION}.jar"
+	},
+	{
+		$"http://central.maven.org/maven2/io/grpc/grpc-context/{ARTIFACT_VERSION}/grpc-context-{ARTIFACT_VERSION}.jar",
+		$"./externals/android/grpc-context-{ARTIFACT_VERSION}.jar"
 	},
 };
 string ARTIFACT_FILE = "";
@@ -94,15 +59,34 @@ BuildSpec buildSpec = new BuildSpec ()
 				},
 				new OutputFileCopy
 				{
-					FromFile = $"source/Xamarin.Grpc.Core.Bindings.XamarinAndroid/bin/Release/Xamarin.Grpc.Core.{ARTIFACT_VERSION}.nupkg"
+					FromFile = $"source/Xamarin.Grpc.Core.Bindings.XamarinAndroid/bin/Release/Xamarin.Grpc.Core.{NUGET_VERSION}.nupkg"
 				},
+
+				new OutputFileCopy
+				{
+					FromFile = "./source/Xamarin.Grpc.Api.Bindings.XamarinAndroid/bin/Release/monoandroid81/Xamarin.Grpc.Api.dll"
+				},
+				new OutputFileCopy
+				{
+					FromFile = $"source/Xamarin.Grpc.Api.Bindings.XamarinAndroid/bin/Release/Xamarin.Grpc.Api.{NUGET_VERSION}.nupkg"
+				},
+
+				new OutputFileCopy
+				{
+					FromFile = "./source/Xamarin.Grpc.Android.Bindings.XamarinAndroid/bin/Release/monoandroid81/Xamarin.Grpc.Android.dll"
+				},
+				new OutputFileCopy
+				{
+					FromFile = $"source/Xamarin.Grpc.Android.Bindings.XamarinAndroid/bin/Release/Xamarin.Grpc.Android.{NUGET_VERSION}.nupkg"
+				},
+
 				new OutputFileCopy
 				{
 					FromFile = "./source/Xamarin.Grpc.Stub.Bindings.XamarinAndroid/bin/Release/monoandroid81/Xamarin.Grpc.Stub.dll"
 				},
 				new OutputFileCopy
 				{
-					FromFile = $"source/Xamarin.Grpc.Stub.Bindings.XamarinAndroid/bin/Release/Xamarin.Grpc.Stub.{ARTIFACT_VERSION}.nupkg"
+					FromFile = $"source/Xamarin.Grpc.Stub.Bindings.XamarinAndroid/bin/Release/Xamarin.Grpc.Stub.{NUGET_VERSION}.nupkg"
 				},
 
 				new OutputFileCopy
@@ -111,15 +95,25 @@ BuildSpec buildSpec = new BuildSpec ()
 				},
 				new OutputFileCopy
 				{
-					FromFile = $"source/Xamarin.Grpc.Protobuf.Lite.Bindings.XamarinAndroid/bin/Release/Xamarin.Grpc.Protobuf.Lite.{ARTIFACT_VERSION}.nupkg"
+					FromFile = $"source/Xamarin.Grpc.Protobuf.Lite.Bindings.XamarinAndroid/bin/Release/Xamarin.Grpc.Protobuf.Lite.{NUGET_VERSION}.nupkg"
 				},
+
 				new OutputFileCopy
 				{
 					FromFile = "./source/Xamarin.Grpc.OkHttp.Bindings.XamarinAndroid/bin/Release/monoandroid81/Xamarin.Grpc.OkHttp.dll"
 				},
 				new OutputFileCopy
 				{
-					FromFile = $"source/Xamarin.Grpc.OkHttp.Bindings.XamarinAndroid/bin/Release/Xamarin.Grpc.OkHttp.{ARTIFACT_VERSION}.nupkg"
+					FromFile = $"source/Xamarin.Grpc.OkHttp.Bindings.XamarinAndroid/bin/Release/Xamarin.Grpc.OkHttp.{NUGET_VERSION}.nupkg"
+				},
+
+				new OutputFileCopy
+				{
+					FromFile = "./source/Xamarin.Grpc.Context.Bindings.XamarinAndroid/bin/Release/monoandroid81/Xamarin.Grpc.Context.dll"
+				},
+				new OutputFileCopy
+				{
+					FromFile = $"source/Xamarin.Grpc.Context.Bindings.XamarinAndroid/bin/Release/Xamarin.Grpc.Context.{NUGET_VERSION}.nupkg"
 				},
 			}
 		}
@@ -217,6 +211,36 @@ Task("nuget")
 			MSBuild
 			(
 				"./source/Xamarin.Grpc.Protobuf.Lite.Bindings.XamarinAndroid/Xamarin.Grpc.Protobuf.Lite.Bindings.XamarinAndroid.csproj",
+				configuration =>
+					configuration
+						.SetConfiguration("Release")
+						.WithTarget("Pack")
+						.WithProperty("PackageVersion", NUGET_VERSION)
+						.WithProperty("PackageOutputPath", "../../output")
+			);
+			MSBuild
+			(
+				"./source/Xamarin.Grpc.Context.Bindings.XamarinAndroid/Xamarin.Grpc.Context.Bindings.XamarinAndroid.csproj",
+				configuration =>
+					configuration
+						.SetConfiguration("Release")
+						.WithTarget("Pack")
+						.WithProperty("PackageVersion", NUGET_VERSION)
+						.WithProperty("PackageOutputPath", "../../output")
+			);
+			MSBuild
+			(
+				"./source/Xamarin.Grpc.Android.Bindings.XamarinAndroid/Xamarin.Grpc.Android.Bindings.XamarinAndroid.csproj",
+				configuration =>
+					configuration
+						.SetConfiguration("Release")
+						.WithTarget("Pack")
+						.WithProperty("PackageVersion", NUGET_VERSION)
+						.WithProperty("PackageOutputPath", "../../output")
+			);
+			MSBuild
+			(
+				"./source/Xamarin.Grpc.Api.Bindings.XamarinAndroid/Xamarin.Grpc.Api.Bindings.XamarinAndroid.csproj",
 				configuration =>
 					configuration
 						.SetConfiguration("Release")

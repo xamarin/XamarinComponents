@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="MSBuild.Sdk.Extras/2.0.54">
   <PropertyGroup>
     <TargetFrameworks>MonoAndroid80</TargetFrameworks>
     <IsBindingProject>true</IsBindingProject>
@@ -43,8 +43,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="MSBuild.Sdk.Extras" Version="1.4.0" PrivateAssets="All" />
-    <PackageReference Include="Xamarin.Android.Support.Annotations" Version="28.0.0.1" />
+    <PackageReference Include="Xamarin.Android.Support.Annotations" Version="28.0.0.3" />
   </ItemGroup>
 
   <ItemGroup>
@@ -53,5 +52,4 @@
   <ItemGroup>
     <Reference Include="Mono.Android" />
   </ItemGroup>
-  <Import Project="$(MSBuildSDKExtrasTargets)" Condition="Exists('$(MSBuildSDKExtrasTargets)')" />
 </Project>

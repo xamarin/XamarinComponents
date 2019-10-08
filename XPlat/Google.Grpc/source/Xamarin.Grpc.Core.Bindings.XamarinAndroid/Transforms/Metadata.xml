@@ -24,6 +24,13 @@
         >
         Xamarin.Grpc.Util
     </attr>
+    <attr
+        path="/api/package[@name='io.grpc.perfmark']"
+        name="managedName"
+        >
+        Xamarin.Grpc.Perfmark
+    </attr>
+    
 
     <attr
         path="/api/package[@name='io.grpc.inprocess']/class[@name='InProcessServer']"
@@ -91,5 +98,5 @@
         path="/api/package[@name='io.grpc.internal']"
         >
     </remove-node>
-]
+    
 </metadata>

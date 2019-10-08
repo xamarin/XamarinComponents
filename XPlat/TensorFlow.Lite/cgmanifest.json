@@ -1,0 +1,27 @@
+{
+  "Registrations":[ 
+    {
+      "Component": {
+        "Type": "Maven",
+        "Maven": {
+          "ArtifactId": "tensorflow-lite",
+          "GroupId": "org.tensorflow",
+          "Version": "1.14.0",
+          "NuGetId": "Xamarin.TensorFlow.Lite"
+        }
+      }
+    },
+    {
+      "Component": {
+        "Type": "Maven",
+        "Maven": {
+          "ArtifactId": "tensorflow-lite-gpu",
+          "GroupId": "org.tensorflow",
+          "Version": "1.14.0",
+          "NuGetId": "Xamarin.TensorFlow.Lite.Gpu"
+        }
+      }
+    }
+  ],
+  "Version": 1
+}

@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <metadata>
-    <!--
+  <!--
   This sample removes the class: android.support.v4.content.AsyncTaskLoader.LoadTask:
   <remove-node path="/api/package[@name='android.support.v4.content']/class[@name='AsyncTaskLoader.LoadTask']" />
   

@@ -1,4 +1,4 @@
-﻿<Project Sdk="MSBuild.Sdk.Extras/2.0.31">
+﻿<Project Sdk="MSBuild.Sdk.Extras/2.0.54">
 
   <PropertyGroup>
     <TargetFramework>MonoAndroid90</TargetFramework>
@@ -12,6 +12,7 @@
     <AndroidEnableDesugar>true</AndroidEnableDesugar>
     <KotlinBindingSupportJar>..\..\native\build\libs\binding-support-1.0.jar</KotlinBindingSupportJar>
     <KotlinBindingSupportExtraArgs>--verbose</KotlinBindingSupportExtraArgs>
+    <KotlinBindingSupportIgnorePath>ignore.txt</KotlinBindingSupportIgnorePath>
   </PropertyGroup>
 
   <PropertyGroup>

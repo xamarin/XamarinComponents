@@ -13,8 +13,6 @@ using Xamarin.Nuget.Validator;
 var VERBOSITY = Argument ("v", Argument ("verbosity", Verbosity.Normal));
 var CONFIGURATION = Argument ("c", Argument ("configuration", "Release"));
 
-var FAIL_ON_BUILD_FAIL = Argument ("failonbuildfail", true);
-
 var GIT_PREVIOUS_COMMIT = Argument ("gitpreviouscommit", "");
 var GIT_COMMIT = Argument ("gitcommit", "");
 var GIT_BRANCH = Argument ("gitbranch", "origin/master");
@@ -211,6 +209,8 @@ Information ("");
 
 // SECTION: Build
 
+var buildExceptions = new List<Exception> ();
+
 if (groupsToBuild.Count == 0) {
 	// Make a note if nothing changed...
 	Warning ("No changed files affected any of the paths from the manifest.yaml.");
@@ -300,8 +300,8 @@ if (groupsToBuild.Count == 0) {
 					StackTrace = ex.ToString()
 				};
 
-				if (FAIL_ON_BUILD_FAIL)
-					throw;
+				// Record that failure so we can throw later
+				buildExceptions.Add (ex);
 			}
 
 			// Add the test run to the collection
@@ -317,7 +317,7 @@ if (groupsToBuild.Count == 0) {
 	var resultWriter = new Xunit.ResultWriter.XunitV2Writer();
 	resultWriter.Write(
 		new List<Xunit.ResultWriter.Assembly> { assembly },
-		testsDir.CombineWithFilePath ("TestResults.xml").FullPath);
+		testsDir.CombineWithFilePath ("ManifestBuildTestResults.xml").FullPath);
 
 	Information ("################################################################################");
 	Information ("#                             ALL BUILDS COMPLETE                              #");
@@ -329,7 +329,7 @@ if (groupsToBuild.Count == 0) {
 // SECTION: Copy Output
 
 // Log all the things that were found after a build
-var artifacts = GetFiles ($"{ROOT_DIR}/**/output/**/*") - GetFiles ($"{ROOT_OUTPUT_DIR}/**/*");
+var artifacts = GetFiles ($"{ROOT_DIR}/*/**/output/**/*");
 Information ("Found {0} Artifacts:" + Environment.NewLine +
 	" - " + string.Join (Environment.NewLine + " - ", artifacts),
 	artifacts.Count);
@@ -339,10 +339,22 @@ Information ("");
 if (COPY_OUTPUT_TO_ROOT) {
 	Information ("Copying all {0} artifacts to the root output directory...", artifacts.Count);
 	EnsureDirectoryExists (ROOT_OUTPUT_DIR);
-	CopyFiles (artifacts, ROOT_OUTPUT_DIR, false);
+	var dirs = GetDirectories ($"{ROOT_DIR}/*/**/output");
+	foreach (var dir in dirs) {
+		Information ("Copying {0}...", dir);
+		CopyDirectory (dir, ROOT_OUTPUT_DIR);
+	}
 	Information ("Copy complete.");
 }
 Information ("");
+
+
+// SECTION: Clean up
+
+// There were exceptions, so throw them now
+if (buildExceptions.Count > 0) {
+	throw new AggregateException (buildExceptions);
+}
 
 
 // SECTION: Helper Methods and Types

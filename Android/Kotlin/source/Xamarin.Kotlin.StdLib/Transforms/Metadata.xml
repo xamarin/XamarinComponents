@@ -1,467 +1,104 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <metadata>
-    <!--
+  <!--
   This sample removes the class: android.support.v4.content.AsyncTaskLoader.LoadTask:
   <remove-node path="/api/package[@name='android.support.v4.content']/class[@name='AsyncTaskLoader.LoadTask']" />
   
   This sample removes the method: android.support.v4.content.CursorLoader.loadInBackground:
   <remove-node path="/api/package[@name='android.support.v4.content']/class[@name='CursorLoader']/method[@name='loadInBackground']" />
   -->
-    <!--
-    <attr
-        path="/api/package[@name='kotlin']/class[@name='UByte']/method[@name='constructor-impl' and count(parameter)=1 and parameter[1][@type='byte']]"
-        name="managedName"
-        >
-        Constructor_Impl
-    </attr>
-    <attr
-        path="/api/package[@name='kotlin']/class[@name='UShort']/method[@name='constructor-impl' and count(parameter)=1 and parameter[1][@type='short']]"
-        name="managedName"
-        >
-        Constructor_Impl
-    </attr>
-    -->    
 
-    <remove-node
-        path="/api/package/class[contains(@name, '-')]"
-        >
-    </remove-node>
-    <remove-node
-        path="/api/package/class/method[contains(@name, '-')]"
-        >
-    </remove-node>
-    <remove-node
-        path="/api/package/class[contains(@name, '$')]"
-        >
-    </remove-node>
-    <remove-node
-        path="/api/package/class/field[contains(@name, '$')]"
-        >
-    </remove-node>
-    <remove-node
-        path="/api/package/class/method[contains(@name, '$')]"
-        >
-    </remove-node>
+  <!-- remove internal namespaces -->
+  <remove-node path="/api/package[starts-with(@name,'kotlin.internal')]" />
+  <remove-node path="/api/package[starts-with(@name,'kotlin.jvm.internal')]" />
 
-    <remove-node
-        path="/api/package[@name='kotlin']/class[@name='UShort']/implements"
-        >
-    </remove-node>
-    <remove-node
-        path="/api/package[@name='kotlin.collections']/class[@name='AbstractCollection']/implements"
-        >
-    </remove-node>
-    <remove-node
-        path="/api/package[@name='kotlin.collections']/class[@name='AbstractList']/implements"
-        >
-    </remove-node>
-    
-    <remove-node
-        path="/api/package[@name='kotlin.collections']/class[@name='AbstractList.IteratorImpl']/implements"
-        >
-    </remove-node>
-    <remove-node
-        path="/api/package[@name='kotlin.ranges']/class[@name='CharProgression']/implements"
-        >
-    </remove-node>
-    <remove-node
-        path="/api/package[@name='kotlin.collections']/class[@name='AbstractList.ListIteratorImpl']/implements"
-        >
-    </remove-node>
-    <remove-node
-        path="/api/package[@name='kotlin']/class[@name='UShortArray']/implements"
-        >
-    </remove-node>
-    
-    <remove-node
-        path="/api/package[@name='kotlin']/class[@name='KotlinVersion']/implements"
-        >
-    </remove-node>
-    <remove-node
-        path="/api/package[@name='kotlin.collections']/class[@name='AbstractMap']/implements"
-        >
-    </remove-node>
-    <remove-node
-        path="/api/package[@name='kotlin.collections']/class[@name='AbstractMutableCollection']/implements"
-        >
-    </remove-node>
-    <remove-node
-        path="/api/package[@name='kotlin.ranges']/class[@name='IntProgression']/implements"
-        >
-    </remove-node>
-    <remove-node
-        path="/api/package[@name='kotlin.ranges']/class[@name='IntProgression']/implements"
-        >
-    </remove-node>
-    <remove-node
-        path="/api/package[@name='kotlin.ranges']/class[@name='LongProgression']/implements"
-        >
-    </remove-node>
-    <remove-node
-        path="/api/package[@name='kotlin.ranges']/class[@name='UIntProgression']/implements"
-        >
-    </remove-node>
-    <remove-node
-        path="/api/package[@name='kotlin.ranges']/class[@name='ULongProgression']/implements"
-        >
-    </remove-node>
-    <remove-node
-        path="/api/package[@name='kotlin']/class[@name='UByte']/implements"
-        >
-    </remove-node>
-    <remove-node
-        path="/api/package[@name='kotlin.collections']/class[@name='AbstractMutableSet']/implements"
-        >
-    </remove-node>
-    <remove-node
-        path="/api/package[@name='kotlin']/class[@name='UByteArray']/implements"
-        >
-    </remove-node>
-    <remove-node
-        path="/api/package[@name='kotlin.collections']/class[@name='AbstractSet']/implements"
-        >
-    </remove-node>
-    <remove-node
-        path="/api/package[@name='kotlin']/class[@name='UInt']/implements"
-        >
-    </remove-node>
-    <remove-node
-        path="/api/package[@name='kotlin.collections']/class[@name='ByteIterator']/implements"
-        >
-    </remove-node>
-    <remove-node
-        path="/api/package[@name='kotlin.collections']/class[@name='CharIterator']/implements"
-        >
-    </remove-node>
-    <remove-node
-        path="/api/package[@name='kotlin']/class[@name='UIntArray']/implements"
-        >
-    </remove-node>
-    <remove-node
-        path="/api/package[@name='kotlin']/class[@name='ULong']/implements"
-        >
-    </remove-node>
-    <remove-node
-        path="/api/package[@name='kotlin']/class[@name='ULongArray']/implements"
-        >
-    </remove-node>
-    <remove-node
-        path="/api/package[@name='kotlin.reflect']/interface[@name='KClass']/implements"
-        >
-    </remove-node>
-    <remove-node
-        path="/api/package[@name='kotlin.collections']/class[@name='EmptyIterator']/implements"
-        >
-    </remove-node>
-    <remove-node
-        path="/api/package[@name='kotlin.collections']/class[@name='EmptyList']/implements"
-        >
-    </remove-node>
-    <remove-node
-        path="/api/package[@name='kotlin.collections']/class[@name='EmptySet']/implements"
-        >
-    </remove-node>
-    <remove-node
-        path="/api/package[@name='kotlin.collections']/class[@name='IndexingIterator']/implements"
-        >
-    </remove-node>
+  <!-- this is not really worth it -->
+  <remove-node path="/api/package[starts-with(@name,'kotlin.reflect')]" />
 
-    <remove-node
-        path="/api/package[@name='kotlin.collections']/class[@name='FloatIterator']/implements"
-        >
-    </remove-node>
-    <remove-node
-        path="/api/package[@name='kotlin.collections']/class[@name='IntIterator']/implements"
-        >
-    </remove-node>
-    <remove-node
-        path="/api/package[@name='kotlin.collections']/class[@name='LongIterator']/implements"
-        >
-    </remove-node>
-    <remove-node
-        path="/api/package[@name='kotlin.collections']/class[@name='ShortIterator']/implements"
-        >
-    </remove-node>
-    <remove-node
-        path="/api/package[@name='kotlin.collections']/class[@name='UByteIterator']/implements"
-        >
-    </remove-node>
-    <remove-node
-        path="/api/package[@name='kotlin.collections']/class[@name='UIntIterator']/implements"
-        >
-    </remove-node>
-    <remove-node
-        path="/api/package[@name='kotlin.collections']/class[@name='ULongIterator']/implements"
-        >
-    </remove-node>
-    <remove-node
-        path="/api/package[@name='kotlin.collections']/class[@name='UShortIterator']/implements"
-        >
-    </remove-node>
-    <remove-node
-        path="/api/package[@name='kotlin.collections']/class[@name='DoubleIterator']/implements"
-        >
-    </remove-node>
-    <remove-node
-        path="/api/package[@name='kotlin.collections']/class[@name='BooleanIterator']/implements"
-        >
-    </remove-node>
-    
-    <remove-node
-        path="/api/package[@name='kotlin.jvm.internal']/class[not(starts-with(@name,'Intrinsics'))]">
-    </remove-node>
+  <!-- fix inheritance -->
+  <attr path="/api/package/class[implements[@name='java.lang.Comparable']]/method[@name='compareTo' and count(parameter)=1]/parameter[1]" name="managedType">Java.Lang.Object</attr>
+  <attr path="/api/package/class[implements[@name='java.lang.Iterable']]/method[@name='iterator' and count(parameter)=0]" name="managedReturn">Java.Util.IIterator</attr>
+  <attr path="/api/package/class[implements[@name='java.util.Collection']]/method[starts-with(@name,'add-') and count(parameter)=1]/parameter[1]" name="managedType">Java.Lang.Object</attr>
+  <attr path="/api/package/class[implements[@name='java.util.Collection']]/method[@name='addAll' and count(parameter)=1 and parameter[1][starts-with(@type,'java.util.Collection')]]/parameter[1]" name="managedType">System.Collections.ICollection</attr>
+  <attr path="/api/package/class[implements[@name='java.util.Collection']]/method[@name='containsAll' and count(parameter)=1 and parameter[1][starts-with(@type,'java.util.Collection')]]/parameter[1]" name="managedType">System.Collections.ICollection</attr>
+  <attr path="/api/package/class[implements[@name='java.util.Collection']]/method[@name='removeAll' and count(parameter)=1 and parameter[1][starts-with(@type,'java.util.Collection')]]/parameter[1]" name="managedType">System.Collections.ICollection</attr>
+  <attr path="/api/package/class[implements[@name='java.util.Collection']]/method[@name='retainAll' and count(parameter)=1 and parameter[1][starts-with(@type,'java.util.Collection')]]/parameter[1]" name="managedType">System.Collections.ICollection</attr>
+  <remove-node path="/api/package/class[implements[@name='java.util.Collection'] and @final='true']/method[@name='getSize' and count(parameter)=0]" />
+  <add-node path="/api/package/class[implements[@name='java.lang.Comparable'] and @final='true' and count(method[@name='compareTo'])=0]">
+    <method abstract="false" deprecated="not deprecated" final="false" name="compareTo" native="false" return="int" static="false" synchronized="false" visibility="public">
+      <parameter name="p0" type="java.lang.Object" />
+    </method>
+  </add-node>
+  <attr path="/api/package/class[implements[@name='java.util.Collection']]/method[@name='iterator' and count(parameter)=0]" name="managedReturn">Java.Util.IIterator</attr>
+  <attr path="/api/package/class[implements[@name='java.util.Iterator']]/method[@name='next' and count(parameter)=0]" name="managedReturn">Java.Lang.Object</attr>
+  <attr path="/api/package/class[implements[@name='java.util.Map']]/method[@name='entrySet' and count(parameter)=0]" name="return">java.util.Set</attr>
 
-    <remove-node
-        path="/api/package[@name='kotlin.reflect']/interface/implements"
-        >
-    </remove-node>
-    
-    
-    <!--    
-    path="/api/package[@name='kotlin.reflect']/interface[@name='KMutableProperty0']"
-    path="/api/package[@name='kotlin.reflect']/interface[@name='KProperty2']"
-    -->
-    <!--
-    <attr
-        path="/api/package[@name='kotlin.jvm.internal']/class[@name='DefaultConstructorMarker']"
-        name="visibility"
-        >
-        public
-    </attr>
-    -->            
+  <attr path="/api/package[@name='kotlin.ranges']/class[@name='CharRange']/method[@name='contains' and count(parameter)=1 and parameter[1][@type='char']]/parameter[1]" name="managedType">Java.Lang.Character</attr>
+  <attr path="/api/package[@name='kotlin.ranges']/class[@name='IntRange']/method[@name='contains' and count(parameter)=1 and parameter[1][@type='int']]/parameter[1]" name="managedType">Java.Lang.Integer</attr>
+  <attr path="/api/package[@name='kotlin.ranges']/class[@name='LongRange']/method[@name='contains' and count(parameter)=1 and parameter[1][@type='long']]/parameter[1]" name="managedType">Java.Lang.Long</attr>
+  <attr path="/api/package[@name='kotlin.ranges']/class[@name='UIntRange']/method[starts-with(@name,'contains-') and count(parameter)=1 and parameter[1][@type='int']]/parameter[1]" name="managedType">Kotlin.UInt</attr>
+  <attr path="/api/package[@name='kotlin.ranges']/class[@name='ULongRange']/method[starts-with(@name,'contains-') and count(parameter)=1 and parameter[1][@type='long']]/parameter[1]" name="managedType">Kotlin.ULong</attr>
 
-    <attr
-        path="/api/package[@name='kotlin.text']/interface[@name='FlagEnum']"
-        name="visibility"
-        >
-        public
-    </attr>
-    
-    
-    <remove-node
-        path="/api/package[@name='kotlin.collections']/class[@name='AbstractMutableCollection']/method[@name='getSize' and count(parameter)=0]"
-        >        
-    </remove-node>
-    <remove-node
-        path="/api/package[@name='kotlin.collections']/class[@name='AbstractMutableList']/method[@name='getSize' and count(parameter)=0]"
-        >        
-    </remove-node>
-    <remove-node
-        path="/api/package[@name='kotlin.collections']/class[@name='AbstractMutableSet']/method[@name='getSize' and count(parameter)=0]"
-        >        
-    </remove-node>
-    <remove-node
-        path="/api/package[@name='kotlin.collections']/class[@name='AbstractMutableMap']/method[@name='getSize' and count(parameter)=0]"
-        >        
-    </remove-node>
-    
-    <remove-node
-        path="/api/package[@name='kotlin.sequences']/class[@name='SequencesKt___SequencesKt']/method[@name='max' and count(parameter)=1 and parameter[1][@type='kotlin.sequences.Sequence&lt;java.lang.Double&gt;']]"
-        >        
-    </remove-node>
-    <remove-node
-        path="/api/package[@name='kotlin.sequences']/class[@name='SequencesKt___SequencesKt']/method[@name='max' and count(parameter)=1 and parameter[1][@type='kotlin.sequences.Sequence&lt;java.lang.Float&gt;']]"
-        >        
-    </remove-node>
-    
-    <remove-node
-        path="/api/package[@name='kotlin.collections']/class[@name='AbstractMutableMap']/method[@name='entrySet' and count(parameter)=0]"
-        >
-    </remove-node>
-    <!--        
-    <attr
-        path="/api/package[@name='kotlin.collections']/class[@name='AbstractMutableMap']/method[@name='entrySet' and count(parameter)=0]"
-        name="managedReturn"
-        >
-        System.Collections.Generic.ICollection &lt; Java.Util.IMapEntry &gt;
-    </attr>
-    -->
+  <!--  fix up the clash with the abstract members -->
+  <attr path="/api/package[@name='kotlin.collections']/class[@name='AbstractCollection']/method[@name='getSize' and count(parameter)=0]" name="managedName">GetSize</attr>
+  <attr path="/api/package[@name='kotlin.collections']/class[@name='AbstractCollection']/method[@name='getSize' and count(parameter)=0]" name="propertyName"></attr>
+  <remove-node path="/api/package[@name='kotlin.collections']/class[@name='AbstractList']/method[@name='getSize' and count(parameter)=0]" />
+  <remove-node path="/api/package[@name='kotlin.collections']/class[@name='AbstractMap']/method[@name='getSize' and count(parameter)=0]" />
+  <remove-node path="/api/package[@name='kotlin.collections']/class[@name='AbstractMap']/method[@name='getValues' and count(parameter)=0]" />
+  <attr path="/api/package[@name='kotlin.collections']/class[@name='AbstractMutableCollection']/method[@name='getSize' and count(parameter)=0]" name="managedName">GetSize</attr>
+  <attr path="/api/package[@name='kotlin.collections']/class[@name='AbstractMutableCollection']/method[@name='getSize' and count(parameter)=0]" name="propertyName"></attr>
+  <attr path="/api/package[@name='kotlin.collections']/class[@name='AbstractMutableMap']/method[@name='getSize' and count(parameter)=0]" name="managedName">GetSize</attr>
+  <attr path="/api/package[@name='kotlin.collections']/class[@name='AbstractMutableMap']/method[@name='getSize' and count(parameter)=0]" name="propertyName"></attr>
+  <attr path="/api/package[@name='kotlin.collections']/class[@name='AbstractMutableMap']/method[@name='getValues' and count(parameter)=0]" name="managedName">GetValues</attr>
+  <attr path="/api/package[@name='kotlin.collections']/class[@name='AbstractMutableMap']/method[@name='getValues' and count(parameter)=0]" name="propertyName"></attr>
+  <attr path="/api/package[@name='kotlin.collections']/class[@name='AbstractMutableList']/method[@name='getSize' and count(parameter)=0]" name="managedName">GetSize</attr>
+  <attr path="/api/package[@name='kotlin.collections']/class[@name='AbstractMutableList']/method[@name='getSize' and count(parameter)=0]" name="propertyName"></attr>
+  <attr path="/api/package[@name='kotlin.collections']/class[@name='AbstractMutableSet']/method[@name='getSize' and count(parameter)=0]" name="managedName">GetSize</attr>
+  <attr path="/api/package[@name='kotlin.collections']/class[@name='AbstractMutableSet']/method[@name='getSize' and count(parameter)=0]" name="propertyName"></attr>
 
-    <attr
-        path="/api/package[@name='kotlin.text']/class[@name='StringsKt___StringsKt']/method[@name='drop']/typeParameter"
-        name="managedReturn"
-        >
-        System.Collections.ICollection
-    </attr>
-    
-    <!--
-    <remove-node
-        path="/api/package[@name='kotlin.text']/class[@name='StringsKt___StringsKt']/method[@name='dropLast' and count(parameter)=2 and parameter[1][@type='java.lang.CharSequence'] and parameter[2][@type='int']]"
-        >        
-    </remove-node>
-    
-    <remove-node
-        path="/api/package[@name='kotlin.text']/class[@name='StringsKt___StringsKt']/method[@name='filterIndexed' and count(parameter)=2 and parameter[1][@type='java.lang.String'] and parameter[2][@type='kotlin.jvm.functions.Function2&lt;? super java.lang.Integer, ? super java.lang.Character, java.lang.Boolean&gt;']]"
-        >        
-    </remove-node>
-    -->
-    
-    <remove-node
-        path="/api/package[@name='kotlin.collections']/class[@name='AbstractMutableMap']/method[@name='values' and count(parameter)=0]"
-        >
-    </remove-node> 
-    <remove-node
-        path="/api/package[@name='kotlin.text']/class[@name='StringsKt___StringsKt']/method[@name='drop' and count(parameter)=2 and parameter[1][@type='java.lang.CharSequence'] and parameter[2][@type='int']]"
-        >
-    </remove-node>    
-    <remove-node
-        path="/api/package[@name='kotlin.text']/class[@name='StringsKt___StringsKt']/method[@name='dropLast' and count(parameter)=2 and parameter[1][@type='java.lang.CharSequence'] and parameter[2][@type='int']]"
-        >        
-    </remove-node>
-    <remove-node
-        path="/api/package[@name='kotlin.text']/class[@name='StringsKt___StringsKt']/method[@name='dropLastWhile' and count(parameter)=2 and parameter[1][@type='java.lang.CharSequence'] and parameter[2][@type='kotlin.jvm.functions.Function1&lt;? super java.lang.Character, java.lang.Boolean&gt;']]"
-        >        
-    </remove-node>
-    <remove-node
-        path="/api/package[@name='kotlin.text']/class[@name='StringsKt___StringsKt']/method[@name='dropWhile' and count(parameter)=2 and parameter[1][@type='java.lang.CharSequence'] and parameter[2][@type='kotlin.jvm.functions.Function1&lt;? super java.lang.Character, java.lang.Boolean&gt;']]"
-        >        
-    </remove-node>    
-    <remove-node
-        path="/api/package[@name='kotlin.text']/class[@name='StringsKt___StringsKt']/method[@name='filter' and count(parameter)=2 and parameter[1][@type='java.lang.CharSequence'] and parameter[2][@type='kotlin.jvm.functions.Function1&lt;? super java.lang.Character, java.lang.Boolean&gt;']]"
-        >        
-    </remove-node>
-    <remove-node
-        path="/api/package[@name='kotlin.text']/class[@name='StringsKt___StringsKt']/method[@name='filterIndexed' and count(parameter)=2 and parameter[1][@type='java.lang.CharSequence'] and parameter[2][@type='kotlin.jvm.functions.Function2&lt;? super java.lang.Integer, ? super java.lang.Character, java.lang.Boolean&gt;']]"
-        >        
-    </remove-node>
-    <remove-node
-        path="/api/package[@name='kotlin.text']/class[@name='StringsKt___StringsKt']/method[@name='filterNot' and count(parameter)=2 and parameter[1][@type='java.lang.CharSequence'] and parameter[2][@type='kotlin.jvm.functions.Function1&lt;? super java.lang.Character, java.lang.Boolean&gt;']]"
-        >        
-    </remove-node>
-    <remove-node
-        path="/api/package[@name='kotlin.text']/class[@name='StringsKt___StringsKt']/method[@name='onEach' and count(parameter)=2 and parameter[1][@type='S'] and parameter[2][@type='kotlin.jvm.functions.Function1&lt;? super java.lang.Character, kotlin.Unit&gt;']]"
-        >        
-    </remove-node>
-    <remove-node
-        path="/api/package[@name='kotlin.text']/class[@name='StringsKt___StringsKt']/method[@name='take' and count(parameter)=2 and parameter[1][@type='java.lang.CharSequence'] and parameter[2][@type='int']]"
-        >        
-    </remove-node>
-    <remove-node
-        path="/api/package[@name='kotlin.text']/class[@name='StringsKt___StringsKt']/method[@name='takeLast' and count(parameter)=2 and parameter[1][@type='java.lang.CharSequence'] and parameter[2][@type='int']]"
-        >        
-    </remove-node>
-    <remove-node
-        path="/api/package[@name='kotlin.text']/class[@name='StringsKt___StringsKt']/method[@name='takeLastWhile' and count(parameter)=2 and parameter[1][@type='java.lang.CharSequence'] and parameter[2][@type='kotlin.jvm.functions.Function1&lt;? super java.lang.Character, java.lang.Boolean&gt;']]"
-        >        
-    </remove-node>
-    <remove-node
-        path="/api/package[@name='kotlin.text']/class[@name='StringsKt__StringsKt']/method[@name='padEnd' and count(parameter)=3 and parameter[1][@type='java.lang.CharSequence'] and parameter[2][@type='int'] and parameter[3][@type='char']]"
-        >        
-    </remove-node>
-    <remove-node
-        path="/api/package[@name='kotlin.text']/class[@name='StringsKt__StringsKt']/method[@name='padStart' and count(parameter)=3 and parameter[1][@type='java.lang.CharSequence'] and parameter[2][@type='int'] and parameter[3][@type='char']]"
-        >        
-    </remove-node>
-    <remove-node
-        path="/api/package[@name='kotlin.text']/class[@name='StringsKt__StringsKt']/method[@name='removePrefix' and count(parameter)=2 and parameter[1][@type='java.lang.CharSequence'] and parameter[2][@type='java.lang.CharSequence']]"
-        >        
-    </remove-node>
-    <remove-node
-        path="/api/package[@name='kotlin.text']/class[@name='StringsKt__StringsKt']/method[@name='removeSuffix' and count(parameter)=2 and parameter[1][@type='java.lang.CharSequence'] and parameter[2][@type='java.lang.CharSequence']]"
-        >        
-    </remove-node>
-    <remove-node
-        path="/api/package[@name='kotlin.text']/class[@name='StringsKt__StringsKt']/method[@name='removeSurrounding' and count(parameter)=2 and parameter[1][@type='java.lang.CharSequence'] and parameter[2][@type='java.lang.CharSequence']]"
-        >        
-    </remove-node>
-    <remove-node
-        path="/api/package[@name='kotlin.text']/class[@name='StringsKt___StringsKt']/method[@name='slice' and count(parameter)=2 and parameter[1][@type='java.lang.CharSequence'] and parameter[2][@type='java.lang.Iterable&lt;java.lang.Integer&gt;']]"
-        >        
-    </remove-node>
-    <remove-node
-        path="/api/package[@name='kotlin.text']/class[@name='StringsKt___StringsKt']/method[@name='slice' and count(parameter)=2 and parameter[1][@type='java.lang.CharSequence'] and parameter[2][@type='kotlin.ranges.IntRange']]"
-        >
-    </remove-node>
+  <!-- remove *Impl classes -->
+  <remove-node path="/api/package/class[substring(@name,string-length(@name)-3)='Impl']" />
 
-    <remove-node
-        path="/api/package[@name='kotlin.text']/class[@name='StringsKt__StringsKt']/method[@name='trim' and count(parameter)=1 and parameter[1][@type='java.lang.CharSequence']]"
-        >
-    </remove-node>
-    <remove-node
-        path="/api/package[@name='kotlin.text']/class[@name='StringsKt__StringsKt']/method[@name='trim' and count(parameter)=2 and parameter[1][@type='java.lang.CharSequence'] and parameter[2][@type='kotlin.jvm.functions.Function1&lt;? super java.lang.Character, java.lang.Boolean&gt;']]"
-        >
-    </remove-node>
-    
-    <remove-node
-        path="/api/package[@name='kotlin.text']/class[@name='StringsKt__StringsKt']/method[@name='trim' and count(parameter)=2 and parameter[1][@type='java.lang.CharSequence'] and parameter[2][@type='char...']]"
-        >
-    </remove-node>
-    <remove-node
-        path="/api/package[@name='kotlin.text']/class[@name='StringsKt__StringsKt']/method[@name='trimEnd' and count(parameter)=1 and parameter[1][@type='java.lang.CharSequence']]"
-        >
-    </remove-node>
-    <remove-node
-        path="/api/package[@name='kotlin.text']/class[@name='StringsKt__StringsKt']/method[@name='trimEnd' and count(parameter)=2 and parameter[1][@type='java.lang.CharSequence'] and parameter[2][@type='kotlin.jvm.functions.Function1&lt;? super java.lang.Character, java.lang.Boolean&gt;']]"
-        >
-    </remove-node>
-    <remove-node
-        path="/api/package[@name='kotlin.text']/class[@name='StringsKt__StringsKt']/method[@name='trimEnd' and count(parameter)=2 and parameter[1][@type='java.lang.String'] and parameter[2][@type='char...']]"
-        >
-    </remove-node>
-    <remove-node
-        path="/api/package[@name='kotlin.text']/class[@name='StringsKt__StringsKt']/method[@name='trimStart' and count(parameter)=1 and parameter[1][@type='java.lang.CharSequence']]"
-        >
-    </remove-node>
-    <remove-node
-        path="/api/package[@name='kotlin.text']/class[@name='StringsKt__StringsKt']/method[@name='trimStart' and count(parameter)=2 and parameter[1][@type='java.lang.CharSequence'] and parameter[2][@type='kotlin.jvm.functions.Function1&lt;? super java.lang.Character, java.lang.Boolean&gt;']]"
-        >
-    </remove-node>
-    <remove-node
-        path="/api/package[@name='kotlin.text']/class[@name='StringsKt__StringsKt']/method[@name='trimStart' and count(parameter)=2 and parameter[1][@type='java.lang.String'] and parameter[2][@type='char...']]"
-        >
-    </remove-node>
-    <remove-node
-        path="/api/package[@name='kotlin.text']/class[@name='StringsKt___StringsKt']/method[@name='takeWhile' and count(parameter)=2 and parameter[1][@type='java.lang.String'] and parameter[2][@type='kotlin.jvm.functions.Function1&lt;? super java.lang.Character, java.lang.Boolean&gt;']]"
-        >
-    </remove-node>
-    <remove-node
-        path="/api/package[@name='kotlin.text']/class[@name='StringsKt__StringsKt']/method[@name='removeSurrounding' and count(parameter)=3 and parameter[1][@type='java.lang.String'] and parameter[2][@type='java.lang.CharSequence'] and parameter[3][@type='java.lang.CharSequence']]"
-        >
-    </remove-node>
-    <remove-node
-        path="/api/package[@name='kotlin.collections']/class[@name='CollectionsKt___CollectionsKt']/method[@name='max' and count(parameter)=1 and parameter[1][@type='java.lang.Iterable&lt;java.lang.Float&gt;']]"
-        >
-    </remove-node>
-    <remove-node
-        path="/api/package[@name='kotlin.collections']/class[@name='CollectionsKt___CollectionsKt']/method[@name='max' and count(parameter)=1 and parameter[1][@type='java.lang.Iterable&lt;java.lang.Float&gt;']]"    
-        >
-    </remove-node>
-    <remove-node
-        path="/api/package[@name='kotlin.collections']/class[@name='CollectionsKt___CollectionsKt']/method[@name='min' and count(parameter)=1 and parameter[1][@type='java.lang.Iterable&lt;java.lang.Float&gt;']]"
-        >
-    </remove-node>
-    <remove-node
-        path="/api/package[@name='kotlin.collections']/class[@name='CollectionsKt___CollectionsKt']/method[@name='min' and count(parameter)=1 and parameter[1][@type='java.lang.Iterable&lt;java.lang.Float&gt;']]"
-        >
-    </remove-node>
-    <remove-node
-        path="/api/package[@name='kotlin.sequences']/class[@name='SequencesKt___SequencesKt']/method[@name='min' and count(parameter)=1 and parameter[1][@type='kotlin.sequences.Sequence&lt;java.lang.Float&gt;']]"
-        >
-    </remove-node>
-    <remove-node
-        path="/api/package[@name='kotlin.collections']/class[@name='CollectionsKt___CollectionsKt']/method[@name='max' and count(parameter)=1 and parameter[1][@type='java.lang.Iterable&lt;java.lang.Double&gt;']]"
-        >
-    </remove-node>
-    <remove-node
-        path="/api/package[@name='kotlin.collections']/class[@name='CollectionsKt___CollectionsKt']/method[@name='min' and count(parameter)=1 and parameter[1][@type='java.lang.Iterable&lt;java.lang.Double&gt;']]"
-        >
-    </remove-node>
-    <remove-node
-        path="/api/package[@name='kotlin.sequences']/class[@name='SequencesKt___SequencesKt']/method[@name='min' and count(parameter)=1 and parameter[1][@type='kotlin.sequences.Sequence&lt;? extends T&gt;']]"
-        >
-    </remove-node>
-    <remove-node
-        path="/api/package[@name='kotlin.ranges']/interface[@name='ClosedRange']/method[@name='contains' and count(parameter)=1 and parameter[1][@type='T']]"
-        >        
-    </remove-node>
-    
-    <attr
-        path="/api/package[@name='kotlin.ranges']/class[@name='CharRange']/method[@name='contains' and count(parameter)=1 and parameter[1][@type='char']]"
-        name="managedType"
-        >
-        Java.Lang.Char
-    </attr> 
-    
-    
-    
+  <!-- fix some conflicting members -->
+  <attr path="/api/package[@name='kotlin.sequences']/class[@name='SequencesKt___SequencesKt']/method[@name='max' and count(parameter)=1 and parameter[1][@type='kotlin.sequences.Sequence&lt;java.lang.Double&gt;']]" name="managedName">MaxOfDouble</attr>
+  <attr path="/api/package[@name='kotlin.sequences']/class[@name='SequencesKt___SequencesKt']/method[@name='max' and count(parameter)=1 and parameter[1][@type='kotlin.sequences.Sequence&lt;java.lang.Float&gt;']]" name="managedName">MaxOfFloat</attr>
+  <attr path="/api/package[@name='kotlin.sequences']/class[@name='SequencesKt___SequencesKt']/method[@name='min' and count(parameter)=1 and parameter[1][@type='kotlin.sequences.Sequence&lt;java.lang.Double&gt;']]" name="managedName">MinOfDouble</attr>
+  <attr path="/api/package[@name='kotlin.sequences']/class[@name='SequencesKt___SequencesKt']/method[@name='min' and count(parameter)=1 and parameter[1][@type='kotlin.sequences.Sequence&lt;java.lang.Float&gt;']]" name="managedName">MinOfFloat</attr>
+
+  <attr path="/api/package[@name='kotlin.collections']/class[@name='CollectionsKt___CollectionsKt']/method[@name='max' and count(parameter)=1 and parameter[1][@type='java.lang.Iterable&lt;java.lang.Double&gt;']]" name="managedName">MaxOfDouble</attr>
+  <attr path="/api/package[@name='kotlin.collections']/class[@name='CollectionsKt___CollectionsKt']/method[@name='max' and count(parameter)=1 and parameter[1][@type='java.lang.Iterable&lt;java.lang.Float&gt;']]" name="managedName">MaxOfFloat</attr>
+  <attr path="/api/package[@name='kotlin.collections']/class[@name='CollectionsKt___CollectionsKt']/method[@name='min' and count(parameter)=1 and parameter[1][@type='java.lang.Iterable&lt;java.lang.Double&gt;']]" name="managedName">MinOfDouble</attr>
+  <attr path="/api/package[@name='kotlin.collections']/class[@name='CollectionsKt___CollectionsKt']/method[@name='min' and count(parameter)=1 and parameter[1][@type='java.lang.Iterable&lt;java.lang.Float&gt;']]" name="managedName">MinOfFloat</attr>
+
+  <remove-node path="/api/package[@name='kotlin.text']/class[@name='StringsKt___StringsKt']/method[@name='drop' and count(parameter)=2 and parameter[1][@type='java.lang.String'] and parameter[2][@type='int']]" />
+  <remove-node path="/api/package[@name='kotlin.text']/class[@name='StringsKt___StringsKt']/method[@name='dropLast' and count(parameter)=2 and parameter[1][@type='java.lang.String'] and parameter[2][@type='int']]" />
+  <remove-node path="/api/package[@name='kotlin.text']/class[@name='StringsKt___StringsKt']/method[@name='dropLastWhile' and count(parameter)=2 and parameter[1][@type='java.lang.String'] and parameter[2][@type='kotlin.jvm.functions.Function1&lt;? super java.lang.Character, java.lang.Boolean&gt;']]" />
+  <remove-node path="/api/package[@name='kotlin.text']/class[@name='StringsKt___StringsKt']/method[@name='dropWhile' and count(parameter)=2 and parameter[1][@type='java.lang.String'] and parameter[2][@type='kotlin.jvm.functions.Function1&lt;? super java.lang.Character, java.lang.Boolean&gt;']]" />
+  <remove-node path="/api/package[@name='kotlin.text']/class[@name='StringsKt___StringsKt']/method[@name='filter' and count(parameter)=2 and parameter[1][@type='java.lang.String'] and parameter[2][@type='kotlin.jvm.functions.Function1&lt;? super java.lang.Character, java.lang.Boolean&gt;']]" />
+  <remove-node path="/api/package[@name='kotlin.text']/class[@name='StringsKt___StringsKt']/method[@name='filterIndexed' and count(parameter)=2 and parameter[1][@type='java.lang.String'] and parameter[2][@type='kotlin.jvm.functions.Function2&lt;? super java.lang.Integer, ? super java.lang.Character, java.lang.Boolean&gt;']]" />
+  <remove-node path="/api/package[@name='kotlin.text']/class[@name='StringsKt___StringsKt']/method[@name='filterNot' and count(parameter)=2 and parameter[1][@type='java.lang.String'] and parameter[2][@type='kotlin.jvm.functions.Function1&lt;? super java.lang.Character, java.lang.Boolean&gt;']]" />
+  <remove-node path="/api/package[@name='kotlin.text']/class[@name='StringsKt___StringsKt']/method[@name='onEach' and count(parameter)=2 and parameter[1][@type='S'] and parameter[2][@type='kotlin.jvm.functions.Function1&lt;? super java.lang.Character, kotlin.Unit&gt;']]/typeParameters" />
+  <attr path="/api/package[@name='kotlin.text']/class[@name='StringsKt___StringsKt']/method[@name='onEach' and count(parameter)=2 and parameter[1][@type='S'] and parameter[2][@type='kotlin.jvm.functions.Function1&lt;? super java.lang.Character, kotlin.Unit&gt;']]/parameter[1]" name="type">java.lang.CharSequence</attr>
+  <remove-node path="/api/package[@name='kotlin.text']/class[@name='StringsKt___StringsKt']/method[@name='slice' and count(parameter)=2 and parameter[1][@type='java.lang.String'] and parameter[2][@type='kotlin.ranges.IntRange']]" />
+  <remove-node path="/api/package[@name='kotlin.text']/class[@name='StringsKt___StringsKt']/method[@name='take' and count(parameter)=2 and parameter[1][@type='java.lang.String'] and parameter[2][@type='int']]" />
+  <remove-node path="/api/package[@name='kotlin.text']/class[@name='StringsKt___StringsKt']/method[@name='takeLast' and count(parameter)=2 and parameter[1][@type='java.lang.String'] and parameter[2][@type='int']]" />
+  <remove-node path="/api/package[@name='kotlin.text']/class[@name='StringsKt___StringsKt']/method[@name='takeLastWhile' and count(parameter)=2 and parameter[1][@type='java.lang.String'] and parameter[2][@type='kotlin.jvm.functions.Function1&lt;? super java.lang.Character, java.lang.Boolean&gt;']]" />
+  <remove-node path="/api/package[@name='kotlin.text']/class[@name='StringsKt___StringsKt']/method[@name='takeWhile' and count(parameter)=2 and parameter[1][@type='java.lang.String'] and parameter[2][@type='kotlin.jvm.functions.Function1&lt;? super java.lang.Character, java.lang.Boolean&gt;']]" />
+  <remove-node path="/api/package[@name='kotlin.text']/class[@name='StringsKt__StringsKt']/method[@name='padEnd' and count(parameter)=3 and parameter[1][@type='java.lang.String'] and parameter[2][@type='int'] and parameter[3][@type='char']]" />
+  <remove-node path="/api/package[@name='kotlin.text']/class[@name='StringsKt__StringsKt']/method[@name='padStart' and count(parameter)=3 and parameter[1][@type='java.lang.String'] and parameter[2][@type='int'] and parameter[3][@type='char']]" />
+  <remove-node path="/api/package[@name='kotlin.text']/class[@name='StringsKt__StringsKt']/method[@name='removePrefix' and count(parameter)=2 and parameter[1][@type='java.lang.String'] and parameter[2][@type='java.lang.CharSequence']]" />
+  <remove-node path="/api/package[@name='kotlin.text']/class[@name='StringsKt__StringsKt']/method[@name='removeSuffix' and count(parameter)=2 and parameter[1][@type='java.lang.String'] and parameter[2][@type='java.lang.CharSequence']]" />
+  <remove-node path="/api/package[@name='kotlin.text']/class[@name='StringsKt__StringsKt']/method[@name='removeSurrounding' and count(parameter)=2 and parameter[1][@type='java.lang.String'] and parameter[2][@type='java.lang.CharSequence']]" />
+  <remove-node path="/api/package[@name='kotlin.text']/class[@name='StringsKt__StringsKt']/method[@name='removeSurrounding' and count(parameter)=3 and parameter[1][@type='java.lang.String'] and parameter[2][@type='java.lang.CharSequence'] and parameter[3][@type='java.lang.CharSequence']]" />
+  <remove-node path="/api/package[@name='kotlin.text']/class[@name='StringsKt__StringsKt']/method[@name='trim' and count(parameter)=2 and parameter[1][@type='java.lang.String'] and parameter[2][@type='char...']]" />
+  <remove-node path="/api/package[@name='kotlin.text']/class[@name='StringsKt__StringsKt']/method[@name='trim' and count(parameter)=2 and parameter[1][@type='java.lang.String'] and parameter[2][@type='kotlin.jvm.functions.Function1&lt;? super java.lang.Character, java.lang.Boolean&gt;']]" />
+  <remove-node path="/api/package[@name='kotlin.text']/class[@name='StringsKt__StringsKt']/method[@name='trimEnd' and count(parameter)=2 and parameter[1][@type='java.lang.String'] and parameter[2][@type='char...']]" />
+  <remove-node path="/api/package[@name='kotlin.text']/class[@name='StringsKt__StringsKt']/method[@name='trimEnd' and count(parameter)=2 and parameter[1][@type='java.lang.String'] and parameter[2][@type='kotlin.jvm.functions.Function1&lt;? super java.lang.Character, java.lang.Boolean&gt;']]" />
+  <remove-node path="/api/package[@name='kotlin.text']/class[@name='StringsKt__StringsKt']/method[@name='trimStart' and count(parameter)=2 and parameter[1][@type='java.lang.String'] and parameter[2][@type='char...']]" />
+  <remove-node path="/api/package[@name='kotlin.text']/class[@name='StringsKt__StringsKt']/method[@name='trimStart' and count(parameter)=2 and parameter[1][@type='java.lang.String'] and parameter[2][@type='kotlin.jvm.functions.Function1&lt;? super java.lang.Character, java.lang.Boolean&gt;']]" />
+
+  <!-- TODO: WORKAROUND FOR https://github.com/xamarin/java.interop/issues/496 -->
+  <remove-node path="/api/package[@name='kotlin.time']/class[@name='ClockMark']/method[@name='minus-LRDsOJo' and count(parameter)=1 and parameter[1][@type='double']]" />
+  <remove-node path="/api/package[@name='kotlin.time']/class[@name='ClockMark']/method[@name='plus-LRDsOJo' and count(parameter)=1 and parameter[1][@type='double']]" />
+
 </metadata>
