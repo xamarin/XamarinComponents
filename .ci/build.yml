@@ -188,6 +188,7 @@ jobs:
             RepositoryCommit: $(Build.SourceVersion)
             RepositoryBranch: $(Build.SourceBranchName)
             RepositoryUrl: $(Build.Repository.Uri)
+            RepositoryType: "git"
       # the manifest-based build
       - ${{ if eq(parameters.buildType, 'manifest') }}:
         - pwsh: |
@@ -215,6 +216,7 @@ jobs:
             RepositoryCommit: $(Build.SourceVersion)
             RepositoryBranch: $(Build.SourceBranchName)
             RepositoryUrl: $(Build.Repository.Uri)
+            RepositoryType: "git"
       - task: PublishTestResults@2
         displayName: Publish the test results
         condition: always()
