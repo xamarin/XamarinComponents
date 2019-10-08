@@ -28,8 +28,8 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="$(TargetPath)" Pack="True" PackagePath="build\Xamarin.Build.Download.dll" />
-    <None Include="$(PkgMono_Cecil)\lib\netstandard2.0\Mono.Cecil.dll" Pack="True" PackagePath="build\Mono.Cecil.dll" />
-    <None Include="$(PkgNewtonsoft_Json)\lib\netstandard2.0\Newtonsoft.Json.dll" Pack="True" PackagePath="build\Newtonsoft.Json.dll" />
+    <None Include="$(PkgMono_Cecil)\lib\netstandard2.0\Mono.Cecil.dll" Visible="False" Pack="True" PackagePath="build\Mono.Cecil.dll" />
+    <None Include="$(PkgNewtonsoft_Json)\lib\netstandard2.0\Newtonsoft.Json.dll" Visible="False" Pack="True" PackagePath="build\Newtonsoft.Json.dll" />
     <None Include="..\..\External-Dependency-Info.txt" Pack="True" PackagePath="THIRD-PARTY-NOTICE.txt" />
   </ItemGroup>
   <ItemGroup>
