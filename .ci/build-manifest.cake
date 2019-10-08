@@ -318,7 +318,7 @@ if (groupsToBuild.Count == 0) {
 				buildExceptions.Add (ex);
 
 				// Update DevOps
-				Warning ($"##vso[task.logissue type=warning] Failed to build {buildGroup.Name} ({target}).");
+				Warning ($"##vso[task.logissue type=warning]Failed to build {buildGroup.Name} ({target}).");
 			}
 
 			// Add the test run to the collection

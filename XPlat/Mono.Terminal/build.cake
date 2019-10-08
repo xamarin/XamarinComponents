@@ -23,7 +23,6 @@ Task("libs")
 	.IsDependentOn("externals")
 	.Does(() =>
 {
-	
 	EnsureDirectoryExists(OUTPUT_PATH);
 
 	MSBuild("./source/Mono.Terminal/Mono.Terminal.csproj", c => c
