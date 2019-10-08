@@ -4,6 +4,8 @@ using CoreGraphics;
 using ObjCRuntime;
 using UIKit;
 
+namespace MaterialsComponent92
+{
 [Native]
 public enum MDCSheetState : ulong
 {
@@ -526,4 +528,5 @@ static class CFunctions
 	[DllImport ("__Internal")]
 	[Verify (PlatformInvoke)]
 	static extern nfloat MDCDeviceTopSafeAreaInset ();
+}
 }

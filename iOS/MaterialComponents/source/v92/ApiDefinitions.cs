@@ -5,6 +5,8 @@ using Foundation;
 using ObjCRuntime;
 using UIKit;
 
+namespace MaterialComponents92
+{
 // @protocol MDCElevatable <NSObject>
 /*
   Check whether adding [Model] to this declaration is appropriate.
@@ -9962,4 +9964,5 @@ partial interface Constants
 	// extern const unsigned char [] MaterialComponentsVersionString;
 	[Field ("MaterialComponentsVersionString", "__Internal")]
 	byte[] MaterialComponentsVersionString { get; }
+}
 }
