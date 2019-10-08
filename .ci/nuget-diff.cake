@@ -2,9 +2,9 @@
 // SECTION: Arguments and Settings
 
 var ROOT_DIR = (DirectoryPath)Argument("root", ".");
-var ARTIFACTS_DIR = (DirectoryPath)Argument("artifacts", ROOT_DIR.Combine("output"));
-var CACHE_DIR = (DirectoryPath)Argument("cache", ROOT_DIR.Combine("externals/api-diff"));
-var OUTPUT_DIR = (DirectoryPath)Argument("output", ROOT_DIR.Combine("output/api-diff"));
+var ARTIFACTS_DIR = (DirectoryPath)Argument("artifacts", ROOT_DIR.Combine("output").FullPath);
+var CACHE_DIR = (DirectoryPath)Argument("cache", ROOT_DIR.Combine("externals/api-diff").FullPath);
+var OUTPUT_DIR = (DirectoryPath)Argument("output", ROOT_DIR.Combine("output/api-diff").FullPath);
 
 
 // SECTION: Main Script
