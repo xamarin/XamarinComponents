@@ -37,6 +37,8 @@ var POD_REPO_UPDATE = Argument ("update", Argument ("repo-update", Argument ("po
 
 // SECTION: Main Script
 
+Information ("##vso[task.setprogress value=0;]Starting script...");
+
 Information ("");
 Information ("Script Arguments:");
 Information ("  Previous commit: {0}", GIT_PREVIOUS_COMMIT);
@@ -209,6 +211,8 @@ Information ("");
 
 // SECTION: Build
 
+Information ("##vso[task.setprogress value=5;]Beginning main build...");
+
 var buildExceptions = new List<Exception> ();
 
 if (groupsToBuild.Count == 0) {
@@ -248,6 +252,10 @@ if (groupsToBuild.Count == 0) {
 	};
 	assembly.CollectionItems.Add(col);
 
+	// Build is between 5 and 95 (non-inclusive)
+	var percentStep = 85.0 / groupsToBuild.Count;
+	var percent = 5.0;
+
 	// Build each group
 	foreach (var buildGroup in groupsToBuild) {
 		// Determine the targets to build
@@ -261,6 +269,8 @@ if (groupsToBuild.Count == 0) {
 		else
 			throw new Exception ("Unable to determine the target to build.");
 
+		var smallStep = percentStep / ((targets.Count * 2) + 1);
+
 		Information ("================================================================================");
 		Information (buildGroup.Name);
 		Information ("================================================================================");
@@ -271,6 +281,10 @@ if (groupsToBuild.Count == 0) {
 			buildGroup.BuildScript,
 			string.Join (", ", targets));
 		foreach (var target in targets) {
+			// Update DevOps
+			percent += smallStep;
+			Information ($"##vso[task.setprogress value={percent};]Building {buildGroup.Name} ({target})...");
+
 			// Create a test run for this build
 			var test = new Xunit.ResultWriter.Test {
 				Name = buildGroup.Name,
@@ -302,13 +316,24 @@ if (groupsToBuild.Count == 0) {
 
 				// Record that failure so we can throw later
 				buildExceptions.Add (ex);
+
+				// Update DevOps
+				Warning ($"##vso[task.logissue type=warning] Failed to build {buildGroup.Name} ({target}).");
 			}
 
 			// Add the test run to the collection
 			test.Time = (decimal)(DateTime.UtcNow - start).TotalSeconds;
 			col.TestItems.Add(test);
+
+			// Update DevOps
+			percent += smallStep;
+			Information ($"##vso[task.setprogress value={percent};]Build of target {target} for {buildGroup.Name} completed.");
 		}
 		Information ("");
+
+		// Update DevOps
+		percent += smallStep;
+		Information ($"##vso[task.setprogress value={percent};]Build of {buildGroup.Name} completed.");
 	}
 
 	// Write the test output
@@ -327,6 +352,8 @@ if (groupsToBuild.Count == 0) {
 
 
 // SECTION: Copy Output
+
+Information ("##vso[task.setprogress value=95;]Finishing build...");
 
 // Log all the things that were found after a build
 var artifacts = GetFiles ($"{ROOT_DIR}/*/**/output/**/*");
@@ -356,6 +383,7 @@ if (buildExceptions.Count > 0) {
 	throw new AggregateException (buildExceptions);
 }
 
+Information ("##vso[task.setprogress value=100;]Build complete.");
 
 // SECTION: Helper Methods and Types
 

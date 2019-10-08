@@ -17,6 +17,8 @@ Task("externals")
 {
 	DownloadMonoSources(MONO_TAG, "./externals/",
 		"mcs/class/Mono.Options/Mono.Options/Options.cs");
+
+		throw new Exception ("Error!");
 });
 
 Task("libs")
