@@ -240,6 +240,10 @@ jobs:
       - pwsh: |
           if (Get-ChildItem ${{ parameters.artifactsPath }} -Filter *.nupkg) {
             api-tools nuget-diff ${{ parameters.artifactsPath }} --latest --group-ids --ignore-unchanged --output output/api-diff --cache $(Agent.TempDirectory)/api-diff/package-cache
+
+            (Get-ChildItem output/api-diff -Recurse -Filter *.diff.md) | ForEach-Object {
+              Write-Host "##vso[task.uploadsummary]" + $_.FullName
+            }
           }
         displayName: 'Generate API diff'
       - task: ms.vss-governance-buildtask.governance-build-task-component-detection.ComponentGovernanceComponentDetection@0

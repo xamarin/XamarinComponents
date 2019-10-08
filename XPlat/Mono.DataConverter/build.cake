@@ -49,8 +49,6 @@ Task("samples")
 		.SetConfiguration("Release")
 		.WithRestore()
 		.WithTarget("Build"));
-		throw new Exception ("Error!");
-
 });
 
 Task("clean")
