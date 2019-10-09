@@ -41,7 +41,6 @@ if (!GetFiles($"{ARTIFACTS_DIR}/**/*.nupkg").Any()) {
 // SECTION: Upload Diffs
 
 var diffs = GetFiles($"{OUTPUT_DIR}/**/*.md");
-
 if (diffs.Any()) {
 	var temp = CACHE_DIR.Combine("md-files");
 	EnsureDirectoryExists(temp);
@@ -53,12 +52,16 @@ if (diffs.Any()) {
 		var assembly = ((FilePath)segments[0]).GetFilenameWithoutExtension().GetFilenameWithoutExtension();
 		var breaking = segments[0].EndsWith(".breaking.md");
 
-		var newName = breaking ? "[BREAKING] " : "";
-		newName += $"{nugetId}   {assembly} ({platform}).md";
+		// using non-breaking spaces
+		var newName = breaking ? "[BREAKING]   " : "";
+		newName += $"{nugetId}    {assembly} ({platform}).md";
 		var newPath = temp.CombineWithFilePath(newName);
 
 		CopyFile(diff, newPath);
+	}
 
-		Information($"##vso[task.uploadsummary]{newPath}");
+	var temps = GetFiles($"{temp}/**/*.md");
+	foreach (var t in temps.OrderBy(x => x.FullPath)) {
+		Information($"##vso[task.uploadsummary]{t}");
 	}
 }
