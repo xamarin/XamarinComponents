@@ -28,6 +28,7 @@ if (!GetFiles($"{ARTIFACTS_DIR}/**/*.nupkg").Any()) {
 			.Append("nuget-diff")
 			.AppendQuoted(ARTIFACTS_DIR.FullPath)
 			.Append("--latest")
+			.Append("--prerelease")
 			.Append("--group-ids")
 			.Append("--ignore-unchanged")
 			.AppendSwitchQuoted("--output", OUTPUT_DIR.FullPath)
