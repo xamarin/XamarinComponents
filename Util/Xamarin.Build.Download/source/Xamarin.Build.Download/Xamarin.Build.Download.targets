@@ -20,7 +20,7 @@
 
 	<PropertyGroup Condition="'$(TargetFrameworkIdentifier)'=='MonoAndroid'">
 		<_XamarinBuildDownloadMasterBeforeTargets>_ResolveLibraryProjectImports</_XamarinBuildDownloadMasterBeforeTargets>
-		<_XamarinBuildDownloadMasterDependsOnTargets>ResolveAssemblyReferences;_XamarinBuildDownload;_XamarinAndroidBuildResourceRestore;_XamarinAndroidBuildAarRestore;_XamarinAndroidBuildAarProguardConfigs</_XamarinBuildDownloadMasterDependsOnTargets>
+		<_XamarinBuildDownloadMasterDependsOnTargets>ResolveAssemblyReferences;_XamarinBuildDownload;_XamarinAndroidBuildResourceRestore;_XamarinAndroidBuildAarRestore;_XamarinBuildDownloadAarInclude;_XamarinAndroidBuildAarProguardConfigs</_XamarinBuildDownloadMasterDependsOnTargets>
 	</PropertyGroup>
 
 	<PropertyGroup>
@@ -107,9 +107,17 @@
 		</ItemGroup>
 	</Target>
 
+	<Target Name="_XamarinBuildDownloadAarInclude"
+			DependsOnTargets="_XamarinBuildDownload"
+			Condition="'@(XamarinBuildDownloadRestoreAssemblyAar)'!='' and @(AvailableItemName->AnyHaveMetadataValue('Identity', 'AndroidAarLibrary'))">
+		<ItemGroup>
+			<AndroidAarLibrary Include="@(XamarinBuildDownloadRestoreAssemblyAar)" />
+		</ItemGroup>
+	</Target>
+
 	<Target Name="_XamarinAndroidBuildAarRestore"
 			DependsOnTargets="_XamarinBuildDownload"
-			Condition="'@(XamarinBuildDownloadRestoreAssemblyAar)'!=''"
+			Condition="'@(XamarinBuildDownloadRestoreAssemblyAar)'!='' and !@(AvailableItemName->AnyHaveMetadataValue('Identity', 'AndroidAarLibrary'))"
 			>
 		<XamarinBuildAndroidAarRestore
 			TargetFrameworkVerison="$(TargetFrameworkVersion)"
@@ -130,7 +138,7 @@
 	</Target>
 
 	<Target Name="_XamarinAndroidBuildAarProguardConfigs"
-			DependsOnTargets="_XamarinAndroidBuildAarRestore"
+			DependsOnTargets="_XamarinBuildDownload"
 			>
 		<XamarinBuildAndroidAarProguardConfigs
 			TargetFrameworkVerison="$(TargetFrameworkVersion)"
