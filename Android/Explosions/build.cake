@@ -1,33 +1,40 @@
 
-#load "../../common.cake"
+var TARGET = Argument("t", Argument("target", "ci"));
 
-var TARGET = Argument ("t", Argument ("target", "Default"));
+var NUGET_VERSION = "1.1.0";
 
-var buildSpec = new BuildSpec () {
-	Libs = new ISolutionBuilder [] {
-		new DefaultSolutionBuilder {
-			SolutionPath = "./source/Explosions.sln",
-			OutputFiles = new [] { 
-				new OutputFileCopy {
-					FromFile = "./source/Explosions/bin/Release/Explosions.dll",
-				}
-			}
-		}
-	},
+Task("libs")
+	.Does(() =>
+{
+	XmlPoke("./source/Explosions/Explosions.csproj", "/Project/PropertyGroup/PackageVersion", NUGET_VERSION);
+	MSBuild("./source/Explosions.sln", new MSBuildSettings()
+		.EnableBinaryLogger("./output/libs.binlog")
+		.SetConfiguration("Release")
+		.WithProperty("DesignTimeBuild", "False")
+		.WithProperty("PackageOutputPath", MakeAbsolute(new FilePath("./output/")).FullPath)
+		.WithRestore()
+		.WithTarget("Pack"));
+});
 
-	Samples = new ISolutionBuilder [] {
-		new DefaultSolutionBuilder { SolutionPath = "./samples/ExplosionsSample.sln" },
-	},
+Task("nuget")
+	.IsDependentOn("libs");
 
-	NuGets = new [] {
-		new NuGetInfo { NuSpec = "./nuget/Xamarin.Explosions.nuspec" },
-	},
+Task("samples")
+	.IsDependentOn("nuget")
+	.Does(() =>
+{
+	MSBuild("./samples/ExplosionsSample.sln", new MSBuildSettings()
+		.EnableBinaryLogger("./output/samples.binlog")
+		.SetConfiguration("Release")
+		.SetMaxCpuCount(0)
+		.SetVerbosity(Verbosity.Minimal)
+		.WithProperty("DesignTimeBuild", "False")
+		.WithRestore());
+});
 
-	Components = new [] {
-		new Component {ManifestDirectory = "./component"},
-	},
-};
+Task("ci")
+	.IsDependentOn("libs")
+	.IsDependentOn("nuget")
+	.IsDependentOn("samples");
 
-SetupXamarinBuildTasks (buildSpec, Tasks, Task);
-
-RunTarget (TARGET);
+RunTarget(TARGET);

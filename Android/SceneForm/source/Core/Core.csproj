@@ -17,8 +17,7 @@
   <PropertyGroup>
     <PackageId>Xamarin.Android.SceneForm.Core</PackageId>
     <Title>Xamarin.Android.SceneForm.Core</Title>
-    <Summary>Xamarin.Android bindings for SceneForm Core</Summary>
-    <Description></Description>
+    <PackageDescription>Xamarin.Android bindings for SceneForm Core</PackageDescription>
     <Authors>Microsoft</Authors>
     <Owners>Microsoft</Owners>
     <Copyright>© Microsoft Corporation. All rights reserved.</Copyright>

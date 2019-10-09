@@ -14,8 +14,7 @@
   <PropertyGroup>
     <PackageId>Xamarin.Azure.NotificationHubs.iOS</PackageId>
     <Title>Azure Notification Hubs for Xamarin.iOS</Title>
-    <Summary>Xamarin.iOS Bindings for Azure Notification Hubs</Summary>
-    <Description>Xamarin.iOS Bindings for Azure Notification Hubs</Description>
+    <PackageDescription>Xamarin.iOS Bindings for Azure Notification Hubs.</PackageDescription>
     <Authors>Microsoft</Authors>
     <Owners>Microsoft</Owners>
     <Copyright>© Microsoft Corporation. All rights reserved.</Copyright>
