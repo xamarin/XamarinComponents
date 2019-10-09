@@ -10,7 +10,7 @@
     <Authors>Microsoft</Authors>
     <Owners>Microsoft</Owners>
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
-    <Description>A command line editor.</Description>
+    <PackageDescription>A command line editor.</PackageDescription>
     <Copyright>© Microsoft Corporation. All rights reserved.</Copyright>
     <PackageLicenseUrl>https://go.microsoft.com/fwlink/?linkid=864942</PackageLicenseUrl>
     <PackageIconUrl>https://xamarin-component-icons.s3.amazonaws.com/mono.terminal.png</PackageIconUrl>

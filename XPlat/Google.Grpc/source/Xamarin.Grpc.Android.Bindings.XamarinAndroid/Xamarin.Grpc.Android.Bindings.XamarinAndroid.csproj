@@ -14,9 +14,7 @@
 
         <TargetFrameworks>MonoAndroid81</TargetFrameworks>
         <AndroidCodegenTarget>XAJavaInterop1</AndroidCodegenTarget>
-         
-        <GenerateAssemblyInfo>false</GenerateAssemblyInfo>        
-        <Description>Bindings for Google GRPC Android package</Description>
+
         <RootNamespace>Xamarin.Grpc.Android</RootNamespace>
     </PropertyGroup>
 
@@ -33,12 +31,9 @@
         <PackageId>Xamarin.Grpc.Android</PackageId>
         <PackageVersion>1.21.1.0</PackageVersion>
         <Title>Xamarin.Grpc.Android</Title>
-        <Summary>
-            Google GRPC Android bindings for Xamarin
-        </Summary>
-        <Description>
+        <PackageDescription>
             Bindings for Google's GRPC Android package
-        </Description>
+        </PackageDescription>
         <Owners>Microsoft</Owners>
         <Authors>Microsoft</Authors>
         <Copyright>© Microsoft Corporation. All rights reserved.</Copyright>
@@ -51,15 +46,9 @@
         <RepositoryUrl>
         https://go.microsoft.com/fwlink/?linkid=2009337            
         </RepositoryUrl>
-        <RequireLicenceAcceptance>true</RequireLicenceAcceptance>
         <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
-        <PackageReleaseNotes>
-            transitive dependencies fixed
-        </PackageReleaseNotes>
         <PackageTags>xamarin, android, bindings, google, grpc, android </PackageTags>
         <PackOnBuild>true</PackOnBuild>
-        <RequireLicenceAcceptance>true</RequireLicenceAcceptance>
-        <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
     </PropertyGroup>
 
 
