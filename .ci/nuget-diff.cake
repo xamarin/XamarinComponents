@@ -47,10 +47,18 @@ if (diffs.Any()) {
 	EnsureDirectoryExists(temp);
 
 	foreach (var diff in diffs) {
-		var rel = OUTPUT_DIR.GetRelativePath(MakeAbsolute(diff));
-		var newName = rel.FullPath.Replace("/", "_").Replace("\\", "_");
+		var segments = diff.Segments.Reverse().ToArray();
+		var nugetId = segments[2];
+		var platform = segments[1];
+		var assembly = ((FilePath)segments[0]).GetFilenameWithoutExtension().GetFilenameWithoutExtension();
+		var breaking = segments[0].EndsWith(".breaking.md");
+
+		var newName = breaking ? "[BREAKING] " : "";
+		newName += $"{nugetId}   {assembly} ({platform}).md";
 		var newPath = temp.CombineWithFilePath(newName);
+
 		CopyFile(diff, newPath);
+
 		Information($"##vso[task.uploadsummary]{newPath}");
 	}
 }
