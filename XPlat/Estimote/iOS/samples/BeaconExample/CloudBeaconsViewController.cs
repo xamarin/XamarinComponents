@@ -57,7 +57,7 @@ namespace BeaconExample
 			}
 
 			var beacon = beacons [indexPath.Row];
-			cell.TextLabel.Text = "Proximity UUID: " + beacon.ProximityUUID;
+			cell.TextLabel.Text = "Proximity UUID: " + beacon.ProximityUuid;
 			cell.DetailTextLabel.Text = string.Format ("Major: {0}, Minor: {1}, Name: {2}, Color: {3} ", beacon.Major, beacon.Minor, beacon.Name, beacon.Color.ToString ());
 			return cell;
 		}

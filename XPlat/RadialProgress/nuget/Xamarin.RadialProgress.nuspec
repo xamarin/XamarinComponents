@@ -4,13 +4,13 @@
     <id>Xamarin.RadialProgress</id>
     <title>Xamarin Radial Progress</title>
     <version>1.0.2</version>
-    <authors>Xamarin Inc.</authors>
-    <owners>Xamarin Inc.</owners>
-    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <authors>Microsoft</authors>
+    <owners>Microsoft</owners>
+    <requireLicenseAcceptance>true</requireLicenseAcceptance>
     <description>A stylish, circular progress view for your Xamarin iOS and Android applications</description>
-    <copyright>Copyright 2016 Xamarin</copyright>
-    <projectUrl>https://components.xamarin.com/view/radialprogress</projectUrl>
-    <licenseUrl>https://components.xamarin.com/license/radialprogress</licenseUrl>
+    <copyright>© Microsoft Corporation. All rights reserved.</copyright>
+    <projectUrl>https://go.microsoft.com/fwlink/?linkid=864946</projectUrl>
+    <licenseUrl>https://go.microsoft.com/fwlink/?linkid=864949</licenseUrl>
     <iconUrl>https://github.com/xamarin/XamarinComponents/raw/master/XPlat/RadialProgress/component/icons/radialprogress_128x128.png</iconUrl>
   </metadata>
   <files>

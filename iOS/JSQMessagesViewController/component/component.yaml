@@ -2,24 +2,37 @@
 ---
 name: JSQMessagesViewController
 id: jsqmessagesviewcontroller
-version: 7.3.4
+version: 7.3.5.2
 summary: An elegant messages UI library for iOS
 publisher: Xamarin Inc.
 publisher-url: http://xamarin.com
 src-url: https://github.com/xamarin/XamarinComponents/tree/master/iOS/JSQMessagesViewController
 docs-url: http://cocoadocs.org/docsets/JSQMessagesViewController/7.0.0/
+license: ../License.md
 icons: 
   - jsqmessagesviewcontroller_128x128.png
   - jsqmessagesviewcontroller_512x512.png
 screenshots: 
   - screenshots/screenshot1.png
 libraries: 
-  ios-unified: ../output/JSQMessagesViewController.dll
+  ios-unified: ../output/unified/JSQMessagesViewController.dll
 samples: 
   - name: "Xamarin Chat Sample"
     path: ../samples/XamarinChat.sln
+    removeProjects:
+        - JSQMessagesViewController
+    installNuGets:
+      - project: XamarinChat
+        packages:
+          - Xamarin.JSQMessagesViewController
     configuration: "Release|iPhone"
 no_build: true
 
-
+is_shell: true 
+packages:
+  ios-unified: Xamarin.JSQMessagesViewController, Version=7.3.5.2
+local-nuget-repo: ../output
+additional-files:
+  - source: "../External-Dependency-Info.txt"
+    destination: "THIRD-PARTY-NOTICES.txt"
 ...

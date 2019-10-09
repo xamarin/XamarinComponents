@@ -1,0 +1,73 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<metadata>
+    <attr path="/api/package[@name='com.stripe.android']" name="managedName">Stripe.Android</attr>
+    <attr path="/api/package[@name='com.stripe.android.exception']" name="managedName">Stripe.Android.Exception</attr>
+    <attr path="/api/package[@name='com.stripe.android.model']" name="managedName">Stripe.Android.Model</attr>
+    <attr path="/api/package[@name='com.stripe.android.view']" name="managedName">Stripe.Android.View</attr>
+
+    
+    <!-- Error CS0234: The type or namespace name 'StripeActivity' does not exist in the namespace 'Com.Stripe.Android.View' (are you missing an assembly reference?) (CS0234)-->
+    <!-- The flowwing classes were not marked public in Java.-->
+    <!-- We force it here.-->
+
+	<attr path="/api/package[@name='com.stripe.android.view']/class[@name='StripeActivity']"
+        name="visibility">public</attr>
+
+	<attr path="/api/package[@name='com.stripe.android.model']/class[@name='StripeSourceTypeModel']"
+        name="visibility">public</attr>
+    <remove-node 
+        path="/api/package[@name='com.stripe.android.view']/interface[@name='CardNumberEditText.CardBrandChangeListener']"
+        >
+    </remove-node>	
+    <remove-node 
+        path="/api/package[@name='com.stripe.android.view']/interface[@name='StripeEditText.AfterTextChangedListener']"
+        >
+    </remove-node> 
+     <remove-node 
+        path="/api/package[@name='com.stripe.android.view']/interface[@name='CountryAutoCompleteTextView.CountryChangeListener']"
+        >
+    </remove-node>
+    <remove-node 
+        path="/api/package[@name='com.stripe.android.view']/interface[@name='LockableHorizontalScrollView.LockableScrollChangedListener']"
+        >
+    </remove-node>
+    <remove-node 
+        path="/api/package[@name='com.stripe.android.view']/interface[@name='CardNumberEditText.CardNumberCompleteListener']"
+        >
+    </remove-node>
+
+    <remove-node 
+        path="/api/package[@name='com.stripe.android.view']/interface[@name='ExpiryDateEditText.ExpiryDateEditListener']"
+        >
+    </remove-node>
+    <remove-node 
+        path="/api/package[@name='com.stripe.android.view']/interface[@name='StripeEditText.DeleteEmptyListener']"
+        >
+    </remove-node>
+    <remove-node 
+        path="/api/package[@name='com.stripe.android.view']/interface[@name='StripeEditText.ErrorMessageListener']"
+        >
+    </remove-node>
+    <remove-node 
+        path="/api/package[@name='com.stripe.android.view']/interface[@name='StripeActivity.AlertMessageListener']"
+        >
+    </remove-node>
+
+
+	
+<!-- Error CS1715: 'SourceCardData.AdditionalFields': type must be 'IDictionary<string, Object>' to match overridden member 'StripeSourceTypeModel.AdditionalFields' (CS1715)-->
+<!-- The base class has a different return trype defined.-->
+<!-- We can remove this method of the derived class as a call to the base class managed impl will call the right Java version-->
+    <remove-node path="/api/package[@name='com.stripe.android.model']/class[@name='SourceCardData']/method[@name='getAdditionalFields' and count(parameter)=0]" />
+    <remove-node path="/api/package[@name='com.stripe.android.model']/class[@name='SourceSepaDebitData']/method[@name='getAdditionalFields' and count(parameter)=0]" />
+
+
+<!-- Error CS0102: The type 'CustomerSession.ErrorEventArgs' already contains a definition for 'p0' (CS0102) (Stripe.Android)-->
+<!-- Two 'Listener' interfaces have an OnError method.  This will generate two args classes with the same name-->
+<!-- We need to give them unique names.-->
+    <attr path="/api/package[@name='com.stripe.android']/interface[@name='CustomerSession.CustomerRetrievalListener']/method[@name='onError']"
+        name="argsType">CustomerRetrievalErrorEventArgs</attr>
+    <attr path="/api/package[@name='com.stripe.android']/interface[@name='CustomerSession.SourceRetrievalListener']/method[@name='onError']"
+        name="argsType">SourceRetrievalErrorEventArgs</attr>
+            
+</metadata>

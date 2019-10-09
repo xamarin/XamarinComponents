@@ -1,0 +1,32 @@
+<Project Sdk="MSBuild.Sdk.Extras/2.0.54">
+
+  <PropertyGroup>
+    <AndroidCodegenTarget>XAJavaInterop1</AndroidCodegenTarget>
+    <TargetFrameworks>MonoAndroid81</TargetFrameworks>
+    <IsBindingProject>true</IsBindingProject>
+
+    <AssemblyName>Xamarin.Android.Things.Contrib.Driver.Pwmservo</AssemblyName>
+    <MonoAndroidResourcePrefix>Resources</MonoAndroidResourcePrefix>
+    <MonoAndroidAssetsPrefix>Assets</MonoAndroidAssetsPrefix>
+    <AndroidUseLatestPlatformSdk>False</AndroidUseLatestPlatformSdk>
+    <AndroidUseIntermediateDesignerFile>True</AndroidUseIntermediateDesignerFile>
+    <AndroidResgenFile>Resources\Resource.designer.cs</AndroidResgenFile>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <AndroidClassParser>class-parse</AndroidClassParser>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <TransformFile Include="transforms\*.xml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <LibraryProjectZip Include="..\..\externals\driver-pwmservo.aar" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\things\Xamarin.Android.Things.csproj" />
+  </ItemGroup>
+
+</Project>

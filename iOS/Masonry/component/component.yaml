@@ -1,19 +1,49 @@
-version: 0.6.4.0
+version: "1.1.0"
 name: Masonry
 id: Masonry
 publisher: Xamarin Inc
 publisher-url: https://xamarin.com
 summary: Harness the power of Auto Layout NSLayoutConstraints with a simplified, chainable and expressive syntax.
 src-url: https://github.com/xamarin/XamarinComponents/tree/master/iOS/Masonry
+license: ../License.md
 icons:
   - icons/Masonry_128x128.png
+
+no_build: true
+is_shell: true
+local-nuget-repo: ../output
 libraries:
-  ios-unified: ../output/unified/Masonry.dll
+  ios-unified: ../output/Masonry.iOS.dll
+  mac-unified: ../output/Masonry.macOS.dll
+  tvos: ../output/Masonry.tvOS.dll
+packages:
+  ios-unified: Masonry, Version=1.1.0
+  mac-unified: Masonry, Version=1.1.0
+  tvos: Masonry, Version=1.1.0
+
 samples:
   - name: "iOS Sample"
     path:  ../samples/MasonrySample.sln
-no_build: true
+    removeFiles:
+      - MasonrySampleMac/
+      - MasonrySampleTV/
+    installNuGets:
+      - project: MasonrySample
+        packages:
+          - Masonry
+  - name: "tvOS Sample"
+    path:  ../samples/MasonrySampleTV.sln
+    installNuGets:
+      - project: MasonrySampleTV
+        packages:
+          - Masonry
+  - name: "macOS Sample"
+    path:  ../samples/MasonrySampleMac.sln
+    installNuGets:
+      - project: MasonrySampleMac
+        packages:
+          - Masonry
 
-is_shell: true
-packages:
-  ios-unified: Masonry, Version=0.6.4.0
+additional-files:
+  - source: "../External-Dependency-Info.txt"
+    destination: "THIRD-PARTY-NOTICES.txt"

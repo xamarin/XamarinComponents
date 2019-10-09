@@ -1,0 +1,25 @@
+version: 72.2.0.1
+name: Material Components
+id: materialcomponentsios
+publisher: Xamarin Inc
+publisher-url: https://xamarin.com
+summary: A collection of stand-alone production-ready UI libraries focused on design details.
+src-url: https://github.com/xamarin/XamarinComponents/tree/master/iOS/MaterialComponents
+license: ../License.md
+no_build: true
+is_shell: true
+local-nuget-repo: ../output
+libraries:
+  ios-unified: ../output/MaterialComponents.iOS.dll
+packages:
+  ios-unified: MaterialComponents, Version=72.2.0.1
+samples:
+  - name: "iOS Sample"
+    path:  ../samples/MaterialSample.sln
+    installNuGets:
+      - project: MaterialSample
+        packages:
+          - MaterialComponents
+additional-files:
+  - source: "../External-Dependency-Info.txt"
+    destination: "THIRD-PARTY-NOTICES.txt"

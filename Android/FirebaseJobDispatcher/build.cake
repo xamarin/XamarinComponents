@@ -3,8 +3,8 @@
 
 var TARGET = Argument ("t", Argument ("target", "Default"));
 
-var ANDROID_VERSION = "0.7.0";
-var ANDROID_NUGET_VERSION = "0.7.0.0-beta1";
+var ANDROID_VERSION = "0.8.5";
+var ANDROID_NUGET_VERSION = "0.8.5";
 var ANDROID_URL = string.Format ("https://jcenter.bintray.com/com/firebase/firebase-jobdispatcher/{0}/firebase-jobdispatcher-{0}.aar", ANDROID_VERSION);
 var ANDROID_FILE = "firebase-dispatcher.aar";
 
@@ -36,7 +36,43 @@ Task ("externals")
 	if (!DirectoryExists ("./externals/"))
 		CreateDirectory ("./externals/");
 		
-	DownloadFile (ANDROID_URL, "./externals/" + ANDROID_FILE);
+	if (IsRunningOnWindows())
+	{
+		var fileDownload = "./externals/" + "Temp_" + ANDROID_FILE;
+		DownloadFile (ANDROID_URL, fileDownload);
+
+		var tempFolder = "./externals/firebase-dispatcher";
+
+		if (FileExists(fileDownload))
+		{ 
+			Unzip(fileDownload,tempFolder);
+
+			DeleteFiles (tempFolder + "/annotations.zip");
+
+			var aarFile = "./externals/" +  ANDROID_FILE;
+
+			Zip(tempFolder, aarFile);
+
+			DeleteDirectory(tempFolder, new DeleteDirectorySettings {
+				Recursive = true,
+				Force = true
+			});
+
+			DeleteFile(fileDownload);
+		}
+	}
+	else
+	{
+		DownloadFile (ANDROID_URL, "./externals/" + ANDROID_FILE);
+
+		StartProcess ("/usr/bin/zip", "-d + ./externals/firebase-dispatcher.aar annotations.zip");
+	}
+	
+	
+	
+
+	
+
 });
 
 Task ("clean").IsDependentOn ("clean-base").Does (() => 

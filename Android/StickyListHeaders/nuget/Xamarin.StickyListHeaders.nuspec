@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<package>
+  <metadata>
+    <id>Xamarin.StickyListHeaders</id>
+    <title>StickyListHeaders for Xamarin.MonoAndroid44</title>
+    <version>2.7.1</version>
+    <authors>Microsoft</authors>
+    <owners>Microsoft</owners>
+    <requireLicenseAcceptance>true</requireLicenseAcceptance>
+    <description>StickyListHeaders is an Android library that makes it easy to integrate section headers in your ListView.</description>
+    <copyright>© Microsoft Corporation. All rights reserved.</copyright>
+    <projectUrl>https://go.microsoft.com/fwlink/?linkid=871806</projectUrl>
+    <licenseUrl>https://go.microsoft.com/fwlink/?linkid=871805</licenseUrl>
+  </metadata>
+  <files>
+    <file src="output/StickyListHeaders.dll" target="lib/Xamarin.MonoAndroid40" />
+    <file src="External-Dependency-Info.txt" target="THIRD-PARTY-NOTICES.txt" />
+  </files>
+</package>

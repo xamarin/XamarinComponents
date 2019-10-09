@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<package>
+  <metadata>
+    <id>Xamarin.ZipArchive</id>
+    <title>Xamarin.ZipArchive</title>
+    <version>1.4.0</version>
+    <authors>Microsoft</authors>
+    <owners>Microsoft</owners>
+    <requireLicenseAcceptance>true</requireLicenseAcceptance>
+    <description>Harness the power of Auto Layout NSLayoutConstraints with a simplified, chainable and expressive syntax.</description>
+    <copyright>© Microsoft Corporation. All rights reserved.</copyright>
+    <projectUrl>https://go.microsoft.com/fwlink/?linkid=874696</projectUrl>
+    <licenseUrl>https://go.microsoft.com/fwlink/?linkid=874697</licenseUrl>
+  </metadata>
+  <files>
+    <file src="output/ZipArchive.iOS.dll" target="lib/Xamarin.iOS" />
+    <file src="output/ZipArchive.macOS.dll" target="lib/Xamarin.Mac" />
+    <file src="output/ZipArchive.tvOS.dll" target="lib/Xamarin.tvOS" />
+    <file src="External-Dependency-Info.txt" target="THIRD-PARTY-NOTICES.txt" />
+  </files>
+</package>

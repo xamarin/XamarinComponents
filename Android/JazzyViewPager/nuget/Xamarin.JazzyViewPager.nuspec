@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<package>
+  <metadata>
+    <id>Xamarin.JazzyViewPager</id>
+    <title>JazzyViewPager for Xamarin.MonoAndroid44</title>
+    <version>1.0.1</version>
+    <authors>Microsoft</authors>
+    <owners>Microsoft</owners>
+    <requireLicenseAcceptance>true</requireLicenseAcceptance>
+    <description>An easy to use ViewPager that adds an awesome set of custom swiping animations.</description>
+    <copyright>© Microsoft Corporation. All rights reserved.</copyright>
+    <projectUrl>https://go.microsoft.com/fwlink/?linkid=871870</projectUrl>
+    <licenseUrl>https://go.microsoft.com/fwlink/?linkid=871869</licenseUrl>
+  </metadata>
+  <files>
+    <file src="output/JazzyViewPager.dll" target="lib/MonoAndroid44" />
+    <file src="External-Dependency-Info.txt" target="THIRD-PARTY-NOTICES.txt" />
+  </files>
+</package>

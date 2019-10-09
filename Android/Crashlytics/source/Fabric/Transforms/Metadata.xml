@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<metadata>
+    <!--
+  This sample removes the class: android.support.v4.content.AsyncTaskLoader.LoadTask:
+  <remove-node path="/api/package[@name='android.support.v4.content']/class[@name='AsyncTaskLoader.LoadTask']" />
+  
+  This sample removes the method: android.support.v4.content.CursorLoader.loadInBackground:
+  <remove-node path="/api/package[@name='android.support.v4.content']/class[@name='CursorLoader']/method[@name='loadInBackground']" />
+  -->
+    <attr path="/api/package[@name='io.fabric.sdk.android.services.concurrency']/interface[@name='Dependency']/method[@name='getDependencies']" name="return">java.Lang.Object</attr> 
+    <attr path="/api/package[@name='io.fabric.sdk.android.services.settings']/class[@name='AppIconSettingsData']" name="visibility">public</attr>
+    <attr path="/api/package[@name='io.fabric.sdk.android.services.settings']/class[@name='AbstractAppSpiCall']" name="visibility">public</attr>
+    <attr path="/api/package[@name='io.fabric.sdk.android.services.settings']/interface[@name='AppSpiCall']" name="visibility">public</attr>
+
+    <attr path="/api/package[@name='io.fabric.sdk.android']" name="managedName">Fabric</attr>
+    <attr path="/api/package[@name='io.fabric.sdk.android.services.cache']" name="managedName">Fabric.Services.Cache</attr>
+    <attr path="/api/package[@name='io.fabric.sdk.android.services.common']" name="managedName">Fabric.Services.Common</attr>
+    <attr path="/api/package[@name='io.fabric.sdk.android.services.concurrency']" name="managedName">Fabric.Services.Concurrency</attr>
+    <attr path="/api/package[@name='io.fabric.sdk.android.services.internal']" name="managedName">Fabric.Services.Internal</attr>
+    <attr path="/api/package[@name='io.fabric.sdk.android.services.events']" name="managedName">Fabric.Services.Events</attr>
+    <attr path="/api/package[@name='io.fabric.sdk.android.services.network']" name="managedName">Fabric.Services.Network</attr>
+    <attr path="/api/package[@name='io.fabric.sdk.android.services.persistence']" name="managedName">Fabric.Services.Persistence</attr>
+    <attr path="/api/package[@name='io.fabric.sdk.android.services.settings']" name="managedName">Fabric.Services.Settings</attr>
+    <attr path="/api/package[@name='io.fabric.sdk.android.services.concurrency.internal']" name="managedName">Fabric.Services.Concurrency.Internal</attr>
+</metadata>

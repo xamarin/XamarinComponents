@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<package>
+  <metadata>
+    <id>Xamarin.VideoSplash</id>
+    <title>VideoSplash for Xamarin.iOS</title>
+    <version>1.0.0.1</version>
+    <authors>Microsoft</authors>
+    <owners>Microsoft</owners>
+    <requireLicenseAcceptance>true</requireLicenseAcceptance>
+    <description>VideoViewController is a UIViewController with a background which is video.</description>
+    <copyright>© Microsoft Corporation. All rights reserved.</copyright>
+    <projectUrl>https://go.microsoft.com/fwlink/?linkid=874631</projectUrl>
+    <licenseUrl>https://go.microsoft.com/fwlink/?linkid=874632</licenseUrl>
+  </metadata>
+  <files>
+    <file src="output/unified/VideoSplash.dll" target="lib/Xamarin.iOS" />
+    <file src="External-Dependency-Info.txt" target="THIRD-PARTY-NOTICES.txt" />
+  </files>
+</package>

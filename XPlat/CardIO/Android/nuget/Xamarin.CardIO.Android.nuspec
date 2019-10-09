@@ -4,13 +4,13 @@
         <id>Xamarin.CardIO.Android</id>
         <version>$version$</version>
         <title>Card.IO for Xamarin.Android</title>
-        <authors>Xamarin</authors>
-        <owners>Xamarin</owners>
-        <projectUrl>https://components.xamarin.com/view/cardioandroid</projectUrl>
-        <licenseUrl>https://components.xamarin.com/license/cardioandroid</licenseUrl>
-        <requireLicenseAcceptance>false</requireLicenseAcceptance>
+        <authors>Microsoft</authors>
+        <owners>Microsoft</owners>
+        <projectUrl>https://go.microsoft.com/fwlink/?linkid=865060</projectUrl>
+        <licenseUrl>https://go.microsoft.com/fwlink/?linkid=864956</licenseUrl>
+        <requireLicenseAcceptance>true</requireLicenseAcceptance>
         <description>Credit card scanning for mobile apps</description>
-        <copyright>Copyright 2017 Xamarin</copyright>
+        <copyright>© Microsoft Corporation. All rights reserved.</copyright>
         <language>en-US</language>
         <iconUrl>https://raw.githubusercontent.com/xamarin/XamarinComponents/master/XPlat/CardIO/Android/component/icons/card-io_128x128.png</iconUrl>
         <tags>Xamarin Xamarin.Android Card.IO</tags>

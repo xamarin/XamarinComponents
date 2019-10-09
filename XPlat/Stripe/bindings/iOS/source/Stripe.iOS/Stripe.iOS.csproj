@@ -1,0 +1,307 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{291A7C72-C9EA-4279-A9F4-0723E390CC35}</ProjectGuid>
+    <ProjectTypeGuids>{8FFB629D-F513-41CE-95D2-7ECE97B6EEEC};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <RootNamespace>Stripe.iOS</RootNamespace>
+    <AssemblyName>Stripe.iOS</AssemblyName>
+    <IPhoneResourcePrefix>Resources</IPhoneResourcePrefix>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug</OutputPath>
+    <DefineConstants>DEBUG;</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release</OutputPath>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="Xamarin.iOS" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ObjcBindingApiDefinition Include="ApiDefinition.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ObjcBindingCoreSource Include="Structs.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <NativeReference Include="..\..\externals\Stripe.framework\Versions\A\Stripe">
+      <Kind>Static</Kind>
+      <ForceLoad>True</ForceLoad>
+      <Frameworks>Foundation Security WebKit PassKit AddressBook CoreLocation</Frameworks>
+      <WeakFrameworks>Contacts</WeakFrameworks>
+      <LinkerFlags>-ObjC</LinkerFlags>
+    </NativeReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Resources\" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="..\..\externals\Stripe.framework\Stripe.bundle\Info.plist">
+      <Link>Resources\Stripe.bundle\Info.plist</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\externals\Stripe.framework\Stripe.bundle\stp_card_amex.png">
+      <Link>Resources\Stripe.bundle\stp_card_amex.png</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\externals\Stripe.framework\Stripe.bundle\stp_card_amex%402x.png">
+      <Link>Resources\Stripe.bundle\stp_card_amex%402x.png</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\externals\Stripe.framework\Stripe.bundle\stp_card_amex%403x.png">
+      <Link>Resources\Stripe.bundle\stp_card_amex%403x.png</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\externals\Stripe.framework\Stripe.bundle\stp_card_amex_template.png">
+      <Link>Resources\Stripe.bundle\stp_card_amex_template.png</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\externals\Stripe.framework\Stripe.bundle\stp_card_amex_template%402x.png">
+      <Link>Resources\Stripe.bundle\stp_card_amex_template%402x.png</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\externals\Stripe.framework\Stripe.bundle\stp_card_amex_template%403x.png">
+      <Link>Resources\Stripe.bundle\stp_card_amex_template%403x.png</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\externals\Stripe.framework\Stripe.bundle\stp_card_applepay.png">
+      <Link>Resources\Stripe.bundle\stp_card_applepay.png</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\externals\Stripe.framework\Stripe.bundle\stp_card_applepay%402x.png">
+      <Link>Resources\Stripe.bundle\stp_card_applepay%402x.png</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\externals\Stripe.framework\Stripe.bundle\stp_card_applepay%403x.png">
+      <Link>Resources\Stripe.bundle\stp_card_applepay%403x.png</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\externals\Stripe.framework\Stripe.bundle\stp_card_cvc.png">
+      <Link>Resources\Stripe.bundle\stp_card_cvc.png</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\externals\Stripe.framework\Stripe.bundle\stp_card_cvc%402x.png">
+      <Link>Resources\Stripe.bundle\stp_card_cvc%402x.png</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\externals\Stripe.framework\Stripe.bundle\stp_card_cvc%403x.png">
+      <Link>Resources\Stripe.bundle\stp_card_cvc%403x.png</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\externals\Stripe.framework\Stripe.bundle\stp_card_cvc_amex.png">
+      <Link>Resources\Stripe.bundle\stp_card_cvc_amex.png</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\externals\Stripe.framework\Stripe.bundle\stp_card_cvc_amex%402x.png">
+      <Link>Resources\Stripe.bundle\stp_card_cvc_amex%402x.png</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\externals\Stripe.framework\Stripe.bundle\stp_card_cvc_amex%403x.png">
+      <Link>Resources\Stripe.bundle\stp_card_cvc_amex%403x.png</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\externals\Stripe.framework\Stripe.bundle\stp_card_diners.png">
+      <Link>Resources\Stripe.bundle\stp_card_diners.png</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\externals\Stripe.framework\Stripe.bundle\stp_card_diners%402x.png">
+      <Link>Resources\Stripe.bundle\stp_card_diners%402x.png</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\externals\Stripe.framework\Stripe.bundle\stp_card_diners%403x.png">
+      <Link>Resources\Stripe.bundle\stp_card_diners%403x.png</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\externals\Stripe.framework\Stripe.bundle\stp_card_diners_template.png">
+      <Link>Resources\Stripe.bundle\stp_card_diners_template.png</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\externals\Stripe.framework\Stripe.bundle\stp_card_diners_template%402x.png">
+      <Link>Resources\Stripe.bundle\stp_card_diners_template%402x.png</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\externals\Stripe.framework\Stripe.bundle\stp_card_diners_template%403x.png">
+      <Link>Resources\Stripe.bundle\stp_card_diners_template%403x.png</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\externals\Stripe.framework\Stripe.bundle\stp_card_discover.png">
+      <Link>Resources\Stripe.bundle\stp_card_discover.png</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\externals\Stripe.framework\Stripe.bundle\stp_card_discover%402x.png">
+      <Link>Resources\Stripe.bundle\stp_card_discover%402x.png</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\externals\Stripe.framework\Stripe.bundle\stp_card_discover%403x.png">
+      <Link>Resources\Stripe.bundle\stp_card_discover%403x.png</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\externals\Stripe.framework\Stripe.bundle\stp_card_discover_template.png">
+      <Link>Resources\Stripe.bundle\stp_card_discover_template.png</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\externals\Stripe.framework\Stripe.bundle\stp_card_discover_template%402x.png">
+      <Link>Resources\Stripe.bundle\stp_card_discover_template%402x.png</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\externals\Stripe.framework\Stripe.bundle\stp_card_discover_template%403x.png">
+      <Link>Resources\Stripe.bundle\stp_card_discover_template%403x.png</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\externals\Stripe.framework\Stripe.bundle\stp_card_error.png">
+      <Link>Resources\Stripe.bundle\stp_card_error.png</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\externals\Stripe.framework\Stripe.bundle\stp_card_error%402x.png">
+      <Link>Resources\Stripe.bundle\stp_card_error%402x.png</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\externals\Stripe.framework\Stripe.bundle\stp_card_error%403x.png">
+      <Link>Resources\Stripe.bundle\stp_card_error%403x.png</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\externals\Stripe.framework\Stripe.bundle\stp_card_error_amex.png">
+      <Link>Resources\Stripe.bundle\stp_card_error_amex.png</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\externals\Stripe.framework\Stripe.bundle\stp_card_error_amex%402x.png">
+      <Link>Resources\Stripe.bundle\stp_card_error_amex%402x.png</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\externals\Stripe.framework\Stripe.bundle\stp_card_error_amex%403x.png">
+      <Link>Resources\Stripe.bundle\stp_card_error_amex%403x.png</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\externals\Stripe.framework\Stripe.bundle\stp_card_form_back.png">
+      <Link>Resources\Stripe.bundle\stp_card_form_back.png</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\externals\Stripe.framework\Stripe.bundle\stp_card_form_back%402x.png">
+      <Link>Resources\Stripe.bundle\stp_card_form_back%402x.png</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\externals\Stripe.framework\Stripe.bundle\stp_card_form_back%403x.png">
+      <Link>Resources\Stripe.bundle\stp_card_form_back%403x.png</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\externals\Stripe.framework\Stripe.bundle\stp_card_form_front.png">
+      <Link>Resources\Stripe.bundle\stp_card_form_front.png</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\externals\Stripe.framework\Stripe.bundle\stp_card_form_front%402x.png">
+      <Link>Resources\Stripe.bundle\stp_card_form_front%402x.png</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\externals\Stripe.framework\Stripe.bundle\stp_card_form_front%403x.png">
+      <Link>Resources\Stripe.bundle\stp_card_form_front%403x.png</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\externals\Stripe.framework\Stripe.bundle\stp_card_jcb.png">
+      <Link>Resources\Stripe.bundle\stp_card_jcb.png</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\externals\Stripe.framework\Stripe.bundle\stp_card_jcb%402x.png">
+      <Link>Resources\Stripe.bundle\stp_card_jcb%402x.png</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\externals\Stripe.framework\Stripe.bundle\stp_card_jcb%403x.png">
+      <Link>Resources\Stripe.bundle\stp_card_jcb%403x.png</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\externals\Stripe.framework\Stripe.bundle\stp_card_jcb_template.png">
+      <Link>Resources\Stripe.bundle\stp_card_jcb_template.png</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\externals\Stripe.framework\Stripe.bundle\stp_card_jcb_template%402x.png">
+      <Link>Resources\Stripe.bundle\stp_card_jcb_template%402x.png</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\externals\Stripe.framework\Stripe.bundle\stp_card_jcb_template%403x.png">
+      <Link>Resources\Stripe.bundle\stp_card_jcb_template%403x.png</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\externals\Stripe.framework\Stripe.bundle\stp_card_mastercard.png">
+      <Link>Resources\Stripe.bundle\stp_card_mastercard.png</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\externals\Stripe.framework\Stripe.bundle\stp_card_mastercard%402x.png">
+      <Link>Resources\Stripe.bundle\stp_card_mastercard%402x.png</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\externals\Stripe.framework\Stripe.bundle\stp_card_mastercard%403x.png">
+      <Link>Resources\Stripe.bundle\stp_card_mastercard%403x.png</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\externals\Stripe.framework\Stripe.bundle\stp_card_mastercard_template.png">
+      <Link>Resources\Stripe.bundle\stp_card_mastercard_template.png</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\externals\Stripe.framework\Stripe.bundle\stp_card_mastercard_template%402x.png">
+      <Link>Resources\Stripe.bundle\stp_card_mastercard_template%402x.png</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\externals\Stripe.framework\Stripe.bundle\stp_card_mastercard_template%403x.png">
+      <Link>Resources\Stripe.bundle\stp_card_mastercard_template%403x.png</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\externals\Stripe.framework\Stripe.bundle\stp_card_unknown.png">
+      <Link>Resources\Stripe.bundle\stp_card_unknown.png</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\externals\Stripe.framework\Stripe.bundle\stp_card_unknown%402x.png">
+      <Link>Resources\Stripe.bundle\stp_card_unknown%402x.png</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\externals\Stripe.framework\Stripe.bundle\stp_card_unknown%403x.png">
+      <Link>Resources\Stripe.bundle\stp_card_unknown%403x.png</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\externals\Stripe.framework\Stripe.bundle\stp_card_visa.png">
+      <Link>Resources\Stripe.bundle\stp_card_visa.png</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\externals\Stripe.framework\Stripe.bundle\stp_card_visa%402x.png">
+      <Link>Resources\Stripe.bundle\stp_card_visa%402x.png</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\externals\Stripe.framework\Stripe.bundle\stp_card_visa%403x.png">
+      <Link>Resources\Stripe.bundle\stp_card_visa%403x.png</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\externals\Stripe.framework\Stripe.bundle\stp_card_visa_template.png">
+      <Link>Resources\Stripe.bundle\stp_card_visa_template.png</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\externals\Stripe.framework\Stripe.bundle\stp_card_visa_template%402x.png">
+      <Link>Resources\Stripe.bundle\stp_card_visa_template%402x.png</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\externals\Stripe.framework\Stripe.bundle\stp_card_visa_template%403x.png">
+      <Link>Resources\Stripe.bundle\stp_card_visa_template%403x.png</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\externals\Stripe.framework\Stripe.bundle\stp_icon_add.png">
+      <Link>Resources\Stripe.bundle\stp_icon_add.png</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\externals\Stripe.framework\Stripe.bundle\stp_icon_add%402x.png">
+      <Link>Resources\Stripe.bundle\stp_icon_add%402x.png</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\externals\Stripe.framework\Stripe.bundle\stp_icon_add%403x.png">
+      <Link>Resources\Stripe.bundle\stp_icon_add%403x.png</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\externals\Stripe.framework\Stripe.bundle\stp_icon_checkmark.png">
+      <Link>Resources\Stripe.bundle\stp_icon_checkmark.png</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\externals\Stripe.framework\Stripe.bundle\stp_icon_checkmark%402x.png">
+      <Link>Resources\Stripe.bundle\stp_icon_checkmark%402x.png</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\externals\Stripe.framework\Stripe.bundle\stp_icon_checkmark%403x.png">
+      <Link>Resources\Stripe.bundle\stp_icon_checkmark%403x.png</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\externals\Stripe.framework\Stripe.bundle\stp_shipping_form.png">
+      <Link>Resources\Stripe.bundle\stp_shipping_form.png</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\externals\Stripe.framework\Stripe.bundle\stp_shipping_form%402x.png">
+      <Link>Resources\Stripe.bundle\stp_shipping_form%402x.png</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\externals\Stripe.framework\Stripe.bundle\stp_shipping_form%403x.png">
+      <Link>Resources\Stripe.bundle\stp_shipping_form%403x.png</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\externals\Stripe.framework\Stripe.bundle\_CodeSignature\CodeDirectory">
+      <Link>Resources\Stripe.bundle\_CodeSignature\CodeDirectory</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\externals\Stripe.framework\Stripe.bundle\_CodeSignature\CodeRequirements">
+      <Link>Resources\Stripe.bundle\_CodeSignature\CodeRequirements</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\externals\Stripe.framework\Stripe.bundle\_CodeSignature\CodeRequirements-1">
+      <Link>Resources\Stripe.bundle\_CodeSignature\CodeRequirements-1</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\externals\Stripe.framework\Stripe.bundle\_CodeSignature\CodeResources">
+      <Link>Resources\Stripe.bundle\_CodeSignature\CodeResources</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\externals\Stripe.framework\Stripe.bundle\_CodeSignature\CodeSignature">
+      <Link>Resources\Stripe.bundle\_CodeSignature\CodeSignature</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\externals\Stripe.framework\Stripe.bundle\de.lproj\Localizable.strings">
+      <Link>Resources\Stripe.bundle\de.lproj\Localizable.strings</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\externals\Stripe.framework\Stripe.bundle\en.lproj\Localizable.strings">
+      <Link>Resources\Stripe.bundle\en.lproj\Localizable.strings</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\externals\Stripe.framework\Stripe.bundle\es.lproj\Localizable.strings">
+      <Link>Resources\Stripe.bundle\es.lproj\Localizable.strings</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\externals\Stripe.framework\Stripe.bundle\fr.lproj\Localizable.strings">
+      <Link>Resources\Stripe.bundle\fr.lproj\Localizable.strings</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\externals\Stripe.framework\Stripe.bundle\it.lproj\Localizable.strings">
+      <Link>Resources\Stripe.bundle\it.lproj\Localizable.strings</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\externals\Stripe.framework\Stripe.bundle\ja.lproj\Localizable.strings">
+      <Link>Resources\Stripe.bundle\ja.lproj\Localizable.strings</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\externals\Stripe.framework\Stripe.bundle\nl.lproj\Localizable.strings">
+      <Link>Resources\Stripe.bundle\nl.lproj\Localizable.strings</Link>
+    </BundleResource>
+    <BundleResource Include="..\..\externals\Stripe.framework\Stripe.bundle\zh-Hans.lproj\Localizable.strings">
+      <Link>Resources\Stripe.bundle\zh-Hans.lproj\Localizable.strings</Link>
+    </BundleResource>
+  </ItemGroup>
+  <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.ObjCBinding.CSharp.targets" />
+</Project>

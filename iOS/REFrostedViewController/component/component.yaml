@@ -1,0 +1,36 @@
+name: REFrostedViewController
+id: refrostedviewcontroller
+version: 1.1
+summary: iOS 7/8 style blurred view controller that appears on top of your view controller.
+publisher: Xamarin Inc
+publisher-url: http://www.xamarin.com/
+src-url: https://github.com/romaonthego/REFrostedViewController
+license: ../License.md
+details: Details.md
+getting-started: GettingStarted.md
+icons: 
+  - icons/refrostedviewcontroller_128x128.png
+  - icons/refrostedviewcontroller_512x512.png
+screenshots:
+   - screenshots/Screenshot1.jpg
+libraries:
+  ios-unified: 
+    - ../output/REFrostedViewController.dll
+samples:
+  - name: "iOS Unified Sample"
+    path: ../samples/REFrostedViewController.sln
+    removeProjects:
+      - REFrostedViewController
+    installNuGets:
+      - project: REFrostedViewControllerExample
+        packages:
+          - Xamarin.REFrostedViewController
+    nobuild: true
+local-nuget-repo: ../output
+no_build: true
+packages:
+  ios-unified: Xamarin.REFrostedViewController, Version=1.1
+is_shell: true
+additional-files:
+  - source: "../External-Dependency-Info.txt"
+    destination: "THIRD-PARTY-NOTICES.txt"

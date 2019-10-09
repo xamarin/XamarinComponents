@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ Copyright (c) Microsoft Corporation. All rights reserved.
+  ~ Licensed under the MIT License.
+  -->
+
+<resources>
+    <item name="bottom_sheet_item_flag" type="id" />
+    <item name="bottom_sheet_item_reply" type="id" />
+    <item name="bottom_sheet_item_forward" type="id" />
+    <item name="bottom_sheet_item_delete" type="id" />
+    <item name="bottom_sheet_item_camera" type="id" />
+    <item name="bottom_sheet_item_gallery" type="id" />
+    <item name="bottom_sheet_item_videos" type="id" />
+    <item name="bottom_sheet_item_manage" type="id" />
+    <item name="bottom_sheet_item_clock" type="id" />
+    <item name="bottom_sheet_item_alarm" type="id" />
+    <item name="bottom_sheet_item_stop_watch" type="id" />
+    <item name="bottom_sheet_item_time_zone" type="id" />
+</resources>

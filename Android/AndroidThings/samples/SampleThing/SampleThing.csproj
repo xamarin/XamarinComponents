@@ -8,7 +8,7 @@
     <OutputType>Library</OutputType>
     <RootNamespace>SampleThing</RootNamespace>
     <AssemblyName>SampleThing</AssemblyName>
-    <TargetFrameworkVersion>v7.0</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v8.1</TargetFrameworkVersion>
     <AndroidApplication>True</AndroidApplication>
     <AndroidResgenFile>Resources\Resource.designer.cs</AndroidResgenFile>
     <AndroidResgenClass>Resource</AndroidResgenClass>
@@ -26,7 +26,8 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <AndroidLinkMode>None</AndroidLinkMode>
-    <AndroidSupportedAbis>arm64-v8a;armeabi;armeabi-v7a;x86</AndroidSupportedAbis>
+    <ConsolePause>true</ConsolePause>
+    <MandroidExtraArgs></MandroidExtraArgs>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -61,8 +62,88 @@
     <Folder Include="Assets\" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\source\Xamarin.Android.Things.csproj">
-      <Project>{159AF82D-B6DF-4F8B-8DE7-4187547E0927}</Project>
+    <ProjectReference Include="..\..\source\driver-adcv2x\driver-adcv2x.csproj">
+      <Project>{BDF45BBE-6994-41EC-8A03-958F1654A9EB}</Project>
+      <Name>driver-adcv2x</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\source\driver-bmx280\driver-bmx280.csproj">
+      <Project>{AB77C993-93F3-4C6C-A51A-739666DCAE92}</Project>
+      <Name>driver-bmx280</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\source\driver-button\driver-button.csproj">
+      <Project>{F164367B-E396-4A74-AAA9-E788E0AFBBB9}</Project>
+      <Name>driver-button</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\source\driver-cap12xx\driver-cap12xx.csproj">
+      <Project>{D6013D09-54EC-4465-B432-C2B7B10A3E98}</Project>
+      <Name>driver-cap12xx</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\source\driver-gps\driver-gps.csproj">
+      <Project>{D74339A6-9859-4D4A-BC5C-3EF5124A7A42}</Project>
+      <Name>driver-gps</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\source\driver-ht16k33\driver-ht16k33.csproj">
+      <Project>{1B8182D9-5C86-430E-96A7-59214BD0D446}</Project>
+      <Name>driver-ht16k33</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\source\driver-lowpan\driver-lowpan.csproj">
+      <Project>{488DCCD6-CE4B-4455-ABDF-95C158478793}</Project>
+      <Name>driver-lowpan</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\source\driver-matrixkeypad\driver-matrixkeypad.csproj">
+      <Project>{56176728-B6C3-4493-82A9-EFBDD83163AF}</Project>
+      <Name>driver-matrixkeypad</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\source\driver-mma7660fc\driver-mma7660fc.csproj">
+      <Project>{F3505BA8-A8A9-4BD9-A98E-BC48F8D2B9EF}</Project>
+      <Name>driver-mma7660fc</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\source\driver-motorhat\driver-motorhat.csproj">
+      <Project>{F5F4BEA9-5771-44A6-AA7A-3767910BDBC3}</Project>
+      <Name>driver-motorhat</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\source\driver-pwmservo\driver-pwmservo.csproj">
+      <Project>{9FDB1F98-981A-46A6-B54B-E1712A72980A}</Project>
+      <Name>driver-pwmservo</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\source\driver-pwmspeaker\driver-pwmspeaker.csproj">
+      <Project>{D4FDC467-91A2-4DA3-A0DE-FFE41ECAAC8F}</Project>
+      <Name>driver-pwmspeaker</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\source\driver-rainbowhat\driver-rainbowhat.csproj">
+      <Project>{B41EE7A5-31DD-4BCC-85A5-BDD8C8186EBE}</Project>
+      <Name>driver-rainbowhat</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\source\driver-sensehat\driver-sensehat.csproj">
+      <Project>{4A46DD09-7C99-44B8-88FC-728EFBFCC72D}</Project>
+      <Name>driver-sensehat</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\source\driver-ssd1306\driver-ssd1306.csproj">
+      <Project>{79A6E377-8B55-4E0A-91B0-170FCC1B77FD}</Project>
+      <Name>driver-ssd1306</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\source\driver-tm1637\driver-tm1637.csproj">
+      <Project>{8B676D84-0C7B-4D1D-9134-6F5B1B0191D2}</Project>
+      <Name>driver-tm1637</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\source\driver-vcnl4200\driver-vcnl4200.csproj">
+      <Project>{BC164D15-0736-4A75-A8DA-4005F215D4FE}</Project>
+      <Name>driver-vcnl4200</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\source\driver-voicehat\driver-voicehat.csproj">
+      <Project>{1B22F695-693F-4B3B-ACF7-112D229AE7A0}</Project>
+      <Name>driver-voicehat</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\source\driver-zxgesturesensor\driver-zxgesturesensor.csproj">
+      <Project>{95D78A85-E873-4F02-AEE5-52ABB08D9787}</Project>
+      <Name>driver-zxgesturesensor</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\source\driver-apa102\driver-apa102.csproj">
+      <Project>{86AB1384-9263-4832-B266-6352C572D9C2}</Project>
+      <Name>driver-apa102</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\source\things\Xamarin.Android.Things.csproj">
+      <Project>{D57BCA42-7823-4ED2-BDC3-CA784B57E710}</Project>
       <Name>Xamarin.Android.Things</Name>
     </ProjectReference>
   </ItemGroup>

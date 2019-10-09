@@ -31,7 +31,7 @@ var buildSpec = new BuildSpec () {
 	},
 
 	NuGets = new [] {
-		new NuGetInfo { NuSpec = "./nuget/Xamarin.TwitterImagePipeline.nuspec" },
+		new NuGetInfo { NuSpec = "./nuget/Xamarin.TwitterImagePipeline.nuspec", RequireLicenseAcceptance = true  },
 	},
 
 	Components = new [] {

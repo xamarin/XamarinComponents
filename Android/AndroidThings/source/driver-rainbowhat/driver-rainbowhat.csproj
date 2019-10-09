@@ -1,0 +1,38 @@
+<Project Sdk="MSBuild.Sdk.Extras/2.0.54">
+
+  <PropertyGroup>
+    <AndroidCodegenTarget>XAJavaInterop1</AndroidCodegenTarget>
+    <TargetFrameworks>MonoAndroid81</TargetFrameworks>
+    <IsBindingProject>true</IsBindingProject>
+
+    <AssemblyName>Xamarin.Android.Things.Contrib.Driver.Rainbowhat</AssemblyName>
+    <MonoAndroidResourcePrefix>Resources</MonoAndroidResourcePrefix>
+    <MonoAndroidAssetsPrefix>Assets</MonoAndroidAssetsPrefix>
+    <AndroidUseLatestPlatformSdk>False</AndroidUseLatestPlatformSdk>
+    <AndroidUseIntermediateDesignerFile>True</AndroidUseIntermediateDesignerFile>
+    <AndroidResgenFile>Resources\Resource.designer.cs</AndroidResgenFile>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <AndroidClassParser>class-parse</AndroidClassParser>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <TransformFile Include="transforms\*.xml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <LibraryProjectZip Include="..\..\externals\driver-rainbowhat.aar" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\things\Xamarin.Android.Things.csproj" />
+    <ProjectReference Include="..\driver-apa102\driver-apa102.csproj" />
+    <ProjectReference Include="..\driver-button\driver-button.csproj" />
+    <ProjectReference Include="..\driver-bmx280\driver-bmx280.csproj" />
+    <ProjectReference Include="..\driver-ht16k33\driver-ht16k33.csproj" />
+    <ProjectReference Include="..\driver-pwmservo\driver-pwmservo.csproj" />
+    <ProjectReference Include="..\driver-pwmspeaker\driver-pwmspeaker.csproj" />
+  </ItemGroup>
+
+</Project>

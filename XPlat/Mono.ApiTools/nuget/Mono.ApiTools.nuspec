@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<package>
+  <metadata>
+    <id>Mono.ApiTools</id>
+    <version>$version$</version>
+    <authors>Microsoft</authors>
+    <owners>Microsoft</owners>
+    <licenseUrl>https://go.microsoft.com/fwlink/?linkid=2005911</licenseUrl>
+    <projectUrl>https://go.microsoft.com/fwlink/?linkid=2006029</projectUrl>
+    <!-- <iconUrl>http://ICON_URL_HERE_OR_DELETE_THIS_LINE</iconUrl> -->
+    <requireLicenseAcceptance>true</requireLicenseAcceptance>
+    <description>A set of tools to help with .NET API development and diff-ing.</description>
+    <copyright>© Microsoft Corporation. All rights reserved.</copyright>
+    <tags>mono-api-tools, mono-api-info, mono-api-diff, mono-api-html, aoi information, diff, compare, html, xml, markdown</tags>
+    <dependencies>
+      <dependency id="Mono.Cecil" version="0.10.0" />
+    </dependencies>
+  </metadata>
+  <files>
+    <file src="output\lib\netstandard2.0\*.dll" target="lib\netstandard2.0" />
+    <file src="output\lib\net45\*.dll" target="lib\net45" />
+    <file src="output\tools\*.*" target="tools" />
+  </files>
+</package>

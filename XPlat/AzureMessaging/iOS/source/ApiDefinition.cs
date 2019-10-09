@@ -70,19 +70,19 @@ namespace WindowsAzure.Messaging
 		IntPtr Constructor (string connectionString, string notificationHubPath);
 
 		[Export ("registerNativeWithDeviceToken:tags:completion:"), Async]
-		void RegisterNativeAsync (NSData deviceToken, [NullAllowed]NSSet tags, ErrorCallback errorCallback);
+		void RegisterNative (NSData deviceToken, [NullAllowed]NSSet tags, ErrorCallback errorCallback);
 
 		[Export ("registerTemplateWithDeviceToken:name:jsonBodyTemplate:expiryTemplate:tags:completion:"), Async]
-		void RegisterTemplateAsync (NSData deviceToken, string name, string jsonBodyTemplate, string expiryTemplate, NSSet tags, ErrorCallback errorCallback);
+		void RegisterTemplate (NSData deviceToken, string name, string jsonBodyTemplate, string expiryTemplate, NSSet tags, ErrorCallback errorCallback);
 
 		[Export ("unregisterNativeWithCompletion:"), Async]
-		void UnregisterNativeAsync (ErrorCallback errorCallback);
+		void UnregisterNative (ErrorCallback errorCallback);
 
 		[Export ("unregisterTemplateWithName:completion:"), Async]
-		void UnregisterTemplateAsync (string name, ErrorCallback errorCallback);
+		void UnregisterTemplate (string name, ErrorCallback errorCallback);
 
 		[Export ("unregisterAllWithDeviceToken:completion:"), Async]
-		void UnregisterAllAsync (NSData deviceToken, ErrorCallback errorCallback);
+		void UnregisterAll (NSData deviceToken, ErrorCallback errorCallback);
 
 		[Export ("registerNativeWithDeviceToken:tags:error:")]
 		bool RegisterNative (NSData deviceToken, [NullAllowed]NSSet tags, out NSError error);

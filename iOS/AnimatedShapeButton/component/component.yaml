@@ -5,7 +5,7 @@ publisher: Xamarin Inc
 publisher-url: http://xamarin.com
 src-url: https://github.com/xamarin/XamarinComponents/tree/master/iOS/AnimatedShapeButton
 summary: The Animated Shape Button is an animated UIControl, that has a beautiful animated image mask between its checked and unchecked states
-
+license: ../License.md
 no_build: true
 
 icons:
@@ -19,7 +19,13 @@ samples:
   - name: "Storyboard Sample"
     path: ../samples/AnimatedShapeButtonSample/AnimatedShapeButtonSample.sln
     configuration: "Release|iPhone"
-    removeFiles:
-     - AnimatedShapeButtonSample/Makefile
+    removeProjects:
+        - AnimatedShapeButton
+    installNuGets:
+      - project: AnimatedShapeButtonSample
+        packages:
+          - Xamarin.AnimatedShapeButton
+is_shell: true 
 
 monodoc: ../docs/
+local-nuget-repo: ../output

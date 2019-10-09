@@ -1,0 +1,42 @@
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.27004.2006
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "source", "source", "{EF042695-A404-46B5-907D-A8F376F2E258}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Stripe.Android", "..\source\Stripe.Android\Stripe.Android.csproj", "{EE4D79EC-A641-44A1-ACEB-5917D5FE3AEC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Stripe.Android.Pay", "..\source\Stripe.Android.Pay\Stripe.Android.Pay.csproj", "{ACC50C81-6C3A-40C3-9C71-B39415E4F9DB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sample.Stripe.XamarinAndroid", "Sample.Stripe.XamarinAndroid\Sample.Stripe.XamarinAndroid.csproj", "{1A708988-B15E-4423-8E77-06E9B8A0B750}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{EE4D79EC-A641-44A1-ACEB-5917D5FE3AEC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EE4D79EC-A641-44A1-ACEB-5917D5FE3AEC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EE4D79EC-A641-44A1-ACEB-5917D5FE3AEC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EE4D79EC-A641-44A1-ACEB-5917D5FE3AEC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{ACC50C81-6C3A-40C3-9C71-B39415E4F9DB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ACC50C81-6C3A-40C3-9C71-B39415E4F9DB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{ACC50C81-6C3A-40C3-9C71-B39415E4F9DB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{ACC50C81-6C3A-40C3-9C71-B39415E4F9DB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1A708988-B15E-4423-8E77-06E9B8A0B750}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1A708988-B15E-4423-8E77-06E9B8A0B750}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1A708988-B15E-4423-8E77-06E9B8A0B750}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1A708988-B15E-4423-8E77-06E9B8A0B750}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{EE4D79EC-A641-44A1-ACEB-5917D5FE3AEC} = {EF042695-A404-46B5-907D-A8F376F2E258}
+		{ACC50C81-6C3A-40C3-9C71-B39415E4F9DB} = {EF042695-A404-46B5-907D-A8F376F2E258}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {662D7B91-8B2A-4A8E-8DCC-8C38FCBE900A}
+	EndGlobalSection
+EndGlobal

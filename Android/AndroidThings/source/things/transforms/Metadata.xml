@@ -1,0 +1,35 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<metadata>
+	<attr path="/api/package[@name='com.google.android.things']" name="managedName">Android.Things</attr>
+    <attr path="/api/package[@name='com.google.android.things.device']" name="managedName">Android.Things.Device</attr>
+    <attr path="/api/package[@name='com.google.android.things.lowpan']" name="managedName">Android.Things.Lowpan</attr>
+    <attr path="/api/package[@name='com.google.android.things.update']" name="managedName">Android.Things.Update</attr>
+	<attr path="/api/package[@name='com.google.android.things.pio']" name="managedName">Android.Things.Pio</attr>
+	<attr path="/api/package[@name='com.google.android.things.userdriver']" name="managedName">Android.Things.UserDriver</attr>
+    <attr path="/api/package[@name='com.google.android.things.userdriver.input']" name="managedName">Android.Things.UserDriver.Input</attr>
+    <attr path="/api/package[@name='com.google.android.things.userdriver.location']" name="managedName">Android.Things.UserDriver.Location</attr>
+    <attr path="/api/package[@name='com.google.android.things.userdriver.lowpan']" name="managedName">Android.Things.UserDriver.Lowpan</attr>
+    <attr path="/api/package[@name='com.google.android.things.userdriver.pio']" name="managedName">Android.Things.UserDriver.Pio</attr>
+    <attr path="/api/package[@name='com.google.android.things.userdriver.sensor']" name="managedName">Android.Things.UserDriver.Sensor</attr>
+	<attr path="/api/package[@name='com.google.android.things.bluetooth']" name="managedName">Android.Things.Bluetooth</attr>
+	<attr path="/api/package[@name='com.google.android.things.devicemanagement']" name="managedName">Android.Things.DeviceManagement</attr>
+
+	<attr path="/api/package[@name='com.google.android.things.pio']/class[@name='IoBase']" name="visibility">public</attr>
+	
+	<!-- obj/Debug/generated/src/Com.Google.Android.Things.Pio.GpioDriver.cs(74,24): error CS0533: `Com.Google.Android.Things.Pio.GpioDriver.Close()' hides inherited abstract member `Com.Google.Android.Things.Pio.Gpio.Close() -->
+	<remove-node path="/api/package[@name='com.google.android.things.pio']/class[@name='GpioDriver']/method[@name='close' and count(parameter)=0]" />
+	<!-- obj/Debug/generated/src/Android.Things.Pio.PwmDriver.cs(24,24): Error CS0533: `Android.Things.Pio.PwmDriver.Close()' hides inherited abstract member `Android.Things.Pio.Pwm.Close()' (CS0533) (Xamarin.Android.Things) -->
+	<remove-node path="/api/package[@name='com.google.android.things.pio']/class[@name='PwmDriver']/method[@name='close' and count(parameter)=0]" />
+	<!-- obj/Release/generated/src/Android.Things.Pio.UartDeviceDriver.cs(74,24): error CS0533: 'UartDeviceDriver.Close()' hides inherited abstract member 'UartDevice.Close()' -->
+	<remove-node path="/api/package[@name='com.google.android.things.pio']/class[@name='UartDeviceDriver']/method[@name='close' and count(parameter)=0]" />
+
+	<!-- More fixes for 'hides inherited abstract member' errors -->
+    <remove-node path="/api/package[@name='com.google.android.things.pio']/interface[@name='SpiDevice']" />
+	<remove-node path="/api/package[@name='com.google.android.things.pio']/class[@name='Gpio']/method[@name='close' and count(parameter)=0]" />
+	<remove-node path="/api/package[@name='com.google.android.things.pio']/class[@name='I2cDevice']/method[@name='close' and count(parameter)=0]" />
+	<remove-node path="/api/package[@name='com.google.android.things.pio']/class[@name='Pwm']/method[@name='close' and count(parameter)=0]" />
+	<remove-node path="/api/package[@name='com.google.android.things.pio']/class[@name='UartDevice']/method[@name='close' and count(parameter)=0]" />
+	<remove-node path="/api/package[@name='com.google.android.things.pio']/class[@name='GpioDriver']/method[@name='registerGpioCallback' and count(parameter)=2 and parameter[1][@type='com.google.android.things.pio.GpioCallback'] and parameter[2][@type='android.os.Handler']]" />
+	<remove-node path="/api/package[@name='com.google.android.things.pio']/class[@name='GpioDriver']/method[@name='unregisterGpioCallback' and count(parameter)=1 and parameter[1][@type='com.google.android.things.pio.GpioCallback']]" />
+	<remove-node path="/api/package[@name='com.google.android.things.pio']/class[@name='UartDeviceDriver']/method[@name='registerUartDeviceCallback' and count(parameter)=2 and parameter[1][@type='com.google.android.things.pio.UartDeviceCallback'] and parameter[2][@type='android.os.Handler']]" />
+</metadata>

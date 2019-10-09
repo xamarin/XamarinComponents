@@ -23,7 +23,7 @@ namespace NearableMonitoringExample
 
 		public override bool FinishedLaunching (UIApplication application, NSDictionary launchOptions)
 		{
-			CloudManager.SetupAppID ("app_09m6zk9o3m", "54db97c20dfff85fd3cba3db889d56f1");
+			CloudManager.SetupAppId ("app_09m6zk9o3m", "54db97c20dfff85fd3cba3db889d56f1");
 			UINavigationBar.Appearance.BarTintColor = UIColor.FromRGBA (0.490f, 0.631f, 0.548f, 1.000f);
 			UINavigationBar.Appearance.TintColor = UIColor.White;
 			UINavigationBar.Appearance.SetTitleTextAttributes (new UITextAttributes { TextColor = UIColor.White });

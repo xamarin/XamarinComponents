@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ Copyright (c) Microsoft Corporation. All rights reserved.
+  ~ Licensed under the MIT License.
+  -->
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/example_date_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="@dimen/default_layout_margin"
+        android:paddingBottom="@dimen/default_layout_margin"
+        android:textSize="@dimen/calendar_date_title_text_size"
+        android:text="@string/calendar_example_chosen_date"
+        android:textColor="@color/calendar_selected_date_text"
+        android:textAlignment="center"
+        android:background="@color/calendar_selected_date_background"/>
+
+    <com.microsoft.officeuifabric.calendar.CalendarView
+        android:id="@+id/calendar_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+</LinearLayout>

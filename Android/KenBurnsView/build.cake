@@ -23,6 +23,10 @@ var buildSpec = new BuildSpec () {
 		new DefaultSolutionBuilder { SolutionPath = "./samples/KenBurnsViewSample.sln" },
 	},
 
+	NuGets = new [] {
+		new NuGetInfo { NuSpec = "./nuget/Xamarin.SortableTableView.nuspec" },
+	},
+
 	Components = new [] {
 		new Component {ManifestDirectory = "./component"},
 	},

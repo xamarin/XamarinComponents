@@ -14,7 +14,7 @@ namespace OpenId.AppAuth
 	delegate void AuthStateAuthorizationCallback([NullAllowed] AuthState authState, [NullAllowed] NSError error);
 
 	// @interface OIDAuthState : NSObject <NSSecureCoding>
-	[BaseType(typeof(NSObject), Name="OIDAuthState")]
+	[BaseType(typeof(NSObject), Name = "OIDAuthState")]
 	[DisableDefaultCtor]
 	interface AuthState : INSSecureCoding
 	{
@@ -33,6 +33,10 @@ namespace OpenId.AppAuth
 		// @property (readonly, nonatomic) OIDTokenResponse * _Nullable lastTokenResponse;
 		[NullAllowed, Export("lastTokenResponse")]
 		TokenResponse LastTokenResponse { get; }
+
+		// @property (readonly, nonatomic) OIDRegistrationResponse * _Nullable lastRegistrationResponse;
+		[NullAllowed, Export("lastRegistrationResponse")]
+		RegistrationResponse LastRegistrationResponse { get; }
 
 		// @property (readonly, nonatomic) NSError * _Nullable authorizationError;
 		[NullAllowed, Export("authorizationError")]
@@ -55,13 +59,22 @@ namespace OpenId.AppAuth
 		[Export("authStateByPresentingAuthorizationRequest:UICoordinator:callback:")]
 		IAuthorizationFlowSession PresentAuthorizationRequest(AuthorizationRequest authorizationRequest, IAuthorizationUICoordinator UICoordinator, AuthStateAuthorizationCallback callback);
 
-		// -(instancetype _Nullable)initWithAuthorizationResponse:(OIDAuthorizationResponse * _Nonnull)authorizationResponse;
+		// -(instancetype _Nonnull)initWithAuthorizationResponse:(OIDAuthorizationResponse * _Nonnull)authorizationResponse;
 		[Export("initWithAuthorizationResponse:")]
 		IntPtr Constructor(AuthorizationResponse authorizationResponse);
 
-		// -(instancetype _Nullable)initWithAuthorizationResponse:(OIDAuthorizationResponse * _Nonnull)authorizationResponse tokenResponse:(OIDTokenResponse * _Nullable)tokenResponse;
+		// -(instancetype _Nonnull)initWithAuthorizationResponse:(OIDAuthorizationResponse * _Nonnull)authorizationResponse tokenResponse:(OIDTokenResponse * _Nullable)tokenResponse;
 		[Export("initWithAuthorizationResponse:tokenResponse:")]
 		IntPtr Constructor(AuthorizationResponse authorizationResponse, [NullAllowed] TokenResponse tokenResponse);
+
+		// -(instancetype _Nonnull)initWithRegistrationResponse:(OIDRegistrationResponse * _Nonnull)registrationResponse;
+		[Export("initWithRegistrationResponse:")]
+		IntPtr Constructor(RegistrationResponse registrationResponse);
+
+		// -(instancetype _Nonnull)initWithAuthorizationResponse:(OIDAuthorizationResponse * _Nullable)authorizationResponse tokenResponse:(OIDTokenResponse * _Nullable)tokenResponse registrationResponse:(OIDRegistrationResponse * _Nullable)registrationResponse __attribute__((objc_designated_initializer));
+		[Export("initWithAuthorizationResponse:tokenResponse:registrationResponse:")]
+		[DesignatedInitializer]
+		IntPtr Constructor([NullAllowed] AuthorizationResponse authorizationResponse, [NullAllowed] TokenResponse tokenResponse, [NullAllowed] RegistrationResponse registrationResponse);
 
 		// -(void)updateWithAuthorizationResponse:(OIDAuthorizationResponse * _Nullable)authorizationResponse error:(NSError * _Nullable)error;
 		[Export("updateWithAuthorizationResponse:error:")]
@@ -70,6 +83,10 @@ namespace OpenId.AppAuth
 		// -(void)updateWithTokenResponse:(OIDTokenResponse * _Nullable)tokenResponse error:(NSError * _Nullable)error;
 		[Export("updateWithTokenResponse:error:")]
 		void Update([NullAllowed] TokenResponse tokenResponse, [NullAllowed] NSError error);
+
+		// -(void)updateWithRegistrationResponse:(OIDRegistrationResponse * _Nullable)registrationResponse;
+		[Export("updateWithRegistrationResponse:")]
+		void UpdateWithRegistrationResponse([NullAllowed] RegistrationResponse registrationResponse);
 
 		// -(void)updateWithAuthorizationError:(NSError * _Nonnull)authorizationError;
 		[Export("updateWithAuthorizationError:")]
@@ -112,7 +129,7 @@ namespace OpenId.AppAuth
 
 	// @protocol OIDAuthStateChangeDelegate <NSObject>
 	[Protocol, Model]
-	[BaseType(typeof(NSObject), Name="OIDAuthStateChangeDelegate")]
+	[BaseType(typeof(NSObject), Name = "OIDAuthStateChangeDelegate")]
 	interface AuthStateChangeDelegate
 	{
 		// @required -(void)didChangeState:(OIDAuthState * _Nonnull)state;
@@ -125,7 +142,7 @@ namespace OpenId.AppAuth
 
 	// @protocol OIDAuthStateErrorDelegate <NSObject>
 	[Protocol, Model]
-	[BaseType(typeof(NSObject), Name="OIDAuthStateErrorDelegate")]
+	[BaseType(typeof(NSObject), Name = "OIDAuthStateErrorDelegate")]
 	interface AuthStateErrorDelegate
 	{
 		// @required -(void)authState:(OIDAuthState * _Nonnull)state didEncounterAuthorizationError:(NSError * _Nonnull)error;
@@ -179,7 +196,7 @@ namespace OpenId.AppAuth
 	}
 
 	// @interface OIDAuthorizationRequest : NSObject <NSCopying, NSSecureCoding>
-	[BaseType(typeof(NSObject), Name="OIDAuthorizationRequest")]
+	[BaseType(typeof(NSObject), Name = "OIDAuthorizationRequest")]
 	[DisableDefaultCtor]
 	interface AuthorizationRequest : INSCopying, INSSecureCoding
 	{
@@ -267,7 +284,7 @@ namespace OpenId.AppAuth
 	}
 
 	// @interface OIDAuthorizationResponse : NSObject <NSCopying, NSSecureCoding>
-	[BaseType(typeof(NSObject), Name="OIDAuthorizationResponse")]
+	[BaseType(typeof(NSObject), Name = "OIDAuthorizationResponse")]
 	[DisableDefaultCtor]
 	interface AuthorizationResponse : INSCopying, INSSecureCoding
 	{
@@ -307,7 +324,7 @@ namespace OpenId.AppAuth
 		[NullAllowed, Export("additionalParameters")]
 		NSDictionary<NSString, NSCopying> AdditionalParameters { get; }
 
-		// -(instancetype _Nullable)initWithRequest:(OIDAuthorizationRequest * _Nonnull)request parameters:(NSDictionary<NSString *,NSObject<NSCopying> *> * _Nonnull)parameters __attribute__((objc_designated_initializer));
+		// -(instancetype _Nonnull)initWithRequest:(OIDAuthorizationRequest * _Nonnull)request parameters:(NSDictionary<NSString *,NSObject<NSCopying> *> * _Nonnull)parameters __attribute__((objc_designated_initializer));
 		[Export("initWithRequest:parameters:")]
 		[DesignatedInitializer]
 		IntPtr Constructor(AuthorizationRequest request, NSDictionary<NSString, NSCopying> parameters);
@@ -331,8 +348,11 @@ namespace OpenId.AppAuth
 	// typedef void (^OIDTokenCallback)(OIDTokenResponse * _Nullable, NSError * _Nullable);
 	delegate void TokenCallback([NullAllowed] TokenResponse tokenResponse, [NullAllowed] NSError error);
 
+	// typedef void (^OIDRegistrationCompletion)(OIDRegistrationResponse * _Nullable, NSError * _Nullable);
+	delegate void RegistrationCompletion([NullAllowed] RegistrationResponse registrationResponse, [NullAllowed] NSError error);
+
 	// @interface OIDAuthorizationService : NSObject
-	[BaseType(typeof(NSObject), Name="OIDAuthorizationService")]
+	[BaseType(typeof(NSObject), Name = "OIDAuthorizationService")]
 	[DisableDefaultCtor]
 	interface AuthorizationService
 	{
@@ -362,6 +382,11 @@ namespace OpenId.AppAuth
 		[Async]
 		[Export("performTokenRequest:callback:")]
 		void PerformTokenRequest(TokenRequest request, TokenCallback callback);
+
+		// +(void)performRegistrationRequest:(OIDRegistrationRequest * _Nonnull)request completion:(OIDRegistrationCompletion _Nonnull)completion;
+		[Static]
+		[Export("performRegistrationRequest:completion:")]
+		void PerformRegistrationRequest(RegistrationRequest request, RegistrationCompletion completion);
 	}
 
 	//// @interface IOS (OIDAuthorizationService)
@@ -379,7 +404,7 @@ namespace OpenId.AppAuth
 
 	// @protocol OIDAuthorizationFlowSession <NSObject>
 	[Protocol, Model]
-	[BaseType(typeof(NSObject), Name="OIDAuthorizationFlowSession")]
+	[BaseType(typeof(NSObject), Name = "OIDAuthorizationFlowSession")]
 	interface AuthorizationFlowSession
 	{
 		// @required -(void)cancel;
@@ -413,6 +438,10 @@ namespace OpenId.AppAuth
 		[Field("OIDOAuthTokenErrorDomain", "__Internal")]
 		NSString OAuthTokenErrorDomain { get; }
 
+		// extern NSString *const _Nonnull OIDOAuthRegistrationErrorDomain;
+		[Field("OIDOAuthRegistrationErrorDomain", "__Internal")]
+		NSString OAuthRegistrationErrorDomain { get; }
+
 		// extern NSString *const _Nonnull OIDResourceServerAuthorizationErrorDomain;
 		[Field("OIDResourceServerAuthorizationErrorDomain", "__Internal")]
 		NSString ResourceServerAuthorizationErrorDomain { get; }
@@ -443,31 +472,27 @@ namespace OpenId.AppAuth
 	}
 
 	// @interface OIDErrorUtilities : NSObject
-	[BaseType(typeof(NSObject), Name="OIDErrorUtilities")]
+	[BaseType(typeof(NSObject), Name = "OIDErrorUtilities")]
 	interface ErrorUtilities
 	{
-		// +(NSError * _Nullable)errorWithCode:(OIDErrorCode)code underlyingError:(NSError * _Nullable)underlyingError description:(NSString * _Nullable)description;
+		// +(NSError * _Nonnull)errorWithCode:(OIDErrorCode)code underlyingError:(NSError * _Nullable)underlyingError description:(NSString * _Nullable)description;
 		[Static]
 		[Export("errorWithCode:underlyingError:description:")]
-		[return: NullAllowed]
 		NSError CreateError(ErrorCode code, [NullAllowed] NSError underlyingError, [NullAllowed] string description);
 
-		// +(NSError * _Nullable)OAuthErrorWithDomain:(NSString * _Nonnull)OAuthErrorDomain OAuthResponse:(NSDictionary * _Nonnull)errorResponse underlyingError:(NSError * _Nullable)underlyingError;
+		// +(NSError * _Nonnull)OAuthErrorWithDomain:(NSString * _Nonnull)OAuthErrorDomain OAuthResponse:(NSDictionary * _Nonnull)errorResponse underlyingError:(NSError * _Nullable)underlyingError;
 		[Static]
 		[Export("OAuthErrorWithDomain:OAuthResponse:underlyingError:")]
-		[return: NullAllowed]
 		NSError CreateError(string OAuthErrorDomain, NSDictionary errorResponse, [NullAllowed] NSError underlyingError);
 
-		// +(NSError * _Nullable)resourceServerAuthorizationErrorWithCode:(NSInteger)code errorResponse:(NSDictionary * _Nullable)errorResponse underlyingError:(NSError * _Nullable)underlyingError;
+		// +(NSError * _Nonnull)resourceServerAuthorizationErrorWithCode:(NSInteger)code errorResponse:(NSDictionary * _Nullable)errorResponse underlyingError:(NSError * _Nullable)underlyingError;
 		[Static]
 		[Export("resourceServerAuthorizationErrorWithCode:errorResponse:underlyingError:")]
-		[return: NullAllowed]
 		NSError CreateResourceServerAuthorizationError(nint code, [NullAllowed] NSDictionary errorResponse, [NullAllowed] NSError underlyingError);
 
-		// +(NSError * _Nullable)HTTPErrorWithHTTPResponse:(NSHTTPURLResponse * _Nonnull)HTTPURLResponse data:(NSData * _Nullable)data;
+		// +(NSError * _Nonnull)HTTPErrorWithHTTPResponse:(NSHTTPURLResponse * _Nonnull)HTTPURLResponse data:(NSData * _Nullable)data;
 		[Static]
 		[Export("HTTPErrorWithHTTPResponse:data:")]
-		[return: NullAllowed]
 		NSError CreateHttpError(NSHttpUrlResponse HttpUrlResponse, [NullAllowed] NSData data);
 
 		// +(void)raiseException:(NSString * _Nonnull)name;
@@ -511,11 +536,133 @@ namespace OpenId.AppAuth
 		NSString ClientCredentials { get; }
 	}
 
+	// @interface OIDRegistrationRequest : NSObject <NSCopying, NSSecureCoding>
+	[BaseType(typeof(NSObject), Name = "OIDRegistrationRequest")]
+	[DisableDefaultCtor]
+	interface RegistrationRequest : INSCopying, INSSecureCoding
+	{
+		// @property (readonly, nonatomic) OIDServiceConfiguration * _Nonnull configuration;
+		[Export("configuration")]
+		ServiceConfiguration Configuration { get; }
+
+		// @property (readonly, nonatomic) NSString * _Nonnull applicationType;
+		[Export("applicationType")]
+		string ApplicationType { get; }
+
+		// @property (readonly, nonatomic) NSArray<NSURL *> * _Nonnull redirectURIs;
+		[Export("redirectURIs")]
+		NSUrl[] RedirectUris { get; }
+
+		// @property (readonly, nonatomic) NSArray<NSString *> * _Nullable responseTypes;
+		[NullAllowed, Export("responseTypes")]
+		string[] ResponseTypes { get; }
+
+		// @property (readonly, nonatomic) NSArray<NSString *> * _Nullable grantTypes;
+		[NullAllowed, Export("grantTypes")]
+		string[] GrantTypes { get; }
+
+		// @property (readonly, nonatomic) NSString * _Nullable subjectType;
+		[NullAllowed, Export("subjectType")]
+		string SubjectType { get; }
+
+		// @property (readonly, nonatomic) NSString * _Nullable tokenEndpointAuthenticationMethod;
+		[NullAllowed, Export("tokenEndpointAuthenticationMethod")]
+		string TokenEndpointAuthenticationMethod { get; }
+
+		// @property (readonly, nonatomic) NSDictionary<NSString *,NSString *> * _Nullable additionalParameters;
+		[NullAllowed, Export("additionalParameters")]
+		NSDictionary<NSString, NSString> AdditionalParameters { get; }
+
+		// -(instancetype _Nonnull)initWithConfiguration:(OIDServiceConfiguration * _Nonnull)configuration redirectURIs:(NSArray<NSURL *> * _Nonnull)redirectURIs responseTypes:(NSArray<NSString *> * _Nullable)responseTypes grantTypes:(NSArray<NSString *> * _Nullable)grantTypes subjectType:(NSString * _Nullable)subjectType tokenEndpointAuthMethod:(NSString * _Nullable)tokenEndpointAuthMethod additionalParameters:(NSDictionary<NSString *,NSString *> * _Nullable)additionalParameters __attribute__((objc_designated_initializer));
+		[Export("initWithConfiguration:redirectURIs:responseTypes:grantTypes:subjectType:tokenEndpointAuthMethod:additionalParameters:")]
+		[DesignatedInitializer]
+		IntPtr Constructor(ServiceConfiguration configuration, NSUrl[] redirectUris, [NullAllowed] string[] responseTypes, [NullAllowed] string[] grantTypes, [NullAllowed] string subjectType, [NullAllowed] string tokenEndpointAuthMethod, [NullAllowed] NSDictionary<NSString, NSString> additionalParameters);
+
+		// -(NSURLRequest * _Nonnull)URLRequest;
+		[Export("URLRequest")]
+		NSUrlRequest UrlRequest { get; }
+	}
+
+	[Static]
+	partial interface RegistrationResponseParameters
+	{
+		// extern NSString *const _Nonnull OIDClientIDParam;
+		[Field("OIDClientIDParam", "__Internal")]
+		NSString ClientId { get; }
+
+		// extern NSString *const _Nonnull OIDClientIDIssuedAtParam;
+		[Field("OIDClientIDIssuedAtParam", "__Internal")]
+		NSString ClientIdIssuedAt { get; }
+
+		// extern NSString *const _Nonnull OIDClientSecretParam;
+		[Field("OIDClientSecretParam", "__Internal")]
+		NSString ClientSecret { get; }
+
+		// extern NSString *const _Nonnull OIDClientSecretExpirestAtParam;
+		[Field("OIDClientSecretExpirestAtParam", "__Internal")]
+		NSString ClientSecretExpirestAt { get; }
+
+		// extern NSString *const _Nonnull OIDRegistrationAccessTokenParam;
+		[Field("OIDRegistrationAccessTokenParam", "__Internal")]
+		NSString RegistrationAccessToken { get; }
+
+		// extern NSString *const _Nonnull OIDRegistrationClientURIParam;
+		[Field("OIDRegistrationClientURIParam", "__Internal")]
+		NSString RegistrationClientUri { get; }
+	}
+
+	// @interface OIDRegistrationResponse : NSObject <NSCopying, NSSecureCoding>
+	[BaseType(typeof(NSObject), Name = "OIDRegistrationResponse")]
+	[DisableDefaultCtor]
+	interface RegistrationResponse : INSCopying, INSSecureCoding
+	{
+		// @property (readonly, nonatomic) OIDRegistrationRequest * _Nonnull request;
+		[Export("request")]
+		RegistrationRequest Request { get; }
+
+		// @property (readonly, nonatomic) NSString * _Nonnull clientID;
+		[Export("clientID")]
+		string ClientId { get; }
+
+		// @property (readonly, nonatomic) NSDate * _Nullable clientIDIssuedAt;
+		[NullAllowed, Export("clientIDIssuedAt")]
+		NSDate ClientIdIssuedAt { get; }
+
+		// @property (readonly, nonatomic) NSString * _Nullable clientSecret;
+		[NullAllowed, Export("clientSecret")]
+		string ClientSecret { get; }
+
+		// @property (readonly, nonatomic) NSDate * _Nullable clientSecretExpiresAt;
+		[NullAllowed, Export("clientSecretExpiresAt")]
+		NSDate ClientSecretExpiresAt { get; }
+
+		// @property (readonly, nonatomic) NSString * _Nullable registrationAccessToken;
+		[NullAllowed, Export("registrationAccessToken")]
+		string RegistrationAccessToken { get; }
+
+		// @property (readonly, nonatomic) NSURL * _Nullable registrationClientURI;
+		[NullAllowed, Export("registrationClientURI")]
+		NSUrl RegistrationClientUri { get; }
+
+		// @property (readonly, nonatomic) NSString * _Nullable tokenEndpointAuthenticationMethod;
+		[NullAllowed, Export("tokenEndpointAuthenticationMethod")]
+		string TokenEndpointAuthenticationMethod { get; }
+
+		// @property (readonly, nonatomic) NSDictionary<NSString *,NSObject<NSCopying> *> * _Nullable additionalParameters;
+		[NullAllowed, Export("additionalParameters")]
+		NSDictionary<NSString, NSCopying> AdditionalParameters { get; }
+
+		// -(instancetype _Nonnull)initWithRequest:(OIDRegistrationRequest * _Nonnull)request parameters:(NSDictionary<NSString *,NSObject<NSCopying> *> * _Nonnull)parameters __attribute__((objc_designated_initializer));
+		[Export("initWithRequest:parameters:")]
+		[DesignatedInitializer]
+		IntPtr Constructor(RegistrationRequest request, NSDictionary<NSString, NSCopying> parameters);
+	}
+
 	// typedef void (^OIDServiceConfigurationCreated)(OIDServiceConfiguration * _Nullable, NSError * _Nullable);
 	delegate void ServiceConfigurationCreated([NullAllowed] ServiceConfiguration serviceConfiguration, [NullAllowed] NSError error);
 
 	// @interface OIDServiceConfiguration : NSObject <NSCopying, NSSecureCoding>
-	[BaseType(typeof(NSObject), Name="OIDServiceConfiguration")]
+	[BaseType(typeof(NSObject), Name = "OIDServiceConfiguration")]
 	[DisableDefaultCtor]
 	interface ServiceConfiguration : INSCopying, INSSecureCoding
 	{
@@ -527,6 +674,10 @@ namespace OpenId.AppAuth
 		[Export("tokenEndpoint")]
 		NSUrl TokenEndpoint { get; }
 
+		// @property (readonly, nonatomic) NSURL * _Nullable registrationEndpoint;
+		[NullAllowed, Export("registrationEndpoint")]
+		NSUrl RegistrationEndpoint { get; }
+
 		// @property (readonly, nonatomic) OIDServiceDiscovery * _Nullable discoveryDocument;
 		[NullAllowed, Export("discoveryDocument")]
 		ServiceDiscovery DiscoveryDocument { get; }
@@ -535,13 +686,17 @@ namespace OpenId.AppAuth
 		[Export("initWithAuthorizationEndpoint:tokenEndpoint:")]
 		IntPtr Constructor(NSUrl authorizationEndpoint, NSUrl tokenEndpoint);
 
+		// -(instancetype _Nonnull)initWithAuthorizationEndpoint:(NSURL * _Nonnull)authorizationEndpoint tokenEndpoint:(NSURL * _Nonnull)tokenEndpoint registrationEndpoint:(NSURL * _Nullable)registrationEndpoint;
+		[Export("initWithAuthorizationEndpoint:tokenEndpoint:registrationEndpoint:")]
+		IntPtr Constructor(NSUrl authorizationEndpoint, NSUrl tokenEndpoint, [NullAllowed] NSUrl registrationEndpoint);
+
 		// -(instancetype _Nonnull)initWithDiscoveryDocument:(OIDServiceDiscovery * _Nonnull)discoveryDocument;
 		[Export("initWithDiscoveryDocument:")]
 		IntPtr Constructor(ServiceDiscovery discoveryDocument);
 	}
 
 	// @interface OIDServiceDiscovery : NSObject <NSCopying, NSSecureCoding>
-	[BaseType(typeof(NSObject), Name="OIDServiceDiscovery")]
+	[BaseType(typeof(NSObject), Name = "OIDServiceDiscovery")]
 	[DisableDefaultCtor]
 	interface ServiceDiscovery : INSCopying, INSSecureCoding
 	{
@@ -704,7 +859,7 @@ namespace OpenId.AppAuth
 	}
 
 	// @interface OIDTokenRequest : NSObject <NSCopying, NSSecureCoding>
-	[BaseType(typeof(NSObject), Name="OIDTokenRequest")]
+	[BaseType(typeof(NSObject), Name = "OIDTokenRequest")]
 	[DisableDefaultCtor]
 	interface TokenRequest : INSCopying, INSSecureCoding
 	{
@@ -748,11 +903,11 @@ namespace OpenId.AppAuth
 		[NullAllowed, Export("additionalParameters")]
 		NSDictionary<NSString, NSString> AdditionalParameters { get; }
 
-		// -(instancetype _Nullable)initWithConfiguration:(OIDServiceConfiguration * _Nonnull)configuration grantType:(NSString * _Nonnull)grantType authorizationCode:(NSString * _Nullable)code redirectURL:(NSURL * _Nonnull)redirectURL clientID:(NSString * _Nonnull)clientID clientSecret:(NSString * _Nullable)clientSecret scopes:(NSArray<NSString *> * _Nullable)scopes refreshToken:(NSString * _Nullable)refreshToken codeVerifier:(NSString * _Nullable)codeVerifier additionalParameters:(NSDictionary<NSString *,NSString *> * _Nullable)additionalParameters;
+		// -(instancetype _Nonnull)initWithConfiguration:(OIDServiceConfiguration * _Nonnull)configuration grantType:(NSString * _Nonnull)grantType authorizationCode:(NSString * _Nullable)code redirectURL:(NSURL * _Nonnull)redirectURL clientID:(NSString * _Nonnull)clientID clientSecret:(NSString * _Nullable)clientSecret scopes:(NSArray<NSString *> * _Nullable)scopes refreshToken:(NSString * _Nullable)refreshToken codeVerifier:(NSString * _Nullable)codeVerifier additionalParameters:(NSDictionary<NSString *,NSString *> * _Nullable)additionalParameters;
 		[Export("initWithConfiguration:grantType:authorizationCode:redirectURL:clientID:clientSecret:scopes:refreshToken:codeVerifier:additionalParameters:")]
 		IntPtr Constructor(ServiceConfiguration configuration, string grantType, [NullAllowed] string code, NSUrl redirectURL, string clientID, [NullAllowed] string clientSecret, [NullAllowed] string[] scopes, [NullAllowed] string refreshToken, [NullAllowed] string codeVerifier, [NullAllowed] NSDictionary<NSString, NSString> additionalParameters);
 
-		// -(instancetype _Nullable)initWithConfiguration:(OIDServiceConfiguration * _Nonnull)configuration grantType:(NSString * _Nonnull)grantType authorizationCode:(NSString * _Nullable)code redirectURL:(NSURL * _Nonnull)redirectURL clientID:(NSString * _Nonnull)clientID clientSecret:(NSString * _Nullable)clientSecret scope:(NSString * _Nullable)scope refreshToken:(NSString * _Nullable)refreshToken codeVerifier:(NSString * _Nullable)codeVerifier additionalParameters:(NSDictionary<NSString *,NSString *> * _Nullable)additionalParameters __attribute__((objc_designated_initializer));
+		// -(instancetype _Nonnull)initWithConfiguration:(OIDServiceConfiguration * _Nonnull)configuration grantType:(NSString * _Nonnull)grantType authorizationCode:(NSString * _Nullable)code redirectURL:(NSURL * _Nonnull)redirectURL clientID:(NSString * _Nonnull)clientID clientSecret:(NSString * _Nullable)clientSecret scope:(NSString * _Nullable)scope refreshToken:(NSString * _Nullable)refreshToken codeVerifier:(NSString * _Nullable)codeVerifier additionalParameters:(NSDictionary<NSString *,NSString *> * _Nullable)additionalParameters __attribute__((objc_designated_initializer));
 		[Export("initWithConfiguration:grantType:authorizationCode:redirectURL:clientID:clientSecret:scope:refreshToken:codeVerifier:additionalParameters:")]
 		[DesignatedInitializer]
 		IntPtr Constructor(ServiceConfiguration configuration, string grantType, [NullAllowed] string code, NSUrl redirectURL, string clientID, [NullAllowed] string clientSecret, [NullAllowed] string scope, [NullAllowed] string refreshToken, [NullAllowed] string codeVerifier, [NullAllowed] NSDictionary<NSString, NSString> additionalParameters);
@@ -763,7 +918,7 @@ namespace OpenId.AppAuth
 	}
 
 	// @interface OIDTokenResponse : NSObject <NSCopying, NSSecureCoding>
-	[BaseType(typeof(NSObject), Name="OIDTokenResponse")]
+	[BaseType(typeof(NSObject), Name = "OIDTokenResponse")]
 	[DisableDefaultCtor]
 	interface TokenResponse : INSCopying, INSSecureCoding
 	{
@@ -797,25 +952,25 @@ namespace OpenId.AppAuth
 
 		// @property (readonly, nonatomic) NSDictionary<NSString *,NSObject<NSCopying> *> * _Nullable additionalParameters;
 		[NullAllowed, Export("additionalParameters")]
-		NSDictionary<NSString, NSCopying> AdditionalParameters { get; }
+		NSDictionary<NSString, INSCopying> AdditionalParameters { get; }
 
-		// -(instancetype _Nullable)initWithRequest:(OIDTokenRequest * _Nonnull)request parameters:(NSDictionary<NSString *,NSObject<NSCopying> *> * _Nonnull)parameters __attribute__((objc_designated_initializer));
+		// -(instancetype _Nonnull)initWithRequest:(OIDTokenRequest * _Nonnull)request parameters:(NSDictionary<NSString *,NSObject<NSCopying> *> * _Nonnull)parameters __attribute__((objc_designated_initializer));
 		[Export("initWithRequest:parameters:")]
 		[DesignatedInitializer]
-		IntPtr Constructor(TokenRequest request, NSDictionary<NSString, NSCopying> parameters);
+		IntPtr Constructor(TokenRequest request, NSDictionary<NSString, INSCopying> parameters);
 	}
 
 	interface IAuthorizationUICoordinator { }
 
 	// @protocol OIDAuthorizationUICoordinator <NSObject>
 	[Protocol, Model]
-	[BaseType(typeof(NSObject), Name="OIDAuthorizationUICoordinator")]
+	[BaseType(typeof(NSObject), Name = "OIDAuthorizationUICoordinator")]
 	interface AuthorizationUICoordinator
 	{
-		// @required -(BOOL)presentAuthorizationWithURL:(NSURL * _Nonnull)URL session:(id<OIDAuthorizationFlowSession> _Nonnull)session;
+		// @required -(BOOL)presentAuthorizationRequest:(OIDAuthorizationRequest * _Nonnull)request session:(id<OIDAuthorizationFlowSession> _Nonnull)session;
 		[Abstract]
-		[Export("presentAuthorizationWithURL:session:")]
-		bool PresentAuthorization(NSUrl url, IAuthorizationFlowSession session);
+		[Export("presentAuthorizationRequest:session:")]
+		bool PresentAuthorizationRequest(AuthorizationRequest request, AuthorizationFlowSession session);
 
 		// @required -(void)dismissAuthorizationAnimated:(BOOL)animated completion:(void (^ _Nonnull)(void))completion;
 		[Abstract]
@@ -835,7 +990,7 @@ namespace OpenId.AppAuth
 	}
 
 	// @interface OIDAuthorizationUICoordinatorIOS : NSObject <OIDAuthorizationUICoordinator>
-	[BaseType(typeof(NSObject), Name="OIDAuthorizationUICoordinatorIOS")]
+	[BaseType(typeof(NSObject), Name = "OIDAuthorizationUICoordinatorIOS")]
 	[DisableDefaultCtor]
 	interface AuthorizationUICoordinatorIOS : AuthorizationUICoordinator
 	{
@@ -844,17 +999,49 @@ namespace OpenId.AppAuth
 		[Export("setSafariViewControllerFactory:")]
 		void SetSafariViewControllerFactory(SafariViewControllerFactory factory);
 
-		// -(instancetype _Nullable)initWithPresentingViewController:(UIViewController * _Nonnull)parentViewController __attribute__((objc_designated_initializer));
+		// -(instancetype _Nullable)initWithPresentingViewController:(UIViewController * _Nonnull)presentingViewController __attribute__((objc_designated_initializer));
 		[Export("initWithPresentingViewController:")]
 		[DesignatedInitializer]
-		IntPtr Constructor(UIViewController parentViewController);
+		IntPtr Constructor(UIViewController presentingViewController);
+	}
+
+	[Static]
+	partial interface ClientMetadataParameters
+	{
+		// extern NSString *const _Nonnull OIDTokenEndpointAuthenticationMethodParam;
+		[Field("OIDTokenEndpointAuthenticationMethodParam", "__Internal")]
+		NSString TokenEndpointAuthenticationMethod { get; }
+
+		// extern NSString *const _Nonnull OIDApplicationTypeParam;
+		[Field("OIDApplicationTypeParam", "__Internal")]
+		NSString ApplicationType { get; }
+
+		// extern NSString *const _Nonnull OIDRedirectURIsParam;
+		[Field("OIDRedirectURIsParam", "__Internal")]
+		NSString RedirectUris { get; }
+
+		// extern NSString *const _Nonnull OIDResponseTypesParam;
+		[Field("OIDResponseTypesParam", "__Internal")]
+		NSString ResponseTypes { get; }
+
+		// extern NSString *const _Nonnull OIDGrantTypesParam;
+		[Field("OIDGrantTypesParam", "__Internal")]
+		NSString GrantTypes { get; }
+
+		// extern NSString *const _Nonnull OIDSubjectTypeParam;
+		[Field("OIDSubjectTypeParam", "__Internal")]
+		NSString SubjectType { get; }
+
+		// extern NSString *const _Nonnull OIDApplicationTypeNative;
+		[Field("OIDApplicationTypeNative", "__Internal")]
+		NSString ApplicationTypeNative { get; }
 	}
 
 	// typedef id _Nullable (^OIDFieldMappingConversionFunction)(NSObject * _Nullable);
 	delegate NSObject FieldMappingConversionFunction([NullAllowed] NSObject value);
 
 	// @interface OIDFieldMapping : NSObject
-	[BaseType(typeof(NSObject), Name="OIDFieldMapping")]
+	[BaseType(typeof(NSObject), Name = "OIDFieldMapping")]
 	[DisableDefaultCtor]
 	interface FieldMapping : INativeObject
 	{
@@ -870,12 +1057,12 @@ namespace OpenId.AppAuth
 		[NullAllowed, Export("conversion")]
 		FieldMappingConversionFunction Conversion { get; }
 
-		// -(instancetype _Nullable)initWithName:(NSString * _Nonnull)name type:(Class _Nonnull)type conversion:(OIDFieldMappingConversionFunction _Nullable)conversion __attribute__((objc_designated_initializer));
+		// -(instancetype _Nonnull)initWithName:(NSString * _Nonnull)name type:(Class _Nonnull)type conversion:(OIDFieldMappingConversionFunction _Nullable)conversion __attribute__((objc_designated_initializer));
 		[Export("initWithName:type:conversion:")]
 		[DesignatedInitializer]
 		IntPtr Constructor(string name, Class type, [NullAllowed] FieldMappingConversionFunction conversion);
 
-		// -(instancetype _Nullable)initWithName:(NSString * _Nonnull)name type:(Class _Nonnull)type;
+		// -(instancetype _Nonnull)initWithName:(NSString * _Nonnull)name type:(Class _Nonnull)type;
 		[Export("initWithName:type:")]
 		IntPtr Constructor(string name, Class type);
 
@@ -903,10 +1090,20 @@ namespace OpenId.AppAuth
 		[Static]
 		[Export("URLConversion")]
 		FieldMappingConversionFunction UrlConversion { get; }
+
+		// +(OIDFieldMappingConversionFunction _Nonnull)dateSinceNowConversion;
+		[Static]
+		[Export("dateSinceNowConversion")]
+		FieldMappingConversionFunction DateSinceNowConversion { get; }
+
+		// +(OIDFieldMappingConversionFunction _Nonnull)dateEpochConversion;
+		[Static]
+		[Export("dateEpochConversion")]
+		FieldMappingConversionFunction DateEpochConversion { get; }
 	}
 
 	// @interface OIDScopeUtilities : NSObject
-	[BaseType(typeof(NSObject), Name="OIDScopeUtilities")]
+	[BaseType(typeof(NSObject), Name = "OIDScopeUtilities")]
 	[DisableDefaultCtor]
 	interface ScopeUtilities
 	{
@@ -922,7 +1119,7 @@ namespace OpenId.AppAuth
 	}
 
 	// @interface OIDTokenUtilities : NSObject
-	[BaseType(typeof(NSObject), Name="OIDTokenUtilities")]
+	[BaseType(typeof(NSObject), Name = "OIDTokenUtilities")]
 	[DisableDefaultCtor]
 	interface TokenUtilities
 	{
@@ -943,8 +1140,17 @@ namespace OpenId.AppAuth
 		NSData GetSha265(string inputString);
 	}
 
+	// @interface OIDURLSessionProvider : NSObject
+	[BaseType(typeof(NSObject), Name = "OIDURLSessionProvider")]
+	interface UrlSessionProvider
+	{
+		[Static]
+		[Export("session")]
+		NSUrlSession Session { get; set; }
+	}
+
 	// @interface OIDURLQueryComponent : NSObject
-	[BaseType(typeof(NSObject), Name="OIDURLQueryComponent")]
+	[BaseType(typeof(NSObject), Name = "OIDURLQueryComponent")]
 	interface UrlQueryComponent
 	{
 		//// extern BOOL gOIDURLQueryComponentForceIOS7Handling;

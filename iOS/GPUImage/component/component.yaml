@@ -1,10 +1,11 @@
-version: 0.1.7.1
+version: 0.1.7.2
 name: GPUImage
 id: GPUImage
 publisher: Xamarin Inc
 publisher-url: https://xamarin.com
 src-url: https://github.com/xamarin/XamarinComponents/tree/master/iOS/GPUImage
 summary: An open source iOS framework for GPU-based image and video processing.
+license: ../License.md
 icons:
   - icons/GPUImage_128x128.png
   - icons/GPUImage_512x512.png
@@ -13,7 +14,18 @@ libraries:
 samples:
   - name: "GPUImage Sample"
     path:  ../samples/GPUImageSample.sln
+    removeProjects:
+        - GPUImage
+    installNuGets:
+      - project: GPUImageSample
+        packages:
+          - Xamarin.GPUImage
 no_build: true
 is_shell: true
 packages:
-  ios-unified: GPUImage, Version=0.1.7.1
+  ios-unified: GPUImage, Version=0.1.7.2
+
+local-nuget-repo: ../output
+additional-files:
+  - source: "../External-Dependency-Info.txt"
+    destination: "THIRD-PARTY-NOTICES.txt"

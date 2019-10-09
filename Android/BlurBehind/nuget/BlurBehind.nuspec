@@ -4,14 +4,14 @@
     <id>BlurBehind</id>
     <title>BlurBehind for Xamarin.Android</title>
     <version>1.1.0.1</version>
-    <authors>Xamarin Inc.</authors>
-    <owners>Xamarin Inc.</owners>
-    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <authors>Microsoft</authors>
+    <owners>Microsoft</owners>
+    <requireLicenseAcceptance>true</requireLicenseAcceptance>
     <description>Easily have blurred and transparent background effect on your Android views.</description>
-    <copyright>Copyright 2016 Xamarin Inc</copyright>
+    <copyright>© Microsoft Corporation. All rights reserved.</copyright>
     <iconUrl>https://xamarin-component-icons.s3.amazonaws.com/BlurBehind.png</iconUrl>
-    <licenseUrl>https://components.xamarin.com/license/blurbehind</licenseUrl>
-    <projectUrl>https://components.xamarin.com/view/blurbehind</projectUrl>
+    <licenseUrl>https://go.microsoft.com/fwlink/?linkid=865027</licenseUrl>
+    <projectUrl>https://go.microsoft.com/fwlink/?linkid=864957</projectUrl>
     <dependencies>
       <dependency id="Xamarin.Android.Support.v4" version="23.0.1.3" />
     </dependencies>

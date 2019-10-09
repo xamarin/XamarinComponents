@@ -24,7 +24,7 @@ var buildSpec = new BuildSpec () {
 	},
 
 	NuGets = new [] {
-		new NuGetInfo { NuSpec = "./nuget/Xamarin.Android.PhotoView.nuspec" },
+		new NuGetInfo { NuSpec = "./nuget/Xamarin.Android.PhotoView.nuspec", RequireLicenseAcceptance = true },
 	},
 
 	Components = new [] {

@@ -1,7 +1,7 @@
 ## Configuration
 In your app’s AppDelegate on FinishedLaunching you can specify your Estimote app config:
 ```csharp
-Config.SetupAppID (“appId”, “appToken”);
+Config.SetupAppId (“appId”, “appToken”);
 ```
 
 **iOS8**
@@ -22,7 +22,7 @@ public async override void ViewDidLoad ()
 	beaconManager = new BeaconManager ();
 	beaconManager.ReturnAllRangedBeaconsAtOnce = true;
 	var uuid = new NSUuid ("8492E75F-4FD6-469D-B132-043FE94921D8");
-	region = new BeaconRegion (uuid, "BeaconSample");
+	region = new CLBeaconRegion (uuid, "BeaconSample");
 	beaconManager.StartRangingBeacons(region);
 	beaconManager.RangedBeacons += (sender, e) => 
 	{
@@ -46,10 +46,10 @@ beaconManager.AuthorizationStatusChanged += (sender, e) =>
 
 Additionally, you can request authorization with:
 
-```
+```csharp
 private void StartRangingBeacons()
 {
-	var status = BeaconManager.AuthorizationStatus ();
+	var status = BeaconManager.AuthorizationStatus;
 	if (status == CLAuthorizationStatus.NotDetermined)
 	{
 		if (!UIDevice.CurrentDevice.CheckSystemVersion(8, 0)) {

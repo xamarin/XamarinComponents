@@ -9,6 +9,10 @@
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
 	<key>MinimumOSVersion</key>
-	<string>6.1</string>
+	<string>8.0</string>
+	<key>CFBundleIdentifier</key>
+	<string>com.yourcompany.SDWebImageMTDialogSample</string>
+	<key>CFBundleName</key>
+	<string>SDWebImageMTDialogSample</string>
 </dict>
 </plist>

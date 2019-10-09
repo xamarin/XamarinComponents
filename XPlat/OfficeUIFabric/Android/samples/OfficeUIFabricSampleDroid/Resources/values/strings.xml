@@ -1,0 +1,275 @@
+<?xml version="1.0" encoding="utf-8"?>
+    <!--
+      ~ Copyright (c) Microsoft Corporation. All rights reserved.
+      ~ Licensed under the MIT License.
+      -->
+
+<resources xmlns:tools="http://schemas.android.com/tools"
+    tools:ignore="MissingTranslation">
+
+    <!--App-->
+    <string name="app_name">Office UI Fabric Demo</string>
+    <string name="app_title">UI Fabric</string>
+    <string name="action_settings">Settings</string>
+    <string name="title_demo_detail">Control Demo</string>
+
+    <!--AvatarView-->
+    <string name="avatar_style_circle">Circle style</string>
+    <string name="avatar_style_square">Square style</string>
+    <string name="avatar_size_xxlarge">XXLarge</string>
+    <string name="avatar_size_xlarge">XLarge</string>
+    <string name="avatar_size_large">Large</string>
+    <string name="avatar_size_medium">Medium</string>
+    <string name="avatar_size_small">Small</string>
+    <string name="avatar_size_xsmall">XSmall</string>
+
+    <!--BottomSheet-->
+    <string name="bottom_sheet">BottomSheet</string>
+    <string name="bottom_sheet_dialog">BottomSheetDialog</string>
+    <string name="bottom_sheet_with_single_line_items">Show with single line items</string>
+    <string name="bottom_sheet_with_double_line_items">Show with double line items</string>
+    <string name="bottom_sheet_dialog_button">Show</string>
+    <!--Single line items-->
+    <string name="bottom_sheet_item_flag_title">Flag</string>
+    <string name="bottom_sheet_item_flag_toast">Flag item clicked</string>
+    <string name="bottom_sheet_item_reply_title">Reply</string>
+    <string name="bottom_sheet_item_reply_toast">Reply item clicked</string>
+    <string name="bottom_sheet_item_forward_title">Forward</string>
+    <string name="bottom_sheet_item_forward_toast">Forward item clicked</string>
+    <string name="bottom_sheet_item_delete_title">Delete</string>
+    <string name="bottom_sheet_item_delete_toast">Delete item clicked</string>
+    <!--Double line items-->
+    <string name="bottom_sheet_item_camera_title">Camera</string>
+    <string name="bottom_sheet_item_camera_subtitle">Take a photo</string>
+    <string name="bottom_sheet_item_camera_toast">Camera item clicked</string>
+    <string name="bottom_sheet_item_gallery_title">Gallery</string>
+    <string name="bottom_sheet_item_gallery_subtitle">View your photos</string>
+    <string name="bottom_sheet_item_gallery_toast">Gallery item clicked</string>
+    <string name="bottom_sheet_item_videos_title">Videos</string>
+    <string name="bottom_sheet_item_videos_subtitle">Play your videos</string>
+    <string name="bottom_sheet_item_videos_toast">Videos item clicked</string>
+    <string name="bottom_sheet_item_manage_title">Manage</string>
+    <string name="bottom_sheet_item_manage_subtitle">Manage your media library</string>
+    <string name="bottom_sheet_item_manage_toast">Manage item clicked</string>
+    <!--BottomSheetDialog-->
+    <string name="bottom_sheet_item_clock_title">Clock</string>
+    <string name="bottom_sheet_item_clock_toast">Clock item clicked</string>
+    <string name="bottom_sheet_item_alarm_title">Alarm</string>
+    <string name="bottom_sheet_item_alarm_toast">Alarm item clicked</string>
+    <string name="bottom_sheet_item_stop_watch_title">Stop watch</string>
+    <string name="bottom_sheet_item_stop_watch_toast">Stop watch item clicked</string>
+    <string name="bottom_sheet_item_time_zone_title">Time zone</string>
+    <string name="bottom_sheet_item_time_zone_toast">Time zone item clicked</string>
+
+    <!--Button-->
+    <string name="button">Button</string>
+    <string name="button_disabled">Disabled Button</string>
+    <string name="button_borderless">Borderless Button</string>
+    <string name="button_borderless_disabled">Borderless Disabled Button</string>
+
+    <!--CalendarView-->
+    <string name="calendar_example_chosen_date">Choose a date</string>
+
+    <!--DateTimePickerDialog-->
+    <string name="date_time_picker_dialog_date_button">Show date picker</string>
+    <string name="date_time_picker_dialog_calendar_date_time_button">Show date time picker with date tab selected</string>
+    <string name="date_time_picker_dialog_date_time_calendar_button">Show date time picker with time tab selected</string>
+    <string name="date_time_picker_dialog_date_time_button">Show date time picker</string>
+    <string name="date_time_picker_dialog_date_start_button">Select start date</string>
+    <string name="date_time_picker_dialog_date_time_range_button">Select date time range</string>
+    <string name="date_time_picker_dialog_date_end_button">Select end date</string>
+    <string name="date_time_picker_dialog_date_picked_default">No date picked</string>
+    <string name="date_time_picker_dialog_date_start_picked_default">No start picked</string>
+    <string name="date_time_picker_dialog_date_end_picked_default">No end picked</string>
+    <string name="date_time_picker_example_no_duration_title">Single Date</string>
+    <string name="date_time_picker_example_date_range_title">Date Range</string>
+    <string name="date_time_picker_example_date_time_range_title">Date Time Range</string>
+    <string name="date_time_picker_example_date_range_start_title">Start:</string>
+    <string name="date_time_picker_example_date_range_end_title">End:</string>
+
+    <!--Drawer-->
+    <string name="drawer_button">Show drawer</string>
+    <string name="drawer_dialog_button">Show drawer dialog</string>
+
+    <!--ListItem-->
+    <string name="list_item_title">Title, primary text</string>
+    <string name="list_item_subtitle">Subtitle, secondary text</string>
+    <string name="list_item_footer">Footer, tertiary text</string>
+    <string name="list_item_sub_header_single_line">Single-line list with gray sub header text</string>
+    <string name="list_item_sub_header_two_line">Two-line list</string>
+    <string name="list_item_sub_header_two_line_dense">Two-line list with dense spacing</string>
+    <string name="list_item_sub_header_three_line">Three-line list with black sub header text</string>
+    <string name="list_item_sub_header_no_custom_views">List items with no custom views</string>
+    <string name="list_item_sub_header_large_header">List items with large custom views</string>
+    <string name="list_item_sub_header_wrapped_text">List items with wrapped text</string>
+    <string name="list_item_sub_header_truncated_text">List items with truncated text</string>
+    <string name="list_item_sub_header_custom_accessory_text">Action</string>
+    <string name="list_item_truncation_middle">Middle truncation.</string>
+    <string name="list_item_truncation_end">End truncation.</string>
+    <string name="list_item_truncation_start">Start truncation.</string>
+    <string name="list_item_custom_text_view">Value</string>
+    <string name="list_item_click">You clicked on the list item.</string>
+    <string name="list_item_click_custom_accessory_view">You clicked on the custom accessory view.</string>
+    <string name="list_item_click_sub_header_custom_accessory_view">You clicked on the sub header custom accessory view.</string>
+
+    <!--PeoplePicker-->
+    <string name="people_picker_select_example">Select</string>
+    <string name="people_picker_select_deselect_example">SelectDeselect</string>
+    <string name="people_picker_none_example">None</string>
+    <string name="people_picker_delete_example">Delete</string>
+    <string name="people_picker_custom_persona_description">This example shows how to create a custom IPersona object.</string>
+    <string name="people_picker_dialog_title_removed">You removed a persona:</string>
+    <string name="people_picker_dialog_title_added">You added a persona:</string>
+    <string name="people_picker_drag_started">Drag started</string>
+    <string name="people_picker_drag_ended">Drag ended</string>
+    <string name="people_picker_picked_personas_listener">Personas Listener</string>
+    <string name="people_picker_suggestions_listener">Suggestions Listener</string>
+    <string name="people_picker_persona_chip_click">You clicked on %s</string>
+
+    <plurals name="people_picker_accessibility_text_view_example">
+        <item quantity="one">%1$s recipient</item>
+        <item quantity="other">%1$s recipients</item>
+    </plurals>
+
+    <!--Persona-->
+    <string name="persona_email_allan_munger">amunger@microsoft.com</string>
+    <string name="persona_email_amanda_brady">abrady@microsoft.com</string>
+    <string name="persona_email_carlos_slattery">cslattery@microsoft.com</string>
+    <string name="persona_email_carole_poland">cpoland@microsoft.com</string>
+    <string name="persona_email_cecil_folk">cfolk@microsoft.com</string>
+    <string name="persona_email_celeste_burton">cburton@microsoft.com</string>
+    <string name="persona_email_charlotte_waltson">cwaltson@microsoft.com</string>
+    <string name="persona_email_colin_ballinger">cballinger@microsoft.com</string>
+    <string name="persona_email_daisy_phillips">dphillips@microsoft.com</string>
+    <string name="persona_email_elliot_woodward">ewoodward@microsoft.com</string>
+    <string name="persona_email_elvia_atkins">eatkins@microsoft.com</string>
+    <string name="persona_email_erik_nason">enason@microsoft.com</string>
+    <string name="persona_email_henry_brill">hbrill@microsoft.com</string>
+    <string name="persona_email_isaac_fielder">ifielder@microsoft.com</string>
+    <string name="persona_email_johnie_mcconnell">jmcconnell@microsoft.com</string>
+    <string name="persona_email_kat_larsson">klarsson@microsoft.com</string>
+    <string name="persona_email_katri_ahokas">kahokas@microsoft.com</string>
+    <string name="persona_email_kevin_sturgis">ksturgis@microsoft.com</string>
+    <string name="persona_email_kristen_patterson">kpatterson@microsoft.com</string>
+    <string name="persona_email_lydia_bauer">lbauer@microsoft.com</string>
+    <string name="persona_email_mauricio_august">maugust@microsoft.com</string>
+    <string name="persona_email_miguel_garcia">mgarcia@microsoft.com</string>
+    <string name="persona_email_mona_kane">mkane@microsoft.com</string>
+    <string name="persona_email_robin_counts">rcounts@microsoft.com</string>
+    <string name="persona_email_tim_deboer">tdeboer@microsoft.com</string>
+    <string name="persona_email_wanda_howard">whoward@microsoft.com</string>
+    <string name="persona_footer">Available</string>
+    <string name="persona_name_allan_munger">Allan Munger</string>
+    <string name="persona_name_amanda_brady">Amanda Brady</string>
+    <string name="persona_name_ashley_mccarthy">Ashley McCarthy</string>
+    <string name="persona_name_carlos_slattery">Carlos Slattery</string>
+    <string name="persona_name_carole_poland">Carole Poland</string>
+    <string name="persona_name_cecil_folk">Cecil Folk</string>
+    <string name="persona_name_celeste_burton">Celeste Burton</string>
+    <string name="persona_name_charlotte_waltson">Charlotte Waltson</string>
+    <string name="persona_name_colin_ballinger">Colin Ballinger</string>
+    <string name="persona_name_daisy_phillips">Daisy Phillips</string>
+    <string name="persona_name_elliot_woodward">Elliot Woodward</string>
+    <string name="persona_name_elvia_atkins">Elvia Atkins</string>
+    <string name="persona_name_erik_nason">Erik Nason</string>
+    <string name="persona_name_henry_brill">Henry Brill</string>
+    <string name="persona_name_isaac_fielder">Isaac Fielder</string>
+    <string name="persona_name_johnie_mcconnell">Johnie McConnell</string>
+    <string name="persona_name_kat_larsson">Kat Larsson</string>
+    <string name="persona_name_katri_ahokas">Katri Ahokas</string>
+    <string name="persona_name_kevin_sturgis">Kevin Sturgis</string>
+    <string name="persona_name_kristen_patterson">Kristen Patterson</string>
+    <string name="persona_name_lydia_bauer">Lydia Bauer</string>
+    <string name="persona_name_mauricio_august">Mauricio August</string>
+    <string name="persona_name_miguel_garcia">Miguel Garcia</string>
+    <string name="persona_name_mona_kane">Mona Kane</string>
+    <string name="persona_name_robin_counts">Robin Counts</string>
+    <string name="persona_name_robert_tolbert">Robert Tolbert</string>
+    <string name="persona_name_tim_deboer">Tim Deboer</string>
+    <string name="persona_name_wanda_howard">Wanda Howard</string>
+    <string name="persona_subtitle_designer">Designer</string>
+    <string name="persona_subtitle_engineer">Engineer</string>
+    <string name="persona_subtitle_manager">Manager</string>
+    <string name="persona_subtitle_researcher">Researcher</string>
+    <string name="persona_truncation">\ (long text example to test truncation)</string>
+    <string name="persona_view_description_xxlarge">XXLarge avatar with three lines of text</string>
+    <string name="persona_view_description_large">Large avatar with two lines of text</string>
+    <string name="persona_view_description_small">Small avatar with one line of text</string>
+
+    <!--Persona Chip-->
+    <string name="persona_chip_example_disabled">Disabled Persona Chip</string>
+    <string name="persona_chip_example_error">Error Persona Chip</string>
+    <string name="persona_chip_example_no_icon">Persona Chip with no close icon</string>
+    <string name="persona_chip_example_basic">Basic Persona Chip</string>
+    <string name="persona_chip_example_click">You clicked on a selected Persona Chip.</string>
+
+    <!--Progress-->
+    <string name="circular_progress">Circular Progress</string>
+    <string name="circular_progress_xsmall">XSmall</string>
+    <string name="circular_progress_xsmall_size">20dp</string>
+    <string name="circular_progress_small">Small</string>
+    <string name="circular_progress_small_size">24dp</string>
+    <string name="circular_progress_medium">Medium</string>
+    <string name="circular_progress_medium_size">36dp</string>
+    <string name="circular_progress_large">Large</string>
+    <string name="circular_progress_large_size">44dp</string>
+
+    <!--Shared-->
+    <string name="long_placeholder">Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+        sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+        Ut enim ad minim veniam.</string>
+
+    <!--Snackbar-->
+    <string name="snackbar_action">Action</string>
+    <string name="snackbar_action_long">Long Text Action</string>
+    <string name="snackbar_single_line">Single line snackbar</string>
+    <string name="snackbar_multiline">This is a multiline snackbar. Max lines are set to two, the rest of the text will truncate.
+        Lorem ipsum dolor sit amet consectetur adipiscing elit. </string>
+    <string name="snackbar_announcement">This is an announcement snackbar. It’s used for communicating new features.</string>
+    <string name="snackbar_description_single_line">Short duration</string>
+    <string name="snackbar_description_single_line_custom_view">Long duration with circular progress as small custom view</string>
+    <string name="snackbar_description_single_line_action">Short duration with action</string>
+    <string name="snackbar_description_single_line_action_custom_view">Short duration with action and medium custom view</string>
+    <string name="snackbar_description_multiline">Long duration</string>
+    <string name="snackbar_description_multiline_custom_view">Long duration with small custom view</string>
+    <string name="snackbar_description_multiline_action">Indefinite duration with action and text updates</string>
+    <string name="snackbar_description_multiline_action_custom_view">Short duration with action and medium custom view</string>
+    <string name="snackbar_description_multiline_action_long">Short duration with long action text</string>
+    <string name="snackbar_description_announcement">Short duration</string>
+    <string name="snackbar_description_updated">This text has been updated.</string>
+    <string name="snackbar_button_show">Show Snackbar</string>
+    <string name="snackbar_headline_single_line">Single line</string>
+    <string name="snackbar_headline_multiline">Multiline</string>
+    <string name="snackbar_headline_announcement_style">Announcement style</string>
+
+    <!--TemplateView-->
+    <string name="cell_sample_title">Title</string>
+    <string name="cell_sample_description">Description</string>
+    <string name="calculate_cells">Load/calculate 100 cells</string>
+    <string name="calculate_layouts">Load/calculate 100 layouts</string>
+    <string name="template_list">Template List</string>
+    <string name="regular_list">Regular List</string>
+    <string name="cell_example_title">Title: Cell</string>
+    <string name="cell_example_description">Description: Tap to change orientation</string>
+
+    <!--Tooltip-->
+    <string name="tooltip_button">Tap for Tooltip</string>
+    <string name="tooltip_center_button">Tap for Dismiss Inside Tooltip</string>
+    <string name="tooltip_top_start_message">Top Start Tooltip</string>
+    <string name="tooltip_top_end_message">Top End Tooltip with 10dp offsetX</string>
+    <string name="tooltip_bottom_start_message">Bottom Start Tooltip</string>
+    <string name="tooltip_bottom_end_message">Bottom End Tooltip with 10dp offsetY</string>
+    <string name="tooltip_center_message">Dismiss inside Tooltip</string>
+    <string name="tooltip_dismiss_message">Tooltip dismissed</string>
+
+    <!--Typography-->
+    <string name="headline">Headline is Light 28sp</string>
+    <string name="title_1">Title 1 is Medium 20sp</string>
+    <string name="title_2">Title 2 is Regular 20sp</string>
+    <string name="heading">Heading is Regular 18sp</string>
+    <string name="subheading">Subheading is Regular 16sp</string>
+    <string name="body_1">Body 1 is Regular 14sp</string>
+    <string name="body_2">Body 2 is Medium 14sp</string>
+    <string name="caption">Caption is Regular 12sp</string>
+
+</resources>

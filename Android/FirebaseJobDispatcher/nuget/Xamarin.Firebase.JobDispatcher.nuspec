@@ -4,15 +4,19 @@
     <id>Xamarin.Firebase.JobDispatcher</id>
     <title>Firebase Job Dispatcher for Xamarin.Android</title>
     <version>$version$</version>
-    <authors>Xamarin Inc.</authors>
-    <owners>Xamarin Inc.</owners>
-    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <authors>Microsoft</authors>
+    <owners>Microsoft</owners>
+    <requireLicenseAcceptance>true</requireLicenseAcceptance>
     <description>A library for scheduling background jobs in an Android app using a JobScheduler like API.</description>
-    <copyright>Copyright (c) 2017 Xamarin Inc</copyright>
-    <projectUrl>https://github.com/xamarin/XamarinComponents/tree/master/Android/FirebaseJobDispatcher</projectUrl>
-    <licenseUrl>https://github.com/xamarin/XamarinComponents/blob/master/Android/FirebaseJobDispatcher/License.md</licenseUrl>
+    <copyright>© Microsoft Corporation. All rights reserved.</copyright>
+    <projectUrl>https://go.microsoft.com/fwlink/?linkid=865024</projectUrl>
+    <licenseUrl>https://go.microsoft.com/fwlink/?linkid=864955</licenseUrl>
     <dependencies>
-        <dependency id="Xamarin.Android.Support.v4" version="25.3.1" />
+        <dependency id="Xamarin.Android.Support.Compat" version="27.0.2" />
+        <dependency id="Xamarin.Android.Support.Core.UI" version="27.0.2" />
+        <dependency id="Xamarin.Android.Support.Core.Utils" version="27.0.2" />
+        <dependency id="Xamarin.Android.Support.Fragment" version="27.0.2" />
+        <dependency id="Xamarin.Android.Support.Media.Compat" version="27.0.2" />
     </dependencies>
   </metadata>
   <files>  

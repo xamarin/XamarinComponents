@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<package>
+  <metadata>
+    <id>Xamarin.iOS.MaterialComponents</id>
+    <title>Xamarin Material Components for iOS</title>
+    <version>72.2.0.1</version>
+    <authors>Microsoft</authors>
+    <owners>Microsoft</owners>
+    <requireLicenseAcceptance>true</requireLicenseAcceptance>
+    <description>Material Components for iOS (MDC-iOS) helps developers execute Material Design.</description>
+    <copyright>© Microsoft Corporation. All rights reserved.</copyright>
+    <projectUrl>https://go.microsoft.com/fwlink/?linkid=2060919</projectUrl>
+    <licenseUrl>https://go.microsoft.com/fwlink/?linkid=2060920</licenseUrl>
+  </metadata>
+  <files>
+    <file src="output/MaterialComponents.dll" target="lib/Xamarin.iOS" />
+    <file src="External-Dependency-Info.txt" target="THIRD-PARTY-NOTICES.txt" />
+  </files>
+</package>

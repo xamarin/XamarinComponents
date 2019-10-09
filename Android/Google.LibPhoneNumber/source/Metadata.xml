@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<metadata>
+	<attr path="/api/package[@name='com.google.i18n.phonenumbers']" name="managedName">Google.I18n.PhoneNumbers</attr>
+    <attr path="/api/package[@name='com.google.i18n.phonenumbers.data']" name="managedName">Google.I18n.PhoneNumbers.Data</attr>
+    <attr path="/api/package[@name='com.google.i18n.phonenumbers.internal']" name="managedName">Google.I18n.PhoneNumbers.Interal</attr>
+</metadata>

@@ -1,0 +1,40 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+    <ItemGroup>
+        <XamarinBuildRestoreResources Include="_XbdRestoreItems_crashlyticscore" />
+    </ItemGroup>
+
+    <Target Name="_XbdRestoreItems_crashlyticscore">
+        <PropertyGroup>
+            <!-- Aar Version to download -->
+            <_XbdAarVersion_crashlyticscore>2.6.3</_XbdAarVersion_crashlyticscore>
+
+            <!-- Url to download from -->
+            <_XbdAarUrl_crashlyticscore>https://maven.google.com/com/crashlytics/sdk/android/crashlytics-core/$(_XbdAarVersion_crashlyticscore)/crashlytics-core-$(_XbdAarVersion_crashlyticscore).aar</_XbdAarUrl_crashlyticscore>
+
+            <!-- Unique key for cached download -->
+            <_XbdKey_crashlyticscore>crashlyticscore-$(_XbdAarVersion_crashlyticscore)</_XbdKey_crashlyticscore>
+
+            <!-- Full path to .aar file from the cache -->
+            <_XbdAarFileFullPath_crashlyticscore>$(XamarinBuildDownloadDir)$(_XbdKey_crashlyticscore)\crashlytics-core.aar</_XbdAarFileFullPath_crashlyticscore>
+
+            <!-- Assembly name to embed .aar in -->
+            <_XbdAssemblyName_crashlyticscore>Xamarin.Android.Crashlytics.Core</_XbdAssemblyName_crashlyticscore>
+        </PropertyGroup>
+
+        <ItemGroup>
+            <XamarinBuildDownload Include="$(_XbdKey_crashlyticscore)">
+                <Url>$(_XbdAarUrl_crashlyticscore)</Url>
+                <ToFile>crashlytics-core.aar</ToFile>
+                <Kind>Uncompressed</Kind>
+            </XamarinBuildDownload>
+        </ItemGroup>
+
+        <ItemGroup>
+            <XamarinBuildDownloadRestoreAssemblyAar Include="$(_XbdAarFileFullPath_crashlyticscore)">
+                <LogicalName>__AndroidLibraryProjects__.zip</LogicalName>
+                <AssemblyName>$(_XbdAssemblyName_crashlyticscore)</AssemblyName>
+            </XamarinBuildDownloadRestoreAssemblyAar>
+        </ItemGroup>
+    </Target>
+</Project>

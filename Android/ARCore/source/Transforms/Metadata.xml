@@ -1,16 +1,19 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <metadata>
 	<attr path="/api/package[@name='com.google.ar.core']" name="managedName">Google.AR.Core</attr>
+	<attr path="/api/package[@name='com.google.ar.core.annotations']" name="managedName">Google.AR.Core.Annotations</attr>
 	<attr path="/api/package[@name='com.google.ar.core.exceptions']" name="managedName">Google.AR.Core.Exceptions</attr>
-	<attr path="/api/package[@name='com.google.ar.core.lighting_estimation']" name="managedName">Google.AR.Core.LightingEstimations</attr>
-	<attr path="/api/package[@name='com.google.ar.core.math']" name="managedName">Google.AR.Core.Math</attr>
-
-	<attr path="/api/package[@name='com.google.atap.tango']" name="managedName">Google.Atap.Tango</attr>
-	<attr path="/api/package[@name='com.google.atap.tangohelperlib']" name="managedName">Google.Atap.TangoHelperLib</attr>
-	<attr path="/api/package[@name='com.google.atap.tangoservice']" name="managedName">Google.Atap.TangoService</attr>
-	<attr path="/api/package[@name='com.google.atap.tangoservice.experimental']" name="managedName">Google.Atap.TangoService.Experimental</attr>
-	<attr path="/api/package[@name='com.google.atap.tangoservice.fois']" name="managedName">Google.Atap.TangoService.Fois</attr>
-
-	<attr path="/api/package[@name='com.google.tango.javacommon']" name="managedName">Google.Atap.Tango.JavaCommon</attr>
-	<attr path="/api/package[@name='com.google.tango.loader']" name="managedName">Google.Atap.Tango.Loader</attr>
+    
+	<attr path="/api/package[@name='com.google.vr.dynamite.client']" name="managedName">Google.VR.Dynamite.Client</attr>
+      
+    <attr path="/api/package[@name='com.google.ar.core']/class[@name='ArImage']" name="extends">Android.Media.Image</attr> 
+     <attr path="/api/package[@name='com.google.vr.dynamite.client']/class[@name='ObjectWrapper']" name="extends">Java.Lang.Object</attr> 
+    
+	<attr path="/api/package[@name='com.google.ar.core']/class[@name='TrackableBase']" name="visibility">public</attr>
+    
+    <attr path="/api/package[@name='com.google.ar.core']/class[@name='AugmentedFace']/method[@name='getAnchors' and count(parameter)=0]" name="return">System.Collections.Generic.ICollection&lt;Google.AR.Core.Anchor&gt;</attr>
+	
+    <remove-node path="/api/package[@name='com.google.ar.core']/class[@name='Point']/method[@name='getAnchors' and count(parameter)=0]" />
+	<remove-node path="/api/package[@name='com.google.ar.core']/class[@name='Plane']/method[@name='getAnchors' and count(parameter)=0]" />
+	<remove-node path="/api/package[@name='com.google.ar.core']/class[@name='AugmentedImage']/method[@name='getAnchors' and count(parameter)=0]" />
 </metadata>

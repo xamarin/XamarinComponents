@@ -7,7 +7,7 @@ var IOS_PODS = new List<string> {
 	"platform :ios, '6.0'",
 	"install! 'cocoapods', :integrate_targets => false",
 	"target 'Xamarin' do",
-	"pod 'DZNEmptyDataSet', '1.7.3'",
+	"pod 'DZNEmptyDataSet', '1.8.1'",
 	"end",
 };
 
@@ -31,6 +31,10 @@ var buildSpec = new BuildSpec () {
 
 	Samples = new ISolutionBuilder [] {
 		new IOSSolutionBuilder { SolutionPath = "./samples/DZNEmptyDataSetSample.sln", Configuration = "Release", Platform="iPhone", BuildsOn = BuildPlatforms.Mac },
+	},
+
+	NuGets = new [] {
+		new NuGetInfo { NuSpec = "./nuget/Xamarin.DZNEmptyDataSet.nuspec", RequireLicenseAcceptance = true },
 	},
 
 	Components = new [] {

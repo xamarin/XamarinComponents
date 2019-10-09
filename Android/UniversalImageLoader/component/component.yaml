@@ -1,12 +1,12 @@
-version: 1.9.5.0
+version: "1.9.5.1"
 name: Universal Image Loader
 id: UniversalImageLoader
 publisher: Xamarin Inc
 publisher-url: http://xamarin.com/
-src-url: https://github.com/xamarin/XamarinComponents/tree/master/Android/UniversalImageLoader
+src-url: https://go.microsoft.com/fwlink/?linkid=874020
 summary: A powerful, flexible and highly customizable instrument for image loading, caching and displaying.
 
-license: License.md
+license: ../LICENSE.md
 details: Details.md
 getting-started: GettingStarted.md
 
@@ -18,8 +18,21 @@ no_build: true
 libraries:
   android: ../output/UniversalImageLoader.dll
 
+is_shell: true
+local-nuget-repo: ../output/
+packages:
+  android: Xamarin.Android.UniversalImageLoader, Version=1.9.5.1
+
 samples:
   - name: "Android Sample"
     path: ../samples/UniversalImageLoaderSample.sln
-    removeFiles:
-      - UniversalImageLoaderSample/Makefile
+    removeProjects:
+      - Xamarin.Android.UniversalImageLoader
+    installNuGets:
+      - project: UniversalImageLoaderSample
+        packages:
+          - Xamarin.Android.UniversalImageLoader
+
+additional-files:
+  - source: "../External-Dependency-Info.txt"
+    destination: "THIRD-PARTY-NOTICES.txt"

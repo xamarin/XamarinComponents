@@ -1,0 +1,41 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project Sdk="MSBuild.Sdk.Extras/2.0.54">
+  <PropertyGroup>
+    <TargetFramework>MonoAndroid90</TargetFramework>
+    <IsBindingProject>true</IsBindingProject>
+    <AssemblyName>Xamarin.Android.Support.Constraint.Layout.Solver</AssemblyName>
+    <MonoAndroidResourcePrefix>Resources</MonoAndroidResourcePrefix>
+    <MonoAndroidAssetsPrefix>Assets</MonoAndroidAssetsPrefix>
+    <AndroidUseIntermediateDesignerFile>True</AndroidUseIntermediateDesignerFile>
+    <AndroidResgenFile>Resources\Resource.designer.cs</AndroidResgenFile>
+    <RootNamespace>Android.Support.Constraints</RootNamespace>
+    <AndroidClassParser>class-parse</AndroidClassParser>
+    <AndroidCodegenTarget>XAJavaInterop1</AndroidCodegenTarget>
+    <AssemblyVersion>1.1.0.0</AssemblyVersion>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <PackageId>Xamarin.Android.Support.Constraint.Layout.Solver</PackageId>
+    <Title>Xamarin Android Constraint Layout Solver</Title>
+    <Summary>Android Constraint Layout Solver C# bindings for Xamarin</Summary>
+    <Description>Android Constraint Layout Solver C# bindings for Xamarin</Description>
+    <Authors>Microsoft</Authors>
+    <Owners>Microsoft</Owners>
+    <Copyright>© Microsoft Corporation. All rights reserved.</Copyright>
+    <PackageProjectUrl>https://go.microsoft.com/fwlink/?linkid=2105832</PackageProjectUrl>
+    <PackageLicenseUrl>https://go.microsoft.com/fwlink/?linkid=2106031</PackageLicenseUrl>
+    <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
+    <PackageVersion>2.0.0-beta2</PackageVersion>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <EmbeddedJar Include="..\..\externals\constraint-layout-solver.jar">
+      <Link>Jars\constraint-layout-solver.jar</Link>
+    </EmbeddedJar>
+
+     <None Include="..\..\External-Dependency-Info.txt" Pack="True" PackagePath="THIRD-PARTY-NOTICES.txt" />
+
+     <TransformFile Include="Transforms\*.xml" />
+  </ItemGroup>
+
+</Project>

@@ -1,54 +1,127 @@
-#tool nuget:?package=XamarinComponent&version=1.1.0.32
-#addin nuget:?package=Cake.XCode&version=1.0.8
-#addin nuget:?package=Cake.Xamarin.Build&version=1.0.16
-#addin nuget:?package=Cake.Xamarin&version=1.3.0.3
-#addin nuget:?package=Cake.FileHelpers&version=1.0.3.2
+var TARGET = Argument ("t", Argument ("target", "ci"));
 
-// #load "../../../common.cake"
+var IOS_VERSION = "2.0.4";
+var IOS_NUGET_VERSION = IOS_VERSION;
+var IOS_URL = $"https://github.com/Azure/azure-notificationhubs-ios/releases/download/{IOS_VERSION}/WindowsAzureMessaging.framework.zip";
 
-var TARGET = Argument ("t", Argument ("target", "Default"));
-
-var IOS_VERSION = "423aaba626e3eccdc4770bee8861a8ab8518563b";
-var IOS_NUGET_VERSION = "1.2.5.2";
-var IOS_URL = string.Format ("https://github.com/Azure/azure-notificationhubs/raw/{0}/iOS/bin/WindowsAzureMessaging.framework.zip", IOS_VERSION);
-
-var ANDROID_VERSION = "0.4";
-var ANDROID_NUGET_VERSION = "0.4.0";
+var ANDROID_VERSION = "0.6";
+var ANDROID_NUGET_VERSION = "0.6.0";
 var ANDROID_URL = string.Format ("https://dl.bintray.com/microsoftazuremobile/SDK/com/microsoft/azure/notification-hubs-android-sdk/{0}/notification-hubs-android-sdk-{0}.aar", ANDROID_VERSION);
 
-var buildSpec = new BuildSpec {
+Task("libs-ios")
+	.WithCriteria(IsRunningOnUnix())
+	.IsDependentOn("externals-ios")
+	.Does (() =>
+{
+	MSBuild("./iOS/source/Xamarin.Azure.NotificationHubs.iOS.sln", c => {
+		c.Configuration = "Release";
+		c.Restore = true;
+		c.Targets.Clear();
+		c.Targets.Add("Rebuild");
+		c.Properties.Add("DesignTimeBuild", new [] { "false" });
+		c.BinaryLogger = new MSBuildBinaryLogSettings {
+			Enabled = true,
+			FileName = "./output/libs-ios.binlog"
+		};
+	});
+});
 
-	Libs = new [] {
-		new DefaultSolutionBuilder {
-			SolutionPath = "./iOS/source/Xamarin.Azure.NotificationHubs.iOS.sln",
-			OutputFiles = new [] { 
-				new OutputFileCopy { FromFile = "./iOS/source/bin/unified/Release/Xamarin.Azure.NotificationHubs.iOS.dll" },
-			}
-		},
-		new DefaultSolutionBuilder {
-			SolutionPath = "./Android/source/Xamarin.Azure.NotificationHubs.Android.sln",
-			OutputFiles = new [] { 
-				new OutputFileCopy { FromFile = "./Android/source/bin/Release/Xamarin.Azure.NotificationHubs.Android.dll" },
-			}
-		},
-	},
+Task("libs-android")
+	.IsDependentOn("externals-android")
+	.Does (() =>
+{
+	MSBuild("./Android/source/Xamarin.Azure.NotificationHubs.Android.sln", c => {
+		c.Configuration = "Release";
+		c.Restore = true;
+		c.Targets.Clear();
+		c.Targets.Add("Rebuild");
+		c.Properties.Add("DesignTimeBuild", new [] { "false" });
+		c.BinaryLogger = new MSBuildBinaryLogSettings {
+			Enabled = true,
+			FileName = "./output/libs-android.binlog"
+		};
+	});
+});
 
-	Samples = new [] {
-		new IOSSolutionBuilder { SolutionPath = "./iOS/samples/NotificationHubsSampleiOS.sln",  Configuration = "Release", Platform="iPhone" },
-		new DefaultSolutionBuilder { SolutionPath = "./Android/samples/NotificationHubsSampleAndroid.sln" },
-	},
+Task("nuget-ios")
+	.WithCriteria(IsRunningOnUnix())
+	.IsDependentOn("libs-ios")
+	.Does (() =>
+{
+	MSBuild ("./iOS/source/Xamarin.Azure.NotificationHubs.iOS.sln", c => {
+		c.Configuration = "Release";
+		c.Targets.Clear();
+		c.Targets.Add("Pack");
+		c.Properties.Add("PackageOutputPath", new [] { MakeAbsolute(new FilePath("./output")).FullPath });
+		c.Properties.Add("PackageRequireLicenseAcceptance", new [] { "true" });
+		c.Properties.Add("DesignTimeBuild", new [] { "false" });
+		c.BinaryLogger = new MSBuildBinaryLogSettings {
+			Enabled = true,
+			FileName = "./output/nuget-ios.binlog"
+		};
+	});
+});
 
-	NuGets = new [] {
-		new NuGetInfo { NuSpec = "./nuget/Xamarin.Azure.NotificationHubs.iOS.nuspec", Version = IOS_NUGET_VERSION },
-		new NuGetInfo { NuSpec = "./nuget/Xamarin.Azure.NotificationHubs.Android.nuspec", Version = ANDROID_NUGET_VERSION },
-	},
 
-	Components = new [] {
-		new Component { ManifestDirectory = "./component" },
-	}
-};
+Task("nuget-android")
+	.IsDependentOn("libs-android")
+	.Does (() =>
+{
+	MSBuild ("./Android/source/Xamarin.Azure.NotificationHubs.Android.sln", c => {
+		c.Configuration = "Release";
+		c.Targets.Clear();
+		c.Targets.Add("Pack");
+		c.Properties.Add("PackageOutputPath", new [] { MakeAbsolute(new FilePath("./output")).FullPath });
+		c.Properties.Add("PackageRequireLicenseAcceptance", new [] { "true" });
+		c.Properties.Add("DesignTimeBuild", new [] { "false" });
+		c.BinaryLogger = new MSBuildBinaryLogSettings {
+			Enabled = true,
+			FileName = "./output/nuget-android.binlog"
+		};
+	});
+});
+
+
+Task("samples-ios")
+	.WithCriteria(IsRunningOnUnix())
+	.IsDependentOn("nuget-ios")
+	.Does (() =>
+{
+	MSBuild("./iOS/samples/NotificationHubsSampleiOS.sln", c => {
+		c.Configuration = "Release";
+		c.Restore = true;
+		c.Targets.Clear();
+		c.Targets.Add("Build");
+		c.BinaryLogger = new MSBuildBinaryLogSettings {
+			Enabled = true,
+			FileName = "./output/samples-ios.binlog"
+		};
+	});
+});
+
+
+Task("samples-android")
+	.IsDependentOn("nuget-android")
+	.Does (() =>
+{
+	MSBuild("./Android/samples/NotificationHubsSampleAndroid.sln", c => {
+		c.Configuration = "Release";
+		c.Restore = true;
+		c.Targets.Clear();
+		c.Targets.Add("Build");
+		c.BinaryLogger = new MSBuildBinaryLogSettings {
+			Enabled = true,
+			FileName = "./output/samples-android.binlog"
+		};
+	});
+});
+
+Task("ci")
+	.IsDependentOn("samples");
+
 
 Task ("externals-ios")
+	.WithCriteria(IsRunningOnUnix())
 	.WithCriteria (!FileExists ("./iOS/externals/sdk.zip"))
 	.Does (() => 
 {
@@ -58,6 +131,7 @@ Task ("externals-ios")
 
 	Unzip ("./iOS/externals/sdk.zip", "./iOS/externals");
 });
+
 Task ("externals-android")
 	.WithCriteria (!FileExists ("./externals/Android/notificationhubs.aar"))
 	.Does (() => 
@@ -66,9 +140,24 @@ Task ("externals-android")
 
 	DownloadFile (ANDROID_URL, "./Android/externals/notificationhubs.aar");
 });
-Task ("externals").IsDependentOn ("externals-ios").IsDependentOn ("externals-android");
+Task ("externals")
+	.IsDependentOn ("externals-ios")
+	.IsDependentOn ("externals-android");
 
-Task ("clean").IsDependentOn ("clean-base").Does (() => 
+Task ("samples")
+	.IsDependentOn ("samples-ios")
+	.IsDependentOn ("samples-android");
+
+Task ("nuget")
+	.IsDependentOn ("nuget-ios")
+	.IsDependentOn ("nuget-android");
+
+Task ("libs")
+	.IsDependentOn ("libs-ios")
+	.IsDependentOn ("libs-android");
+
+Task ("clean")
+	.Does (() => 
 {
 	if (DirectoryExists ("./Android/externals"))
 		DeleteDirectory ("./Android/externals", true);
@@ -76,8 +165,5 @@ Task ("clean").IsDependentOn ("clean-base").Does (() =>
 	if (DirectoryExists ("./iOS/externals"))
 		DeleteDirectory ("./iOS/externals", true);
 });
-
-
-SetupXamarinBuildTasks (buildSpec, Tasks, Task);
 
 RunTarget (TARGET);

@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder.AppleTV.Storyboard" version="3.0" toolsVersion="6211" systemVersion="14A298i" targetRuntime="AppleTV" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="NO" initialViewController="179">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6204"/>
+    </dependencies>
+    <scenes>
+        <scene sceneID="178">
+            <objects>
+                <navigationController id="179" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="181">
+                        <rect key="frame" x="0.0" y="0.0" width="1920" height="145"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue id="231" destination="188" kind="relationship" relationship="rootViewController"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="182" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="106" y="-168"/>
+        </scene>
+        <scene sceneID="187">
+            <objects>
+                <viewController id="188" sceneMemberID="viewController" customClass="ViewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="185"/>
+                        <viewControllerLayoutGuide type="bottom" id="186"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="189">
+                        <rect key="frame" x="0.0" y="0.0" width="1920" height="1080"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="233" translatesAutoresizingMaskIntoConstraints="NO">
+                                <rect key="frame" x="110" y="255" width="1700" height="86"/>
+                                <inset key="contentEdgeInsets" minX="40" minY="20" maxX="40" maxY="20"/>
+                                <state key="normal" title="Zip / Compress"/>
+                                <connections>
+                                    <action selector="OnZip:" destination="188" id="276" eventType="primaryActionTriggered"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="237" translatesAutoresizingMaskIntoConstraints="NO">
+                                <rect key="frame" x="110" y="396" width="1700" height="86"/>
+                                <inset key="contentEdgeInsets" minX="40" minY="20" maxX="40" maxY="20"/>
+                                <state key="normal" title="Unzip / Decompress"/>
+                                <connections>
+                                    <action selector="OnUnzip:" destination="188" id="277" eventType="primaryActionTriggered"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Select a button..." textAlignment="center" lineBreakMode="wordWrap" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="248" translatesAutoresizingMaskIntoConstraints="NO" numberOfLines="0">
+                                <rect key="frame" x="110" y="537" width="1700" height="66"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="55"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <constraints>
+                            <constraint id="234" firstItem="233" firstAttribute="top" secondItem="185" secondAttribute="bottom" constant="110"/>
+                            <constraint id="235" firstItem="233" firstAttribute="leading" secondItem="189" secondAttribute="leadingMargin"/>
+                            <constraint id="236" firstItem="233" firstAttribute="trailing" secondItem="189" secondAttribute="trailingMargin"/>
+                            <constraint id="238" firstItem="237" firstAttribute="leading" secondItem="189" secondAttribute="leadingMargin"/>
+                            <constraint id="239" firstItem="237" firstAttribute="trailing" secondItem="189" secondAttribute="trailingMargin"/>
+                            <constraint id="240" firstItem="237" firstAttribute="top" secondItem="233" secondAttribute="bottom" constant="55"/>
+                            <constraint id="250" firstItem="189" firstAttribute="trailingMargin" secondItem="248" secondAttribute="trailing"/>
+                            <constraint id="252" firstItem="248" firstAttribute="leading" secondItem="189" secondAttribute="leadingMargin"/>
+                            <constraint id="253" firstItem="248" firstAttribute="top" secondItem="237" secondAttribute="bottom" constant="55"/>
+                        </constraints>
+                    </view>
+                    <navigationItem title="ZipArchive" id="230" key="navigationItem"/>
+                    <connections>
+                        <outlet property="statusLabel" destination="248" id="name-outlet-248"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="190" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2257" y="-167"/>
+        </scene>
+    </scenes>
+</document>

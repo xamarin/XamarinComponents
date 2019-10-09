@@ -31,7 +31,7 @@ namespace SidePanelsCodeSample
             View.AddSubview(background);
 
             label = new UILabel();
-            label.Frame = new CGRect(20.0f, 20.0f, 200.0f, 40.0f);
+            label.Frame = new CGRect(20.0f, 90.0f, 200.0f, 40.0f);
             label.Font = UIFont.BoldSystemFontOfSize(24);
             label.BackgroundColor = UIColor.Clear;
             label.Text = "Left Panel";
@@ -41,7 +41,7 @@ namespace SidePanelsCodeSample
 
 
             hide = new UIButton(UIButtonType.RoundedRect);
-            hide.Frame = new CGRect(20.0f, 70.0f, 200.0f, 40.0f);
+            hide.Frame = new CGRect(20.0f, 140.0f, 200.0f, 40.0f);
             hide.AutoresizingMask = UIViewAutoresizing.FlexibleRightMargin | UIViewAutoresizing.FlexibleBottomMargin;
             hide.SetTitle("Hide Center", UIControlState.Normal);
             hide.TouchUpInside += (sender, e) =>
@@ -67,7 +67,7 @@ namespace SidePanelsCodeSample
 
 
             removeRightPanel = new UIButton(UIButtonType.RoundedRect);
-            removeRightPanel.Frame = new CGRect(20.0f, 120.0f, 200.0f, 40.0f);
+            removeRightPanel.Frame = new CGRect(20.0f, 190.0f, 200.0f, 40.0f);
             removeRightPanel.AutoresizingMask = UIViewAutoresizing.FlexibleRightMargin | UIViewAutoresizing.FlexibleBottomMargin;
             removeRightPanel.SetTitle("Remove Right Panel", UIControlState.Normal);
             removeRightPanel.TouchUpInside += (sender, e) =>
@@ -93,7 +93,7 @@ namespace SidePanelsCodeSample
 
 
             changeCenterPanel = new UIButton(UIButtonType.RoundedRect);
-            changeCenterPanel.Frame = new CGRect(20.0f, 170.0f, 200.0f, 40.0f);
+            changeCenterPanel.Frame = new CGRect(20.0f, 240.0f, 200.0f, 40.0f);
             changeCenterPanel.AutoresizingMask = UIViewAutoresizing.FlexibleRightMargin;
             changeCenterPanel.SetTitle("Change Center Panel", UIControlState.Normal);
             changeCenterPanel.TouchUpInside += (sender, e) =>
@@ -107,7 +107,7 @@ namespace SidePanelsCodeSample
         {
             base.ViewWillAppear(animated);
 
-            label.Center = new CGPoint((int)(this.GetSidePanelController().LeftPanelVisibleWidth / 2.0f), 25.0f);
+            label.Center = new CGPoint((int)(this.GetSidePanelController().LeftPanelVisibleWidth / 2.0f), 65.0f);
         }
     }
 }

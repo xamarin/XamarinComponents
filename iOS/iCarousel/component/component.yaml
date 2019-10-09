@@ -1,19 +1,11 @@
-version: 1.8.2.1
+version: "1.8.3"
 name: iCarousel
 id: icarousel
 publisher: Xamarin Inc
 publisher-url: https://xamarin.com
 src-url: https://github.com/xamarin/XamarinComponents/tree/master/iOS/iCarousel
 summary: iCarousel is designed to simplify the implementation of various types of carousel (paged, scrolling views) on iPhone and iPad.
-no_build: true
-libraries:
-  ios-unified: ../output/unified/iCarousel.dll
-samples:
-  - name: "iOS Unified Sample"
-    path: ../samples/iCarouselSamples/iCarouselSamples.sln
-    removeFiles:
-      - BasiciOSExample/Makefile
-      - BasiciOSExample/BasiciOSExample-Classic.csproj
+license: ../License.md
 monodoc: docs/
 screenshots:
   - screenshots/screenshot1.png
@@ -21,3 +13,35 @@ screenshots:
 icons:
  - icons/icarousel_128x128.png
  - icons/icarousel_512x512.png
+
+no_build: true
+is_shell: true
+local-nuget-repo: ../output
+libraries:
+  ios-unified: ../output/iCarousel.iOS.dll
+  mac-unified: ../output/iCarousel.macOS.dll
+packages:
+  ios-unified: Xamarin.iCarousel, Version=1.8.3
+  mac-unified: Xamarin.iCarousel, Version=1.8.3
+
+samples:
+  - name: "iOS Sample"
+    path:  ../samples/iCarouselSample.sln
+    removeFiles:
+      - iCarouselSampleMac/
+    installNuGets:
+      - project: iCarouselSample
+        packages:
+          - Xamarin.iCarousel
+  - name: "macOS Sample"
+    path:  ../samples/iCarouselSampleMac.sln
+    removeFiles:
+      - iCarouselSample/
+    installNuGets:
+      - project: iCarouselSampleMac
+        packages:
+          - Xamarin.iCarousel
+
+additional-files:
+  - source: "../External-Dependency-Info.txt"
+    destination: "THIRD-PARTY-NOTICES.txt"

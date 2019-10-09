@@ -1,16 +1,35 @@
-version: 1.7.3.0
+version: 1.8.1
 name: DZNEmptyDataSet
 id: DZNEmptyDataSet
 publisher: Xamarin Inc
 publisher-url: https://xamarin.com
 src-url: https://github.com/xamarin/XamarinComponents/tree/master/iOS/DZNEmptyDataSet
 summary: A drop-in UITableView/UICollectionView superclass category for showing empty datasets whenever the view has no content to display.
+license: ../License.md
+no_build: true
+
 icons:
   - icons/DZNEmptyDataSet_128x128.png
   - icons/DZNEmptyDataSet_512x512.png
+
 libraries:
   ios-unified: ../output/unified/DZNEmptyDataSet.dll
+
 samples:
   - name: "DZNEmptyDataSet Sample"
     path:  ../samples/DZNEmptyDataSetSample.sln
-no_build: true
+    removeProjects:
+        - DZNEmptyDataSet
+    installNuGets:
+      - project: DZNEmptyDataSetSample
+        packages:
+          - Xamarin.DZNEmptyDataSet
+    configuration: "Release|iPhone"   
+is_shell: true 
+packages:
+  ios-unified: Xamarin.DZNEmptyDataSet, Version=1.8.1
+monodoc: ../docs/
+local-nuget-repo: ../output
+additional-files:
+  - source: "../External-Dependency-Info.txt"
+    destination: "THIRD-PARTY-NOTICES.txt"

@@ -1,4 +1,4 @@
-#addin nuget:?package=Cake.FileHelpers
+#addin nuget:?package=Cake.FileHelpers&version=1.0.4
 #addin nuget:?package=Cake.Xamarin&version=1.3.0.15
 #addin nuget:?package=Cake.Android.Adb
 #tool nuget:?package=NUnit.Runners&version=2.6.4
@@ -85,7 +85,7 @@ Task ("Default").Does (() => {
 
 			NuGetRestore (sampleSln, nugetRestoreSettings);
 
-			DotNetBuild (sampleSln, c => c.Configuration = "Release");
+			MSBuild (sampleSln, c => c.Configuration = "Release");
 
 			var androidCsProj = "";
 			var uitestCsProj = "";

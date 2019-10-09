@@ -1,0 +1,33 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Migrations\20180717162612_added copyright.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="2.0.3" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="2.0.3" />
+    <PackageReference Include="Newtonsoft.Json" Version="9.0.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Xamarin.Nuget.Validator\Xamarin.Nuget.Validator.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="Migrations\20180305230341_InitialDbLayout.designer.cs">
+      <DependentUpon>20180305230341_InitialDbLayout.cs</DependentUpon>
+    </Compile>
+    <Compile Update="Migrations\20180307214348_added-publish-date.designer.cs">
+      <DependentUpon>20180307214348_added-publish-date.cs</DependentUpon>
+    </Compile>
+    <Compile Update="Migrations\20180316180518_AddOwnerData.designer.cs">
+      <DependentUpon>20180316180518_AddOwnerData.cs</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
+</Project>

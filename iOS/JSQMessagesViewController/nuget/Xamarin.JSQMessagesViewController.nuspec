@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<package>
+  <metadata>
+    <id>Xamarin.JSQMessagesViewController</id>
+    <title>JSQMessagesViewController for Xamarin.iOS</title>
+    <version>7.3.5.2</version>
+    <authors>Microsoft</authors>
+    <owners>Microsoft</owners>
+    <requireLicenseAcceptance>true</requireLicenseAcceptance>
+    <description>An elegant messages UI library for iOS.</description>
+    <copyright>© Microsoft Corporation. All rights reserved.</copyright>
+    <projectUrl>https://go.microsoft.com/fwlink/?linkid=869726</projectUrl>
+    <licenseUrl>https://go.microsoft.com/fwlink/?linkid=869724</licenseUrl>
+  </metadata>
+  <files>
+    <file src="output/unified/JSQMessagesViewController.dll" target="lib/Xamarin.iOS" />
+    <file src="External-Dependency-Info.txt" target="THIRD-PARTY-NOTICES.txt" />
+  </files>
+</package>

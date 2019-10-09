@@ -1,0 +1,32 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29230.54
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RenderScriptSample", "RenderScriptSample\RenderScriptSample.csproj", "{788FA62E-9C84-4F88-A027-300D6B4C9144}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RenderScriptSample.UITests", "RenderScriptSample.UITests\RenderScriptSample.UITests.csproj", "{0DCF2F24-93DB-431D-AE66-6E67FF559513}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{788FA62E-9C84-4F88-A027-300D6B4C9144}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{788FA62E-9C84-4F88-A027-300D6B4C9144}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{788FA62E-9C84-4F88-A027-300D6B4C9144}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{788FA62E-9C84-4F88-A027-300D6B4C9144}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{788FA62E-9C84-4F88-A027-300D6B4C9144}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0DCF2F24-93DB-431D-AE66-6E67FF559513}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0DCF2F24-93DB-431D-AE66-6E67FF559513}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0DCF2F24-93DB-431D-AE66-6E67FF559513}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0DCF2F24-93DB-431D-AE66-6E67FF559513}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {086B0D24-23F5-47A7-8462-8F14F3E8F50D}
+	EndGlobalSection
+EndGlobal

@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<package>
+  <metadata>
+    <id>Xamarin.FXBlurView</id>
+    <title>Xamarin.FXBlurView</title>
+    <version>1.6.4</version>
+    <authors>Microsoft</authors>
+    <owners>Microsoft</owners>
+    <requireLicenseAcceptance>true</requireLicenseAcceptance>
+    <description>UIView subclass that replicates the iOS 7 realtime background blur effect, but works on iOS 5 and above.</description>
+    <copyright>© Microsoft Corporation. All rights reserved.</copyright>
+    <projectUrl>https://github.com/xamarin/XamarinComponents/tree/master/iOS/FXBlurView</projectUrl>
+    <licenseUrl>https://github.com/xamarin/XamarinComponents/tree/master/iOS/FXBlurView/License.md</licenseUrl>
+  </metadata>
+  <files>
+    <file src="output/unified/FXBlurView.dll" target="lib/Xamarin.iOS" />
+    <file src="External-Dependency-Info.txt" target="THIRD-PARTY-NOTICES.txt" />
+  </files>
+</package>

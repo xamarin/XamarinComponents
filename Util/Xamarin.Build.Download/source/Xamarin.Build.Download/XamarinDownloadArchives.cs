@@ -25,6 +25,8 @@ namespace Xamarin.Build.Download
 
 		public string User7ZipPath { get; set; }
 
+		public bool AllowUnsecureUrls { get; set; }
+
 		DownloadUtils downloadUtils;
 
 		public override bool Execute ()
@@ -33,7 +35,7 @@ namespace Xamarin.Build.Download
 
 			Task.Run (async () => {
 				try {
-					var items = downloadUtils.ParseDownloadItems (Archives);
+					var items = downloadUtils.ParseDownloadItems (Archives, AllowUnsecureUrls);
 
 					foreach (var item in items) {
 						await MakeSureLibraryIsInPlace (item, Token);

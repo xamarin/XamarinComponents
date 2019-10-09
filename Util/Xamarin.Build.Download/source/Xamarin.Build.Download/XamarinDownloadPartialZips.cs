@@ -18,6 +18,8 @@ namespace Xamarin.Build.Download
 
 		public string CacheDirectory { get; set; }
 
+		public bool AllowUnsecureUrls { get; set; }
+
 		HttpClient http;
 
 		public override bool Execute ()
@@ -34,7 +36,7 @@ namespace Xamarin.Build.Download
 					var cacheDir = DownloadUtils.GetCacheDir (CacheDirectory);
 					var downloadUtils = new DownloadUtils (this, cacheDir);
 
-					parts = downloadUtils.ParsePartialZipDownloadItems (Parts);
+					parts = downloadUtils.ParsePartialZipDownloadItems (Parts, AllowUnsecureUrls);
 
 					await DownloadAll (cacheDir, parts).ConfigureAwait (false);
 
@@ -121,50 +123,21 @@ namespace Xamarin.Build.Download
 
 		async Task Download (string cacheDirectory, string url, List<PartialZipDownload> parts)
 		{
-			var req = new HttpRequestMessage (HttpMethod.Get, url);
-
-			// This seems to fix a weird issue where killing the connection on mono on macOS
-			// causes the request to hang indefinitely
-			req.Headers.ConnectionClose = true;
-
 			HttpResponseMessage resp;
 
-			// If we have a single item, we can't process the response as multipart since 
-			// our response will not include multipart boundaries
-			if (parts.Count == 1) {
-				var singlePart = parts.First ();
-				req.Headers.Range = new RangeHeaderValue (singlePart.RangeStart, singlePart.RangeEnd);
+			foreach (var part in parts) {
+				var req = new HttpRequestMessage (HttpMethod.Get, url);
+
+				// This seems to fix a weird issue where killing the connection on mono on macOS
+				// causes the request to hang indefinitely
+				req.Headers.ConnectionClose = true;
+
+				req.Headers.Range = new RangeHeaderValue (part.RangeStart, part.RangeEnd);
 
 				resp = await http.SendAsync (req).ConfigureAwait (false);
 
 				using (var partStream = await resp.Content.ReadAsStreamAsync ().ConfigureAwait (false))
-					await ExtractPartAndValidate (singlePart, partStream, cacheDirectory).ConfigureAwait (false);
-
-			} else {
-				// For Multiple ranges, we'll add multiple header values
-				// and expect back an actual multipart data response
-				req.Headers.Range = new RangeHeaderValue ();
-				foreach (var part in parts)
-					req.Headers.Range.Ranges.Add (new RangeItemHeaderValue (part.RangeStart, part.RangeEnd));
-
-				resp = await http.SendAsync (req).ConfigureAwait (false);
-
-				var multiparts = await resp.Content.ReadAsMultipartAsync ();
-				//var multiparts = await resp.Content.ReadAsMultiPartContentAsync ().ConfigureAwait (false);
-
-				foreach (var mpart in multiparts.Contents) {
-					var part = parts.FirstOrDefault (p => p.RangeStart == mpart.Headers.ContentRange.From.Value
-													 && p.RangeEnd == mpart.Headers.ContentRange.To.Value);
-
-					if (part == null)
-						continue;
-
-					LogMessage ("Extracting and Validating Part: {0} [{1}-{2}]", part.Id, part.RangeStart, part.RangeEnd);
-
-					//using (var partStream = new MemoryStream (mpart.ReadAsStreamAsync ()))
-					using (var partStream = await mpart.ReadAsStreamAsync ().ConfigureAwait (false))
-						await ExtractPartAndValidate (part, partStream, cacheDirectory).ConfigureAwait (false);
-				}
+					await ExtractPartAndValidate (part, partStream, cacheDirectory).ConfigureAwait (false);
 			}
 		}
 

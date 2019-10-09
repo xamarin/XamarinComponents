@@ -1,0 +1,60 @@
+﻿<Project Sdk="MSBuild.Sdk.Extras/2.0.54">
+
+    <PropertyGroup>
+        <AssemblyName>Xamarin.TensorFlow.Lite</AssemblyName>
+
+        <MonoAndroidResourcePrefix>Resources</MonoAndroidResourcePrefix>
+        <MonoAndroidAssetsPrefix>Assets</MonoAndroidAssetsPrefix>
+        <AndroidUseLatestPlatformSdk>False</AndroidUseLatestPlatformSdk>
+        <AndroidUseIntermediateDesignerFile>True</AndroidUseIntermediateDesignerFile>
+        <AndroidResgenFile>Resources\Resource.designer.cs</AndroidResgenFile>
+
+        <TargetFrameworks>MonoAndroid81</TargetFrameworks>
+        <AndroidCodegenTarget>XAJavaInterop1</AndroidCodegenTarget>
+         
+        <GenerateAssemblyInfo>false</GenerateAssemblyInfo>        
+    </PropertyGroup>
+
+    <PropertyGroup>
+        <IsBindingProject>true</IsBindingProject>
+        <AndroidClassParser>class-parse</AndroidClassParser>
+    </PropertyGroup>
+
+    <PropertyGroup>
+        <!-- 
+        nuget packaging
+        -->
+        <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+        <PackageId>Xamarin.TensorFlow.Lite</PackageId>
+        <PackageVersion>1.14.0</PackageVersion>
+        <Title>Xamarin.TensorFlow.Lite</Title>
+        <Summary>
+            Google TensorFlow Lite bindings for Xamarin
+        </Summary>
+        <Description>
+            Bindings for Google's TensorFlow Lite package (Google Play Services dependency)
+        </Description>
+        <Owners>Microsoft</Owners>
+        <Authors>Microsoft</Authors>
+        <Copyright>© Microsoft Corporation. All rights reserved.</Copyright>
+        <PackageLicenseUrl>https://go.microsoft.com/fwlink/?linkid=2013315</PackageLicenseUrl>
+        <PackageProjectUrl>https://go.microsoft.com/fwlink/?linkid=2013420</PackageProjectUrl>
+        <RepositoryUrl>https://github.com/tensorflow/tensorflow/</RepositoryUrl>
+        <PackageReleaseNotes>
+            Initial GPU bindings
+        </PackageReleaseNotes>
+        <PackageTags>xamarin, android, bindings, google, tensorflow, lite</PackageTags>
+        <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <TransformFile Include="transforms\*.xml" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <LibraryProjectZip Include="..\..\externals\tensorflow-lite.aar">
+            <Link>Jars\tensorflow-lite.aar</Link>
+        </LibraryProjectZip>
+    </ItemGroup>
+
+</Project>

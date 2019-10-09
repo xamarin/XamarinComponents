@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "SDWebImage", "SDWebImage\SDWebImage.shproj", "{E716CB06-0D9B-4038-BAB2-61C6317849CA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SDWebImage.macOS", "SDWebImage.MacOS\SDWebImage.MacOS.csproj", "{F0D1142E-7A43-4993-84C1-1B2189F442F7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SDWebImage.iOS", "SDWebImage.iOS\SDWebImage.iOS.csproj", "{FB236600-A4DA-44E0-887C-5C81A424B998}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SDWebImage.tvOS", "SDWebImage.tvOS\SDWebImage.tvOS.csproj", "{97DBA579-9130-449B-9F49-D34E8B349697}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{F0D1142E-7A43-4993-84C1-1B2189F442F7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F0D1142E-7A43-4993-84C1-1B2189F442F7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F0D1142E-7A43-4993-84C1-1B2189F442F7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F0D1142E-7A43-4993-84C1-1B2189F442F7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FB236600-A4DA-44E0-887C-5C81A424B998}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FB236600-A4DA-44E0-887C-5C81A424B998}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FB236600-A4DA-44E0-887C-5C81A424B998}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FB236600-A4DA-44E0-887C-5C81A424B998}.Release|Any CPU.Build.0 = Release|Any CPU
+		{97DBA579-9130-449B-9F49-D34E8B349697}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{97DBA579-9130-449B-9F49-D34E8B349697}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{97DBA579-9130-449B-9F49-D34E8B349697}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{97DBA579-9130-449B-9F49-D34E8B349697}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal

@@ -1,4 +1,4 @@
-version: 2.7.0
+version: 2.7.1
 name: Sticky List Headers
 id: StickyListHeaders
 publisher: Xamarin Inc
@@ -6,7 +6,7 @@ publisher-url: http://xamarin.com/
 src-url: https://github.com/xamarin/XamarinComponents/tree/master/Android/StickyListHeaders
 summary: StickyListHeaders is an Android library that makes it easy to integrate section headers in your ListView.
 
-license: License.md
+license: ../License.md
 details: Details.md
 getting-started: GettingStarted.md
 
@@ -21,4 +21,15 @@ libraries:
 samples:
   - name: "Android Sample"
     path: ../samples/StickyListHeadersSample.sln
- 
+    removeProjects:
+        - StickyListHeaders
+    installNuGets:
+      - project: StickyListHeadersSample
+        packages:
+          - Xamarin.StickyListHeaders
+
+is_shell: true 
+local-nuget-repo: ../output
+additional-files:
+  - source: "../External-Dependency-Info.txt"
+    destination: "THIRD-PARTY-NOTICES.txt" 

@@ -1,0 +1,48 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project Sdk="MSBuild.Sdk.Extras/2.0.54">
+  <PropertyGroup>
+    <TargetFramework>MonoAndroid90</TargetFramework>
+    <IsBindingProject>true</IsBindingProject>
+    <AssemblyName>Xamarin.Android.Support.Constraint.Layout</AssemblyName>
+    <MonoAndroidResourcePrefix>Resources</MonoAndroidResourcePrefix>
+    <MonoAndroidAssetsPrefix>Assets</MonoAndroidAssetsPrefix>
+    <AndroidUseIntermediateDesignerFile>True</AndroidUseIntermediateDesignerFile>
+    <AndroidResgenFile>Resources\Resource.designer.cs</AndroidResgenFile>
+    <RootNamespace>ConstraintLayout</RootNamespace>
+    <AndroidClassParser>class-parse</AndroidClassParser>
+    <AndroidCodegenTarget>XAJavaInterop1</AndroidCodegenTarget>
+    <AssemblyVersion>1.1.0.0</AssemblyVersion>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <PackageId>Xamarin.Android.Support.Constraint.Layout</PackageId>
+    <Title>Xamarin Android Constraint Layout</Title>
+    <Summary>Android Constraint Layout C# bindings for Xamarin</Summary>
+    <Description>Android Constraint Layout C# bindings for Xamarin</Description>
+    <Authors>Microsoft</Authors>
+    <Owners>Microsoft</Owners>
+    <Copyright>© Microsoft Corporation. All rights reserved.</Copyright>
+    <PackageProjectUrl>https://go.microsoft.com/fwlink/?linkid=2105832</PackageProjectUrl>
+    <PackageLicenseUrl>https://go.microsoft.com/fwlink/?linkid=2106031</PackageLicenseUrl>
+    <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
+    <PackageVersion>2.0.0-beta2</PackageVersion>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <LibraryProjectZip Include="..\..\externals\constraint-layout.aar">
+      <Link>Jars\constraint-layout.aar</Link>
+    </LibraryProjectZip>
+     <None Include="..\..\External-Dependency-Info.txt" Pack="True" PackagePath="THIRD-PARTY-NOTICES.txt" />
+     <TransformFile Include="Transforms\*.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ConstraintLayoutSolver\ConstraintLayoutSolver.csproj">
+      <Name>ConstraintLayoutSolver</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Xamarin.Android.Support.v7.RecyclerView" PrivateAssets="None" Version="28.0.0.3" />
+    <PackageReference Include="Xamarin.Android.Support.v7.AppCompat" PrivateAssets="None" Version="28.0.0.3" />
+  </ItemGroup>
+
+</Project>

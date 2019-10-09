@@ -4,17 +4,17 @@
     <id>Xamarin.MapboxSDK.AndroidServices</id>
     <title>Mapbox SDK AndroidServices for Xamarin.Android</title>
     <version>$version$</version>
-    <authors>Xamarin</authors>
-    <owners>Xamarin</owners>
-    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <authors>Microsoft</authors>
+    <owners>Microsoft</owners>
+    <requireLicenseAcceptance>true</requireLicenseAcceptance>
     <summary>Mapbox SDK AndroidServices</summary>
     <description>
       Mapbox SDK AndroidServices
       Mapbox is built on vector maps, an advanced approach to mapping where data is delivered to the device and precisely rendered in real-time. The result is smooth, fast maps.
     </description>
-    <copyright>Copyright © Xamarin. All Rights Reserved.</copyright>
-    <projectUrl>https://components.xamarin.com/view/mapboxsdk</projectUrl>
-    <licenseUrl>https://components.xamarin.com/license/mapboxsdk</licenseUrl>
+    <copyright>© Microsoft Corporation. All rights reserved.</copyright>
+    <projectUrl>https://go.microsoft.com/fwlink/?linkid=864998</projectUrl>
+    <licenseUrl>https://go.microsoft.com/fwlink/?linkid=865000</licenseUrl>
     <iconUrl>https://raw.githubusercontent.com/xamarin/XamarinComponents/master/XPlat/Mapbox/component/icons/mapboxsdk_128x128.png</iconUrl>
     <dependencies>
       <dependency id="Xamarin.Android.Support.Design" version="23.4.0.1"/>

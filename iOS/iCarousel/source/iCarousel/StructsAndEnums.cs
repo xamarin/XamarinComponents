@@ -1,10 +1,5 @@
-#if __UNIFIED__
 using ObjCRuntime;
 using nint = System.Int64;
-#else
-using MonoTouch.ObjCRuntime;
-using nint = System.Int32;
-#endif
 
 namespace Carousels {
 

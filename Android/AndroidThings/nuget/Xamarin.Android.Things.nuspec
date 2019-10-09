@@ -4,19 +4,19 @@
     <id>Xamarin.Android.Things</id>
     <title>Xamarin Android Things IoT</title>
     <version>$version$</version>
-    <authors>Xamarin Inc.</authors>
-    <owners>Xamarin Inc.</owners>
+    <authors>Microsoft</authors>
+    <owners>Microsoft</owners>
     <requireLicenseAcceptance>true</requireLicenseAcceptance>
     <summary>Xamarin.Android Bindings for Android Things IoT</summary>
     <description>
-      Xamarin.Android Bindings for Android Things IoT
+      Xamarin.Android Bindings for Android Things IoT, including Contrib Driver bindings
     </description>
-    <copyright>Copyright © Microsoft Corporation</copyright>
-    <projectUrl>https://github.com/xamarin/XamarinComponents/blob/master/Android/AndroidThings/</projectUrl>
-    <licenseUrl>https://github.com/xamarin/XamarinComponents/blob/master/Android/AndroidThings/LICENSE.md</licenseUrl>
+    <copyright>© Microsoft Corporation. All rights reserved.</copyright>
+    <projectUrl>https://go.microsoft.com/fwlink/?linkid=865021</projectUrl>
+    <licenseUrl>https://go.microsoft.com/fwlink/?linkid=865023</licenseUrl>
   </metadata>
   <files>
-    <file src="output/Xamarin.Android.Things.dll" target="lib/MonoAndroid70" />
+    <file src="source/**/bin/Release/*Things*.dll" target="lib/MonoAndroid81" />
     <file src="External-Dependency-Info.txt" target="THIRD-PARTY-NOTICES.txt" />
   </files>
 </package>

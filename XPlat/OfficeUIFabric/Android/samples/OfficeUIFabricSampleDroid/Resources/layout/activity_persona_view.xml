@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ Copyright (c) Microsoft Corporation. All rights reserved.
+  ~ Licensed under the MIT License.
+  -->
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/persona_layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <TextView
+        style="@style/Widget.DemoSubHeader"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/default_layout_margin"
+        android:layout_marginEnd="@dimen/default_layout_margin"
+        android:text="@string/persona_view_description_xxlarge" />
+
+    <com.microsoft.officeuifabric.persona.PersonaView
+        android:id="@+id/persona_example_xxlarge"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:avatarSize="xxlarge"
+        app:email="@string/persona_email_kat_larsson"
+        app:footer="@string/persona_footer"
+        app:name="@string/persona_name_kat_larsson"
+        app:subtitle="@string/persona_email_kat_larsson" />
+
+    <TextView
+        style="@style/Widget.DemoSubHeader"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/default_layout_margin"
+        android:layout_marginEnd="@dimen/default_layout_margin"
+        android:text="@string/persona_view_description_large" />
+
+    <com.microsoft.officeuifabric.persona.PersonaView
+        android:id="@+id/persona_example_large"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:avatarImageDrawable="@drawable/avatar_tim_deboer"
+        app:avatarSize="large"
+        app:email="@string/persona_email_mauricio_august"
+        app:name="@string/persona_name_mauricio_august"
+        app:subtitle="@string/persona_email_mauricio_august" />
+
+    <TextView
+        style="@style/Widget.DemoSubHeader"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/default_layout_margin"
+        android:layout_marginEnd="@dimen/default_layout_margin"
+        android:text="@string/persona_view_description_small" />
+
+</LinearLayout>

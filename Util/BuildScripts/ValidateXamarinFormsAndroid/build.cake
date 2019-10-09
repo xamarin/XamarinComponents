@@ -1,5 +1,7 @@
 
 #addin nuget:?package=Cake.FileHelpers
+#addin nuget:?package=Cake.Git
+
 #tool nuget:?package=Paket
 
 var PAKET_SOURCE_LIST = EnvironmentVariable ("PAKET_SOURCES") ?? "./output,https://api.nuget.org/v3/index.json";
@@ -7,7 +9,8 @@ var TREAT_WARNINGS_AS_ERRORS = (EnvironmentVariable ("TREAT_WARNINGS_AS_ERRORS")
 
 var ANDROID_SUPPORT_VERSION = EnvironmentVariable ("ANDROID_SUPPORT_VERSION") ?? "25.4.0.2";
 var GOOGLE_PLAY_SERVICES_FIREBASE_VERSION = EnvironmentVariable ("PLAY_SERVICES_VERSION") ?? "42.1021.1";
-var MONOANDROID_VERSION = "monoandroid7.0";
+var ANDROID_VERSION = EnvironmentVariable ("ANDROID_VERSION") ?? "8.0";
+var MONOANDROID_VERSION = "monoandroid" + ANDROID_VERSION;
 
 var XAMARIN_FORMS_GIT_URL = "https://github.com/xamarin/Xamarin.Forms.git";
 
@@ -30,6 +33,10 @@ var PAKET_EXE = GetFiles ("./tools/**/paket.exe").FirstOrDefault ();
 
 var TARGET = Argument ("target", Argument ("t", "Default"));
 
+Task ("clone").Does(() => {
+    GitClone ("https://github.com/xamarin/Xamarin.Forms.git", "./xf");
+});
+
 Task ("init").Does (() => {
     // Delete these directories as they aren't referenced by Xamarin.Forms.sln anymore
     // and they reference nuget package versions of Xamarin.Forms in them (and an old version)
@@ -38,6 +45,11 @@ Task ("init").Does (() => {
         if (DirectoryExists (dd))
             DeleteDirectory (dd, true);
     }
+    
+    // Update the target framework version in all the android .csproj files
+    ReplaceRegexInFiles ("./**/*droid*.csproj",
+                         "<TargetFrameworkVersion>v[0-9\\.]+</TargetFrameworkVersion>",
+                         "<TargetFrameworkVersion>v" + ANDROID_VERSION + "</TargetFrameworkVersion>");
 
     // Convert the sln and projects to use paket
     StartProcess (PAKET_EXE, "convert-from-nuget --force --verbose");

@@ -1,8 +1,3 @@
-
-<iframe src="https://appetize.io/embed/gb5868w7x3pfzea9g47aw87d1g?device=iphone5s&scale=75&autoplay=true&orientation=portrait&deviceColor=black" 
-        width="274px" height="587px" frameborder="0" scrolling="no"
-        style="float:right;margin-left:1em;">&nbsp;</iframe>
-
 **InAppSettingsKit** is an open source solution to to easily add in-app 
 settings to your iOS apps. It uses a hybrid approach by maintaining the 
 Settings.app pane. So the user has the choice where to change the 

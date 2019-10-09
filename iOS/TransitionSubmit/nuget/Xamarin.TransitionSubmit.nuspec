@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<package>
+  <metadata>
+    <id>Xamarin.TransitionSubmit</id>
+    <title>TransitionSubmit for Xamarin.iOS</title>
+    <version>1.0.1.2</version>
+    <authors>Microsoft</authors>
+    <owners>Microsoft</owners>
+    <requireLicenseAcceptance>true</requireLicenseAcceptance>
+    <description>TransitionSubmitButton is an animated UIButton that has a built-in activity spinner. It can then transition to a fullscreen color on completion.</description>
+    <copyright>© Microsoft Corporation. All rights reserved.</copyright>
+    <projectUrl>https://go.microsoft.com/fwlink/?linkid=874678</projectUrl>
+    <licenseUrl>https://go.microsoft.com/fwlink/?linkid=874680</licenseUrl>
+  </metadata>
+  <files>
+    <file src="output/unified/TransitionSubmit.dll" target="lib/Xamarin.iOS" />
+    <file src="External-Dependency-Info.txt" target="THIRD-PARTY-NOTICES.txt" />
+  </files>
+</package>

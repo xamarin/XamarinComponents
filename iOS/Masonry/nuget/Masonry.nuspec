@@ -3,16 +3,19 @@
   <metadata>
     <id>Masonry</id>
     <title>Masonry</title>
-    <version>0.6.4.0</version>
-    <authors>Xamarin Inc.</authors>
-    <owners>Xamarin Inc.</owners>
-    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <version>1.1.0</version>
+    <authors>Microsoft</authors>
+    <owners>Microsoft</owners>
+    <requireLicenseAcceptance>true</requireLicenseAcceptance>
     <description>Harness the power of Auto Layout NSLayoutConstraints with a simplified, chainable and expressive syntax.</description>
-    <copyright>Copyright 2015 Xamarin Inc</copyright>
-    <projectUrl>https://components.xamarin.com/view/Masonry</projectUrl>
-    <licenseUrl>https://components.xamarin.com/license/Masonry</licenseUrl>
+    <copyright>© Microsoft Corporation. All rights reserved.</copyright>
+    <projectUrl>https://go.microsoft.com/fwlink/?linkid=864983</projectUrl>
+    <licenseUrl>https://go.microsoft.com/fwlink/?linkid=864985</licenseUrl>
   </metadata>
   <files>
-    <file src="output/unified/Masonry.dll" target="lib/Xamarin.iOS" />
+    <file src="output/Masonry.iOS.dll" target="lib/Xamarin.iOS" />
+    <file src="output/Masonry.tvOS.dll" target="lib/Xamarin.tvOS" />
+    <file src="output/Masonry.macOS.dll" target="lib/Xamarin.Mac" />
+    <file src="External-Dependency-Info.txt" target="THIRD-PARTY-NOTICES.txt" />
   </files>
 </package>
