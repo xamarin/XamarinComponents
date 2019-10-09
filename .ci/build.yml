@@ -151,7 +151,7 @@ jobs:
             Write-Host "Current tag: $branch"
           }
 
-          if ($branch -eq $masterBranch) {
+          if (($branch -eq $masterBranch) -and ("$(System.PullRequest.IsFork)" -eq "False")) {
             Write-Host "Branch is master, fetching last successful build commit..."
 
             $url = "$(System.TeamFoundationCollectionUri)$(System.TeamProjectId)/_apis/build/builds/?definitions=$(System.DefinitionId)&branchName=$encodedBranch&statusFilter=completed&resultFilter=succeeded&api-version=5.0"
