@@ -241,13 +241,15 @@ jobs:
       # post-build steps
       - pwsh: |
           dotnet cake validation.cake `
-            --namespaces="${{ join(',', parameters.validPackagePrefixes) }}"
+            --namespaces="${{ join(',', parameters.validPackagePrefixes) }}" `
+            --verbosity="${{ parameters.verbosity }}"
         displayName: 'Run NuGet package validation'
       - pwsh: |
           dotnet cake nuget-diff.cake `
             --artifacts="${{ parameters.artifactsPath }}" `
             --output="${{ parameters.artifactsPath }}/api-diff" `
-            --cache="$(Agent.TempDirectory)/api-diff"
+            --cache="$(Agent.TempDirectory)/api-diff" `
+            --verbosity="${{ parameters.verbosity }}"
         displayName: 'Generate API diff'
       # after the build is complete
       - task: ms.vss-governance-buildtask.governance-build-task-component-detection.ComponentGovernanceComponentDetection@0

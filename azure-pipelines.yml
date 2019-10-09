@@ -18,6 +18,7 @@ jobs:
   - template: .ci/build.yml@components
     parameters:
       timeoutInMinutes: 360
+      verbosity: diagnostic
       buildType: 'manifest'
       validPackagePrefixes: 
         # Preferred prefixes
