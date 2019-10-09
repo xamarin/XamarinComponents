@@ -22,8 +22,7 @@
     <Authors>Microsoft</Authors>
     <Owners>Microsoft</Owners>
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
-    <Summary>Xamarin.Android Bindings for Android Things IoT</Summary>
-    <Description>Xamarin.Android Bindings for Android Things IoT, including Contrib Driver bindings</Description>
+    <PackageDescription>Xamarin.Android Bindings for Android Things IoT, including Contrib Driver bindings</PackageDescription>
     <Copyright>© Microsoft Corporation. All rights reserved.</Copyright>
     <PackageProjectUrl>https://go.microsoft.com/fwlink/?linkid=865021</PackageProjectUrl>
     <PackageLicenseUrl>https://go.microsoft.com/fwlink/?linkid=865023</PackageLicenseUrl>

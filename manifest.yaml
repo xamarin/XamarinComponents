@@ -102,7 +102,8 @@
 - Name: Explosions
   BuildScript: ./Android/Explosions/build.cake
   TriggerPaths: [ Android/Explosions ]
-  MacBuildTargets: [ nuget, samples ]
+  MacBuildTargets: [ ci ]
+  WindowsBuildTargets: [ ci ]
 - Name: FloatingSearchView
   BuildScript: ./Android/FloatingSearchView/build.cake
   TriggerPaths: [ Android/FloatingSearchView ]

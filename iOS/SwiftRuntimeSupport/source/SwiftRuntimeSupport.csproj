@@ -11,7 +11,7 @@
   <PropertyGroup>
     <PackageId>Xamarin.iOS.SwiftRuntimeSupport</PackageId>
     <Title>Swift Runtime Support for Xamarin.iOS</Title>
-    <Summary>Xamarin.iOS Swift Runtime Support</Summary>
+    <PackageDescription>Xamarin.iOS Swift Runtime Support</PackageDescription>
     <Authors>Microsoft</Authors>
     <Owners>Microsoft</Owners>
     <Copyright>© Microsoft Corporation. All rights reserved.</Copyright>
