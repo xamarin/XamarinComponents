@@ -18,8 +18,7 @@
   <PropertyGroup>
     <PackageId>Xamarin.Android.ReactiveStreams</PackageId>
     <Title>Reactive Streams reference library for Xamarin.Android</Title>
-    <Summary>Xamarin.Android bindings for Reactive Streams</Summary>
-    <Description></Description>
+    <PackageDescription>Xamarin.Android bindings for Reactive Streams</PackageDescription>
     <Authors>Microsoft</Authors>
     <Owners>Microsoft</Owners>
     <Copyright>© Microsoft Corporation. All rights reserved.</Copyright>

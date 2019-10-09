@@ -18,8 +18,7 @@
   <PropertyGroup>
     <PackageId>Xamarin.Android.Google.BillingClient</PackageId>
     <Title>Google Android Billing Client bindings for Xamarin.Android</Title>
-    <Summary>Xamarin.Android bindings for Google's Android Billing Client</Summary>
-    <Description>Xamarin.Android bindings for Google's Android Billing Client.</Description>
+    <PackageDescription>Xamarin.Android bindings for Google's Android Billing Client.</PackageDescription>
     <Authors>Microsoft</Authors>
     <Owners>Microsoft</Owners>
     <Copyright>© Microsoft Corporation. All rights reserved.</Copyright>

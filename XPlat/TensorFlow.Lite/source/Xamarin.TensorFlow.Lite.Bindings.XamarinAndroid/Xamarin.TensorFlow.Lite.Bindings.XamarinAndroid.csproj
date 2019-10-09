@@ -11,8 +11,6 @@
 
         <TargetFrameworks>MonoAndroid81</TargetFrameworks>
         <AndroidCodegenTarget>XAJavaInterop1</AndroidCodegenTarget>
-         
-        <GenerateAssemblyInfo>false</GenerateAssemblyInfo>        
     </PropertyGroup>
 
     <PropertyGroup>
@@ -28,21 +26,15 @@
         <PackageId>Xamarin.TensorFlow.Lite</PackageId>
         <PackageVersion>1.14.0</PackageVersion>
         <Title>Xamarin.TensorFlow.Lite</Title>
-        <Summary>
-            Google TensorFlow Lite bindings for Xamarin
-        </Summary>
-        <Description>
+        <PackageDescription>
             Bindings for Google's TensorFlow Lite package (Google Play Services dependency)
-        </Description>
+        </PackageDescription>
         <Owners>Microsoft</Owners>
         <Authors>Microsoft</Authors>
         <Copyright>© Microsoft Corporation. All rights reserved.</Copyright>
         <PackageLicenseUrl>https://go.microsoft.com/fwlink/?linkid=2013315</PackageLicenseUrl>
         <PackageProjectUrl>https://go.microsoft.com/fwlink/?linkid=2013420</PackageProjectUrl>
         <RepositoryUrl>https://github.com/tensorflow/tensorflow/</RepositoryUrl>
-        <PackageReleaseNotes>
-            Initial GPU bindings
-        </PackageReleaseNotes>
         <PackageTags>xamarin, android, bindings, google, tensorflow, lite</PackageTags>
         <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
     </PropertyGroup>

@@ -16,7 +16,7 @@
     <Authors>Microsoft</Authors>
     <Owners>Microsoft</Owners>
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
-    <Description>The DataConverter class is a replacement for System.BitConvert in the .NET class libraries.</Description>
+    <PackageDescription>The DataConverter class is a replacement for System.BitConvert in the .NET class libraries.</PackageDescription>
     <Copyright>© Microsoft Corporation. All rights reserved.</Copyright>
     <PackageLicenseUrl>https://go.microsoft.com/fwlink/?linkid=864976</PackageLicenseUrl>
     <PackageIconUrl>https://xamarin-component-icons.s3.amazonaws.com/mono.dataconverter.png</PackageIconUrl>
