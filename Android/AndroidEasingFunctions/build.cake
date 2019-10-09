@@ -14,7 +14,7 @@ Task("externals")
 
 	if (!FileExists(JAR_DEST))
 		DownloadFile(JAR_URL, JAR_DEST);
-
+ 
 	XmlPoke("./source/AndroidEasingFunctions/AndroidEasingFunctions.csproj", "/Project/PropertyGroup/PackageVersion", NUGET_VERSION);
 });
 
