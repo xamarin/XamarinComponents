@@ -18,13 +18,14 @@
   <PropertyGroup>
     <PackageId>Xamarin.Google.Guava.ListenableFuture</PackageId>
     <Title>Google Guava ListenableFuture reference library for Xamarin.Android</Title>
-    <Summary>Xamarin.Android bindings for Google Guava ListenableFuture</Summary>
-    <Description>
+    <PackageDescription>
+Xamarin.Android bindings for Google Guava ListenableFuture
+
 NOTE: This package is meant to be used as a reference only for other binding projects that depend on Guava.
 This package does not expose any useful API's in the .dll itself.
 
 Guava is a set of core libraries that includes new collection types (such as multimap and multiset), immutable collections, a graph library, functional types, an in-memory cache, and APIs/utilities for concurrency, I/O, hashing, primitives, reflection, string processing, and much more!
-    </Description>
+    </PackageDescription>
     <Authors>Microsoft</Authors>
     <Owners>Microsoft</Owners>
     <Copyright>© Microsoft Corporation. All rights reserved.</Copyright>

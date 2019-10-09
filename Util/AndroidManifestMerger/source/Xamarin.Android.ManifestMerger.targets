@@ -25,7 +25,7 @@
       <_MergerJar Include="$(MSBuildThisFileDirectory)\*.jar" />
     </ItemGroup>
 
-    <Exec Command="&quot;$(_MergerJavaPath)&quot; -cp &quot;@(_MergerJar)&quot; &quot;com.android.manifmerger.Merger&quot; --main &quot;$(IntermediateOutputPath)android\AndroidManifest.xml&quot; --libs &quot;@(_Proxy_ExtractedManifestDocuments)&quot; --out &quot;$(IntermediateOutputPath)android\AndroidManifest.xml&quot;" />
+    <Exec Command="&quot;$(_MergerJavaPath)&quot; -cp &quot;@(_MergerJar, '$([System.IO.Path]::PathSeparator)')&quot; &quot;com.android.manifmerger.Merger&quot; --main &quot;$(IntermediateOutputPath)android\AndroidManifest.xml&quot; --libs &quot;@(_Proxy_ExtractedManifestDocuments, '$([System.IO.Path]::PathSeparator)')&quot; --out &quot;$(IntermediateOutputPath)android\AndroidManifest.xml&quot;" />
 
     <Touch Files="$(_AndroidStampDirectory)_GenerateJavaStubs.stamp;@(_TypeMapAssemblySource);$(_AndroidStampDirectory)_After_GenerateJavaStubs.stamp" AlwaysCreate="True" />
 

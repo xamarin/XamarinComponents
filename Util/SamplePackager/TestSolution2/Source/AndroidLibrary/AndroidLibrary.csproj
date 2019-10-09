@@ -21,7 +21,7 @@
     <PackageVersion>1.0.0</PackageVersion>
     <Authors>test</Authors>
     <Owners>test</Owners>
-    <Description>test</Description>
+    <PackageDescription>test</PackageDescription>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>

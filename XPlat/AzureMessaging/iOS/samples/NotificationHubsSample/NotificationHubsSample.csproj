@@ -81,6 +81,10 @@
     <CodesignProvision>Automatic:AppStore</CodesignProvision>
     <CodesignKey>iPhone Distribution</CodesignKey>
   </PropertyGroup>
+  <PropertyGroup>
+    <RestoreNoCache>true</RestoreNoCache>
+    <RestorePackagesPath>$(MSBuildThisFileDirectory)..\..\externals\packages</RestorePackagesPath>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Xml" />
@@ -101,10 +105,7 @@
     <Compile Include="HomeViewController.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\source\Xamarin.Azure.NotificationHubs.iOS.csproj">
-      <Project>{99ECFF92-CA4E-4473-ADFC-5D7F3ABBC4C6}</Project>
-      <Name>Xamarin.Azure.NotificationHubs.iOS</Name>
-    </ProjectReference>
+    <PackageReference Include="Xamarin.Azure.NotificationHubs.iOS" Version="2.0.4" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
 </Project>

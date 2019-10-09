@@ -32,7 +32,6 @@ parameters:
   forceBuild: 'false'                                       # [manifest] whether or not to force the build
   namesFilter: ''                                           # [manifest] the names of the items to build
   targetsFilter: ''                                         # [manifest] the targets of the items to build
-  failOnBuildFail: 'true'                                   # [manifest] whether or not to fail the build when a single build fails
 
 jobs:
   - job: ${{ parameters.name }}
@@ -104,7 +103,7 @@ jobs:
         displayName: 'Download the latest nuget.exe'
       - pwsh: |
           $branch = "${{ parameters.cakeTemplatesBranch }}"
-          if ("$(Build.Repository.Id)" -eq "xamarin/XamarinComponents") {
+          if (("$(Build.Repository.Id)" -eq "xamarin/XamarinComponents") -and ("$(System.PullRequest.IsFork)" -eq "False")) {
             if ("$env:SYSTEM_PULLREQUEST_SOURCEBRANCH") {
               $branch = "$env:SYSTEM_PULLREQUEST_SOURCEBRANCH"
             } else {
@@ -126,6 +125,11 @@ jobs:
           Write-Host "Downloading script from $uri..."
           Invoke-WebRequest -Uri $uri -OutFile "validation.cake"
         displayName: 'Download the cake script to validate NuGet packages'
+      - pwsh: |
+          $uri = "$(TemplateRootUri)/nuget-diff.cake"
+          Write-Host "Downloading script from $uri..."
+          Invoke-WebRequest -Uri $uri -OutFile "nuget-diff.cake"
+        displayName: 'Download the cake script to diff NuGet packages'
       # determine the last successful build for "master" branch
       - pwsh: |
           # determine the "master" branch
@@ -147,7 +151,7 @@ jobs:
             Write-Host "Current tag: $branch"
           }
 
-          if ($branch -eq $masterBranch) {
+          if (($branch -eq $masterBranch) -and ("$(System.PullRequest.IsFork)" -eq "False")) {
             Write-Host "Branch is master, fetching last successful build commit..."
 
             $url = "$(System.TeamFoundationCollectionUri)$(System.TeamProjectId)/_apis/build/builds/?definitions=$(System.DefinitionId)&branchName=$encodedBranch&statusFilter=completed&resultFilter=succeeded&api-version=5.0"
@@ -186,6 +190,10 @@ jobs:
           displayName: 'Run build'
           env:
             JavaSdkDirectory: $(JAVA_HOME)
+            RepositoryCommit: $(Build.SourceVersion)
+            RepositoryBranch: $(Build.SourceBranchName)
+            RepositoryUrl: $(Build.Repository.Uri)
+            RepositoryType: "git"
       # the manifest-based build
       - ${{ if eq(parameters.buildType, 'manifest') }}:
         - pwsh: |
@@ -197,7 +205,6 @@ jobs:
             $force = if ("$env:FORCEBUILD") { "$env:FORCEBUILD" } else { "${{ parameters.forceBuild }}" }
             $names = if ("$env:BUILDMANIFESTNAMES") { "$env:BUILDMANIFESTNAMES" } else { "${{ parameters.namesFilter }}" }
             $targets = if ("$env:BUILDMANIFESTTARGETS") { "$env:BUILDMANIFESTTARGETS" } else { "${{ parameters.targetsFilter }}" }
-            $fail = if ("$env:FAILONBUILDFAIL") { "$env:FAILONBUILDFAIL" } else { "${{ parameters.failOnBuildFail }}" }
             dotnet cake build-manifest.cake `
               --gitpreviouscommit="$(GitLastSuccessfulCommit)" `
               --gitcommit="$(Build.SourceVersion)" `
@@ -205,31 +212,46 @@ jobs:
               --forcebuild="$force" `
               --names="$names" `
               --targets="$targets" `
-              --failonbuildfail="$fail" `
               --copyoutputtoroot=true `
               --configuration="${{ parameters.configuration }}" `
               --verbosity="${{ parameters.verbosity }}"
           displayName: 'Run build'
           env:
             JavaSdkDirectory: $(JAVA_HOME)
-        - task: PublishTestResults@2
-          displayName: Publish the test results
-          condition: always()
-          inputs:
-            testResultsFormat: xUnit
-            testResultsFiles: 'output/tests/TestResults.xml'
-            testRunTitle: 'Test results for $(System.JobName)'
-      # post-build steps
-      - pwsh: dotnet cake validation.cake --namespaces="${{ join(',', parameters.validPackagePrefixes) }}"
-        displayName: 'Run NuGet package validation'
+            RepositoryCommit: $(Build.SourceVersion)
+            RepositoryBranch: $(Build.SourceBranchName)
+            RepositoryUrl: $(Build.Repository.Uri)
+            RepositoryType: "git"
+      - task: PublishTestResults@2
+        displayName: Publish the test results
+        condition: always()
+        inputs:
+          testResultsFormat: xUnit
+          testResultsFiles: 'output/**/*TestResults.xml'
+          testRunTitle: 'xUnit Test results for $(System.JobName)'
+      - task: PublishTestResults@2
+        displayName: Publish the test results
+        condition: always()
+        inputs:
+          testResultsFormat: VSTest
+          testResultsFiles: 'output/**/*.trx'
+          testRunTitle: 'VS Test results for $(System.JobName)'
       # custom post-build steps
       - ${{ parameters.postBuildSteps }}
-      # after the build is complete
+      # post-build steps
       - pwsh: |
-          if (Get-ChildItem ${{ parameters.artifactsPath }} -Filter *.nupkg) {
-            api-tools nuget-diff ${{ parameters.artifactsPath }} --latest --group-ids --ignore-unchanged --output output/api-diff --cache $(Agent.TempDirectory)/api-diff/package-cache
-          }
+          dotnet cake validation.cake `
+            --namespaces="${{ join(',', parameters.validPackagePrefixes) }}" `
+            --verbosity="${{ parameters.verbosity }}"
+        displayName: 'Run NuGet package validation'
+      - pwsh: |
+          dotnet cake nuget-diff.cake `
+            --artifacts="${{ parameters.artifactsPath }}" `
+            --output="${{ parameters.artifactsPath }}/api-diff" `
+            --cache="$(Agent.TempDirectory)/api-diff" `
+            --verbosity="${{ parameters.verbosity }}"
         displayName: 'Generate API diff'
+      # after the build is complete
       - task: ms.vss-governance-buildtask.governance-build-task-component-detection.ComponentGovernanceComponentDetection@0
         displayName: 'Run component detection'
         condition: and(succeeded(), in(variables['Build.Reason'], 'IndividualCI', 'BatchedCI'))

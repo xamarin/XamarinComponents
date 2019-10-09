@@ -59,11 +59,7 @@ namespace Explosions
 
         protected void OnAnimationEnd()
         {
-            var handler = AnimationEnd;
-            if (handler != null)
-            {
-                handler(this, EventArgs.Empty);
-            }
+            AnimationEnd?.Invoke(this, EventArgs.Empty);
         }
 
         private Particle GenerateParticle(Color color)

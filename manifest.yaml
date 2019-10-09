@@ -5,7 +5,8 @@
 - Name: AndroidEasingFunctions
   BuildScript: ./Android/AndroidEasingFunctions/build.cake
   TriggerPaths: [ Android/AndroidEasingFunctions ]
-  MacBuildTargets: [ nuget, samples ]
+  MacBuildTargets: [ ci ]
+  WindowsBuildTargets: [ ci ]
 - Name: AndroidSwipeLayout
   BuildScript: ./Android/AndroidSwipeLayout/build.cake
   TriggerPaths: [ Android/AndroidSwipeLayout ]
@@ -17,11 +18,17 @@
 - Name: ConstraintLayout
   BuildScript: ./Android/ConstraintLayout/build.cake
   TriggerPaths: [ Android/ConstraintLayout ]
-  MacBuildTargets: [ nuget, samples ]
+  MacBuildTargets: [ ci ]
+  WindowsBuildTargets: [ ci ]
 - Name: GoogleAndroidVending
   BuildScript: ./Android/GoogleAndroidVending/build.cake
   TriggerPaths: [ Android/GoogleAndroidVending ]
   MacBuildTargets: [ nuget, samples ]
+- Name: GoogleDagger
+  BuildScript: ./Android/GoogleDagger/build.cake
+  TriggerPaths: [ Android/GoogleDagger ]
+  MacBuildTargets: [ ci ]
+  WindowsBuildTargets: [ ci ]
 - Name: AndroidThings
   BuildScript: ./Android/AndroidThings/build.cake
   TriggerPaths: [ Android/AndroidThings ]
@@ -95,7 +102,8 @@
 - Name: Explosions
   BuildScript: ./Android/Explosions/build.cake
   TriggerPaths: [ Android/Explosions ]
-  MacBuildTargets: [ nuget, samples ]
+  MacBuildTargets: [ ci ]
+  WindowsBuildTargets: [ ci ]
 - Name: FloatingSearchView
   BuildScript: ./Android/FloatingSearchView/build.cake
   TriggerPaths: [ Android/FloatingSearchView ]
@@ -177,7 +185,8 @@
 - Name: Kotlin
   BuildScript: ./Android/Kotlin/build.cake
   TriggerPaths: [ Android/Kotlin ]
-  MacBuildTargets: [ Default ]
+  WindowsBuildTargets: [ ci ]
+  MacBuildTargets: [ ci ]
 - Name: UniversalImageLoader
   BuildScript: ./Android/UniversalImageLoader/build.cake
   TriggerPaths: [ Android/UniversalImageLoader ]
@@ -476,7 +485,8 @@
 - Name: AzureMessaging
   BuildScript: ./XPlat/AzureMessaging/build.cake
   TriggerPaths: [ XPlat/AzureMessaging ]
-  MacBuildTargets: [ nuget, samples ]
+  MacBuildTargets: [ ci ]
+  WindowsBuildTargets: [ ci ]
 - Name: YouTube.Player.Android
   BuildScript: ./XPlat/YouTube.Player/android/build.cake
   TriggerPaths: [ XPlat/YouTube.Player/android ]
@@ -598,7 +608,8 @@
 - Name: AndroidManifestMerger
   BuildScript: ./Util/AndroidManifestMerger/build.cake
   TriggerPaths: [ Util/AndroidManifestMerger ]
-  WindowsBuildTargets: [ Default ]
+  WindowsBuildTargets: [ ci ]
+  MacBuildTargets: [ ci ]
 - Name: Xamarin.AndroidBinderator
   BuildScript: ./Util/Xamarin.AndroidBinderator/build.cake
   TriggerPaths: [ Util/Xamarin.AndroidBinderator ]

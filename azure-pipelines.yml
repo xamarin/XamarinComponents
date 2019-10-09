@@ -18,7 +18,18 @@ jobs:
     parameters:
       timeoutInMinutes: 360
       buildType: 'manifest'
-      validPackagePrefixes: [ 'Mono', 'mdoc', 'Masonry', 'SkiaSharp', 'HarfBuzzSharp', 'GoogleGson' ]
+      validPackagePrefixes: 
+        # Preferred prefixes
+        - Xamarin
+        - Mono
+        # Other product prefixes
+        - SkiaSharp
+        - HarfBuzzSharp
+        - mdoc
+        # Historical prefixes
+        - Masonry
+        - GoogleGson
+        - AndroidEasingFunctions
       tools:
         - 'Xamarin.AndroidBinderator.Tool': '0.4.1'
   - ${{ if eq(variables['System.TeamProject'], 'devdiv') }}:
