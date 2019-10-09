@@ -17,8 +17,7 @@
   <PropertyGroup>
     <PackageId>Xamarin.Android.SceneForm.Rendering</PackageId>
     <Title>Xamarin.Android.SceneForm.Rendering</Title>
-    <Summary>Xamarin.Android bindings for SceneForm Rendering</Summary>
-    <Description></Description>
+    <PackageDescription>Xamarin.Android bindings for SceneForm Rendering</PackageDescription>
     <Authors>Microsoft</Authors>
     <Owners>Microsoft</Owners>
     <Copyright>© Microsoft Corporation. All rights reserved.</Copyright>
