@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <TargetFrameworks>net40-client;net40;netstandard2.0</TargetFrameworks>
-    <DocumentationFile>bin\$(Configuration)\Mono.Terminal.xml</DocumentationFile>
+    <DocumentationFile>bin\$(Configuration)\$(TargetFramework)\Mono.Terminal.xml</DocumentationFile>
   </PropertyGroup>
 
   <PropertyGroup>
