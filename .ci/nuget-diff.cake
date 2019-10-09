@@ -48,7 +48,7 @@ if (diffs.Any()) {
 
 	foreach (var diff in diffs) {
 		var newName = OUTPUT_DIR.GetRelativePath(diff).FullPath.Replace("/", "_").Replace("\\", "_");
-		var newPath = temp.CombineWithFilePath(newName);
+		var newPath = MakeAbsolute(temp.CombineWithFilePath(newName));
 		CopyFile(diff, newPath);
 		Information($"##vso[task.uploadsummary]{newPath}");
 	}
