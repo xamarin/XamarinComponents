@@ -980,14 +980,17 @@ namespace NativeLibraryDownloaderTests
 
 			var success = BuildProject (engine, project, "_XamarinAndroidBuildAarProguardConfigs", log);
 
-			var proguardConfigItems = project.GetItems ("_AarProguardConfiguration");
-
 			var ignorePatterns = new List<string> { "Enumeration yielded no results" };
 			ignorePatterns.AddRange (DEFAULT_IGNORE_PATTERNS);
 
 			AssertNoMessagesOrWarnings (log, ignorePatterns.ToArray());
 			Assert.True (success);
-			Assert.True (proguardConfigItems.Any ());
+
+			var proguardDir = Path.Combine (intermediateDir, "XbdMerge", "proguard");
+
+			var proguardOutputFiles = Directory.GetFiles (proguardDir);
+
+			Assert.True (proguardOutputFiles != null && proguardOutputFiles.Any (), "No proguard file found in intermediate output.");
 		}
 	}
 }
