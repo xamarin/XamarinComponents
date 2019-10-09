@@ -763,7 +763,8 @@ namespace NativeLibraryDownloaderTests
 		}
 
 
-		[Fact]
+		//[Fact]
+		// Test is irrelevant in 15.7+ since we use AndroidAarLibrary item group instead of embedding
 		public void TestAndroidAarResourceMergeModifyInPlaceAndStampFile ()
 		{
 			// Tests won't run on windows due to file locking issues with assemblies
@@ -835,7 +836,9 @@ namespace NativeLibraryDownloaderTests
 		}
 
 
-		[Fact]
+		//[Fact]
+		// This test isn't relevant in 15.7+ since we now switch to using AndroidAarLibrary item group instead of embedding
+		// the .aar
 		public void TestAndroidAarManifestFixup ()
 		{
 			// Tests won't run on windows due to file locking issues with assemblies
