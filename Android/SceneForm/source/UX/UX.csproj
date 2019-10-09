@@ -17,8 +17,7 @@
   <PropertyGroup>
     <PackageId>Xamarin.Android.SceneForm.UX</PackageId>
     <Title>Xamarin.Android.SceneForm.UX</Title>
-    <Summary>Xamarin.Android bindings for SceneForm UX</Summary>
-    <Description></Description>
+    <PackageDescription>Xamarin.Android bindings for SceneForm UX</PackageDescription>
     <Authors>Microsoft</Authors>
     <Owners>Microsoft</Owners>
     <Copyright>© Microsoft Corporation. All rights reserved.</Copyright>

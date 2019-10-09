@@ -42,7 +42,9 @@ if (!GetFiles($"{ARTIFACTS_DIR}/**/*.nupkg").Any()) {
 // SECTION: Upload Diffs
 
 var diffs = GetFiles($"{OUTPUT_DIR}/**/*.md");
-if (diffs.Any()) {
+if (!diffs.Any()) {
+	Warning($"##vso[task.logissue type=warning]No NuGet diffs were found.");
+} else {
 	var temp = CACHE_DIR.Combine("md-files");
 	EnsureDirectoryExists(temp);
 
