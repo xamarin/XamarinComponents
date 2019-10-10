@@ -30,10 +30,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Include="../../LICENSE.md" Pack="true" PackagePath="LICENSE.md"/>
-  </ItemGroup>
-
-  <ItemGroup>
     <TransformFile Include="Transforms\Metadata.xml" />
     <TransformFile Include="Transforms\EnumFields.xml" />
     <TransformFile Include="Transforms\EnumMethods.xml" />
@@ -43,6 +39,7 @@
     <None Include="..\..\externals\billing.aar">
       <Link>billing.jar</Link>
     </None>
+    <None Include="..\..\License.md" Pack="true" PackagePath="LICENSE.md"/>
     <None Include="..\..\External-Dependency-Info.txt" Pack="True" PackagePath="THIRD-PARTY-NOTICES.txt" />
   </ItemGroup>
 
