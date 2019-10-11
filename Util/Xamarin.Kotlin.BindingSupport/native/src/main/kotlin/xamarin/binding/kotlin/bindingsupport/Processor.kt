@@ -60,7 +60,8 @@ class Processor(xmlFile: File, jarFiles: List<File>, outputFile: File?, ignoreFi
         this.outputFile = outputFile
 
         if (ignoreFile != null) {
-            ignored = ignoreFile.readLines()
+            // remove the BOM
+            ignored = ignoreFile.readLines().map { it.replace("\ufeff", "") }
         } else {
             ignored = emptyList()
         }
@@ -266,8 +267,16 @@ class Processor(xmlFile: File, jarFiles: List<File>, outputFile: File?, ignoreFi
             return ProcessResult.Ignore
         }
 
-        // before we check anything, make sure that the parent class is visible
         var lastPeriod = xname.lastIndexOf(".")
+
+        // make sure the class is not a generated digit for anonymous classes
+        if (lastPeriod != -1) {
+            var xinnername = xname.substring((lastPeriod + 1))
+            if (xinnername.toIntOrNull() != null)
+                return ProcessResult.RemoveGenerated
+        }
+
+        // make sure that the parent class is visible
         while (lastPeriod != -1) {
             val xparentname = xname.substring(0, lastPeriod)
             val parentClasses = xapidoc.queryElements(expressionSpecificClass(xpackage, xtype, xparentname))
