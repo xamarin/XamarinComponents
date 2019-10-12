@@ -1,0 +1,382 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ Copyright (c) Microsoft Corporation. All rights reserved.
+  ~ Licensed under the MIT License.
+  -->
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="@dimen/default_layout_margin"
+    tools:context=".demos.AvatarViewActivity">
+
+    <!--Circle-->
+
+    <TextView
+        style="@style/TextAppearance.UIFabric.Headline"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingBottom="@dimen/demo_headline_padding_bottom"
+        android:text="@string/avatar_style_circle" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/demo_headline_divider_height"
+        android:background="@drawable/ms_row_divider" />
+
+    <TableLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/default_layout_margin"
+        android:divider="@drawable/demo_divider"
+        android:showDividers="middle">
+
+        <!--XXLarge-->
+
+        <TableRow android:id="@+id/avatar_circle_example_xxlarge">
+
+            <TextView
+                android:id="@+id/avatar_example_xxlarge_size"
+                android:layout_gravity="center_vertical"
+                android:layout_marginEnd="@dimen/avatar_size_text_margin_end"
+                android:text="@string/avatar_size_xxlarge"
+                android:textAppearance="@style/TextAppearance.DemoDescription" />
+
+            <com.microsoft.officeuifabric.persona.AvatarView
+                android:id="@+id/avatar_example_xxlarge_photo"
+                android:layout_gravity="start"
+                android:layout_marginEnd="@dimen/default_layout_margin"
+                app:avatarImageDrawable="@drawable/avatar_robert_tolbert"
+                app:avatarSize="xxlarge" />
+
+        </TableRow>
+
+        <!--XLarge-->
+
+        <TableRow>
+
+            <TextView
+                android:id="@+id/avatar_example_xlarge_size"
+                android:layout_gravity="center_vertical"
+                android:layout_marginEnd="@dimen/avatar_size_text_margin_end"
+                android:text="@string/avatar_size_xlarge"
+                android:textAppearance="@style/TextAppearance.DemoDescription" />
+
+            <com.microsoft.officeuifabric.persona.AvatarView
+                android:id="@+id/avatar_example_xlarge_photo"
+                android:layout_gravity="start"
+                android:layout_marginEnd="@dimen/default_layout_margin"
+                app:avatarSize="xlarge" />
+
+            <com.microsoft.officeuifabric.persona.AvatarView
+                android:id="@+id/avatar_example_xlarge_initials"
+                android:layout_gravity="start"
+                app:avatarSize="xlarge"
+                app:name="@string/persona_name_allan_munger" />
+
+        </TableRow>
+
+        <!--Large-->
+
+        <TableRow>
+
+            <TextView
+                android:id="@+id/avatar_example_large_size"
+                android:layout_gravity="center_vertical"
+                android:layout_marginEnd="@dimen/avatar_size_text_margin_end"
+                android:text="@string/avatar_size_large"
+                android:textAppearance="@style/TextAppearance.DemoDescription" />
+
+            <com.microsoft.officeuifabric.persona.AvatarView
+                android:id="@+id/avatar_example_large_photo"
+                android:layout_gravity="start"
+                android:layout_marginEnd="@dimen/default_layout_margin"
+                app:avatarSize="large" />
+
+            <com.microsoft.officeuifabric.persona.AvatarView
+                android:id="@+id/avatar_example_large_initials"
+                android:layout_gravity="start"
+                app:avatarSize="large"
+                app:name="@string/persona_email_colin_ballinger" />
+
+        </TableRow>
+
+        <!--Medium-->
+
+        <TableRow>
+
+            <TextView
+                android:id="@+id/avatar_example_medium_size"
+                android:layout_gravity="center_vertical"
+                android:layout_marginEnd="@dimen/avatar_size_text_margin_end"
+                android:text="@string/avatar_size_medium"
+                android:textAppearance="@style/TextAppearance.DemoDescription" />
+
+            <com.microsoft.officeuifabric.persona.AvatarView
+                android:id="@+id/avatar_example_medium_photo"
+                android:layout_gravity="start"
+                android:layout_marginEnd="@dimen/default_layout_margin"
+                app:avatarSize="medium" />
+
+            <com.microsoft.officeuifabric.persona.AvatarView
+                android:id="@+id/avatar_example_medium_initials"
+                android:layout_gravity="start"
+                app:avatarSize="medium"
+                app:name="@string/persona_name_wanda_howard" />
+
+        </TableRow>
+
+        <!--Small-->
+
+        <TableRow>
+
+            <TextView
+                android:id="@+id/avatar_example_small_size"
+                android:layout_gravity="center_vertical"
+                android:layout_marginEnd="@dimen/avatar_size_text_margin_end"
+                android:text="@string/avatar_size_small"
+                android:textAppearance="@style/TextAppearance.DemoDescription" />
+
+            <com.microsoft.officeuifabric.persona.AvatarView
+                android:id="@+id/avatar_example_small_photo"
+                android:layout_gravity="start"
+                android:layout_marginEnd="@dimen/default_layout_margin"
+                app:avatarSize="small" />
+
+            <com.microsoft.officeuifabric.persona.AvatarView
+                android:id="@+id/avatar_example_small_initials"
+                android:layout_gravity="start"
+                app:avatarSize="small"
+                app:name="@string/persona_name_kristen_patterson" />
+
+        </TableRow>
+
+        <!--XSmall-->
+
+        <TableRow>
+
+            <TextView
+                android:id="@+id/avatar_example_xsmall_size"
+                android:layout_gravity="center_vertical"
+                android:layout_marginEnd="@dimen/avatar_size_text_margin_end"
+                android:text="@string/avatar_size_xsmall"
+                android:textAppearance="@style/TextAppearance.DemoDescription" />
+
+            <com.microsoft.officeuifabric.persona.AvatarView
+                android:id="@+id/avatar_example_xsmall_photo"
+                android:layout_gravity="start"
+                android:layout_marginEnd="@dimen/default_layout_margin"
+                app:avatarImageDrawable="@drawable/avatar_ashley_mccarthy"
+                app:avatarSize="xsmall" />
+
+            <com.microsoft.officeuifabric.persona.AvatarView
+                android:id="@+id/avatar_example_xsmall_initials"
+                android:layout_gravity="start"
+                app:avatarSize="xsmall"
+                app:name="@string/persona_name_isaac_fielder" />
+
+        </TableRow>
+
+    </TableLayout>
+
+    <!--Square-->
+
+    <TextView
+        style="@style/TextAppearance.UIFabric.Headline"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/default_layout_margin"
+        android:paddingBottom="@dimen/demo_headline_padding_bottom"
+        android:text="@string/avatar_style_square" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/demo_headline_divider_height"
+        android:background="@drawable/ms_row_divider" />
+
+    <TableLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/default_layout_margin"
+        android:divider="@drawable/demo_divider"
+        android:showDividers="middle">
+
+        <!--XXLarge-->
+
+        <TableRow>
+
+            <TextView
+                android:id="@+id/avatar_example_xxlarge_size_square"
+                android:layout_gravity="center_vertical"
+                android:layout_marginEnd="@dimen/avatar_size_text_margin_end"
+                android:text="@string/avatar_size_xxlarge"
+                android:textAppearance="@style/TextAppearance.DemoDescription" />
+
+            <com.microsoft.officeuifabric.persona.AvatarView
+                android:id="@+id/avatar_example_xxlarge_photo_square"
+                android:layout_gravity="start"
+                android:layout_marginEnd="@dimen/default_layout_margin"
+                app:avatarImageDrawable="@drawable/avatar_carlos_slattery"
+                app:avatarSize="xxlarge"
+                app:avatarStyle="square"
+                app:name="@string/persona_name_carlos_slattery" />
+
+            <com.microsoft.officeuifabric.persona.AvatarView
+                android:id="@+id/avatar_example_xxlarge_initials_square"
+                android:layout_gravity="start"
+                app:avatarSize="xxlarge"
+                app:avatarStyle="square"
+                app:name="@string/persona_name_carole_poland" />
+
+        </TableRow>
+
+        <!--XLarge-->
+
+        <TableRow>
+
+            <TextView
+                android:id="@+id/avatar_example_xlarge_size_square"
+                android:layout_gravity="center_vertical"
+                android:layout_marginEnd="@dimen/avatar_size_text_margin_end"
+                android:text="@string/avatar_size_xlarge"
+                android:textAppearance="@style/TextAppearance.DemoDescription" />
+
+            <com.microsoft.officeuifabric.persona.AvatarView
+                android:id="@+id/avatar_example_xlarge_photo_square"
+                android:layout_gravity="start"
+                android:layout_marginEnd="@dimen/default_layout_margin"
+                app:avatarImageDrawable="@drawable/avatar_daisy_phillips"
+                app:avatarSize="xlarge"
+                app:avatarStyle="square"
+                app:name="@string/persona_name_daisy_phillips" />
+
+            <com.microsoft.officeuifabric.persona.AvatarView
+                android:id="@+id/avatar_example_xlarge_initials_square"
+                android:layout_gravity="start"
+                app:avatarSize="xlarge"
+                app:avatarStyle="square"
+                app:name="@string/persona_name_daisy_phillips" />
+
+        </TableRow>
+
+        <!--Large-->
+
+        <TableRow>
+
+            <TextView
+                android:id="@+id/avatar_example_large_size_square"
+                android:layout_gravity="center_vertical"
+                android:layout_marginEnd="@dimen/avatar_size_text_margin_end"
+                android:text="@string/avatar_size_large"
+                android:textAppearance="@style/TextAppearance.DemoDescription" />
+
+            <com.microsoft.officeuifabric.persona.AvatarView
+                android:id="@+id/avatar_example_large_photo_square"
+                android:layout_gravity="start"
+                android:layout_marginEnd="@dimen/default_layout_margin"
+                app:avatarImageDrawable="@drawable/avatar_robin_counts"
+                app:avatarSize="large"
+                app:avatarStyle="square"
+                app:name="@string/persona_name_robin_counts" />
+
+            <!--This one sets shape and initials programmatically-->
+            <com.microsoft.officeuifabric.persona.AvatarView
+                android:id="@+id/avatar_example_large_initials_square"
+                android:layout_gravity="start"
+                app:avatarSize="large" />
+
+        </TableRow>
+
+        <!--Medium-->
+
+        <TableRow>
+
+            <TextView
+                android:id="@+id/avatar_example_medium_size_square"
+                android:layout_gravity="center_vertical"
+                android:layout_marginEnd="@dimen/avatar_size_text_margin_end"
+                android:text="@string/avatar_size_medium"
+                android:textAppearance="@style/TextAppearance.DemoDescription" />
+
+            <com.microsoft.officeuifabric.persona.AvatarView
+                android:id="@+id/avatar_example_medium_photo_square"
+                android:layout_gravity="start"
+                android:layout_marginEnd="@dimen/default_layout_margin"
+                app:avatarImageDrawable="@drawable/avatar_cecil_folk"
+                app:avatarSize="medium"
+                app:avatarStyle="square"
+                app:name="@string/persona_name_cecil_folk" />
+
+            <com.microsoft.officeuifabric.persona.AvatarView
+                android:id="@+id/avatar_example_medium_initials_square"
+                android:layout_gravity="start"
+                app:avatarSize="medium"
+                app:avatarStyle="square"
+                app:name="@string/persona_name_celeste_burton" />
+
+        </TableRow>
+
+        <!--Small-->
+
+        <TableRow>
+
+            <TextView
+                android:id="@+id/avatar_example_small_size_square"
+                android:layout_gravity="center_vertical"
+                android:layout_marginEnd="@dimen/avatar_size_text_margin_end"
+                android:text="@string/avatar_size_small"
+                android:textAppearance="@style/TextAppearance.DemoDescription" />
+
+            <com.microsoft.officeuifabric.persona.AvatarView
+                android:id="@+id/avatar_example_small_photo_square"
+                android:layout_gravity="start"
+                android:layout_marginEnd="@dimen/default_layout_margin"
+                app:avatarImageDrawable="@drawable/avatar_elliot_woodward"
+                app:avatarSize="small"
+                app:avatarStyle="square"
+                app:name="@string/persona_name_elliot_woodward" />
+
+            <com.microsoft.officeuifabric.persona.AvatarView
+                android:id="@+id/avatar_example_small_initials_square"
+                android:layout_gravity="start"
+                app:avatarSize="small"
+                app:avatarStyle="square"
+                app:name="@string/persona_name_erik_nason" />
+
+        </TableRow>
+
+        <!--XSmall-->
+
+        <TableRow>
+
+            <TextView
+                android:id="@+id/avatar_example_xsmall_size_square"
+                android:layout_gravity="center_vertical"
+                android:layout_marginEnd="@dimen/avatar_size_text_margin_end"
+                android:text="@string/avatar_size_xsmall"
+                android:textAppearance="@style/TextAppearance.DemoDescription" />
+
+            <com.microsoft.officeuifabric.persona.AvatarView
+                android:id="@+id/avatar_example_xsmall_photo_square"
+                android:layout_gravity="start"
+                android:layout_marginEnd="@dimen/default_layout_margin"
+                app:avatarImageDrawable="@drawable/avatar_henry_brill"
+                app:avatarSize="xsmall"
+                app:avatarStyle="square"
+                app:name="@string/persona_name_henry_brill" />
+
+            <com.microsoft.officeuifabric.persona.AvatarView
+                android:id="@+id/avatar_example_xsmall_initials_square"
+                android:layout_gravity="start"
+                app:avatarSize="xsmall"
+                app:avatarStyle="square"
+                app:name="@string/persona_name_lydia_bauer" />
+
+        </TableRow>
+
+    </TableLayout>
+
+</LinearLayout>

@@ -1,14 +1,10 @@
-#tool nuget:?package=XamarinComponent&version=1.1.0.65
 
-#addin nuget:?package=Cake.XCode&version=4.0.0
-#addin nuget:?package=Cake.Xamarin.Build&version=4.0.0
-#addin nuget:?package=Cake.Xamarin&version=3.0.0
-#addin nuget:?package=Cake.FileHelpers&version=3.0.0
-#addin nuget:?package=YamlDotNet&version=4.2.1
-#addin nuget:?package=Cake.Yaml&version=2.1.0
-#addin nuget:?package=Newtonsoft.Json&version=9.0.1
-#addin nuget:?package=Cake.Json&version=3.0.1
-
+#addin nuget:?package=Cake.XCode&version=4.2.0
+#addin nuget:?package=Cake.Xamarin.Build&version=4.1.2
+#addin nuget:?package=Cake.Xamarin&version=3.0.2
+#addin nuget:?package=Cake.FileHelpers&version=3.2.1
+#addin nuget:?package=Cake.Yaml&version=3.1.1&loadDependencies=true
+#addin nuget:?package=Cake.Json&version=4.0.0&loadDependencies=true
 
 public enum TargetOS {
 	Windows,
@@ -18,12 +14,12 @@ public enum TargetOS {
 	tvOS,
 }
 
-void BuildXCodeFatLibrary(FilePath xcodeProject, string target, string libraryTitle = null, FilePath fatLibrary = null, DirectoryPath workingDirectory = null, string targetFolderName = null)
+void BuildXCodeFatLibrary(FilePath xcodeProject, string target, string libraryTitle = null, FilePath fatLibrary = null, DirectoryPath workingDirectory = null, string targetFolderName = null, Dictionary<string, string> buildSettings = null)
 {
-	BuildXCodeFatLibrary_iOS(xcodeProject, target, libraryTitle, fatLibrary, workingDirectory, targetFolderName);
+	BuildXCodeFatLibrary_iOS(xcodeProject, target, libraryTitle, fatLibrary, workingDirectory, targetFolderName, buildSettings);
 }
 
-void BuildXCodeFatLibrary_iOS(FilePath xcodeProject, string target, string libraryTitle = null, FilePath fatLibrary = null, DirectoryPath workingDirectory = null, string targetFolderName = null)
+void BuildXCodeFatLibrary_iOS(FilePath xcodeProject, string target, string libraryTitle = null, FilePath fatLibrary = null, DirectoryPath workingDirectory = null, string targetFolderName = null, Dictionary<string, string> buildSettings = null)
 {
 	if (!IsRunningOnUnix())
 	{
@@ -52,6 +48,7 @@ void BuildXCodeFatLibrary_iOS(FilePath xcodeProject, string target, string libra
 				Sdk = sdk,
 				Arch = arch,
 				Configuration = "Release",
+				BuildSettings = buildSettings
 			});
 			var tmpOutputPath = workingDirectory.Combine("build").Combine("Release-" + sdk);
 			if (!string.IsNullOrEmpty (targetFolderName))
@@ -72,7 +69,7 @@ void BuildXCodeFatLibrary_iOS(FilePath xcodeProject, string target, string libra
 	RunLipoCreate(workingDirectory, fatLibrary, i386, x86_64, armv7, armv7s, arm64);
 }
 
-void BuildXCodeFatLibrary_tvOS(FilePath xcodeProject, string target, string libraryTitle = null, FilePath fatLibrary = null, DirectoryPath workingDirectory = null, string targetFolderName = null)
+void BuildXCodeFatLibrary_tvOS(FilePath xcodeProject, string target, string libraryTitle = null, FilePath fatLibrary = null, DirectoryPath workingDirectory = null, string targetFolderName = null, Dictionary<string, string> buildSettings = null)
 {
 	if (!IsRunningOnUnix())
 	{
@@ -98,6 +95,7 @@ void BuildXCodeFatLibrary_tvOS(FilePath xcodeProject, string target, string libr
 				Sdk = sdk,
 				Arch = arch,
 				Configuration = "Release",
+				BuildSettings = buildSettings
 			});
 			var tmpOutputPath = workingDirectory.Combine("build").Combine("Release-" + sdk);
 			if (!string.IsNullOrEmpty (targetFolderName))
@@ -114,7 +112,7 @@ void BuildXCodeFatLibrary_tvOS(FilePath xcodeProject, string target, string libr
 	RunLipoCreate(workingDirectory, fatLibrary, x86_64, arm64);
 }
 
-void BuildXCodeFatLibrary_macOS(FilePath xcodeProject, string target, string libraryTitle = null, FilePath fatLibrary = null, DirectoryPath workingDirectory = null, string targetFolderName = null)
+void BuildXCodeFatLibrary_macOS(FilePath xcodeProject, string target, string libraryTitle = null, FilePath fatLibrary = null, DirectoryPath workingDirectory = null, string targetFolderName = null, Dictionary<string, string> buildSettings = null)
 {
 	if (!IsRunningOnUnix())
 	{
@@ -142,6 +140,7 @@ void BuildXCodeFatLibrary_macOS(FilePath xcodeProject, string target, string lib
 				Sdk = sdk,
 				Arch = arch,
 				Configuration = "Release",
+				BuildSettings = buildSettings
 			});
 			var tmpOutputPath = workingDirectory.Combine("build").Combine("Release");
 			if (!string.IsNullOrEmpty (targetFolderName))
@@ -159,7 +158,7 @@ void BuildXCodeFatLibrary_macOS(FilePath xcodeProject, string target, string lib
 	// RunLipoCreate(workingDirectory, fatLibrary, x86_64, i386);
 }
 
-void BuildXCode (FilePath project, string target, string libraryTitle, DirectoryPath workingDirectory, TargetOS os)
+void BuildXCode (FilePath project, string target, string libraryTitle, DirectoryPath workingDirectory, TargetOS os, Dictionary<string, string> buildSettings = null)
 {
 	if (!IsRunningOnUnix ()) {
 		Warning("{0} is not available on the current platform.", "xcodebuild");
@@ -183,6 +182,7 @@ void BuildXCode (FilePath project, string target, string libraryTitle, Directory
 				Sdk = sdk,
 				Arch = arch,
 				Configuration = "Release",
+				BuildSettings = buildSettings
 			});
 			var outputPath = workingDirectory.Combine ("build").Combine (os == TargetOS.Mac ? "Release" : ("Release-" + sdk)).Combine (target).CombineWithFilePath (output);
 			CopyFile (outputPath, dest);
@@ -219,7 +219,7 @@ void BuildXCode (FilePath project, string target, string libraryTitle, Directory
 	}
 }
 
-void BuildDynamicXCode (FilePath project, string target, string libraryTitle, DirectoryPath workingDirectory, TargetOS os)
+void BuildDynamicXCode (FilePath project, string target, string libraryTitle, DirectoryPath workingDirectory, TargetOS os, Dictionary<string, string> buildSettings = null)
 {
 	if (!IsRunningOnUnix ()) {
 		Warning("{0} is not available on the current platform.", "xcodebuild");
@@ -244,6 +244,7 @@ void BuildDynamicXCode (FilePath project, string target, string libraryTitle, Di
 				Sdk = sdk,
 				Arch = arch,
 				Configuration = "Release",
+				BuildSettings = buildSettings
 			});
 			var outputPath = workingDirectory.Combine ("build").Combine (os == TargetOS.Mac ? "Release" : ("Release-" + sdk)).Combine (target).Combine (output);
 			CopyDirectory (outputPath, dest);

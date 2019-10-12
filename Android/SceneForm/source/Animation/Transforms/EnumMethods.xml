@@ -1,0 +1,12 @@
+﻿<enum-method-mappings>
+    
+    <mapping jni-interface="com/google/sceneform_animation/W">
+        <method jni-name="setShowAsAction" parameter="p0" clr-enum-type="Android.Views.ShowAsAction" />
+    </mapping>
+
+    <mapping jni-interface="com/google/sceneform_animation/W">
+        <method jni-name="setShowAsActionFlags" parameter="p0" clr-enum-type="Android.Views.ShowAsAction" />
+    </mapping>
+    
+</enum-method-mappings>
+

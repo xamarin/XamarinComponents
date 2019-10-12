@@ -1,0 +1,4 @@
+﻿<metadata>
+  <attr path="/api/package[@name='com.google.android.filament']" name="managedName">Google.Android.Filaments</attr>
+  <attr path="/api/package[@name='com.google.android.filament.android']" name="managedName">Google.Android.Filaments.Android</attr>
+</metadata>

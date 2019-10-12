@@ -1,65 +1,94 @@
 
-#load "../../common.cake"
+var TARGET = Argument("t", Argument("target", "ci"));
 
-var TARGET = Argument ("t", Argument ("target", "Default"));
-
-var JAR_VERSION = "1.1.4-3";
-
-var JAR_STDLIB_URL = string.Format ("https://repo1.maven.org/maven2/org/jetbrains/kotlin/kotlin-stdlib/{0}/kotlin-stdlib-{0}.jar", JAR_VERSION);
-var JAR_STDLIB_JRE7_URL = string.Format ("https://repo1.maven.org/maven2/org/jetbrains/kotlin/kotlin-stdlib-jre7/{0}/kotlin-stdlib-jre7-{0}.jar", JAR_VERSION);
-var JAR_STDLIB_JRE8_URL = string.Format ("https://repo1.maven.org/maven2/org/jetbrains/kotlin/kotlin-stdlib-jre8/{0}/kotlin-stdlib-jre8-{0}.jar", JAR_VERSION);
-
-var JAR_STDLIB_DEST = "./externals/kotlin-stdlib.jar";
-var JAR_STDLIB_JRE7_DEST = "./externals/kotlin-stdlib-jre7.jar";
-var JAR_STDLIB_JRE8_DEST = "./externals/kotlin-stdlib-jre8.jar";
-
-var buildSpec = new BuildSpec () {
-	Libs = new ISolutionBuilder [] {
-		new DefaultSolutionBuilder {
-			SolutionPath = "./source/Xamarin.Kotlin.sln",
-			OutputFiles = new [] { 
-				new OutputFileCopy { FromFile = "./source/Xamarin.Kotlin.StdLib/bin/Release/Xamarin.Kotlin.StdLib.dll", },
-				new OutputFileCopy { FromFile = "./source/Xamarin.Kotlin.StdLib.Jre7/bin/Release/Xamarin.Kotlin.StdLib.Jre7.dll", },
-				new OutputFileCopy { FromFile = "./source/Xamarin.Kotlin.StdLib.Jre8/bin/Release/Xamarin.Kotlin.StdLib.Jre8.dll", },
-			}
-		}
-	},
-
-	Samples = new ISolutionBuilder [] {
-		new DefaultSolutionBuilder {
-			PreBuildAction = () => {
-				var gradlew = MakeAbsolute((FilePath)"./native/KotlinSample/gradlew");
-				StartProcess (gradlew, new ProcessSettings {
-					Arguments = "build",
-					WorkingDirectory = "./native/KotlinSample/"
-				});
-			},
-			SolutionPath = "./samples/KotlinSample.sln"
-		},
-	},
-
-	NuGets = new [] {
-		new NuGetInfo { NuSpec = "./nuget/Xamarin.Kotlin.StdLib.nuspec" },
-		new NuGetInfo { NuSpec = "./nuget/Xamarin.Kotlin.StdLib.Jre7.nuspec" },
-		new NuGetInfo { NuSpec = "./nuget/Xamarin.Kotlin.StdLib.Jre8.nuspec" },
-	},
-};
-
-Task ("externals")
-	.Does (() => 
+Task("binderate")
+	.Does(() =>
 {
-	EnsureDirectoryExists ("./externals/");
+	var configFile = MakeAbsolute(new FilePath("./config.json")).FullPath;
+	var basePath = MakeAbsolute(new DirectoryPath("./")).FullPath;
 
-	if (!FileExists (JAR_STDLIB_DEST)) DownloadFile (JAR_STDLIB_URL, JAR_STDLIB_DEST);
-	if (!FileExists (JAR_STDLIB_JRE7_DEST)) DownloadFile (JAR_STDLIB_JRE7_URL, JAR_STDLIB_JRE7_DEST);
-	if (!FileExists (JAR_STDLIB_JRE8_DEST)) DownloadFile (JAR_STDLIB_JRE8_URL, JAR_STDLIB_JRE8_DEST);
+	var exit = StartProcess("xamarin-android-binderator",
+		$"--config=\"{configFile}\" --basepath=\"{basePath}\"");
+	if (exit != 0) throw new Exception($"xamarin-android-binderator exited with code {exit}.");
 });
 
-Task ("clean").IsDependentOn ("clean-base").Does (() => 
-{	
-	DeleteFiles ("./externals/*.jar");
+Task("native")
+	.Does(() =>
+{
+	var fn = IsRunningOnWindows() ? "gradlew.bat" : "gradlew";
+	var gradlew = MakeAbsolute((FilePath)("./native/KotlinSample/" + fn));
+	var exit = StartProcess(gradlew, new ProcessSettings {
+		Arguments = "assemble",
+		WorkingDirectory = "./native/KotlinSample/"
+	});
+	if (exit != 0) throw new Exception($"Gradle exited with exit code {exit}.");
 });
 
-SetupXamarinBuildTasks (buildSpec, Tasks, Task);
+Task("externals")
+	.IsDependentOn("binderate")
+	.IsDependentOn("native");
 
-RunTarget (TARGET);
+Task("libs")
+	.IsDependentOn("externals")
+	.Does(() =>
+{
+	var settings = new MSBuildSettings()
+		.SetConfiguration("Release")
+		.SetVerbosity(Verbosity.Minimal)
+		.EnableBinaryLogger("./output/libs.binlog")
+		.WithRestore()
+		.WithProperty("DesignTimeBuild", "false")
+		.WithTarget("Build");
+
+	MSBuild("./generated/Xamarin.Kotlin.sln", settings);
+});
+
+Task("nuget")
+	.IsDependentOn("libs")
+	.Does(() =>
+{
+	var settings = new MSBuildSettings()
+		.SetConfiguration("Release")
+		.SetVerbosity(Verbosity.Minimal)
+		.EnableBinaryLogger("./output/nuget.binlog")
+		.WithProperty("NoBuild", "true")
+		.WithProperty("DesignTimeBuild", "false")
+		.WithProperty("PackageOutputPath", MakeAbsolute((DirectoryPath)"./output/").FullPath)
+		.WithTarget("Pack");
+
+	MSBuild("./generated/Xamarin.Kotlin.sln", settings);
+});
+
+Task("samples")
+	.IsDependentOn("libs")
+	.Does(() =>
+{
+	var settings = new MSBuildSettings()
+		.SetConfiguration("Release")
+		.SetVerbosity(Verbosity.Minimal)
+		.EnableBinaryLogger("./output/samples.binlog")
+		.WithRestore()
+		.WithProperty("DesignTimeBuild", "false");
+
+	MSBuild("./samples/KotlinSample.sln", settings);
+});
+
+Task("clean")
+	.Does(() =>
+{
+	CleanDirectories("./generated/*/bin");
+	CleanDirectories("./generated/*/obj");
+
+	CleanDirectories("./externals/");
+	CleanDirectories("./generated/");
+	CleanDirectories("./native/.gradle");
+	CleanDirectories("./native/**/build");
+});
+
+Task("ci")
+	.IsDependentOn("externals")
+	.IsDependentOn("libs")
+	.IsDependentOn("nuget")
+	.IsDependentOn("samples");
+
+RunTarget(TARGET);

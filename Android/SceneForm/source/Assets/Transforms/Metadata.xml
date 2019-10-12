@@ -1,0 +1,6 @@
+﻿<metadata>
+     <attr path="/api/package[@name='com.google.ar.sceneform.assets']" name="managedName">Google.AR.Sceneform.Assets</attr>
+  
+    <attr path="/api/package[@name='com.google.ar.sceneform.assets']/class[@name='RenderableSource']/method[@name='call' and count(parameter)=0]" name="return">Java.Lang.Object</attr>
+       
+</metadata>

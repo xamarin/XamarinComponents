@@ -3,7 +3,7 @@
   <metadata>
     <id>Xamarin.YouTube.Player.Android</id>
     <title>YouTube Player for Xamarin.Android</title>
-    <version>1.2.2</version>
+    <version>1.2.2.1</version>
     <authors>Microsoft</authors>
     <owners>Microsoft</owners>
     <requireLicenseAcceptance>true</requireLicenseAcceptance>

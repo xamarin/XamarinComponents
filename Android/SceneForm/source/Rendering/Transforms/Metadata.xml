@@ -1,0 +1,39 @@
+﻿<metadata>
+    
+       
+    <attr path="/api/package[@name='com.google.ar.sceneform.rendering']" name="managedName">Google.AR.Sceneform.Rendering</attr>
+    
+    <remove-node path="/api/package[@name='com.google.ar.sceneform.rendering']/class[@name='Renderable.Builder']/method[@name='makeRenderable' and count(parameter)=0]" />
+    
+    <attr path="/api/package[@name='com.google.ar.sceneform.rendering']/class[@name='ViewRenderable']/method[@name='makeCopy' and count(parameter)=0]" name="return">Google.AR.Sceneform.Rendering.Renderable</attr>
+     <attr path="/api/package[@name='com.google.ar.sceneform.rendering']/class[@name='ModelRenderable']/method[@name='makeCopy' and count(parameter)=0]" name="return">Google.AR.Sceneform.Rendering.Renderable</attr>
+    
+    <!--<attr path="/api/package[@name='com.google.ar.sceneform.rendering']/class[@name='Renderable.Builder']/method[@name='setSource' and count(parameter)=2 and parameter[1][@type='android.content.Context'] and parameter[2][@type='android.net.Uri']]" name="return">Java.Lang.Object</attr>   
+    <attr path="/api/package[@name='com.google.ar.sceneform.rendering']/class[@name='Renderable.Builder']/method[@name='setSource' and count(parameter)=2 and parameter[1][@type='android.content.Context'] and parameter[2][@type='java.util.concurrent.Callable&lt;java.io.InputStream&gt;']]" name="return">Java.Lang.Object</attr>
+    <attr path="/api/package[@name='com.google.ar.sceneform.rendering']/class[@name='Renderable.Builder']/method[@name='setSource' and count(parameter)=1 and parameter[1][@type='com.google.ar.sceneform.rendering.RenderableDefinition']]" name="return">Java.Lang.Object</attr>-->
+
+  <!--<remove-node path="/api/package[@name='com.google.ar.sceneform.rendering']/class[@name='Renderable.Builder']/method[@name='setSource' and count(parameter)=2 and parameter[1][@type='android.content.Context'] and parameter[2][@type='android.net.Uri']]" />
+  <remove-node path="/api/package[@name='com.google.ar.sceneform.rendering']/class[@name='Renderable.Builder']/method[@name='setSource' and count(parameter)=2 and parameter[1][@type='android.content.Context'] and parameter[2][@type='java.util.concurrent.Callable&lt;java.io.InputStream&gt;']]" />
+  <remove-node path="/api/package[@name='com.google.ar.sceneform.rendering']/class[@name='Renderable.Builder']/method[@name='setSource' and count(parameter)=1 and parameter[1][@type='com.google.ar.sceneform.rendering.RenderableDefinition']]" />
+  <remove-node path="/api/package[@name='com.google.ar.sceneform.rendering']/class[@name='Renderable.Builder']/method[@name='setSource' and count(parameter)=2 and parameter[1][@type='android.content.Context'] and parameter[2][@type='int']]" />-->
+  
+  <!--<attr path="/api/package[@name='com.google.ar.sceneform.rendering']/class[@name='Renderable.Builder']/method[@name='setSource' and count(parameter)=2 and parameter[1][@type='android.content.Context'] and parameter[2][@type='int']]" name="return">Java.Lang.Object</attr>-->
+  
+    <remove-node path="/api/package[@name='com.google.ar.sceneform.rendering']/class[@name='Renderable.Builder']/method[@name='getSelf' and count(parameter)=0]" />
+
+     
+    <attr path="/api/package[@name='com.google.ar.sceneform.rendering']/class[@name='Renderable.Builder']/method[@name='setRegistryId' and count(parameter)=1 and parameter[1][@type='java.lang.Object']]" name="return">Java.Lang.Object</attr>
+    
+    <remove-node path="/api/package[@name='com.google.ar.sceneform.rendering']/class[@name='ViewRenderable.Builder']/method[@name='makeRenderable' and @return='com.google.ar.sceneform.rendering.ViewRenderable' and count(parameter)=0]" />
+    <remove-node path="/api/package[@name='com.google.ar.sceneform.rendering']/class[@name='ModelRenderable.Builder']/method[@name='makeRenderable' and @return='com.google.ar.sceneform.rendering.ModelRenderable' and count(parameter)=0]" />
+    
+    <remove-node path="/api/package[@name='com.google.ar.sceneform.rendering']/interface[@name='Light.LightChangedListener']" />
+  
+    <attr path="/api/package[@name='com.google.ar.sceneform.rendering']/class[@name='ModelRenderable']/method[@name='makeCopy' and count(parameter)=0]" name="final">true</attr>
+    
+    <!--<remove-node path="/api/package[@name='com.google.ar.sceneform.rendering']/class[@name='ViewRenderable.Builder']/method[@name='build' and count(parameter)=0]" />-->
+  
+     <remove-node path="/api/package[@name='com.google.ar.sceneform.rendering']/class[@name='Renderable.Builder']/method[@name='build' and count(parameter)=0]" />
+    <remove-node path="/api/package[@name='com.google.ar.sceneform.rendering']/class[@name='Renderable.Builder']/method[@name='getRenderableClass' and count(parameter)=0]" />
+    <remove-node path="/api/package[@name='com.google.ar.sceneform.rendering']/class[@name='Renderable.Builder']/method[@name='getRenderableRegistry' and count(parameter)=0]" />
+</metadata>

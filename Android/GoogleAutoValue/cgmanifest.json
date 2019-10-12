@@ -1,0 +1,15 @@
+{
+  "Registrations":[ 
+    {
+      "Component": {
+        "Type": "Maven",
+        "Maven": {
+          "ArtifactId": "auto-value-annotations",
+          "GroupId": "com.google.auto.value",
+          "Version": "1.6.5"
+        }
+      }
+    }
+  ],
+  "Version": 1
+}

@@ -18,6 +18,8 @@ namespace Xamarin.Build.Download
 
 		public string CacheDirectory { get; set; }
 
+		public bool AllowUnsecureUrls { get; set; }
+
 		DownloadUtils downloadUtils;
 
 		public override bool Execute ()
@@ -26,7 +28,7 @@ namespace Xamarin.Build.Download
 
 			downloadUtils = new DownloadUtils (this, CacheDirectory);
 
-			var items = downloadUtils.ParseDownloadItems (Archives);
+			var items = downloadUtils.ParseDownloadItems (Archives, AllowUnsecureUrls);
 
 			if (items != null) {
 				foreach (var item in items) {
@@ -44,7 +46,7 @@ namespace Xamarin.Build.Download
 				}
 			}
 
-			var partials = downloadUtils.ParsePartialZipDownloadItems (PartialZipDownloads);
+			var partials = downloadUtils.ParsePartialZipDownloadItems (PartialZipDownloads, AllowUnsecureUrls);
 			if (partials != null) {
 				foreach (var partialZipDownload in partials) {
 					if (downloadUtils.IsAlreadyDownloaded (CacheDirectory, partialZipDownload))

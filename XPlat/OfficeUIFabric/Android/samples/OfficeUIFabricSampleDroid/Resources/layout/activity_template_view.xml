@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ Copyright (c) Microsoft Corporation. All rights reserved.
+  ~ Licensed under the MIT License.
+  -->
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="@dimen/default_layout_margin"
+    tools:context=".demos.TemplateViewActivity">
+
+    <com.microsoft.officeuifabricdemo.demos.views.Cell
+        android:id="@+id/horizontal_cell"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:focusable="true"
+        android:focusableInTouchMode="true"
+        app:description="@string/cell_example_description"
+        app:orientation="horizontal"
+        app:title="@string/cell_example_title" />
+
+    <com.microsoft.officeuifabricdemo.demos.views.Cell
+        android:id="@+id/vertical_cell"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/default_view_margin"
+        android:focusable="true"
+        android:focusableInTouchMode="true"
+        app:description="@string/cell_example_description"
+        app:orientation="vertical"
+        app:title="@string/cell_example_title" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/default_view_margin"
+        android:orientation="horizontal"
+        android:baselineAligned="false">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:showDividers="middle"
+            android:divider="@drawable/demo_divider"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textAppearance="@style/TextAppearance.DemoDescription"
+                android:text="@string/template_list" />
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/template_list_view"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/template_view_list_height"
+                android:layout_marginTop="@dimen/cell_vertical_spacing"
+                android:scrollbars="vertical" />
+
+            <Button
+                android:id="@+id/calculate_cells_button"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/calculate_cells" />
+
+        </LinearLayout>
+
+        <View
+            android:layout_width="@dimen/default_view_margin"
+            android:layout_height="match_parent" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:showDividers="middle"
+            android:divider="@drawable/demo_divider"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textAppearance="@style/TextAppearance.DemoDescription"
+                android:text="@string/regular_list" />
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/regular_list_view"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/template_view_list_height"
+                android:layout_marginTop="@dimen/cell_vertical_spacing"
+                android:scrollbars="vertical" />
+
+            <Button
+                android:id="@+id/calculate_layouts_button"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/calculate_layouts" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</LinearLayout>

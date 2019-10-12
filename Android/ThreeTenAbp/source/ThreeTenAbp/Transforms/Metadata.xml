@@ -1,0 +1,75 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<metadata>
+	<attr path="/api/package[@name='com.jakewharton.threetenabp']" name="managedName">ThreeTenAbp</attr>
+
+  <attr path="/api/package[@name='org.threeten.bp']" name="managedName">ThreeTen.BP</attr>
+  <attr path="/api/package[@name='org.threeten.bp.chrono']" name="managedName">ThreeTen.BP.Chrono</attr>
+  <attr path="/api/package[@name='org.threeten.bp.format']" name="managedName">ThreeTen.BP.Format</attr>
+  <attr path="/api/package[@name='org.threeten.bp.jdk8']" name="managedName">ThreeTen.BP.Jdk8</attr>
+  <attr path="/api/package[@name='org.threeten.bp.temporal']" name="managedName">ThreeTen.BP.Temporal</attr>
+  <attr path="/api/package[@name='org.threeten.bp.zone']" name="managedName">ThreeTen.BP.Zone</attr>
+
+  <remove-node path="/api/package[@name='org.threeten.bp.chrono']/class[contains(@name,'Hijrah')]" />
+  <remove-node path="/api/package[@name='org.threeten.bp.chrono']/class[contains(@name,'Thai')]" />
+  <remove-node path="/api/package[@name='org.threeten.bp.chrono']/class[contains(@name,'Japanese')]" />
+  <remove-node path="/api/package[@name='org.threeten.bp.chrono']/class[contains(@name,'Minguo')]" />
+  <remove-node path="/api/package[@name='org.threeten.bp.chrono']/class[@name='ChronoLocalDate']" />
+  <remove-node path="/api/package[@name='org.threeten.bp.chrono']/class[@name='ChronoLocalDateTime']" />
+
+  <remove-node path="/api/package[@name='org.threeten.bp.chrono']/class[@name='IsoChronology']" />
+
+  <attr path="/api/package[@name='org.threeten.bp']/class[@name='Instant']/method[@name='compareTo']/parameter[1]" name="managedType">Java.Lang.Object</attr>
+  <attr path="/api/package[@name='org.threeten.bp']/class[@name='LocalTime']/method[@name='compareTo']/parameter[1]" name="managedType">Java.Lang.Object</attr>
+  <attr path="/api/package[@name='org.threeten.bp']/class[@name='OffsetTime']/method[@name='compareTo']/parameter[1]" name="managedType">Java.Lang.Object</attr>
+  <attr path="/api/package[@name='org.threeten.bp']/class[@name='OffsetDateTime']/method[@name='compareTo']/parameter[1]" name="managedType">Java.Lang.Object</attr>
+  <attr path="/api/package[@name='org.threeten.bp.zone']/class[@name='ZoneOffsetTransition']/method[@name='compareTo']/parameter[1]" name="managedType">Java.Lang.Object</attr>
+  <attr path="/api/package[@name='org.threeten.bp']/class[@name='Duration']/method[@name='compareTo']/parameter[1]" name="managedType">Java.Lang.Object</attr>
+  <attr path="/api/package[@name='org.threeten.bp']/class[@name='MonthDay']/method[@name='compareTo']/parameter[1]" name="managedType">Java.Lang.Object</attr>
+  <attr path="/api/package[@name='org.threeten.bp']/class[@name='Year']/method[@name='compareTo']/parameter[1]" name="managedType">Java.Lang.Object</attr>
+  <attr path="/api/package[@name='org.threeten.bp']/class[@name='YearMonth']/method[@name='compareTo']/parameter[1]" name="managedType">Java.Lang.Object</attr>
+  <attr path="/api/package[@name='org.threeten.bp']/class[@name='ZoneOffset']/method[@name='compareTo']/parameter[1]" name="managedType">Java.Lang.Object</attr>
+
+  <attr path="/api/package[@name='org.threeten.bp']/*[contains(@implements, 'Temporal')]/method[@name='minus']" name="managedReturn">ThreeTen.BP.Temporal.ITemporal</attr>
+  <attr path="/api/package[@name='org.threeten.bp']/*[contains(@extends, 'DefaultInterfaceTemporalAccessor')]/method[@name='minus']" name="managedReturn">ThreeTen.BP.Temporal.ITemporal</attr>
+  <attr path="/api/package[@name='org.threeten.bp']/*[@name='Period']/method[@name='minus']" name="managedReturn">ThreeTen.BP.Chrono.ChronoPeriod</attr>
+  <attr path="/api/package[@name='org.threeten.bp']/*[contains(@implements, 'Temporal')]/method[@name='plus']" name="managedReturn">ThreeTen.BP.Temporal.ITemporal</attr>
+  <attr path="/api/package[@name='org.threeten.bp']/*[contains(@extends, 'DefaultInterfaceTemporalAccessor')]/method[@name='plus']" name="managedReturn">ThreeTen.BP.Temporal.ITemporal</attr>
+  <attr path="/api/package[@name='org.threeten.bp']/*[@name='Period']/method[@name='plus']" name="managedReturn">ThreeTen.BP.Chrono.ChronoPeriod</attr>
+  <attr path="/api/package[@name='org.threeten.bp']/*[contains(@implements, 'Temporal')]/method[@name='with']" name="managedReturn">ThreeTen.BP.Temporal.ITemporal</attr>
+  <attr path="/api/package[@name='org.threeten.bp']/*[contains(@extends, 'DefaultInterfaceTemporalAccessor')]/method[@name='with']" name="managedReturn">ThreeTen.BP.Temporal.ITemporal</attr>
+  <attr path="/api/package[@name='org.threeten.bp']/*[@name='Period']/method[@name='with']" name="managedReturn">ThreeTen.BP.Chrono.ChronoPeriod</attr>
+
+  <attr path="/api/package[@name='org.threeten.bp']/class[@name='Period']/method[@name='multipliedBy' and count(parameter)=1 and parameter[1][@type='int']]" name="managedReturn">ThreeTen.BP.Chrono.ChronoPeriod</attr>
+  <attr path="/api/package[@name='org.threeten.bp']/class[@name='Period']/method[@name='normalized' and count(parameter)=0]" name="managedReturn">ThreeTen.BP.Chrono.ChronoPeriod</attr>
+
+  <remove-node path="/api/package[@name='org.threeten.bp.chrono']/class[@name='ChronoLocalDate']/method[@name='query']" />
+  
+  <attr path="/api/package[@name='org.threeten.bp']/class[@name='OffsetDateTime']/method[@name='with' and count(parameter)=2 and parameter[1][@type='org.threeten.bp.temporal.TemporalField'] and parameter[2][@type='long']]" name="managedReturn">ThreeTen.BP.Temporal.ITemporal</attr>
+  
+  <remove-node path="/api/package[@name='org.threeten.bp']/class[@name='OffsetDateTime']/method[@name='plus' and count(parameter)=2 and parameter[1][@type='long'] and parameter[2][@type='org.threeten.bp.temporal.TemporalUnit']]" />
+  <remove-node path="/api/package[@name='org.threeten.bp']/class[@name='OffsetDateTime']/method[@name='with' and count(parameter)=2 and parameter[1][@type='org.threeten.bp.temporal.TemporalField'] and parameter[2][@type='long']]" />
+  <remove-node path="/api/package/*/method[@name='atZoneSameInstant']" />
+  <remove-node path="/api/package/class[@name='ChronoLocalDate']/method[@name='atTime']" />
+
+  <remove-node path="/api/package/class[@name='ChronoLocalDate.1']" />
+  <remove-node path="/api/package/class[@name='ChronoLocalDateTime.1']" />
+  <remove-node path="/api/package/class[@name='ChronoZonedDateTime']/method[@name='atZoneSimilarLocal']" />
+  <remove-node path="/api/package/class[@name='ChronoZonedDateTime']/typeParameters" />
+
+  <remove-node path="/api/package[@name='org.threeten.bp.chrono']/class[@name='ChronoZonedDateTime']/method[@name='plus' and count(parameter)=2 and parameter[1][@type='long'] and parameter[2][@type='org.threeten.bp.temporal.TemporalUnit']]" />
+  <remove-node path="/api/package[@name='org.threeten.bp.chrono']/class[@name='ChronoZonedDateTime']/method[@name='with' and count(parameter)=2 and parameter[1][@type='org.threeten.bp.temporal.TemporalField'] and parameter[2][@type='long']]" />
+
+  <attr path="/api/package[@name='org.threeten.bp']/class[@name='ZonedDateTime']/method[@name='with' and count(parameter)=2 and parameter[1][@type='org.threeten.bp.temporal.TemporalField'] and parameter[2][@type='long']]" name="managedReturn">ThreeTen.BP.Temporal.ITemporal</attr>
+  <remove-node path="/api/package[@name='org.threeten.bp.temporal']/interface[@name='Temporal']/method[@name='plus' and count(parameter)=2 and parameter[1][@type='long'] and parameter[2][@type='org.threeten.bp.temporal.TemporalUnit']]" />
+
+  <remove-node path="/api/package[@name='org.threeten.bp.chrono']/class[@name='ChronoZonedDateTime']/method[@name='withLaterOffsetAtOverlap' and count(parameter)=0]" />
+  <remove-node path="/api/package[@name='org.threeten.bp.chrono']/class[@name='ChronoZonedDateTime']/method[@name='withZoneSameInstant' and count(parameter)=1 and parameter[1][@type='org.threeten.bp.ZoneId']]" />
+  <remove-node path="/api/package[@name='org.threeten.bp.chrono']/class[@name='ChronoZonedDateTime']/method[@name='withEarlierOffsetAtOverlap' and count(parameter)=0]" />
+  <remove-node path="/api/package[@name='org.threeten.bp.chrono']/class[@name='ChronoZonedDateTime']/method[@name='withZoneSameLocal' and count(parameter)=1 and parameter[1][@type='org.threeten.bp.ZoneId']]" />
+  <remove-node path="/api/package[@name='org.threeten.bp']/class[@name='ZonedDateTime']/method[@name='with' and count(parameter)=2 and parameter[1][@type='org.threeten.bp.temporal.TemporalField'] and parameter[2][@type='long']]" />
+  
+  <attr path="/api/package[contains(@name, 'org.threeten.bp')]/*/method[@name='dateEpochDay']" name="managedReturn">ThreeTen.BP.Chrono.ChronoLocalDate</attr>
+  <attr path="/api/package[contains(@name, 'org.threeten.bp')]/*/method[@name='date']" name="managedReturn">ThreeTen.BP.Chrono.ChronoLocalDate</attr>
+  <attr path="/api/package[contains(@name, 'org.threeten.bp')]/*/method[@name='dateYearDay']" name="managedReturn">ThreeTen.BP.Chrono.ChronoLocalDate</attr>
+  <attr path="/api/package[contains(@name, 'org.threeten.bp')]/*/method[@name='resolveDate']" name="managedReturn">ThreeTen.BP.Chrono.ChronoLocalDate</attr>
+</metadata>

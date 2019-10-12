@@ -19,7 +19,7 @@ var buildSpec = new BuildSpec {
 		}
 	},
 	NuGets = new [] {
-		new NuGetInfo { NuSpec = "./nuget/Xamarin.Build.Download.nuspec" },
+		new NuGetInfo { NuSpec = "./nuget/Xamarin.Build.Download.nuspec", RequireLicenseAcceptance = true },
 	}
 };
 

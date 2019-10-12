@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="MSBuild.Sdk.Extras/2.0.54">
   <!--
   https://montemagno.com/converting-xamarin-libraries-to-sdk-style-multi-targeted-projects/
     
@@ -14,8 +14,6 @@
 
         <TargetFrameworks>MonoAndroid81</TargetFrameworks>
         <AndroidCodegenTarget>XAJavaInterop1</AndroidCodegenTarget>
-         
-        <GenerateAssemblyInfo>false</GenerateAssemblyInfo>        
     </PropertyGroup>
 
     <PropertyGroup>
@@ -29,14 +27,11 @@
         -->
         <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
         <PackageId>Xamarin.Grpc.Core</PackageId>
-        <PackageVersion>1.14.0</PackageVersion>
+        <PackageVersion>1.21.1.0</PackageVersion>
         <Title>Xamarin.Grpc.Core</Title>
-        <Summary>
-            Google GRPC Core bindings for Xamarin
-        </Summary>
-        <Description>
-            Bindings for Google's GRPC Core package (Google Play Services dependency)
-        </Description>
+        <PackageDescription>
+            Bindings for Google's GRPC Core package
+        </PackageDescription>
         <Owners>Microsoft</Owners>
         <Authors>Microsoft</Authors>
         <Copyright>© Microsoft Corporation. All rights reserved.</Copyright>
@@ -49,13 +44,9 @@
         <RepositoryUrl>
         https://go.microsoft.com/fwlink/?linkid=2009337            
         </RepositoryUrl>
-        <PackageReleaseNotes>
-            Initial bindings
-        </PackageReleaseNotes>
-        <PackageIconUrl>
-            
-        </PackageIconUrl>
+        <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
         <PackageTags>xamarin, android, bindings, google, grpc, core </PackageTags>
+        <PackOnBuild>true</PackOnBuild>
     </PropertyGroup>
 
 
@@ -73,7 +64,8 @@
 
 
   <ItemGroup>
-    <PackageReference Include="MSBuild.Sdk.Extras" Version="1.4.0" PrivateAssets="All" />
+    <PackageReference Include="Xamarin.Io.OpenCensus.OpenCensusApi" Version="0.12.3" />
+    <PackageReference Include="Xamarin.Io.OpenCensus.OpenCensusContribGrpcMetrics" Version="0.12.3" />
   </ItemGroup>
 
   <ItemGroup>
@@ -81,17 +73,15 @@
     <Folder Include="Jars\" />
   </ItemGroup>
   <ItemGroup>
-    <None Remove="Jars\AboutJars.txt" />
-  </ItemGroup>
-  <ItemGroup>
     <Compile Remove="Additions\LazyStringArrayList.cs" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedJar Include="..\..\externals\android\grpc-core-1.14.0.jar">
-      <Link>Jars\grpc-core-1.14.0.jar</Link>
+    <EmbeddedJar Include="..\..\externals\android\grpc-core-1.21.1.jar">
+      <Link>Jars\grpc-core-1.21.1.jar</Link>
     </EmbeddedJar>
   </ItemGroup>
-  <Import Project="$(MSBuildSDKExtrasTargets)" Condition="Exists('$(MSBuildSDKExtrasTargets)')" />
+  <ItemGroup>
+    <ProjectReference Include="..\Xamarin.Grpc.Context.Bindings.XamarinAndroid\Xamarin.Grpc.Context.Bindings.XamarinAndroid.csproj" />
+  </ItemGroup>
 
-    
 </Project>

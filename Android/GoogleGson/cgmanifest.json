@@ -1,0 +1,15 @@
+{
+    "Registrations":[ 
+      {
+        "Component": {
+          "Type": "Maven",
+          "Maven": {
+            "ArtifactId": "gson",
+            "GroupId": "com.google.code.gson",
+            "Version": "2.8.5"
+          }
+        }
+      }
+    ],
+    "Version": 1
+  }

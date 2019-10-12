@@ -162,7 +162,7 @@ namespace NativeLibraryDownloaderTests
 
 			prel.AddItem (
 				"XamarinBuildDownload", "FacebookAndroid-4.17.0", new Dictionary<string, string> {
-					{ "Url", "http://search.maven.org/remotecontent?filepath=com/facebook/android/facebook-android-sdk/4.17.0/facebook-android-sdk-4.17.0.aar" },
+					{ "Url", "https://search.maven.org/remotecontent?filepath=com/facebook/android/facebook-android-sdk/4.17.0/facebook-android-sdk-4.17.0.aar" },
 					{ "Kind", "Uncompressed" },
 					{ "ToFile", "facebook-android-sdk.aar" }
 				});
@@ -191,7 +191,7 @@ namespace NativeLibraryDownloaderTests
 
 			prel.AddItem (
 				"XamarinBuildDownload", "FacebookAndroid-4.17.0", new Dictionary<string, string> {
-					{ "Url", "http://search.maven.org/remotecontent?filepath=com/facebook/android/facebook-android-sdk/4.17.0/facebook-android-sdk-4.17.0.aar" },
+					{ "Url", "https://search.maven.org/remotecontent?filepath=com/facebook/android/facebook-android-sdk/4.17.0/facebook-android-sdk-4.17.0.aar" },
 					{ "Kind", "Uncompressed" },
 				});
 
@@ -448,9 +448,90 @@ namespace NativeLibraryDownloaderTests
 		}
 
 		[Test]
-		public void TestGetItemsToDownload ()
+		public void TestDisallowUnsafeGetItemsToDownload ()
 		{
 			var itemUrl = "http://search.maven.org/remotecontent?filepath=com/facebook/android/facebook-android-sdk/4.17.0/facebook-android-sdk-4.17.0.aar";
+			var zipUrl = "http://dl-ssl.google.com/android/repository/android_m2repository_r40.zip";
+
+			var engine = new ProjectCollection ();
+			var prel = ProjectRootElement.Create (Path.Combine (TempDir, "project.csproj"), engine);
+
+			var unpackDir = GetTempPath ("unpacked");
+			prel.SetProperty ("XamarinBuildDownloadDir", unpackDir);
+
+			prel.AddItem (
+				"XamarinBuildDownload", "FacebookAndroid-4.17.0", new Dictionary<string, string> {
+					{ "Url", itemUrl },
+					{ "Kind", "Uncompressed" },
+				});
+
+			prel.AddItem (
+				"XamarinBuildDownloadPartialZip", "androidsupport-25.0.1/cardview.v7", new Dictionary<string, string> {
+					{ "Url", zipUrl },
+					{ "ToFile", "cardview.v7.aar" },
+					{ "RangeStart", "196438127" },
+					{ "RangeEnd", "196460160" },
+					{ "Md5", "b44eb88f7cc621ae616744c6646f5b64" }
+				});
+
+			AddCoreTargets (prel);
+
+			var project = new ProjectInstance (prel);
+			var log = new MSBuildTestLogger ();
+
+			var success = BuildProject (engine, project, "XamarinBuildDownloadGetItemsToDownload", log);
+
+			var itemToDownload = project.GetItems ("XamarinBuildDownloadItemToDownload");
+
+			Assert.IsEmpty (itemToDownload);
+		}
+
+		[Test]
+		public void TestAllowUnsafeGetItemsToDownload ()
+		{
+			var itemUrl = "http://search.maven.org/remotecontent?filepath=com/facebook/android/facebook-android-sdk/4.17.0/facebook-android-sdk-4.17.0.aar";
+			var zipUrl = "http://dl-ssl.google.com/android/repository/android_m2repository_r40.zip";
+
+			var engine = new ProjectCollection ();
+			var prel = ProjectRootElement.Create (Path.Combine (TempDir, "project.csproj"), engine);
+
+			var unpackDir = GetTempPath ("unpacked");
+			prel.SetProperty ("XamarinBuildDownloadDir", unpackDir);
+			prel.SetProperty ("XamarinBuildDownloadAllowUnsecure", "true");
+
+			prel.AddItem (
+				"XamarinBuildDownload", "FacebookAndroid-4.17.0", new Dictionary<string, string> {
+					{ "Url", itemUrl },
+					{ "Kind", "Uncompressed" },
+				});
+
+			prel.AddItem (
+				"XamarinBuildDownloadPartialZip", "androidsupport-25.0.1/cardview.v7", new Dictionary<string, string> {
+					{ "Url", zipUrl },
+					{ "ToFile", "cardview.v7.aar" },
+					{ "RangeStart", "196438127" },
+					{ "RangeEnd", "196460160" },
+					{ "Md5", "b44eb88f7cc621ae616744c6646f5b64" }
+				});
+
+			AddCoreTargets (prel);
+
+			var project = new ProjectInstance (prel);
+			var log = new MSBuildTestLogger ();
+
+			var success = BuildProject (engine, project, "XamarinBuildDownloadGetItemsToDownload", log);
+
+			var itemToDownload = project.GetItems ("XamarinBuildDownloadItemToDownload");
+
+			Assert.AreEqual (2, itemToDownload.Count);
+			Assert.IsTrue (itemToDownload.Any (i => i.GetMetadata ("Url").EvaluatedValue == itemUrl));
+			Assert.IsTrue (itemToDownload.Any (i => i.GetMetadata ("Url").EvaluatedValue == zipUrl));
+		}
+
+		[Test]
+		public void TestGetItemsToDownload ()
+		{
+			var itemUrl = "https://search.maven.org/remotecontent?filepath=com/facebook/android/facebook-android-sdk/4.17.0/facebook-android-sdk-4.17.0.aar";
 
 			var engine = new ProjectCollection ();
 			var prel = ProjectRootElement.Create (Path.Combine (TempDir, "project.csproj"), engine);
@@ -476,14 +557,14 @@ namespace NativeLibraryDownloaderTests
 
 			var itemToDownload = project.GetItems ("XamarinBuildDownloadItemToDownload");
 
-			Assert.IsTrue (itemToDownload.Count == 1);
+			Assert.AreEqual (1, itemToDownload.Count);
 			Assert.IsTrue (itemToDownload.First ().GetMetadata ("Url").EvaluatedValue == itemUrl);
 		}
 
 		[Test]
 		public void TestDeduplicateGetItemsToDownload ()
 		{
-			var itemUrl = "http://search.maven.org/remotecontent?filepath=com/facebook/android/facebook-android-sdk/4.17.0/facebook-android-sdk-4.17.0.aar";
+			var itemUrl = "https://search.maven.org/remotecontent?filepath=com/facebook/android/facebook-android-sdk/4.17.0/facebook-android-sdk-4.17.0.aar";
 
 			var engine = new ProjectCollection ();
 			var prel = ProjectRootElement.Create (Path.Combine (TempDir, "project.csproj"), engine);
@@ -515,7 +596,7 @@ namespace NativeLibraryDownloaderTests
 
 			var itemToDownload = project.GetItems ("XamarinBuildDownloadItemToDownload");
 
-			Assert.IsTrue (itemToDownload.Count == 1);
+			Assert.AreEqual (1, itemToDownload.Count);
 			Assert.IsTrue (itemToDownload.First ().GetMetadata ("Url").EvaluatedValue == itemUrl);
 		}
 
@@ -668,7 +749,7 @@ namespace NativeLibraryDownloaderTests
 
 			var itemToDownload = project.GetItems ("XamarinBuildDownloadItemToDownload");
 
-			Assert.IsTrue (itemToDownload.Count == 2);
+			Assert.AreEqual (2, itemToDownload.Count);
 			Assert.IsTrue (itemToDownload.First ().GetMetadata ("Url").EvaluatedValue == itemUrl);
 		}
 
