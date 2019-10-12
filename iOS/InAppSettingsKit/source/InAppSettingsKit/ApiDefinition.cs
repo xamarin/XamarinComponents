@@ -703,7 +703,7 @@ namespace InAppSettingsKit
 	}
 
     // @interface IASKTextView : UITextView
-    [BaseType(typeof(UITextView))]
+    [BaseType(typeof(UITextView), Name = "IASKTextView")]
     interface SettingsTextView
     {
         // @property (copy, nonatomic) NSString * key;
@@ -716,7 +716,7 @@ namespace InAppSettingsKit
     }
 
     // @interface IASKTextViewCell : UITableViewCell
-    [BaseType(typeof(UITableViewCell))]
+    [BaseType(typeof(UITableViewCell), Name = "IASKTextViewCell")]
     interface SettingsTextViewCell
     {
         // @property (nonatomic, strong) IASKTextView * textView;
