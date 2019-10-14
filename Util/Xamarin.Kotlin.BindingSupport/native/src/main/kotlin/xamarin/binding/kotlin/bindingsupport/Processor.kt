@@ -6,10 +6,7 @@ import kotlinx.metadata.*
 import kotlinx.metadata.jvm.*
 import nu.xom.*
 import java.io.File
-import java.lang.reflect.Constructor
-import java.lang.reflect.Executable
-import java.lang.reflect.Field
-import java.lang.reflect.Method
+import java.lang.reflect.*
 import java.net.URLClassLoader
 import kotlin.reflect.KFunction
 import kotlin.reflect.KVisibility
@@ -253,6 +250,18 @@ class Processor(xmlFile: File, jarFiles: List<File>, outputFile: File?, ignoreFi
         }
     }
 
+    private fun wasIgnored(fullname: String): Boolean {
+        if (ignored.contains(fullname)) {
+            return true;
+        }
+        for (ignore in ignored.filter { it.endsWith("*") }) {
+            if (fullname.startsWith(ignore.trimEnd('*'))) {
+                return true;
+            }
+        }
+        return false;
+    }
+
     private fun shouldRemoveClass(xclass: Element): ProcessResult {
         // read the xml
         val xpackage = xclass.parentElement.getAttributeValue("name")
@@ -262,7 +271,7 @@ class Processor(xmlFile: File, jarFiles: List<File>, outputFile: File?, ignoreFi
         logVerbose("Checking the class \"${xpackage}.${xname}\"...")
 
         // make sure we haven't been told to ignore this
-        if (ignored.contains("${xpackage}.${xname}")) {
+        if (wasIgnored("${xpackage}.${xname}")) {
             logVerbose("Ignoring class \"${xpackage}.${xname}\" because it was found in the ignore file...")
             return ProcessResult.Ignore
         }
@@ -271,7 +280,7 @@ class Processor(xmlFile: File, jarFiles: List<File>, outputFile: File?, ignoreFi
 
         // make sure the class is not a generated digit for anonymous classes
         if (lastPeriod != -1) {
-            var xinnername = xname.substring((lastPeriod + 1))
+            val xinnername = xname.substring(lastPeriod + 1)
             if (xinnername.toIntOrNull() != null)
                 return ProcessResult.RemoveGenerated
         }
@@ -342,7 +351,7 @@ class Processor(xmlFile: File, jarFiles: List<File>, outputFile: File?, ignoreFi
         val xfullname = "${xpackage}.${xclassname}.${xname}"
 
         // make sure we haven't been told to ignore this
-        if (ignored.contains(xfullname)) {
+        if (wasIgnored(xfullname)) {
             logVerbose("Ignoring member \"${xfullname}\" because it was found in the ignore file...")
             return ProcessResult.Ignore
         }
@@ -439,7 +448,7 @@ class Processor(xmlFile: File, jarFiles: List<File>, outputFile: File?, ignoreFi
         val xfullname = "${xpackage}.${xclassname}.${xname}"
 
         // make sure we haven't been told to ignore this
-        if (ignored.contains(xfullname)) {
+        if (wasIgnored(xfullname)) {
             logVerbose("Ignoring field \"${xfullname}\" because it was found in the ignore file...")
             return ProcessResult.Ignore
         }
@@ -537,24 +546,30 @@ class Processor(xmlFile: File, jarFiles: List<File>, outputFile: File?, ignoreFi
         }
 
         // match the member signature
-        var jmember = jmembersfiltered.firstOrNull { jm ->
-            val jnames = jm.parameterTypes.map { it.normalizedName }.toTypedArray()
-            xparameters contentEquals jnames
-        }
+        var jmember = jmembersfiltered.firstOrNull { matchParameters(xparameters, it) }
 
         // try and replace all the generic types
         if (jmember == null) {
             val typeparams = getTypeParameters(xclass, xmember)
             if (typeparams.isNotEmpty()) {
                 val xmapped = resolveGenerics(xparameters, typeparams)
-                jmember = jmembersfiltered.firstOrNull { jm ->
-                    val jnames = jm.parameterTypes.map { it.normalizedName }.toTypedArray()
-                    xmapped contentEquals jnames
-                }
+                jmember = jmembersfiltered.firstOrNull { matchParameters(xmapped, it) }
             }
         }
 
         return jmember
+    }
+
+    private fun matchParameters(xparameters : Array<String>, jm : Executable): Boolean {
+        val paramTypes = jm.parameterTypes
+        val jnames = paramTypes.map { it.normalizedName }.toTypedArray()
+
+        // drop the first argument if this is a non-static nested class
+        return if (jm is Constructor<*> && jm.declaringClass.declaringClass != null && (jm.declaringClass.modifiers and Modifier.STATIC) == 0) {
+            jm.declaringClass.declaringClass == paramTypes[0] && xparameters contentEquals jnames.drop(1).toTypedArray()
+        } else {
+            xparameters contentEquals jnames
+        }
     }
 
     private fun removeGenerics(xparamtype: String): String {
