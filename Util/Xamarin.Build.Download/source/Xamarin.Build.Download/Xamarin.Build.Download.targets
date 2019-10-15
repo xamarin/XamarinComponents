@@ -50,6 +50,8 @@
 			<XamarinBuildDownloadUser7ZipPath Condition="'$(OS)'!='Unix' and '$(XamarinBuildDownloadUser7ZipPath)'==''">$(VsInstallRoot)\Common7\IDE\Extensions\Xamarin.VisualStudio\7-Zip\7z.exe</XamarinBuildDownloadUser7ZipPath>
 			<!-- VS2017 15.7+ moves 7zip -->
 			<XamarinBuildDownloadUser7ZipPath Condition="'$(OS)'!='Unix' and !Exists('$(XamarinBuildDownloadUser7ZipPath)')">$(VsInstallRoot)\Common7\IDE\Extensions\Xamarin\VisualStudio\7-Zip\7z.exe</XamarinBuildDownloadUser7ZipPath>
+			<!-- VS2019 build tools do not contain 7-zip, use local installation instead -->
+			<XamarinBuildDownloadUser7ZipPath Condition="'$(OS)'!='Unix' and !Exists('$(XamarinBuildDownloadUser7ZipPath)')">C:\Program Files\7-Zip\7z.exe</XamarinBuildDownloadUser7ZipPath>
 		</PropertyGroup>
 
 		<XamarinDownloadArchives
