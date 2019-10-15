@@ -13,7 +13,7 @@ import kotlin.reflect.KVisibility
 import kotlin.reflect.jvm.kotlinFunction
 import kotlin.reflect.jvm.kotlinProperty
 
-class Processor(xmlFile: File, jarFiles: List<File>, outputFile: File?, ignoreFile: File?) {
+class Processor(xmlFile: File, jarFiles: List<File>, outputFile: File?, ignoreFiles: List<File>) {
 
     private fun expressionClasses() =
         "/api/package/*[local-name()='class' or local-name()='interface']"
@@ -56,11 +56,12 @@ class Processor(xmlFile: File, jarFiles: List<File>, outputFile: File?, ignoreFi
         xtransformsdoc = Document(Element("metadata"))
         this.outputFile = outputFile
 
-        if (ignoreFile != null) {
-            // remove the BOM
-            ignored = ignoreFile.readLines().map { it.replace("\ufeff", "") }
-        } else {
-            ignored = emptyList()
+        ignored = ignoreFiles.flatMap { file ->
+            // read all the lines from multiple files into a single list
+            file.readLines().map { line ->
+                // remove the BOM
+                line.replace("\ufeff", "")
+            }
         }
     }
 
@@ -233,32 +234,51 @@ class Processor(xmlFile: File, jarFiles: List<File>, outputFile: File?, ignoreFi
             val result = shouldRemove(xmember)
             if (result != ProcessResult.Ignore) {
                 // this member needs to be removed for some reason
-                logVerbose("Removing ${xtype} \"$friendly\" because is not meant to be bound (${result})...")
+                logVerbose("Removing ${xtype} \"${friendly}\" because is not meant to be bound (${result})...")
                 writeRemoveNode(xpath)
             } else {
+                // Kotlin 1.3: generated methods have a generated -* suffix
                 val dashIndex = xname.indexOf("-")
                 if (dashIndex > 0) {
-                    // Kotlin 1.3: generated methods have a generated -* suffix
-                    logVerbose("Renaming ${xtype} \"$friendly\" because is a generated method overload (${result})...")
+                    logVerbose("Renaming ${xtype} \"${friendly}\" because is a generated method overload (${result})...")
                     val managedName = xname.substring(0, dashIndex)
                     if (managedName.length == 1)
                         writeAttrManagedName(xpath, managedName.toUpperCase())
                     else
                         writeAttrManagedName(xpath, managedName[0].toUpperCase() + managedName.substring(1))
                 }
+
+                // Kotlin 1.3: "extension methods" have their first parameter named "$this$<method-name>"
+                val firstParam = xmember.getChildElements("parameter").firstOrNull()
+                if (firstParam?.getAttributeValue("name")?.startsWith("\$this\$") == true) {
+                    logVerbose("Renaming parameter \"${firstParam}\" because is a generated parameter name (${result})...")
+                    writeAttrManagedName("${xpath}/parameter[1]", "that")
+                }
             }
         }
     }
 
     private fun wasIgnored(fullname: String): Boolean {
+        // exact match
         if (ignored.contains(fullname)) {
             return true;
         }
-        for (ignore in ignored.filter { it.endsWith("*") }) {
-            if (fullname.startsWith(ignore.trimEnd('*'))) {
-                return true;
+
+        // basic wildcards
+        for (ignore in ignored) {
+            if (ignore.startsWith("*") && ignore.endsWith("*")) {
+                if (fullname.contains(ignore.trim('*')))
+                    return true;
+            } else if (ignore.startsWith("*")) {
+                if (fullname.endsWith(ignore.trim('*')))
+                    return true;
+            } else if (ignore.endsWith("*")) {
+                if (fullname.startsWith(ignore.trim('*')))
+                    return true;
             }
         }
+
+        // process this
         return false;
     }
 
@@ -482,7 +502,13 @@ class Processor(xmlFile: File, jarFiles: List<File>, outputFile: File?, ignoreFi
         } catch (ex: Exception) {
             ProcessorErrors.errorInspectingKotlinMember("field", xfullname, ex)
         } catch (ex: Throwable) {
-            ProcessorErrors.errorInspectingKotlinMember("field", xfullname, ex)
+            // TODO: https://youtrack.jetbrains.com/issue/KT-22923
+            if (ex.message!!.contains("Unknown origin") && ex.message!!.contains("fun clone()") && ex.message!!.contains("kotlin.Cloneable")) {
+                if (verbose)
+                    ProcessorErrors.unableToResolveKotlinMember(xtype, xfullname, ex)
+            } else {
+                ProcessorErrors.errorInspectingKotlinMember("field", xfullname, ex)
+            }
         }
 
         return ProcessResult.Ignore
@@ -560,7 +586,7 @@ class Processor(xmlFile: File, jarFiles: List<File>, outputFile: File?, ignoreFi
         return jmember
     }
 
-    private fun matchParameters(xparameters : Array<String>, jm : Executable): Boolean {
+    private fun matchParameters(xparameters: Array<String>, jm: Executable): Boolean {
         val paramTypes = jm.parameterTypes
         val jnames = paramTypes.map { it.normalizedName }.toTypedArray()
 

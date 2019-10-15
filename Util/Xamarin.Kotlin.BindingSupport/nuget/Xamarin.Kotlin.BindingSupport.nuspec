@@ -15,6 +15,7 @@
   </metadata>
   <files>
     <file src="..\native\build\libs\binding-support-1.0.jar" target="build\monoandroid1.0\binding-support-1.0.jar" />
+    <file src="..\source\Xamarin.Kotlin.BindingSupport.props" target="build\monoandroid1.0\Xamarin.Kotlin.BindingSupport.props" />
     <file src="..\source\Xamarin.Kotlin.BindingSupport.targets" target="build\monoandroid1.0\Xamarin.Kotlin.BindingSupport.targets" />
   </files>
 </package>
