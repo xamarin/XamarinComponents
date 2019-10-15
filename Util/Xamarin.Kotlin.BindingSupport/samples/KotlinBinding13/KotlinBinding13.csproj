@@ -1,5 +1,7 @@
 ﻿<Project Sdk="MSBuild.Sdk.Extras/2.0.54">
 
+  <Import Project="..\..\source\Xamarin.Kotlin.BindingSupport.props" />
+
   <PropertyGroup>
     <TargetFramework>MonoAndroid90</TargetFramework>
     <IsBindingProject>true</IsBindingProject>
@@ -38,6 +40,7 @@
     <None Remove="Transforms\*.xml" />
     <TransformFile Include="Transforms\*.xml" />
     <InputJar Include="..\..\externals\kotlin-stdlib-1.3.jar" Link="Jars\kotlin-stdlib-1.3.jar" />
+    <KotlinBindingSupportIgnore Include="ignore.txt" />
   </ItemGroup>
 
   <Import Project="..\..\source\Xamarin.Kotlin.BindingSupport.targets" />
