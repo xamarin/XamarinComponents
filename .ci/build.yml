@@ -103,7 +103,7 @@ jobs:
         displayName: 'Download the latest nuget.exe'
       - pwsh: |
           $branch = "${{ parameters.cakeTemplatesBranch }}"
-          if (("$(Build.Repository.Id)" -eq "xamarin/XamarinComponents") -and ("$(System.PullRequest.IsFork)" -eq "False")) {
+          if (("$(Build.Repository.Id)" -eq "xamarin/XamarinComponents") -and ("$(System.PullRequest.IsFork)" -eq "False") -and ("$env:FORCE_MASTER_TEMPLATES" -ne "True")) {
             if ("$env:SYSTEM_PULLREQUEST_SOURCEBRANCH") {
               $branch = "$env:SYSTEM_PULLREQUEST_SOURCEBRANCH"
             } else {
