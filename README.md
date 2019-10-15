@@ -1,7 +1,7 @@
 # Open Source Components for Xamarin
 
-[![GitHub License](https://img.shields.io/badge/license-MIT-lightgrey.svg)](https://raw.githubusercontent.com/CircleCI-Public/gcp-gke-orb/master/LICENSE)
-[![contributions welcome](https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat)](https://github.com/lbryio/lbry-desktop/issues)
+[![GitHub License](https://img.shields.io/badge/license-MIT-lightgrey.svg)](https://github.com/xamarin/XamarinComponents/blob/master/LICENSE)
+[![contributions welcome](https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat)](https://github.com/xamarin/XamarinComponents/issues)
 [![GitHub contributors](https://img.shields.io/github/contributors/xamarin/XamarinComponents.svg)](https://github.com/xamarin/XamarinComponents/graphs/contributors)
 
 Open Source Components for Xamarin are a collection of open source components (including bindings and plugins) created by Xamarin and others in the community.
