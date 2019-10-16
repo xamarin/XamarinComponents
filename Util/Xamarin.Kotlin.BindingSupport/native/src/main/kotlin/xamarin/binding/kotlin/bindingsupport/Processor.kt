@@ -6,17 +6,14 @@ import kotlinx.metadata.*
 import kotlinx.metadata.jvm.*
 import nu.xom.*
 import java.io.File
-import java.lang.reflect.Constructor
-import java.lang.reflect.Executable
-import java.lang.reflect.Field
-import java.lang.reflect.Method
+import java.lang.reflect.*
 import java.net.URLClassLoader
 import kotlin.reflect.KFunction
 import kotlin.reflect.KVisibility
 import kotlin.reflect.jvm.kotlinFunction
 import kotlin.reflect.jvm.kotlinProperty
 
-class Processor(xmlFile: File, jarFiles: List<File>, outputFile: File?, ignoreFile: File?) {
+class Processor(xmlFile: File, jarFiles: List<File>, outputFile: File?, ignoreFiles: List<File>) {
 
     private fun expressionClasses() =
         "/api/package/*[local-name()='class' or local-name()='interface']"
@@ -59,11 +56,12 @@ class Processor(xmlFile: File, jarFiles: List<File>, outputFile: File?, ignoreFi
         xtransformsdoc = Document(Element("metadata"))
         this.outputFile = outputFile
 
-        if (ignoreFile != null) {
-            // remove the BOM
-            ignored = ignoreFile.readLines().map { it.replace("\ufeff", "") }
-        } else {
-            ignored = emptyList()
+        ignored = ignoreFiles.flatMap { file ->
+            // read all the lines from multiple files into a single list
+            file.readLines().map { line ->
+                // remove the BOM
+                line.replace("\ufeff", "")
+            }
         }
     }
 
@@ -236,21 +234,52 @@ class Processor(xmlFile: File, jarFiles: List<File>, outputFile: File?, ignoreFi
             val result = shouldRemove(xmember)
             if (result != ProcessResult.Ignore) {
                 // this member needs to be removed for some reason
-                logVerbose("Removing ${xtype} \"$friendly\" because is not meant to be bound (${result})...")
+                logVerbose("Removing ${xtype} \"${friendly}\" because is not meant to be bound (${result})...")
                 writeRemoveNode(xpath)
             } else {
+                // Kotlin 1.3: generated methods have a generated -* suffix
                 val dashIndex = xname.indexOf("-")
                 if (dashIndex > 0) {
-                    // Kotlin 1.3: generated methods have a generated -* suffix
-                    logVerbose("Renaming ${xtype} \"$friendly\" because is a generated method overload (${result})...")
+                    logVerbose("Renaming ${xtype} \"${friendly}\" because is a generated method overload (${result})...")
                     val managedName = xname.substring(0, dashIndex)
                     if (managedName.length == 1)
                         writeAttrManagedName(xpath, managedName.toUpperCase())
                     else
                         writeAttrManagedName(xpath, managedName[0].toUpperCase() + managedName.substring(1))
                 }
+
+                // Kotlin 1.3: "extension methods" have their first parameter named "$this$<method-name>"
+                val firstParam = xmember.getChildElements("parameter").firstOrNull()
+                if (firstParam?.getAttributeValue("name")?.startsWith("\$this\$") == true) {
+                    logVerbose("Renaming parameter \"${firstParam}\" because is a generated parameter name (${result})...")
+                    writeAttrManagedName("${xpath}/parameter[1]", "that")
+                }
             }
         }
+    }
+
+    private fun wasIgnored(fullname: String): Boolean {
+        // exact match
+        if (ignored.contains(fullname)) {
+            return true;
+        }
+
+        // basic wildcards
+        for (ignore in ignored) {
+            if (ignore.startsWith("*") && ignore.endsWith("*")) {
+                if (fullname.contains(ignore.trim('*')))
+                    return true;
+            } else if (ignore.startsWith("*")) {
+                if (fullname.endsWith(ignore.trim('*')))
+                    return true;
+            } else if (ignore.endsWith("*")) {
+                if (fullname.startsWith(ignore.trim('*')))
+                    return true;
+            }
+        }
+
+        // process this
+        return false;
     }
 
     private fun shouldRemoveClass(xclass: Element): ProcessResult {
@@ -262,7 +291,7 @@ class Processor(xmlFile: File, jarFiles: List<File>, outputFile: File?, ignoreFi
         logVerbose("Checking the class \"${xpackage}.${xname}\"...")
 
         // make sure we haven't been told to ignore this
-        if (ignored.contains("${xpackage}.${xname}")) {
+        if (wasIgnored("${xpackage}.${xname}")) {
             logVerbose("Ignoring class \"${xpackage}.${xname}\" because it was found in the ignore file...")
             return ProcessResult.Ignore
         }
@@ -271,7 +300,7 @@ class Processor(xmlFile: File, jarFiles: List<File>, outputFile: File?, ignoreFi
 
         // make sure the class is not a generated digit for anonymous classes
         if (lastPeriod != -1) {
-            var xinnername = xname.substring((lastPeriod + 1))
+            val xinnername = xname.substring(lastPeriod + 1)
             if (xinnername.toIntOrNull() != null)
                 return ProcessResult.RemoveGenerated
         }
@@ -342,7 +371,7 @@ class Processor(xmlFile: File, jarFiles: List<File>, outputFile: File?, ignoreFi
         val xfullname = "${xpackage}.${xclassname}.${xname}"
 
         // make sure we haven't been told to ignore this
-        if (ignored.contains(xfullname)) {
+        if (wasIgnored(xfullname)) {
             logVerbose("Ignoring member \"${xfullname}\" because it was found in the ignore file...")
             return ProcessResult.Ignore
         }
@@ -439,7 +468,7 @@ class Processor(xmlFile: File, jarFiles: List<File>, outputFile: File?, ignoreFi
         val xfullname = "${xpackage}.${xclassname}.${xname}"
 
         // make sure we haven't been told to ignore this
-        if (ignored.contains(xfullname)) {
+        if (wasIgnored(xfullname)) {
             logVerbose("Ignoring field \"${xfullname}\" because it was found in the ignore file...")
             return ProcessResult.Ignore
         }
@@ -473,7 +502,13 @@ class Processor(xmlFile: File, jarFiles: List<File>, outputFile: File?, ignoreFi
         } catch (ex: Exception) {
             ProcessorErrors.errorInspectingKotlinMember("field", xfullname, ex)
         } catch (ex: Throwable) {
-            ProcessorErrors.errorInspectingKotlinMember("field", xfullname, ex)
+            // TODO: https://youtrack.jetbrains.com/issue/KT-22923
+            if (ex.message!!.contains("Unknown origin") && ex.message!!.contains("fun clone()") && ex.message!!.contains("kotlin.Cloneable")) {
+                if (verbose)
+                    ProcessorErrors.unableToResolveKotlinMember(xtype, xfullname, ex)
+            } else {
+                ProcessorErrors.errorInspectingKotlinMember("field", xfullname, ex)
+            }
         }
 
         return ProcessResult.Ignore
@@ -537,24 +572,30 @@ class Processor(xmlFile: File, jarFiles: List<File>, outputFile: File?, ignoreFi
         }
 
         // match the member signature
-        var jmember = jmembersfiltered.firstOrNull { jm ->
-            val jnames = jm.parameterTypes.map { it.normalizedName }.toTypedArray()
-            xparameters contentEquals jnames
-        }
+        var jmember = jmembersfiltered.firstOrNull { matchParameters(xparameters, it) }
 
         // try and replace all the generic types
         if (jmember == null) {
             val typeparams = getTypeParameters(xclass, xmember)
             if (typeparams.isNotEmpty()) {
                 val xmapped = resolveGenerics(xparameters, typeparams)
-                jmember = jmembersfiltered.firstOrNull { jm ->
-                    val jnames = jm.parameterTypes.map { it.normalizedName }.toTypedArray()
-                    xmapped contentEquals jnames
-                }
+                jmember = jmembersfiltered.firstOrNull { matchParameters(xmapped, it) }
             }
         }
 
         return jmember
+    }
+
+    private fun matchParameters(xparameters: Array<String>, jm: Executable): Boolean {
+        val paramTypes = jm.parameterTypes
+        val jnames = paramTypes.map { it.normalizedName }.toTypedArray()
+
+        // drop the first argument if this is a non-static nested class
+        return if (jm is Constructor<*> && jm.declaringClass.declaringClass != null && (jm.declaringClass.modifiers and Modifier.STATIC) == 0) {
+            jm.declaringClass.declaringClass == paramTypes[0] && xparameters contentEquals jnames.drop(1).toTypedArray()
+        } else {
+            xparameters contentEquals jnames
+        }
     }
 
     private fun removeGenerics(xparamtype: String): String {
