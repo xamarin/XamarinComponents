@@ -10,7 +10,7 @@
     <PackageProjectUrl>https://github.com/xamarin/XamarinComponents/tree/master/Util/SamplePackager</PackageProjectUrl>
     <PackageLicenseUrl>https://github.com/xamarin/XamarinComponents/blob/master/Util/SamplePackager/LICENSE.md</PackageLicenseUrl>
     <PackageTags>Xamarin Components Samples</PackageTags>
-    <Description>Library for creating samples from a solution</Description>
+    <PackageDescription>Library for creating samples from a solution</PackageDescription>
   </PropertyGroup>
 
 </Project>

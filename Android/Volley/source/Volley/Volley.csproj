@@ -17,7 +17,7 @@
   <PropertyGroup>
     <PackageId>Xamarin.Android.Volley</PackageId>
     <Title>Volley for Xamarin.Android</Title>
-    <Summary>Xamarin.Android bindings for Volley</Summary>
+    <PackageDescription>Xamarin.Android bindings for Volley</PackageDescription>
     <Authors>Microsoft</Authors>
     <Owners>Microsoft</Owners>
     <Copyright>© Microsoft Corporation. All rights reserved.</Copyright>

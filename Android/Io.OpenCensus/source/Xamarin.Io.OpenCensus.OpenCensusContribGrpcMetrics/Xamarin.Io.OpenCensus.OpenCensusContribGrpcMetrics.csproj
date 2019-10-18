@@ -10,9 +10,6 @@
 
     <TargetFrameworks>MonoAndroid81</TargetFrameworks>
     <AndroidCodegenTarget>XAJavaInterop1</AndroidCodegenTarget>
-
-    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
-    <Description>Bindings for Io.OpenCensus.OpenCensusContribGrpcMetrics package (Google  GRPC  dependency)</Description>
   </PropertyGroup>
 
   <PropertyGroup>
@@ -23,29 +20,14 @@
   <PropertyGroup>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <PackageId>Xamarin.Io.OpenCensus.OpenCensusContribGrpcMetrics</PackageId>
-    <PackageVersion>0.12.3</PackageVersion>
+    <PackageVersion>0.21.0</PackageVersion>
     <Title>Xamarin.Io.OpenCensus.OpenCensusContribGrpcMetrics</Title>
-    <Summary>
-            Google GRPC Stub bindings for Xamarin
-    </Summary>
-    <Description>
-            Bindings for Google's GRPC Stub package (Google Play Services dependency)
-    </Description>
+    <PackageDescription>Bindings for Io.OpenCensus.OpenCensusContribGrpcMetrics package (Google  GRPC  dependency)</PackageDescription>
     <Owners>Microsoft</Owners>
     <Authors>Microsoft</Authors>
     <Copyright>© Microsoft Corporation. All rights reserved.</Copyright>
-    <PackageLicenseUrl> https://go.microsoft.com/fwlink/?linkid=2102972
-    </PackageLicenseUrl>
-    <PackageProjectUrl> https://go.microsoft.com/fwlink/?linkid=2103038
-    </PackageProjectUrl>
-    <RepositoryUrl> https://go.microsoft.com/fwlink/?linkid=2103038       
-    </RepositoryUrl>
-    <ProjectyUrl> https://go.microsoft.com/fwlink/?linkid=2103038
-    </ProjectyUrl>
-    <RepositoryUrl> https://go.microsoft.com/fwlink/?linkid=2103038
-    </RepositoryUrl>
-    <LicenseUrl> https://go.microsoft.com/fwlink/?linkid=2102972
-    </LicenseUrl>
+    <PackageLicenseUrl>https://go.microsoft.com/fwlink/?linkid=2102972</PackageLicenseUrl>
+    <PackageProjectUrl>https://go.microsoft.com/fwlink/?linkid=2103038</PackageProjectUrl>
     <RequireLicenceAcceptance>true</RequireLicenceAcceptance>
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
     <PackageTags>xamarin, android, bindings, opencensus, grpc, metrics, contrib </PackageTags>
@@ -65,8 +47,8 @@
     <None Remove="Jars\AboutJars.txt" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedJar Include="..\..\externals\android\opencensus-contrib-grpc-metrics-0.12.3.jar">
-      <Link>Jars\opencensus-contrib-grpc-metrics-0.12.3.jar</Link>
+    <EmbeddedJar Include="..\..\externals\android\opencensus-contrib-grpc-metrics-0.21.0.jar">
+      <Link>Jars\opencensus-contrib-grpc-metrics-0.21.0.jar</Link>
     </EmbeddedJar>
   </ItemGroup>
 </Project>

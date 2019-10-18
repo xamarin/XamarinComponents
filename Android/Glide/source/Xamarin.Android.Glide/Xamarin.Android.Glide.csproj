@@ -17,7 +17,7 @@
   <PropertyGroup>
     <PackageId>Xamarin.Android.Glide</PackageId>
     <Title>Glide for Xamarin.Android</Title>
-    <Summary>Xamarin.Android bindings for Glide</Summary>
+    <PackageDescription>Xamarin.Android bindings for Glide</PackageDescription>
     <Authors>Microsoft</Authors>
     <Owners>Microsoft</Owners>
     <Copyright>© Microsoft Corporation. All rights reserved.</Copyright>

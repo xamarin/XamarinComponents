@@ -20,6 +20,9 @@ class ProcessXmlCommand : CliktCommand(name = "KotlinBindingSupport") {
     val outputFile: File? by option("-o", "--output", help = "path to the output transform file")
         .file(fileOkay = true, folderOkay = false)
 
+    val ignoreFile: File? by option("-i", "--ignore", help = "path to the ignore file")
+        .file(fileOkay = true, folderOkay = false)
+
     val companions: Processor.CompanionProcessing by option("--companions", help = "indicate how to handle companions")
         .choice(
             "default" to Processor.CompanionProcessing.Default,
@@ -32,7 +35,7 @@ class ProcessXmlCommand : CliktCommand(name = "KotlinBindingSupport") {
         .flag(default = false)
 
     override fun run() {
-        val proc = Processor(xmlFile, jarFiles, outputFile)
+        val proc = Processor(xmlFile, jarFiles, outputFile, ignoreFile)
         proc.verbose = verbose
         proc.companions = companions
         proc.process()

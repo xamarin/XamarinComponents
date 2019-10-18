@@ -54,6 +54,9 @@ foreach (var nupkgFile in nupkgFiles) {
 		Error ($"NuGet metadata validation failed for {nupkgFile}:");
 		Error (string.Join (Environment.NewLine + "    ", result.ErrorMessages));
 		hasErrors = true;
+
+		// Update DevOps
+		Warning ($"##vso[task.logissue type=warning]NuGet metadata validation failed for {nupkgFile}.");
 	}
 }
 
