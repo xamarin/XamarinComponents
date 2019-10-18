@@ -2,56 +2,18 @@ using System;
 using System.Runtime.InteropServices;
 using CoreGraphics;
 using ObjCRuntime;
-using UIKit;
-
-[Native]
-public enum MDCSheetState : ulong
-{
-	Closed,
-	Preferred,
-	Extended
-}
-
-[Native]
-public enum MDCCornerTreatmentValueType : long
-{
-	Absolute,
-	Percentage
-}
-
-[Native]
-public enum MDCColorSchemeDefaults : long
-{
-	MDCColorSchemeDefaultsMaterial201804,
-	Dark201907,
-	MDCColorSchemeDefaultsMaterial201907
-}
-
-[Native]
-public enum MDCShapeCornerFamily : long
-{
-	Rounded,
-	Cut
-}
-
-[Native]
-public enum MDCShapeSchemeDefaults : long
-{
-	MDCShapeSchemeDefaultsMaterial201809
-}
-
-[Native]
-public enum MDCTypographySchemeDefaults : long
-{
-	MDCTypographySchemeDefaultsMaterial201804,
-	MDCTypographySchemeDefaultsMaterial201902
-}
 
 [Native]
 public enum MDCActivityIndicatorMode : long
 {
 	Indeterminate,
 	Determinate
+}
+
+[Native]
+public enum MDCColorSchemeDefaults : long
+{
+	MDCColorSchemeDefaultsMaterial201804
 }
 
 [Native]
@@ -109,10 +71,23 @@ public enum MDCNavigationBarTitleViewLayoutBehavior : long
 }
 
 [Native]
+public enum MDCTypographySchemeDefaults : long
+{
+	MDCTypographySchemeDefaultsMaterial201804
+}
+
+[Native]
 public enum MDCInkStyle : long
 {
 	Bounded,
 	Unbounded
+}
+
+[Native]
+public enum MDCCornerTreatmentValueType : long
+{
+	Absolute,
+	Percentage
 }
 
 [Native]
@@ -134,15 +109,6 @@ public enum MDCFloatingButtonImageLocation : long
 {
 	Leading = 0,
 	Trailing = 1
-}
-
-[Native]
-public enum MDCBannerViewLayoutStyle : long
-{
-	Automatic,
-	SingleRow,
-	MultiRowStackedButton,
-	MultiRowAlignedButton
 }
 
 [Native]
@@ -177,10 +143,31 @@ public enum MDCBottomNavigationBarAlignment : long
 }
 
 [Native]
+public enum MDCSheetState : ulong
+{
+	Closed,
+	Preferred,
+	Extended
+}
+
+[Native]
 public enum MDCTriangleEdgeStyle : ulong
 {
 	Handle,
 	Cut
+}
+
+[Native]
+public enum MDCShapeCornerFamily : long
+{
+	Rounded,
+	Cut
+}
+
+[Native]
+public enum MDCShapeSchemeDefaults : long
+{
+	MDCShapeSchemeDefaultsMaterial201809
 }
 
 [Flags]
@@ -204,29 +191,11 @@ public enum MDCBarButtonItemLayoutHints : ulong
 }
 
 [Native]
-public enum MDCRippleStyle : long
-{
-	Bounded = 0,
-	Unbounded
-}
-
-[Flags]
-[Native]
-public enum MDCRippleState : long
-{
-	Normal = 0x0,
-	Highlighted = 1L << 0,
-	Selected = 1L << 1,
-	Dragged = 1L << 2
-}
-
-[Native]
 public enum MDCCardCellState : long
 {
 	Normal = 0,
 	Highlighted,
-	Selected,
-	Dragged
+	Selected
 }
 
 [Native]
@@ -383,23 +352,6 @@ public enum MDCTabBarItemState : long
 }
 
 [Native]
-public enum MDCTabBarExtendedAlignment : long
-{
-	Leading = MDCTabBarAlignmentLeading,
-	Justified = MDCTabBarAlignmentJustified,
-	Center = MDCTabBarAlignmentCenter,
-	CenterSelected = MDCTabBarAlignmentCenterSelected,
-	BestEffortJustified
-}
-
-[Native]
-public enum MDCTextControlLabelBehavior : long
-{
-	Floats,
-	Disappears
-}
-
-[Native]
 public enum MDCFontTextStyle : long
 {
 	Body1,
@@ -516,11 +468,6 @@ static class CFunctions
 	[DllImport ("__Internal")]
 	[Verify (PlatformInvoke)]
 	static extern CGPoint MDCRoundCenterWithBoundsAndScale (CGPoint center, CGRect bounds, nfloat scale);
-
-	// BOOL MDCEdgeInsetsEqualToEdgeInsets (UIEdgeInsets insets1, UIEdgeInsets insets2);
-	[DllImport ("__Internal")]
-	[Verify (PlatformInvoke)]
-	static extern bool MDCEdgeInsetsEqualToEdgeInsets (UIEdgeInsets insets1, UIEdgeInsets insets2);
 
 	// extern CGFloat MDCDeviceTopSafeAreaInset ();
 	[DllImport ("__Internal")]
