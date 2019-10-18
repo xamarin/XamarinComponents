@@ -152,6 +152,13 @@ class Processor(xmlFile: File, jarFiles: List<File>, outputFile: File?, ignoreFi
             val xpackage = xclass.parentElement.getAttributeValue("name")
             val xname = xclass.getAttributeValue("name")
             val xtype = xclass.localName
+            val xfullname = "${xpackage}.${xname}"
+
+            // make sure we haven't been told to ignore this
+            if (wasIgnored(xfullname)) {
+                logVerbose("Ignoring class \"${xpackage}.${xname}\" because it was found in the ignore file...")
+                continue
+            }
 
             val removeClass = shouldRemoveClass(xclass)
             if (removeClass != ProcessResult.Ignore) {
@@ -220,6 +227,14 @@ class Processor(xmlFile: File, jarFiles: List<File>, outputFile: File?, ignoreFi
         val xmembers = xapidoc.queryElements(expressionMember(xpackage, xclasstype, xclassname, xtype))
         for (xmember in xmembers) {
             val xname = xmember.getAttributeValue("name")
+            val xfullname = "${xpackage}.${xclassname}.${xname}"
+
+            // make sure we haven't been told to ignore this
+            if (wasIgnored(xfullname)) {
+                logVerbose("Ignoring ${xtype} \"${xfullname}\" because it was found in the ignore file...")
+                continue
+            }
+
             val xparams = getMemberParameters(xmember, true)
             val params = listOf(
                 "@name='${xname}'",
@@ -289,12 +304,6 @@ class Processor(xmlFile: File, jarFiles: List<File>, outputFile: File?, ignoreFi
         val xtype = xclass.localName
 
         logVerbose("Checking the class \"${xpackage}.${xname}\"...")
-
-        // make sure we haven't been told to ignore this
-        if (wasIgnored("${xpackage}.${xname}")) {
-            logVerbose("Ignoring class \"${xpackage}.${xname}\" because it was found in the ignore file...")
-            return ProcessResult.Ignore
-        }
 
         var lastPeriod = xname.lastIndexOf(".")
 
@@ -369,12 +378,6 @@ class Processor(xmlFile: File, jarFiles: List<File>, outputFile: File?, ignoreFi
         val xname = xmember.getAttributeValue("name")
         val xtype = xmember.localName
         val xfullname = "${xpackage}.${xclassname}.${xname}"
-
-        // make sure we haven't been told to ignore this
-        if (wasIgnored(xfullname)) {
-            logVerbose("Ignoring member \"${xfullname}\" because it was found in the ignore file...")
-            return ProcessResult.Ignore
-        }
 
         // before doing any complex checks, make sure it is not an invalid member
         if (invalidKeywords.any { check -> check(xname) })
@@ -466,12 +469,6 @@ class Processor(xmlFile: File, jarFiles: List<File>, outputFile: File?, ignoreFi
         val xname = xmember.getAttributeValue("name")
         val xtype = xmember.getAttributeValue("type")
         val xfullname = "${xpackage}.${xclassname}.${xname}"
-
-        // make sure we haven't been told to ignore this
-        if (wasIgnored(xfullname)) {
-            logVerbose("Ignoring field \"${xfullname}\" because it was found in the ignore file...")
-            return ProcessResult.Ignore
-        }
 
         // before doing any complex checks, make sure it is not an invalid member
         if (invalidKeywords.any { check -> check(xname) }) {
