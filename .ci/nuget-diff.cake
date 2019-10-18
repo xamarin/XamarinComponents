@@ -2,9 +2,9 @@
 // SECTION: Arguments and Settings
 
 var ROOT_DIR = MakeAbsolute((DirectoryPath)Argument("root", "."));
-var ARTIFACTS_DIR = MakeAbsolute((DirectoryPath)Argument("artifacts", ROOT_DIR.Combine("output").FullPath));
-var CACHE_DIR = MakeAbsolute((DirectoryPath)Argument("cache", ROOT_DIR.Combine("externals/api-diff").FullPath));
-var OUTPUT_DIR = MakeAbsolute((DirectoryPath)Argument("output", ROOT_DIR.Combine("output/api-diff").FullPath));
+var ARTIFACTS_DIR = MakeAbsolute(ROOT_DIR.Combine(Argument("artifacts", "output")));
+var CACHE_DIR = MakeAbsolute(ROOT_DIR.Combine(Argument("cache", "externals/api-diff")));
+var OUTPUT_DIR = MakeAbsolute(ROOT_DIR.Combine(Argument("output", "output/api-diff")));
 
 
 // SECTION: Main Script
