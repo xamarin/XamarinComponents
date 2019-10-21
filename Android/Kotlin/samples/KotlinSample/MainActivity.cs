@@ -8,6 +8,9 @@ using Android.Support.V7.App;
 using Android.Widget;
 using Java.Util;
 
+using Kotlin.Jvm;
+using Kotlin.Jvm.Internal;
+using Kotlin.Reflect.Full;
 using KotlinSampleLibrary;
 
 namespace KotlinSample
@@ -23,16 +26,36 @@ namespace KotlinSample
 
 			var textView = FindViewById<TextView>(Resource.Id.textView);
 
+			// test the sample bindings work
+
 			var instance = new TestClass();
 			var list = instance.Test(new[] { "first", "second", "third" });
+			textView.Text = $"There are {list.Count} items.\n\n";
 
-			textView.Text = $"There are {list.Count} items.";
+			// test the magic for collections and related
 
 			ICollection c = new Coll();
 			IList l = new List();
 			IMap m = new Map();
 			ISet s = new Set();
-			Console.WriteLine($"{s.Size()} = {s.Contains("one")}; {c.Size()} = {c.Contains("one")}; {l.Size()} = {l.Get(1)}; {m.Size()} = {m.Get(1)}.");
+			textView.Text += $"Collection: {s.Size()} = {s.Contains("one")}; {c.Size()} = {c.Contains("one")}; {l.Size()} = {l.Get(1)}; {m.Size()} = {m.Get(1)}.\n\n";
+
+			// test the magic for the spread builders
+
+			var spreadBuilder = new BooleanSpreadBuilder(10);
+			var array = spreadBuilder.ToArray();
+			textView.Text += $"\nArray size from spread builder: {array.Length}.\n\n";
+
+			// test the magic for the reflection things
+
+			var javaClass = Java.Lang.Class.FromType(typeof(TestClass));
+			var kotlinClass = JvmClassMappingKt.GetKotlinClass(javaClass);
+			var members = kotlinClass.Members;
+			textView.Text += $"\nThere are {members.Count} members in TestClass.\n\n";
+
+			var properties = KClasses.GetMemberProperties(kotlinClass);
+			var firstProp = properties.FirstOrDefault();
+			textView.Text += $"\nThere are {properties.Count} properties in TestClass, the first is {firstProp.Name}: {firstProp.ReturnType}.\n\n";
 		}
 	}
 
