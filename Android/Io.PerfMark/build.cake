@@ -65,17 +65,6 @@ Task("libs")
 					c.Properties.Add("DesignTimeBuild", new [] { "false" });
 				}
 			);
-			MSBuild
-			(
-				"./source/Xamarin.Io.PerfMark.PerfMarkApi/Xamarin.Io.PerfMark.PerfMarkApi.csproj",
-				c => 
-				{
-					c.Configuration = "Release";
-					c.Restore = true;
-					c.MaxCpuCount = 0;
-					c.Properties.Add("DesignTimeBuild", new [] { "false" });
-				}
-			);
 
 			return;
 		}
@@ -108,16 +97,6 @@ Task("nuget")
 			MSBuild
 			(
 				"./source/Xamarin.Io.PerfMark.sln",
-				configuration =>
-					configuration
-						.SetConfiguration("Release")
-						.WithTarget("Pack")
-						.WithProperty("PackageVersion", NUGET_VERSION)
-						.WithProperty("PackageOutputPath", "../../output")
-			);
-			MSBuild
-			(
-				"./source/Xamarin.Io.PerfMark.PerfMarkApi/Xamarin.Io.PerfMark.PerfMarkApi.csproj",
 				configuration =>
 					configuration
 						.SetConfiguration("Release")
