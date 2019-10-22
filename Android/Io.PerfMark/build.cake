@@ -21,34 +21,7 @@ string ARTIFACT_FILE = "";
 string NUGET_VERSION=$"{ARTIFACT_VERSION}";
 
 
-BuildSpec buildSpec = new BuildSpec ()
-{
-	Libs = new ISolutionBuilder []
-	{
-		new DefaultSolutionBuilder
-		{
-			SolutionPath = "./source/Xamarin.Io.PerfMark.sln",
-			OutputFiles = new []
-			{
-				new OutputFileCopy
-				{
-					FromFile = "./source/Xamarin.Io.PerfMark.PerfMarkApi/bin/Release/monoandroid81/Xamarin.Io.PerfMark.PerfMarkApi.dll"
-				},
-			}
-		}
-	},
-
-	Samples = new ISolutionBuilder []
-	{
-		new DefaultSolutionBuilder
-		{
-			SolutionPath = "./samples/Xamarin.Io.PerfMark.sln"
-		},
-	},
-};
-
 Task ("externals")
-	.IsDependentOn ("externals-base")
 	.Does
 	(
 		() =>
@@ -75,16 +48,40 @@ Task ("externals")
 		}
 	);
 
+Task("libs")
+	.IsDependentOn("externals")
+	.Does
+	(
+		() =>
+		{
+			MSBuild
+			(
+				"./source/Xamarin.Io.PerfMark.sln", 
+				c => 
+				{
+					c.Configuration = "Release";
+					c.Restore = true;
+					c.MaxCpuCount = 0;
+					c.Properties.Add("DesignTimeBuild", new [] { "false" });
+				}
+			);
+
+			return;
+		}
+	);
 
 Task ("clean")
-	.IsDependentOn ("clean-base")
 	.Does
 	(
 		() =>
 		{
 			if (DirectoryExists ("./externals/"))
 			{
-				DeleteDirectory ("./externals", true);
+				DeleteDirectory ("./externals/", true);
+			}
+			if (DirectoryExists ("./output/"))
+			{
+				DeleteDirectory ("./output/", true);
 			}
 		}
 	);
@@ -99,7 +96,7 @@ Task("nuget")
 
 			MSBuild
 			(
-				"./source/Xamarin.Io.PerfMark.PerfMarkApi/Xamarin.Io.PerfMark.PerfMarkApi.csproj",
+				"./source/Xamarin.Io.PerfMark.sln",
 				configuration =>
 					configuration
 						.SetConfiguration("Release")
@@ -110,7 +107,13 @@ Task("nuget")
 		}
 );
 
-SetupXamarinBuildTasks (buildSpec, Tasks, Task);
+Task("ci")
+	.IsDependentOn("libs")
+	.IsDependentOn("nuget")
+	.Does
+	(
+		() => {}
+	);
 
 RunTarget (TARGET);
 
