@@ -115,6 +115,7 @@ Task("ci")
 	.IsDependentOn("nuget")
 	.Does
 	(
+		() => {}
 	);
 
 SetupXamarinBuildTasks (buildSpec, Tasks, Task);
