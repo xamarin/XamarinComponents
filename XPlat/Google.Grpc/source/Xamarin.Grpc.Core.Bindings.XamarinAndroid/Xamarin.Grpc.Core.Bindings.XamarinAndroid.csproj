@@ -66,6 +66,7 @@
   <ItemGroup>
     <PackageReference Include="Xamarin.Io.OpenCensus.OpenCensusApi" Version="0.12.3" />
     <PackageReference Include="Xamarin.Io.OpenCensus.OpenCensusContribGrpcMetrics" Version="0.12.3" />
+    <PackageReference Include="Xamarin.Io.PerfMark.PerfMarkApi" Version="0.17.0" />
   </ItemGroup>
 
   <ItemGroup>
