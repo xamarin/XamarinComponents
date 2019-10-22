@@ -1,7 +1,6 @@
 #tool nuget:?package=XamarinComponent
 
 #addin nuget:?package=Cake.XCode
-#addin nuget:?package=Cake.Xamarin.Build
 #addin nuget:?package=Cake.Xamarin
 #addin nuget:?package=Cake.FileHelpers
 
@@ -129,7 +128,6 @@ BuildSpec buildSpec = new BuildSpec ()
 };
 
 Task ("externals")
-	.IsDependentOn ("externals-base")
 	.Does
 	(
 		() =>
@@ -156,16 +154,40 @@ Task ("externals")
 		}
 	);
 
-
-Task ("clean")
-	.IsDependentOn ("clean-base")
+Task ("libs")
+	.IsDependentOn ("externals")
 	.Does
 	(
 		() =>
 		{
+			MSBuild
+			(
+				"./source/Xamarin.Grpc.sln", 
+				c => 
+				{
+					c.Configuration = "Release";
+					c.Restore = true;
+					c.MaxCpuCount = 0;
+					c.Properties.Add("DesignTimeBuild", new [] { "false" });
+				}
+			);
+
+			return;
+		}
+	);
+
+Task ("clean")
+	.Does
+	(
+		() =>
+		{
+			if (DirectoryExists ("./output/"))
+			{
+				DeleteDirectory ("./output/", true);
+			}
 			if (DirectoryExists ("./externals/"))
 			{
-				DeleteDirectory ("./externals", true);
+				DeleteDirectory ("./externals/", true);
 			}
 		}
 	);
@@ -180,80 +202,31 @@ Task("nuget")
 
 			MSBuild
 			(
-				"./source/Xamarin.Grpc.Core.Bindings.XamarinAndroid/Xamarin.Grpc.Core.Bindings.XamarinAndroid.csproj",
-				configuration =>
-					configuration
-						.SetConfiguration("Release")
-						.WithTarget("Pack")
-						.WithProperty("PackageVersion", NUGET_VERSION)
-						.WithProperty("PackageOutputPath", "../../output")
-			);
-			MSBuild
-			(
-				"./source/Xamarin.Grpc.OkHttp.Bindings.XamarinAndroid/Xamarin.Grpc.OkHttp.Bindings.XamarinAndroid.csproj",
-				configuration =>
-					configuration
-						.SetConfiguration("Release")
-						.WithTarget("Pack")
-						.WithProperty("PackageVersion", NUGET_VERSION)
-						.WithProperty("PackageOutputPath", "../../output")
-			);
-			MSBuild
-			(
-				"./source/Xamarin.Grpc.Stub.Bindings.XamarinAndroid/Xamarin.Grpc.Stub.Bindings.XamarinAndroid.csproj",
-				configuration =>
-					configuration
-						.SetConfiguration("Release")
-						.WithTarget("Pack")
-						.WithProperty("PackageVersion", NUGET_VERSION)
-						.WithProperty("PackageOutputPath", "../../output")
-			);
-			MSBuild
-			(
-				"./source/Xamarin.Grpc.Protobuf.Lite.Bindings.XamarinAndroid/Xamarin.Grpc.Protobuf.Lite.Bindings.XamarinAndroid.csproj",
-				configuration =>
-					configuration
-						.SetConfiguration("Release")
-						.WithTarget("Pack")
-						.WithProperty("PackageVersion", NUGET_VERSION)
-						.WithProperty("PackageOutputPath", "../../output")
-			);
-			MSBuild
-			(
-				"./source/Xamarin.Grpc.Context.Bindings.XamarinAndroid/Xamarin.Grpc.Context.Bindings.XamarinAndroid.csproj",
-				configuration =>
-					configuration
-						.SetConfiguration("Release")
-						.WithTarget("Pack")
-						.WithProperty("PackageVersion", NUGET_VERSION)
-						.WithProperty("PackageOutputPath", "../../output")
-			);
-			MSBuild
-			(
-				"./source/Xamarin.Grpc.Android.Bindings.XamarinAndroid/Xamarin.Grpc.Android.Bindings.XamarinAndroid.csproj",
-				configuration =>
-					configuration
-						.SetConfiguration("Release")
-						.WithTarget("Pack")
-						.WithProperty("PackageVersion", NUGET_VERSION)
-						.WithProperty("PackageOutputPath", "../../output")
-			);
-			MSBuild
-			(
-				"./source/Xamarin.Grpc.Api.Bindings.XamarinAndroid/Xamarin.Grpc.Api.Bindings.XamarinAndroid.csproj",
-				configuration =>
-					configuration
-						.SetConfiguration("Release")
-						.WithTarget("Pack")
-						.WithProperty("PackageVersion", NUGET_VERSION)
-						.WithProperty("PackageOutputPath", "../../output")
+				"./source/Xamarin.Grpc.sln",
+				c => 
+				{
+					c.Configuration = "Release";
+					c.MaxCpuCount = 0;
+					c.Targets.Clear();
+					c.Targets.Add("Pack");
+					c.Properties.Add("PackageOutputPath", new [] { MakeAbsolute(new FilePath("./output")).FullPath });
+					c.Properties.Add("PackageRequireLicenseAcceptance", new [] { "true" });
+					c.Properties.Add("DesignTimeBuild", new [] { "false" });
+					c.Properties.Add("NoBuild", new [] { "true" });
+				}			
 			);
 
 			return;
 		}
 );
 
-SetupXamarinBuildTasks (buildSpec, Tasks, Task);
+Task("ci")
+	.IsDependentOn("libs")
+	.IsDependentOn("nuget")
+	.Does
+	(
+		() => {}
+	);
 
 RunTarget (TARGET);
 
