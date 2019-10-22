@@ -262,7 +262,8 @@
 - Name: Io.PerfMark
   BuildScript: ./Android/Io.PerfMark/build.cake
   TriggerPaths: [ Android/Io.PerfMark ]
-  MacBuildTargets: [ libs, nuget]
+  MacBuildTargets: [ ci ]
+  WindowsBuildTargets: [ ci ]
 
 
 #######################################################

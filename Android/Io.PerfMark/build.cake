@@ -110,6 +110,13 @@ Task("nuget")
 		}
 );
 
+Task("ci")
+	.IsDependentOn("libs")
+	.IsDependentOn("nuget")
+	.Does
+	(
+	);
+
 SetupXamarinBuildTasks (buildSpec, Tasks, Task);
 
 RunTarget (TARGET);
