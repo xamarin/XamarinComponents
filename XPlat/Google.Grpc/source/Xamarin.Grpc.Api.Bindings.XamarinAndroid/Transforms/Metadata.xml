@@ -61,4 +61,8 @@
         path="/api/package[@name='io.grpc']/interface[@name='Codec']"    
         />
     
+    
+    <remove-node
+        path="/api/package[@name='io.grpc']/interface[@name='InternalMetadata.TrustedAsciiMarshaller']"
+        />
 </metadata>
