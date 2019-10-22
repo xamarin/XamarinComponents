@@ -1,0 +1,16 @@
+{
+  "Registrations":[ 
+    {
+      "Component": {
+        "Type": "Maven",
+        "Maven": {
+          "ArtifactId": "perfmark-api",
+          "GroupId": "io.perfmark",
+          "Version": "0.17.0",
+          "NuGetId": "Xamarin.Io.PerfMark.PerfMarkApi"
+        }
+      }
+    },
+  ],
+  "Version": 1
+}

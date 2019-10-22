@@ -259,6 +259,11 @@
   BuildScript: ./Android/Io.OpenCensus/build.cake
   TriggerPaths: [ Android/Io.OpenCensus ]
   MacBuildTargets: [ libs, nuget]
+- Name: Io.PerfMark
+  BuildScript: ./Android/Io.PerfMark/build.cake
+  TriggerPaths: [ Android/Io.PerfMark ]
+  MacBuildTargets: [ ci ]
+  WindowsBuildTargets: [ ci ]
 
 
 #######################################################
