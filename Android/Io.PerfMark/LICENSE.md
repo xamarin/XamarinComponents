@@ -2,10 +2,10 @@
 Some packages may require or install dependencies which are governed by additional 
 licenses.**
 
-Note: This component depends on [OpenCensus](https://github.com/census-instrumentation)), 
-which is subject to the [Apache 2.0](https://github.com/census-instrumentation/opencensus-java/blob/master/LICENSE)
+Note: This component depends on [io.perfmark](https://github.com/perfmark/perfmark)), 
+which is subject to the [Apache 2.0](https://github.com/perfmark/perfmark/blob/master/LICENSE)
 
-### Xamarin Component for OpenCensus for Xamarin.Android
+### Xamarin Component for io.perfmark for Xamarin.Android
 
 **The MIT License (MIT)**
 
@@ -25,5 +25,5 @@ NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FO
 OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN 
 CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-20190906
+20191022
 
