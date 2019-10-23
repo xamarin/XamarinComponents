@@ -264,6 +264,11 @@
   TriggerPaths: [ Android/Io.PerfMark ]
   MacBuildTargets: [ ci ]
   WindowsBuildTargets: [ ci ]
+- Name: Google.Android.DataTransport
+  BuildScript: ./Android/Google.Android.DataTransport/build.cake
+  TriggerPaths: [ Android/Google.Android.DataTransport ]
+  MacBuildTargets: [ ci ]
+  WindowsBuildTargets: [ ci ]
 
 
 #######################################################
