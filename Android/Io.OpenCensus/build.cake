@@ -1,7 +1,6 @@
 #tool nuget:?package=XamarinComponent
 
 #addin nuget:?package=Cake.XCode
-#addin nuget:?package=Cake.Xamarin.Build
 #addin nuget:?package=Cake.Xamarin
 #addin nuget:?package=Cake.FileHelpers
 
@@ -17,7 +16,7 @@ Dictionary<string, string> JAR_URLS_ARTIFACT_FILES= new Dictionary<string, strin
 	},
 	{
 		$"https://repo1.maven.org/maven2/io/opencensus/opencensus-contrib-grpc-metrics/{ARTIFACT_VERSION}/opencensus-contrib-grpc-metrics-{ARTIFACT_VERSION}.jar",
-		$"./externals/android/oopencensus-contrib-grpc-metrics-{ARTIFACT_VERSION}.jar"
+		$"./externals/android/opencensus-contrib-grpc-metrics-{ARTIFACT_VERSION}.jar"
 	},
 };
 string ARTIFACT_FILE = "";
