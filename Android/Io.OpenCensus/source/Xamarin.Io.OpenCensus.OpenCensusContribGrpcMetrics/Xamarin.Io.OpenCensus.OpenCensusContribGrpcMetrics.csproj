@@ -51,4 +51,7 @@
       <Link>Jars\opencensus-contrib-grpc-metrics-0.24.0.jar</Link>
     </EmbeddedJar>
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Xamarin.Io.OpenCensus.OpenCensusApi\Xamarin.Io.OpenCensus.OpenCensusApi.csproj" />
+  </ItemGroup>
 </Project>

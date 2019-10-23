@@ -49,6 +49,6 @@
     </EmbeddedJar>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Xamarin.Io.OpenCensus.OpenCensusContribGrpcMetrics\Xamarin.Io.OpenCensus.OpenCensusContribGrpcMetrics.csproj" />
+    <PackageReference Include="Xamarin.Grpc.Context" Version="1.24.0" />
   </ItemGroup>
 </Project>
