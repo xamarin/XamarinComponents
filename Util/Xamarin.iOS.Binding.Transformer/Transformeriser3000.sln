@@ -1,0 +1,23 @@
+
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Transformeriser3000", "Transformeriser3000\Transformeriser3000.csproj", "{DA0CF6D5-8C2C-4629-B17E-D2A9E87B20E7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Xamarin.iOS.Binding.Transformer", "Xamarin.iOS.Binding.Transformer\Xamarin.iOS.Binding.Transformer.csproj", "{A9409293-3717-450F-8432-AA4C537A5E8A}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{DA0CF6D5-8C2C-4629-B17E-D2A9E87B20E7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DA0CF6D5-8C2C-4629-B17E-D2A9E87B20E7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DA0CF6D5-8C2C-4629-B17E-D2A9E87B20E7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DA0CF6D5-8C2C-4629-B17E-D2A9E87B20E7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A9409293-3717-450F-8432-AA4C537A5E8A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A9409293-3717-450F-8432-AA4C537A5E8A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A9409293-3717-450F-8432-AA4C537A5E8A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A9409293-3717-450F-8432-AA4C537A5E8A}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
