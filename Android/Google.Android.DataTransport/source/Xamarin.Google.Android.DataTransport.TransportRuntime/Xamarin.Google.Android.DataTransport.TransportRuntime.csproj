@@ -44,8 +44,8 @@
     <Folder Include="Jars\" />
   </ItemGroup>
   <ItemGroup>
-    <LibraryProjectZip Include="..\..\externals\android\transport-api-2.0.0.aar">
-      <Link>Jars\transport-api-2.0.0.aar</Link>
+    <LibraryProjectZip Include="..\..\externals\android\transport-runtime-2.0.0.aar">
+      <Link>Jars\transport-runtime-2.0.0.aar</Link>
     </LibraryProjectZip>
   </ItemGroup>
   <ItemGroup>

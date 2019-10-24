@@ -7,6 +7,41 @@
         >
         Xamarin.Google.Android.DataTransport
     </attr>
-    
+    <attr
+        path="/api/package[@name='com.google.android.datatransport.runtime.backends']"
+        name="managedName"
+        >
+        Xamarin.Google.Android.DataTransport.Runtime.Backends
+    </attr>
+    <attr
+        path="/api/package[@name='com.google.android.datatransport.runtime.scheduling']"
+        name="managedName"
+        >
+        Xamarin.Google.Android.DataTransport.Runtime.Scheduling
+    </attr>
+    <attr
+        path="/api/package[@name='com.google.android.datatransport.runtime.scheduling.jobscheduling']"
+        name="managedName"
+        >
+        Xamarin.Google.Android.DataTransport.Runtime.Scheduling.JobScheduling
+    </attr>
+    <attr
+        path="/api/package[@name='com.google.android.datatransport.runtime.scheduling.persistence']"
+        name="managedName"
+        >
+        Xamarin.Google.Android.DataTransport.Runtime.Persistence
+    </attr>
+    <attr
+        path="/api/package[@name='com.google.android.datatransport.runtime.synchronization']"
+        name="managedName"
+        >
+        Xamarin.Google.Android.DataTransport.Runtime.Synchronization
+    </attr>
+    <attr
+        path="/api/package[@name='com.google.android.datatransport.runtime.time']"
+        name="managedName"
+        >
+        Xamarin.Google.Android.DataTransport.Runtime.Time
+    </attr>
     
 </metadata>
