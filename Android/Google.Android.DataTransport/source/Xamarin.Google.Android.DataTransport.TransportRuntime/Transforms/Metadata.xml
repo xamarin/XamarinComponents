@@ -8,6 +8,12 @@
         Xamarin.Google.Android.DataTransport
     </attr>
     <attr
+        path="/api/package[@name='com.google.android.datatransport.runtime']"
+        name="managedName"
+        >
+        Xamarin.Google.Android.DataTransport.Runtime
+    </attr>
+    <attr
         path="/api/package[@name='com.google.android.datatransport.runtime.backends']"
         name="managedName"
         >
@@ -51,4 +57,5 @@
         >
         public
     </attr>
+    
 </metadata>
