@@ -1,8 +1,6 @@
 var VERBOSITY = Argument ("v", Argument ("verbosity", Verbosity.Normal));
 var CONFIGURATION = Argument ("c", Argument ("configuration", "Release"));
 
-var FAIL_ON_BUILD_FAIL = Argument ("failonbuildfail", true);
-
 var BUILD_NAMES = Argument ("names", Argument ("name", ""));
 var BUILD_TARGETS = Argument ("build-targets", Argument ("targets", Argument ("target", "Default")));
 
@@ -27,7 +25,6 @@ var cakeSettings = new CakeSettings {
 		{ "targets", BUILD_TARGETS },
 		{ "forcebuild", true.ToString () },
 		{ "repo-update", POD_REPO_UPDATE.ToString () },
-		{ "failonbuildfail", FAIL_ON_BUILD_FAIL.ToString () },
 	},
 	Verbosity = VERBOSITY
 };

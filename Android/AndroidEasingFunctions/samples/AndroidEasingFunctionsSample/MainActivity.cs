@@ -3,7 +3,7 @@ using Android.OS;
 using Android.Support.V7.App;
 using Android.Views;
 using Android.Widget;
-using NineOldAndroids.Animation;
+using Android.Animation;
 
 using AndroidEasingFunctions;
 

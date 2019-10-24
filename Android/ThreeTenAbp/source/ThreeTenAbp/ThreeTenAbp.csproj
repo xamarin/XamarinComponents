@@ -17,7 +17,7 @@
   <PropertyGroup>
     <PackageId>Xamarin.Android.JakeWharton.ThreeTenAbp</PackageId>
     <Title>Jake Wharton's ThreeTenAbp for Xamarin.Android</Title>
-    <Summary>Xamarin.Android bindings for Jake Wharton's ThreeTenAbp</Summary>
+    <PackageDescription>Xamarin.Android bindings for Jake Wharton's ThreeTenAbp</PackageDescription>
     <Authors>Microsoft</Authors>
     <Owners>Microsoft</Owners>
     <Copyright>© Microsoft Corporation. All rights reserved.</Copyright>

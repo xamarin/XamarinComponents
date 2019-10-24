@@ -1,5 +1,5 @@
 
-var TARGET = Argument("t", Argument("target", "Default"));
+var TARGET = Argument("t", Argument("target", "ci"));
 
 Task("binderate")
 	.Does(() =>
@@ -15,7 +15,8 @@ Task("binderate")
 Task("native")
 	.Does(() =>
 {
-	var gradlew = MakeAbsolute((FilePath)"./native/KotlinSample/gradlew");
+	var fn = IsRunningOnWindows() ? "gradlew.bat" : "gradlew";
+	var gradlew = MakeAbsolute((FilePath)("./native/KotlinSample/" + fn));
 	var exit = StartProcess(gradlew, new ProcessSettings {
 		Arguments = "assemble",
 		WorkingDirectory = "./native/KotlinSample/"
@@ -33,17 +34,27 @@ Task("libs")
 {
 	var settings = new MSBuildSettings()
 		.SetConfiguration("Release")
-		.SetVerbosity(Verbosity.Minimal)
+		.EnableBinaryLogger("./output/libs.binlog")
 		.WithRestore()
 		.WithProperty("DesignTimeBuild", "false")
-		.WithProperty("PackageOutputPath", MakeAbsolute((DirectoryPath)"./output/").FullPath)
-		.WithTarget("Pack");
+		.WithTarget("Build");
 
 	MSBuild("./generated/Xamarin.Kotlin.sln", settings);
 });
 
 Task("nuget")
-	.IsDependentOn("libs");
+	.IsDependentOn("libs")
+	.Does(() =>
+{
+	var settings = new MSBuildSettings()
+		.SetConfiguration("Release")
+		.EnableBinaryLogger("./output/nuget.binlog")
+		.WithProperty("NoBuild", "true")
+		.WithProperty("PackageOutputPath", MakeAbsolute((DirectoryPath)"./output/").FullPath)
+		.WithTarget("Pack");
+
+	MSBuild("./generated/Xamarin.Kotlin.sln", settings);
+});
 
 Task("samples")
 	.IsDependentOn("libs")
@@ -52,6 +63,7 @@ Task("samples")
 	var settings = new MSBuildSettings()
 		.SetConfiguration("Release")
 		.SetVerbosity(Verbosity.Minimal)
+		.EnableBinaryLogger("./output/samples.binlog")
 		.WithRestore()
 		.WithProperty("DesignTimeBuild", "false");
 
@@ -70,7 +82,7 @@ Task("clean")
 	CleanDirectories("./native/**/build");
 });
 
-Task("Default")
+Task("ci")
 	.IsDependentOn("externals")
 	.IsDependentOn("libs")
 	.IsDependentOn("nuget")

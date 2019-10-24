@@ -14,7 +14,7 @@
     <PackageId>Xamarin.AndroidBinderator.Tool</PackageId>
     <PackageVersion>0.4.1</PackageVersion>
     <Title>Xamarin Android Binderator</Title>
-    <Description>A tool for generating Xamarin.Android Binding projects from Razor templates and Maven Repository data.</Description>
+    <PackageDescription>A tool for generating Xamarin.Android Binding projects from Razor templates and Maven Repository data.</PackageDescription>
     <PackageProjectUrl>https://go.microsoft.com/fwlink/?linkid=2100525</PackageProjectUrl>
     <PackageLicenseUrl>https://go.microsoft.com/fwlink/?linkid=2100608</PackageLicenseUrl>
     <Authors>Microsoft</Authors>

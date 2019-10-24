@@ -19,8 +19,7 @@
   <PropertyGroup>
     <PackageId>Xamarin.Azure.NotificationHubs.Android</PackageId>
     <Title>Azure Notification Hubs for Xamarin.Android</Title>
-    <Summary>Xamarin.Android Bindings for Azure Notification Hubs</Summary>
-    <Description>Xamarin.Android Bindings for Azure Notification Hubs</Description>
+    <PackageDescription>Xamarin.Android Bindings for Azure Notification Hubs.</PackageDescription>
     <Authors>Microsoft</Authors>
     <Owners>Microsoft</Owners>
     <Copyright>© Microsoft Corporation. All rights reserved.</Copyright>

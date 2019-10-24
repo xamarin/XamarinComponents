@@ -23,9 +23,8 @@
     <PackageVersion>4.4.1</PackageVersion>
     <Authors>xamarin</Authors>
     <Title>Xamarin.Dropbox.Api.Android</Title>
-    <Description>things</Description>
+    <PackageDescription>things</PackageDescription>
     <Owners>xamarin</Owners>
-    <Summary>tings</Summary>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>

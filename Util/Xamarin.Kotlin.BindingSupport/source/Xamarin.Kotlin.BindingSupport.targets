@@ -1,6 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
 
+  <!-- WORAROUND: https://github.com/xamarin/xamarin-android/issues/3776 -->
+  <Target Name="_KotlinBindingFixupsBefore" BeforeTargets="ExportJarToXml">
+    <ItemGroup>
+      <ReferenceJar Include="@(AndroidJavaLibrary)" />
+    </ItemGroup>
+  </Target>
+
   <Target Name="_KotlinBindingFixups" AfterTargets="ExportJarToXml"
           Inputs="$(ApiOutputFile);@(EmbeddedJar);@(InputJar);@(EmbeddedReferenceJar);@(ReferenceJar);@(_AdditionalJavaLibraryReferences)"
           Outputs="$(IntermediateOutputPath)\KotlinBindingSupport.generated.xml">
@@ -9,20 +16,29 @@
     <PropertyGroup>
       <KotlinBindingSupportJar Condition="'$(KotlinBindingSupportJar)' == ''">$(MSBuildThisFileDirectory)binding-support-1.0.jar</KotlinBindingSupportJar>
       <KotlinBindingSupportExtraArgs Condition="'$(KotlinBindingSupportExtraArgs)' == ''"></KotlinBindingSupportExtraArgs>
-      <KotlinBindingSupportIgnorePath Condition="'$(KotlinBindingSupportIgnorePath)' == ''"></KotlinBindingSupportIgnorePath>
       <KotlinBindingSupportOutputPath Condition="'$(KotlinBindingSupportOutputPath)' == ''">$(IntermediateOutputPath)\KotlinBindingSupport.generated.xml</KotlinBindingSupportOutputPath>
+      <KotlinBindingSupportAndroidJarPath Condition="'$(KotlinBindingSupportAndroidJarPath)' == ''">$(AndroidSdkDirectory)\platforms\android-$(_AndroidApiLevelName)\android.jar</KotlinBindingSupportAndroidJarPath>
     </PropertyGroup>
+
+    <!-- OBSOLETE: use @(KotlinBindingSupportIgnore) instead -->
+    <PropertyGroup>
+      <KotlinBindingSupportIgnorePath Condition="'$(KotlinBindingSupportIgnorePath)' == ''"></KotlinBindingSupportIgnorePath>
+    </PropertyGroup>
+    <ItemGroup>
+      <KotlinBindingSupportIgnore Condition="'$(KotlinBindingSupportIgnorePath)' != ''" Include="$(KotlinBindingSupportIgnorePath)" />
+    </ItemGroup>
 
     <!-- private properties -->
     <PropertyGroup>
       <_KotlinBindingJavaPath Condition="'$(_KotlinBindingJavaPath)' == '' and '$(OS)' == 'Unix'">$(JavaSdkDirectory)\bin\java</_KotlinBindingJavaPath>
       <_KotlinBindingJavaPath Condition="'$(_KotlinBindingJavaPath)' == '' and '$(OS)' != 'Unix'">$(JavaSdkDirectory)\bin\java.exe</_KotlinBindingJavaPath>
-      <_KotlinBindingSupportIgnore Condition="'$(KotlinBindingSupportIgnorePath)' != ''">--ignore &quot;$(KotlinBindingSupportIgnorePath)&quot;</_KotlinBindingSupportIgnore>
+      <_KotlinBindingSupportIgnore Condition="'@(KotlinBindingSupportIgnore)' != ''">--ignore &quot;@(KotlinBindingSupportIgnore, '&quot; --ignore &quot;')&quot;</_KotlinBindingSupportIgnore>
     </PropertyGroup>
 
     <ItemGroup>
       <_KotlinBindingReferenceJar Include="@(EmbeddedJar);@(InputJar)" />
       <_KotlinBindingReferenceJar Include="@(EmbeddedReferenceJar);@(ReferenceJar);@(_AdditionalJavaLibraryReferences)" />
+      <_KotlinBindingReferenceJar Include="$(KotlinBindingSupportAndroidJarPath)" />
     </ItemGroup>
 
     <Exec Command="&quot;$(_KotlinBindingJavaPath)&quot; -jar &quot;$(KotlinBindingSupportJar)&quot; --xml &quot;$(ApiOutputFile)&quot; --jar &quot;@(_KotlinBindingReferenceJar, '&quot; --jar &quot;')&quot; --output &quot;$(KotlinBindingSupportOutputPath)&quot; $(_KotlinBindingSupportIgnore) $(KotlinBindingSupportExtraArgs)" />

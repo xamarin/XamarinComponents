@@ -17,8 +17,7 @@
   <PropertyGroup>
     <PackageId>Xamarin.Android.SceneForm.Animation</PackageId>
     <Title>Xamarin.Android.SceneForm.Animation</Title>
-    <Summary>Xamarin.Android bindings for SceneForm Animation</Summary>
-    <Description></Description>
+    <PackageDescription>Xamarin.Android bindings for SceneForm Animation</PackageDescription>
     <Authors>Microsoft</Authors>
     <Owners>Microsoft</Owners>
     <Copyright>© Microsoft Corporation. All rights reserved.</Copyright>

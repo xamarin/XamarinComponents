@@ -83,6 +83,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <KotlinBindingSupportIgnore Condition="Exists('..\..\source\@(Model.NuGetPackageId)\ignore.txt')" Include="..\..\source\@(Model.NuGetPackageId)\ignore.txt" />
+  </ItemGroup>
+
+  <ItemGroup>
     @foreach (var art in @Model.MavenArtifacts) {
     <None Remove="..\..\externals\@(art.MavenGroupId)\@(art.MavenArtifactId).jar" />
     <None Include="..\..\externals\@(art.MavenGroupId)\@(art.MavenArtifactId).jar" Pack="True" PackagePath="jar\@(art.MavenGroupId).@(art.MavenArtifactId).jar" Visible="false" />
@@ -98,7 +102,7 @@
     <PackageReference Include="@(dep.NuGetPackageId)" Version="@(dep.NuGetVersion)" />
       }
     }
-    <PackageReference Include="Xamarin.Kotlin.BindingSupport" Version="0.1.0-preview" PrivateAssets="All" />
+    <PackageReference Include="Xamarin.Kotlin.BindingSupport" Version="0.6.0-preview" PrivateAssets="All" />
   </ItemGroup>
 
 </Project>

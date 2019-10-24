@@ -10,7 +10,6 @@
         <AndroidResgenFile>Resources\Resource.designer.cs</AndroidResgenFile>
         <TargetFrameworks>MonoAndroid60</TargetFrameworks>
         <AndroidCodegenTarget>XAJavaInterop1</AndroidCodegenTarget>
-        <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
         <IsBindingProject>true</IsBindingProject>
         <AndroidClassParser>class-parse</AndroidClassParser>
         <JavaOptions>$(JavaOptions) -noverify </JavaOptions>
@@ -23,8 +22,7 @@
         <PackageId>Xamarin.Android.Crashlytics</PackageId>
         <PackageVersion>2.9.4</PackageVersion>
         <Title>Crashlytics for Android</Title>
-        <Summary>Xamarin.Android bindings for Crashlytics Android</Summary>
-        <Description>Xamarin.Android bindings for Crashlytics Android</Description>
+        <PackageDescription>Xamarin.Android bindings for Crashlytics Android</PackageDescription>
         <PackageTags>Xamarin Android Xamarin.Android Crashlytics</PackageTags>
         <Authors>Microsoft</Authors>
         <Owners>Microsoft, Xamarin</Owners>
