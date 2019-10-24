@@ -44,4 +44,11 @@
         Xamarin.Google.Android.DataTransport.Runtime.Time
     </attr>
     
+    
+    <attr
+        path="/api/package[@name='com.google.android.datatransport.runtime']/interface[@name='TransportInternal']"
+        name="visibility"
+        >
+        public
+    </attr>
 </metadata>
