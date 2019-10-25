@@ -33,9 +33,8 @@ namespace Xamarin.iOS.Binding.Transformer
             //interate through the delegates
             foreach (var aDel in api.Delegates)
             {
-                var delegateDeclaration = SyntaxFactory.DelegateDeclaration(SyntaxFactory.ParseTypeName(" " + aDel.ReturnType), SyntaxFactory.ParseToken(" " + aDel.Name));
-                delegateDeclaration = delegateDeclaration.WithLeadingTrivia(SyntaxFactory.LineFeed, SyntaxFactory.Tab);
-                delegateDeclaration = delegateDeclaration.WithTrailingTrivia(SyntaxFactory.LineFeed);
+                // build the delegate syntax declaration
+                var delegateDeclaration = BuildDelegate(aDel);
 
                 //needs to build parameters
                 @namespace = @namespace.AddMembers(delegateDeclaration);
@@ -44,35 +43,11 @@ namespace Xamarin.iOS.Binding.Transformer
             //interate through the types
             foreach (var aClass in api.Types)
             {
-                //build the attributes for the class
-                var attributeList = BuildClassAttributes(aClass);
+                //build the type for the ApiClass object
+                var aType = BuildType(aClass);
 
-                //create the interface
-                var interfaceDeclaration = SyntaxFactory.InterfaceDeclaration(" " + aClass.Name);
-
-                //does the class inherit from anything
-                if (aClass.InheritsFrom.Count > 0)
-                {
-                    //build the baselistsyntax object
-                    var baseClasses = BuildClassBaseTypes(aClass);
-
-                    //if it returns items add it to the declaration
-                    if (baseClasses.Types.Count > 0)
-                        interfaceDeclaration = interfaceDeclaration.WithBaseList(baseClasses);
-                }
-
-                 //if there are attributes then add them to the class definition
-                if (attributeList.Count > 0)
-                {
-                    interfaceDeclaration = interfaceDeclaration.WithAttributeLists(attributeList);
-
-
-                }
-
-                interfaceDeclaration = interfaceDeclaration.WithLeadingTrivia(SyntaxFactory.LineFeed, SyntaxFactory.Tab);
-                interfaceDeclaration = interfaceDeclaration.WithTrailingTrivia(SyntaxFactory.LineFeed);
-
-                @namespace = @namespace.AddMembers(interfaceDeclaration);
+                //add it to the namespace
+                @namespace = @namespace.AddMembers(aType);
             }
 
             //add the namespace to the compilation unit
@@ -96,6 +71,58 @@ namespace Xamarin.iOS.Binding.Transformer
         }
 
         #region Private Methods
+
+        /// <summary>
+        /// Build the type syntax node
+        /// </summary>
+        /// <param name="aClass"></param>
+        /// <returns></returns>
+        private static TypeDeclarationSyntax BuildType(ApiClass aClass)
+        {
+            //build the attributes for the class
+            var attributeList = BuildClassAttributes(aClass);
+
+            //create the interface
+            var interfaceDeclaration = SyntaxFactory.InterfaceDeclaration(aClass.Name);
+
+            //does the class inherit from anything
+            if (aClass.InheritsFrom.Count > 0)
+            {
+                //build the baselistsyntax object
+                var baseClasses = BuildClassBaseTypes(aClass);
+
+                //if it returns items add it to the declaration
+                if (baseClasses.Types.Count > 0)
+                    interfaceDeclaration = interfaceDeclaration.WithBaseList(baseClasses);
+            }
+
+            //if there are attributes then add them to the class definition
+            if (attributeList.Count > 0)
+            {
+                interfaceDeclaration = interfaceDeclaration.WithAttributeLists(attributeList);
+
+
+            }
+
+            interfaceDeclaration = interfaceDeclaration.WithLeadingTrivia(SyntaxFactory.LineFeed, SyntaxFactory.Tab);
+            interfaceDeclaration = interfaceDeclaration.WithTrailingTrivia(SyntaxFactory.LineFeed);
+
+            return interfaceDeclaration;
+        }
+
+        /// <summary>
+        /// Build the delegate syntax node
+        /// </summary>
+        /// <param name="apiDelegate"></param>
+        /// <returns></returns>
+        private static DelegateDeclarationSyntax BuildDelegate(ApiDelegate apiDelegate)
+        {
+            var delegateDeclaration = SyntaxFactory.DelegateDeclaration(SyntaxFactory.ParseTypeName(" " + apiDelegate.ReturnType), SyntaxFactory.ParseToken(" " + apiDelegate.Name));
+            delegateDeclaration = delegateDeclaration.WithLeadingTrivia(SyntaxFactory.LineFeed, SyntaxFactory.Tab);
+            delegateDeclaration = delegateDeclaration.WithTrailingTrivia(SyntaxFactory.LineFeed);
+
+            return delegateDeclaration;
+        }
 
         /// <summary>
         /// Build the base classes/interfaces
@@ -169,11 +196,61 @@ namespace Xamarin.iOS.Binding.Transformer
 
             }
 
-            
+            if (apiClass.IsStatic)
+            {
+                var attribList = SyntaxFactory.AttributeList
+                           (
+                               SyntaxFactory.SingletonSeparatedList<AttributeSyntax>
+                               (
+                                   SyntaxFactory.Attribute
+                                   (
+                                       SyntaxFactory.IdentifierName("Static")
+                                   )
+                               )
+                           );
+
+                attribs = attribs.Add(attribList);
+
+
+            }
 
             if (apiClass.Model != null)
             {
+                var sep = SyntaxFactory.AttributeList
+                    (
+                        SyntaxFactory.SingletonSeparatedList<AttributeSyntax>
+                        (
+                            SyntaxFactory.Attribute
+                            (
+                                SyntaxFactory.IdentifierName("Model")
+                            )
+                            .WithArgumentList
+                            (
+                                SyntaxFactory.AttributeArgumentList
+                                (
+                                    SyntaxFactory.SingletonSeparatedList<AttributeArgumentSyntax>
+                                    (
+                                        SyntaxFactory.AttributeArgument
+                                        (
+                                            SyntaxFactory.LiteralExpression
+                                            (
+                                                SyntaxKind.TrueLiteralExpression
+                                            )
+                                        )
+                                        .WithNameEquals
+                                        (
+                                            SyntaxFactory.NameEquals
+                                            (
+                                                SyntaxFactory.IdentifierName("AutoGeneratedName")
+                                            )
+                                        )
+                                    )
+                                )
+                            )
+                        )
+                    );
 
+                attribs = attribs.Add(sep);
             }
 
             if (apiClass.BaseType != null)
