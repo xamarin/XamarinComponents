@@ -25,13 +25,18 @@ namespace Xamarin.iOS.Binding.Transformer
         public ApiDefinition()
         {
             _xmlnamespaces = new XmlSerializerNamespaces(new XmlQualifiedName[] { new XmlQualifiedName(string.Empty, "urn:xamarin") });
-            Usings = new List<ApiUsing>();
+           // Usings = new List<ApiUsing>();
             Types = new List<ApiClass>();
             Delegates = new List<ApiDelegate>();
+            Usings = new ApiUsings();
+            
         }
 
-        [XmlElement(ElementName = "using", Order = 0)]
-        public List<ApiUsing> Usings { get; set; }
+        [XmlElement(ElementName = "usings", Order = 0)]
+        public ApiUsings Usings { get; set; }
+
+        //[XmlElement(ElementName = "using", Order = 0)]
+        //public List<ApiUsing> Usings { get; set; }
 
         [XmlElement(ElementName = "delegate", Order = 1)]
         public List<ApiDelegate> Delegates { get; set; }

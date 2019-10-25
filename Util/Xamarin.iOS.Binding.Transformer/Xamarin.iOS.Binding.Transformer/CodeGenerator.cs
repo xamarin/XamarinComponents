@@ -18,7 +18,7 @@ namespace Xamarin.iOS.Binding.Transformer
 
 
             //added the usings
-            foreach (var aUsing in api.Usings)
+            foreach (var aUsing in api.Usings.Items)
             {
                 var node = SyntaxFactory.UsingDirective(SyntaxFactory.ParseName(" " + aUsing.Name));
                 node = node.WithTrailingTrivia(SyntaxFactory.LineFeed);
@@ -86,18 +86,18 @@ namespace Xamarin.iOS.Binding.Transformer
             var interfaceDeclaration = SyntaxFactory.InterfaceDeclaration(aClass.Name);
 
             //does the class inherit from anything
-            if (aClass.InheritsFrom.Count > 0)
+            if (aClass.Implements.Any())
             {
                 //build the baselistsyntax object
                 var baseClasses = BuildClassBaseTypes(aClass);
 
                 //if it returns items add it to the declaration
-                if (baseClasses.Types.Count > 0)
+                if (baseClasses.Types.Any())
                     interfaceDeclaration = interfaceDeclaration.WithBaseList(baseClasses);
             }
 
             //if there are attributes then add them to the class definition
-            if (attributeList.Count > 0)
+            if (attributeList.Any())
             {
                 interfaceDeclaration = interfaceDeclaration.WithAttributeLists(attributeList);
 
@@ -145,7 +145,7 @@ namespace Xamarin.iOS.Binding.Transformer
 
             var tokens = new List<SyntaxNodeOrToken>();
 
-            foreach (var basetype in aClass.InheritsFrom)
+            foreach (var basetype in aClass.Implements)
             {
                 tokens.Add(SyntaxFactory.SimpleBaseType
                     (
@@ -153,7 +153,7 @@ namespace Xamarin.iOS.Binding.Transformer
                     ));
 
 
-                if (basetype != aClass.InheritsFrom.Last())
+                if (basetype != aClass.Implements.Last())
                     tokens.Add(SyntaxFactory.Token(SyntaxKind.CommaToken));
 
             }
@@ -333,11 +333,11 @@ namespace Xamarin.iOS.Binding.Transformer
             {
                 tokens.Add(SyntaxFactory.Parameter
                         (
-                            SyntaxFactory.Identifier("arg0")
+                            SyntaxFactory.Identifier(aParam.Name)
                         )
                         .WithType
                         (
-                            SyntaxFactory.IdentifierName("CALayer")
+                            SyntaxFactory.IdentifierName(aParam.Type)
                         ));
 
                 if (aParam != parameters.Last())

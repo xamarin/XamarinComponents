@@ -3,12 +3,12 @@ using System.Xml.Serialization;
 
 namespace Xamarin.iOS.Binding.Transformer
 {
-    public class ApiInheritsFrom
+    public class ApiImplements
     {
         [XmlAttribute(AttributeName = "name")]
         public string Name { get; set; }
 
-        public ApiInheritsFrom()
+        public ApiImplements()
         {
         }
     }

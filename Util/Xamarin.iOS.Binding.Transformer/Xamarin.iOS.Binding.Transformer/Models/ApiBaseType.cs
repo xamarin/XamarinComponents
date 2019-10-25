@@ -6,7 +6,7 @@ namespace Xamarin.iOS.Binding.Transformer
     [XmlRoot(ElementName="BaseType")]
     public class ApiBaseType
     {
-        [XmlAttribute(AttributeName = "typename")]
+        [XmlAttribute(AttributeName = "type")]
         public string TypeName { get; set; }
 
         [XmlAttribute(AttributeName = "name")]

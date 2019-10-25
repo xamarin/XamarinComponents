@@ -31,12 +31,12 @@ namespace Xamarin.iOS.Binding.Transformer
         [XmlElement(ElementName = "basetype", Order = 1)]
         public ApiBaseType BaseType { get; set; }
 
-        [XmlElement(ElementName = "inheritsfrom", Order = 2)]
-        public List<ApiInheritsFrom> InheritsFrom { get; set; }
+        [XmlElement(ElementName = "implements", Order = 2)]
+        public List<ApiImplements> Implements { get; set; }
 
         public ApiClass()
         {
-            InheritsFrom = new List<ApiInheritsFrom>();
+            Implements = new List<ApiImplements>();
         }
     }
 }
