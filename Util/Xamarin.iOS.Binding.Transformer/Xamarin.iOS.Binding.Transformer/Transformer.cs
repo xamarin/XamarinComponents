@@ -212,8 +212,13 @@ namespace Xamarin.iOS.Binding.Transformer
                                         newClass.IsProtocol = true;
                                     }
                                     break;
+                                case "static":
+                                    {
+                                        newClass.IsStatic = true;
+                                    }
+                                    break;
 
-                            };
+                            }
 
 
                         }
