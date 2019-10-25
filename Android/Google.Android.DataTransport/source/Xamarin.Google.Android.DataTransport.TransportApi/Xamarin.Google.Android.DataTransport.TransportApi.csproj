@@ -34,11 +34,6 @@
     <PackOnBuild>true</PackOnBuild>
   </PropertyGroup>
 
-
-  <ItemGroup>
-    <TransformFile Include="Transforms\*.xml" />
-  </ItemGroup>
-
   <ItemGroup>
     <Folder Include="Additions\" />
     <Folder Include="Jars\" />
