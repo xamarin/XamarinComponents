@@ -34,9 +34,18 @@ namespace Xamarin.iOS.Binding.Transformer
         [XmlElement(ElementName = "implements", Order = 2)]
         public List<ApiImplements> Implements { get; set; }
 
+        [XmlElement(ElementName = "property", Order = 3)]
+        public List<ApiProperty> Properties { get; set; }
+
+        [XmlElement(ElementName = "method", Order = 4)]
+        public List<ApiMethod> Methods { get; set; }
+
+        
         public ApiClass()
         {
             Implements = new List<ApiImplements>();
+            Methods = new List<ApiMethod>();
+            Properties = new List<ApiProperty>();
         }
     }
 }

@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Project Sdk="Microsoft.NET.Sdk">
     <PropertyGroup>
         <OutputType>Exe</OutputType>
@@ -11,8 +11,7 @@
         <Compile Remove="ApiDefinitions.cs" />
     </ItemGroup>
     <ItemGroup>
-        <PackageReference Include="Microsoft.CodeAnalysis.CSharp">
-            <Version>3.3.1</Version>
+        <PackageReference Include="Microsoft.CodeAnalysis.CSharp" Version="3.3.1">
         </PackageReference>
     </ItemGroup>
     <ItemGroup>

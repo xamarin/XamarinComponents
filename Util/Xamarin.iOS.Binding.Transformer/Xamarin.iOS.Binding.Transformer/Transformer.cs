@@ -226,7 +226,108 @@ namespace Xamarin.iOS.Binding.Transformer
                 }
             }
 
+            var members = node.ChildNodes();
+
+            if (members.Any())
+            {
+                foreach (var aMember in members)
+                {
+                    BuildMembers(aMember, ref newClass);
+                }
+            }
             return newClass;
+        }
+
+        private static void BuildMembers(SyntaxNode node, ref ApiClass apiClass)
+        {
+            if (node is MethodDeclarationSyntax)
+            {
+                //get the name
+                var newMethod = new ApiMethod()
+                {
+                    Name = ((MethodDeclarationSyntax)node).Identifier.Text,
+                };
+
+                //find the attributes
+                if (((MethodDeclarationSyntax)node).AttributeLists.Any())
+                {
+                    foreach (var aAtrrib in ((MethodDeclarationSyntax)node).AttributeLists)
+                    {
+                        foreach (var attrib in aAtrrib.Attributes)
+                        {
+                            if (attrib != null)
+                            {
+                                var name = ((IdentifierNameSyntax)attrib.Name).Identifier.Text;
+
+                                switch (name.ToLower())
+                                {
+                                    case "static":
+                                        {
+                                            newMethod.IsStatic = true;
+                                        }
+                                        break;
+                                    case "export":
+                                        {
+                                            
+                                        }
+                                        break;
+
+                                }
+
+
+                            }
+                        }
+                    }
+                }
+
+                apiClass.Methods.Add(newMethod);
+               
+            }
+            else if (node is PropertyDeclarationSyntax)
+            {
+                var newMethod = new ApiProperty()
+                {
+                    Name = ((PropertyDeclarationSyntax)node).Identifier.Text,
+                };
+
+                if (((MethodDeclarationSyntax)node).AttributeLists.Any())
+                {
+                    foreach (var aAtrrib in ((MethodDeclarationSyntax)node).AttributeLists)
+                    {
+                        foreach (var attrib in aAtrrib.Attributes)
+                        {
+                            if (attrib != null)
+                            {
+                                var name = ((IdentifierNameSyntax)attrib.Name).Identifier.Text;
+
+                                switch (name.ToLower())
+                                {
+                                    case "nullallowed":
+                                        {
+                                            newMethod.IsNullAllowed = true;
+                                        }
+                                        break;
+                                    case "abstract":
+                                        {
+                                            newMethod.IsAbstract = true;
+                                        }
+                                        break;
+                                    case "export":
+                                        {
+
+                                        }
+                                        break;
+
+                                }
+
+
+                            }
+                        }
+                    }
+                }
+
+                apiClass.Properties.Add(newMethod);
+            }
         }
 
         private static void ProcessModelAttrib(AttributeSyntax attrib, ref ApiClass newClass)
@@ -513,5 +614,7 @@ namespace Xamarin.iOS.Binding.Transformer
 
             return (newAttrib, originalName);
         }
+
+        
     }
 }
