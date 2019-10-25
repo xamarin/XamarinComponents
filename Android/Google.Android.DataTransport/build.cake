@@ -5,7 +5,7 @@
 #addin nuget:?package=Cake.Xamarin
 #addin nuget:?package=Cake.FileHelpers
 
-var TARGET = Argument ("t", Argument ("target", "Default"));
+var TARGET = Argument ("t", Argument ("target", "ci"));
 
 string JAR_URL = "";
 Dictionary<string, string> URLS_ARTIFACT_FILES= new Dictionary<string, string>()
