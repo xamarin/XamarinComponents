@@ -118,6 +118,17 @@ namespace Xamarin.iOS.Binding.Transformer
         private static DelegateDeclarationSyntax BuildDelegate(ApiDelegate apiDelegate)
         {
             var delegateDeclaration = SyntaxFactory.DelegateDeclaration(SyntaxFactory.ParseTypeName(" " + apiDelegate.ReturnType), SyntaxFactory.ParseToken(" " + apiDelegate.Name));
+
+
+            //add the paramters if there are any
+            if (apiDelegate.Parameters.Any())
+            {
+                var parsList = BuildParameters(apiDelegate.Parameters);
+
+                if (parsList.Parameters.Any())
+                    delegateDeclaration = delegateDeclaration.WithParameterList(parsList);
+            }
+
             delegateDeclaration = delegateDeclaration.WithLeadingTrivia(SyntaxFactory.LineFeed, SyntaxFactory.Tab);
             delegateDeclaration = delegateDeclaration.WithTrailingTrivia(SyntaxFactory.LineFeed);
 
@@ -309,6 +320,33 @@ namespace Xamarin.iOS.Binding.Transformer
             return attribs;
         }
 
+        /// <summary>
+        /// Build the paramter list syntax
+        /// </summary>
+        /// <param name="parameters"></param>
+        /// <returns></returns>
+        private static ParameterListSyntax BuildParameters(IEnumerable<ApiParameter> parameters)
+        {
+            var tokens = new List<SyntaxNodeOrToken>();
+
+            foreach (var aParam in parameters)
+            {
+                tokens.Add(SyntaxFactory.Parameter
+                        (
+                            SyntaxFactory.Identifier("arg0")
+                        )
+                        .WithType
+                        (
+                            SyntaxFactory.IdentifierName("CALayer")
+                        ));
+
+                if (aParam != parameters.Last())
+                    tokens.Add(SyntaxFactory.Token(SyntaxKind.CommaToken));
+            }
+
+            return SyntaxFactory.ParameterList(SyntaxFactory.SeparatedList<ParameterSyntax>(tokens));
+
+        }
         #endregion
     }
 }
