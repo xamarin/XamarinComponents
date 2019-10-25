@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp;
@@ -12,8 +13,11 @@ namespace Xamarin.iOS.Binding.Transformer
     {
         public async static Task GenerateAsync(ApiDefinition api, string outputFilename)
         {
+            //create the base complation unit
             var syntaxFactory = SyntaxFactory.CompilationUnit();
 
+
+            //added the usings
             foreach (var aUsing in api.Usings)
             {
                 var node = SyntaxFactory.UsingDirective(SyntaxFactory.ParseName(" " + aUsing.Name));
@@ -22,19 +26,22 @@ namespace Xamarin.iOS.Binding.Transformer
                 syntaxFactory = syntaxFactory.AddUsings(node);
             }
 
+            //create the namespace root element
             var @namespace = SyntaxFactory.NamespaceDeclaration(SyntaxFactory.ParseName(api.Namespace)).NormalizeWhitespace();
             @namespace = @namespace.WithLeadingTrivia(SyntaxFactory.LineFeed);
 
+            //interate through the delegates
             foreach (var aDel in api.Delegates)
             {
-                var delegateDeclaration = SyntaxFactory.DelegateDeclaration(SyntaxFactory.ParseTypeName(aDel.ReturnType), SyntaxFactory.ParseToken(" " + aDel.Name));
-                delegateDeclaration = delegateDeclaration.WithLeadingTrivia(SyntaxFactory.Tab);
+                var delegateDeclaration = SyntaxFactory.DelegateDeclaration(SyntaxFactory.ParseTypeName(" " + aDel.ReturnType), SyntaxFactory.ParseToken(" " + aDel.Name));
+                delegateDeclaration = delegateDeclaration.WithLeadingTrivia(SyntaxFactory.LineFeed, SyntaxFactory.Tab);
                 delegateDeclaration = delegateDeclaration.WithTrailingTrivia(SyntaxFactory.LineFeed);
 
                 //needs to build parameters
                 @namespace = @namespace.AddMembers(delegateDeclaration);
             }
 
+            //interate through the types
             foreach (var aClass in api.Types)
             {
                 //build the attributes for the class
@@ -43,12 +50,23 @@ namespace Xamarin.iOS.Binding.Transformer
                 //create the interface
                 var interfaceDeclaration = SyntaxFactory.InterfaceDeclaration(" " + aClass.Name);
 
+                //does the class inherit from anything
+                if (aClass.InheritsFrom.Count > 0)
+                {
+                    //build the baselistsyntax object
+                    var baseClasses = BuildClassBaseTypes(aClass);
+
+                    //if it returns items add it to the declaration
+                    if (baseClasses.Types.Count > 0)
+                        interfaceDeclaration = interfaceDeclaration.WithBaseList(baseClasses);
+                }
 
                  //if there are attributes then add them to the class definition
                 if (attributeList.Count > 0)
                 {
-                    var atsyn = SyntaxFactory.AttributeList(attributeList);
-                    interfaceDeclaration = interfaceDeclaration.AddAttributeLists(atsyn.WithTrailingTrivia(SyntaxFactory.LineFeed));
+                    interfaceDeclaration = interfaceDeclaration.WithAttributeLists(attributeList);
+
+
                 }
 
                 interfaceDeclaration = interfaceDeclaration.WithLeadingTrivia(SyntaxFactory.LineFeed, SyntaxFactory.Tab);
@@ -57,11 +75,16 @@ namespace Xamarin.iOS.Binding.Transformer
                 @namespace = @namespace.AddMembers(interfaceDeclaration);
             }
 
+            //add the namespace to the compilation unit
             syntaxFactory = syntaxFactory.AddMembers(@namespace);
 
-            
-            var code = syntaxFactory.ToFullString();
 
+            //format and export as a string
+            var code = syntaxFactory
+                .NormalizeWhitespace()
+                .ToFullString();
+
+            //write to the output file
             using (var writeFile = new StreamWriter(outputFilename))
             {
                 await writeFile.WriteAsync(code);
@@ -72,24 +95,76 @@ namespace Xamarin.iOS.Binding.Transformer
 
         }
 
-        private static SeparatedSyntaxList<AttributeSyntax> BuildClassAttributes(ApiClass apiClass)
+        #region Private Methods
+
+        /// <summary>
+        /// Build the base classes/interfaces
+        /// </summary>
+        /// <param name="aClass"></param>
+        /// <returns></returns>
+        private static BaseListSyntax BuildClassBaseTypes(ApiClass aClass)
         {
-            var attributeList = new SeparatedSyntaxList<AttributeSyntax>();
+
+            var tokens = new List<SyntaxNodeOrToken>();
+
+            foreach (var basetype in aClass.InheritsFrom)
+            {
+                tokens.Add(SyntaxFactory.SimpleBaseType
+                    (
+                        SyntaxFactory.IdentifierName(basetype.Name)
+                    ));
+
+
+                if (basetype != aClass.InheritsFrom.Last())
+                    tokens.Add(SyntaxFactory.Token(SyntaxKind.CommaToken));
+
+            }
+        
+            return SyntaxFactory.BaseList(SyntaxFactory.SeparatedList<BaseTypeSyntax>(tokens));
+
+        }
+
+        /// <summary>
+        /// Build the class attributes
+        /// </summary>
+        /// <param name="apiClass"></param>
+        /// <returns></returns>
+        private static SyntaxList<AttributeListSyntax> BuildClassAttributes(ApiClass apiClass)
+        {
+
+            var attribs = SyntaxFactory.List<AttributeListSyntax>();
 
             if (apiClass.IsProtocol)
             {
-                var name = SyntaxFactory.ParseName("Protocol");
-                var attribute = SyntaxFactory.Attribute(name);
-                attributeList = attributeList.Add(attribute);
-                
+                var attribList = SyntaxFactory.AttributeList
+                            (
+                                SyntaxFactory.SingletonSeparatedList<AttributeSyntax>
+                                (
+                                    SyntaxFactory.Attribute
+                                    (
+                                        SyntaxFactory.IdentifierName("Protocol")
+                                    )
+                                )
+                            );
+
+                attribs = attribs.Add(attribList);
 
             }
 
             if (apiClass.IsCategory)
             {
-                var name = SyntaxFactory.ParseName("Category");
-                var attribute = SyntaxFactory.Attribute(name);
-                attributeList = attributeList.Add(attribute);
+                var attribList = SyntaxFactory.AttributeList
+                           (
+                               SyntaxFactory.SingletonSeparatedList<AttributeSyntax>
+                               (
+                                   SyntaxFactory.Attribute
+                                   (
+                                       SyntaxFactory.IdentifierName("Category")
+                                   )
+                               )
+                           );
+
+                attribs = attribs.Add(attribList);
 
 
             }
@@ -103,19 +178,60 @@ namespace Xamarin.iOS.Binding.Transformer
 
             if (apiClass.BaseType != null)
             {
+                var atrs = SyntaxFactory.AttributeList
+                            (
+                                SyntaxFactory.SingletonSeparatedList<AttributeSyntax>
+                                (
+                                    SyntaxFactory.Attribute
+                                    (
+                                        SyntaxFactory.IdentifierName("BaseType")
+                                    )
+                                    .WithArgumentList
+                                    (
+                                        SyntaxFactory.AttributeArgumentList
+                                        (
+                                            SyntaxFactory.SingletonSeparatedList<AttributeArgumentSyntax>
+                                            (
+                                                SyntaxFactory.AttributeArgument
+                                                (
+                                                    SyntaxFactory.TypeOfExpression
+                                                    (
+                                                        SyntaxFactory.IdentifierName(apiClass.BaseType.TypeName)
+                                                    )
+                                                )
+                                            )
+                                        )
+                                    )
+                                )
+                            );
+
+                attribs = attribs.Add(atrs);
+
+
 
             }
 
             if (apiClass.DisableDefaultCtor)
             {
-                var name = SyntaxFactory.ParseName("DisableDefaultCtor");
-                var attribute = SyntaxFactory.Attribute(name);
-                attributeList = attributeList.Add(attribute);
+                var attribList = SyntaxFactory.AttributeList
+                           (
+                               SyntaxFactory.SingletonSeparatedList<AttributeSyntax>
+                               (
+                                   SyntaxFactory.Attribute
+                                   (
+                                       SyntaxFactory.IdentifierName("DisableDefaultCtor")
+                                   )
+                               )
+                           );
+
+                attribs = attribs.Add(attribList);
 
 
             }
 
-            return attributeList;
+            return attribs;
         }
+
+        #endregion
     }
 }
