@@ -34,7 +34,6 @@ Task("libs")
 {
 	var settings = new MSBuildSettings()
 		.SetConfiguration("Release")
-		.SetVerbosity(Verbosity.Minimal)
 		.EnableBinaryLogger("./output/libs.binlog")
 		.WithRestore()
 		.WithProperty("DesignTimeBuild", "false")
@@ -49,10 +48,8 @@ Task("nuget")
 {
 	var settings = new MSBuildSettings()
 		.SetConfiguration("Release")
-		.SetVerbosity(Verbosity.Minimal)
 		.EnableBinaryLogger("./output/nuget.binlog")
 		.WithProperty("NoBuild", "true")
-		.WithProperty("DesignTimeBuild", "false")
 		.WithProperty("PackageOutputPath", MakeAbsolute((DirectoryPath)"./output/").FullPath)
 		.WithTarget("Pack");
 

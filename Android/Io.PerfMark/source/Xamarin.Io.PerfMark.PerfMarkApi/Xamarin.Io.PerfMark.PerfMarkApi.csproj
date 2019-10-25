@@ -1,6 +1,6 @@
 <Project Sdk="MSBuild.Sdk.Extras/2.0.54">
   <PropertyGroup>
-    <AssemblyName>Xamarin.Io.OpenCensus.OpenCensusApi</AssemblyName>
+    <AssemblyName>Xamarin.Io.PerfMark.PerfMarkApi</AssemblyName>
 
     <MonoAndroidResourcePrefix>Resources</MonoAndroidResourcePrefix>
     <MonoAndroidAssetsPrefix>Assets</MonoAndroidAssetsPrefix>
@@ -19,15 +19,15 @@
 
   <PropertyGroup>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <PackageId>Xamarin.Io.OpenCensus.OpenCensusApi</PackageId>
-    <PackageVersion>0.24.0</PackageVersion>
-    <Title>Xamarin.Io.OpenCensus.OpenCensusApi</Title>
-    <PackageDescription>Bindings for Io.OpenCensus.OpenCensusApi package (Google GRPC  dependency)</PackageDescription>
+    <PackageId>Xamarin.Io.PerfMark.PerfMarkApi</PackageId>
+    <PackageVersion>0.17.0</PackageVersion>
+    <Title>Xamarin.Io.PerfMark.PerfMarkApi</Title>
+    <PackageDescription>Bindings for Io.PerfMark.PerfMarkApi package (Google GRPC  dependency)</PackageDescription>
     <Owners>Microsoft</Owners>
     <Authors>Microsoft</Authors>
     <Copyright>© Microsoft Corporation. All rights reserved.</Copyright>
-    <PackageLicenseUrl>https://go.microsoft.com/fwlink/?linkid=2102972</PackageLicenseUrl>
-    <PackageProjectUrl>https://go.microsoft.com/fwlink/?linkid=2103038</PackageProjectUrl>
+    <PackageLicenseUrl>https://go.microsoft.com/fwlink/?linkid=2109159</PackageLicenseUrl>
+    <PackageProjectUrl>https://go.microsoft.com/fwlink/?linkid=2109069</PackageProjectUrl>
     <RequireLicenceAcceptance>true</RequireLicenceAcceptance>
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
     <PackageTags>xamarin, android, bindings, opencensus, api </PackageTags>
@@ -44,11 +44,10 @@
     <Folder Include="Jars\" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedJar Include="..\..\externals\android\opencensus-api-0.24.0.jar">
-      <Link>Jars\opencensus-api-0.24.0.jar</Link>
+    <EmbeddedJar Include="..\..\externals\android\opencensus-api-0.17.0.jar">
+      <Link>Jars\opencensus-api-0.17.0.jar</Link>
     </EmbeddedJar>
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="Xamarin.Grpc.Context" Version="1.24.0" />
   </ItemGroup>
 </Project>

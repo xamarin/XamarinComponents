@@ -1,22 +1,20 @@
 #tool nuget:?package=XamarinComponent
 
 #addin nuget:?package=Cake.XCode
+#addin nuget:?package=Cake.Xamarin.Build
 #addin nuget:?package=Cake.Xamarin
 #addin nuget:?package=Cake.FileHelpers
 
 var TARGET = Argument ("t", Argument ("target", "Default"));
 
-string ARTIFACT_VERSION="0.24.0";
+string ARTIFACT_VERSION="0.17.0";
 string JAR_URL = "";
 Dictionary<string, string> JAR_URLS_ARTIFACT_FILES= new Dictionary<string, string>()
 {
 	{
-		$"https://repo1.maven.org/maven2/io/opencensus/opencensus-api/{ARTIFACT_VERSION}/opencensus-api-{ARTIFACT_VERSION}.jar",
+		$"https://repo1.maven.org/maven2/io/perfmark/perfmark-api/{ARTIFACT_VERSION}/perfmark-api-{ARTIFACT_VERSION}.jar",
+		//$"https://search.maven.org/remotecontent?filepath=io/opencensus/opencensus-api/{ARTIFACT_VERSION}/opencensus-api-{ARTIFACT_VERSION}.jar",
 		$"./externals/android/opencensus-api-{ARTIFACT_VERSION}.jar"
-	},
-	{
-		$"https://repo1.maven.org/maven2/io/opencensus/opencensus-contrib-grpc-metrics/{ARTIFACT_VERSION}/opencensus-contrib-grpc-metrics-{ARTIFACT_VERSION}.jar",
-		$"./externals/android/opencensus-contrib-grpc-metrics-{ARTIFACT_VERSION}.jar"
 	},
 };
 string ARTIFACT_FILE = "";
@@ -50,16 +48,16 @@ Task ("externals")
 		}
 	);
 
-Task ("libs")
-	.IsDependentOn ("externals")
+Task("libs")
+	.IsDependentOn("externals")
 	.Does
 	(
 		() =>
 		{
 			MSBuild
 			(
-				"./source/Xamarin.Io.OpenCensus.sln",
-				c =>
+				"./source/Xamarin.Io.PerfMark.sln", 
+				c => 
 				{
 					c.Configuration = "Release";
 					c.Restore = true;
@@ -77,13 +75,13 @@ Task ("clean")
 	(
 		() =>
 		{
-			if (DirectoryExists ("./output/"))
-			{
-				DeleteDirectory ("./output/", true);
-			}
 			if (DirectoryExists ("./externals/"))
 			{
 				DeleteDirectory ("./externals/", true);
+			}
+			if (DirectoryExists ("./output/"))
+			{
+				DeleteDirectory ("./output/", true);
 			}
 		}
 	);
@@ -98,21 +96,14 @@ Task("nuget")
 
 			MSBuild
 			(
-				"./source/Xamarin.Io.OpenCensus.sln",
-				c =>
-				{
-					c.Configuration = "Release";
-					c.MaxCpuCount = 0;
-					c.Targets.Clear();
-					c.Targets.Add("Pack");
-					c.Properties.Add("PackageOutputPath", new [] { MakeAbsolute(new FilePath("./output")).FullPath });
-					c.Properties.Add("PackageRequireLicenseAcceptance", new [] { "true" });
-					c.Properties.Add("DesignTimeBuild", new [] { "false" });
-					c.Properties.Add("NoBuild", new [] { "true" });
-				}
+				"./source/Xamarin.Io.PerfMark.sln",
+				configuration =>
+					configuration
+						.SetConfiguration("Release")
+						.WithTarget("Pack")
+						.WithProperty("PackageVersion", NUGET_VERSION)
+						.WithProperty("PackageOutputPath", "../../output")
 			);
-
-			return;
 		}
 );
 
@@ -125,3 +116,4 @@ Task("ci")
 	);
 
 RunTarget (TARGET);
+

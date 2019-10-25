@@ -1,7 +1,7 @@
 
 var TARGET = Argument("t", Argument("target", "Default"));
 
-var PACKAGE_VERSION = "0.5.2-preview";
+var PACKAGE_VERSION = "0.6.0-preview";
 
 Task("externals")
 	.Does(() =>
