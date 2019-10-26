@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<metadata>
+
+    <attr
+        path="/api/package[@name='io.opencensus.common']"
+        name="managedName"
+        >
+        Xamarin.Io.OpenCensus.Common
+    </attr>
+    
+    <remove-node
+        path="/api/package[@name='com.sun.tools.javac.util']"
+        />
+</metadata>
