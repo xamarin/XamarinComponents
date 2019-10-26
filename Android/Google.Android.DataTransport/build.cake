@@ -7,7 +7,6 @@
 
 var TARGET = Argument ("t", Argument ("target", "ci"));
 
-string JAR_URL = "";
 Dictionary<string, string> URLS_ARTIFACT_FILES= new Dictionary<string, string>()
 {
 	{
@@ -23,8 +22,6 @@ Dictionary<string, string> URLS_ARTIFACT_FILES= new Dictionary<string, string>()
 		$"./externals/android/transport-runtime-2.0.0.aar"
 	},
 };
-//string ARTIFACT_FILE = "";
-//string NUGET_VERSION=$"{ARTIFACT_VERSION}";
 
 
 Task ("externals")

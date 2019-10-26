@@ -31,7 +31,6 @@
     <RequireLicenceAcceptance>true</RequireLicenceAcceptance>
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
     <PackageTags>xamarin, android, bindings, google, datatransport, transport, runtime </PackageTags>
-    <PackOnBuild>true</PackOnBuild>
   </PropertyGroup>
 
 
