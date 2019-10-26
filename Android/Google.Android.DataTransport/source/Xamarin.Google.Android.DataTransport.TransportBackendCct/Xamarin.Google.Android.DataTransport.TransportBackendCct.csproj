@@ -33,11 +33,6 @@
     <PackageTags>xamarin, android, bindings, google, datatransport, transport, backend, cct </PackageTags>
   </PropertyGroup>
 
-
-  <ItemGroup>
-    <TransformFile Include="Transforms\*.xml" />
-  </ItemGroup>
-
   <ItemGroup>
     <Folder Include="Additions\" />
     <Folder Include="Jars\" />
