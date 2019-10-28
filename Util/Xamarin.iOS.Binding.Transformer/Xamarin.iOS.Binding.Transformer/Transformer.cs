@@ -551,12 +551,46 @@ namespace Xamarin.iOS.Binding.Transformer
                                     ProcessMethodExportAttrib(attrib, ref newMethod);
                                 }
                                 break;
+                            case "designatedinitializer":
+                                {
+                                    newMethod.DesignatedInitializer = true;
+                                }
+                                break;
+                            case "nullallowed":
+                                {
+                                    newMethod.IsNullAllowed = true;
+                                }
+                                break;
+                            case "abstract":
+                                {
+                                    newMethod.IsAbstract = true;
+                                }
+                                break;
+                            case "requiressuper":
+                                {
+                                    newMethod.RequiresSuper = true;
+                                }
+                                break;
+                            default:
+                                {
+                                    Console.WriteLine("");
+                                }
+                                break;
+
 
                         }
 
 
                     }
                 }
+            }
+
+            //node parameters
+            foreach (var aParam in node.ParameterList.Parameters)
+            {
+                var newParam = BuildParameter(aParam);
+
+                newMethod.Parameters.Add(newParam);
             }
 
             return newMethod;
@@ -909,24 +943,73 @@ namespace Xamarin.iOS.Binding.Transformer
         /// </summary>
         /// <param name="node"></param>
         /// <returns></returns>
-        private static (bool canGet, bool canSet) GetAccessors(AccessorListSyntax node)
+        private static (bool canGet, bool canSet, string getbindName, string setbindName) GetAccessors(AccessorListSyntax node)
         {
+            var canGet = false;
+            var canSet = false;
+            string getbindName = null;
+            string setbindName = null;
+
             if (node.Accessors.Count() == 0)
-                return (false, false);
+                return (canGet, canSet, getbindName, setbindName);
 
             var thing = node.Accessors.Where(x => x is AccessorDeclarationSyntax);
 
-            var canGet = false;
-            var canSet = false;
-
+            
             var hasGet = thing.FirstOrDefault(x => x.Keyword.Text.Equals("get", StringComparison.OrdinalIgnoreCase));
             var hasSet = thing.FirstOrDefault(x => x.Keyword.Text.Equals("set", StringComparison.OrdinalIgnoreCase));
 
-            canGet = (hasGet != null);
-            canSet = (hasSet != null);
+            if (hasGet != null)
+            {
+                canGet = true;
 
-            return (canGet, canSet);
+                if (hasGet.AttributeLists.Count() > 0)
+                {
+                    getbindName = GetAccessorBindName(hasGet.AttributeLists.First());
 
+                }
+            }
+
+            if (hasSet != null)
+            {
+                canSet = true;
+
+                if (hasSet.AttributeLists.Count() > 0)
+                {
+                    setbindName = GetAccessorBindName(hasSet.AttributeLists.First());
+
+                }
+            }
+
+
+            return (canGet, canSet, getbindName, setbindName);
+
+        }
+
+        private static string GetAccessorBindName(AttributeListSyntax attributeLists)
+        {
+            foreach (var attrib in attributeLists.Attributes)
+            {
+                var name = ((IdentifierNameSyntax)attrib.Name).Identifier.Text;
+
+                switch (name.ToLower())
+                {
+                    case "bind":
+                        {
+                            return GetBindName(attrib);
+                        }
+                }
+            }
+
+            return null;
+        }
+
+        private static string GetBindName(AttributeSyntax attribute)
+        {
+            var result = BuildAttributes(attribute);
+            var wrapNameAttrib = result.Attribute.Arguments.FirstOrDefault(x => string.IsNullOrWhiteSpace(x.Name) && x.DataType == AttributeDataType.String);
+
+            return (wrapNameAttrib != null) ? wrapNameAttrib.Value.Replace("\"", "") : null;
         }
 
         /// <summary>

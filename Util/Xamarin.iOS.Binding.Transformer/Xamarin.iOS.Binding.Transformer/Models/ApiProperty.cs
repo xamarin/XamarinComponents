@@ -24,8 +24,14 @@ namespace Xamarin.iOS.Binding.Transformer
         [XmlAttribute(AttributeName = "get")]
         public bool CanGet { get; set; }
 
+        [XmlAttribute(AttributeName = "get_bind")]
+        public string GetBindName { get; set; }
+
         [XmlAttribute(AttributeName = "set")]
         public bool CanSet { get; set; }
+
+        [XmlAttribute(AttributeName = "set_bind")]
+        public string SetBindName { get; set; }
 
         [XmlAttribute(AttributeName = "obsolete")]
         public bool IsObsolete { get; set; }
