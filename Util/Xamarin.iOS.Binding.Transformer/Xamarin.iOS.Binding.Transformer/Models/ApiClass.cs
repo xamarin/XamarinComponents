@@ -40,7 +40,9 @@ namespace Xamarin.iOS.Binding.Transformer
         [XmlElement(ElementName = "method", Order = 4)]
         public List<ApiMethod> Methods { get; set; }
 
-        
+        [XmlElement(ElementName = "verify", Order = 5)]
+        public ApiVerify Verify { get; set; }
+
         public ApiClass()
         {
             Implements = new List<ApiImplements>();

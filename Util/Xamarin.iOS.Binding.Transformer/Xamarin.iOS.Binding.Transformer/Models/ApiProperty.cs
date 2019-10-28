@@ -42,11 +42,11 @@ namespace Xamarin.iOS.Binding.Transformer
         [XmlAttribute(AttributeName = "tv_version")]
         public string TVVersion { get; set; }
 
-        [XmlAttribute(AttributeName = "verify")]
-        public string NeedsVerify { get; set; }
-
         [XmlAttribute(AttributeName = "static")]
         public bool IsStatic { get; set; }
+
+        [XmlElement(ElementName = "verify")]
+        public ApiVerify Verify { get; set; }
 
         public ApiProperty()
         {

@@ -215,6 +215,11 @@ namespace Xamarin.iOS.Binding.Transformer
                                         newClass.IsStatic = true;
                                     }
                                     break;
+                                case "verify":
+                                    {
+                                        ProcessClassVerifyAttrib(attrib, ref newClass);
+                                    }
+                                    break;
 
                             }
 
@@ -465,7 +470,7 @@ namespace Xamarin.iOS.Binding.Transformer
 
                             newAttrib.Arguments.Add(newArgs);
                         }
-                        else
+                        else if (aArg.Expression is TypeOfExpressionSyntax)
                         {
                             var tyep = aArg.Expression as TypeOfExpressionSyntax;
                             var typeValue = ((IdentifierNameSyntax)tyep.Type).Identifier.Text;
@@ -478,6 +483,24 @@ namespace Xamarin.iOS.Binding.Transformer
                             };
 
                             newAttrib.Arguments.Add(newArgs);
+                        }
+                        else if (aArg.Expression is IdentifierNameSyntax)
+                        {
+                            var tyep = aArg.Expression as IdentifierNameSyntax;
+                            var typeValue = tyep.Identifier.Text;
+
+                            var newArgs = new MemberOverrideArguments()
+                            {
+                                Name = string.Empty,
+                                DataType = AttributeDataType.String,
+                                Value = typeValue,
+                            };
+
+                            newAttrib.Arguments.Add(newArgs);
+                        }
+                        else
+                        {
+                            throw new Exception("Unexpected syntax");
                         }
                     }
                     catch (Exception ex)
@@ -593,7 +616,7 @@ namespace Xamarin.iOS.Binding.Transformer
                                 break;
                             case "verify":
                                 {
-                                    newProperty.NeedsVerify = "true";
+                                    ProcessPropertyVerifyAttrib(attrib, ref newProperty);
                                 }
                                 break;
                             case "static":
@@ -603,7 +626,7 @@ namespace Xamarin.iOS.Binding.Transformer
                                 break;
                             case "field":
                                 {
-                                    
+                                    ProcessPropertyFieldAttrib(attrib, ref newProperty);
                                 }
                                 break;
                             default:
@@ -631,6 +654,8 @@ namespace Xamarin.iOS.Binding.Transformer
 
 
         #region Attribute Methods
+
+        #region Class
 
         private static void ProcessModelAttrib(AttributeSyntax attrib, ref ApiClass newClass)
         {
@@ -665,7 +690,81 @@ namespace Xamarin.iOS.Binding.Transformer
             newClass.BaseType = newBaseType;
         }
 
-        private static void ProcessPropertyExportAttrib(AttributeSyntax attrib, ref ApiProperty newProperty)
+        private static void ProcessClassVerifyAttrib(AttributeSyntax attrib, ref ApiClass newClass)
+        {
+            var result = BuildAttributes(attrib);
+
+            var newVerify = new ApiVerify();
+
+            if (result.Attribute.Arguments.Any())
+            {
+                var verifytype = result.Attribute.Arguments.FirstOrDefault(x => string.IsNullOrWhiteSpace(x.Name) && x.DataType == AttributeDataType.String);
+
+                if (verifytype != null)
+                    newVerify.VerifyType = verifytype.Value;
+            }
+
+            newClass.Verify = newVerify;
+
+        }
+        #endregion
+
+        #region Property
+
+        private static void ProcessPropertyTVAttrib(AttributeSyntax attrib, ref ApiProperty property)
+        {
+            var result = BuildAttributes(attrib);
+            var tvAttrib = result.Attribute.Arguments.Where(x => x.DataType == AttributeDataType.Number);
+
+            if (tvAttrib.Any())
+            {
+                var values = tvAttrib.Select(x => x.Value.Replace("\"", ""));
+
+                var versionNumber = CombineString(values);
+
+                property.TVVersion = versionNumber;
+            }
+        }
+
+        private static void ProcessPropertyiOSAttrib(AttributeSyntax attrib, ref ApiProperty property)
+        {
+            var result = BuildAttributes(attrib);
+            var iosAttrib = result.Attribute.Arguments.Where(x => x.DataType == AttributeDataType.Number);
+
+            if (iosAttrib.Any())
+            {
+                var values = iosAttrib.Select(x => x.Value.Replace("\"", ""));
+
+                var versionNumber = CombineString(values);
+
+                property.IosVersion = versionNumber;
+            }
+        }
+
+        /// <summary>
+        /// Process the Verify Atrribute on a property
+        /// </summary>
+        /// <param name="attrib">attribute</param>
+        /// <param name="property"></param>
+        private static void ProcessPropertyVerifyAttrib(AttributeSyntax attrib, ref ApiProperty property)
+        {
+            var result = BuildAttributes(attrib);
+
+            var newVerify = new ApiVerify();
+
+            if (result.Attribute.Arguments.Any())
+            {
+                var verifytype = result.Attribute.Arguments.FirstOrDefault(x => string.IsNullOrWhiteSpace(x.Name) && x.DataType == AttributeDataType.String);
+
+                if (verifytype != null)
+                    newVerify.VerifyType = verifytype.Value;
+            }
+
+            property.Verify = newVerify;
+
+        }
+
+        private static void ProcessPropertyExportAttrib(AttributeSyntax attrib, ref ApiProperty property)
         {
             var result = BuildAttributes(attrib);
 
@@ -677,18 +776,18 @@ namespace Xamarin.iOS.Binding.Transformer
                 throw new Exception("No Export attrib specified");
             }
 
-            newProperty.ExportName = exportNameAttrib.Value;
+            property.ExportName = exportNameAttrib.Value.Replace("\"", "");
 
             //get the export member access if its set
             var memberAccess = result.Attribute.Arguments.FirstOrDefault(x => x.DataType == AttributeDataType.MemberAccess);
 
             if (memberAccess != null)
             {
-                newProperty.SemanticStrength = memberAccess.Value;
+                property.SemanticStrength = memberAccess.Value;
             }
         }
 
-        private static void ProcessPropertyWrapAttrib(AttributeSyntax attrib, ref ApiProperty newProperty)
+        private static void ProcessPropertyWrapAttrib(AttributeSyntax attrib, ref ApiProperty property)
         {
             var result = BuildAttributes(attrib);
 
@@ -700,10 +799,28 @@ namespace Xamarin.iOS.Binding.Transformer
                 throw new Exception("No Wrap attrib specified");
             }
 
-            newProperty.WrapName = wrapNameAttrib.Value;
+            property.WrapName = wrapNameAttrib.Value.Replace("\"", "");
         }
 
-        private static void ProcessMethodExportAttrib(AttributeSyntax attrib, ref ApiMethod newProperty)
+        private static void ProcessPropertyFieldAttrib(AttributeSyntax attrib, ref ApiProperty property)
+        {
+            var result = BuildAttributes(attrib);
+
+            //get the exported name
+            var fieldParams = result.Attribute.Arguments.Where(x => x.DataType == AttributeDataType.String);
+
+            if (fieldParams.Any())
+            {
+                var values = fieldParams.Select(x => x.Value.Replace("\"", ""));
+
+                var versionNumber = CombineString(values);
+
+            }
+        }
+        #endregion
+
+        #region Method
+        private static void ProcessMethodExportAttrib(AttributeSyntax attrib, ref ApiMethod method)
         {
             var result = BuildAttributes(attrib);
 
@@ -715,46 +832,11 @@ namespace Xamarin.iOS.Binding.Transformer
                 throw new Exception("No Export attrib specified");
             }
 
-            newProperty.ExportName = exportNameAttrib.Value;
+            method.ExportName = exportNameAttrib.Value.Replace("\"", "");
 
         }
+        #endregion
 
-        private static void ProcessPropertyTVAttrib(AttributeSyntax attrib, ref ApiProperty newProperty)
-        {
-            var result = BuildAttributes(attrib);
-            var tvAttrib = result.Attribute.Arguments.Where(x => x.DataType == AttributeDataType.Number);
-
-            if (tvAttrib.Any())
-            {
-                var values = tvAttrib.Select(x => x.Value);
-
-                var versionNumber = CombineString(values);
-
-                newProperty.TVVersion = versionNumber;
-            }
-        }
-
-        private static void ProcessPropertyiOSAttrib(AttributeSyntax attrib, ref ApiProperty newProperty)
-        {
-            var result = BuildAttributes(attrib);
-            var iosAttrib = result.Attribute.Arguments.Where(x => x.DataType == AttributeDataType.Number);
-
-            if (iosAttrib.Any())
-            {
-                var values = iosAttrib.Select(x => x.Value);
-
-                var versionNumber = CombineString(values);
-
-                newProperty.IosVersion = versionNumber;
-            }
-        }
-
-        private static void ProcessPropertyVerifyAttrib(AttributeSyntax attrib, ref ApiProperty newProperty)
-        {
-            var result = BuildAttributes(attrib);
-            var tvAttrib = result.Attribute.Arguments.Where(x => x.DataType == AttributeDataType.Number);
-
-        }
         #endregion
 
         #region Helper Methods
