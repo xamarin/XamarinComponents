@@ -272,6 +272,11 @@ namespace Xamarin.iOS.Binding.Transformer
 
             newParam.Type = GetType(node.Type);
 
+            if (node.AttributeLists.Count > 0)
+            {
+                ProcessParameterAttributes(node.AttributeLists, ref newParam);
+            }
+            
             return newParam;
         }
 
@@ -853,6 +858,31 @@ namespace Xamarin.iOS.Binding.Transformer
                 property.FieldParams = fieldParVal;
             }
         }
+
+        private static void ProcessParameterAttributes(SyntaxList<AttributeListSyntax> attributes, ref ApiParameter parameter)
+        {
+            var attribs = attributes.SelectMany(x => x.Attributes);
+
+            foreach (var attrib in attribs)
+            {
+                var name = ((IdentifierNameSyntax)attrib.Name).Identifier.Text;
+
+                switch (name.ToLower())
+                {
+                    case "nullallowed":
+                        {
+                            parameter.IsNullAllowed = true;
+                        }
+                        break;
+                    default:
+                        {
+                            Console.WriteLine("Not found");
+                        }
+                        break;
+                }
+            }
+            
+        }
         #endregion
 
         #region Method
@@ -873,13 +903,12 @@ namespace Xamarin.iOS.Binding.Transformer
 
         }
 
-       
-
         #endregion
 
         #endregion
 
         #region Helper Methods
+
 
         /// <summary>
         /// Get the .net type of the node
@@ -998,6 +1027,11 @@ namespace Xamarin.iOS.Binding.Transformer
                         {
                             return GetBindName(attrib);
                         }
+                    default:
+                        {
+                            Console.WriteLine("Not found");
+                        }
+                        break;
                 }
             }
 

@@ -11,6 +11,9 @@ namespace Xamarin.iOS.Binding.Transformer
         [XmlAttribute(AttributeName = "type")]
         public string Type { get; set; }
 
+        [XmlAttribute(AttributeName = "nullallowed")]
+        public bool IsNullAllowed { get; set; }
+
         public ApiParameter()
         {
         }
