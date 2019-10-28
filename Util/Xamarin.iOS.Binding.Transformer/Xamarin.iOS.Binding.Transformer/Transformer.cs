@@ -123,6 +123,8 @@ namespace Xamarin.iOS.Binding.Transformer
             }
         }
 
+        #region Build Methods
+
         private static ApiDelegate BuildDelegate(DelegateDeclarationSyntax node)
         {
             //build new delegete definition
@@ -650,8 +652,7 @@ namespace Xamarin.iOS.Binding.Transformer
             return newProperty;
         }
 
-
-
+        #endregion
 
         #region Attribute Methods
 
@@ -813,13 +814,15 @@ namespace Xamarin.iOS.Binding.Transformer
             {
                 var values = fieldParams.Select(x => x.Value.Replace("\"", ""));
 
-                var versionNumber = CombineString(values);
+                var fieldParVal = CombineString(values);
 
+                property.FieldParams = fieldParVal;
             }
         }
         #endregion
 
         #region Method
+
         private static void ProcessMethodExportAttrib(AttributeSyntax attrib, ref ApiMethod method)
         {
             var result = BuildAttributes(attrib);
@@ -835,6 +838,9 @@ namespace Xamarin.iOS.Binding.Transformer
             method.ExportName = exportNameAttrib.Value.Replace("\"", "");
 
         }
+
+       
+
         #endregion
 
         #endregion

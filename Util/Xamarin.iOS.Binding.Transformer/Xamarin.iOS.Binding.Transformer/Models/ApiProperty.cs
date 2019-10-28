@@ -48,6 +48,9 @@ namespace Xamarin.iOS.Binding.Transformer
         [XmlElement(ElementName = "verify")]
         public ApiVerify Verify { get; set; }
 
+        [XmlAttribute(AttributeName = "field_params")]
+        public string FieldParams { get; set; }
+
         public ApiProperty()
         {
 
