@@ -16,11 +16,17 @@ namespace Transformeriser3000
 
             if (File.Exists(apiFile))
             {
-                await Transformer.ExtractDefinitionAsync(apiFile, apiXmlFile);
+                //build the api defintion
+                var apiDefinition = await Transformer.ExtractDefinitionAsync(apiFile);
 
+                //write it to file
+                apiDefinition.WriteToFile(apiXmlFile);
+
+                //reload
                 var api = Transformer.Load(apiXmlFile);
 
-                CodeGenerator.GenerateAsync(api, apiFileFixed);
+                //generate and save the code file
+                await CodeGenerator.GenerateAsync(api, apiFileFixed);
             }
 
             Console.WriteLine("Hello World!");

@@ -9,8 +9,8 @@ namespace Xamarin.iOS.Binding.Transformer
         [XmlAttribute(AttributeName = "name")]
         public string Name { get; set; }
 
-        [XmlAttribute(AttributeName = "returns")]
-        public string ReturnType { get; set; }
+        [XmlAttribute(AttributeName = "type")]
+        public string Type { get; set; }
 
         [XmlAttribute(AttributeName = "nullallowed")]
         public bool IsNullAllowed { get; set; }
@@ -20,6 +20,33 @@ namespace Xamarin.iOS.Binding.Transformer
 
         [XmlAttribute(AttributeName = "export")]
         public string ExportName { get; set; }
+
+        [XmlAttribute(AttributeName = "get")]
+        public bool CanGet { get; set; }
+
+        [XmlAttribute(AttributeName = "set")]
+        public bool CanSet { get; set; }
+
+        [XmlAttribute(AttributeName = "obsolete")]
+        public bool IsObsolete { get; set; }
+
+        [XmlAttribute(AttributeName = "semanticstrength")]
+        public string SemanticStrength { get; set; }
+
+        [XmlAttribute(AttributeName = "wrap")]
+        public string WrapName { get; set; }
+
+        [XmlAttribute(AttributeName = "ios_version")]
+        public string IosVersion { get; set; }
+
+        [XmlAttribute(AttributeName = "tv_version")]
+        public string TVVersion { get; set; }
+
+        [XmlAttribute(AttributeName = "verify")]
+        public string NeedsVerify { get; set; }
+
+        [XmlAttribute(AttributeName = "static")]
+        public bool IsStatic { get; set; }
 
         public ApiProperty()
         {

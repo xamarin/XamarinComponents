@@ -17,8 +17,7 @@ namespace Xamarin.iOS.Binding.Transformer
         /// Extract the CSharp file into a xml file
         /// </summary>
         /// <param name="inputFile"></param>
-        /// <param name="outputFile"></param>
-        public static async Task ExtractDefinitionAsync(string inputFile, string outputFile)
+        public static async Task<ApiDefinition> ExtractDefinitionAsync(string inputFile)
         {
             try
             {
@@ -32,17 +31,14 @@ namespace Xamarin.iOS.Binding.Transformer
                 // Get the root CompilationUnitSyntax.
                 var root = await tree.GetRootAsync().ConfigureAwait(false) as CompilationUnitSyntax;
 
-                var serializer = new XmlSerializer(typeof(ApiDefinition));
+                
 
                 var output = new ApiDefinition();
 
                 Process(root, ref output);
 
-                
-                using (StreamWriter str = new StreamWriter(outputFile))
-                {
-                    serializer.Serialize(str, output, output.XmlNamespaces);
-                }
+
+                return output;
 
             }
             catch (Exception ex)
@@ -76,6 +72,8 @@ namespace Xamarin.iOS.Binding.Transformer
                 throw;
             }
         }
+
+        #region Private Methods
 
         private static void Process(CompilationUnitSyntax unit, ref ApiDefinition output)
         {
@@ -242,125 +240,18 @@ namespace Xamarin.iOS.Binding.Transformer
         {
             if (node is MethodDeclarationSyntax)
             {
-                //get the name
-                var newMethod = new ApiMethod()
-                {
-                    Name = ((MethodDeclarationSyntax)node).Identifier.Text,
-                };
-
-                //find the attributes
-                if (((MethodDeclarationSyntax)node).AttributeLists.Any())
-                {
-                    foreach (var aAtrrib in ((MethodDeclarationSyntax)node).AttributeLists)
-                    {
-                        foreach (var attrib in aAtrrib.Attributes)
-                        {
-                            if (attrib != null)
-                            {
-                                var name = ((IdentifierNameSyntax)attrib.Name).Identifier.Text;
-
-                                switch (name.ToLower())
-                                {
-                                    case "static":
-                                        {
-                                            newMethod.IsStatic = true;
-                                        }
-                                        break;
-                                    case "export":
-                                        {
-                                            
-                                        }
-                                        break;
-
-                                }
-
-
-                            }
-                        }
-                    }
-                }
+                //build the method definition
+                var newMethod = BuildMethod((MethodDeclarationSyntax)node);
 
                 apiClass.Methods.Add(newMethod);
                
             }
             else if (node is PropertyDeclarationSyntax)
             {
-                var newMethod = new ApiProperty()
-                {
-                    Name = ((PropertyDeclarationSyntax)node).Identifier.Text,
-                };
+                var newProperty = BuildProperty((PropertyDeclarationSyntax)node);
 
-                if (((MethodDeclarationSyntax)node).AttributeLists.Any())
-                {
-                    foreach (var aAtrrib in ((MethodDeclarationSyntax)node).AttributeLists)
-                    {
-                        foreach (var attrib in aAtrrib.Attributes)
-                        {
-                            if (attrib != null)
-                            {
-                                var name = ((IdentifierNameSyntax)attrib.Name).Identifier.Text;
-
-                                switch (name.ToLower())
-                                {
-                                    case "nullallowed":
-                                        {
-                                            newMethod.IsNullAllowed = true;
-                                        }
-                                        break;
-                                    case "abstract":
-                                        {
-                                            newMethod.IsAbstract = true;
-                                        }
-                                        break;
-                                    case "export":
-                                        {
-
-                                        }
-                                        break;
-
-                                }
-
-
-                            }
-                        }
-                    }
-                }
-
-                apiClass.Properties.Add(newMethod);
+                apiClass.Properties.Add(newProperty);
             }
-        }
-
-        private static void ProcessModelAttrib(AttributeSyntax attrib, ref ApiClass newClass)
-        {
-            var result = BuildAttributes(attrib);
-            var autogenname = result.Attribute.Arguments.FirstOrDefault(x => x.Name.Equals("autogeneratedname", StringComparison.OrdinalIgnoreCase) && x.DataType == AttributeDataType.Boolean);
-
-            var newModel = new ApiTypeModel();
-
-            if (autogenname != null)
-            {
-                newModel.AutoGeneratedName = bool.Parse(autogenname.Value);
-            }
-
-            newClass.Model = newModel;
-        }
-
-        private static void ProcessBaseTypeAttrib(AttributeSyntax attrib, ref ApiClass newClass)
-        {
-            var result = BuildAttributes(attrib);
-            var baseType = result.Attribute.Arguments.FirstOrDefault(x => string.IsNullOrWhiteSpace(x.Name) && x.DataType == AttributeDataType.TypeOf);
-
-            if (baseType == null)
-            {
-                throw new Exception("No basetype specified");
-            }
-
-            var newBaseType = new ApiBaseType()
-            {
-                TypeName = baseType.Value,
-            };
-
-            newClass.BaseType = newBaseType;
         }
 
         private static ApiParameter BuildParameter(ParameterSyntax node)
@@ -372,19 +263,7 @@ namespace Xamarin.iOS.Binding.Transformer
 
             };
 
-            // if the node type is 
-            if (node.Type is IdentifierNameSyntax)
-            {
-                newParam.Type = ((IdentifierNameSyntax)node.Type).Identifier.Text;
-            }
-            else if (node.Type is PredefinedTypeSyntax)
-            {
-                newParam.Type = ((PredefinedTypeSyntax)node.Type).Keyword.Text;
-            }
-            else
-            {
-                throw new Exception($"Unexpected syntax type: {node.Type.ToString()}");
-            }
+            newParam.Type = GetType(node.Type);
 
             return newParam;
         }
@@ -615,6 +494,364 @@ namespace Xamarin.iOS.Binding.Transformer
             return (newAttrib, originalName);
         }
 
-        
+        private static ApiMethod BuildMethod(MethodDeclarationSyntax node)
+        {
+            var newMethod = new ApiMethod()
+            {
+                Name = node.Identifier.Text,
+            };
+
+            newMethod.ReturnType = GetType(node.ReturnType);
+
+            //find the attributes
+            if (node.AttributeLists.Any())
+            {
+                var atrribs = node.AttributeLists.SelectMany(x => x.Attributes);
+
+                foreach (var attrib in atrribs)
+                {
+                    if (attrib != null)
+                    {
+                        var name = ((IdentifierNameSyntax)attrib.Name).Identifier.Text;
+
+                        switch (name.ToLower())
+                        {
+                            case "static":
+                                {
+                                    newMethod.IsStatic = true;
+                                }
+                                break;
+                            case "export":
+                                {
+                                    ProcessMethodExportAttrib(attrib, ref newMethod);
+                                }
+                                break;
+
+                        }
+
+
+                    }
+                }
+            }
+
+            return newMethod;
+        }
+
+        private static ApiProperty BuildProperty(PropertyDeclarationSyntax node)
+        {
+            var newProperty = new ApiProperty()
+            {
+                Name = node.Identifier.Text,
+               //ReturnType = ((IdentifierNameSyntax)node.Type).Identifier.Text,
+            };
+
+            //determine the property type
+            newProperty.Type = GetType(node.Type);
+
+            if (node.AttributeLists.Any())
+            {
+                var atrribs = node.AttributeLists.SelectMany(x => x.Attributes);
+
+                foreach (var attrib in atrribs)
+                {
+                    if (attrib != null)
+                    {
+                        var name = ((IdentifierNameSyntax)attrib.Name).Identifier.Text;
+
+                        switch (name.ToLower())
+                        {
+                            case "nullallowed":
+                                {
+                                    newProperty.IsNullAllowed = true;
+                                }
+                                break;
+                            case "abstract":
+                                {
+                                    newProperty.IsAbstract = true;
+                                }
+                                break;
+                            case "wrap":
+                                {
+                                    //handle wrap attribute
+                                    ProcessPropertyWrapAttrib(attrib, ref newProperty);
+                                }
+                                break;
+                            case "export":
+                                {
+                                    ProcessPropertyExportAttrib(attrib, ref newProperty);
+                                }
+                                break;
+                            case "ios":
+                                {
+                                    ProcessPropertyiOSAttrib(attrib, ref newProperty);
+                                }
+                                break;
+                            case "tv":
+                                {
+                                    ProcessPropertyTVAttrib(attrib, ref newProperty);
+                                }
+                                break;
+                            case "verify":
+                                {
+                                    newProperty.NeedsVerify = "true";
+                                }
+                                break;
+                            case "static":
+                                {
+                                    newProperty.IsStatic = true;
+                                }
+                                break;
+                            case "field":
+                                {
+                                    
+                                }
+                                break;
+                            default:
+                                {
+                                    Console.WriteLine(name);
+                                }
+                                break;
+
+                        }
+
+
+                    }
+                }
+            }
+
+            var accessors = GetAccessors(node.AccessorList);
+
+            newProperty.CanGet = accessors.canGet;
+            newProperty.CanSet = accessors.canSet;
+
+            return newProperty;
+        }
+
+
+
+
+        #region Attribute Methods
+
+        private static void ProcessModelAttrib(AttributeSyntax attrib, ref ApiClass newClass)
+        {
+            var result = BuildAttributes(attrib);
+            var autogenname = result.Attribute.Arguments.FirstOrDefault(x => x.Name.Equals("autogeneratedname", StringComparison.OrdinalIgnoreCase) && x.DataType == AttributeDataType.Boolean);
+
+            var newModel = new ApiTypeModel();
+
+            if (autogenname != null)
+            {
+                newModel.AutoGeneratedName = bool.Parse(autogenname.Value);
+            }
+
+            newClass.Model = newModel;
+        }
+
+        private static void ProcessBaseTypeAttrib(AttributeSyntax attrib, ref ApiClass newClass)
+        {
+            var result = BuildAttributes(attrib);
+            var baseType = result.Attribute.Arguments.FirstOrDefault(x => string.IsNullOrWhiteSpace(x.Name) && x.DataType == AttributeDataType.TypeOf);
+
+            if (baseType == null)
+            {
+                throw new Exception("No basetype specified");
+            }
+
+            var newBaseType = new ApiBaseType()
+            {
+                TypeName = baseType.Value,
+            };
+
+            newClass.BaseType = newBaseType;
+        }
+
+        private static void ProcessPropertyExportAttrib(AttributeSyntax attrib, ref ApiProperty newProperty)
+        {
+            var result = BuildAttributes(attrib);
+
+            //get the exported name
+            var exportNameAttrib = result.Attribute.Arguments.FirstOrDefault(x => string.IsNullOrWhiteSpace(x.Name) && x.DataType == AttributeDataType.String);
+
+            if (exportNameAttrib == null)
+            {
+                throw new Exception("No Export attrib specified");
+            }
+
+            newProperty.ExportName = exportNameAttrib.Value;
+
+            //get the export member access if its set
+            var memberAccess = result.Attribute.Arguments.FirstOrDefault(x => x.DataType == AttributeDataType.MemberAccess);
+
+            if (memberAccess != null)
+            {
+                newProperty.SemanticStrength = memberAccess.Value;
+            }
+        }
+
+        private static void ProcessPropertyWrapAttrib(AttributeSyntax attrib, ref ApiProperty newProperty)
+        {
+            var result = BuildAttributes(attrib);
+
+            //get the exported name
+            var wrapNameAttrib = result.Attribute.Arguments.FirstOrDefault(x => string.IsNullOrWhiteSpace(x.Name) && x.DataType == AttributeDataType.String);
+
+            if (wrapNameAttrib == null)
+            {
+                throw new Exception("No Wrap attrib specified");
+            }
+
+            newProperty.WrapName = wrapNameAttrib.Value;
+        }
+
+        private static void ProcessMethodExportAttrib(AttributeSyntax attrib, ref ApiMethod newProperty)
+        {
+            var result = BuildAttributes(attrib);
+
+            //get the exported name
+            var exportNameAttrib = result.Attribute.Arguments.FirstOrDefault(x => string.IsNullOrWhiteSpace(x.Name) && x.DataType == AttributeDataType.String);
+
+            if (exportNameAttrib == null)
+            {
+                throw new Exception("No Export attrib specified");
+            }
+
+            newProperty.ExportName = exportNameAttrib.Value;
+
+        }
+
+        private static void ProcessPropertyTVAttrib(AttributeSyntax attrib, ref ApiProperty newProperty)
+        {
+            var result = BuildAttributes(attrib);
+            var tvAttrib = result.Attribute.Arguments.Where(x => x.DataType == AttributeDataType.Number);
+
+            if (tvAttrib.Any())
+            {
+                var values = tvAttrib.Select(x => x.Value);
+
+                var versionNumber = CombineString(values);
+
+                newProperty.TVVersion = versionNumber;
+            }
+        }
+
+        private static void ProcessPropertyiOSAttrib(AttributeSyntax attrib, ref ApiProperty newProperty)
+        {
+            var result = BuildAttributes(attrib);
+            var iosAttrib = result.Attribute.Arguments.Where(x => x.DataType == AttributeDataType.Number);
+
+            if (iosAttrib.Any())
+            {
+                var values = iosAttrib.Select(x => x.Value);
+
+                var versionNumber = CombineString(values);
+
+                newProperty.IosVersion = versionNumber;
+            }
+        }
+
+        private static void ProcessPropertyVerifyAttrib(AttributeSyntax attrib, ref ApiProperty newProperty)
+        {
+            var result = BuildAttributes(attrib);
+            var tvAttrib = result.Attribute.Arguments.Where(x => x.DataType == AttributeDataType.Number);
+
+        }
+        #endregion
+
+        #region Helper Methods
+
+        /// <summary>
+        /// Get the .net type of the node
+        /// </summary>
+        /// <param name="type"></param>
+        /// <returns></returns>
+        private static string GetType(TypeSyntax type)
+        {
+            if (type is PredefinedTypeSyntax)
+            {
+                return ((PredefinedTypeSyntax)type).Keyword.Text;
+            }
+            else if (type is IdentifierNameSyntax)
+            {
+                return ((IdentifierNameSyntax)type).Identifier.Text;
+            }
+            else if (type is ArrayTypeSyntax)
+            {
+                var elementType = ((ArrayTypeSyntax)type).ElementType;
+
+                return GetType(elementType);
+            }
+            else if (type is GenericNameSyntax)
+            {
+                var nodeType = (GenericNameSyntax)type;
+
+                var typeName = nodeType.Identifier.Text;
+
+                var argsList = new List<string>();
+
+                foreach (var aRg in nodeType.TypeArgumentList.Arguments)
+                {
+                    var newType = GetType(aRg);
+
+                    argsList.Add(newType);
+                }
+
+                var args = CombineString(argsList);
+                //
+                var returnType = $"{typeName}<{args}>";
+
+                return returnType;
+            }
+            else if (type is PointerTypeSyntax)
+            {
+                var elementType = ((PointerTypeSyntax)type).ElementType;
+
+                var acType = GetType(elementType);
+
+                return "*" + acType;
+            }
+            else
+            {
+                throw new Exception($"Unexpected syntax type: {type.ToString()}");
+
+            }
+        }
+
+        /// <summary>
+        /// Get the accessors for the property
+        /// </summary>
+        /// <param name="node"></param>
+        /// <returns></returns>
+        private static (bool canGet, bool canSet) GetAccessors(AccessorListSyntax node)
+        {
+            if (node.Accessors.Count() == 0)
+                return (false, false);
+
+            var thing = node.Accessors.Where(x => x is AccessorDeclarationSyntax);
+
+            var canGet = false;
+            var canSet = false;
+
+            var hasGet = thing.FirstOrDefault(x => x.Keyword.Text.Equals("get", StringComparison.OrdinalIgnoreCase));
+            var hasSet = thing.FirstOrDefault(x => x.Keyword.Text.Equals("set", StringComparison.OrdinalIgnoreCase));
+
+            canGet = (hasGet != null);
+            canSet = (hasSet != null);
+
+            return (canGet, canSet);
+
+        }
+
+        /// <summary>
+        /// Combine a list of strings
+        /// </summary>
+        /// <param name="list"></param>
+        /// <param name="seperator"></param>
+        /// <returns></returns>
+        private static string CombineString(IEnumerable<string> list, string seperator = ", ")
+        {
+            return string.Join(seperator, list);
+        }
+        #endregion
+        #endregion
     }
 }
