@@ -7,6 +7,8 @@ using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 
+//Microsoft.CodeAnalysis.CSharp.Workspaces
+
 namespace Xamarin.iOS.Binding.Transformer
 {
     public static class CodeGenerator
