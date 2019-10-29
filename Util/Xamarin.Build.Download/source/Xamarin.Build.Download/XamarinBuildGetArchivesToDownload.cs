@@ -39,8 +39,8 @@ namespace Xamarin.Build.Download
 					taskItem.SetMetadata ("Url", item.Url);
 					taskItem.SetMetadata ("CacheFile", item.CacheFile);
 
-					if (!string.IsNullOrEmpty (item.Sha1))
-						taskItem.SetMetadata ("Sha1", item.Sha1);
+					if (!string.IsNullOrEmpty (item.Sha256))
+						taskItem.SetMetadata ("Sha256", item.Sha256);
 
 					results.Add (taskItem);
 				}
