@@ -30,6 +30,7 @@ namespace Transformeriser3000
             }
 
             Console.WriteLine("Hello World!");
+            Console.ReadLine();
         }
     }
 }

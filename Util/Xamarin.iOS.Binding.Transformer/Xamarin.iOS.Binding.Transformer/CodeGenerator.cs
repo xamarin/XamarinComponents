@@ -18,7 +18,6 @@ namespace Xamarin.iOS.Binding.Transformer
             //create the base complation unit
             var syntaxFactory = SyntaxFactory.CompilationUnit();
 
-
             //added the usings
             foreach (var aUsing in api.Usings.Items)
             {
@@ -28,38 +27,41 @@ namespace Xamarin.iOS.Binding.Transformer
                 syntaxFactory = syntaxFactory.AddUsings(node);
             }
 
+            foreach (var aNamespace in api.Namespaces)
+            {
+                var @namespace = SyntaxFactory.NamespaceDeclaration(SyntaxFactory.ParseName(aNamespace.Name)).NormalizeWhitespace();
+                @namespace = @namespace.WithLeadingTrivia(SyntaxFactory.LineFeed);
+
+                //interate through the delegates
+                foreach (var aDel in aNamespace.Delegates)
+                {
+                    // build the delegate syntax declaration
+                    var delegateDeclaration = BuildDelegate(aDel);
+
+                    //needs to build parameters
+                    @namespace = @namespace.AddMembers(delegateDeclaration);
+                }
+
+                //interate through the types
+                foreach (var aClass in aNamespace.Types)
+                {
+                    //build the type for the ApiClass object
+                    var aType = BuildType(aClass);
+
+                    //add it to the namespace
+                    @namespace = @namespace.AddMembers(aType);
+                }
+
+                @namespace.NormalizeWhitespace();
+
+                //add the namespace to the compilation unit
+                syntaxFactory = syntaxFactory.AddMembers(@namespace);
+            }
+
             //create the namespace root element
-            var @namespace = SyntaxFactory.NamespaceDeclaration(SyntaxFactory.ParseName(api.Namespace)).NormalizeWhitespace();
-            @namespace = @namespace.WithLeadingTrivia(SyntaxFactory.LineFeed);
-
-            //interate through the delegates
-            foreach (var aDel in api.Delegates)
-            {
-                // build the delegate syntax declaration
-                var delegateDeclaration = BuildDelegate(aDel);
-
-                //needs to build parameters
-                @namespace = @namespace.AddMembers(delegateDeclaration);
-            }
-
-            //interate through the types
-            foreach (var aClass in api.Types)
-            {
-                //build the type for the ApiClass object
-                var aType = BuildType(aClass);
-
-                //add it to the namespace
-                @namespace = @namespace.AddMembers(aType);
-            }
-
-            //add the namespace to the compilation unit
-            syntaxFactory = syntaxFactory.AddMembers(@namespace);
-
 
             //format and export as a string
-            var code = syntaxFactory
-                .NormalizeWhitespace()
-                .ToFullString();
+            var code = syntaxFactory.ToFullString();
 
             //write to the output file
             using (var writeFile = new StreamWriter(outputFilename))

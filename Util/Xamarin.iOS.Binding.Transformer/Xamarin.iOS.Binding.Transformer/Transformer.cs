@@ -83,21 +83,23 @@ namespace Xamarin.iOS.Binding.Transformer
             ProcessTree(children, ref output);
         }
 
-        private static void ProcessTree(List<SyntaxNode> tree, ref ApiDefinition output)
+        private static void ProcessTree(List<SyntaxNode> tree, ref ApiDefinition output, ApiNamespace apiNamespace = null)
         {
+            var @namespace = (apiNamespace != null) ? apiNamespace : new ApiNamespace();
+
             foreach (var aChild in tree)
             {
                 if (aChild is NamespaceDeclarationSyntax)
                 {
                     var clnamespace = ((IdentifierNameSyntax)((NamespaceDeclarationSyntax)aChild).Name).Identifier.Text;
 
-                    output.Namespace = clnamespace;
+                    @namespace.Name = clnamespace;
 
                     if (tree.Last() == aChild)
                     {
                         var classes = aChild.ChildNodes().ToList();
 
-                        ProcessTree(classes, ref output);
+                        ProcessTree(classes, ref output, @namespace);
                     }
                 }
                 else if (aChild is UsingDirectiveSyntax)
@@ -105,22 +107,25 @@ namespace Xamarin.iOS.Binding.Transformer
                     var usingVal = ((IdentifierNameSyntax)((UsingDirectiveSyntax)aChild).Name).Identifier.Text;
 
                     output.Usings.Items.Add(new ApiUsing() { Name = usingVal });
+
                 }
                 else if (aChild is DelegateDeclarationSyntax)
                 {
                     ApiDelegate delegateEntry = BuildDelegate((DelegateDeclarationSyntax)aChild);
 
-                    output.Delegates.Add(delegateEntry);
+                    @namespace.Delegates.Add(delegateEntry);
 
                 }
                 else if (aChild is InterfaceDeclarationSyntax)
                 {
                     var classentry = BuildClass((InterfaceDeclarationSyntax)aChild);
 
-                    output.Types.Add(classentry);
+                    @namespace.Types.Add(classentry);
                 }
-
             }
+
+            if (!output.Namespaces.Contains(@namespace))
+                output.Namespaces.Add(@namespace);
         }
 
         #region Build Methods
