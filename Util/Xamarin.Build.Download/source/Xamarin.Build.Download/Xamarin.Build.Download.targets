@@ -4,10 +4,7 @@
 	<UsingTask TaskName="Xamarin.Build.Download.XamarinDownloadPartialZips" AssemblyFile="Xamarin.Build.Download.dll" />
 	<UsingTask TaskName="Xamarin.Build.Download.XamarinBuildGetArchivesToDownload" AssemblyFile="Xamarin.Build.Download.dll" />
 	<UsingTask TaskName="Xamarin.Build.Download.XamarinBuildiOSResourceRestore" AssemblyFile="Xamarin.Build.Download.dll" />
-	<UsingTask TaskName="Xamarin.Build.Download.XamarinBuildAndroidResourceRestore" AssemblyFile="Xamarin.Build.Download.dll" />
-	<UsingTask TaskName="Xamarin.Build.Download.XamarinBuildAndroidAarRestore" AssemblyFile="Xamarin.Build.Download.dll" />
-	<UsingTask TaskName="Xamarin.Build.Download.XamarinBuildAndroidAarProguardConfigs" AssemblyFile="Xamarin.Build.Download.dll" />
-
+	
 	<PropertyGroup>
 		<XamarinBuildDownloadDir Condition="'$(XamarinBuildDownloadDir)' != '' and !HasTrailingSlash('$(XamarinBuildDownloadDir)')">$(XamarinBuildDownloadDir)\</XamarinBuildDownloadDir>
 		<XamarinBuildDownloadAllowUnsecure Condition="'$(XamarinBuildDownloadAllowUnsecure)' == ''">false</XamarinBuildDownloadAllowUnsecure>
@@ -20,7 +17,8 @@
 
 	<PropertyGroup Condition="'$(TargetFrameworkIdentifier)'=='MonoAndroid'">
 		<_XamarinBuildDownloadMasterBeforeTargets>_ResolveLibraryProjectImports</_XamarinBuildDownloadMasterBeforeTargets>
-		<_XamarinBuildDownloadMasterDependsOnTargets>ResolveAssemblyReferences;_XamarinBuildDownload;_XamarinAndroidBuildResourceRestore;_XamarinAndroidBuildAarRestore;_XamarinBuildDownloadAarInclude;_XamarinAndroidBuildAarProguardConfigs</_XamarinBuildDownloadMasterDependsOnTargets>
+		<_XamarinBuildDownloadMasterDependsOnTargets>ResolveAssemblyReferences;_XamarinBuildDownload;_XamarinBuildDownloadAarInclude</_XamarinBuildDownloadMasterDependsOnTargets>
+    <_XamarinBuildDownloadAndroidFixManifests Condition="'$(_XamarinBuildDownloadAndroidFixManifests)' == ''">true</_XamarinBuildDownloadAndroidFixManifests>
 	</PropertyGroup>
 
 	<PropertyGroup>
@@ -53,6 +51,8 @@
 			CacheDirectory="$(XamarinBuildDownloadDir)"
 			User7ZipPath="$(XamarinBuildDownloadUser7ZipPath)"
 			VsInstallRoot="$(VsInstallRoot)"
+      IsAndroid="'$(TargetFrameworkIdentifier)'=='MonoAndroid'"
+      AndroidFixManifests="'$(_XamarinBuildDownloadAndroidFixManifests)"
 			/>
 	</Target>
 
@@ -62,6 +62,8 @@
 			AllowUnsecureUrls="$(XamarinBuildDownloadAllowUnsecure)"
 			Parts="@(XamarinBuildDownloadPartialZip)"
 			CacheDirectory="$(XamarinBuildDownloadDir)"
+      IsAndroid="'$(TargetFrameworkIdentifier)'=='MonoAndroid'"
+      AndroidFixManifests="'$(_XamarinBuildDownloadAndroidFixManifests)"
 			/>
 	</Target>
 
@@ -85,72 +87,18 @@
 		</ItemGroup>
 	</Target>
 
-
-	<Target Name="_XamarinAndroidBuildResourceRestore"
-			DependsOnTargets="_XamarinBuildDownload"
-			Condition="'@(RestoreAssemblyResource)'!=''"
-			>
-		<XamarinBuildAndroidResourceRestore
-			TargetFrameworkVerison="$(TargetFrameworkVersion)"
-			IntermediateOutputPath="$(IntermediateOutputPath)"
-			ThrowOnMissingAssembly="$(XamarinBuildResourceMergeThrowOnMissingAssembly)"
-			InputReferencePaths="@(ReferencePath)"
-			RestoreAssemblyResources="@(RestoreAssemblyResource)"
-			VsInstallRoot="$(VsInstallRoot)">
-			<Output TaskParameter="RemovedReferencePaths" ItemName="_ResourceRestoreRemovedReferencePaths" />
-			<Output TaskParameter="ChangedReferencePaths" ItemName="ReferencePath" />
-			<Output TaskParameter="ChangedReferencePaths" ItemName="FileWrites" />
-			<Output TaskParameter="AdditionalFileWrites" ItemName="FileWrites" />
-		</XamarinBuildAndroidResourceRestore>
-		<ItemGroup>
-			<ReferencePath Remove="@(_ResourceRestoreRemovedReferencePaths)" />
-		</ItemGroup>
-	</Target>
-
 	<Target Name="_XamarinBuildDownloadAarInclude"
 			DependsOnTargets="_XamarinBuildDownload"
 			Condition="'@(XamarinBuildDownloadRestoreAssemblyAar)'!='' and @(AvailableItemName->AnyHaveMetadataValue('Identity', 'AndroidAarLibrary'))">
+
+    <!-- Check if `AndroidAarLibrary` isn't supported and error if so -->
+    <Error 
+      Condition="'@(XamarinBuildDownloadRestoreAssemblyAar)'!='' and !@(AvailableItemName->AnyHaveMetadataValue('Identity', 'AndroidAarLibrary'))"
+      Text="This version of Xamarin.Build.Download requires a newer version of Xamarin.Android."
+      />
+    
 		<ItemGroup>
 			<AndroidAarLibrary Include="@(XamarinBuildDownloadRestoreAssemblyAar)" />
-		</ItemGroup>
-	</Target>
-
-	<Target Name="_XamarinAndroidBuildAarRestore"
-			DependsOnTargets="_XamarinBuildDownload"
-			Condition="'@(XamarinBuildDownloadRestoreAssemblyAar)'!='' and !@(AvailableItemName->AnyHaveMetadataValue('Identity', 'AndroidAarLibrary'))"
-			>
-		<XamarinBuildAndroidAarRestore
-			TargetFrameworkVerison="$(TargetFrameworkVersion)"
-			IntermediateOutputPath="$(IntermediateOutputPath)"
-			ThrowOnMissingAssembly="$(XamarinBuildResourceMergeThrowOnMissingAssembly)"
-			InputReferencePaths="@(ReferencePath)"
-			RestoreAssemblyResources="@(XamarinBuildDownloadRestoreAssemblyAar)"
-			VsInstallRoot="$(VsInstallRoot)">
-			<Output TaskParameter="RemovedReferencePaths" ItemName="_ResourceRestoreRemovedReferencePaths" />
-			<Output TaskParameter="ChangedReferencePaths" ItemName="ReferencePath" />
-			<Output TaskParameter="ChangedReferencePaths" ItemName="FileWrites" />
-			<Output TaskParameter="AdditionalFileWrites" ItemName="FileWrites" />
-		</XamarinBuildAndroidAarRestore>
-		<ItemGroup>
-			<ReferencePath Remove="@(_ResourceRestoreRemovedReferencePaths)" />
-			<ReferenceDependencyPaths Remove="@(_ResourceRestoreRemovedReferencePaths)" />
-		</ItemGroup>
-	</Target>
-
-	<Target Name="_XamarinAndroidBuildAarProguardConfigs"
-			DependsOnTargets="_XamarinBuildDownload"
-			>
-		<XamarinBuildAndroidAarProguardConfigs
-			TargetFrameworkVerison="$(TargetFrameworkVersion)"
-			IntermediateOutputPath="$(IntermediateOutputPath)"
-			ThrowOnMissingAssembly="$(XamarinBuildResourceMergeThrowOnMissingAssembly)"
-			InputReferencePaths="@(ReferencePath)"
-			RestoreAssemblyResources="@(XamarinBuildDownloadRestoreAssemblyAar)"
-			VsInstallRoot="$(VsInstallRoot)">
-			<Output TaskParameter="AdditionalFileWrites" ItemName="FileWrites" />
-		</XamarinBuildAndroidAarProguardConfigs>
-		<ItemGroup>
-			<ProguardConfiguration Include="$(IntermediateOutputPath)XbdMerge\proguard\*.txt" />
 		</ItemGroup>
 	</Target>
 
