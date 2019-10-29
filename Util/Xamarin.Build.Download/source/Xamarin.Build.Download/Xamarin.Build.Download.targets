@@ -18,7 +18,7 @@
 	<PropertyGroup Condition="'$(TargetFrameworkIdentifier)'=='MonoAndroid'">
 		<_XamarinBuildDownloadMasterBeforeTargets>_ResolveLibraryProjectImports</_XamarinBuildDownloadMasterBeforeTargets>
 		<_XamarinBuildDownloadMasterDependsOnTargets>ResolveAssemblyReferences;_XamarinBuildDownload;_XamarinBuildDownloadAarInclude</_XamarinBuildDownloadMasterDependsOnTargets>
-    <_XamarinBuildDownloadAndroidFixManifests Condition="'$(_XamarinBuildDownloadAndroidFixManifests)' == ''">true</_XamarinBuildDownloadAndroidFixManifests>
+		<_XamarinBuildDownloadAndroidFixManifests Condition="'$(_XamarinBuildDownloadAndroidFixManifests)' == ''">true</_XamarinBuildDownloadAndroidFixManifests>
 	</PropertyGroup>
 
 	<PropertyGroup>
@@ -51,8 +51,8 @@
 			CacheDirectory="$(XamarinBuildDownloadDir)"
 			User7ZipPath="$(XamarinBuildDownloadUser7ZipPath)"
 			VsInstallRoot="$(VsInstallRoot)"
-      IsAndroid="'$(TargetFrameworkIdentifier)'=='MonoAndroid'"
-      AndroidFixManifests="'$(_XamarinBuildDownloadAndroidFixManifests)"
+			IsAndroid="'$(TargetFrameworkIdentifier)'=='MonoAndroid'"
+			AndroidFixManifests="'$(_XamarinBuildDownloadAndroidFixManifests)"
 			/>
 	</Target>
 
@@ -62,8 +62,8 @@
 			AllowUnsecureUrls="$(XamarinBuildDownloadAllowUnsecure)"
 			Parts="@(XamarinBuildDownloadPartialZip)"
 			CacheDirectory="$(XamarinBuildDownloadDir)"
-      IsAndroid="'$(TargetFrameworkIdentifier)'=='MonoAndroid'"
-      AndroidFixManifests="'$(_XamarinBuildDownloadAndroidFixManifests)"
+			IsAndroid="'$(TargetFrameworkIdentifier)'=='MonoAndroid'"
+			AndroidFixManifests="'$(_XamarinBuildDownloadAndroidFixManifests)"
 			/>
 	</Target>
 
@@ -91,12 +91,12 @@
 			DependsOnTargets="_XamarinBuildDownload"
 			Condition="'@(XamarinBuildDownloadRestoreAssemblyAar)'!='' and @(AvailableItemName->AnyHaveMetadataValue('Identity', 'AndroidAarLibrary'))">
 
-    <!-- Check if `AndroidAarLibrary` isn't supported and error if so -->
-    <Error 
-      Condition="'@(XamarinBuildDownloadRestoreAssemblyAar)'!='' and !@(AvailableItemName->AnyHaveMetadataValue('Identity', 'AndroidAarLibrary'))"
-      Text="This version of Xamarin.Build.Download requires a newer version of Xamarin.Android."
-      />
-    
+		<!-- Check if `AndroidAarLibrary` isn't supported and error if so -->
+		<Error 
+			Condition="'@(XamarinBuildDownloadRestoreAssemblyAar)'!='' and !@(AvailableItemName->AnyHaveMetadataValue('Identity', 'AndroidAarLibrary'))"
+			Text="This version of Xamarin.Build.Download requires a newer version of Xamarin.Android."
+			/>
+
 		<ItemGroup>
 			<AndroidAarLibrary Include="@(XamarinBuildDownloadRestoreAssemblyAar)" />
 		</ItemGroup>

@@ -19,9 +19,9 @@ namespace Xamarin.Build.Download
 
 		public bool AllowUnsecureUrls { get; set; }
 
-        public bool IsAndroid { get; set; }
+		public bool IsAndroid { get; set; }
 
-        public bool AndroidFixManifests { get; set; }
+		public bool AndroidFixManifests { get; set; }
 
 		HttpClient http;
 
@@ -178,9 +178,9 @@ namespace Xamarin.Build.Download
 				return false;
 			}
 
-            // Run through our AAR fixups if it's android
-            if (IsAndroid)
-                AndroidAarFixups.FixupAar(outputPath, AndroidFixManifests, Log);
+			// Run through our AAR fixups if it's android
+			if (IsAndroid)
+				AndroidAarFixups.FixupAar(outputPath, AndroidFixManifests, Log);
 
 			return true;
 		}

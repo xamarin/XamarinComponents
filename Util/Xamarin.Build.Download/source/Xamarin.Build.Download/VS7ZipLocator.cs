@@ -50,17 +50,17 @@ namespace Xamarin.Build.Download
 			if (!string.IsNullOrEmpty(tryPath) && File.Exists(tryPath))
 				return tryPath;
 
-            // Try for local installation of 7z
-            tryPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles), "7-Zip", "7z.exe");
-            if (!string.IsNullOrEmpty(tryPath) && File.Exists(tryPath))
-                return tryPath;
+			// Try for local installation of 7z
+			tryPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles), "7-Zip", "7z.exe");
+			if (!string.IsNullOrEmpty(tryPath) && File.Exists(tryPath))
+				return tryPath;
 
-            // Try for local installation of 7z
-            tryPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ProgramFilesX86), "7-Zip", "7z.exe");
-            if (!string.IsNullOrEmpty(tryPath) && File.Exists(tryPath))
-                return tryPath;
+			// Try for local installation of 7z
+			tryPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ProgramFilesX86), "7-Zip", "7z.exe");
+			if (!string.IsNullOrEmpty(tryPath) && File.Exists(tryPath))
+				return tryPath;
 
-            return null;
+			return null;
 		}
 
 		static string FindInVs(string vsYear, string relativePathTo7z)
