@@ -151,7 +151,7 @@ namespace NativeLibraryDownloaderTests
 
 			var success = BuildProject (engine, project, "_XamarinBuildDownload", log);
 
-			AssertNoMessagesOrWarnings (log);
+			AssertNoMessagesOrWarnings (log, DEFAULT_IGNORE_PATTERNS);
 			Assert.True (success);
 
 			Assert.True (File.Exists (Path.Combine (unpackDir, "GoogleSymbolUtilities-1.0.3", "Libraries", "libGSDK_Overload.a")));
@@ -180,7 +180,7 @@ namespace NativeLibraryDownloaderTests
 
 			var success = BuildProject (engine, project, "_XamarinBuildDownload", log);
 
-			AssertNoMessagesOrWarnings (log);
+			AssertNoMessagesOrWarnings (log, DEFAULT_IGNORE_PATTERNS);
 			Assert.True (success);
 
 			Assert.True (File.Exists (Path.Combine (unpackDir, "FacebookAndroid-4.17.0", "facebook-android-sdk.aar")));
@@ -208,7 +208,7 @@ namespace NativeLibraryDownloaderTests
 
 			var success = BuildProject (engine, project, "_XamarinBuildDownload", log);
 
-			AssertNoMessagesOrWarnings (log);
+			AssertNoMessagesOrWarnings (log, DEFAULT_IGNORE_PATTERNS);
 			Assert.True (success);
 
 			Assert.True (File.Exists (Path.Combine (unpackDir, "FacebookAndroid-4.17.0", "FacebookAndroid-4.17.0.uncompressed")));
@@ -341,73 +341,64 @@ namespace NativeLibraryDownloaderTests
 			Assert.Equal (processedAsmMtime, File.GetLastWriteTime (newItemPath));
 		}
 
-
-		/*[Fact]
-		public void TestAndroidAarAddedFromCache ()
+		[Fact]
+		public void TestAndroidAarAdded()
 		{
-			// Tests won't run on windows due to file locking issues with assemblies
-			if (!IsWindows)
-				testAndroidAarAdded (false);
+			var unpackDir = GetTempPath("unpacked");
+			var artifactXbdId = "gpsbasement-16.2.0";
+
+			var r = AndroidAarAdd(unpackDir, artifactXbdId, "https://dl.google.com/dl/android/maven2/com/google/android/gms/play-services-basement/16.2.0/play-services-basement-16.2.0.aar", true);
+			
+			AssertNoMessagesOrWarnings(r.logs, DEFAULT_IGNORE_PATTERNS);
+			Assert.True(r.success);
+
+			var aarPath = Path.Combine(unpackDir, artifactXbdId, artifactXbdId + ".aar");
+			Assert.True(File.Exists(aarPath));
+
+			Assert.Contains(r.project.Items, i => i.ItemType == "AndroidAarLibrary" && i.EvaluatedInclude == aarPath);
 		}
 
 		[Fact]
-		public void TestAndroidAarAddedFromAndroidSdk ()
+		public void TestAndroidAarIdeTooOld()
 		{
-			// Tests won't run on windows due to file locking issues with assemblies
-			if (!IsWindows)
-				testAndroidAarAdded (true);
-		}*/
+			var unpackDir = GetTempPath("unpacked");
+			var artifactXbdId = "gpsbasement-16.2.0";
 
-		public void testAndroidAarAdded (bool useAndroidSdk)
+			var r = AndroidAarAdd(unpackDir, artifactXbdId, "https://dl.google.com/dl/android/maven2/com/google/android/gms/play-services-basement/16.2.0/play-services-basement-16.2.0.aar", false);
+
+			// Check for the error
+			Assert.Contains(r.logs.Errors, e => e.Message.Contains("This version of Xamarin.Build.Download requires a newer version of Xamarin.Android."));
+
+			Assert.False(r.success);
+		}
+
+		(bool success, ProjectInstance project, MSBuildTestLogger logs) AndroidAarAdd(string unpackDir, string artifactXbdId, string url, bool androidAarLibraryAvailableItem)
 		{
 			var engine = new ProjectCollection ();
 			var prel = ProjectRootElement.Create (Path.Combine (TempDir, "project.csproj"), engine);
 
-			var asm = AssemblyDefinition.CreateAssembly (
-				new AssemblyNameDefinition ("Xamarin.Android.Support.v7.CardView", new System.Version (1, 0, 0, 0)),
-				"Main",
-				ModuleKind.Dll
-			);
-			var dll = Path.Combine (TempDir, "Xamarin.Android.Support.v7.CardView.dll");
-			asm.Write (dll);
-
-			var unpackDir = GetTempPath ("unpacked");
+			
 			prel.SetProperty ("XamarinBuildDownloadDir", unpackDir);
 			prel.SetProperty ("TargetFrameworkIdentifier", "MonoAndroid");
-			prel.SetProperty ("TargetFrameworkVersion", "v7.0");
-
-			var aarPathInSdk = "$(AndroidSdkPath)\\extras\\android\\m2repository\\com\\android\\support\\cardview-v7\\25.0.0\\cardview-v7-25.0.0.aar";
-
-			if (useAndroidSdk)
-				prel.SetProperty ("AndroidSdkPath", Path.Combine (Environment.GetFolderPath (Environment.SpecialFolder.Personal), "Library", "Developer", "Xamarin", "android-sdk-mac_x86"));
-
+			prel.SetProperty ("TargetFrameworkVersion", "v9.0");
 			prel.SetProperty ("OutputType", "Exe");
 			prel.SetProperty ("IntermediateOutputPath", Path.Combine (TempDir, "obj"));
 
+			if (androidAarLibraryAvailableItem)
+				prel.AddItem("AvailableItemName", "AndroidAarLibrary");
+
+
 			var item = prel.AddItem (
-				"XamarinBuildDownload", "androidsupport-25.0.0", new Dictionary<string, string> {
-					{ "Url", "https://dl-ssl.google.com/android/repository/android_m2repository_r39.zip" },
-					{ "Kind", "Zip" },
+				"XamarinBuildDownload", artifactXbdId, new Dictionary<string, string> {
+					{ "Url", url },
+					{ "Kind", "Uncompressed" },
+					{ "ToFile", artifactXbdId + ".aar" }
 				});
-
-			if (useAndroidSdk)
-				item.Condition = "!Exists('" + aarPathInSdk + "')";
-
-			prel.AddItem (
-				"ReferencePath",
-				dll
-			);
-
-			const string resourceName = "__AndroidLibraryProjects__.zip";
-			var aarPath = "$(XamarinBuildDownloadDir)androidsupport-25.0.0\\m2repository\\com\\android\\support\\cardview-v7\\25.0.0\\cardview-v7-25.0.0.aar";
 
 			prel.AddItem (
 				"XamarinBuildDownloadRestoreAssemblyAar",
-				useAndroidSdk ? aarPathInSdk : aarPath,
-				new Dictionary<string, string> {
-					{ "AssemblyName", "Xamarin.Android.Support.v7.CardView, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" },
-					{ "LogicalName", resourceName }
-				}
+				"$(XamarinBuildDownloadDir)" + artifactXbdId + "\\" + artifactXbdId + ".aar",
+				new Dictionary<string, string> { }
 			);
 
 			AddCoreTargets (prel);
@@ -416,51 +407,9 @@ namespace NativeLibraryDownloaderTests
 			var log = new MSBuildTestLogger ();
 			log.Verbosity = Microsoft.Build.Framework.LoggerVerbosity.Diagnostic;
 
-			var success = BuildProject (engine, project, "_XamarinAndroidBuildAarRestore", log);
+			var success = BuildProject (engine, project, "_XamarinBuildDownloadAarInclude", log);
 
-			AssertNoMessagesOrWarnings (log, DEFAULT_IGNORE_PATTERNS);
-			Assert.True (success);
-
-			//Assert.IsTrue (File.Exists (aar));
-
-			//check the referencepath has been replaced by the processed one
-			var items = project.GetItems ("ReferencePath");
-
-			var mergedItem = items.FirstOrDefault (i => !string.IsNullOrEmpty (i.EvaluatedInclude) && i.EvaluatedInclude != dll);
-			Assert.True (mergedItem != null);
-
-			var itemPath = mergedItem.EvaluatedInclude;
-
-			//check the assembly has the processed resource
-			var processedAsm = AssemblyDefinition.ReadAssembly (itemPath);
-			var resource = processedAsm.MainModule.Resources.FirstOrDefault () as EmbeddedResource;
-			Assert.NotNull (resource);
-			Assert.Equal (resourceName, resource.Name);
-
-			// Check that the embedded .aar has an appropriate prefix for each entry's path
-			var hasWrongEntryNames = false;
-			using (var zip = new ZipArchive (resource.GetResourceStream ())) {
-				hasWrongEntryNames = zip.Entries.Any (ze => !ze.FullName.StartsWith ("library_project_imports", System.StringComparison.InvariantCulture));
-			}
-			Assert.False (hasWrongEntryNames);
-
-			var processedAsmMtime = File.GetLastWriteTime (itemPath);
-
-			// check incremental build works
-			project = new ProjectInstance (prel);
-			log = new MSBuildTestLogger ();
-			log.Verbosity = Microsoft.Build.Framework.LoggerVerbosity.Diagnostic;
-			var newSuccess = BuildProject (engine, project, "_XamarinAndroidBuildAarRestore", log);
-
-			AssertNoMessagesOrWarnings (log);
-			Assert.True (newSuccess);
-
-			var newItems = project.GetItems ("ReferencePath");
-			var newItem = newItems.FirstOrDefault (i => !string.IsNullOrEmpty (i.EvaluatedInclude) && i.EvaluatedInclude != dll);
-			Assert.True (newItem != null);
-			var newItemPath = newItem.EvaluatedInclude;
-			Assert.Equal (itemPath, newItemPath);
-			Assert.Equal (processedAsmMtime, File.GetLastWriteTime (newItemPath));
+			return (success, project, log);
 		}
 
 		[Fact]
@@ -566,7 +515,7 @@ namespace NativeLibraryDownloaderTests
 
 			var success = BuildProject (engine, project, "XamarinBuildDownloadGetItemsToDownload", log);
 
-			AssertNoMessagesOrWarnings (log);
+			AssertNoMessagesOrWarnings (log, DEFAULT_IGNORE_PATTERNS);
 			Assert.True (success);
 
 			var itemToDownload = project.GetItems ("XamarinBuildDownloadItemToDownload");
@@ -605,7 +554,7 @@ namespace NativeLibraryDownloaderTests
 
 			var success = BuildProject (engine, project, "XamarinBuildDownloadGetItemsToDownload", log);
 
-			AssertNoMessagesOrWarnings (log);
+			AssertNoMessagesOrWarnings (log, DEFAULT_IGNORE_PATTERNS);
 			Assert.True (success);
 
 			var itemToDownload = project.GetItems ("XamarinBuildDownloadItemToDownload");
@@ -671,7 +620,7 @@ namespace NativeLibraryDownloaderTests
 
 			var success = BuildProject (engine, project, "_XamarinBuildDownload", log);
 
-			AssertNoMessagesOrWarnings (log);
+			AssertNoMessagesOrWarnings (log, DEFAULT_IGNORE_PATTERNS);
 			Assert.True (success);
 
 			Assert.True (File.Exists (Path.Combine (unpackDir, "androidsupport-25.0.1", "cardview.v7", "cardview.v7.aar")));
@@ -710,7 +659,7 @@ namespace NativeLibraryDownloaderTests
 
 			var success = BuildProject (engine, project, "_XamarinBuildDownload", log);
 
-			AssertNoMessagesOrWarnings (log);
+			AssertNoMessagesOrWarnings (log, DEFAULT_IGNORE_PATTERNS);
 			Assert.True (success);
 
 			Assert.True (File.Exists (Path.Combine (unpackDir, "androidsupport-25.0.1", "cardview.v7", "cardview.v7.aar")));
@@ -753,7 +702,7 @@ namespace NativeLibraryDownloaderTests
 
 			var success = BuildProject (engine, project, "XamarinBuildDownloadGetItemsToDownload", log);
 
-			AssertNoMessagesOrWarnings (log);
+			AssertNoMessagesOrWarnings (log, DEFAULT_IGNORE_PATTERNS);
 			Assert.True (success);
 
 			var itemToDownload = project.GetItems ("XamarinBuildDownloadItemToDownload");
@@ -924,76 +873,6 @@ namespace NativeLibraryDownloaderTests
 					Assert.False (anyUnfixed);
 				}
 			}
-		}
-
-
-		[Fact]
-		public void TestProguardText ()
-		{
-			// Tests won't run on windows due to file locking issues with assemblies
-			if (IsWindows)
-				return;
-
-			var engine = new ProjectCollection ();
-			var prel = ProjectRootElement.Create (Path.Combine (TempDir, "project.csproj"), engine);
-
-			var intermediateDir = Path.Combine (TempDir, "obj");
-
-			var asm = AssemblyDefinition.CreateAssembly (
-				new AssemblyNameDefinition ("Xamarin.GooglePlayServices.Basement", new System.Version (1, 0, 0, 0)),
-				"Main",
-				ModuleKind.Dll
-			);
-			var dll = Path.Combine (TempDir, "Xamarin.GooglePlayServices.Basement.dll");
-			asm.Write (dll);
-			prel.AddItem ("ReferencePath", dll);
-
-
-			var unpackDir = GetTempPath ("unpacked");
-			prel.SetProperty ("XamarinBuildDownloadDir", unpackDir);
-			prel.SetProperty ("TargetFrameworkIdentifier", "MonoAndroid");
-			prel.SetProperty ("TargetFrameworkVersion", "v7.0");
-			prel.SetProperty ("OutputType", "Exe");
-			prel.SetProperty ("IntermediateOutputPath", intermediateDir);
-
-			prel.AddItem (
-				"XamarinBuildDownloadPartialZip", "playservices-10.2.1/playservicesbasement", new Dictionary<string, string> {
-					{ "Url", "https://dl-ssl.google.com/android/repository/google_m2repository_gms_v9_1_rc07_wear_2_0_1_rc3.zip" },
-					{ "ToFile", "play-services-basement-10.2.1.aar" },
-					{ "RangeStart", "100833740" },
-					{ "RangeEnd", "101168014" },
-				});
-
-			const string resourceName = "__AndroidLibraryProjects__.zip";
-			var aarPath = "$(XamarinBuildDownloadDir)playservices-10.2.1\\playservicesbasement\\play-services-basement-10.2.1.aar";
-
-			prel.AddItem (
-				"XamarinBuildDownloadRestoreAssemblyAar",
-				aarPath,
-				new Dictionary<string, string> {
-					{ "AssemblyName", "Xamarin.GooglePlayServices.Basement, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" },
-					{ "LogicalName", resourceName }
-				}
-			);
-
-			AddCoreTargets (prel);
-
-			var project = new ProjectInstance (prel);
-			var log = new MSBuildTestLogger ();
-
-			var success = BuildProject (engine, project, "_XamarinAndroidBuildAarProguardConfigs", log);
-
-			var ignorePatterns = new List<string> { "Enumeration yielded no results" };
-			ignorePatterns.AddRange (DEFAULT_IGNORE_PATTERNS);
-
-			AssertNoMessagesOrWarnings (log, ignorePatterns.ToArray());
-			Assert.True (success);
-
-			var proguardDir = Path.Combine (intermediateDir, "XbdMerge", "proguard");
-
-			var proguardOutputFiles = Directory.GetFiles (proguardDir);
-
-			Assert.True (proguardOutputFiles != null && proguardOutputFiles.Any (), "No proguard file found in intermediate output.");
 		}
 	}
 }
