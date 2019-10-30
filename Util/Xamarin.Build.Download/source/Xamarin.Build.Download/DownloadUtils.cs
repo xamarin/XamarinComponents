@@ -67,7 +67,7 @@ namespace Xamarin.Build.Download
 						cacheFileExt = Path.GetExtension (xbd.ToFile)?.ToLower () ?? string.Empty;
 				}
 
-				xbd.CacheFile = Path.Combine (CacheDir, item.ItemSpec + "." + cacheFileExt);
+				xbd.CacheFile = Path.Combine (CacheDir, item.ItemSpec.TrimEnd('.') + "." + cacheFileExt.TrimStart('.'));
 				xbd.DestinationDir = Path.GetFullPath (Path.Combine (CacheDir, item.ItemSpec));
 
 				int lockTimeout = 60;
