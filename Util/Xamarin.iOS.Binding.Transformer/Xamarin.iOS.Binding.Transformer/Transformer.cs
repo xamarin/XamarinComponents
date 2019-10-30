@@ -165,6 +165,28 @@ namespace Xamarin.iOS.Binding.Transformer
                 Name = node.Identifier.Text,
             };
 
+            if (node.Modifiers.Any())
+            {
+                foreach (var aMod in node.Modifiers)
+                {
+                    var modName = aMod.Text;
+
+                    switch (modName.ToLower())
+                    {
+                        case "partial":
+                            {
+                                newClass.IsPartial = true;
+                            }
+                            break;
+                        default:
+                            {
+                                Console.WriteLine("");
+                            }
+                            break;
+                    }
+                }
+            }
+
             if (node.BaseList != null && node.BaseList.Types.Any())
             {
                 foreach (var aImpl in node.BaseList.Types)

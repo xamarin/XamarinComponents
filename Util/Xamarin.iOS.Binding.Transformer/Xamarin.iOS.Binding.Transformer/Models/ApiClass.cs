@@ -25,6 +25,9 @@ namespace Xamarin.iOS.Binding.Transformer
         [XmlAttribute(AttributeName = "static")]
         public bool IsStatic { get; set; }
 
+        [XmlAttribute(AttributeName = "partial")]
+        public bool IsPartial { get; set; }
+
         [XmlElement(ElementName ="model", Order = 0)]
         public ApiTypeModel Model { get; set; }
 

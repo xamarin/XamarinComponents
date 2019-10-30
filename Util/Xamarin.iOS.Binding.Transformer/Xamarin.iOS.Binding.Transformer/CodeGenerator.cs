@@ -27,6 +27,8 @@ namespace Xamarin.iOS.Binding.Transformer
                 syntaxFactory = syntaxFactory.AddUsings(node);
             }
 
+            var lastDelegates = new List<string>();
+
             foreach (var aNamespace in api.Namespaces)
             {
                 var @namespace = SyntaxFactory.NamespaceDeclaration(SyntaxFactory.ParseName(aNamespace.Name)).NormalizeWhitespace();
@@ -38,8 +40,13 @@ namespace Xamarin.iOS.Binding.Transformer
                     // build the delegate syntax declaration
                     var delegateDeclaration = BuildDelegate(aDel);
 
+                    var str = delegateDeclaration.NormalizeWhitespace().ToFullString();
+
                     //needs to build parameters
                     @namespace = @namespace.AddMembers(delegateDeclaration);
+
+                    if (aNamespace.Delegates.Last() == aDel)
+                        lastDelegates.Add(str);
                 }
 
                 //interate through the types
@@ -61,14 +68,22 @@ namespace Xamarin.iOS.Binding.Transformer
             //format and export as a string
             var code = syntaxFactory.NormalizeWhitespace().ToFullString();
 
+            //fix to add gap between delegates and first type delcaration
+            if (lastDelegates.Count > 0)
+            {
+                //loop through all the last delegates from all the namespaces
+                foreach (var aDel in lastDelegates)
+                {
+                    //replace and add a new line
+                    code = code.Replace(aDel, aDel + Environment.NewLine);
+                }
+            }
+
             //write to the output file
             using (var writeFile = new StreamWriter(outputFilename))
             {
                 await writeFile.WriteAsync(code);
             }
-
-            //Console.WriteLine(code);    
-
 
         }
 
@@ -124,15 +139,17 @@ namespace Xamarin.iOS.Binding.Transformer
             {
                 MemberDeclarationSyntax property = BuildProperty(aProperty);
 
-                returnMembers.Add(property);
+                if (property != null)
+                    returnMembers.Add(property);
             }
 
             //work through the methods
             foreach (var aMethod in aClass.Methods)
             {
-                MemberDeclarationSyntax property = BuildMethod(aMethod);
+                MemberDeclarationSyntax method = BuildMethod(aMethod);
 
-                returnMembers.Add(property);
+                if (method != null)
+                    returnMembers.Add(method);
             }
 
             return returnMembers;
@@ -354,6 +371,11 @@ namespace Xamarin.iOS.Binding.Transformer
 
                 attribs = attribs.Add(attribList);
 
+
+            }
+
+            if (apiClass.Verify != null)
+            {
 
             }
 
