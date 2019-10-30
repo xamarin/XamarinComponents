@@ -9,23 +9,6 @@ var AAR_URL = string.Format("https://dl.google.com/dl/android/maven2/com/google/
 var OBJ_VERSION = "0.3.0";
 var OBJ_URL = string.Format("https://oss.sonatype.org/content/repositories/releases/de/javagl/obj/{0}/obj-{0}.jar", OBJ_VERSION);
 
-var buildSpec = new BuildSpec () {
-	Libs = new [] {
-		new DefaultSolutionBuilder {
-			SolutionPath = "./ARCore.sln",
-			OutputFiles = new [] {
-				new OutputFileCopy {
-					FromFile = "./source/bin/Release/Xamarin.Google.ARCore.dll",
-				}
-			}
-		}
-	},
-
-	NuGets = new [] {
-		new NuGetInfo { NuSpec = "./nuget/Xamarin.Google.ARCore.nuspec", Version = NUGET_VERSION, RequireLicenseAcceptance = true  },
-	},
-};
-
 Task ("externals")
 	.Does (() =>
 {
@@ -42,13 +25,51 @@ Task ("externals")
 		DownloadFile (OBJ_URL, OBJ_JAR_FILE);
 });
 
-
-Task ("clean").IsDependentOn ("clean-base").Does (() =>
+Task("libs")
+	.IsDependentOn("externals")
+	.Does(() =>
 {
-	if (DirectoryExists ("./externals"))
-		DeleteDirectory ("./externals", true);
+	MSBuild("./ARCore.sln", c => {
+		c.Configuration = "Release";
+		c.Targets.Clear();
+		c.Targets.Add("Restore");
+		c.Targets.Add("Build");
+		c.Properties.Add("DesignTimeBuild", new [] { "false" });
+		c.MaxCpuCount = 0;
+	});
 });
 
-SetupXamarinBuildTasks (buildSpec, Tasks, Task);
+Task("nuget")
+	.IsDependentOn("libs")
+	.Does(() =>
+{
+	var nuGetPackSettings = new NuGetPackSettings {
+		BasePath                 = "./",
+		OutputDirectory          = "./output",
+		RequireLicenseAcceptance = true,
+		Version                  = NUGET_VERSION,
+	};
+
+	NuGetPack("./nuget/Xamarin.Google.ARCore.nuspec", nuGetPackSettings);
+});
+
+Task("samples")
+	.IsDependentOn("nuget")
+	.Does (() =>
+{
+	MSBuild("./samples/HelloAR.sln", c => {
+		c.Configuration = "Release";
+		c.Targets.Clear();
+		c.Targets.Add("Restore");
+		c.Targets.Add("Build");
+	});
+});
+
+Task ("clean")
+	.Does (() =>
+{
+	if (DirectoryExists ("./externals/"))
+		DeleteDirectory ("./externals", true);
+});
 
 RunTarget (TARGET);

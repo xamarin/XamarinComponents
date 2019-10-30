@@ -20,7 +20,7 @@
     </dependencies>
   </metadata>
   <files>
-    <file src="output/Xamarin.Google.ARCore.dll" target="lib/MonoAndroid70" />
+    <file src="source/bin/Release/Xamarin.Google.ARCore.dll" target="lib/MonoAndroid70" />
     <file src="External-Dependency-Info.txt" target="THIRD-PARTY-NOTICES.txt" />
     <file src="LICENSE.md" target="LICENSE.md" />
   </files>
