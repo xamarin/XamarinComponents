@@ -147,7 +147,7 @@ namespace Xamarin.iOS.Binding.Transformer
                 MemberDeclarationSyntax property = BuildProperty(aProperty);
 
                 if (property != null)
-                    returnMembers.Add(property);
+                    returnMembers = returnMembers.Add(property);
             }
 
             //work through the methods
@@ -156,7 +156,7 @@ namespace Xamarin.iOS.Binding.Transformer
                 MemberDeclarationSyntax method = BuildMethod(aMethod);
 
                 if (method != null)
-                    returnMembers.Add(method);
+                    returnMembers = returnMembers.Add(method);
             }
 
             return returnMembers;
@@ -171,7 +171,318 @@ namespace Xamarin.iOS.Binding.Transformer
         private static MemberDeclarationSyntax BuildProperty(ApiProperty aProperty)
         {
             
-            return null;
+            var property = SyntaxFactory.PropertyDeclaration
+            (
+                SyntaxFactory.IdentifierName(aProperty.Type),
+                SyntaxFactory.Identifier(aProperty.Name)
+            );
+
+            var attrs = SyntaxFactory.List<AttributeListSyntax>();
+
+            if (!string.IsNullOrWhiteSpace(aProperty.WrapName))
+            {
+                attrs = attrs.Add(SyntaxFactory.AttributeList
+                        (
+                            SyntaxFactory.SingletonSeparatedList<AttributeSyntax>
+                            (
+                                SyntaxFactory.Attribute
+                                (
+                                    SyntaxFactory.IdentifierName("Wrap")
+                                )
+                                .WithArgumentList
+                                (
+                                    SyntaxFactory.AttributeArgumentList
+                                    (
+                                        SyntaxFactory.SingletonSeparatedList<AttributeArgumentSyntax>
+                                        (
+                                            SyntaxFactory.AttributeArgument
+                                            (
+                                                SyntaxFactory.LiteralExpression
+                                                (
+                                                    SyntaxKind.StringLiteralExpression,
+                                                    SyntaxFactory.Literal(aProperty.WrapName)
+                                                )
+                                            )
+                                        )
+                                    )
+                                )
+                            )
+                        ));
+            }
+
+            if (aProperty.IsAbstract)
+            {
+                var attribList = SyntaxFactory.AttributeList
+                           (
+                               SyntaxFactory.SingletonSeparatedList<AttributeSyntax>
+                               (
+                                   SyntaxFactory.Attribute
+                                   (
+                                       SyntaxFactory.IdentifierName("Abstract")
+                                   )
+                               )
+                           );
+
+                attrs = attrs.Add(attribList);
+            }
+
+            if (aProperty.IsNullAllowed)
+            {
+               attrs = attrs.Add(SyntaxFactory.AttributeList
+                        (
+                            SyntaxFactory.SingletonSeparatedList<AttributeSyntax>
+                            (
+                                SyntaxFactory.Attribute
+                                (
+                                    SyntaxFactory.IdentifierName("NullAllowed")
+                                )
+                            )
+                        ));
+            }
+            
+            if (aProperty.IsObsolete)
+            {
+                attrs = attrs.Add(SyntaxFactory.AttributeList
+                        (
+                            SyntaxFactory.SingletonSeparatedList<AttributeSyntax>
+                            (
+                                SyntaxFactory.Attribute
+                                (
+                                    SyntaxFactory.IdentifierName("Obsolete")
+                                )
+                                .WithArgumentList
+                                (
+                                    SyntaxFactory.AttributeArgumentList
+                                    (
+                                        SyntaxFactory.SingletonSeparatedList<AttributeArgumentSyntax>
+                                        (
+                                            SyntaxFactory.AttributeArgument
+                                            (
+                                                SyntaxFactory.LiteralExpression
+                                                (
+                                                    SyntaxKind.StringLiteralExpression,
+                                                    SyntaxFactory.Literal("This is obsolete")
+                                                )
+                                            )
+                                        )
+                                    )
+                                )
+                            )
+                        ));
+            }
+
+            if (aProperty.IsStatic)
+            {
+                var attribList = SyntaxFactory.AttributeList
+                           (
+                               SyntaxFactory.SingletonSeparatedList<AttributeSyntax>
+                               (
+                                   SyntaxFactory.Attribute
+                                   (
+                                       SyntaxFactory.IdentifierName("Static")
+                                   )
+                               )
+                           );
+
+                attrs = attrs.Add(attribList);
+            }
+
+            if (aProperty.Verify != null)
+            {
+                var attribList = SyntaxFactory.AttributeList
+                (
+                    SyntaxFactory.SingletonSeparatedList<AttributeSyntax>
+                    (
+                        SyntaxFactory.Attribute
+                        (
+                            SyntaxFactory.IdentifierName("Verify")
+                        )
+                        .WithArgumentList
+                        (
+                            SyntaxFactory.AttributeArgumentList
+                            (
+                                SyntaxFactory.SingletonSeparatedList<AttributeArgumentSyntax>
+                                (
+                                    SyntaxFactory.AttributeArgument
+                                    (
+                                        SyntaxFactory.IdentifierName(aProperty.Verify.VerifyType)
+                                    )
+                                )
+                            )
+                        )
+                    )
+                );
+
+                attrs = attrs.Add(attribList);
+            }
+
+            
+
+            if (aProperty.FieldParams != null && aProperty.FieldParams.Any())
+            {
+                var atrib = SyntaxFactory.Attribute(SyntaxFactory.IdentifierName("Export"));
+
+                var nodes = new List<SyntaxNodeOrToken>(){};
+
+                var pars = aProperty.FieldParams.Split(',');
+
+                foreach (var fieldname in pars)
+                {
+                    nodes.Add(SyntaxFactory.AttributeArgument
+                                        (
+                                            SyntaxFactory.LiteralExpression
+                                            (
+                                                SyntaxKind.StringLiteralExpression,
+                                                SyntaxFactory.Literal(fieldname)
+                                            )
+                                        ));
+
+                    //if the field is not the last item then add a comma
+                    if (pars.Last() != fieldname)
+                        nodes.Add(SyntaxFactory.Token(SyntaxKind.CommaToken));
+                }
+
+                var atrlibs = SyntaxFactory.AttributeArgumentList().WithArguments(SyntaxFactory.SeparatedList<AttributeArgumentSyntax>(nodes));
+
+                atrib = atrib.WithArgumentList(atrlibs);
+                attrs = attrs.Add(SyntaxFactory.AttributeList(SyntaxFactory.SingletonSeparatedList<AttributeSyntax>(atrib)));
+            }
+
+            if (!string.IsNullOrWhiteSpace(aProperty.ExportName))
+            {
+                var atrib = SyntaxFactory.Attribute
+                        (
+                            SyntaxFactory.IdentifierName("Export")
+                        );
+
+                var nodes = new List<SyntaxNodeOrToken>()
+                                    {
+                                        SyntaxFactory.AttributeArgument
+                                        (
+                                            SyntaxFactory.LiteralExpression
+                                            (
+                                                SyntaxKind.StringLiteralExpression,
+                                                SyntaxFactory.Literal(aProperty.ExportName)
+                                            )
+                                        ),
+                                    };
+
+                if (!string.IsNullOrWhiteSpace(aProperty.SemanticStrength))
+                {
+
+                    nodes.Add(SyntaxFactory.Token(SyntaxKind.CommaToken));
+                    nodes.Add(SyntaxFactory.AttributeArgument
+                                        (
+                                            SyntaxFactory.MemberAccessExpression
+                                            (
+                                                SyntaxKind.SimpleMemberAccessExpression,
+                                                SyntaxFactory.IdentifierName("ArgumentSemantic"),
+                                                SyntaxFactory.IdentifierName(aProperty.SemanticStrength)
+                                            )
+                                        ));
+                }
+
+                var atrlibs = SyntaxFactory.AttributeArgumentList().WithArguments(SyntaxFactory.SeparatedList<AttributeArgumentSyntax>(nodes));
+
+                atrib = atrib.WithArgumentList(atrlibs);
+                attrs = attrs.Add(SyntaxFactory.AttributeList(SyntaxFactory.SingletonSeparatedList<AttributeSyntax>(atrib)));
+            }
+
+            var accessors = SyntaxFactory.AccessorList();
+
+            if (aProperty.CanGet)
+            {
+                SyntaxList<AttributeListSyntax> attrslist;
+
+                if (!string.IsNullOrWhiteSpace(aProperty.GetBindName))
+                {
+                    attrslist = SyntaxFactory.SingletonList<AttributeListSyntax>
+                            (
+                                SyntaxFactory.AttributeList
+                                (
+                                    SyntaxFactory.SingletonSeparatedList<AttributeSyntax>
+                                    (
+                                        SyntaxFactory.Attribute
+                                        (
+                                            SyntaxFactory.IdentifierName("Bind")
+                                        )
+                                        .WithArgumentList
+                                        (
+                                            SyntaxFactory.AttributeArgumentList
+                                            (
+                                                SyntaxFactory.SingletonSeparatedList<AttributeArgumentSyntax>
+                                                (
+                                                    SyntaxFactory.AttributeArgument
+                                                    (
+                                                        SyntaxFactory.LiteralExpression
+                                                        (
+                                                            SyntaxKind.StringLiteralExpression,
+                                                            SyntaxFactory.Literal(aProperty.GetBindName)
+                                                        )
+                                                    )
+                                                )
+                                            )
+                                        )
+                                    )
+                                )
+                            );
+                }
+
+                accessors = accessors
+                    .AddAccessors(SyntaxFactory.AccessorDeclaration(SyntaxKind.GetAccessorDeclaration)
+                    .WithAttributeLists(attrslist)
+                    .WithSemicolonToken(SyntaxFactory.Token(SyntaxKind.SemicolonToken)));
+            }
+
+            if (aProperty.CanSet)
+            {
+                SyntaxList<AttributeListSyntax> attrslist;
+
+                if (!string.IsNullOrWhiteSpace(aProperty.SetBindName))
+                {
+                    attrslist = SyntaxFactory.SingletonList<AttributeListSyntax>
+                            (
+                                SyntaxFactory.AttributeList
+                                (
+                                    SyntaxFactory.SingletonSeparatedList<AttributeSyntax>
+                                    (
+                                        SyntaxFactory.Attribute
+                                        (
+                                            SyntaxFactory.IdentifierName("Bind")
+                                        )
+                                        .WithArgumentList
+                                        (
+                                            SyntaxFactory.AttributeArgumentList
+                                            (
+                                                SyntaxFactory.SingletonSeparatedList<AttributeArgumentSyntax>
+                                                (
+                                                    SyntaxFactory.AttributeArgument
+                                                    (
+                                                        SyntaxFactory.LiteralExpression
+                                                        (
+                                                            SyntaxKind.StringLiteralExpression,
+                                                            SyntaxFactory.Literal(aProperty.SetBindName)
+                                                        )
+                                                    )
+                                                )
+                                            )
+                                        )
+                                    )
+                                )
+                            );
+                }
+
+                accessors = accessors
+                    .AddAccessors(SyntaxFactory.AccessorDeclaration(SyntaxKind.SetAccessorDeclaration)
+                    .WithAttributeLists(attrslist)
+                    .WithSemicolonToken(SyntaxFactory.Token(SyntaxKind.SemicolonToken)));
+            }
+
+            property =  property.WithAttributeLists(attrs);
+            property =  property.WithAccessorList(accessors);
+
+
+            return property;
         }
 
         /// <summary>
@@ -399,7 +710,7 @@ namespace Xamarin.iOS.Binding.Transformer
                                 (
                                     SyntaxFactory.AttributeArgument
                                     (
-                                        SyntaxFactory.IdentifierName("ConstantsInterfaceAssociation")
+                                        SyntaxFactory.IdentifierName(apiClass.Verify.VerifyType)
                                     )
                                 )
                             )

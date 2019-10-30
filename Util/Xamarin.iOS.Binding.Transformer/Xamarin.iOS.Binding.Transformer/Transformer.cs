@@ -715,6 +715,8 @@ namespace Xamarin.iOS.Binding.Transformer
 
             newProperty.CanGet = accessors.canGet;
             newProperty.CanSet = accessors.canSet;
+            newProperty.GetBindName = accessors.getbindName;
+            newProperty.SetBindName = accessors.setbindName;
 
             return newProperty;
         }
