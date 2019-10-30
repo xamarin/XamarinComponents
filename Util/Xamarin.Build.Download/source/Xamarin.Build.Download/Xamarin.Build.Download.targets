@@ -16,11 +16,16 @@
 	</PropertyGroup>
 
 	<PropertyGroup Condition="'$(TargetFrameworkIdentifier)'=='MonoAndroid'">
+		<_XamarinBuildDownloadIsAndroid>true</_XamarinBuildDownloadIsAndroid>
 		<_XamarinBuildDownloadMasterBeforeTargets>_ResolveLibraryProjectImports</_XamarinBuildDownloadMasterBeforeTargets>
 		<_XamarinBuildDownloadMasterDependsOnTargets>ResolveAssemblyReferences;_XamarinBuildDownload;_XamarinBuildDownloadAarInclude</_XamarinBuildDownloadMasterDependsOnTargets>
 		<_XamarinBuildDownloadAndroidFixManifests Condition="'$(_XamarinBuildDownloadAndroidFixManifests)' == ''">true</_XamarinBuildDownloadAndroidFixManifests>
 	</PropertyGroup>
 
+	<PropertyGroup Condition="'$(TargetFrameworkIdentifier)'!='MonoAndroid'">
+		<_XamarinBuildDownloadIsAndroid>false</_XamarinBuildDownloadIsAndroid>
+	</PropertyGroup>
+	
 	<PropertyGroup>
 		<CleanDependsOn>
 			$(CleanDependsOn);
@@ -52,7 +57,7 @@
 			User7ZipPath="$(XamarinBuildDownloadUser7ZipPath)"
 			VsInstallRoot="$(VsInstallRoot)"
 			IsAndroid="'$(TargetFrameworkIdentifier)'=='MonoAndroid'"
-			AndroidFixManifests="'$(_XamarinBuildDownloadAndroidFixManifests)"
+			AndroidFixManifests="$(_XamarinBuildDownloadAndroidFixManifests)"
 			/>
 	</Target>
 
@@ -62,8 +67,8 @@
 			AllowUnsecureUrls="$(XamarinBuildDownloadAllowUnsecure)"
 			Parts="@(XamarinBuildDownloadPartialZip)"
 			CacheDirectory="$(XamarinBuildDownloadDir)"
-			IsAndroid="'$(TargetFrameworkIdentifier)'=='MonoAndroid'"
-			AndroidFixManifests="'$(_XamarinBuildDownloadAndroidFixManifests)"
+			IsAndroid="$(_XamarinBuildDownloadIsAndroid)"
+			AndroidFixManifests="$(_XamarinBuildDownloadAndroidFixManifests)"
 			/>
 	</Target>
 
