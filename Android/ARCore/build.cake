@@ -2,9 +2,9 @@
 
 var TARGET = Argument ("t", Argument ("target", "Default"));
 
-var NUGET_VERSION = "1.11.0";
+var NUGET_VERSION = "1.12.0";
 
-var AAR_VERSION = "1.11.0";
+var AAR_VERSION = "1.12.0";
 var AAR_URL = string.Format("https://dl.google.com/dl/android/maven2/com/google/ar/core/{0}/core-{0}.aar", AAR_VERSION);
 var OBJ_VERSION = "0.3.0";
 var OBJ_URL = string.Format("https://oss.sonatype.org/content/repositories/releases/de/javagl/obj/{0}/obj-{0}.jar", OBJ_VERSION);
@@ -13,7 +13,7 @@ var buildSpec = new BuildSpec () {
 	Libs = new [] {
 		new DefaultSolutionBuilder {
 			SolutionPath = "./ARCore.sln",
-			OutputFiles = new [] { 
+			OutputFiles = new [] {
 				new OutputFileCopy {
 					FromFile = "./source/bin/Release/Xamarin.Google.ARCore.dll",
 				}
@@ -27,7 +27,7 @@ var buildSpec = new BuildSpec () {
 };
 
 Task ("externals")
-	.Does (() => 
+	.Does (() =>
 {
 	var AAR_FILE = "./externals/arcore.aar";
 	var OBJ_JAR_FILE = "./externals/obj.jar";
@@ -43,8 +43,8 @@ Task ("externals")
 });
 
 
-Task ("clean").IsDependentOn ("clean-base").Does (() => 
-{	
+Task ("clean").IsDependentOn ("clean-base").Does (() =>
+{
 	if (DirectoryExists ("./externals"))
 		DeleteDirectory ("./externals", true);
 });
