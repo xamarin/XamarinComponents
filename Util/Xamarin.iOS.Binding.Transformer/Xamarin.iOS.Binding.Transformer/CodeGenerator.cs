@@ -52,8 +52,6 @@ namespace Xamarin.iOS.Binding.Transformer
                     @namespace = @namespace.AddMembers(aType);
                 }
 
-                @namespace.NormalizeWhitespace();
-
                 //add the namespace to the compilation unit
                 syntaxFactory = syntaxFactory.AddMembers(@namespace);
             }
@@ -61,7 +59,7 @@ namespace Xamarin.iOS.Binding.Transformer
             //create the namespace root element
 
             //format and export as a string
-            var code = syntaxFactory.ToFullString();
+            var code = syntaxFactory.NormalizeWhitespace().ToFullString();
 
             //write to the output file
             using (var writeFile = new StreamWriter(outputFilename))
@@ -99,19 +97,57 @@ namespace Xamarin.iOS.Binding.Transformer
                 if (baseClasses.Types.Any())
                     interfaceDeclaration = interfaceDeclaration.WithBaseList(baseClasses);
             }
-
+            
             //if there are attributes then add them to the class definition
             if (attributeList.Any())
-            {
                 interfaceDeclaration = interfaceDeclaration.WithAttributeLists(attributeList);
 
+            var members = BuildClassMembers(aClass);
 
-            }
+            //if there are any members add them
+            if (members.Any())
+                interfaceDeclaration = interfaceDeclaration.WithMembers(members);
 
+            ///formatting
             interfaceDeclaration = interfaceDeclaration.WithLeadingTrivia(SyntaxFactory.LineFeed, SyntaxFactory.Tab);
             interfaceDeclaration = interfaceDeclaration.WithTrailingTrivia(SyntaxFactory.LineFeed);
 
             return interfaceDeclaration;
+        }
+
+        private static SyntaxList<MemberDeclarationSyntax> BuildClassMembers(ApiClass aClass)
+        {
+            var returnMembers = SyntaxFactory.List<MemberDeclarationSyntax>();
+
+            //work through the properties 
+            foreach (var aProperty in aClass.Properties)
+            {
+                MemberDeclarationSyntax property = BuildProperty(aProperty);
+
+                returnMembers.Add(property);
+            }
+
+            //work through the methods
+            foreach (var aMethod in aClass.Methods)
+            {
+                MemberDeclarationSyntax property = BuildMethod(aMethod);
+
+                returnMembers.Add(property);
+            }
+
+            return returnMembers;
+        }
+
+        private static MemberDeclarationSyntax BuildMethod(ApiMethod aMethod)
+        {
+            return null;
+
+        }
+
+        private static MemberDeclarationSyntax BuildProperty(ApiProperty aProperty)
+        {
+            
+            return null;
         }
 
         /// <summary>
