@@ -56,7 +56,7 @@
 			CacheDirectory="$(XamarinBuildDownloadDir)"
 			User7ZipPath="$(XamarinBuildDownloadUser7ZipPath)"
 			VsInstallRoot="$(VsInstallRoot)"
-			IsAndroid="'$(TargetFrameworkIdentifier)'=='MonoAndroid'"
+			IsAndroid="$(_XamarinBuildDownloadIsAndroid)"
 			AndroidFixManifests="$(_XamarinBuildDownloadAndroidFixManifests)"
 			/>
 	</Target>
@@ -93,12 +93,12 @@
 	</Target>
 
 	<Target Name="_XamarinBuildDownloadAarInclude"
-			DependsOnTargets="_XamarinBuildDownload"
-			Condition="'@(XamarinBuildDownloadRestoreAssemblyAar)'!='' and @(AvailableItemName->AnyHaveMetadataValue('Identity', 'AndroidAarLibrary'))">
+		Condition="'@(XamarinBuildDownloadRestoreAssemblyAar)'!=''"
+		DependsOnTargets="_XamarinBuildDownload">
 
 		<!-- Check if `AndroidAarLibrary` isn't supported and error if so -->
 		<Error 
-			Condition="'@(XamarinBuildDownloadRestoreAssemblyAar)'!='' and !@(AvailableItemName->AnyHaveMetadataValue('Identity', 'AndroidAarLibrary'))"
+			Condition="'@(AvailableItemName->AnyHaveMetadataValue('Identity', 'AndroidAarLibrary'))'!='true'"
 			Text="This version of Xamarin.Build.Download requires a newer version of Xamarin.Android."
 			/>
 
