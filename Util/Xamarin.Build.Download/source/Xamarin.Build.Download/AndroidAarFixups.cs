@@ -13,7 +13,7 @@ namespace Xamarin.Build.Download
 		{
 			const string AAR_DIR_PREFIX = "library_project_imports";
 
-			using (var fileStream = File.OpenWrite(filename))
+			using (var fileStream = new FileStream(filename, FileMode.Open))
 			using (var zipArchive = new ZipArchive(fileStream, ZipArchiveMode.Update, true))
 			{
 				var entryNames = zipArchive.Entries.Select(zae => zae.FullName).ToList();
