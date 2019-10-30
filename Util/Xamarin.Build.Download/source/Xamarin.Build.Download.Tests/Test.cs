@@ -367,7 +367,7 @@ namespace NativeLibraryDownloaderTests
 			var r = AndroidAarAdd(unpackDir, artifactXbdId, "https://dl.google.com/dl/android/maven2/com/google/android/gms/play-services-basement/16.2.0/play-services-basement-16.2.0.aar", false);
 
 			// Check for the error
-			Assert.Contains(r.logs.Errors, e => e.Message.Contains("This version of Xamarin.Build.Download requires a newer version of Xamarin.Android."));
+			Assert.NotEmpty(r.logs.Errors);
 
 			Assert.False(r.success);
 		}
