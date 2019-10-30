@@ -165,6 +165,7 @@ namespace Xamarin.iOS.Binding.Transformer
                 Name = node.Identifier.Text,
             };
 
+            //check for modifiers
             if (node.Modifiers.Any())
             {
                 foreach (var aMod in node.Modifiers)

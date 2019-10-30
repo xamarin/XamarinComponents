@@ -127,6 +127,13 @@ namespace Xamarin.iOS.Binding.Transformer
             interfaceDeclaration = interfaceDeclaration.WithLeadingTrivia(SyntaxFactory.LineFeed, SyntaxFactory.Tab);
             interfaceDeclaration = interfaceDeclaration.WithTrailingTrivia(SyntaxFactory.LineFeed);
 
+            if (aClass.IsPartial)
+            {
+                interfaceDeclaration = interfaceDeclaration.WithModifiers(SyntaxFactory.TokenList
+                (
+                    SyntaxFactory.Token(SyntaxKind.PartialKeyword)
+                ));
+            }
             return interfaceDeclaration;
         }
 
@@ -376,7 +383,31 @@ namespace Xamarin.iOS.Binding.Transformer
 
             if (apiClass.Verify != null)
             {
+                var attribList = SyntaxFactory.AttributeList
+                (
+                    SyntaxFactory.SingletonSeparatedList<AttributeSyntax>
+                    (
+                        SyntaxFactory.Attribute
+                        (
+                            SyntaxFactory.IdentifierName("Verify")
+                        )
+                        .WithArgumentList
+                        (
+                            SyntaxFactory.AttributeArgumentList
+                            (
+                                SyntaxFactory.SingletonSeparatedList<AttributeArgumentSyntax>
+                                (
+                                    SyntaxFactory.AttributeArgument
+                                    (
+                                        SyntaxFactory.IdentifierName("ConstantsInterfaceAssociation")
+                                    )
+                                )
+                            )
+                        )
+                    )
+                );
 
+                attribs = attribs.Add(attribList);
             }
 
             return attribs;
