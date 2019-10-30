@@ -85,11 +85,11 @@ namespace Xamarin.Build.Download
 			}
 
 			// Calculate the hash of the file
-			var hash = HashFile (fileToHash).Replace ("-", string.Empty);
+			var hash = Sha256HashFile (fileToHash).Replace ("-", string.Empty);
 
 			LogDebugMessage ("File :{0}", fileToHash);
-			LogDebugMessage ("SHA1 : {0}", hash);
-			LogDebugMessage ("Expected SHA1 : {0}", expectedHash);
+			LogDebugMessage ("SHA256 : {0}", hash);
+			LogDebugMessage ("Expected SHA256 : {0}", expectedHash);
 
 			// Check to see if the new hash matches expected value
 			if (string.Compare (hash, expectedHash, StringComparison.InvariantCultureIgnoreCase) == 0) {
@@ -154,7 +154,7 @@ namespace Xamarin.Build.Download
 					return false;
 				}
 
-				if (!File.Exists (xbd.CacheFile) || !IsValidDownload (xbd.DestinationDir + ".sha1", xbd.CacheFile, xbd.Sha1)) {
+				if (!File.Exists (xbd.CacheFile) || !IsValidDownload (xbd.DestinationDir + ".sha256", xbd.CacheFile, xbd.Sha256)) {
 					try {
 						int progress = -1;
 						DownloadProgressChangedEventHandler downloadHandler = (o, e) => {
@@ -353,9 +353,9 @@ namespace Xamarin.Build.Download
 			return string.IsNullOrEmpty (foundFile) ? tarPath : foundFile;
 		}
 
-		public static string HashFile (string filename)
+		public static string Sha256HashFile (string filename)
 		{
-			using (HashAlgorithm hashAlg = new SHA1Managed ()) {
+			using (HashAlgorithm hashAlg = new SHA256Managed ()) {
 				return HashFile (filename, hashAlg);
 			}
 		}

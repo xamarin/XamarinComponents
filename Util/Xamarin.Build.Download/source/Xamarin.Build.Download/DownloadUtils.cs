@@ -42,7 +42,7 @@ namespace Xamarin.Build.Download
 					Log.LogCodedError (ErrorCodes.XbdInvalidUrl, "Missing required Url metadata on item {0}", item.ItemSpec);
 					continue;
 				}
-				xbd.Sha1 = item.GetMetadata ("Sha1");
+				xbd.Sha256 = item.GetMetadata ("Sha256");
 				xbd.Kind = GetKind (xbd.Url, item.GetMetadata ("Kind"));
 				if (xbd.Kind == ArchiveKind.Unknown) {
 					//TODO we may be able to determine the kind from the server response
