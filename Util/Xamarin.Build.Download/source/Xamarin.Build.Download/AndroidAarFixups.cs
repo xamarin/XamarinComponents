@@ -11,8 +11,6 @@ namespace Xamarin.Build.Download
 	{
 		internal static void FixupAar(string filename, bool androidFixManifests, TaskLoggingHelper loggingHelper)
 		{
-			const string AAR_DIR_PREFIX = "library_project_imports";
-
 			using (var fileStream = new FileStream(filename, FileMode.Open))
 			using (var zipArchive = new ZipArchive(fileStream, ZipArchiveMode.Update, true))
 			{
@@ -22,12 +20,8 @@ namespace Xamarin.Build.Download
 
 				foreach (var entryName in entryNames)
 				{
-
-					// Calculate the new name with the aar directory prefix
 					var newName = entryName;
-					if (!entryName.StartsWith(AAR_DIR_PREFIX, StringComparison.InvariantCulture))
-						newName = AAR_DIR_PREFIX + "/" + newName;
-
+					
 					// Open the old entry
 					var oldEntry = zipArchive.GetEntry(entryName);
 
