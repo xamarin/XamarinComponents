@@ -72,4 +72,7 @@ Task ("clean")
 		DeleteDirectory ("./externals", true);
 });
 
+Task("ci")
+	.IsDependentOn("samples");
+
 RunTarget (TARGET);
