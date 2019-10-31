@@ -14,7 +14,8 @@
 - Name: ARCore
   BuildScript: ./Android/ARCore/build.cake
   TriggerPaths: [ Android/ARCore ]
-  MacBuildTargets: [ nuget, samples ]
+  MacBuildTargets: [ ci ]
+  WindowsBuildTargets: [ ci ]
 - Name: ConstraintLayout
   BuildScript: ./Android/ConstraintLayout/build.cake
   TriggerPaths: [ Android/ConstraintLayout ]
