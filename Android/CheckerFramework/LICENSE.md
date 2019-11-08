@@ -2,10 +2,10 @@
 Some packages may require or install dependencies which are governed by additional 
 licenses.**
 
-Note: This component depends on [OpenCensus](https://github.com/census-instrumentation)), 
-which is subject to the [Apache 2.0](https://github.com/census-instrumentation/opencensus-java/blob/master/LICENSE)
+Note: This component depends on [CheckerFramework](https://github.com/typetools/checker-framework)), 
+which is subject to the [GPL 2](https://github.com/typetools/checker-framework/blob/master/LICENSE.txt)
 
-### Xamarin Component for OpenCensus for Xamarin.Android
+### Xamarin Component for CheckerFramework.Checker for Xamarin.Android
 
 **The MIT License (MIT)**
 

@@ -7,8 +7,5 @@
         >
         Xamarin.Io.OpenCensus.Common
     </attr>
-    
-    <remove-node
-        path="/api/package[@name='com.sun.tools.javac.util']"
-        />
+        
 </metadata>

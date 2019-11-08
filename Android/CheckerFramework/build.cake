@@ -5,68 +5,21 @@
 #addin nuget:?package=Cake.Xamarin
 #addin nuget:?package=Cake.FileHelpers
 
-var TARGET = Argument ("t", Argument ("target", "Default"));
+var TARGET = Argument ("t", Argument ("target", "ci"));
 
 string ARTIFACT_VERSION="2.11.1";
-string JAR_URL = "";
+
 Dictionary<string, string> JAR_URLS_ARTIFACT_FILES= new Dictionary<string, string>()
 {
 	{
-		$"https://repo1.maven.org/maven2/io/opencensus/opencensus-api/{ARTIFACT_VERSION}/opencensus-api-{ARTIFACT_VERSION}.jar",
-		//$"https://search.maven.org/remotecontent?filepath=io/opencensus/opencensus-api/{ARTIFACT_VERSION}/opencensus-api-{ARTIFACT_VERSION}.jar",
-		$"./externals/android/opencensus-api-{ARTIFACT_VERSION}.jar"
-	},
-	{
-		$"https://repo1.maven.org/maven2/io/opencensus/opencensus-contrib-grpc-metrics/{ARTIFACT_VERSION}/opencensus-contrib-grpc-metrics-{ARTIFACT_VERSION}.jar",
-		//$"https://search.maven.org/remotecontent?filepath=io/opencensus/opencensus-contrib-grpc-metrics/{ARTIFACT_VERSION}/opencensus-contrib-grpc-metrics-{ARTIFACT_VERSION}.jar",
-		$"./externals/android/opencensus-contrib-grpc-metrics-{ARTIFACT_VERSION}.jar"
+		$"https://repo1.maven.org/maven2/org/checkerframework/checker/{ARTIFACT_VERSION}/checker-{ARTIFACT_VERSION}.jar",
+		$"./externals/android/checker-{ARTIFACT_VERSION}.jar"
 	},
 };
-string ARTIFACT_FILE = "";
 string NUGET_VERSION=$"{ARTIFACT_VERSION}";
 
 
-BuildSpec buildSpec = new BuildSpec ()
-{
-	Libs = new ISolutionBuilder []
-	{
-		new DefaultSolutionBuilder
-		{
-			SolutionPath = "./source/Xamarin.Io.OpenCensus.sln",
-			OutputFiles = new []
-			{
-				new OutputFileCopy
-				{
-					FromFile = "./source/Xamarin.Io.OpenCensus.OpenCensusApi/bin/Release/monoandroid81/Xamarin.Io.OpenCensus.OpenCensusApi.dll"
-				},
-				new OutputFileCopy
-				{
-					FromFile = $"source/Xamarin.Io.OpenCensus.OpenCensusApi/bin/Release/Xamarin.Io.OpenCensus.OpenCensusApi.{ARTIFACT_VERSION}.nupkg"
-				},
-
-				new OutputFileCopy
-				{
-					FromFile = "./source/Xamarin.Io.OpenCensus.OpenCensusContribGrpcMetrics/bin/Release/monoandroid81/Xamarin.Io.OpenCensus.OpenCensusContribGrpcMetrics.dll"
-				},
-				new OutputFileCopy
-				{
-					FromFile = $"source/Xamarin.Io.OpenCensus.OpenCensusContribGrpcMetrics/bin/Release/Xamarin.Io.OpenCensus.OpenCensusContribGrpcMetrics.{ARTIFACT_VERSION}.nupkg"
-				},
-			}
-		}
-	},
-
-	Samples = new ISolutionBuilder []
-	{
-		new DefaultSolutionBuilder
-		{
-			SolutionPath = "./samples/Xamarin.Io.OpenCensus.sln"
-		},
-	},
-};
-
 Task ("externals")
-	.IsDependentOn ("externals-base")
 	.Does
 	(
 		() =>
@@ -93,16 +46,40 @@ Task ("externals")
 		}
 	);
 
+Task("libs")
+	.IsDependentOn("externals")
+	.Does
+	(
+		() =>
+		{
+			MSBuild
+			(
+				"./source/Xamarin.CheckerFramework.sln", 
+				c => 
+				{
+					c.Configuration = "Release";
+					c.Restore = true;
+					c.MaxCpuCount = 0;
+					c.Properties.Add("DesignTimeBuild", new [] { "false" });
+				}
+			);
+
+			return;
+		}
+	);
 
 Task ("clean")
-	.IsDependentOn ("clean-base")
 	.Does
 	(
 		() =>
 		{
 			if (DirectoryExists ("./externals/"))
 			{
-				DeleteDirectory ("./externals", true);
+				DeleteDirectory ("./externals/", true);
+			}
+			if (DirectoryExists ("./output/"))
+			{
+				DeleteDirectory ("./output/", true);
 			}
 		}
 	);
@@ -117,7 +94,7 @@ Task("nuget")
 
 			MSBuild
 			(
-				"./source/Xamarin.Io.OpenCensus.OpenCensusApi/Xamarin.Io.OpenCensus.OpenCensusApi.csproj",
+				"./source/Xamarin.CheckerFramework.sln",
 				configuration =>
 					configuration
 						.SetConfiguration("Release")
@@ -125,22 +102,15 @@ Task("nuget")
 						.WithProperty("PackageVersion", NUGET_VERSION)
 						.WithProperty("PackageOutputPath", "../../output")
 			);
-			MSBuild
-			(
-				"./source/Xamarin.Io.OpenCensus.OpenCensusContribGrpcMetrics/Xamarin.Io.OpenCensus.OpenCensusContribGrpcMetrics.csproj",
-				configuration =>
-					configuration
-						.SetConfiguration("Release")
-						.WithTarget("Pack")
-						.WithProperty("PackageVersion", NUGET_VERSION)
-						.WithProperty("PackageOutputPath", "../../output")
-			);
-
-			return;
 		}
 );
 
-SetupXamarinBuildTasks (buildSpec, Tasks, Task);
+Task("ci")
+	.IsDependentOn("libs")
+	.IsDependentOn("nuget")
+	.Does
+	(
+		() => {}
+	);
 
 RunTarget (TARGET);
-

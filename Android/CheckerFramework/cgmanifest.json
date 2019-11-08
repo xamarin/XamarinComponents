@@ -4,24 +4,13 @@
       "Component": {
         "Type": "Maven",
         "Maven": {
-          "ArtifactId": "opencensus-api",
-          "GroupId": "io.opencensus",
-          "Version": "0.21.0",
-          "NuGetId": "Xamarin.Io.OpenCensus.OpenCensusApi"
+          "ArtifactId": "checker",
+          "GroupId": "org.checkerframework",
+          "Version": "2.11.1",
+          "NuGetId": "Xamarin.CheckerFramework.Checker"
         }
       }
     },
-    {
-      "Component": {
-        "Type": "Maven",
-        "Maven": {
-          "ArtifactId": "opencensus-contrib-grpc-metrics",
-          "GroupId": "io.opencensus",
-          "Version": "0.21.0",
-          "NuGetId": "Xamarin.Io.OpenCensus.OpenCensusContribGrpcMetrics"
-        }
-      }
-    }
   ],
   "Version": 1
 }

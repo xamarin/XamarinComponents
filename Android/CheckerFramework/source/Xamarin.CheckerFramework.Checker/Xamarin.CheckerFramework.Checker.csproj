@@ -39,8 +39,8 @@
     <Folder Include="Jars\" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedJar Include="..\..\externals\android\checker-2.11.1.jar">
+    <EmbeddedReferenceJar Include="..\..\externals\android\checker-2.11.1.jar">
       <Link>Jars\checker-2.11.1.jar</Link>
-    </EmbeddedJar>
+    </EmbeddedReferenceJar>
   </ItemGroup>
 </Project>

@@ -1,25 +1,16 @@
 # OpenCensus 
 
-IO.OpenCensus bindings for Xamarin.Android which are Grpc dependencies (Grpc.Core).
+Checker bindings for Xamarin.Android which are Grpc dependencies (Grpc.Core).
 
-*   https://repo1.maven.org/maven2/io/opencensus/
+The Checker Framework enhances Java's type system to make it more powerful and useful. This 
+lets software developers detect and prevent errors in their Java programs. The Checker Framework 
+includes compiler plug-ins ("checkers") that find bugs or verify their absence. It also permits 
+users to write compiler plug-ins.
 
-*   https://mvnrepository.com/artifact/io.opencensus
+*   https://repo1.maven.org/maven2/org/checkerframework/checker/
+
+*   https://mvnrepository.com/artifact/org.checkerframework
 
 *   packages bound
 
-    *   `OpenCensusApi` (`io.opencensus-api`)
-
-        *   https://mvnrepository.com/artifact/io.opencensus/opencensus-api
-
-        *   https://search.maven.org/search?q=a:opencensus-api
-
-        *   https://search.maven.org/remotecontent?filepath=io/opencensus/opencensus-api/
-
-    *   `OpenCensusContribGrpcMetrics` (`opencensus-contrib-grpc-metrics`)
-
-        *   https://mvnrepository.com/artifact/io.opencensus/opencensus-contrib-grpc-metrics
-
-        *   https://search.maven.org/search?q=a:opencensus-contrib-grpc-metrics
-
-        *   https://search.maven.org/remotecontent?filepath=io/opencensus/opencensus-contrib-grpc-metrics/
+    *   `Checker` (`io.checkerframework.checker`)
