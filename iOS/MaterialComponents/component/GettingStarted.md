@@ -310,6 +310,24 @@ Text fields allow users to input text into your app. They are a direct connectio
 
 <img width="300" src="https://material.io/components/images/content/a80b32cb9e8c650aba867fbec7f7e96b.png" />
 
+```csharp
+           var textInput = new TextField();
+            textInput.Placeholder = "Name";
+            textInput.Enabled = true;
+            textInput.TranslatesAutoresizingMaskIntoConstraints = false;
+            textInput.ClearButtonMode = UITextFieldViewMode.Never;
+            var outline = new TextInputControllerOutlined(textInput);
+            outline.FloatingEnabled = true;
+            outline.FloatingPlaceholderNormalColor = UIColor.Green;
+            outline.FloatingPlaceholderActiveColor = UIColor.Green;
+            outline.ActiveColor = UIColor.Green;
+            outline.NormalColor = UIColor.Green;
+            outline.InlinePlaceholderColor = UIColor.Green;
+            outline.TextInputFont = UIFont.SystemFontOfSize(18);
+            outline.InlinePlaceholderFont = UIFont.SystemFontOfSize(20);
+```
+           
+
 ---
 
 # Theming
