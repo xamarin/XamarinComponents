@@ -627,6 +627,51 @@ namespace Xamarin.iOS.Binding.Transformer
                                     newMethod.RequiresSuper = true;
                                 }
                                 break;
+                            case "eventargs":
+                                {
+                                    ProcessMethodEventArgsAttrib(attrib, ref newMethod);
+                                }
+                                break;
+                            case "eventname":
+                                {
+                                    ProcessMethodEventNameAttrib(attrib, ref newMethod);
+                                }
+                                break;
+                            case "obsolete":
+                                {
+                                    newMethod.IsObsolete = true;
+                                }
+                                break;
+                            case "wrap":
+                                {
+                                    ProcessMethodWrapAttrib(attrib, ref newMethod);
+                                }
+                                break;
+                            case "defaultvalue":
+                                {
+                                    ProcessMethodDefaultValueAttrib(attrib, ref newMethod);
+                                }
+                                break;
+                            case "delegatename":
+                                {
+                                    ProcessMethodDelegateNameAttrib(attrib, ref newMethod);
+                                }
+                                break;
+                            case "new":
+                                {
+                                    newMethod.IsNew = true;
+                                }
+                                break;
+                            case "advice":
+                                {
+                                    ProcessMethodAdviceAttrib(attrib, ref newMethod);
+                                }
+                                break;
+                            case "nodefaultvalue":
+                                {
+                                    newMethod.DefaultValue = "None";
+                                }
+                                break;
                             default:
                                 {
                                     Console.WriteLine($"Unexpected Method Attribute {name} ");
@@ -1026,14 +1071,74 @@ namespace Xamarin.iOS.Binding.Transformer
             var exportNameAttrib = result.Attribute.Arguments.FirstOrDefault(x => string.IsNullOrWhiteSpace(x.Name) && x.DataType == AttributeDataType.String);
 
             if (exportNameAttrib == null)
-            {
-                throw new Exception("No Export attrib specified");
-            }
-
-            method.ExportName = exportNameAttrib.Value.Replace("\"", "");
-
+                method.ExportName = exportNameAttrib.Value.Replace("\"", "");
         }
 
+        private static void ProcessMethodEventArgsAttrib(AttributeSyntax attrib, ref ApiMethod method)
+        {
+            var result = BuildAttributes(attrib);
+
+            //get the exported name
+            var eventArgTypeAtrrib = result.Attribute.Arguments.FirstOrDefault(x => string.IsNullOrWhiteSpace(x.Name) && x.DataType == AttributeDataType.String);
+
+            if (eventArgTypeAtrrib != null)
+                method.EventArgs = eventArgTypeAtrrib.Value.Replace("\"", "");
+        }
+
+        private static void ProcessMethodEventNameAttrib(AttributeSyntax attrib, ref ApiMethod method)
+        {
+            var result = BuildAttributes(attrib);
+
+            //get the exported name
+            var eventArgTypeAtrrib = result.Attribute.Arguments.FirstOrDefault(x => string.IsNullOrWhiteSpace(x.Name) && x.DataType == AttributeDataType.String);
+
+            if (eventArgTypeAtrrib != null)
+                method.EventName = eventArgTypeAtrrib.Value.Replace("\"", "");
+        }
+
+        private static void ProcessMethodWrapAttrib(AttributeSyntax attrib, ref ApiMethod method)
+        {
+            var result = BuildAttributes(attrib);
+
+            //get the exported name
+            var wrapNameAttrib = result.Attribute.Arguments.FirstOrDefault(x => string.IsNullOrWhiteSpace(x.Name) && x.DataType == AttributeDataType.String);
+
+            if (wrapNameAttrib != null)
+                method.WrapName = wrapNameAttrib.Value.Replace("\"", "");
+        }
+
+        private static void ProcessMethodDefaultValueAttrib(AttributeSyntax attrib, ref ApiMethod method)
+        {
+            var result = BuildAttributes(attrib);
+
+            //get the exported name
+            var defaultValueAttrib = result.Attribute.Arguments.FirstOrDefault(x => string.IsNullOrWhiteSpace(x.Name));
+
+            if (defaultValueAttrib != null)
+                method.DefaultValue = defaultValueAttrib.Value.Replace("\"", "");
+        }
+
+        private static void ProcessMethodDelegateNameAttrib(AttributeSyntax attrib, ref ApiMethod method)
+        {
+            var result = BuildAttributes(attrib);
+
+            //get the exported name
+            var stringValue = result.Attribute.Arguments.FirstOrDefault(x => string.IsNullOrWhiteSpace(x.Name));
+
+            if (stringValue != null)
+                method.DelegateName = stringValue.Value.Replace("\"", "");
+        }
+
+        private static void ProcessMethodAdviceAttrib(AttributeSyntax attrib, ref ApiMethod method)
+        {
+            var result = BuildAttributes(attrib);
+
+            //get the exported name
+            var stringValue = result.Attribute.Arguments.FirstOrDefault(x => string.IsNullOrWhiteSpace(x.Name));
+
+            if (stringValue != null)
+                method.Advice = stringValue.Value.Replace("\"", "");
+        }
         #endregion
 
         #endregion
