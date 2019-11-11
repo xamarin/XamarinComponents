@@ -22,11 +22,11 @@ namespace Transformeriser3000
                 //write it to file
                 apiDefinition.WriteToFile(apiXmlFile);
 
-                //reload
-                var api = Transformer.Load(apiXmlFile);
+                ////reload
+                //var api = Transformer.Load(apiXmlFile);
 
-                //generate and save the code file
-                await CodeGenerator.GenerateAsync(api, apiFileFixed);
+                ////generate and save the code file
+                //await CodeGenerator.GenerateAsync(api, apiFileFixed);
             }
 
             Console.WriteLine("Hello World!");

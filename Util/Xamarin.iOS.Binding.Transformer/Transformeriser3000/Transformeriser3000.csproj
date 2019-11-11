@@ -9,6 +9,7 @@
     </ItemGroup>
     <ItemGroup>
         <Compile Remove="ApiDefinitions.cs" />
+        <Compile Remove="ApiDefinitionsOrig.cs" />
     </ItemGroup>
     <ItemGroup>
         <PackageReference Include="Microsoft.CodeAnalysis.CSharp" Version="3.3.1">
@@ -18,5 +19,6 @@
         <None Include="ApiDefinitions.cs">
             <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
         </None>
+        <None Include="ApiDefinitionsOrig.cs" />
     </ItemGroup>
 </Project>

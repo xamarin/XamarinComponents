@@ -46,6 +46,21 @@ namespace Xamarin.iOS.Binding.Transformer
         [XmlElement(ElementName = "verify", Order = 5)]
         public ApiVerify Verify { get; set; }
 
+        #region Ignoreable Properties
+
+        [XmlIgnore]
+        public string NativeName
+        {
+            get
+            {
+                if (BaseType != null && !string.IsNullOrWhiteSpace(BaseType.Name))
+                    return BaseType.Name;
+
+                return Name;
+            }
+        }
+
+        #endregion
         public ApiClass()
         {
             Implements = new List<ApiImplements>();

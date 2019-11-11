@@ -48,8 +48,20 @@ namespace Xamarin.iOS.Binding.Transformer
         [XmlAttribute(AttributeName = "tv_version")]
         public string TVVersion { get; set; }
 
+        [XmlAttribute(AttributeName = "introduced_flag")]
+        public bool Introduced { get; set; }
+
         [XmlAttribute(AttributeName = "static")]
         public bool IsStatic { get; set; }
+
+        [XmlAttribute(AttributeName = "internal")]
+        public bool IsInternal { get; set; }
+
+        [XmlAttribute(AttributeName = "new")]
+        public bool IsNew { get; set; }
+
+        [XmlAttribute(AttributeName = "notification")]
+        public bool ShouldNotify { get; set; }
 
         [XmlElement(ElementName = "verify")]
         public ApiVerify Verify { get; set; }

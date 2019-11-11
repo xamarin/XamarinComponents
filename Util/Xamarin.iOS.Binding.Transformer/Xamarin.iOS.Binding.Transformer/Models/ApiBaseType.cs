@@ -12,6 +12,12 @@ namespace Xamarin.iOS.Binding.Transformer
         [XmlAttribute(AttributeName = "name")]
         public string Name { get; set; }
 
+        [XmlAttribute(AttributeName = "delegate")]
+        public string DelegateName { get; set; }
+
+        [XmlAttribute(AttributeName = "eventstype")]
+        public string EventsType { get; set; }
+
         public ApiBaseType()
         {
 

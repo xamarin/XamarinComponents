@@ -104,9 +104,34 @@ namespace Xamarin.iOS.Binding.Transformer
                 }
                 else if (aChild is UsingDirectiveSyntax)
                 {
-                    var usingVal = ((IdentifierNameSyntax)((UsingDirectiveSyntax)aChild).Name).Identifier.Text;
+                    try
+                    {
+                        var usiDir = (UsingDirectiveSyntax)aChild;
 
-                    output.Usings.Items.Add(new ApiUsing() { Name = usingVal });
+                        if (usiDir.Name is IdentifierNameSyntax)
+                        {
+                            var usingVal = ((IdentifierNameSyntax)usiDir.Name).Identifier.Text;
+
+                            output.Usings.Items.Add(new ApiUsing() { Name = usingVal });
+                        }
+                        else if (usiDir.Name is QualifiedNameSyntax)
+                        {
+                            var usingVal = usiDir.GetText().ToString().Replace("using", "").Replace(";","").Trim();
+
+                            output.Usings.Items.Add(new ApiUsing() { Name = usingVal });
+
+                        }
+                        else
+                        {
+                            throw new Exception("unexpected using type");
+                        }
+                        
+                    }
+                    catch (Exception ex)
+                    {
+                        throw;
+                    }
+                    
 
                 }
                 else if (aChild is DelegateDeclarationSyntax)
@@ -181,7 +206,7 @@ namespace Xamarin.iOS.Binding.Transformer
                             break;
                         default:
                             {
-                                Console.WriteLine("");
+                                Console.WriteLine($"Unexpected class modifier {modName}");
                             }
                             break;
                     }
@@ -420,13 +445,13 @@ namespace Xamarin.iOS.Binding.Transformer
 
 
                         }
-                        //else if (aArg.Expression is InitializerExpressionSyntax)
-                        //{
-                        //    var tyep = aArg.Expression as InitializerExpressionSyntax;
+                        else if (aArg.Expression is InitializerExpressionSyntax)
+                        {
+                            var tyep = aArg.Expression as InitializerExpressionSyntax;
 
-                        //    Console.WriteLine(tyep.ToString());
+                            Console.WriteLine(tyep.ToString());
 
-                        //}
+                        }
                         else if (aArg.Expression is ImplicitArrayCreationExpressionSyntax)
                         {
                             var tyep = aArg.Expression as ImplicitArrayCreationExpressionSyntax;
@@ -452,8 +477,6 @@ namespace Xamarin.iOS.Binding.Transformer
 
                                                         var typea = expression as LiteralExpressionSyntax;
                                                         var value = typea.Token.Text;
-
-                                                        Console.WriteLine(typvalue);
 
                                                         var newArgs = new MemberOverrideArguments()
                                                         {
@@ -606,7 +629,7 @@ namespace Xamarin.iOS.Binding.Transformer
                                 break;
                             default:
                                 {
-                                    Console.WriteLine("");
+                                    Console.WriteLine($"Unexpected Method Attribute {name} ");
                                 }
                                 break;
 
@@ -698,9 +721,34 @@ namespace Xamarin.iOS.Binding.Transformer
                                     ProcessPropertyFieldAttrib(attrib, ref newProperty);
                                 }
                                 break;
+                            case "internal":
+                                {
+                                    newProperty.IsInternal = true;
+                                }
+                                break;
+                            case "obsolete":
+                                {
+                                    newProperty.IsObsolete = true;
+                                }
+                                break;
+                            case "new":
+                                {
+                                    newProperty.IsNew = true;
+                                }
+                                break;
+                            case "introduced":
+                                {
+                                    ProcessPropertyIntroducedAttrib(attrib, ref newProperty);
+                                }
+                                break;
+                            case "notification":
+                                {
+                                    newProperty.ShouldNotify = true;
+                                }
+                                break;
                             default:
                                 {
-                                    Console.WriteLine(name);
+                                    Console.WriteLine($"Unexpected property atrribute {name}");
                                 }
                                 break;
 
@@ -745,6 +793,9 @@ namespace Xamarin.iOS.Binding.Transformer
         private static void ProcessBaseTypeAttrib(AttributeSyntax attrib, ref ApiClass newClass)
         {
             var result = BuildAttributes(attrib);
+
+            //get the native data type
+
             var baseType = result.Attribute.Arguments.FirstOrDefault(x => string.IsNullOrWhiteSpace(x.Name) && x.DataType == AttributeDataType.TypeOf);
 
             if (baseType == null)
@@ -752,10 +803,29 @@ namespace Xamarin.iOS.Binding.Transformer
                 throw new Exception("No basetype specified");
             }
 
+            //create a new basetype object
             var newBaseType = new ApiBaseType()
             {
-                TypeName = baseType.Value,
+                TypeName = baseType.Value.Replace("\"", ""),
             };
+
+            //get the original name
+            var nativeName = result.Attribute.Arguments.FirstOrDefault(x => x.Name.Equals("name", StringComparison.OrdinalIgnoreCase));
+
+            if (nativeName != null)
+                newBaseType.Name = nativeName.Value.Replace("\"", "");
+
+            //get the name of the delegate property
+            var delegateName = result.Attribute.Arguments.FirstOrDefault(x => x.Name.Equals("delegates", StringComparison.OrdinalIgnoreCase));
+
+            if (delegateName != null)
+                newBaseType.DelegateName = delegateName.Value.Replace("\"", "");
+
+            //get the type of the events 
+            var eventsType = result.Attribute.Arguments.FirstOrDefault(x => x.Name.Equals("events", StringComparison.OrdinalIgnoreCase));
+
+            if (eventsType != null)
+                newBaseType.EventsType = eventsType.Value.Replace("\"", "");
 
             newClass.BaseType = newBaseType;
         }
@@ -810,6 +880,37 @@ namespace Xamarin.iOS.Binding.Transformer
                 property.IosVersion = versionNumber;
             }
         }
+
+        private static void ProcessPropertyIntroducedAttrib(AttributeSyntax attrib, ref ApiProperty property)
+        {
+            var result = BuildAttributes(attrib);
+            var accessAttrib = result.Attribute.Arguments.FirstOrDefault(x => x.DataType == AttributeDataType.MemberAccess);
+
+            if (accessAttrib != null)
+            {
+                if (accessAttrib.Value.Contains("ios", StringComparison.OrdinalIgnoreCase))
+                {
+                    var versionAttribs = result.Attribute.Arguments.Where(x => x.DataType == AttributeDataType.Number);
+                    var values = versionAttribs.Select(x => x.Value.Replace("\"", ""));
+                    var versionNumber = CombineString(values);
+
+                    property.IosVersion = versionNumber;
+                    property.Introduced = true;
+
+                }
+                else if (accessAttrib.Value.Contains("tvos", StringComparison.OrdinalIgnoreCase))
+                {
+                    var versionAttribs = result.Attribute.Arguments.Where(x => x.DataType == AttributeDataType.Number);
+                    var values = versionAttribs.Select(x => x.Value.Replace("\"", ""));
+                    var versionNumber = CombineString(values);
+
+                    property.TVVersion = versionNumber;
+                    property.Introduced = true;
+                }
+            }
+        }
+
+
 
         /// <summary>
         /// Process the Verify Atrribute on a property
@@ -906,7 +1007,7 @@ namespace Xamarin.iOS.Binding.Transformer
                         break;
                     default:
                         {
-                            Console.WriteLine("Not found");
+                            Console.WriteLine($"Invalid parameter atrrib: {name}");
                         }
                         break;
                 }
@@ -1059,7 +1160,7 @@ namespace Xamarin.iOS.Binding.Transformer
                         }
                     default:
                         {
-                            Console.WriteLine("Not found");
+                            Console.WriteLine($"Invalid get accessor atribute {name}");
                         }
                         break;
                 }
