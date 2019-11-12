@@ -915,48 +915,9 @@ namespace Xamarin.iOS.Binding.Transformer
 
             if (apiClass.BaseType != null)
             {
-                var atrs = SyntaxFactory.AttributeList
-                            (
-                                SyntaxFactory.SingletonSeparatedList<AttributeSyntax>
-                                (
-                                    SyntaxFactory.Attribute
-                                    (
-                                        SyntaxFactory.IdentifierName("BaseType")
-                                    )
-                                    .WithArgumentList
-                                    (
-                                        SyntaxFactory.AttributeArgumentList
-                                        (
-                                            SyntaxFactory.SingletonSeparatedList<AttributeArgumentSyntax>
-                                            (
-                                                SyntaxFactory.AttributeArgument
-                                                (
-                                                    SyntaxFactory.TypeOfExpression
-                                                    (
-                                                        SyntaxFactory.IdentifierName(apiClass.BaseType.TypeName)
-                                                    )
-                                                )
-                                            )
-                                        )
-                                    )
-                                )
-                            )
-                            .WithOpenBracketToken
-                            (
-                                SyntaxFactory.Token
-                                (
-                                    SyntaxFactory.TriviaList
-                                    (
-                                        SyntaxFactory.LineFeed
-                                    ),
-                                    SyntaxKind.OpenBracketToken,
-                                    SyntaxFactory.TriviaList()
-                                )
-                            );
+                var baseTypeAtrribs = BuildClassBaseTypeAttribs(apiClass);
 
-                attribs = attribs.Add(atrs);
-
-
+                attribs.Add(baseTypeAtrribs);
 
             }
 
@@ -1011,6 +972,36 @@ namespace Xamarin.iOS.Binding.Transformer
             }
 
             return attribs;
+        }
+
+        /// <summary>
+        /// Builds the class basetype attributes
+        /// </summary>
+        /// <param name="apiClass">The API class.</param>
+        /// <returns></returns>
+        private static AttributeListSyntax BuildClassBaseTypeAttribs(ApiClass apiClass)
+        {
+            var attrib = SyntaxFactory.Attribute(SyntaxFactory.IdentifierName("BaseType"))
+                            .WithArgumentList
+                            (
+                                SyntaxFactory.AttributeArgumentList
+                                (
+                                    SyntaxFactory.SingletonSeparatedList<AttributeArgumentSyntax>
+                                    (
+                                        SyntaxFactory.AttributeArgument
+                                        (
+                                            SyntaxFactory.TypeOfExpression
+                                            (
+                                                SyntaxFactory.IdentifierName(apiClass.BaseType.TypeName)
+                                            )
+                                        )
+                                    )
+                                )
+                            );
+
+            return SyntaxFactory.AttributeList(SyntaxFactory.SingletonSeparatedList<AttributeSyntax>(attrib))
+                        .WithOpenBracketToken(SyntaxFactory.Token(SyntaxFactory.TriviaList(SyntaxFactory.LineFeed),
+                                SyntaxKind.OpenBracketToken, SyntaxFactory.TriviaList())));
         }
 
         /// <summary>
