@@ -5,8 +5,10 @@ using System.Xml.Serialization;
 namespace Xamarin.iOS.Binding.Transformer
 {
     [XmlRoot(ElementName = "method")]
-    public class ApiMethod
+    public class ApiMethod : ApiObject
     {
+        protected internal override string NodeName => $"method[@name='{Name}']";
+
         [XmlAttribute(AttributeName = "name")]
         public string Name { get; set; }
 
@@ -61,6 +63,17 @@ namespace Xamarin.iOS.Binding.Transformer
         public ApiMethod()
         {
             Parameters = new List<ApiParameter>();
+        }
+
+        internal protected override void SetParent(ApiObject parent)
+        {
+            base.SetParentInternal(parent);
+
+            foreach (var aObject in Parameters)
+            {
+                aObject.SetParent(this);
+            }
+
         }
     }
 }

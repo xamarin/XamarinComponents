@@ -24,6 +24,7 @@ namespace Transformeriser3000
 
                 //reload
                 var api = Transformer.Load(apiXmlFile);
+                api.UpdateHierachy();
 
                 //generate and save the code file
                 await CodeGenerator.GenerateAsync(api, apiFileFixed);

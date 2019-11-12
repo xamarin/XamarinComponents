@@ -4,8 +4,10 @@ using System.Xml.Serialization;
 namespace Xamarin.iOS.Binding.Transformer
 {
     [XmlRoot(ElementName = "property")]
-    public class ApiProperty
+    public class ApiProperty : ApiObject
     {
+        protected internal override string NodeName => $"property[@name='{Name}']";
+
         [XmlAttribute(AttributeName = "name")]
         public string Name { get; set; }
 
@@ -72,6 +74,11 @@ namespace Xamarin.iOS.Binding.Transformer
         public ApiProperty()
         {
 
+        }
+
+        internal protected override void SetParent(ApiObject parent)
+        {
+            base.SetParentInternal(parent);
         }
     }
 }

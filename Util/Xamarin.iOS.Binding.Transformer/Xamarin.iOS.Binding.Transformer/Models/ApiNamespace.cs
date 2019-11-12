@@ -5,8 +5,10 @@ using System.Xml.Serialization;
 
 namespace Xamarin.iOS.Binding.Transformer
 {
-    public class ApiNamespace
+    public class ApiNamespace : ApiObject
     {
+        protected internal override string NodeName => $"namespace[@name='{Name}']";
+
         [XmlAttribute(AttributeName = "name")]
         public string Name { get; set; }
 
@@ -20,7 +22,21 @@ namespace Xamarin.iOS.Binding.Transformer
         {
             Types = new List<ApiClass>();
             Delegates = new List<ApiDelegate>();
-            
+        }
+
+        internal protected override void SetParent(ApiObject parent)
+        {
+            base.SetParentInternal(parent);
+
+            foreach (var aObject in Delegates)
+            {
+                aObject.SetParent(this);
+            }
+
+            foreach (var aObject in Types)
+            {
+                aObject.SetParent(this);
+            }
         }
     }
 }

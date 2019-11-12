@@ -6,8 +6,10 @@ using System.Xml.Serialization;
 namespace Xamarin.iOS.Binding.Transformer
 {
     [XmlRoot(ElementName = "api",Namespace = null)]
-    public class ApiDefinition
+    public class ApiDefinition : ApiObject
     {
+        protected internal override string NodeName => "api";
+
         #region Generator Members
         private XmlSerializerNamespaces _xmlnamespaces;
 
@@ -35,7 +37,17 @@ namespace Xamarin.iOS.Binding.Transformer
 
         
 
+        public void UpdateHierachy()
+        {
+            foreach (var aNamespace in Namespaces)
+            {
+                aNamespace.SetParent(this);
+            }
+        }
 
-
+        internal protected override void SetParent(ApiObject parent)
+        {
+            
+        }
     }
 }
