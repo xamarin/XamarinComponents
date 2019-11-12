@@ -13,6 +13,8 @@ namespace Xamarin.iOS.Binding.Transformer
 {
     public static class CodeGenerator
     {
+        private const string _whitespace = "    ";
+
         public async static Task GenerateAsync(ApiDefinition api, string outputFilename)
         {
             //create the base complation unit
@@ -146,7 +148,9 @@ namespace Xamarin.iOS.Binding.Transformer
             }
 
             ///formatting
-            interfaceDeclaration = interfaceDeclaration.WithTrailingTrivia(SyntaxFactory.LineFeed);
+            interfaceDeclaration = interfaceDeclaration.AddTrailingTrivia(true);
+
+            interfaceDeclaration = interfaceDeclaration.ApplyOpenBraceToken();
 
             return interfaceDeclaration;
         }
@@ -236,6 +240,20 @@ namespace Xamarin.iOS.Binding.Transformer
                 var attribList = BuildSimpleAttribute("RequiresSuper", true);
 
                 attrs = attrs.Add(attribList);
+            }
+
+            if (!string.IsNullOrWhiteSpace(aMethod.EventArgs))
+            {
+                var attrib = BuildStringLiteralAttribute("EventArgs", aMethod.EventArgs);
+
+                attrs = attrs.Add(attrib.AsAtrributeListSyntax().AddOpenBracketToken(true, _whitespace));
+            }
+
+            if (!string.IsNullOrWhiteSpace(aMethod.EventName))
+            {
+                var attrib = BuildStringLiteralAttribute("EventName", aMethod.EventName);
+
+                attrs = attrs.Add(attrib.AsAtrributeListSyntax().AddOpenBracketToken(true, _whitespace));
             }
 
             if (!string.IsNullOrWhiteSpace(aMethod.ExportName))
@@ -370,7 +388,15 @@ namespace Xamarin.iOS.Binding.Transformer
                     )
                 ),
 
-                SyntaxFactory.Identifier(aProperty.Name)
+                SyntaxFactory.Identifier
+                    (
+                        SyntaxFactory.TriviaList(),
+                        aProperty.Name,
+                        SyntaxFactory.TriviaList
+                        (
+                            SyntaxFactory.Space
+                        )
+                    )
             );
 
             property = property.WithLeadingTrivia(SyntaxFactory.LineFeed, SyntaxFactory.Tab);
@@ -430,6 +456,27 @@ namespace Xamarin.iOS.Binding.Transformer
                                 )
                             )
                         ));
+            }
+
+            if (aProperty.IsNew)
+            {
+                var attribList = BuildSimpleAttribute("New", true);
+
+                attrs = attrs.Add(attribList);
+            }
+
+            if (aProperty.IsInternal)
+            {
+                var attribList = BuildSimpleAttribute("Internal", true);
+
+                attrs = attrs.Add(attribList);
+            }
+
+            if (aProperty.ShouldNotify)
+            {
+                var attribList = BuildSimpleAttribute("Notification", true);
+
+                attrs = attrs.Add(attribList);
             }
 
             if (aProperty.IsAbstract)
@@ -559,7 +606,7 @@ namespace Xamarin.iOS.Binding.Transformer
 
             if (aProperty.FieldParams != null && aProperty.FieldParams.Any())
             {
-                var atrib = SyntaxFactory.Attribute(SyntaxFactory.IdentifierName("Export"));
+                var atrib = SyntaxFactory.Attribute(SyntaxFactory.IdentifierName("Field"));
 
                 var nodes = new List<SyntaxNodeOrToken>(){};
 
@@ -584,50 +631,27 @@ namespace Xamarin.iOS.Binding.Transformer
                 var atrlibs = SyntaxFactory.AttributeArgumentList().WithArguments(SyntaxFactory.SeparatedList<AttributeArgumentSyntax>(nodes));
 
                 atrib = atrib.WithArgumentList(atrlibs);
-                attrs = attrs.Add(SyntaxFactory.AttributeList(SyntaxFactory.SingletonSeparatedList<AttributeSyntax>(atrib)).WithOpenBracketToken
-                        (
-                            SyntaxFactory.Token
-                            (
-                                SyntaxFactory.TriviaList
-                                (
-                                    SyntaxFactory.Whitespace("    ")
-                                ),
-                                SyntaxKind.OpenBracketToken,
-                                SyntaxFactory.TriviaList()
-                            )
-                        )
-                        .WithCloseBracketToken
-                        (
-                            SyntaxFactory.Token
-                            (
-                                SyntaxFactory.TriviaList(),
-                                SyntaxKind.CloseBracketToken,
-                                SyntaxFactory.TriviaList
-                                (
-                                    SyntaxFactory.LineFeed
-                                )
-                            )
-                        ));
+
+                attrs = attrs.Add(atrib.AsAtrributeListSyntax().AddOpenBracketToken(true, _whitespace));
+            }
+
+            if (!string.IsNullOrWhiteSpace(aProperty.TVVersion))
+            {
+                var attribList = BuildXamarinAttribute(aProperty.TVVersion, aProperty.Introduced, true);
+
+                attrs = attrs.Add(attribList);
+            }
+
+            if (!string.IsNullOrWhiteSpace(aProperty.IosVersion))
+            {
+                var attribList = BuildXamarinAttribute(aProperty.TVVersion, aProperty.Introduced);
+
+                attrs = attrs.Add(attribList);
             }
 
             if (!string.IsNullOrWhiteSpace(aProperty.ExportName))
             {
-                var atrib = SyntaxFactory.Attribute
-                        (
-                            SyntaxFactory.IdentifierName("Export")
-                        );
-
-                var nodes = new List<SyntaxNodeOrToken>()
-                                    {
-                                        SyntaxFactory.AttributeArgument
-                                        (
-                                            SyntaxFactory.LiteralExpression
-                                            (
-                                                SyntaxKind.StringLiteralExpression,
-                                                SyntaxFactory.Literal(aProperty.ExportName)
-                                            )
-                                        ),
-                                    };
+                var nodes = new List<SyntaxNodeOrToken>();
 
                 if (!string.IsNullOrWhiteSpace(aProperty.SemanticStrength))
                 {
@@ -644,23 +668,13 @@ namespace Xamarin.iOS.Binding.Transformer
                                         ));
                 }
 
-                var atrlibs = SyntaxFactory.AttributeArgumentList().WithArguments(SyntaxFactory.SeparatedList<AttributeArgumentSyntax>(nodes));
+                var atrib = BuildStringLiteralAttribute("Export", aProperty.ExportName, nodes);
 
-                atrib = atrib.WithArgumentList(atrlibs);
-                attrs = attrs.Add(SyntaxFactory.AttributeList(SyntaxFactory.SingletonSeparatedList<AttributeSyntax>(atrib))
-                     .WithOpenBracketToken
-                        (
-                            SyntaxFactory.Token
-                            (
-                                SyntaxFactory.TriviaList
-                                (
-                                    SyntaxFactory.LineFeed,
-                                    SyntaxFactory.Whitespace("    ")
-                                ),
-                                SyntaxKind.OpenBracketToken,
-                                SyntaxFactory.TriviaList()
-                            )
-                        ));
+                //var atrlibs = SyntaxFactory.AttributeArgumentList().WithArguments(SyntaxFactory.SeparatedList<AttributeArgumentSyntax>(nodes));
+
+                //atrib = atrib.WithArgumentList(atrlibs);
+
+                attrs = attrs.Add(atrib.AsAtrributeListSyntax().AddOpenBracketToken(true, _whitespace));
             }
 
             var accessors = SyntaxFactory.AccessorList();
@@ -705,8 +719,10 @@ namespace Xamarin.iOS.Binding.Transformer
 
                 accessors = accessors
                     .AddAccessors(SyntaxFactory.AccessorDeclaration(SyntaxKind.GetAccessorDeclaration)
+                    .AddLeadingTrivia(space: true)
                     .WithAttributeLists(attrslist)
-                    .WithSemicolonToken(SyntaxFactory.Token(SyntaxKind.SemicolonToken)));
+                    .WithSemicolonToken(SyntaxFactory.Token(SyntaxKind.SemicolonToken))
+                    .AddTrailingTrivia(space: true));
             }
 
             if (aProperty.CanSet)
@@ -750,7 +766,8 @@ namespace Xamarin.iOS.Binding.Transformer
                 accessors = accessors
                     .AddAccessors(SyntaxFactory.AccessorDeclaration(SyntaxKind.SetAccessorDeclaration)
                     .WithAttributeLists(attrslist)
-                    .WithSemicolonToken(SyntaxFactory.Token(SyntaxKind.SemicolonToken)));
+                    .WithSemicolonToken(SyntaxFactory.Token(SyntaxKind.SemicolonToken))
+                    .AddTrailingTrivia(space: true));
             }
 
             property =  property.WithAttributeLists(attrs);
@@ -761,6 +778,8 @@ namespace Xamarin.iOS.Binding.Transformer
 
             return property;
         }
+
+
 
         /// <summary>
         /// Build the delegate syntax node
@@ -862,6 +881,54 @@ namespace Xamarin.iOS.Binding.Transformer
 
             }
 
+            if (apiClass.DisableDefaultCtor)
+            {
+                var attribList = BuildSimpleAttribute("DisableDefaultCtor", false);
+
+                attribs = attribs.Add(attribList);
+            }
+
+            if (apiClass.Verify != null)
+            {
+                var attribList = SyntaxFactory.AttributeList
+                            (
+                                SyntaxFactory.SingletonSeparatedList<AttributeSyntax>
+                                (
+                                    SyntaxFactory.Attribute
+                                    (
+                                        SyntaxFactory.IdentifierName("Verify")
+                                    )
+                                    .WithArgumentList
+                                    (
+                                        SyntaxFactory.AttributeArgumentList
+                                        (
+                                            SyntaxFactory.SingletonSeparatedList<AttributeArgumentSyntax>
+                                            (
+                                                SyntaxFactory.AttributeArgument
+                                                (
+                                                    SyntaxFactory.IdentifierName(apiClass.Verify.VerifyType)
+                                                )
+                                            )
+                                        )
+                                    )
+                                )
+                            )
+                            .WithCloseBracketToken
+                            (
+                                SyntaxFactory.Token
+                                (
+                                    SyntaxFactory.TriviaList(),
+                                    SyntaxKind.CloseBracketToken,
+                                    SyntaxFactory.TriviaList
+                                    (
+                                        SyntaxFactory.LineFeed
+                                    )
+                                )
+                            );
+
+                attribs = attribs.Add(attribList);
+            }
+
             if (apiClass.Model != null)
             {
                 var sep = SyntaxFactory.AttributeList
@@ -917,91 +984,111 @@ namespace Xamarin.iOS.Binding.Transformer
             {
                 var baseTypeAtrribs = BuildClassBaseTypeAttribs(apiClass);
 
-                attribs.Add(baseTypeAtrribs);
-
-            }
-
-            if (apiClass.DisableDefaultCtor)
-            {
-                var attribList = BuildSimpleAttribute("DisableDefaultCtor", false);
-
-                attribs = attribs.Add(attribList);
-
-
-            }
-
-            if (apiClass.Verify != null)
-            {
-                var attribList = SyntaxFactory.AttributeList
-                            (
-                                SyntaxFactory.SingletonSeparatedList<AttributeSyntax>
-                                (
-                                    SyntaxFactory.Attribute
-                                    (
-                                        SyntaxFactory.IdentifierName("Verify")
-                                    )
-                                    .WithArgumentList
-                                    (
-                                        SyntaxFactory.AttributeArgumentList
-                                        (
-                                            SyntaxFactory.SingletonSeparatedList<AttributeArgumentSyntax>
-                                            (
-                                                SyntaxFactory.AttributeArgument
-                                                (
-                                                    SyntaxFactory.IdentifierName(apiClass.Verify.VerifyType)
-                                                )
-                                            )
-                                        )
-                                    )
-                                )
-                            )
-                            .WithCloseBracketToken
-                            (
-                                SyntaxFactory.Token
-                                (
-                                    SyntaxFactory.TriviaList(),
-                                    SyntaxKind.CloseBracketToken,
-                                    SyntaxFactory.TriviaList
-                                    (
-                                        SyntaxFactory.LineFeed
-                                    )
-                                )
-                            );
-
-                attribs = attribs.Add(attribList);
+                attribs = attribs.Add(baseTypeAtrribs);
             }
 
             return attribs;
         }
 
-        /// <summary>
-        /// Builds the class basetype attributes
-        /// </summary>
-        /// <param name="apiClass">The API class.</param>
-        /// <returns></returns>
         private static AttributeListSyntax BuildClassBaseTypeAttribs(ApiClass apiClass)
         {
-            var attrib = SyntaxFactory.Attribute(SyntaxFactory.IdentifierName("BaseType"))
-                            .WithArgumentList
-                            (
-                                SyntaxFactory.AttributeArgumentList
-                                (
-                                    SyntaxFactory.SingletonSeparatedList<AttributeArgumentSyntax>
-                                    (
-                                        SyntaxFactory.AttributeArgument
+            var btypeDef = SyntaxFactory.Attribute(SyntaxFactory.IdentifierName("BaseType"));
+
+            var tokens = new List<SyntaxNodeOrToken>();
+
+            if (!string.IsNullOrWhiteSpace(apiClass.BaseType.TypeName))
+            {
+                //add the return type
+                tokens.Add(SyntaxFactory.AttributeArgument
                                         (
                                             SyntaxFactory.TypeOfExpression
                                             (
                                                 SyntaxFactory.IdentifierName(apiClass.BaseType.TypeName)
                                             )
-                                        )
-                                    )
-                                )
-                            );
+                                        ));
+            }
 
-            return SyntaxFactory.AttributeList(SyntaxFactory.SingletonSeparatedList<AttributeSyntax>(attrib))
-                        .WithOpenBracketToken(SyntaxFactory.Token(SyntaxFactory.TriviaList(SyntaxFactory.LineFeed),
-                                SyntaxKind.OpenBracketToken, SyntaxFactory.TriviaList())));
+            if (!string.IsNullOrWhiteSpace(apiClass.BaseType.Name))
+            {
+                //add a comma if the Name is not the first attribute argument
+                if (tokens.Count > 0)
+                {
+                    tokens.Add(SyntaxFactory.Token(SyntaxKind.CommaToken));
+
+                }
+
+                //now add the native name
+                tokens.Add(BuildStringLiteralArgument("Name", apiClass.BaseType.Name, true, true));
+            }
+
+            if (!string.IsNullOrWhiteSpace(apiClass.BaseType.DelegateName))
+            {
+                //add a comma if the Delegate is not the first attribute argument
+                if (tokens.Count > 0)
+                    tokens.Add(SyntaxFactory.Token(SyntaxKind.CommaToken));
+
+                tokens.Add(SyntaxFactory.AttributeArgument
+                                        (
+                                            SyntaxFactory.ImplicitArrayCreationExpression
+                                            (
+                                                SyntaxFactory.InitializerExpression
+                                                (
+                                                    SyntaxKind.ArrayInitializerExpression,
+                                                    SyntaxFactory.SingletonSeparatedList<ExpressionSyntax>
+                                                    (
+                                                        SyntaxFactory.LiteralExpression
+                                                        (
+                                                            SyntaxKind.StringLiteralExpression,
+                                                            SyntaxFactory.Literal(apiClass.BaseType.DelegateName)
+                                                        )
+                                                    )
+                                                )
+                                            )
+                                        )
+                                        .WithNameEquals
+                                        (
+                                            SyntaxFactory.NameEquals
+                                            (
+                                                SyntaxFactory.IdentifierName("Delegates")
+                                            )
+                                        ).AddLeadingTrivia(true, true));
+            }
+
+            if (!string.IsNullOrWhiteSpace(apiClass.BaseType.EventsType))
+            {
+                //add a comma if the Delegate is not the first attribute argument
+                if (tokens.Count > 0)
+                    tokens.Add(SyntaxFactory.Token(SyntaxKind.CommaToken));
+
+                tokens.Add(SyntaxFactory.AttributeArgument
+                                        (
+                                            SyntaxFactory.ImplicitArrayCreationExpression
+                                            (
+                                                SyntaxFactory.InitializerExpression
+                                                (
+                                                    SyntaxKind.ArrayInitializerExpression,
+                                                    SyntaxFactory.SingletonSeparatedList<ExpressionSyntax>
+                                                    (
+                                                        SyntaxFactory.TypeOfExpression
+                                                        (
+                                                            SyntaxFactory.IdentifierName(apiClass.BaseType.EventsType)
+                                                        )
+                                                    )
+                                                )
+                                            )
+                                        )
+                                        .WithNameEquals
+                                        (
+                                            SyntaxFactory.NameEquals
+                                            (
+                                                SyntaxFactory.IdentifierName("Events")
+                                            )
+                                        ).AddLeadingTrivia(true, true));
+            }
+
+            var btype = btypeDef.WithArgumentTokens(tokens);
+
+            return btype.AsAtrributeListSyntax().AddOpenBracketToken();
         }
 
         /// <summary>
@@ -1101,6 +1188,87 @@ namespace Xamarin.iOS.Binding.Transformer
 
         }
 
+        /// <summary>
+        /// Builds the xamarin platform attributes.
+        /// </summary>
+        /// <param name="TvNotiOs">if set to <c>true</c> TvOs not iOS</param>
+        /// <param name="versionNumber">The version number.</param>
+        /// <param name="introduced">if set to <c>true</c> [introduced].</param>
+        /// <returns></returns>
+        private static AttributeListSyntax BuildXamarinAttribute(string versionNumber, bool introduced, bool TvNotiOs = false)
+        {
+            if (!introduced)
+            {
+                var platform = (TvNotiOs) ? "TV" : "iOS";
+
+                var attrib = SyntaxFactory.Attribute(SyntaxFactory.IdentifierName(platform));
+
+                var nodes = new List<SyntaxNodeOrToken>();
+
+                var attrs = versionNumber.Split(",");
+
+                foreach (var anumber in attrs)
+                {
+                    nodes.Add(SyntaxFactory.AttributeArgument
+                                        (
+                                            SyntaxFactory.LiteralExpression
+                                            (
+                                                SyntaxKind.NumericLiteralExpression,
+                                                SyntaxFactory.Literal(int.Parse(anumber))
+                                            )
+                                        ));
+
+                    if (anumber != attrs.Last())
+                        nodes.Add(SyntaxFactory.Token(SyntaxKind.CommaToken));
+                }
+
+                attrib = attrib.WithArgumentTokens(nodes);
+
+                return attrib.AsAtrributeListSyntax().AddOpenBracketToken(true, _whitespace);
+            }
+            else
+            {
+                var platform = (TvNotiOs) ? "TvOS" : "iOS";
+
+                var attrib = SyntaxFactory.Attribute(SyntaxFactory.IdentifierName("Introduced"));
+
+                var nodes = new List<SyntaxNodeOrToken>();
+
+                nodes.Add(SyntaxFactory.AttributeArgument
+                                        (
+                                            SyntaxFactory.MemberAccessExpression
+                                            (
+                                                SyntaxKind.SimpleMemberAccessExpression,
+                                                SyntaxFactory.IdentifierName("PlatformName"),
+                                                SyntaxFactory.IdentifierName(platform)
+                                            )
+                                        ));
+
+                nodes.Add(SyntaxFactory.Token(SyntaxKind.CommaToken));
+
+                var attrs = versionNumber.Split(",");
+
+                foreach (var anumber in attrs)
+                {
+                    nodes.Add(SyntaxFactory.AttributeArgument
+                                        (
+                                            SyntaxFactory.LiteralExpression
+                                            (
+                                                SyntaxKind.NumericLiteralExpression,
+                                                SyntaxFactory.Literal(int.Parse(anumber))
+                                            )
+                                        ));
+
+                    if (anumber != attrs.Last())
+                        nodes.Add(SyntaxFactory.Token(SyntaxKind.CommaToken));
+                }
+
+                attrib = attrib.WithArgumentTokens(nodes);
+
+                return attrib.AsAtrributeListSyntax().AddOpenBracketToken(true, _whitespace);
+            }
+        }
+
         #region Resuable Methods
 
         /// <summary>
@@ -1160,7 +1328,56 @@ namespace Xamarin.iOS.Binding.Transformer
 
         }
 
+        private static AttributeSyntax BuildStringLiteralAttribute(string name, string literalValue, IEnumerable<SyntaxNodeOrToken> additionalNodes = null)
+        {
+            var atrib = SyntaxFactory.Attribute
+                        (
+                            SyntaxFactory.IdentifierName(name)
 
+                        );
+
+            var nodes = new List<SyntaxNodeOrToken>();
+
+            nodes.Add(SyntaxFactory.AttributeArgument
+                                        (
+                                            SyntaxFactory.LiteralExpression
+                                            (
+                                                SyntaxKind.StringLiteralExpression,
+                                                SyntaxFactory.Literal(literalValue)
+                                            )
+                                        ));
+
+
+            if (additionalNodes != null && additionalNodes.Count() > 0)
+                nodes.AddRange(additionalNodes);
+
+            var atrlibs = SyntaxFactory.AttributeArgumentList().WithArguments(SyntaxFactory.SeparatedList<AttributeArgumentSyntax>(nodes));
+
+            atrib = atrib.WithArgumentList(atrlibs);
+
+            return atrib;
+        }
+
+        private static AttributeArgumentSyntax BuildStringLiteralArgument(string name, string literalValue, bool newLine = false, bool tab = false)
+        {
+            var attrib = SyntaxFactory.AttributeArgument
+                                        (
+                                            SyntaxFactory.LiteralExpression
+                                            (
+                                                SyntaxKind.StringLiteralExpression,
+                                                SyntaxFactory.Literal(literalValue)
+                                            )
+                                        )
+                                        .WithNameEquals
+                                        (
+                                            SyntaxFactory.NameEquals
+                                            (
+                                                SyntaxFactory.IdentifierName(name)
+                                            )
+                                        );
+
+            return attrib.AddLeadingTrivia(newLine, tab);
+        }
         #endregion
         #endregion
     }

@@ -1070,7 +1070,7 @@ namespace Xamarin.iOS.Binding.Transformer
             //get the exported name
             var exportNameAttrib = result.Attribute.Arguments.FirstOrDefault(x => string.IsNullOrWhiteSpace(x.Name) && x.DataType == AttributeDataType.String);
 
-            if (exportNameAttrib == null)
+            if (exportNameAttrib != null)
                 method.ExportName = exportNameAttrib.Value.Replace("\"", "");
         }
 
