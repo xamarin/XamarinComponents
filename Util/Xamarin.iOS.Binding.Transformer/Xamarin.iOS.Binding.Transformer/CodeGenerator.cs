@@ -210,12 +210,53 @@ namespace Xamarin.iOS.Binding.Transformer
             //container for the attributes
             var attrs = SyntaxFactory.List<AttributeListSyntax>();
 
-            //check and add Abstract attribute if enabled
-            if (aMethod.IsAbstract)
+            if (!string.IsNullOrWhiteSpace(aMethod.Advice))
             {
-                var attribList = BuildSimpleAttribute("Abstract", true);
+                var attrib = BuildStringLiteralAttribute("Advice", aMethod.Advice);
 
-                attrs = attrs.Add(attribList);
+                attrs = attrs.Add(attrib.AsAtrributeListSyntax().AddOpenBracketToken(true, _whitespace));
+            }
+
+            if (!string.IsNullOrWhiteSpace(aMethod.EventArgs))
+            {
+                var attrib = BuildStringLiteralAttribute("EventArgs", aMethod.EventArgs);
+
+                attrs = attrs.Add(attrib.AsAtrributeListSyntax().AddOpenBracketToken(true, _whitespace));
+            }
+
+            if (!string.IsNullOrWhiteSpace(aMethod.EventName))
+            {
+                var attrib = BuildStringLiteralAttribute("EventName", aMethod.EventName);
+
+                attrs = attrs.Add(attrib.AsAtrributeListSyntax().AddOpenBracketToken(true, _whitespace));
+            }
+
+            if (!string.IsNullOrWhiteSpace(aMethod.DefaultValue))
+            {
+                var attrib = BuildDefaultValueAttrib(aMethod.DefaultValue);
+
+                attrs = attrs.Add(attrib);
+            }
+
+            if (!string.IsNullOrWhiteSpace(aMethod.WrapName))
+            {
+                var attrib = BuildStringLiteralAttribute("Wrap", aMethod.WrapName);
+
+                attrs = attrs.Add(attrib.AsAtrributeListSyntax().AddOpenBracketToken(true, _whitespace));
+            }
+
+            if (!string.IsNullOrWhiteSpace(aMethod.Obsolete))
+            {
+                var attribs = BuildStringLiteralAttribute("Obsolete", aMethod.Obsolete);
+
+                attrs = attrs.Add(attribs.AsAtrributeListSyntax().AddOpenBracketToken(true, _whitespace));
+            }
+
+            if (!string.IsNullOrWhiteSpace(aMethod.DelegateName))
+            {
+                var attrib = BuildStringLiteralAttribute("DelegateName", aMethod.DelegateName);
+
+                attrs = attrs.Add(attrib.AsAtrributeListSyntax().AddOpenBracketToken(true, _whitespace));
             }
 
             //check and add Static attribute if enabled
@@ -224,6 +265,37 @@ namespace Xamarin.iOS.Binding.Transformer
                 var attribList = BuildSimpleAttribute("Static", true);
 
                 attrs = attrs.Add(attribList);
+            }
+
+            if (aMethod.IsNew)
+            {
+                var attribList = BuildSimpleAttribute("New", true);
+
+                attrs = attrs.Add(attribList);
+            }
+
+            //check and add IsNullAllowed attribute if enabled
+            if (aMethod.IsNullAllowed)
+            {
+                attrs = attrs.Add(SyntaxFactory.AttributeList
+                (
+                    SyntaxFactory.SingletonSeparatedList<AttributeSyntax>
+                    (
+                        SyntaxFactory.Attribute
+                        (
+                            SyntaxFactory.IdentifierName("NullAllowed")
+                        )
+                    )
+                )
+                .WithTarget
+                (
+                    SyntaxFactory.AttributeTargetSpecifier
+                    (
+                        SyntaxFactory.Token(SyntaxKind.ReturnKeyword)
+                    )
+                )
+                .AddOpenBracketToken(true, _whitespace));
+                        
             }
 
             //check and add DesignatedInitializer attribute if enabled
@@ -242,18 +314,12 @@ namespace Xamarin.iOS.Binding.Transformer
                 attrs = attrs.Add(attribList);
             }
 
-            if (!string.IsNullOrWhiteSpace(aMethod.EventArgs))
+            //check and add Abstract attribute if enabled
+            if (aMethod.IsAbstract)
             {
-                var attrib = BuildStringLiteralAttribute("EventArgs", aMethod.EventArgs);
+                var attribList = BuildSimpleAttribute("Abstract", true);
 
-                attrs = attrs.Add(attrib.AsAtrributeListSyntax().AddOpenBracketToken(true, _whitespace));
-            }
-
-            if (!string.IsNullOrWhiteSpace(aMethod.EventName))
-            {
-                var attrib = BuildStringLiteralAttribute("EventName", aMethod.EventName);
-
-                attrs = attrs.Add(attrib.AsAtrributeListSyntax().AddOpenBracketToken(true, _whitespace));
+                attrs = attrs.Add(attribList);
             }
 
             if (!string.IsNullOrWhiteSpace(aMethod.ExportName))
@@ -290,52 +356,6 @@ namespace Xamarin.iOS.Binding.Transformer
                                 ),
                                 SyntaxKind.OpenBracketToken,
                                 SyntaxFactory.TriviaList()
-                            )
-                        ));
-            }
-
-            //check and add IsNullAllowed attribute if enabled
-            if (aMethod.IsNullAllowed)
-            {
-                attrs = attrs.Add(SyntaxFactory.AttributeList
-                (
-                    SyntaxFactory.SingletonSeparatedList<AttributeSyntax>
-                    (
-                        SyntaxFactory.Attribute
-                        (
-                            SyntaxFactory.IdentifierName("NullAllowed")
-                        )
-                    )
-                )
-                .WithTarget
-                (
-                    SyntaxFactory.AttributeTargetSpecifier
-                    (
-                        SyntaxFactory.Token(SyntaxKind.ReturnKeyword)
-                    )
-                )
-                .WithOpenBracketToken
-                        (
-                            SyntaxFactory.Token
-                            (
-                                SyntaxFactory.TriviaList
-                                (
-                                    SyntaxFactory.Whitespace("    ")
-                                ),
-                                SyntaxKind.OpenBracketToken,
-                                SyntaxFactory.TriviaList()
-                            )
-                        )
-                        .WithCloseBracketToken
-                        (
-                            SyntaxFactory.Token
-                            (
-                                SyntaxFactory.TriviaList(),
-                                SyntaxKind.CloseBracketToken,
-                                SyntaxFactory.TriviaList
-                                (
-                                    SyntaxFactory.LineFeed
-                                )
                             )
                         ));
             }
@@ -405,57 +425,28 @@ namespace Xamarin.iOS.Binding.Transformer
 
             if (!string.IsNullOrWhiteSpace(aProperty.WrapName))
             {
-                attrs = attrs.Add(SyntaxFactory.AttributeList
+                attrs = attrs.Add(BuildStringLiteralAttribute("Wrap", aProperty.WrapName)
+                    .AsAtrributeListSyntax()
+                    .AddOpenBracketToken(whitespace: _whitespace)
+                    .WithCloseBracketToken
+                    (
+                        SyntaxFactory.Token
                         (
-                            SyntaxFactory.SingletonSeparatedList<AttributeSyntax>
+                            SyntaxFactory.TriviaList(),
+                            SyntaxKind.CloseBracketToken,
+                            SyntaxFactory.TriviaList
                             (
-                                SyntaxFactory.Attribute
-                                (
-                                    SyntaxFactory.IdentifierName("Wrap")
-                                )
-                                .WithArgumentList
-                                (
-                                    SyntaxFactory.AttributeArgumentList
-                                    (
-                                        SyntaxFactory.SingletonSeparatedList<AttributeArgumentSyntax>
-                                        (
-                                            SyntaxFactory.AttributeArgument
-                                            (
-                                                SyntaxFactory.LiteralExpression
-                                                (
-                                                    SyntaxKind.StringLiteralExpression,
-                                                    SyntaxFactory.Literal(aProperty.WrapName)
-                                                )
-                                            )
-                                        )
-                                    )
-                                )
+                                SyntaxFactory.LineFeed
                             )
                         )
-                        .WithOpenBracketToken
-                        (
-                            SyntaxFactory.Token
-                            (
-                                SyntaxFactory.TriviaList
-                                (
-                                    SyntaxFactory.Whitespace("    ")
-                                ),
-                                SyntaxKind.OpenBracketToken,
-                                SyntaxFactory.TriviaList()
-                            )
-                        )
-                        .WithCloseBracketToken
-                        (
-                            SyntaxFactory.Token
-                            (
-                                SyntaxFactory.TriviaList(),
-                                SyntaxKind.CloseBracketToken,
-                                SyntaxFactory.TriviaList
-                                (
-                                    SyntaxFactory.LineFeed
-                                )
-                            )
-                        ));
+                    ));
+            }
+
+            if (!string.IsNullOrWhiteSpace(aProperty.Obsolete))
+            {
+                var attribs = BuildStringLiteralAttribute("Obsolete", aProperty.Obsolete);
+
+                attrs = attrs.Add(attribs.AsAtrributeListSyntax().AddOpenBracketToken(true, _whitespace));
             }
 
             if (aProperty.IsNew)
@@ -491,59 +482,7 @@ namespace Xamarin.iOS.Binding.Transformer
                 attrs = attrs.Add(BuildSimpleAttribute("NullAllowed", true));
             }
             
-            if (aProperty.IsObsolete)
-            {
-                attrs = attrs.Add(SyntaxFactory.AttributeList
-                        (
-                            SyntaxFactory.SingletonSeparatedList<AttributeSyntax>
-                            (
-                                SyntaxFactory.Attribute
-                                (
-                                    SyntaxFactory.IdentifierName("Obsolete")
-                                )
-                                .WithArgumentList
-                                (
-                                    SyntaxFactory.AttributeArgumentList
-                                    (
-                                        SyntaxFactory.SingletonSeparatedList<AttributeArgumentSyntax>
-                                        (
-                                            SyntaxFactory.AttributeArgument
-                                            (
-                                                SyntaxFactory.LiteralExpression
-                                                (
-                                                    SyntaxKind.StringLiteralExpression,
-                                                    SyntaxFactory.Literal("This is obsolete")
-                                                )
-                                            )
-                                        )
-                                    )
-                                )
-                            )
-                        ).WithOpenBracketToken
-                        (
-                            SyntaxFactory.Token
-                            (
-                                SyntaxFactory.TriviaList
-                                (
-                                    SyntaxFactory.Whitespace("    ")
-                                ),
-                                SyntaxKind.OpenBracketToken,
-                                SyntaxFactory.TriviaList()
-                            )
-                        )
-                        .WithCloseBracketToken
-                        (
-                            SyntaxFactory.Token
-                            (
-                                SyntaxFactory.TriviaList(),
-                                SyntaxKind.CloseBracketToken,
-                                SyntaxFactory.TriviaList
-                                (
-                                    SyntaxFactory.LineFeed
-                                )
-                            )
-                        ));
-            }
+            
 
             if (aProperty.IsStatic)
             {
@@ -779,8 +718,6 @@ namespace Xamarin.iOS.Binding.Transformer
             return property;
         }
 
-
-
         /// <summary>
         /// Build the delegate syntax node
         /// </summary>
@@ -853,6 +790,21 @@ namespace Xamarin.iOS.Binding.Transformer
         {
 
             var attribs = SyntaxFactory.List<AttributeListSyntax>();
+
+            if (!string.IsNullOrWhiteSpace(apiClass.Obsolete))
+            {
+                var attribList = BuildStringLiteralAttribute("Obsolete", apiClass.Obsolete);
+
+                attribs = attribs.Add(attribList.AsAtrributeListSyntax().AddOpenBracketToken(true, _whitespace));
+            }
+
+            if (!string.IsNullOrWhiteSpace(apiClass.Advice))
+            {
+                var attribList = BuildStringLiteralAttribute("Advice", apiClass.Advice);
+
+                attribs = attribs.Add(attribList.AsAtrributeListSyntax().AddOpenBracketToken(true, _whitespace));
+            }
+
 
             if (apiClass.IsProtocol)
             {
@@ -1269,6 +1221,63 @@ namespace Xamarin.iOS.Binding.Transformer
             }
         }
 
+        private static AttributeListSyntax BuildDefaultValueAttrib(string defaultValue)
+        {
+            if (defaultValue.Equals("none", StringComparison.OrdinalIgnoreCase))
+            {
+                var attr = BuildSimpleAttribute("NoDefaultValue", true);
+
+                return attr;
+            }
+            else
+            {
+                var nodes = new List<SyntaxNodeOrToken>();
+
+                switch (defaultValue.ToLower())
+                {
+                    case "true":
+                        {
+                            nodes.Add(SyntaxFactory.AttributeArgument
+                                    (
+                                        SyntaxFactory.LiteralExpression
+                                        (
+                                            SyntaxKind.TrueLiteralExpression
+                                        )
+                                    ));
+                        }
+                        break;
+                    case "false":
+                        {
+                            nodes.Add(SyntaxFactory.AttributeArgument
+                                    (
+                                        SyntaxFactory.LiteralExpression
+                                        (
+                                            SyntaxKind.FalseLiteralExpression
+                                        )
+                                    ));
+                        }
+                        break;
+                    case "null":
+                        {
+                            nodes.Add(SyntaxFactory.AttributeArgument
+                                    (
+                                        SyntaxFactory.LiteralExpression
+                                        (
+                                            SyntaxKind.NullLiteralExpression
+                                        )
+                                    ));
+                        }
+                        break;
+                }
+
+                var attrib = SyntaxFactory.Attribute(SyntaxFactory.IdentifierName("DefaultValue"));
+                attrib = attrib.WithArgumentTokens(nodes);
+
+                return attrib.AsAtrributeListSyntax().AddOpenBracketToken(true, _whitespace);
+
+            }
+        }
+
         #region Resuable Methods
 
         /// <summary>
@@ -1299,7 +1308,7 @@ namespace Xamarin.iOS.Binding.Transformer
                         SyntaxFactory.TriviaList
                         (
                             SyntaxFactory.LineFeed,
-                            SyntaxFactory.Whitespace("    ")
+                            SyntaxFactory.Whitespace(_whitespace)
                         ),
                         SyntaxKind.OpenBracketToken,
                         SyntaxFactory.TriviaList()

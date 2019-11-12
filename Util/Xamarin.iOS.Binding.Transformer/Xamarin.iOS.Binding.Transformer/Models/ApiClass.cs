@@ -46,6 +46,12 @@ namespace Xamarin.iOS.Binding.Transformer
         [XmlElement(ElementName = "verify", Order = 5)]
         public ApiVerify Verify { get; set; }
 
+        [XmlAttribute(AttributeName = "advice")]
+        public string Advice { get; set; }
+
+        [XmlAttribute(AttributeName = "obsolete")]
+        public string Obsolete { get; set; }
+
         #region Ignoreable Properties
 
         [XmlIgnore]

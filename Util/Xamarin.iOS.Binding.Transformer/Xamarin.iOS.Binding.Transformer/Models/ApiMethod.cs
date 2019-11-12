@@ -19,9 +19,6 @@ namespace Xamarin.iOS.Binding.Transformer
         [XmlAttribute(AttributeName = "static")]
         public bool IsStatic { get; set; }
 
-        [XmlAttribute(AttributeName = "obsolete")]
-        public bool IsObsolete { get; set; }
-
         [XmlAttribute(AttributeName = "export")]
         public string ExportName { get; set; }
 
@@ -57,6 +54,9 @@ namespace Xamarin.iOS.Binding.Transformer
 
         [XmlAttribute(AttributeName = "advice")]
         public string Advice { get; set; }
+
+        [XmlAttribute(AttributeName = "obsolete")]
+        public string Obsolete { get; set; }
 
         public ApiMethod()
         {

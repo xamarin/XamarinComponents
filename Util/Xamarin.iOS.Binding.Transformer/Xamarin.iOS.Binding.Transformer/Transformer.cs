@@ -275,6 +275,21 @@ namespace Xamarin.iOS.Binding.Transformer
                                         ProcessClassVerifyAttrib(attrib, ref newClass);
                                     }
                                     break;
+                                case "advice":
+                                    {
+                                        ProcessClassAdviceAttrib(attrib, ref newClass);
+                                    }
+                                    break;
+                                case "obsolete":
+                                    {
+                                        ProcessClassObsoleteAttrib(attrib, ref newClass);
+                                    }
+                                    break;
+                                default:
+                                    {
+                                        Console.WriteLine($"Class attrib not found {name}");
+                                    }
+                                    break;
 
                             }
 
@@ -639,7 +654,7 @@ namespace Xamarin.iOS.Binding.Transformer
                                 break;
                             case "obsolete":
                                 {
-                                    newMethod.IsObsolete = true;
+                                    newMethod.Obsolete = GetStringLiteralValue(attrib);
                                 }
                                 break;
                             case "wrap":
@@ -773,7 +788,7 @@ namespace Xamarin.iOS.Binding.Transformer
                                 break;
                             case "obsolete":
                                 {
-                                    newProperty.IsObsolete = true;
+                                    newProperty.Obsolete = GetStringLiteralValue(attrib);
                                 }
                                 break;
                             case "new":
@@ -891,6 +906,28 @@ namespace Xamarin.iOS.Binding.Transformer
 
             newClass.Verify = newVerify;
 
+        }
+
+        private static void ProcessClassAdviceAttrib(AttributeSyntax attrib, ref ApiClass method)
+        {
+            var result = BuildAttributes(attrib);
+
+            //get the exported name
+            var stringValue = result.Attribute.Arguments.FirstOrDefault(x => string.IsNullOrWhiteSpace(x.Name));
+
+            if (stringValue != null)
+                method.Advice = stringValue.Value.Replace("\"", "");
+        }
+
+        private static void ProcessClassObsoleteAttrib(AttributeSyntax attrib, ref ApiClass method)
+        {
+            var result = BuildAttributes(attrib);
+
+            //get the exported name
+            var stringValue = result.Attribute.Arguments.FirstOrDefault(x => string.IsNullOrWhiteSpace(x.Name));
+
+            if (stringValue != null)
+                method.Obsolete = stringValue.Value.Replace("\"", "");
         }
         #endregion
 
@@ -1145,6 +1182,15 @@ namespace Xamarin.iOS.Binding.Transformer
 
         #region Helper Methods
 
+        private static string GetStringLiteralValue(AttributeSyntax attrib)
+        {
+            var result = BuildAttributes(attrib);
+
+            //get the exported name
+            var stringValue = result.Attribute.Arguments.FirstOrDefault(x => string.IsNullOrWhiteSpace(x.Name));
+
+            return stringValue.Value.Replace("\"", "");
+        }
 
         /// <summary>
         /// Get the .net type of the node

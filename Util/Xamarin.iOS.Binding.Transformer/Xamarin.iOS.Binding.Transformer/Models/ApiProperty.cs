@@ -33,9 +33,6 @@ namespace Xamarin.iOS.Binding.Transformer
         [XmlAttribute(AttributeName = "set_bind")]
         public string SetBindName { get; set; }
 
-        [XmlAttribute(AttributeName = "obsolete")]
-        public bool IsObsolete { get; set; }
-
         [XmlAttribute(AttributeName = "semanticstrength")]
         public string SemanticStrength { get; set; }
 
@@ -68,6 +65,9 @@ namespace Xamarin.iOS.Binding.Transformer
 
         [XmlAttribute(AttributeName = "field_params")]
         public string FieldParams { get; set; }
+
+        [XmlAttribute(AttributeName = "obsolete")]
+        public string Obsolete { get; set; }
 
         public ApiProperty()
         {
