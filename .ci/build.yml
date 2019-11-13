@@ -40,37 +40,38 @@ jobs:
       name: ${{ parameters.windowsImage }}
     steps:
       - pwsh: |
-          $repo = "$(Build.Repository.Id)".Replace("/", "_")
-          $branch = "$(Build.SourceBranchName)"
+          $repo = "$(Build.Repository.Id)"
+          $repo = $repo.Substring($repo.IndexOf("/") + 1)
+          $branch = "${{ parameters.masterBranchName }}"
           $CODEBASE_NAME = $repo + "_" + $branch
           echo "Using codebase: $CODEBASE_NAME"
           Write-Host "##vso[task.setvariable variable=CODEBASE_NAME]$CODEBASE_NAME"
-      - task: CredScan@2
-        displayName: 'Analyze source for credentials'
-        inputs:
-          toolMajorVersion: 'V2'
-      - task: SdtReport@1
-        displayName: 'Create security analysis report'
-        inputs:
-          AllTools: true
-      - task: PublishSecurityAnalysisLogs@3
-        displayName: 'Publish security analysis logs'
-      - task: TSAUpload@1
-        inputs:
-          tsaVersion: 'TsaV2'
-          codebase: 'NewOrUpdate'
-          tsaEnvironment: 'PROD'
-          codeBaseName: $(CODEBASE_NAME)
-          notificationAlias: 'xamacomd@microsoft.com'
-          notifyAlwaysV2: false
-          instanceUrlForTsaV2: 'DEVDIV'
-          projectNameDEVDIV: 'DevDiv'
-          areaPath: 'DevDiv\Xamarin Tools and SDKs\Components'
-          iterationPath: 'DevDiv\OneVS'
-      - task: PostAnalysis@1
-        displayName: 'Analyze security analysis report'
-        inputs:
-          AllTools: true
+      # - task: CredScan@2
+      #   displayName: 'Analyze source for credentials'
+      #   inputs:
+      #     toolMajorVersion: 'V2'
+      # - task: SdtReport@1
+      #   displayName: 'Create security analysis report'
+      #   inputs:
+      #     AllTools: true
+      # - task: PublishSecurityAnalysisLogs@3
+      #   displayName: 'Publish security analysis logs'
+      # - task: TSAUpload@1
+      #   inputs:
+      #     tsaVersion: 'TsaV2'
+      #     codebase: 'NewOrUpdate'
+      #     tsaEnvironment: 'PROD'
+      #     codeBaseName: $(CODEBASE_NAME)
+      #     notificationAlias: 'xamacomd@microsoft.com'
+      #     notifyAlwaysV2: false
+      #     instanceUrlForTsaV2: 'DEVDIV'
+      #     projectNameDEVDIV: 'DevDiv'
+      #     areaPath: 'DevDiv\Xamarin Tools and SDKs\Components'
+      #     iterationPath: 'DevDiv\OneVS'
+      # - task: PostAnalysis@1
+      #   displayName: 'Analyze security analysis report'
+      #   inputs:
+      #     AllTools: true
 
   - job: ${{ parameters.name }}
     strategy:
