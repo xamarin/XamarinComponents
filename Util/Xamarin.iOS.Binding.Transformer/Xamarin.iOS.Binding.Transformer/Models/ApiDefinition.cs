@@ -35,17 +35,20 @@ namespace Xamarin.iOS.Binding.Transformer
         [XmlElement(ElementName = "namespace", Order = 1)]
         public List<ApiNamespace> Namespaces { get; set; }
 
-        
-
         public void UpdateHierachy()
         {
+            foreach (var aUsing in Usings.Items)
+            {
+                aUsing.SetParent(this);
+            }
+
             foreach (var aNamespace in Namespaces)
             {
                 aNamespace.SetParent(this);
             }
         }
 
-        public Dictionary<string, ApiObject> GetFlatPathList()
+        public Dictionary<string, ApiObject> BuildTreePath()
         {
             var aList = new Dictionary<string, ApiObject>();
 
@@ -63,6 +66,11 @@ namespace Xamarin.iOS.Binding.Transformer
         internal protected override void UpdatePathList(ref Dictionary<string, ApiObject> dict)
         {
             dict.Add(Path, this);
+
+            foreach (var aUsing in Usings.Items)
+            {
+                aUsing.UpdatePathList(ref dict);
+            }
 
             foreach (var aNamespace in Namespaces)
             {

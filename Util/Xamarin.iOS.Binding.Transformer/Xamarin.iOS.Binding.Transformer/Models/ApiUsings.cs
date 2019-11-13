@@ -16,10 +16,21 @@ namespace Xamarin.iOS.Binding.Transformer
         }
     }
     [XmlRoot(ElementName = "using")]
-    public class ApiUsing
+    public class ApiUsing : ApiObject
     {
         [XmlAttribute(attributeName:"name")]
         public string Name { get; set; }
 
+        protected internal override string NodeName => $"using[@namespace='{Name}']";
+
+        protected internal override void SetParent(ApiObject parent)
+        {
+            SetParentInternal(parent);
+        }
+
+        protected internal override void UpdatePathList(ref Dictionary<string, ApiObject> dict)
+        {
+            dict.Add(this.Path, this);
+        }
     }
 }

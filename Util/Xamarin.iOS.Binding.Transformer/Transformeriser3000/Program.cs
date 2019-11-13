@@ -11,6 +11,7 @@ namespace Transformeriser3000
         {
             var currentLocation = Path.GetDirectoryName(typeof(Program).Assembly.Location);
             var apiFile = Path.Combine(currentLocation, "ApiDefinitions.cs");
+            var apiFileOrig = Path.Combine(currentLocation, "ApiDefinitionsOrig.cs");
             var apiXmlFile = Path.Combine(currentLocation, "Api.xml");
             var apiFileFixed = Path.Combine(currentLocation, "ApiDefinitionsFixed.cs");
             var apiPathTree  = Path.Combine(currentLocation, "ApiTree.txt"); 
@@ -18,26 +19,33 @@ namespace Transformeriser3000
             if (File.Exists(apiFile))
             {
                 //build the api defintion
+
+
+                ////write it to file
+                //apiDefinition.WriteToFile(apiXmlFile);
+
+                ////reload
+                //var api = Transformer.Load(apiXmlFile);
+                //api.UpdateHierachy();
+
                 var apiDefinition = await Transformer.ExtractDefinitionAsync(apiFile);
+                apiDefinition.UpdateHierachy();
+                var stack = apiDefinition.BuildTreePath();
 
-                //write it to file
-                apiDefinition.WriteToFile(apiXmlFile);
+                ////generate and save the code file
+                //await CodeGenerator.GenerateAsync(api, apiFileFixed);
 
-                //reload
-                var api = Transformer.Load(apiXmlFile);
-                api.UpdateHierachy();
+                //now load the original file
+                var apiDefinitionOrig = await Transformer.ExtractDefinitionAsync(apiFileOrig);
+                apiDefinitionOrig.UpdateHierachy();
 
-                var stack = api.GetFlatPathList();
+                var orgStack = apiDefinitionOrig.BuildTreePath();
 
-                var paths = stack.Keys;
+                ChangeManager.Compare(orgStack, stack);
 
-                File.WriteAllLines(apiPathTree, paths);
-
-                //generate and save the code file
-                await CodeGenerator.GenerateAsync(api, apiFileFixed);
             }
 
-            Console.WriteLine("Hello World!");
+            Console.WriteLine("Finished!");
             Console.ReadLine();
         }
     }

@@ -19,6 +19,8 @@
         <None Include="ApiDefinitions.cs">
             <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
         </None>
-        <None Include="ApiDefinitionsOrig.cs" />
+        <None Include="ApiDefinitionsOrig.cs">
+          <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </None>
     </ItemGroup>
 </Project>
