@@ -41,6 +41,7 @@ jobs:
     steps:
       - pwsh: |
           $CODEBASE_NAME = "$(Build.Repository.Id)" + "_" + "$(Build.Repository.Name)" + "_" + "$(Build.SourceBranchName)"
+          echo "$CODEBASE_NAME"
           Write-Host "##vso[task.setvariable variable=CODEBASE_NAME]$CODEBASE_NAME"
 #       - task: CredScan@2
 #         displayName: 'Analyze source for credentials'
