@@ -288,7 +288,21 @@ jobs:
         - task: SdtReport@1
           displayName: 'Create security analysis report'
           inputs:
-            AllTools: true
+            AllTools: false
+            APIScan: false
+            BinSkim: false
+            CodesignValidation: false
+            CredScan: true
+            FortifySCA: false
+            FxCop: false
+            ModernCop: false
+            MSRD: false
+            PoliCheck: false
+            RoslynAnalyzers: false
+            SDLNativeRules: false
+            Semmle: false
+            TSLint: false
+            ToolLogsNotFoundAction: 'Standard'
         - task: PublishSecurityAnalysisLogs@3
           displayName: 'Publish security analysis logs'
         - task: TSAUpload@1
@@ -296,10 +310,21 @@ jobs:
             tsaVersion: 'TsaV2'
             codebase: 'NewOrUpdate'
             tsaEnvironment: 'PROD'
-            codeBaseName: $(CODEBASE_NAME)
+            codeBaseName: '$(CODEBASE_NAME)'
             notificationAlias: 'xamacomd@microsoft.com'
             notifyAlwaysV2: false
             instanceUrlForTsaV2: 'DEVDIV'
             projectNameDEVDIV: 'DevDiv'
             areaPath: 'DevDiv\Xamarin Tools and SDKs\Components'
             iterationPath: 'DevDiv\OneVS'
+            uploadAPIScan: false
+            uploadBinSkim: false
+            uploadCredScan: true
+            uploadFortifySCA: false
+            uploadFxCop: false
+            uploadModernCop: false
+            uploadPoliCheck: false
+            uploadPREfast: false
+            uploadRoslyn: false
+            uploadTSLint: false
+            uploadAsync: true
