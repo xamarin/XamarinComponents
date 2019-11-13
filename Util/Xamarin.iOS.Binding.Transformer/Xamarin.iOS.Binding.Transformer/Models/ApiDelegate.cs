@@ -32,5 +32,15 @@ namespace Xamarin.iOS.Binding.Transformer
             }
 
         }
+
+        internal protected override void UpdatePathList(ref Dictionary<string, ApiObject> dict)
+        {
+            dict.Add(Path, this);
+
+            foreach (var aNamespace in Parameters)
+            {
+                aNamespace.UpdatePathList(ref dict);
+            }
+        }
     }
 }

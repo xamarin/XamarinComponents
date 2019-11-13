@@ -13,6 +13,7 @@ namespace Transformeriser3000
             var apiFile = Path.Combine(currentLocation, "ApiDefinitions.cs");
             var apiXmlFile = Path.Combine(currentLocation, "Api.xml");
             var apiFileFixed = Path.Combine(currentLocation, "ApiDefinitionsFixed.cs");
+            var apiPathTree  = Path.Combine(currentLocation, "ApiTree.txt"); 
 
             if (File.Exists(apiFile))
             {
@@ -25,6 +26,12 @@ namespace Transformeriser3000
                 //reload
                 var api = Transformer.Load(apiXmlFile);
                 api.UpdateHierachy();
+
+                var stack = api.GetFlatPathList();
+
+                var paths = stack.Keys;
+
+                File.WriteAllLines(apiPathTree, paths);
 
                 //generate and save the code file
                 await CodeGenerator.GenerateAsync(api, apiFileFixed);

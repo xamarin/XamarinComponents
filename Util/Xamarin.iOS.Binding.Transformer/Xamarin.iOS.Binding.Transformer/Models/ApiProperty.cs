@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Xml.Serialization;
 
 namespace Xamarin.iOS.Binding.Transformer
@@ -6,7 +7,7 @@ namespace Xamarin.iOS.Binding.Transformer
     [XmlRoot(ElementName = "property")]
     public class ApiProperty : ApiObject
     {
-        protected internal override string NodeName => $"property[@name='{Name}']";
+        protected internal override string NodeName => $"property[@name='{NativeName}']";
 
         [XmlAttribute(AttributeName = "name")]
         public string Name { get; set; }
@@ -71,6 +72,18 @@ namespace Xamarin.iOS.Binding.Transformer
         [XmlAttribute(AttributeName = "obsolete")]
         public string Obsolete { get; set; }
 
+        [XmlIgnore]
+        public string NativeName
+        {
+            get
+            {
+                if (!string.IsNullOrWhiteSpace(ExportName))
+                    return ExportName;
+
+                return Name;
+            }
+        }
+
         public ApiProperty()
         {
 
@@ -79,6 +92,11 @@ namespace Xamarin.iOS.Binding.Transformer
         internal protected override void SetParent(ApiObject parent)
         {
             base.SetParentInternal(parent);
+        }
+
+        internal protected override void UpdatePathList(ref Dictionary<string, ApiObject> dict)
+        {
+            dict.Add(Path, this);
         }
     }
 }

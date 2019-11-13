@@ -45,9 +45,29 @@ namespace Xamarin.iOS.Binding.Transformer
             }
         }
 
+        public Dictionary<string, ApiObject> GetFlatPathList()
+        {
+            var aList = new Dictionary<string, ApiObject>();
+
+            UpdatePathList(ref aList);
+
+            return aList;
+
+        }
+
         internal protected override void SetParent(ApiObject parent)
         {
             
+        }
+
+        internal protected override void UpdatePathList(ref Dictionary<string, ApiObject> dict)
+        {
+            dict.Add(Path, this);
+
+            foreach (var aNamespace in Namespaces)
+            {
+                aNamespace.UpdatePathList(ref dict);
+            }
         }
     }
 }

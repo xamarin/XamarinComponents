@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Xml.Serialization;
 
 namespace Xamarin.iOS.Binding.Transformer
@@ -24,6 +25,11 @@ namespace Xamarin.iOS.Binding.Transformer
         {
             base.SetParentInternal(parent);
 
+        }
+
+        internal protected override void UpdatePathList(ref Dictionary<string, ApiObject> dict)
+        {
+            dict.Add(Path, this);
         }
     }
 }

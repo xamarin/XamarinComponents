@@ -35,5 +35,7 @@ namespace Xamarin.iOS.Binding.Transformer
         }
 
         internal protected abstract void SetParent(ApiObject parent);
+
+        internal protected abstract void UpdatePathList(ref Dictionary<string, ApiObject> dict);
     }
 }

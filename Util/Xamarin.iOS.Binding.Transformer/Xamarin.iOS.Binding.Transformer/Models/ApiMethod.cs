@@ -7,7 +7,7 @@ namespace Xamarin.iOS.Binding.Transformer
     [XmlRoot(ElementName = "method")]
     public class ApiMethod : ApiObject
     {
-        protected internal override string NodeName => $"method[@name='{Name}']";
+        protected internal override string NodeName => $"method[@name='{NativeName}']";
 
         [XmlAttribute(AttributeName = "name")]
         public string Name { get; set; }
@@ -60,6 +60,18 @@ namespace Xamarin.iOS.Binding.Transformer
         [XmlAttribute(AttributeName = "obsolete")]
         public string Obsolete { get; set; }
 
+        [XmlIgnore]
+        public string NativeName
+        {
+            get
+            {
+                if (!string.IsNullOrWhiteSpace(ExportName))
+                    return ExportName;
+
+                return Name;
+            }
+        }
+
         public ApiMethod()
         {
             Parameters = new List<ApiParameter>();
@@ -75,5 +87,17 @@ namespace Xamarin.iOS.Binding.Transformer
             }
 
         }
+
+        internal protected override void UpdatePathList(ref Dictionary<string, ApiObject> dict)
+        {
+            dict.Add(Path, this);
+
+            foreach (var aNamespace in Parameters)
+            {
+                aNamespace.UpdatePathList(ref dict);
+            }
+
+        }
+
     }
 }
