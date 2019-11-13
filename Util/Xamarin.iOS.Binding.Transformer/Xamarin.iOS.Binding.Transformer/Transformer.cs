@@ -262,7 +262,7 @@ namespace Xamarin.iOS.Binding.Transformer
                                     break;
                                 case "protocol":
                                     {
-                                        newClass.IsProtocol = true;
+                                        ProcessClassProtocolAttrib(attrib, ref newClass);
                                     }
                                     break;
                                 case "static":
@@ -848,6 +848,22 @@ namespace Xamarin.iOS.Binding.Transformer
             }
 
             newClass.Model = newModel;
+        }
+
+        private static void ProcessClassProtocolAttrib(AttributeSyntax attrib, ref ApiClass newClass)
+        {
+            newClass.IsProtocol = true;
+
+            var result = BuildAttributes(attrib);
+
+            if (result.Attribute.Arguments.Count > 0)
+            {
+                var nativeName = result.Attribute.Arguments.FirstOrDefault(x => x.Name.Equals("name", StringComparison.OrdinalIgnoreCase));
+
+                if (nativeName != null)
+                    newClass.ProtocolName = nativeName.Value.Replace("\"", "");
+            }
+
         }
 
         private static void ProcessBaseTypeAttrib(AttributeSyntax attrib, ref ApiClass newClass)

@@ -77,8 +77,8 @@ namespace Xamarin.iOS.Binding.Transformer
         {
             get
             {
-                if (!string.IsNullOrWhiteSpace(ExportName))
-                    return ExportName;
+                //if (!string.IsNullOrWhiteSpace(ExportName))
+                //    return ExportName;
 
                 return Name;
             }

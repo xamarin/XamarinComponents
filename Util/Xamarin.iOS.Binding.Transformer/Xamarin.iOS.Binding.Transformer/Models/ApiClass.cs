@@ -24,6 +24,9 @@ namespace Xamarin.iOS.Binding.Transformer
         [XmlAttribute(AttributeName = "protocol")]
         public bool IsProtocol { get; set; }
 
+        [XmlAttribute(AttributeName = "protocolname")]
+        public string ProtocolName { get; set; }
+
         [XmlAttribute(AttributeName = "static")]
         public bool IsStatic { get; set; }
 
@@ -63,6 +66,9 @@ namespace Xamarin.iOS.Binding.Transformer
             {
                 if (BaseType != null && !string.IsNullOrWhiteSpace(BaseType.Name))
                     return BaseType.Name;
+
+                if (!string.IsNullOrWhiteSpace(ProtocolName))
+                    return ProtocolName;
 
                 return Name;
             }
