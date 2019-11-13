@@ -14,7 +14,8 @@
 - Name: ARCore
   BuildScript: ./Android/ARCore/build.cake
   TriggerPaths: [ Android/ARCore ]
-  MacBuildTargets: [ nuget, samples ]
+  MacBuildTargets: [ ci ]
+  WindowsBuildTargets: [ ci ]
 - Name: ConstraintLayout
   BuildScript: ./Android/ConstraintLayout/build.cake
   TriggerPaths: [ Android/ConstraintLayout ]
@@ -267,6 +268,9 @@
 - Name: Google.Android.DataTransport
   BuildScript: ./Android/Google.Android.DataTransport/build.cake
   TriggerPaths: [ Android/Google.Android.DataTransport ]
+- Name:  CheckerFramework.Checker
+  BuildScript: ./Android/CheckerFramework.Checker/build.cake
+  TriggerPaths: [ Android/CheckerFramework.Checker ]
   MacBuildTargets: [ ci ]
   WindowsBuildTargets: [ ci ]
 
