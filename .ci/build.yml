@@ -34,6 +34,14 @@ parameters:
   targetsFilter: ''                                         # [manifest] the targets of the items to build
 
 jobs:
+  - job: checks
+    displayName: 'Run required code checks'
+    pool:
+      name: ${{ parameters.windowsImage }}
+    steps:
+      - task: CredScan@2
+        inputs:
+          toolMajorVersion: 'V2'
   - job: ${{ parameters.name }}
     strategy:
       matrix:
