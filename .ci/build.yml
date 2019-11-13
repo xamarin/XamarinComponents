@@ -42,6 +42,11 @@ jobs:
       - task: CredScan@2
         inputs:
           toolMajorVersion: 'V2'
+      - task: SdtReport@1@1
+        displayName: 'Create Security Analysis Report'
+        inputs:
+          CredScan: true
+
   - job: ${{ parameters.name }}
     strategy:
       matrix:
