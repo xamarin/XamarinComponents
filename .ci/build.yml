@@ -303,7 +303,3 @@ jobs:
             projectNameDEVDIV: 'DevDiv'
             areaPath: 'DevDiv\Xamarin Tools and SDKs\Components'
             iterationPath: 'DevDiv\OneVS'
-        - task: PostAnalysis@1
-          displayName: 'Analyze security analysis report'
-          inputs:
-            AllTools: true
