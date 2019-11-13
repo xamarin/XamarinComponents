@@ -36,7 +36,7 @@ parameters:
 jobs:
   - job: checks
     displayName: 'Run required code checks'
-    condition: eq('refs/head/${{ parameters.masterBranchName }}', variables['Build.SourceBranch'])
+    #condition: eq('refs/head/${{ parameters.masterBranchName }}', variables['Build.SourceBranch'])
     pool:
       name: ${{ parameters.windowsImage }}
     steps:
