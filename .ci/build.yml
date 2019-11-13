@@ -40,12 +40,15 @@ jobs:
       name: ${{ parameters.windowsImage }}
     steps:
       - task: CredScan@2
+        displayName: 'Analyse source for credentials'
         inputs:
           toolMajorVersion: 'V2'
       - task: SdtReport@1
-        displayName: 'Create Security Analysis Report'
+        displayName: 'Create security analysis report'
         inputs:
           CredScan: true
+      - task: PublishSecurityAnalysisLogs@3
+        displayName: 'Publish security analysis logs'
 
   - job: ${{ parameters.name }}
     strategy:
