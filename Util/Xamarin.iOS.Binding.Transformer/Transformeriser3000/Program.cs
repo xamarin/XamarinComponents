@@ -14,21 +14,23 @@ namespace Transformeriser3000
             var apiFileOrig = Path.Combine(currentLocation, "ApiDefinitionsOrig.cs");
             var apiXmlFile = Path.Combine(currentLocation, "Api.xml");
             var apiFileFixed = Path.Combine(currentLocation, "ApiDefinitionsFixed.cs");
-            var apiPathTree  = Path.Combine(currentLocation, "ApiTree.txt"); 
+            var apiPathTree  = Path.Combine(currentLocation, "ApiTree.txt");
+
+            var apiDiffOutput = Path.Combine(currentLocation, "diffs");
 
             if (File.Exists(apiFile))
             {
                 //build the api defintion
-
+                var apiDefinition = await Transformer.ExtractDefinitionAsync(apiFile);
 
                 ////write it to file
-                //apiDefinition.WriteToFile(apiXmlFile);
+                apiDefinition.WriteToFile(apiXmlFile);
 
                 ////reload
                 //var api = Transformer.Load(apiXmlFile);
                 //api.UpdateHierachy();
 
-                var apiDefinition = await Transformer.ExtractDefinitionAsync(apiFile);
+
                 apiDefinition.UpdateHierachy();
                 var stack = apiDefinition.BuildTreePath();
 
@@ -41,7 +43,10 @@ namespace Transformeriser3000
 
                 var orgStack = apiDefinitionOrig.BuildTreePath();
 
-                ChangeManager.Compare(orgStack, stack);
+                if (!Directory.Exists(apiDiffOutput))
+                    Directory.CreateDirectory(apiDiffOutput);
+
+                ChangeManager.Compare(orgStack, stack, apiDiffOutput);
 
             }
 

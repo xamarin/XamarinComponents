@@ -5,10 +5,10 @@ using System.Xml.Serialization;
 
 namespace Xamarin.iOS.Binding.Transformer
 {
-    [XmlRoot(ElementName = "api",Namespace = null)]
+    [XmlRoot(ElementName = @"api",Namespace = null)]
     public class ApiDefinition : ApiObject
     {
-        protected internal override string NodeName => "api";
+        protected internal override string NodeName => "/api";
 
         #region Generator Members
         private XmlSerializerNamespaces _xmlnamespaces;
