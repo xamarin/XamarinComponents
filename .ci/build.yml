@@ -39,8 +39,9 @@ jobs:
     pool:
       name: ${{ parameters.windowsImage }}
     steps:
-      - pwsh: 'echo hello'
-        displayName: '$(Build.Repository.Name)_$(Build.SourceBranchName)'
+      - pwsh: |
+          $CODEBASE_NAME = "$(Build.Repository.Id)" + "_" + "$(Build.Repository.Name)" + "_" + "$(Build.SourceBranchName)"
+          Write-Host "##vso[task.setvariable variable=CODEBASE_NAME]$CODEBASE_NAME"
 #       - task: CredScan@2
 #         displayName: 'Analyze source for credentials'
 #         inputs:
