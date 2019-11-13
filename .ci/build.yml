@@ -42,7 +42,7 @@ jobs:
       - task: CredScan@2
         inputs:
           toolMajorVersion: 'V2'
-      - task: SdtReport@1@1
+      - task: SdtReport@1
         displayName: 'Create Security Analysis Report'
         inputs:
           CredScan: true
