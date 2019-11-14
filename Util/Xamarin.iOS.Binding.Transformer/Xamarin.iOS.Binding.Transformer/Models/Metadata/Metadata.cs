@@ -20,7 +20,10 @@ namespace Xamarin.iOS.Binding.Transformer.Models.Metadata
 
         #endregion
 
-        [XmlElement(ElementName = "remove-node")]
+        [XmlElement(ElementName = "add-node",Order =0)]
+        public List<Add_Node> AddNodes { get; set; }
+
+        [XmlElement(ElementName = "remove-node", Order = 1)]
         public List<Remove_Node> RemoveNodes { get; set; }
 
         public Metadata()
@@ -28,6 +31,7 @@ namespace Xamarin.iOS.Binding.Transformer.Models.Metadata
             _xmlnamespaces = new XmlSerializerNamespaces(new XmlQualifiedName[] { new XmlQualifiedName(string.Empty, "urn:xamarin") });
 
             RemoveNodes = new List<Remove_Node>();
+            AddNodes = new List<Add_Node>();
         }
 
 

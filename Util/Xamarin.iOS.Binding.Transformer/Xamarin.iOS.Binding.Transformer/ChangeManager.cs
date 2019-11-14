@@ -58,6 +58,47 @@ namespace Xamarin.iOS.Binding.Transformer
                 });
             }
 
+            foreach (var aItem in added)
+            {
+                var aApiObject = aItem.Value;
+
+                var newAdded = new Add_Node()
+                {
+                    Path = aApiObject.Parent.Path,
+                };
+
+                if (aApiObject is ApiUsing)
+                {
+                    newAdded.Using = aApiObject as ApiUsing;
+                }
+                else if (aApiObject is ApiClass)
+                {
+                    newAdded.Class = aApiObject as ApiClass;
+                }
+                else if (aApiObject is ApiDelegate)
+                {
+                    newAdded.Delegate = aApiObject as ApiDelegate;
+                }
+                else if (aApiObject is ApiMethod)
+                {
+                    newAdded.Method = aApiObject as ApiMethod;
+                }
+                else if (aApiObject is ApiProperty)
+                {
+                    newAdded.Property = aApiObject as ApiProperty;
+                }
+                else if (aApiObject is ApiParameter)
+                {
+                    newAdded.Parameter = aApiObject as ApiParameter;
+                }
+                else
+                {
+
+                }
+
+                metaData.AddNodes.Add(newAdded);
+            }
+
             metaData.WriteToFile(Path.Combine(outputPath, MetaDataFileName));
 
 
