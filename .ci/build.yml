@@ -285,6 +285,10 @@ jobs:
           displayName: 'Analyze source for credentials'
           inputs:
             toolMajorVersion: 'V2'
+        - task: PoliCheck@1
+          inputs:
+            inputType: 'Basic'
+            targetType: 'F'
         - task: SdtReport@1
           displayName: 'Create security analysis report'
           inputs:
@@ -297,7 +301,7 @@ jobs:
             FxCop: false
             ModernCop: false
             MSRD: false
-            PoliCheck: false
+            PoliCheck: true
             RoslynAnalyzers: false
             SDLNativeRules: false
             Semmle: false
@@ -323,7 +327,7 @@ jobs:
             uploadFortifySCA: false
             uploadFxCop: false
             uploadModernCop: false
-            uploadPoliCheck: false
+            uploadPoliCheck: true
             uploadPREfast: false
             uploadRoslyn: false
             uploadTSLint: false
