@@ -252,9 +252,6 @@ jobs:
             --verbosity="${{ parameters.verbosity }}"
         displayName: 'Generate API diff'
       # after the build is complete
-      - task: ms.vss-governance-buildtask.governance-build-task-component-detection.ComponentGovernanceComponentDetection@0
-        displayName: 'Run component detection'
-        condition: and(succeeded(), in(variables['Build.Reason'], 'IndividualCI', 'BatchedCI'))
       - task: PublishBuildArtifacts@1
         displayName: 'Publish artifacts'
         inputs:
@@ -266,6 +263,15 @@ jobs:
         inputs:
           PathToPublish: output
           ArtifactName: output-$(System.JobName)
+      # run any required checks
+      - ${{ if eq(variables['System.TeamProject'], 'devdiv') }}:
+        - task: ComponentGovernanceComponentDetection@0
+          displayName: 'Run component detection'
+          condition: and(succeeded(), in(variables['Build.Reason'], 'IndividualCI', 'BatchedCI'))
+          inputs:
+            scanType: 'Register'
+            verbosity: 'Verbose'
+            alertWarningLevel: 'High'
 
   - ${{ if eq(variables['System.TeamProject'], 'devdiv') }}:
     - job: checks
