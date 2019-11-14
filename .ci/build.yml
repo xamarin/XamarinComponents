@@ -267,7 +267,7 @@ jobs:
       - ${{ if eq(variables['System.TeamProject'], 'devdiv') }}:
         - task: ComponentGovernanceComponentDetection@0
           displayName: 'Run component detection'
-          condition: and(succeeded(), in(variables['Build.Reason'], 'IndividualCI', 'BatchedCI'))
+          condition: eq('refs/head/${{ parameters.masterBranchName }}', variables['Build.SourceBranch'])
           inputs:
             scanType: 'Register'
             verbosity: 'Verbose'
