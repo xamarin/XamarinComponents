@@ -43,7 +43,7 @@ public override void RegisteredForRemoteNotifications (UIApplication app, NSData
 
 	// Register our info with Azure
 	var hub = new SBNotificationHub (cs, "your-hub-name");
-	hub.RegisterNativeAsync (deviceToken, null, err => {
+	hub.RegisterNative (deviceToken, null, err => {
 		if (err != null)
 			Console.WriteLine("Error: " + err.Description);
 		else
