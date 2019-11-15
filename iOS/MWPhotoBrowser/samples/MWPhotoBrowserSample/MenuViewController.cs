@@ -755,7 +755,7 @@ namespace MWPhotoBrowserSample
 				photos.Add (photo);
 				thumbs.Add (PhotoBrowserPhoto.FromUrl (new NSUrl ("http://farm2.static.flickr.com/1310/1213846529_9a1fc08f0f_q.jpg")));
 				photo = PhotoBrowserPhoto.FromUrl (new NSUrl ("http://farm2.static.flickr.com/1320/1213843939_6f5594ffca_b.jpg"));
-				photo.Caption = "Jesus, Monte Toro";
+				photo.Caption = "Monte Toro";
 				photos.Add (photo);
 				thumbs.Add (PhotoBrowserPhoto.FromUrl (new NSUrl ("http://farm2.static.flickr.com/1320/1213843939_6f5594ffca_q.jpg")));
 				photo = PhotoBrowserPhoto.FromUrl (new NSUrl ("http://farm2.static.flickr.com/1290/1213774167_804edea2a8_b.jpg"));
