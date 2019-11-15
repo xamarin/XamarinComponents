@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Collections.Generic;
 using System.Text;
 
@@ -14,12 +15,23 @@ namespace Xamarin.iOS.Binding.Transformer
 
             foreach (var aProp in props)
             {
+                
+                var atrrs = aProp.CustomAttributes.FirstOrDefault(x => x.AttributeType.Name.Equals("ChangeIgnoreAttribute"));
+
+                //is the property ignorable
+                if (atrrs != null)
+                {
+                    //yes, then skip
+                    continue;
+                }
+                
                 var aName = aProp.Name;
                 var aValue = aProp.GetValue(target);
 
-                Console.WriteLine($"aName");
-
-
+                if (aValue == null)
+                {
+                    Console.WriteLine(aName);
+                }
             }
 
             return dict;

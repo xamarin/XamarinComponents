@@ -20,10 +20,14 @@ namespace Xamarin.iOS.Binding.Transformer.Models.Metadata
 
         #endregion
 
-        [XmlElement(ElementName = "add-node",Order =0)]
+
+        [XmlElement(ElementName = "attr", Order = 0)]
+        public List<Attr> Changes { get; set; }
+
+        [XmlElement(ElementName = "add-node",Order = 1)]
         public List<Add_Node> AddNodes { get; set; }
 
-        [XmlElement(ElementName = "remove-node", Order = 1)]
+        [XmlElement(ElementName = "remove-node", Order = 2)]
         public List<Remove_Node> RemoveNodes { get; set; }
 
         public Metadata()
@@ -32,6 +36,7 @@ namespace Xamarin.iOS.Binding.Transformer.Models.Metadata
 
             RemoveNodes = new List<Remove_Node>();
             AddNodes = new List<Add_Node>();
+            Changes = new List<Attr>();
         }
 
 

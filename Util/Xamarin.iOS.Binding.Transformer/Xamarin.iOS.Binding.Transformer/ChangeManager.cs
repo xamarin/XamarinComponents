@@ -167,6 +167,8 @@ namespace Xamarin.iOS.Binding.Transformer
                 var newItem = newItems[aPath];
 
                 var propValues = origItem.GetValues();
+                var newPropValues = newItem.GetValues();
+
 
             }
         }
