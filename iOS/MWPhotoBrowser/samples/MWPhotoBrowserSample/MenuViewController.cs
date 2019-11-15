@@ -963,7 +963,7 @@ namespace MWPhotoBrowserSample
 				photos.Add (photo);
 				thumbs.Add (PhotoBrowserPhoto.FromUrl (new NSUrl ("http://farm2.static.flickr.com/1297/1019721148_796385dcb6_q.jpg")));
 				photo = PhotoBrowserPhoto.FromUrl (new NSUrl ("http://farm2.static.flickr.com/1093/1018853687_a162a984ca_b.jpg"));
-				photo.Caption = "VDub Little Buggers Club";
+				photo.Caption = "Club";
 				photos.Add (photo);
 				thumbs.Add (PhotoBrowserPhoto.FromUrl (new NSUrl ("http://farm2.static.flickr.com/1093/1018853687_a162a984ca_q.jpg")));
 				photo = PhotoBrowserPhoto.FromUrl (new NSUrl ("http://farm2.static.flickr.com/1069/1018846077_9576590764_b.jpg"));
