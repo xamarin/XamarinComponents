@@ -11,24 +11,27 @@ namespace Xamarin.iOS.Binding.Transformer
     {
         public const string MetaDataFileName = "Metadata.xml";
 
-        public static void Compare(Dictionary<string,ApiObject> original, Dictionary<string, ApiObject> newversion, string outputPath = null)
+        public static void Compare(Dictionary<string,ApiObject> originalItems, Dictionary<string, ApiObject> newItems, string outputPath = null)
         {
-            Console.WriteLine($"Original item count: {original.Keys.Count} - New Item count: {newversion.Keys.Count}\n");
+            Console.WriteLine($"Original item count: {originalItems.Keys.Count} - New Item count: {newItems.Keys.Count}\n");
 
-            var orgKeys = original.Keys.ToList();
-            var newKeys = newversion.Keys.ToList();
+            var orgKeys = originalItems.Keys.ToList();
+            var newKeys = newItems.Keys.ToList();
 
-            var removed = FindMissing(original, newversion).FlattenDict();
-            var added = FindMissing(newversion, original).FlattenDict();
+            var removed = FindMissing(originalItems, newItems).FlattenDict();
+            var added = FindMissing(newItems, originalItems).FlattenDict();
 
             Console.WriteLine($"Removed Items: {removed.Count}\n");
             Console.WriteLine($"Added Items: {added.Count}\n");
 
-            var existing = new Dictionary<string, ApiObject>();
+            var existing = new List<string>();
             orgKeys.ForEach(x =>
             {
-                if (newKeys.Contains(x))
-                    existing.Add(x, original[x]);
+                if (!(originalItems[x] is ApiDefinition))
+                {
+                    if (newKeys.Contains(x))
+                        existing.Add(x);
+                }
             });
 
             Console.WriteLine($"Existing Items: {existing.Count}\n");
@@ -43,7 +46,7 @@ namespace Xamarin.iOS.Binding.Transformer
 
                 File.WriteAllLines(Path.Combine(outputPath, addedFile), added.Keys);
                 File.WriteAllLines(Path.Combine(outputPath, removedFile), removed.Keys);
-                File.WriteAllLines(Path.Combine(outputPath, existingFile), existing.Keys);
+                File.WriteAllLines(Path.Combine(outputPath, existingFile), existing);
 
             }
 
@@ -58,6 +61,7 @@ namespace Xamarin.iOS.Binding.Transformer
                 });
             }
 
+            //add the added nodes
             foreach (var aItem in added)
             {
                 var aApiObject = aItem.Value;
@@ -98,6 +102,9 @@ namespace Xamarin.iOS.Binding.Transformer
 
                 metaData.AddNodes.Add(newAdded);
             }
+
+            //calculate the nodes
+            CalculateChanges(existing, originalItems, newItems);
 
             metaData.WriteToFile(Path.Combine(outputPath, MetaDataFileName));
 
@@ -150,6 +157,18 @@ namespace Xamarin.iOS.Binding.Transformer
             });
 
             return result;
+        }
+
+        public static void CalculateChanges(List<string> existingPaths, Dictionary<string, ApiObject> originalItems, Dictionary<string, ApiObject> newItems)
+        {
+            foreach (var aPath in existingPaths)
+            {
+                var origItem = originalItems[aPath];
+                var newItem = newItems[aPath];
+
+                var propValues = origItem.GetValues();
+
+            }
         }
     }
 }
