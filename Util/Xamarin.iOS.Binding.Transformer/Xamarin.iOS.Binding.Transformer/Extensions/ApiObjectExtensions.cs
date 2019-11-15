@@ -25,13 +25,21 @@ namespace Xamarin.iOS.Binding.Transformer
                     continue;
                 }
                 
+               
                 var aName = aProp.Name;
-                var aValue = aProp.GetValue(target);
+                var aValue = aProp.GetValue(target) ?? NotSet.Empty;
 
-                if (aValue == null)
+               
+
+                if (aValue is NotSet)
                 {
-                    Console.WriteLine(aName);
+                    Console.WriteLine($"Not set {aName}");
                 }
+
+
+
+                dict.Add(aName, aValue);
+
             }
 
             return dict;

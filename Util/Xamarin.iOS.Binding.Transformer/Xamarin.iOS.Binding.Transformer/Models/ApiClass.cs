@@ -35,12 +35,21 @@ namespace Xamarin.iOS.Binding.Transformer
         [XmlAttribute(AttributeName = "partial")]
         public bool IsPartial { get; set; }
 
-        [XmlElement(ElementName ="model", Order = 0)]
+        [XmlAttribute(AttributeName = "advice")]
+        public string Advice { get; set; }
+
+        [XmlAttribute(AttributeName = "obsolete")]
+        public string Obsolete { get; set; }
+
+        [ChangeIgnore]
+        [XmlElement(ElementName = "model", Order = 0)]
         public ApiTypeModel Model { get; set; }
 
+        [ChangeIgnore]
         [XmlElement(ElementName = "basetype", Order = 1)]
         public ApiBaseType BaseType { get; set; }
 
+        [ChangeIgnore]
         [XmlElement(ElementName = "implements", Order = 2)]
         public List<ApiImplements> Implements { get; set; }
 
@@ -52,14 +61,9 @@ namespace Xamarin.iOS.Binding.Transformer
         [XmlElement(ElementName = "method", Order = 4)]
         public List<ApiMethod> Methods { get; set; }
 
+        [ChangeIgnore]
         [XmlElement(ElementName = "verify", Order = 5)]
         public ApiVerify Verify { get; set; }
-
-        [XmlAttribute(AttributeName = "advice")]
-        public string Advice { get; set; }
-
-        [XmlAttribute(AttributeName = "obsolete")]
-        public string Obsolete { get; set; }
 
         #region Ignoreable Properties
 
@@ -192,7 +196,7 @@ namespace Xamarin.iOS.Binding.Transformer
         {
             get
             {
-                if (Implements == null && Implements.Count == 0)
+                if (Implements == null || Implements.Count == 0)
                     return null;
 
                 var names = Implements.Select(x => x.Name);
