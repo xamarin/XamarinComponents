@@ -1,11 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Xml.Serialization;
+using Xamarin.iOS.Binding.Transformer.Attributes;
 
 namespace Xamarin.iOS.Binding.Transformer
 {
     public class ApiParameter : ApiObject
     {
+        [ChangeIgnore]
         protected internal override string NodeName => $"parameter[@name='{Name}']";
 
         [XmlAttribute(AttributeName = "name")]

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Xml.Serialization;
+using Xamarin.iOS.Binding.Transformer.Attributes;
 
 namespace Xamarin.iOS.Binding.Transformer
 {
@@ -21,6 +22,7 @@ namespace Xamarin.iOS.Binding.Transformer
         [XmlAttribute(attributeName:"name")]
         public string Name { get; set; }
 
+        [ChangeIgnore]
         protected internal override string NodeName => $"using[@namespace='{Name}']";
 
         protected internal override void SetParent(ApiObject parent)

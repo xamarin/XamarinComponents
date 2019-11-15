@@ -1,12 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Xml.Serialization;
+using Xamarin.iOS.Binding.Transformer.Attributes;
 
 namespace Xamarin.iOS.Binding.Transformer
 {
     [XmlRoot(ElementName = "property")]
     public class ApiProperty : ApiObject
     {
+        [ChangeIgnore]
         protected internal override string NodeName => $"property[@name='{NativeName}']";
 
         [XmlAttribute(AttributeName = "name")]
@@ -72,6 +74,7 @@ namespace Xamarin.iOS.Binding.Transformer
         [XmlAttribute(AttributeName = "obsolete")]
         public string Obsolete { get; set; }
 
+        [ChangeIgnore]
         [XmlIgnore]
         public string NativeName
         {

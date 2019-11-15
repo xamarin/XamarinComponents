@@ -24,14 +24,23 @@ namespace Xamarin.iOS.Binding.Transformer.Models.Metadata
         [XmlElement(ElementName = "attr", Order = 0)]
         public List<Attr> Changes { get; set; }
 
-        [XmlElement(ElementName = "add-node",Order = 1)]
+        [XmlElement(ElementName = "blank", Order = 1)]
+        public BlankLine BlankLine1 { get; set; }
+
+        [XmlElement(ElementName = "add-node",Order = 2)]
         public List<Add_Node> AddNodes { get; set; }
 
-        [XmlElement(ElementName = "remove-node", Order = 2)]
+        [XmlElement(ElementName = "blank", Order = 3)]
+        public BlankLine BlankLine2 { get; set; }
+
+        [XmlElement(ElementName = "remove-node", Order = 4)]
         public List<Remove_Node> RemoveNodes { get; set; }
 
         public Metadata()
         {
+            BlankLine1 = new BlankLine();
+            BlankLine2 = new BlankLine();
+
             _xmlnamespaces = new XmlSerializerNamespaces(new XmlQualifiedName[] { new XmlQualifiedName(string.Empty, "urn:xamarin") });
 
             RemoveNodes = new List<Remove_Node>();

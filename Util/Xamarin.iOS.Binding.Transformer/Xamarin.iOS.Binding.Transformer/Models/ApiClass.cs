@@ -9,6 +9,7 @@ namespace Xamarin.iOS.Binding.Transformer
     [XmlRoot(ElementName = "class")]
     public class ApiClass : ApiObject
     {
+        [ChangeIgnore]
         protected internal override string NodeName => $"class[@name='{NativeName}']";
 
         [XmlAttribute(AttributeName = "name")]

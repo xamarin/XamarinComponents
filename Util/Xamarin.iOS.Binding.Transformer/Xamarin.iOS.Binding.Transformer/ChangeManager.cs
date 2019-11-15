@@ -104,7 +104,11 @@ namespace Xamarin.iOS.Binding.Transformer
             }
 
             //calculate the nodes
-            CalculateChanges(existing, originalItems, newItems);
+            var changes = CalculateChanges(existing, originalItems, newItems);
+
+            Console.WriteLine($"Changes to existing items: {changes.Count}\n");
+
+            metaData.Changes = changes;
 
             metaData.WriteToFile(Path.Combine(outputPath, MetaDataFileName));
 
@@ -159,8 +163,10 @@ namespace Xamarin.iOS.Binding.Transformer
             return result;
         }
 
-        public static void CalculateChanges(List<string> existingPaths, Dictionary<string, ApiObject> originalItems, Dictionary<string, ApiObject> newItems)
+        public static List<Attr> CalculateChanges(List<string> existingPaths, Dictionary<string, ApiObject> originalItems, Dictionary<string, ApiObject> newItems)
         {
+            var results = new List<Attr>();
+
             foreach (var aPath in existingPaths)
             {
                 var origItem = originalItems[aPath];
@@ -169,8 +175,52 @@ namespace Xamarin.iOS.Binding.Transformer
                 var propValues = origItem.GetValues();
                 var newPropValues = newItem.GetValues();
 
+                var changes = propValues.FindChanges(newPropValues);
 
+                if (changes.Keys.Count > 0)
+                {
+                    if (changes.Keys.Count == 1)
+                    {
+                        var propName = changes.Keys.First();
+                        var prop = changes[propName];
+
+                        var newAttr = new Attr()
+                        {
+                            Path = aPath,
+                            Name = propName,
+                            Value = prop.ToString(),
+                        };
+
+                        results.Add(newAttr);
+                    }
+                    else
+                    {
+                        var newAttr = new Attr()
+                        {
+                            Path = aPath,
+                        };
+
+                        //approach one - all elements detailed individually
+                        foreach (var propName in changes.Keys)
+                        {
+                            var prop = changes[propName];
+
+                            var newAttrProp = new AttrProperty()
+                            {
+                                Name = propName,
+                                Value = prop.ToString(),
+                            };
+
+                            newAttr.Properties.Add(newAttrProp);
+                        }
+
+                        results.Add(newAttr);
+                    }
+  
+                }
             }
+
+            return results;
         }
     }
 }

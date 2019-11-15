@@ -15,7 +15,7 @@ namespace Xamarin.iOS.Binding.Transformer
 
             foreach (var aProp in props)
             {
-                
+                //check to see if the is an ignore attribute attached to the property
                 var atrrs = aProp.CustomAttributes.FirstOrDefault(x => x.AttributeType.Name.Equals("ChangeIgnoreAttribute"));
 
                 //is the property ignorable
@@ -26,18 +26,13 @@ namespace Xamarin.iOS.Binding.Transformer
                 }
                 
                
+                //get the property name
                 var aName = aProp.Name;
+
+                //get either the value on the object or return notset for nullable properties
                 var aValue = aProp.GetValue(target) ?? NotSet.Empty;
 
-               
-
-                if (aValue is NotSet)
-                {
-                    Console.WriteLine($"Not set {aName}");
-                }
-
-
-
+                //add to the dictionary
                 dict.Add(aName, aValue);
 
             }

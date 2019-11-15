@@ -10,5 +10,10 @@ namespace Xamarin.iOS.Binding.Transformer
     public class NotSet
     {
         public static NotSet Empty => new NotSet();
+
+        public override string ToString()
+        {
+            return "NotSet";
+        }
     }
 }

@@ -19,10 +19,16 @@ namespace Xamarin.iOS.Binding.Transformer.Models.Metadata
                 Indent = true,
             };
 
-            using (StreamWriter str = new StreamWriter(fileName))
-            using (XmlWriter xml = XmlWriter.Create(str, xWriterSetting))
+            //using (StreamWriter str = new StreamWriter(fileName))
+            using (StringWriter textWriter = new StringWriter())
+            using (XmlWriter xml = XmlWriter.Create(textWriter, xWriterSetting))
             {
                 serializer.Serialize(xml, target, target.XmlNamespaces);
+
+                var output = textWriter.ToString();
+                output = output.Replace("<blank />", "");
+
+                File.WriteAllText(fileName, output);
             }
         }
     }

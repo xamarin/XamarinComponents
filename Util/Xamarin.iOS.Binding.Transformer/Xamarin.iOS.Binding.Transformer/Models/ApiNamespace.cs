@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using System.Xml.Serialization;
+using Xamarin.iOS.Binding.Transformer.Attributes;
 
 namespace Xamarin.iOS.Binding.Transformer
 {
@@ -12,9 +13,11 @@ namespace Xamarin.iOS.Binding.Transformer
         [XmlAttribute(AttributeName = "name")]
         public string Name { get; set; }
 
+        [ChangeIgnore]
         [XmlElement(ElementName = "delegate", Order = 1)]
         public List<ApiDelegate> Delegates { get; set; }
 
+        [ChangeIgnore]
         [XmlElement(ElementName = "class", Order = 2)]
         public List<ApiClass> Types { get; set; }
 

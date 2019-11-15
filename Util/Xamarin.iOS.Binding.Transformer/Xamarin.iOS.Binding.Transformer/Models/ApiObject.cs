@@ -2,17 +2,21 @@
 using System.Collections.Generic;
 using System.Text;
 using System.Xml.Serialization;
+using Xamarin.iOS.Binding.Transformer.Attributes;
 
 namespace Xamarin.iOS.Binding.Transformer
 {
     public abstract class ApiObject
     {
+        [ChangeIgnore]
         [XmlIgnore]
         internal protected ApiObject Parent { get; private set; }
 
+        [ChangeIgnore]
         [XmlIgnore]
         internal protected abstract string NodeName { get; }
 
+        [ChangeIgnore]
         [XmlIgnore]
         internal string Path
         {

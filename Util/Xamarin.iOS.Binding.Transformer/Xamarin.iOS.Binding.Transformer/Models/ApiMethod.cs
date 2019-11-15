@@ -1,12 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Xml.Serialization;
+using Xamarin.iOS.Binding.Transformer.Attributes;
 
 namespace Xamarin.iOS.Binding.Transformer
 {
     [XmlRoot(ElementName = "method")]
     public class ApiMethod : ApiObject
     {
+        [ChangeIgnore]
         protected internal override string NodeName => $"method[@name='{NativeName}']";
 
         [XmlAttribute(AttributeName = "name")]
@@ -15,6 +17,7 @@ namespace Xamarin.iOS.Binding.Transformer
         [XmlAttribute(AttributeName = "returns")]
         public string ReturnType { get; set; }
 
+        [ChangeIgnore]
         [XmlElement(ElementName = "parameter")]
         public List<ApiParameter> Parameters { get; set; }
 

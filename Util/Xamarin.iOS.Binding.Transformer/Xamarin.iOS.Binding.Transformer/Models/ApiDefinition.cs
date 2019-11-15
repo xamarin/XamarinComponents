@@ -2,12 +2,14 @@
 using System.Collections.Generic;
 using System.Xml;
 using System.Xml.Serialization;
+using Xamarin.iOS.Binding.Transformer.Attributes;
 
 namespace Xamarin.iOS.Binding.Transformer
 {
     [XmlRoot(ElementName = @"api",Namespace = null)]
     public class ApiDefinition : ApiObject
     {
+        [ChangeIgnore]
         protected internal override string NodeName => "/api";
 
         #region Generator Members
