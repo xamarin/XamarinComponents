@@ -1023,7 +1023,7 @@ namespace MWPhotoBrowserSample
 				photos.Add (photo);
 				thumbs.Add (PhotoBrowserPhoto.FromUrl (new NSUrl ("http://farm2.static.flickr.com/1029/1018206545_6e8e0ec1e5_q.jpg")));
 				photo = PhotoBrowserPhoto.FromUrl (new NSUrl ("http://farm2.static.flickr.com/1261/1018910192_48fe1f5b6b_b.jpg"));
-				photo.Caption = "Cock";
+				photo.Caption = "Bird";
 				photos.Add (photo);
 				thumbs.Add (PhotoBrowserPhoto.FromUrl (new NSUrl ("http://farm2.static.flickr.com/1261/1018910192_48fe1f5b6b_q.jpg")));
 				photo = PhotoBrowserPhoto.FromUrl (new NSUrl ("http://farm2.static.flickr.com/1228/1017960551_1a3d1b0a9c_b.jpg"));
