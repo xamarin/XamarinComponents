@@ -373,11 +373,11 @@
   BuildScript: ./iOS/MBProgressHUD/build.cake
   TriggerPaths: [ iOS/MBProgressHUD ]
   MacBuildTargets: [ nuget, samples ]
-#- Name: MWPhotoBrowser
-#  BuildScript: ./iOS/MWPhotoBrowser/build.cake
-#  TriggerPaths: [ iOS/MWPhotoBrowser ]
-#  MacBuildTargets: [ ci ]
-#  WindowsBuildTargets: [ ci ]
+- Name: MWPhotoBrowser
+  BuildScript: ./iOS/MWPhotoBrowser/build.cake
+  TriggerPaths: [ iOS/MWPhotoBrowser ]
+  MacBuildTargets: [ ci ]
+  WindowsBuildTargets: [ ci ]
 - Name: PullToBounce
   BuildScript: ./iOS/PullToBounce/build.cake
   TriggerPaths: [ iOS/PullToBounce ]
