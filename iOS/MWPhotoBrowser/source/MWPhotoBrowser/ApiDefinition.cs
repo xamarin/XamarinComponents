@@ -133,7 +133,8 @@ namespace MWPhotoBrowser
 	interface IPhotoBrowserDelegate { }
 
 	// @protocol MWPhotoBrowserDelegate <NSObject>
-	[Protocol (Name = "MWPhotoBrowserDelegate")]
+	[Protocol, Model]
+	[BaseType (typeof(NSObject), Name = "MWPhotoBrowserDelegate")]
 	interface PhotoBrowserDelegate
 	{
 		// @required -(NSUInteger)numberOfPhotosInPhotoBrowser:(MWPhotoBrowser *)photoBrowser;
@@ -240,7 +241,7 @@ namespace MWPhotoBrowser
 
 		// -(id)initWithPhotos:(NSArray *)photosArray;
 		[Export ("initWithPhotos:")]
-		IntPtr Constructor (Photo[] photosArray);
+		IntPtr Constructor (IPhoto[] photosArray);
 
 		// -(id)initWithDelegate:(id<MWPhotoBrowserDelegate>)delegate;
 		[Export ("initWithDelegate:")]
@@ -321,7 +322,8 @@ namespace MWPhotoBrowser
 	interface ITapDetectingImageViewDelegate { }
 
 	// @protocol MWTapDetectingImageViewDelegate <NSObject>
-	[Protocol (Name = "MWTapDetectingImageViewDelegate")]
+	[Protocol, Model]
+	[BaseType (typeof(NSObject), Name = "MWTapDetectingImageViewDelegate")]
 	interface TapDetectingImageViewDelegate
 	{
 		// @optional -(void)imageView:(UIImageView *)imageView singleTapDetected:(UITouch *)touch;
@@ -349,7 +351,8 @@ namespace MWPhotoBrowser
 	interface ITapDetectingViewDelegate { }
 
 	// @protocol MWTapDetectingViewDelegate <NSObject>
-	[Protocol (Name = "MWTapDetectingViewDelegate")]
+	[Protocol, Model]
+	[BaseType (typeof(NSObject), Name = "MWTapDetectingViewDelegate")]
 	interface TapDetectingViewDelegate
 	{
 		// @optional -(void)view:(UIView *)view singleTapDetected:(UITouch *)touch;
@@ -367,7 +370,7 @@ namespace MWPhotoBrowser
 
 	// @interface MWZoomingScrollView : UIScrollView <UIScrollViewDelegate, MWTapDetectingImageViewDelegate, MWTapDetectingViewDelegate>
 	[BaseType (typeof(UIScrollView), Name = "MWZoomingScrollView")]
-	interface ZoomingScrollView : IUIScrollViewDelegate, ITapDetectingImageViewDelegate, ITapDetectingViewDelegate
+	interface ZoomingScrollView : IUIScrollViewDelegate, TapDetectingImageViewDelegate, TapDetectingViewDelegate
 	{
 		// @property NSUInteger index;
 		[Export ("index")]
