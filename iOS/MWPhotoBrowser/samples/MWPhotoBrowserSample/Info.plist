@@ -6,6 +6,8 @@
 	<string>MWPhotoBrowserSample</string>
 	<key>CFBundleIdentifier</key>
 	<string>com.your-company.MWPhotoBrowserSample</string>
+	<key>CFBundleName</key>
+	<string>MWPhotoBrowserSample</string>
 	<key>CFBundleShortVersionString</key>
 	<string>1.0</string>
 	<key>CFBundleVersion</key>
