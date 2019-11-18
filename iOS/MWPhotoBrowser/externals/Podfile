@@ -1,5 +1,0 @@
-platform :ios, '8.0'
-install! 'cocoapods', :integrate_targets => false
-target 'Xamarin' do
-	pod 'MWPhotoBrowser', '2.1.2'
-end

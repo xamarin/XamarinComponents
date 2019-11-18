@@ -1,58 +1,81 @@
 
-#load "../../common.cake"
+var TARGET = Argument("t", Argument("target", "ci"));
 
-var TARGET = Argument ("t", Argument ("target", "ci"));
+var NUGET_VERSION = "2.7.1";
 
 var AAR_VERSION = "2.7.0";
 var AAR_URL = string.Format ("http://repo1.maven.org/maven2/se/emilsjolander/stickylistheaders/{0}/stickylistheaders-{0}.aar", AAR_VERSION);
-var AAR_FILE = "StickyListHeaders.aar";
+var AAR_DEST = "./externals/StickyListHeaders.aar";
 
-var buildSpec = new BuildSpec () {
-	Libs = new ISolutionBuilder [] {
-		new DefaultSolutionBuilder {
-			SolutionPath = "./source/StickyListHeaders.sln",
-			OutputFiles = new [] { 
-				new OutputFileCopy {
-					FromFile = "./source/StickyListHeaders/bin/Release/StickyListHeaders.dll",
-					ToDirectory = "./output/"
-				}
-			}
-		}
-	},
-
-	Samples = new ISolutionBuilder [] {
-		new DefaultSolutionBuilder { SolutionPath = "./samples/StickyListHeadersSample.sln" },
-	},
-
-	NuGets = new [] {
-		new NuGetInfo { NuSpec = "./nuget/Xamarin.StickyListHeaders.nuspec" },
-	},
-
-	Components = new [] {
-		new Component {ManifestDirectory = "./component"},
-	},
-};
-
-Task ("externals")
-	.Does (() => 
+Task("externals")
+	.Does(() => 
 {
-	if (!DirectoryExists ("./externals/"))
-		CreateDirectory ("./externals/");
-		
-	DownloadFile (AAR_URL, "./externals/" + AAR_FILE);
+	EnsureDirectoryExists("./externals/");
+
+	if (!FileExists(AAR_DEST))
+		DownloadFile(AAR_URL, AAR_DEST);
+
+	XmlPoke("./source/StickyListHeaders/StickyListHeaders.csproj", "/Project/PropertyGroup/PackageVersion", NUGET_VERSION);
 });
 
-Task ("clean").IsDependentOn ("clean-base").Does (() => 
-{	
-	DeleteFiles ("./externals/*.aar");
+Task("libs")
+	.IsDependentOn("externals")
+	.Does(() =>
+{
+	EnsureDirectoryExists("./output/");
+
+	MSBuild("./source/StickyListHeaders.sln", new MSBuildSettings()
+		.EnableBinaryLogger("./output/libs.binlog")
+		.SetConfiguration("Release")
+		.SetMaxCpuCount(0)
+		.SetVerbosity(Verbosity.Minimal)
+		.WithProperty("DesignTimeBuild", "False")
+		.WithRestore());
 });
 
-SetupXamarinBuildTasks (buildSpec, Tasks, Task);
+Task("nuget")
+	.IsDependentOn("libs")
+	.Does(() =>
+{
+	EnsureDirectoryExists("./output/");
 
-Task ("ci")
-	.IsDependentOn ("externals")
-	.IsDependentOn ("libs")
-	.IsDependentOn ("nuget")
-	.IsDependentOn ("samples");
+	MSBuild("./source/StickyListHeaders.sln", new MSBuildSettings()
+		.EnableBinaryLogger("./output/nuget.binlog")
+		.SetConfiguration("Release")
+		.SetMaxCpuCount(0)
+		.SetVerbosity(Verbosity.Minimal)
+		.WithProperty("NoBuild", "True")
+		.WithProperty("DesignTimeBuild", "False")
+		.WithProperty("PackageOutputPath", MakeAbsolute(new FilePath("./output/")).FullPath)
+		.WithTarget("Pack"));
+});
 
-RunTarget (TARGET);
+Task("samples")
+	.IsDependentOn("externals")
+	.Does(() =>
+{
+	EnsureDirectoryExists("./output/");
+
+	MSBuild("./samples/StickyListHeadersSample.sln", new MSBuildSettings()
+		.EnableBinaryLogger("./output/samples.binlog")
+		.SetConfiguration("Release")
+		.SetMaxCpuCount(0)
+		.SetVerbosity(Verbosity.Minimal)
+		.WithProperty("DesignTimeBuild", "False")
+		.WithRestore());
+});
+
+Task ("clean")
+	.Does (() =>
+{
+	if (DirectoryExists("./externals/"))
+		DeleteDirectory("./externals/", true);
+});
+
+Task("ci")
+	.IsDependentOn("externals")
+	.IsDependentOn("libs")
+	.IsDependentOn("nuget")
+	.IsDependentOn("samples");
+
+RunTarget(TARGET);

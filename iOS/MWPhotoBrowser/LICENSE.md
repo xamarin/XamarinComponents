@@ -1,3 +1,8 @@
+**Xamarin is not responsible for, nor does it grant any licenses to, third-party packages. Some packages may require or install dependencies which are governed by additional licenses.**
+
+Note: This component depends on [MWPhotoBrowser](https://github.com/mwaterfall/MWPhotoBrowser), which is subject to the [MIT License](https://github.com/mwaterfall/MWPhotoBrowser/blob/master/LICENSE).
+
+### Xamarin Component for MWPhotoBrowser
 
 **The MIT License (MIT)**
 
