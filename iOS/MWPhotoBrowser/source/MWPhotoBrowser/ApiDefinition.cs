@@ -1,24 +1,9 @@
 ﻿using System;
-
-#if __UNIFIED__
 using CoreGraphics;
 using Foundation;
 using ObjCRuntime;
 using Photos;
 using UIKit;
-#else
-using MonoTouch.CoreGraphics;
-using MonoTouch.Foundation;
-using MonoTouch.ObjCRuntime;
-using MonoTouch.Photos;
-using MonoTouch.UIKit;
-using CGRect = System.Drawing.RectangleF;
-using CGSize = System.Drawing.SizeF;
-using CGPoint = System.Drawing.PointF;
-using nfloat = System.Single;
-using nuint = System.UInt32;
-using nint = System.Int32;
-#endif
 
 namespace MWPhotoBrowser
 {
