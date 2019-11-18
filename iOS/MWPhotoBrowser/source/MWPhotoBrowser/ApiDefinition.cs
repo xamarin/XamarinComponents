@@ -10,8 +10,7 @@ namespace MWPhotoBrowser
 	interface IPhoto { }
 
 	// @protocol MWPhoto <NSObject>
-	[Protocol, Model]
-	[BaseType (typeof(NSObject), Name = "MWPhoto")]
+	[Protocol (Name = "MWPhoto")]
 	interface Photo
 	{
 		// @required @property (nonatomic, strong) UIImage * underlyingImage;
