@@ -133,8 +133,7 @@ namespace MWPhotoBrowser
 	interface IPhotoBrowserDelegate { }
 
 	// @protocol MWPhotoBrowserDelegate <NSObject>
-	[Protocol, Model]
-	[BaseType (typeof(NSObject), Name = "MWPhotoBrowserDelegate")]
+	[Protocol (Name = "MWPhotoBrowserDelegate")]
 	interface PhotoBrowserDelegate
 	{
 		// @required -(NSUInteger)numberOfPhotosInPhotoBrowser:(MWPhotoBrowser *)photoBrowser;
@@ -322,8 +321,7 @@ namespace MWPhotoBrowser
 	interface ITapDetectingImageViewDelegate { }
 
 	// @protocol MWTapDetectingImageViewDelegate <NSObject>
-	[Protocol, Model]
-	[BaseType (typeof(NSObject), Name = "MWTapDetectingImageViewDelegate")]
+	[Protocol (Name = "MWTapDetectingImageViewDelegate")]
 	interface TapDetectingImageViewDelegate
 	{
 		// @optional -(void)imageView:(UIImageView *)imageView singleTapDetected:(UITouch *)touch;
@@ -351,8 +349,7 @@ namespace MWPhotoBrowser
 	interface ITapDetectingViewDelegate { }
 
 	// @protocol MWTapDetectingViewDelegate <NSObject>
-	[Protocol, Model]
-	[BaseType (typeof(NSObject), Name = "MWTapDetectingViewDelegate")]
+	[Protocol (Name = "MWTapDetectingViewDelegate")]
 	interface TapDetectingViewDelegate
 	{
 		// @optional -(void)view:(UIView *)view singleTapDetected:(UITouch *)touch;
