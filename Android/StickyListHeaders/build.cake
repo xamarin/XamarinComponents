@@ -1,7 +1,7 @@
 
 #load "../../common.cake"
 
-var TARGET = Argument ("t", Argument ("target", "Default"));
+var TARGET = Argument ("t", Argument ("target", "ci"));
 
 var AAR_VERSION = "2.7.0";
 var AAR_URL = string.Format ("http://repo1.maven.org/maven2/se/emilsjolander/stickylistheaders/{0}/stickylistheaders-{0}.aar", AAR_VERSION);
@@ -48,5 +48,11 @@ Task ("clean").IsDependentOn ("clean-base").Does (() =>
 });
 
 SetupXamarinBuildTasks (buildSpec, Tasks, Task);
+
+Task ("ci")
+	.IsDependentOn ("externals")
+	.IsDependentOn ("libs")
+	.IsDependentOn ("nuget")
+	.IsDependentOn ("samples");
 
 RunTarget (TARGET);

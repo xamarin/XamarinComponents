@@ -182,7 +182,7 @@
 - Name: StickyListHeaders
   BuildScript: ./Android/StickyListHeaders/build.cake
   TriggerPaths: [ Android/StickyListHeaders ]
-  MacBuildTargets: [ nuget, samples ]
+  MacBuildTargets: [ ci ]
 - Name: Kotlin
   BuildScript: ./Android/Kotlin/build.cake
   TriggerPaths: [ Android/Kotlin ]
