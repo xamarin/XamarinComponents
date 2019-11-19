@@ -65,7 +65,7 @@ Task("nuget")
 	.IsDependentOn("libs")
 	.Does(() =>
 {
-	MSBuild("./source/MWPhotoBrowser.sln", new MSBuildSettings()
+	MSBuild("./source/MWPhotoBrowser/MWPhotoBrowser.csproj", new MSBuildSettings()
 		.EnableBinaryLogger("./output/nuget.binlog")
 		.SetConfiguration("Release")
 		.SetMaxCpuCount(0)
