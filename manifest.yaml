@@ -216,7 +216,8 @@
 - Name: GoogleLibPhoneNumber
   BuildScript: ./Android/Google.LibPhoneNumber/build.cake
   TriggerPaths: [ Android/Google.LibPhoneNumber ]
-  MacBuildTargets: [ nuget ]
+  MacBuildTargets: [ ci ]
+  WindowsBuildTargets: [ ci ]
 - Name: SceneForm
   BuildScript: ./Android/SceneForm/build.cake
   TriggerPaths: [ Android/SceneForm ]
