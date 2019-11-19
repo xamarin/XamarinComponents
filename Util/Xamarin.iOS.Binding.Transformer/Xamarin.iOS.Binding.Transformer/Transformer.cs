@@ -37,6 +37,7 @@ namespace Xamarin.iOS.Binding.Transformer
 
                 Process(root, ref output);
 
+                output.UpdateHierachy();
 
                 return output;
 
@@ -149,7 +150,7 @@ namespace Xamarin.iOS.Binding.Transformer
 
                     if (existing != null)
                     {
-                        Console.WriteLine($"Found duplicate class: {classentry.Name}, Merging");
+                        //Console.WriteLine($"Found duplicate class: {classentry.Name}, Merging");
 
                         existing.Merge(classentry);
                         
@@ -352,14 +353,14 @@ namespace Xamarin.iOS.Binding.Transformer
 
             };
 
-            if (newParam.Name.Contains("*"))
+            newParam.Type = GetType(node.Type);
+
+            if (newParam.Type.StartsWith("*") || node.Modifiers.ToString().Contains("ref"))
             {
                 newParam.IsReference = true;
-                newParam.Name = newParam.Name.Replace("*", "");
+                newParam.Type = newParam.Type.Replace("*", "");
 
             }
-
-            newParam.Type = GetType(node.Type);
 
             if (node.AttributeLists.Count > 0)
             {

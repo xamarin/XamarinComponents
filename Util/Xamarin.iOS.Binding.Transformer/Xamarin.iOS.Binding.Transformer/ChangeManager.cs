@@ -184,11 +184,13 @@ namespace Xamarin.iOS.Binding.Transformer
                         var propName = changes.Keys.First();
                         var prop = changes[propName];
 
+                        var propValue = (prop.ToString().Equals("notset", StringComparison.OrdinalIgnoreCase)) ? string.Empty : prop.ToString();
+
                         var newAttr = new Attr()
                         {
                             Path = aPath,
                             Name = propName,
-                            Value = prop.ToString(),
+                            Value = propValue,
                         };
 
                         results.Add(newAttr);
@@ -204,11 +206,12 @@ namespace Xamarin.iOS.Binding.Transformer
                         foreach (var propName in changes.Keys)
                         {
                             var prop = changes[propName];
+                            var propValue = (prop.ToString().Equals("notset", StringComparison.OrdinalIgnoreCase)) ? string.Empty : prop.ToString();
 
                             var newAttrProp = new AttrProperty()
                             {
                                 Name = propName,
-                                Value = prop.ToString(),
+                                Value = propValue,
                             };
 
                             newAttr.Properties.Add(newAttrProp);

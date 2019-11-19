@@ -23,50 +23,47 @@ namespace Transformeriser3000
 
             var apiDiffOutput = Path.Combine(currentLocation, "diffs");
 
-            //Load the original
+            ////Load the original
             var apiDefinitionTest = await Transformer.ExtractDefinitionAsync(apiFileOrig);
-            apiDefinitionTest.UpdateHierachy();
             apiDefinitionTest.Transform(apiMetaDataFile);
-
-            //reupdate the hierachy
-            apiDefinitionTest.UpdateHierachy();
 
             await CodeGenerator.GenerateAsync(apiDefinitionTest, apiFileNew);
 
 
-            //if (File.Exists(apiFile))
-            //{
-            //    //build the api defintion
-            //    var apiDefinition = await Transformer.ExtractDefinitionAsync(apiFile);
+            if (File.Exists(apiFile))
+            {
+                //build the api defintion
+                var apiDefinition = await Transformer.ExtractDefinitionAsync(apiFile);
 
-            //    //////write it to file
-            //    //apiDefinition.WriteToFile(apiXmlFile);
+                //////////write it to file
+                //apiDefinition.WriteToFile(apiXmlFile);
 
-            //    ////reload
-            //    //var api = Transformer.Load(apiXmlFile);
-            //    //api.UpdateHierachy();
+                //////reload
+                ////var api = Transformer.Load(apiXmlFile);
+                ////api.UpdateHierachy();
+                ///
+                var testdels = apiDefinitionTest.Namespaces[0].Delegates;
+                var tdels = apiDefinition.Namespaces[0].Delegates;
+                
+                var stack = apiDefinition.BuildTreePath();
+                var newStack = apiDefinitionTest.BuildTreePath();
 
+                Console.WriteLine("");
+                ////////generate and save the code file
+                //await CodeGenerator.GenerateAsync(apiDefinition, apiFileFixed);
 
-            //    apiDefinition.UpdateHierachy();
-            //    var stack = apiDefinition.BuildTreePath();
+                //////now load the original file
+                //var apiDefinitionOrig = await Transformer.ExtractDefinitionAsync(apiFileOrig);
+                //apiDefinitionOrig.UpdateHierachy();
 
-            //    var item = stack.Keys.Where(x => x.Contains("MDCFlexibleHeaderView_"));
+                //var orgStack = apiDefinitionOrig.BuildTreePath();
 
-            //    ////generate and save the code file
-            //    await CodeGenerator.GenerateAsync(apiDefinition, apiFileFixed);
+                //if (!Directory.Exists(apiDiffOutput))
+                //    Directory.CreateDirectory(apiDiffOutput);
 
-            //    //now load the original file
-            //    var apiDefinitionOrig = await Transformer.ExtractDefinitionAsync(apiFileOrig);
-            //    apiDefinitionOrig.UpdateHierachy();
+                ChangeManager.Compare(stack, newStack, apiDiffOutput);
 
-            //    var orgStack = apiDefinitionOrig.BuildTreePath();
-
-            //    if (!Directory.Exists(apiDiffOutput))
-            //        Directory.CreateDirectory(apiDiffOutput);
-
-            //   // ChangeManager.Compare(orgStack, stack, apiDiffOutput);
-
-            //}
+            }
 
             Console.WriteLine("Finished!");
             Console.ReadLine();

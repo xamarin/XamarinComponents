@@ -78,38 +78,43 @@ namespace Xamarin.iOS.Binding.Transformer
                 //get the parent item from the path
                 var item = tree[added.Path];
 
-                    if (item != null)
+                if (item != null)
+                {
+                    //if the class property has been set then its a class
+                    if (added.Class != null)
                     {
-                        //if the class property has been set then its a class
-                        if (added.Class != null)
-                        {
-                            item.Add(added.Class);
-                        }
-
-                        //if the delegate property has been set then its a delegate
-                        if (added.Delegate != null)
-                        {
-                            item.Add(added.Delegate);
-                        }
-
-                        //if the method property has been set then its a Method
-                        if (added.Method != null)
-                        {
-                            item.Add(added.Method);
-                        }
-
-                        //if the Property property has been set then its a Prperty
-                        if (added.Property != null)
-                        {
-                            item.Add(added.Property);
-                        }
-
-                        //if the Parameter property has been set then its a parameter
-                        if (added.Parameter != null)
-                        {
-                            item.Add(added.Parameter);
-                        }
+                        item.Add(added.Class);
                     }
+
+                    //if the delegate property has been set then its a delegate
+                    if (added.Delegate != null)
+                    {
+                        item.Add(added.Delegate);
+                    }
+
+                    //if the method property has been set then its a Method
+                    if (added.Method != null)
+                    {
+                        item.Add(added.Method);
+                    }
+
+                    //if the Property property has been set then its a Prperty
+                    if (added.Property != null)
+                    {
+                        item.Add(added.Property);
+                    }
+
+                    //if the Parameter property has been set then its a parameter
+                    if (added.Parameter != null)
+                    {
+                        item.Add(added.Parameter);
+                    }
+
+                    if (added.Using != null)
+                    {
+                        item.Add(added.Using);
+                    }
+                }
             }
 
             // work through altered
@@ -124,6 +129,8 @@ namespace Xamarin.iOS.Binding.Transformer
                 }
 
             }
+
+            target.UpdateHierachy();
         }
     }
 }

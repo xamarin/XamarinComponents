@@ -325,8 +325,11 @@
   <attr path="/api/namespace[@name='MaterialComponents']/class[@name='MDCPathGenerator']/method[@name='addCurveWithControlPoint1:controlPoint2:toPoint:']" name="Name" value="AddCurve" />
   <attr path="/api/namespace[@name='MaterialComponents']/class[@name='MDCPathGenerator']/method[@name='addQuadCurveWithControlPoint:toPoint:']" name="Name" value="AddQuadCurve" />
   <attr path="/api/namespace[@name='MaterialComponents']/class[@name='MDCPathGenerator']/method[@name='appendToCGPath:transform:']" name="Name" value="AppendTo" />
-  <attr path="/api/namespace[@name='MaterialComponents']/class[@name='MDCPathGenerator']/method[@name='appendToCGPath:transform:']/parameter[@name='cgPath']" name="Type" value="CGPath" />
-  <attr path="/api/namespace[@name='MaterialComponents']/class[@name='MDCPathGenerator']/method[@name='appendToCGPath:transform:']/parameter[@name='transform']" name="Type" value="CGAffineTransform" />
+  <attr path="/api/namespace[@name='MaterialComponents']/class[@name='MDCPathGenerator']/method[@name='appendToCGPath:transform:']/parameter[@name='cgPath']">
+    <property name="Type" value="CGPath" />
+    <property name="IsReference" value="False" />
+  </attr>
+  <attr path="/api/namespace[@name='MaterialComponents']/class[@name='MDCPathGenerator']/method[@name='appendToCGPath:transform:']/parameter[@name='transform']" name="IsReference" value="False" />
   <attr path="/api/namespace[@name='MaterialComponents']/class[@name='MDCShapeGenerating']">
     <property name="ProtocolName" value="MDCShapeGenerating" />
     <property name="ManagedName" value="ShapeGenerating" />
@@ -1874,18 +1877,18 @@
   </add-node>
   <add-node path="/api/namespace[@name='MaterialComponents']">
     <delegate name="ActivityIndicatorAnimationHandler" returns="void">
-      <parameter name="strokeStart" type="nfloat" nullallowed="false" />
-      <parameter name="strokeEnd" type="nfloat" nullallowed="false" />
+      <parameter name="strokeStart" type="nfloat" nullallowed="false" isreference="false" />
+      <parameter name="strokeEnd" type="nfloat" nullallowed="false" isreference="false" />
     </delegate>
   </add-node>
   <add-node path="/api/namespace[@name='MaterialComponents']">
     <delegate name="ActionHandler" returns="void">
-      <parameter name="action" type="AlertAction" nullallowed="false" />
+      <parameter name="action" type="AlertAction" nullallowed="false" isreference="false" />
     </delegate>
   </add-node>
   <add-node path="/api/namespace[@name='MaterialComponents']">
     <delegate name="FeatureHighlightCompletionHandler" returns="void">
-      <parameter name="accepted" type="bool" nullallowed="false" />
+      <parameter name="accepted" type="bool" nullallowed="false" isreference="false" />
     </delegate>
   </add-node>
   <add-node path="/api/namespace[@name='MaterialComponents']">
@@ -1893,8 +1896,8 @@
   </add-node>
   <add-node path="/api/namespace[@name='MaterialComponents']">
     <delegate name="FlexibleHeaderShadowIntensityChangeHandler" returns="void">
-      <parameter name="shadowLayer" type="CALayer" nullallowed="false" />
-      <parameter name="intensity" type="nfloat" nullallowed="false" />
+      <parameter name="shadowLayer" type="CALayer" nullallowed="false" isreference="false" />
+      <parameter name="intensity" type="nfloat" nullallowed="false" isreference="false" />
     </delegate>
   </add-node>
   <add-node path="/api/namespace[@name='MaterialComponents']">
@@ -1902,14 +1905,14 @@
   </add-node>
   <add-node path="/api/namespace[@name='MaterialComponents']">
     <delegate name="EnumerateOverlaysHandler" returns="void">
-      <parameter name="overlay" type="IOverlay" nullallowed="false" />
-      <parameter name="idx" type="nuint" nullallowed="false" />
+      <parameter name="overlay" type="IOverlay" nullallowed="false" isreference="false" />
+      <parameter name="idx" type="nuint" nullallowed="false" isreference="false" />
       <parameter name="stop" type="bool" nullallowed="false" isreference="true" />
     </delegate>
   </add-node>
   <add-node path="/api/namespace[@name='MaterialComponents']">
     <delegate name="SnackbarMessageCompletionHandler" returns="void">
-      <parameter name="arg0" type="bool" nullallowed="false" />
+      <parameter name="arg0" type="bool" nullallowed="false" isreference="false" />
     </delegate>
   </add-node>
   <add-node path="/api/namespace[@name='MaterialComponents']">
@@ -1918,7 +1921,7 @@
   <add-node path="/api/namespace[@name='MaterialComponents']">
     <class name="CAMediaTimingFunctionAnimationTiming" type="Interface" disabledefaultctor="false" category="false" protocol="false" static="true" partial="false">
       <method name="GetFunction" returns="CAMediaTimingFunction" static="true" export="mdc_functionWithType:" nullallowed="true" abstract="false" RequiresSuper="false" designatedinitializer="false" new="false">
-        <parameter name="type" type="AnimationTimingFunction" nullallowed="false" />
+        <parameter name="type" type="AnimationTimingFunction" nullallowed="false" isreference="false" />
       </method>
     </class>
   </add-node>
@@ -1933,13 +1936,13 @@
   </add-node>
   <add-node path="/api/namespace[@name='MaterialComponents']/class[@name='MDCActivityIndicatorColorThemer']">
     <method name="ApplyColorScheme" returns="void" static="true" export="applyColorScheme:toActivityIndicator:" nullallowed="false" abstract="false" RequiresSuper="false" designatedinitializer="false" new="false" obsolete="This method will soon be deprecated. Consider using ApplySemanticColorScheme method instead.">
-      <parameter name="colorScheme" type="IColorScheme" nullallowed="false" />
-      <parameter name="activityIndicator" type="ActivityIndicator" nullallowed="false" />
+      <parameter name="colorScheme" type="IColorScheme" nullallowed="false" isreference="false" />
+      <parameter name="activityIndicator" type="ActivityIndicator" nullallowed="false" isreference="false" />
     </method>
   </add-node>
   <add-node path="/api/namespace[@name='MaterialComponents']/class[@name='MDCAlertColorThemer']">
     <method name="ApplyColorScheme" returns="void" static="true" export="applyColorScheme:" nullallowed="false" abstract="false" RequiresSuper="false" designatedinitializer="false" new="false" obsolete="This method will soon be deprecated. Consider using ApplySemanticColorScheme method instead.">
-      <parameter name="colorScheme" type="IColorScheme" nullallowed="false" />
+      <parameter name="colorScheme" type="IColorScheme" nullallowed="false" isreference="false" />
     </method>
   </add-node>
   <add-node path="/api/namespace[@name='MaterialComponents']/class[@name='MDCAlertController']">
@@ -1947,7 +1950,7 @@
   </add-node>
   <add-node path="/api/namespace[@name='MaterialComponents']/class[@name='MDCAlertControllerView']">
     <method name="GetButton" returns="Button" static="false" export="buttonForAction:" nullallowed="true" abstract="false" RequiresSuper="false" designatedinitializer="false" new="false">
-      <parameter name="action" type="AlertAction" nullallowed="false" />
+      <parameter name="action" type="AlertAction" nullallowed="false" isreference="false" />
     </method>
   </add-node>
   <add-node path="/api/namespace[@name='MaterialComponents']/class[@name='MDCAlertControllerView']">
@@ -1961,20 +1964,20 @@
   </add-node>
   <add-node path="/api/namespace[@name='MaterialComponents']/class[@name='MDCAppBarColorThemer']">
     <method name="ApplySemanticColorScheme" returns="void" static="true" export="applySemanticColorScheme:toAppBar:" nullallowed="false" abstract="false" RequiresSuper="false" designatedinitializer="false" new="false" obsolete="To be deprecated.">
-      <parameter name="colorScheme" type="IColorScheming" nullallowed="false" />
-      <parameter name="appBar" type="AppBar" nullallowed="false" />
+      <parameter name="colorScheme" type="IColorScheming" nullallowed="false" isreference="false" />
+      <parameter name="appBar" type="AppBar" nullallowed="false" isreference="false" />
     </method>
   </add-node>
   <add-node path="/api/namespace[@name='MaterialComponents']/class[@name='MDCAppBarColorThemer']">
     <method name="ApplySurfaceVariant" returns="void" static="true" export="applySurfaceVariantWithColorScheme:toAppBar:" nullallowed="false" abstract="false" RequiresSuper="false" designatedinitializer="false" new="false" obsolete="To be deprecated.">
-      <parameter name="colorScheme" type="IColorScheming" nullallowed="false" />
-      <parameter name="appBar" type="AppBar" nullallowed="false" />
+      <parameter name="colorScheme" type="IColorScheming" nullallowed="false" isreference="false" />
+      <parameter name="appBar" type="AppBar" nullallowed="false" isreference="false" />
     </method>
   </add-node>
   <add-node path="/api/namespace[@name='MaterialComponents']/class[@name='MDCAppBarColorThemer']">
     <method name="ApplyColorScheme" returns="void" static="true" export="applyColorScheme:toAppBar:" nullallowed="false" abstract="false" RequiresSuper="false" designatedinitializer="false" new="false" obsolete="This method will soon be deprecated. Consider using ApplySemanticColorScheme method instead.">
-      <parameter name="colorScheme" type="IColorScheme" nullallowed="false" />
-      <parameter name="appBar" type="AppBar" nullallowed="false" />
+      <parameter name="colorScheme" type="IColorScheme" nullallowed="false" isreference="false" />
+      <parameter name="appBar" type="AppBar" nullallowed="false" isreference="false" />
     </method>
   </add-node>
   <add-node path="/api/namespace[@name='MaterialComponents']">
@@ -1982,13 +1985,13 @@
   </add-node>
   <add-node path="/api/namespace[@name='MaterialComponents']/class[@name='MDCAppBarNavigationController']">
     <method name="GetAppBar" returns="AppBar" static="false" export="appBarForViewController:" nullallowed="true" abstract="false" RequiresSuper="false" designatedinitializer="false" new="false" obsolete="This method will eventually be deprecated. Use GetAppBarViewController method instead.">
-      <parameter name="viewController" type="UIViewController" nullallowed="false" />
+      <parameter name="viewController" type="UIViewController" nullallowed="false" isreference="false" />
     </method>
   </add-node>
   <add-node path="/api/namespace[@name='MaterialComponents']/class[@name='MDCAppBarTypographyThemer']">
     <method name="ApplyTypographyScheme" returns="void" static="true" export="applyTypographyScheme:toAppBar:" nullallowed="false" abstract="false" RequiresSuper="false" designatedinitializer="false" new="false" obsolete="To be deprecated.">
-      <parameter name="typographyScheme" type="ITypographyScheming" nullallowed="false" />
-      <parameter name="appBar" type="AppBar" nullallowed="false" />
+      <parameter name="typographyScheme" type="ITypographyScheming" nullallowed="false" isreference="false" />
+      <parameter name="appBar" type="AppBar" nullallowed="false" isreference="false" />
     </method>
   </add-node>
   <add-node path="/api/namespace[@name='MaterialComponents']">
@@ -1999,14 +2002,14 @@
   </add-node>
   <add-node path="/api/namespace[@name='MaterialComponents']/class[@name='MDCBottomAppBarColorThemer']">
     <method name="ApplySurfaceVariantWithSemanticColorScheme" returns="void" static="true" nullallowed="false" abstract="false" RequiresSuper="false" designatedinitializer="false" wrap="ApplySurfaceVariant (colorScheme, bottomAppBarView)" new="false" obsolete="Use ApplySurfaceVariant instead.">
-      <parameter name="colorScheme" type="IColorScheming" nullallowed="false" />
-      <parameter name="bottomAppBarView" type="BottomAppBarView" nullallowed="false" />
+      <parameter name="colorScheme" type="IColorScheming" nullallowed="false" isreference="false" />
+      <parameter name="bottomAppBarView" type="BottomAppBarView" nullallowed="false" isreference="false" />
     </method>
   </add-node>
   <add-node path="/api/namespace[@name='MaterialComponents']/class[@name='MDCBottomAppBarColorThemer']">
     <method name="ApplyColorScheme" returns="void" static="true" export="applyColorScheme:toBottomAppBarView:" nullallowed="false" abstract="false" RequiresSuper="false" designatedinitializer="false" new="false" obsolete="This method will soon be deprecated. Use ApplySurfaceVariantWithSemanticColorScheme instead.">
-      <parameter name="colorScheme" type="IColorScheme" nullallowed="false" />
-      <parameter name="bottomAppBarView" type="BottomAppBarView" nullallowed="false" />
+      <parameter name="colorScheme" type="IColorScheme" nullallowed="false" isreference="false" />
+      <parameter name="bottomAppBarView" type="BottomAppBarView" nullallowed="false" isreference="false" />
     </method>
   </add-node>
   <add-node path="/api/namespace[@name='MaterialComponents']">
@@ -2023,8 +2026,8 @@
   </add-node>
   <add-node path="/api/namespace[@name='MaterialComponents']/class[@name='MDCBottomNavigationBarColorThemer']">
     <method name="ApplyColorScheme" returns="void" static="true" export="applyColorScheme:toBottomNavigationBar:" nullallowed="false" abstract="false" RequiresSuper="false" designatedinitializer="false" new="false" obsolete="This method will soon be deprecated. Consider using ApplySemanticColorScheme method instead.">
-      <parameter name="colorScheme" type="IColorScheme" nullallowed="false" />
-      <parameter name="bottomNavigationBar" type="BottomNavigationBar" nullallowed="false" />
+      <parameter name="colorScheme" type="IColorScheme" nullallowed="false" isreference="false" />
+      <parameter name="bottomNavigationBar" type="BottomNavigationBar" nullallowed="false" isreference="false" />
     </method>
   </add-node>
   <add-node path="/api/namespace[@name='MaterialComponents']">
@@ -2050,8 +2053,8 @@
   </add-node>
   <add-node path="/api/namespace[@name='MaterialComponents']/class[@name='MDCButton']">
     <method name="SetElevation" returns="void" static="false" nullallowed="false" abstract="false" RequiresSuper="false" designatedinitializer="false" wrap="SetElevation ((nfloat)elevation, state)" new="false">
-      <parameter name="elevation" type="double" nullallowed="false" />
-      <parameter name="state" type="UIControlState" nullallowed="false" />
+      <parameter name="elevation" type="double" nullallowed="false" isreference="false" />
+      <parameter name="state" type="UIControlState" nullallowed="false" isreference="false" />
     </method>
   </add-node>
   <add-node path="/api/namespace[@name='MaterialComponents']/class[@name='MDCButton']">
@@ -2062,38 +2065,38 @@
   </add-node>
   <add-node path="/api/namespace[@name='MaterialComponents']/class[@name='MDCButtonBarColorThemer']">
     <method name="ApplyColorScheme" returns="void" static="true" export="applyColorScheme:toButtonBar:" nullallowed="false" abstract="false" RequiresSuper="false" designatedinitializer="false" new="false">
-      <parameter name="colorScheme" type="IColorScheme" nullallowed="false" />
-      <parameter name="buttonBar" type="ButtonBar" nullallowed="false" />
+      <parameter name="colorScheme" type="IColorScheme" nullallowed="false" isreference="false" />
+      <parameter name="buttonBar" type="ButtonBar" nullallowed="false" isreference="false" />
     </method>
   </add-node>
   <add-node path="/api/namespace[@name='MaterialComponents']/class[@name='MDCButtonColorThemer']">
     <method name="ApplySemanticColorSchemeToButton" returns="void" static="true" export="applySemanticColorScheme:toButton:" nullallowed="false" abstract="false" RequiresSuper="false" designatedinitializer="false" new="false">
-      <parameter name="colorScheme" type="IColorScheming" nullallowed="false" />
-      <parameter name="button" type="Button" nullallowed="false" />
+      <parameter name="colorScheme" type="IColorScheming" nullallowed="false" isreference="false" />
+      <parameter name="button" type="Button" nullallowed="false" isreference="false" />
     </method>
   </add-node>
   <add-node path="/api/namespace[@name='MaterialComponents']/class[@name='MDCButtonColorThemer']">
     <method name="ApplySemanticColorSchemeToFlatButton" returns="void" static="true" export="applySemanticColorScheme:toFlatButton:" nullallowed="false" abstract="false" RequiresSuper="false" designatedinitializer="false" new="false">
-      <parameter name="colorScheme" type="IColorScheming" nullallowed="false" />
-      <parameter name="flatButton" type="Button" nullallowed="false" />
+      <parameter name="colorScheme" type="IColorScheming" nullallowed="false" isreference="false" />
+      <parameter name="flatButton" type="Button" nullallowed="false" isreference="false" />
     </method>
   </add-node>
   <add-node path="/api/namespace[@name='MaterialComponents']/class[@name='MDCButtonColorThemer']">
     <method name="ApplySemanticColorSchemeToRaisedButton" returns="void" static="true" export="applySemanticColorScheme:toRaisedButton:" nullallowed="false" abstract="false" RequiresSuper="false" designatedinitializer="false" new="false">
-      <parameter name="colorScheme" type="IColorScheming" nullallowed="false" />
-      <parameter name="raisedButton" type="Button" nullallowed="false" />
+      <parameter name="colorScheme" type="IColorScheming" nullallowed="false" isreference="false" />
+      <parameter name="raisedButton" type="Button" nullallowed="false" isreference="false" />
     </method>
   </add-node>
   <add-node path="/api/namespace[@name='MaterialComponents']/class[@name='MDCButtonColorThemer']">
     <method name="ApplySemanticColorSchemeToFloatingButton" returns="void" static="true" export="applySemanticColorScheme:toFloatingButton:" nullallowed="false" abstract="false" RequiresSuper="false" designatedinitializer="false" new="false">
-      <parameter name="colorScheme" type="IColorScheming" nullallowed="false" />
-      <parameter name="floatingButton" type="FloatingButton" nullallowed="false" />
+      <parameter name="colorScheme" type="IColorScheming" nullallowed="false" isreference="false" />
+      <parameter name="floatingButton" type="FloatingButton" nullallowed="false" isreference="false" />
     </method>
   </add-node>
   <add-node path="/api/namespace[@name='MaterialComponents']/class[@name='MDCButtonColorThemer']">
     <method name="ApplyColorScheme" returns="void" static="true" export="applyColorScheme:toButton:" nullallowed="false" abstract="false" RequiresSuper="false" designatedinitializer="false" new="false">
-      <parameter name="colorScheme" type="IColorScheme" nullallowed="false" />
-      <parameter name="button" type="Button" nullallowed="false" />
+      <parameter name="colorScheme" type="IColorScheme" nullallowed="false" isreference="false" />
+      <parameter name="button" type="Button" nullallowed="false" isreference="false" />
     </method>
   </add-node>
   <add-node path="/api/namespace[@name='MaterialComponents']">
@@ -2101,14 +2104,14 @@
   </add-node>
   <add-node path="/api/namespace[@name='MaterialComponents']/class[@name='MDCCard']">
     <method name="SetShadowElevation" returns="void" static="false" nullallowed="false" abstract="false" RequiresSuper="false" designatedinitializer="false" wrap="SetShadowElevation ((nfloat)shadowElevation, state)" new="false">
-      <parameter name="shadowElevation" type="double" nullallowed="false" />
-      <parameter name="state" type="UIControlState" nullallowed="false" />
+      <parameter name="shadowElevation" type="double" nullallowed="false" isreference="false" />
+      <parameter name="state" type="UIControlState" nullallowed="false" isreference="false" />
     </method>
   </add-node>
   <add-node path="/api/namespace[@name='MaterialComponents']/class[@name='MDCCardCollectionCell']">
     <method name="SetShadowElevation" returns="void" static="false" nullallowed="false" abstract="false" RequiresSuper="false" designatedinitializer="false" wrap="SetShadowElevation ((nfloat)shadowElevation, state)" new="false">
-      <parameter name="shadowElevation" type="double" nullallowed="false" />
-      <parameter name="state" type="CardCellState" nullallowed="false" />
+      <parameter name="shadowElevation" type="double" nullallowed="false" isreference="false" />
+      <parameter name="state" type="CardCellState" nullallowed="false" isreference="false" />
     </method>
   </add-node>
   <add-node path="/api/namespace[@name='MaterialComponents']">
@@ -2128,8 +2131,8 @@
   </add-node>
   <add-node path="/api/namespace[@name='MaterialComponents']/class[@name='MDCChipView']">
     <method name="SetElevation" returns="void" static="false" nullallowed="false" abstract="false" RequiresSuper="false" designatedinitializer="false" wrap="SetElevation ((nfloat)elevation, state)" new="false">
-      <parameter name="elevation" type="double" nullallowed="false" />
-      <parameter name="state" type="UIControlState" nullallowed="false" />
+      <parameter name="elevation" type="double" nullallowed="false" isreference="false" />
+      <parameter name="state" type="UIControlState" nullallowed="false" isreference="false" />
     </method>
   </add-node>
   <add-node path="/api/namespace[@name='MaterialComponents']/class[@name='MDCChipView']">
@@ -2137,8 +2140,8 @@
   </add-node>
   <add-node path="/api/namespace[@name='MaterialComponents']/class[@name='MDCChipViewColorThemer']">
     <method name="ApplySemanticColorSchemeToStrokedChipView" returns="void" static="true" export="applySemanticColorScheme:toStrokedChipView:" nullallowed="false" abstract="false" RequiresSuper="false" designatedinitializer="false" new="false" obsolete="This method will soon be deprecated. Consider using ApplyOutlinedVariant method instead.">
-      <parameter name="colorScheme" type="IColorScheming" nullallowed="false" />
-      <parameter name="strokedChipView" type="ChipView" nullallowed="false" />
+      <parameter name="colorScheme" type="IColorScheming" nullallowed="false" isreference="false" />
+      <parameter name="strokedChipView" type="ChipView" nullallowed="false" isreference="false" />
     </method>
   </add-node>
   <add-node path="/api/namespace[@name='MaterialComponents']">
@@ -2186,35 +2189,35 @@
   </add-node>
   <add-node path="/api/namespace[@name='MaterialComponents']/class[@name='MDCCornerTreatment']">
     <method name="CreateCornerWithRadius" returns="RoundedCornerTreatment" static="true" export="cornerWithRadius:" nullallowed="false" abstract="false" RequiresSuper="false" designatedinitializer="false" new="false">
-      <parameter name="value" type="nfloat" nullallowed="false" />
+      <parameter name="value" type="nfloat" nullallowed="false" isreference="false" />
     </method>
   </add-node>
   <add-node path="/api/namespace[@name='MaterialComponents']/class[@name='MDCCornerTreatment']">
     <method name="CreateCornerWithRadius" returns="RoundedCornerTreatment" static="true" export="cornerWithRadius:valueType:" nullallowed="false" abstract="false" RequiresSuper="false" designatedinitializer="false" new="false">
-      <parameter name="value" type="nfloat" nullallowed="false" />
-      <parameter name="valueType" type="CornerTreatmentValueType" nullallowed="false" />
+      <parameter name="value" type="nfloat" nullallowed="false" isreference="false" />
+      <parameter name="valueType" type="CornerTreatmentValueType" nullallowed="false" isreference="false" />
     </method>
   </add-node>
   <add-node path="/api/namespace[@name='MaterialComponents']/class[@name='MDCCornerTreatment']">
     <method name="CreateCornerWithCut" returns="CutCornerTreatment" static="true" export="cornerWithCut:" nullallowed="false" abstract="false" RequiresSuper="false" designatedinitializer="false" new="false">
-      <parameter name="value" type="nfloat" nullallowed="false" />
+      <parameter name="value" type="nfloat" nullallowed="false" isreference="false" />
     </method>
   </add-node>
   <add-node path="/api/namespace[@name='MaterialComponents']/class[@name='MDCCornerTreatment']">
     <method name="CreateCornerWithCut" returns="CutCornerTreatment" static="true" export="cornerWithCut:valueType:" nullallowed="false" abstract="false" RequiresSuper="false" designatedinitializer="false" new="false">
-      <parameter name="value" type="nfloat" nullallowed="false" />
-      <parameter name="valueType" type="CornerTreatmentValueType" nullallowed="false" />
+      <parameter name="value" type="nfloat" nullallowed="false" isreference="false" />
+      <parameter name="valueType" type="CornerTreatmentValueType" nullallowed="false" isreference="false" />
     </method>
   </add-node>
   <add-node path="/api/namespace[@name='MaterialComponents']/class[@name='MDCCornerTreatment']">
     <method name="CreateCornerWithCurve" returns="CurvedCornerTreatment" static="true" export="cornerWithCurve:" nullallowed="false" abstract="false" RequiresSuper="false" designatedinitializer="false" new="false">
-      <parameter name="value" type="CGSize" nullallowed="false" />
+      <parameter name="value" type="CGSize" nullallowed="false" isreference="false" />
     </method>
   </add-node>
   <add-node path="/api/namespace[@name='MaterialComponents']/class[@name='MDCCornerTreatment']">
     <method name="CreateCornerWithCurve" returns="CurvedCornerTreatment" static="true" export="cornerWithCurve:valueType:" nullallowed="false" abstract="false" RequiresSuper="false" designatedinitializer="false" new="false">
-      <parameter name="value" type="CGSize" nullallowed="false" />
-      <parameter name="valueType" type="CornerTreatmentValueType" nullallowed="false" />
+      <parameter name="value" type="CGSize" nullallowed="false" isreference="false" />
+      <parameter name="valueType" type="CornerTreatmentValueType" nullallowed="false" isreference="false" />
     </method>
   </add-node>
   <add-node path="/api/namespace[@name='MaterialComponents']/class[@name='MDCDialogPresentationController']">
@@ -2222,8 +2225,8 @@
   </add-node>
   <add-node path="/api/namespace[@name='MaterialComponents']/class[@name='MDCFeatureHighlightColorThemer']">
     <method name="ApplyColorScheme" returns="void" static="true" export="applyColorScheme:toFeatureHighlightView:" nullallowed="false" abstract="false" RequiresSuper="false" designatedinitializer="false" new="false" obsolete=" This method will soon be deprecated. Consider using ApplySemanticColorScheme method instead.">
-      <parameter name="colorScheme" type="IColorScheme" nullallowed="false" />
-      <parameter name="featureHighlightView" type="FeatureHighlightView" nullallowed="false" />
+      <parameter name="colorScheme" type="IColorScheme" nullallowed="false" isreference="false" />
+      <parameter name="featureHighlightView" type="FeatureHighlightView" nullallowed="false" isreference="false" />
     </method>
   </add-node>
   <add-node path="/api/namespace[@name='MaterialComponents']/class[@name='MDCFeatureHighlightView']">
@@ -2237,39 +2240,39 @@
   </add-node>
   <add-node path="/api/namespace[@name='MaterialComponents']/class[@name='MDCFlexibleHeaderColorThemer']">
     <method name="ApplyColorScheme" returns="void" static="true" export="applyColorScheme:toFlexibleHeaderView:" nullallowed="false" abstract="false" RequiresSuper="false" designatedinitializer="false" new="false" obsolete="This method will soon be deprecated. Consider using ApplySemanticColorScheme method instead.">
-      <parameter name="colorScheme" type="IColorScheme" nullallowed="false" />
-      <parameter name="flexibleHeaderView" type="FlexibleHeaderView" nullallowed="false" />
+      <parameter name="colorScheme" type="IColorScheme" nullallowed="false" isreference="false" />
+      <parameter name="flexibleHeaderView" type="FlexibleHeaderView" nullallowed="false" isreference="false" />
     </method>
   </add-node>
   <add-node path="/api/namespace[@name='MaterialComponents']/class[@name='MDCFlexibleHeaderColorThemer']">
     <method name="ApplyColorScheme" returns="void" static="true" export="applyColorScheme:toMDCFlexibleHeaderController:" nullallowed="false" abstract="false" RequiresSuper="false" designatedinitializer="false" new="false" obsolete="This method will soon be deprecated. Consider using ApplySemanticColorScheme method instead.">
-      <parameter name="colorScheme" type="IColorScheme" nullallowed="false" />
-      <parameter name="flexibleHeaderController" type="FlexibleHeaderViewController" nullallowed="false" />
+      <parameter name="colorScheme" type="IColorScheme" nullallowed="false" isreference="false" />
+      <parameter name="flexibleHeaderController" type="FlexibleHeaderViewController" nullallowed="false" isreference="false" />
     </method>
   </add-node>
   <add-node path="/api/namespace[@name='MaterialComponents']/class[@name='MDCFlexibleHeaderView']">
     <method name="HideViewWhenShifted" returns="void" static="false" export="hideViewWhenShifted:" nullallowed="false" abstract="false" RequiresSuper="false" designatedinitializer="false" new="false">
-      <parameter name="view" type="UIView" nullallowed="false" />
+      <parameter name="view" type="UIView" nullallowed="false" isreference="false" />
     </method>
   </add-node>
   <add-node path="/api/namespace[@name='MaterialComponents']/class[@name='MDCFlexibleHeaderView']">
     <method name="StopHidingViewWhenShifted" returns="void" static="false" export="stopHidingViewWhenShifted:" nullallowed="false" abstract="false" RequiresSuper="false" designatedinitializer="false" new="false">
-      <parameter name="view" type="UIView" nullallowed="false" />
+      <parameter name="view" type="UIView" nullallowed="false" isreference="false" />
     </method>
   </add-node>
   <add-node path="/api/namespace[@name='MaterialComponents']/class[@name='MDCFlexibleHeaderView']">
     <method name="ShiftHeaderOnScreen" returns="void" static="false" export="shiftHeaderOnScreenAnimated:" nullallowed="false" abstract="false" RequiresSuper="false" designatedinitializer="false" new="false">
-      <parameter name="animated" type="bool" nullallowed="false" />
+      <parameter name="animated" type="bool" nullallowed="false" isreference="false" />
     </method>
   </add-node>
   <add-node path="/api/namespace[@name='MaterialComponents']/class[@name='MDCFlexibleHeaderView']">
     <method name="ShiftHeaderOffScreen" returns="void" static="false" export="shiftHeaderOffScreenAnimated:" nullallowed="false" abstract="false" RequiresSuper="false" designatedinitializer="false" new="false">
-      <parameter name="animated" type="bool" nullallowed="false" />
+      <parameter name="animated" type="bool" nullallowed="false" isreference="false" />
     </method>
   </add-node>
   <add-node path="/api/namespace[@name='MaterialComponents']/class[@name='MDCFlexibleHeaderView']">
     <method name="TrackingScrollViewDidEndDragging" returns="void" static="false" export="trackingScrollViewDidEndDraggingWillDecelerate:" nullallowed="false" abstract="false" RequiresSuper="false" designatedinitializer="false" new="false" advice="Do not invoke this method if ObservesTrackingScrollViewScrollEvents property is set to true.">
-      <parameter name="willDecelerate" type="bool" nullallowed="false" />
+      <parameter name="willDecelerate" type="bool" nullallowed="false" isreference="false" />
     </method>
   </add-node>
   <add-node path="/api/namespace[@name='MaterialComponents']/class[@name='MDCFlexibleHeaderView']">
@@ -2277,7 +2280,7 @@
   </add-node>
   <add-node path="/api/namespace[@name='MaterialComponents']/class[@name='MDCFlexibleHeaderView']">
     <method name="TrackingScrollViewWillEndDragging" returns="bool" static="false" export="trackingScrollViewWillEndDraggingWithVelocity:targetContentOffset:" nullallowed="false" abstract="false" RequiresSuper="false" designatedinitializer="false" new="false" advice="Do not invoke this method if ObservesTrackingScrollViewScrollEvents property is set to true.">
-      <parameter name="velocity" type="CGPoint" nullallowed="false" />
+      <parameter name="velocity" type="CGPoint" nullallowed="false" isreference="false" />
       <parameter name="targetContentOffset" type="CGPoint" nullallowed="false" isreference="true" />
     </method>
   </add-node>
@@ -2310,36 +2313,36 @@
   </add-node>
   <add-node path="/api/namespace[@name='MaterialComponents']/class[@name='MDCFloatingButton']">
     <method name="Expand" returns="void" static="false" export="expand:completion:" nullallowed="false" abstract="false" RequiresSuper="false" designatedinitializer="false" new="false">
-      <parameter name="animated" type="bool" nullallowed="false" />
-      <parameter name="completion" type="Action" nullallowed="true" />
+      <parameter name="animated" type="bool" nullallowed="false" isreference="false" />
+      <parameter name="completion" type="Action" nullallowed="true" isreference="false" />
     </method>
   </add-node>
   <add-node path="/api/namespace[@name='MaterialComponents']/class[@name='MDCFloatingButton']">
     <method name="Collapse" returns="void" static="false" export="collapse:completion:" nullallowed="false" abstract="false" RequiresSuper="false" designatedinitializer="false" new="false">
-      <parameter name="animated" type="bool" nullallowed="false" />
-      <parameter name="completion" type="Action" nullallowed="true" />
+      <parameter name="animated" type="bool" nullallowed="false" isreference="false" />
+      <parameter name="completion" type="Action" nullallowed="true" isreference="false" />
     </method>
   </add-node>
   <add-node path="/api/namespace[@name='MaterialComponents']/class[@name='MDCHeaderStackViewColorThemer']">
     <method name="ApplyColorScheme" returns="void" static="true" export="applyColorScheme:toHeaderStackView:" nullallowed="false" abstract="false" RequiresSuper="false" designatedinitializer="false" new="false">
-      <parameter name="colorScheme" type="IColorScheme" nullallowed="false" />
-      <parameter name="headerStackView" type="HeaderStackView" nullallowed="false" />
+      <parameter name="colorScheme" type="IColorScheme" nullallowed="false" isreference="false" />
+      <parameter name="headerStackView" type="HeaderStackView" nullallowed="false" isreference="false" />
     </method>
   </add-node>
   <add-node path="/api/namespace[@name='MaterialComponents']/class[@name='MDCIcons']">
     <method name="IcArrowBackUseNewStyle" returns="void" static="true" export="ic_arrow_backUseNewStyle:" nullallowed="false" abstract="false" RequiresSuper="false" designatedinitializer="false" new="false">
-      <parameter name="useNewStyle" type="bool" nullallowed="false" />
+      <parameter name="useNewStyle" type="bool" nullallowed="false" isreference="false" />
     </method>
   </add-node>
   <add-node path="/api/namespace[@name='MaterialComponents']/class[@name='MDCIcons']">
     <method name="GetPath" returns="string" static="true" export="pathForIconName:withBundleName:" nullallowed="false" abstract="false" RequiresSuper="false" designatedinitializer="false" new="false">
-      <parameter name="iconName" type="string" nullallowed="false" />
-      <parameter name="bundleName" type="string" nullallowed="false" />
+      <parameter name="iconName" type="string" nullallowed="false" isreference="false" />
+      <parameter name="bundleName" type="string" nullallowed="false" isreference="false" />
     </method>
   </add-node>
   <add-node path="/api/namespace[@name='MaterialComponents']/class[@name='MDCIcons']">
     <method name="GetBundleNamed" returns="NSBundle" static="true" export="bundleNamed:" nullallowed="true" abstract="false" RequiresSuper="false" designatedinitializer="false" new="false">
-      <parameter name="bundleName" type="string" nullallowed="false" />
+      <parameter name="bundleName" type="string" nullallowed="false" isreference="false" />
     </method>
   </add-node>
   <add-node path="/api/namespace[@name='MaterialComponents']/class[@name='MDCIcons']">
@@ -2410,8 +2413,8 @@
   </add-node>
   <add-node path="/api/namespace[@name='MaterialComponents']/class[@name='MDCInkColorThemer']">
     <method name="ApplyColorScheme" returns="void" static="true" export="applyColorScheme:toInkView:" nullallowed="false" abstract="false" RequiresSuper="false" designatedinitializer="false" new="false">
-      <parameter name="colorScheme" type="IColorScheme" nullallowed="false" />
-      <parameter name="inkView" type="InkView" nullallowed="false" />
+      <parameter name="colorScheme" type="IColorScheme" nullallowed="false" isreference="false" />
+      <parameter name="inkView" type="InkView" nullallowed="false" isreference="false" />
     </method>
   </add-node>
   <add-node path="/api/namespace[@name='MaterialComponents']">
@@ -2425,10 +2428,10 @@
       <model autogeneratedname="true" />
       <basetype type="NSObject" />
       <method name="InkAnimationDidStart" returns="void" static="false" export="inkAnimationDidStart:" eventargs="InkViewInkAnimationStarted" eventname="InkAnimationStarted" nullallowed="false" abstract="false" RequiresSuper="false" designatedinitializer="false" new="false">
-        <parameter name="inkView" type="InkView" nullallowed="false" />
+        <parameter name="inkView" type="InkView" nullallowed="false" isreference="false" />
       </method>
       <method name="InkAnimationDidEnd" returns="void" static="false" export="inkAnimationDidEnd:" eventargs="InkViewInkAnimationEnded" eventname="InkAnimationEnded" nullallowed="false" abstract="false" RequiresSuper="false" designatedinitializer="false" new="false">
-        <parameter name="inkView" type="InkView" nullallowed="false" />
+        <parameter name="inkView" type="InkView" nullallowed="false" isreference="false" />
       </method>
     </class>
   </add-node>
@@ -2464,8 +2467,8 @@
   </add-node>
   <add-node path="/api/namespace[@name='MaterialComponents']/class[@name='MDCNavigationBarColorThemer']">
     <method name="ApplyColorScheme" returns="void" static="true" export="applyColorScheme:toNavigationBar:" nullallowed="false" abstract="false" RequiresSuper="false" designatedinitializer="false" new="false" obsolete="This method will soon be deprecated. Consider using ApplySemanticColorScheme instead.">
-      <parameter name="colorScheme" type="IColorScheme" nullallowed="false" />
-      <parameter name="navigationBar" type="NavigationBar" nullallowed="false" />
+      <parameter name="colorScheme" type="IColorScheme" nullallowed="false" isreference="false" />
+      <parameter name="navigationBar" type="NavigationBar" nullallowed="false" isreference="false" />
     </method>
   </add-node>
   <add-node path="/api/namespace[@name='MaterialComponents']">
@@ -2476,8 +2479,8 @@
   </add-node>
   <add-node path="/api/namespace[@name='MaterialComponents']/class[@name='MDCPageControlColorThemer']">
     <method name="ApplyColorScheme" returns="void" static="true" export="applyColorScheme:toPageControl:" nullallowed="false" abstract="false" RequiresSuper="false" designatedinitializer="false" new="false" obsolete="This method will soon be deprecated. There is no replacement yet.">
-      <parameter name="colorScheme" type="IColorScheme" nullallowed="false" />
-      <parameter name="pageControl" type="PageControl" nullallowed="false" />
+      <parameter name="colorScheme" type="IColorScheme" nullallowed="false" isreference="false" />
+      <parameter name="pageControl" type="PageControl" nullallowed="false" isreference="false" />
     </method>
   </add-node>
   <add-node path="/api/namespace[@name='MaterialComponents']/class[@name='MDCPalette']">
@@ -2524,8 +2527,8 @@
   </add-node>
   <add-node path="/api/namespace[@name='MaterialComponents']/class[@name='MDCProgressViewColorThemer']">
     <method name="ApplyColorScheme" returns="void" static="true" export="applyColorScheme:toProgressView:" nullallowed="false" abstract="false" RequiresSuper="false" designatedinitializer="false" new="false" obsolete="This method will soon be deprecated. There is no replacement yet.">
-      <parameter name="colorScheme" type="IColorScheme" nullallowed="false" />
-      <parameter name="progressView" type="ProgressView" nullallowed="false" />
+      <parameter name="colorScheme" type="IColorScheme" nullallowed="false" isreference="false" />
+      <parameter name="progressView" type="ProgressView" nullallowed="false" isreference="false" />
     </method>
   </add-node>
   <add-node path="/api/namespace[@name='MaterialComponents']">
@@ -2533,7 +2536,7 @@
   </add-node>
   <add-node path="/api/namespace[@name='MaterialComponents']/class[@name='MDCShapedView']">
     <method name="Constructor" returns="IntPtr" static="false" nullallowed="false" abstract="false" RequiresSuper="false" designatedinitializer="false" wrap="this (frame, null)" new="false">
-      <parameter name="frame" type="CGRect" nullallowed="false" />
+      <parameter name="frame" type="CGRect" nullallowed="false" isreference="false" />
     </method>
   </add-node>
   <add-node path="/api/namespace[@name='MaterialComponents']">
@@ -2547,8 +2550,8 @@
   </add-node>
   <add-node path="/api/namespace[@name='MaterialComponents']/class[@name='MDCSliderColorThemer']">
     <method name="ApplyColorScheme" returns="void" static="true" export="applyColorScheme:toSlider:" nullallowed="false" abstract="false" RequiresSuper="false" designatedinitializer="false" new="false" obsolete="This method will soon be deprecated. Consider using ApplySemanticColorScheme method instead.">
-      <parameter name="colorScheme" type="IColorScheme" nullallowed="false" />
-      <parameter name="slider" type="Slider" nullallowed="false" />
+      <parameter name="colorScheme" type="IColorScheme" nullallowed="false" isreference="false" />
+      <parameter name="slider" type="Slider" nullallowed="false" isreference="false" />
     </method>
   </add-node>
   <add-node path="/api/namespace[@name='MaterialComponents']/class[@name='MDCSliderColorThemer']">
@@ -2580,7 +2583,7 @@
   </add-node>
   <add-node path="/api/namespace[@name='MaterialComponents']/class[@name='MDCTabBar']">
     <method name="GetAccessibilityElement" returns="NSObject" static="false" export="accessibilityElementForItem:" nullallowed="true" abstract="false" RequiresSuper="false" designatedinitializer="false" new="false">
-      <parameter name="item" type="UITabBarItem" nullallowed="false" />
+      <parameter name="item" type="UITabBarItem" nullallowed="false" isreference="false" />
     </method>
   </add-node>
   <add-node path="/api/namespace[@name='MaterialComponents']">
@@ -2588,8 +2591,8 @@
   </add-node>
   <add-node path="/api/namespace[@name='MaterialComponents']/class[@name='MDCTabBarColorThemer']">
     <method name="ApplyColorScheme" returns="void" static="true" export="applyColorScheme:toTabBar:" nullallowed="false" abstract="false" RequiresSuper="false" designatedinitializer="false" new="false" obsolete="This method will soon be deprecated. Consider using ApplySemanticColorScheme method instead.">
-      <parameter name="colorScheme" type="IColorScheme" nullallowed="false" />
-      <parameter name="tabBar" type="TabBar" nullallowed="false" />
+      <parameter name="colorScheme" type="IColorScheme" nullallowed="false" isreference="false" />
+      <parameter name="tabBar" type="TabBar" nullallowed="false" isreference="false" />
     </method>
   </add-node>
   <add-node path="/api/namespace[@name='MaterialComponents']">
@@ -2615,50 +2618,50 @@
   </add-node>
   <add-node path="/api/namespace[@name='MaterialComponents']/class[@name='MDCTextFieldColorThemer']">
     <method name="ApplySemanticColorSchemeToTextInputController" returns="void" static="true" nullallowed="false" abstract="false" RequiresSuper="false" designatedinitializer="false" wrap="ApplySemanticColorScheme (colorScheme, textInputController)" new="false" obsolete="Use ApplySemanticColorScheme instead.">
-      <parameter name="colorScheme" type="IColorScheming" nullallowed="false" />
-      <parameter name="textInputController" type="ITextInputController" nullallowed="false" />
+      <parameter name="colorScheme" type="IColorScheming" nullallowed="false" isreference="false" />
+      <parameter name="textInputController" type="ITextInputController" nullallowed="false" isreference="false" />
     </method>
   </add-node>
   <add-node path="/api/namespace[@name='MaterialComponents']/class[@name='MDCTextFieldColorThemer']">
     <method name="ApplySemanticColorSchemeToAll" returns="void" static="true" nullallowed="false" abstract="false" RequiresSuper="false" designatedinitializer="false" wrap="ApplySemanticColorSchemeToAll (colorScheme, new Class (textInputControllerType))" new="false">
-      <parameter name="colorScheme" type="IColorScheming" nullallowed="false" />
-      <parameter name="textInputControllerType" type="Type" nullallowed="false" />
+      <parameter name="colorScheme" type="IColorScheming" nullallowed="false" isreference="false" />
+      <parameter name="textInputControllerType" type="Type" nullallowed="false" isreference="false" />
     </method>
   </add-node>
   <add-node path="/api/namespace[@name='MaterialComponents']/class[@name='MDCTextFieldColorThemer']">
     <method name="ApplySemanticColorSchemeToTextInput" returns="void" static="true" nullallowed="false" abstract="false" RequiresSuper="false" designatedinitializer="false" wrap="ApplySemanticColorScheme (colorScheme, textInput)" new="false" obsolete="Use ApplySemanticColorScheme instead.">
-      <parameter name="colorScheme" type="IColorScheming" nullallowed="false" />
-      <parameter name="textInput" type="ITextInput" nullallowed="false" />
+      <parameter name="colorScheme" type="IColorScheming" nullallowed="false" isreference="false" />
+      <parameter name="textInput" type="ITextInput" nullallowed="false" isreference="false" />
     </method>
   </add-node>
   <add-node path="/api/namespace[@name='MaterialComponents']/class[@name='MDCTextFieldColorThemer']">
     <method name="ApplyColorSchemeToTextInputController" returns="void" static="true" export="applyColorScheme:toTextInputController:" nullallowed="false" abstract="false" RequiresSuper="false" designatedinitializer="false" new="false" obsolete="This method will soon be deprecated. Consider using ApplySemanticColorScheme method instead.">
-      <parameter name="colorScheme" type="IColorScheme" nullallowed="false" />
-      <parameter name="textInputController" type="ITextInputController" nullallowed="false" />
+      <parameter name="colorScheme" type="IColorScheme" nullallowed="false" isreference="false" />
+      <parameter name="textInputController" type="ITextInputController" nullallowed="false" isreference="false" />
     </method>
   </add-node>
   <add-node path="/api/namespace[@name='MaterialComponents']/class[@name='MDCTextFieldColorThemer']">
     <method name="ApplyColorSchemeoAllTextInputControllersOfClass" returns="void" static="true" export="applyColorScheme:toAllTextInputControllersOfClass:" nullallowed="false" abstract="false" RequiresSuper="false" designatedinitializer="false" new="false" obsolete="This method will soon be deprecated. Consider using ApplySemanticColorSchemeToAll method instead.">
-      <parameter name="colorScheme" type="IColorScheme" nullallowed="false" />
-      <parameter name="textInputControllerClass" type="Class" nullallowed="false" />
+      <parameter name="colorScheme" type="IColorScheme" nullallowed="false" isreference="false" />
+      <parameter name="textInputControllerClass" type="Class" nullallowed="false" isreference="false" />
     </method>
   </add-node>
   <add-node path="/api/namespace[@name='MaterialComponents']/class[@name='MDCTextFieldFontThemer']">
     <method name="ApplyFontSchemeToTextInputController" returns="void" static="true" nullallowed="false" abstract="false" RequiresSuper="false" designatedinitializer="false" wrap="ApplyFontScheme (fontScheme, textInputController)" new="false" obsolete="Use ApplyFontScheme instead.">
-      <parameter name="fontScheme" type="IFontScheme" nullallowed="false" />
-      <parameter name="textInputController" type="ITextInputController" nullallowed="false" />
+      <parameter name="fontScheme" type="IFontScheme" nullallowed="false" isreference="false" />
+      <parameter name="textInputController" type="ITextInputController" nullallowed="false" isreference="false" />
     </method>
   </add-node>
   <add-node path="/api/namespace[@name='MaterialComponents']/class[@name='MDCTextFieldFontThemer']">
     <method name="ApplyFontSchemeToAll" returns="void" static="true" nullallowed="false" abstract="false" RequiresSuper="false" designatedinitializer="false" wrap="ApplyFontSchemeToAll (fontScheme, new Class (textInputControllerType))" new="false">
-      <parameter name="fontScheme" type="IFontScheme" nullallowed="false" />
-      <parameter name="textInputControllerType" type="Type" nullallowed="false" />
+      <parameter name="fontScheme" type="IFontScheme" nullallowed="false" isreference="false" />
+      <parameter name="textInputControllerType" type="Type" nullallowed="false" isreference="false" />
     </method>
   </add-node>
   <add-node path="/api/namespace[@name='MaterialComponents']/class[@name='MDCTextFieldFontThemer']">
     <method name="ApplyFontSchemeToTextField" returns="void" static="true" nullallowed="false" abstract="false" RequiresSuper="false" designatedinitializer="false" wrap="ApplyFontScheme (fontScheme, textField)" new="false" obsolete="Use ApplyFontScheme instead.">
-      <parameter name="fontScheme" type="IFontScheme" nullallowed="false" />
-      <parameter name="textField" type="TextField" nullallowed="false" />
+      <parameter name="fontScheme" type="IFontScheme" nullallowed="false" isreference="false" />
+      <parameter name="textField" type="TextField" nullallowed="false" isreference="false" />
     </method>
   </add-node>
   <add-node path="/api/namespace[@name='MaterialComponents']">
@@ -2672,20 +2675,20 @@
   </add-node>
   <add-node path="/api/namespace[@name='MaterialComponents']/class[@name='MDCTextFieldTypographyThemer']">
     <method name="ApplyTypographySchemeToAll" returns="void" static="true" nullallowed="false" abstract="false" RequiresSuper="false" designatedinitializer="false" wrap="ApplyTypographySchemeToAll (typographyScheme, new Class (textInputControllerType))" new="false">
-      <parameter name="typographyScheme" type="ITypographyScheming" nullallowed="false" />
-      <parameter name="textInputControllerType" type="Type" nullallowed="false" />
+      <parameter name="typographyScheme" type="ITypographyScheming" nullallowed="false" isreference="false" />
+      <parameter name="textInputControllerType" type="Type" nullallowed="false" isreference="false" />
     </method>
   </add-node>
   <add-node path="/api/namespace[@name='MaterialComponents']/class[@name='MDCTextFieldTypographyThemer']">
     <method name="ApplyTypographySchemeToTextInputController" returns="void" static="true" nullallowed="false" abstract="false" RequiresSuper="false" designatedinitializer="false" wrap="ApplyTypographyScheme (typographyScheme, textInputController)" new="false" obsolete="Use ApplyTypographyScheme instead.">
-      <parameter name="typographyScheme" type="ITypographyScheming" nullallowed="false" />
-      <parameter name="textInputController" type="ITextInputController" nullallowed="false" />
+      <parameter name="typographyScheme" type="ITypographyScheming" nullallowed="false" isreference="false" />
+      <parameter name="textInputController" type="ITextInputController" nullallowed="false" isreference="false" />
     </method>
   </add-node>
   <add-node path="/api/namespace[@name='MaterialComponents']/class[@name='MDCTextFieldTypographyThemer']">
     <method name="ApplyTypographySchemeToTextInput" returns="void" static="true" nullallowed="false" abstract="false" RequiresSuper="false" designatedinitializer="false" wrap="ApplyTypographyScheme (typographyScheme, textInput)" new="false" obsolete="Use ApplyTypographyScheme instead.">
-      <parameter name="typographyScheme" type="ITypographyScheming" nullallowed="false" />
-      <parameter name="textInput" type="ITextInput" nullallowed="false" />
+      <parameter name="typographyScheme" type="ITypographyScheming" nullallowed="false" isreference="false" />
+      <parameter name="textInput" type="ITextInput" nullallowed="false" isreference="false" />
     </method>
   </add-node>
   <add-node path="/api/namespace[@name='MaterialComponents']">
@@ -2714,7 +2717,7 @@
   </add-node>
   <add-node path="/api/namespace[@name='MaterialComponents']/class[@name='MDCTextInputControllerBase']">
     <method name="Constructor" returns="IntPtr" static="false" export="initWithTextInput:" nullallowed="false" abstract="false" RequiresSuper="false" designatedinitializer="false" new="false">
-      <parameter name="input" type="ITextInput" nullallowed="true" />
+      <parameter name="input" type="ITextInput" nullallowed="true" isreference="false" />
     </method>
   </add-node>
   <add-node path="/api/namespace[@name='MaterialComponents']/class[@name='MDCTextInputControllerBase']">
@@ -2722,7 +2725,7 @@
   </add-node>
   <add-node path="/api/namespace[@name='MaterialComponents']/class[@name='MDCTextInputControllerFilled']">
     <method name="Constructor" returns="IntPtr" static="false" export="initWithTextInput:" nullallowed="false" abstract="false" RequiresSuper="false" designatedinitializer="false" new="false">
-      <parameter name="input" type="ITextInput" nullallowed="true" />
+      <parameter name="input" type="ITextInput" nullallowed="true" isreference="false" />
     </method>
   </add-node>
   <add-node path="/api/namespace[@name='MaterialComponents']">
@@ -2730,32 +2733,32 @@
   </add-node>
   <add-node path="/api/namespace[@name='MaterialComponents']/class[@name='MDCTextInputControllerFullWidth']">
     <method name="Constructor" returns="IntPtr" static="false" export="initWithTextInput:" nullallowed="false" abstract="false" RequiresSuper="false" designatedinitializer="false" new="false">
-      <parameter name="input" type="ITextInput" nullallowed="true" />
+      <parameter name="input" type="ITextInput" nullallowed="true" isreference="false" />
     </method>
   </add-node>
   <add-node path="/api/namespace[@name='MaterialComponents']/class[@name='MDCTextInputControllerLegacyDefault']">
     <method name="Constructor" returns="IntPtr" static="false" export="initWithTextInput:" nullallowed="false" abstract="false" RequiresSuper="false" designatedinitializer="false" new="false">
-      <parameter name="input" type="ITextInput" nullallowed="true" />
+      <parameter name="input" type="ITextInput" nullallowed="true" isreference="false" />
     </method>
   </add-node>
   <add-node path="/api/namespace[@name='MaterialComponents']/class[@name='MDCTextInputControllerLegacyFullWidth']">
     <method name="Constructor" returns="IntPtr" static="false" export="initWithTextInput:" nullallowed="false" abstract="false" RequiresSuper="false" designatedinitializer="false" new="false">
-      <parameter name="input" type="ITextInput" nullallowed="true" />
+      <parameter name="input" type="ITextInput" nullallowed="true" isreference="false" />
     </method>
   </add-node>
   <add-node path="/api/namespace[@name='MaterialComponents']/class[@name='MDCTextInputControllerOutlined']">
     <method name="Constructor" returns="IntPtr" static="false" export="initWithTextInput:" nullallowed="false" abstract="false" RequiresSuper="false" designatedinitializer="false" new="false">
-      <parameter name="input" type="ITextInput" nullallowed="true" />
+      <parameter name="input" type="ITextInput" nullallowed="true" isreference="false" />
     </method>
   </add-node>
   <add-node path="/api/namespace[@name='MaterialComponents']/class[@name='MDCTextInputControllerOutlinedTextArea']">
     <method name="Constructor" returns="IntPtr" static="false" export="initWithTextInput:" nullallowed="false" abstract="false" RequiresSuper="false" designatedinitializer="false" new="false">
-      <parameter name="input" type="ITextInput" nullallowed="true" />
+      <parameter name="input" type="ITextInput" nullallowed="true" isreference="false" />
     </method>
   </add-node>
   <add-node path="/api/namespace[@name='MaterialComponents']/class[@name='MDCTextInputControllerUnderline']">
     <method name="Constructor" returns="IntPtr" static="false" export="initWithTextInput:" nullallowed="false" abstract="false" RequiresSuper="false" designatedinitializer="false" new="false">
-      <parameter name="input" type="ITextInput" nullallowed="true" />
+      <parameter name="input" type="ITextInput" nullallowed="true" isreference="false" />
     </method>
   </add-node>
   <add-node path="/api/namespace[@name='MaterialComponents']">
@@ -2776,32 +2779,32 @@
   <add-node path="/api/namespace[@name='MaterialComponents']">
     <class name="UIFontMaterialTypography" type="Interface" disabledefaultctor="false" category="false" protocol="false" static="true" partial="false">
       <method name="MdcGetPreferredFont" returns="UIFont" static="true" export="mdc_preferredFontForMaterialTextStyle:" nullallowed="false" abstract="false" RequiresSuper="false" designatedinitializer="false" new="false">
-        <parameter name="style" type="FontTextStyle" nullallowed="false" />
+        <parameter name="style" type="FontTextStyle" nullallowed="false" isreference="false" />
       </method>
       <method name="MdcGetStandardFont" returns="UIFont" static="true" export="mdc_standardFontForMaterialTextStyle:" nullallowed="false" abstract="false" RequiresSuper="false" designatedinitializer="false" new="false">
-        <parameter name="style" type="FontTextStyle" nullallowed="false" />
+        <parameter name="style" type="FontTextStyle" nullallowed="false" isreference="false" />
       </method>
     </class>
   </add-node>
   <add-node path="/api/namespace[@name='MaterialComponents']">
     <class name="UIFontDescriptorMaterialTypography" type="Interface" disabledefaultctor="false" category="false" protocol="false" static="true" partial="false">
       <method name="MdcGetPreferredFontDescriptor" returns="UIFontDescriptor" static="true" export="mdc_preferredFontDescriptorForMaterialTextStyle:" nullallowed="false" abstract="false" RequiresSuper="false" designatedinitializer="false" new="false">
-        <parameter name="style" type="FontTextStyle" nullallowed="false" />
+        <parameter name="style" type="FontTextStyle" nullallowed="false" isreference="false" />
       </method>
       <method name="MdcGetStandardFontDescriptor" returns="UIFontDescriptor" static="true" export="mdc_standardFontDescriptorForMaterialTextStyle:" nullallowed="false" abstract="false" RequiresSuper="false" designatedinitializer="false" new="false">
-        <parameter name="style" type="FontTextStyle" nullallowed="false" />
+        <parameter name="style" type="FontTextStyle" nullallowed="false" isreference="false" />
       </method>
     </class>
   </add-node>
   <add-node path="/api/namespace[@name='MaterialComponents']">
     <class name="UIViewMDCTimingFunction" type="Interface" disabledefaultctor="false" category="false" protocol="false" static="true" partial="false">
       <method name="MdcAnimate" returns="void" static="true" export="mdc_animateWithTimingFunction:duration:delay:options:animations:completion:" nullallowed="false" abstract="false" RequiresSuper="false" designatedinitializer="false" new="false">
-        <parameter name="timingFunction" type="CAMediaTimingFunction" nullallowed="true" />
-        <parameter name="duration" type="double" nullallowed="false" />
-        <parameter name="delay" type="double" nullallowed="false" />
-        <parameter name="options" type="UIViewAnimationOptions" nullallowed="false" />
-        <parameter name="animations" type="Action" nullallowed="false" />
-        <parameter name="completion" type="Action&lt;bool&gt;" nullallowed="true" />
+        <parameter name="timingFunction" type="CAMediaTimingFunction" nullallowed="true" isreference="false" />
+        <parameter name="duration" type="double" nullallowed="false" isreference="false" />
+        <parameter name="delay" type="double" nullallowed="false" isreference="false" />
+        <parameter name="options" type="UIViewAnimationOptions" nullallowed="false" isreference="false" />
+        <parameter name="animations" type="Action" nullallowed="false" isreference="false" />
+        <parameter name="completion" type="Action&lt;bool&gt;" nullallowed="true" isreference="false" />
       </method>
     </class>
   </add-node>
@@ -2822,12 +2825,12 @@
       <basetype type="NSString" />
       <method name="MdfCalculatedLanguageDirection" returns="NSLocaleLanguageDirection" static="false" export="mdf_calculatedLanguageDirection" nullallowed="false" abstract="false" RequiresSuper="false" designatedinitializer="false" new="false" />
       <method name="MdfGetStringWithBidiEmbedding" returns="string" static="false" export="mdf_stringWithBidiEmbedding:" nullallowed="false" abstract="false" RequiresSuper="false" designatedinitializer="false" new="false">
-        <parameter name="languageDirection" type="NSLocaleLanguageDirection" nullallowed="false" />
+        <parameter name="languageDirection" type="NSLocaleLanguageDirection" nullallowed="false" isreference="false" />
       </method>
       <method name="MdfGetStringWithBidiEmbedding" returns="string" static="false" export="mdf_stringWithBidiEmbedding" nullallowed="false" abstract="false" RequiresSuper="false" designatedinitializer="false" new="false" />
       <method name="MdfGetStringWithStereoReset" returns="string" static="false" export="mdf_stringWithStereoReset:context:" nullallowed="false" abstract="false" RequiresSuper="false" designatedinitializer="false" new="false">
-        <parameter name="direction" type="NSLocaleLanguageDirection" nullallowed="false" />
-        <parameter name="contextDirection" type="NSLocaleLanguageDirection" nullallowed="false" />
+        <parameter name="direction" type="NSLocaleLanguageDirection" nullallowed="false" isreference="false" />
+        <parameter name="contextDirection" type="NSLocaleLanguageDirection" nullallowed="false" isreference="false" />
       </method>
       <method name="MdfGetStringWithBidiMarkersStripped" returns="string" static="false" export="mdf_stringWithBidiMarkersStripped" nullallowed="false" abstract="false" RequiresSuper="false" designatedinitializer="false" new="false" />
     </class>
@@ -2843,7 +2846,7 @@
       <basetype type="UIView" />
       <method name="MdfGetSemanticContentAttribute" returns="UISemanticContentAttribute" static="false" export="mdf_semanticContentAttribute" nullallowed="false" abstract="false" RequiresSuper="false" designatedinitializer="false" new="false" />
       <method name="MdfSetSemanticContentAttribute" returns="void" static="false" export="mdf_setSemanticContentAttribute:" nullallowed="false" abstract="false" RequiresSuper="false" designatedinitializer="false" new="false">
-        <parameter name="value" type="UISemanticContentAttribute" nullallowed="false" />
+        <parameter name="value" type="UISemanticContentAttribute" nullallowed="false" isreference="false" />
       </method>
       <method name="MdfGetEffectiveUserInterfaceLayoutDirection" returns="UIUserInterfaceLayoutDirection" static="false" export="mdf_effectiveUserInterfaceLayoutDirection" nullallowed="false" abstract="false" RequiresSuper="false" designatedinitializer="false" new="false" />
     </class>
@@ -2851,11 +2854,11 @@
   <add-node path="/api/namespace[@name='MaterialComponents']">
     <class name="UIViewMaterialRtl" type="Interface" disabledefaultctor="false" category="false" protocol="false" static="true" partial="false">
       <method name="MdfGetUserInterfaceLayoutDirection" returns="UIUserInterfaceLayoutDirection" static="true" export="mdf_userInterfaceLayoutDirectionForSemanticContentAttribute:" nullallowed="false" abstract="false" RequiresSuper="false" designatedinitializer="false" new="false">
-        <parameter name="semanticContentAttribute" type="UISemanticContentAttribute" nullallowed="false" />
+        <parameter name="semanticContentAttribute" type="UISemanticContentAttribute" nullallowed="false" isreference="false" />
       </method>
       <method name="MdfGetUserInterfaceLayoutDirection" returns="UIUserInterfaceLayoutDirection" static="true" export="mdf_userInterfaceLayoutDirectionForSemanticContentAttribute:relativeToLayoutDirection:" nullallowed="false" abstract="false" RequiresSuper="false" designatedinitializer="false" new="false">
-        <parameter name="semanticContentAttribute" type="UISemanticContentAttribute" nullallowed="false" />
-        <parameter name="layoutDirection" type="UIUserInterfaceLayoutDirection" nullallowed="false" />
+        <parameter name="semanticContentAttribute" type="UISemanticContentAttribute" nullallowed="false" isreference="false" />
+        <parameter name="layoutDirection" type="UIUserInterfaceLayoutDirection" nullallowed="false" isreference="false" />
       </method>
     </class>
   </add-node>
