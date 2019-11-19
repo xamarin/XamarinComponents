@@ -182,7 +182,8 @@
 - Name: StickyListHeaders
   BuildScript: ./Android/StickyListHeaders/build.cake
   TriggerPaths: [ Android/StickyListHeaders ]
-  MacBuildTargets: [ nuget, samples ]
+  MacBuildTargets: [ ci ]
+  WindowsBuildTargets: [ ci ]
 - Name: Kotlin
   BuildScript: ./Android/Kotlin/build.cake
   TriggerPaths: [ Android/Kotlin ]
@@ -375,7 +376,8 @@
 - Name: MWPhotoBrowser
   BuildScript: ./iOS/MWPhotoBrowser/build.cake
   TriggerPaths: [ iOS/MWPhotoBrowser ]
-  MacBuildTargets: [ nuget, samples ]
+  MacBuildTargets: [ ci ]
+  WindowsBuildTargets: [ ci ]
 - Name: PullToBounce
   BuildScript: ./iOS/PullToBounce/build.cake
   TriggerPaths: [ iOS/PullToBounce ]
