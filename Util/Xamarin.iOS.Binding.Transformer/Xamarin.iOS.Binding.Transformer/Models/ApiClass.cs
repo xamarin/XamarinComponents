@@ -116,15 +116,11 @@ namespace Xamarin.iOS.Binding.Transformer
             {
                 if (BaseType == null)
                     BaseType = new ApiBaseType();
-                
-                if (!IsProtocol)
+
+                if (string.IsNullOrWhiteSpace(BaseType.Name) || !Name.Equals(value))
                 {
-                    if (string.IsNullOrWhiteSpace(BaseType.Name) || !Name.Equals(value))
-                    {
-                        BaseType.Name = Name;
-                    }
+                    BaseType.Name = Name;
                 }
-  
 
                 Name = value;
                 
@@ -159,7 +155,7 @@ namespace Xamarin.iOS.Binding.Transformer
                 if (BaseType == null)
                     BaseType = new ApiBaseType();
 
-                BaseType.EventsType = value;
+                BaseType.DelegateName = value;
             }
         }
 
@@ -218,17 +214,19 @@ namespace Xamarin.iOS.Binding.Transformer
             }
             set
             {
-                if (!string.IsNullOrWhiteSpace(value))
+                Implements = new List<ApiImplements>();
+
+                if (string.IsNullOrWhiteSpace(value))
                 {
-                    Implements = new List<ApiImplements>();
-
-                    var names = value.Split(',').ToList();
-
-                    names.ForEach(x => Implements.Add(new ApiImplements
-                    {
-                        Name = x,
-                    }));
+                    return;
                 }
+
+                var names = value.Split(',').ToList();
+
+                names.ForEach(x => Implements.Add(new ApiImplements
+                {
+                    Name = x,
+                }));
 
             }
         }

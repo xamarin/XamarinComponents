@@ -31,8 +31,25 @@ namespace Xamarin.iOS.Binding.Transformer
                 //get the property name
                 var aName = aProp.Name;
 
+                object aValue = null;
+
                 //get either the value on the object or return notset for nullable properties
-                var aValue = aProp.GetValue(target) ?? NotSet.Empty;
+                if (aProp.PropertyType.Equals(typeof(string)))
+                {
+                    if (string.IsNullOrEmpty(aProp.GetValue(target)?.ToString()))
+                    {
+                        aValue = NotSet.Empty;
+                    }
+                    else
+                    {
+                        aValue = aProp.GetValue(target);
+                    }
+                }
+                else
+                {
+                    aValue = aProp.GetValue(target) ?? NotSet.Empty;
+                }
+                
 
                 //add to the dictionary
                 dict.Add(aName, aValue);
