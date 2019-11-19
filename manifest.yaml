@@ -116,7 +116,8 @@
 - Name: GoogleZXing
   BuildScript: ./Android/GoogleZXing/build.cake
   TriggerPaths: [ Android/GoogleZXing ]
-  MacBuildTargets: [ nuget, samples ]
+  MacBuildTargets: [ ci ]
+  WindowsBuildTargets: [ ci ]
 - Name: Guava
   BuildScript: ./Android/Guava/build.cake
   TriggerPaths: [ Android/Guava ]
@@ -182,7 +183,8 @@
 - Name: StickyListHeaders
   BuildScript: ./Android/StickyListHeaders/build.cake
   TriggerPaths: [ Android/StickyListHeaders ]
-  MacBuildTargets: [ nuget, samples ]
+  MacBuildTargets: [ ci ]
+  WindowsBuildTargets: [ ci ]
 - Name: Kotlin
   BuildScript: ./Android/Kotlin/build.cake
   TriggerPaths: [ Android/Kotlin ]
@@ -215,7 +217,8 @@
 - Name: GoogleLibPhoneNumber
   BuildScript: ./Android/Google.LibPhoneNumber/build.cake
   TriggerPaths: [ Android/Google.LibPhoneNumber ]
-  MacBuildTargets: [ nuget ]
+  MacBuildTargets: [ ci ]
+  WindowsBuildTargets: [ ci ]
 - Name: SceneForm
   BuildScript: ./Android/SceneForm/build.cake
   TriggerPaths: [ Android/SceneForm ]
@@ -375,7 +378,8 @@
 - Name: MWPhotoBrowser
   BuildScript: ./iOS/MWPhotoBrowser/build.cake
   TriggerPaths: [ iOS/MWPhotoBrowser ]
-  MacBuildTargets: [ nuget, samples ]
+  MacBuildTargets: [ ci ]
+  WindowsBuildTargets: [ ci ]
 - Name: PullToBounce
   BuildScript: ./iOS/PullToBounce/build.cake
   TriggerPaths: [ iOS/PullToBounce ]

@@ -1,32 +1,16 @@
 ﻿using System;
-
-#if __UNIFIED__
 using CoreGraphics;
 using Foundation;
 using ObjCRuntime;
 using Photos;
 using UIKit;
-#else
-using MonoTouch.CoreGraphics;
-using MonoTouch.Foundation;
-using MonoTouch.ObjCRuntime;
-using MonoTouch.Photos;
-using MonoTouch.UIKit;
-using CGRect = System.Drawing.RectangleF;
-using CGSize = System.Drawing.SizeF;
-using CGPoint = System.Drawing.PointF;
-using nfloat = System.Single;
-using nuint = System.UInt32;
-using nint = System.Int32;
-#endif
 
 namespace MWPhotoBrowser
 {
 	interface IPhoto { }
 
 	// @protocol MWPhoto <NSObject>
-	[Protocol, Model]
-	[BaseType (typeof(NSObject), Name = "MWPhoto")]
+	[Protocol (Name = "MWPhoto")]
 	interface Photo
 	{
 		// @required @property (nonatomic, strong) UIImage * underlyingImage;
@@ -257,7 +241,7 @@ namespace MWPhotoBrowser
 
 		// -(id)initWithPhotos:(NSArray *)photosArray;
 		[Export ("initWithPhotos:")]
-		IntPtr Constructor (Photo[] photosArray);
+		IntPtr Constructor (IPhoto[] photosArray);
 
 		// -(id)initWithDelegate:(id<MWPhotoBrowserDelegate>)delegate;
 		[Export ("initWithDelegate:")]
@@ -386,7 +370,7 @@ namespace MWPhotoBrowser
 
 	// @interface MWZoomingScrollView : UIScrollView <UIScrollViewDelegate, MWTapDetectingImageViewDelegate, MWTapDetectingViewDelegate>
 	[BaseType (typeof(UIScrollView), Name = "MWZoomingScrollView")]
-	interface ZoomingScrollView : IUIScrollViewDelegate, ITapDetectingImageViewDelegate, ITapDetectingViewDelegate
+	interface ZoomingScrollView : IUIScrollViewDelegate, TapDetectingImageViewDelegate, TapDetectingViewDelegate
 	{
 		// @property NSUInteger index;
 		[Export ("index")]

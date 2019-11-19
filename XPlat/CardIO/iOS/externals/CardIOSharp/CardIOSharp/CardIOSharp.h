@@ -2,7 +2,6 @@
 //  TestFramework.h
 //  TestFramework
 //
-//  Created by Jonathan Dick on 2016-01-19.
 //  Copyright © 2016 Xamarin. All rights reserved.
 //
 

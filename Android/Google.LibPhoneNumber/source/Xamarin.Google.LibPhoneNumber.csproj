@@ -14,6 +14,19 @@
   </PropertyGroup>
 
   <PropertyGroup>
+    <PackageId>Xamarin.Google.LibPhoneNumber</PackageId>
+    <Title>Xamarin.Google.LibPhoneNumber</Title>
+    <PackageDescription>Xamarin.Android Bindings for Google LibPhoneNumber</PackageDescription>
+    <Authors>Microsoft</Authors>
+    <Owners>Microsoft</Owners>
+    <Copyright>© Microsoft Corporation. All rights reserved.</Copyright>
+    <PackageProjectUrl>https://go.microsoft.com/fwlink/?linkid=875162</PackageProjectUrl>
+    <PackageLicenseFile>LICENSE.md</PackageLicenseFile>
+    <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
+    <PackageVersion>8.10.23</PackageVersion>
+  </PropertyGroup>
+
+  <PropertyGroup>
     <AndroidClassParser>class-parse</AndroidClassParser>
   </PropertyGroup>
 
@@ -27,5 +40,7 @@
 
   <ItemGroup>
     <EmbeddedJar Include="..\externals\libphonenumber.jar" />
+    <None Include="..\External-Dependency-Info.txt" Pack="True" PackagePath="THIRD-PARTY-NOTICES.txt" />
+    <None Include="..\LICENSE.md" Pack="true" PackagePath="LICENSE.md"/>
   </ItemGroup>
 </Project>
