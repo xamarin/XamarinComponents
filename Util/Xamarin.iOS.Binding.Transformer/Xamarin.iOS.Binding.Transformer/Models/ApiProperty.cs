@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Xml.Serialization;
 using Xamarin.iOS.Binding.Transformer.Attributes;
+using Xamarin.iOS.Binding.Transformer.Models.Collections;
 
 namespace Xamarin.iOS.Binding.Transformer
 {
@@ -65,6 +66,7 @@ namespace Xamarin.iOS.Binding.Transformer
         [XmlAttribute(AttributeName = "notification")]
         public bool ShouldNotify { get; set; }
 
+        [ChangeIgnore]
         [XmlElement(ElementName = "verify")]
         public ApiVerify Verify { get; set; }
 
@@ -87,6 +89,22 @@ namespace Xamarin.iOS.Binding.Transformer
             }
         }
 
+        /// <summary>
+        /// The VerifyType value - redirects to Verify.VerifyType
+        /// </summary>
+        [XmlIgnore]
+        public string VerifyType
+        {
+            get { return Verify?.VerifyType; }
+            set
+            {
+                if (Verify == null)
+                    Verify = new ApiVerify();
+
+                Verify.VerifyType = value;
+            }
+        }
+
         public ApiProperty()
         {
 
@@ -100,6 +118,16 @@ namespace Xamarin.iOS.Binding.Transformer
         internal protected override void UpdatePathList(ref Dictionary<string, ApiObject> dict)
         {
             dict.Add(Path, this);
+        }
+
+        internal override void Add(ApiObject item)
+        {
+
+        }
+
+        internal override void Remove(ApiObject item)
+        {
+
         }
     }
 }

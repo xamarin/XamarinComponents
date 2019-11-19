@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Xml.Serialization;
 using Xamarin.iOS.Binding.Transformer.Attributes;
+using Xamarin.iOS.Binding.Transformer.Models.Collections;
 
 namespace Xamarin.iOS.Binding.Transformer
 {
@@ -12,6 +13,7 @@ namespace Xamarin.iOS.Binding.Transformer
         [ChangeIgnore]
         protected internal override string NodeName => $"class[@name='{NativeName}']";
 
+        [ChangeIgnore]
         [XmlAttribute(AttributeName = "name")]
         public string Name { get; set; }
 
@@ -104,18 +106,28 @@ namespace Xamarin.iOS.Binding.Transformer
         }
 
         /// <summary>
-        /// The Native Name - redirects to BaseType.Name
+        /// The Managed Name - redirects to BaseType.Name
         /// </summary>
         [XmlIgnore]
-        public string RealName
+        public string ManagedName
         {
-            get { return BaseType?.Name; }
+            get { return Name; }
             set
             {
                 if (BaseType == null)
                     BaseType = new ApiBaseType();
+                
+                if (!IsProtocol)
+                {
+                    if (string.IsNullOrWhiteSpace(BaseType.Name) || !Name.Equals(value))
+                    {
+                        BaseType.Name = Name;
+                    }
+                }
+  
 
-                BaseType.Name = value;
+                Name = value;
+                
             }
         }
 
@@ -257,6 +269,36 @@ namespace Xamarin.iOS.Binding.Transformer
             {
                 aNamespace.UpdatePathList(ref dict);
             }
+        }
+
+        internal override void Add(ApiObject item)
+        {
+            if (item is ApiProperty)
+            {
+                Properties.Add((ApiProperty)item);
+            }
+            else if (item is ApiMethod)
+            {
+                Methods.Add((ApiMethod)item);
+            }
+        }
+
+        internal override void Remove(ApiObject item)
+        {
+            if (item is ApiProperty)
+            {
+                Properties.Remove((ApiProperty)item);
+            }
+            else if (item is ApiMethod)
+            {
+                Methods.Remove((ApiMethod)item);
+            }
+        }
+
+        internal void Merge(ApiClass additional)
+        {
+            Properties.AddRange(additional.Properties);
+            Methods.AddRange(additional.Methods);
         }
     }
 }

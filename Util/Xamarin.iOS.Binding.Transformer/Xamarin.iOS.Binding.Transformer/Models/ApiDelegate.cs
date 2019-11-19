@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Xml.Serialization;
 using Xamarin.iOS.Binding.Transformer.Attributes;
+using Xamarin.iOS.Binding.Transformer.Models.Collections;
 
 namespace Xamarin.iOS.Binding.Transformer
 {
@@ -43,6 +44,22 @@ namespace Xamarin.iOS.Binding.Transformer
             foreach (var aNamespace in Parameters)
             {
                 aNamespace.UpdatePathList(ref dict);
+            }
+        }
+
+        internal override void Add(ApiObject item)
+        {
+            if (item is ApiParameter)
+            {
+                Parameters.Add((ApiParameter)item);
+            }
+        }
+
+        internal override void Remove(ApiObject item)
+        {
+            if (item is ApiParameter)
+            {
+                Parameters.Remove((ApiParameter)item);
             }
         }
     }

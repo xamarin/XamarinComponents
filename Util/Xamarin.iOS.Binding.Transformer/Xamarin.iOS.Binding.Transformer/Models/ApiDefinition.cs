@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Xml;
 using System.Xml.Serialization;
 using Xamarin.iOS.Binding.Transformer.Attributes;
+using Xamarin.iOS.Binding.Transformer.Models;
+using Xamarin.iOS.Binding.Transformer.Models.Collections;
 
 namespace Xamarin.iOS.Binding.Transformer
 {
@@ -78,6 +80,23 @@ namespace Xamarin.iOS.Binding.Transformer
             {
                 aNamespace.UpdatePathList(ref dict);
             }
+        }
+
+        internal override void Add(ApiObject item)
+        {
+            if (item is ApiUsing)
+            {
+                Usings.Items.Add((ApiUsing)item);
+            }
+        }
+
+        internal override void Remove(ApiObject item)
+        {
+            if (item is ApiUsing)
+            {
+                Usings.Items.Remove((ApiUsing)item);
+            }
+ 
         }
     }
 }

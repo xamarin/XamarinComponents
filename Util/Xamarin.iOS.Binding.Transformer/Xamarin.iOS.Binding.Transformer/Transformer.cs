@@ -145,7 +145,21 @@ namespace Xamarin.iOS.Binding.Transformer
                 {
                     var classentry = BuildClass((InterfaceDeclarationSyntax)aChild);
 
-                    @namespace.Types.Add(classentry);
+                    var existing = @namespace.Types.FirstOrDefault(x => x.Name.Equals(classentry.Name));
+
+                    if (existing != null)
+                    {
+                        Console.WriteLine($"Found duplicate class: {classentry.Name}, Merging");
+
+                        existing.Merge(classentry);
+                        
+                    }
+                    else
+                    {
+                        @namespace.Types.Add(classentry);
+                    }
+
+                   
                 }
             }
 
@@ -337,6 +351,13 @@ namespace Xamarin.iOS.Binding.Transformer
                 Name = node.Identifier.Text,
 
             };
+
+            if (newParam.Name.Contains("*"))
+            {
+                newParam.IsReference = true;
+                newParam.Name = newParam.Name.Replace("*", "");
+
+            }
 
             newParam.Type = GetType(node.Type);
 

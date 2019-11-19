@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Xml.Serialization;
 using Xamarin.iOS.Binding.Transformer.Attributes;
+using Xamarin.iOS.Binding.Transformer.Models.Collections;
 
 namespace Xamarin.iOS.Binding.Transformer
 {
@@ -54,6 +55,30 @@ namespace Xamarin.iOS.Binding.Transformer
             foreach (var aNamespace in Types)
             {
                 aNamespace.UpdatePathList(ref dict);
+            }
+        }
+
+        internal override void Add(ApiObject item)
+        {
+            if (item is ApiDelegate)
+            {
+                Delegates.Add((ApiDelegate)item);
+            }
+            else if (item is ApiClass)
+            {
+                Types.Add((ApiClass)item);
+            }
+        }
+
+        internal override void Remove(ApiObject item)
+        {
+            if (item is ApiDelegate)
+            {
+                Delegates.Remove((ApiDelegate)item);
+            }
+            else if (item is ApiClass)
+            {
+                Types.Remove((ApiClass)item);
             }
         }
     }

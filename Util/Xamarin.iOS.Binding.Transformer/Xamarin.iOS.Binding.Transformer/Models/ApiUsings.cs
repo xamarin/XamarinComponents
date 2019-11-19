@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Xml.Serialization;
 using Xamarin.iOS.Binding.Transformer.Attributes;
+using Xamarin.iOS.Binding.Transformer.Models.Collections;
 
 namespace Xamarin.iOS.Binding.Transformer
 {
@@ -33,6 +34,16 @@ namespace Xamarin.iOS.Binding.Transformer
         protected internal override void UpdatePathList(ref Dictionary<string, ApiObject> dict)
         {
             dict.Add(this.Path, this);
+        }
+
+        internal override void Add(ApiObject item)
+        {
+           
+        }
+
+        internal override void Remove(ApiObject item)
+        {
+            
         }
     }
 }

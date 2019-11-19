@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Xml.Serialization;
 using Xamarin.iOS.Binding.Transformer.Attributes;
+using Xamarin.iOS.Binding.Transformer.Models.Collections;
 
 namespace Xamarin.iOS.Binding.Transformer
 {
@@ -19,6 +20,9 @@ namespace Xamarin.iOS.Binding.Transformer
         [XmlAttribute(AttributeName = "nullallowed")]
         public bool IsNullAllowed { get; set; }
 
+        [XmlAttribute(AttributeName = "isreference")]
+        public bool IsReference { get; set; }
+
         public ApiParameter()
         {
         }
@@ -32,6 +36,16 @@ namespace Xamarin.iOS.Binding.Transformer
         internal protected override void UpdatePathList(ref Dictionary<string, ApiObject> dict)
         {
             dict.Add(Path, this);
+        }
+
+        internal override void Add(ApiObject item)
+        {
+
+        }
+
+        internal override void Remove(ApiObject item)
+        {
+
         }
     }
 }

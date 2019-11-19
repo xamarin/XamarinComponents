@@ -116,6 +116,23 @@ namespace Xamarin.iOS.Binding.Transformer
                         )
                     ));
 
+            if (aClass.IsPartial)
+            {
+                interfaceDeclaration = interfaceDeclaration.WithModifiers(SyntaxFactory.TokenList
+                (
+                    SyntaxFactory.Token
+                    (
+                        SyntaxFactory.TriviaList(),
+                        SyntaxKind.PartialKeyword,
+                        SyntaxFactory.TriviaList
+                        (
+                            SyntaxFactory.Space
+                        )
+                    )
+
+                ));
+            }
+
             interfaceDeclaration = interfaceDeclaration.WithLeadingTrivia(SyntaxFactory.LineFeed);
 
             //does the class inherit from anything
@@ -139,13 +156,7 @@ namespace Xamarin.iOS.Binding.Transformer
             if (members.Any())
                 interfaceDeclaration = interfaceDeclaration.WithMembers(members);
 
-            if (aClass.IsPartial)
-            {
-                interfaceDeclaration = interfaceDeclaration.WithModifiers(SyntaxFactory.TokenList
-                (
-                    SyntaxFactory.Token(SyntaxKind.PartialKeyword)
-                ));
-            }
+            
 
             ///formatting
             interfaceDeclaration = interfaceDeclaration.AddTrailingTrivia(true);
@@ -427,19 +438,7 @@ namespace Xamarin.iOS.Binding.Transformer
             {
                 attrs = attrs.Add(BuildStringLiteralAttribute("Wrap", aProperty.WrapName)
                     .AsAtrributeListSyntax()
-                    .AddOpenBracketToken(whitespace: _whitespace)
-                    .WithCloseBracketToken
-                    (
-                        SyntaxFactory.Token
-                        (
-                            SyntaxFactory.TriviaList(),
-                            SyntaxKind.CloseBracketToken,
-                            SyntaxFactory.TriviaList
-                            (
-                                SyntaxFactory.LineFeed
-                            )
-                        )
-                    ));
+                    .AddOpenBracketToken(whitespace: _whitespace));
             }
 
             if (!string.IsNullOrWhiteSpace(aProperty.Obsolete))
@@ -521,22 +520,11 @@ namespace Xamarin.iOS.Binding.Transformer
                             (
                                 SyntaxFactory.TriviaList
                                 (
+                                    SyntaxFactory.LineFeed,
                                     SyntaxFactory.Whitespace("    ")
                                 ),
                                 SyntaxKind.OpenBracketToken,
                                 SyntaxFactory.TriviaList()
-                            )
-                        )
-                        .WithCloseBracketToken
-                        (
-                            SyntaxFactory.Token
-                            (
-                                SyntaxFactory.TriviaList(),
-                                SyntaxKind.CloseBracketToken,
-                                SyntaxFactory.TriviaList
-                                (
-                                    SyntaxFactory.LineFeed
-                                )
                             )
                         );
 
@@ -574,6 +562,13 @@ namespace Xamarin.iOS.Binding.Transformer
                 attrs = attrs.Add(atrib.AsAtrributeListSyntax().AddOpenBracketToken(true, _whitespace));
             }
 
+            if (!string.IsNullOrWhiteSpace(aProperty.IosVersion))
+            {
+                var attribList = BuildXamarinAttribute(aProperty.TVVersion, aProperty.Introduced);
+
+                attrs = attrs.Add(attribList);
+            }
+
             if (!string.IsNullOrWhiteSpace(aProperty.TVVersion))
             {
                 var attribList = BuildXamarinAttribute(aProperty.TVVersion, aProperty.Introduced, true);
@@ -581,12 +576,7 @@ namespace Xamarin.iOS.Binding.Transformer
                 attrs = attrs.Add(attribList);
             }
 
-            if (!string.IsNullOrWhiteSpace(aProperty.IosVersion))
-            {
-                var attribList = BuildXamarinAttribute(aProperty.TVVersion, aProperty.Introduced);
-
-                attrs = attrs.Add(attribList);
-            }
+            
 
             if (!string.IsNullOrWhiteSpace(aProperty.ExportName))
             {
@@ -795,23 +785,33 @@ namespace Xamarin.iOS.Binding.Transformer
             {
                 var attribList = BuildStringLiteralAttribute("Obsolete", apiClass.Obsolete);
 
-                attribs = attribs.Add(attribList.AsAtrributeListSyntax().AddOpenBracketToken(true, _whitespace));
+                attribs = attribs.Add(attribList.AsAtrributeListSyntax().AddOpenBracketToken(true));
             }
 
             if (!string.IsNullOrWhiteSpace(apiClass.Advice))
             {
                 var attribList = BuildStringLiteralAttribute("Advice", apiClass.Advice);
 
-                attribs = attribs.Add(attribList.AsAtrributeListSyntax().AddOpenBracketToken(true, _whitespace));
+                attribs = attribs.Add(attribList.AsAtrributeListSyntax().AddOpenBracketToken(true));
             }
 
 
             if (apiClass.IsProtocol)
             {
-                var attribList = BuildSimpleAttribute("Protocol", false);
 
+                var btypeDef = SyntaxFactory.Attribute(SyntaxFactory.IdentifierName("Protocol"));
 
-                attribs = attribs.Add(attribList);
+                var tokens = new List<SyntaxNodeOrToken>();
+
+                if (!string.IsNullOrWhiteSpace(apiClass.ProtocolName))
+                {
+                    //add the return type
+                    tokens.Add(BuildStringLiteralArgument("Name", apiClass.ProtocolName));
+                }
+ 
+                var btype = btypeDef.WithArgumentTokens(tokens);
+
+                attribs = attribs.Add(btype.AsAtrributeListSyntax().AddOpenBracketToken());
 
             }
 
@@ -865,16 +865,16 @@ namespace Xamarin.iOS.Binding.Transformer
                                     )
                                 )
                             )
-                            .WithCloseBracketToken
+                            .WithOpenBracketToken
                             (
                                 SyntaxFactory.Token
                                 (
-                                    SyntaxFactory.TriviaList(),
-                                    SyntaxKind.CloseBracketToken,
                                     SyntaxFactory.TriviaList
                                     (
                                         SyntaxFactory.LineFeed
-                                    )
+                                    ),
+                                    SyntaxKind.OpenBracketToken,
+                                    SyntaxFactory.TriviaList()
                                 )
                             );
 
@@ -932,7 +932,7 @@ namespace Xamarin.iOS.Binding.Transformer
                 attribs = attribs.Add(sep);
             }
 
-            if (apiClass.BaseType != null)
+            if (apiClass.BaseType != null && !apiClass.IsProtocol)
             {
                 var baseTypeAtrribs = BuildClassBaseTypeAttribs(apiClass);
 
@@ -1054,6 +1054,8 @@ namespace Xamarin.iOS.Binding.Transformer
 
             foreach (var aParam in parameters)
             {
+                var paramType = (aParam.IsReference) ? $"ref {aParam.Type}" : aParam.Type;
+
                 tokens.Add(SyntaxFactory.Parameter
                         (
                             SyntaxFactory.Identifier(aParam.Name)
@@ -1065,7 +1067,7 @@ namespace Xamarin.iOS.Binding.Transformer
                                     SyntaxFactory.Identifier
                                     (
                                         SyntaxFactory.TriviaList(),
-                                        aParam.Type,
+                                        paramType,
                                         SyntaxFactory.TriviaList
                                         (
                                             SyntaxFactory.Space
@@ -1091,8 +1093,13 @@ namespace Xamarin.iOS.Binding.Transformer
         {
             var parList = new List<ParameterSyntax>();
 
+
             foreach (var aParam in parameters)
             {
+                var firstParTriv = (aParam == parameters.First()) ? SyntaxFactory.TriviaList() : SyntaxFactory.TriviaList(SyntaxFactory.Space);
+
+                var paramType = (aParam.IsReference) ? $"ref {aParam.Type}" : aParam.Type;
+
                 var newPar = SyntaxFactory.Parameter
                      (
                          SyntaxFactory.Identifier(aParam.Name)
@@ -1103,8 +1110,8 @@ namespace Xamarin.iOS.Binding.Transformer
                                 (
                                     SyntaxFactory.Identifier
                                     (
-                                        SyntaxFactory.TriviaList(),
-                                        aParam.Type,
+                                        firstParTriv,
+                                        paramType,
                                         SyntaxFactory.TriviaList
                                         (
                                             SyntaxFactory.Space
@@ -1124,6 +1131,18 @@ namespace Xamarin.iOS.Binding.Transformer
                                     SyntaxFactory.Attribute
                                     (
                                         SyntaxFactory.IdentifierName("NullAllowed")
+                                    )
+                                )
+                            )
+                            .WithCloseBracketToken
+                            (
+                                SyntaxFactory.Token
+                                (
+                                    SyntaxFactory.TriviaList(),
+                                    SyntaxKind.CloseBracketToken,
+                                    SyntaxFactory.TriviaList
+                                    (
+                                        SyntaxFactory.Space
                                     )
                                 )
                             )

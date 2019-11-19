@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Text;
 using System.Xml;
 using System.Xml.Serialization;
@@ -48,6 +49,36 @@ namespace Xamarin.iOS.Binding.Transformer.Models.Metadata
             Changes = new List<Attr>();
         }
 
+        /// <summary>
+        /// Loads the specified input file.
+        /// </summary>
+        /// <param name="inputFile">The input file.</param>
+        /// <returns></returns>
+        /// <exception cref="Exception">Invalid input file</exception>
+        public static Metadata Load(string inputFile)
+        {
+            try
+            {
+                if (string.IsNullOrWhiteSpace(inputFile) || !File.Exists(inputFile))
+                    throw new Exception("Invalid input file");
+
+                var serializer = new XmlSerializer(typeof(Metadata));
+
+                var output = new Metadata();
+
+                using (StreamReader str = new StreamReader(inputFile))
+                {
+
+                    output = (Metadata)serializer.Deserialize(str);
+                }
+
+                return output;
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+        }
 
 
 
