@@ -42,25 +42,25 @@ namespace Transformeriser3000
                 ////var api = Transformer.Load(apiXmlFile);
                 ////api.UpdateHierachy();
                 ///
-                var testdels = apiDefinitionTest.Namespaces[0].Delegates;
-                var tdels = apiDefinition.Namespaces[0].Delegates;
+                //var testdels = apiDefinitionTest.Namespaces[0].Delegates;
+                //var tdels = apiDefinition.Namespaces[0].Delegates;
                 
                 var stack = apiDefinition.BuildTreePath();
-                //var newStack = apiDefinitionTest.BuildTreePath();
+                var newStack = apiDefinitionTest.BuildTreePath();
 
-                Console.WriteLine("");
-                ////////generate and save the code file
-                //await CodeGenerator.GenerateAsync(apiDefinition, apiFileFixed);
+                //Console.WriteLine("");
+                //////////generate and save the code file
+                ////await CodeGenerator.GenerateAsync(apiDefinition, apiFileFixed);
 
-                //////now load the original file
-                var apiDefinitionOrig = await Transformer.ExtractDefinitionAsync(apiFileOrig);
+                ////////now load the original file
+                //var apiDefinitionOrig = await Transformer.ExtractDefinitionAsync(apiFileOrig);
 
-                var orgStack = apiDefinitionOrig.BuildTreePath();
+                //var orgStack = apiDefinitionOrig.BuildTreePath();
 
-                if (!Directory.Exists(apiDiffOutput))
-                    Directory.CreateDirectory(apiDiffOutput);
+                //if (!Directory.Exists(apiDiffOutput))
+                //    Directory.CreateDirectory(apiDiffOutput);
 
-                ChangeManager.Compare(orgStack, stack, apiDiffOutput);
+                ChangeManager.Compare(stack, newStack, apiDiffOutput);
 
             }
 

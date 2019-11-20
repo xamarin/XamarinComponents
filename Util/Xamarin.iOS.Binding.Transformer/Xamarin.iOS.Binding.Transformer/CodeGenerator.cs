@@ -803,15 +803,17 @@ namespace Xamarin.iOS.Binding.Transformer
 
                 var tokens = new List<SyntaxNodeOrToken>();
 
+                
                 if (!string.IsNullOrWhiteSpace(apiClass.ProtocolName))
                 {
                     //add the return type
                     tokens.Add(BuildStringLiteralArgument("Name", apiClass.ProtocolName));
+
+                    btypeDef = btypeDef.WithArgumentTokens(tokens);
                 }
  
-                var btype = btypeDef.WithArgumentTokens(tokens);
 
-                attribs = attribs.Add(btype.AsAtrributeListSyntax().AddOpenBracketToken());
+                attribs = attribs.Add(btypeDef.AsAtrributeListSyntax().AddOpenBracketToken());
 
             }
 
@@ -932,7 +934,7 @@ namespace Xamarin.iOS.Binding.Transformer
                 attribs = attribs.Add(sep);
             }
 
-            if (apiClass.BaseType != null && !apiClass.IsProtocol)
+            if (apiClass.BaseType != null)
             {
                 var baseTypeAtrribs = BuildClassBaseTypeAttribs(apiClass);
 
