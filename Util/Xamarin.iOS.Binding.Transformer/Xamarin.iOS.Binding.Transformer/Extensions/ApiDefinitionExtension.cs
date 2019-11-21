@@ -56,17 +56,24 @@ namespace Xamarin.iOS.Binding.Transformer
             foreach (var removed in transform.RemoveNodes)
             {
                 //get the item to remove via its path
-                var item = tree[removed.Path];
-
-                //check for null
-                if (item != null)
+                if (tree.ContainsKey(removed.Path))
                 {
-                    //if the item has a parent
-                    if (item.Parent != null)
+                    var item = tree[removed.Path];
+
+                    //check for null
+                    if (item != null)
                     {
-                        //remove the child from the parent
-                        item.Parent.Remove(item);
+                        //if the item has a parent
+                        if (item.Parent != null)
+                        {
+                            //remove the child from the parent
+                            item.Parent.Remove(item);
+                        }
                     }
+                }
+                else
+                {
+                    Console.WriteLine($"Removed Path not found: {removed.Path}");
                 }
       
                 
@@ -75,59 +82,73 @@ namespace Xamarin.iOS.Binding.Transformer
             // work through added
             foreach (var added in transform.AddNodes)
             {
-                //get the parent item from the path
-                var item = tree[added.Path];
 
-                if (item != null)
+                if (tree.ContainsKey(added.Path))
                 {
-                    //if the class property has been set then its a class
-                    if (added.Class != null)
-                    {
-                        item.Add(added.Class);
-                    }
+                    //get the parent item from the path
+                    var item = tree[added.Path];
 
-                    //if the delegate property has been set then its a delegate
-                    if (added.Delegate != null)
+                    if (item != null)
                     {
-                        item.Add(added.Delegate);
-                    }
+                        //if the class property has been set then its a class
+                        if (added.Class != null)
+                        {
+                            item.Add(added.Class);
+                        }
 
-                    //if the method property has been set then its a Method
-                    if (added.Method != null)
-                    {
-                        item.Add(added.Method);
-                    }
+                        //if the delegate property has been set then its a delegate
+                        if (added.Delegate != null)
+                        {
+                            item.Add(added.Delegate);
+                        }
 
-                    //if the Property property has been set then its a Prperty
-                    if (added.Property != null)
-                    {
-                        item.Add(added.Property);
-                    }
+                        //if the method property has been set then its a Method
+                        if (added.Method != null)
+                        {
+                            item.Add(added.Method);
+                        }
 
-                    //if the Parameter property has been set then its a parameter
-                    if (added.Parameter != null)
-                    {
-                        item.Add(added.Parameter);
-                    }
+                        //if the Property property has been set then its a Prperty
+                        if (added.Property != null)
+                        {
+                            item.Add(added.Property);
+                        }
 
-                    if (added.Using != null)
-                    {
-                        item.Add(added.Using);
+                        //if the Parameter property has been set then its a parameter
+                        if (added.Parameter != null)
+                        {
+                            item.Add(added.Parameter);
+                        }
+
+                        if (added.Using != null)
+                        {
+                            item.Add(added.Using);
+                        }
                     }
+                }
+                else
+                {
+                    Console.WriteLine($"Added parent Path not found: {added.Path}");
                 }
             }
 
             // work through altered
             foreach (var altered in transform.Changes)
             {
-                //get the parent item from the path
-                var item = tree[altered.Path];
-
-                if (item != null)
+                if (tree.ContainsKey(altered.Path))
                 {
-                    item.ApplyChanges(altered);
-                }
+                    //get the parent item from the path
+                    var item = tree[altered.Path];
 
+                    if (item != null)
+                    {
+                        item.ApplyChanges(altered);
+                    }
+                }
+                else
+                {
+                    Console.WriteLine($"Altered Path not found: {altered.Path}");
+                }
             }
 
             target.UpdateHierachy();

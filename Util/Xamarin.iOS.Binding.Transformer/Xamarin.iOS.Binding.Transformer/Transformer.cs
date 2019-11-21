@@ -709,6 +709,16 @@ namespace Xamarin.iOS.Binding.Transformer
                                     newMethod.DefaultValue = "None";
                                 }
                                 break;
+                            case "ios":
+                                {
+                                    ProcessMethodiOSAttrib(attrib, ref newMethod);
+                                }
+                                break;
+                            case "tv":
+                                {
+                                    ProcessMethodTVAttrib(attrib, ref newMethod);
+                                }
+                                break;
                             default:
                                 {
                                     Console.WriteLine($"Unexpected Method Attribute {name} ");
@@ -1030,8 +1040,6 @@ namespace Xamarin.iOS.Binding.Transformer
             }
         }
 
-
-
         /// <summary>
         /// Process the Verify Atrribute on a property
         /// </summary>
@@ -1213,6 +1221,36 @@ namespace Xamarin.iOS.Binding.Transformer
 
             if (stringValue != null)
                 method.Advice = stringValue.Value.Replace("\"", "");
+        }
+
+        private static void ProcessMethodTVAttrib(AttributeSyntax attrib, ref ApiMethod property)
+        {
+            var result = BuildAttributes(attrib);
+            var tvAttrib = result.Attribute.Arguments.Where(x => x.DataType == AttributeDataType.Number);
+
+            if (tvAttrib.Any())
+            {
+                var values = tvAttrib.Select(x => x.Value.Replace("\"", ""));
+
+                var versionNumber = CombineString(values);
+
+                property.TVVersion = versionNumber;
+            }
+        }
+
+        private static void ProcessMethodiOSAttrib(AttributeSyntax attrib, ref ApiMethod property)
+        {
+            var result = BuildAttributes(attrib);
+            var iosAttrib = result.Attribute.Arguments.Where(x => x.DataType == AttributeDataType.Number);
+
+            if (iosAttrib.Any())
+            {
+                var values = iosAttrib.Select(x => x.Value.Replace("\"", ""));
+
+                var versionNumber = CombineString(values);
+
+                property.IosVersion = versionNumber;
+            }
         }
         #endregion
 

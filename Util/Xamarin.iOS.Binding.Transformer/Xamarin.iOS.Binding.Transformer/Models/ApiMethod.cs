@@ -64,6 +64,15 @@ namespace Xamarin.iOS.Binding.Transformer
         [XmlAttribute(AttributeName = "obsolete")]
         public string Obsolete { get; set; }
 
+        [XmlAttribute(AttributeName = "ios_version")]
+        public string IosVersion { get; set; }
+
+        [XmlAttribute(AttributeName = "tv_version")]
+        public string TVVersion { get; set; }
+
+        [XmlAttribute(AttributeName = "introduced_flag")]
+        public bool Introduced { get; set; }
+
         [XmlIgnore]
         public string NativeName
         {

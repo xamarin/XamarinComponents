@@ -9,6 +9,7 @@
     </ItemGroup>
     <ItemGroup>
         <Compile Remove="ApiDefinitions.cs" />
+        <Compile Remove="ApiDefinitions92.cs" />
         <Compile Remove="ApiDefinitionsOrig.cs" />
     </ItemGroup>
     <ItemGroup>
@@ -18,6 +19,9 @@
     <ItemGroup>
         <None Include="ApiDefinitions.cs">
             <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </None>
+        <None Include="ApiDefinitions92.cs">
+          <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
         </None>
         <None Include="ApiDefinitionsOrig.cs">
           <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>

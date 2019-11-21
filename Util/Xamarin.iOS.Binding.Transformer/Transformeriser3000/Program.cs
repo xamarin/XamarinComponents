@@ -20,52 +20,73 @@ namespace Transformeriser3000
             var apiPathTree  = Path.Combine(currentLocation, "ApiTree.txt");
 
             var apiFileNew = Path.Combine(currentLocation, "ApiDefinitionsNew.cs");
-
             var apiDiffOutput = Path.Combine(currentLocation, "diffs");
 
+            var apiV92 = Path.Combine(currentLocation, "ApiDefinitions92.cs");
+            var apiV92CS = Path.Combine(currentLocation, "ApiDefinitions92Gen.cs");
+            var apiV92CSClean = Path.Combine(currentLocation, "ApiDefinitions92GenClean.cs");
+
+            var api92 = await Load92(apiV92);
+
+            await CodeGenerator.GenerateAsync(api92, apiV92CS);
+            api92.Transform(apiMetaDataFile);
+
+            await CodeGenerator.GenerateAsync(api92, apiV92CSClean);
+
             ////Load the original
-            var apiDefinitionTest = await Transformer.ExtractDefinitionAsync(apiFileOrig);
-            apiDefinitionTest.Transform(apiMetaDataFile);
+            //var apiDefinitionTest = await Transformer.ExtractDefinitionAsync(apiFileOrig);
+            //apiDefinitionTest.Transform(apiMetaDataFile);
 
-            await CodeGenerator.GenerateAsync(apiDefinitionTest, apiFileNew);
+            //await CodeGenerator.GenerateAsync(apiDefinitionTest, apiFileNew);
 
 
-            if (File.Exists(apiFile))
-            {
-                //build the api defintion
-                var apiDefinition = await Transformer.ExtractDefinitionAsync(apiFile);
+            //if (File.Exists(apiFile))
+            //{
+            //    //build the api defintion
+            //    var apiDefinition = await Transformer.ExtractDefinitionAsync(apiFile);
 
-                //////////write it to file
-                //apiDefinition.WriteToFile(apiXmlFile);
+            //    //////////write it to file
+            //    apiDefinition.WriteToFile(apiXmlFile);
 
-                //////reload
-                ////var api = Transformer.Load(apiXmlFile);
-                ////api.UpdateHierachy();
-                ///
-                //var testdels = apiDefinitionTest.Namespaces[0].Delegates;
-                //var tdels = apiDefinition.Namespaces[0].Delegates;
-                
-                var stack = apiDefinition.BuildTreePath();
-                var newStack = apiDefinitionTest.BuildTreePath();
+            //    //////reload
+            //    ////var api = Transformer.Load(apiXmlFile);
+            //    ////api.UpdateHierachy();
+            //    ///
+            //    //var testdels = apiDefinitionTest.Namespaces[0].Delegates;
+            //    //var tdels = apiDefinition.Namespaces[0].Delegates;
 
-                //Console.WriteLine("");
-                //////////generate and save the code file
-                ////await CodeGenerator.GenerateAsync(apiDefinition, apiFileFixed);
+            //    var stack = apiDefinition.BuildTreePath();
+            //    //var newStack = apiDefinitionTest.BuildTreePath();
 
-                ////////now load the original file
-                //var apiDefinitionOrig = await Transformer.ExtractDefinitionAsync(apiFileOrig);
+            //    //Console.WriteLine("");
+            //    //////////generate and save the code file
+            //    await CodeGenerator.GenerateAsync(apiDefinition, apiFileFixed);
 
-                //var orgStack = apiDefinitionOrig.BuildTreePath();
+            //    ////////now load the original file
+            //    var apiDefinitionOrig = await Transformer.ExtractDefinitionAsync(apiFileOrig);
+            //    var orgStack = apiDefinitionOrig.BuildTreePath();
 
-                //if (!Directory.Exists(apiDiffOutput))
-                //    Directory.CreateDirectory(apiDiffOutput);
+            //    if (!Directory.Exists(apiDiffOutput))
+            //         Directory.CreateDirectory(apiDiffOutput);
 
-                ChangeManager.Compare(stack, newStack, apiDiffOutput);
+            //    ChangeManager.Compare(orgStack, stack, apiDiffOutput);
 
-            }
+            //}
 
             Console.WriteLine("Finished!");
             Console.ReadLine();
+        }
+
+        /// <summary>
+        /// Load the version 92 of the file
+        /// </summary>
+        /// <param name="fileName">Name of the file.</param>
+        /// <returns></returns>
+        private static async Task<ApiDefinition> Load92(string fileName)
+        {
+            var result = await Transformer.ExtractDefinitionAsync(fileName);
+
+            return result;
         }
     }
 }

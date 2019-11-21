@@ -564,7 +564,7 @@ namespace Xamarin.iOS.Binding.Transformer
 
             if (!string.IsNullOrWhiteSpace(aProperty.IosVersion))
             {
-                var attribList = BuildXamarinAttribute(aProperty.TVVersion, aProperty.Introduced);
+                var attribList = BuildXamarinAttribute(aProperty.IosVersion, aProperty.Introduced);
 
                 attrs = attrs.Add(attribList);
             }
