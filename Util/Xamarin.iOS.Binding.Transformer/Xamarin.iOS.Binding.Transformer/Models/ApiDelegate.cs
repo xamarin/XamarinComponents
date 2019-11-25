@@ -62,5 +62,18 @@ namespace Xamarin.iOS.Binding.Transformer
                 Parameters.Remove((ApiParameter)item);
             }
         }
+
+        public override void RemovePrefix(string prefix)
+        {
+            if (Name.StartsWith(prefix, StringComparison.OrdinalIgnoreCase))
+            {
+                Name = Name.Replace(prefix, "");
+            }
+
+            foreach (var aParam in Parameters)
+            {
+                aParam.RemovePrefix(prefix);
+            }
+        }
     }
 }

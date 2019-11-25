@@ -52,5 +52,10 @@ namespace Xamarin.iOS.Binding.Transformer
         {
             
         }
+
+        public override void RemovePrefix(string prefix)
+        {
+            
+        }
     }
 }

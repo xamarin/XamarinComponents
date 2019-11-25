@@ -1712,6 +1712,10 @@
   <attr path="/api/namespace[@name='MaterialComponents']/class[@name='MDCThumbView']/property[@name='Elevation']" name="Type" value="nfloat" />
   <attr path="/api/namespace[@name='MaterialComponents']/class[@name='MDCNumericValueLabel']" name="ManagedName" value="NumericValueLabel" />
   <attr path="/api/namespace[@name='MaterialComponents']/class[@name='MDCNumericValueLabel']/property[@name='BackgroundColor']" name="IsNew" value="True" />
+  <!-- v92 changes -->
+  <attr path="/api/namespace[@name='MaterialComponents']/class[@name='MDCActivityIndicatorColorThemer']/method[@name='applyColorScheme:toActivityIndicator:']/parameter[@name='colorScheme']" name="Type" value="IColorScheme" />
+  <attr path="/api/namespace[@name='MaterialComponents']/class[@name='MDCActivityIndicatorColorThemer']/method[@name='applyColorScheme:toActivityIndicator:']/parameter[@name='activityIndicator']" name="Type" value="ActivityIndicator" />
+  <attr path="/api/namespace[@name='MaterialComponents']/class[@name='MDCBottomAppBarColorThemer']/method[@name='applyColorScheme:toBottomAppBarView:']/parameter[@name='bottomAppBarView']" name="Type" value="BottomAppBarView" />
   
   <add-node path="/api">
     <using name="NSTextAlignment = UIKit.UITextAlignment" />
@@ -1775,17 +1779,6 @@
   <add-node path="/api/namespace[@name='MaterialComponents']">
     <class name="IActivityIndicatorDelegate" type="Interface" disabledefaultctor="false" category="false" protocol="false" static="false" partial="false" />
   </add-node>
-  <add-node path="/api/namespace[@name='MaterialComponents']/class[@name='MDCActivityIndicatorColorThemer']">
-    <method name="ApplyColorScheme" returns="void" static="true" export="applyColorScheme:toActivityIndicator:" nullallowed="false" abstract="false" RequiresSuper="false" designatedinitializer="false" new="false" obsolete="This method will soon be deprecated. Consider using ApplySemanticColorScheme method instead." introduced_flag="false">
-      <parameter name="colorScheme" type="IColorScheme" nullallowed="false" isreference="false" />
-      <parameter name="activityIndicator" type="ActivityIndicator" nullallowed="false" isreference="false" />
-    </method>
-  </add-node>
-  <add-node path="/api/namespace[@name='MaterialComponents']/class[@name='MDCAlertColorThemer']">
-    <method name="ApplyColorScheme" returns="void" static="true" export="applyColorScheme:" nullallowed="false" abstract="false" RequiresSuper="false" designatedinitializer="false" new="false" obsolete="This method will soon be deprecated. Consider using ApplySemanticColorScheme method instead." introduced_flag="false">
-      <parameter name="colorScheme" type="IColorScheme" nullallowed="false" isreference="false" />
-    </method>
-  </add-node>
   <add-node path="/api/namespace[@name='MaterialComponents']/class[@name='MDCAlertController']">
     <property name="MdcAdjustsFontForContentSizeCategory" type="bool" nullallowed="false" abstract="false" export="mdc_adjustsFontForContentSizeCategory" get="true" set="true" set_bind="mdc_setAdjustsFontForContentSizeCategory:" introduced_flag="false" static="false" internal="false" new="false" notification="false" />
   </add-node>
@@ -1847,12 +1840,12 @@
       <parameter name="bottomAppBarView" type="BottomAppBarView" nullallowed="false" isreference="false" />
     </method>
   </add-node>
-  <add-node path="/api/namespace[@name='MaterialComponents']/class[@name='MDCBottomAppBarColorThemer']">
+  <!--<add-node path="/api/namespace[@name='MaterialComponents']/class[@name='MDCBottomAppBarColorThemer']">
     <method name="ApplyColorScheme" returns="void" static="true" export="applyColorScheme:toBottomAppBarView:" nullallowed="false" abstract="false" RequiresSuper="false" designatedinitializer="false" new="false" obsolete="This method will soon be deprecated. Use ApplySurfaceVariantWithSemanticColorScheme instead." introduced_flag="false">
       <parameter name="colorScheme" type="IColorScheme" nullallowed="false" isreference="false" />
       <parameter name="bottomAppBarView" type="BottomAppBarView" nullallowed="false" isreference="false" />
     </method>
-  </add-node>
+  </add-node>-->
   <add-node path="/api/namespace[@name='MaterialComponents']">
     <class name="IBottomDrawerHeader" type="Interface" disabledefaultctor="false" category="false" protocol="false" static="false" partial="false" />
   </add-node>
@@ -2810,4 +2803,7 @@
   <remove-node path="/api/namespace[@name='MaterialComponents']/class[@name='MDCKeyboardWatcher']/method[@name='sharedKeyboardWatcher']" />
   <remove-node path="/api/namespace[@name='MaterialComponents']/class[@name='MDCKeyboardWatcher']/property[@name='KeyboardOffset']" />
   <remove-node path="/api/namespace[@name='MaterialComponents']/class[@name='MDCThumbTrack']/property[@name='WeakDelegate']" />
+  
+  
+  
 </metadata>

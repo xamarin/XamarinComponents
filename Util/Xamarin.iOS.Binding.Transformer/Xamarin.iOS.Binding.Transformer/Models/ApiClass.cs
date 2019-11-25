@@ -317,9 +317,40 @@ namespace Xamarin.iOS.Binding.Transformer
         {
             var newClass = (ApiClass)this.MemberwiseClone();
 
-
+            
 
             return newClass;
+        }
+
+        public override void RemovePrefix(string prefix)
+        {
+            if (Name.StartsWith(prefix))
+            {
+                if (IsProtocol)
+                {
+                    ProtocolName = Name;
+                    
+                }
+                else
+                {
+                    if (BaseType == null)
+                        BaseType = new ApiBaseType();
+
+                    BaseType.Name = Name;
+                }
+
+                Name = Name.Replace(prefix, "");
+            }
+
+            foreach (var property in Properties)
+            {
+                property.RemovePrefix(prefix);
+            }
+
+            foreach (var method in Methods)
+            {
+                method.RemovePrefix(prefix);
+            }
         }
     }
 }

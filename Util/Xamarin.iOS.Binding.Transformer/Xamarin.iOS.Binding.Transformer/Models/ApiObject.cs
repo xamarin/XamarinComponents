@@ -51,5 +51,8 @@ namespace Xamarin.iOS.Binding.Transformer
             return $"{parent.Path}/{NodeName}";
         }
 
+        public abstract void RemovePrefix(string prefix);
+
+
     }
 }

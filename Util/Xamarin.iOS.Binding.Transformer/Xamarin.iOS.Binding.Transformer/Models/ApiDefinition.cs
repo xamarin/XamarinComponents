@@ -98,5 +98,13 @@ namespace Xamarin.iOS.Binding.Transformer
             }
  
         }
+
+        public override void RemovePrefix(string prefix)
+        {
+           foreach (var ans in Namespaces)
+            {
+                ans.RemovePrefix(prefix);
+            }
+        }
     }
 }

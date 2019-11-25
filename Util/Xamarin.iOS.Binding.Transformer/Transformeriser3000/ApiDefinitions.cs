@@ -3007,6 +3007,7 @@ namespace MaterialComponents {
 		PathGenerator PathGeneratorForCornerWithAngle (nfloat angle, CGSize size);
 
 		//
+		//
 		// From CornerTypeInitalizer (MDCCornerTreatment)
 		//
 

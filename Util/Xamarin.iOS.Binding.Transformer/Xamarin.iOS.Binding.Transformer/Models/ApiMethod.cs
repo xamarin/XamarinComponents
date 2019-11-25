@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Xml.Serialization;
 using Xamarin.iOS.Binding.Transformer.Attributes;
 using Xamarin.iOS.Binding.Transformer.Models.Collections;
@@ -131,6 +132,30 @@ namespace Xamarin.iOS.Binding.Transformer
         internal static ApiMethod Clone()
         {
             throw new NotImplementedException();
+        }
+
+        public override void RemovePrefix(string prefix)
+        {
+            if (Name.StartsWith(prefix, StringComparison.OrdinalIgnoreCase))
+            {
+                Name = Name.Replace(prefix, "", StringComparison.OrdinalIgnoreCase);
+
+                if (Name.StartsWith("_"))
+                    Name = Name.Substring(1);
+
+                if (char.IsLower(Name[0]))
+                    Name = Name.First().ToString().ToUpper() + Name.Substring(1);
+            }
+
+            if (ReturnType.StartsWith(prefix))
+            {
+                ReturnType = ReturnType.Replace(prefix, "");
+            }
+
+           foreach (var param in Parameters)
+            {
+                param.RemovePrefix(prefix);
+            }
         }
     }
 }

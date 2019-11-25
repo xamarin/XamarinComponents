@@ -25,6 +25,7 @@ namespace Transformeriser3000
             var apiV92 = Path.Combine(currentLocation, "ApiDefinitions92.cs");
             var apiV92CS = Path.Combine(currentLocation, "ApiDefinitions92Gen.cs");
             var apiV92CSClean = Path.Combine(currentLocation, "ApiDefinitions92GenClean.cs");
+            var apiv92XmlFile = Path.Combine(currentLocation, "Apiv92.xml");
 
             var api92 = await Load92(apiV92);
 
@@ -34,16 +35,20 @@ namespace Transformeriser3000
             if (fixedTransform != null)  //there is a fixed version of the transform
                 fixedTransform.WriteToFile(Path.Combine(apiDiffOutput, "Metadata_fixed.xml"));
 
+            api92.RemovePrefix("MDC");
+
             await CodeGenerator.GenerateAsync(api92, apiV92CSClean);
 
+            api92.WriteToFile(apiv92XmlFile);
+
             //generate the current file
-            var apiDefinition = await Transformer.ExtractDefinitionAsync(apiFile);
+            //var apiDefinition = await Transformer.ExtractDefinitionAsync(apiFile);
 
             //now compare
-            var orgStack = apiDefinition.BuildTreePath();
-            var newStack = api92.BuildTreePath();
+            //var orgStack = apiDefinition.BuildTreePath();
+            //var newStack = api92.BuildTreePath();
 
-            ChangeManager.Compare(orgStack, newStack, apiDiffOutput);
+            //ChangeManager.Compare(orgStack, newStack, apiDiffOutput);
 
             ////Load the original
             //var apiDefinitionTest = await Transformer.ExtractDefinitionAsync(apiFileOrig);

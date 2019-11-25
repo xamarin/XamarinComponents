@@ -81,5 +81,18 @@ namespace Xamarin.iOS.Binding.Transformer
                 Types.Remove((ApiClass)item);
             }
         }
+
+        public override void RemovePrefix(string prefix)
+        {
+            foreach (var aDel in Delegates)
+            {
+                aDel.RemovePrefix(prefix);
+            }
+
+            foreach (var aCls in Types)
+            {
+                aCls.RemovePrefix(prefix);
+            }
+        }
     }
 }
