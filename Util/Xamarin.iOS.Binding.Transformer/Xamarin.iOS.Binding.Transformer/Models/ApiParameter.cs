@@ -47,5 +47,10 @@ namespace Xamarin.iOS.Binding.Transformer
         {
 
         }
+
+        internal static ApiParameter Clone()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

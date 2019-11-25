@@ -9,5 +9,12 @@ namespace Xamarin.iOS.Binding.Transformer.Models.Metadata
     {
         [XmlAttribute(AttributeName = "path")]
         public string Path { get; set; }
+
+        internal Remove_Node Clone()
+        {
+            var newNode = (Remove_Node)this.MemberwiseClone();
+
+            return newNode;
+        }
     }
 }

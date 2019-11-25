@@ -128,5 +128,9 @@ namespace Xamarin.iOS.Binding.Transformer
             }
         }
 
+        internal static ApiMethod Clone()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

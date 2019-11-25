@@ -277,7 +277,21 @@ namespace Xamarin.iOS.Binding.Transformer
             }
             else if (item is ApiMethod)
             {
-                Methods.Add((ApiMethod)item);
+                var aItem = (ApiMethod)item;
+
+                var propPath = aItem.GetProposedPath(this);
+
+                var existingSigs = Methods.Where(x => x.Path.Equals(propPath, StringComparison.OrdinalIgnoreCase));
+
+                if (existingSigs.Any())
+                {
+                    Console.WriteLine($"Class already has a method matching the signature: {aItem.ExportName}");
+                }
+                else
+                {
+                    Methods.Add(aItem);
+                }
+                
             }
         }
 
@@ -297,6 +311,15 @@ namespace Xamarin.iOS.Binding.Transformer
         {
             Properties.AddRange(additional.Properties);
             Methods.AddRange(additional.Methods);
+        }
+
+        internal ApiClass Clone()
+        {
+            var newClass = (ApiClass)this.MemberwiseClone();
+
+
+
+            return newClass;
         }
     }
 }

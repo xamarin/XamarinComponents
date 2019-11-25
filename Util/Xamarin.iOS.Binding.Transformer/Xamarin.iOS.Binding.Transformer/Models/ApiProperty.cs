@@ -39,6 +39,11 @@ namespace Xamarin.iOS.Binding.Transformer
         [XmlAttribute(AttributeName = "set_bind")]
         public string SetBindName { get; set; }
 
+        internal static ApiProperty Clone()
+        {
+            throw new NotImplementedException();
+        }
+
         [XmlAttribute(AttributeName = "semanticstrength")]
         public string SemanticStrength { get; set; }
 

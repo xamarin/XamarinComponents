@@ -12,5 +12,12 @@ namespace Xamarin.iOS.Binding.Transformer.Models.Metadata
 
         [XmlAttribute(AttributeName = "value")]
         public string Value { get; set; }
+
+        internal AttrProperty Clone()
+        {
+            var newProp = (AttrProperty)this.MemberwiseClone();
+
+            return newProp;
+        }
     }
 }

@@ -23,5 +23,20 @@ namespace Xamarin.iOS.Binding.Transformer.Models.Metadata
         {
             Properties = new List<AttrProperty>();
         }
+
+        public Attr Clone()
+        {
+            var newClone = (Attr)this.MemberwiseClone();
+            newClone.Properties = new List<AttrProperty>();
+
+            foreach (var aProp in Properties)
+            {
+                var newProp = aProp.Clone();
+
+                newClone.Properties.Add(newProp);
+            }
+
+            return newClone;
+        }
     }
 }

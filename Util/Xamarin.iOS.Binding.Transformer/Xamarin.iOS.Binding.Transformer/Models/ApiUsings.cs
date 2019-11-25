@@ -36,6 +36,13 @@ namespace Xamarin.iOS.Binding.Transformer
             dict.Add(this.Path, this);
         }
 
+        internal ApiUsing Clone()
+        {
+            var newUsing = (ApiUsing)this.MemberwiseClone();
+
+            return newUsing;
+        }
+
         internal override void Add(ApiObject item)
         {
            

@@ -29,9 +29,21 @@ namespace Transformeriser3000
             var api92 = await Load92(apiV92);
 
             await CodeGenerator.GenerateAsync(api92, apiV92CS);
-            api92.Transform(apiMetaDataFile);
+            var fixedTransform = api92.Transform(apiMetaDataFile);
+
+            if (fixedTransform != null)  //there is a fixed version of the transform
+                fixedTransform.WriteToFile(Path.Combine(apiDiffOutput, "Metadata_fixed.xml"));
 
             await CodeGenerator.GenerateAsync(api92, apiV92CSClean);
+
+            //generate the current file
+            var apiDefinition = await Transformer.ExtractDefinitionAsync(apiFile);
+
+            //now compare
+            var orgStack = apiDefinition.BuildTreePath();
+            var newStack = api92.BuildTreePath();
+
+            ChangeManager.Compare(orgStack, newStack, apiDiffOutput);
 
             ////Load the original
             //var apiDefinitionTest = await Transformer.ExtractDefinitionAsync(apiFileOrig);

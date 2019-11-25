@@ -80,8 +80,20 @@ namespace Xamarin.iOS.Binding.Transformer.Models.Metadata
             }
         }
 
+        public Metadata Clone()
+        {
+            var meta = new Metadata();
 
+            foreach (var aAttr in Changes)
+                meta.Changes.Add(aAttr.Clone());
 
+            foreach (var aNode in AddNodes)
+                meta.AddNodes.Add(aNode.Clone());
 
+            foreach (var aNode in RemoveNodes)
+                meta.RemoveNodes.Add(aNode.Clone());
+
+            return meta;
+        }
     }
 }
