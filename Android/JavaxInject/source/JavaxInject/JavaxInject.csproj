@@ -19,6 +19,7 @@
     <PackageId>Xamarin.Javax.Inject</PackageId>
     <Title>Google Dagger for Xamarin.Android</Title>
     <Summary>Xamarin.Android bindings for Javax Inject</Summary>
+    <PackageDescription>Xamarin.Android bindings for Javax Inject</PackageDescription>
     <Authors>Microsoft</Authors>
     <Owners>Microsoft</Owners>
     <Copyright>© Microsoft Corporation. All rights reserved.</Copyright>

@@ -4,10 +4,10 @@
       "Component": {
         "Type": "Maven",
         "Maven": {
-          "ArtifactId": "dagger",
-          "GroupId": "com.google.dagger",
-          "Version": "2.13",
-          "NuGetId": "Xamarin.Google.Dagger"
+          "ArtifactId": "javax.inject",
+          "GroupId": "javax.inject",
+          "Version": "1",
+          "NuGetId": "Xamarin.Javax.Inject"
         }
       }
     }
