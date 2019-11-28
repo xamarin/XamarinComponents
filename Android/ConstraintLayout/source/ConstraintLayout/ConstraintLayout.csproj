@@ -17,8 +17,7 @@
   <PropertyGroup>
     <PackageId>Xamarin.Android.Support.Constraint.Layout</PackageId>
     <Title>Xamarin Android Constraint Layout</Title>
-    <Summary>Android Constraint Layout C# bindings for Xamarin</Summary>
-    <Description>Android Constraint Layout C# bindings for Xamarin</Description>
+    <PackageDescription>Android Constraint Layout C# bindings for Xamarin</PackageDescription>
     <Authors>Microsoft</Authors>
     <Owners>Microsoft</Owners>
     <Copyright>© Microsoft Corporation. All rights reserved.</Copyright>

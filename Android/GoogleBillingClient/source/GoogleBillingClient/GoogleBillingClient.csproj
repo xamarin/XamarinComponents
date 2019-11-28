@@ -13,20 +13,20 @@
     <AndroidClassParser>class-parse</AndroidClassParser>
     <AndroidCodegenTarget>XAJavaInterop1</AndroidCodegenTarget>
     <AndroidSdkBuildToolsVersion>28.0.3</AndroidSdkBuildToolsVersion>
+    <NoWarn>CS0114,CS0109,CS0108</NoWarn>
   </PropertyGroup>
 
   <PropertyGroup>
     <PackageId>Xamarin.Android.Google.BillingClient</PackageId>
     <Title>Google Android Billing Client bindings for Xamarin.Android</Title>
-    <Summary>Xamarin.Android bindings for Google's Android Billing Client</Summary>
-    <Description>Xamarin.Android bindings for Google's Android Billing Client.</Description>
+    <PackageDescription>Xamarin.Android bindings for Google's Android Billing Client.</PackageDescription>
     <Authors>Microsoft</Authors>
     <Owners>Microsoft</Owners>
     <Copyright>© Microsoft Corporation. All rights reserved.</Copyright>
     <PackageProjectUrl>https://go.microsoft.com/fwlink/?linkid=2100110</PackageProjectUrl>
-    <PackageLicenseUrl>https://go.microsoft.com/fwlink/?linkid=2099698</PackageLicenseUrl>
+    <PackageLicenseFile>LICENSE.md</PackageLicenseFile>
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
-    <PackageVersion>2.0.0</PackageVersion>
+    <PackageVersion>2.0.3</PackageVersion>
   </PropertyGroup>
 
   <ItemGroup>
@@ -39,6 +39,7 @@
     <None Include="..\..\externals\billing.aar">
       <Link>billing.jar</Link>
     </None>
+    <None Include="..\..\License.md" Pack="true" PackagePath="LICENSE.md"/>
     <None Include="..\..\External-Dependency-Info.txt" Pack="True" PackagePath="THIRD-PARTY-NOTICES.txt" />
   </ItemGroup>
 

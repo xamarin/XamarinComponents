@@ -6,6 +6,8 @@
 	<string>MWPhotoBrowserSample</string>
 	<key>CFBundleIdentifier</key>
 	<string>com.your-company.MWPhotoBrowserSample</string>
+	<key>CFBundleName</key>
+	<string>MWPhotoBrowserSample</string>
 	<key>CFBundleShortVersionString</key>
 	<string>1.0</string>
 	<key>CFBundleVersion</key>
@@ -26,7 +28,6 @@
 	<key>UISupportedInterfaceOrientations</key>
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>
-		<string>UIInterfaceOrientationPortraitUpsideDown</string>
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
@@ -56,5 +57,9 @@
 			</dict>
 		</dict>
 	</dict>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>We really want to have a look at your photos! Please let us in!</string>
+	<key>UILaunchStoryboardName</key>
+	<string>LaunchScreen</string>
 </dict>
 </plist>

@@ -1,5 +1,7 @@
 ﻿<Project Sdk="MSBuild.Sdk.Extras/2.0.54">
 
+  <Import Project="..\..\source\Xamarin.Kotlin.BindingSupport.props" />
+
   <PropertyGroup>
     <TargetFramework>MonoAndroid90</TargetFramework>
     <IsBindingProject>true</IsBindingProject>

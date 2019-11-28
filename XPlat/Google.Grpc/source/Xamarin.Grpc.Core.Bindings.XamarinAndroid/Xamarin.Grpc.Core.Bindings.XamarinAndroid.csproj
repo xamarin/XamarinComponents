@@ -14,9 +14,6 @@
 
         <TargetFrameworks>MonoAndroid81</TargetFrameworks>
         <AndroidCodegenTarget>XAJavaInterop1</AndroidCodegenTarget>
-         
-        <GenerateAssemblyInfo>false</GenerateAssemblyInfo>        
-        <Description>Bindings for Google GRPC Core package</Description>
     </PropertyGroup>
 
     <PropertyGroup>
@@ -30,14 +27,11 @@
         -->
         <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
         <PackageId>Xamarin.Grpc.Core</PackageId>
-        <PackageVersion>1.21.1.0</PackageVersion>
+        <PackageVersion>1.24.0.0</PackageVersion>
         <Title>Xamarin.Grpc.Core</Title>
-        <Summary>
-            Google GRPC Core bindings for Xamarin
-        </Summary>
-        <Description>
+        <PackageDescription>
             Bindings for Google's GRPC Core package
-        </Description>
+        </PackageDescription>
         <Owners>Microsoft</Owners>
         <Authors>Microsoft</Authors>
         <Copyright>© Microsoft Corporation. All rights reserved.</Copyright>
@@ -50,15 +44,9 @@
         <RepositoryUrl>
         https://go.microsoft.com/fwlink/?linkid=2009337            
         </RepositoryUrl>
-        <RequireLicenceAcceptance>true</RequireLicenceAcceptance>
         <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
-        <PackageReleaseNotes>
-            transitive dependencies fixed
-        </PackageReleaseNotes>
         <PackageTags>xamarin, android, bindings, google, grpc, core </PackageTags>
         <PackOnBuild>true</PackOnBuild>
-        <RequireLicenceAcceptance>true</RequireLicenceAcceptance>
-        <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
     </PropertyGroup>
 
 
@@ -78,6 +66,7 @@
   <ItemGroup>
     <PackageReference Include="Xamarin.Io.OpenCensus.OpenCensusApi" Version="0.12.3" />
     <PackageReference Include="Xamarin.Io.OpenCensus.OpenCensusContribGrpcMetrics" Version="0.12.3" />
+    <PackageReference Include="Xamarin.Io.PerfMark.PerfMarkApi" Version="0.17.0" />
   </ItemGroup>
 
   <ItemGroup>
@@ -88,8 +77,8 @@
     <Compile Remove="Additions\LazyStringArrayList.cs" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedJar Include="..\..\externals\android\grpc-core-1.21.1.jar">
-      <Link>Jars\grpc-core-1.21.1.jar</Link>
+    <EmbeddedJar Include="..\..\externals\android\grpc-core-1.24.0.jar">
+      <Link>Jars\grpc-core-1.24.0.jar</Link>
     </EmbeddedJar>
   </ItemGroup>
   <ItemGroup>

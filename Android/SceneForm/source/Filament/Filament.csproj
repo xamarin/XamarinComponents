@@ -17,8 +17,7 @@
   <PropertyGroup>
     <PackageId>Xamarin.Android.SceneForm.Filament</PackageId>
     <Title>Xamarin.Android.SceneForm.Filament</Title>
-    <Summary>Xamarin.Android bindings for SceneForm sFilament</Summary>
-    <Description></Description>
+    <PackageDescription>Xamarin.Android bindings for SceneForm Filament</PackageDescription>
     <Authors>Microsoft</Authors>
     <Owners>Microsoft</Owners>
     <Copyright>© Microsoft Corporation. All rights reserved.</Copyright>

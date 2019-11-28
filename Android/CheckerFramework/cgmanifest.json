@@ -1,0 +1,16 @@
+{
+  "Registrations":[ 
+    {
+      "Component": {
+        "Type": "Maven",
+        "Maven": {
+          "ArtifactId": "checker",
+          "GroupId": "org.checkerframework",
+          "Version": "2.11.1",
+          "NuGetId": "Xamarin.CheckerFramework.Checker"
+        }
+      }
+    },
+  ],
+  "Version": 1
+}

@@ -7,10 +7,8 @@
 		<Authors>xamarin</Authors>
 		<PackageId>Xamarin.Dropbox.Api.iOS</PackageId>
 		<Owners>xamarin</Owners>
-		<PackageReleaseNotes>initial</PackageReleaseNotes>
-		<Summary>Things</Summary>
+		<PackageDescription>Things</PackageDescription>
 		<Title>Xamarin.Dropbox.Api.iOS</Title>
-		<Description>Xamarin.Dropbox.Api.iOS</Description>
 		<GeneratePackageOnBuild>false</GeneratePackageOnBuild>
 		<AssemblyName>Xamarin.Dropbox.Api.Core</AssemblyName>
   </PropertyGroup>
