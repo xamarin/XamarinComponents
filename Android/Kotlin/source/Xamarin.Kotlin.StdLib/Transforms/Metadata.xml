@@ -8,14 +8,75 @@
   <remove-node path="/api/package[@name='android.support.v4.content']/class[@name='CursorLoader']/method[@name='loadInBackground']" />
   -->
 
-  <!-- remove internal namespaces -->
-  <remove-node path="/api/package[starts-with(@name,'kotlin.internal')]" />
-  <remove-node path="/api/package[starts-with(@name,'kotlin.jvm.internal')]" />
-
-  <!-- this is not really worth it -->
-  <remove-node path="/api/package[starts-with(@name,'kotlin.reflect')]" />
+  <!-- fix the reflection inheritance and generics -->
+  <attr path="/api/package[@name='kotlin.reflect']/interface[@name='KClass']/method[@name='getConstructors' and count(parameter)=0]" name="return">java.util.Collection&lt;kotlin.reflect.KFunction&lt;java.lang.Object&gt;&gt;</attr>
+  <attr path="/api/package[@name='kotlin.reflect']/interface[@name='KClass']/method[@name='getMembers' and count(parameter)=0]" name="return">java.util.Collection&lt;kotlin.reflect.KCallable&lt;java.lang.Object&gt;&gt;</attr>
+  <attr path="/api/package[@name='kotlin.reflect']/interface[@name='KClass']/method[@name='getNestedClasses' and count(parameter)=0]" name="return">java.util.Collection&lt;kotlin.reflect.KClass&lt;java.lang.Object&gt;&gt;</attr>
+  <attr path="/api/package[@name='kotlin.reflect']/interface[@name='KClass']/method[@name='getSealedSubclasses' and count(parameter)=0]" name="return">java.util.List&lt;kotlin.reflect.KClass&lt;java.lang.Object&gt;&gt;</attr>
+  <add-node path="/api/package/class[@name='PropertyReference']">
+    <method abstract="true" deprecated="not deprecated" final="false" name="getGetter" native="false" return="kotlin.reflect.KProperty.Getter&lt;java.lang.Object&gt;" static="false" synchronized="false" visibility="public" />
+  </add-node>
+  <add-node path="/api/package/class[@name='PropertyReference0']">
+    <method abstract="false" deprecated="not deprecated" final="false" name="get" native="false" return="java.lang.Object" static="false" synchronized="false" visibility="public" />
+  </add-node>
+  <add-node path="/api/package/class[@name='PropertyReference1']">
+    <method abstract="false" deprecated="not deprecated" final="false" name="get" native="false" return="java.lang.Object" static="false" synchronized="false" visibility="public">
+      <parameter name="p0" type="java.lang.Object" />
+    </method>
+  </add-node>
+  <add-node path="/api/package/class[@name='PropertyReference2']">
+    <method abstract="false" deprecated="not deprecated" final="false" name="get" native="false" return="java.lang.Object" static="false" synchronized="false" visibility="public">
+      <parameter name="p0" type="java.lang.Object" />
+      <parameter name="p1" type="java.lang.Object" />
+    </method>
+  </add-node>
+  <add-node path="/api/package/class[@name='MutablePropertyReference']">
+    <method abstract="true" deprecated="not deprecated" final="false" name="getSetter" native="false" return="kotlin.reflect.KMutableProperty.Setter&lt;java.lang.Object&gt;" static="false" synchronized="false" visibility="public" />
+  </add-node>
+  <add-node path="/api/package/class[@name='MutablePropertyReference0']">
+    <method abstract="false" deprecated="not deprecated" final="false" name="get" native="false" return="java.lang.Object" static="false" synchronized="false" visibility="public" />
+    <method abstract="false" deprecated="not deprecated" final="false" name="set" native="false" return="void" static="false" synchronized="false" visibility="public">
+      <parameter name="p0" type="java.lang.Object" />
+    </method>
+  </add-node>
+  <add-node path="/api/package/class[@name='MutablePropertyReference1']">
+    <method abstract="false" deprecated="not deprecated" final="false" name="get" native="false" return="java.lang.Object" static="false" synchronized="false" visibility="public">
+      <parameter name="p0" type="java.lang.Object" />
+    </method>
+    <method abstract="false" deprecated="not deprecated" final="false" name="set" native="false" return="void" static="false" synchronized="false" visibility="public">
+      <parameter name="p0" type="java.lang.Object" />
+      <parameter name="p1" type="java.lang.Object" />
+    </method>
+  </add-node>
+  <add-node path="/api/package/class[@name='MutablePropertyReference2']">
+    <method abstract="false" deprecated="not deprecated" final="false" name="get" native="false" return="java.lang.Object" static="false" synchronized="false" visibility="public">
+      <parameter name="p0" type="java.lang.Object" />
+      <parameter name="p01" type="java.lang.Object" />
+    </method>
+    <method abstract="false" deprecated="not deprecated" final="false" name="set" native="false" return="void" static="false" synchronized="false" visibility="public">
+      <parameter name="p0" type="java.lang.Object" />
+      <parameter name="p1" type="java.lang.Object" />
+      <parameter name="p2" type="java.lang.Object" />
+    </method>
+  </add-node>
+  <attr path="/api/package[@name='kotlin.reflect']/interface[@name='KProperty0']/method[@name='getGetter' and count(parameter)=0]" name="managedReturn">Kotlin.Reflect.IKPropertyGetter</attr>
+  <attr path="/api/package[@name='kotlin.reflect']/interface[@name='KProperty1']/method[@name='getGetter' and count(parameter)=0]" name="managedReturn">Kotlin.Reflect.IKPropertyGetter</attr>
+  <attr path="/api/package[@name='kotlin.reflect']/interface[@name='KProperty2']/method[@name='getGetter' and count(parameter)=0]" name="managedReturn">Kotlin.Reflect.IKPropertyGetter</attr>
+  <attr path="/api/package[@name='kotlin.reflect']/interface[@name='KMutableProperty0']/method[@name='getSetter' and count(parameter)=0]" name="managedReturn">Kotlin.Reflect.IKMutablePropertySetter</attr>
+  <attr path="/api/package[@name='kotlin.reflect']/interface[@name='KMutableProperty1']/method[@name='getSetter' and count(parameter)=0]" name="managedReturn">Kotlin.Reflect.IKMutablePropertySetter</attr>
+  <attr path="/api/package[@name='kotlin.reflect']/interface[@name='KMutableProperty2']/method[@name='getSetter' and count(parameter)=0]" name="managedReturn">Kotlin.Reflect.IKMutablePropertySetter</attr>
+  <attr path="/api/package[@name='kotlin.jvm.internal']/class[@name='PropertyReference0']/method[@name='getGetter' and count(parameter)=0]" name="managedReturn">Kotlin.Reflect.IKPropertyGetter</attr>
+  <attr path="/api/package[@name='kotlin.jvm.internal']/class[@name='PropertyReference1']/method[@name='getGetter' and count(parameter)=0]" name="managedReturn">Kotlin.Reflect.IKPropertyGetter</attr>
+  <attr path="/api/package[@name='kotlin.jvm.internal']/class[@name='PropertyReference2']/method[@name='getGetter' and count(parameter)=0]" name="managedReturn">Kotlin.Reflect.IKPropertyGetter</attr>
+  <attr path="/api/package[@name='kotlin.jvm.internal']/class[@name='MutablePropertyReference0']/method[@name='getGetter' and count(parameter)=0]" name="managedReturn">Kotlin.Reflect.IKPropertyGetter</attr>
+  <attr path="/api/package[@name='kotlin.jvm.internal']/class[@name='MutablePropertyReference0']/method[@name='getSetter' and count(parameter)=0]" name="managedReturn">Kotlin.Reflect.IKMutablePropertySetter</attr>
+  <attr path="/api/package[@name='kotlin.jvm.internal']/class[@name='MutablePropertyReference1']/method[@name='getGetter' and count(parameter)=0]" name="managedReturn">Kotlin.Reflect.IKPropertyGetter</attr>
+  <attr path="/api/package[@name='kotlin.jvm.internal']/class[@name='MutablePropertyReference1']/method[@name='getSetter' and count(parameter)=0]" name="managedReturn">Kotlin.Reflect.IKMutablePropertySetter</attr>
+  <attr path="/api/package[@name='kotlin.jvm.internal']/class[@name='MutablePropertyReference2']/method[@name='getGetter' and count(parameter)=0]" name="managedReturn">Kotlin.Reflect.IKPropertyGetter</attr>
+  <attr path="/api/package[@name='kotlin.jvm.internal']/class[@name='MutablePropertyReference2']/method[@name='getSetter' and count(parameter)=0]" name="managedReturn">Kotlin.Reflect.IKMutablePropertySetter</attr>
 
   <!-- fix inheritance -->
+  <attr path="/api/package/class[@extends='kotlin.jvm.internal.PrimitiveSpreadBuilder']/method[@name='getSize' and count(parameter)=1]/parameter[1]" name="type">java.lang.Object</attr>
   <attr path="/api/package/class[implements[@name='java.lang.Comparable']]/method[@name='compareTo' and count(parameter)=1]/parameter[1]" name="managedType">Java.Lang.Object</attr>
   <attr path="/api/package/class[implements[@name='java.lang.Iterable']]/method[@name='iterator' and count(parameter)=0]" name="managedReturn">Java.Util.IIterator</attr>
   <attr path="/api/package/class[implements[@name='java.util.Collection']]/method[starts-with(@name,'add-') and count(parameter)=1]/parameter[1]" name="managedType">Java.Lang.Object</attr>
@@ -60,6 +121,8 @@
   <remove-node path="/api/package/class[substring(@name,string-length(@name)-3)='Impl']" />
 
   <!-- fix some conflicting members -->
+  <attr path="/api/package[@name='kotlin.annotation']/class[@name='AnnotationTarget']/field[@name='CLASS']" name="managedName">Klass</attr>
+
   <attr path="/api/package[@name='kotlin.sequences']/class[@name='SequencesKt___SequencesKt']/method[@name='max' and count(parameter)=1 and parameter[1][@type='kotlin.sequences.Sequence&lt;java.lang.Double&gt;']]" name="managedName">MaxOfDouble</attr>
   <attr path="/api/package[@name='kotlin.sequences']/class[@name='SequencesKt___SequencesKt']/method[@name='max' and count(parameter)=1 and parameter[1][@type='kotlin.sequences.Sequence&lt;java.lang.Float&gt;']]" name="managedName">MaxOfFloat</attr>
   <attr path="/api/package[@name='kotlin.sequences']/class[@name='SequencesKt___SequencesKt']/method[@name='min' and count(parameter)=1 and parameter[1][@type='kotlin.sequences.Sequence&lt;java.lang.Double&gt;']]" name="managedName">MinOfDouble</attr>

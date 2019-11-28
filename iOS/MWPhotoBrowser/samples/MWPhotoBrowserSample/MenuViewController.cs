@@ -755,7 +755,7 @@ namespace MWPhotoBrowserSample
 				photos.Add (photo);
 				thumbs.Add (PhotoBrowserPhoto.FromUrl (new NSUrl ("http://farm2.static.flickr.com/1310/1213846529_9a1fc08f0f_q.jpg")));
 				photo = PhotoBrowserPhoto.FromUrl (new NSUrl ("http://farm2.static.flickr.com/1320/1213843939_6f5594ffca_b.jpg"));
-				photo.Caption = "Jesus, Monte Toro";
+				photo.Caption = "Monte Toro";
 				photos.Add (photo);
 				thumbs.Add (PhotoBrowserPhoto.FromUrl (new NSUrl ("http://farm2.static.flickr.com/1320/1213843939_6f5594ffca_q.jpg")));
 				photo = PhotoBrowserPhoto.FromUrl (new NSUrl ("http://farm2.static.flickr.com/1290/1213774167_804edea2a8_b.jpg"));
@@ -963,7 +963,7 @@ namespace MWPhotoBrowserSample
 				photos.Add (photo);
 				thumbs.Add (PhotoBrowserPhoto.FromUrl (new NSUrl ("http://farm2.static.flickr.com/1297/1019721148_796385dcb6_q.jpg")));
 				photo = PhotoBrowserPhoto.FromUrl (new NSUrl ("http://farm2.static.flickr.com/1093/1018853687_a162a984ca_b.jpg"));
-				photo.Caption = "VDub Little Buggers Club";
+				photo.Caption = "Club";
 				photos.Add (photo);
 				thumbs.Add (PhotoBrowserPhoto.FromUrl (new NSUrl ("http://farm2.static.flickr.com/1093/1018853687_a162a984ca_q.jpg")));
 				photo = PhotoBrowserPhoto.FromUrl (new NSUrl ("http://farm2.static.flickr.com/1069/1018846077_9576590764_b.jpg"));
@@ -1023,7 +1023,7 @@ namespace MWPhotoBrowserSample
 				photos.Add (photo);
 				thumbs.Add (PhotoBrowserPhoto.FromUrl (new NSUrl ("http://farm2.static.flickr.com/1029/1018206545_6e8e0ec1e5_q.jpg")));
 				photo = PhotoBrowserPhoto.FromUrl (new NSUrl ("http://farm2.static.flickr.com/1261/1018910192_48fe1f5b6b_b.jpg"));
-				photo.Caption = "Cock";
+				photo.Caption = "Bird";
 				photos.Add (photo);
 				thumbs.Add (PhotoBrowserPhoto.FromUrl (new NSUrl ("http://farm2.static.flickr.com/1261/1018910192_48fe1f5b6b_q.jpg")));
 				photo = PhotoBrowserPhoto.FromUrl (new NSUrl ("http://farm2.static.flickr.com/1228/1017960551_1a3d1b0a9c_b.jpg"));

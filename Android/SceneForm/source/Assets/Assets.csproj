@@ -17,8 +17,7 @@
   <PropertyGroup>
     <PackageId>Xamarin.Android.SceneForm.Assets</PackageId>
     <Title>Xamarin.Android.SceneForm.Assets</Title>
-    <Summary>Xamarin.Android bindings for SceneForm Assets</Summary>
-    <Description></Description>
+    <PackageDescription>Xamarin.Android bindings for SceneForm Assets</PackageDescription>
     <Authors>Microsoft</Authors>
     <Owners>Microsoft</Owners>
     <Copyright>© Microsoft Corporation. All rights reserved.</Copyright>

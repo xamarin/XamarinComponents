@@ -17,14 +17,14 @@
   <PropertyGroup>
     <PackageId>Xamarin.Google.Dagger</PackageId>
     <Title>Google Dagger for Xamarin.Android</Title>
-    <Summary>Xamarin.Android bindings for Google Dagger</Summary>
+    <PackageDescription>Xamarin.Android bindings for Google Dagger</PackageDescription>
     <Authors>Microsoft</Authors>
     <Owners>Microsoft</Owners>
     <Copyright>© Microsoft Corporation. All rights reserved.</Copyright>
     <PackageProjectUrl>https://go.microsoft.com/fwlink/?linkid=2106537</PackageProjectUrl>
     <PackageLicenseUrl>https://go.microsoft.com/fwlink/?linkid=2106538</PackageLicenseUrl>
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
-    <PackageVersion>2.13</PackageVersion>
+    <PackageVersion>2.25.2</PackageVersion>
   </PropertyGroup>
 
   <ItemGroup>

@@ -103,7 +103,7 @@ jobs:
         displayName: 'Download the latest nuget.exe'
       - pwsh: |
           $branch = "${{ parameters.cakeTemplatesBranch }}"
-          if ("$(Build.Repository.Id)" -eq "xamarin/XamarinComponents") {
+          if (("$(Build.Repository.Id)" -eq "xamarin/XamarinComponents") -and ("$(System.PullRequest.IsFork)" -eq "False") -and ("$env:FORCE_MASTER_TEMPLATES" -ne "True")) {
             if ("$env:SYSTEM_PULLREQUEST_SOURCEBRANCH") {
               $branch = "$env:SYSTEM_PULLREQUEST_SOURCEBRANCH"
             } else {
@@ -125,6 +125,11 @@ jobs:
           Write-Host "Downloading script from $uri..."
           Invoke-WebRequest -Uri $uri -OutFile "validation.cake"
         displayName: 'Download the cake script to validate NuGet packages'
+      - pwsh: |
+          $uri = "$(TemplateRootUri)/nuget-diff.cake"
+          Write-Host "Downloading script from $uri..."
+          Invoke-WebRequest -Uri $uri -OutFile "nuget-diff.cake"
+        displayName: 'Download the cake script to diff NuGet packages'
       # determine the last successful build for "master" branch
       - pwsh: |
           # determine the "master" branch
@@ -146,7 +151,7 @@ jobs:
             Write-Host "Current tag: $branch"
           }
 
-          if ($branch -eq $masterBranch) {
+          if (($branch -eq $masterBranch) -and ("$(System.PullRequest.IsFork)" -eq "False")) {
             Write-Host "Branch is master, fetching last successful build commit..."
 
             $url = "$(System.TeamFoundationCollectionUri)$(System.TeamProjectId)/_apis/build/builds/?definitions=$(System.DefinitionId)&branchName=$encodedBranch&statusFilter=completed&resultFilter=succeeded&api-version=5.0"
@@ -234,17 +239,19 @@ jobs:
       # custom post-build steps
       - ${{ parameters.postBuildSteps }}
       # post-build steps
-      - pwsh: dotnet cake validation.cake --namespaces="${{ join(',', parameters.validPackagePrefixes) }}"
-        displayName: 'Run NuGet package validation'
-      # after the build is complete
       - pwsh: |
-          if (Get-ChildItem ${{ parameters.artifactsPath }} -Filter *.nupkg) {
-            api-tools nuget-diff ${{ parameters.artifactsPath }} --latest --group-ids --ignore-unchanged --output output/api-diff --cache $(Agent.TempDirectory)/api-diff/package-cache
-          }
+          dotnet cake validation.cake `
+            --namespaces="${{ join(',', parameters.validPackagePrefixes) }}" `
+            --verbosity="${{ parameters.verbosity }}"
+        displayName: 'Run NuGet package validation'
+      - pwsh: |
+          dotnet cake nuget-diff.cake `
+            --artifacts="${{ parameters.artifactsPath }}" `
+            --output="${{ parameters.artifactsPath }}/api-diff" `
+            --cache="$(Agent.TempDirectory)/api-diff" `
+            --verbosity="${{ parameters.verbosity }}"
         displayName: 'Generate API diff'
-      - task: ms.vss-governance-buildtask.governance-build-task-component-detection.ComponentGovernanceComponentDetection@0
-        displayName: 'Run component detection'
-        condition: and(succeeded(), in(variables['Build.Reason'], 'IndividualCI', 'BatchedCI'))
+      # after the build is complete
       - task: PublishBuildArtifacts@1
         displayName: 'Publish artifacts'
         inputs:
@@ -256,3 +263,78 @@ jobs:
         inputs:
           PathToPublish: output
           ArtifactName: output-$(System.JobName)
+      # run any required checks
+      - ${{ if eq(variables['System.TeamProject'], 'devdiv') }}:
+        - task: ComponentGovernanceComponentDetection@0
+          displayName: 'Run component detection'
+          condition: and(always(), eq('refs/heads/${{ parameters.masterBranchName }}', variables['Build.SourceBranch']))
+          inputs:
+            scanType: 'Register'
+            verbosity: 'Verbose'
+            alertWarningLevel: 'High'
+
+  - ${{ if eq(variables['System.TeamProject'], 'devdiv') }}:
+    - job: checks
+      displayName: 'Run required code checks'
+      condition: eq('refs/heads/${{ parameters.masterBranchName }}', variables['Build.SourceBranch'])
+      pool:
+        name: ${{ parameters.windowsImage }}
+      steps:
+        - pwsh: |
+            $repo = "$(Build.Repository.Id)"
+            $repo = $repo.Substring($repo.IndexOf("/") + 1)
+            $branch = "${{ parameters.masterBranchName }}"
+            $CODEBASE_NAME = $repo + "_" + $branch
+            echo "Using codebase: $CODEBASE_NAME"
+            Write-Host "##vso[task.setvariable variable=CODEBASE_NAME]$CODEBASE_NAME"
+        - task: CredScan@2
+          displayName: 'Analyze source for credentials'
+          inputs:
+            toolMajorVersion: 'V2'
+        - task: PoliCheck@1
+          inputs:
+            inputType: 'Basic'
+            targetType: 'F'
+        - task: SdtReport@1
+          displayName: 'Create security analysis report'
+          inputs:
+            AllTools: false
+            APIScan: false
+            BinSkim: false
+            CodesignValidation: false
+            CredScan: true
+            FortifySCA: false
+            FxCop: false
+            ModernCop: false
+            MSRD: false
+            PoliCheck: true
+            RoslynAnalyzers: false
+            SDLNativeRules: false
+            Semmle: false
+            TSLint: false
+            ToolLogsNotFoundAction: 'Standard'
+        - task: PublishSecurityAnalysisLogs@3
+          displayName: 'Publish security analysis logs'
+        - task: TSAUpload@1
+          inputs:
+            tsaVersion: 'TsaV2'
+            codebase: 'NewOrUpdate'
+            tsaEnvironment: 'PROD'
+            codeBaseName: '$(CODEBASE_NAME)'
+            notificationAlias: 'xamacomd@microsoft.com'
+            notifyAlwaysV2: false
+            instanceUrlForTsaV2: 'DEVDIV'
+            projectNameDEVDIV: 'DevDiv'
+            areaPath: 'DevDiv\Xamarin Tools and SDKs\Components'
+            iterationPath: 'DevDiv\OneVS'
+            uploadAPIScan: false
+            uploadBinSkim: false
+            uploadCredScan: true
+            uploadFortifySCA: false
+            uploadFxCop: false
+            uploadModernCop: false
+            uploadPoliCheck: true
+            uploadPREfast: false
+            uploadRoslyn: false
+            uploadTSLint: false
+            uploadAsync: true

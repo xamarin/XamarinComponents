@@ -17,7 +17,7 @@
   <PropertyGroup>
     <PackageId>AndroidEasingFunctions</PackageId>
     <Title>Animation easing functions for Xamarin.Android</Title>
-    <Summary>Various Android animation easing functions for Xamarin.Android.</Summary>
+    <PackageDescription>Various Android animation easing functions for Xamarin.Android.</PackageDescription>
     <Authors>Microsoft</Authors>
     <Owners>Microsoft</Owners>
     <Copyright>© Microsoft Corporation. All rights reserved.</Copyright>

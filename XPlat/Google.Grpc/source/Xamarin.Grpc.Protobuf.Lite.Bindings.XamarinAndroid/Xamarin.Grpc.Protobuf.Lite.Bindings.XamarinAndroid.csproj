@@ -10,9 +10,6 @@
 
         <TargetFrameworks>MonoAndroid81</TargetFrameworks>
         <AndroidCodegenTarget>XAJavaInterop1</AndroidCodegenTarget>
-         
-        <GenerateAssemblyInfo>false</GenerateAssemblyInfo>        
-        <Description>Bindings for Google GRPC Protobuf.Lite package</Description>
     </PropertyGroup>
 
     <PropertyGroup>
@@ -23,14 +20,11 @@
     <PropertyGroup>
         <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
         <PackageId>Xamarin.Grpc.Protobuf.Lite</PackageId>
-        <PackageVersion>1.21.1.0</PackageVersion>
+        <PackageVersion>1.24.0.0</PackageVersion>
         <Title>Xamarin.Grpc.Protobuf.Lite</Title>
-        <Summary>
-            Google GRPC Protobuf.Lite bindings for Xamarin
-        </Summary>
-        <Description>
+        <PackageDescription>
             Bindings for Google's GRPC Protobuf.Lite package
-        </Description>
+        </PackageDescription>
         <Owners>Microsoft</Owners>
         <Authors>Microsoft</Authors>
         <Copyright>© Microsoft Corporation. All rights reserved.</Copyright>
@@ -43,15 +37,9 @@
         <RepositoryUrl>
         https://go.microsoft.com/fwlink/?linkid=2009337            
         </RepositoryUrl>
-        <RequireLicenceAcceptance>true</RequireLicenceAcceptance>
         <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
-        <PackageReleaseNotes>
-            transitive dependencies fixed
-        </PackageReleaseNotes>
         <PackageTags>xamarin, android, bindings, google, grpc, protobuf, lite </PackageTags>
         <PackOnBuild>true</PackOnBuild>
-        <RequireLicenceAcceptance>true</RequireLicenceAcceptance>
-        <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
     </PropertyGroup>
 
 
@@ -64,8 +52,8 @@
     <Folder Include="Jars\" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedJar Include="..\..\externals\android\grpc-protobuf-lite-1.21.1.jar">
-      <Link>Jars\grpc-protobuf-lite-1.21.1.jar</Link>
+    <EmbeddedJar Include="..\..\externals\android\grpc-protobuf-lite-1.24.0.jar">
+      <Link>Jars\grpc-protobuf-lite-1.24.0.jar</Link>
     </EmbeddedJar>
   </ItemGroup>
   <ItemGroup>

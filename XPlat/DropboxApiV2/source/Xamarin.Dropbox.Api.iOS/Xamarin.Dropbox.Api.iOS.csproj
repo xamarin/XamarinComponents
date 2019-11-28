@@ -14,9 +14,8 @@
     <PackageVersion>4.41</PackageVersion>
     <Authors>xamarin</Authors>
     <Owners>Xamarin.Dropbox.Api.iOS</Owners>
-    <Summary>Xamarin.Dropbox.Api.iOS</Summary>
+    <PackageDescription>Xamarin.Dropbox.Api.iOS</PackageDescription>
     <Title>Xamarin.Dropbox.Api.iOS</Title>
-    <Description>Xamarin.Dropbox.Api.iOS</Description>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>

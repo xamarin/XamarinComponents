@@ -17,7 +17,7 @@
   <PropertyGroup>
     <PackageId>Xamarin.Google.AutoValue.Annotations</PackageId>
     <Title>Google Auto Value Annotations for Xamarin.Android</Title>
-    <Summary>Xamarin.Android bindings for Google Auto Value Annotations</Summary>
+    <PackageDescription>Xamarin.Android bindings for Google Auto Value Annotations</PackageDescription>
     <Authors>Microsoft</Authors>
     <Owners>Microsoft</Owners>
     <Copyright>© Microsoft Corporation. All rights reserved.</Copyright>
