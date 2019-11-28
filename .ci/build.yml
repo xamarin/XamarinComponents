@@ -8,6 +8,7 @@ parameters:
   postBuildSteps: []                                        # any steps that need to run just after the main compilation ends
   masterBranchName: 'master'                                # the "master" branch that should be used - can be something other than "master"
   installAppleCertificates: 'true'                          # whether or not to install the Apple certificates and provisioning profiles
+  submodules: false                                         # whether or not to check out submodules
   # job software version parameters
   macosImage: 'Hosted macOS'                                # the name of the macOS VM image
   windowsImage: 'Hosted Windows 2019 with VS2019'           # the name of the Windows VM image
@@ -49,6 +50,8 @@ jobs:
     pool:
       name: $(imageName)
     steps:
+      - checkout: self
+        submodules: ${{ parameters.submodules }}
       # before the build starts, make sure the tooling is as expected
       - bash: sudo $AGENT_HOMEDIRECTORY/scripts/select-xamarin-sdk.sh ${{ parameters.mono }}
         displayName: 'Switch to the latest Xamarin SDK'
