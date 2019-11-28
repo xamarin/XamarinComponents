@@ -18,6 +18,7 @@
   <PropertyGroup>
     <PackageId>Xamarin.Google.Dagger</PackageId>
     <Title>Google Dagger for Xamarin.Android</Title>
+    <PackageDescription>Xamarin.Android bindings for Google Dagger</PackageDescription>
     <Summary>Xamarin.Android bindings for Google Dagger</Summary>
     <Authors>Microsoft</Authors>
     <Owners>Microsoft</Owners>
@@ -25,7 +26,7 @@
     <PackageProjectUrl>https://go.microsoft.com/fwlink/?linkid=2106537</PackageProjectUrl>
     <PackageLicenseUrl>https://go.microsoft.com/fwlink/?linkid=2106538</PackageLicenseUrl>
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
-    <PackageVersion>2.13</PackageVersion>
+    <PackageVersion>2.25.2.1</PackageVersion>
   </PropertyGroup>
 
   <ItemGroup>
@@ -43,9 +44,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Compile Update="Classes.cs">
-      <SubType></SubType>
-    </Compile>
+    <Compile Update="Additions.cs" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Xamarin.Javax.Inject" Version="1.0.0" />
