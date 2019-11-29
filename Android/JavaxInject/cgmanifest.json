@@ -1,0 +1,16 @@
+{
+  "Registrations":[ 
+    {
+      "Component": {
+        "Type": "Maven",
+        "Maven": {
+          "ArtifactId": "javax.inject",
+          "GroupId": "javax.inject",
+          "Version": "1",
+          "NuGetId": "Xamarin.Javax.Inject"
+        }
+      }
+    }
+  ],
+  "Version": 1
+}
