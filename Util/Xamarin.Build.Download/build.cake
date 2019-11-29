@@ -1,28 +1,45 @@
-#load "../../common.cake"
+var TARGET = Argument ("t", Argument ("target", "ci"));
 
-var TARGET = Argument ("t", Argument ("target", "Default"));
+Task("libs")
+	.Does(() =>
+{
+	MSBuild("./source/Xamarin.Build.Download.sln", c => {
+		c.Configuration = "Release";
+		c.Restore = true;
+	});
+});
 
-var buildSpec = new BuildSpec {
-	Libs = new [] { 
-		new DefaultSolutionBuilder {
-			SolutionPath = "source/Xamarin.Build.Download.sln",
-			BuildsOn = BuildPlatforms.Windows | BuildPlatforms.Mac,
-			OutputFiles = new [] { 
-				new OutputFileCopy { FromFile = "./source/Xamarin.Build.Download/bin/Release/Xamarin.Build.Download.dll" },
-				new OutputFileCopy { FromFile = "./source/Xamarin.Build.Download/bin/Release/Xamarin.Build.Download.targets" },
-				new OutputFileCopy { FromFile = "./source/Xamarin.Build.Download/bin/Release/Xamarin.Build.Download.props" },
-				new OutputFileCopy { FromFile = "./source/Xamarin.Build.Download/bin/Release/System.Net.Http.Formatting.dll" },
-				new OutputFileCopy { FromFile = "./source/Xamarin.Build.Download/bin/Release/Newtonsoft.Json.dll" },
-				new OutputFileCopy { FromFile = "./source/Xamarin.Build.Download/bin/Release/Mono.Cecil.dll" },
-			},
+Task("nuget")
+	.IsDependentOn("libs")
+	.Does(() =>
+{
+	MSBuild ("./source/Xamarin.Build.Download.sln", c => {
+		c.Configuration = "Release";
+		c.Restore = true;
+		c.Targets.Clear();
+		c.Targets.Add("Pack");
+		c.Properties.Add("PackageOutputPath", new [] { MakeAbsolute(new FilePath("./output")).FullPath });
+	});
+});
 
-		}
-	},
-	NuGets = new [] {
-		new NuGetInfo { NuSpec = "./nuget/Xamarin.Build.Download.nuspec", RequireLicenseAcceptance = true },
-	}
-};
+Task("tests")
+	.IsDependentOn("nuget")
+	.Does(() =>
+{
+	DotNetCoreTest("./source/Xamarin.Build.Download.Tests/", new DotNetCoreTestSettings {
+		Configuration = "Release",
+		VSTestReportPath = "./output/tests/TestResults.trx"
+	});
+});
 
-SetupXamarinBuildTasks (buildSpec, Tasks, Task);
+Task ("clean")
+	.Does (() =>
+{
+	CleanDirectories ("./source/**/bin");
+	CleanDirectories ("./source/**/obj");
+});
+
+Task ("ci")
+	.IsDependentOn("tests");
 
 RunTarget (TARGET);

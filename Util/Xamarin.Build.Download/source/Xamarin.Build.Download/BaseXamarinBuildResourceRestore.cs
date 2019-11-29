@@ -77,7 +77,7 @@ namespace Xamarin.Build.Download
 				}
 
 
-				//TODO: collision avoidance. AssemblyName MD5? NuGet package ID?
+				//TODO: collision avoidance. AssemblyName CRC? NuGet package ID?
 				var originalAsmPath = item.GetMetadata ("FullPath");
 				var intermediateAsmPath = Path.Combine (outputDir, asmName.Name + ".dll");
 				var outputAsmPath = OverwriteSourceAssembly ? originalAsmPath : intermediateAsmPath;
