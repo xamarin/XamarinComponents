@@ -8,6 +8,7 @@
         <ProjectReference Include="..\Xamarin.iOS.Binding.Transformer\Xamarin.iOS.Binding.Transformer.csproj" />
     </ItemGroup>
     <ItemGroup>
+        <Compile Remove="ApiDefinitionnsv92Alternative.cs" />
         <Compile Remove="ApiDefinitions.cs" />
         <Compile Remove="ApiDefinitions92.cs" />
         <Compile Remove="ApiDefinitionsOrig.cs" />
@@ -17,6 +18,9 @@
         </PackageReference>
     </ItemGroup>
     <ItemGroup>
+        <None Include="ApiDefinitionnsv92Alternative.cs">
+          <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </None>
         <None Include="ApiDefinitions.cs">
             <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
         </None>

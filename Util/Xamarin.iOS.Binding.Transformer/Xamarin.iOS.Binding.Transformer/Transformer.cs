@@ -906,34 +906,51 @@ namespace Xamarin.iOS.Binding.Transformer
 
             var baseType = result.Attribute.Arguments.FirstOrDefault(x => string.IsNullOrWhiteSpace(x.Name) && x.DataType == AttributeDataType.TypeOf);
 
-            if (baseType == null)
-            {
-                throw new Exception("No basetype specified");
-            }
+            ApiBaseType newBaseType = null;
 
-            //create a new basetype object
-            var newBaseType = new ApiBaseType()
+            if (baseType != null)
             {
-                TypeName = baseType.Value.Replace("\"", ""),
-            };
+                newBaseType = new ApiBaseType()
+                {
+                    TypeName = baseType.Value.Replace("\"", ""),
+                };
+            }
 
             //get the original name
             var nativeName = result.Attribute.Arguments.FirstOrDefault(x => x.Name.Equals("name", StringComparison.OrdinalIgnoreCase));
 
             if (nativeName != null)
+            {
+                if (newBaseType == null)
+                    newBaseType = new ApiBaseType();
+
                 newBaseType.Name = nativeName.Value.Replace("\"", "");
+            }
+                
 
             //get the name of the delegate property
             var delegateName = result.Attribute.Arguments.FirstOrDefault(x => x.Name.Equals("delegates", StringComparison.OrdinalIgnoreCase));
 
             if (delegateName != null)
+            {
+                if (newBaseType == null)
+                    newBaseType = new ApiBaseType();
+
                 newBaseType.DelegateName = delegateName.Value.Replace("\"", "");
+            }
+                
 
             //get the type of the events 
             var eventsType = result.Attribute.Arguments.FirstOrDefault(x => x.Name.Equals("events", StringComparison.OrdinalIgnoreCase));
 
             if (eventsType != null)
+            {
+                if (newBaseType == null)
+                    newBaseType = new ApiBaseType();
+
                 newBaseType.EventsType = eventsType.Value.Replace("\"", "");
+            }
+                
 
             newClass.BaseType = newBaseType;
         }
@@ -1410,7 +1427,7 @@ namespace Xamarin.iOS.Binding.Transformer
         /// <param name="list"></param>
         /// <param name="seperator"></param>
         /// <returns></returns>
-        private static string CombineString(IEnumerable<string> list, string seperator = ", ")
+        private static string CombineString(IEnumerable<string> list, string seperator = ",")
         {
             return string.Join(seperator, list);
         }

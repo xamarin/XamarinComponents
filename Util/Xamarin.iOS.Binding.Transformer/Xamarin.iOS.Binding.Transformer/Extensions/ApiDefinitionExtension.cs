@@ -57,6 +57,30 @@ namespace Xamarin.iOS.Binding.Transformer
             var unUsedRemoved = new List<Remove_Node>();
             var missingAttr = new List<Attr>();
 
+            // work through altered
+            foreach (var altered in output.Changes)
+            {
+                if (tree.ContainsKey(altered.Path))
+                {
+                    //get the parent item from the path
+                    var item = tree[altered.Path];
+
+                    if (item != null)
+                    {
+                        item.ApplyChanges(altered);
+                    }
+                }
+                else
+                {
+                    missingAttr.Add(altered);
+
+                    Console.WriteLine($"Altered Path not found: {altered.Path}");
+                }
+            }
+
+            foreach (var aRemove in missingAttr)
+                output.Changes.Remove(aRemove);
+
             // work through removed
             foreach (var removed in output.RemoveNodes)
             {
@@ -141,29 +165,7 @@ namespace Xamarin.iOS.Binding.Transformer
                 }
             }
 
-            // work through altered
-            foreach (var altered in output.Changes)
-            {
-                if (tree.ContainsKey(altered.Path))
-                {
-                    //get the parent item from the path
-                    var item = tree[altered.Path];
-
-                    if (item != null)
-                    {
-                        item.ApplyChanges(altered);
-                    }
-                }
-                else
-                {
-                    missingAttr.Add(altered);
-
-                    Console.WriteLine($"Altered Path not found: {altered.Path}");
-                }
-            }
-
-            foreach (var aRemove in missingAttr)
-                output.Changes.Remove(aRemove);
+            
 
             target.UpdateHierachy();
 

@@ -333,6 +333,20 @@ namespace Xamarin.iOS.Binding.Transformer
                 attrs = attrs.Add(attribList);
             }
 
+            if (!string.IsNullOrWhiteSpace(aMethod.IosVersion))
+            {
+                var attribList = BuildXamarinAttribute(aMethod.IosVersion, aMethod.Introduced);
+
+                attrs = attrs.Add(attribList);
+            }
+
+            if (!string.IsNullOrWhiteSpace(aMethod.TVVersion))
+            {
+                var attribList = BuildXamarinAttribute(aMethod.TVVersion, aMethod.Introduced, true);
+
+                attrs = attrs.Add(attribList);
+            }
+
             if (!string.IsNullOrWhiteSpace(aMethod.ExportName))
             {
                 var atrib = SyntaxFactory.Attribute
@@ -546,7 +560,7 @@ namespace Xamarin.iOS.Binding.Transformer
                                             SyntaxFactory.LiteralExpression
                                             (
                                                 SyntaxKind.StringLiteralExpression,
-                                                SyntaxFactory.Literal(fieldname)
+                                                SyntaxFactory.Literal(fieldname.Trim())
                                             )
                                         ));
 
