@@ -24,7 +24,6 @@
     <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
     <CodesignKey>iPhone Developer</CodesignKey>
     <MtouchDebug>true</MtouchDebug>
-    <MtouchUseRefCounting>true</MtouchUseRefCounting>
     <MtouchI18n>
     </MtouchI18n>
   </PropertyGroup>
@@ -39,7 +38,6 @@
     <MtouchLink>Full</MtouchLink>
     <CodesignKey>iPhone Developer</CodesignKey>
     <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
-    <MtouchUseRefCounting>true</MtouchUseRefCounting>
     <MtouchI18n>
     </MtouchI18n>
   </PropertyGroup>
@@ -52,12 +50,11 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <ConsolePause>false</ConsolePause>
-    <MtouchArch>ARMv7, ARMv7s, ARM64</MtouchArch>
+    <MtouchArch>ARMv7, ARM64</MtouchArch>
     <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
     <CodesignKey>iPhone Developer</CodesignKey>
     <MtouchDebug>true</MtouchDebug>
     <MtouchProfiling>true</MtouchProfiling>
-    <MtouchUseRefCounting>true</MtouchUseRefCounting>
     <IpaPackageName>
     </IpaPackageName>
     <MtouchI18n>
@@ -70,10 +67,9 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
-    <MtouchArch>ARMv7, ARMv7s, ARM64</MtouchArch>
+    <MtouchArch>ARMv7, ARM64</MtouchArch>
     <ConsolePause>false</ConsolePause>
     <CodesignKey>iPhone Developer</CodesignKey>
-    <MtouchUseRefCounting>true</MtouchUseRefCounting>
     <MtouchI18n>
     </MtouchI18n>
     <MtouchLink>Full</MtouchLink>
@@ -83,21 +79,22 @@
     <Reference Include="System.Xml" />
     <Reference Include="System.Core" />
     <Reference Include="Xamarin.iOS" />
-    <Reference Include="DACircularProgress">
-      <HintPath>..\packages\DACircularProgress.2.3.1.0\lib\Xamarin.iOS\DACircularProgress.dll</HintPath>
-    </Reference>
-    <Reference Include="MBProgressHUD">
-      <HintPath>..\packages\mbprogresshud.0.9.1.1\lib\Xamarin.iOS\MBProgressHUD.dll</HintPath>
-    </Reference>
-    <Reference Include="SDWebImage">
-      <HintPath>..\packages\Xamarin.SDWebImage.3.7.3.3\lib\Xamarin.iOS\SDWebImage.dll</HintPath>
-    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="DACircularProgress" Version="2.3.1.0" />
+    <PackageReference Include="MBProgressHUD" Version="0.9.1.1" />
+    <PackageReference Include="Xamarin.SDWebImage" Version="3.7.3.3" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\source\MWPhotoBrowser\MWPhotoBrowser.csproj">
+      <Project>{E6CE97B8-FA59-47F5-99D6-99BF1DF1FCE1}</Project>
+      <Name>MWPhotoBrowser</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <ImageAsset Include="Resources\Images.xcassets\AppIcons.appiconset\Contents.json" />
   </ItemGroup>
   <ItemGroup>
-    <BundleResource Include="Resources\Default-568h%402x.png" />
     <BundleResource Include="Resources\photo1.jpg" />
     <BundleResource Include="Resources\photo1t.jpg" />
     <BundleResource Include="Resources\photo2.jpg" />
@@ -118,26 +115,20 @@
     <BundleResource Include="Resources\video.mp4" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="MenuViewController.cs" />
-    <None Include="Info.plist" />
-    <None Include="Entitlements.plist" />
-    <None Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
     <Compile Include="Main.cs" />
     <Compile Include="AppDelegate.cs" />
+    <Compile Include="MenuViewController.cs" />
     <Compile Include="MenuViewController.designer.cs">
       <DependentUpon>MenuViewController.cs</DependentUpon>
     </Compile>
   </ItemGroup>
-  <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
   <ItemGroup>
-    <ProjectReference Include="..\..\source\MWPhotoBrowser\MWPhotoBrowser.csproj">
-      <Project>{E6CE97B8-FA59-47F5-99D6-99BF1DF1FCE1}</Project>
-      <Name>MWPhotoBrowser</Name>
-    </ProjectReference>
+    <None Include="Info.plist" />
+    <None Include="Entitlements.plist" />
   </ItemGroup>
   <ItemGroup>
     <InterfaceDefinition Include="Main.storyboard" />
+    <InterfaceDefinition Include="LaunchScreen.storyboard" />
   </ItemGroup>
+  <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
 </Project>

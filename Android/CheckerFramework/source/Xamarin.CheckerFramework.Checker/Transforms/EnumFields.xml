@@ -1,4 +1,5 @@
-﻿<enum-field-mappings>
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<enum-field-mappings>
 	<!--
   This example converts the constants Fragment_id, Fragment_name,
   and Fragment_tag from android.support.v4.app.FragmentActivity.FragmentTag

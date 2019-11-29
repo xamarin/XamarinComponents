@@ -1,8 +1,8 @@
 **Xamarin is not responsible for, nor does it grant any licenses to, third-party packages. Some packages may require or install dependencies which are governed by additional licenses.**
 
-Note: This component depends on [MWPhotoBrowser](https://github.com/mwaterfall/MWPhotoBrowser), which is subject to the [MIT License](https://github.com/mwaterfall/MWPhotoBrowser/blob/master/LICENSE)
+Note: This component depends on [Javax Inject](http://code.google.com/p/atinject/), which is subject to the [Apache 2.0](http://www.apache.org/licenses/LICENSE-2.0)
 
-### Xamarin Component for MWPhotoBrowser
+### Xamarin Component for Javax Inject for Xamarin.Android
 
 **The MIT License (MIT)**
 
@@ -14,4 +14,5 @@ The above copyright notice and this permission notice shall be included in all c
 
 THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-20160601
+20191128
+
