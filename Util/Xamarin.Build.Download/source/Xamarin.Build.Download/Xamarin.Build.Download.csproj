@@ -8,7 +8,7 @@
 
     <PackageId>Xamarin.Build.Download</PackageId>
     <Title>Xamarin Build-time Download Support</Title>
-    <PackageVersion>0.6.0</PackageVersion>
+    <PackageVersion>0.7.0</PackageVersion>
     <Authors>Microsoft</Authors>
     <Owners>Microsoft</Owners>
     <PackageProjectUrl>https://go.microsoft.com/fwlink/?linkid=865061</PackageProjectUrl>
@@ -33,7 +33,7 @@
     <None Include="..\..\External-Dependency-Info.txt" Pack="True" PackagePath="THIRD-PARTY-NOTICE.txt" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="Microsoft.Build.Framework" Version="16.0.461" PrivateAssets="alln" />
+    <PackageReference Include="Microsoft.Build.Framework" Version="16.0.461" PrivateAssets="all" />
     <PackageReference Include="Microsoft.Build.Utilities.Core" Version="16.0.461" PrivateAssets="all" />
     <PackageReference Include="Mono.Cecil" Version="0.11.0" PrivateAssets="all" GeneratePathProperty="true" />
     <PackageReference Include="Newtonsoft.Json" Version="12.0.2" PrivateAssets="all" GeneratePathProperty="true" />
