@@ -3054,21 +3054,21 @@
   <add-node path="/api/namespace[@name='MaterialComponents']/class[@name='MDCActionSheetController']">
     <property name="AdjustsFontForContentSizeCategory" type="bool" nullallowed="false" abstract="false" export="mdc_adjustsFontForContentSizeCategory" get="true" set="true" set_bind="mdc_setAdjustsFontForContentSizeCategory:" introduced_flag="false" static="false" internal="false" new="false" notification="false" />
   </add-node>
-  <add-node path="/api/namespace[@name='MaterialComponents']/class[@name='MDCButton']">
+  <!--<add-node path="/api/namespace[@name='MaterialComponents']/class[@name='MDCButton']">
     <property name="AdjustsFontForContentSizeCategory" type="bool" nullallowed="false" abstract="false" export="mdc_adjustsFontForContentSizeCategory" get="true" set="true" set_bind="mdc_setAdjustsFontForContentSizeCategory:" introduced_flag="false" static="false" internal="false" new="false" notification="false" />
-  </add-node>
+  </add-node>-->
   <add-node path="/api/namespace[@name='MaterialComponents']/class[@name='MDCBannerView']">
     <property name="AdjustsFontForContentSizeCategory" type="bool" nullallowed="false" abstract="false" export="mdc_adjustsFontForContentSizeCategory" get="true" set="true" set_bind="mdc_setAdjustsFontForContentSizeCategory:" introduced_flag="false" static="false" internal="false" new="false" notification="false" />
   </add-node>
-  <add-node path="/api/namespace[@name='MaterialComponents']/class[@name='MDCChipView']">
+  <!--<add-node path="/api/namespace[@name='MaterialComponents']/class[@name='MDCChipView']">
     <property name="AdjustsFontForContentSizeCategory" type="bool" nullallowed="false" abstract="false" export="mdc_adjustsFontForContentSizeCategory" get="true" set="true" set_bind="mdc_setAdjustsFontForContentSizeCategory:" introduced_flag="false" static="false" internal="false" new="false" notification="false" />
-  </add-node>
-  <add-node path="/api/namespace[@name='MaterialComponents']/class[@name='MDCTextInput']">
+  </add-node>-->
+  <!--<add-node path="/api/namespace[@name='MaterialComponents']/class[@name='MDCTextInput']">
     <property name="AdjustsFontForContentSizeCategory" type="bool" nullallowed="false" abstract="true" export="mdc_adjustsFontForContentSizeCategory" get="true" set="true" set_bind="mdc_setAdjustsFontForContentSizeCategory:" introduced_flag="false" static="false" internal="false" new="false" notification="false" />
-  </add-node>
-  <add-node path="/api/namespace[@name='MaterialComponents']/class[@name='MDCTextInputController']">
+  </add-node>-->
+  <!--<add-node path="/api/namespace[@name='MaterialComponents']/class[@name='MDCTextInputController']">
     <property name="AdjustsFontForContentSizeCategory" type="bool" nullallowed="false" abstract="true" export="mdc_adjustsFontForContentSizeCategory" get="true" set="true" set_bind="mdc_setAdjustsFontForContentSizeCategory:" introduced_flag="false" static="false" internal="false" new="false" notification="false" />
-  </add-node>
+  </add-node>-->
   <add-node path="/api/namespace[@name='MaterialComponents']/class[@name='MDCTextInputController']">
     <property name="AdjustsFontForContentSizeCategoryDefault" type="bool" nullallowed="false" abstract="true" export="mdc_adjustsFontForContentSizeCategoryDefault" get="true" set="true" introduced_flag="false" static="true" internal="false" new="false" notification="false" />
   </add-node>
@@ -3145,7 +3145,7 @@
   <remove-node path="/api/namespace[@name='MaterialComponents']/class[@name='MDCInkView']/property[@name='WeakAnimationDelegate']" />
   <remove-node path="/api/namespace[@name='MaterialComponents']/class[@name='MDCInkViewDelegate']" />
   <remove-node path="/api/namespace[@name='MaterialComponents']/class[@name='MDCShadowLayer_Subclassing']" />
-  <remove-node path="/api/namespace[@name='MaterialComponents']/class[@name='MDCButton']/property[@name='Mdc_adjustsFontForContentSizeCategory']" />
+  <!--<remove-node path="/api/namespace[@name='MaterialComponents']/class[@name='MDCButton']/property[@name='Mdc_adjustsFontForContentSizeCategory']" />-->
   <remove-node path="/api/namespace[@name='MaterialComponents']/class[@name='MDCFloatingButton_Animation']" />
   <remove-node path="/api/namespace[@name='MaterialComponents']/class[@name='MDCBottomNavigationBar']/property[@name='WeakDelegate']" />
   <remove-node path="/api/namespace[@name='MaterialComponents']/class[@name='MDCBottomNavigationBarColorThemer_ToBeDeprecated']" />
@@ -3158,8 +3158,8 @@
   <remove-node path="/api/namespace[@name='MaterialComponents']/class[@name='MDCButtonBarColorThemer_ToBeDeprecated']" />
   <remove-node path="/api/namespace[@name='MaterialComponents']/class[@name='MDCButtonColorThemer_ToBeDeprecated']" />
   <remove-node path="/api/namespace[@name='MaterialComponents']/class[@name='MDCChipCollectionViewCell']/property[@name='CreateChipView']" />
-  <remove-node path="/api/namespace[@name='MaterialComponents']/class[@name='MDCChipView']/property[@name='Mdc_adjustsFontForContentSizeCategory']" />
-  <remove-node path="/api/namespace[@name='MaterialComponents']/class[@name='MDCTextInput']/property[@name='Mdc_adjustsFontForContentSizeCategory']" />
+  <!--<remove-node path="/api/namespace[@name='MaterialComponents']/class[@name='MDCChipView']/property[@name='Mdc_adjustsFontForContentSizeCategory']" />-->
+  <!--<remove-node path="/api/namespace[@name='MaterialComponents']/class[@name='MDCTextInput']/property[@name='Mdc_adjustsFontForContentSizeCategory']" />-->
   <remove-node path="/api/namespace[@name='MaterialComponents']/class[@name='MDCTextInput']/property[@name='WeakPositioningDelegate']" />
   <remove-node path="/api/namespace[@name='MaterialComponents']/class[@name='MDCMultilineTextField']/property[@name='WeakLayoutDelegate']" />
   <remove-node path="/api/namespace[@name='MaterialComponents']/class[@name='MDCMultilineTextField']/property[@name='WeakMultilineDelegate']" />
@@ -3167,7 +3167,7 @@
   <remove-node path="/api/namespace[@name='MaterialComponents']/class[@name='MDCTextInputPositioningDelegate']/property[@name='LeadingViewTrailingPaddingConstant']" />
   <remove-node path="/api/namespace[@name='MaterialComponents']/class[@name='MDCTextInputPositioningDelegate']/property[@name='TrailingViewTrailingPaddingConstant']" />
   <remove-node path="/api/namespace[@name='MaterialComponents']/class[@name='MDCTextInputController']/method[@name='initWithTextInput:']" />
-  <remove-node path="/api/namespace[@name='MaterialComponents']/class[@name='MDCTextInputController']/property[@name='Mdc_adjustsFontForContentSizeCategory']" />
+  <!--<remove-node path="/api/namespace[@name='MaterialComponents']/class[@name='MDCTextInputController']/property[@name='Mdc_adjustsFontForContentSizeCategory']" />-->
   <remove-node path="/api/namespace[@name='MaterialComponents']/class[@name='MDCTextInputController']/property[@name='Mdc_adjustsFontForContentSizeCategoryDefault']" />
   <remove-node path="/api/namespace[@name='MaterialComponents']/class[@name='MDCChipField']/property[@name='WeakDelegate']" />
   <remove-node path="/api/namespace[@name='MaterialComponents']/class[@name='MDCChipViewScheming']" />
