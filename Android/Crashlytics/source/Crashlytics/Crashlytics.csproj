@@ -20,7 +20,7 @@
         -->
         <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
         <PackageId>Xamarin.Android.Crashlytics</PackageId>
-        <PackageVersion>2.9.4</PackageVersion>
+        <PackageVersion>2.9.4.3</PackageVersion>
         <Title>Crashlytics for Android</Title>
         <PackageDescription>Xamarin.Android bindings for Crashlytics Android</PackageDescription>
         <PackageTags>Xamarin Android Xamarin.Android Crashlytics</PackageTags>
@@ -45,14 +45,14 @@
         </InputJar>
     </ItemGroup>
     <ItemGroup>
-        <PackageReference Include="Xamarin.Build.Download" Version="0.4.11" />
+        <PackageReference Include="Xamarin.Build.Download" Version="0.7.0" />
         <PackageReference Include="Xamarin.Firebase.Core" Version="60.1142.1" />
     </ItemGroup>
     <ItemGroup>
-        <ProjectReference Include="..\CrashlyticsAnswers\CrashlyticsAnswers.csproj" />
-        <ProjectReference Include="..\CrashlyticsBeta\CrashlyticsBeta.csproj" />
-        <ProjectReference Include="..\CrashlyticsCore\CrashlyticsCore.csproj" />
-        <ProjectReference Include="..\Fabric\Fabric.csproj" />
+        <ProjectReference Include="..\CrashlyticsAnswers\CrashlyticsAnswers.csproj" PrivateAssets="None" />
+        <ProjectReference Include="..\CrashlyticsBeta\CrashlyticsBeta.csproj" PrivateAssets="None" />
+        <ProjectReference Include="..\CrashlyticsCore\CrashlyticsCore.csproj" PrivateAssets="None" />
+        <ProjectReference Include="..\Fabric\Fabric.csproj" PrivateAssets="None" />
     </ItemGroup>
     <ItemGroup>
       <None Remove="Transforms\Metadata.xml" />
@@ -66,6 +66,7 @@
     </ItemGroup>
     <ItemGroup>
         <None Include="Xamarin.Android.Crashlytics.targets" PackagePath="build\$(TargetFramework)" Pack="true" />
+        <None Include="Xamarin.Android.Crashlytics.targets" PackagePath="buildTransitive\$(TargetFramework)" Pack="true" />
         <None Include="..\..\External-Dependency-Info.txt" PackagePath="THIRD-PARTY-NOTICE.txt" Pack="true" />
     </ItemGroup>
     <PropertyGroup>
