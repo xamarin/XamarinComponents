@@ -317,7 +317,7 @@ interface ShapedView
 	Name="MDCBottomSheetController",
 	Delegates=new[]{"Delegate"},
 	Events=new[]{typeof(BottomSheetControllerDelegate)})]
-interface BottomSheetController : IMDCElevatable, IMDCElevationOverriding
+interface BottomSheetController : IElevatable, IElevationOverriding
 
 {
     [Export("contentViewController",ArgumentSemantic.Strong)]
@@ -507,7 +507,7 @@ interface UIViewController_MaterialBottomSheet
 
 [BaseType(typeof(UIViewController),
 	Name="MDCActionSheetController")]
-interface ActionSheetController : IMDCElevatable, IMDCElevationOverriding
+interface ActionSheetController : IElevatable, IElevationOverriding
 
 {
     [Export("actions",ArgumentSemantic.Copy)]
@@ -1186,7 +1186,7 @@ interface ContainerScheming
 
 [BaseType(typeof(NSObject),
 	Name="MDCContainerScheme")]
-interface ContainerScheme : IMDCContainerScheming
+interface ContainerScheme : IContainerScheming
 
 {
     [Export("colorScheme",ArgumentSemantic.Assign)]
@@ -1408,7 +1408,7 @@ interface FlexibleHeaderContainerViewController
 	Name="MDCFlexibleHeaderView",
 	Delegates=new[]{"Delegate"},
 	Events=new[]{typeof(FlexibleHeaderViewDelegate)})]
-interface FlexibleHeaderView : IMDCElevatable, IMDCElevationOverriding
+interface FlexibleHeaderView : IElevatable, IElevationOverriding
 
 {
     [Export("shadowLayer",ArgumentSemantic.Strong)]
@@ -1722,7 +1722,7 @@ interface NavigationBarTextColorAccessibilityMutator
 
 [BaseType(typeof(UIView),
 	Name="MDCNavigationBar")]
-interface NavigationBar : IMDCElevatable, IMDCElevationOverriding
+interface NavigationBar : IElevatable, IElevationOverriding
 
 {
     [NullAllowed]
@@ -2275,7 +2275,7 @@ interface RaisedButton
 
 [BaseType(typeof(UIView),
 	Name="MDCBannerView")]
-interface BannerView : IMDCElevatable, IMDCElevationOverriding
+interface BannerView : IElevatable, IElevationOverriding
 
 {
     [Export("bannerViewLayoutStyle",ArgumentSemantic.Assign)]
@@ -2318,7 +2318,7 @@ interface BannerView_MaterialTheming
 
 [BaseType(typeof(UIView),
 	Name="MDCBottomAppBarView")]
-interface BottomAppBarView : IMDCElevatable, IMDCElevationOverriding
+interface BottomAppBarView : IElevatable, IElevationOverriding
 
 {
     [Export("floatingButtonHidden")]
@@ -2398,7 +2398,7 @@ interface BottomAppBarColorThemer
 	Name="MDCBottomNavigationBar",
 	Delegates=new[]{"Delegate"},
 	Events=new[]{typeof(BottomNavigationBarDelegate)})]
-interface BottomNavigationBar : IMDCElevatable, IMDCElevationOverriding
+interface BottomNavigationBar : IElevatable, IElevationOverriding
 
 {
     [NullAllowed]
@@ -3182,7 +3182,7 @@ interface StatefulRippleView
 
 [BaseType(typeof(UIControl),
 	Name="MDCCard")]
-interface Card : IMDCElevatable, IMDCElevationOverriding
+interface Card : IElevatable, IElevationOverriding
 
 {
     [Export("cornerRadius")]
@@ -3240,7 +3240,7 @@ interface Card : IMDCElevatable, IMDCElevationOverriding
 
 [BaseType(typeof(UICollectionViewCell),
 	Name="MDCCardCollectionCell")]
-interface CardCollectionCell : IMDCElevatable, IMDCElevationOverriding
+interface CardCollectionCell : IElevatable, IElevationOverriding
 
 {
     [Export("selectable")]
@@ -3484,7 +3484,7 @@ interface ChipCollectionViewFlowLayout
 
 [BaseType(typeof(UIControl),
 	Name="MDCChipView")]
-interface ChipView : IMDCElevatable, IMDCElevationOverriding
+interface ChipView : IElevatable, IElevationOverriding
 
 {
     [Export("imageView")]
@@ -4979,7 +4979,7 @@ interface CollectionViewFlowLayout
 
 [BaseType(typeof(UIViewController),
 	Name="MDCAlertController")]
-interface AlertController : IMDCElevatable, IMDCElevationOverriding
+interface AlertController : IElevatable, IElevationOverriding
 
 {
     [NullAllowed]
@@ -5514,7 +5514,7 @@ interface LibraryInfo
 
 [BaseType(typeof(UICollectionViewCell),
 	Name="MDCBaseCell")]
-interface BaseCell : IMDCElevatable, IMDCElevationOverriding
+interface BaseCell : IElevatable, IElevationOverriding
 
 {
     [Export("elevation")]
@@ -6205,7 +6205,7 @@ interface ProgressView_MaterialTheming
 
 [BaseType(typeof(UIControl),
 	Name="MDCSlider")]
-interface Slider : IMDCElevatable, IMDCElevationOverriding
+interface Slider : IElevatable, IElevationOverriding
 
 {
     [NullAllowed]
@@ -6383,7 +6383,7 @@ interface SnackbarManagerDelegate
 [DisableDefaultCtor]
 [BaseType(typeof(NSObject),
 	Name="MDCSnackbarManager")]
-interface SnackbarManager : IMDCElevationOverriding
+interface SnackbarManager : IElevationOverriding
 
 {
     [Static]
@@ -6572,7 +6572,7 @@ interface SnackbarMessageAction : IUIAccessibilityIdentification, INSCopying
 
 [BaseType(typeof(UIView),
 	Name="MDCSnackbarMessageView")]
-interface SnackbarMessageView : IMDCElevatable, IMDCElevationOverriding
+interface SnackbarMessageView : IElevatable, IElevationOverriding
 
 {
     [NullAllowed]
@@ -6675,7 +6675,7 @@ interface SnackbarTypographyThemer_Deprecated
 	Name="MDCTabBar",
 	Delegates=new[]{"Delegate"},
 	Events=new[]{typeof(TabBarDelegate)})]
-interface TabBar : IUIBarPositioning, IMDCElevatable, IMDCElevationOverriding
+interface TabBar : IUIBarPositioning, IElevatable, IElevationOverriding
 
 {
     [Export("items",ArgumentSemantic.Copy)]
@@ -7907,6 +7907,9 @@ interface IElevatable {}
 interface IElevationOverriding {}
 
 interface IActivityIndicatorDelegate 
+{}
+
+interface IContainerScheming
 {}
 
 interface IShapeScheming 

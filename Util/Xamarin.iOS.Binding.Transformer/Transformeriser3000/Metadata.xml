@@ -2041,8 +2041,29 @@
   <attr path="/api/namespace[@name='MaterialComponents']/class[@name='UIColor_MaterialBlending']/method[@name='mdc_blendColor:withBackgroundColor:']" name="Name" value="BlendColor" />
   <attr path="/api/namespace[@name='MaterialComponents']/class[@name='UIColor_MaterialDynamic']/method[@name='mdc_resolvedColorWithTraitCollection:']" name="Name" value="ResolvedColorWithTraitCollection" />
   <attr path="/api/namespace[@name='MaterialComponents']/class[@name='MDCThumbTrack_ToBeDeprecated']" name="ManagedName" value="ThumbTrack_ToBeDeprecated" />
-
+  
+  <attr path="/api/namespace[@name='MaterialComponents']/class[@name='MDCBottomSheetController']" name="InheritsFrom" value="IElevatable,IElevationOverriding" />
+  <attr path="/api/namespace[@name='MaterialComponents']/class[@name='MDCActionSheetController']" name="InheritsFrom" value="IElevatable,IElevationOverriding" />
+  <attr path="/api/namespace[@name='MaterialComponents']/class[@name='MDCContainerScheme']" name="InheritsFrom" value="IContainerScheming" />
+  <attr path="/api/namespace[@name='MaterialComponents']/class[@name='MDCFlexibleHeaderView']" name="InheritsFrom" value="IElevatable,IElevationOverriding" />
+  <attr path="/api/namespace[@name='MaterialComponents']/class[@name='MDCNavigationBar']" name="InheritsFrom" value="IElevatable,IElevationOverriding" />
+  <attr path="/api/namespace[@name='MaterialComponents']/class[@name='MDCBannerView']" name="InheritsFrom" value="IElevatable,IElevationOverriding" />
+  <attr path="/api/namespace[@name='MaterialComponents']/class[@name='MDCBottomAppBarView']" name="InheritsFrom" value="IElevatable,IElevationOverriding" />
+  <attr path="/api/namespace[@name='MaterialComponents']/class[@name='MDCBottomNavigationBar']" name="InheritsFrom" value="IElevatable,IElevationOverriding" />
+  <attr path="/api/namespace[@name='MaterialComponents']/class[@name='MDCCard']" name="InheritsFrom" value="IElevatable,IElevationOverriding" />
+  <attr path="/api/namespace[@name='MaterialComponents']/class[@name='MDCCardCollectionCell']" name="InheritsFrom" value="IElevatable,IElevationOverriding" />
+  <attr path="/api/namespace[@name='MaterialComponents']/class[@name='MDCChipView']" name="InheritsFrom" value="IElevatable,IElevationOverriding" />
+  <attr path="/api/namespace[@name='MaterialComponents']/class[@name='MDCAlertController']" name="InheritsFrom" value="IElevatable,IElevationOverriding" />
+  <attr path="/api/namespace[@name='MaterialComponents']/class[@name='MDCBaseCell']" name="InheritsFrom" value="IElevatable,IElevationOverriding" />
+  <attr path="/api/namespace[@name='MaterialComponents']/class[@name='MDCSlider']" name="InheritsFrom" value="IElevatable,IElevationOverriding" />
+  <attr path="/api/namespace[@name='MaterialComponents']/class[@name='MDCSnackbarManager']" name="InheritsFrom" value="IElevationOverriding" />
+  <attr path="/api/namespace[@name='MaterialComponents']/class[@name='MDCSnackbarMessageView']" name="InheritsFrom" value="IElevatable,IElevationOverriding" />
+  <attr path="/api/namespace[@name='MaterialComponents']/class[@name='MDCTabBar']" name="InheritsFrom" value="IUIBarPositioning,IElevatable,IElevationOverriding" />
+  
   <!-- v92 changes -->
+  <add-node path="/api/namespace[@name='MaterialComponents']">
+      <class name="IContainerScheming" partial="false" static="false" protocol="false" category="false" disabledefaultctor="false" type="Interface"/>
+  </add-node>
   <add-node path="/api/namespace[@name='MaterialComponents']">
     <class name="IElevatable" type="Interface" disabledefaultctor="false" category="false" protocol="false" static="false" partial="false" />
   </add-node>
