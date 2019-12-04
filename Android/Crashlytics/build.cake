@@ -6,7 +6,7 @@ var CrashlyticsBeta_VER = "1.2.9";
 var CrashlyticsAnswers_VER = "1.4.2";
 var Fabric_VER = "1.4.3";
 
-var Crashlytics_NuGet_VER = Crashlytics_VER + ".3";
+var Crashlytics_NuGet_VER = Crashlytics_VER + ".2";
 var CrashlyticsCore_NuGet_VER = CrashlyticsCore_VER + ".1";
 var CrashlyticsBeta_NuGet_VER = CrashlyticsBeta_VER + ".1";
 var CrashlyticsAnswers_NuGet_VER = CrashlyticsAnswers_VER + ".1";
