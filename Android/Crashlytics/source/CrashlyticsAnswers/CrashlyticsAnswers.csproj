@@ -44,7 +44,7 @@
         </InputJar>
     </ItemGroup>
     <ItemGroup>
-        <PackageReference Include="Xamarin.Build.Download" Version="0.7.1" />
+        <PackageReference Include="Xamarin.Build.Download" Version="0.7.1" PrivateAssets="None" />
     </ItemGroup>
     <ItemGroup>
       <None Remove="Transforms\Metadata.xml" />
