@@ -8,7 +8,7 @@
 
     <PackageId>Xamarin.Build.Download</PackageId>
     <Title>Xamarin Build-time Download Support</Title>
-    <PackageVersion>0.7.0</PackageVersion>
+    <PackageVersion>0.7.1</PackageVersion>
     <Authors>Microsoft</Authors>
     <Owners>Microsoft</Owners>
     <PackageProjectUrl>https://go.microsoft.com/fwlink/?linkid=865061</PackageProjectUrl>
@@ -21,15 +21,19 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Include="Xamarin.Build.Download.targets" Pack="True" PackagePath="build\Xamarin.Build.Download.targets">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="Xamarin.Build.Download.props" Pack="True" PackagePath="build\Xamarin.Build.Download.props">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
+    <!-- build -->
+    <None Include="Xamarin.Build.Download.targets" Pack="True" PackagePath="build\Xamarin.Build.Download.targets" CopyToOutputDirectory="PreserveNewest" />
+    <None Include="Xamarin.Build.Download.props" Pack="True" PackagePath="build\Xamarin.Build.Download.props" CopyToOutputDirectory="PreserveNewest" />
     <None Include="$(TargetPath)" Pack="True" PackagePath="build\Xamarin.Build.Download.dll" />
     <None Include="$(PkgMono_Cecil)\lib\netstandard2.0\Mono.Cecil.dll" Visible="False" Pack="True" PackagePath="build\Mono.Cecil.dll" />
     <None Include="$(PkgNewtonsoft_Json)\lib\netstandard2.0\Newtonsoft.Json.dll" Visible="False" Pack="True" PackagePath="build\Newtonsoft.Json.dll" />
+    <!-- buildTransitive: we _could_ import targets, but this is more work for me to write -->
+    <None Include="Xamarin.Build.Download.targets" Pack="True" PackagePath="buildTransitive\Xamarin.Build.Download.targets" />
+    <None Include="Xamarin.Build.Download.props" Pack="True" PackagePath="buildTransitive\Xamarin.Build.Download.props" />
+    <None Include="$(TargetPath)" Pack="True" PackagePath="buildTransitive\Xamarin.Build.Download.dll" />
+    <None Include="$(PkgMono_Cecil)\lib\netstandard2.0\Mono.Cecil.dll" Visible="False" Pack="True" PackagePath="buildTransitive\Mono.Cecil.dll" />
+    <None Include="$(PkgNewtonsoft_Json)\lib\netstandard2.0\Newtonsoft.Json.dll" Visible="False" Pack="True" PackagePath="buildTransitive\Newtonsoft.Json.dll" />
+    <!-- legal -->
     <None Include="..\..\External-Dependency-Info.txt" Pack="True" PackagePath="THIRD-PARTY-NOTICE.txt" />
   </ItemGroup>
   <ItemGroup>

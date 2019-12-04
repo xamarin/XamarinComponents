@@ -98,7 +98,7 @@
 
 		<!-- Check if `AndroidAarLibrary` isn't supported and error if so -->
 		<Error 
-			Condition="'@(AvailableItemName->AnyHaveMetadataValue('Identity', 'AndroidAarLibrary'))'!='true'"
+			Condition="'@(AvailableItemName->AnyHaveMetadataValue('Identity', 'AndroidAarLibrary'))'!='true' and ('$(AndroidClassParser)'=='' or '$(AndroidCodegenTarget)'=='')"
 			Text="This version of Xamarin.Build.Download requires a newer version of Xamarin.Android."
 			/>
 
