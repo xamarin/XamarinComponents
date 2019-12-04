@@ -355,6 +355,38 @@ namespace MaterialComponents
 		Material201804
 	}
 
+	[Native]
+	public enum BannerViewLayoutStyle : long
+	{
+		Automatic,
+		SingleRow,
+		MultiRowStackedButton,
+		MultiRowAlignedButton
+	}
+
+	[Native]
+	public enum RippleStyle : long
+	{
+		Bounded = 0,
+		Unbounded
+	}
+
+	[Flags]
+	[Native]
+	public enum RippleState : long
+	{
+		Normal = 0x0,
+		Highlighted = 1L << 0,
+		Selected = 1L << 1,
+		Dragged = 1L << 2
+	}
+
+	[Native]
+	public enum TextControlLabelBehavior : long
+	{
+		Floats,
+		Disappears
+	}
 	//static class CFunctions
 	//{
 	//	// extern CGFloat MDCDeviceTopSafeAreaInset ();

@@ -317,7 +317,7 @@ interface ShapedView
 	Name="MDCBottomSheetController",
 	Delegates=new[]{"Delegate"},
 	Events=new[]{typeof(BottomSheetControllerDelegate)})]
-interface BottomSheetController : IMDCElevatable, IMDCElevationOverriding
+interface BottomSheetController : IElevatable, IElevationOverriding
 
 {
     [Export("contentViewController",ArgumentSemantic.Strong)]
@@ -387,9 +387,13 @@ interface BottomSheetControllerDelegate
     [Export("bottomSheetControllerDidDismissBottomSheet:")]
 	void DidDismissBottomSheet(BottomSheetController controller);
 
+    [EventArgs("BottomSheetControllerBottomSheetStateChanged")]
+    [EventName("BottomSheetStateChanged")]
     [Export("bottomSheetControllerStateChanged:state:")]
 	void BottomSheetControllerStateChanged(BottomSheetController controller, SheetState state);
 
+    [EventArgs("BottomSheetControllerBottomSheetDidChangeYOffset")]
+    [EventName("BottomSheetDidChangeYOffset")]
     [Export("bottomSheetControllerDidChangeYOffset:yOffset:")]
 	void BottomSheetControllerDidChangeYOffset(BottomSheetController controller, nfloat yOffset);
 }
@@ -414,6 +418,8 @@ interface BottomSheetPresentationControllerDelegate : IUIAdaptivePresentationCon
     [Export("bottomSheetWillChangeState:sheetState:")]
 	void WillChangeState(BottomSheetPresentationController bottomSheet, SheetState sheetState);
 
+    [EventArgs("BottomSheetPresentationControllerDidChangeYOffset")]
+    [EventName("DidChangeYOffset")]
     [Export("bottomSheetDidChangeYOffset:yOffset:")]
 	void BottomSheetDidChangeYOffset(BottomSheetPresentationController bottomSheet, nfloat yOffset);
 }
@@ -507,7 +513,7 @@ interface UIViewController_MaterialBottomSheet
 
 [BaseType(typeof(UIViewController),
 	Name="MDCActionSheetController")]
-interface ActionSheetController : IMDCElevatable, IMDCElevationOverriding
+interface ActionSheetController : IElevatable, IElevationOverriding
 
 {
     [Export("actions",ArgumentSemantic.Copy)]
@@ -625,7 +631,7 @@ interface ActionSheetAction : INSCopying, IUIAccessibilityIdentification
 }
 
 [Category]
-[BaseType(typeof(MDCActionSheetController),
+[BaseType(typeof(ActionSheetController),
 	Name="MDCActionSheetController_ToBeDeprecated")]
 interface ActionSheetController_ToBeDeprecated 
 {
@@ -1186,7 +1192,7 @@ interface ContainerScheming
 
 [BaseType(typeof(NSObject),
 	Name="MDCContainerScheme")]
-interface ContainerScheme : IMDCContainerScheming
+interface ContainerScheme : IContainerScheming
 
 {
     [Export("colorScheme",ArgumentSemantic.Assign)]
@@ -1201,7 +1207,7 @@ interface ContainerScheme : IMDCContainerScheming
 }
 
 [Category]
-[BaseType(typeof(MDCActionSheetController),
+[BaseType(typeof(ActionSheetController),
 	Name="MDCActionSheetController_MaterialTheming")]
 interface ActionSheetController_MaterialTheming 
 {
@@ -1408,7 +1414,7 @@ interface FlexibleHeaderContainerViewController
 	Name="MDCFlexibleHeaderView",
 	Delegates=new[]{"Delegate"},
 	Events=new[]{typeof(FlexibleHeaderViewDelegate)})]
-interface FlexibleHeaderView : IMDCElevatable, IMDCElevationOverriding
+interface FlexibleHeaderView : IElevatable, IElevationOverriding
 
 {
     [Export("shadowLayer",ArgumentSemantic.Strong)]
@@ -1614,7 +1620,6 @@ interface FlexibleHeaderViewController : IUIScrollViewDelegate, IUITableViewDele
 	bool UseAdditionalSafeAreaInsetsForWebKitScrollViews { get; set; }
 
     [New]
-    [Verify()]
     [Export("prefersStatusBarHidden")]
 	bool PrefersStatusBarHidden { get; }
 
@@ -1722,7 +1727,7 @@ interface NavigationBarTextColorAccessibilityMutator
 
 [BaseType(typeof(UIView),
 	Name="MDCNavigationBar")]
-interface NavigationBar : IMDCElevatable, IMDCElevationOverriding
+interface NavigationBar : IElevatable, IElevationOverriding
 
 {
     [NullAllowed]
@@ -1852,7 +1857,7 @@ interface NavigationBar : IMDCElevatable, IMDCElevationOverriding
 }
 
 [Category]
-[BaseType(typeof(MDCNavigationBar),
+[BaseType(typeof(NavigationBar),
 	Name="MDCNavigationBar_ToBeDeprecated")]
 interface NavigationBar_ToBeDeprecated 
 {
@@ -1918,7 +1923,7 @@ interface AppBarColorThemer
 }
 
 [Category]
-[BaseType(typeof(MDCAppBarViewController),
+[BaseType(typeof(AppBarViewController),
 	Name="MDCAppBarViewController_MaterialTheming")]
 interface AppBarViewController_MaterialTheming 
 {
@@ -1953,7 +1958,7 @@ interface InkGestureRecognizer
     [Export("targetBounds",ArgumentSemantic.Assign)]
 	CGRect TargetBounds { get; set; }
 
-    [Verify()]
+    
     [Export("isTouchWithinTargetBounds")]
 	bool IsTouchWithinTargetBounds { get; }
 
@@ -2228,12 +2233,12 @@ interface FloatingButton
 	nfloat ImageTitleSpace { get; set; }
 
     [Static]
-    [Verify()]
+    
     [Export("defaultDimension")]
 	nfloat DefaultDimension { get; }
 
     [Static]
-    [Verify()]
+    
     [Export("miniDimension")]
 	nfloat MiniDimension { get; }
 
@@ -2275,7 +2280,7 @@ interface RaisedButton
 
 [BaseType(typeof(UIView),
 	Name="MDCBannerView")]
-interface BannerView : IMDCElevatable, IMDCElevationOverriding
+interface BannerView : IElevatable, IElevationOverriding
 
 {
     [Export("bannerViewLayoutStyle",ArgumentSemantic.Assign)]
@@ -2308,7 +2313,7 @@ interface BannerView : IMDCElevatable, IMDCElevationOverriding
 }
 
 [Category]
-[BaseType(typeof(MDCBannerView),
+[BaseType(typeof(BannerView),
 	Name="MDCBannerView_MaterialTheming")]
 interface BannerView_MaterialTheming 
 {
@@ -2318,7 +2323,7 @@ interface BannerView_MaterialTheming
 
 [BaseType(typeof(UIView),
 	Name="MDCBottomAppBarView")]
-interface BottomAppBarView : IMDCElevatable, IMDCElevationOverriding
+interface BottomAppBarView : IElevatable, IElevationOverriding
 
 {
     [Export("floatingButtonHidden")]
@@ -2398,7 +2403,7 @@ interface BottomAppBarColorThemer
 	Name="MDCBottomNavigationBar",
 	Delegates=new[]{"Delegate"},
 	Events=new[]{typeof(BottomNavigationBarDelegate)})]
-interface BottomNavigationBar : IMDCElevatable, IMDCElevationOverriding
+interface BottomNavigationBar : IElevatable, IElevationOverriding
 
 {
     [NullAllowed]
@@ -2480,7 +2485,7 @@ interface BottomNavigationBar : IMDCElevatable, IMDCElevationOverriding
 }
 
 [Category]
-[BaseType(typeof(MDCBottomNavigationBar),
+[BaseType(typeof(BottomNavigationBar),
 	Name="MDCBottomNavigationBar_Deprecated")]
 interface BottomNavigationBar_Deprecated 
 {
@@ -2518,7 +2523,7 @@ interface BottomNavigationBarColorThemer
 }
 
 [Category]
-[BaseType(typeof(MDCBottomNavigationBar),
+[BaseType(typeof(BottomNavigationBar),
 	Name="MDCBottomNavigationBar_MaterialTheming")]
 interface BottomNavigationBar_MaterialTheming 
 {
@@ -2536,7 +2541,7 @@ interface BottomNavigationBarTypographyThemer
 {}
 
 [Category]
-[BaseType(typeof(MDCBottomNavigationBarTypographyThemer),
+[BaseType(typeof(BottomNavigationBarTypographyThemer),
 	Name="MDCBottomNavigationBarTypographyThemer_ToBeDeprecated")]
 interface BottomNavigationBarTypographyThemer_ToBeDeprecated 
 {
@@ -2632,7 +2637,7 @@ interface BottomSheetControllerShapeThemer
 {}
 
 [Category]
-[BaseType(typeof(MDCBottomSheetControllerShapeThemer),
+[BaseType(typeof(BottomSheetControllerShapeThemer),
 	Name="MDCBottomSheetControllerShapeThemer_ToBeDeprecated")]
 interface BottomSheetControllerShapeThemer_ToBeDeprecated 
 {
@@ -2698,7 +2703,7 @@ interface ButtonBar
 }
 
 [Category]
-[BaseType(typeof(MDCButtonBar),
+[BaseType(typeof(ButtonBar),
 	Name="MDCButtonBar_ToBeDeprecated")]
 interface ButtonBar_ToBeDeprecated 
 {
@@ -2806,7 +2811,7 @@ interface ContainedButtonThemer
 {}
 
 [Category]
-[BaseType(typeof(MDCContainedButtonThemer),
+[BaseType(typeof(ContainedButtonThemer),
 	Name="MDCContainedButtonThemer_ToBeDeprecated")]
 interface ContainedButtonThemer_ToBeDeprecated 
 {
@@ -2822,7 +2827,7 @@ interface FloatingActionButtonThemer
 {}
 
 [Category]
-[BaseType(typeof(MDCFloatingActionButtonThemer),
+[BaseType(typeof(FloatingActionButtonThemer),
 	Name="MDCFloatingActionButtonThemer_ToBeDeprecated")]
 interface FloatingActionButtonThemer_ToBeDeprecated 
 {
@@ -2838,7 +2843,7 @@ interface OutlinedButtonThemer
 {}
 
 [Category]
-[BaseType(typeof(MDCOutlinedButtonThemer),
+[BaseType(typeof(OutlinedButtonThemer),
 	Name="MDCOutlinedButtonThemer_ToBeDeprecated")]
 interface OutlinedButtonThemer_ToBeDeprecated 
 {
@@ -2854,7 +2859,7 @@ interface TextButtonThemer
 {}
 
 [Category]
-[BaseType(typeof(MDCTextButtonThemer),
+[BaseType(typeof(TextButtonThemer),
 	Name="MDCTextButtonThemer_ToBeDeprecated")]
 interface TextButtonThemer_ToBeDeprecated 
 {
@@ -2897,7 +2902,7 @@ interface ContainedButtonColorThemer
 {}
 
 [Category]
-[BaseType(typeof(MDCContainedButtonColorThemer),
+[BaseType(typeof(ContainedButtonColorThemer),
 	Name="MDCContainedButtonColorThemer_ToBeDeprecated")]
 interface ContainedButtonColorThemer_ToBeDeprecated 
 {
@@ -2913,7 +2918,7 @@ interface FloatingButtonColorThemer
 {}
 
 [Category]
-[BaseType(typeof(MDCFloatingButtonColorThemer),
+[BaseType(typeof(FloatingButtonColorThemer),
 	Name="MDCFloatingButtonColorThemer_ToBeDeprecated")]
 interface FloatingButtonColorThemer_ToBeDeprecated 
 {
@@ -2929,7 +2934,7 @@ interface OutlinedButtonColorThemer
 {}
 
 [Category]
-[BaseType(typeof(MDCOutlinedButtonColorThemer),
+[BaseType(typeof(OutlinedButtonColorThemer),
 	Name="MDCOutlinedButtonColorThemer_ToBeDeprecated")]
 interface OutlinedButtonColorThemer_ToBeDeprecated 
 {
@@ -2945,7 +2950,7 @@ interface TextButtonColorThemer
 {}
 
 [Category]
-[BaseType(typeof(MDCTextButtonColorThemer),
+[BaseType(typeof(TextButtonColorThemer),
 	Name="MDCTextButtonColorThemer_ToBeDeprecated")]
 interface TextButtonColorThemer_ToBeDeprecated 
 {
@@ -2961,7 +2966,7 @@ interface ButtonShapeThemer
 {}
 
 [Category]
-[BaseType(typeof(MDCButtonShapeThemer),
+[BaseType(typeof(ButtonShapeThemer),
 	Name="MDCButtonShapeThemer_ToBeDeprecated")]
 interface ButtonShapeThemer_ToBeDeprecated 
 {
@@ -2977,7 +2982,7 @@ interface FloatingButtonShapeThemer
 {}
 
 [Category]
-[BaseType(typeof(MDCFloatingButtonShapeThemer),
+[BaseType(typeof(FloatingButtonShapeThemer),
 	Name="MDCFloatingButtonShapeThemer_ToBeDeprecated")]
 interface FloatingButtonShapeThemer_ToBeDeprecated 
 {
@@ -2987,7 +2992,7 @@ interface FloatingButtonShapeThemer_ToBeDeprecated
 }
 
 [Category]
-[BaseType(typeof(MDCButton),
+[BaseType(typeof(Button),
 	Name="MDCButton_MaterialTheming")]
 interface Button_MaterialTheming 
 {
@@ -3002,7 +3007,7 @@ interface Button_MaterialTheming
 }
 
 [Category]
-[BaseType(typeof(MDCFloatingButton),
+[BaseType(typeof(FloatingButton),
 	Name="MDCFloatingButton_MaterialTheming")]
 interface FloatingButton_MaterialTheming 
 {
@@ -3027,7 +3032,7 @@ interface ButtonTypographyThemer
 {}
 
 [Category]
-[BaseType(typeof(MDCButtonTypographyThemer),
+[BaseType(typeof(ButtonTypographyThemer),
 	Name="MDCButtonTypographyThemer_ToBeDeprecated")]
 interface ButtonTypographyThemer_ToBeDeprecated 
 {
@@ -3144,7 +3149,7 @@ interface RippleTouchControllerDelegate
 	void RippleTouchController(RippleTouchController rippleTouchController, RippleView rippleView, UIView view);
 }
 
-[BaseType(typeof(MDCRippleView),
+[BaseType(typeof(RippleView),
 	Name="MDCStatefulRippleView")]
 interface StatefulRippleView 
 {
@@ -3182,7 +3187,7 @@ interface StatefulRippleView
 
 [BaseType(typeof(UIControl),
 	Name="MDCCard")]
-interface Card : IMDCElevatable, IMDCElevationOverriding
+interface Card : IElevatable, IElevationOverriding
 
 {
     [Export("cornerRadius")]
@@ -3240,7 +3245,7 @@ interface Card : IMDCElevatable, IMDCElevationOverriding
 
 [BaseType(typeof(UICollectionViewCell),
 	Name="MDCCardCollectionCell")]
-interface CardCollectionCell : IMDCElevatable, IMDCElevationOverriding
+interface CardCollectionCell : IElevatable, IElevationOverriding
 
 {
     [Export("selectable")]
@@ -3370,7 +3375,7 @@ interface CardThemer
 {}
 
 [Category]
-[BaseType(typeof(MDCCardThemer),
+[BaseType(typeof(CardThemer),
 	Name="MDCCardThemer_ToBeDeprecated")]
 interface CardThemer_ToBeDeprecated 
 {
@@ -3398,7 +3403,7 @@ interface CardsColorThemer
 {}
 
 [Category]
-[BaseType(typeof(MDCCardsColorThemer),
+[BaseType(typeof(CardsColorThemer),
 	Name="MDCCardsColorThemer_ToBeDeprecated")]
 interface CardsColorThemer_ToBeDeprecated 
 {
@@ -3426,7 +3431,7 @@ interface CardsShapeThemer
 {}
 
 [Category]
-[BaseType(typeof(MDCCardsShapeThemer),
+[BaseType(typeof(CardsShapeThemer),
 	Name="MDCCardsShapeThemer_ToBeDeprecated")]
 interface CardsShapeThemer_ToBeDeprecated 
 {
@@ -3440,7 +3445,7 @@ interface CardsShapeThemer_ToBeDeprecated
 }
 
 [Category]
-[BaseType(typeof(MDCCard),
+[BaseType(typeof(Card),
 	Name="MDCCard_MaterialTheming")]
 interface Card_MaterialTheming 
 {
@@ -3452,7 +3457,7 @@ interface Card_MaterialTheming
 }
 
 [Category]
-[BaseType(typeof(MDCCardCollectionCell),
+[BaseType(typeof(CardCollectionCell),
 	Name="MDCCardCollectionCell_MaterialTheming")]
 interface CardCollectionCell_MaterialTheming 
 {
@@ -3484,7 +3489,7 @@ interface ChipCollectionViewFlowLayout
 
 [BaseType(typeof(UIControl),
 	Name="MDCChipView")]
-interface ChipView : IMDCElevatable, IMDCElevationOverriding
+interface ChipView : IElevatable, IElevationOverriding
 
 {
     [Export("imageView")]
@@ -4393,7 +4398,7 @@ interface ChipViewThemer
 {}
 
 [Category]
-[BaseType(typeof(MDCChipViewThemer),
+[BaseType(typeof(ChipViewThemer),
 	Name="MDCChipViewThemer_ToBeDeprecated")]
 interface ChipViewThemer_ToBeDeprecated 
 {
@@ -4425,7 +4430,7 @@ interface ChipViewFontThemer
 {}
 
 [Category]
-[BaseType(typeof(MDCChipViewFontThemer),
+[BaseType(typeof(ChipViewFontThemer),
 	Name="MDCChipViewFontThemer_ToBeDeprecated")]
 interface ChipViewFontThemer_ToBeDeprecated 
 {
@@ -4441,7 +4446,7 @@ interface ChipViewShapeThemer
 {}
 
 [Category]
-[BaseType(typeof(MDCChipViewShapeThemer),
+[BaseType(typeof(ChipViewShapeThemer),
 	Name="MDCChipViewShapeThemer_ToBeDeprecated")]
 interface ChipViewShapeThemer_ToBeDeprecated 
 {
@@ -4451,7 +4456,7 @@ interface ChipViewShapeThemer_ToBeDeprecated
 }
 
 [Category]
-[BaseType(typeof(MDCChipView),
+[BaseType(typeof(ChipView),
 	Name="MDCChipView_MaterialTheming")]
 interface ChipView_MaterialTheming 
 {
@@ -4763,7 +4768,7 @@ interface CollectionViewStyling
 
     [Abstract]
     [NullAllowed]
-    [Verify()]
+    
     [Export("indexPathsForInlaidItems")]
 	NSIndexPath IndexPathsForInlaidItems { get; }
 
@@ -4979,7 +4984,7 @@ interface CollectionViewFlowLayout
 
 [BaseType(typeof(UIViewController),
 	Name="MDCAlertController")]
-interface AlertController : IMDCElevatable, IMDCElevationOverriding
+interface AlertController : IElevatable, IElevationOverriding
 
 {
     [NullAllowed]
@@ -5282,7 +5287,7 @@ interface AlertControllerThemer
 }
 
 [Category]
-[BaseType(typeof(MDCAlertController),
+[BaseType(typeof(AlertController),
 	Name="MDCAlertController_MaterialTheming")]
 interface AlertController_MaterialTheming 
 {
@@ -5291,7 +5296,7 @@ interface AlertController_MaterialTheming
 }
 
 [Category]
-[BaseType(typeof(MDCDialogPresentationController),
+[BaseType(typeof(DialogPresentationController),
 	Name="MDCDialogPresentationController_MaterialTheming")]
 interface DialogPresentationController_MaterialTheming 
 {
@@ -5439,7 +5444,7 @@ interface FeatureHighlightFontThemer
 {}
 
 [Category]
-[BaseType(typeof(MDCFeatureHighlightFontThemer),
+[BaseType(typeof(FeatureHighlightFontThemer),
 	Name="MDCFeatureHighlightFontThemer_ToBeDeprecated")]
 interface FeatureHighlightFontThemer_ToBeDeprecated 
 {
@@ -5455,7 +5460,7 @@ interface FeatureHighlightTypographyThemer
 {}
 
 [Category]
-[BaseType(typeof(MDCFeatureHighlightTypographyThemer),
+[BaseType(typeof(FeatureHighlightTypographyThemer),
 	Name="MDCFeatureHighlightTypographyThemer_ToBeDeprecated")]
 interface FeatureHighlightTypographyThemer_ToBeDeprecated 
 {
@@ -5514,7 +5519,7 @@ interface LibraryInfo
 
 [BaseType(typeof(UICollectionViewCell),
 	Name="MDCBaseCell")]
-interface BaseCell : IMDCElevatable, IMDCElevationOverriding
+interface BaseCell : IElevatable, IElevationOverriding
 
 {
     [Export("elevation")]
@@ -5533,7 +5538,7 @@ interface BaseCell : IMDCElevatable, IMDCElevationOverriding
 }
 
 [Category]
-[BaseType(typeof(MDCBaseCell),
+[BaseType(typeof(BaseCell),
 	Name="MDCBaseCell_ToBeDeprecated")]
 interface BaseCell_ToBeDeprecated 
 {
@@ -5571,7 +5576,7 @@ interface ListColorThemer
 {}
 
 [Category]
-[BaseType(typeof(MDCListColorThemer),
+[BaseType(typeof(ListColorThemer),
 	Name="MDCListColorThemer_ToBeDeprecated")]
 interface ListColorThemer_ToBeDeprecated 
 {
@@ -5618,7 +5623,7 @@ interface ListThemer
 {}
 
 [Category]
-[BaseType(typeof(MDCListThemer),
+[BaseType(typeof(ListThemer),
 	Name="MDCListThemer_ToBeDeprecated")]
 interface ListThemer_ToBeDeprecated 
 {
@@ -5632,7 +5637,7 @@ interface ListThemer_ToBeDeprecated
 }
 
 [Category]
-[BaseType(typeof(MDCBaseCell),
+[BaseType(typeof(BaseCell),
 	Name="MDCBaseCell_MaterialTheming")]
 interface BaseCell_MaterialTheming 
 {
@@ -5641,7 +5646,7 @@ interface BaseCell_MaterialTheming
 }
 
 [Category]
-[BaseType(typeof(MDCSelfSizingStereoCell),
+[BaseType(typeof(SelfSizingStereoCell),
 	Name="MDCSelfSizingStereoCell_MaterialTheming")]
 interface SelfSizingStereoCell_MaterialTheming 
 {
@@ -5656,7 +5661,7 @@ interface ListTypographyThemer
 {}
 
 [Category]
-[BaseType(typeof(MDCListTypographyThemer),
+[BaseType(typeof(ListTypographyThemer),
 	Name="MDCListTypographyThemer_ToBeDeprecated")]
 interface ListTypographyThemer_ToBeDeprecated 
 {
@@ -5705,7 +5710,7 @@ interface NavigationBarTypographyThemer
 {}
 
 [Category]
-[BaseType(typeof(MDCNavigationBarTypographyThemer),
+[BaseType(typeof(NavigationBarTypographyThemer),
 	Name="MDCNavigationBarTypographyThemer_ToBeDeprecated")]
 interface NavigationBarTypographyThemer_ToBeDeprecated 
 {
@@ -5889,7 +5894,7 @@ interface BottomDrawerColorThemer
 {}
 
 [Category]
-[BaseType(typeof(MDCBottomDrawerColorThemer),
+[BaseType(typeof(BottomDrawerColorThemer),
 	Name="MDCBottomDrawerColorThemer_ToBeDeprecated")]
 interface BottomDrawerColorThemer_ToBeDeprecated 
 {
@@ -6195,7 +6200,7 @@ interface ProgressViewColorThemer
 }
 
 [Category]
-[BaseType(typeof(MDCProgressView),
+[BaseType(typeof(ProgressView),
 	Name="MDCProgressView_MaterialTheming")]
 interface ProgressView_MaterialTheming 
 {
@@ -6205,7 +6210,7 @@ interface ProgressView_MaterialTheming
 
 [BaseType(typeof(UIControl),
 	Name="MDCSlider")]
-interface Slider : IMDCElevatable, IMDCElevationOverriding
+interface Slider : IElevatable, IElevationOverriding
 
 {
     [NullAllowed]
@@ -6323,7 +6328,7 @@ interface Slider : IMDCElevatable, IMDCElevationOverriding
 }
 
 [Category]
-[BaseType(typeof(MDCSlider),
+[BaseType(typeof(Slider),
 	Name="MDCSlider_ToBeDeprecated")]
 interface Slider_ToBeDeprecated 
 {
@@ -6383,7 +6388,7 @@ interface SnackbarManagerDelegate
 [DisableDefaultCtor]
 [BaseType(typeof(NSObject),
 	Name="MDCSnackbarManager")]
-interface SnackbarManager : IMDCElevationOverriding
+interface SnackbarManager : IElevationOverriding
 
 {
     [Static]
@@ -6393,7 +6398,7 @@ interface SnackbarManager : IMDCElevationOverriding
     [Export("alignment",ArgumentSemantic.Assign)]
 	SnackbarAlignment Alignment { get; set; }
 
-    [Verify()]
+    
     [Export("hasMessagesShowingOrQueued")]
 	bool HasMessagesShowingOrQueued { get; }
 
@@ -6572,7 +6577,7 @@ interface SnackbarMessageAction : IUIAccessibilityIdentification, INSCopying
 
 [BaseType(typeof(UIView),
 	Name="MDCSnackbarMessageView")]
-interface SnackbarMessageView : IMDCElevatable, IMDCElevationOverriding
+interface SnackbarMessageView : IElevatable, IElevationOverriding
 
 {
     [NullAllowed]
@@ -6642,7 +6647,7 @@ interface SnackbarFontThemer
 {}
 
 [Category]
-[BaseType(typeof(MDCSnackbarFontThemer),
+[BaseType(typeof(SnackbarFontThemer),
 	Name="MDCSnackbarFontThemer_Deprecated")]
 interface SnackbarFontThemer_Deprecated 
 {
@@ -6662,7 +6667,7 @@ interface SnackbarTypographyThemer
 {}
 
 [Category]
-[BaseType(typeof(MDCSnackbarTypographyThemer),
+[BaseType(typeof(SnackbarTypographyThemer),
 	Name="MDCSnackbarTypographyThemer_Deprecated")]
 interface SnackbarTypographyThemer_Deprecated 
 {
@@ -6675,7 +6680,7 @@ interface SnackbarTypographyThemer_Deprecated
 	Name="MDCTabBar",
 	Delegates=new[]{"Delegate"},
 	Events=new[]{typeof(TabBarDelegate)})]
-interface TabBar : IUIBarPositioning, IMDCElevatable, IMDCElevationOverriding
+interface TabBar : IUIBarPositioning, IElevatable, IElevationOverriding
 
 {
     [Export("items",ArgumentSemantic.Copy)]
@@ -6796,7 +6801,7 @@ interface TabBarDelegate : IUIBarPositioningDelegate
 }
 
 [Category]
-[BaseType(typeof(MDCTabBar),
+[BaseType(typeof(TabBar),
 	Name="MDCTabBar_ToBeDeprecated")]
 interface TabBar_ToBeDeprecated 
 {
@@ -6913,7 +6918,7 @@ interface TabBarDisplayDelegate
 }
 
 [Category]
-[BaseType(typeof(MDCTabBar),
+[BaseType(typeof(TabBar),
 	Name="MDCTabBar_MDCTabBarDisplayDelegate")]
 interface TabBar_TabBarDisplayDelegate 
 {
@@ -6935,7 +6940,7 @@ interface TabBarSizeClassDelegate
 }
 
 [Category]
-[BaseType(typeof(MDCTabBar),
+[BaseType(typeof(TabBar),
 	Name="MDCTabBar_MDCTabBarSizeClassDelegate")]
 interface TabBar_TabBarSizeClassDelegate 
 {
@@ -6967,7 +6972,7 @@ interface TabBarFontThemer
 {}
 
 [Category]
-[BaseType(typeof(MDCTabBarFontThemer),
+[BaseType(typeof(TabBarFontThemer),
 	Name="MDCTabBarFontThemer_ToBeDeprecated")]
 interface TabBarFontThemer_ToBeDeprecated 
 {
@@ -6977,7 +6982,7 @@ interface TabBarFontThemer_ToBeDeprecated
 }
 
 [Category]
-[BaseType(typeof(MDCTabBar),
+[BaseType(typeof(TabBar),
 	Name="MDCTabBar_MaterialTheming")]
 interface TabBar_MaterialTheming 
 {
@@ -6995,7 +7000,7 @@ interface TabBarTypographyThemer
 {}
 
 [Category]
-[BaseType(typeof(MDCTabBarTypographyThemer),
+[BaseType(typeof(TabBarTypographyThemer),
 	Name="MDCTabBarTypographyThemer_ToBeDeprecated")]
 interface TabBarTypographyThemer_ToBeDeprecated 
 {
@@ -7011,7 +7016,7 @@ interface FilledTextFieldColorThemer
 {}
 
 [Category]
-[BaseType(typeof(MDCFilledTextFieldColorThemer),
+[BaseType(typeof(FilledTextFieldColorThemer),
 	Name="MDCFilledTextFieldColorThemer_ToBeDeprecated")]
 interface FilledTextFieldColorThemer_ToBeDeprecated 
 {
@@ -7027,7 +7032,7 @@ interface OutlinedTextFieldColorThemer
 {}
 
 [Category]
-[BaseType(typeof(MDCOutlinedTextFieldColorThemer),
+[BaseType(typeof(OutlinedTextFieldColorThemer),
 	Name="MDCOutlinedTextFieldColorThemer_ToBeDeprecated")]
 interface OutlinedTextFieldColorThemer_ToBeDeprecated 
 {
@@ -7113,7 +7118,7 @@ interface TextFieldFontThemer
 }
 
 [Category]
-[BaseType(typeof(MDCTextFieldFontThemer),
+[BaseType(typeof(TextFieldFontThemer),
 	Name="MDCTextFieldFontThemer_ToBeDeprecated")]
 interface TextFieldFontThemer_ToBeDeprecated 
 {
@@ -7123,7 +7128,7 @@ interface TextFieldFontThemer_ToBeDeprecated
 
     [Static]
     [Export("applyFontScheme:toAllTextInputControllersOfClass:")]
-	void ApplyFontScheme(FontScheme fontScheme, TextInputController textInputControllerClass);
+	void ApplyFontSchemeToAll(FontScheme fontScheme, TextInputController textInputControllerClass);
 
     [Static]
     [Export("applyFontScheme:toTextField:")]
@@ -7131,7 +7136,7 @@ interface TextFieldFontThemer_ToBeDeprecated
 }
 
 [Category]
-[BaseType(typeof(MDCTextInputControllerFilled),
+[BaseType(typeof(TextInputControllerFilled),
 	Name="MDCTextInputControllerFilled_MaterialTheming")]
 interface TextInputControllerFilled_MaterialTheming 
 {
@@ -7140,7 +7145,7 @@ interface TextInputControllerFilled_MaterialTheming
 }
 
 [Category]
-[BaseType(typeof(MDCTextInputControllerOutlined),
+[BaseType(typeof(TextInputControllerOutlined),
 	Name="MDCTextInputControllerOutlined_MaterialTheming")]
 interface TextInputControllerOutlined_MaterialTheming 
 {
@@ -7169,7 +7174,7 @@ interface TextFieldTypographyThemer
 }
 
 [Category]
-[BaseType(typeof(MDCTextFieldTypographyThemer),
+[BaseType(typeof(TextFieldTypographyThemer),
 	Name="MDCTextFieldTypographyThemer_ToBeDeprecated")]
 interface TextFieldTypographyThemer_ToBeDeprecated 
 {
@@ -7179,7 +7184,7 @@ interface TextFieldTypographyThemer_ToBeDeprecated
 
     [Static]
     [Export("applyTypographyScheme:toAllTextInputControllersOfClass:")]
-	void ApplyTypographyScheme(TypographyScheming typographyScheme, TextInputController textInputControllerClass);
+	void ApplyTypographySchemeToAll(TypographyScheming typographyScheme, TextInputController textInputControllerClass);
 
     [Static]
     [Export("applyTypographyScheme:toTextInput:")]
@@ -7252,117 +7257,117 @@ interface TypographyFontLoading
 interface Typography 
 {
     [Static]
-    [Verify()]
+    
     [Export("fontLoader")]
 	ITypographyFontLoading FontLoader { get; set; }
 
     [Static]
-    [Verify()]
+    
     [Export("display4Font")]
 	UIFont Display4Font { get; }
 
     [Static]
-    [Verify()]
+    
     [Export("display4FontOpacity")]
 	nfloat Display4FontOpacity { get; }
 
     [Static]
-    [Verify()]
+    
     [Export("display3Font")]
 	UIFont Display3Font { get; }
 
     [Static]
-    [Verify()]
+    
     [Export("display3FontOpacity")]
 	nfloat Display3FontOpacity { get; }
 
     [Static]
-    [Verify()]
+    
     [Export("display2Font")]
 	UIFont Display2Font { get; }
 
     [Static]
-    [Verify()]
+    
     [Export("display2FontOpacity")]
 	nfloat Display2FontOpacity { get; }
 
     [Static]
-    [Verify()]
+    
     [Export("display1Font")]
 	UIFont Display1Font { get; }
 
     [Static]
-    [Verify()]
+    
     [Export("display1FontOpacity")]
 	nfloat Display1FontOpacity { get; }
 
     [Static]
-    [Verify()]
+    
     [Export("headlineFont")]
 	UIFont HeadlineFont { get; }
 
     [Static]
-    [Verify()]
+    
     [Export("headlineFontOpacity")]
 	nfloat HeadlineFontOpacity { get; }
 
     [Static]
-    [Verify()]
+    
     [Export("titleFont")]
 	UIFont TitleFont { get; }
 
     [Static]
-    [Verify()]
+    
     [Export("titleFontOpacity")]
 	nfloat TitleFontOpacity { get; }
 
     [Static]
-    [Verify()]
+    
     [Export("subheadFont")]
 	UIFont SubheadFont { get; }
 
     [Static]
-    [Verify()]
+    
     [Export("subheadFontOpacity")]
 	nfloat SubheadFontOpacity { get; }
 
     [Static]
-    [Verify()]
+    
     [Export("body2Font")]
 	UIFont Body2Font { get; }
 
     [Static]
-    [Verify()]
+    
     [Export("body2FontOpacity")]
 	nfloat Body2FontOpacity { get; }
 
     [Static]
-    [Verify()]
+    
     [Export("body1Font")]
 	UIFont Body1Font { get; }
 
     [Static]
-    [Verify()]
+    
     [Export("body1FontOpacity")]
 	nfloat Body1FontOpacity { get; }
 
     [Static]
-    [Verify()]
+    
     [Export("captionFont")]
 	UIFont CaptionFont { get; }
 
     [Static]
-    [Verify()]
+    
     [Export("captionFontOpacity")]
 	nfloat CaptionFontOpacity { get; }
 
     [Static]
-    [Verify()]
+    
     [Export("buttonFont")]
 	UIFont ButtonFont { get; }
 
     [Static]
-    [Verify()]
+    
     [Export("buttonFontOpacity")]
 	nfloat ButtonFontOpacity { get; }
 
@@ -7383,7 +7388,6 @@ interface Typography
 [BaseType(typeof(NSObject),
 	Name="MDCSystemFontLoader")]
 interface SystemFontLoader : TypographyFontLoading
-
 {}
 
 [Category]
@@ -7394,11 +7398,9 @@ interface UIFont_MaterialScalable
     [Export("mdc_scalingCurve",ArgumentSemantic.Copy)]
 	NSDictionary<NSString, NSNumber> ScalingCurve { get; [Bind("mdc_setScalingCurve:")]set; }
 
-    [Verify(MethodToProperty)]
     [Export("mdc_scaledFontAtDefaultSize")]
 	UIFont ScaledFontAtDefaultSize { get; }
 
-    [Verify(MethodToProperty)]
     [Export("mdc_scaledFontForCurrentSizeCategory")]
 	UIFont ScaledFontForCurrentSizeCategory { get; }
 
@@ -7807,7 +7809,7 @@ interface ThumbTrack
 }
 
 [Category]
-[BaseType(typeof(MDCThumbTrack),
+[BaseType(typeof(ThumbTrack),
 	Name="MDCThumbTrack_ToBeDeprecated")]
 interface ThumbTrack_ToBeDeprecated 
 {
@@ -7909,6 +7911,9 @@ interface IElevationOverriding {}
 interface IActivityIndicatorDelegate 
 {}
 
+interface IContainerScheming
+{}
+
 interface IShapeScheming 
 {}
 
@@ -7954,7 +7959,7 @@ interface IChipFieldDelegate
 interface IChipViewScheming 
 {}
 
-[Protocol(Name="MDCChipViewScheming ")]
+[Protocol(Name="MDCChipViewScheming")]
 interface ChipViewScheming 
 {
     [Abstract]
