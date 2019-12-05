@@ -31,6 +31,9 @@ namespace Transformeriser3000
 
             var api92 = await Load92(apiV92);
 
+            if (!Directory.Exists(apiDiffOutput))
+                Directory.CreateDirectory(apiDiffOutput);
+
             //loading file
             Console.WriteLine("Loading file...");
             await CodeGenerator.GenerateAsync(api92, apiV92CS);

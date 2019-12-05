@@ -504,7 +504,7 @@ namespace Xamarin.iOS.Binding.Transformer
                 attrs = attrs.Add(attribList);
             }
 
-            if (aProperty.Verify != null)
+            if (aProperty.Verify != null && !string.IsNullOrWhiteSpace(aProperty.VerifyType))
             {
                 var attribList = SyntaxFactory.AttributeList
                 (
@@ -856,7 +856,7 @@ namespace Xamarin.iOS.Binding.Transformer
                 attribs = attribs.Add(attribList);
             }
 
-            if (apiClass.Verify != null)
+            if (apiClass.Verify != null && !string.IsNullOrWhiteSpace(apiClass.VerifyType))
             {
                 var attribList = SyntaxFactory.AttributeList
                             (

@@ -980,10 +980,6 @@
     <property name="DelegateName" value="ChipFieldShouldBecomeFirstResponder" />
   </attr>
   <attr path="/api/namespace[@name='MaterialComponents']/class[@name='MDCChipFieldDelegate']/method[@name='chipFieldShouldBecomeFirstResponder:']/parameter[@name='chipField']" name="Type" value="ChipField" />
-  <attr path="/api/namespace[@name='MaterialComponents']/class[@name='MDCChipViewScheme']">
-    <property name="ManagedName" value="ChipViewScheme" />
-    <property name="InheritsFrom" value="ChipViewScheming" />
-  </attr>
   <attr path="/api/namespace[@name='MaterialComponents']/class[@name='MDCChipViewScheme']/property[@name='ColorScheme']" name="Type" value="IColorScheming" />
   <attr path="/api/namespace[@name='MaterialComponents']/class[@name='MDCChipViewScheme']/property[@name='ShapeScheme']" name="Type" value="IShapeScheming" />
   <attr path="/api/namespace[@name='MaterialComponents']/class[@name='MDCChipViewScheme']/property[@name='TypographyScheme']" name="Type" value="ITypographyScheming" />
@@ -2059,7 +2055,94 @@
   <attr path="/api/namespace[@name='MaterialComponents']/class[@name='MDCSnackbarManager']" name="InheritsFrom" value="IElevationOverriding" />
   <attr path="/api/namespace[@name='MaterialComponents']/class[@name='MDCSnackbarMessageView']" name="InheritsFrom" value="IElevatable,IElevationOverriding" />
   <attr path="/api/namespace[@name='MaterialComponents']/class[@name='MDCTabBar']" name="InheritsFrom" value="IUIBarPositioning,IElevatable,IElevationOverriding" />
-  
+    <attr path="/api/namespace[@name='MaterialComponents']/class[@name='MDCBottomSheetControllerDelegate']/method[@name='bottomSheetControllerStateChanged:state:']">
+    <property name="EventArgs" value="BottomSheetControllerBottomSheetStateChanged" />
+    <property name="EventName" value="BottomSheetStateChanged" />
+  </attr>
+  <attr path="/api/namespace[@name='MaterialComponents']/class[@name='MDCBottomSheetControllerDelegate']/method[@name='bottomSheetControllerDidChangeYOffset:yOffset:']">
+    <property name="EventArgs" value="BottomSheetControllerBottomSheetDidChangeYOffset" />
+    <property name="EventName" value="BottomSheetDidChangeYOffset" />
+  </attr>
+  <attr path="/api/namespace[@name='MaterialComponents']/class[@name='MDCBottomSheetPresentationControllerDelegate']/method[@name='bottomSheetDidChangeYOffset:yOffset:']">
+    <property name="EventArgs" value="BottomSheetPresentationControllerDidChangeYOffset" />
+    <property name="EventName" value="DidChangeYOffset" />
+  </attr>
+  <attr path="/api/namespace[@name='MaterialComponents']/class[@name='MDCActionSheetController_ToBeDeprecated']" name="TypeName" value="ActionSheetController" />
+  <attr path="/api/namespace[@name='MaterialComponents']/class[@name='MDCActionSheetController_MaterialTheming']" name="TypeName" value="ActionSheetController" />
+  <attr path="/api/namespace[@name='MaterialComponents']/class[@name='MDCNavigationBar_ToBeDeprecated']" name="TypeName" value="NavigationBar" />
+  <attr path="/api/namespace[@name='MaterialComponents']/class[@name='MDCAppBarViewController_MaterialTheming']" name="TypeName" value="AppBarViewController" />
+  <attr path="/api/namespace[@name='MaterialComponents']/class[@name='MDCBannerView_MaterialTheming']" name="TypeName" value="BannerView" />
+  <attr path="/api/namespace[@name='MaterialComponents']/class[@name='MDCBottomNavigationBar_Deprecated']" name="TypeName" value="BottomNavigationBar" />
+  <attr path="/api/namespace[@name='MaterialComponents']/class[@name='MDCBottomNavigationBar_MaterialTheming']" name="TypeName" value="BottomNavigationBar" />
+  <attr path="/api/namespace[@name='MaterialComponents']/class[@name='MDCBottomNavigationBarTypographyThemer_ToBeDeprecated']" name="TypeName" value="BottomNavigationBarTypographyThemer" />
+  <attr path="/api/namespace[@name='MaterialComponents']/class[@name='MDCBottomSheetControllerShapeThemer_ToBeDeprecated']" name="TypeName" value="BottomSheetControllerShapeThemer" />
+  <attr path="/api/namespace[@name='MaterialComponents']/class[@name='MDCButtonBar_ToBeDeprecated']" name="TypeName" value="ButtonBar" />
+  <attr path="/api/namespace[@name='MaterialComponents']/class[@name='MDCContainedButtonThemer_ToBeDeprecated']" name="TypeName" value="ContainedButtonThemer" />
+  <attr path="/api/namespace[@name='MaterialComponents']/class[@name='MDCFloatingActionButtonThemer_ToBeDeprecated']" name="TypeName" value="FloatingActionButtonThemer" />
+  <attr path="/api/namespace[@name='MaterialComponents']/class[@name='MDCOutlinedButtonThemer_ToBeDeprecated']" name="TypeName" value="OutlinedButtonThemer" />
+  <attr path="/api/namespace[@name='MaterialComponents']/class[@name='MDCTextButtonThemer_ToBeDeprecated']" name="TypeName" value="TextButtonThemer" />
+  <attr path="/api/namespace[@name='MaterialComponents']/class[@name='MDCContainedButtonColorThemer_ToBeDeprecated']" name="TypeName" value="ContainedButtonColorThemer" />
+  <attr path="/api/namespace[@name='MaterialComponents']/class[@name='MDCFloatingButtonColorThemer_ToBeDeprecated']" name="TypeName" value="FloatingButtonColorThemer" />
+  <attr path="/api/namespace[@name='MaterialComponents']/class[@name='MDCOutlinedButtonColorThemer_ToBeDeprecated']" name="TypeName" value="OutlinedButtonColorThemer" />
+  <attr path="/api/namespace[@name='MaterialComponents']/class[@name='MDCTextButtonColorThemer_ToBeDeprecated']" name="TypeName" value="TextButtonColorThemer" />
+  <attr path="/api/namespace[@name='MaterialComponents']/class[@name='MDCButtonShapeThemer_ToBeDeprecated']" name="TypeName" value="ButtonShapeThemer" />
+  <attr path="/api/namespace[@name='MaterialComponents']/class[@name='MDCFloatingButtonShapeThemer_ToBeDeprecated']" name="TypeName" value="FloatingButtonShapeThemer" />
+  <attr path="/api/namespace[@name='MaterialComponents']/class[@name='MDCButton_MaterialTheming']" name="TypeName" value="Button" />
+  <attr path="/api/namespace[@name='MaterialComponents']/class[@name='MDCFloatingButton_MaterialTheming']" name="TypeName" value="FloatingButton" />
+  <attr path="/api/namespace[@name='MaterialComponents']/class[@name='MDCButtonTypographyThemer_ToBeDeprecated']" name="TypeName" value="ButtonTypographyThemer" />
+  <attr path="/api/namespace[@name='MaterialComponents']/class[@name='MDCStatefulRippleView']" name="TypeName" value="RippleView" />
+  <attr path="/api/namespace[@name='MaterialComponents']/class[@name='MDCCardThemer_ToBeDeprecated']" name="TypeName" value="CardThemer" />
+  <attr path="/api/namespace[@name='MaterialComponents']/class[@name='MDCCardsColorThemer_ToBeDeprecated']" name="TypeName" value="CardsColorThemer" />
+  <attr path="/api/namespace[@name='MaterialComponents']/class[@name='MDCCardsShapeThemer_ToBeDeprecated']" name="TypeName" value="CardsShapeThemer" />
+  <attr path="/api/namespace[@name='MaterialComponents']/class[@name='MDCCard_MaterialTheming']" name="TypeName" value="Card" />
+  <attr path="/api/namespace[@name='MaterialComponents']/class[@name='MDCCardCollectionCell_MaterialTheming']" name="TypeName" value="CardCollectionCell" />
+  <attr path="/api/namespace[@name='MaterialComponents']/class[@name='MDCChipViewThemer_ToBeDeprecated']" name="TypeName" value="ChipViewThemer" />
+  <attr path="/api/namespace[@name='MaterialComponents']/class[@name='MDCChipViewFontThemer_ToBeDeprecated']" name="TypeName" value="ChipViewFontThemer" />
+  <attr path="/api/namespace[@name='MaterialComponents']/class[@name='MDCChipViewShapeThemer_ToBeDeprecated']" name="TypeName" value="ChipViewShapeThemer" />
+  <attr path="/api/namespace[@name='MaterialComponents']/class[@name='MDCChipView_MaterialTheming']" name="TypeName" value="ChipView" />
+  <attr path="/api/namespace[@name='MaterialComponents']/class[@name='MDCAlertController_MaterialTheming']" name="TypeName" value="AlertController" />
+  <attr path="/api/namespace[@name='MaterialComponents']/class[@name='MDCDialogPresentationController_MaterialTheming']" name="TypeName" value="DialogPresentationController" />
+  <attr path="/api/namespace[@name='MaterialComponents']/class[@name='MDCFeatureHighlightFontThemer_ToBeDeprecated']" name="TypeName" value="FeatureHighlightFontThemer" />
+  <attr path="/api/namespace[@name='MaterialComponents']/class[@name='MDCFeatureHighlightTypographyThemer_ToBeDeprecated']" name="TypeName" value="FeatureHighlightTypographyThemer" />
+  <attr path="/api/namespace[@name='MaterialComponents']/class[@name='MDCBaseCell_ToBeDeprecated']" name="TypeName" value="BaseCell" />
+  <attr path="/api/namespace[@name='MaterialComponents']/class[@name='MDCListColorThemer_ToBeDeprecated']" name="TypeName" value="ListColorThemer" />
+  <attr path="/api/namespace[@name='MaterialComponents']/class[@name='MDCListThemer_ToBeDeprecated']" name="TypeName" value="ListThemer" />
+  <attr path="/api/namespace[@name='MaterialComponents']/class[@name='MDCBaseCell_MaterialTheming']" name="TypeName" value="BaseCell" />
+  <attr path="/api/namespace[@name='MaterialComponents']/class[@name='MDCSelfSizingStereoCell_MaterialTheming']" name="TypeName" value="SelfSizingStereoCell" />
+  <attr path="/api/namespace[@name='MaterialComponents']/class[@name='MDCListTypographyThemer_ToBeDeprecated']" name="TypeName" value="ListTypographyThemer" />
+  <attr path="/api/namespace[@name='MaterialComponents']/class[@name='MDCNavigationBarTypographyThemer_ToBeDeprecated']" name="TypeName" value="NavigationBarTypographyThemer" />
+  <attr path="/api/namespace[@name='MaterialComponents']/class[@name='MDCBottomDrawerColorThemer_ToBeDeprecated']" name="TypeName" value="BottomDrawerColorThemer" />
+  <attr path="/api/namespace[@name='MaterialComponents']/class[@name='MDCProgressView_MaterialTheming']" name="TypeName" value="ProgressView" />
+  <attr path="/api/namespace[@name='MaterialComponents']/class[@name='MDCSlider_ToBeDeprecated']" name="TypeName" value="Slider" />
+  <attr path="/api/namespace[@name='MaterialComponents']/class[@name='MDCSnackbarFontThemer_Deprecated']" name="TypeName" value="SnackbarFontThemer" />
+  <attr path="/api/namespace[@name='MaterialComponents']/class[@name='MDCSnackbarTypographyThemer_Deprecated']" name="TypeName" value="SnackbarTypographyThemer" />
+  <attr path="/api/namespace[@name='MaterialComponents']/class[@name='MDCTabBar_ToBeDeprecated']" name="TypeName" value="TabBar" />
+  <attr path="/api/namespace[@name='MaterialComponents']/class[@name='MDCTabBar_MDCTabBarDisplayDelegate']" name="TypeName" value="TabBar" />
+  <attr path="/api/namespace[@name='MaterialComponents']/class[@name='MDCTabBar_MDCTabBarSizeClassDelegate']" name="TypeName" value="TabBar" />
+  <attr path="/api/namespace[@name='MaterialComponents']/class[@name='MDCTabBarFontThemer_ToBeDeprecated']" name="TypeName" value="TabBarFontThemer" />
+  <attr path="/api/namespace[@name='MaterialComponents']/class[@name='MDCTabBar_MaterialTheming']" name="TypeName" value="TabBar" />
+  <attr path="/api/namespace[@name='MaterialComponents']/class[@name='MDCTabBarTypographyThemer_ToBeDeprecated']" name="TypeName" value="TabBarTypographyThemer" />
+  <attr path="/api/namespace[@name='MaterialComponents']/class[@name='MDCFilledTextFieldColorThemer_ToBeDeprecated']" name="TypeName" value="FilledTextFieldColorThemer" />
+  <attr path="/api/namespace[@name='MaterialComponents']/class[@name='MDCOutlinedTextFieldColorThemer_ToBeDeprecated']" name="TypeName" value="OutlinedTextFieldColorThemer" />
+  <attr path="/api/namespace[@name='MaterialComponents']/class[@name='MDCTextFieldFontThemer_ToBeDeprecated']" name="TypeName" value="TextFieldFontThemer" />
+  <attr path="/api/namespace[@name='MaterialComponents']/class[@name='MDCTextFieldFontThemer_ToBeDeprecated']/method[@name='applyFontScheme:toAllTextInputControllersOfClass:']" name="Name" value="ApplyFontSchemeToAll" />
+  <attr path="/api/namespace[@name='MaterialComponents']/class[@name='MDCTextInputControllerFilled_MaterialTheming']" name="TypeName" value="TextInputControllerFilled" />
+  <attr path="/api/namespace[@name='MaterialComponents']/class[@name='MDCTextInputControllerOutlined_MaterialTheming']" name="TypeName" value="TextInputControllerOutlined" />
+  <attr path="/api/namespace[@name='MaterialComponents']/class[@name='MDCTextFieldTypographyThemer_ToBeDeprecated']" name="TypeName" value="TextFieldTypographyThemer" />
+  <attr path="/api/namespace[@name='MaterialComponents']/class[@name='MDCTextFieldTypographyThemer_ToBeDeprecated']/method[@name='applyTypographyScheme:toAllTextInputControllersOfClass:']" name="Name" value="ApplyTypographySchemeToAll" />
+  <attr path="/api/namespace[@name='MaterialComponents']/class[@name='MDCThumbTrack_ToBeDeprecated']" name="TypeName" value="ThumbTrack" />
+  <attr path="/api/namespace[@name='MaterialComponents']/class[@name='MDCChipViewScheming']">
+    <property name="ProtocolName" value="MDCChipViewScheming" />
+    <property name="ManagedName" value="ChipViewScheming" />
+  </attr>
+  <attr path="/api/namespace[@name='MaterialComponents']/class[@name='MDCChipViewScheming']/property[@name='ColorScheme']" name="Type" value="IColorScheming" />
+  <attr path="/api/namespace[@name='MaterialComponents']/class[@name='MDCChipViewScheming']/property[@name='ShapeScheme']" name="Type" value="IShapeScheming" />
+  <attr path="/api/namespace[@name='MaterialComponents']/class[@name='MDCChipViewScheming']/property[@name='TypographyScheme']" name="Type" value="ITypographyScheming" />
+  <attr path="/api/namespace[@name='MaterialComponents']/class[@name='MDCChipViewScheme']">
+    <property name="ManagedName" value="ChipViewScheme" />
+    <property name="InheritsFrom" value="ChipViewScheming" />
+  </attr>
+    
   <!-- v92 changes -->
   <add-node path="/api/namespace[@name='MaterialComponents']">
       <class name="IContainerScheming" partial="false" static="false" protocol="false" category="false" disabledefaultctor="false" type="Interface"/>
@@ -2336,9 +2419,9 @@
   </add-node>
   <add-node path="/api/namespace[@name='MaterialComponents']">
     <class name="ChipViewScheming" type="Interface" disabledefaultctor="false" category="false" protocol="true" protocolname="MDCChipViewScheming " static="false" partial="false">
-      <property name="ColorScheme" type="IColorScheming" nullallowed="false" abstract="true" export="colorScheme" get="true" set="false" introduced_flag="false" static="false" internal="false" new="false" notification="false" />
-      <property name="ShapeScheme" type="IShapeScheming" nullallowed="false" abstract="true" export="shapeScheme" get="true" set="false" introduced_flag="false" static="false" internal="false" new="false" notification="false" />
-      <property name="TypographyScheme" type="ITypographyScheming" nullallowed="false" abstract="true" export="typographyScheme" get="true" set="false" introduced_flag="false" static="false" internal="false" new="false" notification="false" />
+      <property name="IColorScheme" type="ColorScheming" nullallowed="false" abstract="true" export="colorScheme" get="true" set="false" introduced_flag="false" static="false" internal="false" new="false" notification="false" />
+      <property name="IShapeScheme" type="ShapeScheming" nullallowed="false" abstract="true" export="shapeScheme" get="true" set="false" introduced_flag="false" static="false" internal="false" new="false" notification="false" />
+      <property name="ITypographyScheme" type="TypographyScheming" nullallowed="false" abstract="true" export="typographyScheme" get="true" set="false" introduced_flag="false" static="false" internal="false" new="false" notification="false" />
     </class>
   </add-node>
   <add-node path="/api/namespace[@name='MaterialComponents']/class[@name='MDCCollectionViewCell']">
@@ -3090,15 +3173,11 @@
   <add-node path="/api/namespace[@name='MaterialComponents']/class[@name='UIFont_MaterialScalable']">
     <property name="ScalingCurve" type="NSDictionary&lt;NSString,NSNumber&gt;" nullallowed="true" abstract="false" export="mdc_scalingCurve" get="true" set="true" set_bind="mdc_setScalingCurve:" semanticstrength="Copy" introduced_flag="false" static="false" internal="false" new="false" notification="false" />
   </add-node>
-  <add-node path="/api/namespace[@name='MaterialComponents']/class[@name='UIFont_MaterialScalable']">
-    <property name="ScaledFontAtDefaultSize" type="UIFont" nullallowed="false" abstract="false" export="mdc_scaledFontAtDefaultSize" get="true" set="false" introduced_flag="false" static="false" internal="false" new="false" notification="false">
-      <verify type="MethodToProperty" />
-    </property>
+   <add-node path="/api/namespace[@name='MaterialComponents']/class[@name='UIFont_MaterialScalable']">
+    <property name="ScaledFontAtDefaultSize" type="UIFont" nullallowed="false" abstract="false" export="mdc_scaledFontAtDefaultSize" get="true" set="false" introduced_flag="false" static="false" internal="false" new="false" notification="false" />
   </add-node>
   <add-node path="/api/namespace[@name='MaterialComponents']/class[@name='UIFont_MaterialScalable']">
-    <property name="ScaledFontForCurrentSizeCategory" type="UIFont" nullallowed="false" abstract="false" export="mdc_scaledFontForCurrentSizeCategory" get="true" set="false" introduced_flag="false" static="false" internal="false" new="false" notification="false">
-      <verify type="MethodToProperty" />
-    </property>
+    <property name="ScaledFontForCurrentSizeCategory" type="UIFont" nullallowed="false" abstract="false" export="mdc_scaledFontForCurrentSizeCategory" get="true" set="false" introduced_flag="false" static="false" internal="false" new="false" notification="false" />
   </add-node>
   
   <remove-node path="/api/namespace[@name='MaterialComponents']/delegate[@name='MDCActivityIndicatorAnimation']" />
@@ -3147,7 +3226,7 @@
   <remove-node path="/api/namespace[@name='MaterialComponents']/class[@name='MDCTextInputPositioningDelegate']/property[@name='TrailingViewTrailingPaddingConstant']" />
   <remove-node path="/api/namespace[@name='MaterialComponents']/class[@name='MDCTextInputController']/method[@name='initWithTextInput:']" />
   <remove-node path="/api/namespace[@name='MaterialComponents']/class[@name='MDCChipField']/property[@name='WeakDelegate']" />
-  <remove-node path="/api/namespace[@name='MaterialComponents']/class[@name='MDCChipViewScheming']" />
+ <!-- <remove-node path="/api/namespace[@name='MaterialComponents']/class[@name='MDCChipViewScheming']" />-->
   <remove-node path="/api/namespace[@name='MaterialComponents']/class[@name='MDCChipViewColorThemer_ToBeDeprecated']" />
   <remove-node path="/api/namespace[@name='MaterialComponents']/class[@name='MDCCollectionViewStyling']/property[@name='WeakDelegate']" />
   <remove-node path="/api/namespace[@name='MaterialComponents']/class[@name='MDCCollectionViewEditing']/property[@name='WeakDelegate']" />
