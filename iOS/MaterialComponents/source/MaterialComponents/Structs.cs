@@ -387,6 +387,8 @@ namespace MaterialComponents
 		Floats,
 		Disappears
 	}
+
+
 	//static class CFunctions
 	//{
 	//	// extern CGFloat MDCDeviceTopSafeAreaInset ();

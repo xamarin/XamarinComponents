@@ -2041,8 +2041,29 @@
   <attr path="/api/namespace[@name='MaterialComponents']/class[@name='UIColor_MaterialBlending']/method[@name='mdc_blendColor:withBackgroundColor:']" name="Name" value="BlendColor" />
   <attr path="/api/namespace[@name='MaterialComponents']/class[@name='UIColor_MaterialDynamic']/method[@name='mdc_resolvedColorWithTraitCollection:']" name="Name" value="ResolvedColorWithTraitCollection" />
   <attr path="/api/namespace[@name='MaterialComponents']/class[@name='MDCThumbTrack_ToBeDeprecated']" name="ManagedName" value="ThumbTrack_ToBeDeprecated" />
-
+  
+  <attr path="/api/namespace[@name='MaterialComponents']/class[@name='MDCBottomSheetController']" name="InheritsFrom" value="IElevatable,IElevationOverriding" />
+  <attr path="/api/namespace[@name='MaterialComponents']/class[@name='MDCActionSheetController']" name="InheritsFrom" value="IElevatable,IElevationOverriding" />
+  <attr path="/api/namespace[@name='MaterialComponents']/class[@name='MDCContainerScheme']" name="InheritsFrom" value="IContainerScheming" />
+  <attr path="/api/namespace[@name='MaterialComponents']/class[@name='MDCFlexibleHeaderView']" name="InheritsFrom" value="IElevatable,IElevationOverriding" />
+  <attr path="/api/namespace[@name='MaterialComponents']/class[@name='MDCNavigationBar']" name="InheritsFrom" value="IElevatable,IElevationOverriding" />
+  <attr path="/api/namespace[@name='MaterialComponents']/class[@name='MDCBannerView']" name="InheritsFrom" value="IElevatable,IElevationOverriding" />
+  <attr path="/api/namespace[@name='MaterialComponents']/class[@name='MDCBottomAppBarView']" name="InheritsFrom" value="IElevatable,IElevationOverriding" />
+  <attr path="/api/namespace[@name='MaterialComponents']/class[@name='MDCBottomNavigationBar']" name="InheritsFrom" value="IElevatable,IElevationOverriding" />
+  <attr path="/api/namespace[@name='MaterialComponents']/class[@name='MDCCard']" name="InheritsFrom" value="IElevatable,IElevationOverriding" />
+  <attr path="/api/namespace[@name='MaterialComponents']/class[@name='MDCCardCollectionCell']" name="InheritsFrom" value="IElevatable,IElevationOverriding" />
+  <attr path="/api/namespace[@name='MaterialComponents']/class[@name='MDCChipView']" name="InheritsFrom" value="IElevatable,IElevationOverriding" />
+  <attr path="/api/namespace[@name='MaterialComponents']/class[@name='MDCAlertController']" name="InheritsFrom" value="IElevatable,IElevationOverriding" />
+  <attr path="/api/namespace[@name='MaterialComponents']/class[@name='MDCBaseCell']" name="InheritsFrom" value="IElevatable,IElevationOverriding" />
+  <attr path="/api/namespace[@name='MaterialComponents']/class[@name='MDCSlider']" name="InheritsFrom" value="IElevatable,IElevationOverriding" />
+  <attr path="/api/namespace[@name='MaterialComponents']/class[@name='MDCSnackbarManager']" name="InheritsFrom" value="IElevationOverriding" />
+  <attr path="/api/namespace[@name='MaterialComponents']/class[@name='MDCSnackbarMessageView']" name="InheritsFrom" value="IElevatable,IElevationOverriding" />
+  <attr path="/api/namespace[@name='MaterialComponents']/class[@name='MDCTabBar']" name="InheritsFrom" value="IUIBarPositioning,IElevatable,IElevationOverriding" />
+  
   <!-- v92 changes -->
+  <add-node path="/api/namespace[@name='MaterialComponents']">
+      <class name="IContainerScheming" partial="false" static="false" protocol="false" category="false" disabledefaultctor="false" type="Interface"/>
+  </add-node>
   <add-node path="/api/namespace[@name='MaterialComponents']">
     <class name="IElevatable" type="Interface" disabledefaultctor="false" category="false" protocol="false" static="false" partial="false" />
   </add-node>
@@ -3068,16 +3089,6 @@
   </add-node>
   <add-node path="/api/namespace[@name='MaterialComponents']/class[@name='UIFont_MaterialScalable']">
     <property name="ScalingCurve" type="NSDictionary&lt;NSString,NSNumber&gt;" nullallowed="true" abstract="false" export="mdc_scalingCurve" get="true" set="true" set_bind="mdc_setScalingCurve:" semanticstrength="Copy" introduced_flag="false" static="false" internal="false" new="false" notification="false" />
-  </add-node>
-  <add-node path="/api/namespace[@name='MaterialComponents']/class[@name='UIFont_MaterialScalable']">
-    <property name="ScaledFontAtDefaultSize" type="UIFont" nullallowed="false" abstract="false" export="mdc_scaledFontAtDefaultSize" get="true" set="false" introduced_flag="false" static="false" internal="false" new="false" notification="false">
-      <verify type="MethodToProperty" />
-    </property>
-  </add-node>
-  <add-node path="/api/namespace[@name='MaterialComponents']/class[@name='UIFont_MaterialScalable']">
-    <property name="ScaledFontForCurrentSizeCategory" type="UIFont" nullallowed="false" abstract="false" export="mdc_scaledFontForCurrentSizeCategory" get="true" set="false" introduced_flag="false" static="false" internal="false" new="false" notification="false">
-      <verify type="MethodToProperty" />
-    </property>
   </add-node>
   
   <remove-node path="/api/namespace[@name='MaterialComponents']/delegate[@name='MDCActivityIndicatorAnimation']" />
