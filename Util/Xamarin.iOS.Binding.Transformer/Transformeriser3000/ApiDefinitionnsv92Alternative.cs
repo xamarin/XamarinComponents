@@ -42,7 +42,7 @@ interface Elevatable
     [Abstract]
     [NullAllowed]
     [Export("mdc_elevationDidChangeBlock",ArgumentSemantic.Copy)]
-	Action<Elevatable, nfloat> ElevationDidChangeBlock { get; set; }
+	Action<IElevatable, nfloat> ElevationDidChangeBlock { get; set; }
 }
 
 [Protocol(Name="MDCElevationOverriding")]
@@ -72,9 +72,11 @@ interface UIColor_MaterialElevation
 interface UIView_MaterialElevationResponding 
 {
     [Export("mdc_baseElevation")]
+    [Static]
 	nfloat BaseElevation { get; }
 
     [Export("mdc_absoluteElevation")]
+    [Static]
 	nfloat AbsoluteElevation { get; }
 
     [Export("mdc_elevationDidChange")]
@@ -387,14 +389,14 @@ interface BottomSheetControllerDelegate
     [Export("bottomSheetControllerDidDismissBottomSheet:")]
 	void DidDismissBottomSheet(BottomSheetController controller);
 
-	[EventArgs("BottomSheetControllerBottomSheetStateChanged")]
-	[EventName("BottomSheetStateChanged")]
-	[Export("bottomSheetControllerStateChanged:state:")]
+    [EventArgs("BottomSheetControllerBottomSheetStateChanged")]
+    [EventName("BottomSheetStateChanged")]
+    [Export("bottomSheetControllerStateChanged:state:")]
 	void BottomSheetControllerStateChanged(BottomSheetController controller, SheetState state);
 
-	[EventArgs("BottomSheetControllerBottomSheetDidChangeYOffset")]
-	[EventName("BottomSheetDidChangeYOffset")]
-	[Export("bottomSheetControllerDidChangeYOffset:yOffset:")]
+    [EventArgs("BottomSheetControllerBottomSheetDidChangeYOffset")]
+    [EventName("BottomSheetDidChangeYOffset")]
+    [Export("bottomSheetControllerDidChangeYOffset:yOffset:")]
 	void BottomSheetControllerDidChangeYOffset(BottomSheetController controller, nfloat yOffset);
 }
 
@@ -418,9 +420,9 @@ interface BottomSheetPresentationControllerDelegate : IUIAdaptivePresentationCon
     [Export("bottomSheetWillChangeState:sheetState:")]
 	void WillChangeState(BottomSheetPresentationController bottomSheet, SheetState sheetState);
 
-	[EventArgs("BottomSheetPresentationControllerDidChangeYOffset")]
-	[EventName("DidChangeYOffset")]
-	[Export("bottomSheetDidChangeYOffset:yOffset:")]
+    [EventArgs("BottomSheetPresentationControllerDidChangeYOffset")]
+    [EventName("DidChangeYOffset")]
+    [Export("bottomSheetDidChangeYOffset:yOffset:")]
 	void BottomSheetDidChangeYOffset(BottomSheetPresentationController bottomSheet, nfloat yOffset);
 }
 
@@ -637,6 +639,7 @@ interface ActionSheetController_ToBeDeprecated
 {
     [NullAllowed]
     [Export("inkColor",ArgumentSemantic.Strong)]
+    [Static]
 	UIColor InkColor { get; set; }
 }
 
@@ -1178,7 +1181,7 @@ interface ContainerScheming
 {
     [Abstract]
     [Export("colorScheme")]
-	ColorScheming ColorScheme { get; }
+	IColorScheming ColorScheme { get; }
 
     [Abstract]
     [Export("typographyScheme")]
@@ -1212,7 +1215,7 @@ interface ContainerScheme : IContainerScheming
 interface ActionSheetController_MaterialTheming 
 {
     [Export("applyThemeWithScheme:")]
-	void ApplyThemeWithScheme(ContainerScheming scheme);
+	void ApplyThemeWithScheme(IContainerScheming scheme);
 }
 
 [BaseType(typeof(UIView),
@@ -1600,7 +1603,7 @@ interface FlexibleHeaderViewController : IUIScrollViewDelegate, IUITableViewDele
 
     [Wrap("WeakSafeAreaDelegate")]
     [NullAllowed]
-	FlexibleHeaderSafeAreaDelegate SafeAreaDelegate { get; set; }
+	IFlexibleHeaderSafeAreaDelegate SafeAreaDelegate { get; set; }
 
     [NullAllowed]
     [Export("safeAreaDelegate",ArgumentSemantic.Weak)]
@@ -1863,6 +1866,7 @@ interface NavigationBar_ToBeDeprecated
 {
     [NullAllowed]
     [Export("inkColor",ArgumentSemantic.Strong)]
+    [Static]
 	UIColor InkColor { get; set; }
 }
 
@@ -1928,10 +1932,10 @@ interface AppBarColorThemer
 interface AppBarViewController_MaterialTheming 
 {
     [Export("applyPrimaryThemeWithScheme:")]
-	void ApplyPrimaryThemeWithScheme(ContainerScheming containerScheme);
+	void ApplyPrimaryThemeWithScheme(IContainerScheming containerScheme);
 
     [Export("applySurfaceThemeWithScheme:")]
-	void ApplySurfaceThemeWithScheme(ContainerScheming containerScheme);
+	void ApplySurfaceThemeWithScheme(IContainerScheming containerScheme);
 }
 
 [DisableDefaultCtor]
@@ -2318,7 +2322,7 @@ interface BannerView : IElevatable, IElevationOverriding
 interface BannerView_MaterialTheming 
 {
     [Export("applyThemeWithScheme:")]
-	void ApplyThemeWithScheme(ContainerScheming scheme);
+	void ApplyThemeWithScheme(IContainerScheming scheme);
 }
 
 [BaseType(typeof(UIView),
@@ -2490,6 +2494,7 @@ interface BottomNavigationBar : IElevatable, IElevationOverriding
 interface BottomNavigationBar_Deprecated 
 {
     [Export("sizeThatFitsIncludesSafeArea")]
+    [Static]
 	bool SizeThatFitsIncludesSafeArea { get; set; }
 }
 
@@ -2528,10 +2533,10 @@ interface BottomNavigationBarColorThemer
 interface BottomNavigationBar_MaterialTheming 
 {
     [Export("applyPrimaryThemeWithScheme:")]
-	void ApplyPrimaryThemeWithScheme(ContainerScheming scheme);
+	void ApplyPrimaryThemeWithScheme(IContainerScheming scheme);
 
     [Export("applySurfaceThemeWithScheme:")]
-	void ApplySurfaceThemeWithScheme(ContainerScheming scheme);
+	void ApplySurfaceThemeWithScheme(IContainerScheming scheme);
 }
 
 [DisableDefaultCtor]
@@ -2709,6 +2714,7 @@ interface ButtonBar_ToBeDeprecated
 {
     [NullAllowed]
     [Export("inkColor",ArgumentSemantic.Strong)]
+    [Static]
 	UIColor InkColor { get; set; }
 }
 
@@ -2817,7 +2823,7 @@ interface ContainedButtonThemer_ToBeDeprecated
 {
     [Static]
     [Export("applyScheme:toButton:")]
-	void ApplyScheme(ButtonScheming scheme, Button button);
+	void ApplyScheme(IButtonScheming scheme, Button button);
 }
 
 [DisableDefaultCtor]
@@ -2833,7 +2839,7 @@ interface FloatingActionButtonThemer_ToBeDeprecated
 {
     [Static]
     [Export("applyScheme:toButton:")]
-	void ApplyScheme(ButtonScheming scheme, FloatingButton button);
+	void ApplyScheme(IButtonScheming scheme, FloatingButton button);
 }
 
 [DisableDefaultCtor]
@@ -2849,7 +2855,7 @@ interface OutlinedButtonThemer_ToBeDeprecated
 {
     [Static]
     [Export("applyScheme:toButton:")]
-	void ApplyScheme(ButtonScheming scheme, Button button);
+	void ApplyScheme(IButtonScheming scheme, Button button);
 }
 
 [DisableDefaultCtor]
@@ -2865,7 +2871,7 @@ interface TextButtonThemer_ToBeDeprecated
 {
     [Static]
     [Export("applyScheme:toButton:")]
-	void ApplyScheme(ButtonScheming scheme, Button button);
+	void ApplyScheme(IButtonScheming scheme, Button button);
 }
 
 [Obsolete("This class will soon be deprecated. Please consider using one of the more specific ButtonColorThemer classes instead.")]
@@ -2908,7 +2914,7 @@ interface ContainedButtonColorThemer_ToBeDeprecated
 {
     [Static]
     [Export("applySemanticColorScheme:toButton:")]
-	void ApplySemanticColorScheme(ColorScheming colorScheme, Button button);
+	void ApplySemanticColorScheme(IColorScheming colorScheme, Button button);
 }
 
 [DisableDefaultCtor]
@@ -2924,7 +2930,7 @@ interface FloatingButtonColorThemer_ToBeDeprecated
 {
     [Static]
     [Export("applySemanticColorScheme:toButton:")]
-	void ApplySemanticColorScheme(ColorScheming colorScheme, FloatingButton button);
+	void ApplySemanticColorScheme(IColorScheming colorScheme, FloatingButton button);
 }
 
 [DisableDefaultCtor]
@@ -2940,7 +2946,7 @@ interface OutlinedButtonColorThemer_ToBeDeprecated
 {
     [Static]
     [Export("applySemanticColorScheme:toButton:")]
-	void ApplySemanticColorScheme(ColorScheming colorScheme, Button button);
+	void ApplySemanticColorScheme(IColorScheming colorScheme, Button button);
 }
 
 [DisableDefaultCtor]
@@ -2956,7 +2962,7 @@ interface TextButtonColorThemer_ToBeDeprecated
 {
     [Static]
     [Export("applySemanticColorScheme:toButton:")]
-	void ApplySemanticColorScheme(ColorScheming colorScheme, Button button);
+	void ApplySemanticColorScheme(IColorScheming colorScheme, Button button);
 }
 
 [DisableDefaultCtor]
@@ -2997,13 +3003,13 @@ interface FloatingButtonShapeThemer_ToBeDeprecated
 interface Button_MaterialTheming 
 {
     [Export("applyContainedThemeWithScheme:")]
-	void ApplyContainedThemeWithScheme(ContainerScheming scheme);
+	void ApplyContainedThemeWithScheme(IContainerScheming scheme);
 
     [Export("applyOutlinedThemeWithScheme:")]
-	void ApplyOutlinedThemeWithScheme(ContainerScheming scheme);
+	void ApplyOutlinedThemeWithScheme(IContainerScheming scheme);
 
     [Export("applyTextThemeWithScheme:")]
-	void ApplyTextThemeWithScheme(ContainerScheming scheme);
+	void ApplyTextThemeWithScheme(IContainerScheming scheme);
 }
 
 [Category]
@@ -3012,7 +3018,7 @@ interface Button_MaterialTheming
 interface FloatingButton_MaterialTheming 
 {
     [Export("applySecondaryThemeWithScheme:")]
-	void ApplySecondaryThemeWithScheme(ContainerScheming scheme);
+	void ApplySecondaryThemeWithScheme(IContainerScheming scheme);
 }
 
 [DisableDefaultCtor]
@@ -3047,7 +3053,7 @@ interface RippleView
 {
     [Wrap("WeakRippleViewDelegate")]
     [NullAllowed]
-	RippleViewDelegate RippleViewDelegate { get; set; }
+	IRippleViewDelegate RippleViewDelegate { get; set; }
 
     [NullAllowed]
     [Export("rippleViewDelegate",ArgumentSemantic.Weak)]
@@ -3116,7 +3122,7 @@ interface RippleTouchController : IUIGestureRecognizerDelegate
 
     [Wrap("WeakDelegate")]
     [NullAllowed]
-	RippleTouchControllerDelegate Delegate { get; set; }
+	IRippleTouchControllerDelegate Delegate { get; set; }
 
     [NullAllowed]
     [Export("delegate",ArgumentSemantic.Weak)]
@@ -3381,19 +3387,19 @@ interface CardThemer_ToBeDeprecated
 {
     [Static]
     [Export("applyScheme:toCard:")]
-	void ApplyScheme(CardScheming scheme, Card card);
+	void ApplyScheme(ICardScheming scheme, Card card);
 
     [Static]
     [Export("applyScheme:toCardCell:")]
-	void ApplyScheme(CardScheming scheme, CardCollectionCell cardCell);
+	void ApplyScheme(ICardScheming scheme, CardCollectionCell cardCell);
 
     [Static]
     [Export("applyOutlinedVariantWithScheme:toCard:")]
-	void ApplyOutlinedVariantWithScheme(CardScheming scheme, Card card);
+	void ApplyOutlinedVariantWithScheme(ICardScheming scheme, Card card);
 
     [Static]
     [Export("applyOutlinedVariantWithScheme:toCardCell:")]
-	void ApplyOutlinedVariantWithScheme(CardScheming scheme, CardCollectionCell cardCell);
+	void ApplyOutlinedVariantWithScheme(ICardScheming scheme, CardCollectionCell cardCell);
 }
 
 [DisableDefaultCtor]
@@ -3409,19 +3415,19 @@ interface CardsColorThemer_ToBeDeprecated
 {
     [Static]
     [Export("applySemanticColorScheme:toCard:")]
-	void ApplySemanticColorScheme(ColorScheming colorScheme, Card card);
+	void ApplySemanticColorScheme(IColorScheming colorScheme, Card card);
 
     [Static]
     [Export("applySemanticColorScheme:toCardCell:")]
-	void ApplySemanticColorScheme(ColorScheming colorScheme, CardCollectionCell cardCell);
+	void ApplySemanticColorScheme(IColorScheming colorScheme, CardCollectionCell cardCell);
 
     [Static]
     [Export("applyOutlinedVariantWithColorScheme:toCard:")]
-	void ApplyOutlinedVariantWithColorScheme(ColorScheming colorScheme, Card card);
+	void ApplyOutlinedVariantWithColorScheme(IColorScheming colorScheme, Card card);
 
     [Static]
     [Export("applyOutlinedVariantWithColorScheme:toCardCell:")]
-	void ApplyOutlinedVariantWithColorScheme(ColorScheming colorScheme, CardCollectionCell cardCell);
+	void ApplyOutlinedVariantWithColorScheme(IColorScheming colorScheme, CardCollectionCell cardCell);
 }
 
 [DisableDefaultCtor]
@@ -3450,10 +3456,10 @@ interface CardsShapeThemer_ToBeDeprecated
 interface Card_MaterialTheming 
 {
     [Export("applyThemeWithScheme:")]
-	void ApplyThemeWithScheme(ContainerScheming scheme);
+	void ApplyThemeWithScheme(IContainerScheming scheme);
 
     [Export("applyOutlinedThemeWithScheme:")]
-	void ApplyOutlinedThemeWithScheme(ContainerScheming scheme);
+	void ApplyOutlinedThemeWithScheme(IContainerScheming scheme);
 }
 
 [Category]
@@ -3462,10 +3468,10 @@ interface Card_MaterialTheming
 interface CardCollectionCell_MaterialTheming 
 {
     [Export("applyThemeWithScheme:")]
-	void ApplyThemeWithScheme(ContainerScheming scheme);
+	void ApplyThemeWithScheme(IContainerScheming scheme);
 
     [Export("applyOutlinedThemeWithScheme:")]
-	void ApplyOutlinedThemeWithScheme(ContainerScheming scheme);
+	void ApplyOutlinedThemeWithScheme(IContainerScheming scheme);
 }
 
 [BaseType(typeof(UICollectionViewCell),
@@ -4165,7 +4171,7 @@ interface TextInputControllerBase : TextInputControllerFloatingPlaceholder
     [Export("minimumLines")]
 	nuint MinimumLines { get; set; }
 
-    [Field("MDCTextInputControllerBaseDefaultBorderRadius"," __Internal")]
+    [Field("MDCTextInputControllerBaseDefaultBorderRadius","__Internal")]
 	nfloat DefaultBorderRadius { get; }
 
     [Export("initWithTextInput:")]
@@ -4290,11 +4296,11 @@ interface ChipField
     [Export("contentEdgeInsets",ArgumentSemantic.Assign)]
 	UIEdgeInsets ContentEdgeInsets { get; set; }
 
-    [Field("MDCChipFieldDefaultMinTextFieldWidth"," __Internal")]
+    [Field("MDCChipFieldDefaultMinTextFieldWidth","__Internal")]
 	nfloat DefaultMinTextFieldWidth { get; }
 
     [Internal]
-    [Field("MDCChipFieldDefaultContentEdgeInsets"," __Internal")]
+    [Field("MDCChipFieldDefaultContentEdgeInsets","__Internal")]
 	IntPtr _DefaultContentEdgeInsets { get; }
 
     [Export("addChip:")]
@@ -4404,11 +4410,11 @@ interface ChipViewThemer_ToBeDeprecated
 {
     [Static]
     [Export("applyScheme:toChipView:")]
-	void ApplyScheme(ChipViewScheming scheme, ChipView chip);
+	void ApplyScheme(IChipViewScheming scheme, ChipView chip);
 
     [Static]
     [Export("applyOutlinedVariantWithScheme:toChipView:")]
-	void ApplyOutlinedVariantWithScheme(ChipViewScheming scheme, ChipView chip);
+	void ApplyOutlinedVariantWithScheme(IChipViewScheming scheme, ChipView chip);
 }
 
 [DisableDefaultCtor]
@@ -4461,10 +4467,10 @@ interface ChipViewShapeThemer_ToBeDeprecated
 interface ChipView_MaterialTheming 
 {
     [Export("applyThemeWithScheme:")]
-	void ApplyThemeWithScheme(ContainerScheming scheme);
+	void ApplyThemeWithScheme(IContainerScheming scheme);
 
     [Export("applyOutlinedThemeWithScheme:")]
-	void ApplyOutlinedThemeWithScheme(ContainerScheming scheme);
+	void ApplyOutlinedThemeWithScheme(IContainerScheming scheme);
 }
 
 [DisableDefaultCtor]
@@ -4510,13 +4516,13 @@ interface CollectionViewCell
     [Export("inkView",ArgumentSemantic.Strong)]
 	InkView InkView { get; set; }
 
-    [Field("kSelectedCellAccessibilityHintKey"," __Internal")]
+    [Field("kSelectedCellAccessibilityHintKey","__Internal")]
 	NSString SelectedCellAccessibilityHintKey { get; }
 
-    [Field("kDeselectedCellAccessibilityHintKey"," __Internal")]
+    [Field("kDeselectedCellAccessibilityHintKey","__Internal")]
 	NSString DeselectedCellAccessibilityHintKey { get; }
 
-    [Field("MDCCollectionViewCellStyleCardSectionInset"," __Internal")]
+    [Field("MDCCollectionViewCellStyleCardSectionInset","__Internal")]
 	nfloat StyleCardSectionInset { get; }
 
     [Export("setEditing:animated:")]
@@ -4539,16 +4545,16 @@ interface CollectionViewTextCell
     [Export("imageView",ArgumentSemantic.Strong)]
 	UIImageView ImageView { get; }
 
-    [Field("MDCCellDefaultOneLineHeight"," __Internal")]
+    [Field("MDCCellDefaultOneLineHeight","__Internal")]
 	nfloat DefaultOneLineHeight { get; }
 
-    [Field("MDCCellDefaultOneLineWithAvatarHeight"," __Internal")]
+    [Field("MDCCellDefaultOneLineWithAvatarHeight","__Internal")]
 	nfloat DefaultOneLineWithAvatarHeight { get; }
 
-    [Field("MDCCellDefaultTwoLineHeight"," __Internal")]
+    [Field("MDCCellDefaultTwoLineHeight","__Internal")]
 	nfloat DefaultTwoLineHeight { get; }
 
-    [Field("MDCCellDefaultThreeLineHeight"," __Internal")]
+    [Field("MDCCellDefaultThreeLineHeight","__Internal")]
 	nfloat DefaultThreeLineHeight { get; }
 }
 
@@ -5165,7 +5171,7 @@ interface DialogPresentationController
 {
     [Wrap("WeakDialogPresentationControllerDelegate")]
     [NullAllowed]
-	DialogPresentationControllerDelegate DialogPresentationControllerDelegate { get; set; }
+	IDialogPresentationControllerDelegate DialogPresentationControllerDelegate { get; set; }
 
     [NullAllowed]
     [Export("dialogPresentationControllerDelegate",ArgumentSemantic.Weak)]
@@ -5292,7 +5298,7 @@ interface AlertControllerThemer
 interface AlertController_MaterialTheming 
 {
     [Export("applyThemeWithScheme:")]
-	void ApplyThemeWithScheme(ContainerScheming scheme);
+	void ApplyThemeWithScheme(IContainerScheming scheme);
 }
 
 [Category]
@@ -5301,7 +5307,7 @@ interface AlertController_MaterialTheming
 interface DialogPresentationController_MaterialTheming 
 {
     [Export("applyThemeWithScheme:")]
-	void ApplyThemeWithScheme(ContainerScheming scheme);
+	void ApplyThemeWithScheme(IContainerScheming scheme);
 }
 
 [DisableDefaultCtor]
@@ -5395,7 +5401,7 @@ interface FeatureHighlightViewController
     [Export("traitCollectionDidChangeBlock",ArgumentSemantic.Copy)]
 	Action<FeatureHighlightViewController, UITraitCollection> TraitCollectionDidChangeBlock { get; set; }
 
-    [Field("kMDCFeatureHighlightOuterHighlightAlpha"," __Internal")]
+    [Field("kMDCFeatureHighlightOuterHighlightAlpha","__Internal")]
 	nfloat FeatureHighlightOuterHighlightAlpha { get; }
 
     [Export("mdc_adjustsFontForContentSizeCategory")]
@@ -5543,6 +5549,7 @@ interface BaseCell : IElevatable, IElevationOverriding
 interface BaseCell_ToBeDeprecated 
 {
     [Export("inkColor",ArgumentSemantic.Strong)]
+    [Static]
 	UIColor InkColor { get; set; }
 }
 
@@ -5582,11 +5589,11 @@ interface ListColorThemer_ToBeDeprecated
 {
     [Static]
     [Export("applySemanticColorScheme:toSelfSizingStereoCell:")]
-	void ApplySemanticColorScheme(ColorScheming colorScheme, SelfSizingStereoCell cell);
+	void ApplySemanticColorScheme(IColorScheming colorScheme, SelfSizingStereoCell cell);
 
     [Static]
     [Export("applySemanticColorScheme:toBaseCell:")]
-	void ApplySemanticColorScheme(ColorScheming colorScheme, BaseCell cell);
+	void ApplySemanticColorScheme(IColorScheming colorScheme, BaseCell cell);
 }
 
 [Protocol]
@@ -5642,7 +5649,7 @@ interface ListThemer_ToBeDeprecated
 interface BaseCell_MaterialTheming 
 {
     [Export("applyThemeWithScheme:")]
-	void ApplyThemeWithScheme(ContainerScheming scheme);
+	void ApplyThemeWithScheme(IContainerScheming scheme);
 }
 
 [Category]
@@ -5651,7 +5658,7 @@ interface BaseCell_MaterialTheming
 interface SelfSizingStereoCell_MaterialTheming 
 {
     [Export("applyThemeWithScheme:")]
-	void ApplyThemeWithScheme(ContainerScheming scheme);
+	void ApplyThemeWithScheme(IContainerScheming scheme);
 }
 
 [DisableDefaultCtor]
@@ -5900,7 +5907,7 @@ interface BottomDrawerColorThemer_ToBeDeprecated
 {
     [Static]
     [Export("applySemanticColorScheme:toBottomDrawer:")]
-	void ApplySemanticColorScheme(ColorScheming colorScheme, BottomDrawerViewController bottomDrawer);
+	void ApplySemanticColorScheme(IColorScheming colorScheme, BottomDrawerViewController bottomDrawer);
 }
 
 [BaseType(typeof(UIWindow),
@@ -6104,46 +6111,46 @@ interface Palette
     [Export("accent700")]
 	UIColor Accent700 { get; }
 
-    [Field("MDCPaletteTint50Name"," __Internal")]
+    [Field("MDCPaletteTint50Name","__Internal")]
 	NSString Tint50Name { get; }
 
-    [Field("MDCPaletteTint100Name"," __Internal")]
+    [Field("MDCPaletteTint100Name","__Internal")]
 	NSString Tint100Name { get; }
 
-    [Field("MDCPaletteTint200Name"," __Internal")]
+    [Field("MDCPaletteTint200Name","__Internal")]
 	NSString Tint200Name { get; }
 
-    [Field("MDCPaletteTint300Name"," __Internal")]
+    [Field("MDCPaletteTint300Name","__Internal")]
 	NSString Tint300Name { get; }
 
-    [Field("MDCPaletteTint400Name"," __Internal")]
+    [Field("MDCPaletteTint400Name","__Internal")]
 	NSString Tint400Name { get; }
 
-    [Field("MDCPaletteTint500Name"," __Internal")]
+    [Field("MDCPaletteTint500Name","__Internal")]
 	NSString Tint500Name { get; }
 
-    [Field("MDCPaletteTint600Name"," __Internal")]
+    [Field("MDCPaletteTint600Name","__Internal")]
 	NSString Tint600Name { get; }
 
-    [Field("MDCPaletteTint700Name"," __Internal")]
+    [Field("MDCPaletteTint700Name","__Internal")]
 	NSString Tint700Name { get; }
 
-    [Field("MDCPaletteTint800Name"," __Internal")]
+    [Field("MDCPaletteTint800Name","__Internal")]
 	NSString Tint800Name { get; }
 
-    [Field("MDCPaletteTint900Name"," __Internal")]
+    [Field("MDCPaletteTint900Name","__Internal")]
 	NSString Tint900Name { get; }
 
-    [Field("MDCPaletteAccent100Name"," __Internal")]
+    [Field("MDCPaletteAccent100Name","__Internal")]
 	NSString Accent100Name { get; }
 
-    [Field("MDCPaletteAccent200Name"," __Internal")]
+    [Field("MDCPaletteAccent200Name","__Internal")]
 	NSString Accent200Name { get; }
 
-    [Field("MDCPaletteAccent400Name"," __Internal")]
+    [Field("MDCPaletteAccent400Name","__Internal")]
 	NSString Accent400Name { get; }
 
-    [Field("MDCPaletteAccent700Name"," __Internal")]
+    [Field("MDCPaletteAccent700Name","__Internal")]
 	NSString Accent700Name { get; }
 
     [Static]
@@ -6205,7 +6212,7 @@ interface ProgressViewColorThemer
 interface ProgressView_MaterialTheming 
 {
     [Export("applyThemeWithScheme:")]
-	void ApplyThemeWithScheme(ContainerScheming scheme);
+	void ApplyThemeWithScheme(IContainerScheming scheme);
 }
 
 [BaseType(typeof(UIControl),
@@ -6334,6 +6341,7 @@ interface Slider_ToBeDeprecated
 {
     [NullAllowed]
     [Export("inkColor",ArgumentSemantic.Strong)]
+    [Static]
 	UIColor InkColor { get; set; }
 }
 
@@ -6454,7 +6462,7 @@ interface SnackbarManager : IElevationOverriding
 
     [NullAllowed]
     [Export("mdc_elevationDidChangeBlockForMessageView",ArgumentSemantic.Copy)]
-	Action<Elevatable, nfloat> ElevationDidChangeBlockForMessageView { get; set; }
+	Action<IElevatable, nfloat> ElevationDidChangeBlockForMessageView { get; set; }
 
     [Export("mdc_adjustsFontForContentSizeCategory")]
 	bool AdjustsFontForContentSizeCategory { get; [Bind("mdc_setAdjustsFontForContentSizeCategory:")]set; }
@@ -6546,10 +6554,10 @@ interface SnackbarMessage : INSCopying, IUIAccessibilityIdentification
     [Export("enableRippleBehavior")]
 	bool EnableRippleBehavior { get; set; }
 
-    [Field("MDCSnackbarMessageDurationMax"," __Internal")]
+    [Field("MDCSnackbarMessageDurationMax","__Internal")]
 	double DurationMax { get; }
 
-    [Field("MDCSnackbarMessageBoldAttributeName"," __Internal")]
+    [Field("MDCSnackbarMessageBoldAttributeName","__Internal")]
 	NSString BoldAttributeName { get; }
 
     [Static]
@@ -6806,6 +6814,7 @@ interface TabBarDelegate : IUIBarPositioningDelegate
 interface TabBar_ToBeDeprecated 
 {
     [Export("inkColor",ArgumentSemantic.Assign)]
+    [Static]
 	UIColor InkColor { get; set; }
 }
 
@@ -6880,7 +6889,7 @@ interface TabBarViewController : TabBarDelegate, IUIBarPositioningDelegate
     [Export("traitCollectionDidChangeBlock",ArgumentSemantic.Copy)]
 	Action<TabBarViewController, UITraitCollection> TraitCollectionDidChangeBlock { get; set; }
 
-    [Field("MDCTabBarViewControllerAnimationDuration"," __Internal")]
+    [Field("MDCTabBarViewControllerAnimationDuration","__Internal")]
 	nfloat AnimationDuration { get; }
 
     [Export("setTabBarHidden:animated:")]
@@ -6924,10 +6933,12 @@ interface TabBar_TabBarDisplayDelegate
 {
     [Wrap("WeakDisplayDelegate")]
     [NullAllowed]
-	TabBarDisplayDelegate DisplayDelegate { get; set; }
+    [Static]
+	ITabBarDisplayDelegate DisplayDelegate { get; set; }
 
     [NullAllowed]
     [Export("displayDelegate",ArgumentSemantic.Weak)]
+    [Static]
 	NSObject WeakDisplayDelegate { get; set; }
 }
 
@@ -6946,10 +6957,12 @@ interface TabBar_TabBarSizeClassDelegate
 {
     [Wrap("WeakSizeClassDelegate")]
     [NullAllowed]
-	TabBarSizeClassDelegate SizeClassDelegate { get; set; }
+    [Static]
+	ITabBarSizeClassDelegate SizeClassDelegate { get; set; }
 
     [NullAllowed]
     [Export("sizeClassDelegate",ArgumentSemantic.Weak)]
+    [Static]
 	NSObject WeakSizeClassDelegate { get; set; }
 }
 
@@ -6987,10 +7000,10 @@ interface TabBarFontThemer_ToBeDeprecated
 interface TabBar_MaterialTheming 
 {
     [Export("applyPrimaryThemeWithScheme:")]
-	void ApplyPrimaryThemeWithScheme(ContainerScheming scheme);
+	void ApplyPrimaryThemeWithScheme(IContainerScheming scheme);
 
     [Export("applySurfaceThemeWithScheme:")]
-	void ApplySurfaceThemeWithScheme(ContainerScheming scheme);
+	void ApplySurfaceThemeWithScheme(IContainerScheming scheme);
 }
 
 [DisableDefaultCtor]
@@ -7022,7 +7035,7 @@ interface FilledTextFieldColorThemer_ToBeDeprecated
 {
     [Static]
     [Export("applySemanticColorScheme:toTextInputControllerFilled:")]
-	void ApplySemanticColorScheme(ColorScheming colorScheme, TextInputControllerFilled textInputControllerFilled);
+	void ApplySemanticColorScheme(IColorScheming colorScheme, TextInputControllerFilled textInputControllerFilled);
 }
 
 [DisableDefaultCtor]
@@ -7038,7 +7051,7 @@ interface OutlinedTextFieldColorThemer_ToBeDeprecated
 {
     [Static]
     [Export("applySemanticColorScheme:toTextInputController:")]
-	void ApplySemanticColorScheme(ColorScheming colorScheme, TextInputController textInputController);
+	void ApplySemanticColorScheme(IColorScheming colorScheme, TextInputController textInputController);
 }
 
 [DisableDefaultCtor]
@@ -7046,14 +7059,26 @@ interface OutlinedTextFieldColorThemer_ToBeDeprecated
 	Name="MDCTextFieldColorThemer")]
 interface TextFieldColorThemer 
 {
+    [Static]
+    [Export("applySemanticColorScheme:toTextInputController:")]
+    void ApplySemanticColorScheme(IColorScheming colorScheme, ITextInputController textInputController);
+
     [Wrap("ApplySemanticColorScheme (colorScheme, textInputController)")]
     [Obsolete("Use ApplySemanticColorScheme instead.")]
     [Static]
 	void ApplySemanticColorSchemeToTextInputController(IColorScheming colorScheme, ITextInputController textInputController);
 
-    [Wrap("ApplySemanticColorSchemeToAll (colorScheme, new Class (textInputControllerType))")]
     [Static]
-	void ApplySemanticColorSchemeToAll(IColorScheming colorScheme, Type textInputControllerType);
+    [Export("applySemanticColorScheme:toAllTextInputControllersOfClass:")]
+    void ApplySemanticColorSchemeToAll(IColorScheming colorScheme, Class textInputControllerType);
+
+    [Static]
+    [Wrap("ApplySemanticColorSchemeToAll (colorScheme, new Class (textInputControllerType))")]
+    void ApplySemanticColorSchemeToAll(IColorScheming colorScheme, Type textInputControllerType);
+
+    [Static]
+    [Export("applySemanticColorScheme:toTextInput:")]
+    void ApplySemanticColorScheme(IColorScheming colorScheme, ITextInput textInput);
 
     [Wrap("ApplySemanticColorScheme (colorScheme, textInput)")]
     [Obsolete("Use ApplySemanticColorScheme instead.")]
@@ -7102,14 +7127,27 @@ interface BaseTextField
 	Name="MDCTextFieldFontThemer")]
 interface TextFieldFontThemer 
 {
+    [Static]
+    [Export("applyFontScheme:toTextInputController:")]
+    void ApplyFontScheme(IFontScheme fontScheme, ITextInputController textInputController);
+
+
     [Wrap("ApplyFontScheme (fontScheme, textInputController)")]
     [Obsolete("Use ApplyFontScheme instead.")]
     [Static]
 	void ApplyFontSchemeToTextInputController(IFontScheme fontScheme, ITextInputController textInputController);
 
-    [Wrap("ApplyFontSchemeToAll (fontScheme, new Class (textInputControllerType))")]
     [Static]
-	void ApplyFontSchemeToAll(IFontScheme fontScheme, Type textInputControllerType);
+    [Export("applyFontScheme:toAllTextInputControllersOfClass:")]
+    void ApplyFontSchemeToAll(IFontScheme fontScheme, Class textInputControllerType);
+
+    [Static]
+    [Wrap("ApplyFontSchemeToAll (fontScheme, new Class (textInputControllerType))")]
+    void ApplyFontSchemeToAll(IFontScheme fontScheme, Type textInputControllerType);
+
+    [Static]
+    [Export("applyFontScheme:toTextField:")]
+    void ApplyFontScheme(IFontScheme fontScheme, [NullAllowed]  TextField textField);
 
     [Wrap("ApplyFontScheme (fontScheme, textField)")]
     [Obsolete("Use ApplyFontScheme instead.")]
@@ -7141,7 +7179,7 @@ interface TextFieldFontThemer_ToBeDeprecated
 interface TextInputControllerFilled_MaterialTheming 
 {
     [Export("applyThemeWithScheme:")]
-	void ApplyThemeWithScheme(ContainerScheming scheme);
+	void ApplyThemeWithScheme(IContainerScheming scheme);
 }
 
 [Category]
@@ -7150,7 +7188,7 @@ interface TextInputControllerFilled_MaterialTheming
 interface TextInputControllerOutlined_MaterialTheming 
 {
     [Export("applyThemeWithScheme:")]
-	void ApplyThemeWithScheme(ContainerScheming scheme);
+	void ApplyThemeWithScheme(IContainerScheming scheme);
 }
 
 [DisableDefaultCtor]
@@ -7158,6 +7196,14 @@ interface TextInputControllerOutlined_MaterialTheming
 	Name="MDCTextFieldTypographyThemer")]
 interface TextFieldTypographyThemer 
 {
+    [Static]
+    [Export("applyTypographyScheme:toTextInputController:")]
+    void ApplyTypographyScheme(ITypographyScheming typographyScheme, ITextInputController textInputController);
+
+    [Static]
+    [Export("applyTypographyScheme:toAllTextInputControllersOfClass:")]
+    void ApplyTypographySchemeToAll(ITypographyScheming typographyScheme, Class textInputControllerType);
+
     [Wrap("ApplyTypographySchemeToAll (typographyScheme, new Class (textInputControllerType))")]
     [Static]
 	void ApplyTypographySchemeToAll(ITypographyScheming typographyScheme, Type textInputControllerType);
@@ -7166,6 +7212,10 @@ interface TextFieldTypographyThemer
     [Obsolete("Use ApplyTypographyScheme instead.")]
     [Static]
 	void ApplyTypographySchemeToTextInputController(ITypographyScheming typographyScheme, ITextInputController textInputController);
+
+    [Static]
+    [Export("applyTypographyScheme:toTextInput:")]
+    void ApplyTypographyScheme(ITypographyScheming typographyScheme, ITextInput textInput);
 
     [Wrap("ApplyTypographyScheme (typographyScheme, textInput)")]
     [Obsolete("Use ApplyTypographyScheme instead.")]
@@ -7388,7 +7438,6 @@ interface Typography
 [BaseType(typeof(NSObject),
 	Name="MDCSystemFontLoader")]
 interface SystemFontLoader : TypographyFontLoading
-
 {}
 
 [Category]
@@ -7397,12 +7446,15 @@ interface UIFont_MaterialScalable
 {
     [NullAllowed]
     [Export("mdc_scalingCurve",ArgumentSemantic.Copy)]
+    [Static]
 	NSDictionary<NSString, NSNumber> ScalingCurve { get; [Bind("mdc_setScalingCurve:")]set; }
 
     [Export("mdc_scaledFontAtDefaultSize")]
+    [Static]
 	UIFont ScaledFontAtDefaultSize { get; }
 
     [Export("mdc_scaledFontForCurrentSizeCategory")]
+    [Static]
 	UIFont ScaledFontForCurrentSizeCategory { get; }
 
     [Export("mdc_scaledFontForSizeCategory:")]
@@ -7576,15 +7628,15 @@ interface KeyboardWatcher
 	nfloat VisibleKeyboardHeight { get; }
 
     [Notification]
-    [Field("MDCKeyboardWatcherKeyboardWillShowNotification"," __Internal")]
+    [Field("MDCKeyboardWatcherKeyboardWillShowNotification","__Internal")]
 	NSString KeyboardWillShowNotification { get; }
 
     [Notification]
-    [Field("MDCKeyboardWatcherKeyboardWillHideNotification"," __Internal")]
+    [Field("MDCKeyboardWatcherKeyboardWillHideNotification","__Internal")]
 	NSString KeyboardWillHideNotification { get; }
 
     [Notification]
-    [Field("MDCKeyboardWatcherKeyboardWillChangeFrameNotification"," __Internal")]
+    [Field("MDCKeyboardWatcherKeyboardWillChangeFrameNotification","__Internal")]
 	NSString KeyboardWillChangeFrameNotification { get; }
 
     [Static]
@@ -7816,12 +7868,15 @@ interface ThumbTrack_ToBeDeprecated
 {
     [NullAllowed]
     [Export("inkColor",ArgumentSemantic.Strong)]
+    [Static]
 	UIColor InkColor { get; set; }
 
     [Export("shouldDisplayInk")]
+    [Static]
 	bool ShouldDisplayInk { get; set; }
 
     [Export("thumbMaxRippleRadius")]
+    [Static]
 	nfloat ThumbMaxRippleRadius { get; set; }
 }
 
@@ -7897,11 +7952,11 @@ interface CAMediaTimingFunctionAnimationTiming
 [Static]
 interface MaterialComponentsConstants 
 {
-    [Field("MaterialComponentsVersionNumber"," __Internal")]
+    [Field("MaterialComponentsVersionNumber","__Internal")]
 	double VersionNumber { get; }
 
     [Internal]
-    [Field("MaterialComponentsVersionString"," __Internal")]
+    [Field("MaterialComponentsVersionString","__Internal")]
 	IntPtr _VersionString { get; }
 }
 
@@ -7909,13 +7964,23 @@ interface IElevatable {}
 
 interface IElevationOverriding {}
 
+interface IRippleViewDelegate { }
+
+interface IFlexibleHeaderSafeAreaDelegate { }
+
 interface IActivityIndicatorDelegate 
 {}
 
-interface IContainerScheming
-{
+interface ITabBarDisplayDelegate { }
 
-}
+interface ITabBarSizeClassDelegate { }
+
+interface IRippleTouchControllerDelegate { }
+
+    interface IDialogPresentationControllerDelegate { }
+
+interface IContainerScheming
+{}
 
 interface IShapeScheming 
 {}
