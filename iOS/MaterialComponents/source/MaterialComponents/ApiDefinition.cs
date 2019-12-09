@@ -7059,14 +7059,26 @@ interface OutlinedTextFieldColorThemer_ToBeDeprecated
 	Name="MDCTextFieldColorThemer")]
 interface TextFieldColorThemer 
 {
+    [Static]
+    [Export("applySemanticColorScheme:toTextInputController:")]
+    void ApplySemanticColorScheme(IColorScheming colorScheme, ITextInputController textInputController);
+
     [Wrap("ApplySemanticColorScheme (colorScheme, textInputController)")]
     [Obsolete("Use ApplySemanticColorScheme instead.")]
     [Static]
 	void ApplySemanticColorSchemeToTextInputController(IColorScheming colorScheme, ITextInputController textInputController);
 
-    [Wrap("ApplySemanticColorSchemeToAll (colorScheme, new Class (textInputControllerType))")]
     [Static]
-	void ApplySemanticColorSchemeToAll(IColorScheming colorScheme, Type textInputControllerType);
+    [Export("applySemanticColorScheme:toAllTextInputControllersOfClass:")]
+    void ApplySemanticColorSchemeToAll(IColorScheming colorScheme, Class textInputControllerType);
+
+    [Static]
+    [Wrap("ApplySemanticColorSchemeToAll (colorScheme, new Class (textInputControllerType))")]
+    void ApplySemanticColorSchemeToAll(IColorScheming colorScheme, Type textInputControllerType);
+
+    [Static]
+    [Export("applySemanticColorScheme:toTextInput:")]
+    void ApplySemanticColorScheme(IColorScheming colorScheme, ITextInput textInput);
 
     [Wrap("ApplySemanticColorScheme (colorScheme, textInput)")]
     [Obsolete("Use ApplySemanticColorScheme instead.")]
@@ -7115,14 +7127,27 @@ interface BaseTextField
 	Name="MDCTextFieldFontThemer")]
 interface TextFieldFontThemer 
 {
+    [Static]
+    [Export("applyFontScheme:toTextInputController:")]
+    void ApplyFontScheme(IFontScheme fontScheme, ITextInputController textInputController);
+
+
     [Wrap("ApplyFontScheme (fontScheme, textInputController)")]
     [Obsolete("Use ApplyFontScheme instead.")]
     [Static]
 	void ApplyFontSchemeToTextInputController(IFontScheme fontScheme, ITextInputController textInputController);
 
-    [Wrap("ApplyFontSchemeToAll (fontScheme, new Class (textInputControllerType))")]
     [Static]
-	void ApplyFontSchemeToAll(IFontScheme fontScheme, Type textInputControllerType);
+    [Export("applyFontScheme:toAllTextInputControllersOfClass:")]
+    void ApplyFontSchemeToAll(IFontScheme fontScheme, Class textInputControllerType);
+
+    [Static]
+    [Wrap("ApplyFontSchemeToAll (fontScheme, new Class (textInputControllerType))")]
+    void ApplyFontSchemeToAll(IFontScheme fontScheme, Type textInputControllerType);
+
+    [Static]
+    [Export("applyFontScheme:toTextField:")]
+    void ApplyFontScheme(IFontScheme fontScheme, [NullAllowed]  TextField textField);
 
     [Wrap("ApplyFontScheme (fontScheme, textField)")]
     [Obsolete("Use ApplyFontScheme instead.")]
@@ -7171,6 +7196,14 @@ interface TextInputControllerOutlined_MaterialTheming
 	Name="MDCTextFieldTypographyThemer")]
 interface TextFieldTypographyThemer 
 {
+    [Static]
+    [Export("applyTypographyScheme:toTextInputController:")]
+    void ApplyTypographyScheme(ITypographyScheming typographyScheme, ITextInputController textInputController);
+
+    [Static]
+    [Export("applyTypographyScheme:toAllTextInputControllersOfClass:")]
+    void ApplyTypographySchemeToAll(ITypographyScheming typographyScheme, Class textInputControllerType);
+
     [Wrap("ApplyTypographySchemeToAll (typographyScheme, new Class (textInputControllerType))")]
     [Static]
 	void ApplyTypographySchemeToAll(ITypographyScheming typographyScheme, Type textInputControllerType);
@@ -7179,6 +7212,10 @@ interface TextFieldTypographyThemer
     [Obsolete("Use ApplyTypographyScheme instead.")]
     [Static]
 	void ApplyTypographySchemeToTextInputController(ITypographyScheming typographyScheme, ITextInputController textInputController);
+
+    [Static]
+    [Export("applyTypographyScheme:toTextInput:")]
+    void ApplyTypographyScheme(ITypographyScheming typographyScheme, ITextInput textInput);
 
     [Wrap("ApplyTypographyScheme (typographyScheme, textInput)")]
     [Obsolete("Use ApplyTypographyScheme instead.")]
