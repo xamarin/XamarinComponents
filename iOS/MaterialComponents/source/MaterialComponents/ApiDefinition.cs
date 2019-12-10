@@ -6857,7 +6857,7 @@ interface TextFieldColorThemer
 
     [Static]
     [Export("applySemanticColorScheme:toAllTextInputControllersOfClass:")]
-    void ApplySemanticColorSchemeToAll(IColorScheming colorScheme, Class textInputControllerType);
+    void ApplySemanticColorSchemeToAll(IColorScheming colorScheme, Class textInputControllerClass);
 
     [Static]
     [Wrap("ApplySemanticColorSchemeToAll (colorScheme, new Class (textInputControllerType))")]
@@ -6867,23 +6867,21 @@ interface TextFieldColorThemer
     [Export("applySemanticColorScheme:toTextInput:")]
     void ApplySemanticColorScheme(IColorScheming colorScheme, ITextInput textInput);
 
-    [Wrap("ApplySemanticColorScheme (colorScheme, textInput)")]
-    [Obsolete("Use ApplySemanticColorScheme instead.")]
-    [Static]
-	void ApplySemanticColorSchemeToTextInput(IColorScheming colorScheme, ITextInput textInput);
-
-    [Obsolete("This method will soon be deprecated. Consider using ApplySemanticColorScheme method instead.")]
     [Static]
     [Export("applyColorScheme:toTextInputController:")]
-	void ApplyColorSchemeToTextInputController(IColorScheme colorScheme, ITextInputController textInputController);
+    void ApplyColorScheme(IColorScheme colorScheme, ITextInputController textInputController);
 
-    [Obsolete("This method will soon be deprecated. Consider using ApplySemanticColorSchemeToAll method instead.")]
     [Static]
     [Export("applyColorScheme:toAllTextInputControllersOfClass:")]
-	void ApplyColorSchemeoAllTextInputControllersOfClass(IColorScheme colorScheme, Class textInputControllerClass);
+    void ApplyColorScheme(IColorScheme colorScheme, Class textInputControllerClass);
+
+    [Static]
+    [Wrap("ApplyColorScheme (colorScheme, new Class (textInputControllerType))")]
+    void ApplyColorScheme(IColorScheme colorScheme, Type textInputControllerType);
+
 }
 
-[BaseType(typeof(UITextField),
+    [BaseType(typeof(UITextField),
 	Name="MDCBaseTextField")]
 interface BaseTextField 
 {
