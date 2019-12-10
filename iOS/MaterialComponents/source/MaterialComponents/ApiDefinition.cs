@@ -630,13 +630,7 @@ interface ActionSheetAction : INSCopying, IUIAccessibilityIdentification
     [Static]
     [Export("actionWithTitle:image:handler:")]
 	ActionSheetAction ActionWithTitle(string title,[NullAllowed]  UIImage image,[NullAllowed]  ActionSheetHandler handler);
-}
 
-[Category]
-[BaseType(typeof(ActionSheetController),
-	Name="MDCActionSheetController_ToBeDeprecated")]
-interface ActionSheetController_ToBeDeprecated 
-{
     [NullAllowed]
     [Export("inkColor",ArgumentSemantic.Strong)]
     [Static]
@@ -1247,7 +1241,7 @@ interface ActivityIndicator
 	float Progress { get; set; }
 
     [Export("cycleColors",ArgumentSemantic.Copy)]
-	UIColor CycleColors { get; set; }
+    UIColor[] CycleColors { get; set; }
 
     [NullAllowed]
     [Export("traitCollectionDidChangeBlock",ArgumentSemantic.Copy)]
@@ -1857,13 +1851,7 @@ interface NavigationBar : IElevatable, IElevationOverriding
 
     [Export("unobserveNavigationItem")]
 	void UnobserveNavigationItem();
-}
 
-[Category]
-[BaseType(typeof(NavigationBar),
-	Name="MDCNavigationBar_ToBeDeprecated")]
-interface NavigationBar_ToBeDeprecated 
-{
     [NullAllowed]
     [Export("inkColor",ArgumentSemantic.Strong)]
     [Static]
@@ -2542,13 +2530,7 @@ interface BottomNavigationBar_MaterialTheming
 [DisableDefaultCtor]
 [BaseType(typeof(NSObject),
 	Name="MDCBottomNavigationBarTypographyThemer")]
-interface BottomNavigationBarTypographyThemer 
-{}
-
-[Category]
-[BaseType(typeof(BottomNavigationBarTypographyThemer),
-	Name="MDCBottomNavigationBarTypographyThemer_ToBeDeprecated")]
-interface BottomNavigationBarTypographyThemer_ToBeDeprecated 
+interface BottomNavigationBarTypographyThemer
 {
     [Static]
     [Export("applyTypographyScheme:toBottomNavigationBar:")]
@@ -2639,12 +2621,6 @@ interface TriangleEdgeTreatment
 [BaseType(typeof(NSObject),
 	Name="MDCBottomSheetControllerShapeThemer")]
 interface BottomSheetControllerShapeThemer 
-{}
-
-[Category]
-[BaseType(typeof(BottomSheetControllerShapeThemer),
-	Name="MDCBottomSheetControllerShapeThemer_ToBeDeprecated")]
-interface BottomSheetControllerShapeThemer_ToBeDeprecated 
 {
     [Static]
     [Export("applyShapeScheme:toBottomSheetController:")]
@@ -2705,13 +2681,7 @@ interface ButtonBar
     [New]
     [Export("sizeThatFits:")]
 	CGSize SizeThatFits(CGSize size);
-}
 
-[Category]
-[BaseType(typeof(ButtonBar),
-	Name="MDCButtonBar_ToBeDeprecated")]
-interface ButtonBar_ToBeDeprecated 
-{
     [NullAllowed]
     [Export("inkColor",ArgumentSemantic.Strong)]
     [Static]
@@ -2814,28 +2784,16 @@ interface ButtonScheme : ButtonScheming
 [BaseType(typeof(NSObject),
 	Name="MDCContainedButtonThemer")]
 interface ContainedButtonThemer 
-{}
-
-[Category]
-[BaseType(typeof(ContainedButtonThemer),
-	Name="MDCContainedButtonThemer_ToBeDeprecated")]
-interface ContainedButtonThemer_ToBeDeprecated 
 {
     [Static]
     [Export("applyScheme:toButton:")]
-	void ApplyScheme(IButtonScheming scheme, Button button);
-}
+    void ApplyScheme(IButtonScheming scheme, Button button);
+ }
 
 [DisableDefaultCtor]
 [BaseType(typeof(NSObject),
 	Name="MDCFloatingActionButtonThemer")]
 interface FloatingActionButtonThemer 
-{}
-
-[Category]
-[BaseType(typeof(FloatingActionButtonThemer),
-	Name="MDCFloatingActionButtonThemer_ToBeDeprecated")]
-interface FloatingActionButtonThemer_ToBeDeprecated 
 {
     [Static]
     [Export("applyScheme:toButton:")]
@@ -2846,32 +2804,20 @@ interface FloatingActionButtonThemer_ToBeDeprecated
 [BaseType(typeof(NSObject),
 	Name="MDCOutlinedButtonThemer")]
 interface OutlinedButtonThemer 
-{}
-
-[Category]
-[BaseType(typeof(OutlinedButtonThemer),
-	Name="MDCOutlinedButtonThemer_ToBeDeprecated")]
-interface OutlinedButtonThemer_ToBeDeprecated 
 {
     [Static]
     [Export("applyScheme:toButton:")]
-	void ApplyScheme(IButtonScheming scheme, Button button);
+    void ApplyScheme(IButtonScheming scheme, Button button);
 }
 
 [DisableDefaultCtor]
 [BaseType(typeof(NSObject),
 	Name="MDCTextButtonThemer")]
 interface TextButtonThemer 
-{}
-
-[Category]
-[BaseType(typeof(TextButtonThemer),
-	Name="MDCTextButtonThemer_ToBeDeprecated")]
-interface TextButtonThemer_ToBeDeprecated 
 {
     [Static]
     [Export("applyScheme:toButton:")]
-	void ApplyScheme(IButtonScheming scheme, Button button);
+    void ApplyScheme(IButtonScheming scheme, Button button);
 }
 
 [Obsolete("This class will soon be deprecated. Please consider using one of the more specific ButtonColorThemer classes instead.")]
@@ -2905,97 +2851,64 @@ interface ButtonColorThemer
 [BaseType(typeof(NSObject),
 	Name="MDCContainedButtonColorThemer")]
 interface ContainedButtonColorThemer 
-{}
-
-[Category]
-[BaseType(typeof(ContainedButtonColorThemer),
-	Name="MDCContainedButtonColorThemer_ToBeDeprecated")]
-interface ContainedButtonColorThemer_ToBeDeprecated 
 {
     [Static]
     [Export("applySemanticColorScheme:toButton:")]
-	void ApplySemanticColorScheme(IColorScheming colorScheme, Button button);
+    void ApplySemanticColorScheme(IColorScheming colorScheme, Button button);
 }
+
 
 [DisableDefaultCtor]
 [BaseType(typeof(NSObject),
 	Name="MDCFloatingButtonColorThemer")]
-interface FloatingButtonColorThemer 
-{}
-
-[Category]
-[BaseType(typeof(FloatingButtonColorThemer),
-	Name="MDCFloatingButtonColorThemer_ToBeDeprecated")]
-interface FloatingButtonColorThemer_ToBeDeprecated 
+interface FloatingButtonColorThemer
 {
     [Static]
     [Export("applySemanticColorScheme:toButton:")]
-	void ApplySemanticColorScheme(IColorScheming colorScheme, FloatingButton button);
+    void ApplySemanticColorScheme(IColorScheming colorScheme, FloatingButton button);
 }
 
 [DisableDefaultCtor]
 [BaseType(typeof(NSObject),
 	Name="MDCOutlinedButtonColorThemer")]
-interface OutlinedButtonColorThemer 
-{}
-
-[Category]
-[BaseType(typeof(OutlinedButtonColorThemer),
-	Name="MDCOutlinedButtonColorThemer_ToBeDeprecated")]
-interface OutlinedButtonColorThemer_ToBeDeprecated 
+interface OutlinedButtonColorThemer
 {
     [Static]
     [Export("applySemanticColorScheme:toButton:")]
-	void ApplySemanticColorScheme(IColorScheming colorScheme, Button button);
+    void ApplySemanticColorScheme(IColorScheming colorScheme, Button button);
 }
+
 
 [DisableDefaultCtor]
 [BaseType(typeof(NSObject),
 	Name="MDCTextButtonColorThemer")]
-interface TextButtonColorThemer 
-{}
-
-[Category]
-[BaseType(typeof(TextButtonColorThemer),
-	Name="MDCTextButtonColorThemer_ToBeDeprecated")]
-interface TextButtonColorThemer_ToBeDeprecated 
+interface TextButtonColorThemer
 {
     [Static]
     [Export("applySemanticColorScheme:toButton:")]
-	void ApplySemanticColorScheme(IColorScheming colorScheme, Button button);
+    void ApplySemanticColorScheme(IColorScheming colorScheme, Button button);
 }
 
 [DisableDefaultCtor]
 [BaseType(typeof(NSObject),
 	Name="MDCButtonShapeThemer")]
-interface ButtonShapeThemer 
-{}
-
-[Category]
-[BaseType(typeof(ButtonShapeThemer),
-	Name="MDCButtonShapeThemer_ToBeDeprecated")]
-interface ButtonShapeThemer_ToBeDeprecated 
+interface ButtonShapeThemer
 {
     [Static]
     [Export("applyShapeScheme:toButton:")]
-	void ApplyShapeScheme(ShapeScheming shapeScheme, Button button);
+    void ApplyShapeScheme(ShapeScheming shapeScheme, Button button);
 }
 
 [DisableDefaultCtor]
 [BaseType(typeof(NSObject),
 	Name="MDCFloatingButtonShapeThemer")]
-interface FloatingButtonShapeThemer 
-{}
-
-[Category]
-[BaseType(typeof(FloatingButtonShapeThemer),
-	Name="MDCFloatingButtonShapeThemer_ToBeDeprecated")]
-interface FloatingButtonShapeThemer_ToBeDeprecated 
+interface FloatingButtonShapeThemer
 {
     [Static]
     [Export("applyShapeScheme:toButton:")]
-	void ApplyShapeScheme(ShapeScheming shapeScheme, FloatingButton button);
+    void ApplyShapeScheme(ShapeScheming shapeScheme, FloatingButton button);
 }
+
 
 [Category]
 [BaseType(typeof(Button),
@@ -3034,17 +2947,11 @@ interface ButtonTitleColorAccessibilityMutator
 [DisableDefaultCtor]
 [BaseType(typeof(NSObject),
 	Name="MDCButtonTypographyThemer")]
-interface ButtonTypographyThemer 
-{}
-
-[Category]
-[BaseType(typeof(ButtonTypographyThemer),
-	Name="MDCButtonTypographyThemer_ToBeDeprecated")]
-interface ButtonTypographyThemer_ToBeDeprecated 
+interface ButtonTypographyThemer
 {
     [Static]
     [Export("applyTypographyScheme:toButton:")]
-	void ApplyTypographyScheme(TypographyScheming typographyScheme, Button button);
+    void ApplyTypographyScheme(TypographyScheming typographyScheme, Button button);
 }
 
 [BaseType(typeof(UIView),
@@ -3377,41 +3284,29 @@ interface CardScheme : CardScheming
 [DisableDefaultCtor]
 [BaseType(typeof(NSObject),
 	Name="MDCCardThemer")]
-interface CardThemer 
-{}
-
-[Category]
-[BaseType(typeof(CardThemer),
-	Name="MDCCardThemer_ToBeDeprecated")]
-interface CardThemer_ToBeDeprecated 
+interface CardThemer
 {
     [Static]
     [Export("applyScheme:toCard:")]
-	void ApplyScheme(ICardScheming scheme, Card card);
+    void ApplyScheme(ICardScheming scheme, Card card);
 
     [Static]
     [Export("applyScheme:toCardCell:")]
-	void ApplyScheme(ICardScheming scheme, CardCollectionCell cardCell);
+    void ApplyScheme(ICardScheming scheme, CardCollectionCell cardCell);
 
     [Static]
     [Export("applyOutlinedVariantWithScheme:toCard:")]
-	void ApplyOutlinedVariantWithScheme(ICardScheming scheme, Card card);
+    void ApplyOutlinedVariantWithScheme(ICardScheming scheme, Card card);
 
     [Static]
     [Export("applyOutlinedVariantWithScheme:toCardCell:")]
-	void ApplyOutlinedVariantWithScheme(ICardScheming scheme, CardCollectionCell cardCell);
+    void ApplyOutlinedVariantWithScheme(ICardScheming scheme, CardCollectionCell cardCell);
 }
 
 [DisableDefaultCtor]
 [BaseType(typeof(NSObject),
 	Name="MDCCardsColorThemer")]
 interface CardsColorThemer 
-{}
-
-[Category]
-[BaseType(typeof(CardsColorThemer),
-	Name="MDCCardsColorThemer_ToBeDeprecated")]
-interface CardsColorThemer_ToBeDeprecated 
 {
     [Static]
     [Export("applySemanticColorScheme:toCard:")]
@@ -3434,12 +3329,6 @@ interface CardsColorThemer_ToBeDeprecated
 [BaseType(typeof(NSObject),
 	Name="MDCCardsShapeThemer")]
 interface CardsShapeThemer 
-{}
-
-[Category]
-[BaseType(typeof(CardsShapeThemer),
-	Name="MDCCardsShapeThemer_ToBeDeprecated")]
-interface CardsShapeThemer_ToBeDeprecated 
 {
     [Static]
     [Export("applyShapeScheme:toCard:")]
@@ -4401,12 +4290,6 @@ interface ChipViewScheme : ChipViewScheming
 [BaseType(typeof(NSObject),
 	Name="MDCChipViewThemer")]
 interface ChipViewThemer 
-{}
-
-[Category]
-[BaseType(typeof(ChipViewThemer),
-	Name="MDCChipViewThemer_ToBeDeprecated")]
-interface ChipViewThemer_ToBeDeprecated 
 {
     [Static]
     [Export("applyScheme:toChipView:")]
@@ -4433,12 +4316,6 @@ interface ChipViewColorThemer
 [BaseType(typeof(NSObject),
 	Name="MDCChipViewFontThemer")]
 interface ChipViewFontThemer 
-{}
-
-[Category]
-[BaseType(typeof(ChipViewFontThemer),
-	Name="MDCChipViewFontThemer_ToBeDeprecated")]
-interface ChipViewFontThemer_ToBeDeprecated 
 {
     [Static]
     [Export("applyFontScheme:toChipView:")]
@@ -4448,13 +4325,7 @@ interface ChipViewFontThemer_ToBeDeprecated
 [DisableDefaultCtor]
 [BaseType(typeof(NSObject),
 	Name="MDCChipViewShapeThemer")]
-interface ChipViewShapeThemer 
-{}
-
-[Category]
-[BaseType(typeof(ChipViewShapeThemer),
-	Name="MDCChipViewShapeThemer_ToBeDeprecated")]
-interface ChipViewShapeThemer_ToBeDeprecated 
+interface ChipViewShapeThemer
 {
     [Static]
     [Export("applyShapeScheme:toChipView:")]
@@ -5447,12 +5318,6 @@ interface FeatureHighlightAccessibilityMutator
 [BaseType(typeof(NSObject),
 	Name="MDCFeatureHighlightFontThemer")]
 interface FeatureHighlightFontThemer 
-{}
-
-[Category]
-[BaseType(typeof(FeatureHighlightFontThemer),
-	Name="MDCFeatureHighlightFontThemer_ToBeDeprecated")]
-interface FeatureHighlightFontThemer_ToBeDeprecated 
 {
     [Static]
     [Export("applyFontScheme:toFeatureHighlightView:")]
@@ -5463,12 +5328,6 @@ interface FeatureHighlightFontThemer_ToBeDeprecated
 [BaseType(typeof(NSObject),
 	Name="MDCFeatureHighlightTypographyThemer")]
 interface FeatureHighlightTypographyThemer 
-{}
-
-[Category]
-[BaseType(typeof(FeatureHighlightTypographyThemer),
-	Name="MDCFeatureHighlightTypographyThemer_ToBeDeprecated")]
-interface FeatureHighlightTypographyThemer_ToBeDeprecated 
 {
     [Static]
     [Export("applyTypographyScheme:toFeatureHighlightViewController:")]
@@ -5541,16 +5400,10 @@ interface BaseCell : IElevatable, IElevationOverriding
     [NullAllowed]
     [Export("traitCollectionDidChangeBlock",ArgumentSemantic.Copy)]
 	Action<BaseCell, UITraitCollection> TraitCollectionDidChangeBlock { get; set; }
-}
 
-[Category]
-[BaseType(typeof(BaseCell),
-	Name="MDCBaseCell_ToBeDeprecated")]
-interface BaseCell_ToBeDeprecated 
-{
-    [Export("inkColor",ArgumentSemantic.Strong)]
+    [Export("inkColor", ArgumentSemantic.Strong)]
     [Static]
-	UIColor InkColor { get; set; }
+    UIColor InkColor { get; set; }
 }
 
 [BaseType(typeof(BaseCell),
@@ -5580,12 +5433,6 @@ interface SelfSizingStereoCell
 [BaseType(typeof(NSObject),
 	Name="MDCListColorThemer")]
 interface ListColorThemer 
-{}
-
-[Category]
-[BaseType(typeof(ListColorThemer),
-	Name="MDCListColorThemer_ToBeDeprecated")]
-interface ListColorThemer_ToBeDeprecated 
 {
     [Static]
     [Export("applySemanticColorScheme:toSelfSizingStereoCell:")]
@@ -5627,12 +5474,6 @@ interface ListScheme : ListScheming
 [BaseType(typeof(NSObject),
 	Name="MDCListThemer")]
 interface ListThemer 
-{}
-
-[Category]
-[BaseType(typeof(ListThemer),
-	Name="MDCListThemer_ToBeDeprecated")]
-interface ListThemer_ToBeDeprecated 
 {
     [Static]
     [Export("applyScheme:toSelfSizingStereoCell:")]
@@ -5665,12 +5506,6 @@ interface SelfSizingStereoCell_MaterialTheming
 [BaseType(typeof(NSObject),
 	Name="MDCListTypographyThemer")]
 interface ListTypographyThemer 
-{}
-
-[Category]
-[BaseType(typeof(ListTypographyThemer),
-	Name="MDCListTypographyThemer_ToBeDeprecated")]
-interface ListTypographyThemer_ToBeDeprecated 
 {
     [Static]
     [Export("applyTypographyScheme:toSelfSizingStereoCell:")]
@@ -5714,12 +5549,6 @@ interface NavigationBarColorThemer
 [BaseType(typeof(NSObject),
 	Name="MDCNavigationBarTypographyThemer")]
 interface NavigationBarTypographyThemer 
-{}
-
-[Category]
-[BaseType(typeof(NavigationBarTypographyThemer),
-	Name="MDCNavigationBarTypographyThemer_ToBeDeprecated")]
-interface NavigationBarTypographyThemer_ToBeDeprecated 
 {
     [Static]
     [Export("applyTypographyScheme:toNavigationBar:")]
@@ -5898,12 +5727,6 @@ interface BottomDrawerViewControllerDelegate
 [BaseType(typeof(NSObject),
 	Name="MDCBottomDrawerColorThemer")]
 interface BottomDrawerColorThemer 
-{}
-
-[Category]
-[BaseType(typeof(BottomDrawerColorThemer),
-	Name="MDCBottomDrawerColorThemer_ToBeDeprecated")]
-interface BottomDrawerColorThemer_ToBeDeprecated 
 {
     [Static]
     [Export("applySemanticColorScheme:toBottomDrawer:")]
@@ -6332,17 +6155,11 @@ interface Slider : IElevatable, IElevationOverriding
 
     [Export("setValue:animated:")]
 	void SetValue(nfloat value, bool animated);
-}
 
-[Category]
-[BaseType(typeof(Slider),
-	Name="MDCSlider_ToBeDeprecated")]
-interface Slider_ToBeDeprecated 
-{
     [NullAllowed]
-    [Export("inkColor",ArgumentSemantic.Strong)]
+    [Export("inkColor", ArgumentSemantic.Strong)]
     [Static]
-	UIColor InkColor { get; set; }
+    UIColor InkColor { get; set; }
 }
 
 [Protocol]
@@ -6806,16 +6623,10 @@ interface TabBarDelegate : IUIBarPositioningDelegate
     [EventName("ItemSelected")]
     [Export("tabBar:didSelectItem:")]
 	void DidSelectItem(TabBar tabBar, UITabBarItem item);
-}
 
-[Category]
-[BaseType(typeof(TabBar),
-	Name="MDCTabBar_ToBeDeprecated")]
-interface TabBar_ToBeDeprecated 
-{
-    [Export("inkColor",ArgumentSemantic.Assign)]
+    [Export("inkColor", ArgumentSemantic.Assign)]
     [Static]
-	UIColor InkColor { get; set; }
+    UIColor InkColor { get; set; }
 }
 
 [BaseType(typeof(NSObject),
@@ -6982,12 +6793,6 @@ interface TabBarColorThemer
 [BaseType(typeof(NSObject),
 	Name="MDCTabBarFontThemer")]
 interface TabBarFontThemer 
-{}
-
-[Category]
-[BaseType(typeof(TabBarFontThemer),
-	Name="MDCTabBarFontThemer_ToBeDeprecated")]
-interface TabBarFontThemer_ToBeDeprecated 
 {
     [Static]
     [Export("applyFontScheme:toTabBar:")]
@@ -7010,12 +6815,6 @@ interface TabBar_MaterialTheming
 [BaseType(typeof(NSObject),
 	Name="MDCTabBarTypographyThemer")]
 interface TabBarTypographyThemer 
-{}
-
-[Category]
-[BaseType(typeof(TabBarTypographyThemer),
-	Name="MDCTabBarTypographyThemer_ToBeDeprecated")]
-interface TabBarTypographyThemer_ToBeDeprecated 
 {
     [Static]
     [Export("applyTypographyScheme:toTabBar:")]
@@ -7026,12 +6825,6 @@ interface TabBarTypographyThemer_ToBeDeprecated
 [BaseType(typeof(NSObject),
 	Name="MDCFilledTextFieldColorThemer")]
 interface FilledTextFieldColorThemer 
-{}
-
-[Category]
-[BaseType(typeof(FilledTextFieldColorThemer),
-	Name="MDCFilledTextFieldColorThemer_ToBeDeprecated")]
-interface FilledTextFieldColorThemer_ToBeDeprecated 
 {
     [Static]
     [Export("applySemanticColorScheme:toTextInputControllerFilled:")]
@@ -7042,12 +6835,6 @@ interface FilledTextFieldColorThemer_ToBeDeprecated
 [BaseType(typeof(NSObject),
 	Name="MDCOutlinedTextFieldColorThemer")]
 interface OutlinedTextFieldColorThemer 
-{}
-
-[Category]
-[BaseType(typeof(OutlinedTextFieldColorThemer),
-	Name="MDCOutlinedTextFieldColorThemer_ToBeDeprecated")]
-interface OutlinedTextFieldColorThemer_ToBeDeprecated 
 {
     [Static]
     [Export("applySemanticColorScheme:toTextInputController:")]
@@ -7131,7 +6918,6 @@ interface TextFieldFontThemer
     [Export("applyFontScheme:toTextInputController:")]
     void ApplyFontScheme(IFontScheme fontScheme, ITextInputController textInputController);
 
-
     [Wrap("ApplyFontScheme (fontScheme, textInputController)")]
     [Obsolete("Use ApplyFontScheme instead.")]
     [Static]
@@ -7153,13 +6939,7 @@ interface TextFieldFontThemer
     [Obsolete("Use ApplyFontScheme instead.")]
     [Static]
 	void ApplyFontSchemeToTextField(IFontScheme fontScheme, TextField textField);
-}
 
-[Category]
-[BaseType(typeof(TextFieldFontThemer),
-	Name="MDCTextFieldFontThemer_ToBeDeprecated")]
-interface TextFieldFontThemer_ToBeDeprecated 
-{
     [Static]
     [Export("applyFontScheme:toTextInputController:")]
 	void ApplyFontScheme(FontScheme fontScheme, TextInputController textInputController);
@@ -7221,13 +7001,7 @@ interface TextFieldTypographyThemer
     [Obsolete("Use ApplyTypographyScheme instead.")]
     [Static]
 	void ApplyTypographySchemeToTextInput(ITypographyScheming typographyScheme, ITextInput textInput);
-}
 
-[Category]
-[BaseType(typeof(TextFieldTypographyThemer),
-	Name="MDCTextFieldTypographyThemer_ToBeDeprecated")]
-interface TextFieldTypographyThemer_ToBeDeprecated 
-{
     [Static]
     [Export("applyTypographyScheme:toTextInputController:")]
 	void ApplyTypographyScheme(TypographyScheming typographyScheme, TextInputController textInputController);
@@ -7859,13 +7633,7 @@ interface ThumbTrack
 
     [Export("setIcon:")]
 	void SetIcon([NullAllowed] UIImage icon);
-}
 
-[Category]
-[BaseType(typeof(ThumbTrack),
-	Name="MDCThumbTrack_ToBeDeprecated")]
-interface ThumbTrack_ToBeDeprecated 
-{
     [NullAllowed]
     [Export("inkColor",ArgumentSemantic.Strong)]
     [Static]
