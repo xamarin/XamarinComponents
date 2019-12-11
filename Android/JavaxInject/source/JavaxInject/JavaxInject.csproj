@@ -3,7 +3,7 @@
   <PropertyGroup>
     <TargetFrameworks>MonoAndroid90</TargetFrameworks>
     <IsBindingProject>true</IsBindingProject>
-    <AssemblyName>Xamarin.Google.Dagger</AssemblyName>
+    <AssemblyName>Xamarin.JavaX.Inject</AssemblyName>
     <MonoAndroidResourcePrefix>Resources</MonoAndroidResourcePrefix>
     <MonoAndroidAssetsPrefix>Assets</MonoAndroidAssetsPrefix>
     <AndroidUseLatestPlatformSdk>False</AndroidUseLatestPlatformSdk>
@@ -16,17 +16,17 @@
   </PropertyGroup>
 
   <PropertyGroup>
-    <PackageId>Xamarin.Google.Dagger</PackageId>
-    <Title>Google Dagger for Xamarin.Android</Title>
-    <PackageDescription>Xamarin.Android bindings for Google Dagger</PackageDescription>
-    <Summary>Xamarin.Android bindings for Google Dagger</Summary>
+    <PackageId>Xamarin.JavaX.Inject</PackageId>
+    <Title>JavaX Inject bindings for Xamarin.Android</Title>
+    <Summary>Xamarin.Android bindings for Javax Inject</Summary>
+    <PackageDescription>Xamarin.Android bindings for JavaX Inject</PackageDescription>
     <Authors>Microsoft</Authors>
     <Owners>Microsoft</Owners>
     <Copyright>© Microsoft Corporation. All rights reserved.</Copyright>
-    <PackageProjectUrl>https://go.microsoft.com/fwlink/?linkid=2106537</PackageProjectUrl>
-    <PackageLicenseUrl>https://go.microsoft.com/fwlink/?linkid=2106538</PackageLicenseUrl>
+    <PackageProjectUrl>https://go.microsoft.com/fwlink/?linkid=2112607</PackageProjectUrl>
+    <PackageLicenseFile>LICENSE.md</PackageLicenseFile>
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
-    <PackageVersion>2.25.2.1</PackageVersion>
+    <PackageVersion>1</PackageVersion>
   </PropertyGroup>
 
   <ItemGroup>
@@ -35,19 +35,12 @@
   </ItemGroup>
 
   <ItemGroup>
-    <EmbeddedJar Include="..\..\externals\dagger.jar" Link="dagger.jar" />
+    <EmbeddedJar Include="..\..\externals\javax-inject.jar" Link="javax-inject.jar" />
     <None Include="..\..\External-Dependency-Info.txt" Pack="True" PackagePath="THIRD-PARTY-NOTICES.txt" />
+    <None Include="..\..\License.md" Pack="True" PackagePath="LICENSE.md" />
   </ItemGroup>
 
   <ItemGroup>
     <Reference Include="Mono.Android" />
   </ItemGroup>
-
-  <ItemGroup>
-    <Compile Update="Additions.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <PackageReference Include="Xamarin.Javax.Inject" Version="1.0.0" />
-  </ItemGroup>
-
 </Project>

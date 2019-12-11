@@ -1,20 +1,20 @@
 var TARGET = Argument ("t", Argument ("target", "ci"));
 
-var DAGGERS_VERSION = "2.25.2";
-var DAGGERS_NUGET_VERSION = DAGGERS_VERSION + ".1";
-var DAGGERS_URL = $"http://central.maven.org/maven2/com/google/dagger/dagger/{DAGGERS_VERSION}/dagger-{DAGGERS_VERSION}.jar";
+var JAVAX_INJECT_VERSION = "1";
+var JAVAX_INJECT_NUGET_VERSION = JAVAX_INJECT_VERSION;
+var JAVAX_INJECT_URL = $"https://repo1.maven.org/maven2/javax/inject/javax.inject/{JAVAX_INJECT_VERSION}/javax.inject-{JAVAX_INJECT_VERSION}.jar";
 
 Task ("externals")
-	.WithCriteria (!FileExists ("./externals/dagger.jar"))
+	.WithCriteria (!FileExists ("./externals/javax-inject.jar"))
 	.Does (() =>
 {
 	EnsureDirectoryExists ("./externals");
 	
 	// Download Dependencies
-	DownloadFile (DAGGERS_URL, "./externals/dagger.jar");
+	DownloadFile (JAVAX_INJECT_URL, "./externals/javax-inject.jar");
 
 	// Update .csproj nuget versions
-	XmlPoke("./source/dagger/dagger.csproj", "/Project/PropertyGroup/PackageVersion", DAGGERS_NUGET_VERSION);
+	XmlPoke("./source/JavaxInject/JavaxInject.csproj", "/Project/PropertyGroup/PackageVersion", JAVAX_INJECT_NUGET_VERSION);
 });
 
 
@@ -22,7 +22,7 @@ Task("libs")
 	.IsDependentOn("externals")
 	.Does(() =>
 {
-	MSBuild("./GoogleDagger.sln", c => {
+	MSBuild("./JavaxInject.sln", c => {
 		c.Configuration = "Release";
 		c.Restore = true;
 		c.MaxCpuCount = 0;
@@ -34,7 +34,7 @@ Task("nuget")
 	.IsDependentOn("libs")
 	.Does(() =>
 {
-	MSBuild ("./GoogleDagger.sln", c => {
+	MSBuild ("./JavaxInject.sln", c => {
 		c.Configuration = "Release";
 		c.MaxCpuCount = 0;
 		c.Targets.Clear();

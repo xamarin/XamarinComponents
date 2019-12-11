@@ -30,6 +30,11 @@
   TriggerPaths: [ Android/GoogleDagger ]
   MacBuildTargets: [ ci ]
   WindowsBuildTargets: [ ci ]
+- Name: JavaxInject
+  BuildScript: ./Android/JavaxInject/build.cake
+  TriggerPaths: [ Android/JavaxInject ]
+  MacBuildTargets: [ ci ]
+  WindowsBuildTargets: [ ci ]
 - Name: AndroidThings
   BuildScript: ./Android/AndroidThings/build.cake
   TriggerPaths: [ Android/AndroidThings ]
@@ -607,7 +612,8 @@
 - Name: Xamarin.Build.Download
   BuildScript: ./Util/Xamarin.Build.Download/build.cake
   TriggerPaths: [ Util/Xamarin.Build.Download ]
-  MacBuildTargets: [ nuget ]
+  MacBuildTargets: [ ci ]
+  WindowsBuildTargets: [ ci ]
 - Name: Cake.Xamarin.Binding.Util
   BuildScript: ./Util/Cake.Xamarin.Binding.Util/build.cake
   TriggerPaths: [ Util/Cake.Xamarin.Binding.Util ]

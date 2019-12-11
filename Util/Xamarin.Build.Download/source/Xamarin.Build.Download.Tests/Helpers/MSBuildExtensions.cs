@@ -7,7 +7,7 @@ namespace Xamarin.ContentPipeline.Tests
 {
 	//workaround for missing MSBuild API in Mono. Project.AddItem explodes,
 	//so we use ProjectRootElement, which doesn't have SetProperty/GetPropertyValue
-	static class MSBuildExtensions
+	public static class MSBuildExtensions
 	{
 		public static void SetProperty (this ProjectRootElement prel, string name, string value)
 		{

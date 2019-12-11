@@ -19,7 +19,7 @@
         -->
         <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
         <PackageId>Xamarin.Android.Crashlytics.Core</PackageId>
-        <PackageVersion>2.6.3</PackageVersion>
+        <PackageVersion>2.6.3.1</PackageVersion>
         <Title>Crashlytics Core for Android</Title>
         <PackageDescription>Xamarin.Android bindings for Crashlytics Android - Core</PackageDescription>
         <PackageTags>Xamarin Android Xamarin.Android Crashlytics</PackageTags>
@@ -44,7 +44,7 @@
         </InputJar>
     </ItemGroup>
     <ItemGroup>
-        <PackageReference Include="Xamarin.Build.Download" Version="0.4.11" />
+        <PackageReference Include="Xamarin.Build.Download" Version="0.7.1" PrivateAssets="None" />
     </ItemGroup>
     <ItemGroup>
       <None Remove="Transforms\Metadata.xml" />
@@ -58,6 +58,7 @@
     </ItemGroup>
     <ItemGroup>
         <None Include="Xamarin.Android.Crashlytics.Core.targets" PackagePath="build\$(TargetFramework)" Pack="true" />
+        <None Include="Xamarin.Android.Crashlytics.Core.targets" PackagePath="buildTransitive\$(TargetFramework)" Pack="true" />
         <None Include="..\..\External-Dependency-Info.txt" PackagePath="THIRD-PARTY-NOTICE.txt" Pack="true" />
     </ItemGroup>
     <PropertyGroup>
