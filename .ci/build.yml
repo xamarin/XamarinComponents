@@ -8,6 +8,7 @@ parameters:
   postBuildSteps: []                                        # any steps that need to run just after the main compilation ends
   masterBranchName: 'master'                                # the "master" branch that should be used - can be something other than "master"
   installAppleCertificates: 'true'                          # whether or not to install the Apple certificates and provisioning profiles
+  submodules: false                                         # whether or not to check out submodules
   # job software version parameters
   macosImage: 'Hosted macOS'                                # the name of the macOS VM image
   windowsImage: 'Hosted Windows 2019 with VS2019'           # the name of the Windows VM image
@@ -49,6 +50,8 @@ jobs:
     pool:
       name: $(imageName)
     steps:
+      - checkout: self
+        submodules: ${{ parameters.submodules }}
       # before the build starts, make sure the tooling is as expected
       - bash: sudo $AGENT_HOMEDIRECTORY/scripts/select-xamarin-sdk.sh ${{ parameters.mono }}
         displayName: 'Switch to the latest Xamarin SDK'
@@ -103,7 +106,7 @@ jobs:
         displayName: 'Download the latest nuget.exe'
       - pwsh: |
           $branch = "${{ parameters.cakeTemplatesBranch }}"
-          if (("$(Build.Repository.Id)" -eq "xamarin/XamarinComponents") -and ("$(System.PullRequest.IsFork)" -eq "False")) {
+          if (("$(Build.Repository.Id)" -eq "xamarin/XamarinComponents") -and ("$(System.PullRequest.IsFork)" -eq "False") -and ("$env:FORCE_MASTER_TEMPLATES" -ne "True")) {
             if ("$env:SYSTEM_PULLREQUEST_SOURCEBRANCH") {
               $branch = "$env:SYSTEM_PULLREQUEST_SOURCEBRANCH"
             } else {
@@ -252,9 +255,6 @@ jobs:
             --verbosity="${{ parameters.verbosity }}"
         displayName: 'Generate API diff'
       # after the build is complete
-      - task: ms.vss-governance-buildtask.governance-build-task-component-detection.ComponentGovernanceComponentDetection@0
-        displayName: 'Run component detection'
-        condition: and(succeeded(), in(variables['Build.Reason'], 'IndividualCI', 'BatchedCI'))
       - task: PublishBuildArtifacts@1
         displayName: 'Publish artifacts'
         inputs:
@@ -266,3 +266,78 @@ jobs:
         inputs:
           PathToPublish: output
           ArtifactName: output-$(System.JobName)
+      # run any required checks
+      - ${{ if eq(variables['System.TeamProject'], 'devdiv') }}:
+        - task: ComponentGovernanceComponentDetection@0
+          displayName: 'Run component detection'
+          condition: and(always(), eq('refs/heads/${{ parameters.masterBranchName }}', variables['Build.SourceBranch']))
+          inputs:
+            scanType: 'Register'
+            verbosity: 'Verbose'
+            alertWarningLevel: 'High'
+
+  - ${{ if eq(variables['System.TeamProject'], 'devdiv') }}:
+    - job: checks
+      displayName: 'Run required code checks'
+      condition: eq('refs/heads/${{ parameters.masterBranchName }}', variables['Build.SourceBranch'])
+      pool:
+        name: ${{ parameters.windowsImage }}
+      steps:
+        - pwsh: |
+            $repo = "$(Build.Repository.Id)"
+            $repo = $repo.Substring($repo.IndexOf("/") + 1)
+            $branch = "${{ parameters.masterBranchName }}"
+            $CODEBASE_NAME = $repo + "_" + $branch
+            echo "Using codebase: $CODEBASE_NAME"
+            Write-Host "##vso[task.setvariable variable=CODEBASE_NAME]$CODEBASE_NAME"
+        - task: CredScan@2
+          displayName: 'Analyze source for credentials'
+          inputs:
+            toolMajorVersion: 'V2'
+        - task: PoliCheck@1
+          inputs:
+            inputType: 'Basic'
+            targetType: 'F'
+        - task: SdtReport@1
+          displayName: 'Create security analysis report'
+          inputs:
+            AllTools: false
+            APIScan: false
+            BinSkim: false
+            CodesignValidation: false
+            CredScan: true
+            FortifySCA: false
+            FxCop: false
+            ModernCop: false
+            MSRD: false
+            PoliCheck: true
+            RoslynAnalyzers: false
+            SDLNativeRules: false
+            Semmle: false
+            TSLint: false
+            ToolLogsNotFoundAction: 'Standard'
+        - task: PublishSecurityAnalysisLogs@3
+          displayName: 'Publish security analysis logs'
+        - task: TSAUpload@1
+          inputs:
+            tsaVersion: 'TsaV2'
+            codebase: 'NewOrUpdate'
+            tsaEnvironment: 'PROD'
+            codeBaseName: '$(CODEBASE_NAME)'
+            notificationAlias: 'xamacomd@microsoft.com'
+            notifyAlwaysV2: false
+            instanceUrlForTsaV2: 'DEVDIV'
+            projectNameDEVDIV: 'DevDiv'
+            areaPath: 'DevDiv\Xamarin Tools and SDKs\Components'
+            iterationPath: 'DevDiv\OneVS'
+            uploadAPIScan: false
+            uploadBinSkim: false
+            uploadCredScan: true
+            uploadFortifySCA: false
+            uploadFxCop: false
+            uploadModernCop: false
+            uploadPoliCheck: true
+            uploadPREfast: false
+            uploadRoslyn: false
+            uploadTSLint: false
+            uploadAsync: true

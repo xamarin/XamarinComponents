@@ -11,6 +11,7 @@ using Microsoft.Win32;
 using Xamarin.Components.Ide.Activation;
 using Xamarin.MacDev;
 using System.Linq;
+using System.Runtime.CompilerServices;
 
 namespace Xamarin.Build.Download
 {
@@ -26,6 +27,12 @@ namespace Xamarin.Build.Download
 		public string User7ZipPath { get; set; }
 
 		public bool AllowUnsecureUrls { get; set; }
+
+		public string VsInstallRoot { get; set; }
+
+		public bool IsAndroid { get; set; }
+
+		public bool AndroidFixManifests { get; set; }
 
 		DownloadUtils downloadUtils;
 
@@ -78,11 +85,11 @@ namespace Xamarin.Build.Download
 			}
 
 			// Calculate the hash of the file
-			var hash = HashFile (fileToHash).Replace ("-", string.Empty);
+			var hash = Sha256HashFile (fileToHash).Replace ("-", string.Empty);
 
 			LogDebugMessage ("File :{0}", fileToHash);
-			LogDebugMessage ("SHA1 : {0}", hash);
-			LogDebugMessage ("Expected SHA1 : {0}", expectedHash);
+			LogDebugMessage ("SHA256 : {0}", hash);
+			LogDebugMessage ("Expected SHA256 : {0}", expectedHash);
 
 			// Check to see if the new hash matches expected value
 			if (string.Compare (hash, expectedHash, StringComparison.InvariantCultureIgnoreCase) == 0) {
@@ -147,7 +154,7 @@ namespace Xamarin.Build.Download
 					return false;
 				}
 
-				if (!File.Exists (xbd.CacheFile) || !IsValidDownload (xbd.DestinationDir + ".sha1", xbd.CacheFile, xbd.Sha1)) {
+				if (!File.Exists (xbd.CacheFile) || !IsValidDownload (xbd.DestinationDir + ".sha256", xbd.CacheFile, xbd.Sha256)) {
 					try {
 						int progress = -1;
 						DownloadProgressChangedEventHandler downloadHandler = (o, e) => {
@@ -162,6 +169,11 @@ namespace Xamarin.Build.Download
 							client.DownloadProgressChanged += downloadHandler;
 							LogMessage ("  Downloading {0} to {1}", xbd.Url, xbd.CacheFile);
 							client.DownloadFileTaskAsync (xbd.Url, xbd.CacheFile).Wait (token);
+
+							// Run through our AAR fixups if it's android
+							if (IsAndroid)
+								AndroidAarFixups.FixupAar(xbd.CacheFile, AndroidFixManifests, Log);
+
 							LogMessage ("  Downloading Complete");
 							client.DownloadProgressChanged -= downloadHandler;
 						}
@@ -206,7 +218,7 @@ namespace Xamarin.Build.Download
 
 		async Task<bool> ExtractArchive (XamarinBuildDownload xbd, string flagFile, CancellationToken token)
 		{
-			ProcessStartInfo psi = CreateExtractionArgs (xbd.CacheFile, xbd.DestinationDir, xbd.Kind);
+			ProcessStartInfo psi = CreateExtractionArgs (xbd.CacheFile, xbd.DestinationDir, xbd.Kind, VsInstallRoot);
 
 			try {
 				LogMessage ("Extracting {0} to {1}", xbd.CacheFile, xbd.DestinationDir);
@@ -224,8 +236,9 @@ namespace Xamarin.Build.Download
 				}
 				LogCodedError (
 					ThisOrThat (xbd.CustomErrorCode, ErrorCodes.ExtractionFailed),
-					ThisOrThat (xbd.CustomErrorMessage, () => string.Format ("Unpacking failed. Please download '{0}' and extract it to the '{1}' directory " +
-																			 "and create an empty file called '{2}'.", xbd.Url, xbd.DestinationDir, flagFile)));
+					ThisOrThat (xbd.CustomErrorMessage, () => string.Format (
+						"Unpacking failed. Please download '{0}' and extract it to the '{1}' directory " +
+						"and create an empty file called '{2}'.", xbd.Url, xbd.DestinationDir, flagFile)));
 				LogMessage ("Unpacking failure reason: " + output.ToString (), MessageImportance.High);
 			} catch (Exception ex) {
 				LogErrorFromException (ex);
@@ -244,30 +257,30 @@ namespace Xamarin.Build.Download
 		async Task<int> ExtractTarOnWindows (XamarinBuildDownload xbd, StringWriter output, CancellationToken token)
 		{
 			var tarFile = GetTarFileName (xbd);
-			var psi = CreateExtractionArgs (tarFile, xbd.DestinationDir, xbd.Kind, true);
+			var psi = CreateExtractionArgs (tarFile, xbd.DestinationDir, xbd.Kind, VsInstallRoot, true);
 			var returnCode = await ProcessUtils.StartProcess (psi, output, output, token);
 			if (returnCode == 7) {
 				LogMessage ("7Zip command line parse did not work.  Trying without -snl-");
-				psi = CreateExtractionArgs (tarFile, xbd.DestinationDir, xbd.Kind, false);
+				psi = CreateExtractionArgs (tarFile, xbd.DestinationDir, xbd.Kind, VsInstallRoot, false);
 				returnCode = await ProcessUtils.StartProcess (psi, output, output, token);
 			}
 			File.Delete (tarFile);
 			return returnCode;
 		}
 
-		ProcessStartInfo CreateExtractionArgs (string file, string contentDir, ArchiveKind kind, bool ignoreTarSymLinks = false)
+		ProcessStartInfo CreateExtractionArgs (string file, string contentDir, ArchiveKind kind, string vsInstallRoot, bool ignoreTarSymLinks = false)
 		{
 			ProcessArgumentBuilder args = null;
 			switch (kind) {
 			case ArchiveKind.Tgz:
 				if (Platform.IsWindows)
-					args = Build7ZipExtractionArgs (file, contentDir, User7ZipPath, ignoreTarSymLinks);
+					args = Build7ZipExtractionArgs (file, contentDir, User7ZipPath, ignoreTarSymLinks, vsInstallRoot);
 				else
 					args = BuildTgzExtractionArgs (file, contentDir);
 				break;
 				case ArchiveKind.Zip:
 				if (Platform.IsWindows)
-					args = Build7ZipExtractionArgs (file, contentDir, User7ZipPath, false);
+					args = Build7ZipExtractionArgs (file, contentDir, User7ZipPath, false, vsInstallRoot);
 				else
 					args = BuildZipExtractionArgs (file, contentDir);
 				break;
@@ -280,9 +293,9 @@ namespace Xamarin.Build.Download
 			};
 		}
 
-		static ProcessArgumentBuilder Build7ZipExtractionArgs (string file, string contentDir, string user7ZipPath, bool ignoreTarSymLinks)
+		static ProcessArgumentBuilder Build7ZipExtractionArgs (string file, string contentDir, string user7ZipPath, bool ignoreTarSymLinks, string vsInstallRoot)
 		{
-			var args = new ProcessArgumentBuilder (Get7ZipPath (user7ZipPath));
+			var args = new ProcessArgumentBuilder (Get7ZipPath (user7ZipPath, vsInstallRoot));
 			//if it's a tgz, we have a two-step extraction. for the gzipped layer, extract without paths
 			if (file.EndsWith (".gz", StringComparison.OrdinalIgnoreCase) || file.EndsWith (".tgz", StringComparison.OrdinalIgnoreCase))
 				args.Add ("e");
@@ -299,92 +312,17 @@ namespace Xamarin.Build.Download
 			return args;
 		}
 
-		static string Get7ZipPath (string user7ZipPath)
+		static string Get7ZipPath (string user7ZipPath, string vsInstallRoot)
 		{
 			if (!string.IsNullOrEmpty (user7ZipPath) && File.Exists (user7ZipPath))
 				return user7ZipPath;
 
-			using (var topKey = Registry.LocalMachine.OpenSubKey (@"SOFTWARE\Xamarin\XamarinVS"))
-			{
-				string version;
-				if (topKey != null && (version = (topKey.GetValue ("InstalledVersion") as string)) != null)
-				{
-					using (var key = Registry.LocalMachine.OpenSubKey (@"SOFTWARE\Xamarin\VisualStudio"))
-					{
-						foreach (var skName in key.GetSubKeyNames ())
-						{
-							using (var sk = key.OpenSubKey (skName))
-							{
-								if (sk == null)
-									continue;
-								var path = sk.GetValue ("Path") as string;
-								if (path == null)
-									continue;
-								path = Path.Combine (path, version, "7-Zip", "7z.exe");
-								if (File.Exists (path))
-								{
-									return path;
-								}
-							}
-						}
-					}
-				}
-			}
+			var path7z = VS7ZipLocator.Locate7Zip(vsInstallRoot);
 
-			using (var key = Registry.CurrentUser.OpenSubKey (@"SOFTWARE\Microsoft\VisualStudio"))
-			{
-				foreach (var skName in key.GetSubKeyNames ())
-				{
-					if (skName == null || !skName.EndsWith ("_Config"))
-						continue;
+			if (string.IsNullOrEmpty(path7z))
+				throw new Exception ("Could not find 7zip.exe in Xamarin installation");
 
-					using (var sk = key.OpenSubKey (skName + @"\Packages\{296e6a4e-2bd5-44b7-a96d-8ee3d9cda2f6}"))
-					{
-						if (sk == null)
-							continue;
-
-						var path = sk.GetValue ("CodeBase") as string;
-
-						if (path == null)
-							continue;
-
-						var sZipPath = Path.Combine (Path.GetDirectoryName (path), "7-Zip", "7z.exe");
-						if (File.Exists (sZipPath))
-						{
-							return sZipPath;
-						}
-					}
-				}
-			}
-
-			using (var topKey = Registry.CurrentUser.OpenSubKey (@"SOFTWARE\Xamarin\XamarinVS"))
-			{
-				string version; 
-				if (topKey != null && (version = (topKey.GetValue ("InstalledVersion") as string)) != null)
-				{
-					using (var key = Registry.CurrentUser.OpenSubKey (@"SOFTWARE\Xamarin\VisualStudio"))
-					{
-						foreach (var skName in key.GetSubKeyNames ())
-						{
-							using (var sk = key.OpenSubKey (skName))
-							{
-								if (sk == null)
-									continue;
-								var path = sk.GetValue ("Path") as string;
-								if (path == null)
-									continue;
-								path = Path.Combine (path, "Xamarin", version, "7-Zip", "7z.exe");
-								if (File.Exists (path))
-								{
-									return path;
-								}
-							}
-						}
-					}
-				}
-			}
-
-			throw new Exception ("Could not find 7zip.exe in Xamarin installation");
+			return path7z;
 		}
 
 		static ProcessArgumentBuilder BuildZipExtractionArgs (string file, string contentDir)
@@ -415,9 +353,9 @@ namespace Xamarin.Build.Download
 			return string.IsNullOrEmpty (foundFile) ? tarPath : foundFile;
 		}
 
-		public static string HashFile (string filename)
+		public static string Sha256HashFile (string filename)
 		{
-			using (HashAlgorithm hashAlg = new SHA1Managed ()) {
+			using (HashAlgorithm hashAlg = new SHA256Managed ()) {
 				return HashFile (filename, hashAlg);
 			}
 		}

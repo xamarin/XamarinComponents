@@ -6,7 +6,7 @@ using Microsoft.Build.Framework;
 
 namespace Xamarin.ContentPipeline.Tests
 {
-	class MSBuildTestLogger : ILogger
+	public class MSBuildTestLogger : ILogger
 	{
 		IEventSource eventSource;
 

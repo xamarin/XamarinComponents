@@ -5,6 +5,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KotlinBinding12", "KotlinBi
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KotlinBinding13", "KotlinBinding13\KotlinBinding13.csproj", "{3DA934AE-9330-4868-AFCC-7E702BDF7B57}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BubblePickerBinding", "BubblePickerBinding\BubblePickerBinding.csproj", "{3A675E14-E309-41DD-A9F7-46ADB94112DB}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -19,5 +21,9 @@ Global
 		{3DA934AE-9330-4868-AFCC-7E702BDF7B57}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3DA934AE-9330-4868-AFCC-7E702BDF7B57}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3DA934AE-9330-4868-AFCC-7E702BDF7B57}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3A675E14-E309-41DD-A9F7-46ADB94112DB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3A675E14-E309-41DD-A9F7-46ADB94112DB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3A675E14-E309-41DD-A9F7-46ADB94112DB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3A675E14-E309-41DD-A9F7-46ADB94112DB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
