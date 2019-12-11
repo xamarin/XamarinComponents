@@ -1311,10 +1311,6 @@ namespace MaterialComponents
         [Static]
         [Export("applySemanticColorScheme:toActivityIndicator:")]
         void ApplySemanticColorScheme(IColorScheming colorScheme, ActivityIndicator activityIndicator);
-
-        [Static]
-        [Export("applyColorScheme:toActivityIndicator:")]
-        void ApplyColorScheme(IColorScheme colorScheme, ActivityIndicator activityIndicator);
     }
 
     [DisableDefaultCtor]
@@ -2382,10 +2378,6 @@ namespace MaterialComponents
         [Export("applySurfaceVariantWithSemanticColorScheme:toBottomAppBarView:")]
         void ApplySurfaceVariant(IColorScheming colorScheme, BottomAppBarView bottomAppBarView);
 
-        [Static]
-        [Export("applyColorScheme:toBottomAppBarView:")]
-        void ApplyColorScheme(ColorScheme colorScheme, BottomAppBarView bottomAppBarView);
-
         [Wrap("ApplySurfaceVariant (colorScheme, bottomAppBarView)")]
         [Obsolete("Use ApplySurfaceVariant instead.")]
         [Static]
@@ -2504,7 +2496,12 @@ namespace MaterialComponents
         Name = "MDCBottomNavigationBarColorThemer")]
     interface BottomNavigationBarColorThemer
     {
-        [Obsolete("This method will soon be deprecated. Consider using ApplySemanticColorScheme method instead.")]
+        [Obsolete("This method will soon be deprecated.")]
+        [Static]
+        [Export("applySemanticColorScheme:toBottomNavigation:")]
+        void ApplySemanticColorScheme(IColorScheme colorScheme, BottomNavigationBar bottomNavigation);
+
+        [Obsolete("This method will soon be deprecated.")]
         [Static]
         [Export("applyColorScheme:toBottomNavigationBar:")]
         void ApplyColorScheme(IColorScheme colorScheme, BottomNavigationBar bottomNavigationBar);
@@ -2718,6 +2715,10 @@ namespace MaterialComponents
         [Static]
         [Export("applyColorScheme:toButtonBar:")]
         void ApplyColorScheme(IColorScheme colorScheme, ButtonBar buttonBar);
+
+        [Static]
+        [Export("applySemanticColorScheme:toButtonBar:")]
+        void ApplySemanticColorScheme(IColorScheme colorScheme, ButtonBar buttonBar);
     }
 
     [DisableDefaultCtor]
@@ -4302,10 +4303,21 @@ namespace MaterialComponents
         Name = "MDCChipViewColorThemer")]
     interface ChipViewColorThemer
     {
-        [Obsolete("This method will soon be deprecated. Consider using ApplyOutlinedVariant method instead.")]
+        [Obsolete("This method will soon be deprecated")]
+        [Static]
+        [Export("applySemanticColorScheme:toChipView:")]
+        void ApplySemanticColorScheme(IColorScheming colorScheme, ChipView chipView);
+
+        [Obsolete("This method will soon be deprecated.")]
         [Static]
         [Export("applySemanticColorScheme:toStrokedChipView:")]
         void ApplySemanticColorSchemeToStrokedChipView(IColorScheming colorScheme, ChipView strokedChipView);
+
+        [Obsolete("This method will soon be deprecated.")]
+        [Static]
+        [Export("applyOutlinedVariantWithColorScheme:toChipView:")]
+        void ApplyOutlinedVariantWithColorScheme(IColorScheming colorScheme, ChipView chipView);
+
     }
 
     [Obsolete("This class will soon be deprecated. Please consider using ChipViewTypographyThemer class instead.")]
@@ -5097,10 +5109,6 @@ namespace MaterialComponents
         [Static]
         [Export("applySemanticColorScheme:toAlertController:")]
         void ApplySemanticColorScheme(IColorScheming colorScheme, AlertController alertController);
-
-        [Static]
-        [Export("applyColorScheme:")]
-        void ApplyColorScheme(ColorScheme colorScheme);
     }
 
     [Protocol]
@@ -5299,6 +5307,11 @@ namespace MaterialComponents
         [Static]
         [Export("applyColorScheme:toFeatureHighlightView:")]
         void ApplyColorScheme(IColorScheme colorScheme, FeatureHighlightView featureHighlightView);
+
+        [Obsolete(" This method will soon be deprecated.")]
+        [Static]
+        [Export("applySemanticColorScheme:toFeatureHighlightViewController:")]
+        void ApplySemanticColorScheme(IColorScheming colorScheme, FeatureHighlightViewController featureHighlightViewController);
     }
 
     [DisableDefaultCtor]
@@ -5317,6 +5330,7 @@ namespace MaterialComponents
         Name = "MDCFeatureHighlightFontThemer")]
     interface FeatureHighlightFontThemer
     {
+        [Obsolete(" This method will soon be deprecated.")]
         [Static]
         [Export("applyFontScheme:toFeatureHighlightView:")]
         void ApplyFontScheme(FontScheme fontScheme, FeatureHighlightView featureHighlightView);
@@ -5327,6 +5341,7 @@ namespace MaterialComponents
         Name = "MDCFeatureHighlightTypographyThemer")]
     interface FeatureHighlightTypographyThemer
     {
+        [Obsolete(" This method will soon be deprecated.")]
         [Static]
         [Export("applyTypographyScheme:toFeatureHighlightViewController:")]
         void ApplyTypographyScheme(TypographyScheming typographyScheme, FeatureHighlightViewController featureHighlightViewController);
@@ -5337,12 +5352,22 @@ namespace MaterialComponents
         Name = "MDCFlexibleHeaderColorThemer")]
     interface FlexibleHeaderColorThemer
     {
-        [Obsolete("This method will soon be deprecated. Consider using ApplySemanticColorScheme method instead.")]
+        [Obsolete(" This method will soon be deprecated.")]
+        [Static]
+        [Export("applySemanticColorScheme:toFlexibleHeaderView:")]
+        void ApplySemanticColorScheme(IColorScheming colorScheme, FlexibleHeaderView flexibleHeaderView);
+
+        [Obsolete(" This method will soon be deprecated.")]
+        [Static]
+        [Export("applySurfaceVariantWithColorScheme:toFlexibleHeaderView:")]
+        void ApplySurfaceVariantWithColorScheme(IColorScheming colorScheme, FlexibleHeaderView flexibleHeaderView);
+
+        [Obsolete(" This method will soon be deprecated.")]
         [Static]
         [Export("applyColorScheme:toFlexibleHeaderView:")]
-        void ApplyColorScheme(IColorScheme colorScheme, FlexibleHeaderView flexibleHeaderView);
+        void ApplyColorScheme(IColorScheming colorScheme, FlexibleHeaderView flexibleHeaderView);
 
-        [Obsolete("This method will soon be deprecated. Consider using ApplySemanticColorScheme method instead.")]
+        [Obsolete(" This method will soon be deprecated.")]
         [Static]
         [Export("applyColorScheme:toMDCFlexibleHeaderController:")]
         void ApplyColorScheme(IColorScheme colorScheme, FlexibleHeaderViewController flexibleHeaderController);
@@ -5399,6 +5424,7 @@ namespace MaterialComponents
         [Export("traitCollectionDidChangeBlock", ArgumentSemantic.Copy)]
         Action<BaseCell, UITraitCollection> TraitCollectionDidChangeBlock { get; set; }
 
+        [Obsolete(" This property will soon be deprecated.")]
         [Export("inkColor", ArgumentSemantic.Strong)]
         [Static]
         UIColor InkColor { get; set; }
@@ -5432,10 +5458,12 @@ namespace MaterialComponents
         Name = "MDCListColorThemer")]
     interface ListColorThemer
     {
+        [Obsolete("This method will soon be deprecated.")]
         [Static]
         [Export("applySemanticColorScheme:toSelfSizingStereoCell:")]
         void ApplySemanticColorScheme(IColorScheming colorScheme, SelfSizingStereoCell cell);
 
+        [Obsolete("This method will soon be deprecated.")]
         [Static]
         [Export("applySemanticColorScheme:toBaseCell:")]
         void ApplySemanticColorScheme(IColorScheming colorScheme, BaseCell cell);
@@ -5473,10 +5501,12 @@ namespace MaterialComponents
         Name = "MDCListThemer")]
     interface ListThemer
     {
+        [Obsolete("This method will soon be deprecated.")]
         [Static]
         [Export("applyScheme:toSelfSizingStereoCell:")]
         void ApplyScheme(ListScheming scheme, SelfSizingStereoCell cell);
 
+        [Obsolete("This method will soon be deprecated.")]
         [Static]
         [Export("applyScheme:toBaseCell:")]
         void ApplyScheme(ListScheming scheme, BaseCell cell);
@@ -5505,6 +5535,7 @@ namespace MaterialComponents
         Name = "MDCListTypographyThemer")]
     interface ListTypographyThemer
     {
+        [Obsolete("This property has been deprecated.")]
         [Static]
         [Export("applyTypographyScheme:toSelfSizingStereoCell:")]
         void ApplyTypographyScheme(TypographyScheming typographyScheme, SelfSizingStereoCell cell);
@@ -5541,6 +5572,17 @@ namespace MaterialComponents
         [Static]
         [Export("applyColorScheme:toNavigationBar:")]
         void ApplyColorScheme(IColorScheme colorScheme, NavigationBar navigationBar);
+
+        [Obsolete("This method will soon be deprecated.")]
+        [Static]
+        [Export("applySemanticColorScheme:toNavigationBar:")]
+        void ApplySemanticColorScheme(IColorScheme colorScheme, NavigationBar navigationBar);
+
+        [Obsolete("This method will soon be deprecated.")]
+        [Static]
+        [Export("applySurfaceVariantWithColorScheme:toNavigationBar:")]
+        void ApplySurfaceVariantWithColorScheme(IColorScheming colorScheme, NavigationBar navigationBar);
+
     }
 
     [DisableDefaultCtor]
@@ -5726,6 +5768,7 @@ namespace MaterialComponents
         Name = "MDCBottomDrawerColorThemer")]
     interface BottomDrawerColorThemer
     {
+        [Obsolete("The method will shortly be deprecated.")]
         [Static]
         [Export("applySemanticColorScheme:toBottomDrawer:")]
         void ApplySemanticColorScheme(IColorScheming colorScheme, BottomDrawerViewController bottomDrawer);
@@ -6154,6 +6197,7 @@ namespace MaterialComponents
         [Export("setValue:animated:")]
         void SetValue(nfloat value, bool animated);
 
+        [Obsolete("This property will be deprecated soon.")]
         [NullAllowed]
         [Export("inkColor", ArgumentSemantic.Strong)]
         [Static]
@@ -6181,20 +6225,26 @@ namespace MaterialComponents
         Name = "MDCSliderColorThemer")]
     interface SliderColorThemer
     {
-        [Obsolete("This method will soon be deprecated. Consider using SemanticColorScheme class instead.")]
+        [Obsolete("This property will soon be deprecated. Consider using SemanticColorScheme class instead.")]
         [Static]
         [Export("defaultSliderLightColorScheme")]
         BasicColorScheme DefaultSliderLightColorScheme { get; }
 
-        [Obsolete("This method will soon be deprecated. Consider using SemanticColorScheme class instead.")]
+        [Obsolete("This property will soon be deprecated. Consider using SemanticColorScheme class instead.")]
         [Static]
         [Export("defaultSliderDarkColorScheme")]
         BasicColorScheme DefaultSliderDarkColorScheme { get; }
 
-        [Obsolete("This method will soon be deprecated. Consider using ApplySemanticColorScheme method instead.")]
+        [Obsolete("This property will soon be deprecated. Consider using ApplySemanticColorScheme method instead.")]
         [Static]
         [Export("applyColorScheme:toSlider:")]
         void ApplyColorScheme(IColorScheme colorScheme, Slider slider);
+
+        [Obsolete("This property will soon be deprecated.")]
+        [Static]
+        [Export("applySemanticColorScheme:toSlider:")]
+        void ApplySemanticColorScheme(IColorScheming colorScheme, Slider slider);
+
     }
 
     [Protocol]
@@ -6460,7 +6510,22 @@ namespace MaterialComponents
     [BaseType(typeof(NSObject),
         Name = "MDCSnackbarColorThemer")]
     interface SnackbarColorThemer
-    { }
+    {
+        [Obsolete("This method will be deprecated soon.")]
+        [Static]
+        [Export("applySemanticColorScheme:")]
+        void ApplySemanticColorScheme(IColorScheming colorScheme);
+
+        [Obsolete("This method will be deprecated soon.")]
+        [Static]
+        [Export("applySemanticColorScheme:toSnackbarManager:")]
+        void ApplySemanticColorScheme(IColorScheming colorScheme, SnackbarManager snackbarManager);
+
+        [Obsolete("This method will be deprecated soon.")]
+        [Static]
+        [Export("applyColorScheme:toSnackbarMessageView:")]
+        void ApplyColorScheme(IColorScheme colorScheme, SnackbarMessageView snackbarMessageView);
+    }
 
     [Obsolete("This class will soon be deprecated. Please consider using SnackbarTypographyThemer class instead.")]
     [DisableDefaultCtor]
@@ -6468,21 +6533,25 @@ namespace MaterialComponents
         Name = "MDCSnackbarFontThemer")]
     interface SnackbarFontThemer
     {
+        [Obsolete("This method will be deprecated soon.")]
         [Static]
         [Export("applyFontScheme:toSnackbarMessageView:")]
         void ApplyFontScheme(FontScheme fontScheme, SnackbarMessageView snackbarMessageView);
 
+        [Obsolete("This method will be deprecated soon.")]
         [Static]
         [Export("applyFontScheme:")]
         void ApplyFontScheme(FontScheme fontScheme);
 
     }
 
+    [Obsolete("This class will be deprecated soon.")]
     [DisableDefaultCtor]
     [BaseType(typeof(NSObject),
         Name = "MDCSnackbarTypographyThemer")]
     interface SnackbarTypographyThemer
     {
+        [Obsolete("This method will be deprecated soon.")]
         [Static]
         [Export("applyTypographyScheme:")]
         void ApplyTypographyScheme(TypographyScheming typographyScheme);
@@ -6607,6 +6676,10 @@ namespace MaterialComponents
         [Export("displayDelegate", ArgumentSemantic.Weak)]
         [Static]
         NSObject WeakDisplayDelegate { get; set; }
+
+        [Obsolete("This property will be deprecated soon.")]
+        [Export("inkColor", ArgumentSemantic.Assign)]
+        UIColor InkColor { get; set; }
     }
 
     [Protocol]
@@ -6748,9 +6821,10 @@ namespace MaterialComponents
     interface TabBarSizeClassDelegate
     {
         [Export("horizontalSizeClassForObject:")]
-        int HorizontalSizeClassForObject(IUITraitEnvironment @object);
+        long HorizontalSizeClassForObject(IUITraitEnvironment @object);
     }
 
+    [Obsolete("This class will soon be deprecated.")]
     [DisableDefaultCtor]
     [BaseType(typeof(NSObject),
         Name = "MDCTabBarColorThemer")]
@@ -6760,6 +6834,16 @@ namespace MaterialComponents
         [Static]
         [Export("applyColorScheme:toTabBar:")]
         void ApplyColorScheme(IColorScheme colorScheme, TabBar tabBar);
+
+        [Obsolete("This method will soon be deprecated.")]
+        [Static]
+        [Export("applySemanticColorScheme:toTabs:")]
+        void ApplySemanticColorScheme(IColorScheme colorScheme, TabBar tabBar);
+
+        [Obsolete("This method will soon be deprecated.")]
+        [Static]
+        [Export("applySurfaceVariantWithColorScheme:toTabs:")]
+        void ApplySurfaceVariantWithColorScheme(IColorScheme colorScheme, TabBar tabBar);
     }
 
     [Obsolete("This class will soon be deprecated. Please consider using TabBarTypographyThemer class instead.")]
@@ -6768,6 +6852,7 @@ namespace MaterialComponents
         Name = "MDCTabBarFontThemer")]
     interface TabBarFontThemer
     {
+        [Obsolete("This method will soon be deprecated.")]
         [Static]
         [Export("applyFontScheme:toTabBar:")]
         void ApplyFontScheme(FontScheme fontScheme, TabBar tabBar);
@@ -6785,41 +6870,49 @@ namespace MaterialComponents
         void ApplySurfaceThemeWithScheme(IContainerScheming scheme);
     }
 
+    [Obsolete("This class will soon be deprecated.")]
     [DisableDefaultCtor]
     [BaseType(typeof(NSObject),
         Name = "MDCTabBarTypographyThemer")]
     interface TabBarTypographyThemer
     {
+        [Obsolete("This method will soon be deprecated.")]
         [Static]
         [Export("applyTypographyScheme:toTabBar:")]
         void ApplyTypographyScheme(TypographyScheming typographyScheme, TabBar tabBar);
     }
 
+    [Obsolete("This class will soon be deprecated.")]
     [DisableDefaultCtor]
     [BaseType(typeof(NSObject),
         Name = "MDCFilledTextFieldColorThemer")]
     interface FilledTextFieldColorThemer
     {
+        [Obsolete("This method will soon be deprecated.")]
         [Static]
         [Export("applySemanticColorScheme:toTextInputControllerFilled:")]
         void ApplySemanticColorScheme(IColorScheming colorScheme, TextInputControllerFilled textInputControllerFilled);
     }
 
+    [Obsolete("This class will soon be deprecated.")]
     [DisableDefaultCtor]
     [BaseType(typeof(NSObject),
         Name = "MDCOutlinedTextFieldColorThemer")]
     interface OutlinedTextFieldColorThemer
     {
+        [Obsolete("This method will soon be deprecated.")]
         [Static]
         [Export("applySemanticColorScheme:toTextInputController:")]
         void ApplySemanticColorScheme(IColorScheming colorScheme, TextInputController textInputController);
     }
 
+    [Obsolete("This class will soon be deprecated.")]
     [DisableDefaultCtor]
     [BaseType(typeof(NSObject),
         Name = "MDCTextFieldColorThemer")]
     interface TextFieldColorThemer
     {
+        [Obsolete("This method will soon be deprecated.")]
         [Static]
         [Export("applySemanticColorScheme:toTextInputController:")]
         void ApplySemanticColorScheme(IColorScheming colorScheme, ITextInputController textInputController);
@@ -6829,26 +6922,32 @@ namespace MaterialComponents
         [Static]
         void ApplySemanticColorSchemeToTextInputController(IColorScheming colorScheme, ITextInputController textInputController);
 
+        [Obsolete("This method will soon be deprecated.")]
         [Static]
         [Export("applySemanticColorScheme:toAllTextInputControllersOfClass:")]
         void ApplySemanticColorSchemeToAll(IColorScheming colorScheme, Class textInputControllerClass);
 
+        [Obsolete("This method will soon be deprecated.")]
         [Static]
         [Wrap("ApplySemanticColorSchemeToAll (colorScheme, new Class (textInputControllerType))")]
         void ApplySemanticColorSchemeToAll(IColorScheming colorScheme, Type textInputControllerType);
 
+        [Obsolete("This method will soon be deprecated.")]
         [Static]
         [Export("applySemanticColorScheme:toTextInput:")]
         void ApplySemanticColorScheme(IColorScheming colorScheme, ITextInput textInput);
 
+        [Obsolete("This method will soon be deprecated.")]
         [Static]
         [Export("applyColorScheme:toTextInputController:")]
         void ApplyColorScheme(IColorScheme colorScheme, ITextInputController textInputController);
 
+        [Obsolete("This method will soon be deprecated.")]
         [Static]
         [Export("applyColorScheme:toAllTextInputControllersOfClass:")]
         void ApplyColorScheme(IColorScheme colorScheme, Class textInputControllerClass);
 
+        [Obsolete("This method will soon be deprecated.")]
         [Static]
         [Wrap("ApplyColorScheme (colorScheme, new Class (textInputControllerType))")]
         void ApplyColorScheme(IColorScheme colorScheme, Type textInputControllerType);
@@ -6886,6 +6985,7 @@ namespace MaterialComponents
         Name = "MDCTextFieldFontThemer")]
     interface TextFieldFontThemer
     {
+        [Obsolete("This method will soon be deprecated.")]
         [Static]
         [Export("applyFontScheme:toTextInputController:")]
         void ApplyFontScheme(IFontScheme fontScheme, ITextInputController textInputController);
@@ -6895,14 +6995,17 @@ namespace MaterialComponents
         [Static]
         void ApplyFontSchemeToTextInputController(IFontScheme fontScheme, ITextInputController textInputController);
 
+        [Obsolete("This method will soon be deprecated.")]
         [Static]
         [Export("applyFontScheme:toAllTextInputControllersOfClass:")]
         void ApplyFontSchemeToAll(IFontScheme fontScheme, Class textInputControllerType);
 
+        [Obsolete("This method will soon be deprecated.")]
         [Static]
         [Wrap("ApplyFontSchemeToAll (fontScheme, new Class (textInputControllerType))")]
         void ApplyFontSchemeToAll(IFontScheme fontScheme, Type textInputControllerType);
 
+        [Obsolete("This method will soon be deprecated.")]
         [Static]
         [Export("applyFontScheme:toTextField:")]
         void ApplyFontScheme(IFontScheme fontScheme, [NullAllowed]  TextField textField);
@@ -6912,14 +7015,17 @@ namespace MaterialComponents
         [Static]
         void ApplyFontSchemeToTextField(IFontScheme fontScheme, TextField textField);
 
+        [Obsolete("This method will soon be deprecated.")]
         [Static]
         [Export("applyFontScheme:toTextInputController:")]
         void ApplyFontScheme(FontScheme fontScheme, TextInputController textInputController);
 
+        [Obsolete("This method will soon be deprecated.")]
         [Static]
         [Export("applyFontScheme:toAllTextInputControllersOfClass:")]
         void ApplyFontSchemeToAll(FontScheme fontScheme, TextInputController textInputControllerClass);
 
+        [Obsolete("This method will soon be deprecated.")]
         [Static]
         [Export("applyFontScheme:toTextField:")]
         void ApplyFontScheme(FontScheme fontScheme, [NullAllowed]  TextField textField);
@@ -6943,19 +7049,23 @@ namespace MaterialComponents
         void ApplyThemeWithScheme(IContainerScheming scheme);
     }
 
+    [Obsolete(" This class will soon be deprecated.")]
     [DisableDefaultCtor]
     [BaseType(typeof(NSObject),
         Name = "MDCTextFieldTypographyThemer")]
     interface TextFieldTypographyThemer
     {
+        [Obsolete("This method will soon be deprecated.")]
         [Static]
         [Export("applyTypographyScheme:toTextInputController:")]
         void ApplyTypographyScheme(ITypographyScheming typographyScheme, ITextInputController textInputController);
 
+        [Obsolete("This method will soon be deprecated.")]
         [Static]
         [Export("applyTypographyScheme:toAllTextInputControllersOfClass:")]
         void ApplyTypographySchemeToAll(ITypographyScheming typographyScheme, Class textInputControllerType);
 
+        [Obsolete("This method will soon be deprecated.")]
         [Wrap("ApplyTypographySchemeToAll (typographyScheme, new Class (textInputControllerType))")]
         [Static]
         void ApplyTypographySchemeToAll(ITypographyScheming typographyScheme, Type textInputControllerType);
@@ -6965,6 +7075,7 @@ namespace MaterialComponents
         [Static]
         void ApplyTypographySchemeToTextInputController(ITypographyScheming typographyScheme, ITextInputController textInputController);
 
+        [Obsolete("This method will soon be deprecated.")]
         [Static]
         [Export("applyTypographyScheme:toTextInput:")]
         void ApplyTypographyScheme(ITypographyScheming typographyScheme, ITextInput textInput);
@@ -6974,14 +7085,17 @@ namespace MaterialComponents
         [Static]
         void ApplyTypographySchemeToTextInput(ITypographyScheming typographyScheme, ITextInput textInput);
 
+        [Obsolete("This method will soon be deprecated.")]
         [Static]
         [Export("applyTypographyScheme:toTextInputController:")]
         void ApplyTypographyScheme(TypographyScheming typographyScheme, TextInputController textInputController);
 
+        [Obsolete("This method will soon be deprecated.")]
         [Static]
         [Export("applyTypographyScheme:toAllTextInputControllersOfClass:")]
         void ApplyTypographySchemeToAll(TypographyScheming typographyScheme, TextInputController textInputControllerClass);
 
+        [Obsolete("This method will soon be deprecated.")]
         [Static]
         [Export("applyTypographyScheme:toTextInput:")]
         void ApplyTypographyScheme(TypographyScheming typographyScheme, TextInput textInput);
@@ -7606,15 +7720,18 @@ namespace MaterialComponents
         [Export("setIcon:")]
         void SetIcon([NullAllowed] UIImage icon);
 
+        [Obsolete("This property will be deprecated soon.")]
         [NullAllowed]
         [Export("inkColor", ArgumentSemantic.Strong)]
         [Static]
         UIColor InkColor { get; set; }
 
+        [Obsolete("This property will be deprecated soon.")]
         [Export("shouldDisplayInk")]
         [Static]
         bool ShouldDisplayInk { get; set; }
 
+        [Obsolete("This property will be deprecated soon.")]
         [Export("thumbMaxRippleRadius")]
         [Static]
         nfloat ThumbMaxRippleRadius { get; set; }
