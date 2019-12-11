@@ -12,9 +12,9 @@
     <PackageVersion>0.0.1-preview</PackageVersion>
     <Authors>Microsoft</Authors>
     <Owners>Microsoft</Owners>
-    <!-- <PackageProjectUrl>https://go.microsoft.com/fwlink/?linkid=865061</PackageProjectUrl> -->
-    <!-- <PackageLicenseUrl>https://go.microsoft.com/fwlink/?linkid=864965</PackageLicenseUrl> -->
-    <!-- <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance> -->
+    <PackageProjectUrl>https://go.microsoft.com/fwlink/?linkid=PLACEHOLDER</PackageProjectUrl>
+    <PackageLicenseUrl>https://go.microsoft.com/fwlink/?linkid=PLACEHOLDER</PackageLicenseUrl>
+    <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
     <Description>Support for redirecting types that were moved.</Description>
     <Copyright>© Microsoft Corporation. All rights reserved.</Copyright>
     <RepositoryUrl>https://github.com/xamarin/XamarinComponents.git</RepositoryUrl>
