@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29603.211
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Xamarin.Build.TypeRedirector", "Xamarin.Build.TypeRedirector\Xamarin.Build.TypeRedirector.csproj", "{FE265444-8634-40E8-BB1D-FFAD21FFCCDB}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{FE265444-8634-40E8-BB1D-FFAD21FFCCDB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FE265444-8634-40E8-BB1D-FFAD21FFCCDB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FE265444-8634-40E8-BB1D-FFAD21FFCCDB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FE265444-8634-40E8-BB1D-FFAD21FFCCDB}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {50D06583-2853-43E7-931D-80A4F3DC8FDF}
+	EndGlobalSection
+EndGlobal
