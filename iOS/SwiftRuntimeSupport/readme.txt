@@ -23,7 +23,7 @@ Swift, you will need to use the Xcode IPA wizard. To do so, please, follow
 these steps:
 
 1. In Visual Studio, select a valid iOS device before archiving.
-2. Go to *Build* menu / *Archive for Publishing*gs
+2. Go to *Build* menu / *Archive for Publishing*
 3. Once done, open Xcode and go to *Window* / *Organizer*
 4. Select the *Archives* tab
 5. On the left side of the window, select your app
