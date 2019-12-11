@@ -2,6 +2,13 @@
 // Xamarin.iOS.SwiftRuntimeSupport //
 /////////////////////////////////////
 
+*** Backward compatibility notice ***
+If you are still using Xcode 10.x or below, please, downgrade to v0.1.0.
+This version contains a fix for Xcode 11.x but breaks functionality with
+previous Xcode versions
+*************************************
+
+
 This NuGet has the intention to support Xamarin apps that uses iOS components
 with some dependency on Swift. In general, this NuGet will scan all frameworks
 used by the app, sign and copy the necessary Swift libraries in the right place
@@ -16,8 +23,8 @@ Swift, you will need to use the Xcode IPA wizard. To do so, please, follow
 these steps:
 
 1. In Visual Studio, select a valid iOS device before archiving.
-2. Go to *Build* menu / *Archive for Publishing*
+2. Go to *Build* menu / *Archive for Publishing*gs
 3. Once done, open Xcode and go to *Window* / *Organizer*
 4. Select the *Archives* tab
 5. On the left side of the window, select your app
-6. Click on *Distribute App* button and follow the wizard 
+6. Click on *Distribute App* button and follow the wizard
