@@ -6748,7 +6748,7 @@ namespace MaterialComponents
     interface TabBarSizeClassDelegate
     {
         [Export("horizontalSizeClassForObject:")]
-        UIUserInterfaceSizeClass HorizontalSizeClassForObject(IUITraitEnvironment @object);
+        int HorizontalSizeClassForObject(IUITraitEnvironment @object);
     }
 
     [DisableDefaultCtor]
