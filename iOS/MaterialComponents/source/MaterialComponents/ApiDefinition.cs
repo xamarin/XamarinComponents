@@ -1311,6 +1311,10 @@ namespace MaterialComponents
         [Static]
         [Export("applySemanticColorScheme:toActivityIndicator:")]
         void ApplySemanticColorScheme(IColorScheming colorScheme, ActivityIndicator activityIndicator);
+
+        [Static]
+        [Export("applyColorScheme:toActivityIndicator:")]
+        void ApplyColorScheme(IColorScheming colorScheme, ActivityIndicator activityIndicator);
     }
 
     [DisableDefaultCtor]
@@ -1345,16 +1349,16 @@ namespace MaterialComponents
     {
         [EventArgs("AppBarNavigationControllerWillAddAppBarViewController")]
         [Export("appBarNavigationController:willAddAppBarViewController:asChildOfViewController:")]
-        void AppBarNavigationController(AppBarNavigationController navigationController, AppBarViewController appBarViewController, UIViewController viewController);
+        void WillAddAppBarViewController(AppBarNavigationController navigationController, AppBarViewController appBarViewController, UIViewController viewController);
 
         [return: NullAllowed]
         [Export("appBarNavigationController:trackingScrollViewForViewController:suggestedTrackingScrollView:")]
-        UIScrollView AppBarNavigationController(AppBarNavigationController navigationController, UIViewController viewController, [NullAllowed]  UIScrollView scrollView);
+        UIScrollView TrackScrollView(AppBarNavigationController navigationController, UIViewController viewController, [NullAllowed]  UIScrollView scrollView);
 
         [EventArgs("AppBarNavigationControllerWillAddAppBar")]
         [Obsolete("This method will soon be deprecated. Please use WillAddAppBarViewController method instead.")]
         [Export("appBarNavigationController:willAddAppBar:asChildOfViewController:")]
-        void AppBarNavigationController(AppBarNavigationController navigationController, AppBar appBar, UIViewController viewController);
+        void WillAddAppBar(AppBarNavigationController navigationController, AppBar appBar, UIViewController viewController);
     }
 
     [BaseType(typeof(UINavigationController),
@@ -1851,7 +1855,6 @@ namespace MaterialComponents
 
         [NullAllowed]
         [Export("inkColor", ArgumentSemantic.Strong)]
-        [Static]
         UIColor InkColor { get; set; }
     }
 
@@ -1909,6 +1912,14 @@ namespace MaterialComponents
         [Static]
         [Export("applyColorScheme:toAppBar:")]
         void ApplyColorScheme(IColorScheme colorScheme, AppBar appBar);
+
+        [Static]
+        [Export("applyColorScheme:toAppBarViewController:")]
+        void ApplyColorScheme(IColorScheme colorScheme, AppBarViewController appBarViewController);
+
+        [Static]
+        [Export("applySurfaceVariantWithColorScheme:toAppBarViewController:")]
+        void ApplySurfaceVariant(IColorScheme colorScheme, AppBarViewController appBarViewController);
     }
 
     [Category]
@@ -2676,7 +2687,6 @@ namespace MaterialComponents
 
         [NullAllowed]
         [Export("inkColor", ArgumentSemantic.Strong)]
-        [Static]
         UIColor InkColor { get; set; }
     }
 
@@ -5107,6 +5117,10 @@ namespace MaterialComponents
     interface AlertColorThemer
     {
         [Static]
+        [Export("applyColorScheme:")]
+        void ApplyColorScheme(IColorScheming colorScheme);
+
+        [Static]
         [Export("applySemanticColorScheme:toAlertController:")]
         void ApplySemanticColorScheme(IColorScheming colorScheme, AlertController alertController);
     }
@@ -6199,7 +6213,6 @@ namespace MaterialComponents
         [Obsolete("This property will be deprecated soon.")]
         [NullAllowed]
         [Export("inkColor", ArgumentSemantic.Strong)]
-        [Static]
         UIColor InkColor { get; set; }
     }
 
@@ -6997,7 +7010,7 @@ namespace MaterialComponents
         [Obsolete("This method will soon be deprecated.")]
         [Static]
         [Export("applyFontScheme:toAllTextInputControllersOfClass:")]
-        void ApplyFontSchemeToAll(IFontScheme fontScheme, Class textInputControllerType);
+        void ApplyFontSchemeToAll(IFontScheme fontScheme, Class textInputControllerClass);
 
         [Obsolete("This method will soon be deprecated.")]
         [Static]
@@ -7062,7 +7075,7 @@ namespace MaterialComponents
         [Obsolete("This method will soon be deprecated.")]
         [Static]
         [Export("applyTypographyScheme:toAllTextInputControllersOfClass:")]
-        void ApplyTypographySchemeToAll(ITypographyScheming typographyScheme, Class textInputControllerType);
+        void ApplyTypographySchemeToAll(ITypographyScheming typographyScheme, Class textInputControllerClass);
 
         [Obsolete("This method will soon be deprecated.")]
         [Wrap("ApplyTypographySchemeToAll (typographyScheme, new Class (textInputControllerType))")]
