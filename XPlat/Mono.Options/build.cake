@@ -1,14 +1,11 @@
+var TARGET = Argument("t", Argument("target", "ci"));
 
-#load "../../common.cake"
+var MONO_TAG = "mono-6.6.0.161";
 
-var TARGET = Argument("t", Argument("target", "Default"));
-
-var MONO_TAG = "mono-5.12.0.273";
-
-var ASSEMBLY_VERSION = "5.0.0.0";
-var ASSEMBLY_FILE_VERSION = "5.12.0.0";
-var ASSEMBLY_INFO_VERSION = "5.12.0.273";
-var NUGET_VERSION = "5.12.0.273";
+var ASSEMBLY_VERSION = "6.0.0.0";
+var ASSEMBLY_FILE_VERSION = "6.6.0.0";
+var ASSEMBLY_INFO_VERSION = "6.6.0.161";
+var NUGET_VERSION = "6.6.0.161";
 
 var OUTPUT_PATH = (DirectoryPath)"./output/";
 
