@@ -34,9 +34,8 @@ Task("libs")
 		.WithProperty("PackageOutputPath", MakeAbsolute(OUTPUT_PATH).FullPath));
 });
 
-Task("nuget").IsDependentOn("libs");
-
-Task("component");
+Task("nuget")
+	.IsDependentOn("libs");
 
 Task("samples")
 	.IsDependentOn("libs")
@@ -53,5 +52,11 @@ Task("clean")
 {
 	CleanDirectories("./externals/");
 });
+
+
+Task("ci")
+	.IsDependentOn("libs")
+	.IsDependentOn("nuget")
+	.IsDependentOn("samples");
 
 RunTarget(TARGET);
