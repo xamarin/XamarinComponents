@@ -20,6 +20,9 @@ namespace Xamarin.Build.TypeRedirector
             public static readonly AssemblyNameReference MonoAndroid =
                 AssemblyNameReference.Parse("Mono.Android, Version=0.0.0.0, Culture=neutral, PublicKeyToken=84e04ff9cfb79065");
 
+            public static readonly AssemblyNameReference System =
+                AssemblyNameReference.Parse("System, Version=2.0.5.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e");
+
             public static readonly AssemblyNameReference OpenTK =
                 AssemblyNameReference.Parse("OpenTK, Version=0.0.0.0, Culture=neutral, PublicKeyToken=84e04ff9cfb79065");
             public static readonly AssemblyNameReference OpenTK10 =
@@ -45,6 +48,9 @@ namespace Xamarin.Build.TypeRedirector
                     // OpenTK
                     { "System.Drawing.Color", Assemblies.OpenTK },
                     { "System.Drawing.KnownColor", Assemblies.OpenTK },
+                    // System
+                    { "System.Collections.Generic.Queue`1", Assemblies.System },
+                    { "System.Collections.Generic.Stack`1", Assemblies.System },
                 }
             },
             {
@@ -61,6 +67,9 @@ namespace Xamarin.Build.TypeRedirector
                     // OpenTK-1.0
                     { "System.Drawing.Color", Assemblies.OpenTK10 },
                     { "System.Drawing.KnownColor", Assemblies.OpenTK10 },
+                    // System
+                    { "System.Collections.Generic.Queue`1", Assemblies.System },
+                    { "System.Collections.Generic.Stack`1", Assemblies.System },
                 }
             },
             {
@@ -77,6 +86,9 @@ namespace Xamarin.Build.TypeRedirector
                     // OpenTK-1.0
                     { "System.Drawing.Color", Assemblies.OpenTK10 },
                     { "System.Drawing.KnownColor", Assemblies.OpenTK10 },
+                    // System
+                    { "System.Collections.Generic.Queue`1", Assemblies.System },
+                    { "System.Collections.Generic.Stack`1", Assemblies.System },
                 }
             },
             {
@@ -92,6 +104,9 @@ namespace Xamarin.Build.TypeRedirector
                     { "System.Drawing.RectangleF", Assemblies.XamarinWatchOS },
                     { "System.Drawing.Size", Assemblies.XamarinWatchOS },
                     { "System.Drawing.SizeF", Assemblies.XamarinWatchOS },
+                    // System
+                    { "System.Collections.Generic.Queue`1", Assemblies.System },
+                    { "System.Collections.Generic.Stack`1", Assemblies.System },
                 }
             },
             {
@@ -109,6 +124,9 @@ namespace Xamarin.Build.TypeRedirector
                     { "System.Drawing.Size", Assemblies.MonoAndroid },
                     { "System.Drawing.SizeF", Assemblies.MonoAndroid },
                     { "System.Drawing.SystemColors", Assemblies.MonoAndroid },
+                    // System
+                    { "System.Collections.Generic.Queue`1", Assemblies.System },
+                    { "System.Collections.Generic.Stack`1", Assemblies.System },
                 }
             }
         };
