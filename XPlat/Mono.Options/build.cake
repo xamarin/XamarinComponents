@@ -1,3 +1,5 @@
+#load "../../common.cake"
+
 var TARGET = Argument("t", Argument("target", "ci"));
 
 var MONO_TAG = "mono-6.6.0.161";
