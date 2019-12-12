@@ -12,54 +12,64 @@ namespace Transformeriser3000
         static async Task Main(string[] args)
         {
             var currentLocation = Path.GetDirectoryName(typeof(Program).Assembly.Location);
-            var apiFile = Path.Combine(currentLocation, "ApiDefinitions.cs");
-            var apiFileOrig = Path.Combine(currentLocation, "ApiDefinitionsOrig.cs");
-            var apiMetaDataFile = Path.Combine(currentLocation, "Metadata.xml");
-            var apiXmlFile = Path.Combine(currentLocation, "Api.xml");
-            var apiFileFixed = Path.Combine(currentLocation, "ApiDefinitionsFixed.cs");
-            var apiPathTree  = Path.Combine(currentLocation, "ApiTree.txt");
+            //var apiFile = Path.Combine(currentLocation, "ApiDefinitions.cs");
+            //var apiFileOrig = Path.Combine(currentLocation, "ApiDefinitionsOrig.cs");
+            //var apiMetaDataFile = Path.Combine(currentLocation, "Metadata.xml");
+            //var apiXmlFile = Path.Combine(currentLocation, "Api.xml");
+            //var apiFileFixed = Path.Combine(currentLocation, "ApiDefinitionsFixed.cs");
+            //var apiPathTree  = Path.Combine(currentLocation, "ApiTree.txt");
 
-            var apiFileNew = Path.Combine(currentLocation, "ApiDefinitionsNew.cs");
+            //var apiFileNew = Path.Combine(currentLocation, "ApiDefinitionsNew.cs");
             var apiDiffOutput = Path.Combine(currentLocation, "diffs");
 
             var apiV92 = Path.Combine(currentLocation, "ApiDefinitions92.cs");
-            var apiV92CS = Path.Combine(currentLocation, "ApiDefinitions92Gen.cs");
-            var apiV92CSClean = Path.Combine(currentLocation, "ApiDefinitions92GenClean.cs");
-            var apiv92XmlFile = Path.Combine(currentLocation, "Apiv92.xml");
+            var apiV72 = Path.Combine(currentLocation, "ApiDefinitions72.cs");
 
-            var apiV92Altered = Path.Combine(currentLocation, "ApiDefinitionnsv92Alternative.cs");
+            //var apiV92CS = Path.Combine(currentLocation, "ApiDefinitions92Gen.cs");
+            //var apiV92CSClean = Path.Combine(currentLocation, "ApiDefinitions92GenClean.cs");
+            //var apiv92XmlFile = Path.Combine(currentLocation, "Apiv92.xml");
 
-            var api92 = await Load92(apiV92);
+            //var apiV92Altered = Path.Combine(currentLocation, "ApiDefinitionnsv92Alternative.cs");
 
-            if (!Directory.Exists(apiDiffOutput))
-                Directory.CreateDirectory(apiDiffOutput);
+            var api72 = await LoadDefinition(apiV72);
+            var api92 = await LoadDefinition(apiV92);
+            
 
-            //loading file
-            Console.WriteLine("Loading file...");
-            await CodeGenerator.GenerateAsync(api92, apiV92CS);
-
-            Console.WriteLine("Transforming file...");
-            var fixedTransform = api92.Transform(apiMetaDataFile);
-
-            if (fixedTransform != null)  //there is a fixed version of the transform
-                fixedTransform.WriteToFile(Path.Combine(apiDiffOutput, "Metadata_fixed.xml"));
-
-            // api92.RemovePrefix("MDC");
-            Console.WriteLine($"Generating...{apiV92CSClean}");
-            await CodeGenerator.GenerateAsync(api92, apiV92CSClean);
-
-            //api92.WriteToFile(apiv92XmlFile);
-
-            ////load the altered v92 file
-            Console.WriteLine($"Loading ...{apiV92Altered}");
-            var altered = await Transformer.ExtractDefinitionAsync(apiV92Altered);
-
-            //////now compare
-            Console.WriteLine($"Build comparison trees...");
-            var orgStack = api92.BuildTreePath();
-            var newStack = altered.BuildTreePath();
+            var orgStack = api72.BuildTreePath();
+            var newStack = api92.BuildTreePath();
 
             ChangeManager.Compare(orgStack, newStack, apiDiffOutput);
+
+
+            //if (!Directory.Exists(apiDiffOutput))
+            //    Directory.CreateDirectory(apiDiffOutput);
+
+            ////loading file
+            //Console.WriteLine("Loading file...");
+            //await CodeGenerator.GenerateAsync(api92, apiV92CS);
+
+            //Console.WriteLine("Transforming file...");
+            //var fixedTransform = api92.Transform(apiMetaDataFile);
+
+            //if (fixedTransform != null)  //there is a fixed version of the transform
+            //    fixedTransform.WriteToFile(Path.Combine(apiDiffOutput, "Metadata_fixed.xml"));
+
+            //// api92.RemovePrefix("MDC");
+            //Console.WriteLine($"Generating...{apiV92CSClean}");
+            //await CodeGenerator.GenerateAsync(api92, apiV92CSClean);
+
+            ////api92.WriteToFile(apiv92XmlFile);
+
+            //////load the altered v92 file
+            //Console.WriteLine($"Loading ...{apiV92Altered}");
+            //var altered = await Transformer.ExtractDefinitionAsync(apiV92Altered);
+
+            ////////now compare
+            //Console.WriteLine($"Build comparison trees...");
+            //var orgStack = api92.BuildTreePath();
+            //var newStack = altered.BuildTreePath();
+
+            //ChangeManager.Compare(orgStack, newStack, apiDiffOutput);
 
             //generate the current file
             //var apiDefinition = await Transformer.ExtractDefinitionAsync(apiFile);
@@ -119,7 +129,7 @@ namespace Transformeriser3000
         /// </summary>
         /// <param name="fileName">Name of the file.</param>
         /// <returns></returns>
-        private static async Task<ApiDefinition> Load92(string fileName)
+        private static async Task<ApiDefinition> LoadDefinition(string fileName)
         {
             var result = await Transformer.ExtractDefinitionAsync(fileName);
 

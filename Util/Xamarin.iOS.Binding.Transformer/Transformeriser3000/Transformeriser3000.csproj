@@ -8,32 +8,20 @@
         <ProjectReference Include="..\Xamarin.iOS.Binding.Transformer\Xamarin.iOS.Binding.Transformer.csproj" />
     </ItemGroup>
     <ItemGroup>
-        <Compile Remove="ApiDefinitionnsv92Alternative.cs" />
-        <Compile Remove="ApiDefinitions.cs" />
         <Compile Remove="ApiDefinitions92.cs" />
         <Compile Remove="ApiDefinitionsOrig.cs" />
+        <Compile Remove="ApiDefinitions72.cs" />
     </ItemGroup>
     <ItemGroup>
         <PackageReference Include="Microsoft.CodeAnalysis.CSharp" Version="3.3.1">
         </PackageReference>
     </ItemGroup>
     <ItemGroup>
-        <None Include="ApiDefinitionnsv92Alternative.cs">
-          <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-        </None>
-        <None Include="ApiDefinitions.cs">
-            <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-        </None>
         <None Include="ApiDefinitions92.cs">
           <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
         </None>
-        <None Include="ApiDefinitionsOrig.cs">
+        <None Include="ApiDefinitions72.cs">
           <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
         </None>
-    </ItemGroup>
-    <ItemGroup>
-      <None Update="Metadata.xml">
-        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      </None>
     </ItemGroup>
 </Project>
