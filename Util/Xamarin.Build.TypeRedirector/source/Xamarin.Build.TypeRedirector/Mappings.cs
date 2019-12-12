@@ -21,6 +21,8 @@ namespace Xamarin.Build.TypeRedirector
                 AssemblyNameReference.Parse("Mono.Android, Version=0.0.0.0, Culture=neutral, PublicKeyToken=84e04ff9cfb79065");
 
             public static readonly AssemblyNameReference OpenTK =
+                AssemblyNameReference.Parse("OpenTK, Version=0.0.0.0, Culture=neutral, PublicKeyToken=84e04ff9cfb79065");
+            public static readonly AssemblyNameReference OpenTK10 =
                 AssemblyNameReference.Parse("OpenTK-1.0, Version=0.0.0.0, Culture=neutral, PublicKeyToken=84e04ff9cfb79065");
         }
 
@@ -29,6 +31,22 @@ namespace Xamarin.Build.TypeRedirector
         /// </summary>
         public static readonly Dictionary<string, Dictionary<string, AssemblyNameReference>> MovedTypes = new Dictionary<string, Dictionary<string, AssemblyNameReference>>
         {
+            {
+                "Xamarin.Mac",
+                new Dictionary<string, AssemblyNameReference>
+                {
+                    // Xamarin.iOS
+                    { "System.Drawing.Point", Assemblies.XamarinMac },
+                    { "System.Drawing.PointF", Assemblies.XamarinMac },
+                    { "System.Drawing.Rectangle", Assemblies.XamarinMac },
+                    { "System.Drawing.RectangleF", Assemblies.XamarinMac },
+                    { "System.Drawing.Size", Assemblies.XamarinMac },
+                    { "System.Drawing.SizeF", Assemblies.XamarinMac },
+                    // OpenTK
+                    { "System.Drawing.Color", Assemblies.OpenTK },
+                    { "System.Drawing.KnownColor", Assemblies.OpenTK },
+                }
+            },
             {
                 "Xamarin.iOS",
                 new Dictionary<string, AssemblyNameReference>
@@ -40,9 +58,40 @@ namespace Xamarin.Build.TypeRedirector
                     { "System.Drawing.RectangleF", Assemblies.XamariniOS },
                     { "System.Drawing.Size", Assemblies.XamariniOS },
                     { "System.Drawing.SizeF", Assemblies.XamariniOS },
-                    // OpenTK
-                    { "System.Drawing.Color", Assemblies.OpenTK },
-                    { "System.Drawing.KnownColor", Assemblies.OpenTK },
+                    // OpenTK-1.0
+                    { "System.Drawing.Color", Assemblies.OpenTK10 },
+                    { "System.Drawing.KnownColor", Assemblies.OpenTK10 },
+                }
+            },
+            {
+                "Xamarin.TVOS",
+                new Dictionary<string, AssemblyNameReference>
+                {
+                    // Xamarin.TVOS
+                    { "System.Drawing.Point", Assemblies.XamarinTVOS },
+                    { "System.Drawing.PointF", Assemblies.XamarinTVOS },
+                    { "System.Drawing.Rectangle", Assemblies.XamarinTVOS },
+                    { "System.Drawing.RectangleF", Assemblies.XamarinTVOS },
+                    { "System.Drawing.Size", Assemblies.XamarinTVOS },
+                    { "System.Drawing.SizeF", Assemblies.XamarinTVOS },
+                    // OpenTK-1.0
+                    { "System.Drawing.Color", Assemblies.OpenTK10 },
+                    { "System.Drawing.KnownColor", Assemblies.OpenTK10 },
+                }
+            },
+            {
+                "Xamarin.WatchOS",
+                new Dictionary<string, AssemblyNameReference>
+                {
+                    // Xamarin.WatchOS
+                    { "System.Drawing.Color", Assemblies.XamarinWatchOS },
+                    { "System.Drawing.KnownColor", Assemblies.XamarinWatchOS },
+                    { "System.Drawing.Point", Assemblies.XamarinWatchOS },
+                    { "System.Drawing.PointF", Assemblies.XamarinWatchOS },
+                    { "System.Drawing.Rectangle", Assemblies.XamarinWatchOS },
+                    { "System.Drawing.RectangleF", Assemblies.XamarinWatchOS },
+                    { "System.Drawing.Size", Assemblies.XamarinWatchOS },
+                    { "System.Drawing.SizeF", Assemblies.XamarinWatchOS },
                 }
             },
             {
