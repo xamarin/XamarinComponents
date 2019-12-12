@@ -744,7 +744,7 @@ namespace MaterialComponents
 
     {
         [Export("colors", ArgumentSemantic.Copy)]
-        UIColor Colors { get; }
+        UIColor[] Colors { get; }
 
         [Export("mainColorIndex")]
         nuint MainColorIndex { get; }
@@ -1689,12 +1689,12 @@ namespace MaterialComponents
         [Abstract]
         [NullAllowed]
         [Export("leftBarButtonItems", ArgumentSemantic.Copy)]
-        UIBarButtonItem LeftBarButtonItems { get; set; }
+        UIBarButtonItem[] LeftBarButtonItems { get; set; }
 
         [Abstract]
         [NullAllowed]
         [Export("rightBarButtonItems", ArgumentSemantic.Copy)]
-        UIBarButtonItem RightBarButtonItems { get; set; }
+        UIBarButtonItem[] RightBarButtonItems { get; set; }
 
         [Abstract]
         [Export("leftItemsSupplementBackButton")]
@@ -1775,11 +1775,11 @@ namespace MaterialComponents
 
         [NullAllowed]
         [Export("leadingBarButtonItems", ArgumentSemantic.Copy)]
-        UIBarButtonItem LeadingBarButtonItems { get; set; }
+        UIBarButtonItem[] LeadingBarButtonItems { get; set; }
 
         [NullAllowed]
         [Export("trailingBarButtonItems", ArgumentSemantic.Copy)]
-        UIBarButtonItem TrailingBarButtonItems { get; set; }
+        UIBarButtonItem[] TrailingBarButtonItems { get; set; }
 
         [Export("leadingItemsSupplementBackButton")]
         bool LeadingItemsSupplementBackButton { get; set; }
@@ -1801,11 +1801,11 @@ namespace MaterialComponents
 
         [NullAllowed]
         [Export("leftBarButtonItems", ArgumentSemantic.Copy)]
-        UIBarButtonItem LeftBarButtonItems { get; set; }
+        UIBarButtonItem[] LeftBarButtonItems { get; set; }
 
         [NullAllowed]
         [Export("rightBarButtonItems", ArgumentSemantic.Copy)]
-        UIBarButtonItem RightBarButtonItems { get; set; }
+        UIBarButtonItem[] RightBarButtonItems { get; set; }
 
         [NullAllowed]
         [Export("leftBarButtonItem", ArgumentSemantic.Strong)]
@@ -2332,11 +2332,11 @@ namespace MaterialComponents
 
         [NullAllowed]
         [Export("leadingBarButtonItems", ArgumentSemantic.Copy)]
-        UIBarButtonItem LeadingBarButtonItems { get; set; }
+        UIBarButtonItem[] LeadingBarButtonItems { get; set; }
 
         [NullAllowed]
         [Export("trailingBarButtonItems", ArgumentSemantic.Copy)]
-        UIBarButtonItem TrailingBarButtonItems { get; set; }
+        UIBarButtonItem[] TrailingBarButtonItems { get; set; }
 
         [NullAllowed]
         [Export("barTintColor", ArgumentSemantic.Strong)]
@@ -2402,7 +2402,7 @@ namespace MaterialComponents
         BottomNavigationBarAlignment Alignment { get; set; }
 
         [Export("items", ArgumentSemantic.Copy)]
-        UITabBarItem Items { get; set; }
+        UITabBarItem[] Items { get; set; }
 
         [NullAllowed]
         [Export("selectedItem", ArgumentSemantic.Weak)]
@@ -2631,7 +2631,7 @@ namespace MaterialComponents
 
         [NullAllowed]
         [Export("items", ArgumentSemantic.Copy)]
-        UIBarButtonItem Items { get; set; }
+        UIBarButtonItem[] Items { get; set; }
 
         [Export("buttonTitleBaseline")]
         nfloat ButtonTitleBaseline { get; set; }
@@ -4174,7 +4174,7 @@ namespace MaterialComponents
         nfloat MinTextFieldWidth { get; set; }
 
         [Export("chips", ArgumentSemantic.Copy)]
-        ChipView Chips { get; set; }
+        ChipView[] Chips { get; set; }
 
         [NullAllowed]
         [Export("delegate", ArgumentSemantic.Weak)]
@@ -4656,7 +4656,7 @@ namespace MaterialComponents
         [NullAllowed]
 
         [Export("indexPathsForInlaidItems")]
-        NSIndexPath IndexPathsForInlaidItems { get; }
+        NSIndexPath[] IndexPathsForInlaidItems { get; }
 
         [Abstract]
         [Export("shouldAnimateCellsOnAppearance")]
@@ -4945,7 +4945,7 @@ namespace MaterialComponents
         bool AdjustsFontForContentSizeCategoryWhenScaledFontIsUnavailable { get; set; }
 
         [Export("actions")]
-        AlertAction Actions { get; }
+        AlertAction[] Actions { get; }
 
         [Export("mdc_adjustsFontForContentSizeCategory")]
         bool AdjustsFontForContentSizeCategory { get; [Bind("mdc_setAdjustsFontForContentSizeCategory:")]set; }
@@ -5426,7 +5426,6 @@ namespace MaterialComponents
 
         [Obsolete(" This property will soon be deprecated.")]
         [Export("inkColor", ArgumentSemantic.Strong)]
-        [Static]
         UIColor InkColor { get; set; }
     }
 
@@ -6565,7 +6564,7 @@ namespace MaterialComponents
 
     {
         [Export("items", ArgumentSemantic.Copy)]
-        UITabBarItem Items { get; set; }
+        UITabBarItem[] Items { get; set; }
 
         [NullAllowed]
         [Export("selectedItem", ArgumentSemantic.Strong)]
@@ -6763,7 +6762,7 @@ namespace MaterialComponents
         ITabBarControllerDelegate Delegate { get; set; }
 
         [Export("viewControllers", ArgumentSemantic.Copy)]
-        UIViewController ViewControllers { get; set; }
+        UIViewController[] ViewControllers { get; set; }
 
         [NullAllowed]
         [Export("selectedViewController", ArgumentSemantic.Weak)]
@@ -7723,17 +7722,14 @@ namespace MaterialComponents
         [Obsolete("This property will be deprecated soon.")]
         [NullAllowed]
         [Export("inkColor", ArgumentSemantic.Strong)]
-        [Static]
         UIColor InkColor { get; set; }
 
         [Obsolete("This property will be deprecated soon.")]
         [Export("shouldDisplayInk")]
-        [Static]
         bool ShouldDisplayInk { get; set; }
 
         [Obsolete("This property will be deprecated soon.")]
         [Export("thumbMaxRippleRadius")]
-        [Static]
         nfloat ThumbMaxRippleRadius { get; set; }
     }
 
