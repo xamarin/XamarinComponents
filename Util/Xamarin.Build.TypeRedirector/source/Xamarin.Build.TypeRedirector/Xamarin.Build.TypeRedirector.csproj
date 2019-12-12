@@ -8,12 +8,12 @@
 
   <PropertyGroup>
     <PackageId>Xamarin.Build.TypeRedirector</PackageId>
-    <Title>Xamarin Build-time Type Reditrector</Title>
+    <Title>Xamarin Build-time Type Redirector</Title>
     <PackageVersion>0.0.2-preview</PackageVersion>
     <Authors>Microsoft</Authors>
     <Owners>Microsoft</Owners>
-    <PackageProjectUrl>https://go.microsoft.com/fwlink/?linkid=PLACEHOLDER</PackageProjectUrl>
-    <PackageLicenseUrl>https://go.microsoft.com/fwlink/?linkid=PLACEHOLDER</PackageLicenseUrl>
+    <PackageProjectUrl>https://go.microsoft.com/fwlink/?linkid=2113302</PackageProjectUrl>
+    <PackageLicenseFile>LICENSE.md</PackageLicenseFile>
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
     <Description>Support for redirecting types that were moved.</Description>
     <Copyright>© Microsoft Corporation. All rights reserved.</Copyright>
@@ -28,6 +28,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Include="..\..\LICENSE.md" Pack="true" PackagePath="$(PackageLicenseFile)"/>
     <None Include="Xamarin.Build.TypeRedirector.targets" Visible="false" Pack="true" PackagePath="build\Xamarin.Build.TypeRedirector.targets" />
     <None Include="Xamarin.Build.TypeRedirector.targets" Visible="false" Pack="true" PackagePath="buildTransitive\Xamarin.Build.TypeRedirector.targets" />
     <None Include="$(TargetPath)" Visible="false" Pack="true" PackagePath="build\Xamarin.Build.TypeRedirector.dll" />
