@@ -1315,7 +1315,7 @@ namespace MaterialComponents
         [Obsolete("This method will soon be deprecated. Consider using ApplySemanticColorScheme method instead.")]
         [Static]
         [Export("applyColorScheme:toActivityIndicator:")]
-        void ApplyColorScheme(IColorScheming colorScheme, ActivityIndicator activityIndicator);
+        void ApplyColorScheme(IColorScheme colorScheme, ActivityIndicator activityIndicator);
     }
 
     [DisableDefaultCtor]
@@ -1918,12 +1918,12 @@ namespace MaterialComponents
         [Obsolete("This method will soon be deprecated. Consider using ApplySemanticColorScheme method instead.")]
         [Static]
         [Export("applyColorScheme:toAppBarViewController:")]
-        void ApplyColorScheme(IColorScheme colorScheme, AppBarViewController appBarViewController);
+        void ApplyColorScheme(IColorScheming colorScheme, AppBarViewController appBarViewController);
 
         [Obsolete("This method will soon be deprecated.")]
         [Export("applySurfaceVariantWithColorScheme:toAppBarViewController:")]
         [Static]
-        void ApplySurfaceVariant(IColorScheme colorScheme, AppBarViewController appBarViewController);
+        void ApplySurfaceVariant(IColorScheming colorScheme, AppBarViewController appBarViewController);
     }
 
     [Category]
@@ -2525,7 +2525,7 @@ namespace MaterialComponents
         [Obsolete("This method will soon be deprecated.")]
         [Static]
         [Export("applySemanticColorScheme:toBottomNavigation:")]
-        void ApplySemanticColorScheme(IColorScheme colorScheme, BottomNavigationBar bottomNavigation);
+        void ApplySemanticColorScheme(IColorScheming colorScheme, BottomNavigationBar bottomNavigation);
 
         [Obsolete("This method will soon be deprecated. Consider using ApplySemanticColorScheme method instead.")]
         [Static]
@@ -2743,7 +2743,7 @@ namespace MaterialComponents
 
         [Static]
         [Export("applySemanticColorScheme:toButtonBar:")]
-        void ApplySemanticColorScheme(IColorScheme colorScheme, ButtonBar buttonBar);
+        void ApplySemanticColorScheme(IColorScheming colorScheme, ButtonBar buttonBar);
     }
 
     [DisableDefaultCtor]
@@ -3355,11 +3355,11 @@ namespace MaterialComponents
     {
         [Static]
         [Export("applyShapeScheme:toCard:")]
-        void ApplyShapeScheme(ShapeScheming shapeScheme, Card card);
+        void ApplyShapeScheme(IShapeScheming shapeScheme, Card card);
 
         [Static]
         [Export("applyShapeScheme:toCardCell:")]
-        void ApplyShapeScheme(ShapeScheming shapeScheme, CardCollectionCell cardCell);
+        void ApplyShapeScheme(IShapeScheming shapeScheme, CardCollectionCell cardCell);
     }
 
     [Category]
@@ -5134,7 +5134,7 @@ namespace MaterialComponents
         [Obsolete("This method will soon be deprecated. Consider using ApplySemanticColorScheme method instead.")]
         [Static]
         [Export("applyColorScheme:")]
-        void ApplyColorScheme(IColorScheming colorScheme);
+        void ApplyColorScheme(IColorScheme colorScheme);
 
         [Static]
         [Export("applySemanticColorScheme:toAlertController:")]
@@ -5395,7 +5395,7 @@ namespace MaterialComponents
         [Obsolete("This method will soon be deprecated. Consider using ApplySemanticColorScheme method instead.")]
         [Static]
         [Export("applyColorScheme:toFlexibleHeaderView:")]
-        void ApplyColorScheme (IColorScheming colorScheme, FlexibleHeaderView flexibleHeaderView);
+        void ApplyColorScheme (IColorScheme colorScheme, FlexibleHeaderView flexibleHeaderView);
 
         [Obsolete("This method will soon be deprecated. Consider using ApplySemanticColorScheme method instead.")]
         [Static]
@@ -5605,7 +5605,7 @@ namespace MaterialComponents
         [Obsolete("This method will soon be deprecated.")]
         [Static]
         [Export("applySemanticColorScheme:toNavigationBar:")]
-        void ApplySemanticColorScheme (IColorScheme colorScheme, NavigationBar navigationBar);
+        void ApplySemanticColorScheme (IColorScheming colorScheme, NavigationBar navigationBar);
 
         [Obsolete("This method will soon be deprecated.")]
         [Static]
@@ -6866,12 +6866,12 @@ namespace MaterialComponents
         [Obsolete("This method will soon be deprecated.")]
         [Static]
         [Export("applySemanticColorScheme:toTabs:")]
-        void ApplySemanticColorScheme (IColorScheme colorScheme, TabBar tabBar);
+        void ApplySemanticColorScheme (IColorScheming colorScheme, TabBar tabBar);
 
         [Obsolete("This method will soon be deprecated.")]
         [Static]
         [Export("applySurfaceVariantWithColorScheme:toTabs:")]
-        void ApplySurfaceVariant (IColorScheme colorScheme, TabBar tabBar);
+        void ApplySurfaceVariant (IColorScheming colorScheme, TabBar tabBar);
     }
 
     [Obsolete("This class will soon be deprecated. Please consider using TabBarTypographyThemer class instead.")]
@@ -6983,12 +6983,17 @@ namespace MaterialComponents
         [Static]
         [Wrap("ApplySemanticColorScheme (colorScheme, textInputController)")]
         [Obsolete("Use ApplySemanticColorScheme instead.")]
-        void ApplySemanticColorSchemeToTextInputController(IColorScheming colorScheme, ITextInputController textInputController);
+        void ApplySemanticColorSchemeToTextInputController(IColorScheme colorScheme, ITextInputController textInputController);
 
         [Obsolete("This method will soon be deprecated. Consider using ApplySemanticColorSchemeToAll method instead.")]
         [Static]
         [Export("applyColorScheme:toAllTextInputControllersOfClass:")]
         void ApplyColorSchemeoAllTextInputControllersOfClass(IColorScheme colorScheme, Class textInputControllerClass);
+
+        [Static]
+        [Wrap("ApplySemanticColorScheme (colorScheme, textInput)")]
+        [Obsolete("Use ApplySemanticColorScheme instead.")]
+        void ApplySemanticColorSchemeToTextInput(IColorScheming colorScheme, ITextInput textInput);
 
     }
 
