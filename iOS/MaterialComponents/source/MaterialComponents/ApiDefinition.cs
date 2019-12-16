@@ -511,6 +511,10 @@ namespace MaterialComponents
         [return: NullAllowed]
         [Export("mdc_bottomSheetPresentationController")]
         BottomSheetPresentationController GetBottomSheetPresentationController();
+
+        [return: NullAllowed]
+        [Wrap("GetBottomSheetPresentationController(This)")]
+        BottomSheetPresentationController MdcGetBottomSheetPresentationController();
     }
 
     [BaseType(typeof(UIViewController),
@@ -3290,6 +3294,9 @@ namespace MaterialComponents
     {
         [Export("mdc_setupCardReordering")]
         void SetupCardReordering();
+
+        [Wrap("SetupCardReordering(This)")]
+        void MdcSetupCardReordering();
     }
 
     [Protocol(Name = "MDCCardScheming")]
@@ -5155,7 +5162,6 @@ namespace MaterialComponents
     [BaseType(typeof(NSObject),
         Name = "MDCDialogTransitionController")]
     interface DialogTransitionController : IUIViewControllerAnimatedTransitioning, IUIViewControllerTransitioningDelegate
-
     { }
 
     [Category]
@@ -5165,6 +5171,10 @@ namespace MaterialComponents
         [return: NullAllowed]
         [Export("mdc_dialogPresentationController")]
         DialogPresentationController GetDialogPresentationController();
+
+        [return: NullAllowed]
+        [Wrap("GetDialogPresentationController(This)")]
+        DialogPresentationController MdcGetDialogPresentationController();
     }
 
     [DisableDefaultCtor]
@@ -7440,6 +7450,9 @@ namespace MaterialComponents
     {
         [Export("mdc_isSimplyEqual:")]
         bool IsSimplyEqual(UIFont font);
+
+        [Wrap("IsSimplyEqual(This, font)")]
+        bool MdcIsSimplyEqual(UIFont font);
     }
 
     [Category]
@@ -8137,8 +8150,16 @@ namespace MaterialComponents
         UIApplication SafeSharedApplication { get; }
 
         [Static]
+        [Wrap("SafeSharedApplication")]
+        UIApplication MdcSafeSharedApplication { get; }
+
+        [Static]
         [Export("mdc_isAppExtension")]
         bool IsAppExtension { get; }
+
+        [Static]
+        [Wrap("IsAppExtension")]
+        bool MdcIsAppExtension { get; }
     }
 
     [Static]
@@ -8149,8 +8170,16 @@ namespace MaterialComponents
         UIFont GetPreferredFont(FontTextStyle style);
 
         [Static]
+        [Wrap("GetPreferredFont(style)")]
+        UIFont MdcGetPreferredFont(FontTextStyle style);
+
+        [Static]
         [Export("mdc_standardFontForMaterialTextStyle:")]
         UIFont GetStandardFont(FontTextStyle style);
+
+        [Static]
+        [Wrap("GetStandardFont(style)")]
+        UIFont MdcGetStandardFont(FontTextStyle style);
     }
 
     [Static]
@@ -8161,8 +8190,16 @@ namespace MaterialComponents
         UIFontDescriptor GetPreferredFontDescriptor(FontTextStyle style);
 
         [Static]
+        [Wrap("GetPreferredFontDescriptor(style)")]
+        UIFontDescriptor MdcGetPreferredFontDescriptor(FontTextStyle style);
+
+        [Static]
         [Export("mdc_standardFontDescriptorForMaterialTextStyle:")]
         UIFontDescriptor GetStandardFontDescriptor(FontTextStyle style);
+
+        [Static]
+        [Wrap("GetStandardFontDescriptor(style)")]
+        UIFontDescriptor MdcGetStandardFontDescriptor(FontTextStyle style);
     }
 
     [Static]
@@ -8171,6 +8208,11 @@ namespace MaterialComponents
         [Static]
         [Export("mdc_animateWithTimingFunction:duration:delay:options:animations:completion:")]
         void Animate([NullAllowed] CAMediaTimingFunction timingFunction, double duration, double delay, UIViewAnimationOptions options, Action animations, [NullAllowed]  Action<bool> completion);
+
+        [Wrap("Animate (timingFunction, duration, delay, options, animations, completion)")]
+        [Obsolete("Use Animate instead.")]
+        [Static]
+        void MdcAnimate([NullAllowed] CAMediaTimingFunction timingFunction, double duration, double delay, UIViewAnimationOptions options, Action animations, [NullAllowed] Action<bool> completion);
     }
 
     [Static]
