@@ -3545,7 +3545,6 @@ namespace MaterialComponents
     { }
 
     [Protocol(Name = "MDCTextInput")]
-    [BaseType(typeof(NSObject))]
     interface TextInput
     {
         [Abstract]
@@ -3660,9 +3659,10 @@ namespace MaterialComponents
         [Export("mdc_adjustsFontForContentSizeCategory")]
         bool AdjustsFontForContentSizeCategory { get; [Bind("mdc_setAdjustsFontForContentSizeCategory:")]set; }
 
+        [Abstract]
         [Obsolete("Use AdjustsFontForContentSizeCategory instead")]
-        [Wrap("AdjustsFontForContentSizeCategory")]
-        bool MdcAdjustsFontForContentSizeCategory { get; set; }
+        [Export("mdc_adjustsFontForContentSizeCategory")]
+        bool MdcAdjustsFontForContentSizeCategory { get; [Bind("mdc_setAdjustsFontForContentSizeCategory:")]set; }
 
         [Abstract]
         [Export("clearText")]
@@ -3848,7 +3848,6 @@ namespace MaterialComponents
     { }
 
     [Protocol(Name = "MDCTextInputController")]
-    [BaseType(typeof(NSObject))]
     interface TextInputController : INSCopying, TextInputPositioningDelegate
 
     {
@@ -4037,8 +4036,9 @@ namespace MaterialComponents
         bool AdjustsFontForContentSizeCategory { get; [Bind("mdc_setAdjustsFontForContentSizeCategory:")]set; }
 
         [Obsolete("Use AdjustsFontForContentSizeCategory instead")]
-        [Wrap("AdjustsFontForContentSizeCategory")]
-        bool MdcAdjustsFontForContentSizeCategory { get; set; }
+        [Abstract]
+        [Export("mdc_adjustsFontForContentSizeCategory")]
+        bool MdcAdjustsFontForContentSizeCategory { get; [Bind("mdc_setAdjustsFontForContentSizeCategory:")]set; }
 
         [Abstract]
         [Static]
@@ -7138,12 +7138,12 @@ namespace MaterialComponents
         [Obsolete("This method will soon be deprecated.")]
         [Static]
         [Export("applyFontScheme:toTextInputController:")]
-        void ApplyFontScheme(FontScheme fontScheme, TextInputController textInputController);
+        void ApplyFontScheme(FontScheme fontScheme, ITextInputController textInputController);
 
         [Obsolete("This method will soon be deprecated.")]
         [Static]
         [Export("applyFontScheme:toAllTextInputControllersOfClass:")]
-        void ApplyFontSchemeToAll(FontScheme fontScheme, TextInputController textInputControllerClass);
+        void ApplyFontSchemeToAll(FontScheme fontScheme, ITextInputController textInputControllerClass);
 
         [Obsolete("This method will soon be deprecated.")]
         [Static]
@@ -7208,17 +7208,17 @@ namespace MaterialComponents
         [Obsolete("This method will soon be deprecated.")]
         [Static]
         [Export("applyTypographyScheme:toTextInputController:")]
-        void ApplyTypographyScheme(TypographyScheming typographyScheme, TextInputController textInputController);
+        void ApplyTypographyScheme(TypographyScheming typographyScheme, ITextInputController textInputController);
 
         [Obsolete("This method will soon be deprecated.")]
         [Static]
         [Export("applyTypographyScheme:toAllTextInputControllersOfClass:")]
-        void ApplyTypographySchemeToAll(TypographyScheming typographyScheme, TextInputController textInputControllerClass);
+        void ApplyTypographySchemeToAll(TypographyScheming typographyScheme, ITextInputController textInputControllerClass);
 
         [Obsolete("This method will soon be deprecated.")]
         [Static]
         [Export("applyTypographyScheme:toTextInput:")]
-        void ApplyTypographyScheme(TypographyScheming typographyScheme, TextInput textInput);
+        void ApplyTypographyScheme(TypographyScheming typographyScheme, ITextInput textInput);
     }
 
     [DisableDefaultCtor]
@@ -7461,6 +7461,9 @@ namespace MaterialComponents
     {
         [Export("mdc_fontSizedForMaterialTextStyle:scaledForDynamicType:")]
         UIFont GetFontSized(FontTextStyle style, bool scaled);
+
+        [Wrap("GetFontSized(This, style,scaled)")]
+        UIFont MdcGetFontSized(FontTextStyle style, bool scaled);
     }
 
     [Category]
