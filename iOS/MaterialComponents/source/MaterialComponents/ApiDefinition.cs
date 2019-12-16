@@ -6981,8 +6981,8 @@ namespace MaterialComponents
         void ApplyColorScheme (IColorScheme colorScheme, Type textInputControllerType);
 
         [Static]
-        [Wrap("ApplySemanticColorScheme (colorScheme, textInputController)")]
-        [Obsolete("Use ApplySemanticColorScheme instead.")]
+        [Wrap("ApplyColorScheme (colorScheme, textInputController)")]
+        [Obsolete("Use ApplyColorScheme instead.")]
         void ApplySemanticColorSchemeToTextInputController(IColorScheme colorScheme, ITextInputController textInputController);
 
         [Obsolete("This method will soon be deprecated. Consider using ApplySemanticColorSchemeToAll method instead.")]
