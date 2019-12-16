@@ -3,8 +3,8 @@
 
 var TARGET = Argument ("t", Argument ("target", "Default"));
 
-var LicensingVersion = "daaed06de2e298783aa645121ede4ea2cb880fa1";
-var ExpansionVersion = "b99c38aa4ce05551a4d5d74c3a4cec0a1b80d275";
+var LicensingVersion = "89ebdfcf52562018ff4c366055f0e35393919763";
+var ExpansionVersion = "9ecf54e5ce7c5a74a2eeedcec4d940ea52b16f0e";
 
 var LicensingUrl = "https://github.com/google/play-licensing/archive/" + LicensingVersion + ".zip";
 var ExpansionUrl = "https://github.com/google/play-apk-expansion/archive/" + ExpansionVersion + ".zip";
