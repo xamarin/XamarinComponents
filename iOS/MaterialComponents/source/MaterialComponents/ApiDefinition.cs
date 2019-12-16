@@ -536,6 +536,10 @@ namespace MaterialComponents
         [Export("mdc_adjustsFontForContentSizeCategory")]
         bool AdjustsFontForContentSizeCategory { get; [Bind("mdc_setAdjustsFontForContentSizeCategory:")]set; }
 
+        [Obsolete("Use AdjustsFontForContentSizeCategory instead")]
+        [Wrap("AdjustsFontForContentSizeCategory")]
+        bool MdcAdjustsFontForContentSizeCategory { get; set; }
+
         [Export("titleFont", ArgumentSemantic.Strong)]
         UIFont TitleFont { get; set; }
 
@@ -2163,6 +2167,10 @@ namespace MaterialComponents
         [Export("mdc_adjustsFontForContentSizeCategory")]
         bool AdjustsFontForContentSizeCategory { get; [Bind("mdc_setAdjustsFontForContentSizeCategory:")]set; }
 
+        [Obsolete("Use AdjustsFontForContentSizeCategory instead")]
+        [Wrap("AdjustsFontForContentSizeCategory")]
+        bool MdcAdjustsFontForContentSizeCategory { get; set; }
+
         [return: NullAllowed]
         [Export("backgroundColorForState:")]
         UIColor GetBackgroundColor(UIControlState state);
@@ -2316,6 +2324,10 @@ namespace MaterialComponents
 
         [Export("mdc_adjustsFontForContentSizeCategory")]
         bool AdjustsFontForContentSizeCategory { get; [Bind("mdc_setAdjustsFontForContentSizeCategory:")]set; }
+
+        [Obsolete("Use AdjustsFontForContentSizeCategory instead")]
+        [Wrap("AdjustsFontForContentSizeCategory")]
+        bool MdcAdjustsFontForContentSizeCategory { get; set; }
 
         [NullAllowed]
         [Export("traitCollectionDidChangeBlock", ArgumentSemantic.Copy)]
@@ -3465,6 +3477,10 @@ namespace MaterialComponents
         [Export("mdc_adjustsFontForContentSizeCategory")]
         bool AdjustsFontForContentSizeCategory { get; [Bind("mdc_setAdjustsFontForContentSizeCategory:")]set; }
 
+        [Obsolete("Use AdjustsFontForContentSizeCategory instead")]
+        [Wrap("AdjustsFontForContentSizeCategory")]
+        bool MdcAdjustsFontForContentSizeCategory { get; set; }
+
         [return: NullAllowed]
         [Export("backgroundColorForState:")]
         UIColor GetBackgroundColor(UIControlState state);
@@ -3637,6 +3653,10 @@ namespace MaterialComponents
         [Export("mdc_adjustsFontForContentSizeCategory")]
         bool AdjustsFontForContentSizeCategory { get; [Bind("mdc_setAdjustsFontForContentSizeCategory:")]set; }
 
+        [Obsolete("Use AdjustsFontForContentSizeCategory instead")]
+        [Wrap("AdjustsFontForContentSizeCategory")]
+        bool MdcAdjustsFontForContentSizeCategory { get; set; }
+
         [Abstract]
         [Export("clearText")]
         void ClearText();
@@ -3676,6 +3696,10 @@ namespace MaterialComponents
     {
         [Export("adjustsFontForContentSizeCategory")]
         bool AdjustsFontForContentSizeCategory { get; set; }
+
+        [Obsolete("Use AdjustsFontForContentSizeCategory instead")]
+        [Wrap("AdjustsFontForContentSizeCategory")]
+        bool MdcAdjustsFontForContentSizeCategory { get; set; }
 
         [Export("expandsOnOverflow")]
         bool ExpandsOnOverflow { get; set; }
@@ -4005,10 +4029,19 @@ namespace MaterialComponents
         [Export("mdc_adjustsFontForContentSizeCategory")]
         bool AdjustsFontForContentSizeCategory { get; [Bind("mdc_setAdjustsFontForContentSizeCategory:")]set; }
 
+        [Obsolete("Use AdjustsFontForContentSizeCategory instead")]
+        [Wrap("AdjustsFontForContentSizeCategory")]
+        bool MdcAdjustsFontForContentSizeCategory { get; set; }
+
         [Abstract]
         [Static]
         [Export("mdc_adjustsFontForContentSizeCategoryDefault")]
         bool AdjustsFontForContentSizeCategoryDefault { get; set; }
+
+        [Obsolete("Use AdjustsFontForContentSizeCategoryDefault instead")]
+        [Static]
+        [Wrap("AdjustsFontForContentSizeCategoryDefault")]
+        bool MdcAdjustsFontForContentSizeCategoryDefault { get; set; }
 
         [Abstract]
         [Export("setErrorText:errorAccessibilityValue:")]
@@ -4975,6 +5008,10 @@ namespace MaterialComponents
         [Export("mdc_adjustsFontForContentSizeCategory")]
         bool AdjustsFontForContentSizeCategory { get; [Bind("mdc_setAdjustsFontForContentSizeCategory:")]set; }
 
+        [Obsolete("Use AdjustsFontForContentSizeCategory instead")]
+        [Wrap("AdjustsFontForContentSizeCategory")]
+        bool MdcAdjustsFontForContentSizeCategory { get; set; }
+
         [Static]
         [Export("alertControllerWithTitle:message:")]
         AlertController Create([NullAllowed] string title, [NullAllowed]  string message);
@@ -5056,6 +5093,10 @@ namespace MaterialComponents
 
         [Export("mdc_adjustsFontForContentSizeCategory")]
         bool AdjustsFontForContentSizeCategory { get; [Bind("mdc_setAdjustsFontForContentSizeCategory:")]set; }
+
+        [Obsolete("Use AdjustsFontForContentSizeCategory instead")]
+        [Wrap("AdjustsFontForContentSizeCategory")]
+        bool MdcAdjustsFontForContentSizeCategory { get; set; }
 
         [return: NullAllowed]
         [Export("buttonForAction:")]
@@ -5264,6 +5305,10 @@ namespace MaterialComponents
 
         [Export("mdc_adjustsFontForContentSizeCategory")]
         bool AdjustsFontForContentSizeCategory { get; [Bind("mdc_setAdjustsFontForContentSizeCategory:")]set; }
+
+        [Obsolete("Use AdjustsFontForContentSizeCategory instead")]
+        [Wrap("AdjustsFontForContentSizeCategory")]
+        bool MdcAdjustsFontForContentSizeCategory { get; set; }
     }
 
     [DisableDefaultCtor]
@@ -5313,6 +5358,10 @@ namespace MaterialComponents
 
         [Export("mdc_adjustsFontForContentSizeCategory")]
         bool AdjustsFontForContentSizeCategory { get; [Bind("mdc_setAdjustsFontForContentSizeCategory:")]set; }
+
+        [Obsolete("Use AdjustsFontForContentSizeCategory instead")]
+        [Wrap("AdjustsFontForContentSizeCategory")]
+        bool MdcAdjustsFontForContentSizeCategory { get; set; }
 
         [DesignatedInitializer]
         [Export("initWithHighlightedView:andShowView:completion:")]
@@ -5480,6 +5529,10 @@ namespace MaterialComponents
 
         [Export("mdc_adjustsFontForContentSizeCategory")]
         bool AdjustsFontForContentSizeCategory { get; [Bind("mdc_setAdjustsFontForContentSizeCategory:")]set; }
+
+        [Obsolete("Use AdjustsFontForContentSizeCategory instead")]
+        [Wrap("AdjustsFontForContentSizeCategory")]
+        bool MdcAdjustsFontForContentSizeCategory { get; set; }
     }
 
     [DisableDefaultCtor]
@@ -6360,6 +6413,10 @@ namespace MaterialComponents
         [Export("mdc_adjustsFontForContentSizeCategory")]
         bool AdjustsFontForContentSizeCategory { get; [Bind("mdc_setAdjustsFontForContentSizeCategory:")]set; }
 
+        [Obsolete("Use AdjustsFontForContentSizeCategory instead")]
+        [Wrap("AdjustsFontForContentSizeCategory")]
+        bool MdcAdjustsFontForContentSizeCategory { get; set; }
+
         [Export("showMessage:")]
         void ShowMessage([NullAllowed] SnackbarMessage message);
 
@@ -6525,6 +6582,10 @@ namespace MaterialComponents
 
         [Export("mdc_adjustsFontForContentSizeCategory")]
         bool AdjustsFontForContentSizeCategory { get; [Bind("mdc_setAdjustsFontForContentSizeCategory:")]set; }
+
+        [Obsolete("Use AdjustsFontForContentSizeCategory instead")]
+        [Wrap("AdjustsFontForContentSizeCategory")]
+        bool MdcAdjustsFontForContentSizeCategory { get; set; }
 
         [return: NullAllowed]
         [Export("buttonTitleColorForState:")]
