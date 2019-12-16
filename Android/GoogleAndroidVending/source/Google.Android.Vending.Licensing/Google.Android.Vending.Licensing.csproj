@@ -16,7 +16,7 @@
     <AssemblyName>Google.Android.Vending.Licensing</AssemblyName>
     <FileAlignment>512</FileAlignment>
     <AndroidUseLatestPlatformSdk>false</AndroidUseLatestPlatformSdk>
-    <TargetFrameworkVersion>v2.3</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v5.0</TargetFrameworkVersion>
     <AndroidClassParser>class-parse</AndroidClassParser>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
