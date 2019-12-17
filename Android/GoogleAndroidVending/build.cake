@@ -1,5 +1,5 @@
 
-var TARGET = Argument ("t", Argument ("target", "Default"));
+var TARGET = Argument ("t", Argument ("target", "ci"));
 
 var LicensingVersion = "89ebdfcf52562018ff4c366055f0e35393919763";
 var ExpansionVersion = "9ecf54e5ce7c5a74a2eeedcec4d940ea52b16f0e";
@@ -88,5 +88,10 @@ Task ("clean")
 	DeleteDirectory ("./externals/", true);
 	CleanDirectories ("./native/market_*/build");
 });
+
+
+Task("ci")
+	.IsDependentOn("nuget")
+	.IsDependentOn("samples");
 
 RunTarget (TARGET);
