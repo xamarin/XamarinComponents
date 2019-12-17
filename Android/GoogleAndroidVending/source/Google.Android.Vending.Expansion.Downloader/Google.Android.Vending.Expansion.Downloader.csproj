@@ -1,83 +1,54 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project Sdk="MSBuild.Sdk.Extras/2.0.54">
   <PropertyGroup>
-    <AndroidCodegenTarget>XAJavaInterop1</AndroidCodegenTarget>
-  </PropertyGroup>
-  <PropertyGroup>
-    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
-    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProductVersion>8.0.30703</ProductVersion>
-    <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{6EA16BDB-2D45-4DE2-A199-5A49DCD7B9A7}</ProjectGuid>
-    <ProjectTypeGuids>{10368E6C-D01B-4462-8E8B-01FC667A7035};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
-    <OutputType>Library</OutputType>
-    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <TargetFrameworks>MonoAndroid50</TargetFrameworks>
+    <IsBindingProject>true</IsBindingProject>
     <RootNamespace>Google.Android.Vending.Expansion.Downloader</RootNamespace>
     <AssemblyName>Google.Android.Vending.Expansion.Downloader</AssemblyName>
-    <FileAlignment>512</FileAlignment>
-    <AndroidUseLatestPlatformSdk>false</AndroidUseLatestPlatformSdk>
-    <TargetFrameworkVersion>v5.0</TargetFrameworkVersion>
+    <MonoAndroidResourcePrefix>Resources</MonoAndroidResourcePrefix>
+    <MonoAndroidAssetsPrefix>Assets</MonoAndroidAssetsPrefix>
+    <AndroidUseLatestPlatformSdk>False</AndroidUseLatestPlatformSdk>
+    <AndroidUseIntermediateDesignerFile>True</AndroidUseIntermediateDesignerFile>
+    <AndroidResgenFile>Resources\Resource.designer.cs</AndroidResgenFile>
     <AndroidClassParser>class-parse</AndroidClassParser>
+    <AndroidCodegenTarget>XAJavaInterop1</AndroidCodegenTarget>
+    <NoWarn>CS0114,CS0109,CS0108</NoWarn>
+    <AssemblyVersion>2.0.0.0</AssemblyVersion>
   </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <DebugSymbols>true</DebugSymbols>
-    <DebugType>full</DebugType>
-    <Optimize>false</Optimize>
-    <OutputPath>bin\Debug\</OutputPath>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
+
+  <PropertyGroup>
+    <PackageId>Xamarin.Google.Android.Vending.Expansion.Downloader</PackageId>
+    <Title>Google Play APK Expansion Downloader for Xamarin.Android</Title>
+    <PackageDescription>Xamarin.Android Client library for the Android Market (Google Play) APK Expansion files.</PackageDescription>
+    <Authors>Microsoft</Authors>
+    <Owners>Microsoft</Owners>
+    <Copyright>© Microsoft Corporation. All rights reserved.</Copyright>
+    <PackageProjectUrl>https://go.microsoft.com/fwlink/?linkid=865032</PackageProjectUrl>
+    <PackageLicenseFile>LICENSE.md</PackageLicenseFile>
+    <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
+    <PackageVersion>2.1.0</PackageVersion>
   </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <DebugType>pdbonly</DebugType>
-    <Optimize>true</Optimize>
-    <OutputPath>bin\Release\</OutputPath>
-    <DefineConstants>TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-  </PropertyGroup>
+
   <ItemGroup>
-    <Reference Include="Mono.Android" />
-    <Reference Include="System" />
-    <Reference Include="System.Core" />
+    <TransformFile Include="Transforms\Metadata.xml" />
+    <TransformFile Include="Transforms\EnumFields.xml" />
+    <TransformFile Include="Transforms\EnumMethods.xml" />
   </ItemGroup>
+
   <ItemGroup>
-    <Compile Include="Helpers.cs" />
-    <Compile Include="DownloadsDB.cs" />
-    <Compile Include="DownloaderService.cs" />
-    <Compile Include="DownloaderClientMarshaller.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="DownloaderServiceMarshallerParameter.cs" />
-    <Compile Include="DownloaderClientMarshallerParameter.cs" />
-    <Compile Include="DownloaderServiceStatusExtras.cs" />
-    <Compile Include="DownloaderServiceActions.cs" />
-    <Compile Include="DownloaderServiceStatusExtensions.cs" />
-    <Compile Include="DownloaderServiceExtras.cs" />
+    <None Include="..\..\License.md" Pack="true" PackagePath="LICENSE.md"/>
+    <None Include="..\..\External-Dependency-Info.txt" Pack="True" PackagePath="THIRD-PARTY-NOTICES.txt" />
   </ItemGroup>
+
   <ItemGroup>
     <LibraryProjectZip Include="..\..\native\market_apk_expansion\build\outputs\aar\market_apk_expansion-release.aar">
       <Link>Jars\market_apk_expansion-release.aar</Link>
     </LibraryProjectZip>
   </ItemGroup>
+
   <ItemGroup>
-    <TransformFile Include="Transforms\Metadata.xml">
-      <SubType>Designer</SubType>
-    </TransformFile>
-    <TransformFile Include="Transforms\EnumFields.xml" />
-    <TransformFile Include="Transforms\EnumMethods.xml" />
+    <ProjectReference Include="..\Google.Android.Vending.Licensing\Google.Android.Vending.Licensing.csproj" PrivateAssets="None" />
+    <ProjectReference Include="..\Google.Android.Vending.Expansion.ZipFile\Google.Android.Vending.Expansion.ZipFile.csproj" PrivateAssets="None" />
   </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Google.Android.Vending.Licensing\Google.Android.Vending.Licensing.csproj">
-      <Project>{b99068c2-555d-44ba-805e-a038d5070b40}</Project>
-      <Name>Google.Android.Vending.Licensing</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.Bindings.targets" />
-  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
-       Other similar extension points exist, see Microsoft.Common.targets.
-  <Target Name="BeforeBuild">
-  </Target>
-  <Target Name="AfterBuild">
-  </Target>
-  -->
+
 </Project>
