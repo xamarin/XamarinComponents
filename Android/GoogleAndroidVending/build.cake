@@ -1,6 +1,4 @@
 
-#load "../../common.cake"
-
 var TARGET = Argument ("t", Argument ("target", "Default"));
 
 var LicensingVersion = "89ebdfcf52562018ff4c366055f0e35393919763";
@@ -9,44 +7,52 @@ var ExpansionVersion = "9ecf54e5ce7c5a74a2eeedcec4d940ea52b16f0e";
 var LicensingUrl = "https://github.com/google/play-licensing/archive/" + LicensingVersion + ".zip";
 var ExpansionUrl = "https://github.com/google/play-apk-expansion/archive/" + ExpansionVersion + ".zip";
 
-var buildSpec = new BuildSpec () {
-	Libs = new ISolutionBuilder [] {
-		new DefaultSolutionBuilder {
-			BuildsOn = BuildPlatforms.Mac | BuildPlatforms.Windows,
-			SolutionPath = "./source/Google.Android.Vending.sln",
-			OutputFiles = new [] { 
-				new OutputFileCopy { FromFile = "./source/Google.Android.Vending.Licensing/bin/Release/Google.Android.Vending.Licensing.dll" },
-				new OutputFileCopy { FromFile = "./source/Google.Android.Vending.Expansion.ZipFile/bin/Release/Google.Android.Vending.Expansion.ZipFile.dll" },
-				new OutputFileCopy { FromFile = "./source/Google.Android.Vending.Expansion.Downloader/bin/Release/Google.Android.Vending.Expansion.Downloader.dll" },
-			}
-		}
-	},
+Task("libs")
+	.Does(() =>
+{
+	MSBuild("./source/Google.Android.Vending.sln", c => {
+		c.Configuration = "Release";
+		c.Restore = true;
+		c.Properties.Add("DesignTimeBuild", new [] { "false" });
+	});
+});
 
-	Samples = new ISolutionBuilder [] {
-		new DefaultSolutionBuilder {
-			BuildsOn = BuildPlatforms.Mac | BuildPlatforms.Windows,
-			SolutionPath = "./samples/LicensingSample.sln"
-		},
-		new DefaultSolutionBuilder {
-			BuildsOn = BuildPlatforms.Mac | BuildPlatforms.Windows,
-			SolutionPath = "./samples/SimpleDownloaderSample.sln"
-		},
-		new DefaultSolutionBuilder {
-			BuildsOn = BuildPlatforms.Mac | BuildPlatforms.Windows,
-			SolutionPath = "./samples/DownloaderSample.sln"
-		},
-	},
+Task("nuget")
+	.IsDependentOn("libs")
+	.Does(() =>
+{
+	MSBuild ("./source/Google.Android.Vending.sln", c => {
+		c.Configuration = "Release";
+		c.Targets.Clear();
+		c.Targets.Add("Pack");
+		c.Properties.Add("PackageOutputPath", new [] { MakeAbsolute(new FilePath("./output")).FullPath });
+		c.Properties.Add("PackageRequireLicenseAcceptance", new [] { "true" });
+		c.Properties.Add("DesignTimeBuild", new [] { "false" });
+	});
+});
 
-	NuGets = new [] {
-		new NuGetInfo { NuSpec = "./nuget/Xamarin.Google.Android.Vending.Licensing.nuspec" },
-		new NuGetInfo { NuSpec = "./nuget/Xamarin.Google.Android.Vending.Expansion.ZipFile.nuspec" },
-		new NuGetInfo { NuSpec = "./nuget/Xamarin.Google.Android.Vending.Expansion.Downloader.nuspec" },
-	},
+Task("samples")
+	.IsDependentOn("nuget")
+	.Does(() =>
+{
+	MSBuild("./samples/LicensingSample.sln", c => {
+		c.Configuration = "Release";
+		c.Restore = true;
+		c.Properties.Add("DesignTimeBuild", new [] { "false" });
+	});
 
-	// Components = new [] {
-	// 	new Component { ManifestDirectory = "./component" },
-	// },
-};
+	MSBuild("./samples/SimpleDownloaderSample.sln", c => {
+		c.Configuration = "Release";
+		c.Restore = true;
+		c.Properties.Add("DesignTimeBuild", new [] { "false" });
+	});
+
+	MSBuild("./samples/DownloaderSample.sln", c => {
+		c.Configuration = "Release";
+		c.Restore = true;
+		c.Properties.Add("DesignTimeBuild", new [] { "false" });
+	});
+});
 
 Task ("externals")
 	.Does (() => 
@@ -76,12 +82,11 @@ Task ("externals")
 });
 
 
-Task ("clean").IsDependentOn ("clean-base").Does (() => 
+Task ("clean")
+	.Does (() => 
 {	
 	DeleteDirectory ("./externals/", true);
 	CleanDirectories ("./native/market_*/build");
 });
-
-SetupXamarinBuildTasks (buildSpec, Tasks, Task);
 
 RunTarget (TARGET);
