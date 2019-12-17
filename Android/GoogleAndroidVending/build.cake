@@ -36,23 +36,25 @@ Task("samples")
 	.IsDependentOn("nuget")
 	.Does(() =>
 {
-	MSBuild("./samples/LicensingSample.sln", c => {
-		c.Configuration = "Release";
-		c.Restore = true;
-		c.Properties.Add("DesignTimeBuild", new [] { "false" });
-	});
+	var samples = new List<string> {
+		"./samples/LicensingSample.sln",
+		"./samples/SimpleDownloaderSample.sln",
+		"./samples/DownloaderSample.sln"
+	};
 
-	MSBuild("./samples/SimpleDownloaderSample.sln", c => {
-		c.Configuration = "Release";
-		c.Restore = true;
-		c.Properties.Add("DesignTimeBuild", new [] { "false" });
-	});
+	foreach (var s in samples) {
+		MSBuild (s, c => {
+			c.Configuration = "Release";
+			c.Targets.Clear();
+			c.Targets.Add("Restore");
+			c.Properties.Add("DesignTimeBuild", new [] { "false" });
+		});
 
-	MSBuild("./samples/DownloaderSample.sln", c => {
-		c.Configuration = "Release";
-		c.Restore = true;
-		c.Properties.Add("DesignTimeBuild", new [] { "false" });
-	});
+		MSBuild(s, c => {
+			c.Configuration = "Release";
+			c.Properties.Add("DesignTimeBuild", new [] { "false" });
+		});
+	}
 });
 
 Task ("externals")
