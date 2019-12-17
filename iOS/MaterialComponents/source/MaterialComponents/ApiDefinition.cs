@@ -5875,6 +5875,9 @@ namespace MaterialComponents
 
         [Export("deactivateOverlay:")]
         void DeactivateOverlay(UIView overlay);
+
+        [Export("initWithFrame:")]
+        IntPtr Constructor(CGRect frame);
     }
 
     [BaseType(typeof(UIControl),
