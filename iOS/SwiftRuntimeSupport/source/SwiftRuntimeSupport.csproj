@@ -18,11 +18,12 @@
     <PackageProjectUrl>https://go.microsoft.com/fwlink/?linkid=2092210</PackageProjectUrl>
     <PackageLicenseFile>LICENSE.md</PackageLicenseFile>
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
-    <PackageVersion>0.1.0</PackageVersion>
+    <PackageVersion>0.2.0</PackageVersion>
   </PropertyGroup>
 
   <ItemGroup>
-    <None Include="SwiftRuntimeSupport.targets" Pack="True" PackagePath="build/Xamarin.iOS.SwiftRuntimeSupport.targets" />
+    <None Include="SwiftRuntimeSupport.targets" Pack="True" PackagePath="build\Xamarin.iOS.SwiftRuntimeSupport.targets" />
+    <None Include="SwiftRuntimeSupport.targets" Pack="True" PackagePath="buildTransitive\Xamarin.iOS.SwiftRuntimeSupport.targets" />
     <None Include="..\License.md" Pack="True" PackagePath="LICENSE.md" />
     <None Include="..\readme.txt" Pack="True" PackagePath="readme.txt" />
   </ItemGroup>
