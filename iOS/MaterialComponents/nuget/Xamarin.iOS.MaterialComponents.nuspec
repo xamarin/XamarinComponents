@@ -3,7 +3,7 @@
   <metadata>
     <id>Xamarin.iOS.MaterialComponents</id>
     <title>Xamarin Material Components for iOS</title>
-    <version>92.0.0</version>
+    <version>92.0.0-rc1</version>
     <authors>Microsoft</authors>
     <owners>Microsoft</owners>
     <requireLicenseAcceptance>true</requireLicenseAcceptance>
