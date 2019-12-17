@@ -3661,8 +3661,8 @@ namespace MaterialComponents
 
         [Abstract]
         [Obsolete("Use AdjustsFontForContentSizeCategory instead")]
-        [Export("mdc_adjustsFontForContentSizeCategory")]
-        bool MdcAdjustsFontForContentSizeCategory { get; [Bind("mdc_setAdjustsFontForContentSizeCategory:")]set; }
+        [Wrap("AdjustsFontForContentSizeCategory")]
+        bool MdcAdjustsFontForContentSizeCategory { get; set; }
 
         [Abstract]
         [Export("clearText")]
@@ -4037,8 +4037,8 @@ namespace MaterialComponents
 
         [Obsolete("Use AdjustsFontForContentSizeCategory instead")]
         [Abstract]
-        [Export("mdc_adjustsFontForContentSizeCategory")]
-        bool MdcAdjustsFontForContentSizeCategory { get; [Bind("mdc_setAdjustsFontForContentSizeCategory:")]set; }
+        [Wrap("AdjustsFontForContentSizeCategory")]
+        bool MdcAdjustsFontForContentSizeCategory { get; set; }
 
         [Abstract]
         [Static]
