@@ -8,6 +8,7 @@ var LicensingUrl = "https://github.com/google/play-licensing/archive/" + Licensi
 var ExpansionUrl = "https://github.com/google/play-apk-expansion/archive/" + ExpansionVersion + ".zip";
 
 Task("libs")
+	.IsDependentOn("externals")
 	.Does(() =>
 {
 	MSBuild("./source/Google.Android.Vending.sln", c => {
