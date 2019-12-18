@@ -12,10 +12,12 @@ resources:
       type: github
       name: xamarin/XamarinComponents
       endpoint: xamarin
+      ref: refs/heads/dev/more
 
 jobs:
   - template: .ci/build.yml@components
     parameters:
+      cakeTemplatesBranch: dev/more
       timeoutInMinutes: 360
       buildType: 'manifest'
       validPackagePrefixes: 
