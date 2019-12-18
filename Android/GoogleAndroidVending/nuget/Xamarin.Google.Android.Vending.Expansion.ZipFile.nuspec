@@ -2,7 +2,7 @@
 <package>
     <metadata>
         <id>Xamarin.Google.Android.Vending.Expansion.ZipFile</id>
-        <version>2.0.0</version>
+        <version>2.1.0</version>
         <title>Android APK Expansion FileSystem</title>
         <authors>Microsoft</authors>
         <owners>Microsoft</owners>
