@@ -7067,7 +7067,7 @@ namespace MaterialComponents
 
         [Obsolete("This method will soon be deprecated. Consider using ApplySemanticColorSchemeToAll method instead.")]
         [Static]
-        [Export("applyColorScheme:toAllTextInputControllersOfClass:")]
+        [Wrap("ApplyColorScheme (colorScheme, textInputControllerClass)")]
         void ApplyColorSchemeoAllTextInputControllersOfClass(IColorScheme colorScheme, Class textInputControllerClass);
 
         [Static]
