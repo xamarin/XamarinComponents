@@ -18,6 +18,7 @@ jobs:
   - template: .ci/build.yml@components
     parameters:
       cakeTemplatesBranch: dev/more
+      nugetDiffArgs:  --ignore-member="//property[@name='JniPeerMembers' and @ptype='Java.Interop.JniPeerMembers']"  --ignore-member="//property[@name='JniPeerMembers' and @ptype='Java.Interop.JniPeerMembers']"
       timeoutInMinutes: 360
       buildType: 'manifest'
       validPackagePrefixes: 
