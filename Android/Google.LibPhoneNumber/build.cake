@@ -6,7 +6,7 @@ var NUGET_VERSION = JAR_VERSION;
 var JAR_URL = string.Format ("http://search.maven.org/remotecontent?filepath=com/googlecode/libphonenumber/libphonenumber/{0}/libphonenumber-{0}.jar", JAR_VERSION);
 var DOCS_URL = string.Format ("http://search.maven.org/remotecontent?filepath=com/googlecode/libphonenumber/libphonenumber/{0}/libphonenumber-{0}-javadoc.jar", JAR_VERSION);
 var JAR_DEST = "./externals/libphonenumber.jar";
-
+//rebuild
 Task ("externals")
 	.WithCriteria (!FileExists (JAR_DEST))
 	.Does (() =>
