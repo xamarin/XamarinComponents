@@ -19,6 +19,7 @@ parameters:
   apiTools: '1.1.0-preview.1'                               # the version of the api-tools CLI to use
   tools: []                                                 # a list of any additional .NET Core tools needed
   cakeTemplatesBranch: 'master'                             # the branch of XamarinComponents that has the templates
+  nugetDiffArgs: ''                                         # any additional args to pass to api-tools nuget-diff
   # build parameters
   buildType: 'basic'                                        # the type of build: 'basic', 'manifest', 'none'
   verbosity: 'normal'                                       # the build verbosity: 'minimal', 'normal', 'diagnostic'
@@ -252,7 +253,8 @@ jobs:
             --artifacts="${{ parameters.artifactsPath }}" `
             --output="${{ parameters.artifactsPath }}/api-diff" `
             --cache="$(Agent.TempDirectory)/api-diff" `
-            --verbosity="${{ parameters.verbosity }}"
+            --verbosity="${{ parameters.verbosity }}" `
+            --tool-args="${{ parameters.nugetDiffArgs }}"
         displayName: 'Generate API diff'
       # after the build is complete
       - task: PublishBuildArtifacts@1
