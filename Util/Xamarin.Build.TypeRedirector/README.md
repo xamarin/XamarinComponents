@@ -7,5 +7,5 @@ This fixes things.
 Add a dependency on the Xamarin.Build.TypeRedirector NuGet:
 
 ```xml
-<PackageReference Include="Xamarin.Build.TypeRedirector" Version="0.0.1-preview" PrivateAssets="all" />
+<PackageReference Include="Xamarin.Build.TypeRedirector" Version="0.1.0-preview" PrivateAssets="all" />
 ```
