@@ -12,8 +12,8 @@ parameters:
   # job software version parameters
   macosImage: 'Hosted macOS'                                # the name of the macOS VM image
   windowsImage: 'Hosted Windows 2019 with VS2019'           # the name of the Windows VM image
-  mono: '6_4_0'                                             # the version of mono to use
-  xcode: '11'                                               # the version of Xcode to use
+  mono: 'Latest'                                            # the version of mono to use
+  xcode: '11.3'                                             # the version of Xcode to use
   dotnet: '3.0.x'                                           # the version of .NET Core to use
   cake: '0.35.0'                                            # the version of Cake to use
   apiTools: '1.1.0-preview.1'                               # the version of the api-tools CLI to use
