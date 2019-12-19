@@ -632,6 +632,11 @@
   TriggerPaths: [ Util/AndroidManifestMerger ]
   WindowsBuildTargets: [ ci ]
   MacBuildTargets: [ ci ]
+- Name: Xamarin.Build.TypeRedirector
+  BuildScript: ./Util/Xamarin.Build.TypeRedirector/build.cake
+  TriggerPaths: [ Util/Xamarin.Build.TypeRedirector ]
+  WindowsBuildTargets: [ ci ]
+  MacBuildTargets: [ ci ]
 - Name: Xamarin.AndroidBinderator
   BuildScript: ./Util/Xamarin.AndroidBinderator/build.cake
   TriggerPaths: [ Util/Xamarin.AndroidBinderator ]
