@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Globalization;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Security.Cryptography;
@@ -14,6 +15,7 @@ namespace AndroidBinderator
             using (var md5 = MD5.Create())
                 return BitConverter.ToString(md5.ComputeHash(value)).Replace("-", "").ToLowerInvariant();
         }
+
         internal static string HashSha256(string value)
         {
             return HashSha256(Encoding.UTF8.GetBytes(value));
