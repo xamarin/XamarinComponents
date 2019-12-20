@@ -11,7 +11,7 @@ namespace Xamarin.iOS.Binding.Transformer
     public class ApiMethod : ApiObject
     {
         [ChangeIgnore]
-        protected internal override string NodeName => $"method[@name='{NativeName}']";
+        protected internal override string NodeName => $"method[@name='{Signature}']";
 
         [XmlAttribute(AttributeName = "name")]
         public string Name { get; set; }
@@ -86,6 +86,25 @@ namespace Xamarin.iOS.Binding.Transformer
             }
         }
 
+        [XmlIgnore]
+        private string Signature
+        {
+            get
+            {
+                if (Parameters.Count > 0)
+                {
+                    var pars = Parameters.Select(x => x.Type);
+
+                    var prs = string.Join(",", pars);
+
+                    var sign = $"{NativeName}({prs})";
+
+                    return sign;
+                }
+
+                return NativeName;
+            }
+        }
         public ApiMethod()
         {
             Parameters = new List<ApiParameter>();
@@ -104,12 +123,20 @@ namespace Xamarin.iOS.Binding.Transformer
 
         internal protected override void UpdatePathList(ref Dictionary<string, ApiObject> dict)
         {
-            dict.Add(Path, this);
-
-            foreach (var aNamespace in Parameters)
+            try
             {
-                aNamespace.UpdatePathList(ref dict);
+                dict.Add(Path, this);
+
+                foreach (var aNamespace in Parameters)
+                {
+                    aNamespace.UpdatePathList(ref dict);
+                }
             }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
 
         }
 

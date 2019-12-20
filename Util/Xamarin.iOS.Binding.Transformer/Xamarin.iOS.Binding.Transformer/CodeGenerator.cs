@@ -948,7 +948,7 @@ namespace Xamarin.iOS.Binding.Transformer
                 attribs = attribs.Add(sep);
             }
 
-            if (apiClass.BaseType != null)
+            if (apiClass.BaseType != null && !string.IsNullOrWhiteSpace(apiClass.BaseType.TypeName))
             {
                 var baseTypeAtrribs = BuildClassBaseTypeAttribs(apiClass);
 

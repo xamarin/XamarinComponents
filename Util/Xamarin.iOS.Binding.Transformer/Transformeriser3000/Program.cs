@@ -12,33 +12,35 @@ namespace Transformeriser3000
         static async Task Main(string[] args)
         {
             var currentLocation = Path.GetDirectoryName(typeof(Program).Assembly.Location);
-            //var apiFile = Path.Combine(currentLocation, "ApiDefinitions.cs");
-            //var apiFileOrig = Path.Combine(currentLocation, "ApiDefinitionsOrig.cs");
-            //var apiMetaDataFile = Path.Combine(currentLocation, "Metadata.xml");
-            //var apiXmlFile = Path.Combine(currentLocation, "Api.xml");
-            //var apiFileFixed = Path.Combine(currentLocation, "ApiDefinitionsFixed.cs");
-            //var apiPathTree  = Path.Combine(currentLocation, "ApiTree.txt");
 
-            //var apiFileNew = Path.Combine(currentLocation, "ApiDefinitionsNew.cs");
             var apiDiffOutput = Path.Combine(currentLocation, "diffs");
 
             var apiV92 = Path.Combine(currentLocation, "ApiDefinitions92.cs");
-            var apiV72 = Path.Combine(currentLocation, "ApiDefinitions72.cs");
+            var apiV92Xam = Path.Combine(currentLocation, "ApiDefinition92Xam.cs");
+            var apiV92CSClean = Path.Combine(currentLocation, "ApiDefinitions92GenClean.cs");
+            var apiMetaDataFile = Path.Combine(apiDiffOutput, "Metadata.xml");
 
-            //var apiV92CS = Path.Combine(currentLocation, "ApiDefinitions92Gen.cs");
-            //var apiV92CSClean = Path.Combine(currentLocation, "ApiDefinitions92GenClean.cs");
-            //var apiv92XmlFile = Path.Combine(currentLocation, "Apiv92.xml");
-
-            //var apiV92Altered = Path.Combine(currentLocation, "ApiDefinitionnsv92Alternative.cs");
-
-            var api72 = await LoadDefinition(apiV72);
             var api92 = await LoadDefinition(apiV92);
-            
+            var api92Xam = await LoadDefinition(apiV92Xam);
 
-            var orgStack = api72.BuildTreePath();
-            var newStack = api92.BuildTreePath();
+            //flatten the deprecated categoris
+            api92.FlattenCategories("_Deprecated", "_ToBeDeprecated");
 
-            ChangeManager.Compare(orgStack, newStack, apiDiffOutput);
+            //var thing = api92.Namespaces[0].Types.FirstOrDefault(x => x.Name.Equals("MDCTonalPalette", StringComparison.OrdinalIgnoreCase));
+
+            var meta = api92.Compare(api92Xam);
+
+
+            meta.WriteToFile(Path.Combine(currentLocation, "metadata.xml"));
+
+            //var fixedTransform = api92.Transform(apiMetaDataFile);
+
+            // await CodeGenerator.GenerateAsync(api92, apiV92CSClean);
+
+
+
+
+            //api92.RemovePrefix("MDC");
 
 
             //if (!Directory.Exists(apiDiffOutput))
@@ -54,7 +56,7 @@ namespace Transformeriser3000
             //if (fixedTransform != null)  //there is a fixed version of the transform
             //    fixedTransform.WriteToFile(Path.Combine(apiDiffOutput, "Metadata_fixed.xml"));
 
-            //// api92.RemovePrefix("MDC");
+            //// 
             //Console.WriteLine($"Generating...{apiV92CSClean}");
             //await CodeGenerator.GenerateAsync(api92, apiV92CSClean);
 

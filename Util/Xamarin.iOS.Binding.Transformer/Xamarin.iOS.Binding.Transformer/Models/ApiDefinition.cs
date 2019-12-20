@@ -5,6 +5,7 @@ using System.Xml.Serialization;
 using Xamarin.iOS.Binding.Transformer.Attributes;
 using Xamarin.iOS.Binding.Transformer.Models;
 using Xamarin.iOS.Binding.Transformer.Models.Collections;
+using Xamarin.iOS.Binding.Transformer.Models.Metadata;
 
 namespace Xamarin.iOS.Binding.Transformer
 {
@@ -38,6 +39,16 @@ namespace Xamarin.iOS.Binding.Transformer
 
         [XmlElement(ElementName = "namespace", Order = 1)]
         public List<ApiNamespace> Namespaces { get; set; }
+
+        /// <summary>
+        /// Compare against a provided ApiDefintion
+        /// </summary>
+        /// <param name="target">ApiDefinition to compare against</param>
+        /// <returns></returns>
+        public Metadata Compare(ApiDefinition target)
+        {
+            return ChangeManager.CompareNew(this, target);
+        }
 
         public void UpdateHierachy()
         {
@@ -105,6 +116,26 @@ namespace Xamarin.iOS.Binding.Transformer
             {
                 ans.RemovePrefix(prefix);
             }
+        }
+
+        public void FlattenCategories(params string[] suffixes)
+        {
+            foreach (var aNamespace in Namespaces)
+            {
+                aNamespace.FlattenCategories(suffixes);
+            }
+        }
+
+        internal List<ApiClass> GetTypes()
+        {
+            var results = new List<ApiClass>();
+
+            foreach (var aNamespace in Namespaces)
+            {
+                results.AddRange(aNamespace.Types);
+            }
+
+            return results;
         }
     }
 }

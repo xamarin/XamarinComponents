@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using System.Xml.Serialization;
 using Xamarin.iOS.Binding.Transformer.Attributes;
@@ -93,6 +94,41 @@ namespace Xamarin.iOS.Binding.Transformer
             {
                 aCls.RemovePrefix(prefix);
             }
+        }
+
+        public void FlattenCategories(params string[] suffixes)
+        {
+            foreach (var suffix in suffixes)
+            {
+                var toRemove = new List<ApiClass>();
+
+                var toFlatten = Types.Where(x => x.Name.EndsWith(suffix, StringComparison.OrdinalIgnoreCase));
+
+                if (toFlatten.Any())
+                {
+                    foreach (var aType in toFlatten)
+                    {
+                        var cleanName = aType.Name.Replace(suffix,"");
+
+                        var parentType = Types.FirstOrDefault(x => x.Name.Equals(cleanName, StringComparison.OrdinalIgnoreCase));
+
+                        if (parentType != null)
+                        {
+                            parentType.Merge(aType);
+
+                            toRemove.Add(aType);
+                        }
+
+                    }
+                }
+
+                if (toRemove.Any())
+                {
+                    foreach (var aRemove in toRemove)
+                        Types.Remove(aRemove);
+                }
+            }
+            
         }
     }
 }

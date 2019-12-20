@@ -11,7 +11,21 @@ namespace Xamarin.iOS.Binding.Transformer
     {
         public const string MetaDataFileName = "Metadata.xml";
 
-        public static void Compare(Dictionary<string,ApiObject> originalItems, Dictionary<string, ApiObject> newItems, string outputPath = null)
+        /// <summary>
+        /// Compare and out the metadata transform
+        /// </summary>
+        /// <param name="original">Original ApiDefintion</param>
+        /// <param name="updated">Updated ApiDefintion</param>
+        /// <param name="outputPath">Output path</param>
+        public static Metadata Compare(ApiDefinition original, ApiDefinition updated, string outputPath = null)
+        {
+            var orgStack = original.BuildTreePath();
+            var updatedStack = updated.BuildTreePath();
+
+            return Compare(orgStack, updatedStack, outputPath);
+        }
+
+        private static Metadata Compare(Dictionary<string,ApiObject> originalItems, Dictionary<string, ApiObject> newItems, string outputPath = null)
         {
             Console.WriteLine($"Original item count: {originalItems.Keys.Count} - New Item count: {newItems.Keys.Count}\n");
 
@@ -38,8 +52,11 @@ namespace Xamarin.iOS.Binding.Transformer
 
             Console.WriteLine($"Total Items in new: {existing.Count + added.Count}\n");
 
-            if (!string.IsNullOrWhiteSpace(outputPath) && Directory.Exists(outputPath))
+            if (!string.IsNullOrWhiteSpace(outputPath))
             {
+                if (!Directory.Exists(outputPath))
+                    Directory.CreateDirectory(outputPath);
+
                 var addedFile = "added.txt";
                 var removedFile = "removed.txt";
                 var existingFile = "existing.txt";
@@ -110,57 +127,11 @@ namespace Xamarin.iOS.Binding.Transformer
 
             metaData.Changes = changes;
 
-            metaData.WriteToFile(Path.Combine(outputPath, MetaDataFileName));
+            if (!string.IsNullOrWhiteSpace(outputPath))
+                metaData.WriteToFile(Path.Combine(outputPath, MetaDataFileName));
 
+            return metaData;
 
-        }
-
-        /// <summary>
-        /// Flattens the dictionary to any parent items in the dict
-        /// </summary>
-        /// <param name="dict">The dictionary.</param>
-        /// <returns></returns>
-        private static Dictionary<string, ApiObject> FlattenDict(this Dictionary<string, ApiObject> dict)
-        {
-            var results = new Dictionary<string, ApiObject>();
-
-            foreach (var aKeyPath in dict.Keys)
-            {
-                var removable = ProcessNode(dict[aKeyPath], dict);
-
-                if (!results.ContainsKey(removable.Path))
-                    results.Add(removable.Path, removable);
-            }
-
-            return results;
-        }
-
-        private static ApiObject ProcessNode(ApiObject apiObject, Dictionary<string, ApiObject> dict)
-        {
-            if (apiObject.Parent != null && dict.ContainsKey(apiObject.Parent.Path))
-            {
-                return ProcessNode(apiObject.Parent, dict);
-            }
-            else
-            {
-                return apiObject;
-            }
-        }
-
-        private static Dictionary<string, ApiObject> FindMissing(Dictionary<string, ApiObject> source, Dictionary<string, ApiObject> target)
-        {
-            var result = new Dictionary<string, ApiObject>();
-
-            var sourceKeys = source.Keys.ToList();
-            var targetKeys = target.Keys.ToList();
-
-            sourceKeys.ForEach(x =>
-            {
-                if (!targetKeys.Contains(x))
-                    result.Add(x, source[x]);
-            });
-
-            return result;
         }
 
         public static List<Attr> CalculateChanges(List<string> existingPaths, Dictionary<string, ApiObject> originalItems, Dictionary<string, ApiObject> newItems)
@@ -219,11 +190,125 @@ namespace Xamarin.iOS.Binding.Transformer
 
                         results.Add(newAttr);
                     }
-  
+
                 }
             }
 
             return results;
+        }
+
+        /// <summary>
+        /// Flattens the dictionary to any parent items in the dict
+        /// </summary>
+        /// <param name="dict">The dictionary.</param>
+        /// <returns></returns>
+        private static Dictionary<string, ApiObject> FlattenDict(this Dictionary<string, ApiObject> dict)
+        {
+            var results = new Dictionary<string, ApiObject>();
+
+            foreach (var aKeyPath in dict.Keys)
+            {
+                var removable = ProcessNode(dict[aKeyPath], dict);
+
+                if (!results.ContainsKey(removable.Path))
+                    results.Add(removable.Path, removable);
+            }
+
+            return results;
+        }
+
+        private static ApiObject ProcessNode(ApiObject apiObject, Dictionary<string, ApiObject> dict)
+        {
+            if (apiObject.Parent != null && dict.ContainsKey(apiObject.Parent.Path))
+            {
+                return ProcessNode(apiObject.Parent, dict);
+            }
+            else
+            {
+                return apiObject;
+            }
+        }
+
+        private static Dictionary<string, ApiObject> FindMissing(Dictionary<string, ApiObject> source, Dictionary<string, ApiObject> target)
+        {
+            var result = new Dictionary<string, ApiObject>();
+
+            var sourceKeys = source.Keys.ToList();
+            var targetKeys = target.Keys.ToList();
+
+            sourceKeys.ForEach(x =>
+            {
+                if (!targetKeys.Contains(x))
+                    result.Add(x, source[x]);
+            });
+
+            return result;
+        }
+
+        internal static Metadata CompareNew(ApiDefinition original, ApiDefinition updated)
+        {
+            var metaData = new Metadata();
+
+            var orgTypes = original.GetTypes();
+            var updatedTypes = updated.GetTypes();
+
+            var orgItems = orgTypes.Select(x => new { Path = x.Path, Item = x as ApiObject});
+            var newItems = updatedTypes.Select(x => new { Path = x.Path, Item = x as ApiObject});
+
+            var newtypes = newItems.Where(x => !orgItems.Select(y => y.Path).Contains(x.Path)).ToList();
+            var removedTypes = orgItems.Where(x => !newItems.Select(y => y.Path).Contains(x.Path)).ToList();
+            var existing = newItems.Where(x => orgItems.Select(y => y.Path).Contains(x.Path)).ToList();
+
+            foreach (var aItem in removedTypes)
+            {
+                metaData.RemoveNodes.Add(new Remove_Node()
+                {
+                    Path = aItem.Path,
+                });
+            }
+
+            foreach (var aItem in newtypes)
+            {
+                var aApiObject = aItem.Item;
+
+                var newAdded = new Add_Node()
+                {
+                    Path = aApiObject.Parent.Path,
+                };
+
+                if (aApiObject is ApiUsing)
+                {
+                    newAdded.Using = aApiObject as ApiUsing;
+                }
+                else if (aApiObject is ApiClass)
+                {
+                    newAdded.Class = aApiObject as ApiClass;
+                }
+                else if (aApiObject is ApiDelegate)
+                {
+                    newAdded.Delegate = aApiObject as ApiDelegate;
+                }
+                else if (aApiObject is ApiMethod)
+                {
+                    newAdded.Method = aApiObject as ApiMethod;
+                }
+                else if (aApiObject is ApiProperty)
+                {
+                    newAdded.Property = aApiObject as ApiProperty;
+                }
+                else if (aApiObject is ApiParameter)
+                {
+                    newAdded.Parameter = aApiObject as ApiParameter;
+                }
+                else
+                {
+
+                }
+
+                metaData.AddNodes.Add(newAdded);
+            }
+
+            return metaData;
         }
     }
 }

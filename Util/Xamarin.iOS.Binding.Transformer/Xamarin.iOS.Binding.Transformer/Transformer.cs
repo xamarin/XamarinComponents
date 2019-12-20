@@ -1304,7 +1304,7 @@ namespace Xamarin.iOS.Binding.Transformer
             {
                 var elementType = ((ArrayTypeSyntax)type).ElementType;
 
-                return GetType(elementType);
+                return GetType(elementType) + "[]";
             }
             else if (type is GenericNameSyntax)
             {
