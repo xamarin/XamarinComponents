@@ -396,7 +396,7 @@ namespace NativeLibraryDownloaderTests
 				});
 
 			prel.AddItem (
-				"XamarinBuildDownloadRestoreAssemblyAar",
+				"XamarinBuildDownloadAndroidAarLibrary",
 				"$(XamarinBuildDownloadDir)" + artifactXbdId + "\\" + artifactXbdId + ".aar",
 				new Dictionary<string, string> { }
 			);
