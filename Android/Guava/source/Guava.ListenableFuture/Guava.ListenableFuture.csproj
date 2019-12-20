@@ -37,7 +37,9 @@ Guava is a set of core libraries that includes new collection types (such as mul
 
   <ItemGroup>
     <None Include="Guava.ListenableFuture.targets" Pack="True" PackagePath="build\$(TargetFramework)\$(PackageId).targets" />
+    <None Include="Guava.ListenableFuture.targets" Pack="True" PackagePath="buildTransitive\$(TargetFramework)\$(PackageId).targets" />
     <None Include="..\..\externals\guava-listenablefuture.jar" Pack="True" PackagePath="build\$(TargetFramework)\guava-listenablefuture.jar" />
+    <None Include="..\..\externals\guava-listenablefuture.jar" Pack="True" PackagePath="buildTransitive\$(TargetFramework)\guava-listenablefuture.jar" />
     <None Include="..\..\External-Dependency-Info.txt" Pack="True" PackagePath="THIRD-PARTY-NOTICES.txt" />
   </ItemGroup>
 
