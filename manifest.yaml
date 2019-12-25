@@ -24,7 +24,8 @@
 - Name: GoogleAndroidVending
   BuildScript: ./Android/GoogleAndroidVending/build.cake
   TriggerPaths: [ Android/GoogleAndroidVending ]
-  MacBuildTargets: [ nuget, samples ]
+  MacBuildTargets: [ ci ]
+  WindowsBuildTargets: [ ci ]
 - Name: GoogleDagger
   BuildScript: ./Android/GoogleDagger/build.cake
   TriggerPaths: [ Android/GoogleDagger ]
@@ -126,7 +127,6 @@
 - Name: Guava
   BuildScript: ./Android/Guava/build.cake
   TriggerPaths: [ Android/Guava ]
-  MacBuildTargets: [ nuget ]
   WindowsBuildTargets: [ nuget ]
 - Name: JacksonCore
   BuildScript: ./Android/Jackson.Core/build.cake
@@ -630,6 +630,11 @@
 - Name: AndroidManifestMerger
   BuildScript: ./Util/AndroidManifestMerger/build.cake
   TriggerPaths: [ Util/AndroidManifestMerger ]
+  WindowsBuildTargets: [ ci ]
+  MacBuildTargets: [ ci ]
+- Name: Xamarin.Build.TypeRedirector
+  BuildScript: ./Util/Xamarin.Build.TypeRedirector/build.cake
+  TriggerPaths: [ Util/Xamarin.Build.TypeRedirector ]
   WindowsBuildTargets: [ ci ]
   MacBuildTargets: [ ci ]
 - Name: Xamarin.AndroidBinderator

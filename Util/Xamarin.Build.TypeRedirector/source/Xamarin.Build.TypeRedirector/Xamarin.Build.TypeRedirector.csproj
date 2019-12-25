@@ -1,0 +1,40 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <LangVersion>latest</LangVersion>
+    <IncludeBuildOutput>false</IncludeBuildOutput>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <PackageId>Xamarin.Build.TypeRedirector</PackageId>
+    <Title>Xamarin Build-time Type Redirector</Title>
+    <PackageVersion>0.1.1-preview</PackageVersion>
+    <Authors>Microsoft</Authors>
+    <Owners>Microsoft</Owners>
+    <PackageProjectUrl>https://go.microsoft.com/fwlink/?linkid=2113302</PackageProjectUrl>
+    <PackageLicenseFile>LICENSE.md</PackageLicenseFile>
+    <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
+    <Description>Support for redirecting types that were moved.</Description>
+    <Copyright>© Microsoft Corporation. All rights reserved.</Copyright>
+    <RepositoryUrl>https://github.com/xamarin/XamarinComponents.git</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Mono.Cecil" Version="0.11.1" GeneratePathProperty="true" PrivateAssets="all" />
+    <PackageReference Include="Microsoft.Build.Framework" Version="15.9.20" GeneratePathProperty="true" PrivateAssets="all" />
+    <PackageReference Include="Microsoft.Build.Utilities.Core" Version="15.9.20" GeneratePathProperty="true" PrivateAssets="all" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="..\..\LICENSE.md" Pack="true" PackagePath="$(PackageLicenseFile)"/>
+    <None Include="Xamarin.Build.TypeRedirector.targets" Visible="false" Pack="true" PackagePath="build\Xamarin.Build.TypeRedirector.targets" />
+    <None Include="Xamarin.Build.TypeRedirector.targets" Visible="false" Pack="true" PackagePath="buildTransitive\Xamarin.Build.TypeRedirector.targets" />
+    <None Include="$(TargetPath)" Visible="false" Pack="true" PackagePath="build\Xamarin.Build.TypeRedirector.dll" />
+    <None Include="$(TargetPath)" Visible="false" Pack="true" PackagePath="buildTransitive\Xamarin.Build.TypeRedirector.dll" />
+    <None Include="$(PkgMono_Cecil)\lib\netstandard2.0\*.dll" Visible="false" Pack="true" PackagePath="build\%(Filename)%(Extension)" />
+    <None Include="$(PkgMono_Cecil)\lib\netstandard2.0\*.dll" Visible="false" Pack="true" PackagePath="buildTransitive\%(Filename)%(Extension)" />
+  </ItemGroup>
+
+</Project>
