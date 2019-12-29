@@ -41,6 +41,7 @@ namespace Xamarin.Build.TypeRedirector
                 var readerParams = new ReaderParameters
                 {
                     ReadSymbols = true,
+                    ReadWrite = true,
                     AssemblyResolver = resolver,
                 };
                 using (var assemblyDefinition = AssemblyDefinition.ReadAssembly(assembly, readerParams))
@@ -52,17 +53,11 @@ namespace Xamarin.Build.TypeRedirector
                         WriteSymbols = true,
                         SymbolWriterProvider = new PortablePdbWriterProvider(),
                     };
-                    assemblyDefinition.Write(tempFile, writerParams);
+                    assemblyDefinition.Write(writerParams);
                 }
 
-                // delete the old .dll, .dll.mdb, .pdb
-                TryDelete(assembly);
+                // remove any .dll.mdb that we don't want
                 TryDelete(assembly + ".mdb");
-                TryDelete(Path.ChangeExtension(assembly, "pdb"));
-
-                // move the new file into its place
-                File.Move(tempFile, assembly);
-                File.Move(Path.ChangeExtension(tempFile, "pdb"), Path.ChangeExtension(assembly, "pdb"));
             }
 
             return true;
