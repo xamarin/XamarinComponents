@@ -56,7 +56,7 @@ namespace Xamarin.Build.TypeRedirector
                     assemblyDefinition.Write(writerParams);
                 }
 
-                // remove any .dll.mdb taht we don't want
+                // remove any .dll.mdb that we don't want
                 TryDelete(assembly + ".mdb");
             }
 
