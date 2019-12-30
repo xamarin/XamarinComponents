@@ -9,7 +9,7 @@
   <PropertyGroup>
     <PackageId>Xamarin.Build.TypeRedirector</PackageId>
     <Title>Xamarin Build-time Type Redirector</Title>
-    <PackageVersion>0.1.1-preview</PackageVersion>
+    <PackageVersion>0.1.2-preview</PackageVersion>
     <Authors>Microsoft</Authors>
     <Owners>Microsoft</Owners>
     <PackageProjectUrl>https://go.microsoft.com/fwlink/?linkid=2113302</PackageProjectUrl>
