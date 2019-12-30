@@ -5,11 +5,11 @@
              AssemblyFile="$(MSBuildThisFileDirectory)Xamarin.Build.TypeRedirector.dll" />
 
   <PropertyGroup>
-    <PatchinatorSkip Condition="'$(PatchinatorSkip)' == ''">false</PatchinatorSkip>
+    <TypeRedirectorSkip Condition="'$(TypeRedirectorSkip)' == ''">false</TypeRedirectorSkip>
   </PropertyGroup>
 
-  <Target Name="_RedirectMovedTypes" AfterTargets="Compile" Condition="'$(PatchinatorSkip)' == 'false'">
-    <RedirectMovedTypes Assemblies="@(IntermediateAssembly)" />
+  <Target Name="_RedirectMovedTypes" AfterTargets="Compile" Condition="'$(TypeRedirectorSkip)' == 'false'">
+    <RedirectMovedTypes Assemblies="@(IntermediateAssembly)" References="@(ReferencePathWithRefAssemblies)" />
   </Target>
 
 </Project>

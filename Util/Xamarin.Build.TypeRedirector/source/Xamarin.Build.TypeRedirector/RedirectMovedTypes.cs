@@ -14,20 +14,35 @@ namespace Xamarin.Build.TypeRedirector
         [Required]
         public ITaskItem[] Assemblies { get; set; }
 
+        public ITaskItem[] References { get; set; }
+
         public override bool Execute()
         {
             foreach (var assemblySpec in Assemblies)
             {
                 var assembly = assemblySpec.ItemSpec;
-
-                if (!File.Exists(assembly))
+                if (string.IsNullOrEmpty(assembly) || !File.Exists(assembly))
                     continue;
+
+                Log.LogMessage($"Redirecting types for {assembly}...");
 
                 var tempFile = assembly + ".temp.dll";
 
+                using var resolver = new AssemblyResolver();
+                foreach (var reference in References)
+                {
+                    var r = reference.ItemSpec;
+                    if (string.IsNullOrEmpty(r) || !File.Exists(r))
+                        continue;
+
+                    resolver.AddAssembly(r);
+                }
+
                 var readerParams = new ReaderParameters
                 {
-                    ReadSymbols = true
+                    ReadSymbols = true,
+                    ReadWrite = true,
+                    AssemblyResolver = resolver,
                 };
                 using (var assemblyDefinition = AssemblyDefinition.ReadAssembly(assembly, readerParams))
                 {
@@ -38,17 +53,11 @@ namespace Xamarin.Build.TypeRedirector
                         WriteSymbols = true,
                         SymbolWriterProvider = new PortablePdbWriterProvider(),
                     };
-                    assemblyDefinition.Write(tempFile, writerParams);
+                    assemblyDefinition.Write(writerParams);
                 }
 
-                // delete the old .dll, .dll.mdb, .pdb
-                TryDelete(assembly);
+                // remove any .dll.mdb that we don't want
                 TryDelete(assembly + ".mdb");
-                TryDelete(Path.ChangeExtension(assembly, "pdb"));
-
-                // move the new file into its place
-                File.Move(tempFile, assembly);
-                File.Move(Path.ChangeExtension(tempFile, "pdb"), Path.ChangeExtension(assembly, "pdb"));
             }
 
             return true;
@@ -147,6 +156,17 @@ namespace Xamarin.Build.TypeRedirector
             }
             catch
             {
+            }
+        }
+
+        public sealed class AssemblyResolver : DefaultAssemblyResolver
+        {
+            public void AddAssembly(string assembly)
+            {
+                RegisterAssembly(AssemblyDefinition.ReadAssembly(assembly, new ReaderParameters
+                {
+                    AssemblyResolver = this,
+                }));
             }
         }
     }

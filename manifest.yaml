@@ -127,7 +127,6 @@
 - Name: Guava
   BuildScript: ./Android/Guava/build.cake
   TriggerPaths: [ Android/Guava ]
-  MacBuildTargets: [ nuget ]
   WindowsBuildTargets: [ nuget ]
 - Name: JacksonCore
   BuildScript: ./Android/Jackson.Core/build.cake
