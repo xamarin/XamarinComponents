@@ -1217,7 +1217,7 @@ namespace MaterialComponents
     interface ActionSheetController_MaterialTheming
     {
         [Export("applyThemeWithScheme:")]
-        void ApplyThemeWithScheme(IContainerScheming scheme);
+        void ApplyTheme(IContainerScheming scheme);
     }
 
     [BaseType(typeof(UIView),
@@ -2344,7 +2344,7 @@ namespace MaterialComponents
     interface BannerView_MaterialTheming
     {
         [Export("applyThemeWithScheme:")]
-        void ApplyThemeWithScheme(IContainerScheming scheme);
+        void ApplyTheme(IContainerScheming scheme);
     }
 
     [BaseType(typeof(UIView),
@@ -3387,7 +3387,7 @@ namespace MaterialComponents
     interface Card_MaterialTheming
     {
         [Export("applyThemeWithScheme:")]
-        void ApplyThemeWithScheme(IContainerScheming scheme);
+        void ApplyTheme(IContainerScheming scheme);
 
         [Export("applyOutlinedThemeWithScheme:")]
         void ApplyOutlinedThemeWithScheme(IContainerScheming scheme);
@@ -3399,7 +3399,7 @@ namespace MaterialComponents
     interface CardCollectionCell_MaterialTheming
     {
         [Export("applyThemeWithScheme:")]
-        void ApplyThemeWithScheme(IContainerScheming scheme);
+        void ApplyTheme(IContainerScheming scheme);
 
         [Export("applyOutlinedThemeWithScheme:")]
         void ApplyOutlinedThemeWithScheme(IContainerScheming scheme);
@@ -4412,7 +4412,7 @@ namespace MaterialComponents
     interface ChipView_MaterialTheming
     {
         [Export("applyThemeWithScheme:")]
-        void ApplyThemeWithScheme(IContainerScheming scheme);
+        void ApplyTheme(IContainerScheming scheme);
 
         [Export("applyOutlinedThemeWithScheme:")]
         void ApplyOutlinedThemeWithScheme(IContainerScheming scheme);
@@ -5256,7 +5256,7 @@ namespace MaterialComponents
     interface AlertController_MaterialTheming
     {
         [Export("applyThemeWithScheme:")]
-        void ApplyThemeWithScheme(IContainerScheming scheme);
+        void ApplyTheme(IContainerScheming scheme);
     }
 
     [Category]
@@ -5265,7 +5265,7 @@ namespace MaterialComponents
     interface DialogPresentationController_MaterialTheming
     {
         [Export("applyThemeWithScheme:")]
-        void ApplyThemeWithScheme(IContainerScheming scheme);
+        void ApplyTheme(IContainerScheming scheme);
     }
 
     [DisableDefaultCtor]
@@ -5610,7 +5610,7 @@ namespace MaterialComponents
     interface BaseCell_MaterialTheming
     {
         [Export("applyThemeWithScheme:")]
-        void ApplyThemeWithScheme(IContainerScheming scheme);
+        void ApplyTheme(IContainerScheming scheme);
     }
 
     [Category]
@@ -5619,7 +5619,7 @@ namespace MaterialComponents
     interface SelfSizingStereoCell_MaterialTheming
     {
         [Export("applyThemeWithScheme:")]
-        void ApplyThemeWithScheme(IContainerScheming scheme);
+        void ApplyTheme(IContainerScheming scheme);
     }
 
     [DisableDefaultCtor]
@@ -6171,7 +6171,7 @@ namespace MaterialComponents
     interface ProgressView_MaterialTheming
     {
         [Export("applyThemeWithScheme:")]
-        void ApplyThemeWithScheme(IContainerScheming scheme);
+        void ApplyTheme(IContainerScheming scheme);
     }
 
     [BaseType(typeof(UIControl),
@@ -7160,7 +7160,7 @@ namespace MaterialComponents
     interface TextInputControllerFilled_MaterialTheming
     {
         [Export("applyThemeWithScheme:")]
-        void ApplyThemeWithScheme(IContainerScheming scheme);
+        void ApplyTheme(IContainerScheming scheme);
     }
 
     [Category]
@@ -7169,7 +7169,7 @@ namespace MaterialComponents
     interface TextInputControllerOutlined_MaterialTheming
     {
         [Export("applyThemeWithScheme:")]
-        void ApplyThemeWithScheme(IContainerScheming scheme);
+        void ApplyTheme(IContainerScheming scheme);
     }
 
     [Obsolete(" This class will soon be deprecated.")]
