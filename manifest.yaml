@@ -550,7 +550,8 @@
 - Name: Mono.Options
   BuildScript: ./XPlat/Mono.Options/build.cake
   TriggerPaths: [ XPlat/Mono.Options ]
-  MacBuildTargets: [ nuget, samples ]
+  MacBuildTargets: [ ci ]
+  WindowsBuildTargets: [ ci ]
 - Name: Mono.ApiTools
   BuildScript: ./XPlat/Mono.ApiTools/build.cake
   TriggerPaths: [ XPlat/Mono.ApiTools ]
