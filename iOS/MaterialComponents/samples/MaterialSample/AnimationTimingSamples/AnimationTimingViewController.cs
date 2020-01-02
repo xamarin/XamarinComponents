@@ -230,7 +230,7 @@ namespace MaterialSample {
 				animationWidth -= View.SafeAreaInsets.Left + View.SafeAreaInsets.Right;
 
 			var transform = CGAffineTransform.MakeTranslation (animationWidth, 0);
-			UIViewMDCTimingFunction.MdcAnimate (timingFunction, 
+			UIViewMDCTimingFunction.Animate (timingFunction, 
 			                                    animationTimeInterval, 
 			                                    animationTimeDelay, 
 			                                    0, 
@@ -239,7 +239,7 @@ namespace MaterialSample {
 
 			void HandleAction (bool obj)
 			{
-				UIViewMDCTimingFunction.MdcAnimate (timingFunction,
+				UIViewMDCTimingFunction.Animate (timingFunction,
 				                                    animationTimeInterval,
 				                                    animationTimeDelay,
 				                                    0,
