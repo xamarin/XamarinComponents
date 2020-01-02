@@ -141,6 +141,7 @@ namespace AndroidBinderator
 				var artifactFile = Path.Combine(artifactDir, config.DownloadExternalsWithFullName ? $"{mavenArtifact.GroupId}.{mavenArtifact.ArtifactId}.{mavenProject.Packaging}"
 					: $"{mavenArtifact.ArtifactId}.{mavenProject.Packaging}");
 				var md5File = artifactFile + ".md5";
+				var sha256File = artifactFile + ".sha256";
 				var sourcesFile = Path.Combine(artifactDir, config.DownloadExternalsWithFullName ? $"{mavenArtifact.GroupId}.{mavenArtifact.ArtifactId}-sources.jar"
 					: $"{mavenArtifact.ArtifactId}-sources.jar");
 				var artifactExtractDir = Path.Combine(artifactDir, mavenArtifact.ArtifactId);
@@ -169,7 +170,25 @@ namespace AndroidBinderator
 				{
 					// Then hash the downloaded artifact
 					using (var file = File.OpenRead(artifactFile))
-						File.WriteAllText(md5File, HashMd5(file));
+						File.WriteAllText(md5File, Util.HashMd5(file));
+				}
+
+				// Determine Sha256
+				try
+				{
+					// First try download, this almost certainly won't work
+					// but in case Maven ever starts supporting sha256 it should start
+					// they currently support .sha1 so there's no reason to believe the naming 
+					// convention should be any different, and one day .sha256 may exist
+					using (var astrm = await mvnArt.OpenLibraryFile(mavenArtifact.Version, mavenProject.Packaging + ".sha256"))
+					using (var sw = File.Create(sha256File))
+						await astrm.CopyToAsync(sw);
+				}
+				catch
+				{
+					// Create Sha256 hash if we couldn't download
+					using (var file = File.OpenRead(artifactFile))
+						File.WriteAllText(sha256File, Util.HashSha256(file));
 				}
 
 				if (config.DownloadJavaSourceJars)
@@ -230,7 +249,9 @@ namespace AndroidBinderator
 				var artifactDir = Path.Combine(config.BasePath, config.ExternalsDir, mavenArtifact.GroupId);
 				var artifactFile = Path.Combine(artifactDir, $"{mavenArtifact.ArtifactId}.{mavenProject.Packaging}");
 				var md5File = artifactFile + ".md5";
+				var sha256File = artifactFile + ".sha256";
 				var md5 = File.Exists(md5File) ? File.ReadAllText(md5File) : string.Empty;
+				var sha256 = File.Exists(sha256File) ? File.ReadAllText(sha256File) : string.Empty;
 				var artifactExtractDir = Path.Combine(artifactDir, mavenArtifact.ArtifactId);
 
 				var proguardFile = Path.Combine(artifactExtractDir, "proguard.txt");
@@ -242,6 +263,7 @@ namespace AndroidBinderator
 					MavenArtifactPackaging = mavenProject.Packaging,
 					MavenArtifactVersion = mavenArtifact.Version,
 					MavenArtifactMd5 = md5,
+					MavenArtifactSha256 = sha256,
 					ProguardFile = File.Exists(proguardFile) ? GetRelativePath(proguardFile, config.BasePath).Replace("/", "\\") : null,
 					Metadata = artifactMetadata,
 				});
@@ -279,6 +301,7 @@ namespace AndroidBinderator
 							MavenArtifactId = mavenDep.ArtifactId,
 							MavenArtifactVersion = mavenDep.Version,
 							MavenArtifactMd5 = md5,
+							MavenArtifactSha256 = sha256,
 							DownloadedArtifact = artifactFile,
 							Metadata = dependencyMetadata,
 						}
@@ -297,12 +320,6 @@ namespace AndroidBinderator
 				folder += Path.DirectorySeparatorChar;
 			Uri folderUri = new Uri(folder);
 			return Uri.UnescapeDataString(folderUri.MakeRelativeUri(pathUri).ToString().Replace('/', Path.DirectorySeparatorChar));
-		}
-
-		static string HashMd5(Stream value)
-		{
-			using (var md5 = MD5.Create())
-				return BitConverter.ToString(md5.ComputeHash(value)).Replace("-", "").ToLowerInvariant();
 		}
 
 		static Dictionary<string, string> MergeValues(Dictionary<string, string> dest, Dictionary<string, string> src)
