@@ -31,10 +31,10 @@
         </ItemGroup>
 
         <ItemGroup>
-            <XamarinBuildDownloadRestoreAssemblyAar Include="$(_XbdAarFileFullPath_fabric)">
+            <XamarinBuildDownloadAndroidAarLibrary Include="$(_XbdAarFileFullPath_fabric)">
                 <LogicalName>__AndroidLibraryProjects__.zip</LogicalName>
                 <AssemblyName>$(_XbdAssemblyName_fabric)</AssemblyName>
-            </XamarinBuildDownloadRestoreAssemblyAar>
+            </XamarinBuildDownloadAndroidAarLibrary>
         </ItemGroup>
     </Target>
 </Project>
