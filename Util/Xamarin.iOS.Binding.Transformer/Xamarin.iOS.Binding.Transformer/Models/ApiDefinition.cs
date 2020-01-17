@@ -137,5 +137,19 @@ namespace Xamarin.iOS.Binding.Transformer
 
             return results;
         }
+
+        internal List<ApiDelegate> GetDelegates()
+        {
+            var results = new List<ApiDelegate>();
+
+            foreach (var aNamespace in Namespaces)
+            {
+                results.AddRange(aNamespace.Delegates);
+            }
+
+            return results;
+        }
+
+       
     }
 }

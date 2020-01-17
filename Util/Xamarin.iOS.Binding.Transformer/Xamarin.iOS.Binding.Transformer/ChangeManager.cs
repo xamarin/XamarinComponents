@@ -249,17 +249,18 @@ namespace Xamarin.iOS.Binding.Transformer
         {
             var metaData = new Metadata();
 
-            var orgTypes = original.GetTypes();
-            var updatedTypes = updated.GetTypes();
 
-            var orgItems = orgTypes.Select(x => new { Path = x.Path, Item = x as ApiObject});
-            var newItems = updatedTypes.Select(x => new { Path = x.Path, Item = x as ApiObject});
+            //compare usings
+            CompareUsings(original.Usings.Items, updated.Usings.Items, metaData);
 
-            var newtypes = newItems.Where(x => !orgItems.Select(y => y.Path).Contains(x.Path)).ToList();
-            var removedTypes = orgItems.Where(x => !newItems.Select(y => y.Path).Contains(x.Path)).ToList();
-            var existing = newItems.Where(x => orgItems.Select(y => y.Path).Contains(x.Path)).ToList();
 
-            foreach (var aItem in removedTypes)
+
+            //compare types
+            var typesResult = CompareTypes(original.GetTypes(), updated.GetTypes());
+
+
+            //add removed types to the meta data
+            foreach (var aItem in typesResult.removed)
             {
                 metaData.RemoveNodes.Add(new Remove_Node()
                 {
@@ -267,48 +268,69 @@ namespace Xamarin.iOS.Binding.Transformer
                 });
             }
 
-            foreach (var aItem in newtypes)
+            //add new types to the meta data 
+            foreach (var aItem in typesResult.added)
             {
-                var aApiObject = aItem.Item;
+                var aApiObject = aItem;
 
                 var newAdded = new Add_Node()
                 {
                     Path = aApiObject.Parent.Path,
+                    Class = aApiObject,
                 };
-
-                if (aApiObject is ApiUsing)
-                {
-                    newAdded.Using = aApiObject as ApiUsing;
-                }
-                else if (aApiObject is ApiClass)
-                {
-                    newAdded.Class = aApiObject as ApiClass;
-                }
-                else if (aApiObject is ApiDelegate)
-                {
-                    newAdded.Delegate = aApiObject as ApiDelegate;
-                }
-                else if (aApiObject is ApiMethod)
-                {
-                    newAdded.Method = aApiObject as ApiMethod;
-                }
-                else if (aApiObject is ApiProperty)
-                {
-                    newAdded.Property = aApiObject as ApiProperty;
-                }
-                else if (aApiObject is ApiParameter)
-                {
-                    newAdded.Parameter = aApiObject as ApiParameter;
-                }
-                else
-                {
-
-                }
 
                 metaData.AddNodes.Add(newAdded);
             }
 
             return metaData;
+        }
+
+
+        /// <summary>
+        /// Compare Types
+        /// </summary>
+        /// <param name="orgTypes"></param>
+        /// <param name="updatedTypes"></param>
+        /// <returns></returns>
+        private static (IEnumerable<ApiClass> added, IEnumerable<ApiClass> removed, IEnumerable<ApiClass> existing) CompareTypes(IEnumerable<ApiClass> orgTypes, IEnumerable<ApiClass> updatedTypes)
+        {
+            var orgItems = orgTypes.Select(x => new { Path = x.Path, Item = x as ApiClass });
+            var newItems = updatedTypes.Select(x => new { Path = x.Path, Item = x as ApiClass });
+
+            var newtypes = newItems.Where(x => !orgItems.Select(y => y.Path).Contains(x.Path)).Select(x => x.Item);
+            var removedTypes = orgItems.Where(x => !newItems.Select(y => y.Path).Contains(x.Path)).Select(x => x.Item);
+            var existing = newItems.Where(x => orgItems.Select(y => y.Path).Contains(x.Path)).Select(x => x.Item);
+
+            return (newtypes, removedTypes, existing);
+        }
+
+        /// <summary>
+        /// Compare usings
+        /// </summary>
+        /// <param name="orgUsings"></param>
+        /// <param name="newItems"></param>
+        /// <returns></returns>
+        private static void CompareUsings(IEnumerable<ApiUsing> orgUsings, IEnumerable<ApiUsing> newItems, Metadata metadata)
+        {
+            var added = newItems.Where(x => !orgUsings.Select(y => y.Path).Contains(x.Path)).ToList();
+            var removed = orgUsings.Where(x => !newItems.Select(y => y.Path).Contains(x.Path)).ToList();
+            var existing = newItems.Where(x => orgUsings.Select(y => y.Path).Contains(x.Path)).ToList();
+
+
+            foreach (var aItem in removed)
+                metadata.RemoveNodes.Add(new Remove_Node() { Path = aItem.Path });
+
+            //add new types to the meta data 
+            foreach (var aItem in added)
+            {
+                var newAdded = new Add_Node()
+                {
+                    Path = aItem.Parent.Path,
+                    Using = aItem,
+                };
+
+                metadata.AddNodes.Add(newAdded);
+            }
         }
     }
 }

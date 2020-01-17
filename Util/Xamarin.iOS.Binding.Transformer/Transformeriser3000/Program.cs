@@ -23,7 +23,7 @@ namespace Transformeriser3000
             var api92 = await LoadDefinition(apiV92);
             var api92Xam = await LoadDefinition(apiV92Xam);
 
-            //flatten the deprecated categoris
+            //flatten the deprecated categories
             api92.FlattenCategories("_Deprecated", "_ToBeDeprecated");
 
             //var thing = api92.Namespaces[0].Types.FirstOrDefault(x => x.Name.Equals("MDCTonalPalette", StringComparison.OrdinalIgnoreCase));
