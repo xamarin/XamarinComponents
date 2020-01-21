@@ -52,7 +52,7 @@ namespace Microsoft.Device.Display
 			return true;
 		}
 
-		SurfaceOrientation GetRotation()
+		public SurfaceOrientation GetRotation()
 			=> GetRotation(Activity);
 
 		Rect GetHinge(SurfaceOrientation rotation)
@@ -125,6 +125,12 @@ namespace Microsoft.Device.Display
 			}
 		}
 
+		public Rect GetHingeBounds()
+			=> GetHinge(GetRotation());
+
+		public Rect GetHingeBoundsDip()
+			=> RectPixelsToDip(GetHingeBounds());
+
 		public static SurfaceOrientation GetRotation(Activity activity)
 		{
 			var wm = activity.GetSystemService(Context.WindowService).JavaCast<IWindowManager>();
@@ -133,5 +139,11 @@ namespace Microsoft.Device.Display
 				rotation = wm.DefaultDisplay.Rotation;
 			return rotation;
 		}
+
+		double PixelsToDip(double px)
+			=> px / Activity?.Resources?.DisplayMetrics?.Density ?? 1;
+
+		Rect RectPixelsToDip(Rect rect)
+			=> new Rect((int)PixelsToDip(rect.Left), (int)PixelsToDip(rect.Top), (int)PixelsToDip(rect.Width()), (int)PixelsToDip(rect.Height()));
 	}
 }
