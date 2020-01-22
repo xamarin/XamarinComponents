@@ -228,6 +228,11 @@
   BuildScript: ./Android/SceneForm/build.cake
   TriggerPaths: [ Android/SceneForm ]
   MacBuildTargets: [ nuget, samples ]
+- Name: SurfaceDuo
+  BuildScript: ./Android/SurfaceDuo/build.cake
+  TriggerPaths: [ Android/SurfaceDuo ]
+  MacBuildTargets: [ ci ]
+  WindowsBuildTargets: [ ci ]
 - Name: GoogleAutoValue
   BuildScript: ./Android/GoogleAutoValue/build.cake
   TriggerPaths: [ Android/GoogleAutoValue ]
