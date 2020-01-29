@@ -17,6 +17,7 @@ jobs:
   - template: .ci/build.yml@components
     parameters:
       timeoutInMinutes: 360
+      areaPath: 'DevDiv\Xamarin SDK\Components'
       buildType: 'manifest'
       validPackagePrefixes: 
         # Preferred prefixes
