@@ -83,7 +83,7 @@ namespace Xamarin.iOS.Binding.Transformer
         #region Ignoreable Properties
 
         [XmlIgnore]
-        private string NativeName
+        internal string NativeName
         {
             get
             {

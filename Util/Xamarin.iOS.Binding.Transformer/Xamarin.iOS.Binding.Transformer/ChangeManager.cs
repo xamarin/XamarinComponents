@@ -297,25 +297,41 @@ namespace Xamarin.iOS.Binding.Transformer
                 metadata.AddNodes.Add(newAdded);
             }
 
-            //build list of orgiginal types and their new names
-            var typeList = BuildTypes(existing, orgTypes);
+            //build list of original types and their new names
+            var typeList = BuildTypes(existing);
 
             //work through the existing types
             foreach (var newItem in existing)
             {
                 var oldType = orgItems.FirstOrDefault(x => x.Path.Equals(newItem.Path));
 
-                CompareType(newItem, oldType.Item, metadata);
+                CompareType(newItem, oldType.Item, typeList, metadata);
 
             }
         }
 
-        private static Dictionary<string,string> BuildTypes(IEnumerable<ApiClass> existing, IEnumerable<ApiClass> orgItems)
+        /// <summary>
+        /// Build the list of orgininal and updated class tyes
+        /// </summary>
+        /// <param name="existing"></param>
+        /// <returns></returns>
+        private static Dictionary<string,string> BuildTypes(IEnumerable<ApiClass> existing)
         {
-            return new Dictionary<string, string>();
+            var results = new Dictionary<string, string>();
+
+            foreach (var item in existing)
+            {
+                var oldType = item.NativeName;
+                var newtype = item.Name;
+
+                results.Add(oldType, newtype);
+                
+            }
+
+            return results;
         }
 
-        private static void CompareType(ApiClass oldType, ApiClass newType, Metadata metadata)
+        private static void CompareType(ApiClass oldType, ApiClass newType, Dictionary<string, string> typeList, Metadata metadata)
         {
 
         }
