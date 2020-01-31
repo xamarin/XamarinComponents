@@ -282,7 +282,7 @@ jobs:
       displayName: 'Run required code checks'
       condition: eq('refs/heads/${{ parameters.masterBranchName }}', variables['Build.SourceBranch'])
       pool:
-        name: ${{ parameters.windowsImage }}
+        name: 'Hosted Windows 2019 with VS2019'
       steps:
         - pwsh: |
             $repo = "$(Build.Repository.Id)"
