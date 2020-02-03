@@ -8785,6 +8785,16 @@ namespace MaterialComponents
     [BaseType(typeof(NSObject))]
     interface MDCTextFieldColorThemer
     {
+        [Wrap("ApplySemanticColorScheme (colorScheme, textInputController)")]
+        [Obsolete("Use ApplySemanticColorScheme instead.")]
+        [Static]
+        void ApplySemanticColorSchemeToTextInput(MDCColorScheming colorScheme, MDCTextInputController textInputController);
+
+        [Static]
+        [Wrap("ApplySemanticColorScheme (colorScheme, textInput)")]
+        [Obsolete("Use ApplySemanticColorScheme instead.")]
+        void ApplySemanticColorSchemeToTextInput(MDCColorScheming colorScheme, MDCTextInput textInput);
+
     }
 
     // @interface ToBeDeprecated (MDCTextFieldColorThemer)

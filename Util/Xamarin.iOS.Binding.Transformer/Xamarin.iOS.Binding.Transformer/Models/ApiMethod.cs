@@ -105,6 +105,7 @@ namespace Xamarin.iOS.Binding.Transformer
                 return NativeName;
             }
         }
+
         public ApiMethod()
         {
             Parameters = new List<ApiParameter>();

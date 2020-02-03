@@ -311,7 +311,7 @@ namespace Xamarin.iOS.Binding.Transformer
                 var oldType = item.NativeName;
                 var newtype = item.Name;
 
-                results.Add(oldType, newtype);
+                results.Add(newtype, oldType);
                 
             }
 
@@ -384,16 +384,62 @@ namespace Xamarin.iOS.Binding.Transformer
                 {
                     if (oldMeths.Count() > 1)
                     {
+
+
+                        var foundMethod = false;
+
                         foreach (var oldMethod in oldMeths)
                         {
+                            var found = 0;
+
                             if (oldMethod.Parameters.Count == meth.Parameters.Count)
                             {
-                                Console.WriteLine("");
-                            }
-                            else
-                            {
+                                foreach (var par in meth.Parameters)
+                                {
+                                    var oldPar = oldMethod.Parameters[meth.Parameters.IndexOf(par)];
 
+                                    if (typeList.ContainsKey(par.Type))
+                                    {
+                                        var orgType = typeList[par.Type];
+
+                                        if (oldPar.Type.Equals(orgType, StringComparison.OrdinalIgnoreCase))
+                                        {
+                                            found = found + 1;
+                                        }
+                                    }
+                                    else if (par.Type.StartsWith("I"))
+                                    {
+                                        //this will assume that the new type is an interface replacing the old type
+                                        var cleanName = par.Type.Substring(1).ToLower();
+
+                                        if (oldPar.Type.ToLower().Contains(cleanName))
+                                        {
+                                            found = found + 1;
+                                        }
+                                    }
+                                    
+                                }
+
+                                if (found == meth.Parameters.Count)
+                                {
+                                    var results = BuildMethodDiffs(oldMethod, meth);
+
+                                    metadata.Changes.AddRange(results);
+
+                                    foundMethod = true;
+                                }
                             }
+                        }
+
+                        if (foundMethod != true)
+                        {
+                            var newAdded = new Add_Node()
+                            {
+                                Path = meth.Parent.Path,
+                                Method = meth,
+                            };
+
+                            metadata.AddNodes.Add(newAdded);
                         }
                     }
                     else
