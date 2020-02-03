@@ -148,53 +148,58 @@ namespace Xamarin.iOS.Binding.Transformer
 
                 var changes = propValues.FindChanges(newPropValues);
 
-                if (changes.Keys.Count > 0)
-                {
-                    if (changes.Keys.Count == 1)
-                    {
-                        var propName = changes.Keys.First();
-                        var prop = changes[propName];
+                ProcessDiffs(aPath, changes, results);
+            }
 
+            return results;
+        }
+
+        private static void ProcessDiffs(string aPath, Dictionary<string, object> changes, List<Attr> results)
+        {
+            if (changes.Keys.Count > 0)
+            {
+                if (changes.Keys.Count == 1)
+                {
+                    var propName = changes.Keys.First();
+                    var prop = changes[propName];
+
+                    var propValue = (prop.ToString().Equals("notset", StringComparison.OrdinalIgnoreCase)) ? string.Empty : prop.ToString();
+
+                    var newAttr = new Attr()
+                    {
+                        Path = aPath,
+                        Name = propName,
+                        Value = propValue,
+                    };
+
+                    results.Add(newAttr);
+                }
+                else
+                {
+                    var newAttr = new Attr()
+                    {
+                        Path = aPath,
+                    };
+
+                    //approach one - all elements detailed individually
+                    foreach (var propName in changes.Keys)
+                    {
+                        var prop = changes[propName];
                         var propValue = (prop.ToString().Equals("notset", StringComparison.OrdinalIgnoreCase)) ? string.Empty : prop.ToString();
 
-                        var newAttr = new Attr()
+                        var newAttrProp = new AttrProperty()
                         {
-                            Path = aPath,
                             Name = propName,
                             Value = propValue,
                         };
 
-                        results.Add(newAttr);
-                    }
-                    else
-                    {
-                        var newAttr = new Attr()
-                        {
-                            Path = aPath,
-                        };
-
-                        //approach one - all elements detailed individually
-                        foreach (var propName in changes.Keys)
-                        {
-                            var prop = changes[propName];
-                            var propValue = (prop.ToString().Equals("notset", StringComparison.OrdinalIgnoreCase)) ? string.Empty : prop.ToString();
-
-                            var newAttrProp = new AttrProperty()
-                            {
-                                Name = propName,
-                                Value = propValue,
-                            };
-
-                            newAttr.Properties.Add(newAttrProp);
-                        }
-
-                        results.Add(newAttr);
+                        newAttr.Properties.Add(newAttrProp);
                     }
 
+                    results.Add(newAttr);
                 }
-            }
 
-            return results;
+            }
         }
 
         /// <summary>
@@ -267,45 +272,27 @@ namespace Xamarin.iOS.Binding.Transformer
         /// <returns></returns>
         private static void CompareTypes(IEnumerable<ApiClass> orgTypes, IEnumerable<ApiClass> updatedTypes, Metadata metadata)
         {
-            var orgItems = orgTypes.Select(x => new { Path = x.Path, Item = x as ApiClass });
-            var newItems = updatedTypes.Select(x => new { Path = x.Path, Item = x as ApiClass });
 
-            var newtypes = newItems.Where(x => !orgItems.Select(y => y.Path).Contains(x.Path)).Select(x => x.Item);
-            var removedTypes = orgItems.Where(x => !newItems.Select(y => y.Path).Contains(x.Path)).Select(x => x.Item);
-            var existing = newItems.Where(x => orgItems.Select(y => y.Path).Contains(x.Path)).Select(x => x.Item);
+            var diffs = BuildDiffs<ApiClass>(updatedTypes, orgTypes);
+
 
             //add removed types to the meta data
-            foreach (var aItem in removedTypes)
-            {
-                metadata.RemoveNodes.Add(new Remove_Node()
-                {
-                    Path = aItem.Path,
-                });
-            }
+            metadata.AddRemoveNodes(diffs.Removed);
+
 
             //add new types to the meta data 
-            foreach (var aItem in newtypes)
-            {
-                var aApiObject = aItem;
+            metadata.AddNewNodes(diffs.Added);
 
-                var newAdded = new Add_Node()
-                {
-                    Path = aApiObject.Parent.Path,
-                    Class = aApiObject,
-                };
-
-                metadata.AddNodes.Add(newAdded);
-            }
-
+           
             //build list of original types and their new names
-            var typeList = BuildTypes(existing);
+            var typeList = BuildTypes(diffs.Existing);
 
             //work through the existing types
-            foreach (var newItem in existing)
+            foreach (var newItem in diffs.Existing)
             {
-                var oldType = orgItems.FirstOrDefault(x => x.Path.Equals(newItem.Path));
+                var oldType = orgTypes.FirstOrDefault(x => x.Path.Equals(newItem.Path));
 
-                CompareType(newItem, oldType.Item, typeList, metadata);
+                CompareType(newItem, oldType, typeList, metadata);
 
             }
         }
@@ -331,10 +318,83 @@ namespace Xamarin.iOS.Binding.Transformer
             return results;
         }
 
-        private static void CompareType(ApiClass oldType, ApiClass newType, Dictionary<string, string> typeList, Metadata metadata)
+        /// <summary>
+        /// Compare the type and build the changes
+        /// </summary>
+        /// <param name="newType">New type</param>
+        /// <param name="oldType">Orginal type</param>
+        /// <param name="typeList">List of type changes</param>
+        /// <param name="metadata">the metadata object</param>
+        private static void CompareType(ApiClass newType, ApiClass oldType, Dictionary<string, string> typeList, Metadata metadata)
         {
+            CompareMethods(newType.Methods, oldType.Methods, typeList, metadata);
+            CompareProperties(newType.Properties, oldType.Properties, typeList, metadata);
 
         }
+
+
+        /// <summary>
+        /// Find changes in properties
+        /// </summary>
+        /// <param name="newProperties">New properties</param>
+        /// <param name="oldProperties">Orgiginal properties</param>
+        /// <param name="typeList">List of type changes</param>
+        /// <param name="metadata">the metadata object</param>
+        private static void CompareProperties(List<ApiProperty> newProperties, List<ApiProperty> oldProperties, Dictionary<string, string> typeList, Metadata metadata)
+        {
+            //find the properties that no longer exists in the new type
+            var diffs = BuildDiffs<ApiProperty>(newProperties, oldProperties);
+
+            if (diffs.Removed.Any())
+                metadata.AddRemoveNodes(diffs.Removed);
+
+            foreach (var prop in diffs.Existing)
+            {
+                //find the matching properties in the old type
+                var oldProp = oldProperties.FirstOrDefault(x => x.Path.Equals(prop.Path));
+
+                if (oldProp == null)
+                {
+                    //must be new
+                    metadata.AddNodes.Add(new Add_Node()
+                    {
+                        Path = prop.Parent.Path,
+                        Property = prop,
+                    });
+                }
+                else
+                {
+                    var propValues = oldProp.GetValues();
+                    var newPropValues = prop.GetValues();
+
+                    var changes = propValues.FindChanges(newPropValues);
+
+                    var results = new List<Attr>();
+
+                    ProcessDiffs(prop.Path, changes, results);
+
+                    metadata.Changes.AddRange(results);
+                }
+
+            }
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="newMethods"></param>
+        /// <param name="oldmethods"></param>
+        /// <param name="typeList">List of type changes</param>
+        /// <param name="metadata">the metadata object</param>
+        private static void CompareMethods(List<ApiMethod> newMethods, List<ApiMethod> oldmethods, Dictionary<string, string> typeList, Metadata metadata)
+        {
+            foreach (var meth in newMethods)
+            {
+
+            }
+        }
+
+
         /// <summary>
         /// Compare usings
         /// </summary>
@@ -362,6 +422,25 @@ namespace Xamarin.iOS.Binding.Transformer
 
                 metadata.AddNodes.Add(newAdded);
             }
+        }
+
+        /// <summary>
+        /// Build the Diffs for types
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="newProperties"></param>
+        /// <param name="oldProperties"></param>
+        /// <returns></returns>
+        private static (IEnumerable<T> Added, IEnumerable<T> Removed, IEnumerable<T> Existing) BuildDiffs<T>(IEnumerable<T> newItems, IEnumerable<T> originalItems) where T : ApiObject
+        {
+            var orgValues = originalItems.Select(x => new { Path = x.Path, Item = x as T });
+            var newValues = newItems.Select(x => new { Path = x.Path, Item = x as T });
+
+            var added = newValues.Where(x => !orgValues.Select(y => y.Path).Contains(x.Path)).Select(x => x.Item);
+            var removed = orgValues.Where(x => !newValues.Select(y => y.Path).Contains(x.Path)).Select(x => x.Item);
+            var existing = newValues.Where(x => orgValues.Select(y => y.Path).Contains(x.Path)).Select(x => x.Item);
+
+            return (added, removed, existing);
         }
     }
 }

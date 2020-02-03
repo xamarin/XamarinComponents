@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Text;
 using System.Xml;
 using System.Xml.Serialization;
@@ -94,6 +95,77 @@ namespace Xamarin.iOS.Binding.Transformer.Models.Metadata
                 meta.RemoveNodes.Add(aNode.Clone());
 
             return meta;
+        }
+
+        /// <summary>
+        /// Add Remove_Node items
+        /// </summary>
+        /// <param name="items"></param>
+        public void AddRemoveNodes(IEnumerable<ApiObject> items)
+        {
+            if (items == null || !items.Any())
+                return;
+
+            foreach (var aItem in items)
+            {
+                RemoveNodes.Add(new Remove_Node()
+                {
+                    Path = aItem.Path,
+                });
+            }
+           
+        }
+
+        /// <summary>
+        /// Add new Nodes
+        /// </summary>
+        /// <param name="items"></param>
+        internal void AddNewNodes(IEnumerable<ApiObject> items)
+        {
+            if (items == null || !items.Any())
+                return;
+
+            //add the added nodes
+            foreach (var aItem in items)
+            {
+                var aApiObject = aItem;
+
+                var newAdded = new Add_Node()
+                {
+                    Path = aApiObject.Parent.Path,
+                };
+
+                if (aApiObject is ApiUsing)
+                {
+                    newAdded.Using = aApiObject as ApiUsing;
+                }
+                else if (aApiObject is ApiClass)
+                {
+                    newAdded.Class = aApiObject as ApiClass;
+                }
+                else if (aApiObject is ApiDelegate)
+                {
+                    newAdded.Delegate = aApiObject as ApiDelegate;
+                }
+                else if (aApiObject is ApiMethod)
+                {
+                    newAdded.Method = aApiObject as ApiMethod;
+                }
+                else if (aApiObject is ApiProperty)
+                {
+                    newAdded.Property = aApiObject as ApiProperty;
+                }
+                else if (aApiObject is ApiParameter)
+                {
+                    newAdded.Parameter = aApiObject as ApiParameter;
+                }
+                else
+                {
+
+                }
+
+                AddNodes.Add(newAdded);
+            }
         }
     }
 }
