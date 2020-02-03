@@ -17,8 +17,8 @@ namespace Transformeriser3000
 
             var apiV92 = Path.Combine(currentLocation, "ApiDefinitions92.cs");
             var apiV92Xam = Path.Combine(currentLocation, "ApiDefinition92Xam.cs");
-            var apiV92CSClean = Path.Combine(currentLocation, "ApiDefinitions92GenClean.cs");
-            var apiMetaDataFile = Path.Combine(apiDiffOutput, "Metadata.xml");
+            //var apiV92CSClean = Path.Combine(currentLocation, "ApiDefinitions92GenClean.cs");
+            //var apiMetaDataFile = Path.Combine(apiDiffOutput, "Metadata.xml");
 
             var api92 = await LoadDefinition(apiV92);
             var api92Xam = await LoadDefinition(apiV92Xam);
@@ -30,6 +30,7 @@ namespace Transformeriser3000
 
             var meta = api92.Compare(api92Xam);
 
+            //output the results
             Console.Write(meta.ToString());
 
             meta.WriteToFile(Path.Combine(currentLocation, "metadata.xml"));

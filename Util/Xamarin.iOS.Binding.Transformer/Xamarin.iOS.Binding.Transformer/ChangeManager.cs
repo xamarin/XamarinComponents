@@ -368,7 +368,7 @@ namespace Xamarin.iOS.Binding.Transformer
         }
 
         /// <summary>
-        /// 
+        /// Compare all of the methods in the type with the ones from the original type
         /// </summary>
         /// <param name="newMethods"></param>
         /// <param name="oldmethods"></param>
@@ -378,11 +378,64 @@ namespace Xamarin.iOS.Binding.Transformer
         {
             foreach (var meth in newMethods)
             {
+                var oldMeths = oldmethods.Where(x => x.NativeName.Equals(meth.NativeName));
 
+                if (oldMeths.Any())
+                {
+                    if (oldMeths.Count() > 1)
+                    {
+                        foreach (var oldMethod in oldMeths)
+                        {
+                            if (oldMethod.Parameters.Count == meth.Parameters.Count)
+                            {
+                                Console.WriteLine("");
+                            }
+                            else
+                            {
+
+                            }
+                        }
+                    }
+                    else
+                    {
+                        var results = BuildMethodDiffs(oldMeths.First(), meth);
+
+                        metadata.Changes.AddRange(results);
+                    }
+                }
+                else
+                {
+                    //
+                    var newAdded = new Add_Node()
+                    {
+                        Path = meth.Parent.Path,
+                        Method = meth,
+                    };
+
+                    metadata.AddNodes.Add(newAdded);
+                }
             }
         }
 
+        /// <summary>
+        /// Build the diff values for the new method compared with the original
+        /// </summary>
+        /// <param name="originalMethod"></param>
+        /// <param name="newMethod"></param>
+        /// <returns></returns>
+        private static List<Attr> BuildMethodDiffs(ApiMethod originalMethod, ApiMethod newMethod)
+        {
+            var results = new List<Attr>();
 
+            var oldValues = originalMethod.GetValues();
+            var newValues = newMethod.GetValues();
+
+            var changes = oldValues.FindChanges(newValues);
+
+            ProcessDiffs(newMethod.Path, changes, results);
+
+            return results;
+        }
         /// <summary>
         /// Compare usings
         /// </summary>
