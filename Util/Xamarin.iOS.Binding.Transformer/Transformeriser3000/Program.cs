@@ -30,6 +30,7 @@ namespace Transformeriser3000
 
             var meta = api92.Compare(api92Xam);
 
+            Console.Write(meta.ToString());
 
             meta.WriteToFile(Path.Combine(currentLocation, "metadata.xml"));
 

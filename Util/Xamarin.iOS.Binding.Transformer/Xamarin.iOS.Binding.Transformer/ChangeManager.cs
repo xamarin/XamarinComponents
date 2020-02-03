@@ -345,36 +345,24 @@ namespace Xamarin.iOS.Binding.Transformer
             //find the properties that no longer exists in the new type
             var diffs = BuildDiffs<ApiProperty>(newProperties, oldProperties);
 
-            if (diffs.Removed.Any())
-                metadata.AddRemoveNodes(diffs.Removed);
+            metadata.AddRemoveNodes(diffs.Removed);
+            metadata.AddNewNodes(diffs.Added);
 
             foreach (var prop in diffs.Existing)
             {
                 //find the matching properties in the old type
                 var oldProp = oldProperties.FirstOrDefault(x => x.Path.Equals(prop.Path));
 
-                if (oldProp == null)
-                {
-                    //must be new
-                    metadata.AddNodes.Add(new Add_Node()
-                    {
-                        Path = prop.Parent.Path,
-                        Property = prop,
-                    });
-                }
-                else
-                {
-                    var propValues = oldProp.GetValues();
-                    var newPropValues = prop.GetValues();
+                var propValues = oldProp.GetValues();
+                var newPropValues = prop.GetValues();
 
-                    var changes = propValues.FindChanges(newPropValues);
+                var changes = propValues.FindChanges(newPropValues);
 
-                    var results = new List<Attr>();
+                var results = new List<Attr>();
 
-                    ProcessDiffs(prop.Path, changes, results);
+                ProcessDiffs(prop.Path, changes, results);
 
-                    metadata.Changes.AddRange(results);
-                }
+                metadata.Changes.AddRange(results);
 
             }
         }

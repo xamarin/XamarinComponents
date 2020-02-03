@@ -167,5 +167,16 @@ namespace Xamarin.iOS.Binding.Transformer.Models.Metadata
                 AddNodes.Add(newAdded);
             }
         }
+
+        public override string ToString()
+        {
+            var str = string.Empty;
+
+            str += $"Removed Items: {RemoveNodes.Count}\n";
+            str += $"Added Items: {AddNodes.Count}\n";
+            str += $"Changes: {Changes.Count}\n";
+
+            return str;
+        }
     }
 }
