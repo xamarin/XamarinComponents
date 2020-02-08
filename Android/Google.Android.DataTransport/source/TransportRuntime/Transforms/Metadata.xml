@@ -2,12 +2,6 @@
 <metadata>
 
     <attr
-        path="/api/package[@name='com.google.android.datatransport']"
-        name="managedName"
-        >
-        Xamarin.Google.Android.DataTransport
-    </attr>
-    <attr
         path="/api/package[@name='com.google.android.datatransport.runtime']"
         name="managedName"
         >
@@ -52,10 +46,10 @@
     
     
     <attr
-        path="/api/package[@name='com.google.android.datatransport.runtime']/interface[@name='TransportInternal']"
+        path="/api/package[@name='com.google.android.datatransport.runtime']/class[@name='TransportRuntimeComponent']"
         name="visibility"
         >
         public
     </attr>
-    
+
 </metadata>

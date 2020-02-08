@@ -3,11 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.27004.2009
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Xamarin.Google.Android.DataTransport.TransportBackendCct", "Xamarin.Google.Android.DataTransport.TransportBackendCct\Xamarin.Google.Android.DataTransport.TransportBackendCct.csproj", "{E8489814-61D0-4D5F-92F2-552F8E6FFB64}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Xamarin.Google.Android.DataTransport.TransportBackendCct", "TransportBackendCct\Xamarin.Google.Android.DataTransport.TransportBackendCct.csproj", "{E8489814-61D0-4D5F-92F2-552F8E6FFB64}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Xamarin.Google.Android.DataTransport.TransportRuntime", "Xamarin.Google.Android.DataTransport.TransportRuntime\Xamarin.Google.Android.DataTransport.TransportRuntime.csproj", "{0BAD8458-5A2D-49F9-A224-4F167797F6EA}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Xamarin.Google.Android.DataTransport.TransportRuntime", "TransportRuntime\Xamarin.Google.Android.DataTransport.TransportRuntime.csproj", "{0BAD8458-5A2D-49F9-A224-4F167797F6EA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Xamarin.Google.Android.DataTransport.TransportApi", "Xamarin.Google.Android.DataTransport.TransportApi\Xamarin.Google.Android.DataTransport.TransportApi.csproj", "{0B5E980B-2675-4303-BBB2-5FCAD7C4E774}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Xamarin.Google.Android.DataTransport.TransportApi", "TransportApi\Xamarin.Google.Android.DataTransport.TransportApi.csproj", "{0B5E980B-2675-4303-BBB2-5FCAD7C4E774}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

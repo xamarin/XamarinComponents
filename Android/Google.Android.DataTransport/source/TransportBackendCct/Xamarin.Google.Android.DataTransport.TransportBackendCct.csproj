@@ -20,7 +20,7 @@
   <PropertyGroup>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <PackageId>Xamarin.Google.Android.DataTransport.TransportBackendCct</PackageId>
-    <PackageVersion>2.0.2</PackageVersion>
+    <PackageVersion>2.1.0</PackageVersion>
     <Title>Xamarin.Google.Android.DataTransport.TransportBackendCct</Title>
     <PackageDescription>Bindings for Xamarin Google.Android.DataTransport.TransportBackendCct package</PackageDescription>
     <Owners>Microsoft</Owners>
@@ -34,14 +34,23 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Transforms\EnumFields.xml" />
+    <None Remove="Transforms\EnumMethods.xml" />
+    <None Remove="Transforms\Metadata.xml" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Folder Include="Additions\" />
     <Folder Include="Jars\" />
   </ItemGroup>
   <ItemGroup>
-    <LibraryProjectZip Include="..\..\externals\android\transport-backend-cct-2.0.2.aar">
-      <Link>Jars\transport-backend-cct-2.0.2.aar</Link>
+    <LibraryProjectZip Include="..\..\externals\android\transport-backend-cct-2.1.0.aar">
+      <Link>Jars\transport-backend-cct-2.1.0.aar</Link>
     </LibraryProjectZip>
   </ItemGroup>
   <ItemGroup>
+    <TransformFile Include="Transforms\EnumFields.xml" />
+    <TransformFile Include="Transforms\EnumMethods.xml" />
+    <TransformFile Include="Transforms\Metadata.xml" />
   </ItemGroup>
 </Project>
