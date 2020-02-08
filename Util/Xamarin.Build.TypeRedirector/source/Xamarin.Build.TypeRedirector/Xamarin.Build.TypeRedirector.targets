@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+
+  <UsingTask TaskName="Xamarin.Build.TypeRedirector.RedirectMovedTypes"
+             AssemblyFile="$(MSBuildThisFileDirectory)Xamarin.Build.TypeRedirector.dll" />
+
+  <PropertyGroup>
+    <TypeRedirectorSkip Condition="'$(TypeRedirectorSkip)' == ''">false</TypeRedirectorSkip>
+  </PropertyGroup>
+
+  <Target Name="_RedirectMovedTypes" AfterTargets="Compile" Condition="'$(TypeRedirectorSkip)' == 'false'">
+    <RedirectMovedTypes Assemblies="@(IntermediateAssembly)" References="@(ReferencePathWithRefAssemblies)" />
+  </Target>
+
+</Project>

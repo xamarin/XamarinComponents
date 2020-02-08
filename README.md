@@ -205,3 +205,4 @@ If you are looking to create a plugin be sure to browse through NuGet first and 
 * Help out fellow developers speed up development
 * Have fun and learn new tools
 * Our undying love
+

@@ -82,7 +82,7 @@ namespace MaterialComponents {
 
 	partial class TextFieldColorThemer {
 		public static void ApplySemanticColorSchemeToAll<T> (IColorScheming colorScheme) where T : ITextInputController {
-			ApplySemanticColorSchemeToAll (colorScheme, typeof (T));
+            ApplySemanticColorSchemeToAll (colorScheme, typeof (T));
 		}
 	}
 

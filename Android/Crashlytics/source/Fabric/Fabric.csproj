@@ -19,7 +19,7 @@
         -->
         <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
         <PackageId>Xamarin.Android.Fabric</PackageId>
-        <PackageVersion>1.4.3</PackageVersion>
+        <PackageVersion>1.4.3.1</PackageVersion>
         <Title>Fabric for Android</Title>
         <PackageDescription>Xamarin.Android bindings for Fabric Android</PackageDescription>
         <PackageTags>Xamarin Android Xamarin.Android Fabric</PackageTags>
@@ -44,7 +44,7 @@
         </InputJar>
     </ItemGroup>
     <ItemGroup>
-        <PackageReference Include="Xamarin.Build.Download" Version="0.4.11" />
+        <PackageReference Include="Xamarin.Build.Download" Version="0.8.0" PrivateAssets="None" />
     </ItemGroup>
     <ItemGroup>
         <None Remove="Transforms\Metadata.xml" />
@@ -58,6 +58,7 @@
     </ItemGroup>
     <ItemGroup>
         <None Include="Xamarin.Android.Fabric.targets" PackagePath="build\$(TargetFramework)" Pack="true" />
+        <None Include="Xamarin.Android.Fabric.targets" PackagePath="buildTransitive\$(TargetFramework)" Pack="true" />
         <None Include="..\..\External-Dependency-Info.txt" PackagePath="THIRD-PARTY-NOTICE.txt" Pack="true" />
     </ItemGroup>
     <PropertyGroup>

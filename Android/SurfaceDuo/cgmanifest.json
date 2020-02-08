@@ -1,0 +1,17 @@
+{
+  "Registrations":[ 
+    {
+      "Component": {
+        "Type": "Maven",
+        "Maven": {
+          "ArtifactId": "displaymask",
+          "GroupId": "com.microsoft.device.display",
+          "Version": "0.0.3",
+          "NuGetId": "Xamarin.DuoSdk",
+          "NuGetVersion": "0.0.3.2"
+        }
+      }
+    }
+  ],
+  "Version": 1
+}
