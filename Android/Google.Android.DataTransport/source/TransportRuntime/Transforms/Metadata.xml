@@ -43,13 +43,30 @@
         >
         Xamarin.Google.Android.DataTransport.Runtime.Time
     </attr>
-    
-    
     <attr
-        path="/api/package[@name='com.google.android.datatransport.runtime']/class[@name='TransportRuntimeComponent']"
-        name="visibility"
-        >
-        public
+      path="/api/package[@name='com.google.android.datatransport.runtime.logging']"
+      name="managedName"
+      >
+      Xamarin.Google.Android.DataTransport.Runtime.Logging
+    </attr>
+    <attr
+      path="/api/package[@name='com.google.android.datatransport.runtime.retries']"
+      name="managedName"
+      >
+      Xamarin.Google.Android.DataTransport.Runtime.Retries
+    </attr>
+    <attr
+      path="/api/package[@name='com.google.android.datatransport.runtime.util']"
+      name="managedName"
+      >
+      Xamarin.Google.Android.DataTransport.Runtime.Util
+    </attr>
+
+    <attr
+      path="/api/package[@name='com.google.android.datatransport.runtime']/class[@name='TransportRuntimeComponent']"
+      name="visibility"
+      >
+      public
     </attr>
 
 </metadata>
