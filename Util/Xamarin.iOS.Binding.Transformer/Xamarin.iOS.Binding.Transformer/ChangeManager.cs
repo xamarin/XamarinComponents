@@ -480,6 +480,20 @@ namespace Xamarin.iOS.Binding.Transformer
 
             ProcessDiffs(newMethod.Path, changes, results);
 
+            //now work through the parameters
+            foreach (var newPar in newMethod.Parameters)
+            {
+                var oldPar = originalMethod.Parameters[newMethod.Parameters.IndexOf(newPar)];
+
+                var oldVals = oldPar.GetValues();
+                var newVals = newPar.GetValues();
+
+                var pChanges = oldVals.FindChanges(newVals);
+
+                ProcessDiffs(newPar.Path, pChanges, results);
+
+            }
+
             return results;
         }
         /// <summary>
