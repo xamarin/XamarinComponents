@@ -12,150 +12,34 @@ namespace Xamarin.iOS.Binding.Transformer
         public const string MetaDataFileName = "Metadata.xml";
 
         /// <summary>
-        /// Compare and out the metadata transform
+        /// Compare ApiDefintion files
         /// </summary>
-        /// <param name="original">Original ApiDefintion</param>
-        /// <param name="updated">Updated ApiDefintion</param>
-        /// <param name="outputPath">Output path</param>
-        public static Metadata Compare(ApiDefinition original, ApiDefinition updated, string outputPath = null)
+        /// <param name="original">Original API defintion</param>
+        /// <param name="updated">Updated API definition</param>
+        /// <returns></returns>
+        internal static Metadata Compare(ApiDefinition original, ApiDefinition updated)
         {
-            var orgStack = original.BuildTreePath();
-            var updatedStack = updated.BuildTreePath();
-
-            return Compare(orgStack, updatedStack, outputPath);
-        }
-
-        private static Metadata Compare(Dictionary<string,ApiObject> originalItems, Dictionary<string, ApiObject> newItems, string outputPath = null)
-        {
-            Console.WriteLine($"Original item count: {originalItems.Keys.Count} - New Item count: {newItems.Keys.Count}\n");
-
-            var orgKeys = originalItems.Keys.ToList();
-            var newKeys = newItems.Keys.ToList();
-
-            var removed = FindMissing(originalItems, newItems).FlattenDict();
-            var added = FindMissing(newItems, originalItems).FlattenDict();
-
-            Console.WriteLine($"Removed Items: {removed.Count}\n");
-            Console.WriteLine($"Added Items: {added.Count}\n");
-
-            var existing = new List<string>();
-            orgKeys.ForEach(x =>
-            {
-                if (!(originalItems[x] is ApiDefinition))
-                {
-                    if (newKeys.Contains(x))
-                        existing.Add(x);
-                }
-            });
-
-            Console.WriteLine($"Existing Items: {existing.Count}\n");
-
-            Console.WriteLine($"Total Items in new: {existing.Count + added.Count}\n");
-
-            if (!string.IsNullOrWhiteSpace(outputPath))
-            {
-                if (!Directory.Exists(outputPath))
-                    Directory.CreateDirectory(outputPath);
-
-                var addedFile = "added.txt";
-                var removedFile = "removed.txt";
-                var existingFile = "existing.txt";
-
-                File.WriteAllLines(Path.Combine(outputPath, addedFile), added.Keys);
-                File.WriteAllLines(Path.Combine(outputPath, removedFile), removed.Keys);
-                File.WriteAllLines(Path.Combine(outputPath, existingFile), existing);
-
-            }
-
             var metaData = new Metadata();
 
-            //add removed nodes
-            foreach (var aItem in removed)
-            {
-                metaData.RemoveNodes.Add(new Remove_Node()
-                {
-                    Path = aItem.Key,
-                });
-            }
+            //compare usings
+            CompareUsings(original.Usings.Items, updated.Usings.Items, metaData);
 
-            //add the added nodes
-            foreach (var aItem in added)
-            {
-                var aApiObject = aItem.Value;
+            //compare types
+            var typeDict = CompareTypes(original.GetTypes(), updated.GetTypes(), metaData);
 
-                var newAdded = new Add_Node()
-                {
-                    Path = aApiObject.Parent.Path,
-                };
 
-                if (aApiObject is ApiUsing)
-                {
-                    newAdded.Using = aApiObject as ApiUsing;
-                }
-                else if (aApiObject is ApiClass)
-                {
-                    newAdded.Class = aApiObject as ApiClass;
-                }
-                else if (aApiObject is ApiDelegate)
-                {
-                    newAdded.Delegate = aApiObject as ApiDelegate;
-                }
-                else if (aApiObject is ApiMethod)
-                {
-                    newAdded.Method = aApiObject as ApiMethod;
-                }
-                else if (aApiObject is ApiProperty)
-                {
-                    newAdded.Property = aApiObject as ApiProperty;
-                }
-                else if (aApiObject is ApiParameter)
-                {
-                    newAdded.Parameter = aApiObject as ApiParameter;
-                }
-                else
-                {
-
-                }
-
-                metaData.AddNodes.Add(newAdded);
-            }
-
-            //calculate the nodes
-            var changes = CalculateChanges(existing, originalItems, newItems);
-
-            Console.WriteLine($"Changes to existing items: {changes.Count}\n");
-
-            metaData.Changes = changes;
-
-            if (!string.IsNullOrWhiteSpace(outputPath))
-                metaData.WriteToFile(Path.Combine(outputPath, MetaDataFileName));
+            //compar delegates
+            CompareDelegates(original.GetDelegates(), updated.GetDelegates(), typeDict, metaData);
 
             return metaData;
-
         }
 
-        public static List<Attr> CalculateChanges(List<string> existingPaths, Dictionary<string, ApiObject> originalItems, Dictionary<string, ApiObject> newItems)
+        #region Private Methods
+
+        private static List<Attr> ProcessDiffs(string aPath, Dictionary<string, object> changes)
         {
             var results = new List<Attr>();
 
-            foreach (var aPath in existingPaths)
-            {
-                var origItem = originalItems[aPath];
-                var newItem = newItems[aPath];
-
-                var propValues = origItem.GetValues();
-                var newPropValues = newItem.GetValues();
-
-                var changes = propValues.FindChanges(newPropValues);
-
-                ProcessDiffs(aPath, changes, results);
-            }
-
-            return results;
-        }
-
-        private static void ProcessDiffs(string aPath, Dictionary<string, object> changes, List<Attr> results)
-        {
             if (changes.Keys.Count > 0)
             {
                 if (changes.Keys.Count == 1)
@@ -200,68 +84,8 @@ namespace Xamarin.iOS.Binding.Transformer
                 }
 
             }
-        }
-
-        /// <summary>
-        /// Flattens the dictionary to any parent items in the dict
-        /// </summary>
-        /// <param name="dict">The dictionary.</param>
-        /// <returns></returns>
-        private static Dictionary<string, ApiObject> FlattenDict(this Dictionary<string, ApiObject> dict)
-        {
-            var results = new Dictionary<string, ApiObject>();
-
-            foreach (var aKeyPath in dict.Keys)
-            {
-                var removable = ProcessNode(dict[aKeyPath], dict);
-
-                if (!results.ContainsKey(removable.Path))
-                    results.Add(removable.Path, removable);
-            }
 
             return results;
-        }
-
-        private static ApiObject ProcessNode(ApiObject apiObject, Dictionary<string, ApiObject> dict)
-        {
-            if (apiObject.Parent != null && dict.ContainsKey(apiObject.Parent.Path))
-            {
-                return ProcessNode(apiObject.Parent, dict);
-            }
-            else
-            {
-                return apiObject;
-            }
-        }
-
-        private static Dictionary<string, ApiObject> FindMissing(Dictionary<string, ApiObject> source, Dictionary<string, ApiObject> target)
-        {
-            var result = new Dictionary<string, ApiObject>();
-
-            var sourceKeys = source.Keys.ToList();
-            var targetKeys = target.Keys.ToList();
-
-            sourceKeys.ForEach(x =>
-            {
-                if (!targetKeys.Contains(x))
-                    result.Add(x, source[x]);
-            });
-
-            return result;
-        }
-
-        internal static Metadata CompareNew(ApiDefinition original, ApiDefinition updated)
-        {
-            var metaData = new Metadata();
-
-            //compare usings
-            CompareUsings(original.Usings.Items, updated.Usings.Items, metaData);
-
-            //compare types
-            CompareTypes(original.GetTypes(), updated.GetTypes(), metaData);
-
-
-            return metaData;
         }
 
         /// <summary>
@@ -270,7 +94,7 @@ namespace Xamarin.iOS.Binding.Transformer
         /// <param name="orgTypes"></param>
         /// <param name="updatedTypes"></param>
         /// <returns></returns>
-        private static void CompareTypes(IEnumerable<ApiClass> orgTypes, IEnumerable<ApiClass> updatedTypes, Metadata metadata)
+        private static Dictionary<string,string> CompareTypes(IEnumerable<ApiClass> orgTypes, IEnumerable<ApiClass> updatedTypes, Metadata metadata)
         {
 
             var diffs = BuildDiffs<ApiClass>(updatedTypes, orgTypes);
@@ -295,6 +119,20 @@ namespace Xamarin.iOS.Binding.Transformer
                 CompareType(newItem, oldType, typeList, metadata);
 
             }
+
+            return typeList;
+        }
+
+        private static void CompareDelegates(List<ApiDelegate> orgDelegates, List<ApiDelegate> updateDelegates, Dictionary<string, string> typeDict, Metadata metadata)
+        {
+            var diffs = BuildDiffs<ApiDelegate>(updateDelegates, orgDelegates);
+
+            //add removed types to the meta data
+            metadata.AddRemoveNodes(diffs.Removed);
+
+
+            //add new types to the meta data 
+            metadata.AddNewNodes(diffs.Added);
         }
 
         /// <summary>
@@ -338,8 +176,8 @@ namespace Xamarin.iOS.Binding.Transformer
             if (changes.Count > 0)
             {
                 //process and add to metadata
-                var results = new List<Attr>();
-                ProcessDiffs(oldType.Path, changes, results);
+                var results = ProcessDiffs(oldType.Path, changes);
+
                 metadata.Changes.AddRange(results);
             }
 
@@ -376,9 +214,7 @@ namespace Xamarin.iOS.Binding.Transformer
 
                 var changes = propValues.FindChanges(newPropValues);
 
-                var results = new List<Attr>();
-
-                ProcessDiffs(prop.Path, changes, results);
+                var results =  ProcessDiffs(prop.Path, changes);
 
                 metadata.Changes.AddRange(results);
 
@@ -489,14 +325,12 @@ namespace Xamarin.iOS.Binding.Transformer
         /// <returns></returns>
         private static List<Attr> BuildMethodDiffs(ApiMethod originalMethod, ApiMethod newMethod)
         {
-            var results = new List<Attr>();
-
             var oldValues = originalMethod.GetValues();
             var newValues = newMethod.GetValues();
 
             var changes = oldValues.FindChanges(newValues);
 
-            ProcessDiffs(originalMethod.Path, changes, results);
+            var results = ProcessDiffs(originalMethod.Path, changes);
 
             //now work through the parameters
             foreach (var newPar in newMethod.Parameters)
@@ -509,7 +343,12 @@ namespace Xamarin.iOS.Binding.Transformer
                 var pChanges = oldVals.FindChanges(newVals);
 
                 if (pChanges.Count > 0)
-                    ProcessDiffs(oldPar.Path, pChanges, results);
+                {
+                    var additionalRes = ProcessDiffs(oldPar.Path, pChanges);
+
+                    results.AddRange(additionalRes);
+                }
+                    
 
             }
 
@@ -562,5 +401,7 @@ namespace Xamarin.iOS.Binding.Transformer
 
             return (added, removed, existing);
         }
+
+        #endregion
     }
 }

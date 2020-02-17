@@ -47,10 +47,35 @@ namespace Xamarin.iOS.Binding.Transformer
         /// <returns></returns>
         public Metadata Compare(ApiDefinition target)
         {
-            return ChangeManager.CompareNew(this, target);
+            return ChangeManager.Compare(this, target);
         }
 
-        public void UpdateHierachy()
+        /// <summary>
+        /// Remove a prefix from classes and delegates names, return types, method names and parameter types 
+        /// </summary>
+        /// <param name="prefix"></param>
+        public override void RemovePrefix(string prefix)
+        {
+            foreach (var ans in Namespaces)
+            {
+                ans.RemovePrefix(prefix);
+            }
+        }
+
+        /// <summary>
+        /// Move methods and properties to parent classes matching the class name without the specified suffix.  This usefull for moving deperecate methods back into singles classes  
+        /// </summary>
+        /// <param name="suffixes"></param>
+        public void FlattenCategories(params string[] suffixes)
+        {
+            foreach (var aNamespace in Namespaces)
+            {
+                aNamespace.FlattenCategories(suffixes);
+            }
+        }
+
+        #region Internals
+        internal void UpdateHierachy()
         {
             foreach (var aUsing in Usings.Items)
             {
@@ -63,7 +88,7 @@ namespace Xamarin.iOS.Binding.Transformer
             }
         }
 
-        public Dictionary<string, ApiObject> BuildTreePath()
+        internal Dictionary<string, ApiObject> BuildTreePath()
         {
             var aList = new Dictionary<string, ApiObject>();
 
@@ -110,21 +135,7 @@ namespace Xamarin.iOS.Binding.Transformer
  
         }
 
-        public override void RemovePrefix(string prefix)
-        {
-           foreach (var ans in Namespaces)
-            {
-                ans.RemovePrefix(prefix);
-            }
-        }
 
-        public void FlattenCategories(params string[] suffixes)
-        {
-            foreach (var aNamespace in Namespaces)
-            {
-                aNamespace.FlattenCategories(suffixes);
-            }
-        }
 
         internal List<ApiClass> GetTypes()
         {
@@ -150,6 +161,6 @@ namespace Xamarin.iOS.Binding.Transformer
             return results;
         }
 
-       
+        #endregion
     }
 }
