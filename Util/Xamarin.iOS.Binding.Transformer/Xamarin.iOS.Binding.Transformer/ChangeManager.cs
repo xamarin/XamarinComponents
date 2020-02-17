@@ -327,8 +327,26 @@ namespace Xamarin.iOS.Binding.Transformer
         /// <param name="metadata">the metadata object</param>
         private static void CompareType(ApiClass newType, ApiClass oldType, Dictionary<string, string> typeList, Metadata metadata)
         {
+            //find differences in the type values
+            var oldVals = oldType.GetValues();
+            var newVals = newType.GetValues();
+
+            //find the changes
+            var changes = oldVals.FindChanges(newVals);
+
+            //check for changes
+            if (changes.Count > 0)
+            {
+                //process and add to metadata
+                var results = new List<Attr>();
+                ProcessDiffs(oldType.Path, changes, results);
+                metadata.Changes.AddRange(results);
+            }
+
+
             CompareMethods(newType.Methods, oldType.Methods, typeList, metadata);
             CompareProperties(newType.Properties, oldType.Properties, typeList, metadata);
+
 
         }
 
@@ -478,7 +496,7 @@ namespace Xamarin.iOS.Binding.Transformer
 
             var changes = oldValues.FindChanges(newValues);
 
-            ProcessDiffs(newMethod.Path, changes, results);
+            ProcessDiffs(originalMethod.Path, changes, results);
 
             //now work through the parameters
             foreach (var newPar in newMethod.Parameters)
@@ -490,7 +508,8 @@ namespace Xamarin.iOS.Binding.Transformer
 
                 var pChanges = oldVals.FindChanges(newVals);
 
-                ProcessDiffs(newPar.Path, pChanges, results);
+                if (pChanges.Count > 0)
+                    ProcessDiffs(oldPar.Path, pChanges, results);
 
             }
 

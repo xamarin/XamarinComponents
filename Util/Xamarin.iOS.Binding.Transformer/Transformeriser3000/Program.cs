@@ -17,30 +17,31 @@ namespace Transformeriser3000
 
             var apiV92 = Path.Combine(currentLocation, "ApiDefinitions92.cs");
             var apiV92Xam = Path.Combine(currentLocation, "ApiDefinition92Xam.cs");
-            //var apiV92CSClean = Path.Combine(currentLocation, "ApiDefinitions92GenClean.cs");
+            var apiV92CSClean = Path.Combine(currentLocation, "ApiDefinitions92Gen.cs");
             //var apiMetaDataFile = Path.Combine(apiDiffOutput, "Metadata.xml");
 
+            //load the original and the modified version of the file
             var api92 = await LoadDefinition(apiV92);
             var api92Xam = await LoadDefinition(apiV92Xam);
 
             //flatten the deprecated categories
             api92.FlattenCategories("_Deprecated", "_ToBeDeprecated");
 
-            //var thing = api92.Namespaces[0].Types.FirstOrDefault(x => x.Name.Equals("MDCTonalPalette", StringComparison.OrdinalIgnoreCase));
-
+           
+            //build the changes list by comparing the original to the modified version
             var meta = api92.Compare(api92Xam);
 
             //output the results
             Console.Write(meta.ToString());
 
+            //write the metadata
             meta.WriteToFile(Path.Combine(currentLocation, "metadata.xml"));
 
-            //var fixedTransform = api92.Transform(apiMetaDataFile);
+            //transform the unmodified version
+            var fixedTransform = api92.Transform(meta);
 
-            // await CodeGenerator.GenerateAsync(api92, apiV92CSClean);
-
-
-
+            //generate a new class from the transform defintin
+            await CodeGenerator.GenerateAsync(api92, apiV92CSClean);
 
             //api92.RemovePrefix("MDC");
 
