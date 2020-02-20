@@ -1,4 +1,4 @@
-﻿// Copyright (c) 2015-2016 Xamarin Inc.
+// Copyright (c) 2015-2016 Xamarin Inc.
 
 using System;
 using System.Collections.Generic;
@@ -246,10 +246,6 @@ namespace NativeLibraryDownloaderTests
 		[Fact]
 		public void TestResourcesAdded ()
 		{
-			// Tests won't run on windows due to file locking issues with assemblies
-			if (IsWindows)
-				return;
-
 			var engine = new ProjectCollection ();
 			var prel = ProjectRootElement.Create (Path.Combine (TempDir, "project.csproj"), engine);
 
@@ -280,12 +276,11 @@ namespace NativeLibraryDownloaderTests
 
 			var plist = Path.Combine (unpackDir, "AppInvites-1.0.2", "Frameworks", "GINInvite.framework", "Versions", "A", "Resources", "GINInviteResources.bundle", "Info.plist");
 
-			const string resourceName = "monotouch_content_GINInviteResources.bundle_fInfo.plist";
+			const string resourceName = "GINInviteResources.bundle\\Info.plist";
 			prel.AddItem (
-				"RestoreAssemblyResource",
+				"BundleResource",
 				plist,
 				new Dictionary<string,string> {
-					{ "AssemblyName", "Foo" },
 					{ "LogicalName", resourceName }
 				}
 			);
@@ -295,7 +290,7 @@ namespace NativeLibraryDownloaderTests
 			var project = new ProjectInstance (prel);
 			var log = new MSBuildTestLogger ();
 
-			var success = BuildProject (engine, project, "_XamariniOSBuildResourceRestore", log);
+			var success = BuildProject (engine, project, "_XamarinBuildDownload", log);
 
 			var ignoreMessages = new List<string> { "Enumeration yielded no results" };
 			ignoreMessages.AddRange (DEFAULT_IGNORE_PATTERNS);
@@ -310,35 +305,6 @@ namespace NativeLibraryDownloaderTests
 
 			var mergedItem = items.FirstOrDefault (i => !string.IsNullOrEmpty (i.EvaluatedInclude));
 			Assert.True (mergedItem != null);
-
-			var itemPath = mergedItem.EvaluatedInclude;
-
-			//Assert.NotEqual (dll, itemPath);
-
-			//check the assembly has the processed resource
-			var processedAsm = AssemblyDefinition.ReadAssembly (itemPath);
-			var resource = processedAsm.MainModule.Resources.FirstOrDefault () as EmbeddedResource;
-			Assert.NotNull (resource);
-			Assert.Equal (resourceName, resource.Name);
-			var ps = PObject.FromStream (resource.GetResourceStream ()) as PDictionary;
-			Assert.False (ps.ContainsKey ("CFBundleExecutable"));
-			Assert.True (ps.Count > 0);
-			var processedAsmMtime = File.GetLastWriteTime (itemPath);
-
-			// check incremental build works
-			project = new ProjectInstance (prel);
-			log = new MSBuildTestLogger ();
-			var newSuccess = BuildProject (engine, project, "_XamariniOSBuildResourceRestore", log);
-
-			AssertNoMessagesOrWarnings (log, ignoreMessages.ToArray());
-			Assert.True (success);
-
-			var newItems = project.GetItems ("ReferencePath");
-			var newItem = newItems.FirstOrDefault (i => !string.IsNullOrEmpty (i.EvaluatedInclude));
-			var newItemPath = newItem.EvaluatedInclude;
-
-			Assert.Equal (itemPath, newItemPath);
-			Assert.Equal (processedAsmMtime, File.GetLastWriteTime (newItemPath));
 		}
 
 		[Fact]
