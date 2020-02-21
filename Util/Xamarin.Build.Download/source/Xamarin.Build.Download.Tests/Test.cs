@@ -244,7 +244,7 @@ namespace NativeLibraryDownloaderTests
 		}
 
 		[Fact]
-		public void TestResourcesAdded ()
+		public void TestCastAssemblyResources ()
 		{
 			var engine = new ProjectCollection ();
 			var prel = ProjectRootElement.Create (Path.Combine (TempDir, "project.csproj"), engine);
@@ -274,13 +274,26 @@ namespace NativeLibraryDownloaderTests
 				dll
 			);
 
-			var plist = Path.Combine (unpackDir, "AppInvites-1.0.2", "Frameworks", "GINInvite.framework", "Versions", "A", "Resources", "GINInviteResources.bundle", "Info.plist");
+			var bundlePath = Path.Combine (unpackDir, "AppInvites-1.0.2", "Frameworks", "GINInvite.framework", "Versions", "A", "Resources", "GINInviteResources.bundle");
 
-			const string resourceName = "GINInviteResources.bundle\\Info.plist";
+			var plist = Path.Combine (bundlePath, "Info.plist");
+			string resourceName = "__monotouch_content_GINInviteResources.bundle_fInfo.plist";
 			prel.AddItem (
-				"BundleResource",
+				"RestoreAssemblyResource",
 				plist,
 				new Dictionary<string,string> {
+					{ "AssemblyName", "Foo" },
+					{ "LogicalName", resourceName }
+				}
+			);
+
+			var image = Path.Combine (bundlePath, "ic_sms_24@3x.png");
+			resourceName = "__monotouch_content_GINInviteResources.bundle_fic__sms__24%403x.png";
+			prel.AddItem (
+				"RestoreAssemblyResource",
+				image,
+				new Dictionary<string, string> {
+					{ "AssemblyName", "Foo" },
 					{ "LogicalName", resourceName }
 				}
 			);
@@ -290,7 +303,7 @@ namespace NativeLibraryDownloaderTests
 			var project = new ProjectInstance (prel);
 			var log = new MSBuildTestLogger ();
 
-			var success = BuildProject (engine, project, "_XamarinBuildDownload", log);
+			var success = BuildProject (engine, project, "_XamarinBuildCastAssemblyResources", log);
 
 			var ignoreMessages = new List<string> { "Enumeration yielded no results" };
 			ignoreMessages.AddRange (DEFAULT_IGNORE_PATTERNS);
@@ -300,11 +313,16 @@ namespace NativeLibraryDownloaderTests
 			var plistExists = File.Exists (plist);
 			Assert.True (plistExists);
 
-			//check the referencepath has been replaced by the processed one
-			var items = project.GetItems ("ReferencePath");
+			var imageExists = File.Exists (image);
+			Assert.True (imageExists);
 
-			var mergedItem = items.FirstOrDefault (i => !string.IsNullOrEmpty (i.EvaluatedInclude));
-			Assert.True (mergedItem != null);
+			// Check if BundleResources were generated correctly.
+			var bundleResources = project.GetItems ("BundleResource");
+			Assert.True (bundleResources != null);
+
+			// Check if Optimize metadata was generated correctly.
+			var imageResource = bundleResources.Single (b => b.GetMetadataValue ("Identity").ToLower ().EndsWith (".png"));
+			Assert.True (imageResource.GetMetadataValue ("Optimize") == "False");
 		}
 
 		[Fact]

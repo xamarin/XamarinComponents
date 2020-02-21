@@ -1,4 +1,4 @@
-﻿# Xamarin.Build.Download
+# Xamarin.Build.Download
 
 The Xamarin.Build.Download NuGet is intended to be consumed from MSBuild targets in other NuGets in order to download
 third-party native library archives automatically and inject them into the build process.
