@@ -9,7 +9,7 @@ namespace Google.AR.Sceneform.UX
 {
     public partial class RotationController
     {
-        protected override unsafe void OnEndTransformation(global::Java.Lang.Object gesture)
+        protected virtual unsafe void OnEndTransformation(global::Java.Lang.Object gesture)
         {
             const string __id = "onEndTransformation.(Ljava/lang/Object;)V";
             try
