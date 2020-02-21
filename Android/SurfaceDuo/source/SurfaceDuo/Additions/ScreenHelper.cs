@@ -61,7 +61,11 @@ namespace Microsoft.Device.Display
 			// Double Landscape Rect(0, 1350 - 1800, 1434)
 			// Double Portrait  Rect(1350, 0 - 1434, 1800)
 			var boundings = DisplayMask.GetBoundingRectsForRotation(rotation);
-			return boundings.FirstOrDefault();
+
+			if (boundings.Count <= 0)
+				return new Rect();
+
+			return boundings[0];
 		}
 
 		Rect GetWindowRect()
