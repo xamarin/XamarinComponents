@@ -10,16 +10,16 @@ var TARGET = Argument ("t", Argument ("target", "ci"));
 Dictionary<string, string> URLS_ARTIFACT_FILES= new Dictionary<string, string>()
 {
 	{
-		$"https://maven.google.com//com/google/android/datatransport/transport-api/2.1.0/transport-api-2.1.0.aar",
-		$"./externals/android/transport-api-2.1.0.aar"
+		$"https://maven.google.com//com/google/android/datatransport/transport-api/2.2.0/transport-api-2.2.0.aar",
+		$"./externals/android/transport-api-2.2.0.aar"
 	},
 	{
-		$"https://maven.google.com//com/google/android/datatransport/transport-backend-cct/2.1.0/transport-backend-cct-2.1.0.aar",
-		$"./externals/android/transport-backend-cct-2.1.0.aar"
+		$"https://maven.google.com//com/google/android/datatransport/transport-backend-cct/2.2.0/transport-backend-cct-2.2.0.aar",
+		$"./externals/android/transport-backend-cct-2.2.0.aar"
 	},
 	{
-		$"https://maven.google.com//com/google/android/datatransport/transport-runtime/2.1.0/transport-runtime-2.1.0.aar",
-		$"./externals/android/transport-runtime-2.1.0.aar"
+		$"https://maven.google.com//com/google/android/datatransport/transport-runtime/2.2.0/transport-runtime-2.2.0.aar",
+		$"./externals/android/transport-runtime-2.2.0.aar"
 	},
 };
 
