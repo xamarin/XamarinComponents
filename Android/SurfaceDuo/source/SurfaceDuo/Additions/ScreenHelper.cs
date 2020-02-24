@@ -5,6 +5,7 @@ using System.Text;
 
 using Android.App;
 using Android.Content;
+using Android.Content.Res;
 using Android.Graphics;
 using Android.OS;
 using Android.Runtime;
@@ -51,6 +52,12 @@ namespace Microsoft.Device.Display
 
 			return true;
 		}
+
+		public void OnConfigurationChanged(Configuration newConfig)
+			=> Update();
+		
+		public void Update()
+			=> DisplayMask = DisplayMask.FromResourcesRectApproximation(Activity);
 
 		public SurfaceOrientation GetRotation()
 			=> GetRotation(Activity);
@@ -117,6 +124,6 @@ namespace Microsoft.Device.Display
 			=> px / Activity?.Resources?.DisplayMetrics?.Density ?? 1;
 
 		Rect RectPixelsToDip(Rect rect)
-			=> new Rect((int)PixelsToDip(rect.Left), (int)PixelsToDip(rect.Top), (int)PixelsToDip(rect.Width()), (int)PixelsToDip(rect.Height()));
+			=> new Rect((int)PixelsToDip(rect.Left), (int)PixelsToDip(rect.Top), (int)PixelsToDip(rect.Right), (int)PixelsToDip(rect.Bottom));
 	}
 }
