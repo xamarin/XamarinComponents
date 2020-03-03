@@ -17,6 +17,7 @@ jobs:
   - template: .ci/build.yml@components
     parameters:
       timeoutInMinutes: 360
+      areaPath: 'DevDiv\Xamarin SDK\Android'
       buildType: 'manifest'
       validPackagePrefixes: 
         # Preferred prefixes
@@ -31,7 +32,7 @@ jobs:
         - GoogleGson
         - AndroidEasingFunctions
       tools:
-        - 'Xamarin.AndroidBinderator.Tool': '0.4.1'
+        - 'Xamarin.AndroidBinderator.Tool': '0.4.2'
   - ${{ if eq(variables['System.TeamProject'], 'devdiv') }}:
     - template: sign-artifacts/jobs/v1.yml@internal-templates
       parameters:

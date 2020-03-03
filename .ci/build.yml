@@ -9,6 +9,7 @@ parameters:
   masterBranchName: 'master'                                # the "master" branch that should be used - can be something other than "master"
   installAppleCertificates: 'true'                          # whether or not to install the Apple certificates and provisioning profiles
   submodules: false                                         # whether or not to check out submodules
+  areaPath: ''                                              # the areaPath to log any issues
   # job software version parameters
   macosImage: 'Hosted macOS'                                # the name of the macOS VM image
   windowsImage: 'Hosted Windows 2019 with VS2019'           # the name of the Windows VM image
@@ -281,7 +282,7 @@ jobs:
       displayName: 'Run required code checks'
       condition: eq('refs/heads/${{ parameters.masterBranchName }}', variables['Build.SourceBranch'])
       pool:
-        name: ${{ parameters.windowsImage }}
+        name: 'Hosted Windows 2019 with VS2019'
       steps:
         - pwsh: |
             $repo = "$(Build.Repository.Id)"
@@ -328,7 +329,7 @@ jobs:
             notifyAlwaysV2: false
             instanceUrlForTsaV2: 'DEVDIV'
             projectNameDEVDIV: 'DevDiv'
-            areaPath: 'DevDiv\Xamarin Tools and SDKs\Components'
+            areaPath: '${{ parameters.areaPath }}'
             iterationPath: 'DevDiv\OneVS'
             uploadAPIScan: false
             uploadBinSkim: false
