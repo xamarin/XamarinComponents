@@ -3,7 +3,7 @@
   <PropertyGroup>
     <TargetFramework>MonoAndroid81</TargetFramework>
     <IsBindingProject>true</IsBindingProject>
-    <AssemblyName>Xamarin.Android.SceneForm.UX</AssemblyName>
+    <AssemblyName>Xamarin.Android.SceneForm.UX.AndroidX</AssemblyName>
     <MonoAndroidResourcePrefix>Resources</MonoAndroidResourcePrefix>
     <MonoAndroidAssetsPrefix>Assets</MonoAndroidAssetsPrefix>
     <AndroidUseLatestPlatformSdk>False</AndroidUseLatestPlatformSdk>
@@ -15,8 +15,8 @@
   </PropertyGroup>
 
   <PropertyGroup>
-    <PackageId>Xamarin.Android.SceneForm.UX</PackageId>
-    <Title>Xamarin.Android.SceneForm.UX</Title>
+    <PackageId>Xamarin.Android.SceneForm.UX.AndroidX</PackageId>
+    <Title>Xamarin.Android.SceneForm.UX.AndroidX</Title>
     <PackageDescription>Xamarin.Android bindings for SceneForm UX</PackageDescription>
     <Authors>Microsoft</Authors>
     <Owners>Microsoft</Owners>
@@ -24,7 +24,7 @@
     <PackageProjectUrl>https://go.microsoft.com/fwlink/?linkid=2083771</PackageProjectUrl>
     <PackageLicenseUrl>https://go.microsoft.com/fwlink/?linkid=2083684</PackageLicenseUrl>
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
-    <PackageVersion>1.14.0</PackageVersion>
+    <PackageVersion>1.15.0</PackageVersion>
   </PropertyGroup>
 
   <ItemGroup>
