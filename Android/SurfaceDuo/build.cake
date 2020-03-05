@@ -1,7 +1,7 @@
 var TARGET = Argument ("t", Argument ("target", "ci"));
 
 var AAR_VERSION = "0.0.3";
-var NUGET_VERSION = "0.0.3.2";
+var NUGET_VERSION = "0.0.3.4";
 
 Task ("externals")
 	.Does (() =>

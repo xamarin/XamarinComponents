@@ -5,6 +5,7 @@ using System.Text;
 
 using Android.App;
 using Android.Content;
+using Android.Content.Res;
 using Android.Graphics;
 using Android.OS;
 using Android.Runtime;
@@ -52,6 +53,12 @@ namespace Microsoft.Device.Display
 			return true;
 		}
 
+		public void OnConfigurationChanged(Configuration newConfig)
+			=> Update();
+		
+		public void Update()
+			=> DisplayMask = DisplayMask.FromResourcesRectApproximation(Activity);
+
 		public SurfaceOrientation GetRotation()
 			=> GetRotation(Activity);
 
@@ -61,7 +68,11 @@ namespace Microsoft.Device.Display
 			// Double Landscape Rect(0, 1350 - 1800, 1434)
 			// Double Portrait  Rect(1350, 0 - 1434, 1800)
 			var boundings = DisplayMask.GetBoundingRectsForRotation(rotation);
-			return boundings.FirstOrDefault();
+
+			if (boundings.Count <= 0)
+				return new Rect();
+
+			return boundings[0];
 		}
 
 		Rect GetWindowRect()
@@ -71,53 +82,22 @@ namespace Microsoft.Device.Display
 			return windowRect;
 		}
 
-		void GetScreenRects(Rect windowRect, Rect hinge, Rect screenRect1, Rect screenRect2)
-		{
-			// Hinge's coordinates of its 4 edges in different mode
-			// Double Landscape Rect(0, 1350 - 1800, 1434)
-			// Double Portrait  Rect(1350, 0 - 1434, 1800)
-			if (hinge.Left > 0)
-			{
-				screenRect1.Left = 0;
-				screenRect1.Right = hinge.Left;
-				screenRect1.Top = 0;
-				screenRect1.Bottom = windowRect.Bottom;
-				screenRect2.Left = hinge.Right;
-				screenRect2.Right = windowRect.Right;
-				screenRect2.Top = 0;
-				screenRect2.Bottom = windowRect.Bottom;
-			}
-			else
-			{
-				screenRect1.Left = 0;
-				screenRect1.Right = windowRect.Right;
-				screenRect1.Top = 0;
-				screenRect1.Bottom = hinge.Top;
-				screenRect2.Left = 0;
-				screenRect2.Right = windowRect.Right;
-				screenRect2.Top = hinge.Bottom;
-				screenRect2.Bottom = windowRect.Bottom;
-			}
-		}
-
-		void GetScreenRects(Rect screenRect1, Rect screenRect2, SurfaceOrientation rotation)
-		{
-			Rect hinge = GetHinge(rotation);
-			Rect windowRect = GetWindowRect();
-			GetScreenRects(windowRect, hinge, screenRect1, screenRect2);
-		}
-
 		public bool IsDualMode
 		{
 			get
 			{
 				var rotation = GetRotation();
-				Rect hinge = GetHinge(rotation);
-				Rect windowRect = GetWindowRect();
+				var hinge = GetHinge(rotation);
+				var windowRect = GetWindowRect();
 
-				if (windowRect.Width() > 0 && windowRect.Height() > 0)
+				// Make sure hinge isn't null and window rect
+				// Also make sure hinge has width OR height (not just Rect.Zero)
+				// Finally make sure the window rect has width AND height
+				if (hinge != null && windowRect != null
+					&& (hinge.Width() > 0 || hinge.Height() > 0)
+					&& windowRect.Width() > 0 && windowRect.Height() > 0)
 				{
-					// The windowRect doesn't intersect hinge
+					// If the hinge intersects the window, dual mode
 					return hinge.Intersect(windowRect);
 				}
 
@@ -144,6 +124,6 @@ namespace Microsoft.Device.Display
 			=> px / Activity?.Resources?.DisplayMetrics?.Density ?? 1;
 
 		Rect RectPixelsToDip(Rect rect)
-			=> new Rect((int)PixelsToDip(rect.Left), (int)PixelsToDip(rect.Top), (int)PixelsToDip(rect.Width()), (int)PixelsToDip(rect.Height()));
+			=> new Rect((int)PixelsToDip(rect.Left), (int)PixelsToDip(rect.Top), (int)PixelsToDip(rect.Right), (int)PixelsToDip(rect.Bottom));
 	}
 }

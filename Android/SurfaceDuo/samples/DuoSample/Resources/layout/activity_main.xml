@@ -1,0 +1,23 @@
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+		android:layout_width="fill_parent"
+		android:layout_height="wrap_content"
+        android:id="@+id/textViewDuo" />
+
+    <TextView
+		android:layout_width="fill_parent"
+		android:layout_height="wrap_content"
+        android:id="@+id/textViewSpan" />
+
+    <TextView
+		android:layout_width="fill_parent"
+		android:layout_height="wrap_content"
+        android:id="@+id/textViewHinge" />
+</LinearLayout>
