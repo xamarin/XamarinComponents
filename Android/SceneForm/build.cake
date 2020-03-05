@@ -1,6 +1,6 @@
 #addin nuget:?package=SharpZipLib
 
-var TARGET = Argument ("t", Argument ("target", "Default"));
+var TARGET = Argument ("t", Argument ("target", "ci"));
 
 var SF_VERSION = "1.15.0";
 
@@ -97,11 +97,11 @@ Task ("clean")
 Task ("ci")
 	.IsDependentOn("libs")
 	.IsDependentOn("nuget")
-\	.Does 
+	.Does 
 	(
 		() =>
 		{
 		}
 	);
 
-RunTarget ("ci");
+RunTarget (TARGET);
