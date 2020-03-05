@@ -47,7 +47,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Xamarin.Google.ARCore" Version="1.11.0" />
+    <PackageReference Include="Xamarin.Google.ARCore" Version="1.15.0" />
   </ItemGroup>
 
 </Project>

@@ -36,4 +36,17 @@
      <remove-node path="/api/package[@name='com.google.ar.sceneform.rendering']/class[@name='Renderable.Builder']/method[@name='build' and count(parameter)=0]" />
     <remove-node path="/api/package[@name='com.google.ar.sceneform.rendering']/class[@name='Renderable.Builder']/method[@name='getRenderableClass' and count(parameter)=0]" />
     <remove-node path="/api/package[@name='com.google.ar.sceneform.rendering']/class[@name='Renderable.Builder']/method[@name='getRenderableRegistry' and count(parameter)=0]" />
+    
+    
+    <remove-node
+        path="/api/package[@name='com.google.ar.sceneform.rendering']/class[@name='Renderable']/typeParameters"
+        />
+    <remove-node
+        path="/api/package[@name='com.google.ar.sceneform.rendering']/class[@name='ModelRenderable.Builder']/method[@name='setRegistryId' and count(parameter)=1 and parameter[1][@type='java.lang.Object']]"
+        >
+    </remove-node>
+    <remove-node
+        path="/api/package[@name='com.google.ar.sceneform.rendering']/class[@name='Renderable.Builder']/method[@name='setRegistryId' and count(parameter)=1 and parameter[1][@type='java.lang.Object']]"
+        >
+    </remove-node>
 </metadata>
