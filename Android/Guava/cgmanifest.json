@@ -1,12 +1,12 @@
 {
-  "Registrations":[ 
+  "Registrations": [
     {
       "Component": {
         "Type": "Maven",
         "Maven": {
           "ArtifactId": "guava",
           "GroupId": "com.google.guava",
-          "Version": "27.1-android"
+          "Version": "28.2-android"
         }
       }
     },
@@ -27,6 +27,16 @@
           "ArtifactId": "listenablefuture",
           "GroupId": "com.google.guava",
           "Version": "1.0"
+        }
+      }
+    },
+    {
+      "Component": {
+        "Type": "Maven",
+        "Maven": {
+          "ArtifactId": "guava-concurrent",
+          "GroupId": "com.google.guava",
+          "Version": "rc03"
         }
       }
     }
