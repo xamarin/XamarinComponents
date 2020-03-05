@@ -5,7 +5,6 @@ using System.Linq;
 using System.Reflection;
 using Microsoft.Build.Framework;
 using Microsoft.Build.Utilities;
-using Mono.Cecil;
 using Xamarin.MacDev;
 
 namespace Xamarin.Build.Download

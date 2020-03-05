@@ -14,6 +14,7 @@ using Microsoft.AspNetCore.Razor.Language.Extensions;
 using RazorLight;
 using MavenGroup = MavenNet.Models.Group;
 using System.Security.Cryptography;
+using System.Text;
 
 namespace AndroidBinderator
 {
@@ -221,11 +222,10 @@ namespace AndroidBinderator
 
 			foreach (var mavenArtifact in config.MavenArtifacts)
 			{
-
-				if (!mavenProjects.TryGetValue($"{mavenArtifact.GroupId}/{mavenArtifact.ArtifactId}-{mavenArtifact.Version}", out var mavenProject))
+				if (mavenArtifact.DependencyOnly)
 					continue;
 
-				if (mavenArtifact.DependencyOnly)
+				if (!mavenProjects.TryGetValue($"{mavenArtifact.GroupId}/{mavenArtifact.ArtifactId}-{mavenArtifact.Version}", out var mavenProject))
 					continue;
 
 				var artifactMetadata = new Dictionary<string, string>();
@@ -268,6 +268,7 @@ namespace AndroidBinderator
 					Metadata = artifactMetadata,
 				});
 
+
 				// Gather maven dependencies to try and map out nuget dependencies
 				foreach (var mavenDep in mavenProject.Dependencies)
 				{
@@ -276,7 +277,8 @@ namespace AndroidBinderator
 						continue;
 
 					var depMapping = config.MavenArtifacts.FirstOrDefault(
-						ma => ma.GroupId == mavenDep.GroupId
+						ma => !string.IsNullOrEmpty(ma.Version) 
+						&& ma.GroupId == mavenDep.GroupId
 						&& ma.ArtifactId == mavenDep.ArtifactId
 						&& mavenDep.Satisfies(ma.Version));
 
