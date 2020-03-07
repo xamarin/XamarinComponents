@@ -17,6 +17,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Rendering", "source\Renderi
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UX", "source\UX\UX.csproj", "{ACECE654-15B5-4B2B-BF1E-14CA3D0FC6CA}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UX.AndroidX", "source\UX.AndroidX\UX.AndroidX.csproj", "{08501CBB-A95A-42E8-A53F-FE87BDF0F5B8}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -55,6 +57,10 @@ Global
 		{5C856B2B-C3FD-4349-A319-D1A7B12A5B0A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5C856B2B-C3FD-4349-A319-D1A7B12A5B0A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5C856B2B-C3FD-4349-A319-D1A7B12A5B0A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{08501CBB-A95A-42E8-A53F-FE87BDF0F5B8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{08501CBB-A95A-42E8-A53F-FE87BDF0F5B8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{08501CBB-A95A-42E8-A53F-FE87BDF0F5B8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{08501CBB-A95A-42E8-A53F-FE87BDF0F5B8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
