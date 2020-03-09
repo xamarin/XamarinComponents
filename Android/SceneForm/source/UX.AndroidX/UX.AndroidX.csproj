@@ -48,6 +48,7 @@
 
   <ItemGroup>
     <PackageReference Include="Xamarin.AndroidX.Fragment" Version="1.1.0" />
+    <PackageReference Include="Xamarin.AndroidX.Migration" Version="1.0.0" />
   </ItemGroup>
 
   <ItemGroup>
