@@ -778,6 +778,7 @@ namespace MaterialComponents
     }
 
     [Protocol(Name = "MDCColorScheming")]
+    [BaseType(typeof(NSObject))]
     interface ColorScheming
     {
         [Abstract]
@@ -1186,7 +1187,7 @@ namespace MaterialComponents
     {
         [Abstract]
         [Export("colorScheme")]
-        IColorScheming ColorScheme { get; }
+        ColorScheming ColorScheme { get; }
 
         [Abstract]
         [Export("typographyScheme")]

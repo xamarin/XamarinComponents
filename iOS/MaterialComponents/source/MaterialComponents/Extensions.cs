@@ -119,12 +119,21 @@ namespace MaterialComponents {
 		}
 	}
 
+    public partial class ContainerScheme
+    {
+		ColorScheming IContainerScheming.ColorScheme { get; }
+
+		TypographyScheming IContainerScheming.TypographyScheme { get; }
+
+		ShapeScheming IContainerScheming.ShapeScheme { get; }
+	}
+
 	public static class MaterialFeatureHighlightStrings {
 		public static NSString [] StringTable { get; } = { new NSString ("MaterialFeatureHighlightDismissAccessibilityHint") };
 		public static NSString TableName { get; } = new NSString ("MaterialFeatureHighlight");
 	}
 
-	public partial class CardScheme {
+    public partial class CardScheme {
 		public SemanticColorScheme SemanticColorScheme {
 			get {
 				return Runtime.GetNSObject<SemanticColorScheme> (ColorScheme.Handle, false);
