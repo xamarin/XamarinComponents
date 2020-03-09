@@ -1,6 +1,9 @@
 trigger:
   - master
   - refs/tags/*
+  
+pr:
+  - master
 
 resources:
   repositories:
