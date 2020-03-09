@@ -163,9 +163,7 @@ Task ("ci")
 	.IsDependentOn("samples")
 	.Does 
 	(
-		() =>
-		{
-		}
+		() => {}
 	);
 
 RunTarget (TARGET);
