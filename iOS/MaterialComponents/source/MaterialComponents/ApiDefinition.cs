@@ -2777,20 +2777,19 @@ namespace MaterialComponents
     }
 
     [Protocol(Name = "MDCButtonScheming")]
-    [BaseType(typeof(NSObject))]
     interface ButtonScheming
     {
         [Abstract]
         [Export("colorScheme")]
-        ColorScheming ColorScheme { get; }
+        IColorScheming ColorScheme { get; }
 
         [Abstract]
         [Export("shapeScheme")]
-        ShapeScheming ShapeScheme { get; }
+        IShapeScheming ShapeScheme { get; }
 
         [Abstract]
         [Export("typographyScheme")]
-        TypographyScheming TypographyScheme { get; }
+        ITypographyScheming TypographyScheme { get; }
 
         [Abstract]
         [Export("cornerRadius")]
@@ -2807,13 +2806,13 @@ namespace MaterialComponents
 
     {
         [Export("colorScheme", ArgumentSemantic.Assign)]
-        ColorScheming ColorScheme { get; set; }
+        IColorScheming ColorScheme { get; set; }
 
         [Export("shapeScheme", ArgumentSemantic.Assign)]
-        ShapeScheming ShapeScheme { get; set; }
+        IShapeScheming ShapeScheme { get; set; }
 
         [Export("typographyScheme", ArgumentSemantic.Assign)]
-        TypographyScheming TypographyScheme { get; set; }
+        ITypographyScheming TypographyScheme { get; set; }
 
         [Export("cornerRadius")]
         nfloat CornerRadius { get; set; }
@@ -2829,7 +2828,7 @@ namespace MaterialComponents
     {
         [Static]
         [Export("applyScheme:toButton:")]
-        void ApplyScheme(ButtonScheming scheme, Button button);
+        void ApplyScheme(IButtonScheming scheme, Button button);
     }
 
     [DisableDefaultCtor]
@@ -2839,7 +2838,7 @@ namespace MaterialComponents
     {
         [Static]
         [Export("applyScheme:toButton:")]
-        void ApplyScheme(ButtonScheming scheme, FloatingButton button);
+        void ApplyScheme(IButtonScheming scheme, FloatingButton button);
     }
 
     [DisableDefaultCtor]
@@ -2849,7 +2848,7 @@ namespace MaterialComponents
     {
         [Static]
         [Export("applyScheme:toButton:")]
-        void ApplyScheme(ButtonScheming scheme, Button button);
+        void ApplyScheme(IButtonScheming scheme, Button button);
     }
 
     [DisableDefaultCtor]
@@ -2859,7 +2858,7 @@ namespace MaterialComponents
     {
         [Static]
         [Export("applyScheme:toButton:")]
-        void ApplyScheme(ButtonScheming scheme, Button button);
+        void ApplyScheme(IButtonScheming scheme, Button button);
     }
 
     [Obsolete("This class will soon be deprecated. Please consider using one of the more specific ButtonColorThemer classes instead.")]
@@ -3305,7 +3304,6 @@ namespace MaterialComponents
     }
 
     [Protocol(Name = "MDCCardScheming")]
-    [BaseType(typeof(NSObject))]
     interface CardScheming
     {
         [Abstract]
@@ -3336,19 +3334,19 @@ namespace MaterialComponents
     {
         [Static]
         [Export("applyScheme:toCard:")]
-        void ApplyScheme(CardScheming scheme, Card card);
+        void ApplyScheme(ICardScheming scheme, Card card);
 
         [Static]
         [Export("applyScheme:toCardCell:")]
-        void ApplyScheme(CardScheming scheme, CardCollectionCell cardCell);
+        void ApplyScheme(ICardScheming scheme, CardCollectionCell cardCell);
 
         [Static]
         [Export("applyOutlinedVariantWithScheme:toCard:")]
-        void ApplyOutlinedVariant(CardScheming scheme, Card card);
+        void ApplyOutlinedVariant(ICardScheming scheme, Card card);
 
         [Static]
         [Export("applyOutlinedVariantWithScheme:toCardCell:")]
-        void ApplyOutlinedVariantWithScheme(CardScheming scheme, CardCollectionCell cardCell);
+        void ApplyOutlinedVariantWithScheme(ICardScheming scheme, CardCollectionCell cardCell);
     }
 
     [DisableDefaultCtor]
@@ -4346,13 +4344,13 @@ namespace MaterialComponents
 
     {
         [Export("colorScheme", ArgumentSemantic.Assign)]
-        ColorScheming ColorScheme { get; set; }
+        IColorScheming ColorScheme { get; set; }
 
         [Export("shapeScheme", ArgumentSemantic.Assign)]
-        ShapeScheming ShapeScheme { get; set; }
+        IShapeScheming ShapeScheme { get; set; }
 
         [Export("typographyScheme", ArgumentSemantic.Assign)]
-        TypographyScheming TypographyScheme { get; set; }
+        ITypographyScheming TypographyScheme { get; set; }
     }
 
     [DisableDefaultCtor]
@@ -4362,11 +4360,11 @@ namespace MaterialComponents
     {
         [Static]
         [Export("applyScheme:toChipView:")]
-        void ApplyScheme(ChipViewScheming scheme, ChipView chip);
+        void ApplyScheme(IChipViewScheming scheme, ChipView chip);
 
         [Static]
         [Export("applyOutlinedVariantWithScheme:toChipView:")]
-        void ApplyOutlinedVariant(ChipViewScheming scheme, ChipView chip);
+        void ApplyOutlinedVariant(IChipViewScheming scheme, ChipView chip);
     }
 
     [DisableDefaultCtor]
@@ -5206,15 +5204,15 @@ namespace MaterialComponents
     {
         [Abstract]
         [Export("colorScheme")]
-        ColorScheming ColorScheme { get; }
+        IColorScheming ColorScheme { get; }
 
         [Abstract]
         [Export("typographyScheme")]
-        TypographyScheming TypographyScheme { get; }
+        ITypographyScheming TypographyScheme { get; }
 
         [Abstract]
         [Export("buttonScheme")]
-        ButtonScheming ButtonScheme { get; }
+        IButtonScheming ButtonScheme { get; }
 
         [Abstract]
         [Export("cornerRadius")]
@@ -5231,13 +5229,13 @@ namespace MaterialComponents
 
     {
         [Export("colorScheme", ArgumentSemantic.Assign)]
-        ColorScheming ColorScheme { get; set; }
+        IColorScheming ColorScheme { get; set; }
 
         [Export("typographyScheme", ArgumentSemantic.Assign)]
-        TypographyScheming TypographyScheme { get; set; }
+        ITypographyScheming TypographyScheme { get; set; }
 
         [Export("buttonScheme", ArgumentSemantic.Assign)]
-        ButtonScheming ButtonScheme { get; set; }
+        IButtonScheming ButtonScheme { get; set; }
 
         [Export("cornerRadius")]
         nfloat CornerRadius { get; set; }
@@ -8017,20 +8015,19 @@ namespace MaterialComponents
     { }
 
     [Protocol(Name = "MDCChipViewScheming")]
-    [BaseType(typeof(NSObject))]
     interface ChipViewScheming
     {
         [Abstract]
         [Export("colorScheme")]
-        ColorScheming ColorScheme { get; }
+        IColorScheming ColorScheme { get; }
 
         [Abstract]
         [Export("shapeScheme")]
-        ShapeScheming ShapeScheme { get; }
+        IShapeScheming ShapeScheme { get; }
 
         [Abstract]
         [Export("typographyScheme")]
-        TypographyScheming TypographyScheme { get; }
+        ITypographyScheming TypographyScheme { get; }
     }
 
     interface ICollectionViewEditing
