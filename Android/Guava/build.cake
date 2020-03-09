@@ -116,7 +116,6 @@ Task ("externals")
 	XmlPoke("./source/Guava/Guava.csproj", "/Project/PropertyGroup/PackageVersion", GUAVA_NUGET_VERSION);
 	XmlPoke("./source/Guava.FailureAccess/Guava.FailureAccess.csproj", "/Project/PropertyGroup/PackageVersion", GUAVA_FAILUREACCESS_NUGET_VERSION);
 	XmlPoke("./source/Guava.ListenableFuture/Guava.ListenableFuture.csproj", "/Project/PropertyGroup/PackageVersion", GUAVA_LISTENABLEFUTURE_NUGET_VERSION);
-	XmlPoke("./source/Guava.Concurrent/Guava.Concurrent.csproj", "/Project/PropertyGroup/PackageVersion", GUAVA_CONCURRENT_NUGET_VERSION);
 });
 
 
