@@ -1,13 +1,13 @@
 #addin nuget:?package=SharpZipLib&version=1.2.0
 
-var TARGET = Argument ("t", Argument ("target", "Default"));
+var TARGET = Argument ("t", Argument ("target", "ci"));
 
 var GUAVA_VERSION_BASE = "27.1";
 var GUAVA_VERSION = GUAVA_VERSION_BASE + "-android";
 var GUAVA_FAILUREACCESS_VERSION = "1.0.1";
 var GUAVA_LISTENABLEFUTURE_VERSION = "1.0";
 
-var GUAVA_NUGET_VERSION = "27.1.0.3";
+var GUAVA_NUGET_VERSION = "27.1.0.4";
 var GUAVA_FAILUREACCESS_NUGET_VERSION = "1.0.1.2";
 var GUAVA_LISTENABLEFUTURE_NUGET_VERSION = "1.0.0.2";
 
@@ -135,5 +135,8 @@ Task ("clean")
 	if (DirectoryExists ("./externals/"))
 		DeleteDirectory ("./externals", true);
 });
+
+Task("ci")
+	.IsDependentOn("samples");
 
 RunTarget (TARGET);
