@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project Sdk="MSBuild.Sdk.Extras/2.0.54">
   <PropertyGroup>
-    <TargetFramework>MonoAndroid50</TargetFramework>
+    <TargetFramework>monoandroid90</TargetFramework>
     <IsBindingProject>true</IsBindingProject>
     <AssemblyName>Xamarin.Google.Guava</AssemblyName>
     <MonoAndroidResourcePrefix>Resources</MonoAndroidResourcePrefix>
@@ -32,7 +32,7 @@ Guava is a set of core libraries that includes new collection types (such as mul
     <PackageProjectUrl>https://go.microsoft.com/fwlink/?linkid=865028</PackageProjectUrl>
     <PackageLicenseUrl>https://go.microsoft.com/fwlink/?linkid=865030</PackageLicenseUrl>
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
-    <PackageVersion>27.1.0.3</PackageVersion>
+    <PackageVersion>27.1.0.4</PackageVersion>
   </PropertyGroup>
 
   <ItemGroup>
