@@ -6,13 +6,10 @@ var GUAVA_VERSION_BASE = "28.2";
 var GUAVA_VERSION = GUAVA_VERSION_BASE + "-android";
 var GUAVA_FAILUREACCESS_VERSION = "1.0.1";
 var GUAVA_LISTENABLEFUTURE_VERSION = "1.0";
-var GUAVA_CONCURRENT_VERSION = "r03";
 
 var GUAVA_NUGET_VERSION = "28.2.0.0";
 var GUAVA_FAILUREACCESS_NUGET_VERSION = "1.0.1.2";
 var GUAVA_LISTENABLEFUTURE_NUGET_VERSION = "1.0.0.2";
-var GUAVA_CONCURRENT_NUGET_VERSION = "0.0.0.0-r03";
-
 
 var JSR305_VERSION = "3.0.2";
 var CHECKER_COMPAT_QUAL_VERSION = "2.5.5";
@@ -28,9 +25,6 @@ var GUAVA_FAILUREACCESS_DOCS_URL = string.Format("https://search.maven.org/remot
 
 var GUAVA_LISTENABLEFUTURE_JAR_URL = string.Format ("https://search.maven.org/remotecontent?filepath=com/google/guava/listenablefuture/{0}/listenablefuture-{0}.jar", GUAVA_LISTENABLEFUTURE_VERSION);
 var GUAVA_LISTENABLEFUTURE_DOCS_URL = string.Format("https://search.maven.org/remotecontent?filepath=com/google/guava/listenablefuture/{0}/listenablefuture-{0}-javadoc.jar", GUAVA_LISTENABLEFUTURE_VERSION);
-
-var GUAVA_CONCURRENT_JAR_URL = string.Format ("https://search.maven.org/remotecontent?filepath=com/google/guava/guava-concurrent/{0}/guava-concurrent-{0}.jar", GUAVA_CONCURRENT_VERSION);
-var GUAVA_CONCURRENT_DOCS_URL = string.Format("https://search.maven.org/remotecontent?filepath=com/google/guava/guava-concurrent/{0}/guava-concurrent-{0}-javadoc.jar", GUAVA_CONCURRENT_VERSION);
 
 var JSR305_JAR_URL = string.Format("https://search.maven.org/remotecontent?filepath=com/google/code/findbugs/jsr305/{0}/jsr305-{0}.jar", JSR305_VERSION);
 var CHECKER_COMPAT_QUAL_JAR_URL = string.Format("https://search.maven.org/remotecontent?filepath=org/checkerframework/checker-compat-qual/{0}/checker-compat-qual-{0}.jar", CHECKER_COMPAT_QUAL_VERSION);
@@ -61,11 +55,6 @@ Task ("externals")
 	Information($"Downloading {GUAVA_LISTENABLEFUTURE_DOCS_URL}");
 	DownloadFile(GUAVA_LISTENABLEFUTURE_DOCS_URL, "./externals/guava-listenablefuture-javadocs.jar");
 
-	Information($"Downloading {GUAVA_CONCURRENT_JAR_URL}");
-	DownloadFile(GUAVA_CONCURRENT_JAR_URL, "./externals/guava-concurrent.jar");
-	Information($"Downloading {GUAVA_CONCURRENT_DOCS_URL}");
-	DownloadFile(GUAVA_CONCURRENT_DOCS_URL, "./externals/guava-concurrent-javadocs.jar");
-
 	Information($"Downloading {JSR305_JAR_URL}");
 	DownloadFile(JSR305_JAR_URL, "./externals/jsr305-annotations.jar");
 	Information($"Downloading {CHECKER_COMPAT_QUAL_JAR_URL}");
@@ -80,7 +69,6 @@ Task ("externals")
 	Unzip ("./externals/guava-javadocs.jar", "./externals/guava-javadocs/");
 	Unzip ("./externals/guava-failureaccess-javadocs.jar", "./externals/guava-failureaccess-javadocs/");
 	Unzip ("./externals/guava-listenablefuture-javadocs.jar", "./externals/guava-listenablefuture-javadocs/");
-	Unzip ("./externals/guava-concurrent-javadocs.jar", "./externals/guava-concurrent-javadocs/");
 
 	// We strip out ListenableFuture.class interface from the guava.jar file because the listenablefuture.jar has it already
 	// Google did something weird where they make guava depend on listenablefuture version 9999.0-something which is just
