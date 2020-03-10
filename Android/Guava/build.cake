@@ -1,6 +1,6 @@
 #addin nuget:?package=SharpZipLib&version=1.2.0
 
-var TARGET = Argument ("t", Argument ("target", "Default"));
+var TARGET = Argument ("t", Argument ("target", "ci"));
 
 var GUAVA_VERSION_BASE = "28.2";
 var GUAVA_VERSION = GUAVA_VERSION_BASE + "-android";
