@@ -78,7 +78,7 @@ namespace MaterialComponents {
 		[BindingImpl(BindingImplOptions.GeneratedCode | BindingImplOptions.Optimizable)]
 		public virtual SemanticColorScheme ColorScheme
 		{
-			[Export("colorScheme", ArgumentSemantic.UnsafeUnretained)]
+			//[Export("colorScheme", ArgumentSemantic.UnsafeUnretained)]
 			get
 			{
 				SemanticColorScheme ret;
@@ -120,7 +120,7 @@ namespace MaterialComponents {
 		[BindingImpl(BindingImplOptions.GeneratedCode | BindingImplOptions.Optimizable)]
 		public virtual ShapeScheme ShapeScheme
 		{
-			[Export("shapeScheme", ArgumentSemantic.UnsafeUnretained)]
+			//[Export("shapeScheme", ArgumentSemantic.UnsafeUnretained)]
 			get
 			{
 				ShapeScheme ret;
@@ -161,7 +161,7 @@ namespace MaterialComponents {
 		[BindingImpl(BindingImplOptions.GeneratedCode | BindingImplOptions.Optimizable)]
 		public virtual TypographyScheme TypographyScheme
 		{
-			[Export("typographyScheme", ArgumentSemantic.UnsafeUnretained)]
+			//[Export("typographyScheme", ArgumentSemantic.UnsafeUnretained)]
 			get
 			{
 				TypographyScheme ret;
