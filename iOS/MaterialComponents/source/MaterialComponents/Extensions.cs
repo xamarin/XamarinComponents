@@ -119,16 +119,7 @@ namespace MaterialComponents {
 		}
 	}
 
-    public partial class ContainerScheme
-    {
-		ColorScheming IContainerScheming.ColorScheme { get; }
-
-		TypographyScheming IContainerScheming.TypographyScheme { get; }
-
-		ShapeScheming IContainerScheming.ShapeScheme { get; }
-	}
-
-	public static class MaterialFeatureHighlightStrings {
+    public static class MaterialFeatureHighlightStrings {
 		public static NSString [] StringTable { get; } = { new NSString ("MaterialFeatureHighlightDismissAccessibilityHint") };
 		public static NSString TableName { get; } = new NSString ("MaterialFeatureHighlight");
 	}

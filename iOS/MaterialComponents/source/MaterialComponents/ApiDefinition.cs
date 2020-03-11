@@ -1199,21 +1199,21 @@ namespace MaterialComponents
         ShapeScheming ShapeScheme { get; }
     }
 
-    [BaseType(typeof(NSObject),
-        Name = "MDCContainerScheme")]
-    interface ContainerScheme : ContainerScheming
+    //[BaseType(typeof(NSObject),
+    //    Name = "MDCContainerScheme")]
+    //interface ContainerScheme : ContainerScheming
 
-    {
-        [Export("colorScheme", ArgumentSemantic.Assign)]
-        SemanticColorScheme ColorScheme { get; set; }
+    //{
+    //    [Export("colorScheme", ArgumentSemantic.Assign)]
+    //    SemanticColorScheme ColorScheme { get; set; }
 
-        [Export("typographyScheme", ArgumentSemantic.Assign)]
-        TypographyScheme TypographyScheme { get; set; }
+    //    [Export("typographyScheme", ArgumentSemantic.Assign)]
+    //    TypographyScheme TypographyScheme { get; set; }
 
-        [NullAllowed]
-        [Export("shapeScheme", ArgumentSemantic.Assign)]
-        ShapeScheme ShapeScheme { get; set; }
-    }
+    //    [NullAllowed]
+    //    [Export("shapeScheme", ArgumentSemantic.Assign)]
+    //    ShapeScheme ShapeScheme { get; set; }
+    //}
 
     [Category]
     [BaseType(typeof(ActionSheetController),
