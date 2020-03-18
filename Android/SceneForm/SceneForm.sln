@@ -1,7 +1,6 @@
-
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.28307.271
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29911.98
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Animation", "source\Animation\Animation.csproj", "{E0CE130B-222C-4BDF-BD57-357DDBAC392A}"
 EndProject
@@ -16,8 +15,6 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Rendering", "source\Rendering\Rendering.csproj", "{457B5D9C-E5EC-49CD-AAE8-5B0C1C794F39}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UX", "source\UX\UX.csproj", "{ACECE654-15B5-4B2B-BF1E-14CA3D0FC6CA}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UX.AndroidX", "source\UX.AndroidX\UX.AndroidX.csproj", "{08501CBB-A95A-42E8-A53F-FE87BDF0F5B8}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -53,14 +50,6 @@ Global
 		{ACECE654-15B5-4B2B-BF1E-14CA3D0FC6CA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{ACECE654-15B5-4B2B-BF1E-14CA3D0FC6CA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{ACECE654-15B5-4B2B-BF1E-14CA3D0FC6CA}.Release|Any CPU.Build.0 = Release|Any CPU
-		{5C856B2B-C3FD-4349-A319-D1A7B12A5B0A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{5C856B2B-C3FD-4349-A319-D1A7B12A5B0A}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{5C856B2B-C3FD-4349-A319-D1A7B12A5B0A}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{5C856B2B-C3FD-4349-A319-D1A7B12A5B0A}.Release|Any CPU.Build.0 = Release|Any CPU
-		{08501CBB-A95A-42E8-A53F-FE87BDF0F5B8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{08501CBB-A95A-42E8-A53F-FE87BDF0F5B8}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{08501CBB-A95A-42E8-A53F-FE87BDF0F5B8}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{08501CBB-A95A-42E8-A53F-FE87BDF0F5B8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
