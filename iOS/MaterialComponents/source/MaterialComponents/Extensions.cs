@@ -119,12 +119,12 @@ namespace MaterialComponents {
 		}
 	}
 
-	public static class MaterialFeatureHighlightStrings {
+    public static class MaterialFeatureHighlightStrings {
 		public static NSString [] StringTable { get; } = { new NSString ("MaterialFeatureHighlightDismissAccessibilityHint") };
 		public static NSString TableName { get; } = new NSString ("MaterialFeatureHighlight");
 	}
 
-	public partial class CardScheme {
+    public partial class CardScheme {
 		public SemanticColorScheme SemanticColorScheme {
 			get {
 				return Runtime.GetNSObject<SemanticColorScheme> (ColorScheme.Handle, false);
