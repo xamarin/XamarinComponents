@@ -97,6 +97,7 @@ Task ("clean")
 Task ("ci")
 	.IsDependentOn("libs")
 	.IsDependentOn("nuget")
+	.IsDependentOn("samples")
 	.Does 
 	(
 		() =>
