@@ -1,10 +1,10 @@
 #addin nuget:?package=SharpZipLib
 
-var TARGET = Argument ("t", Argument ("target", "Default"));
+var TARGET = Argument ("t", Argument ("target", "ci"));
 
-var SF_VERSION = "1.11.0";
+var SF_VERSION = "1.14.0";
 
-var NUGET_VERSION = "1.11.0";
+var NUGET_VERSION = "1.14.0";
 
 var BASE_JAR_URL = $"https://dl.google.com/dl/android/maven2/com/google/ar/sceneform/sceneform-base/{SF_VERSION}/sceneform-base-{SF_VERSION}.aar";
 var ANIMATION_JAR_URL = $"https://dl.google.com:443/dl/android/maven2/com/google/ar/sceneform/animation/{SF_VERSION}/animation-{SF_VERSION}.aar";
@@ -93,5 +93,16 @@ Task ("clean")
 	if (DirectoryExists ("./externals/"))
 		DeleteDirectory ("./externals", true);
 });
+
+Task ("ci")
+	.IsDependentOn("libs")
+	.IsDependentOn("nuget")
+	.IsDependentOn("samples")
+	.Does 
+	(
+		() =>
+		{
+		}
+	);
 
 RunTarget (TARGET);
