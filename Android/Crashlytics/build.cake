@@ -1,18 +1,23 @@
-#load "../../common.cake"
-
-var TARGET = Argument ("t", Argument ("target", "Default"));
+var TARGET = Argument ("t", Argument ("target", "ci"));
 
 var Crashlytics_VER = "2.9.4";
-var Crashlytics_NuGet_VER = Crashlytics_VER + ".2";
 var CrashlyticsCore_VER = "2.6.3";
 var CrashlyticsBeta_VER = "1.2.9";
 var CrashlyticsAnswers_VER = "1.4.2";
 var Fabric_VER = "1.4.3";
+
+var Crashlytics_NuGet_VER = Crashlytics_VER + ".4";
+var CrashlyticsCore_NuGet_VER = CrashlyticsCore_VER + ".4";
+var CrashlyticsBeta_NuGet_VER = CrashlyticsBeta_VER + ".4";
+var CrashlyticsAnswers_NuGet_VER = CrashlyticsAnswers_VER + ".4";
+var Fabric_NuGet_VER = Fabric_VER + ".4";
+
 var Crashlytics_URL = string.Format ("https://maven.google.com/com/crashlytics/sdk/android/crashlytics/{0}/crashlytics-{0}.aar", Crashlytics_VER);
 var CrashlyticsCore_URL = string.Format ("https://maven.google.com/com/crashlytics/sdk/android/crashlytics-core/{0}/crashlytics-core-{0}.aar", CrashlyticsCore_VER);
 var CrashlyticsBeta_URL = string.Format ("https://maven.google.com/com/crashlytics/sdk/android/beta/{0}/beta-{0}.aar", CrashlyticsBeta_VER);
 var CrashlyticsAnswers_URL = string.Format ("https://maven.google.com/com/crashlytics/sdk/android/answers/{0}/answers-{0}.aar", CrashlyticsAnswers_VER);
 var Fabric_URL = string.Format ("https://maven.google.com/io/fabric/sdk/android/fabric/{0}/fabric-{0}.aar", Fabric_VER);
+
 var Crashlytics_DEST = "./externals/Crashlytics.aar";
 var CrashlyticsCore_DEST = "./externals/CrashlyticsCore.aar";
 var CrashlyticsBeta_DEST = "./externals/CrashlyticsBeta.aar";
@@ -61,12 +66,12 @@ Task ("externals")
 	XmlPoke("./source/CrashlyticsAnswers/Xamarin.Android.Crashlytics.Answers.targets", "/ns:Project/ns:Target/ns:PropertyGroup/ns:_XbdAarVersion_crashlyticsanswers", CrashlyticsAnswers_VER, msprojPokeSettings);
 	XmlPoke("./source/Fabric/Xamarin.Android.Fabric.targets", "/ns:Project/ns:Target/ns:PropertyGroup/ns:_XbdAarVersion_fabric", Fabric_VER, msprojPokeSettings);
 
-	//Update PackageVersion in .csproj files
+	// Update PackageVersion in .csproj files
 	XmlPoke("./source/Crashlytics/Crashlytics.csproj", "/Project/PropertyGroup/PackageVersion", Crashlytics_NuGet_VER);
-	XmlPoke("./source/CrashlyticsCore/CrashlyticsCore.csproj", "/Project/PropertyGroup/PackageVersion", CrashlyticsCore_VER);
-	XmlPoke("./source/CrashlyticsBeta/CrashlyticsBeta.csproj", "/Project/PropertyGroup/PackageVersion", CrashlyticsBeta_VER);
-	XmlPoke("./source/CrashlyticsAnswers/CrashlyticsAnswers.csproj", "/Project/PropertyGroup/PackageVersion", CrashlyticsAnswers_VER);
-	XmlPoke("./source/Fabric/Fabric.csproj", "/Project/PropertyGroup/PackageVersion", Fabric_VER);
+	XmlPoke("./source/CrashlyticsCore/CrashlyticsCore.csproj", "/Project/PropertyGroup/PackageVersion", CrashlyticsCore_NuGet_VER);
+	XmlPoke("./source/CrashlyticsBeta/CrashlyticsBeta.csproj", "/Project/PropertyGroup/PackageVersion", CrashlyticsBeta_NuGet_VER);
+	XmlPoke("./source/CrashlyticsAnswers/CrashlyticsAnswers.csproj", "/Project/PropertyGroup/PackageVersion", CrashlyticsAnswers_NuGet_VER);
+	XmlPoke("./source/Fabric/Fabric.csproj", "/Project/PropertyGroup/PackageVersion", Fabric_NuGet_VER);
 });
 
 
@@ -81,42 +86,41 @@ Task("libs")
 	.IsDependentOn("externals")
 	.Does(() =>
 {
-	MSBuild("./source/Crashlytics.sln", c => 
-		c.SetConfiguration("Release")
-			.WithTarget("Restore"));
-
-	MSBuild("./source/Crashlytics.sln", c => 
-		c.SetConfiguration("Release")
-			.WithTarget("Build")
-			.WithProperty("DesignTimeBuild", "false"));
+	MSBuild("./source/Crashlytics.sln", new MSBuildSettings()
+		.SetConfiguration("Release")
+		.SetMaxCpuCount(0)
+		.WithRestore()
+		.WithProperty("DesignTimeBuild", "false"));
 });
 
 Task("nuget")
 	.IsDependentOn("libs")
 	.Does(() =>
 {
-	EnsureDirectoryExists("./output");
-
-	MSBuild("./source/Crashlytics.sln", c => 
-		c.SetConfiguration("Release")
-			.WithTarget("Pack")
-			.WithProperty("PackageOutputPath", "../../output")
-			.WithProperty("DesignTimeBuild", "false"));
+	MSBuild("./source/Crashlytics.sln", new MSBuildSettings()
+		.SetConfiguration("Release")
+		.SetMaxCpuCount(0)
+		.WithProperty("NoBuild", "true")
+		.WithProperty("PackageRequireLicenseAcceptance", "true")
+		.WithProperty("PackageOutputPath", MakeAbsolute(new FilePath("./output")).FullPath)
+		.WithProperty("DesignTimeBuild", "false")
+		.WithTarget("Pack"));
 });
 
 Task("samples")
 	.IsDependentOn("nuget")
 	.Does(() => 
 {
-	MSBuild("./samples/CrashlyticsSample/CrashlyticsSample.sln", c =>
-		c.SetConfiguration("Release")
-			.WithTarget("Restore"));
-
-	MSBuild("./samples/CrashlyticsSample/CrashlyticsSample.sln", c =>
-		c.SetConfiguration("Release")
+	MSBuild("./samples/CrashlyticsSample/CrashlyticsSample.sln", new MSBuildSettings()
+		.SetConfiguration("Release")
+		.SetMaxCpuCount(0)
+		.WithRestore()
 		.WithProperty("DesignTimeBuild", "false"));
 });
 
-Task("component");
+Task("ci")
+	.IsDependentOn("libs")
+	.IsDependentOn("nuget")
+	.IsDependentOn("samples");
 
 RunTarget (TARGET);

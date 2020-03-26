@@ -24,10 +24,16 @@
 - Name: GoogleAndroidVending
   BuildScript: ./Android/GoogleAndroidVending/build.cake
   TriggerPaths: [ Android/GoogleAndroidVending ]
-  MacBuildTargets: [ nuget, samples ]
+  MacBuildTargets: [ ci ]
+  WindowsBuildTargets: [ ci ]
 - Name: GoogleDagger
   BuildScript: ./Android/GoogleDagger/build.cake
   TriggerPaths: [ Android/GoogleDagger ]
+  MacBuildTargets: [ ci ]
+  WindowsBuildTargets: [ ci ]
+- Name: JavaxInject
+  BuildScript: ./Android/JavaxInject/build.cake
+  TriggerPaths: [ Android/JavaxInject ]
   MacBuildTargets: [ ci ]
   WindowsBuildTargets: [ ci ]
 - Name: AndroidThings
@@ -116,11 +122,11 @@
 - Name: GoogleZXing
   BuildScript: ./Android/GoogleZXing/build.cake
   TriggerPaths: [ Android/GoogleZXing ]
-  MacBuildTargets: [ nuget, samples ]
+  MacBuildTargets: [ ci ]
+  WindowsBuildTargets: [ ci ]
 - Name: Guava
   BuildScript: ./Android/Guava/build.cake
   TriggerPaths: [ Android/Guava ]
-  MacBuildTargets: [ nuget ]
   WindowsBuildTargets: [ nuget ]
 - Name: JacksonCore
   BuildScript: ./Android/Jackson.Core/build.cake
@@ -182,7 +188,8 @@
 - Name: StickyListHeaders
   BuildScript: ./Android/StickyListHeaders/build.cake
   TriggerPaths: [ Android/StickyListHeaders ]
-  MacBuildTargets: [ nuget, samples ]
+  MacBuildTargets: [ ci ]
+  WindowsBuildTargets: [ ci ]
 - Name: Kotlin
   BuildScript: ./Android/Kotlin/build.cake
   TriggerPaths: [ Android/Kotlin ]
@@ -215,11 +222,17 @@
 - Name: GoogleLibPhoneNumber
   BuildScript: ./Android/Google.LibPhoneNumber/build.cake
   TriggerPaths: [ Android/Google.LibPhoneNumber ]
-  MacBuildTargets: [ nuget ]
+  MacBuildTargets: [ ci ]
+  WindowsBuildTargets: [ ci ]
 - Name: SceneForm
   BuildScript: ./Android/SceneForm/build.cake
   TriggerPaths: [ Android/SceneForm ]
   MacBuildTargets: [ nuget, samples ]
+- Name: SurfaceDuo
+  BuildScript: ./Android/SurfaceDuo/build.cake
+  TriggerPaths: [ Android/SurfaceDuo ]
+  MacBuildTargets: [ ci ]
+  WindowsBuildTargets: [ ci ]
 - Name: GoogleAutoValue
   BuildScript: ./Android/GoogleAutoValue/build.cake
   TriggerPaths: [ Android/GoogleAutoValue ]
@@ -265,6 +278,9 @@
   TriggerPaths: [ Android/Io.PerfMark ]
   MacBuildTargets: [ ci ]
   WindowsBuildTargets: [ ci ]
+- Name: Google.Android.DataTransport
+  BuildScript: ./Android/Google.Android.DataTransport/build.cake
+  TriggerPaths: [ Android/Google.Android.DataTransport ]
 - Name:  CheckerFramework.Checker
   BuildScript: ./Android/CheckerFramework.Checker/build.cake
   TriggerPaths: [ Android/CheckerFramework.Checker ]
@@ -375,7 +391,8 @@
 - Name: MWPhotoBrowser
   BuildScript: ./iOS/MWPhotoBrowser/build.cake
   TriggerPaths: [ iOS/MWPhotoBrowser ]
-  MacBuildTargets: [ nuget, samples ]
+  MacBuildTargets: [ ci ]
+  WindowsBuildTargets: [ ci ]
 - Name: PullToBounce
   BuildScript: ./iOS/PullToBounce/build.cake
   TriggerPaths: [ iOS/PullToBounce ]
@@ -541,7 +558,8 @@
 - Name: Mono.Options
   BuildScript: ./XPlat/Mono.Options/build.cake
   TriggerPaths: [ XPlat/Mono.Options ]
-  MacBuildTargets: [ nuget, samples ]
+  MacBuildTargets: [ ci ]
+  WindowsBuildTargets: [ ci ]
 - Name: Mono.ApiTools
   BuildScript: ./XPlat/Mono.ApiTools/build.cake
   TriggerPaths: [ XPlat/Mono.ApiTools ]
@@ -603,7 +621,8 @@
 - Name: Xamarin.Build.Download
   BuildScript: ./Util/Xamarin.Build.Download/build.cake
   TriggerPaths: [ Util/Xamarin.Build.Download ]
-  MacBuildTargets: [ nuget ]
+  MacBuildTargets: [ ci ]
+  WindowsBuildTargets: [ ci ]
 - Name: Cake.Xamarin.Binding.Util
   BuildScript: ./Util/Cake.Xamarin.Binding.Util/build.cake
   TriggerPaths: [ Util/Cake.Xamarin.Binding.Util ]
@@ -619,6 +638,11 @@
 - Name: AndroidManifestMerger
   BuildScript: ./Util/AndroidManifestMerger/build.cake
   TriggerPaths: [ Util/AndroidManifestMerger ]
+  WindowsBuildTargets: [ ci ]
+  MacBuildTargets: [ ci ]
+- Name: Xamarin.Build.TypeRedirector
+  BuildScript: ./Util/Xamarin.Build.TypeRedirector/build.cake
+  TriggerPaths: [ Util/Xamarin.Build.TypeRedirector ]
   WindowsBuildTargets: [ ci ]
   MacBuildTargets: [ ci ]
 - Name: Xamarin.AndroidBinderator

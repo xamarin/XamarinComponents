@@ -1,0 +1,16 @@
+{
+  "Registrations":[ 
+    {
+      "Component": {
+        "Type": "Maven",
+        "Maven": {
+          "ArtifactId": "stickylistheaders",
+          "GroupId": "se.emilsjolander",
+          "Version": "2.7.0",
+          "NugetId": "Xamarin.StickyListHeaders"
+        }
+      }
+    }
+  ],
+  "Version": 1
+}

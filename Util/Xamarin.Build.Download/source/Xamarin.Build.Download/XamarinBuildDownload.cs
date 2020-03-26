@@ -8,7 +8,7 @@ namespace Xamarin.Build.Download
 		public string Id { get; set; }
 		public ArchiveKind Kind { get; set; }
 		public string Url { get; set; }
-		public string Sha1 { get; set; }
+		public string Sha256 { get; set; }
 
 		public string ToFile { get; set; }
 		public int ExclusiveLockTimeout { get; set; } = 60;

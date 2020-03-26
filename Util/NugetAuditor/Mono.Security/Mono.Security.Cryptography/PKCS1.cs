@@ -319,7 +319,7 @@ namespace Mono.Security.Cryptography {
 			if (result || !tryNonStandardEncoding)
 				return result;
 
-			// NOTE: some signatures don't include the hash OID (pretty lame but real)
+			// NOTE: some signatures don't include the hash OID
 			// and compatible with MS implementation. E.g. Verisign Authenticode Timestamps
 
 			// we're making this "as safe as possible"
