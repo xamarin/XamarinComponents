@@ -5,6 +5,7 @@
   -->
 
 <resources>
+
     <!--Demo Primary Colors-->
     <color name="uifabric_demo_primary">@color/uifabric_communication_blue</color>
     <color name="uifabric_demo_primary_dark">@color/uifabric_communication_shade_10</color>
