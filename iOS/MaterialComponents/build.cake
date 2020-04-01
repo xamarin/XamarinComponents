@@ -7,7 +7,7 @@ var IOS_PODS = new List<string> {
 	"install! 'cocoapods', :integrate_targets => false",
 	"use_frameworks!",
 	"target 'Xamarin' do",
-	"pod 'MaterialComponents', '92.0.0'",
+	"pod 'MaterialComponents', '107.4.0'",
 	"end",
 };
 
@@ -57,7 +57,6 @@ Task ("externals").IsDependentOn ("externals-base")
 
 	BuildDynamicXCode ("./Pods/Pods.xcodeproj", "MotionInterchange", "MotionInterchange", "./externals/", TargetOS.iOS);
 	BuildDynamicXCode ("./Pods/Pods.xcodeproj", "MDFInternationalization", "MDFInternationalization", "./externals/", TargetOS.iOS);
-	BuildDynamicXCode ("./Pods/Pods.xcodeproj", "MotionTransitioning", "MotionTransitioning", "./externals/", TargetOS.iOS);
 	BuildDynamicXCode ("./Pods/Pods.xcodeproj", "MDFTextAccessibility", "MDFTextAccessibility", "./externals/", TargetOS.iOS);
 	BuildDynamicXCode ("./Pods/Pods.xcodeproj", "MaterialComponents", "MaterialComponents", "./externals/", TargetOS.iOS);
 	BuildDynamicXCode ("./Pods/Pods.xcodeproj", "MotionAnimator", "MotionAnimator", "./externals/", TargetOS.iOS);

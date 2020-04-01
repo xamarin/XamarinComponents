@@ -68,12 +68,6 @@
       <Kind>Framework</Kind>
       <ForceLoad>True</ForceLoad>
     </NativeReference>
-    <NativeReference Include="..\..\externals\MotionTransitioning.framework">
-      <Kind>Framework</Kind>
-      <ForceLoad>True</ForceLoad>
-      <LinkerFlags></LinkerFlags>
-      <Frameworks> </Frameworks>
-    </NativeReference>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.ObjCBinding.CSharp.targets" />
 </Project>
