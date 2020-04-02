@@ -1,7 +1,7 @@
 
 var TARGET = Argument("t", Argument("target", "Default"));
 
-var PACKAGE_VERSION = "0.6.0-preview";
+var PACKAGE_VERSION = "0.7.0-preview";
 
 Task("externals")
 	.Does(() =>
@@ -13,7 +13,7 @@ Task("externals")
 			"./externals/kotlin-stdlib-1.2.jar");
 	if (!FileExists("./externals/kotlin-stdlib-1.3.jar"))
 		DownloadFile(
-			"https://search.maven.org/remotecontent?filepath=org/jetbrains/kotlin/kotlin-stdlib/1.3.41/kotlin-stdlib-1.3.41.jar",
+			"https://search.maven.org/remotecontent?filepath=org/jetbrains/kotlin/kotlin-stdlib/1.3.71/kotlin-stdlib-1.3.71.jar",
 			"./externals/kotlin-stdlib-1.3.jar");
 	if (!FileExists("./externals/Bubble-Picker.aar"))
 		DownloadFile(

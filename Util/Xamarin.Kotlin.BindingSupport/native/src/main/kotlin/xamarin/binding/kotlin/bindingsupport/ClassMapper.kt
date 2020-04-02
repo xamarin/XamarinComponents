@@ -5,6 +5,7 @@ package xamarin.binding.kotlin.bindingsupport
 import kotlinx.metadata.KmClassifier
 import kotlinx.metadata.KmType
 import kotlinx.metadata.KmValueParameter
+import kotlin.collections.LinkedHashMap
 
 object ClassMapper {
     private val store: Map<String, String>
@@ -61,6 +62,8 @@ object ClassMapper {
             add("collections/MutableIterable", "java/lang/Iterable")
             add("collections/Map\$Entry", "java/util/Map\$Entry")
             add("collections/MutableMap\$MutableEntry", "java/util/Map\$Entry")
+
+            add("random/Random", "java/util/Random")
 
             for (i in 0..22) {
                 add("Function${i}", "kotlin/jvm/functions/Function${i}")
