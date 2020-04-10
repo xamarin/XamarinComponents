@@ -40,7 +40,7 @@ Guava is a set of core libraries that includes new collection types (such as mul
     <None Include="Guava.targets" Pack="True" PackagePath="buildTransitive\$(TargetFramework)\$(PackageId).targets" />
     <None Include="..\..\externals\guava.jar" Pack="True" PackagePath="build\$(TargetFramework)\guava.jar" />
     <None Include="..\..\externals\guava.jar" Pack="True" PackagePath="buildTransitive\$(TargetFramework)\guava.jar" />
-    <None Include="proguard.txt" Condition="True" PackagePath="proguard\" />
+    <None Include="proguard.txt" Pack="True" PackagePath="proguard\proguard.txt" />
     <None Include="..\..\External-Dependency-Info.txt" Pack="True" PackagePath="THIRD-PARTY-NOTICES.txt" />
   </ItemGroup>
 
