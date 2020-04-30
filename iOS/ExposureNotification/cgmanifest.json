@@ -1,0 +1,14 @@
+{
+  "Registrations":[ 
+    {
+      "component": {
+        "type": "git",
+        "git": {
+          "repositoryUrl": "https://github.com/xamarin/XamarinComponents/tree/master/iOS/ExposureNotification",
+          "commitHash": "3e760ac59c8b677328ef45da13008446eac06317"
+        }
+      }
+    }
+  ],
+  "Version": 1
+}
