@@ -31,8 +31,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Include="Xamarin.iOS.ExposureNotification.targets" Pack="True" PackagePath="build/Xamarin.iOS.ExposureNotification.targets" />
-    <None Include="Xamarin.iOS.ExposureNotification.targets" Pack="True" PackagePath="buildTransitive/Xamarin.iOS.ExposureNotification.targets" />
+    <None Include="Xamarin.iOS.ExposureNotification.targets" Pack="True" PackagePath="build;buildTransitive" />
     <None Include="../License.md" Pack="True" PackagePath="License.md" />
   </ItemGroup>
 
