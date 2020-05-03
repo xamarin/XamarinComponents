@@ -15,12 +15,12 @@
     <copyright>© Microsoft Corporation. All rights reserved.</copyright>
     <projectUrl>https://go.microsoft.com/fwlink/?linkid=864978</projectUrl>
     <dependencies>
-      <group targetFramework="MonoAndroid7.0">
+      <group targetFramework="MonoAndroid10.0">
       </group>
     </dependencies>
   </metadata>
   <files>
-    <file src="source/bin/Release/Xamarin.Google.ARCore.dll" target="lib/MonoAndroid70" />
+    <file src="source/bin/Release/Xamarin.Google.ARCore.dll" target="lib/MonoAndroid100" />
     <file src="External-Dependency-Info.txt" target="THIRD-PARTY-NOTICES.txt" />
     <file src="LICENSE.md" target="LICENSE.md" />
   </files>
