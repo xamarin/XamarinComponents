@@ -489,6 +489,10 @@
   BuildScript: ./iOS/ExposureNotification/build.cake
   TriggerPaths: [ iOS/ExposureNotification ]
   MacBuildTargets: [ nuget ]
+- Name: ExposureNotificationAndroid
+  BuildScript: ./Android/ExposureNotification/build.cake
+  TriggerPaths: [ Android/ExposureNotification ]
+  MacBuildTargets: [ nuget ]
 
 #######################################################
 # XPlat
