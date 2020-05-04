@@ -1,45 +1,42 @@
-﻿using System;
+﻿using Android.Runtime;
+using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
-using Android.Content;
-using Android.Hardware;
-using Android.Runtime;
 using AndroidTask = Android.Gms.Tasks.Task;
 
 namespace Android.Gms.Nearby.ExposureNotification
 {
 	public partial interface IExposureNotificationClient
 	{
-		public Task Start(ExposureConfiguration config)
+		public Task StartAsync(ExposureConfiguration config)
 			=> NativeStart(config).CastTask();
 
-		public Task Stop()
+		public Task StopAsync()
 			=> NativeStop().CastTask();
 
-		public Task<ExposureInformation> GetExposureInformation()
-			=> NativeExposureInformation().CastTask<ExposureInformation>();
+		public async Task<IList<ExposureInformation>> GetExposureInformationAsync()
+			=> await NativeExposureInformation().CastTask<JavaList<ExposureInformation>>();
 
-		public Task<ExposureSummary> GetExposureSummary()
+		public Task<ExposureSummary> GetExposureSummaryAsync()
 			=> NativeExposureSummary().CastTask<ExposureSummary>();
 
-		public Task<Java.Lang.Integer> GetMaxDiagnosisKeyCount()
-			=> NativeGetMaxDiagnosisKeyCount().CastTask<Java.Lang.Integer>();
+		public async Task<int> GetMaxDiagnosisKeyCountAsync()
+			=> (int)await NativeGetMaxDiagnosisKeyCount().CastTask<Java.Lang.Integer>();
 
-		public Task<Java.Lang.Boolean> IsEnabled()
-			=> NativeIsEnabled().CastTask<Java.Lang.Boolean>();
+		public async Task<bool> IsEnabledAsync()
+			=> (bool)await NativeIsEnabled().CastTask<Java.Lang.Boolean>();
 
-		public Task ProvideDiagnosisKeys(List<TemporaryExposureKey> keys)
+		public Task ProvideDiagnosisKeysAsync(IList<TemporaryExposureKey> keys)
 			=> NativeProvideDiagnosisKeys(keys).CastTask();
 
-		public Task ResetAllData()
+		public Task ResetAllDataAsync()
 			=> NativeResetAllData().CastTask();
 
-		public Task ResetTemporaryExposureKey()
+		public Task ResetTemporaryExposureKeyAsync()
 			=> NativeResetTemporaryExposureKey().CastTask();
 
-		public Task<JavaList<TemporaryExposureKey>> GetTemporaryExposureKeyHistory()
-			=> NativeStop().CastTask<JavaList<TemporaryExposureKey>>();
+		public async Task<IList<TemporaryExposureKey>> GetTemporaryExposureKeyHistoryAsync()
+			=> await NativeStop().CastTask<JavaList<TemporaryExposureKey>>();
 	}
 
 	internal static class GoogleTaskExtensions
@@ -89,5 +86,4 @@ namespace Android.Gms.Nearby.ExposureNotification
 				=> OnCompleteHandler?.Invoke(task);
 		}
 	}
-
 }
