@@ -15,7 +15,7 @@
   </PropertyGroup>
 
   <PropertyGroup>
-    <PackageId>Xamarin.PlayServices.Nearby.ExposureNotification</PackageId>
+    <PackageId>Xamarin.GooglePlayServices.Nearby.ExposureNotification</PackageId>
     <Title>Xamarin.Android Bindings for the play-services-nearby eap for Exposure Notifications</Title>
     <PackageDescription>Xamarin.Android Bindings for the play-services-nearby eap for Exposure Notifications</PackageDescription>
     <Authors>Microsoft</Authors>
