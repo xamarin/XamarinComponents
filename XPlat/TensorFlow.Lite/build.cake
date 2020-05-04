@@ -1,5 +1,5 @@
 
-var TARGET = Argument("t", Argument("target", "Default"));
+var TARGET = Argument("t", Argument("target", "ci"));
 
 var NUGET_VERSION = "1.15.0";
 var AAR_VERSION = "1.15.0";
@@ -44,5 +44,9 @@ Task("clean")
 	if (DirectoryExists("./externals/"))
 		DeleteDirectory("./externals", true);
 });
+
+Task("ci")
+	.IsDependentOn("libs")
+	.IsDependentOn("nuget");
 
 RunTarget(TARGET);
