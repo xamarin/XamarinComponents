@@ -1,6 +1,6 @@
 var TARGET = Argument("t", Argument("target", "ci"));
 
-var SRC_COMMIT = "ac5614ee1c7438c06a04d2c96fa451b00ecad408";
+var SRC_COMMIT = "a44c9b6646195a3d3089220e79ffcbed3d18b94c";
 var SRC_URL = $"https://github.com/xamarin/xamarin.exposurenotification/archive/{SRC_COMMIT}.zip";
 
 var OUTPUT_PATH = (DirectoryPath)"./output/";
@@ -12,6 +12,8 @@ Task("externals")
 	DownloadFile(SRC_URL, "./src.zip");
 
 	Unzip("./src.zip", "./");
+
+	MoveDirectory($"./xamarin.exposurenotification-{SRC_COMMIT}", "./src");
 });
 
 Task("libs")
@@ -20,7 +22,7 @@ Task("libs")
 {
 	EnsureDirectoryExists(OUTPUT_PATH);
 
-	MSBuild("./Xamarin.ExposureNotification/Xamarin.ExposureNotification.csproj", c => c
+	MSBuild($"./src/Xamarin.ExposureNotification/Xamarin.ExposureNotification.csproj", c => c
 		.SetConfiguration("Release")
 		.WithRestore()
 		.WithTarget("Build")
