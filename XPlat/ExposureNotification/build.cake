@@ -11,7 +11,7 @@ Task("externals")
 {
 	DownloadFile(SRC_URL, "./src.zip");
 
-	UnzipFile("./src.zip", "./");
+	Unzip("./src.zip", "./");
 });
 
 Task("libs")
