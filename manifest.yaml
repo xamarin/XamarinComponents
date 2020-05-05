@@ -485,13 +485,17 @@
   BuildScript: ./iOS/SwiftRuntimeSupport/build.cake
   TriggerPaths: [ iOS/SwiftRuntimeSupport ]
   MacBuildTargets: [ nuget, samples ]
-- Name: ExposureNotification
+- Name: ExposureNotificationiOS
   BuildScript: ./iOS/ExposureNotification/build.cake
   TriggerPaths: [ iOS/ExposureNotification ]
   MacBuildTargets: [ nuget ]
 - Name: ExposureNotificationAndroid
   BuildScript: ./Android/ExposureNotification/build.cake
   TriggerPaths: [ Android/ExposureNotification ]
+  MacBuildTargets: [ nuget ]
+- Name: ExposureNotification
+  BuildScript: ./XPlat/ExposureNotification/build.cake
+  TriggerPaths: [ XPlat/ExposureNotification ]
   MacBuildTargets: [ nuget ]
 
 #######################################################
