@@ -7,6 +7,14 @@ namespace WindowsAzure.Messaging
 {
 	public delegate void ErrorCallback(NSError error);
 
+	[BaseType(typeof(NSObject))]
+    [Model, Protocol]
+    public interface MSNotificationHubDelegate 
+	{
+        [Export ("notificationHub:didReceivePushNotification:")]
+    	void DidReceivePushNotification(MSNotificationHub notificationHub, MSNotificationHubMessage message);
+	}
+
 	[BaseType (typeof (NSObject))]
 	public partial interface MSNotificationHub 
 	{
@@ -14,7 +22,7 @@ namespace WindowsAzure.Messaging
 		void Init (string connectionString, string hubName);
 
 		[Static, Export ("setDelegate:")]
-		void SetDelegate ([NullAllowed] MSNotificationHubDelegate delegate);
+		void SetDelegate ([NullAllowed] MSNotificationHubDelegate nubDelegate);
 
 		[Static, Export ("setTemplate:forKey:")]
 		void SetTemplate (MSInstallationTemplate template, string key);
@@ -75,14 +83,6 @@ namespace WindowsAzure.Messaging
 	[BaseType (typeof (NSObject))]
 	public partial interface MSInstallationTemplate 
 	{
-	}
-
-	[BaseType(typeof(NSObject))]
-    [Model, Protocol]
-    public interface MSNotificationHubDelegate 
-	{
-        [Export ("notificationHub:didReceivePushNotification:")]
-    	void DidReceivePushNotification(MSNotificationHub notificationHub, MSNotificationHubMessage message);
 	}
 
 	[BaseType (typeof (NSObject))]
