@@ -7,7 +7,7 @@
   <remove-node path="/api/package[@name='android.support.v4.content']/class[@name='CursorLoader']/method[@name='loadInBackground']" />
   -->
   <attr path="api/package[@name='com.microsoft.windowsazure.messaging']" name="managedName">WindowsAzure.Messaging</attr>
-
+  <attr path="api/package[@name='com.microsoft.windowsazure.messaging.notificationhubs']" name="managedName">WindowsAzure.Messaging.NotificationHubs</attr>
 
 
     <!-- Auto Generated naming adjustments using class-parse -->
