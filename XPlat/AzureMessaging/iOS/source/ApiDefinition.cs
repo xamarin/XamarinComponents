@@ -222,11 +222,6 @@ namespace WindowsAzure.Messaging
  		NSArray<NSString> Tags { get;set; }
  	}
 
- 	[BaseType (typeof (NSObject))]
- 	public partial interface MSInstallationTemplate 
- 	{
- 	}
-
  	[BaseType(typeof(NSObject))]
      [Model, Protocol]
      public interface MSNotificationHubDelegate 
