@@ -37,16 +37,16 @@ namespace WindowsAzure.Messaging
 		bool AddTag (string tag);
 
 		[Static, Export ("addTags:")]
-		bool AddTags (NSArray<string> tags);
+		bool AddTags (NSArray<NSString> tags);
 
 		[Static, Export ("removeTag:")]
 		bool RemoveTag (string tag);
 
 		[Static, Export ("removeTags:")]
-		bool RemoveTags (NSArray<string> tags);
+		bool RemoveTags (NSArray<NSString> tags);
 
 		[Static, Export ("getTags")]
-		NSArray<string> GetTags ();
+		NSArray<NSString> GetTags ();
 
 		[Static, Export ("clearTags")]
 		void ClearTags ();
@@ -77,7 +77,7 @@ namespace WindowsAzure.Messaging
 		string Platform { get;set; }
 
 		[Export ("tags")]
-		NSArray<string> Tags { get;set; }
+		NSArray<NSString> Tags { get;set; }
 	}
 
 	[BaseType (typeof (NSObject))]
