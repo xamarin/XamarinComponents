@@ -14,7 +14,7 @@ namespace WindowsAzure.Messaging
 		void Init (string connectionString, string hubName);
 
 		[Static, Export ("setDelegate:")]
-		void SetDelegate ([NullAllowed] id<MSNotificationHubDelegate> delegate);
+		void SetDelegate ([NullAllowed] MSNotificationHubDelegate delegate);
 
 		[Static, Export ("setTemplate:forKey:")]
 		void SetTemplate (MSInstallationTemplate template, string key);
