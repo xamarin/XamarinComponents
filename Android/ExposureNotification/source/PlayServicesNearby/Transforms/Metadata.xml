@@ -1,0 +1,85 @@
+﻿<metadata>
+	<attr path="/api/package[@name='com.google.android.gms.nearby']" name="managedName">Android.Gms.Nearby</attr>
+	<attr path="/api/package[@name='com.google.android.gms.nearby.bootstrap']" name="managedName">Android.Gms.Nearby.Bootstrap</attr>
+	<attr path="/api/package[@name='com.google.android.gms.nearby.bootstrap.request']" name="managedName">Android.Gms.Nearby.Bootstrap.Request</attr>
+	<attr path="/api/package[@name='com.google.android.gms.nearby.connection']" name="managedName">Android.Gms.Nearby.Connection</attr>
+	<attr path="/api/package[@name='com.google.android.gms.nearby.connection.dev']" name="managedName">Android.Gms.Nearby.Connection.Dev</attr>
+	<attr path="/api/package[@name='com.google.android.gms.nearby.internal.connection']" name="managedName">Android.Gms.Nearby.Internal.Connection</attr>
+	<attr path="/api/package[@name='com.google.android.gms.nearby.internal.connection.dev']" name="managedName">Android.Gms.Nearby.Internal.Connection.Dev</attr>
+	<attr path="/api/package[@name='com.google.android.gms.nearby.messages']" name="managedName">Android.Gms.Nearby.Messages</attr>
+	<attr path="/api/package[@name='com.google.android.gms.nearby.messages.audio']" name="managedName">Android.Gms.Nearby.Messages.Audio</attr>
+	<attr path="/api/package[@name='com.google.android.gms.nearby.messages.devices']" name="managedName">Android.Gms.Nearby.Messages.Devices</attr>
+	<attr path="/api/package[@name='com.google.android.gms.nearby.sharing']" name="managedName">Android.Gms.Nearby.Sharing</attr>
+	<attr path="/api/package[@name='com.google.android.gms.nearby.exposurenotification']" name="managedName">Android.Gms.Nearby.ExposureNotification</attr>
+	<attr path="/api/package[@name='com.google.android.gms.nearby.setup']" name="managedName">Android.Gms.Nearby.Setup</attr>
+	<attr path="/api/package[@name='com.google.android.gms.nearby.setup.wifi']" name="managedName">Android.Gms.Nearby.Setup.Wifi</attr>
+	<attr path="/api/package[@name='com.google.android.gms.nearby']/class[@name='Nearby']" name="managedName">NearbyClass</attr>
+
+	<!-- Fix API name to be uppercase to be consistent in avoiding naming conflicts with fields in C# bindings -->
+	<attr path="/api/package[@name='com.google.android.gms.nearby']/class[@name='Nearby']/field[@name='CONNECTIONS_API']" name="managedName">CONNECTIONS_API</attr>
+
+	<!-- Remove some internal namespaces -->
+	<remove-node path="/api/package[contains(@name, 'com.google.android.gms.internal')]" />
+	<remove-node path="/api/package[contains(@name, 'com.google.android.gms.nearby.messages.internal')]" />
+	<remove-node path="/api/package[contains(@name, 'com.google.android.gms.nearby.sharing.internal')]" />
+
+	<!-- Remove *zz* obfuscated items -->
+	<remove-node path="/api/package/class[contains(@name, 'zz')]" />
+	<remove-node path="/api/package/interface[contains(@name, 'zz')]" />
+	<!--	<remove-node path="/api/*/*/method[contains(@name, 'zz')]" />-->
+	<remove-node path="/api/*/*/field[contains(@name, 'zz')]" />
+	<remove-node path="/api/*/*/field[@name='CREATOR' and contains(@type, 'zz')]" />
+
+	<!-- Fix params for some inherited parcelable types -->
+	<attr path="/api/*/*/method[@name='createFromParcel']/parameter[@name='p0']" name="managedName">source</attr>
+	<attr path="/api/*/*/method[@name='newArray']/parameter[@name='p0']" name="managedName">size</attr>
+	<attr path="/api/*/*/method[@name='writeToParcel']/parameter[@name='p0']" name="managedName">dest</attr>
+	<attr path="/api/*/*/method[@name='writeToParcel']/parameter[@name='p1']" name="managedName">flags</attr>
+
+
+	<!--	<remove-node path="/api/package[@name='com.google.android.gms.nearby.messages']/class[@name='Strategy.Builder']/method[@name='zzim']" />-->
+
+	<remove-node path="/api/package[@name='com.google.android.gms.nearby.bootstrap']/class[@name='Device']/method[contains(@name, 'zz')]" />
+	<remove-node path="/api/package[@name='com.google.android.gms.nearby.bootstrap.request']/class[@name='ConnectRequest']/method[contains(@name, 'zz')]" />
+	<remove-node path="/api/package[@name='com.google.android.gms.nearby.bootstrap.request']/class[@name='ContinueConnectRequest']/method[contains(@name, 'zz')]" />
+	<remove-node path="/api/package[@name='com.google.android.gms.nearby.bootstrap.request']/class[@name='DisableTargetRequest']/method[contains(@name, 'zz')]" />
+	<remove-node path="/api/package[@name='com.google.android.gms.nearby.bootstrap.request']/class[@name='DisconnectRequest']/method[contains(@name, 'zz')]" />
+	<remove-node path="/api/package[@name='com.google.android.gms.nearby.bootstrap.request']/class[@name='EnableTargetRequest']/method[contains(@name, 'zz')]" />
+	<remove-node path="/api/package[@name='com.google.android.gms.nearby.bootstrap.request']/class[@name='SendDataRequest']/method[contains(@name, 'zz')]" />
+	<remove-node path="/api/package[@name='com.google.android.gms.nearby.bootstrap.request']/class[@name='StartScanRequest']/method[contains(@name, 'zz')]" />
+	<remove-node path="/api/package[@name='com.google.android.gms.nearby.bootstrap.request']/class[@name='StopScanRequest']/method[contains(@name, 'zz')]" />
+	<remove-node path="/api/package[@name='com.google.android.gms.nearby.sharing']/class[@name='AppContentReceivedResult']/method[contains(@name, 'zz')]" />
+	<remove-node path="/api/package[@name='com.google.android.gms.nearby.sharing']/class[@name='LocalContent']/method[contains(@name, 'zz')]" />
+	<remove-node path="/api/package[@name='com.google.android.gms.nearby.sharing']/class[@name='SharedContent']/method[contains(@name, 'zz')]" />
+	<remove-node path="/api/package[@name='com.google.android.gms.nearby.sharing']/class[@name='ViewableItem']/method[contains(@name, 'zz')]" />
+
+	<remove-node path="/api/package[@name='com.google.android.gms.nearby.connection']/class[@name='Payload.File']/method[contains(@name, 'zz')]" />
+	<remove-node path="/api/package[@name='com.google.android.gms.nearby.connection']/class[@name='Payload.Stream']/method[contains(@name, 'zz')]" />
+
+
+	<!--	<remove-node path="/api/package[@name='com.google.android.gms.nearby.connection']/class[@name='AppIdentifierCreator']/implements[@name='android.os.Parcelable.Creator']" />-->
+	<!--	<remove-node path="/api/package[@name='com.google.android.gms.nearby.connection']/class[@name='AppMetadataCreator']/implements[@name='android.os.Parcelable.Creator']" />-->
+
+	<!-- We don't want to subclass this type, it will change the base type on a bunch of things from past versions -->
+	<attr path="/api/package/*[@extends='com.google.android.gms.common.internal.safeparcel.zza']" name="extends">java.lang.Object</attr>
+	<attr path="/api/package/*[@extends='com.google.android.gms.common.internal.safeparcel.zza']" name="extends-generic-aware">java.lang.Object</attr>
+	<remove-node path="/api/package/*/implements[@name='com.google.android.gms.common.internal.ReflectedParcelable']" />
+
+	<attr path="/api/package[@name='com.google.android.gms.nearby.connection']/class[@name='Payload']/method[@name='getType' and count(parameter)=0]" name="propertyName">PayloadType</attr>
+	<attr path="/api/package[@name='com.google.android.gms.nearby.connection']/class[@name='PayloadTransferUpdate']/method[@name='getStatus' and count(parameter)=0]" name="propertyName">TransferStatus</attr>
+
+
+	<!-- TEMPORARY REMOVAL TO GET EXPOSURE NOTIFICATIOSN BINDING -->
+	<!--<remove-node path="/api/package[@name='com.google.android.gms.nearby']/class[@name='Nearby']/field[@name='Connections']" />-->
+
+	<attr path="/api/package[@name='com.google.android.gms.nearby.exposurenotification']/interface[@name='ExposureNotificationClient']/method[@name='getExposureInformation']" name="managedName">NativeExposureInformation</attr>
+	<attr path="/api/package[@name='com.google.android.gms.nearby.exposurenotification']/interface[@name='ExposureNotificationClient']/method[@name='getExposureSummary']" name="managedName">NativeExposureSummary</attr>
+	<attr path="/api/package[@name='com.google.android.gms.nearby.exposurenotification']/interface[@name='ExposureNotificationClient']/method[@name='getTemporaryExposureKeyHistory']" name="managedName">NativeTemporaryExposureKeyHistory</attr>
+	<attr path="/api/package[@name='com.google.android.gms.nearby.exposurenotification']/interface[@name='ExposureNotificationClient']/method[@name='isEnabled']" name="managedName">NativeIsEnabled</attr>
+	<attr path="/api/package[@name='com.google.android.gms.nearby.exposurenotification']/interface[@name='ExposureNotificationClient']/method[@name='provideDiagnosisKeys']" name="managedName">NativeProvideDiagnosisKeys</attr>
+	<attr path="/api/package[@name='com.google.android.gms.nearby.exposurenotification']/interface[@name='ExposureNotificationClient']/method[@name='start']" name="managedName">NativeStart</attr>
+	<attr path="/api/package[@name='com.google.android.gms.nearby.exposurenotification']/interface[@name='ExposureNotificationClient']/method[@name='stop']" name="managedName">NativeStop</attr>
+	
+	<!--<attr path="/api/package[@name='com.google.android.gms.nearby.exposurenotification']/interface[@name='ExposureNotificationClient']" name="extends"></attr>-->
+	
+</metadata>
