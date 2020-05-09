@@ -8,32 +8,23 @@ namespace Android.Gms.Nearby.ExposureNotification
 {
 	public partial interface IExposureNotificationClient
 	{
-		public Task StartAsync(ExposureConfiguration config)
-			=> NativeStart(config).CastTask();
+		public Task StartAsync()
+			=> NativeStart().CastTask();
 
 		public Task StopAsync()
 			=> NativeStop().CastTask();
 
-		public async Task<IList<ExposureInformation>> GetExposureInformationAsync()
-			=> await NativeExposureInformation().CastTask<JavaList<ExposureInformation>>();
+		public async Task<IList<ExposureInformation>> GetExposureInformationAsync(string token)
+			=> await NativeExposureInformation(token).CastTask<JavaList<ExposureInformation>>();
 
-		public Task<ExposureSummary> GetExposureSummaryAsync()
-			=> NativeExposureSummary().CastTask<ExposureSummary>();
-
-		public async Task<int> GetMaxDiagnosisKeyCountAsync()
-			=> (int)await NativeGetMaxDiagnosisKeyCount().CastTask<Java.Lang.Integer>();
+		public Task<ExposureSummary> GetExposureSummaryAsync(string token)
+			=> NativeExposureSummary(token).CastTask<ExposureSummary>();
 
 		public async Task<bool> IsEnabledAsync()
 			=> (bool)await NativeIsEnabled().CastTask<Java.Lang.Boolean>();
 
-		public Task ProvideDiagnosisKeysAsync(IList<TemporaryExposureKey> keys)
-			=> NativeProvideDiagnosisKeys(keys).CastTask();
-
-		public Task ResetAllDataAsync()
-			=> NativeResetAllData().CastTask();
-
-		public Task ResetTemporaryExposureKeyAsync()
-			=> NativeResetTemporaryExposureKey().CastTask();
+		public Task ProvideDiagnosisKeysAsync(IList<Java.IO.File> files, ExposureConfiguration config, string token)
+			=> NativeProvideDiagnosisKeys(files, config, token).CastTask();
 
 		public async Task<IList<TemporaryExposureKey>> GetTemporaryExposureKeyHistoryAsync()
 			=> await NativeStop().CastTask<JavaList<TemporaryExposureKey>>();
