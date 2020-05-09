@@ -24,7 +24,7 @@
         -->
         <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
         <PackageId>Xamarin.TensorFlow.Lite</PackageId>
-        <PackageVersion>1.14.0</PackageVersion>
+        <PackageVersion>1.15.0</PackageVersion>
         <Title>Xamarin.TensorFlow.Lite</Title>
         <PackageDescription>
             Bindings for Google's TensorFlow Lite package (Google Play Services dependency)
