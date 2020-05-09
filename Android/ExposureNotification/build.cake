@@ -1,27 +1,17 @@
+var TARGET = Argument ("t", Argument ("target", "ci"));
 
-#load "../../common.cake"
-
-var TARGET = Argument ("t", Argument ("target", "Default"));
-
-var AAR_VERSION = "1.2.4";
-var JAR_VERSION = "1.4.4";
-
-var NUGET_VERSION = AAR_VERSION;
-var AAR_URL = $"https://search.maven.org/remotecontent?filepath=com/jakewharton/threetenabp/threetenabp/{AAR_VERSION}/threetenabp-{AAR_VERSION}.aar";
-var JAR_URL = $"https://search.maven.org/remotecontent?filepath=org/threeten/threetenbp/{JAR_VERSION}/threetenbp-{JAR_VERSION}-no-tzdb.jar";
+var NUGET_VERSION = "18.0.2-eap.3";
+var AAR_URL = "https://github.com/google/exposure-notifications-android/raw/fbba9296bda9ae3b2c02d2bfd7590c742963875e/app/libs/play-services-nearby-18.0.2-eap.aar";
 
 Task ("externals")
-	.WithCriteria (!FileExists ("./externals/threetenabp.aar"))
 	.Does (() =>
 {
 	EnsureDirectoryExists ("./externals");
 	
-	// Download Dependencies
-	DownloadFile (AAR_URL, "./externals/threetenabp.aar");
-	DownloadFile (JAR_URL, "./externals/threetenbp-no-tzdb.jar");
+	DownloadFile(AAR_URL, "./externals/play-services-nearby-18.0.2-eap.aar");
 
 	// Update .csproj nuget versions
-	XmlPoke("./source/ThreeTenAbp/ThreeTenAbp.csproj", "/Project/PropertyGroup/PackageVersion", NUGET_VERSION);
+	XmlPoke("./source/PlayServicesNearby/PlayServicesNearby.csproj", "/Project/PropertyGroup/PackageVersion", NUGET_VERSION);
 });
 
 
@@ -29,7 +19,7 @@ Task("libs")
 	.IsDependentOn("externals")
 	.Does(() =>
 {
-	MSBuild("./ThreeTenAbp.sln", c => {
+	MSBuild("./PlayServicesNearby.sln", c => {
 		c.Configuration = "Release";
 		c.Restore = true;
 		c.MaxCpuCount = 0;
@@ -41,7 +31,7 @@ Task("nuget")
 	.IsDependentOn("libs")
 	.Does(() =>
 {
-	MSBuild ("./ThreeTenAbp.sln", c => {
+	MSBuild ("./PlayServicesNearby.sln", c => {
 		c.Configuration = "Release";
 		c.MaxCpuCount = 0;
 		c.Targets.Clear();
@@ -54,6 +44,9 @@ Task("nuget")
 
 Task("samples")
 	.IsDependentOn("nuget");
+
+Task("ci")
+	.IsDependentOn("samples");
 
 Task ("clean")
 	.Does (() =>
