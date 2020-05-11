@@ -74,12 +74,9 @@
 
 	<attr path="/api/package[@name='com.google.android.gms.nearby.exposurenotification']/interface[@name='ExposureNotificationClient']/method[@name='getExposureInformation']" name="managedName">NativeExposureInformation</attr>
 	<attr path="/api/package[@name='com.google.android.gms.nearby.exposurenotification']/interface[@name='ExposureNotificationClient']/method[@name='getExposureSummary']" name="managedName">NativeExposureSummary</attr>
-	<attr path="/api/package[@name='com.google.android.gms.nearby.exposurenotification']/interface[@name='ExposureNotificationClient']/method[@name='getMaxDiagnosisKeyCount']" name="managedName">NativeGetMaxDiagnosisKeyCount</attr>
 	<attr path="/api/package[@name='com.google.android.gms.nearby.exposurenotification']/interface[@name='ExposureNotificationClient']/method[@name='getTemporaryExposureKeyHistory']" name="managedName">NativeTemporaryExposureKeyHistory</attr>
 	<attr path="/api/package[@name='com.google.android.gms.nearby.exposurenotification']/interface[@name='ExposureNotificationClient']/method[@name='isEnabled']" name="managedName">NativeIsEnabled</attr>
 	<attr path="/api/package[@name='com.google.android.gms.nearby.exposurenotification']/interface[@name='ExposureNotificationClient']/method[@name='provideDiagnosisKeys']" name="managedName">NativeProvideDiagnosisKeys</attr>
-	<attr path="/api/package[@name='com.google.android.gms.nearby.exposurenotification']/interface[@name='ExposureNotificationClient']/method[@name='resetAllData']" name="managedName">NativeResetAllData</attr>
-	<attr path="/api/package[@name='com.google.android.gms.nearby.exposurenotification']/interface[@name='ExposureNotificationClient']/method[@name='resetTemporaryExposureKey']" name="managedName">NativeResetTemporaryExposureKey</attr>
 	<attr path="/api/package[@name='com.google.android.gms.nearby.exposurenotification']/interface[@name='ExposureNotificationClient']/method[@name='start']" name="managedName">NativeStart</attr>
 	<attr path="/api/package[@name='com.google.android.gms.nearby.exposurenotification']/interface[@name='ExposureNotificationClient']/method[@name='stop']" name="managedName">NativeStop</attr>
 	
