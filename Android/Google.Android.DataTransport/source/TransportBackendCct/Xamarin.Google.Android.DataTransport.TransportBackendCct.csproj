@@ -44,8 +44,8 @@
     <Folder Include="Jars\" />
   </ItemGroup>
   <ItemGroup>
-    <LibraryProjectZip Include="..\..\externals\android\transport-backend-cct-1.0.0.aar">
-      <Link>Jars\transport-backend-cct-1.0.0.aar</Link>
+    <LibraryProjectZip Include="..\..\externals\android\transport-backend-cct-$(PackageVersion).aar">
+      <Link>Jars\transport-backend-cct-$(PackageVersion).aar</Link>
     </LibraryProjectZip>
   </ItemGroup>
   <ItemGroup>
