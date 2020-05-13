@@ -2,10 +2,10 @@
 <metadata>
 
     <attr
-        path="/api/package[@name='org.chromium.net']"
+        path="/api/package[@name='org.chromium.net.impl']"
         name="managedName"
         >
-        Xamarin.Chromium.CroNet
+        Xamarin.Chromium.CroNet.Impl
     </attr>
     
 </metadata>

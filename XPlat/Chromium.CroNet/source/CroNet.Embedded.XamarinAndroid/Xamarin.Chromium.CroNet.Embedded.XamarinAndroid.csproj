@@ -46,7 +46,7 @@
   </ItemGroup>
   <ItemGroup>
     <LibraryProjectZip Include="..\..\externals\android\cronet-embedded-$(PackageVersion).aar">
-      <Link>Jars\cronet-embedded-$(PackageVersion).aar</Link>
+      <Link>Jars\cronet-embedded-74.3729.136.aar</Link>
     </LibraryProjectZip>
   </ItemGroup>
   <ItemGroup>
@@ -54,5 +54,10 @@
     <TransformFile Include="Transforms\EnumMethods.xml" />
     <TransformFile Include="Transforms\Metadata.Namespaces.xml" />
     <TransformFile Include="Transforms\Metadata.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\CroNet.Common.XamarinAndroid\Xamarin.Chromium.CroNet.Common.XamarinAndroid.csproj">
+      <ReferenceSourceTarget>ProjectReference</ReferenceSourceTarget>
+    </ProjectReference>
   </ItemGroup>
 </Project>

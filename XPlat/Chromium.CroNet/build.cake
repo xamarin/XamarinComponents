@@ -8,12 +8,27 @@
 var TARGET = Argument ("t", Argument ("target", "ci"));
 
 string v="74.3729.136";
+string CRONET_SDK_VERSION = v;
+
+List<string> CocoaPods = new List<string> 
+{
+	"platform :ios, '12.0'",
+	"install! 'cocoapods', :integrate_targets => false",
+	"target 'Xamarin' do",
+	"pod 'Cronet' ",   //, '" + CRONET_SDK_VERSION + "'",
+	"  use_frameworks!",
+	"end",
+};
 
 Dictionary<string, string> URLS_ARTIFACT_FILES= new Dictionary<string, string>()
 {
 	{
 		$"https://maven.google.com/org/chromium/net/cronet-api/{v}/cronet-api-{v}.aar",
 		$"./externals/android/cronet-api-{v}.aar"
+	},
+	{
+		$"https://maven.google.com/org/chromium/net/cronet-common/{v}/cronet-common-{v}.aar",
+		$"./externals/android/cronet-common-{v}.aar"
 	},
 	{
 		$"https://maven.google.com/org/chromium/net/cronet-embedded/{v}/cronet-embedded-{v}.aar",
@@ -49,6 +64,22 @@ Task ("externals")
 				}
 			}
 
+			EnsureDirectoryExists("./externals/ios");
+			if (CocoaPodVersion () < new System.Version (1, 0))
+			{
+				CocoaPods.RemoveAt (1);
+			}
+
+			FileWriteLines ("./externals/ios/Podfile", CocoaPods.ToArray ());
+			
+			CocoaPodRepoUpdate ();
+
+			CocoaPodInstall 
+				(
+					"./externals/ios/", 
+					new CocoaPodInstallSettings { NoIntegrate = true }
+				);
+			
 			return;
 		}
 	);
