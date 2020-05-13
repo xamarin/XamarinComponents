@@ -7,7 +7,7 @@
 
 var TARGET = Argument ("t", Argument ("target", "ci"));
 
-string v="72.3626.96";
+string v="73.3683.76";
 string CRONET_SDK_VERSION = v;
 
 List<string> CocoaPods = new List<string> 
