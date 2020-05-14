@@ -20,7 +20,7 @@
   <PropertyGroup>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <PackageId>Xamarin.Chromium.CroNet.Embedded</PackageId>
-    <PackageVersion>73.3683.76</PackageVersion>
+    <PackageVersion>75.3770.101</PackageVersion>
     <Title>Xamarin.Chromium.CroNet.Embedded</Title>
     <PackageDescription>Bindings for Xamarin Chromium.CroNet.Embedded package</PackageDescription>
     <Owners>Microsoft</Owners>
