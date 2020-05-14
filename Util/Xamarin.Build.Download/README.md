@@ -26,7 +26,7 @@ be inferred from the filename. Valid values are `Zip` or `Tgz`.  Download Url's 
 </ItemGroup>
 ```
 
-Other nuggets may download the same library and should use the same key to prevent it from being downloaded and
+Other NuGets may download the same library and should use the same key to prevent it from being downloaded and
 unpacked multiple times.
 
 Define a new build target with a name unique to your NuGet. It should insert items into the build process that refers
@@ -93,4 +93,3 @@ xml
 * Implement download cache pruning
 * Reference counting for cleaning up old unpacked archives
 * Remove iOSReferenceMerge once Xamarin.iOS supports all the NativeReference metadata
-
