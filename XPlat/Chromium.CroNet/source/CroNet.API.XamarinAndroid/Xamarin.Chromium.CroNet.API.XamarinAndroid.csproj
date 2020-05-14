@@ -1,6 +1,6 @@
 <Project Sdk="MSBuild.Sdk.Extras/2.0.54">
   <PropertyGroup>
-    <AssemblyName>Xamarin.Google.Android.DataTransport.TransportRuntime</AssemblyName>
+    <AssemblyName>Xamarin.Chromium.CroNet.Api</AssemblyName>
 
     <MonoAndroidResourcePrefix>Resources</MonoAndroidResourcePrefix>
     <MonoAndroidAssetsPrefix>Assets</MonoAndroidAssetsPrefix>
@@ -19,10 +19,10 @@
 
   <PropertyGroup>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <PackageId>Xamarin.Google.Android.DataTransport.TransportRuntime</PackageId>
-    <PackageVersion>1.0.0</PackageVersion>
-    <Title>Xamarin.Google.Android.DataTransport.TransportRuntime</Title>
-    <PackageDescription>Bindings for Google.Android.DataTransport.TransportRuntime package</PackageDescription>
+    <PackageId>Xamarin.Chromium.CroNet.Api</PackageId>
+    <PackageVersion>76.3809.111</PackageVersion>
+    <Title>Xamarin.Chromium.CroNet.Api</Title>
+    <PackageDescription>Bindings for Xamarin Chromium.CroNet.Api package</PackageDescription>
     <Owners>Microsoft</Owners>
     <Authors>Microsoft</Authors>
     <Copyright>© Microsoft Corporation. All rights reserved.</Copyright>
@@ -30,7 +30,7 @@
     <PackageProjectUrl>https://go.microsoft.com/fwlink/?linkid=2109279</PackageProjectUrl>
     <RequireLicenceAcceptance>true</RequireLicenceAcceptance>
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
-    <PackageTags>xamarin, android, bindings, google, datatransport, transport, runtime </PackageTags>
+    <PackageTags>xamarin, android, bindings, chromium, cronet, api </PackageTags>
   </PropertyGroup>
 
   <ItemGroup>
@@ -38,25 +38,23 @@
     <Folder Include="Jars\" />
   </ItemGroup>
   <ItemGroup>
-    <LibraryProjectZip Include="..\..\externals\android\transport-runtime-$(PackageVersion).aar">
-      <Link>Jars\transport-runtime-$(PackageVersion).aar</Link>
+    <LibraryProjectZip Include="..\..\externals\android\cronet-api-$(PackageVersion).aar">
+      <Link>Jars\cronet-api-$(PackageVersion).aar</Link>
     </LibraryProjectZip>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Remove="Additions\Xamarin.Io.OpenCensus.Stats.ViewData.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Remove="Transforms\EnumFields.xml" />
     <None Remove="Transforms\EnumMethods.xml" />
+    <None Remove="Transforms\Metadata.Namespaces.xml" />
     <None Remove="Transforms\Metadata.xml" />
-  </ItemGroup>
-  <ItemGroup>
-    <PackageReference Include="Xamarin.Google.Dagger" Version="2.13.0" />
-    <PackageReference Include="Xamarin.AndroidX.Annotation" Version="1.1.0" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\TransportApi\Xamarin.Google.Android.DataTransport.TransportApi.csproj" />
   </ItemGroup>
   <ItemGroup>
     <TransformFile Include="Transforms\EnumFields.xml" />
     <TransformFile Include="Transforms\EnumMethods.xml" />
+    <TransformFile Include="Transforms\Metadata.Namespaces.xml" />
     <TransformFile Include="Transforms\Metadata.xml" />
   </ItemGroup>
 </Project>
