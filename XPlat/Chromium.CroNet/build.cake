@@ -7,7 +7,7 @@
 
 var TARGET = Argument ("t", Argument ("target", "ci"));
 
-string v="74.3729.136";
+string v="76.3809.111";
 string CRONET_SDK_VERSION = v;
 
 List<string> CocoaPods = new List<string> 
@@ -65,21 +65,24 @@ Task ("externals")
 			}
 
 			EnsureDirectoryExists("./externals/ios");
-			if (CocoaPodVersion () < new System.Version (1, 0))
+			if ( ! IsRunningOnWindows() )
 			{
-				CocoaPods.RemoveAt (1);
+				if (CocoaPodVersion () < new System.Version (1, 0))
+				{
+					CocoaPods.RemoveAt (1);
+				}
+
+				FileWriteLines ("./externals/ios/Podfile", CocoaPods.ToArray ());
+				
+				CocoaPodRepoUpdate ();
+
+				CocoaPodInstall 
+					(
+						"./externals/ios/", 
+						new CocoaPodInstallSettings { NoIntegrate = true }
+					);
 			}
-
-			FileWriteLines ("./externals/ios/Podfile", CocoaPods.ToArray ());
-			
-			CocoaPodRepoUpdate ();
-
-			CocoaPodInstall 
-				(
-					"./externals/ios/", 
-					new CocoaPodInstallSettings { NoIntegrate = true }
-				);
-			
+      
 			return;
 		}
 	);
