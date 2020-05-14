@@ -1,7 +1,7 @@
 var TARGET = Argument ("t", Argument ("target", "ci"));
 
-var NUGET_VERSION = "18.0.2-eap.2";
-var AAR_URL = "https://github.com/google/exposure-notifications-android/raw/1e4c8e322f4189a609623540f665e05ee1eeccb7/app/libs/play-services-nearby-18.0.2-eap.aar";
+var NUGET_VERSION = "18.0.2-eap.3";
+var AAR_URL = "https://github.com/google/exposure-notifications-android/raw/fbba9296bda9ae3b2c02d2bfd7590c742963875e/app/libs/play-services-nearby-18.0.2-eap.aar";
 
 Task ("externals")
 	.Does (() =>
