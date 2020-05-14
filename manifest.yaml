@@ -616,6 +616,11 @@
   BuildScript: ./XPlat/OfficeUIFabric/iOS/build.cake
   TriggerPaths: [ XPlat/OfficeUIFabric/iOS ]
   MacBuildTargets: [ nuget, samples ]
+- Name:  Chromium.CroNet
+  BuildScript: ./XPlat/Chromium.CroNet/build.cake
+  TriggerPaths: [ XPlat/Chromium.CroNet ]
+  MacBuildTargets: [ ci ]
+  WindowsBuildTargets: [ ci ]
 
 #######################################################
 # Mac
