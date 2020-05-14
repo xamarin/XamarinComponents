@@ -16,7 +16,7 @@
          "Maven": {
            "ArtifactId": "notification-hubs-android-sdk",
            "GroupId": "com.microsoft.azure",
-           "Version": "0.6"
+           "Version": "1.0.0-preview1"
          },
          "nugetId" : "Xamarin.Azure.NotificationHubs.Android"
        }
