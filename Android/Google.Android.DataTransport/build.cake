@@ -7,7 +7,7 @@
 
 var TARGET = Argument ("t", Argument ("target", "ci"));
 
-string v="2.2.0";
+string v="1.0.0";
 
 Dictionary<string, string> URLS_ARTIFACT_FILES= new Dictionary<string, string>()
 {
