@@ -166,15 +166,6 @@ namespace WindowsAzure.Messaging
  		[Static, Export ("setDelegate:")]
  		void SetDelegate ([NullAllowed] MSNotificationHubDelegate nubDelegate);
 
- 		[Static, Export ("setTemplate:forKey:")]
- 		void SetTemplate (MSInstallationTemplate template, string key);
-
- 		[Static, Export ("removeTemplate:")]
- 		void RemoveTemplate (string key);
-
- 		[Static, Export ("getTemplate:")]
- 		MSInstallationTemplate GetTemplate (string key);
-
  		[Static, Export ("addTag:")]
  		bool AddTag (string tag);
 

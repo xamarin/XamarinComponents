@@ -1,6 +1,6 @@
 var TARGET = Argument ("t", Argument ("target", "ci"));
 
-var IOS_VERSION = "2.0.4";
+var IOS_VERSION = "3.0.0-preview1";
 var IOS_NUGET_VERSION = IOS_VERSION;
 var IOS_URL = $"https://github.com/Azure/azure-notificationhubs-ios/releases/download/{IOS_VERSION}/WindowsAzureMessaging.framework.zip";
 

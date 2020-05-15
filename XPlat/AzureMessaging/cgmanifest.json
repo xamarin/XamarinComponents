@@ -5,7 +5,7 @@
        "type": "git", 
        "git": { 
          "repositoryUrl": "https://github.com/Azure/azure-notificationhubs-ios.git", 
-         "commitHash": "17b825dc6b44391be853a4a65c935b641f62ad20" 
+         "commitHash": "25d5b46a4bffec621d0fa339f66fed7d22187ffa" 
          },
         "nugetId" : "Xamarin.Azure.NotificationHubs.iOS"
        }
