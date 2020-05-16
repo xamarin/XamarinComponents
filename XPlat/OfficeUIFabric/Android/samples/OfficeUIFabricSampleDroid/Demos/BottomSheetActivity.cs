@@ -1,19 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 using Android.App;
-using Android.Content;
 using Android.OS;
-using Android.Runtime;
 using Android.Views;
 using Microsoft.OfficeUIFabric;
 
 namespace OfficeUIFabricSampleDroid.Demos
 {
     [Activity]
-    public class BottomSheetActivity : DemoActivity, IOnBottomSheetItemClickListener
+    public class BottomSheetActivity : DemoActivity, Microsoft.OfficeUIFabric.BottomSheetItem.IOnClickListener //IOnBottomSheetItemClickListener
     {
         protected override int ContentLayoutId => Resource.Layout.activity_bottom_sheet;
 
@@ -168,5 +164,10 @@ namespace OfficeUIFabricSampleDroid.Demos
 
         void ShowSnackbar(string message)
             => Snackbar.Companion.Make(root_view, message, Snackbar.LengthLong, Snackbar.Style.Regular).Show();
+
+        public void OnBottomSheetItemClick(BottomSheetItem item)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
