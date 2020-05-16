@@ -2,7 +2,7 @@
 var TARGET = Argument ("t", Argument ("target", "ci"));
 
 var PODFILE_VERSION = "0.3.9";
-var NUGET_VERSION = PODFILE_VERSION + "-pre2";
+var NUGET_VERSION = PODFILE_VERSION + "-preview01";
 
 Task ("externals")
 	.WithCriteria (!DirectoryExists ("./externals/OfficeUIFabric.framework"))
