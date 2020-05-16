@@ -12,6 +12,48 @@
     <RootNamespace>Microsoft.OfficeUIFabric</RootNamespace>
     <AndroidClassParser>class-parse</AndroidClassParser>
     <AndroidCodegenTarget>XAJavaInterop1</AndroidCodegenTarget>
+    <EnableProguard>true</EnableProguard>
+    <AndroidEnableMultiDex>true</AndroidEnableMultiDex>
+    <AndroidUseAapt2>true</AndroidUseAapt2>
+    <AndroidDexTool>d8</AndroidDexTool>
+    <AndroidLinkTool>r8</AndroidLinkTool>
+         
+    <!--
+      No warnings for:
+       - CS0618: 'member' is obsolete: 'text'
+       - CS0109: The member 'member' does not hide an inherited member. The new keyword is not required
+       - CS0114: 'function1' hides inherited member 'function2'. To make the current method override that implementation, add the override keyword. Otherwise add the new keyword.
+       - CS0628: 'member' : new protected member declared in sealed class
+       - CS0108: 'member1' hides inherited member 'member2'. Use the new keyword if hiding was intended.
+       - CS0809: Obsolete member 'member' overrides non-obsolete member 'member'
+    -->
+    <NoWarn>0618;0109;0114;0628;0108;0809;8A04</NoWarn>
+
+    <!--
+      =================================================================================================================
+      Xamarin.Android Bindings specific warnings
+    -->
+    <!--
+      Ignoreable
+      Performance hit for builds
+      - BG8A04: <attr path="XPath" /> matched no nodes.
+      - BG8A00: <remove-node path="XPath" /> matched no nodes.  
+    -->
+    <NoWarn>08A04;BG8A00</NoWarn>
+
+    <!--
+      Harmfull 
+      - BG8401: Skipping managed_type, due to a duplicate field, method or nested type name. (Nested type) (Java type: java_type)  
+      - BG8604: top ancestor Type1 not found for nested type Namespace.Type1.Type2
+      - BG8C00: For type Namespace.Type1, base interface java.Interface does not exist
+      - BG8700: Unknown return type java.Type1 in method Method1 in managed type Namespace.Type2.
+      - BG8800: Unknown parameter type java.Type1 in method Method2 in managed type Namespace.Type2.
+    -->
+    <WarningsAsErrors>BG8401;BG8604;BG8C00;BG8700;BG8800</WarningsAsErrors>
+    <!--
+      Xamarin.Android specific warnings
+      =================================================================================================================
+    -->
   </PropertyGroup>
 
   <PropertyGroup>
