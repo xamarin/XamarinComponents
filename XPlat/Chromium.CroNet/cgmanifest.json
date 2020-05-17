@@ -4,28 +4,37 @@
       "Component": {
         "Type": "Maven",
         "Maven": {
-          "ArtifactId": "transport-api",
-          "GroupId": "com.google.android.datatransport",
-          "Version": "2.0.0",
-          "NuGetId": "Xamarin.Google.Android.DataTransport.TransportApi"
+          "ArtifactId": "cronet-api",
+          "GroupId": "org.chromium.net",
+          "Version": "72.3626.96",
+          "NuGetId": "Xamarin.Chromium.CroNet.Api"
         }
       },
       "Component": {
         "Type": "Maven",
         "Maven": {
-          "ArtifactId": "transport-backend-cct",
-          "GroupId": "com.google.android.datatransport",
-          "Version": "2.0.2",
-          "NuGetId": "Xamarin.Google.Android.DataTransport.TransportBackendCct"
+          "ArtifactId": "cronet-common",
+          "GroupId": "org.chromium.net",
+          "Version": "72.3626.96",
+          "NuGetId": "Xamarin.Chromium.CroNet.Common"
         }
       },
       "Component": {
         "Type": "Maven",
         "Maven": {
-          "ArtifactId": "transport-runtime",
-          "GroupId": "com.google.android.datatransport",
-          "Version": "2.0.0",
-          "NuGetId": "Xamarin.Google.Android.DataTransport.TransportRuntime"
+          "ArtifactId": "cronet-embedded",
+          "GroupId": "org.chromium.net",
+          "Version": "72.3626.96",
+          "NuGetId": "Xamarin.Chromium.CroNet.Embedded"
+        }
+      },
+      "Component": {
+        "Type": "Maven",
+        "Maven": {
+          "ArtifactId": "cronet-fallback",
+          "GroupId": "org.chromium.net",
+          "Version": "72.3626.96",
+          "NuGetId": "Xamarin.Chromium.CroNet.FallBack"
         }
       }
     },
