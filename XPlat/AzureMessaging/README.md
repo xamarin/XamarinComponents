@@ -66,113 +66,42 @@ Notice how in both `FinishedLaunching` and `ReceivedRemoteNotification` we call 
 
 If you haven't done so, you should create a Google Console project for your app and enable Google Cloud Messaging on it.  You can follow the guide here: [Get started with Notification Hubs for Xamarin.Android](http://azure.microsoft.com/en-us/documentation/articles/partner-xamarin-notification-hubs-android-get-started/).  Only steps 1 and 2 should be followed.
 
-When you are ready to connect you Xamarin.Android app to the Notification Hub, you should subclass `GcmServiceBase` and `GcmBroadcastReceiverBase<TGcmServiceBase>` in your application.  Note the methods for Initializing the `NotificationHub` and registering with Gcm in the sample.  Also note it's **VERY IMPORTANT** that your Application's package name must not start with an upper case letter, or you will receive a deploy error!
+First of all, you need to define connections string and hub name variables (CONNECTION_STRING and HUB_NAME)
 
-You should add the following permission to your app (you can just include this assembly level attribute, or add it to the Android Manifest):
-```csharp
-[assembly: UsesPermission (Android.Manifest.Permission.ReceiveBootCompleted)]
+```
+// TODO: Customize these values to your own
+const string CONNECTION_STRING = "YOUR-HUB-CONNECTION-STRING";
+const string HUB_NAME = "YOUR-HUB-NAME";
 ```
 
-Here is an example implementation you can copy and paste and change to suit your needs:
+In your application's main `Activity` you should Initialize the Hub and ensure your device is registered. Adding this to the `OnCreate` override is a reasonable choice
 
-```csharp
-[BroadcastReceiver(Permission=Constants.PERMISSION_GCM_INTENTS)]
-[IntentFilter(new[] { Intent.ActionBootCompleted })] // Allow GCM on boot and when app is closed   
-[IntentFilter(new string[] { Constants.INTENT_FROM_GCM_MESSAGE },
-	Categories = new string[] { "@PACKAGE_NAME@" })]
-[IntentFilter(new string[] { Constants.INTENT_FROM_GCM_REGISTRATION_CALLBACK },
-	Categories = new string[] { "@PACKAGE_NAME@" })]
-[IntentFilter(new string[] { Constants.INTENT_FROM_GCM_LIBRARY_RETRY },
-	Categories = new string[] { "@PACKAGE_NAME@" })]
-public class SampleGcmBroadcastReceiver : GcmBroadcastReceiverBase<SampleGcmService>
+```
+NotificationHub.Initialize(Application, HUB_NAME, CONNECTION_STRING);
+```
+
+To receive notification on your device you should:
+
+1. Add class which implements `INotificationListenerInterface`
+2. Add implementation for `INotificationListener.OnPushNotificationReceived`
+```
+public partial class NotificationListener : Java.Lang.Object, INotificationListener
 {
-	//IMPORTANT: Change this to your own Sender ID!
-	//The SENDER_ID is your Google API Console App Project Number
-	public static string[] SENDER_IDS = { "1234567890" };
-}
-
-[Service] //Must use the service tag
-public class SampleGcmService : GcmServiceBase
-{
-	static NotificationHub hub;
-
-	public static void Initialize(Context context)
+	void INotificationListener.OnPushNotificationReceived(Context context, INotificationMessage message)
 	{
-		// Call this from our main activity
-		var cs = ConnectionString.CreateUsingSharedAccessKeyWithListenAccess (
-			new Java.Net.URI ("sb://yourservicebus-ns.servicebus.windows.net/"),
-			"YOUR-KEY");
-
-		var hubName = "your-hub-name";
-
-		hub = new NotificationHub (hubName, cs, context);
-	}
-
-	public static void Register(Context Context)
-	{
-		// Makes this easier to call from our Activity
-		GcmClient.Register (Context, SampleGcmBroadcastReceiver.SENDER_IDS);
-	}
-
-	public SampleGcmService() : base(SampleGcmBroadcastReceiver.SENDER_IDS)
-	{
-	}
-
-	protected override void OnRegistered (Context context, string registrationId)
-	{
-		//Receive registration Id for sending GCM Push Notifications to
-
-		if (hub != null)
-			hub.Register (registrationId, "TEST");
-	}
-
-	protected override void OnUnRegistered (Context context, string registrationId)
-	{
-		if (hub != null)
-			hub.Unregister ();
-	}
-
-	protected override void OnMessage (Context context, Intent intent)
-	{
-		Console.WriteLine ("Received Notification");
-
 		//Push Notification arrived - print out the keys/values
-		if (intent != null || intent.Extras != null) {
-
-			var keyset = intent.Extras.KeySet ();
-
-			foreach (var key in intent.Extras.KeySet())
-				Console.WriteLine ("Key: {0}, Value: {1}", key, intent.Extras.GetString(key));
+		var data = message.Data;
+		if (data != null)
+		{
+			foreach (var entity in data)
+			{
+				Android.Util.Log.Debug("AZURE-NOTIFICATION-HUBS", "Key: {0}, Value: {1}", entity.Key, entity.Value);
+			}
 		}
 	}
-
-	protected override bool OnRecoverableError (Context context, string errorId)
-	{
-		//Some recoverable error happened
-		return true;
-	}
-
-	protected override void OnError (Context context, string errorId)
-	{
-		//Some more serious error happened
-	}
 }
 ```
-
-Finally, in your application's main `Activity` you should Initialize the Hub and ensure your device is registered.  Adding this to the `OnCreate` override is a reasonable choice:
-
+3. Register your class as Notification Hub Listener. Adding this to the `OnCreate` override is a reasonable choice
 ```
-protected override void OnCreate (Bundle bundle)
-{
-	base.OnCreate (bundle);
-
-	// Set our view from the "main" layout resource
-			SetContentView (Resource.Layout.Main);
-
-	// Initialize our Gcm Service Hub
-	SampleGcmService.Initialize (this);
-
-	// Register for GCM
-	SampleGcmService.Register (this);
-}
+NotificationHub.SetListener(new NotificationListener());
 ```

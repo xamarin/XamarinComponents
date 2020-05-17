@@ -1,0 +1,42 @@
+﻿namespace PicassoSample
+{
+    public static class Data
+    {
+        public static readonly string[] Urls = new string[] {
+            "http://i.imgur.com/CqmBjo5.jpg", 
+            "http://i.imgur.com/zkaAooq.jpg",
+            "http://i.imgur.com/0gqnEaY.jpg", 
+            "http://i.imgur.com/9gbQ7YR.jpg",
+            "http://i.imgur.com/aFhEEby.jpg",
+            "http://i.imgur.com/0E2tgV7.jpg", 
+            "http://i.imgur.com/P5JLfjk.jpg", 
+            "http://i.imgur.com/nz67a4F.jpg",
+            "http://i.imgur.com/dFH34N5.jpg",
+            "http://i.imgur.com/FI49ftb.jpg", 
+            "http://i.imgur.com/DvpvklR.jpg",
+            "http://i.imgur.com/DNKnbG8.jpg",
+            "http://i.imgur.com/yAdbrLp.jpg", 
+            "http://i.imgur.com/55w5Km7.jpg", 
+            "http://i.imgur.com/NIwNTMR.jpg",
+            "http://i.imgur.com/DAl0KB8.jpg",
+            "http://i.imgur.com/xZLIYFV.jpg",
+            "http://i.imgur.com/HvTyeh3.jpg", 
+            "http://i.imgur.com/Ig9oHCM.jpg",
+            "http://i.imgur.com/7GUv9qa.jpg",
+            "http://i.imgur.com/i5vXmXp.jpg",
+            "http://i.imgur.com/glyvuXg.jpg", 
+            "http://i.imgur.com/u6JF6JZ.jpg", 
+            "http://i.imgur.com/ExwR7ap.jpg", 
+            "http://i.imgur.com/Q54zMKT.jpg", 
+            "http://i.imgur.com/9t6hLbm.jpg", 
+            "http://i.imgur.com/F8n3Ic6.jpg",
+            "http://i.imgur.com/P5ZRSvT.jpg",
+            "http://i.imgur.com/jbemFzr.jpg", 
+            "http://i.imgur.com/8B7haIK.jpg", 
+            "http://i.imgur.com/aSeTYQr.jpg",
+            "http://i.imgur.com/OKvWoTh.jpg", 
+            "http://i.imgur.com/zD3gT4Z.jpg", 
+            "http://i.imgur.com/z77CaIt.jpg" 
+        };
+    }
+}
