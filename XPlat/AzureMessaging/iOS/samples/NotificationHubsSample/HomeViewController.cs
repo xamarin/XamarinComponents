@@ -1,5 +1,4 @@
-﻿using System;
-using MonoTouch.Dialog;
+﻿using MonoTouch.Dialog;
 using UIKit;
 
 namespace AzureMessagingSampleiOS

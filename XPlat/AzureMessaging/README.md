@@ -11,56 +11,35 @@ It's important to note that out of the box, these samples cannot just work.  You
 
 If you have not already done so, you need to setup your app and generate your Push certificate(s) on the Apple Developer portal, as well as create and/or configure a Notification Hub on Azure to use your push certificate(s).  You can follow the guide here: [Get started with Notification Hubs for Xamarin.iOS](http://azure.microsoft.com/en-us/documentation/articles/partner-xamarin-notification-hubs-ios-get-started/).  Only steps 1 through 4 are relevant to this component.
 
-When you are ready to connect your Xamarin.iOS app to the Notification Hub, you should add the following code to your `FinishedLaunching` override in your `AppDelegate`:
-
+When you are ready to connect your Xamarin.iOS app to the Notification Hub, you should define connections string and hub name variables first
 ```
-public override bool FinishedLaunching (UIApplication app, NSDictionary options)
+// TODO: Customize these values to your own
+const string CONNECTION_STRING = "YOUR-HUB-CONNECTION-STRING";
+const string HUB_NAME = "YOUR-HUB-NAME";
+```
+
+After that initialize the Hub and ensure your device is registered by adding the following code to your `FinishedLaunching` override in your `AppDelegate`:
+```
+	SNotificationHub.Init(CONNECTION_STRING, HUB_NAME);
+	Console.WriteLine("Device Token: " + MSNotificationHub.GetPushChannel());
+```
+
+To receive notification on your device you should:
+
+1. Add class which implements `IMSNotificationHubDelegate`
+2. Add implementation for `IMSNotificationHubDelegate.DidReceivePushNotification`
+```
+public void DidReceivePushNotification(MSNotificationHub notificationHub, MSNotificationHubMessage message)
 {
-	// Process any potential notification data from launch
-	ProcessNotification (options);
-
-	// Register for Notifications
-	UIApplication.SharedApplication.RegisterForRemoteNotificationTypes (
-		UIRemoteNotificationType.Alert |
-		UIRemoteNotificationType.Badge |
-		UIRemoteNotificationType.Sound);
-
-	// ...
-	// Your other code here
-	// ...
+	homeViewController.ProcessNotification(message.Title, message.Body);
+	Console.WriteLine("Notification Title: " + message.Title);
+	Console.WriteLine("Notification Body: " + message.Body);
 }
 ```
-
-You should also override these other methods:
-
+3. Register a callback for notifications via the `setDelegate` method in your `FinishedLaunching` override in your `AppDelegate`:
 ```
-public override void RegisteredForRemoteNotifications (UIApplication app, NSData deviceToken)
-{
-	// Connection string from your azure dashboard
-	var cs = SBConnectionString.CreateListenAccess(
-		new NSUrl("sb://yourservicebus-ns.servicebus.windows.net/"),
-		"YOUR-KEY");
-
-	// Register our info with Azure
-	var hub = new SBNotificationHub (cs, "your-hub-name");
-	hub.RegisterNative (deviceToken, null, err => {
-		if (err != null)
-			Console.WriteLine("Error: " + err.Description);
-		else
-			Console.WriteLine("Success");
-	});
-}
-
-public override void ReceivedRemoteNotification (UIApplication app, NSDictionary userInfo)
-{
-	// Process a notification received while the app was already open
-	ProcessNotification (userInfo);
-}
+	MSNotificationHub.SetDelegate(new NotificationListener(homeViewController));
 ```
-
-Notice how in both `FinishedLaunching` and `ReceivedRemoteNotification` we call the method `ProcessNotification(NSDictionary userInfo)`.  This is because `ReceivedRemoteNotification` will only be called when a Push Notification is received and the app is already running/in the foreground.  When an app is launched because the user has acted on a notification, the `options` parameter in `FinishedLaunching` will contain the notification information instead.
-
-
 
 ### Android Setup
 

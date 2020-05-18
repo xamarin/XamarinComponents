@@ -10,14 +10,11 @@ namespace AzureMessagingSampleiOS
 	// User Interface of the application, as well as listening (and optionally responding) to
 	// application events from iOS.
 	[Register ("AppDelegate")]
-	public partial class AppDelegate : UIApplicationDelegate, IMSNotificationHubDelegate
+	public partial class AppDelegate : UIApplicationDelegate
 	{
+		// TODO: Customize these values to your own
 		const string HUB_NAME = "YOUR-HUB-NAME";
 		const string CONNECTION_STRING = "YOUR-HUB-CONNECTION-STRING";
-
-		// class-level declarations
-		UIWindow window;
-		HomeViewController homeViewController;
 
         //
         // This method is invoked when the application has loaded and is ready to run. In this
@@ -29,11 +26,11 @@ namespace AzureMessagingSampleiOS
         public override bool FinishedLaunching (UIApplication app, NSDictionary options)
 		{
 			// create a new window instance based on the screen size
-			window = new UIWindow (UIScreen.MainScreen.Bounds);
+			var window = new UIWindow (UIScreen.MainScreen.Bounds);
 
 			var needsConfig = HUB_NAME == "YOUR-HUB-NAME" || CONNECTION_STRING == "YOUR-HUB-CONNECTION-STRING";
 
-			homeViewController = new HomeViewController(needsConfig);
+			var homeViewController = new HomeViewController(needsConfig);
 
 			// If you have defined a root view controller, set it here:
 			window.RootViewController = homeViewController;
@@ -42,17 +39,28 @@ namespace AzureMessagingSampleiOS
 
 			Console.WriteLine("Device Token: " + MSNotificationHub.GetPushChannel());
 
-			MSNotificationHub.SetDelegate(this);
+			MSNotificationHub.SetDelegate(new NotificationListener(homeViewController));
 
 			// make the window visible
 			window.MakeKeyAndVisible ();
 			
 			return true;
+		}       
+	}
+
+	public partial class NotificationListener : NSObject, IMSNotificationHubDelegate
+	{
+		HomeViewController homeViewController;
+
+		public NotificationListener(HomeViewController homeViewController)
+        {
+			this.homeViewController = homeViewController;
+
 		}
 
-        public void DidReceivePushNotification(MSNotificationHub notificationHub, MSNotificationHubMessage message)
-        {
-			this.homeViewController.ProcessNotification(message.Title, message.Body);
+		public void DidReceivePushNotification(MSNotificationHub notificationHub, MSNotificationHubMessage message)
+		{
+			homeViewController.ProcessNotification(message.Title, message.Body);
 
 			Console.WriteLine("Notification Title: " + message.Title);
 			Console.WriteLine("Notification Body: " + message.Body);
