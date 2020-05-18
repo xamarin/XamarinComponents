@@ -214,10 +214,10 @@ namespace WindowsAzure.Messaging
  	}
 
  	[BaseType(typeof(NSObject))]
-     [Model, Protocol]
-     public interface MSNotificationHubDelegate 
+    [Model, Protocol]
+    public interface MSNotificationHubDelegate 
  	{
-         [Export ("notificationHub:didReceivePushNotification:")]
+        [Abstract, Export ("notificationHub:didReceivePushNotification:")]
      	void DidReceivePushNotification(MSNotificationHub notificationHub, MSNotificationHubMessage message);
  	}
 
