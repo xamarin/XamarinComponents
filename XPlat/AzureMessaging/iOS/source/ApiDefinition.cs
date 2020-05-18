@@ -156,17 +156,41 @@ namespace WindowsAzure.Messaging
 		[Export ("setTokenWithRequest:error:")]
 		bool SetToken (NSMutableUrlRequest request, out NSError error);
 	}
+}
 
+namespace WindowsAzure.Messaging.NotificationHubs
+{
 	[BaseType (typeof (NSObject))]
  	public partial interface MSNotificationHub 
  	{
  		[Static, Export ("initWithConnectionString:hubName:")]
  		void Init (string connectionString, string hubName);
 
- 		[Static, Export ("setDelegate:")]
- 		void SetDelegate ([NullAllowed] MSNotificationHubDelegate nubDelegate);
+        [Static, Export ("didRegisterForRemoteNotificationsWithDeviceToken:")]
+ 		void DidRegisterForRemoteNotifications (NSData deviceToken);
 
- 		[Static, Export ("addTag:")]
+ 		[Static, Export ("didFailToRegisterForRemoteNotificationsWithError:")]
+ 		void DidFailToRegisterForRemoteNotifications (NSError error);
+
+ 		[Static, Export ("didReceiveRemoteNotification:")]
+ 		bool DidReceiveRemoteNotification (NSDictionary userInfo);
+
+ 		[Static, Export ("setDelegate:")]
+ 		void SetDelegate ([NullAllowed] IMSNotificationHubDelegate nubDelegate);
+
+        [Static, Export("isEnabled")]
+		bool IsEnabled();
+
+		[Static, Export("setEnabled:")]
+		bool SetEnabled(bool isEnabled);
+
+		[Static, Export("getPushChannel")]
+		string GetPushChannel();
+
+		[Static, Export("getInstallationId")]
+		string GetInstallationId();
+
+		[Static, Export ("addTag:")]
  		bool AddTag (string tag);
 
  		[Static, Export ("addTags:")]
@@ -183,34 +207,6 @@ namespace WindowsAzure.Messaging
 
  		[Static, Export ("clearTags")]
  		void ClearTags ();
-
- 		[Static, Export ("getInstallation")]
- 		MSInstallation GetInstallation ();
-
- 		[Static, Export ("didRegisterForRemoteNotificationsWithDeviceToken:")]
- 		void DidRegisterForRemoteNotifications (NSData deviceToken);
-
- 		[Static, Export ("didFailToRegisterForRemoteNotificationsWithError:")]
- 		void DidFailToRegisterForRemoteNotifications (NSError error);
-
- 		[Static, Export ("didReceiveRemoteNotification:")]
- 		bool DidReceiveRemoteNotification (NSDictionary userInfo);
- 	}
-
- 	[BaseType (typeof (NSObject))]
- 	public partial interface MSInstallation 
- 	{
- 		[Export ("installationID")]
- 		string InstallationID { get;set; }
-
- 		[Export ("pushChannel")]
- 		string PushChannel { get;set; }
-
- 		[Export ("platform")]
- 		string Platform { get;set; }
-
- 		[Export ("tags")]
- 		NSArray<NSString> Tags { get;set; }
  	}
 
  	[BaseType(typeof(NSObject))]
@@ -221,20 +217,19 @@ namespace WindowsAzure.Messaging
      	void DidReceivePushNotification(MSNotificationHub notificationHub, MSNotificationHubMessage message);
  	}
 
+    public interface IMSNotificationHubDelegate
+	{}
+
  	[BaseType (typeof (NSObject))]
  	public partial interface MSNotificationHubMessage 
  	{
  		[Export ("title")]
  		string Title { get; }
 
- 		[Export ("message")]
- 		string Message { get; }
+ 		[Export ("body")]
+ 		string Body { get; }
 
- 		[Export ("badge")]
- 		int Badge { get; }
-
- 		[Export ("additionalData")]
- 		NSMutableDictionary<NSString, NSString>  AdditionalData { get; }
+ 		[Export ("userInfo")]
+ 		NSMutableDictionary<NSString, NSString> UserInfo { get; }
  	}
 }
-

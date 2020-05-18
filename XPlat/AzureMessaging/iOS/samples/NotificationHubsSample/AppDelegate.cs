@@ -1,10 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 
 using Foundation;
 using UIKit;
-using WindowsAzure.Messaging;
+using WindowsAzure.Messaging.NotificationHubs;
 
 namespace AzureMessagingSampleiOS
 {
@@ -12,43 +10,39 @@ namespace AzureMessagingSampleiOS
 	// User Interface of the application, as well as listening (and optionally responding) to
 	// application events from iOS.
 	[Register ("AppDelegate")]
-	public partial class AppDelegate : UIApplicationDelegate
+	public partial class AppDelegate : UIApplicationDelegate, IMSNotificationHubDelegate
 	{
 		const string HUB_NAME = "YOUR-HUB-NAME";
-		const string HUB_LISTEN_SECRET = "YOUR-HUB-LISTEN-SECRET";
+		const string CONNECTION_STRING = "YOUR-HUB-CONNECTION-STRING";
 
 		// class-level declarations
 		UIWindow window;
 		HomeViewController homeViewController;
 
-		//
-		// This method is invoked when the application has loaded and is ready to run. In this
-		// method you should instantiate the window, load the UI into it and then make the window
-		// visible.
-		//
-		// You have 17 seconds to return from this method, or iOS will terminate your application.
-		//
-		public override bool FinishedLaunching (UIApplication app, NSDictionary options)
+        //
+        // This method is invoked when the application has loaded and is ready to run. In this
+        // method you should instantiate the window, load the UI into it and then make the window
+        // visible.
+        //
+        // You have 17 seconds to return from this method, or iOS will terminate your application.
+        //
+        public override bool FinishedLaunching (UIApplication app, NSDictionary options)
 		{
 			// create a new window instance based on the screen size
 			window = new UIWindow (UIScreen.MainScreen.Bounds);
 
-			homeViewController = new HomeViewController (HUB_NAME == "YOUR-HUB-NAME");
+			var needsConfig = HUB_NAME == "YOUR-HUB-NAME" || CONNECTION_STRING == "YOUR-HUB-CONNECTION-STRING";
+
+			homeViewController = new HomeViewController(needsConfig);
 
 			// If you have defined a root view controller, set it here:
 			window.RootViewController = homeViewController;
 
-			// Process any potential notification data from launch
-			ProcessNotification (options);
+			MSNotificationHub.Init(CONNECTION_STRING, HUB_NAME);
 
-			// Register for Notifications
-			var notificationTypes = UIUserNotificationType.Badge
-									| UIUserNotificationType.Sound
-									| UIUserNotificationType.Alert;
+			Console.WriteLine("Device Token: " + MSNotificationHub.GetPushChannel());
 
-			var notificationSettings = UIUserNotificationSettings.GetSettingsForTypes (notificationTypes, null);
-
-			UIApplication.SharedApplication.RegisterUserNotificationSettings (notificationSettings);
+			MSNotificationHub.SetDelegate(this);
 
 			// make the window visible
 			window.MakeKeyAndVisible ();
@@ -56,62 +50,12 @@ namespace AzureMessagingSampleiOS
 			return true;
 		}
 
-		public override void DidRegisterUserNotificationSettings (UIApplication application, UIUserNotificationSettings notificationSettings)
-		{
-			UIApplication.SharedApplication.RegisterForRemoteNotifications ();
-		}
+        public void DidReceivePushNotification(MSNotificationHub notificationHub, MSNotificationHubMessage message)
+        {
+			this.homeViewController.ProcessNotification(message.Title, message.Body);
 
-		public override void ReceivedRemoteNotification (UIApplication application, NSDictionary userInfo)
-		{
-			// Process a notification received while the app was already open
-			ProcessNotification (userInfo);
-		}
-
-		public override void RegisteredForRemoteNotifications (UIApplication application, NSData deviceToken)
-		{
-			// Connection string from your azure dashboard
-			var cs = SBConnectionString.CreateListenAccess(
-				new NSUrl("sb://" + HUB_NAME + "-ns.servicebus.windows.net/"),
-				HUB_LISTEN_SECRET);
-
-			// Register our info with Azure
-			var hub = new SBNotificationHub (cs, HUB_NAME);
-			hub.RegisterNative (deviceToken, null, err => {
-
-				if (err != null) {
-					Console.WriteLine("Error: " + err.Description);
-					homeViewController.RegisteredForNotifications ("Error: " + err.Description);
-				} else  {
-					Console.WriteLine("Success");
-					homeViewController.RegisteredForNotifications ("Successfully registered for notifications");
-				}
-			});
-		}
-
-		void ProcessNotification(NSDictionary userInfo)
-		{
-			if (userInfo == null)
-				return;
-
-			Console.WriteLine ("Received Notification");
-
-			var apsKey = new NSString ("aps");
-				
-			if (userInfo.ContainsKey (apsKey)) {
-
-				var alertKey = new NSString ("alert");
-
-				var aps = (NSDictionary)userInfo.ObjectForKey (apsKey);
-
-				if (aps.ContainsKey (alertKey)) {
-					var alert = (NSString)aps.ObjectForKey (alertKey);
-
-					homeViewController.ProcessNotification (alert);
-
-					Console.WriteLine ("Notification: " + alert);
-				}
-			}
+			Console.WriteLine("Notification Title: " + message.Title);
+			Console.WriteLine("Notification Body: " + message.Body);
 		}
 	}
 }
-
