@@ -160,25 +160,25 @@ namespace WindowsAzure.Messaging
 
 namespace WindowsAzure.Messaging.NotificationHubs
 {
-	[BaseType (typeof (NSObject))]
- 	public partial interface MSNotificationHub 
- 	{
- 		[Static, Export ("initWithConnectionString:hubName:")]
- 		void Init (string connectionString, string hubName);
+	[BaseType(typeof(NSObject))]
+	public partial interface MSNotificationHub
+	{
+		[Static, Export("initWithConnectionString:hubName:")]
+		void Init(string connectionString, string hubName);
 
-        [Static, Export ("didRegisterForRemoteNotificationsWithDeviceToken:")]
- 		void DidRegisterForRemoteNotifications (NSData deviceToken);
+		[Static, Export("didRegisterForRemoteNotificationsWithDeviceToken:")]
+		void DidRegisterForRemoteNotifications(NSData deviceToken);
 
- 		[Static, Export ("didFailToRegisterForRemoteNotificationsWithError:")]
- 		void DidFailToRegisterForRemoteNotifications (NSError error);
+		[Static, Export("didFailToRegisterForRemoteNotificationsWithError:")]
+		void DidFailToRegisterForRemoteNotifications(NSError error);
 
- 		[Static, Export ("didReceiveRemoteNotification:")]
- 		bool DidReceiveRemoteNotification (NSDictionary userInfo);
+		[Static, Export("didReceiveRemoteNotification:")]
+		bool DidReceiveRemoteNotification(NSDictionary userInfo);
 
- 		[Static, Export ("setDelegate:")]
- 		void SetDelegate ([NullAllowed] IMSNotificationHubDelegate nubDelegate);
+		[Static, Export("setDelegate:")]
+		void SetDelegate([NullAllowed] IMSNotificationHubDelegate nubDelegate);
 
-        [Static, Export("isEnabled")]
+		[Static, Export("isEnabled")]
 		bool IsEnabled();
 
 		[Static, Export("setEnabled:")]
@@ -190,46 +190,51 @@ namespace WindowsAzure.Messaging.NotificationHubs
 		[Static, Export("getInstallationId")]
 		string GetInstallationId();
 
-		[Static, Export ("addTag:")]
- 		bool AddTag (string tag);
+		[Static, Export("addTag:")]
+		bool AddTag(string tag);
 
- 		[Static, Export ("addTags:")]
- 		bool AddTags (NSArray<NSString> tags);
+		[Static, Export("addTags:")]
+		bool AddTags(NSArray<NSString> tags);
 
- 		[Static, Export ("removeTag:")]
- 		bool RemoveTag (string tag);
+		[Static, Export("removeTag:")]
+		bool RemoveTag(string tag);
 
- 		[Static, Export ("removeTags:")]
- 		bool RemoveTags (NSArray<NSString> tags);
+		[Static, Export("removeTags:")]
+		bool RemoveTags(NSArray<NSString> tags);
 
- 		[Static, Export ("getTags")]
- 		NSArray<NSString> GetTags ();
+		[Static, Export("getTags")]
+		NSArray<NSString> GetTags();
 
- 		[Static, Export ("clearTags")]
- 		void ClearTags ();
- 	}
+		[Static, Export("clearTags")]
+		void ClearTags();
+	}
 
- 	[BaseType(typeof(NSObject))]
-    [Model, Protocol]
-    public interface MSNotificationHubDelegate 
- 	{
-        [Abstract, Export ("notificationHub:didReceivePushNotification:")]
-     	void DidReceivePushNotification(MSNotificationHub notificationHub, MSNotificationHubMessage message);
- 	}
+	public delegate void CompletionHandler(UIBackgroundFetchResult fetchResult);
 
-    public interface IMSNotificationHubDelegate
-	{}
+	[BaseType(typeof(NSObject))]
+	[Model, Protocol]
+	public interface MSNotificationHubDelegate
+	{
+		[Abstract, Export("notificationHub:didReceivePushNotification:fetchCompletionHandler:")]
+		void DidReceivePushNotification(MSNotificationHub notificationHub, MSNotificationHubMessage message, CompletionHandler completionHandler);
+	}
 
- 	[BaseType (typeof (NSObject))]
- 	public partial interface MSNotificationHubMessage 
- 	{
- 		[Export ("title")]
- 		string Title { get; }
+	public interface IMSNotificationHubDelegate
+	{ }
 
- 		[Export ("body")]
- 		string Body { get; }
+	[BaseType(typeof(NSObject))]
+	public partial interface MSNotificationHubMessage
+	{
+		[Export("initWithUserInfo:")]
+		IntPtr Constructor(NSDictionary userInfo);
 
- 		[Export ("userInfo")]
- 		NSMutableDictionary<NSString, NSString> UserInfo { get; }
- 	}
+		[Export("title")]
+		string Title { get; }
+
+		[Export("body")]
+		string Body { get; }
+
+		[Export("userInfo")]
+		NSDictionary<NSString, NSString> UserInfo { get; }
+	}
 }

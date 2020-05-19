@@ -3,6 +3,7 @@
 using Foundation;
 using UIKit;
 using WindowsAzure.Messaging.NotificationHubs;
+using WindowsAzure.Messaging;
 
 namespace AzureMessagingSampleiOS
 {
@@ -58,12 +59,12 @@ namespace AzureMessagingSampleiOS
 
 		}
 
-		public void DidReceivePushNotification(MSNotificationHub notificationHub, MSNotificationHubMessage message)
-		{
+        public void DidReceivePushNotification(MSNotificationHub notificationHub, MSNotificationHubMessage message, CompletionHandler completionHandler)
+        {
 			homeViewController.ProcessNotification(message.Title, message.Body);
 
 			Console.WriteLine("Notification Title: " + message.Title);
 			Console.WriteLine("Notification Body: " + message.Body);
-		}
-	}
+		}        
+    }
 }
