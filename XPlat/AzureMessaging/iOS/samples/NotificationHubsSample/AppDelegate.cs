@@ -65,6 +65,8 @@ namespace AzureMessagingSampleiOS
 
 			Console.WriteLine("Notification Title: " + message.Title);
 			Console.WriteLine("Notification Body: " + message.Body);
-		}        
-    }
+
+			completionHandler(UIBackgroundFetchResult.NoData);
+		}
+	}
 }
