@@ -43,7 +43,7 @@
   <ItemGroup>
     <NativeReference Include="..\externals\WindowsAzureMessaging.framework">
       <Kind>Framework</Kind>
-      <Frameworks>Security</Frameworks>
+      <Frameworks>Security UserNotifications SystemConfiguration Foundation UIKit</Frameworks>
       <LinkerFlags>-ObjC -lc++</LinkerFlags>
       <ForceLoad>True</ForceLoad>
     </NativeReference>
@@ -61,5 +61,5 @@
   <ItemGroup>
     <ObjcBindingApiDefinition Include="ApiDefinition.cs" Condition=" '$(EnableDefaultCompileItems)' == 'true'" />
   </ItemGroup>
-
+  
 </Project>

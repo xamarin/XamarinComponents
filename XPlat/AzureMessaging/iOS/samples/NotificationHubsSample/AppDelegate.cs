@@ -3,7 +3,6 @@
 using Foundation;
 using UIKit;
 using WindowsAzure.Messaging.NotificationHubs;
-using WindowsAzure.Messaging;
 
 namespace AzureMessagingSampleiOS
 {
