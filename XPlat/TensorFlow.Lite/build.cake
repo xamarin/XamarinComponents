@@ -1,8 +1,8 @@
 
 var TARGET = Argument("t", Argument("target", "ci"));
 
-var NUGET_VERSION = "1.15.0.1";
-var AAR_VERSION = "1.15.0";
+var NUGET_VERSION = "2.0.0.1";
+var AAR_VERSION = "2.0.0";
 
 var NUGET_PACKAGE_ID = "Xamarin.TensorFlow.Lite";
 var AAR_URL_01 = $"https://bintray.com/google/tensorflow/download_file?file_path=org%2Ftensorflow%2Ftensorflow-lite%2F{AAR_VERSION}%2Ftensorflow-lite-{AAR_VERSION}.aar";
