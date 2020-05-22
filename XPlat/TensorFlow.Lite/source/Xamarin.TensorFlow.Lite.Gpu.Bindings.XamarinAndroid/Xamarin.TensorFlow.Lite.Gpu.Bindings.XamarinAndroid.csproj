@@ -24,7 +24,7 @@
         -->
         <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
         <PackageId>Xamarin.TensorFlow.Lite.Gpu</PackageId>
-        <PackageVersion>2.1.0</PackageVersion>
+        <PackageVersion>2.1.0.1</PackageVersion>
         <Title>Xamarin.TensorFlow.Lite.Gpu</Title>
         <PackageDescription>
             Bindings for Google's TensorFlow Lite GPU package (Google Play Services dependency)
@@ -41,6 +41,7 @@
 
     <ItemGroup>
         <TransformFile Include="transforms\*.xml" />
+        <TransformFile Include="Transforms\Metadata.xml" />
     </ItemGroup>
 
     <ItemGroup>
@@ -49,4 +50,10 @@
         </LibraryProjectZip>
     </ItemGroup>
 
+    <ItemGroup>
+      <ProjectReference Include="..\Xamarin.TensorFlow.Lite.Bindings.XamarinAndroid\Xamarin.TensorFlow.Lite.Bindings.XamarinAndroid.csproj" />
+    </ItemGroup>
+    <ItemGroup>
+      <None Remove="Transforms\Metadata.xml" />
+    </ItemGroup>
 </Project>
