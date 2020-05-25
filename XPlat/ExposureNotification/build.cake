@@ -1,10 +1,10 @@
 var TARGET = Argument("t", Argument("target", "ci"));
 
-var SRC_COMMIT = "0453ef280effd21903f3920fba57b58695cf60ab";
+var SRC_COMMIT = "bebffab3addf13485b07af95c2fb579a93e6fa70";
 var SRC_URL = $"https://github.com/xamarin/xamarin.exposurenotification/archive/{SRC_COMMIT}.zip";
 
 var OUTPUT_PATH = (DirectoryPath)"./output/";
-var NUGET_VERSION = "0.2.1-preview";
+var NUGET_VERSION = "0.3.0-preview";
 
 Task("externals")
 	.Does(() =>
