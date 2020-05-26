@@ -27,7 +27,7 @@ namespace Android.Gms.Nearby.ExposureNotification
 			=> NativeProvideDiagnosisKeys(files, config, token).CastTask();
 
 		public async Task<IList<TemporaryExposureKey>> GetTemporaryExposureKeyHistoryAsync()
-			=> await NativeGetTemporaryExposureKeyHistory().CastTask<JavaList<TemporaryExposureKey>>();
+			=> await NativeTemporaryExposureKeyHistory().CastTask<JavaList<TemporaryExposureKey>>();
 	}
 
 	internal static class GoogleTaskExtensions
