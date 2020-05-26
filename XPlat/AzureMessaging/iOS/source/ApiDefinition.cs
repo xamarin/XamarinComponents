@@ -172,11 +172,11 @@ namespace WindowsAzure.Messaging.NotificationHubs
 		[Static, Export("didFailToRegisterForRemoteNotificationsWithError:")]
 		void DidFailToRegisterForRemoteNotifications(NSError error);
 
-		[Static, Export("didReceiveRemoteNotification:")]
-		bool DidReceiveRemoteNotification(NSDictionary userInfo);
+		[Static, Export("didReceiveRemoteNotification:fetchCompletionHandler:")]
+		bool DidReceiveRemoteNotification(NSDictionary userInfo, CompletionHandler completionHandler);
 
 		[Static, Export("setDelegate:")]
-		void SetDelegate([NullAllowed] IMSNotificationHubDelegate nubDelegate);
+		void SetDelegate([NullAllowed] IMSNotificationHubDelegate hubDelegate);
 
 		[Static, Export("isEnabled")]
 		bool IsEnabled();
@@ -207,6 +207,15 @@ namespace WindowsAzure.Messaging.NotificationHubs
 
 		[Static, Export("clearTags")]
 		void ClearTags();
+
+		[Static, Export("setTemplate:forKey:")]
+		bool SetTemplate(MSInstallationTemplate template, string key);
+
+		[Static, Export("removeTemplateForKey:")]
+		bool RemoveTemplate(string key);
+
+		[Static, Export("getTemplateForKey:")]
+		MSInstallationTemplate GetTemplate(string key);
 	}
 
 	public delegate void CompletionHandler(UIBackgroundFetchResult fetchResult);
@@ -236,5 +245,55 @@ namespace WindowsAzure.Messaging.NotificationHubs
 
 		[Export("userInfo")]
 		NSDictionary<NSString, NSString> UserInfo { get; }
+	}
+
+	[BaseType(typeof(NSObject))]
+	[Protocol]
+	public interface MSChangeTracking
+	{
+		[Abstract, Export("isDirty")]
+		bool IsDirty();
+	}
+
+	[BaseType(typeof(NSObject))]
+	[Protocol]
+	public interface MSTaggable
+	{
+		[Abstract, Export("tags:")]
+		NSArray<NSString> tags { get; }
+
+		[Abstract, Export("addTag:")]
+		bool AddTag(string tag);
+
+		[Abstract, Export("addTags:")]
+		bool AddTags(NSArray<NSString> tags);
+
+		[Abstract, Export("removeTag:")]
+		bool RemoveTag(string tag);
+
+		[Abstract, Export("removeTags:")]
+		bool RemoveTags(NSArray<NSString> tags);
+
+		[Abstract, Export("clearTags")]
+		void ClearTags();
+	}
+
+	[BaseType(typeof(NSObject))]
+	public partial interface MSInstallationTemplate : MSTaggable, MSChangeTracking
+	{
+		[Export("body")]
+		string Body { get; set; }
+
+		[Export("headers")]
+		NSDictionary<NSString, NSString> Headers { get; }
+
+		[Export("setHeaderValue:forKey:")]
+		void SetHeader(string value, string key);
+
+		[Export("removeHeaderValueForKey:")]
+		void RemoveHeader(string key);
+
+		[Export("getHeaderValueForKey:")]
+		string GetHeader(string key);
 	}
 }

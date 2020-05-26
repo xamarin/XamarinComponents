@@ -105,7 +105,7 @@
     <Compile Include="HomeViewController.cs" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="Xamarin.Azure.NotificationHubs.iOS" Version="3.0.0-preview1" />
+    <PackageReference Include="Xamarin.Azure.NotificationHubs.iOS" Version="3.0.0-preview2" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
 </Project>

@@ -6,7 +6,7 @@
     <RootNamespace>WindowsAzure.Messaging</RootNamespace>
     <AssemblyName>Xamarin.Azure.NotificationHubs.iOS</AssemblyName>
     <AssemblyVersion>1.0.0.0</AssemblyVersion>
-    <FileVersion>3.0.0-preview1</FileVersion>
+    <FileVersion>3.0.0-preview2</FileVersion>
     <IPhoneResourcePrefix>Resources</IPhoneResourcePrefix>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
   </PropertyGroup>
@@ -22,7 +22,7 @@
     <PackageProjectUrl>https://go.microsoft.com/fwlink/?linkid=864962</PackageProjectUrl>
     <PackageLicenseUrl>https://go.microsoft.com/fwlink/?linkid=865062</PackageLicenseUrl>
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
-    <PackageVersion>3.0.0-preview1</PackageVersion>
+    <PackageVersion>3.0.0-preview2</PackageVersion>
   </PropertyGroup>
 
   <ItemGroup>
