@@ -117,7 +117,7 @@ Task("samples-android")
 });
 
 Task("ci")
-	.IsDependentOn("samples");
+	.IsDependentOn("nuget");
 
 
 Task ("externals-ios")
