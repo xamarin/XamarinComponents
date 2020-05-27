@@ -158,3 +158,142 @@ namespace WindowsAzure.Messaging
 	}
 }
 
+namespace WindowsAzure.Messaging.NotificationHubs
+{
+	[BaseType(typeof(NSObject))]
+	public partial interface MSNotificationHub
+	{
+		[Static, Export("initWithConnectionString:hubName:")]
+		void Init(string connectionString, string hubName);
+
+		[Static, Export("didRegisterForRemoteNotificationsWithDeviceToken:")]
+		void DidRegisterForRemoteNotifications(NSData deviceToken);
+
+		[Static, Export("didFailToRegisterForRemoteNotificationsWithError:")]
+		void DidFailToRegisterForRemoteNotifications(NSError error);
+
+		[Static, Export("didReceiveRemoteNotification:fetchCompletionHandler:")]
+		bool DidReceiveRemoteNotification(NSDictionary userInfo, CompletionHandler completionHandler);
+
+		[Static, Export("setDelegate:")]
+		void SetDelegate([NullAllowed] IMSNotificationHubDelegate hubDelegate);
+
+		[Static, Export("isEnabled")]
+		bool IsEnabled();
+
+		[Static, Export("setEnabled:")]
+		bool SetEnabled(bool isEnabled);
+
+		[Static, Export("getPushChannel")]
+		string GetPushChannel();
+
+		[Static, Export("getInstallationId")]
+		string GetInstallationId();
+
+		[Static, Export("addTag:")]
+		bool AddTag(string tag);
+
+		[Static, Export("addTags:")]
+		bool AddTags(NSArray<NSString> tags);
+
+		[Static, Export("removeTag:")]
+		bool RemoveTag(string tag);
+
+		[Static, Export("removeTags:")]
+		bool RemoveTags(NSArray<NSString> tags);
+
+		[Static, Export("getTags")]
+		NSArray<NSString> GetTags();
+
+		[Static, Export("clearTags")]
+		void ClearTags();
+
+		[Static, Export("setTemplate:forKey:")]
+		bool SetTemplate(MSInstallationTemplate template, string key);
+
+		[Static, Export("removeTemplateForKey:")]
+		bool RemoveTemplate(string key);
+
+		[Static, Export("getTemplateForKey:")]
+		MSInstallationTemplate GetTemplate(string key);
+	}
+
+	public delegate void CompletionHandler(UIBackgroundFetchResult fetchResult);
+
+	[BaseType(typeof(NSObject))]
+	[Model, Protocol]
+	public interface MSNotificationHubDelegate
+	{
+		[Abstract, Export("notificationHub:didReceivePushNotification:fetchCompletionHandler:")]
+		void DidReceivePushNotification(MSNotificationHub notificationHub, MSNotificationHubMessage message, CompletionHandler completionHandler);
+	}
+
+	public interface IMSNotificationHubDelegate
+	{ }
+
+	[BaseType(typeof(NSObject))]
+	public partial interface MSNotificationHubMessage
+	{
+		[Export("initWithUserInfo:")]
+		IntPtr Constructor(NSDictionary userInfo);
+
+		[Export("title")]
+		string Title { get; }
+
+		[Export("body")]
+		string Body { get; }
+
+		[Export("userInfo")]
+		NSDictionary<NSString, NSString> UserInfo { get; }
+	}
+
+	[BaseType(typeof(NSObject))]
+	[Protocol]
+	public interface MSChangeTracking
+	{
+		[Abstract, Export("isDirty")]
+		bool IsDirty();
+	}
+
+	[BaseType(typeof(NSObject))]
+	[Protocol]
+	public interface MSTaggable
+	{
+		[Abstract, Export("tags:")]
+		NSArray<NSString> tags { get; }
+
+		[Abstract, Export("addTag:")]
+		bool AddTag(string tag);
+
+		[Abstract, Export("addTags:")]
+		bool AddTags(NSArray<NSString> tags);
+
+		[Abstract, Export("removeTag:")]
+		bool RemoveTag(string tag);
+
+		[Abstract, Export("removeTags:")]
+		bool RemoveTags(NSArray<NSString> tags);
+
+		[Abstract, Export("clearTags")]
+		void ClearTags();
+	}
+
+	[BaseType(typeof(NSObject))]
+	public partial interface MSInstallationTemplate : MSTaggable, MSChangeTracking
+	{
+		[Export("body")]
+		string Body { get; set; }
+
+		[Export("headers")]
+		NSDictionary<NSString, NSString> Headers { get; }
+
+		[Export("setHeaderValue:forKey:")]
+		void SetHeader(string value, string key);
+
+		[Export("removeHeaderValueForKey:")]
+		void RemoveHeader(string key);
+
+		[Export("getHeaderValueForKey:")]
+		string GetHeader(string key);
+	}
+}
