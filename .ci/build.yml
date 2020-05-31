@@ -71,7 +71,7 @@ jobs:
           displayName: 'Install the macOS provisioning profile'
           inputs:
             provProfileSecureFile: 'Components Mac Provisioning.provisionprofile'
-        - task: InstallAppleProvisioningProfile@1.157.1
+        - task: InstallAppleProvisioningProfile@1
           condition: eq(variables['System.JobName'], 'macos')
           displayName: 'Install the tvOS provisioning profile'
           inputs:
