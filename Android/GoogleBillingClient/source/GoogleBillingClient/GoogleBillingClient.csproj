@@ -46,4 +46,7 @@
     <LibraryProjectZip Include="..\..\externals\billing.aar" />
   </ItemGroup>
 
+  <ItemGroup>	
+    <PackageReference Include="Xamarin.AndroidX.Annotations" Version="1.1.0" />	
+  </ItemGroup>
 </Project>
