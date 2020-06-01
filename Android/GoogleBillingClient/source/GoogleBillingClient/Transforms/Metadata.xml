@@ -9,5 +9,8 @@
   <remove-node path="/api/package[@name='com.android.billingclient.api']/interface[@name='BillingClient.ChildDirected']" />
   <remove-node path="/api/package[@name='com.android.billingclient.api']/interface[@name='BillingClient.UnderAgeOfConsent']" />
   <remove-node path="/api/package[@name='com.android.billingclient.api']/interface[@name='Purchase.PurchaseState']" />
-  
+
+	<attr path="/api/package[@name='com.android.billingclient.api']/class[@name='BillingClient']/method[@name='consumeAsync']" name="managedName">Consume</attr>
+	<attr path="/api/package[@name='com.android.billingclient.api']/class[@name='BillingClient']/method[@name='queryPurchaseHistoryAsync']" name="managedName">QueryPurchaseHistory</attr>
+	<attr path="/api/package[@name='com.android.billingclient.api']/class[@name='BillingClient']/method[@name='querySkuDetailsAsync']" name="managedName">QuerySkuDetails</attr>
 </metadata>
