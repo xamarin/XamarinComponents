@@ -110,6 +110,19 @@ namespace Android.BillingClient.Api
 			return tcs.Task;
 		}
 
+		public void StartConnection(Action<BillingResult> setupFinished, Action onDisconnected)
+		{
+			var listener = new InternalBillingClientStateListener
+			{
+				BillingServiceDisconnectedHandler = () =>
+					onDisconnected?.Invoke(),
+				BillingSetupFinishedHandler = r =>
+					setupFinished?.Invoke(r)
+			};
+
+			StartConnection(listener);
+		}
+
 		public Task<BillingResult> LaunchPriceChangeConfirmationFlowAsync(Activity activity, PriceChangeFlowParams priceChangeFlowParams)
 		{
 			var tcs = new TaskCompletionSource<BillingResult>();
