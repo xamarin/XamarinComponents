@@ -15,10 +15,20 @@ namespace Android.BillingClient.Api
 		public string PurchaseToken { get; set; }
 	}
 
+	public class QueryPurchaseHistoryResult
+	{
+		public BillingResult Result { get; set; }
+		public IList<PurchaseHistoryRecord> PurchaseHistoryRecords { get; set; }
+	}
+
+	public class QuerySkuDetailsResult
+	{
+		public BillingResult Result { get; set; }
+		public IList<SkuDetails> SkuDetails { get; set; }
+	}
 
 	public partial class BillingClient
 	{
-		
 		public partial class Builder
 		{
 			InternalPurchasesUpdatedListener purchasesUpdatedListener;
@@ -62,13 +72,17 @@ namespace Android.BillingClient.Api
 			return tcs.Task;
 		}
 
-		public Task<(BillingResult billingResult, IList<PurchaseHistoryRecord> purchaseHistoryRecords)> QueryPurchaseHistoryAsync(string skuType)
+		public Task<QueryPurchaseHistoryResult> QueryPurchaseHistoryAsync(string skuType)
 		{
-			var tcs = new TaskCompletionSource<(BillingResult, IList<PurchaseHistoryRecord>)>();
+			var tcs = new TaskCompletionSource<QueryPurchaseHistoryResult>();
 
 			var listener = new InternalPurchaseHistoryResponseListener
 			{
-				PurchaseHistoryResponseHandler = (r, h) => tcs.TrySetResult((r, h))
+				PurchaseHistoryResponseHandler = (r, h) => tcs.TrySetResult(new QueryPurchaseHistoryResult
+				{
+					Result = r,
+					PurchaseHistoryRecords = h
+				})
 			};
 
 			QueryPurchaseHistory(skuType, listener);
@@ -76,13 +90,17 @@ namespace Android.BillingClient.Api
 			return tcs.Task;
 		}
 
-		public Task<(BillingResult result, IList<SkuDetails> skuDetails)> QuerySkuDetailsAsync(SkuDetailsParams skuDetailsParams)
+		public Task<QuerySkuDetailsResult> QuerySkuDetailsAsync(SkuDetailsParams skuDetailsParams)
 		{
-			var tcs = new TaskCompletionSource<(BillingResult, IList<SkuDetails>)>();
+			var tcs = new TaskCompletionSource<QuerySkuDetailsResult>();
 
 			var listener = new InternalSkuDetailsResponseListener
 			{
-				SkuDetailsResponseHandler = (r, s) => tcs.TrySetResult((r, s))
+				SkuDetailsResponseHandler = (r, s) => tcs.TrySetResult(new QuerySkuDetailsResult
+				{
+					Result = r,
+					SkuDetails = s
+				})
 			};
 
 			QuerySkuDetails(skuDetailsParams, listener);
