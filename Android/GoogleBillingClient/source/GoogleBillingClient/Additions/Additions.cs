@@ -18,12 +18,14 @@ namespace Android.BillingClient.Api
 	public class QueryPurchaseHistoryResult
 	{
 		public BillingResult Result { get; set; }
+		
 		public IList<PurchaseHistoryRecord> PurchaseHistoryRecords { get; set; }
 	}
 
 	public class QuerySkuDetailsResult
 	{
 		public BillingResult Result { get; set; }
+		
 		public IList<SkuDetails> SkuDetails { get; set; }
 	}
 
@@ -64,7 +66,11 @@ namespace Android.BillingClient.Api
 
 			var listener = new InternalConsumeResponseListener
 			{
-				ConsumeResponseHandler = (r, s) => tcs.TrySetResult(new ConsumeResult { BillingResult = r, PurchaseToken = s })
+				ConsumeResponseHandler = (r, s) => tcs.TrySetResult(new ConsumeResult
+				{
+					BillingResult = r,
+					PurchaseToken = s
+				})
 			};
 
 			Consume(consumeParams, listener);
@@ -235,5 +241,4 @@ namespace Android.BillingClient.Api
 		public void OnSkuDetailsResponse(BillingResult result, IList<SkuDetails> skuDetails)
 			=> SkuDetailsResponseHandler?.Invoke(result, skuDetails);
 	}
-
 }
