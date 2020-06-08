@@ -11,7 +11,7 @@
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>MinimumOSVersion</key>
-	<string>8.0</string>
+	<string>13.0</string>
 	<key>UIDeviceFamily</key>
 	<array>
 		<integer>1</integer>
@@ -30,5 +30,11 @@
 	<string>com.azure.messaging.sample</string>
 	<key>Custom Property</key>
 	<string></string>
+	<key>CFBundleName</key>
+	<string>AzureMessagingSampleiOS</string>
+	<key>UIBackgroundModes</key>
+	<array>
+		<string>remote-notification</string>
+	</array>
 </dict>
 </plist>

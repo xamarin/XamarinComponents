@@ -6,7 +6,7 @@
     <RootNamespace>WindowsAzure.Messaging</RootNamespace>
     <AssemblyName>Xamarin.Azure.NotificationHubs.iOS</AssemblyName>
     <AssemblyVersion>1.0.0.0</AssemblyVersion>
-    <FileVersion>2.0.4</FileVersion>
+    <FileVersion>3.0.0-preview2</FileVersion>
     <IPhoneResourcePrefix>Resources</IPhoneResourcePrefix>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
   </PropertyGroup>
@@ -22,7 +22,7 @@
     <PackageProjectUrl>https://go.microsoft.com/fwlink/?linkid=864962</PackageProjectUrl>
     <PackageLicenseUrl>https://go.microsoft.com/fwlink/?linkid=865062</PackageLicenseUrl>
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
-    <PackageVersion>2.0.4</PackageVersion>
+    <PackageVersion>3.0.0-preview2</PackageVersion>
   </PropertyGroup>
 
   <ItemGroup>
@@ -43,7 +43,7 @@
   <ItemGroup>
     <NativeReference Include="..\externals\WindowsAzureMessaging.framework">
       <Kind>Framework</Kind>
-      <Frameworks>Security</Frameworks>
+      <Frameworks>Security UserNotifications SystemConfiguration Foundation UIKit</Frameworks>
       <LinkerFlags>-ObjC -lc++</LinkerFlags>
       <ForceLoad>True</ForceLoad>
     </NativeReference>
@@ -61,5 +61,5 @@
   <ItemGroup>
     <ObjcBindingApiDefinition Include="ApiDefinition.cs" Condition=" '$(EnableDefaultCompileItems)' == 'true'" />
   </ItemGroup>
-
+  
 </Project>

@@ -1,8 +1,9 @@
 
-var TARGET = Argument("t", Argument("target", "Default"));
+var TARGET = Argument("t", Argument("target", "ci"));
 
-var NUGET_VERSION = "1.14.0";
-var AAR_VERSION = "1.14.0";
+var NUGET_VERSION = "2.1.0.1";
+var AAR_VERSION = "2.1.0";
+
 var NUGET_PACKAGE_ID = "Xamarin.TensorFlow.Lite";
 var AAR_URL_01 = $"https://bintray.com/google/tensorflow/download_file?file_path=org%2Ftensorflow%2Ftensorflow-lite%2F{AAR_VERSION}%2Ftensorflow-lite-{AAR_VERSION}.aar";
 var AAR_URL_02 = $"https://bintray.com/google/tensorflow/download_file?file_path=org%2Ftensorflow%2Ftensorflow-lite-gpu%2F{AAR_VERSION}%2Ftensorflow-lite-gpu-{AAR_VERSION}.aar";
@@ -44,5 +45,9 @@ Task("clean")
 	if (DirectoryExists("./externals/"))
 		DeleteDirectory("./externals", true);
 });
+
+Task("ci")
+	.IsDependentOn("libs")
+	.IsDependentOn("nuget");
 
 RunTarget(TARGET);
