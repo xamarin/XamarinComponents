@@ -1,10 +1,10 @@
 
 var TARGET = Argument ("t", Argument ("target", "Default"));
 
-var AAR_VERSION = "2.0.3";
+var AAR_VERSION = "2.2.1";
 var NUGET_VERSION = AAR_VERSION;
 
-var AAR_URL = $"https://bintray.com/api/ui/download/google/play-billing/com/android/billingclient/billing/{AAR_VERSION}/billing-{AAR_VERSION}.aar";
+var AAR_URL = $"https://dl.google.com/dl/android/maven2/com/android/billingclient/billing/{AAR_VERSION}/billing-{AAR_VERSION}.aar";
 
 
 Task ("externals")

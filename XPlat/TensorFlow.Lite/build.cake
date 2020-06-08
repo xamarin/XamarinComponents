@@ -1,7 +1,7 @@
 
 var TARGET = Argument("t", Argument("target", "ci"));
 
-var NUGET_VERSION = "2.1.0";
+var NUGET_VERSION = "2.1.0.1";
 var AAR_VERSION = "2.1.0";
 
 var NUGET_PACKAGE_ID = "Xamarin.TensorFlow.Lite";
