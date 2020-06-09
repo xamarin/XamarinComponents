@@ -159,7 +159,7 @@ Task("tests")
 	EnsureDirectoryExists("./working/test/tests");
 
 	// copy the files to the working directory
-	CopyDirectory("./Test/", "./working/test/");
+	CopyDirectory("./tests/", "./working/test/");
 	CopyDirectory("./externals/mono/mcs/class/Mono.Posix/Test/", "./working/test/tests");
 	CopyFiles("./output/*.nupkg", "./working/test/nugets/");
 
