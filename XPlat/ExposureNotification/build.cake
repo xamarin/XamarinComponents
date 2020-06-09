@@ -1,6 +1,6 @@
 var TARGET = Argument("t", Argument("target", "ci"));
 
-var SRC_COMMIT = "f17c723b988ccc07279ae1eb5f0bf08601bbbf34";
+var SRC_COMMIT = "73f94d79edc0912edf538d2f2c3501163d31d1c8";
 var SRC_URL = $"https://github.com/xamarin/xamarin.exposurenotification/archive/{SRC_COMMIT}.zip";
 
 var OUTPUT_PATH = (DirectoryPath)"./output/";
