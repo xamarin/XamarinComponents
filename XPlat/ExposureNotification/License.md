@@ -1,4 +1,5 @@
 ### Xamarin Component for Xamarin.ExposureNotification
+
 MIT License
 
 Copyright (c) Microsoft Corporation.
