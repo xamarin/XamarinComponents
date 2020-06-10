@@ -413,7 +413,7 @@ public class BuildGroup {
 
 	public bool BuildOnWindows => WindowsBuildTargets?.Any () == true;
 	public bool BuildOnMac => MacBuildTargets?.Any () == true;
-	public bool BuildOnLInux => LinuxBuildTargets?.Any () == true;
+	public bool BuildOnLinux => LinuxBuildTargets?.Any () == true;
 
 	public override string ToString () => Name;
 }
