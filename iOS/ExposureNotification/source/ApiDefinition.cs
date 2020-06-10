@@ -81,7 +81,7 @@ namespace ExposureNotifications {
 
 		[BindAs (typeof (int []))]
 		[Export ("attenuationDurations", ArgumentSemantic.Copy)]
-		NSNumber [] AttenuationDurations { get; set; }
+		NSNumber [] AttenuationDurations { get; }
 
 		[Export ("daysSinceLastExposure")]
 		nint DaysSinceLastExposure { get; }
@@ -142,7 +142,7 @@ namespace ExposureNotifications {
 
 		[BindAs (typeof (int []))]
 		[Export ("attenuationDurations", ArgumentSemantic.Copy)]
-		NSNumber [] AttenuationDurations { get; set; }
+		NSNumber [] AttenuationDurations { get; }
 
 		[Export ("attenuationValue")]
 		byte AttenuationValue { get; }
