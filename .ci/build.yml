@@ -11,7 +11,7 @@ parameters:
   submodules: false                                         # whether or not to check out submodules
   areaPath: ''                                              # the areaPath to log any issues
   # job software version parameters
-  linuxImage: 'Hosted Ubuntu 1604'                          # the name of the Linux VM image
+  linuxImage: ''                                            # the name of the Linux VM image (linuxImage: 'Hosted Ubuntu 1604') 
   macosImage: 'Hosted macOS'                                # the name of the macOS VM image
   windowsImage: 'Hosted Windows 2019 with VS2019'           # the name of the Windows VM image
   mono: 'Latest'                                            # the version of mono to use
