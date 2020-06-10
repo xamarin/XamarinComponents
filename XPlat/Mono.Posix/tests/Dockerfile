@@ -3,7 +3,7 @@ WORKDIR /working
 
 COPY . .
 
-RUN dotnet add Test.csproj package Mono.Posix.NETStandard
+RUN dotnet add Test.csproj package Mono.Posix.NETStandard -v @NUGET_VERSION@
 RUN dotnet restore
 
 RUN dotnet build

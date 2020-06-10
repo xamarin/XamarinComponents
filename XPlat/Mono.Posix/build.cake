@@ -17,7 +17,7 @@ var MONO_GIT_REPO = "mono/mono";
 var MONOGIT_VERSION = $"mono-{MONO_VERSION}";
 var MONOPOSIXHELPER_JENKINSBUILD = "46";
 
-var NUGET_VERSION = "5.20.1";
+var NUGET_VERSION = "5.20.1-preview";
 
 var DOCKER_PULL_TARGET = "microsoft/dotnet@sha256:83ea086418516a9b6311acf393f1474d241015902b380ac7c3dfe90f32b72dad";
 var DOCKER_RUN_IMAGE = "411cc86cfa2e";
@@ -162,6 +162,7 @@ Task("tests")
 	CopyDirectory("./tests/", "./working/test/");
 	CopyDirectory("./externals/mono/mcs/class/Mono.Posix/Test/", "./working/test/tests");
 	CopyFiles("./output/*.nupkg", "./working/test/nugets/");
+	ReplaceTextInFiles("./working/test/Dockerfile", "@NUGET_VERSION@", NUGET_VERSION);
 
 	// run the tests
 	DockerBuild(
