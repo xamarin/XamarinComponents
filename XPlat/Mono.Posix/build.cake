@@ -2,25 +2,17 @@
 #addin nuget:?package=Cake.Docker&version=0.11.0
 #tool nuget:?package=Microsoft.DotNet.BuildTools.GenAPI&version=1.0.0-beta-00081&prerelease
 
+var DEFAULT_SN_EXE = IsRunningOnWindows()
+	? GetFiles("C:/Program Files (x86)/Microsoft SDKs/Windows/v10.0A/bin/*/sn.exe").First().FullPath
+	: "sn";
+
 var TARGET = Argument("t", Argument("target", "ci"));
-
-var DEFAULT_SN_EXE = "sn";
-if (IsRunningOnWindows()) {
-	var MSSDK = "C:/Program Files (x86)/Microsoft SDKs";
-	DEFAULT_SN_EXE = GetFiles($"{MSSDK}/Windows/v10.0A/bin/*/sn.exe").First().FullPath;
-}
-
 var SN_EXE = Argument("sn", EnvironmentVariable("SN_EXE") ?? DEFAULT_SN_EXE);
 
 var MONO_VERSION = "5.20.1.34";
-var MONO_GIT_REPO = "mono/mono";
-var MONOGIT_VERSION = $"mono-{MONO_VERSION}";
 var MONOPOSIXHELPER_JENKINSBUILD = "46";
 
 var NUGET_VERSION = "5.20.1-preview";
-
-var DOCKER_PULL_TARGET = "microsoft/dotnet@sha256:83ea086418516a9b6311acf393f1474d241015902b380ac7c3dfe90f32b72dad";
-var DOCKER_RUN_IMAGE = "411cc86cfa2e";
 
 var DISTRO_LIST = new [] {
 	"centos-6-x86",
@@ -44,11 +36,11 @@ Task("externals")
 
 	// mono source
 	if (!FileExists("./externals/mono-source.zip")) {
-		DownloadFile($"https://github.com/{MONO_GIT_REPO}/archive/{MONOGIT_VERSION}.zip", "./externals/mono-source.zip");
+		DownloadFile($"https://github.com/mono/mono/archive/mono-{MONO_VERSION}.zip", "./externals/mono-source.zip");
 	}
 	if (!DirectoryExists("./externals/mono")) {
 		Unzip("./externals/mono-source.zip", "./externals/");
-		MoveDirectory($"./externals/mono-{MONOGIT_VERSION}", "./externals/mono");
+		MoveDirectory($"./externals/mono-mono-{MONO_VERSION}", "./externals/mono");
 	}
 
 	// Consts.cs.in > Consts.cs
