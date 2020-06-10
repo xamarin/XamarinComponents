@@ -6,6 +6,7 @@
 
 
 using Xamarin.Nuget.Validator;
+using System.Runtime.InteropServices;
 
 
 // SECTION: Arguments and Settings
