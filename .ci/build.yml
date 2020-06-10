@@ -231,14 +231,21 @@ jobs:
             RepositoryUrl: $(Build.Repository.Uri)
             RepositoryType: "git"
       - task: PublishTestResults@2
-        displayName: Publish the test results
+        displayName: Publish the test results (xUnit)
         condition: always()
         inputs:
           testResultsFormat: xUnit
           testResultsFiles: 'output/**/*TestResults.xml'
           testRunTitle: 'xUnit Test results for $(System.JobName)'
       - task: PublishTestResults@2
-        displayName: Publish the test results
+        displayName: Publish the test results (NUnit)
+        condition: always()
+        inputs:
+          testResultsFormat: NUnit
+          testResultsFiles: 'output/**/*TestResults.xml'
+          testRunTitle: 'NUnit Test results for $(System.JobName)'
+      - task: PublishTestResults@2
+        displayName: Publish the test results (VSTest)
         condition: always()
         inputs:
           testResultsFormat: VSTest
