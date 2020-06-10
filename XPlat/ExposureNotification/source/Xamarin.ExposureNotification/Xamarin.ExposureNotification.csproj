@@ -19,7 +19,7 @@
 		<Owners>microsoft,Xamarin,XamarinNuGet</Owners>
 		<NeutralLanguage>en</NeutralLanguage>
 		<Copyright>© Microsoft Corporation. All rights reserved.</Copyright>
-		<RepositoryUrl>https://github.com/xamarin/xamarin.exposurenotification</RepositoryUrl>
+		<RepositoryUrl>https://go.microsoft.com/fwlink/?linkid=2129007</RepositoryUrl>
 		<PackageLicenseFile>LICENSE.md</PackageLicenseFile>
 		<PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
 		<PackageProjectUrl>https://go.microsoft.com/fwlink/?linkid=2129007</PackageProjectUrl>
