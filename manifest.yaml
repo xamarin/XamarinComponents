@@ -630,7 +630,7 @@
 - Name:  Mono.Posix
   BuildScript: ./XPlat/Mono.Posix/build.cake
   TriggerPaths: [ XPlat/Mono.Posix ]
-  MacBuildTargets: [ ci ]
+  LinuxBuildTargets: [ ci ]
   WindowsBuildTargets: [ ci ]
 
 #######################################################
