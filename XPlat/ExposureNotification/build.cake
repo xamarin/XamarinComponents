@@ -1,7 +1,7 @@
 var TARGET = Argument("t", Argument("target", "ci"));
 
 var OUTPUT_PATH = (DirectoryPath)"./output/";
-var NUGET_VERSION = "0.9.0-preview";
+var NUGET_VERSION = "0.10.0-preview";
 
 Task("nuget")
 	.Does(() =>
