@@ -257,12 +257,28 @@ namespace Xamarin.ExposureNotifications
 				{
 					var exposures = await m.GetExposureInfoAsync(detectionSummary, Handler.UserExplanation, out var exposuresProgress);
 					cancellationToken.Register(exposuresProgress.Cancel);
-					info = exposures.Select(i => new ExposureInfo(
-						((DateTime)i.Date).ToLocalTime(),
-						TimeSpan.FromMinutes(i.Duration),
-						i.AttenuationValue,
-						i.TotalRiskScore,
-						i.TransmissionRiskLevel.FromNative()));
+					info = exposures.Select(i =>
+					{
+						var totalRisk = 0;
+						var dictKey = new NSString("totalRiskScoreFullRange");
+						if (i.Metadata.ContainsKey(dictKey))
+						{
+							var sro = i.Metadata.ObjectForKey(dictKey);
+							if (sro is NSNumber sron)
+								totalRisk = sron.Int32Value;
+						}
+						else
+						{
+							totalRisk = i.TotalRiskScore;
+						}
+
+						return new ExposureInfo(
+							((DateTime)i.Date).ToLocalTime(),
+							TimeSpan.FromMinutes(i.Duration),
+							i.AttenuationValue,
+							totalRisk,
+							i.TransmissionRiskLevel.FromNative());
+					});
 				}
 				return info;
 			}
