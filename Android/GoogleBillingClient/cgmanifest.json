@@ -6,7 +6,7 @@
           "Maven": {
             "ArtifactId": "billing",
             "GroupId": "com.android.billingclient",
-            "Version": "2.0.3"
+            "Version": "2.2.1"
           }
         }
       }
