@@ -1,7 +1,7 @@
 var TARGET = Argument ("t", Argument ("target", "ci"));
 
 var IOS_VERSION = "3.0.0-preview2";
-var IOS_NUGET_VERSION = IOS_VERSION;
+var IOS_NUGET_VERSION = "3.0.0-preview2";
 var IOS_URL = $"https://github.com/Azure/azure-notificationhubs-ios/releases/download/{IOS_VERSION}/WindowsAzureMessaging.framework.zip";
 
 var ANDROID_VERSION = "1.0.0-preview2";
@@ -130,6 +130,8 @@ Task ("externals-ios")
 	DownloadFile (IOS_URL, "./iOS/externals/sdk.zip");
 
 	Unzip ("./iOS/externals/sdk.zip", "./iOS/externals");
+	
+	XmlPoke("./iOS/source/Xamarin.Azure.NotificationHubs.iOS.csproj", "/Project/PropertyGroup/PackageVersion", IOS_NUGET_VERSION);
 });
 
 Task ("externals-android")
@@ -139,7 +141,10 @@ Task ("externals-android")
 	EnsureDirectoryExists ("./Android/externals");
 
 	DownloadFile (ANDROID_URL, "./Android/externals/notificationhubs.aar");
+	
+	XmlPoke("./Android/source/Xamarin.Azure.NotificationHubs.Android.csproj", "/Project/PropertyGroup/PackageVersion", ANDROID_NUGET_VERSION);
 });
+
 Task ("externals")
 	.IsDependentOn ("externals-ios")
 	.IsDependentOn ("externals-android");

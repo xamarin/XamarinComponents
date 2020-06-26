@@ -26,14 +26,13 @@
     <PackageProjectUrl>https://go.microsoft.com/fwlink/?linkid=864958</PackageProjectUrl>
     <PackageLicenseUrl>https://go.microsoft.com/fwlink/?linkid=864960</PackageLicenseUrl>
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
-    <PackageVersion>1.0.0-preview2</PackageVersion>
+    <PackageVersion>1.0.0-preview2.1</PackageVersion>
   </PropertyGroup>
 
   <ItemGroup>
     <LibraryProjectZip Include="..\externals\notificationhubs.aar">
       <Link>Jars\notificationhubs.aar</Link>
     </LibraryProjectZip>
-
 
      <None Include="..\..\External-Dependency-Info.txt" Pack="True" PackagePath="THIRD-PARTY-NOTICES.txt" />
 
