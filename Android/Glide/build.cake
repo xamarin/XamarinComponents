@@ -72,6 +72,10 @@ Task("nuget")
 Task("samples")
 	.IsDependentOn("nuget");
 
+Task("ci")
+	.IsDependentOn("nuget")
+	.IsDependentOn("samples");
+
 Task ("clean")
 	.Does (() =>
 {
