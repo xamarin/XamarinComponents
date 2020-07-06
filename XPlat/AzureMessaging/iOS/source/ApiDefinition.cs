@@ -280,7 +280,6 @@ namespace WindowsAzure.Messaging.NotificationHubs
 		NSDictionary<NSString, NSString> UserInfo { get; }
 	}
 
-	[BaseType(typeof(NSObject))]
 	[Protocol]
 	public interface MSChangeTracking
 	{
@@ -288,12 +287,11 @@ namespace WindowsAzure.Messaging.NotificationHubs
 		bool IsDirty();
 	}
 
-	[BaseType(typeof(NSObject))]
 	[Protocol]
 	public interface MSTaggable
 	{
-		[Abstract, Export("getTags")]
-		NSArray<NSString> Tags { get; }
+		[Abstract, Export("tags")]
+		NSSet<NSString> Tags { get; }
 
 		[Abstract, Export("addTag:")]
 		bool AddTag(string tag);
