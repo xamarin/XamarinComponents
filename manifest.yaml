@@ -214,7 +214,8 @@
 - Name: Glide
   BuildScript: ./Android/Glide/build.cake
   TriggerPaths: [ Android/Glide ]
-  MacBuildTargets: [ samples, nuget ]
+  MacBuildTargets: [ ci ]
+  WindowsBuildTargets: [ ci ]
 - Name: Wear
   BuildScript: ./Android/Wear/build.cake
   TriggerPaths: [ Android/Wear ]
