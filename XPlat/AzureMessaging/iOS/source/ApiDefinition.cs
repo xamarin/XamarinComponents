@@ -163,8 +163,8 @@ namespace WindowsAzure.Messaging.NotificationHubs
 	[BaseType(typeof(NSObject))]
 	public partial interface MSNotificationHub
 	{
-		[Static, Export("initWithConnectionString:hubName:")]
-		void Init(string connectionString, string hubName);
+		[Static, Export("startWithConnectionString:hubName:")]
+		void Start(string connectionString, string hubName);
 
 		[Static, Export("didRegisterForRemoteNotificationsWithDeviceToken:")]
 		void DidRegisterForRemoteNotifications(NSData deviceToken);
@@ -172,11 +172,20 @@ namespace WindowsAzure.Messaging.NotificationHubs
 		[Static, Export("didFailToRegisterForRemoteNotificationsWithError:")]
 		void DidFailToRegisterForRemoteNotifications(NSError error);
 
-		[Static, Export("didReceiveRemoteNotification:fetchCompletionHandler:")]
-		bool DidReceiveRemoteNotification(NSDictionary userInfo, CompletionHandler completionHandler);
+		[Static, Export("didReceiveRemoteNotification:")]
+		void DidReceiveRemoteNotification(NSDictionary userInfo);
 
 		[Static, Export("setDelegate:")]
-		void SetDelegate([NullAllowed] IMSNotificationHubDelegate hubDelegate);
+		void SetDelegate([NullAllowed] MSNotificationHubDelegate hubDelegate);
+
+		[Static, Export("setEnrichmentDelegate:")]
+		void SetEnrichmentDelegate([NullAllowed] MSInstallationEnrichmentDelegate enrichmentDelegate);
+
+		[Static, Export("setLifecycleDelegate:")]
+		void SetLifecycleDelegate([NullAllowed] MSInstallationLifecycleDelegate lifecycleDelegate);
+
+		[Static, Export("setManagementDelegate:")]
+		void SetManagementDelegate([NullAllowed] MSInstallationManagementDelegate managementDelegate);
 
 		[Static, Export("isEnabled")]
 		bool IsEnabled();
@@ -218,25 +227,49 @@ namespace WindowsAzure.Messaging.NotificationHubs
 		MSInstallationTemplate GetTemplate(string key);
 	}
 
-	public delegate void CompletionHandler(UIBackgroundFetchResult fetchResult);
-
+	[Protocol, Model]
 	[BaseType(typeof(NSObject))]
-	[Model, Protocol]
 	public interface MSNotificationHubDelegate
 	{
-		[Abstract, Export("notificationHub:didReceivePushNotification:fetchCompletionHandler:")]
-		void DidReceivePushNotification(MSNotificationHub notificationHub, MSNotificationHubMessage message, CompletionHandler completionHandler);
+		[Abstract, Export("notificationHub:didReceivePushNotification:")]
+		void DidReceivePushNotification(MSNotificationHub notificationHub, MSNotificationHubMessage message);
 	}
 
-	public interface IMSNotificationHubDelegate
-	{ }
+	[Protocol, Model]
+	[BaseType(typeof(NSObject))]
+	public interface MSInstallationEnrichmentDelegate
+    {
+		[Abstract, Export("notificationHub:willEnrichInstallation:")]
+		void WillEnrichInstallation(MSNotificationHub notificationHub, MSInstallation installation);
+    }
+
+	public delegate void NullableCompletionHandler([NullAllowed] NSError error);
+
+	[Protocol, Model]
+	[BaseType(typeof(NSObject))]
+	public interface MSInstallationManagementDelegate
+    {
+		[Abstract, Export("notificationHub:willUpsertInstallation:completionHandler:")]
+		void WillUpsertInstallation(MSNotificationHub notificationHub, MSInstallation installation, NullableCompletionHandler completionHandler);
+
+		[Abstract, Export("notificationHub:willDeleteInstallation:completionHandler:")]
+		void WillDeleteInstallation(MSNotificationHub notificationHub, string installationId, NullableCompletionHandler completionHandler);
+	}
+
+	[Protocol, Model]
+	[BaseType(typeof(NSObject))]
+	public interface MSInstallationLifecycleDelegate
+    {
+		[Abstract, Export("notificationHub:didSaveInstallation:")]
+		void DidSaveInstallation(MSNotificationHub notificationHub, MSInstallation installation);
+
+		[Abstract, Export("notificationHub:didFailToSaveInstallation:withError:")]
+		void DidFailToSaveInstallation(MSNotificationHub notificationHub, MSInstallation installation, NSError error);
+	}
 
 	[BaseType(typeof(NSObject))]
 	public partial interface MSNotificationHubMessage
 	{
-		[Export("initWithUserInfo:")]
-		IntPtr Constructor(NSDictionary userInfo);
-
 		[Export("title")]
 		string Title { get; }
 
@@ -259,8 +292,8 @@ namespace WindowsAzure.Messaging.NotificationHubs
 	[Protocol]
 	public interface MSTaggable
 	{
-		[Abstract, Export("tags:")]
-		NSArray<NSString> tags { get; }
+		[Abstract, Export("getTags")]
+		NSArray<NSString> Tags { get; }
 
 		[Abstract, Export("addTag:")]
 		bool AddTag(string tag);
@@ -279,7 +312,35 @@ namespace WindowsAzure.Messaging.NotificationHubs
 	}
 
 	[BaseType(typeof(NSObject))]
-	public partial interface MSInstallationTemplate : MSTaggable, MSChangeTracking
+	public partial interface MSInstallation : MSTaggable, MSChangeTracking
+    {
+		[Export("installationId")]
+		string InstallationId { get; set; }
+
+		[Export("pushChannel")]
+		string PushChannel { get; set; }
+
+		[Export("expirationTime")]
+		NSDate ExpirationTime { get; set; }
+
+		[Export("templates")]
+		NSDictionary<NSString, MSInstallationTemplate> Templates { get; }
+
+		[Export("setTemplate:forKey:")]
+		bool SetTemplate(MSInstallationTemplate template, string key);
+
+		[Export("removeTemplateForKey:")]
+		bool RemoveTemplate(string key);
+
+		[Export("getTemplateForKey:")]
+		MSInstallationTemplate GetTemplate(string key);
+
+		[Export("toJsonData")]
+		NSData ToJsonData();
+	}
+
+	[BaseType(typeof(NSObject))]
+	public partial interface MSInstallationTemplate : INativeObject, MSTaggable, MSChangeTracking
 	{
 		[Export("body")]
 		string Body { get; set; }
