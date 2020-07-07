@@ -20,13 +20,13 @@ const string HUB_NAME = "YOUR-HUB-NAME";
 
 After that initialize the Hub and ensure your device is registered by adding the following code to your `FinishedLaunching` override in your `AppDelegate`:
 ```
-	SNotificationHub.Init(CONNECTION_STRING, HUB_NAME);
+	SNotificationHub.Start(CONNECTION_STRING, HUB_NAME);
 	Console.WriteLine("Device Token: " + MSNotificationHub.GetPushChannel());
 ```
 
 To receive notification on your device you should:
 
-1. Add class which implements `IMSNotificationHubDelegate`
+1. Add class which inherits `MSNotificationHubDelegate`
 2. Add implementation for `IMSNotificationHubDelegate.DidReceivePushNotification`
 ```
 public void DidReceivePushNotification(MSNotificationHub notificationHub, MSNotificationHubMessage message)
