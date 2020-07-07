@@ -31,19 +31,13 @@
   <ItemGroup>
     <Folder Include="Resources\" />
   </ItemGroup>
-  <ItemGroup>
-    <None Include="..\externals\WindowsAzureMessaging-SDK-Apple\iOS\WindowsAzureMessaging.framework">
-      <Link>WindowsAzureMessaging.framework</Link>
-    </None>
-    <None Include="..\..\External-Dependency-Info.txt" Pack="True" PackagePath="THIRD-PARTY-NOTICES.txt" />
-  </ItemGroup>
 
   <ItemGroup>
-    <NativeReference Include="..\externals\WindowsAzureMessaging.framework">
-      <Kind>Framework</Kind>
-      <Frameworks>Security UserNotifications SystemConfiguration Foundation UIKit</Frameworks>
-      <LinkerFlags>-ObjC -lc++</LinkerFlags>
-      <ForceLoad>True</ForceLoad>
+    <NativeReference Include="..\externals\WindowsAzureMessaging.a">
+      <Kind>Static</Kind>
+      <SmartLink>false</SmartLink>
+      <Frameworks>Security SystemConfiguration Foundation UIKit</Frameworks>
+      <WeakFrameworks>UserNotifications</WeakFrameworks>
     </NativeReference>
   </ItemGroup>
 

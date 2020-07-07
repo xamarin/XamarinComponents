@@ -131,6 +131,10 @@ Task ("externals-ios")
 
 	Unzip ("./iOS/externals/sdk.zip", "./iOS/externals");
 	
+	CopyFile(
+		"./iOS/externals/WindowsAzureMessaging-SDK-Apple/iOS/WindowsAzureMessaging.framework/WindowsAzureMessaging",
+		"./iOS/externals/WindowsAzureMessaging.a");
+
 	XmlPoke("./iOS/source/Xamarin.Azure.NotificationHubs.iOS.csproj", "/Project/PropertyGroup/PackageVersion", IOS_NUGET_VERSION);
 });
 
