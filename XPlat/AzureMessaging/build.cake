@@ -1,8 +1,8 @@
 var TARGET = Argument ("t", Argument ("target", "ci"));
 
-var IOS_VERSION = "3.0.0-preview2";
-var IOS_NUGET_VERSION = "3.0.0-preview2";
-var IOS_URL = $"https://github.com/Azure/azure-notificationhubs-ios/releases/download/{IOS_VERSION}/WindowsAzureMessaging.framework.zip";
+var IOS_VERSION = "3.0.0-preview3";
+var IOS_NUGET_VERSION = "3.0.0-preview3";
+var IOS_URL = $"https://github.com/Azure/azure-notificationhubs-ios/releases/download/{IOS_VERSION}/WindowsAzureMessaging-SDK-Apple-{IOS_VERSION}.zip";
 
 var ANDROID_VERSION = "1.0.0-preview3";
 var ANDROID_NUGET_VERSION = "1.0.0-preview3";
@@ -131,6 +131,10 @@ Task ("externals-ios")
 
 	Unzip ("./iOS/externals/sdk.zip", "./iOS/externals");
 	
+	CopyFile(
+		"./iOS/externals/WindowsAzureMessaging-SDK-Apple/iOS/WindowsAzureMessaging.framework/WindowsAzureMessaging",
+		"./iOS/externals/WindowsAzureMessaging.a");
+
 	XmlPoke("./iOS/source/Xamarin.Azure.NotificationHubs.iOS.csproj", "/Project/PropertyGroup/PackageVersion", IOS_NUGET_VERSION);
 });
 
