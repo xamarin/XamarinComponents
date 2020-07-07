@@ -25,7 +25,7 @@
     <PackageProjectUrl>https://go.microsoft.com/fwlink/?linkid=2100110</PackageProjectUrl>
     <PackageLicenseFile>LICENSE.md</PackageLicenseFile>
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
-    <PackageVersion>2.2.1</PackageVersion>
+    <PackageVersion>3.0.0</PackageVersion>
   </PropertyGroup>
 
   <ItemGroup>
@@ -47,6 +47,6 @@
   </ItemGroup>
 
   <ItemGroup>	
-    <PackageReference Include="Xamarin.AndroidX.Annotation" Version="1.1.0" />	
+    <PackageReference Include="Xamarin.AndroidX.Annotation" Version="1.1.0.1" />	
   </ItemGroup>
 </Project>
