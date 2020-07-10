@@ -171,7 +171,7 @@ namespace Xamarin.ExposureNotifications
 						new TemporaryExposureKey(
 							k.GetKeyData(),
 							k.RollingStartIntervalNumber,
-							TimeSpan.Zero, // TODO: TimeSpan.FromMinutes(k.RollingDuration * 10),
+							TimeSpan.FromMinutes(k.RollingPeriod * 10),
 							k.TransmissionRiskLevel.FromNative()));
 				});
 
