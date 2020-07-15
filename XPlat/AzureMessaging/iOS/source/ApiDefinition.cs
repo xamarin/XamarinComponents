@@ -199,6 +199,9 @@ namespace WindowsAzure.Messaging.NotificationHubs
 		[Static, Export("getInstallationId")]
 		string GetInstallationId();
 
+		[Static, Export("willSaveInstallation")]
+		void WillSaveInstallation();
+
 		[Static, Export("addTag:")]
 		bool AddTag(string tag);
 
