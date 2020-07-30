@@ -331,6 +331,7 @@ jobs:
         - task: PublishSecurityAnalysisLogs@3
           displayName: 'Publish security analysis logs'
         - task: TSAUpload@1
+          continueOnError: true
           inputs:
             tsaVersion: 'TsaV2'
             codebase: 'NewOrUpdate'
