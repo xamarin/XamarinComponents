@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<metadata>
+
+  <attr
+      path="/api/package[@name='com.google.android.gms.internal.mlkit_vision_object_detection_custom']"
+      name="managedName"
+      >
+      Android.Gms.Internal.MLKitVisionObjectDetectionCustom
+  </attr>
+  <attr
+      path="/api/package[@name='com.google.mlkit.vision.objects.custom']"
+      name="managedName"
+      >
+      Xamarin.GoogleFirebase.ML.Kit.Vision.Objects.Custom
+  </attr>
+  <attr
+      path="/api/package[@name='com.google.mlkit.vision.objects.custom.internal']"
+      name="managedName"
+      >
+      Xamarin.GoogleFirebase.ML.Kit.Vision.Objects.Custom.Internal
+  </attr>
+  
+  
+  
+
+</metadata>

@@ -1,0 +1,40 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<metadata>
+
+  <attr
+      path="/api/package[@name='com.google.android.gms.internal.mlkit_vision_internal_vkp']"
+      name="managedName"
+      >
+      Android.Gms.Internal.MLKitVisionInternalVkp
+  </attr>
+  <attr
+      path="/api/package[@name='com.google.android.libraries.intelligence.acceleration']"
+      name="managedName"
+      >
+      Xamarin.Android.Libraries.Intelligence.Acceleration
+  </attr>
+  <attr
+      path="/api/package[@name='com.google.android.libraries.intelligence.acceleration.process']"
+      name="managedName"
+        >
+      Xamarin.Android.Libraries.Intelligence.Acceleration.Process
+  </attr>
+  <attr
+      path="/api/package[@name='com.google.android.libraries.vision.visionkit.pipeline']"
+      name="managedName"
+      >
+      Xamarin.Android.Libraries.Vision.VisionKit.Pipeline
+  </attr>
+  <attr
+      path="/api/package[@name='com.google.mlkit.vision.vkp']"
+      name="managedName"
+      >
+      Xamarin.GoogleFirebase.ML.Kit.Vision.Vkp
+  </attr>
+  
+  
+  
+  
+  
+
+</metadata>

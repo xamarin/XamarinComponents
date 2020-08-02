@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<metadata>
+
+    <attr
+        path="/api/package[@name='com.google.mlkit.common.sdkinternal']/class[@name='ModelResource']/method[@name='release' and count(parameter)=0]"
+        name="visibility"
+        >
+        public
+    </attr>
+
+</metadata>

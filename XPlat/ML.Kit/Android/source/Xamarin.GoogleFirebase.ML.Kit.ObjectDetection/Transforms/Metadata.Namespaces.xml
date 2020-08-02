@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<metadata>
+
+  <attr
+      path="/api/package[@name='com.google.android.gms.internal.mlkit_vision_object_detection_bundled']"
+      name="managedName"
+      >
+      Android.Gms.Internal.MLKitVisionObjectDetectionBundled
+  </attr>
+  <attr
+      path="/api/package[@name='com.google.mlkit.vision.objects.defaults']"
+      name="managedName"
+      >
+      Xamarin.GoogleFirebase.ML.Kit.Vision.Objects.Defaults
+  </attr>
+  <attr
+      path="/api/package[@name='com.google.mlkit.vision.objects.defaults.internal']"
+      name="managedName"
+      >
+      Xamarin.GoogleFirebase.ML.Kit.Vision.Objects.Defaults.Internal
+  </attr>
+  
+  
+  
+
+</metadata>

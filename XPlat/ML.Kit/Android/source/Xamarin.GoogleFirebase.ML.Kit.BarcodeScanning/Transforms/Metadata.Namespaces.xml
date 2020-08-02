@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<metadata>
+    <attr
+        path="/api/package[@name='com.google.android.gms.dynamite.descriptors.com.google.mlkit.dynamite.barcode']"
+        name="managedName"
+          >
+        Android.Gms.Dynamite.Descriptors.MLKit.Barcode
+    </attr>
+    <attr
+        path="/api/package[@name='com.google.android.gms.internal.mlkit_vision_barcode']"
+        name="managedName"
+          >
+        Android.Gms.Internal.MLKit.Vision.Barcode
+    </attr>
+    <attr
+        path="/api/package[@name='com.google.android.libraries.barhopper']"
+        name="managedName"
+          >
+        Xamarin.GoogleFirebase.ML.Kit.Barhopper
+    </attr>
+    <attr
+        path="/api/package[@name='com.google.barhopper.deeplearning']"
+        name="managedName"
+          >
+        Xamarin.GoogleFirebase.ML.Kit.Barhopper.DeepLearning
+    </attr>
+  
+  
+  
+  
+
+
+</metadata>

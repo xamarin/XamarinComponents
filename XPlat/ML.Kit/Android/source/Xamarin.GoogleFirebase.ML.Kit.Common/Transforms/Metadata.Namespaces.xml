@@ -1,0 +1,54 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<metadata>
+
+    <attr
+        path="/api/package[@name='com.google.android.gms.internal.mlkit_common']"
+        name="managedName"
+        >
+        Android.Gms.Internal.MLKitCommon
+    </attr>
+  <attr
+      path="/api/package[@name='com.google.mlkit.common']"
+      name="managedName"
+        >
+      Xamarin.GoogleFirebase.ML.Kit.Common
+  </attr>
+  <attr
+      path="/api/package[@name='com.google.mlkit.common.internal']"
+      name="managedName"
+        >
+    Xamarin.GoogleFirebase.ML.Kit.Common.Internal
+  </attr>
+  <attr
+      path="/api/package[@name='com.google.mlkit.common.internal.model']"
+      name="managedName"
+        >
+    Xamarin.GoogleFirebase.ML.Kit.Common.Internal.Model
+  </attr>
+  <attr
+      path="/api/package[@name='com.google.mlkit.common.model']"
+      name="managedName"
+        >
+    Xamarin.GoogleFirebase.ML.Kit.Common.Model
+  </attr>
+  <attr
+      path="/api/package[@name='com.google.mlkit.common.sdkinternal']"
+      name="managedName"
+        >
+    Xamarin.GoogleFirebase.ML.Kit.Common.SDKInternal
+  </attr>
+  <attr
+      path="/api/package[@name='com.google.mlkit.common.sdkinternal.model']"
+      name="managedName"
+        >
+    Xamarin.GoogleFirebase.ML.Kit.Common.SDKInternal.Model
+  </attr>
+  
+  
+  
+  
+  
+  
+  
+
+</metadata>
