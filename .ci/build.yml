@@ -11,6 +11,7 @@ parameters:
   submodules: false                                         # whether or not to check out submodules
   areaPath: ''                                              # the areaPath to log any issues
   # job software version parameters
+  linuxImage: ''                                            # the name of the Linux VM image (linuxImage: 'Hosted Ubuntu 1604') 
   macosImage: 'Hosted macOS'                                # the name of the macOS VM image
   windowsImage: 'Hosted Windows 2019 with VS2019'           # the name of the Windows VM image
   mono: 'Latest'                                            # the version of mono to use
@@ -39,6 +40,9 @@ jobs:
   - job: ${{ parameters.name }}
     strategy:
       matrix:
+        ${{ if ne(parameters.linuxImage, '') }}:
+          linux:
+            imageName: ${{ parameters.linuxImage }}
         ${{ if ne(parameters.macosImage, '') }}:
           macos:
             imageName: ${{ parameters.macosImage }}
@@ -70,7 +74,7 @@ jobs:
           condition: eq(variables['System.JobName'], 'macos')
           displayName: 'Install the macOS provisioning profile'
           inputs:
-            provProfileSecureFile: 'Components Mac Provisioning.provisionprofile'
+            provProfileSecureFile: 'Components Mac Provisioning.mobileprovision'
         - task: InstallAppleProvisioningProfile@1
           condition: eq(variables['System.JobName'], 'macos')
           displayName: 'Install the tvOS provisioning profile'
@@ -88,7 +92,7 @@ jobs:
             certSecureFile: 'Components Mac Certificate.p12'
       - bash: echo '##vso[task.setvariable variable=PATH;]'$PATH:$HOME/.dotnet/tools
         displayName: 'Add ~/.dotnet/tools to the PATH environment variable'
-        condition: eq(variables['System.JobName'], 'macos')
+        condition: or(eq(variables['System.JobName'], 'macos'), eq(variables['System.JobName'], 'linux'))
       - task: UseDotNet@2
         displayName: 'Switch to the correct version of the .NET Core SDK'
         inputs:
@@ -227,14 +231,21 @@ jobs:
             RepositoryUrl: $(Build.Repository.Uri)
             RepositoryType: "git"
       - task: PublishTestResults@2
-        displayName: Publish the test results
+        displayName: Publish the test results (xUnit)
         condition: always()
         inputs:
           testResultsFormat: xUnit
           testResultsFiles: 'output/**/*TestResults.xml'
           testRunTitle: 'xUnit Test results for $(System.JobName)'
       - task: PublishTestResults@2
-        displayName: Publish the test results
+        displayName: Publish the test results (NUnit)
+        condition: always()
+        inputs:
+          testResultsFormat: NUnit
+          testResultsFiles: 'output/**/*TestResults.xml'
+          testRunTitle: 'NUnit Test results for $(System.JobName)'
+      - task: PublishTestResults@2
+        displayName: Publish the test results (VSTest)
         condition: always()
         inputs:
           testResultsFormat: VSTest
@@ -320,6 +331,7 @@ jobs:
         - task: PublishSecurityAnalysisLogs@3
           displayName: 'Publish security analysis logs'
         - task: TSAUpload@1
+          continueOnError: true
           inputs:
             tsaVersion: 'TsaV2'
             codebase: 'NewOrUpdate'

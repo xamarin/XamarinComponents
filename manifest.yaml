@@ -214,7 +214,7 @@
 - Name: Glide
   BuildScript: ./Android/Glide/build.cake
   TriggerPaths: [ Android/Glide ]
-  MacBuildTargets: [ samples, nuget ]
+  WindowsBuildTargets: [ ci ]
 - Name: Wear
   BuildScript: ./Android/Wear/build.cake
   TriggerPaths: [ Android/Wear ]
@@ -245,6 +245,10 @@
   BuildScript: ./Android/GoogleBillingClient/build.cake
   TriggerPaths: [ Android/GoogleBillingClient ]
   MacBuildTargets: [ libs, nuget]
+- Name: SquarePicasso
+  BuildScript: ./Android/SquarePicasso/build.cake
+  TriggerPaths: [ Android/SquarePicasso ]
+  MacBuildTargets: [ ci ]
   
 # will be XPlat in the future
 - Name: TensorFlow.Lite
@@ -281,6 +285,8 @@
 - Name: Google.Android.DataTransport
   BuildScript: ./Android/Google.Android.DataTransport/build.cake
   TriggerPaths: [ Android/Google.Android.DataTransport ]
+  MacBuildTargets: [ ci ]
+  WindowsBuildTargets: [ ci ]
 - Name:  CheckerFramework.Checker
   BuildScript: ./Android/CheckerFramework.Checker/build.cake
   TriggerPaths: [ Android/CheckerFramework.Checker ]
@@ -485,6 +491,18 @@
   BuildScript: ./iOS/SwiftRuntimeSupport/build.cake
   TriggerPaths: [ iOS/SwiftRuntimeSupport ]
   MacBuildTargets: [ nuget, samples ]
+- Name: ExposureNotificationiOS
+  BuildScript: ./iOS/ExposureNotification/build.cake
+  TriggerPaths: [ iOS/ExposureNotification ]
+  MacBuildTargets: [ nuget ]
+- Name: ExposureNotificationAndroid
+  BuildScript: ./Android/ExposureNotification/build.cake
+  TriggerPaths: [ Android/ExposureNotification ]
+  MacBuildTargets: [ nuget ]
+- Name: ExposureNotification
+  BuildScript: ./XPlat/ExposureNotification/build.cake
+  TriggerPaths: [ XPlat/ExposureNotification ]
+  MacBuildTargets: [ nuget ]
 
 #######################################################
 # XPlat
@@ -604,6 +622,15 @@
   BuildScript: ./XPlat/OfficeUIFabric/iOS/build.cake
   TriggerPaths: [ XPlat/OfficeUIFabric/iOS ]
   MacBuildTargets: [ nuget, samples ]
+- Name:  Chromium.CroNet
+  BuildScript: ./XPlat/Chromium.CroNet/build.cake
+  TriggerPaths: [ XPlat/Chromium.CroNet ]
+  MacBuildTargets: [ ci ]
+  WindowsBuildTargets: [ ci ]
+- Name:  Mono.Posix
+  BuildScript: ./XPlat/Mono.Posix/build.cake
+  TriggerPaths: [ XPlat/Mono.Posix ]
+  LinuxBuildTargets: [ ci ]
 
 #######################################################
 # Mac
