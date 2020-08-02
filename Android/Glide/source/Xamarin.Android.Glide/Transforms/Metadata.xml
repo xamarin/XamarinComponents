@@ -130,4 +130,6 @@
   <remove-node path="/api/package[@name='com.bumptech.glide.load.model']/class[@name='StreamEncoder']/implements[@name='com.bumptech.glide.load.Encoder']" />
   <remove-node path="/api/package[@name='com.bumptech.glide.load.resource.bitmap']/class[@name='StreamBitmapDecoder']/implements[@name='com.bumptech.glide.load.ResourceDecoder']" />
   <remove-node path="/api/package[@name='com.bumptech.glide.load.resource.bytes']/class[@name='BytesResource']/implements[@name='com.bumptech.glide.load.engine.Resource']" />
+  <remove-node path="/api/package[@name='com.bumptech.glide.load.resource.gif']/class[@name='StreamGifDecoder']/implements[@name='com.bumptech.glide.load.ResourceDecoder']" />
+  <remove-node path="/api/package[@name='com.bumptech.glide.load.resource.bitmap']/class[@name='InputStreamBitmapImageDecoderResourceDecoder']/implements[@name='com.bumptech.glide.load.ResourceDecoder']" />
 </metadata>

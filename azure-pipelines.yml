@@ -22,6 +22,7 @@ jobs:
       timeoutInMinutes: 360
       areaPath: 'DevDiv\Xamarin SDK\Android'
       buildType: 'manifest'
+      linuxImage: 'Hosted Ubuntu 1604'
       validPackagePrefixes: 
         # Preferred prefixes
         - Xamarin
