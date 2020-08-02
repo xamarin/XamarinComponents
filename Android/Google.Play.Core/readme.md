@@ -1,47 +1,24 @@
-# Chromium CroNet  
+# Google.Play.Core Xamarin.Android bindings  
 
-Android and iOS bindings of Chromium CroNet library - networking stack for HTTP3 
-(HTTP2 and QUIC) used in Chrome browser.
+The Play Core Library is app’s runtime interface with the Google Play Store. Some of the things you can do with 
+Play Core include the following:
 
+*   Download additional language resources
+
+*   Manage delivery of dynamic feature modules
+
+*   Manage delivery of asset packs
+
+*   Trigger in-app updates
 
 ## Links / References
 
-*   https://mvnrepository.com/artifact/org.chromium.net
+*   https://developer.android.com/guide/playcore/in-app-updates
 
-*   https://developer.android.com/guide/topics/connectivity/cronet
+*   https://maven.google.com/web/index.html#com.google.android.play:core
 
-*   https://chromium.googlesource.com/chromium/src/+/master/components/cronet/
+*   https://developer.android.com/guide/playcore/dynamic-delivery#include_playcore
 
-*   https://www.gsrikar.com/2018/12/cronet-chromium-network-stack.html
-
-*   https://github.com/lizhangqu/cronet
-
-*   https://stackoverflow.com/questions/60541683/how-to-send-json-object-as-post-request-in-cronet
-
-*   https://medium.com/@cchiappini/discover-cronet-4c7b4812407
-
-*   https://medium.com/the-react-native-log/using-cronet-in-your-mobile-app-7dda3a89c132
-
-*   flutter
-
-    *   https://github.com/flutter/flutter/issues/17413
-
-*   react native
-
-    *   https://github.com/akshetpandey/react-native-cronet
-
-*   cake for ios
-
-    *   https://github.com/xamarin/XamarinComponents/blob/master/XPlat/Estimote/iOS/build.cake
-
-    *   https://chromium.googlesource.com/external/github.com/grpc/grpc/+/chromium-deps/2016-07-19/src/objective-c/tests/Podfile
-
-
-
-The simplest way is to integrate cronet and have a backend server or CDN or a proxy like cloudflare 
-that supports QUIC. Most google & GCP services including Youtube support QUIC by default. 
-
-Cloudflare, Akamai, and Fastly support QUIC but needs to be manually enabled.
 
 
 
