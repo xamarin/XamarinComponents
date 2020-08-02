@@ -1,47 +1,21 @@
-# Chromium CroNet  
+# Xamarin bindings for Google/Firebase ML Kit
 
-Android and iOS bindings of Chromium CroNet library - networking stack for HTTP3 
-(HTTP2 and QUIC) used in Chrome browser.
+Android (and soon to come iOS) bindings of Google/Firebase -  ML Kit.
+
+NOTE: Though brand name is Firebase ML Kit, the artifact `gropuId` is `com.google.mlkit`
 
 
 ## Links / References
 
-*   https://mvnrepository.com/artifact/org.chromium.net
+*   https://firebase.google.com/products/ml
 
-*   https://developer.android.com/guide/topics/connectivity/cronet
+*   https://developers.google.com/ml-kit
 
-*   https://chromium.googlesource.com/chromium/src/+/master/components/cronet/
+*   https://developer.android.com/ml
 
-*   https://www.gsrikar.com/2018/12/cronet-chromium-network-stack.html
+*   https://android-developers.googleblog.com/2020/06/mlkit-on-device-machine-learning-solutions.html
 
-*   https://github.com/lizhangqu/cronet
+*   https://github.com/googlesamples/mlkit
 
-*   https://stackoverflow.com/questions/60541683/how-to-send-json-object-as-post-request-in-cronet
-
-*   https://medium.com/@cchiappini/discover-cronet-4c7b4812407
-
-*   https://medium.com/the-react-native-log/using-cronet-in-your-mobile-app-7dda3a89c132
-
-*   flutter
-
-    *   https://github.com/flutter/flutter/issues/17413
-
-*   react native
-
-    *   https://github.com/akshetpandey/react-native-cronet
-
-*   cake for ios
-
-    *   https://github.com/xamarin/XamarinComponents/blob/master/XPlat/Estimote/iOS/build.cake
-
-    *   https://chromium.googlesource.com/external/github.com/grpc/grpc/+/chromium-deps/2016-07-19/src/objective-c/tests/Podfile
-
-
-
-The simplest way is to integrate cronet and have a backend server or CDN or a proxy like cloudflare 
-that supports QUIC. Most google & GCP services including Youtube support QUIC by default. 
-
-Cloudflare, Akamai, and Fastly support QUIC but needs to be manually enabled.
-
-
+*   https://codelabs.developers.google.com/codelabs/mlkit-android/#0
 
