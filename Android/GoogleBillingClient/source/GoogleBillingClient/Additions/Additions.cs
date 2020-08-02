@@ -160,20 +160,6 @@ namespace Android.BillingClient.Api
 
 			return tcs.Task;
 		}
-
-		public Task<BillingResult> LoadRewardedSkuAsync(RewardLoadParams rewardLoadParams)
-		{
-			var tcs = new TaskCompletionSource<BillingResult>();
-
-			var listener = new InternalRewardResponseListener
-			{
-				RewardResponseHandler = r => tcs.TrySetResult(r)
-			};
-
-			LoadRewardedSku(rewardLoadParams, listener);
-
-			return tcs.Task;
-		}
 	}
 
 	internal class InternalAcknowledgePurchaseResponseListener : Java.Lang.Object, IAcknowledgePurchaseResponseListener
@@ -224,14 +210,6 @@ namespace Android.BillingClient.Api
 		public Action<BillingResult, IList<Purchase>> PurchasesUpdatedHandler { get; set; }
 		public void OnPurchasesUpdated(BillingResult result, IList<Purchase> purchases)
 			=> PurchasesUpdatedHandler?.Invoke(result, purchases);
-	}
-
-	internal class InternalRewardResponseListener : Java.Lang.Object, IRewardResponseListener
-	{
-		public Action<BillingResult> RewardResponseHandler { get; set; }
-
-		public void OnRewardResponse(BillingResult result)
-			=> RewardResponseHandler?.Invoke(result);
 	}
 
 	internal class InternalSkuDetailsResponseListener : Java.Lang.Object, ISkuDetailsResponseListener

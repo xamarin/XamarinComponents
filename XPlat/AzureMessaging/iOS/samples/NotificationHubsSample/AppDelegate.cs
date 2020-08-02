@@ -35,7 +35,7 @@ namespace AzureMessagingSampleiOS
 			// If you have defined a root view controller, set it here:
 			window.RootViewController = homeViewController;
 
-			MSNotificationHub.Init(CONNECTION_STRING, HUB_NAME);
+			MSNotificationHub.Start(CONNECTION_STRING, HUB_NAME);
 
 			Console.WriteLine("Device Token: " + MSNotificationHub.GetPushChannel());
 
@@ -48,7 +48,7 @@ namespace AzureMessagingSampleiOS
 		}       
 	}
 
-	public partial class NotificationListener : NSObject, IMSNotificationHubDelegate
+	public partial class NotificationListener : MSNotificationHubDelegate
 	{
 		HomeViewController homeViewController;
 
@@ -58,14 +58,12 @@ namespace AzureMessagingSampleiOS
 
 		}
 
-        public void DidReceivePushNotification(MSNotificationHub notificationHub, MSNotificationHubMessage message, CompletionHandler completionHandler)
+        public override void DidReceivePushNotification(MSNotificationHub notificationHub, MSNotificationHubMessage message)
         {
 			homeViewController.ProcessNotification(message.Title, message.Body);
 
 			Console.WriteLine("Notification Title: " + message.Title);
 			Console.WriteLine("Notification Body: " + message.Body);
-
-			completionHandler(UIBackgroundFetchResult.NoData);
 		}
 	}
 }

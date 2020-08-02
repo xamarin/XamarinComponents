@@ -16,9 +16,11 @@ namespace AzureMessagingSampleiOS
 
 		public void ProcessNotification (string title, string message)
 		{
-			InvokeOnMainThread (() => {
-				var av = new UIAlertView (title, message, null, "OK");
-				av.Show ();
+			InvokeOnMainThread(() => {
+				var avc = UIAlertController.Create(title, message, UIAlertControllerStyle.Alert);
+				var action = UIAlertAction.Create("OK", UIAlertActionStyle.Cancel, null);
+				avc.AddAction(action);
+				PresentViewController(avc, true, null);
 			});
 		}
 	}

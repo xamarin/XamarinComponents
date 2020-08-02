@@ -6,7 +6,6 @@
     <RootNamespace>WindowsAzure.Messaging</RootNamespace>
     <AssemblyName>Xamarin.Azure.NotificationHubs.iOS</AssemblyName>
     <AssemblyVersion>1.0.0.0</AssemblyVersion>
-    <FileVersion>3.0.0-preview2</FileVersion>
     <IPhoneResourcePrefix>Resources</IPhoneResourcePrefix>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
   </PropertyGroup>
@@ -22,7 +21,7 @@
     <PackageProjectUrl>https://go.microsoft.com/fwlink/?linkid=864962</PackageProjectUrl>
     <PackageLicenseUrl>https://go.microsoft.com/fwlink/?linkid=865062</PackageLicenseUrl>
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
-    <PackageVersion>3.0.0-preview2</PackageVersion>
+    <PackageVersion>3.0.0-preview4</PackageVersion>
   </PropertyGroup>
 
   <ItemGroup>
@@ -32,20 +31,13 @@
   <ItemGroup>
     <Folder Include="Resources\" />
   </ItemGroup>
-  
-  <ItemGroup>
-    <None Include="..\externals\WindowsAzureMessaging.framework">
-      <Link>WindowsAzureMessaging.framework</Link>
-    </None>
-    <None Include="..\..\External-Dependency-Info.txt" Pack="True" PackagePath="THIRD-PARTY-NOTICES.txt" />
-  </ItemGroup>
 
   <ItemGroup>
-    <NativeReference Include="..\externals\WindowsAzureMessaging.framework">
-      <Kind>Framework</Kind>
-      <Frameworks>Security UserNotifications SystemConfiguration Foundation UIKit</Frameworks>
-      <LinkerFlags>-ObjC -lc++</LinkerFlags>
-      <ForceLoad>True</ForceLoad>
+    <NativeReference Include="..\externals\WindowsAzureMessaging.a">
+      <Kind>Static</Kind>
+      <SmartLink>false</SmartLink>
+      <Frameworks>Security SystemConfiguration Foundation UIKit</Frameworks>
+      <WeakFrameworks>UserNotifications</WeakFrameworks>
     </NativeReference>
   </ItemGroup>
 
