@@ -81,7 +81,7 @@ namespace ExposureNotifications {
 
 		[BindAs (typeof (int []))]
 		[Export ("attenuationDurations", ArgumentSemantic.Copy)]
-		NSNumber [] AttenuationDurations { get; set; }
+		NSNumber [] AttenuationDurations { get; }
 
 		[Export ("daysSinceLastExposure")]
 		nint DaysSinceLastExposure { get; }
@@ -92,8 +92,16 @@ namespace ExposureNotifications {
 		[Export ("maximumRiskScore")]
 		byte MaximumRiskScore { get; }
 
+		[Introduced (PlatformName.iOS, 13, 6)]
+		[Export ("maximumRiskScoreFullRange")]
+		double MaximumRiskScoreFullRange { get; }
+
 		[NullAllowed, Export ("metadata", ArgumentSemantic.Copy)]
 		NSDictionary Metadata { get; }
+
+		[Introduced (PlatformName.iOS, 13, 6)]
+		[Export ("riskScoreSumFullRange")]
+		double RiskScoreSumFullRange { get; }
 	}
 
 	[Introduced (PlatformName.iOS, 13, 5)]
@@ -105,6 +113,15 @@ namespace ExposureNotifications {
 
 		[Export ("minimumRiskScore")]
 		byte MinimumRiskScore { get; set; }
+
+		[Introduced (PlatformName.iOS, 13, 6)]
+		[Export ("minimumRiskScoreFullRange")]
+		double MinimumRiskScoreFullRange { get; set; }
+
+		[Introduced (PlatformName.iOS, 13, 6)]
+		[BindAs (typeof (int []))]
+		[Export ("attenuationDurationThresholds", ArgumentSemantic.Copy)]
+		NSNumber [] AttenuationDurationThresholds { get; }
 
 		[BindAs (typeof (int []))]
 		[Export ("attenuationLevelValues", ArgumentSemantic.Copy)]
@@ -142,7 +159,7 @@ namespace ExposureNotifications {
 
 		[BindAs (typeof (int []))]
 		[Export ("attenuationDurations", ArgumentSemantic.Copy)]
-		NSNumber [] AttenuationDurations { get; set; }
+		NSNumber [] AttenuationDurations { get; }
 
 		[Export ("attenuationValue")]
 		byte AttenuationValue { get; }
@@ -158,6 +175,10 @@ namespace ExposureNotifications {
 
 		[Export ("totalRiskScore")]
 		byte TotalRiskScore { get; }
+
+		[Introduced (PlatformName.iOS, 13, 6)]
+		[Export ("totalRiskScoreFullRange")]
+		double TotalRiskScoreFullRange { get; }
 
 		[Export ("transmissionRiskLevel")]
 		byte TransmissionRiskLevel { get; }
