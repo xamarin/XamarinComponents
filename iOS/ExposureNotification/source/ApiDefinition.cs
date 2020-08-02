@@ -32,6 +32,8 @@ namespace ExposureNotifications {
 		Internal = 11,
 		InsufficientMemory = 12,
 		RateLimited = 13,
+		Restricted = 14,
+		BadFormat = 15,
 	}
 
 	[Introduced (PlatformName.iOS, 13, 5)]
@@ -41,19 +43,6 @@ namespace ExposureNotifications {
 		Restricted = 1,
 		NotAuthorized = 2,
 		Authorized = 3,
-	}
-
-	[Introduced (PlatformName.iOS, 13, 5)]
-	public enum ENRiskLevel : byte {
-		Invalid = 0,
-		Lowest = 1,
-		Low = 10,
-		LowMedium = 25,
-		Medium = 50,
-		MediumHigh = 65,
-		High = 80,
-		VeryHigh = 90,
-		Highest = 100,
 	}
 
 	[Introduced (PlatformName.iOS, 13, 5)]
@@ -73,61 +62,26 @@ namespace ExposureNotifications {
 		[Export ("keyData", ArgumentSemantic.Copy)]
 		NSData KeyData { get; set; }
 
+		[Export ("rollingPeriod")]
+		uint RollingPeriod { get; set; }
+
 		[Export ("rollingStartNumber")]
 		uint RollingStartNumber { get; set; }
 
-		[Export ("transmissionRiskLevel", ArgumentSemantic.Assign)]
-		ENRiskLevel TransmissionRiskLevel { get; set; }
+		[Export ("transmissionRiskLevel")]
+		byte TransmissionRiskLevel { get; set; }
 	}
 
 	delegate void ENErrorHandler ([NullAllowed] NSError error);
-	delegate void ENExposureDetectionFinishCompletionHandler ([NullAllowed] ENExposureDetectionSummary summary, [NullAllowed] NSError error);
-	delegate void ENGetExposureInfoCompletionHandler ([NullAllowed] ENExposureInfo [] exposures, bool done, [NullAllowed] NSError error);
-
-	[Introduced (PlatformName.iOS, 13, 5)]
-	[BaseType (typeof (NSObject))]
-	interface ENExposureDetectionSession {
-
-		[Static]
-		[Export ("authorizationStatus", ArgumentSemantic.Assign)]
-		ENAuthorizationStatus AuthorizationStatus { get; }
-
-		[Export ("configuration", ArgumentSemantic.Strong)]
-		ENExposureConfiguration Configuration { get; set; }
-
-		[Export ("dispatchQueue", ArgumentSemantic.Strong)]
-		DispatchQueue DispatchQueue { get; set; }
-
-		[NullAllowed, Export("invalidationHandler", ArgumentSemantic.Copy)]
-		Action InvalidationHandler { get; set; }
-
-		[Export ("maximumKeyCount")]
-		nuint MaximumKeyCount { get; }
-
-		[Async]
-		[Export ("activateWithCompletionHandler:")]
-		void Activate (ENErrorHandler completionHandler);
-
-		[Export ("invalidate")]
-		void Invalidate ();
-
-		[Async]
-		[Export ("addDiagnosisKeys:completionHandler:")]
-		void AddDiagnosisKeys(ENTemporaryExposureKey [] keys, ENErrorHandler completionHandler);
-
-		[Async]
-		[Export ("finishedDiagnosisKeysWithCompletionHandler:")]
-		void FinishedDiagnosisKeys (ENExposureDetectionFinishCompletionHandler completionHandler);
-
-		[Async (ResultTypeName = "ENExposureDetectionSessionGetExposureInfoResult")]
-		[Export ("getExposureInfoWithMaximumCount:completionHandler:")]
-		void GetExposureInfo (nuint maximumCount, ENGetExposureInfoCompletionHandler completionHandler);
-	}
 
 	[Introduced (PlatformName.iOS, 13, 5)]
 	[BaseType (typeof (NSObject))]
 	[DisableDefaultCtor]
 	interface ENExposureDetectionSummary {
+
+		[BindAs (typeof (int []))]
+		[Export ("attenuationDurations", ArgumentSemantic.Copy)]
+		NSNumber [] AttenuationDurations { get; }
 
 		[Export ("daysSinceLastExposure")]
 		nint DaysSinceLastExposure { get; }
@@ -137,39 +91,62 @@ namespace ExposureNotifications {
 
 		[Export ("maximumRiskScore")]
 		byte MaximumRiskScore { get; }
+
+		[Introduced (PlatformName.iOS, 13, 6)]
+		[Export ("maximumRiskScoreFullRange")]
+		double MaximumRiskScoreFullRange { get; }
+
+		[NullAllowed, Export ("metadata", ArgumentSemantic.Copy)]
+		NSDictionary Metadata { get; }
+
+		[Introduced (PlatformName.iOS, 13, 6)]
+		[Export ("riskScoreSumFullRange")]
+		double RiskScoreSumFullRange { get; }
 	}
 
 	[Introduced (PlatformName.iOS, 13, 5)]
 	[BaseType (typeof (NSObject))]
 	interface ENExposureConfiguration {
 
+		[NullAllowed, Export ("metadata", ArgumentSemantic.Copy)]
+		NSDictionary Metadata { get; set; }
+
 		[Export ("minimumRiskScore")]
 		byte MinimumRiskScore { get; set; }
 
-		[BindAs (typeof (int[]))]
-		[Export ("attenuationScores", ArgumentSemantic.Copy)]
-		NSNumber [] AttenuationScores { get; set; }
+		[Introduced (PlatformName.iOS, 13, 6)]
+		[Export ("minimumRiskScoreFullRange")]
+		double MinimumRiskScoreFullRange { get; set; }
+
+		[Introduced (PlatformName.iOS, 13, 6)]
+		[BindAs (typeof (int []))]
+		[Export ("attenuationDurationThresholds", ArgumentSemantic.Copy)]
+		NSNumber [] AttenuationDurationThresholds { get; }
+
+		[BindAs (typeof (int []))]
+		[Export ("attenuationLevelValues", ArgumentSemantic.Copy)]
+		NSNumber [] AttenuationLevelValues { get; set; }
 
 		[Export ("attenuationWeight")]
 		double AttenuationWeight { get; set; }
 
 		[BindAs (typeof (int []))]
-		[Export ("daysSinceLastExposureScores", ArgumentSemantic.Copy)]
-		NSNumber [] DaysSinceLastExposureScores { get; set; }
+		[Export ("daysSinceLastExposureLevelValues", ArgumentSemantic.Copy)]
+		NSNumber [] DaysSinceLastExposureLevelValues { get; set; }
 
 		[Export ("daysSinceLastExposureWeight")]
 		double DaysSinceLastExposureWeight { get; set; }
 
 		[BindAs (typeof (int []))]
-		[Export ("durationScores", ArgumentSemantic.Copy)]
-		NSNumber [] DurationScores { get; set; }
+		[Export ("durationLevelValues", ArgumentSemantic.Copy)]
+		NSNumber [] DurationLevelValues { get; set; }
 
 		[Export ("durationWeight")]
 		double DurationWeight { get; set; }
 
 		[BindAs (typeof (int []))]
-		[Export ("transmissionRiskScores", ArgumentSemantic.Copy)]
-		NSNumber [] TransmissionRiskScores { get; set; }
+		[Export ("transmissionRiskLevelValues", ArgumentSemantic.Copy)]
+		NSNumber [] TransmissionRiskLevelValues { get; set; }
 
 		[Export ("transmissionRiskWeight")]
 		double TransmissionRiskWeight { get; set; }
@@ -180,6 +157,10 @@ namespace ExposureNotifications {
 	[DisableDefaultCtor]
 	interface ENExposureInfo {
 
+		[BindAs (typeof (int []))]
+		[Export ("attenuationDurations", ArgumentSemantic.Copy)]
+		NSNumber [] AttenuationDurations { get; }
+
 		[Export ("attenuationValue")]
 		byte AttenuationValue { get; }
 
@@ -189,14 +170,23 @@ namespace ExposureNotifications {
 		[Export ("duration")]
 		double Duration { get; }
 
+		[NullAllowed, Export ("metadata", ArgumentSemantic.Copy)]
+		NSDictionary Metadata { get; }
+
 		[Export ("totalRiskScore")]
 		byte TotalRiskScore { get; }
 
-		[Export ("transmissionRiskLevel", ArgumentSemantic.Assign)]
-		ENRiskLevel TransmissionRiskLevel { get; }
+		[Introduced (PlatformName.iOS, 13, 6)]
+		[Export ("totalRiskScoreFullRange")]
+		double TotalRiskScoreFullRange { get; }
+
+		[Export ("transmissionRiskLevel")]
+		byte TransmissionRiskLevel { get; }
 	}
 
 	delegate void ENGetDiagnosisKeysHandler ([NullAllowed] ENTemporaryExposureKey [] keys, [NullAllowed] NSError error);
+	delegate void ENDetectExposuresHandler ([NullAllowed] ENExposureDetectionSummary summary, [NullAllowed] NSError error);
+	delegate void ENGetExposureInfoHandler ([NullAllowed] ENExposureInfo [] exposures, [NullAllowed] NSError error);
 
 	[Introduced (PlatformName.iOS, 13, 5)]
 	[BaseType (typeof (NSObject))]
@@ -230,11 +220,19 @@ namespace ExposureNotifications {
 		void SetExposureNotificationEnabled (bool enabled, ENErrorHandler completionHandler);
 
 		[Async]
+		[Export ("detectExposuresWithConfiguration:diagnosisKeyURLs:completionHandler:")]
+		NSProgress DetectExposures (ENExposureConfiguration configuration, NSUrl [] diagnosisKeyUrls, ENDetectExposuresHandler completionHandler);
+
+		[Async]
+		[Export ("getExposureInfoFromSummary:userExplanation:completionHandler:")]
+		NSProgress GetExposureInfo (ENExposureDetectionSummary summary, string userExplanation, ENGetExposureInfoHandler completionHandler);
+
+		[Async]
 		[Export ("getDiagnosisKeysWithCompletionHandler:")]
 		void GetDiagnosisKeys (ENGetDiagnosisKeysHandler completionHandler);
 
 		[Async]
-		[Export ("resetAllDataWithCompletionHandler:")]
-		void ResetAllData (ENErrorHandler completionHandler);
+		[Export ("getTestDiagnosisKeysWithCompletionHandler:")]
+		void GetTestDiagnosisKeys (ENGetDiagnosisKeysHandler completionHandler);
 	}
 }

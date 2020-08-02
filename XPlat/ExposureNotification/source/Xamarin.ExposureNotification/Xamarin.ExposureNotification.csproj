@@ -1,0 +1,61 @@
+﻿<Project Sdk="MSBuild.Sdk.Extras/2.0.54">
+
+	<PropertyGroup>
+		<TargetFrameworks>netstandard2.0;xamarin.ios10;monoandroid10.0</TargetFrameworks>
+		<EnableDefaultCompileItems>false</EnableDefaultCompileItems>
+		<AssemblyVersion>1.0.0.0</AssemblyVersion>
+		<AssemblyFileVersion>1.0.0.0</AssemblyFileVersion>
+		<Version>1.0.0</Version>
+		<LangVersion>8.0</LangVersion>
+	</PropertyGroup>
+
+	<PropertyGroup>
+		<PackageId>Xamarin.ExposureNotification</PackageId>
+		<Summary>Cross Platform Exposure Notification for Xamarin</Summary>
+		<Title>Xamarin Exposure Notification</Title>
+		<Description>Cross Platform Exposure Notification for Xamarin</Description>
+		<PackageVersion>0.1.0-preview</PackageVersion>
+		<Authors>Microsoft</Authors>
+		<Owners>microsoft,Xamarin,XamarinNuGet</Owners>
+		<NeutralLanguage>en</NeutralLanguage>
+		<Copyright>© Microsoft Corporation. All rights reserved.</Copyright>
+		<RepositoryUrl>https://go.microsoft.com/fwlink/?linkid=2129007</RepositoryUrl>
+		<PackageLicenseFile>LICENSE.md</PackageLicenseFile>
+		<PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
+		<PackageProjectUrl>https://go.microsoft.com/fwlink/?linkid=2129007</PackageProjectUrl>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<Compile Include="**\*.shared.cs" />
+		<Compile Include="**\*.shared.*.cs" />
+
+		<None Include="..\..\LICENSE.md" Pack="True" PackagePath="LICENSE.md" />
+
+		<PackageReference Include="Xamarin.Essentials" Version="1.5.3.1" />
+	</ItemGroup>
+
+	<ItemGroup Condition=" $(TargetFramework.StartsWith('netstandard')) ">
+		<Compile Include="**\*.netstandard.cs" />
+		<Compile Include="**\*.netstandard.*.cs" />
+	</ItemGroup>
+
+	<ItemGroup Condition=" $(TargetFramework.StartsWith('monoandroid')) ">
+		<Compile Include="**\*.android.cs" />
+		<Compile Include="**\*.android.*.cs" />
+
+		<PackageReference Include="Xamarin.GooglePlayServices.Basement" Version="117.2.1-preview01" />
+		<PackageReference Include="Xamarin.GooglePlayServices.Tasks" Version="117.0.2-preview01" />
+		<PackageReference Include="Xamarin.GooglePlayServices.Nearby.ExposureNotification" Version="18.0.2-eap.6" />
+		<PackageReference Include="Xamarin.AndroidX.Core" Version="1.2.0" />
+		<PackageReference Include="Xamarin.AndroidX.Work.Runtime" Version="2.3.4.1" />
+	</ItemGroup>
+
+	<ItemGroup Condition=" $(TargetFramework.StartsWith('xamarin.ios')) ">
+		<Compile Include="*.ios.cs" />
+		<Compile Include="*.ios.*.cs" />
+
+		<PackageReference Include="System.IO.Compression" Version="4.3.0" />
+		<PackageReference Include="Xamarin.iOS.ExposureNotification" Version="1.0.0" />
+	</ItemGroup>
+
+</Project>

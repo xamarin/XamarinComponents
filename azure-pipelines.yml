@@ -22,6 +22,7 @@ jobs:
       timeoutInMinutes: 360
       areaPath: 'DevDiv\Xamarin SDK\Android'
       buildType: 'manifest'
+      linuxImage: 'Hosted Ubuntu 1604'
       validPackagePrefixes: 
         # Preferred prefixes
         - Xamarin
@@ -34,6 +35,7 @@ jobs:
         - Masonry
         - GoogleGson
         - AndroidEasingFunctions
+        - Square
       tools:
         - 'Xamarin.AndroidBinderator.Tool': '0.4.2'
   - ${{ if eq(variables['System.TeamProject'], 'devdiv') }}:

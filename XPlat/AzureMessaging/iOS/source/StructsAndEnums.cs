@@ -4,3 +4,7 @@ namespace WindowsAzure.Messaging
 {
 }
 
+namespace WindowsAzure.Messaging.NotificationHubs
+{
+}
+
