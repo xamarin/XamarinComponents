@@ -2,8 +2,8 @@
 Some packages may require or install dependencies which are governed by additional 
 licenses.**
 
-Note: This component depends on [com.google.android.datatransport](https://mvnrepository.com/artifact/com.google.android.datatransport)), 
-which is subject to the [Apache 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
+Note: This component depends on [com.google.mlkit](https://maven.google.com/web/index.html#com.google.mlkit)), 
+which is subject to the [Google Cloud Platform Terms of Service](https://cloud.google.com/terms/)
 
 ### Xamarin Component for com.google.android.datatransport for Xamarin.Android
 
@@ -25,5 +25,5 @@ NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FO
 OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN 
 CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-20200208
+202000803
 

@@ -8,8 +8,8 @@ material are set forth below.  Microsoft reserves all other rights not
 expressly granted, whether by implication, estoppel or otherwise.
 
 ########################################
-# BEGIN:     com.google.android.datatransport
-# https://maven.google.com/web/index.html
+# BEGIN:     com.google.mlkit
+# https://maven.google.com/web/index.html#com.google.mlkit
 ########################################
 
                                 Apache License
@@ -215,6 +215,6 @@ expressly granted, whether by implication, estoppel or otherwise.
    limitations under the License.
    
 ########################################
-# END:      com.google.android.datatransport
+# END:      com.google.mlkit
 ########################################
 
