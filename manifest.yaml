@@ -292,6 +292,11 @@
   TriggerPaths: [ Android/CheckerFramework.Checker ]
   MacBuildTargets: [ ci ]
   WindowsBuildTargets: [ ci ]
+- Name: Google.Play.Core
+  BuildScript: ./Android/Google.Play.Core//build.cake
+  TriggerPaths: [ Android/Google.Play.Core ]
+  MacBuildTargets: [ ci ]
+  WindowsBuildTargets: [ ci ]
 
 
 #######################################################
