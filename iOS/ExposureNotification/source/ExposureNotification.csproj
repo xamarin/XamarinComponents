@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project Sdk="MSBuild.Sdk.Extras/2.0.54">
+  <PropertyGroup>
+    <TargetFrameworks>Xamarin.iOS10</TargetFrameworks>
+    <IsBindingProject>true</IsBindingProject>
+    <RootNamespace>ExposureNotification</RootNamespace>
+    <AssemblyName>Xamarin.iOS.ExposureNotification</AssemblyName>
+    <AssemblyVersion>1.0.0.0</AssemblyVersion>
+    <FileVersion>1.0.0.0</FileVersion>
+    <IPhoneResourcePrefix>Resources</IPhoneResourcePrefix>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <ProcessEnums>true</ProcessEnums>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <PackageId>Xamarin.iOS.ExposureNotification</PackageId>
+    <Title>ExposureNotification iOS APIs</Title>
+    <Summary>C# bindings for Apple ExposureNotification Framework</Summary>
+    <Description>C# bindings for Apple ExposureNotification Framework</Description>
+    <Authors>Microsoft</Authors>
+    <Owners>Microsoft</Owners>
+    <Copyright>© Microsoft Corporation. All rights reserved.</Copyright>
+    <PackageProjectUrl>https://go.microsoft.com/fwlink/?linkid=2128732</PackageProjectUrl>
+    <PackageLicenseFile>License.md</PackageLicenseFile>
+    <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
+    <PackageVersion>1.1.0.0-beta1</PackageVersion>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Reference Include="Xamarin.iOS" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="Xamarin.iOS.ExposureNotification.targets" Pack="True" PackagePath="build;buildTransitive" />
+    <None Include="../License.md" Pack="True" PackagePath="License.md" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Remove="ApiDefinition.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ObjcBindingApiDefinition Include="ApiDefinition.cs" Condition=" '$(EnableDefaultCompileItems)' == 'true'" />
+  </ItemGroup>
+
+  <Import Project="$(MSBuildSDKExtrasTargets)" Condition="Exists('$(MSBuildSDKExtrasTargets)')" />
+</Project>
