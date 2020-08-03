@@ -2,10 +2,10 @@
 Some packages may require or install dependencies which are governed by additional 
 licenses.**
 
-Note: This component depends on [com.google.android.datatransport](https://mvnrepository.com/artifact/com.google.android.datatransport)), 
+Note: This component depends on [com.google.android.play](https://maven.google.com/web/index.html#com.google.android.play)), 
 which is subject to the [Apache 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
 
-### Xamarin Component for com.google.android.datatransport for Xamarin.Android
+### Xamarin Component for com.google.android.play for Xamarin.Android
 
 **The MIT License (MIT)**
 
@@ -25,5 +25,5 @@ NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FO
 OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN 
 CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-20200208
+20200803
 
