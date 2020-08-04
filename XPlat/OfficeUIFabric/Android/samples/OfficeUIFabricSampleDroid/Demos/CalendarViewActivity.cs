@@ -1,13 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-using Android.App;
-using Android.Content;
+﻿using Android.App;
 using Android.OS;
-using Android.Runtime;
-using Android.Views;
 using Android.Widget;
 using Microsoft.OfficeUIFabric;
 
@@ -33,7 +25,7 @@ namespace OfficeUIFabricSampleDroid.Demos
 
         private void Calendar_view_DateSelected(object sender, Microsoft.OfficeUIFabric.DateSelectedEventArgs e)
         {
-            example_date_title.Text = DateStringUtils.FormatDateWithWeekDay(this, e.P0);
+            example_date_title.Text = DateStringUtils.FormatDateWithWeekDay(this, e.DateTime);
         }
     }
 }
