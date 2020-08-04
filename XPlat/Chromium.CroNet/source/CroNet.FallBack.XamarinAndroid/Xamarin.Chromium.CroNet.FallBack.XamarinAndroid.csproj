@@ -20,7 +20,7 @@
   <PropertyGroup>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <PackageId>Xamarin.Chromium.CroNet.FallBack</PackageId>
-    <PackageVersion>76.3809.111</PackageVersion>
+    <PackageVersion>72.3626.96</PackageVersion>
     <Title>Xamarin.Chromium.CroNet.FallBack</Title>
     <PackageDescription>Bindings for Xamarin Chromium.CroNet.FallBack package</PackageDescription>
     <Owners>Microsoft</Owners>
