@@ -167,7 +167,7 @@ namespace WindowsAzure.Messaging.NotificationHubs
 		[Static, Export("startWithConnectionString:hubName:")]
 		void Start(string connectionString, string hubName);
 
-		[Static, Export("StartWithInstallationManagement:")]
+		[Static, Export("startWithInstallationManagement:")]
 		void Start(MSInstallationManagementDelegate managementDelegate);
 
 		[Static, Export("didRegisterForRemoteNotificationsWithDeviceToken:")]
