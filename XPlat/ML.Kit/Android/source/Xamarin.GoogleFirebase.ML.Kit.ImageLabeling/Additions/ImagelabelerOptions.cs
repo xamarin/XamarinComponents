@@ -14,13 +14,13 @@ namespace Xamarin.GoogleFirebase.ML.Kit.Vision.Label.Defaults
 		static Delegate GetBuildHandler()
 		{
 			if (cb_build == null)
-				cb_build = JNINativeWrapper.CreateDelegate((_JniMarshal_PP_L)n_Build);
+				cb_build = JNINativeWrapper.CreateDelegate((Func<IntPtr, IntPtr, IntPtr>)n_Build);
 			return cb_build;
 		}
 
 		static IntPtr n_Build(IntPtr jnienv, IntPtr native__this)
 		{
-			var __this = global::Java.Lang.Object.GetObject<global::Xamarin.GoogleFirebase.ML.Kit.Vision.Label.Defaults.ImageLabelerOptions.Builder>(jnienv, native__this, JniHandleOwnership.DoNotTransfer);
+			global::Xamarin.GoogleFirebase.ML.Kit.Vision.Label.Defaults.ImageLabelerOptions.Builder __this = global::Java.Lang.Object.GetObject<global::Xamarin.GoogleFirebase.ML.Kit.Vision.Label.Defaults.ImageLabelerOptions.Builder>(jnienv, native__this, JniHandleOwnership.DoNotTransfer);
 			return JNIEnv.ToLocalJniHandle(__this.Build());
 		}
 #pragma warning restore 0169
@@ -50,14 +50,14 @@ namespace Xamarin.GoogleFirebase.ML.Kit.Vision.Label.Defaults
 		static Delegate GetSetConfidenceThreshold_FHandler()
 		{
 			if (cb_setConfidenceThreshold_F == null)
-				cb_setConfidenceThreshold_F = JNINativeWrapper.CreateDelegate((_JniMarshal_PPF_L)n_SetConfidenceThreshold_F);
+				cb_setConfidenceThreshold_F = JNINativeWrapper.CreateDelegate((Func<IntPtr, IntPtr, float, IntPtr>)n_SetConfidenceThreshold_F);
 			return cb_setConfidenceThreshold_F;
 		}
 
 		static IntPtr n_SetConfidenceThreshold_F(IntPtr jnienv, IntPtr native__this, float p0)
 		{
-			var __this = global::Java.Lang.Object.GetObject<global::Xamarin.GoogleFirebase.ML.Kit.Vision.Label.Defaults.ImageLabelerOptions.Builder>(jnienv, native__this, JniHandleOwnership.DoNotTransfer);
-			return JNIEnv.ToLocalJniHandle(__this.SetConfidenceThreshold(p0)); // cannot set SetConfidenceThreshold2(p0)
+			global::Xamarin.GoogleFirebase.ML.Kit.Vision.Label.Defaults.ImageLabelerOptions.Builder __this = global::Java.Lang.Object.GetObject<global::Xamarin.GoogleFirebase.ML.Kit.Vision.Label.Defaults.ImageLabelerOptions.Builder>(jnienv, native__this, JniHandleOwnership.DoNotTransfer);
+			return JNIEnv.ToLocalJniHandle(__this.SetConfidenceThreshold(p0));
 		}
 #pragma warning restore 0169
 
@@ -77,5 +77,6 @@ namespace Xamarin.GoogleFirebase.ML.Kit.Vision.Label.Defaults
 			{
 			}
 		}
+
 	}
 }
