@@ -41,11 +41,11 @@ namespace OfficeUIFabricSampleDroid.Demos
 
         void SetDrawableColorPreLollipop(ProgressBar progressBar)
         {
-            if (Build.VERSION.SdkInt >= Build.VERSION_CODES.Lollipop)
+            if (Build.VERSION.SdkInt >= BuildVersionCodes.Lollipop)
                 return;
 
             var mutatedProgressBarDrawable = progressBar.IndeterminateDrawable.Mutate();
-            mutatedProgressBarDrawable.SetColorFilter(new Color(ContextCompat.GetColor(this, Resource.Color.uifabric_progress_primary)), PorterDuff.Mode.SrcIn);
+            mutatedProgressBarDrawable.SetColorFilter(new Color(ContextCompat.GetColor(this, Resource.Color.uifabric_demo_primary)), PorterDuff.Mode.SrcIn);
             progressBar.IndeterminateDrawable = mutatedProgressBarDrawable;
         }
     }
