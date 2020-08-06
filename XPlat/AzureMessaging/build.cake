@@ -156,6 +156,7 @@ Task ("externals-android")
 {
 	EnsureDirectoryExists ("./Android/externals");
 
+	Information($"Downloading from {ANDROID_URL}");
 	DownloadFile (ANDROID_URL, "./Android/externals/notificationhubs.aar");
 	
 	XmlPoke("./Android/source/Xamarin.Azure.NotificationHubs.Android.csproj", "/Project/PropertyGroup/PackageVersion", ANDROID_NUGET_VERSION);
