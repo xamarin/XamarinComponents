@@ -227,6 +227,7 @@ Task("libs")
 					c.Restore = true;
 					c.MaxCpuCount = 0;
 					c.Properties.Add("DesignTimeBuild", new [] { "false" });
+					c.SetVerbosity(Verbosity.Diagnostic);
 					c.EnableBinaryLogger($"./output/libs.binlog");
 					c.AddFileLogger
 								(
