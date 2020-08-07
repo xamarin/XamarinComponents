@@ -27,7 +27,7 @@
     <PackageProjectUrl>https://go.microsoft.com/fwlink/?linkid=864958</PackageProjectUrl>
     <PackageLicenseUrl>https://go.microsoft.com/fwlink/?linkid=864960</PackageLicenseUrl>
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
-    <PackageVersion>1.0.0</PackageVersion>
+    <PackageVersion>1.0.1</PackageVersion>
   </PropertyGroup>
 
   <ItemGroup>
@@ -42,7 +42,7 @@
 
   <ItemGroup>
     <PackageReference Include="Xamarin.Android.Support.v7.AppCompat" Version="28.0.0.3" PrivateAssets="None" />
-    <PackageReference Include="Xamarin.Firebase.Messaging" Version="71.1740.1" />
+    <PackageReference Include="Xamarin.Firebase.Messaging" Version="71.1740.4" />
   </ItemGroup>
 
 </Project>
