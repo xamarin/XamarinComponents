@@ -2,6 +2,9 @@
 #addin nuget:?package=redth.xunit.resultwriter&version=1.0.0
 
 
+using System.Runtime.InteropServices;
+
+
 // SECTION: Arguments and Settings
 
 var DEFAULT_BUILD_TARGET = "ci";
