@@ -1,35 +1,36 @@
 
-#load "../../common.cake"
+var TARGET = Argument("t", Argument("target", "ci"));
 
-var TARGET = Argument ("t", Argument ("target", "Default"));
+var NUGET_VERSION = "1.1.0";
 
-var buildSpec = new BuildSpec () {
-	Libs = new ISolutionBuilder [] {
-		new DefaultSolutionBuilder {
-			SolutionPath = "./source/ITSwitch.sln",
-			Configuration = "Release",
-			BuildsOn = BuildPlatforms.Mac,
-			OutputFiles = new [] { 
-				new OutputFileCopy {
-					FromFile = "./source/ITSwitch/bin/Release/ITSwitch.dll",
-					ToDirectory = "./output/unified/"
-				},
-			}
-		},
-	},
-	Samples = new ISolutionBuilder [] {
-		new DefaultSolutionBuilder { SolutionPath = "./samples/ITSwitchSample/ITSwitchSample.sln", Configuration = "Release", BuildsOn = BuildPlatforms.Mac },
-	},
+Task("libs")
+	.Does(() =>
+{
+	XmlPoke("./source/ITSwitch/ITSwitch.csproj", "/Project/PropertyGroup/PackageVersion", NUGET_VERSION);
+	MSBuild("./source/ITSwitch.sln", new MSBuildSettings()
+		.EnableBinaryLogger("./output/libs.binlog")
+		.SetConfiguration("Release")
+		.WithProperty("PackageOutputPath", MakeAbsolute(new FilePath("./output/")).FullPath)
+		.WithRestore()
+		.WithTarget("Pack"));
+});
 
-	NuGets = new [] {
-		new NuGetInfo { NuSpec = "./nuget/ITSwitch.nuspec", BuildsOn = BuildPlatforms.Mac },
-	},
+Task("nuget")
+	.IsDependentOn("libs");
 
-	Components = new [] {
-		new Component { ManifestDirectory = "./component", BuildsOn = BuildPlatforms.Mac},
-	},
-};
+Task("samples")
+	.IsDependentOn("nuget")
+	.Does(() =>
+{
+	MSBuild("./samples/ITSwitchSample/ITSwitchSample.sln", new MSBuildSettings()
+		.EnableBinaryLogger("./output/samples.binlog")
+		.SetConfiguration("Release")
+		.WithRestore());
+});
 
-SetupXamarinBuildTasks (buildSpec, Tasks, Task);
+Task("ci")
+	.IsDependentOn("libs")
+	.IsDependentOn("nuget")
+	.IsDependentOn("samples");
 
-RunTarget (TARGET);
+RunTarget(TARGET);
