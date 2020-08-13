@@ -2,9 +2,6 @@
 #addin nuget:?package=redth.xunit.resultwriter&version=1.0.0
 
 
-using System.Runtime.InteropServices;
-
-
 // SECTION: Arguments and Settings
 
 var DEFAULT_BUILD_TARGET = "ci";
@@ -125,7 +122,7 @@ if (FORCE_BUILD) {
 				continue;
 
 			// Determine if Cocoapods need updating
-			if (IsRunningOnMac() && podRepoUpdate == PodRepoUpdate.NotRequired && POD_UPDATE_PREFIXES.Any(p => buildGroup.FullPath.StartsWith(p)))
+			if (Context.Environment.Platform.Family == PlatformFamily.OSX && podRepoUpdate == PodRepoUpdate.NotRequired && POD_UPDATE_PREFIXES.Any(p => buildGroup.FullPath.StartsWith(p)))
 				podRepoUpdate = PodRepoUpdate.Required;
 
 			if (!matchedFiles.TryGetValue(buildGroup, out var match))
@@ -184,7 +181,7 @@ if (groupsToBuild.Count == 0) {
 	// Make a note if nothing changed...
 	Warning("No changed files affected any of the paths from the manifest.yaml.");
 } else {
-	if (IsRunningOnMac()) {
+	if (Context.Environment.Platform.Family == PlatformFamily.OSX) {
 		// Make sure cocoapods are up to date if needed
 		if (podRepoUpdate != PodRepoUpdate.NotRequired) {
 			if (podRepoUpdate == PodRepoUpdate.Forced)
@@ -362,37 +359,4 @@ string[] GetGitOutput(string args) {
 		throw new Exception($"git exited with error code {exitCode}.");
 	
 	return changedFiles.ToArray();
-}
-
-bool IsRunningOnMac () {
-	return System.Environment.OSVersion.Platform == PlatformID.MacOSX || MacPlatformDetector.IsMac.Value;
-}
-
-bool IsRunningOnLinux () {
-	return IsRunningOnUnix () && !IsRunningOnMac ();
-}
-
-internal static class MacPlatformDetector {
-	internal static readonly Lazy<bool> IsMac = new Lazy<bool> (IsRunningOnMac);
-
-	[DllImport ("libc")]
-	static extern int uname (IntPtr buf);
-
-	static bool IsRunningOnMac () {
-		IntPtr buf = IntPtr.Zero;
-		try {
-			buf = Marshal.AllocHGlobal (8192);
-			// This is a hacktastic way of getting sysname from uname()
-			if (uname (buf) == 0) {
-				string os = Marshal.PtrToStringAnsi (buf);
-				if (os == "Darwin")
-					return true;
-			}
-		} catch {
-		} finally {
-			if (buf != IntPtr.Zero)
-				Marshal.FreeHGlobal (buf);
-		}
-		return false;
-	}
 }

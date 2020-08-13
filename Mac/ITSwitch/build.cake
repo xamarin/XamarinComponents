@@ -1,11 +1,9 @@
-#load "../../platform.cake"
-
 var TARGET = Argument("t", Argument("target", "ci"));
 
 var NUGET_VERSION = "1.1.0";
 
 Task("libs")
-	.WithCriteria(!IsRunningOnLinux())
+	.WithCriteria(Context.Environment.Platform.Family != PlatformFamily.Linux)
 	.Does(() =>
 {
 	XmlPoke("./source/ITSwitch/ITSwitch.csproj", "/Project/PropertyGroup/PackageVersion", NUGET_VERSION);
@@ -21,7 +19,7 @@ Task("nuget")
 	.IsDependentOn("libs");
 
 Task("samples")
-	.WithCriteria(!IsRunningOnLinux())
+	.WithCriteria(Context.Environment.Platform.Family != PlatformFamily.Linux)
 	.IsDependentOn("nuget")
 	.Does(() =>
 {
