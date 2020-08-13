@@ -23,7 +23,6 @@ jobs:
       areaPath: 'DevDiv\Xamarin SDK\Android'
       buildType: 'manifest'
       linuxImage: 'Hosted Ubuntu 1604'
-      targetsFilter: 'ci'
       validPackagePrefixes: 
         # Preferred prefixes
         - Xamarin
