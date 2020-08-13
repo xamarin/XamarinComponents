@@ -1,3 +1,9 @@
+// this file adds some convenience "overloads" to the "IsRunningOn*" set:
+//  - IsRunningOnWindows
+//  - IsRunningOnMac
+//  - IsRunningOnLinux
+//  - IsRunningOnUnix
+
 using System.Runtime.InteropServices;
 
 bool IsRunningOnMac () {
