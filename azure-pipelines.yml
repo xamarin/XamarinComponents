@@ -15,14 +15,13 @@ resources:
       type: github
       name: xamarin/XamarinComponents
       endpoint: xamarin
-      ref: refs/heads/dev/remove-manifest
 
 jobs:
   - template: .ci/build.yml@components
     parameters:
       timeoutInMinutes: 360
       areaPath: 'DevDiv\Xamarin SDK\Android'
-      buildType: 'directories'
+      buildType: 'manifest'
       linuxImage: 'Hosted Ubuntu 1604'
       targetsFilter: 'ci'
       validPackagePrefixes: 
