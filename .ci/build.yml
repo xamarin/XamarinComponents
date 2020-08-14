@@ -97,6 +97,7 @@ jobs:
         displayName: 'Switch to the correct version of the .NET Core SDK'
         inputs:
           version: ${{ parameters.dotnet }}
+          performMultiLevelLookup: true
       - pwsh: |
           dotnet tool install -g api-tools --version ${{ parameters.apiTools }}
           dotnet tool install -g cake.tool --version ${{ parameters.cake }}
