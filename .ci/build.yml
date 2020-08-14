@@ -16,8 +16,8 @@ parameters:
   windowsImage: 'Hosted Windows 2019 with VS2019'           # the name of the Windows VM image
   mono: 'Latest'                                            # the version of mono to use
   xcode: '11.3'                                             # the version of Xcode to use
-  dotnet: '3.0.x'                                           # the version of .NET Core to use
-  cake: '0.35.0'                                            # the version of Cake to use
+  dotnet: '3.1.x'                                           # the version of .NET Core to use
+  cake: '0.38.4'                                            # the version of Cake to use
   apiTools: '1.1.0-preview.1'                               # the version of the api-tools CLI to use
   tools: []                                                 # a list of any additional .NET Core tools needed
   cakeTemplatesBranch: 'master'                             # the branch of XamarinComponents that has the templates
