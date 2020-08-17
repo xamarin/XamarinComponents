@@ -1,54 +1,71 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<Project Sdk="MSBuild.Sdk.Extras/2.0.54">
+﻿<Project Sdk="MSBuild.Sdk.Extras/2.0.54">
   <PropertyGroup>
-    <TargetFramework>Xamarin.iOS10</TargetFramework>
+    <TargetFrameworks>Xamarin.iOS10;Xamarin.TVOS10;Xamarin.Mac20</TargetFrameworks>
     <IsBindingProject>true</IsBindingProject>
     <RootNamespace>WindowsAzure.Messaging</RootNamespace>
     <AssemblyName>Xamarin.Azure.NotificationHubs.iOS</AssemblyName>
     <AssemblyVersion>1.0.0.0</AssemblyVersion>
-    <FileVersion>2.0.4</FileVersion>
     <IPhoneResourcePrefix>Resources</IPhoneResourcePrefix>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
   </PropertyGroup>
 
   <PropertyGroup>
     <PackageId>Xamarin.Azure.NotificationHubs.iOS</PackageId>
-    <Title>Azure Notification Hubs for Xamarin.iOS</Title>
-    <PackageDescription>Xamarin.iOS Bindings for Azure Notification Hubs.</PackageDescription>
+    <Title>Azure Notification Hubs for Xamarin.iOS, Xamarin.Mac and Xamarin.TVOS</Title>
+    <PackageDescription>Xamarin.iOS, Xamarin.Mac and Xamarin.TVOS Bindings for Azure Notification Hubs.</PackageDescription>
     <Authors>Microsoft</Authors>
     <Owners>Microsoft</Owners>
     <Copyright>© Microsoft Corporation. All rights reserved.</Copyright>
-    <PackageIconUrl>https://raw.githubusercontent.com/xamarin/GoogleApisForiOSComponents/master/icons/firebaseiosauth_128x128.png</PackageIconUrl>
+    <PackageIconUrl>https://raw.githubusercontent.com/xamarin/XamarinComponents/master/XPlat/AzureMessaging/component/icons/aznh-icon-128x128.png</PackageIconUrl>
     <PackageProjectUrl>https://go.microsoft.com/fwlink/?linkid=864962</PackageProjectUrl>
     <PackageLicenseUrl>https://go.microsoft.com/fwlink/?linkid=865062</PackageLicenseUrl>
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
-    <PackageVersion>2.0.4</PackageVersion>
+    <PackageVersion>3.0.2</PackageVersion>
   </PropertyGroup>
 
-  <ItemGroup>
+  <ItemGroup Condition=" $(TargetFramework.StartsWith('Xamarin.iOS')) ">
     <Reference Include="Xamarin.iOS" />
+  </ItemGroup>
+    
+  <ItemGroup Condition=" $(TargetFramework.StartsWith('Xamarin.TVOS')) ">
+    <Reference Include="Xamarin.TVOS" />
+  </ItemGroup>
+    
+  <ItemGroup Condition=" $(TargetFramework.StartsWith('Xamarin.Mac')) ">
+    <Reference Include="Xamarin.Mac" />
   </ItemGroup>
   
   <ItemGroup>
     <Folder Include="Resources\" />
   </ItemGroup>
-  
-  <ItemGroup>
-    <None Include="..\externals\WindowsAzureMessaging.framework">
-      <Link>WindowsAzureMessaging.framework</Link>
-    </None>
-    <None Include="..\..\External-Dependency-Info.txt" Pack="True" PackagePath="THIRD-PARTY-NOTICES.txt" />
-  </ItemGroup>
 
-  <ItemGroup>
-    <NativeReference Include="..\externals\WindowsAzureMessaging.framework">
-      <Kind>Framework</Kind>
-      <Frameworks>Security</Frameworks>
-      <LinkerFlags>-ObjC -lc++</LinkerFlags>
-      <ForceLoad>True</ForceLoad>
+  <ItemGroup Condition=" $(TargetFramework.StartsWith('Xamarin.iOS')) ">
+    <NativeReference Include="..\externals\iOS\WindowsAzureMessaging.a">
+      <Kind>Static</Kind>
+      <SmartLink>false</SmartLink>
+      <Frameworks>Security SystemConfiguration Foundation UIKit</Frameworks>
+      <WeakFrameworks>UserNotifications</WeakFrameworks>
     </NativeReference>
   </ItemGroup>
-
+  
+  <ItemGroup Condition=" $(TargetFramework.StartsWith('Xamarin.TVOS')) ">
+    <NativeReference Include="..\externals\tvOS\WindowsAzureMessaging.a">
+      <Kind>Static</Kind>
+      <SmartLink>false</SmartLink>
+      <Frameworks>Security SystemConfiguration Foundation UIKit</Frameworks>
+      <WeakFrameworks>UserNotifications</WeakFrameworks>
+    </NativeReference>
+  </ItemGroup>
+    
+  <ItemGroup Condition=" $(TargetFramework.StartsWith('Xamarin.Mac')) ">
+    <NativeReference Include="..\externals\macOS\WindowsAzureMessaging.a">
+      <Kind>Static</Kind>
+      <SmartLink>false</SmartLink>
+      <Frameworks>Security SystemConfiguration Foundation AppKit</Frameworks>
+      <WeakFrameworks>UserNotifications</WeakFrameworks>
+    </NativeReference>
+  </ItemGroup>
+    
   <ItemGroup>
     <Compile Remove="StructsAndEnums.cs" />
     <Compile Remove="ApiDefinition.cs" />
@@ -61,5 +78,5 @@
   <ItemGroup>
     <ObjcBindingApiDefinition Include="ApiDefinition.cs" Condition=" '$(EnableDefaultCompileItems)' == 'true'" />
   </ItemGroup>
-
+  
 </Project>

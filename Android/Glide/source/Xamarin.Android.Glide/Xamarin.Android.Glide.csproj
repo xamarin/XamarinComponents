@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project Sdk="MSBuild.Sdk.Extras/2.0.54">
   <PropertyGroup>
-    <TargetFrameworks>MonoAndroid81</TargetFrameworks>
+    <TargetFrameworks>MonoAndroid10.0</TargetFrameworks>
     <IsBindingProject>true</IsBindingProject>
     <AssemblyName>Xamarin.Android.Glide</AssemblyName>
     <MonoAndroidResourcePrefix>Resources</MonoAndroidResourcePrefix>
@@ -24,7 +24,7 @@
     <PackageProjectUrl>https://go.microsoft.com/fwlink/?linkid=864954</PackageProjectUrl>
     <PackageLicenseUrl>https://go.microsoft.com/fwlink/?linkid=865026</PackageLicenseUrl>
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
-    <PackageVersion>4.9.0</PackageVersion>
+    <PackageVersion>4.11.0</PackageVersion>
   </PropertyGroup>
 
   <ItemGroup>
@@ -43,7 +43,9 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Xamarin.Android.Support.v4" Version="28.0.0.1" />
+    <PackageReference Include="Xamarin.AndroidX.Fragment" Version="1.2.4.1" />
+    <PackageReference Include="Xamarin.AndroidX.ExifInterface" Version="1.1.0.1" />
+    <PackageReference Include="Xamarin.AndroidX.VectorDrawable.Animated" Version="1.1.0.1" />
   </ItemGroup>
 
   <ItemGroup>

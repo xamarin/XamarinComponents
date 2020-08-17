@@ -7,12 +7,12 @@ using Android.App;
 using Android.Content;
 using Android.Graphics;
 using Android.OS;
-using Android.Runtime;
 using Android.Support.V4.Content;
 using Android.Support.V4.Graphics.Drawable;
 using Android.Views;
 using Android.Widget;
 using Microsoft.OfficeUIFabric;
+using Button = Microsoft.OfficeUIFabric.Button;
 
 namespace OfficeUIFabricSampleDroid.Demos
 {
@@ -89,9 +89,9 @@ namespace OfficeUIFabricSampleDroid.Demos
                     break;
 
                 case Resource.Id.btn_snackbar_single_line_custom_view:
-                    var circularProgress = (Build.VERSION.SdkInt >= Build.VERSION_CODES.Lollipop) ?
-                        new ProgressBar(this, null, 0, Resource.Style.Widget_UIFabric_CircularProgress_Small)
-                        : LayoutInflater.Inflate(Resource.Layout.view_snackbar_circular_progress, null, false) as ProgressBar;
+                    var circularProgress = (Build.VERSION.SdkInt >= BuildVersionCodes.Lollipop) ?
+                        new Microsoft.OfficeUIFabric.ProgressBar(this, null, 0, Resource.Style.Widget_UIFabric_CircularProgress_Small)
+                        : LayoutInflater.Inflate(Resource.Layout.view_snackbar_circular_progress, null, false) as Microsoft.OfficeUIFabric.ProgressBar;
 
                     circularProgress.IndeterminateDrawable.SetColorFilter(
                         new Color (ContextCompat.GetColor(this, Resource.Color.snackbar_circular_progress_drawable)), PorterDuff.Mode.SrcIn);

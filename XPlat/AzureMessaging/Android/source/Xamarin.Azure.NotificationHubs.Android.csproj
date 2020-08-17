@@ -1,7 +1,7 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project Sdk="MSBuild.Sdk.Extras/2.0.54">
   <PropertyGroup>
-    <TargetFramework>MonoAndroid80</TargetFramework>
+    <TargetFramework>MonoAndroid90</TargetFramework>
     <IsBindingProject>true</IsBindingProject>
     <AssemblyName>Xamarin.Azure.NotificationHubs.Android</AssemblyName>
     <MonoAndroidResourcePrefix>Resources</MonoAndroidResourcePrefix>
@@ -23,17 +23,17 @@
     <Authors>Microsoft</Authors>
     <Owners>Microsoft</Owners>
     <Copyright>© Microsoft Corporation. All rights reserved.</Copyright>
+    <PackageIconUrl>https://raw.githubusercontent.com/xamarin/XamarinComponents/master/XPlat/AzureMessaging/component/icons/aznh-icon-128x128.png</PackageIconUrl>
     <PackageProjectUrl>https://go.microsoft.com/fwlink/?linkid=864958</PackageProjectUrl>
     <PackageLicenseUrl>https://go.microsoft.com/fwlink/?linkid=864960</PackageLicenseUrl>
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
-    <PackageVersion>1.0.0-preview1</PackageVersion>
+    <PackageVersion>1.0.1</PackageVersion>
   </PropertyGroup>
 
   <ItemGroup>
     <LibraryProjectZip Include="..\externals\notificationhubs.aar">
       <Link>Jars\notificationhubs.aar</Link>
     </LibraryProjectZip>
-
 
      <None Include="..\..\External-Dependency-Info.txt" Pack="True" PackagePath="THIRD-PARTY-NOTICES.txt" />
 
@@ -42,6 +42,7 @@
 
   <ItemGroup>
     <PackageReference Include="Xamarin.Android.Support.v7.AppCompat" Version="28.0.0.3" PrivateAssets="None" />
+    <PackageReference Include="Xamarin.Firebase.Messaging" Version="71.1740.4" />
   </ItemGroup>
 
 </Project>

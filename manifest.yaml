@@ -214,7 +214,7 @@
 - Name: Glide
   BuildScript: ./Android/Glide/build.cake
   TriggerPaths: [ Android/Glide ]
-  MacBuildTargets: [ samples, nuget ]
+  WindowsBuildTargets: [ ci ]
 - Name: Wear
   BuildScript: ./Android/Wear/build.cake
   TriggerPaths: [ Android/Wear ]
@@ -290,6 +290,11 @@
 - Name:  CheckerFramework.Checker
   BuildScript: ./Android/CheckerFramework.Checker/build.cake
   TriggerPaths: [ Android/CheckerFramework.Checker ]
+  MacBuildTargets: [ ci ]
+  WindowsBuildTargets: [ ci ]
+- Name: Google.Play.Core
+  BuildScript: ./Android/Google.Play.Core//build.cake
+  TriggerPaths: [ Android/Google.Play.Core ]
   MacBuildTargets: [ ci ]
   WindowsBuildTargets: [ ci ]
 
@@ -627,6 +632,10 @@
   TriggerPaths: [ XPlat/Chromium.CroNet ]
   MacBuildTargets: [ ci ]
   WindowsBuildTargets: [ ci ]
+- Name:  Mono.Posix
+  BuildScript: ./XPlat/Mono.Posix/build.cake
+  TriggerPaths: [ XPlat/Mono.Posix ]
+  LinuxBuildTargets: [ ci ]
 
 #######################################################
 # Mac
