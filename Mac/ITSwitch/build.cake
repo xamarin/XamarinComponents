@@ -1,35 +1,37 @@
+var TARGET = Argument("t", Argument("target", "ci"));
 
-#load "../../common.cake"
+var NUGET_VERSION = "1.1.0";
 
-var TARGET = Argument ("t", Argument ("target", "Default"));
+Task("libs")
+	.WithCriteria(Context.Environment.Platform.Family != PlatformFamily.Linux)
+	.Does(() =>
+{
+	XmlPoke("./source/ITSwitch/ITSwitch.csproj", "/Project/PropertyGroup/PackageVersion", NUGET_VERSION);
+	MSBuild("./source/ITSwitch.sln", new MSBuildSettings()
+		.EnableBinaryLogger("./output/libs.binlog")
+		.SetConfiguration("Release")
+		.WithProperty("PackageOutputPath", MakeAbsolute(new FilePath("./output/")).FullPath)
+		.WithRestore()
+		.WithTarget("Pack"));
+});
 
-var buildSpec = new BuildSpec () {
-	Libs = new ISolutionBuilder [] {
-		new DefaultSolutionBuilder {
-			SolutionPath = "./source/ITSwitch.sln",
-			Configuration = "Release",
-			BuildsOn = BuildPlatforms.Mac,
-			OutputFiles = new [] { 
-				new OutputFileCopy {
-					FromFile = "./source/ITSwitch/bin/Release/ITSwitch.dll",
-					ToDirectory = "./output/unified/"
-				},
-			}
-		},
-	},
-	Samples = new ISolutionBuilder [] {
-		new DefaultSolutionBuilder { SolutionPath = "./samples/ITSwitchSample/ITSwitchSample.sln", Configuration = "Release", BuildsOn = BuildPlatforms.Mac },
-	},
+Task("nuget")
+	.IsDependentOn("libs");
 
-	NuGets = new [] {
-		new NuGetInfo { NuSpec = "./nuget/ITSwitch.nuspec", BuildsOn = BuildPlatforms.Mac },
-	},
+Task("samples")
+	.WithCriteria(Context.Environment.Platform.Family != PlatformFamily.Linux)
+	.IsDependentOn("nuget")
+	.Does(() =>
+{
+	MSBuild("./samples/ITSwitchSample/ITSwitchSample.sln", new MSBuildSettings()
+		.EnableBinaryLogger("./output/samples.binlog")
+		.SetConfiguration("Release")
+		.WithRestore());
+});
 
-	Components = new [] {
-		new Component { ManifestDirectory = "./component", BuildsOn = BuildPlatforms.Mac},
-	},
-};
+Task("ci")
+	.IsDependentOn("libs")
+	.IsDependentOn("nuget")
+	.IsDependentOn("samples");
 
-SetupXamarinBuildTasks (buildSpec, Tasks, Task);
-
-RunTarget (TARGET);
+RunTarget(TARGET);
