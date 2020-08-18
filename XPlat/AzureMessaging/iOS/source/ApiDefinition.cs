@@ -200,6 +200,12 @@ namespace WindowsAzure.Messaging.NotificationHubs
 		[Static, Export("getInstallationId")]
 		string GetInstallationId();
 
+		[Static, Export("getUserId")]
+		string GetUserId();
+
+		[Static, Export("setUserId:")]
+		void SetUserId(string userId);
+
 		[Static, Export("willSaveInstallation")]
 		void WillSaveInstallation();
 
@@ -321,6 +327,9 @@ namespace WindowsAzure.Messaging.NotificationHubs
 
 		[Export("expirationTime")]
 		NSDate ExpirationTime { get; set; }
+
+		[Export("userId")]
+		string UserId { get; set; }
 
 		[Export("templates")]
 		NSDictionary<NSString, MSInstallationTemplate> Templates { get; }
