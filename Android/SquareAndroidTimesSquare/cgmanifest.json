@@ -4,10 +4,10 @@
       "Component": {
         "Type": "Maven",
         "Maven": {
-          "ArtifactId": "picasso",
-          "GroupId": "com.squareup.okio",
-          "Version": "2.4.1",
-          "NuGetId": "Square.OkIO"
+          "ArtifactId": "android-times-square",
+          "GroupId": "com.squareup",
+          "Version": "1.7.3",
+          "NuGetId": "Square.AndroidTimesSquare"
         }
       }
     }

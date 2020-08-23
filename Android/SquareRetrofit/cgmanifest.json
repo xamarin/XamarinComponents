@@ -4,10 +4,10 @@
       "Component": {
         "Type": "Maven",
         "Maven": {
-          "ArtifactId": "picasso",
-          "GroupId": "com.squareup.okio",
-          "Version": "2.4.1",
-          "NuGetId": "Square.OkIO"
+          "ArtifactId": "retrofit",
+          "GroupId": "com.squareup.retrofit",
+          "Version": "1.9.0",
+          "NuGetId": "Square.Retrofit"
         }
       }
     }

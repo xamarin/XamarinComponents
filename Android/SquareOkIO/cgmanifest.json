@@ -4,7 +4,7 @@
       "Component": {
         "Type": "Maven",
         "Maven": {
-          "ArtifactId": "picasso",
+          "ArtifactId": "okio",
           "GroupId": "com.squareup.okio",
           "Version": "2.4.1",
           "NuGetId": "Square.OkIO"

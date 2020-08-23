@@ -4,10 +4,10 @@
       "Component": {
         "Type": "Maven",
         "Maven": {
-          "ArtifactId": "picasso",
-          "GroupId": "com.squareup.okio",
-          "Version": "2.4.1",
-          "NuGetId": "Square.OkIO"
+          "ArtifactId": "seismic",
+          "GroupId": "com.squareup",
+          "Version": "2.71828",
+          "NuGetId": "Square.Seismic"
         }
       }
     }

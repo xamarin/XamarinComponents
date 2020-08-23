@@ -1,15 +1,15 @@
 THIRD-PARTY SOFTWARE NOTICES AND INFORMATION
 Do not translate or localize
 
-Xamarin Components for Square OkIO
+Xamarin Components for Square Retrofit
 third party material from the projects listed below. The original copyright 
 notice and the license under which Microsoft received such third party 
 material are set forth below.  Microsoft reserves all other rights not 
 expressly granted, whether by implication, estoppel or otherwise.
 
 ########################################
-# Square OkIO
-# https://github.com/square/okio
+# Square Retrofit
+# https://github.com/square/retrofit
 ########################################
 
 

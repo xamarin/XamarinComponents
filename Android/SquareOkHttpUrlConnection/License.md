@@ -1,8 +1,8 @@
 **Xamarin is not responsible for, nor does it grant any licenses to, third-party packages. Some packages may require or install dependencies which are governed by additional licenses.**
 
-Note: This component depends on [Square okio](https://github.com/square/okio), which is subject to the [Apache 2.0](https://github.com/square/picasso/blob/master/LICENSE.txt)
+Note: This component depends on [Square OkHttp URLConnection](https://github.com/square/okhttp), which is subject to the [Apache 2.0](https://github.com/square/okhttp/blob/master/LICENSE.txt)
 
-### Xamarin Component for Square OkIO for Xamarin.Android
+### Xamarin Component for Square OkHttp URLConnection for Xamarin.Android
 
 **The MIT License (MIT)**
 

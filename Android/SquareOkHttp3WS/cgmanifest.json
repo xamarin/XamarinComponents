@@ -4,10 +4,10 @@
       "Component": {
         "Type": "Maven",
         "Maven": {
-          "ArtifactId": "picasso",
-          "GroupId": "com.squareup.okio",
-          "Version": "2.4.1",
-          "NuGetId": "Square.OkIO"
+          "ArtifactId": "okhttp-ws",
+          "GroupId": "com.squareup.okhttp3",
+          "Version": "3.4.2",
+          "NuGetId": "Square.OkHttp3.WS"
         }
       }
     }
