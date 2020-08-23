@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+  <string name="app_name">Pollexor</string>
+
+  <string name="original">Original</string>
+  <string name="resize">Resize</string>
+  <string name="cropGravity">Resize and Crop with Gravity</string>
+  <string name="filter">Filter (Blur)</string>
+  <string name="format">Filter (Image Format)</string>
+  <string name="circular">Filter (Circular)</string>
+
+</resources>
