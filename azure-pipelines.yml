@@ -1,6 +1,9 @@
 trigger:
   - master
   - refs/tags/*
+  
+pr:
+  - master
 
 resources:
   repositories:
@@ -20,7 +23,9 @@ jobs:
       cakeTemplatesBranch: dev/more
       nugetDiffArgs:  --ignore-member="//property[@name='JniPeerMembers' and @ptype='Java.Interop.JniPeerMembers']"  --ignore-member="//property[@name='JniPeerMembers' and @ptype='Java.Interop.JniPeerMembers']"
       timeoutInMinutes: 360
+      areaPath: 'DevDiv\Xamarin SDK\Android'
       buildType: 'manifest'
+      linuxImage: 'ubuntu-latest'
       validPackagePrefixes: 
         # Preferred prefixes
         - Xamarin
@@ -33,8 +38,10 @@ jobs:
         - Masonry
         - GoogleGson
         - AndroidEasingFunctions
+        - Square
+        - JakeWharton.Picasso2OkHttp3Downloader
       tools:
-        - 'Xamarin.AndroidBinderator.Tool': '0.4.1'
+        - 'Xamarin.AndroidBinderator.Tool': '0.4.2'
   - ${{ if eq(variables['System.TeamProject'], 'devdiv') }}:
     - template: sign-artifacts/jobs/v1.yml@internal-templates
       parameters:

@@ -1,4 +1,4 @@
-﻿// Copyright (c) 2015-2016 Xamarin Inc.
+// Copyright (c) 2015-2016 Xamarin Inc.
 
 using System;
 using System.Collections.Generic;
@@ -244,12 +244,8 @@ namespace NativeLibraryDownloaderTests
 		}
 
 		[Fact]
-		public void TestResourcesAdded ()
+		public void TestCastAssemblyResources ()
 		{
-			// Tests won't run on windows due to file locking issues with assemblies
-			if (IsWindows)
-				return;
-
 			var engine = new ProjectCollection ();
 			var prel = ProjectRootElement.Create (Path.Combine (TempDir, "project.csproj"), engine);
 
@@ -278,13 +274,25 @@ namespace NativeLibraryDownloaderTests
 				dll
 			);
 
-			var plist = Path.Combine (unpackDir, "AppInvites-1.0.2", "Frameworks", "GINInvite.framework", "Versions", "A", "Resources", "GINInviteResources.bundle", "Info.plist");
+			var bundlePath = Path.Combine (unpackDir, "AppInvites-1.0.2", "Frameworks", "GINInvite.framework", "Versions", "A", "Resources", "GINInviteResources.bundle");
 
-			const string resourceName = "monotouch_content_GINInviteResources.bundle_fInfo.plist";
+			var plist = Path.Combine (bundlePath, "Info.plist");
+			string resourceName = "__monotouch_content_GINInviteResources.bundle_fInfo.plist";
 			prel.AddItem (
 				"RestoreAssemblyResource",
 				plist,
 				new Dictionary<string,string> {
+					{ "AssemblyName", "Foo" },
+					{ "LogicalName", resourceName }
+				}
+			);
+
+			var image = Path.Combine (bundlePath, "ic_sms_24@3x.png");
+			resourceName = "__monotouch_content_GINInviteResources.bundle_fic__sms__24%403x.png";
+			prel.AddItem (
+				"RestoreAssemblyResource",
+				image,
+				new Dictionary<string, string> {
 					{ "AssemblyName", "Foo" },
 					{ "LogicalName", resourceName }
 				}
@@ -295,7 +303,7 @@ namespace NativeLibraryDownloaderTests
 			var project = new ProjectInstance (prel);
 			var log = new MSBuildTestLogger ();
 
-			var success = BuildProject (engine, project, "_XamariniOSBuildResourceRestore", log);
+			var success = BuildProject (engine, project, "_XamarinBuildCastAssemblyResources", log);
 
 			var ignoreMessages = new List<string> { "Enumeration yielded no results" };
 			ignoreMessages.AddRange (DEFAULT_IGNORE_PATTERNS);
@@ -305,40 +313,16 @@ namespace NativeLibraryDownloaderTests
 			var plistExists = File.Exists (plist);
 			Assert.True (plistExists);
 
-			//check the referencepath has been replaced by the processed one
-			var items = project.GetItems ("ReferencePath");
+			var imageExists = File.Exists (image);
+			Assert.True (imageExists);
 
-			var mergedItem = items.FirstOrDefault (i => !string.IsNullOrEmpty (i.EvaluatedInclude));
-			Assert.True (mergedItem != null);
+			// Check if BundleResources were generated correctly.
+			var bundleResources = project.GetItems ("BundleResource");
+			Assert.True (bundleResources != null);
 
-			var itemPath = mergedItem.EvaluatedInclude;
-
-			//Assert.NotEqual (dll, itemPath);
-
-			//check the assembly has the processed resource
-			var processedAsm = AssemblyDefinition.ReadAssembly (itemPath);
-			var resource = processedAsm.MainModule.Resources.FirstOrDefault () as EmbeddedResource;
-			Assert.NotNull (resource);
-			Assert.Equal (resourceName, resource.Name);
-			var ps = PObject.FromStream (resource.GetResourceStream ()) as PDictionary;
-			Assert.False (ps.ContainsKey ("CFBundleExecutable"));
-			Assert.True (ps.Count > 0);
-			var processedAsmMtime = File.GetLastWriteTime (itemPath);
-
-			// check incremental build works
-			project = new ProjectInstance (prel);
-			log = new MSBuildTestLogger ();
-			var newSuccess = BuildProject (engine, project, "_XamariniOSBuildResourceRestore", log);
-
-			AssertNoMessagesOrWarnings (log, ignoreMessages.ToArray());
-			Assert.True (success);
-
-			var newItems = project.GetItems ("ReferencePath");
-			var newItem = newItems.FirstOrDefault (i => !string.IsNullOrEmpty (i.EvaluatedInclude));
-			var newItemPath = newItem.EvaluatedInclude;
-
-			Assert.Equal (itemPath, newItemPath);
-			Assert.Equal (processedAsmMtime, File.GetLastWriteTime (newItemPath));
+			// Check if Optimize metadata was generated correctly.
+			var imageResource = bundleResources.Single (b => b.GetMetadataValue ("Identity").ToLower ().EndsWith (".png"));
+			Assert.True (imageResource.GetMetadataValue ("Optimize") == "False");
 		}
 
 		[Fact]
@@ -396,7 +380,7 @@ namespace NativeLibraryDownloaderTests
 				});
 
 			prel.AddItem (
-				"XamarinBuildDownloadRestoreAssemblyAar",
+				"XamarinBuildDownloadAndroidAarLibrary",
 				"$(XamarinBuildDownloadDir)" + artifactXbdId + "\\" + artifactXbdId + ".aar",
 				new Dictionary<string, string> { }
 			);

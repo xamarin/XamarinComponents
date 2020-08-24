@@ -1,0 +1,16 @@
+{
+  "Registrations":[ 
+    {
+      "Component": {
+        "Type": "Maven",
+        "Maven": {
+          "ArtifactId": "core",
+          "GroupId": "com.google.android.play",
+          "Version": "1.5.0",
+          "NuGetId": "Xamarin.Google.Android.Play.Core"
+        }
+      }
+    }
+  ],
+  "Version": 1
+}

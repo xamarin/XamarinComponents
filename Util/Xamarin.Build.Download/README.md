@@ -1,4 +1,4 @@
-﻿# Xamarin.Build.Download
+# Xamarin.Build.Download
 
 The Xamarin.Build.Download NuGet is intended to be consumed from MSBuild targets in other NuGets in order to download
 third-party native library archives automatically and inject them into the build process.
@@ -68,13 +68,18 @@ In this example, the download is only performed if the project is a Xamarin.iOS 
 			<Kind>Tgz</Kind>
 			<Sha1>0c4a8a9c12305e8d41e8e3c8a3a2ce066c508f68</Sha1>
 		</XamarinBuildDownload>
-		<XamarinBuildMergeDownloads Include="_AddMyNugetIdDownloadedItems"/>
+		<XamarinBuildRestoreResources Include="_AddMyNugetIdDownloadedItems"/>
 	</ItemGroup>
 
 	<Target Name="_AddMyNugetIdDownloadedItems">
 		<ItemGroup>
 			<BundleResource Include="$(XamarinBuildDownloadDir)foo-1.2.3\media\bar.png">
 				<LogicalName>bar.png</LogicalName>
+			</BundleResource>
+			<BundleResource Include="$(XamarinBuildDownloadDir)foo-1.2.3\media\bav.png">
+				<LogicalName>bav.png</LogicalName>
+				<!-- This image will not be optimized even if "Optimize PNG images" option is checked -->
+				<Optimize>False</Optimize> 
 			</BundleResource>
 			<NativeReference Include="$(XamarinBuildDownloadDir)foo-1.2.3\lib\baz.a">
 				<Kind>Static</Kind>

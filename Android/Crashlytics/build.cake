@@ -6,11 +6,11 @@ var CrashlyticsBeta_VER = "1.2.9";
 var CrashlyticsAnswers_VER = "1.4.2";
 var Fabric_VER = "1.4.3";
 
-var Crashlytics_NuGet_VER = Crashlytics_VER + ".3";
-var CrashlyticsCore_NuGet_VER = CrashlyticsCore_VER + ".2";
-var CrashlyticsBeta_NuGet_VER = CrashlyticsBeta_VER + ".2";
-var CrashlyticsAnswers_NuGet_VER = CrashlyticsAnswers_VER + ".2";
-var Fabric_NuGet_VER = Fabric_VER + ".2";
+var Crashlytics_NuGet_VER = Crashlytics_VER + ".4";
+var CrashlyticsCore_NuGet_VER = CrashlyticsCore_VER + ".4";
+var CrashlyticsBeta_NuGet_VER = CrashlyticsBeta_VER + ".4";
+var CrashlyticsAnswers_NuGet_VER = CrashlyticsAnswers_VER + ".4";
+var Fabric_NuGet_VER = Fabric_VER + ".4";
 
 var Crashlytics_URL = string.Format ("https://maven.google.com/com/crashlytics/sdk/android/crashlytics/{0}/crashlytics-{0}.aar", Crashlytics_VER);
 var CrashlyticsCore_URL = string.Format ("https://maven.google.com/com/crashlytics/sdk/android/crashlytics-core/{0}/crashlytics-core-{0}.aar", CrashlyticsCore_VER);

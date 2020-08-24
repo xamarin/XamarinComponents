@@ -1,8 +1,8 @@
 
-var TARGET = Argument ("t", Argument ("target", "Default"));
+var TARGET = Argument ("t", Argument ("target", "ci"));
 
-var PODFILE_VERSION = "0.2.13";
-var NUGET_VERSION = PODFILE_VERSION + "-pre2";
+var PODFILE_VERSION = "0.3.9";
+var NUGET_VERSION = PODFILE_VERSION + "-preview01";
 
 Task ("externals")
 	.WithCriteria (!DirectoryExists ("./externals/OfficeUIFabric.framework"))
@@ -59,5 +59,9 @@ Task ("clean")
 		WorkingDirectory = "./externals/",
 	});
 });
+
+Task("ci")
+	.IsDependentOn("samples");
+
 
 RunTarget (TARGET);

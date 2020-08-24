@@ -1,0 +1,16 @@
+{
+  "Registrations": [
+    {
+      "Component": {
+        "Type": "Maven",
+        "Maven": {
+          "ArtifactId": "picasso2-okhttp3-downloader",
+          "GroupId": "com.jakewharton.picasso",
+          "Version": "1.1.0",
+          "NuGetId": "JakeWharton.Picasso2OkHttp3Downloader"
+        }
+      }
+    }
+  ],
+  "Version": 1
+}

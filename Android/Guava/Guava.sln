@@ -3,11 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.28307.271
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Guava", "source\Guava\Guava.csproj", "{8308A870-2FEF-484E-B4F7-58DE38C8B5B2}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Guava", "source\Guava\Guava.csproj", "{8308A870-2FEF-484E-B4F7-58DE38C8B5B2}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Guava.FailureAccess", "source\Guava.FailureAccess\Guava.FailureAccess.csproj", "{F77FD2C9-181F-43C9-9533-20EE845F74BC}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Guava.FailureAccess", "source\Guava.FailureAccess\Guava.FailureAccess.csproj", "{F77FD2C9-181F-43C9-9533-20EE845F74BC}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Guava.ListenableFuture", "source\Guava.ListenableFuture\Guava.ListenableFuture.csproj", "{6ADF0C2E-8513-40E6-921B-08AEFD7CBDD6}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Guava.ListenableFuture", "source\Guava.ListenableFuture\Guava.ListenableFuture.csproj", "{6ADF0C2E-8513-40E6-921B-08AEFD7CBDD6}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

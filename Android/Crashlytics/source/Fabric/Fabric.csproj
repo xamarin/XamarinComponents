@@ -7,7 +7,7 @@
         <AndroidUseLatestPlatformSdk>False</AndroidUseLatestPlatformSdk>
         <AndroidUseIntermediateDesignerFile>True</AndroidUseIntermediateDesignerFile>
         <AndroidResgenFile>Resources\Resource.designer.cs</AndroidResgenFile>
-        <TargetFrameworks>MonoAndroid60</TargetFrameworks>
+        <TargetFramework>MonoAndroid90</TargetFramework>
         <AndroidCodegenTarget>XAJavaInterop1</AndroidCodegenTarget>
         <IsBindingProject>true</IsBindingProject>
         <AndroidClassParser>class-parse</AndroidClassParser>
@@ -19,7 +19,7 @@
         -->
         <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
         <PackageId>Xamarin.Android.Fabric</PackageId>
-        <PackageVersion>1.4.3.1</PackageVersion>
+        <PackageVersion>1.4.3.5</PackageVersion>
         <Title>Fabric for Android</Title>
         <PackageDescription>Xamarin.Android bindings for Fabric Android</PackageDescription>
         <PackageTags>Xamarin Android Xamarin.Android Fabric</PackageTags>
@@ -44,7 +44,7 @@
         </InputJar>
     </ItemGroup>
     <ItemGroup>
-        <PackageReference Include="Xamarin.Build.Download" Version="0.7.1" PrivateAssets="None" />
+        <PackageReference Include="Xamarin.Build.Download" Version="0.10.0" PrivateAssets="None" />
     </ItemGroup>
     <ItemGroup>
         <None Remove="Transforms\Metadata.xml" />

@@ -272,4 +272,7 @@
     <string name="body_2">Body 2 is Medium 14sp</string>
     <string name="caption">Caption is Regular 12sp</string>
 
+    <string name="subheading_1">Subheading 1 is Regular 16sp</string>
+    <string name="subheading_2">Subheading 2 is Medium 16sp</string>
+
 </resources>
