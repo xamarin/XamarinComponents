@@ -21,7 +21,7 @@ jobs:
   - template: .ci/build.yml@components
     parameters:
       cakeTemplatesBranch: dev/more
-      nugetDiffArgs:  
+      nugetDiffArgs: --ignore-member=""
       timeoutInMinutes: 360
       areaPath: 'DevDiv\Xamarin SDK\Android'
       buildType: 'manifest'
