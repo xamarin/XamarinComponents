@@ -1,9 +1,5 @@
 # TimesSquare Details
 
-<iframe src="https://appetize.io/embed/dvet40nmhnn1edp241n41tpaf0?device=nexus5&scale=75&autoplay=true&orientation=portrait&deviceColor=black" 
-        width="300px" height="597px" frameborder="0" scrolling="no"
-        style="float: right;margin-left:24px;">&nbsp;</iframe>
-
 > Standalone Android widget for picking a single date from a calendar view.
 
 ## Usage
