@@ -153,7 +153,7 @@ namespace AndroidTimesSquareSample
 
             customized.Click += delegate
             {
-                ShowCalendarInDialog("Pimp my calendar!", Resource.Layout.DialogCustomized);
+                ShowCalendarInDialog("Improve my calendar!", Resource.Layout.DialogCustomized);
                 dialogView
                     .Init(lastYear, nextYear)
                     .WithSelectedDate(DateTime.Now);
