@@ -1,9 +1,5 @@
 # Pollexor Details
 
-<iframe src="https://appetize.io/embed/9ng707xc4z3ubpqgcu42906k7c?device=nexus5&scale=75&autoplay=true&orientation=portrait&deviceColor=black" 
-        width="300px" height="597px" frameborder="0" scrolling="no"
-        style="float: right;margin-left:24px;">&nbsp;</iframe>
-
 > Thumbor image service client which allows you to build URIs in an expressive 
 > fashion using a fluent API.
 
