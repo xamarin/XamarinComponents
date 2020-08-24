@@ -6,7 +6,7 @@ var ARTIFACTS_DIR = MakeAbsolute((DirectoryPath)Argument("artifacts", ROOT_DIR.C
 var CACHE_DIR = MakeAbsolute((DirectoryPath)Argument("cache", ROOT_DIR.Combine("externals/api-diff").FullPath));
 var OUTPUT_DIR = MakeAbsolute((DirectoryPath)Argument("output", ROOT_DIR.Combine("output/api-diff").FullPath));
 
-var TOOL_ARGS = Argument("tool-args", Argument("toolArgs", ""));
+var TOOL_ARGS = Argument("toolargs", Argument("toolArgs", ""));
 
 
 // SECTION: Main Script
