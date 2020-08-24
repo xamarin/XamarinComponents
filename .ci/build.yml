@@ -295,7 +295,7 @@ jobs:
             --output="${{ parameters.artifactsPath }}/api-diff" `
             --cache="$(Agent.TempDirectory)/api-diff" `
             --verbosity="${{ parameters.verbosity }}" `
-            --tool-args="${{ parameters.nugetDiffArgs }}"
+            --toolargs="${{ parameters.nugetDiffArgs }}"
         displayName: 'Generate API diff'
       # after the build is complete
       - task: PublishBuildArtifacts@1
