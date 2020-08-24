@@ -1,0 +1,21 @@
+﻿<enum-field-mappings>
+  <!--
+  This example converts the constants Fragment_id, Fragment_name,
+  and Fragment_tag from android.support.v4.app.FragmentActivity.FragmentTag
+  to an enum called Android.Support.V4.App.FragmentTagType with values
+  Id, Name, and Tag.
+  
+  <mapping jni-class="android/support/v4/app/FragmentActivity$FragmentTag" clr-enum-type="Android.Support.V4.App.FragmentTagType">
+    <field jni-name="Fragment_name" clr-name="Name" value="0" />
+    <field jni-name="Fragment_id" clr-name="Id" value="1" />
+    <field jni-name="Fragment_tag" clr-name="Tag" value="2" />
+  </mapping>
+  -->
+
+  <mapping jni-class="com/squareup/seismic/ShakeDetector" clr-enum-type="Square.Seismic.Sensitivity">
+    <field jni-name="SENSITIVITY_HARD" clr-name="Hard" value="15" />
+    <field jni-name="SENSITIVITY_MEDIUM" clr-name="Medium" value="13" />
+    <field jni-name="SENSITIVITY_LIGHT" clr-name="Light" value="11" />
+  </mapping>
+
+</enum-field-mappings>

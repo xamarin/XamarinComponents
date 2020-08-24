@@ -36,6 +36,7 @@ jobs:
         - GoogleGson
         - AndroidEasingFunctions
         - Square
+        - JakeWharton.Picasso2OkHttp3Downloader
       tools:
         - 'Xamarin.AndroidBinderator.Tool': '0.4.2'
   - ${{ if eq(variables['System.TeamProject'], 'devdiv') }}:

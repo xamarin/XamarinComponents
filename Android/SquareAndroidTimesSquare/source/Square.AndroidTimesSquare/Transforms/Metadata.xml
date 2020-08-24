@@ -1,0 +1,19 @@
+<metadata>
+
+  <attr path="/api/package[@name='com.squareup.timessquare']" name="managedName">Square.TimesSquare</attr>
+
+  <attr path="/api/package[@name='com.squareup.timessquare']/class[@name='CalendarPickerView']/method[@name='getSelectedDate']" name="managedName">GetSelectedJavaDate</attr>
+  <attr path="/api/package[@name='com.squareup.timessquare']/class[@name='CalendarPickerView']/method[@name='getSelectedDates']" name="managedName">GetSelectedJavaDates</attr>
+  <attr path="/api/package[@name='com.squareup.timessquare']/interface[@name='CalendarPickerView.OnInvalidDateSelectedListener']/method[@name='onInvalidDateSelected']/parameter[1]" name="managedName">javaDate</attr>
+  <attr path="/api/package[@name='com.squareup.timessquare']/interface[@name='CalendarPickerView.CellClickInterceptor']/method[@name='onCellClicked']/parameter[1]" name="managedName">javaDate</attr>
+  <attr path="/api/package[@name='com.squareup.timessquare']/interface[@name='CalendarPickerView.DateSelectableFilter']/method[@name='isDateSelectable']/parameter[1]" name="managedName">javaDate</attr>
+  <attr path="/api/package[@name='com.squareup.timessquare']/interface[@name='CalendarPickerView.OnDateSelectedListener']/method[@name='onDateSelected']/parameter[1]" name="managedName">javaDate</attr>
+  <attr path="/api/package[@name='com.squareup.timessquare']/interface[@name='CalendarPickerView.OnDateSelectedListener']/method[@name='onDateUnselected']/parameter[1]" name="managedName">javaDate</attr>
+
+  <remove-node path="/api/package[@name='com.squareup.timessquare']/class[@name='CalendarGridView']" />
+  <remove-node path="/api/package[@name='com.squareup.timessquare']/class[@name='CalendarRowView']" />
+  <remove-node path="/api/package[@name='com.squareup.timessquare']/class[@name='MonthView']" />
+  <remove-node path="/api/package[@name='com.squareup.timessquare']/class[@name='CalendarPickerView.CellClickedListener']" />
+  <remove-node path="/api/package/class[@visibility='']" />
+
+</metadata>
