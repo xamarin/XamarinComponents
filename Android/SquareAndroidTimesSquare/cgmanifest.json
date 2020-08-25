@@ -1,0 +1,16 @@
+{
+  "Registrations": [
+    {
+      "Component": {
+        "Type": "Maven",
+        "Maven": {
+          "ArtifactId": "android-times-square",
+          "GroupId": "com.squareup",
+          "Version": "1.7.3",
+          "NuGetId": "Square.AndroidTimesSquare"
+        }
+      }
+    }
+  ],
+  "Version": 1
+}
