@@ -32,8 +32,8 @@ namespace Android.Gms.Nearby.ExposureNotification
 		public async Task<IList<TemporaryExposureKey>> GetTemporaryExposureKeyHistoryAsync()
 			=> await NativeTemporaryExposureKeyHistory().CastTask<JavaList<TemporaryExposureKey>>();
 
-		public async Task<int> GetVersionAsync()
-			=> (int)await NativeVersion().CastTask<Java.Lang.Integer>();
+		public async Task<long> GetVersionAsync()
+			=> (long)await NativeVersion().CastTask<Java.Lang.Long>();
 
 		public async Task<int> GetCalibrationConfidenceAsync()
 			=> (int)await NativeCalibrationConfidence().CastTask<Java.Lang.Integer>();
