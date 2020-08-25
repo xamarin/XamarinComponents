@@ -14,15 +14,18 @@ namespace Android.Gms.Nearby.ExposureNotification
 		public Task StopAsync()
 			=> NativeStop().CastTask();
 
+		[Obsolete("Use GetExposureWindowsAsync() instead.")]
 		public async Task<IList<ExposureInformation>> GetExposureInformationAsync(string token)
 			=> await NativeExposureInformation(token).CastTask<JavaList<ExposureInformation>>();
 
+		[Obsolete("Use GetDailySummariesAsync(DailySummariesConfig) instead.")]
 		public Task<ExposureSummary> GetExposureSummaryAsync(string token)
 			=> NativeExposureSummary(token).CastTask<ExposureSummary>();
 
 		public async Task<bool> IsEnabledAsync()
 			=> (bool)await NativeIsEnabled().CastTask<Java.Lang.Boolean>();
 
+		[Obsolete("Use GetDailySummariesAsync(IList<Java.IO.File>) instead.")]
 		public Task ProvideDiagnosisKeysAsync(IList<Java.IO.File> files, ExposureConfiguration config, string token)
 			=> NativeProvideDiagnosisKeys(files, config, token).CastTask();
 
@@ -50,6 +53,7 @@ namespace Android.Gms.Nearby.ExposureNotification
 		public async Task<IList<ExposureWindow>> GetExposureWindowsAsync()
 			=> await NativeExposureWindows().CastTask<JavaList<ExposureWindow>>();
 
+		[Obsolete("Use GetExposureWindowsAsync() instead.")]
 		public async Task<IList<ExposureWindow>> GetExposureWindowsAsync(string token)
 			=> await NativeExposureWindows(token).CastTask<JavaList<ExposureWindow>>();
 	}
