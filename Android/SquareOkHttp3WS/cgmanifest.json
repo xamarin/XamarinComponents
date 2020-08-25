@@ -1,0 +1,16 @@
+{
+  "Registrations": [
+    {
+      "Component": {
+        "Type": "Maven",
+        "Maven": {
+          "ArtifactId": "okhttp-ws",
+          "GroupId": "com.squareup.okhttp3",
+          "Version": "3.4.2",
+          "NuGetId": "Square.OkHttp3.WS"
+        }
+      }
+    }
+  ],
+  "Version": 1
+}

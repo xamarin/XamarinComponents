@@ -6,7 +6,7 @@ using CoreAnimation;
 
 namespace ITSwitch
 {
-	//[Register("ITSwitchView")]
+	[Register("ITSwitchView")]
 	public class ITSwitchView : NSControl {
 
 		#region Class Methods
