@@ -72,6 +72,8 @@
 	<!-- TEMPORARY REMOVAL TO GET EXPOSURE NOTIFICATIOSN BINDING -->
 	<!--<remove-node path="/api/package[@name='com.google.android.gms.nearby']/class[@name='Nearby']/field[@name='Connections']" />-->
 
+	<attr path="/api/package[@name='com.google.android.gms.nearby.exposurenotification']/interface[@name='ExposureNotificationClient']/method" name="propertyName"></attr>
+
 	<attr path="/api/package[@name='com.google.android.gms.nearby.exposurenotification']/interface[@name='ExposureNotificationClient']/method[@name='getExposureInformation']" name="managedName">NativeExposureInformation</attr>
 	<attr path="/api/package[@name='com.google.android.gms.nearby.exposurenotification']/interface[@name='ExposureNotificationClient']/method[@name='getExposureSummary']" name="managedName">NativeExposureSummary</attr>
 	<attr path="/api/package[@name='com.google.android.gms.nearby.exposurenotification']/interface[@name='ExposureNotificationClient']/method[@name='getTemporaryExposureKeyHistory']" name="managedName">NativeTemporaryExposureKeyHistory</attr>
@@ -81,5 +83,8 @@
 	<attr path="/api/package[@name='com.google.android.gms.nearby.exposurenotification']/interface[@name='ExposureNotificationClient']/method[@name='stop']" name="managedName">NativeStop</attr>
 	
 	<!--<attr path="/api/package[@name='com.google.android.gms.nearby.exposurenotification']/interface[@name='ExposureNotificationClient']" name="extends"></attr>-->
-	
+
+	<attr path="/api/package[@name='com.google.android.gms.nearby.connection']/class[@name='ConnectionsClient']/field[@name='MAX_BYTES_DATA_SIZE']" name="visibility">internal</attr>
+	<attr path="/api/package[@name='com.google.android.gms.nearby.connection']/class[@name='ConnectionsClient']/field[@name='MAX_BYTES_DATA_SIZE']" name="managedName">MAX_BYTES_DATA_SIZE</attr>
+
 </metadata>
