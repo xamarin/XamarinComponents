@@ -74,14 +74,23 @@
 
 	<attr path="/api/package[@name='com.google.android.gms.nearby.exposurenotification']/interface[@name='ExposureNotificationClient']/method" name="propertyName"></attr>
 
+	<attr path="/api/package[@name='com.google.android.gms.nearby.exposurenotification']/interface[@name='ExposureNotificationClient']/method[@name='getCalibrationConfidence']" name="managedName">NativeCalibrationConfidence</attr>
+	<attr path="/api/package[@name='com.google.android.gms.nearby.exposurenotification']/interface[@name='ExposureNotificationClient']/method[@name='getDailySummaries']" name="managedName">NativeDailySummaries</attr>
+	<attr path="/api/package[@name='com.google.android.gms.nearby.exposurenotification']/interface[@name='ExposureNotificationClient']/method[@name='getDiagnosisKeysDataMapping']" name="managedName">NativeDiagnosisKeysDataMapping</attr>
 	<attr path="/api/package[@name='com.google.android.gms.nearby.exposurenotification']/interface[@name='ExposureNotificationClient']/method[@name='getExposureInformation']" name="managedName">NativeExposureInformation</attr>
 	<attr path="/api/package[@name='com.google.android.gms.nearby.exposurenotification']/interface[@name='ExposureNotificationClient']/method[@name='getExposureSummary']" name="managedName">NativeExposureSummary</attr>
+	<attr path="/api/package[@name='com.google.android.gms.nearby.exposurenotification']/interface[@name='ExposureNotificationClient']/method[@name='getExposureWindows']" name="managedName">NativeExposureWindows</attr>
 	<attr path="/api/package[@name='com.google.android.gms.nearby.exposurenotification']/interface[@name='ExposureNotificationClient']/method[@name='getTemporaryExposureKeyHistory']" name="managedName">NativeTemporaryExposureKeyHistory</attr>
+	<attr path="/api/package[@name='com.google.android.gms.nearby.exposurenotification']/interface[@name='ExposureNotificationClient']/method[@name='getVersion']" name="managedName">NativeVersion</attr>
 	<attr path="/api/package[@name='com.google.android.gms.nearby.exposurenotification']/interface[@name='ExposureNotificationClient']/method[@name='isEnabled']" name="managedName">NativeIsEnabled</attr>
 	<attr path="/api/package[@name='com.google.android.gms.nearby.exposurenotification']/interface[@name='ExposureNotificationClient']/method[@name='provideDiagnosisKeys']" name="managedName">NativeProvideDiagnosisKeys</attr>
+	<attr path="/api/package[@name='com.google.android.gms.nearby.exposurenotification']/interface[@name='ExposureNotificationClient']/method[@name='setDiagnosisKeysDataMapping']" name="managedName">NativeDiagnosisKeysDataMapping</attr>
 	<attr path="/api/package[@name='com.google.android.gms.nearby.exposurenotification']/interface[@name='ExposureNotificationClient']/method[@name='start']" name="managedName">NativeStart</attr>
 	<attr path="/api/package[@name='com.google.android.gms.nearby.exposurenotification']/interface[@name='ExposureNotificationClient']/method[@name='stop']" name="managedName">NativeStop</attr>
-	
+
+    <attr path="/api/package[@name='com.google.android.gms.nearby.exposurenotification']/interface[@name='ExposureNotificationClient']/method[@name='deviceSupportsLocationlessScanning']" name="propertyName">DeviceSupportsLocationlessScanning</attr>
+    <attr path="/api/package[@name='com.google.android.gms.nearby.exposurenotification']/interface[@name='ExposureNotificationClient']/method[@name='deviceSupportsLocationlessScanning']" name="managedName">GetDeviceSupportsLocationlessScanning</attr>
+
 	<!--<attr path="/api/package[@name='com.google.android.gms.nearby.exposurenotification']/interface[@name='ExposureNotificationClient']" name="extends"></attr>-->
 
 	<attr path="/api/package[@name='com.google.android.gms.nearby.connection']/class[@name='ConnectionsClient']/field[@name='MAX_BYTES_DATA_SIZE']" name="visibility">internal</attr>

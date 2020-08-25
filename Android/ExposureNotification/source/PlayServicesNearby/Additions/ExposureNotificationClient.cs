@@ -26,8 +26,32 @@ namespace Android.Gms.Nearby.ExposureNotification
 		public Task ProvideDiagnosisKeysAsync(IList<Java.IO.File> files, ExposureConfiguration config, string token)
 			=> NativeProvideDiagnosisKeys(files, config, token).CastTask();
 
+		public Task ProvideDiagnosisKeysAsync(IList<Java.IO.File> files)
+			=> NativeProvideDiagnosisKeys(files).CastTask();
+
 		public async Task<IList<TemporaryExposureKey>> GetTemporaryExposureKeyHistoryAsync()
 			=> await NativeTemporaryExposureKeyHistory().CastTask<JavaList<TemporaryExposureKey>>();
+
+		public async Task<int> GetVersionAsync()
+			=> (int)await NativeVersion().CastTask<Java.Lang.Integer>();
+
+		public async Task<int> GetCalibrationConfidenceAsync()
+			=> (int)await NativeCalibrationConfidence().CastTask<Java.Lang.Integer>();
+
+		public async Task<IList<DailySummary>> GetDailySummariesAsync(DailySummariesConfig config)
+			=> await NativeDailySummaries(config).CastTask<JavaList<DailySummary>>();
+
+		public async Task<DiagnosisKeysDataMapping> GetDiagnosisKeysDataMappingAsync()
+			=> await NativeDiagnosisKeysDataMapping().CastTask<DiagnosisKeysDataMapping>();
+
+		public async Task SetDiagnosisKeysDataMappingAsync(DiagnosisKeysDataMapping mapping)
+			=> await NativeDiagnosisKeysDataMapping(mapping).CastTask();
+
+		public async Task<IList<ExposureWindow>> GeExposureWindowsAsync()
+			=> await NativeExposureWindows().CastTask<JavaList<ExposureWindow>>();
+
+		public async Task<IList<ExposureWindow>> GeExposureWindowsAsync(string token)
+			=> await NativeExposureWindows(token).CastTask<JavaList<ExposureWindow>>();
 	}
 
 	internal static class GoogleTaskExtensions
