@@ -47,10 +47,10 @@ namespace Android.Gms.Nearby.ExposureNotification
 		public async Task SetDiagnosisKeysDataMappingAsync(DiagnosisKeysDataMapping mapping)
 			=> await NativeDiagnosisKeysDataMapping(mapping).CastTask();
 
-		public async Task<IList<ExposureWindow>> GeExposureWindowsAsync()
+		public async Task<IList<ExposureWindow>> GetExposureWindowsAsync()
 			=> await NativeExposureWindows().CastTask<JavaList<ExposureWindow>>();
 
-		public async Task<IList<ExposureWindow>> GeExposureWindowsAsync(string token)
+		public async Task<IList<ExposureWindow>> GetExposureWindowsAsync(string token)
 			=> await NativeExposureWindows(token).CastTask<JavaList<ExposureWindow>>();
 	}
 
