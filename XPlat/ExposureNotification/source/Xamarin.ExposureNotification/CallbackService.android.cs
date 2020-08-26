@@ -14,7 +14,7 @@ namespace Xamarin.ExposureNotifications
 	class ExposureNotificationCallbackBroadcastReceiver : BroadcastReceiver
 	{
 		const string actionExposureStateUpdated = ExposureNotificationClient.ActionExposureStateUpdated;
-		const string actionExposureNotFound = "com.google.android.gms.exposurenotification.ACTION_EXPOSURE_NOT_FOUND";
+		const string actionExposureNotFound = ExposureNotificationClient.ActionExposureNotFound;
 		const string permissionExposureCallback = "com.google.android.gms.nearby.exposurenotification.EXPOSURE_CALLBACK";
 
 		public override void OnReceive(Context context, Intent intent)
