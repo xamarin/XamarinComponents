@@ -8,15 +8,19 @@ namespace Xamarin.ExposureNotifications
 {
 	public static partial class ExposureNotification
 	{
-		static INativeImplementation nativeImplementation;
+		// native implementation
 
-		public static void OverrideNativeImplementation(INativeImplementation nativeImplementation)
+		static INativeImplementation? nativeImplementation;
+
+		public static void OverrideNativeImplementation(INativeImplementation? nativeImplementation)
 			=> ExposureNotification.nativeImplementation = nativeImplementation;
-
-		static IExposureNotificationHandler handler;
 
 		public static bool OverridesNativeImplementation
 			=> ExposureNotification.nativeImplementation != null;
+
+		// handler
+
+		static IExposureNotificationHandler? handler;
 
 		internal static IExposureNotificationHandler Handler
 		{
@@ -57,6 +61,12 @@ namespace Xamarin.ExposureNotifications
 			}
 		}
 
+		// the app support the v2 API
+		internal static IExposureNotificationDailySummaryHandler? DailySummaryHandler
+			=> Handler as IExposureNotificationDailySummaryHandler;
+
+		// methods
+
 		public static void Init()
 			=> PlatformInit();
 
@@ -85,7 +95,7 @@ namespace Xamarin.ExposureNotifications
 		{
 			var processedAnyFiles = false;
 
-			await Handler?.FetchExposureKeyBatchFilesFromServerAsync(async downloadedFiles =>
+			await Handler.FetchExposureKeyBatchFilesFromServerAsync(async downloadedFiles =>
 			{
 				cancellationToken.ThrowIfCancellationRequested();
 
@@ -96,9 +106,7 @@ namespace Xamarin.ExposureNotifications
 				{
 					var r = await nativeImplementation.DetectExposuresAsync(downloadedFiles);
 
-					var hasMatches = (r.summary?.MatchedKeyCount ?? 0) > 0;
-
-					if (hasMatches)
+					if (r.summary?.MatchedKeyCount > 0)
 						await Handler.ExposureDetectedAsync(r.summary, r.getInfo);
 				}
 				else

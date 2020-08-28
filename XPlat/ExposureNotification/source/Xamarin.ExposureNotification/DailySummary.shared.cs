@@ -5,9 +5,9 @@ namespace Xamarin.ExposureNotifications
 {
 	public class DailySummaryConfiguration
 	{
-		public int[]? AttenuationThresholds { get; set; } = new int[] { 50, 70, 90 };
+		public int[] AttenuationThresholds { get; set; } = new int[] { 50, 70, 90 };
 
-		public Dictionary<DistanceEstimate, double>? AttenuationWeights { get; set; } =
+		public Dictionary<DistanceEstimate, double> AttenuationWeights { get; set; } =
 			new Dictionary<DistanceEstimate, double>
 			{
 				//[DistanceEstimate.Immediate] = 2.0,
@@ -16,7 +16,7 @@ namespace Xamarin.ExposureNotifications
 				//[DistanceEstimate.Other] = 0.0,
 			};
 
-		public Dictionary<Infectiousness, double>? InfectiousnessWeights { get; set; } =
+		public Dictionary<Infectiousness, double> InfectiousnessWeights { get; set; } =
 			new Dictionary<Infectiousness, double>
 			{
 				//[Infectiousness.None] = 0.0,
@@ -24,7 +24,7 @@ namespace Xamarin.ExposureNotifications
 				//[Infectiousness.High] = 2.0,
 			};
 
-		public Dictionary<ReportType, double>? ReportTypeWeights { get; set; } =
+		public Dictionary<ReportType, double> ReportTypeWeights { get; set; } =
 			new Dictionary<ReportType, double>
 			{
 				//[ReportType.Unknown] = 0.0,
@@ -36,11 +36,8 @@ namespace Xamarin.ExposureNotifications
 			};
 
 		public int DaysSinceLastExposureThreshold { get; set; } = 0;
-	}
 
-	public class DiagnosisKeysConfiguration
-	{
-		public Dictionary<int, Infectiousness>? DaysSinceOnsetToInfectiousness { get; set; } =
+		public Dictionary<int, Infectiousness> DaysSinceOnsetInfectiousness { get; set; } =
 			new Dictionary<int, Infectiousness>()
 			{
 				//[-14] = Infectiousness.Standard,
@@ -55,17 +52,17 @@ namespace Xamarin.ExposureNotifications
 
 	public class DailySummary
 	{
-		readonly Dictionary<ReportType, DailySummaryReport>? reports;
+		readonly Dictionary<ReportType, DailySummaryReport?>? reports;
 
 		public DailySummary()
 		{
 		}
 
-		public DailySummary(DateTime timestamp, DailySummaryReport summary, Dictionary<ReportType, DailySummaryReport> reports)
+		public DailySummary(DateTime timestamp, DailySummaryReport summary, IDictionary<ReportType, DailySummaryReport?> reports)
 		{
 			Timestamp = timestamp;
 			Summary = summary ?? throw new ArgumentNullException(nameof(summary));
-			this.reports = new Dictionary<ReportType, DailySummaryReport>(
+			this.reports = new Dictionary<ReportType, DailySummaryReport?>(
 				reports ?? throw new ArgumentNullException(nameof(reports)));
 		}
 
@@ -113,13 +110,13 @@ namespace Xamarin.ExposureNotifications
 		{
 		}
 
-		public ExposureWindow(CalibrationConfidence calibrationConfidence, DateTime timestamp, Infectiousness infectiousness, ReportType reportType, IReadOnlyList<ScanInstance> scanInstances)
+		public ExposureWindow(CalibrationConfidence calibrationConfidence, DateTime timestamp, Infectiousness infectiousness, ReportType reportType, IEnumerable<ScanInstance> scanInstances)
 		{
 			CalibrationConfidence = calibrationConfidence;
 			Timestamp = timestamp;
 			Infectiousness = infectiousness;
 			ReportType = reportType;
-			ScanInstances = scanInstances;
+			ScanInstances = new List<ScanInstance>(scanInstances);
 		}
 
 		public CalibrationConfidence CalibrationConfidence { get; } = CalibrationConfidence.Lowest;
@@ -135,6 +132,17 @@ namespace Xamarin.ExposureNotifications
 
 	public class ScanInstance
 	{
+		public ScanInstance()
+		{
+		}
+
+		public ScanInstance(int minimumAttenuation, int typicalAttenuation, TimeSpan sinceLastScan)
+		{
+			MinimumAttenuation = minimumAttenuation;
+			TypicalAttenuation = typicalAttenuation;
+			SinceLastScan = sinceLastScan;
+		}
+
 		public int MinimumAttenuation { get; }
 
 		public int TypicalAttenuation { get; }
