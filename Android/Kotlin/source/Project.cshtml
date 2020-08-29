@@ -4,7 +4,7 @@
     friendlyName += " " + name;
   }
 }
-<Project Sdk="MSBuild.Sdk.Extras/2.0.54">
+<Project Sdk="MSBuild.Sdk.Extras/2.1.2">
 
   <PropertyGroup>
     <TargetFramework>MonoAndroid90</TargetFramework>
@@ -15,11 +15,8 @@
     } else {
     <AssemblyName>@(Model.NuGetPackageId)</AssemblyName>
     }
-    <MonoAndroidResourcePrefix>Resources</MonoAndroidResourcePrefix>
-    <MonoAndroidAssetsPrefix>Assets</MonoAndroidAssetsPrefix>
     <AndroidUseLatestPlatformSdk>False</AndroidUseLatestPlatformSdk>
     <AndroidUseIntermediateDesignerFile>True</AndroidUseIntermediateDesignerFile>
-    <AndroidResgenFile>Resources\Resource.designer.cs</AndroidResgenFile>
     <AndroidDexTool>d8</AndroidDexTool>
     <AndroidEnableDesugar>true</AndroidEnableDesugar>
     <!--
@@ -35,23 +32,8 @@
   </PropertyGroup>
 
   <PropertyGroup>
-    @if(Model.NuGetPackageId == "Xamarin.Kotlin.StdLib") {
-    <!--
-      TODO: https://github.com/xamarin/java.interop/issues/466
-      <AndroidClassParser>class-parse</AndroidClassParser>
-    -->
-    <AndroidClassParser>jar2xml</AndroidClassParser>
-    } else {
     <AndroidClassParser>class-parse</AndroidClassParser>
-    }
     <AndroidCodegenTarget>XAJavaInterop1</AndroidCodegenTarget>
-  </PropertyGroup>
-
-  <PropertyGroup>
-    <Version>1.0.0.0</Version>
-    <FileVersion>@(Model.MavenArtifacts[0].MavenArtifactVersion)</FileVersion>
-    <InformationalVersion>@(Model.NuGetVersion)</InformationalVersion>
-    <PackageVersion>@(Model.NuGetVersion)</PackageVersion>
   </PropertyGroup>
 
   <PropertyGroup>
@@ -67,6 +49,7 @@
     <PackageLicenseUrl>https://go.microsoft.com/fwlink/?linkid=864999</PackageLicenseUrl>
     <!-- <PackageIconUrl></PackageIconUrl> -->
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
+    <PackageVersion>@(Model.NuGetVersion)</PackageVersion>
   </PropertyGroup>
 
   <ItemGroup>
@@ -80,10 +63,6 @@
 
   <ItemGroup>
     <Compile Include="..\..\source\@(Model.NuGetPackageId)\Additions\*.cs" Link="Additions\%(Filename)%(Extension)" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <KotlinBindingSupportIgnore Condition="Exists('..\..\source\@(Model.NuGetPackageId)\ignore.txt')" Include="..\..\source\@(Model.NuGetPackageId)\ignore.txt" />
   </ItemGroup>
 
   <ItemGroup>
@@ -102,7 +81,6 @@
     <PackageReference Include="@(dep.NuGetPackageId)" Version="@(dep.NuGetVersion)" />
       }
     }
-    <PackageReference Include="Xamarin.Kotlin.BindingSupport" Version="0.7.0-preview" PrivateAssets="All" />
   </ItemGroup>
 
 </Project>
