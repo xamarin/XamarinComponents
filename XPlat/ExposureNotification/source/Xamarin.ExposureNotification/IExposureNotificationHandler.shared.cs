@@ -25,7 +25,7 @@ namespace Xamarin.ExposureNotifications
 		Task<DailySummaryConfiguration> GetDailySummaryConfigurationAsync();
 
 		// Might be exposed, check and alert user if necessary
-		Task ExposureStateUpdatedAsync(IEnumerable<DailySummary> summaries, Func<Task<IEnumerable<ExposureWindow>>> getExposureWindows);
+		Task ExposureStateUpdatedAsync(IEnumerable<ExposureWindow> windows, IEnumerable<DailySummary>? summaries);
 	}
 
 	public interface INativeImplementation

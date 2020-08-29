@@ -228,7 +228,7 @@ namespace Xamarin.ExposureNotifications
 				summary.SummationRiskScore);
 		}
 
-		internal static async Task<IEnumerable<DailySummary>?> PlatformGetDailySummariesAsync()
+		internal static async Task<IEnumerable<DailySummary>> PlatformGetDailySummariesAsync()
 		{
 			if (DailySummaryHandler == null)
 				throw new InvalidOperationException("The handler does not support Exposure Window Mode.");
@@ -262,8 +262,10 @@ namespace Xamarin.ExposureNotifications
 			}
 
 			var summaries = await Instance.GetDailySummariesAsync(builder.Build());
+			if (summaries == null || summaries.Count == 0)
+				return Array.Empty<DailySummary>();
 
-			return summaries?.Select(s => new DailySummary(
+			return summaries.Select(s => new DailySummary(
 				DateTime.UnixEpoch + TimeSpan.FromDays(s.DaysSinceEpoch),
 				s.SummaryData.FromNative(),
 				new Dictionary<ReportType, DailySummaryReport?>
@@ -277,14 +279,16 @@ namespace Xamarin.ExposureNotifications
 				}));
 		}
 
-		internal static async Task<IEnumerable<ExposureWindow>?> PlatformGetExposureWindowsAsync()
+		internal static async Task<IEnumerable<ExposureWindow>> PlatformGetExposureWindowsAsync()
 		{
 			if (DailySummaryHandler == null)
 				throw new InvalidOperationException("The handler does not support Exposure Window Mode.");
 
 			var windows = await Instance.GetExposureWindowsAsync();
+			if (windows == null || windows.Count == 0)
+				return Array.Empty<ExposureWindow>();
 
-			return windows?.Select(w => new ExposureWindow(
+			return windows.Select(w => new ExposureWindow(
 				w.CalibrationConfidence.FromNativeCalibrationConfidence(),
 				DateTime.UnixEpoch + TimeSpan.FromMilliseconds(w.DateMillisSinceEpoch),
 				w.Infectiousness.FromNativeInfectiousness(),
