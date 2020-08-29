@@ -36,12 +36,7 @@ Task("samples")
 	.IsDependentOn("nuget")
 	.Does(() =>
 {
-	MSBuild ("./samples/MoshiSample.sln", c => {
-		c.Configuration = "Release";
-		c.Restore = true;
-		c.MaxCpuCount = 0;
-		c.Properties.Add("DesignTimeBuild", new [] { "false" });
-	});
+	
 });
 
 Task("ci")
