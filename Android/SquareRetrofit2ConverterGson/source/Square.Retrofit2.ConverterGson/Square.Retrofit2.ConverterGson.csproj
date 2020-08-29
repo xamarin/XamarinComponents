@@ -23,12 +23,12 @@
     <PackageLicenseFile>LICENSE.md</PackageLicenseFile>
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
     <PackageTags>gson retrofit xamarin android monodroid</PackageTags>
-    <PackageVersion>2.4.0.1</PackageVersion>
+    <PackageVersion>2.6.4</PackageVersion>
   </PropertyGroup>
     
   <ItemGroup>
-    <PackageReference Include="GoogleGson" Version="2.8.1" />
-    <PackageReference Include="Square.Retrofit2" Version="2.4.0.1" />
+    <PackageReference Include="GoogleGson" Version="2.8.5" />
+    <PackageReference Include="Square.Retrofit2" Version="2.6.4" />
   </ItemGroup>
     
   <ItemGroup>
