@@ -32,7 +32,7 @@ Information ("");
 var options = new NugetValidatorOptions {
 	Copyright = "© Microsoft Corporation. All rights reserved.",
 	Author = "Microsoft",
-	// Owner = "Microsoft", - No longer supported in nuspec: https://docs.microsoft.com/en-us/nuget/reference/msbuild-targets#pack-target
+	Owner = "", // Was "Microsoft", but this is no longer supported in nuspec: https://docs.microsoft.com/en-us/nuget/reference/msbuild-targets#pack-target
 	NeedsProjectUrl = true,
 	NeedsLicenseUrl = true,
 	ValidateRequireLicenseAcceptance = true,
