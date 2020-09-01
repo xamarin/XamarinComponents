@@ -4,7 +4,7 @@
     friendlyName += " " + name;
   }
 }
-<Project Sdk="MSBuild.Sdk.Extras/2.0.54">
+<Project Sdk="MSBuild.Sdk.Extras/2.1.2">
 
   <PropertyGroup>
     <TargetFramework>MonoAndroid90</TargetFramework>
@@ -15,11 +15,8 @@
     } else {
     <AssemblyName>@(Model.NuGetPackageId)</AssemblyName>
     }
-    <MonoAndroidResourcePrefix>Resources</MonoAndroidResourcePrefix>
-    <MonoAndroidAssetsPrefix>Assets</MonoAndroidAssetsPrefix>
     <AndroidUseLatestPlatformSdk>False</AndroidUseLatestPlatformSdk>
     <AndroidUseIntermediateDesignerFile>True</AndroidUseIntermediateDesignerFile>
-    <AndroidResgenFile>Resources\Resource.designer.cs</AndroidResgenFile>
     <AndroidDexTool>d8</AndroidDexTool>
     <AndroidEnableDesugar>true</AndroidEnableDesugar>
     <!--
