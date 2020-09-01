@@ -14,20 +14,48 @@ namespace Android.Gms.Nearby.ExposureNotification
 		public Task StopAsync()
 			=> NativeStop().CastTask();
 
+		[Obsolete("Use GetExposureWindowsAsync() instead.")]
 		public async Task<IList<ExposureInformation>> GetExposureInformationAsync(string token)
 			=> await NativeExposureInformation(token).CastTask<JavaList<ExposureInformation>>();
 
+		[Obsolete("Use GetDailySummariesAsync(DailySummariesConfig) instead.")]
 		public Task<ExposureSummary> GetExposureSummaryAsync(string token)
 			=> NativeExposureSummary(token).CastTask<ExposureSummary>();
 
 		public async Task<bool> IsEnabledAsync()
 			=> (bool)await NativeIsEnabled().CastTask<Java.Lang.Boolean>();
 
+		[Obsolete("Use GetDailySummariesAsync(IList<Java.IO.File>) instead.")]
 		public Task ProvideDiagnosisKeysAsync(IList<Java.IO.File> files, ExposureConfiguration config, string token)
 			=> NativeProvideDiagnosisKeys(files, config, token).CastTask();
 
+		public Task ProvideDiagnosisKeysAsync(IList<Java.IO.File> files)
+			=> NativeProvideDiagnosisKeys(files).CastTask();
+
 		public async Task<IList<TemporaryExposureKey>> GetTemporaryExposureKeyHistoryAsync()
 			=> await NativeTemporaryExposureKeyHistory().CastTask<JavaList<TemporaryExposureKey>>();
+
+		public async Task<long> GetVersionAsync()
+			=> (long)await NativeVersion().CastTask<Java.Lang.Long>();
+
+		public async Task<int> GetCalibrationConfidenceAsync()
+			=> (int)await NativeCalibrationConfidence().CastTask<Java.Lang.Integer>();
+
+		public async Task<IList<DailySummary>> GetDailySummariesAsync(DailySummariesConfig config)
+			=> await NativeDailySummaries(config).CastTask<JavaList<DailySummary>>();
+
+		public async Task<DiagnosisKeysDataMapping> GetDiagnosisKeysDataMappingAsync()
+			=> await NativeDiagnosisKeysDataMapping().CastTask<DiagnosisKeysDataMapping>();
+
+		public async Task SetDiagnosisKeysDataMappingAsync(DiagnosisKeysDataMapping mapping)
+			=> await NativeDiagnosisKeysDataMapping(mapping).CastTask();
+
+		public async Task<IList<ExposureWindow>> GetExposureWindowsAsync()
+			=> await NativeExposureWindows().CastTask<JavaList<ExposureWindow>>();
+
+		[Obsolete("Use GetExposureWindowsAsync() instead.")]
+		public async Task<IList<ExposureWindow>> GetExposureWindowsAsync(string token)
+			=> await NativeExposureWindows(token).CastTask<JavaList<ExposureWindow>>();
 	}
 
 	internal static class GoogleTaskExtensions
