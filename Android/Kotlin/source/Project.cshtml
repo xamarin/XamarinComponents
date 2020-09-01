@@ -37,6 +37,13 @@
   </PropertyGroup>
 
   <PropertyGroup>
+    <Version>1.0.0.0</Version>
+    <FileVersion>@(Model.MavenArtifacts[0].MavenArtifactVersion)</FileVersion>
+    <InformationalVersion>@(Model.NuGetVersion)</InformationalVersion>
+    <PackageVersion>@(Model.NuGetVersion)</PackageVersion>
+  </PropertyGroup>
+
+  <PropertyGroup>
     <PackageId>@(Model.NuGetPackageId)</PackageId>
     <Title>@(friendlyName) for Xamarin.Android</Title>
     <Summary>Xamarin.Android binding for @(friendlyName)</Summary>
@@ -49,7 +56,6 @@
     <PackageLicenseUrl>https://go.microsoft.com/fwlink/?linkid=864999</PackageLicenseUrl>
     <!-- <PackageIconUrl></PackageIconUrl> -->
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
-    <PackageVersion>@(Model.NuGetVersion)</PackageVersion>
   </PropertyGroup>
 
   <ItemGroup>
@@ -67,7 +73,6 @@
 
   <ItemGroup>
     @foreach (var art in @Model.MavenArtifacts) {
-    <None Remove="..\..\externals\@(art.MavenGroupId)\@(art.MavenArtifactId).jar" />
     <None Include="..\..\externals\@(art.MavenGroupId)\@(art.MavenArtifactId).jar" Pack="True" PackagePath="jar\@(art.MavenGroupId).@(art.MavenArtifactId).jar" Visible="false" />
     <InputJar Include="..\..\externals\@(art.MavenGroupId)\@(art.MavenArtifactId).jar" Link="Jars\@(art.MavenGroupId)\@(art.MavenArtifactId).jar" />
     }

@@ -72,7 +72,7 @@
 			"artifactId" : "annotations",
 			"version" : "13.0",
 			"nugetId" : "Xamarin.Jetbrains.Annotations",
-			"nugetVersion" : "13.0.0.1"
+			"nugetVersion" : "13.0.0.2"
 		}
 	]
 }]

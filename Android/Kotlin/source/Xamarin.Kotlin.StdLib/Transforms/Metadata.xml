@@ -13,7 +13,7 @@
   <attr path="/api/package[@name='kotlin.reflect']/interface[@name='KClass']/method[@name='getMembers' and count(parameter)=0]" name="return">java.util.Collection&lt;kotlin.reflect.KCallable&lt;java.lang.Object&gt;&gt;</attr>
   <attr path="/api/package[@name='kotlin.reflect']/interface[@name='KClass']/method[@name='getNestedClasses' and count(parameter)=0]" name="return">java.util.Collection&lt;kotlin.reflect.KClass&lt;java.lang.Object&gt;&gt;</attr>
   <attr path="/api/package[@name='kotlin.reflect']/interface[@name='KClass']/method[@name='getSealedSubclasses' and count(parameter)=0]" name="return">java.util.List&lt;kotlin.reflect.KClass&lt;java.lang.Object&gt;&gt;</attr>
-   <add-node path="/api/package/class[@name='PropertyReference']">
+  <add-node path="/api/package/class[@name='PropertyReference']">
     <method abstract="true" deprecated="not deprecated" final="false" name="getGetter" native="false" return="kotlin.reflect.KProperty.Getter&lt;java.lang.Object&gt;" static="false" synchronized="false" visibility="public" />
   </add-node>
   <add-node path="/api/package/class[@name='PropertyReference0']">
@@ -75,18 +75,18 @@
   <attr path="/api/package[@name='kotlin.jvm.internal']/class[@name='MutablePropertyReference2']/method[@name='getGetter' and count(parameter)=0]" name="managedReturn">Kotlin.Reflect.IKPropertyGetter</attr>
   <attr path="/api/package[@name='kotlin.jvm.internal']/class[@name='MutablePropertyReference2']/method[@name='getSetter' and count(parameter)=0]" name="managedReturn">Kotlin.Reflect.IKMutablePropertySetter</attr>
 
+  <!-- fix some weird issues -->
+  <attr path="/api/package[@name='kotlin.reflect']/interface[@name='KCallable']/method[@name='callBy' and count(parameter)=1 and parameter[1][@type='java.util.Map&lt;kotlin.reflect.KParameter, ? extends java.lang.Object&gt;']]/parameter[1]" name="type">java.util.Map</attr>
+  <attr path="/api/package/class[implements[@name='java.util.Collection']]/method[@name='addAll' and count(parameter)=1 and parameter[1][starts-with(@type,'java.util.Collection')]]/parameter[1]" name="type">java.util.Collection</attr>
+  <attr path="/api/package/class[implements[@name='java.util.Collection']]/method[@name='containsAll' and count(parameter)=1 and parameter[1][starts-with(@type,'java.util.Collection')]]/parameter[1]" name="type">java.util.Collection</attr>
+  <attr path="/api/package/class[implements[@name='java.util.Collection']]/method[@name='removeAll' and count(parameter)=1 and parameter[1][starts-with(@type,'java.util.Collection')]]/parameter[1]" name="type">java.util.Collection</attr>
+  <attr path="/api/package/class[implements[@name='java.util.Collection']]/method[@name='retainAll' and count(parameter)=1 and parameter[1][starts-with(@type,'java.util.Collection')]]/parameter[1]" name="type">java.util.Collection</attr>
+
   <!-- fix inheritance -->
   <attr path="/api/package/class[@extends='kotlin.jvm.internal.PrimitiveSpreadBuilder']/method[@name='getSize' and count(parameter)=1]/parameter[1]" name="type">java.lang.Object</attr>
   <attr path="/api/package/class[implements[@name='java.lang.Comparable']]/method[@name='compareTo' and count(parameter)=1]/parameter[1]" name="managedType">Java.Lang.Object</attr>
   <attr path="/api/package/class[implements[@name='java.lang.Iterable']]/method[@name='iterator' and count(parameter)=0]" name="managedReturn">Java.Util.IIterator</attr>
   <attr path="/api/package/class[implements[@name='java.util.Collection']]/method[starts-with(@name,'add-') and count(parameter)=1]/parameter[1]" name="managedType">Java.Lang.Object</attr>
-  <attr path="/api/package/class[implements[@name='java.util.Collection']]/method[@name='addAll' and count(parameter)=1 and parameter[1][starts-with(@type,'java.util.Collection')]]/parameter[1]" name="managedType">System.Collections.ICollection</attr>
-  <attr path="/api/package/class[implements[@name='java.util.Collection']]/method[@name='containsAll' and count(parameter)=1 and parameter[1][starts-with(@type,'java.util.Collection')]]/parameter[1]" name="managedType">System.Collections.ICollection</attr>
-  <attr path="/api/package[@name='kotlin.collections']/class[@name='AbstractCollection']/method[@name='containsAll' and count(parameter)=1]/parameter[1]" name="type">java.util.Collection&lt;? extends E&gt;</attr>
-  <attr path="/api/package/class[implements[@name='java.util.Collection']]/method[@name='removeAll' and count(parameter)=1 and parameter[1][starts-with(@type,'java.util.Collection')]]/parameter[1]" name="managedType">System.Collections.ICollection</attr>
-  <attr path="/api/package[@name='kotlin.collections']/class[@name='AbstractCollection']/method[@name='removeAll' and count(parameter)=1]/parameter[1]" name="type">java.util.Collection&lt;? extends E&gt;</attr>
-  <attr path="/api/package/class[implements[@name='java.util.Collection']]/method[@name='retainAll' and count(parameter)=1 and parameter[1][starts-with(@type,'java.util.Collection')]]/parameter[1]" name="managedType">System.Collections.ICollection</attr>
-  <attr path="/api/package[@name='kotlin.collections']/class[@name='AbstractCollection']/method[@name='retainAll' and count(parameter)=1]/parameter[1]" name="type">java.util.Collection&lt;? extends E&gt;</attr>
   <remove-node path="/api/package/class[implements[@name='java.util.Collection'] and @final='true']/method[@name='getSize' and count(parameter)=0]" />
   <add-node path="/api/package/class[implements[@name='java.lang.Comparable'] and @final='true' and count(method[@name='compareTo'])=0]">
     <method abstract="false" deprecated="not deprecated" final="false" name="compareTo" native="false" return="int" static="false" synchronized="false" visibility="public">
@@ -135,8 +135,7 @@
   <attr path="/api/package[@name='kotlin.collections']/class[@name='CollectionsKt___CollectionsKt']/method[@name='max' and count(parameter)=1 and parameter[1][@type='java.lang.Iterable&lt;java.lang.Float&gt;']]" name="managedName">MaxOfFloat</attr>
   <attr path="/api/package[@name='kotlin.collections']/class[@name='CollectionsKt___CollectionsKt']/method[@name='min' and count(parameter)=1 and parameter[1][@type='java.lang.Iterable&lt;java.lang.Double&gt;']]" name="managedName">MinOfDouble</attr>
   <attr path="/api/package[@name='kotlin.collections']/class[@name='CollectionsKt___CollectionsKt']/method[@name='min' and count(parameter)=1 and parameter[1][@type='java.lang.Iterable&lt;java.lang.Float&gt;']]" name="managedName">MinOfFloat</attr>
-  
-    
+
   <remove-node path="/api/package[@name='kotlin.text']/class[@name='StringsKt___StringsKt']/method[@name='drop' and count(parameter)=2 and parameter[1][@type='java.lang.String'] and parameter[2][@type='int']]" />
   <remove-node path="/api/package[@name='kotlin.text']/class[@name='StringsKt___StringsKt']/method[@name='dropLast' and count(parameter)=2 and parameter[1][@type='java.lang.String'] and parameter[2][@type='int']]" />
   <remove-node path="/api/package[@name='kotlin.text']/class[@name='StringsKt___StringsKt']/method[@name='dropLastWhile' and count(parameter)=2 and parameter[1][@type='java.lang.String'] and parameter[2][@type='kotlin.jvm.functions.Function1&lt;? super java.lang.Character, java.lang.Boolean&gt;']]" />
@@ -163,6 +162,11 @@
   <remove-node path="/api/package[@name='kotlin.text']/class[@name='StringsKt__StringsKt']/method[@name='trimEnd' and count(parameter)=2 and parameter[1][@type='java.lang.String'] and parameter[2][@type='kotlin.jvm.functions.Function1&lt;? super java.lang.Character, java.lang.Boolean&gt;']]" />
   <remove-node path="/api/package[@name='kotlin.text']/class[@name='StringsKt__StringsKt']/method[@name='trimStart' and count(parameter)=2 and parameter[1][@type='java.lang.String'] and parameter[2][@type='char...']]" />
   <remove-node path="/api/package[@name='kotlin.text']/class[@name='StringsKt__StringsKt']/method[@name='trimStart' and count(parameter)=2 and parameter[1][@type='java.lang.String'] and parameter[2][@type='kotlin.jvm.functions.Function1&lt;? super java.lang.Character, java.lang.Boolean&gt;']]" />
-  
-  <remove-node path="/api/package[@name='kotlin.jvm.internal']/class[@name='CallableReference']" />
+
+  <!-- fix companions -->
+  <attr path="/api/package/class[substring(@name,string-length(@name)-9)='.Companion']" name="managedName">CompanionStatic</attr>
+  <remove-node path="/api/package/class[substring(@name,string-length(@name)-9)='.Companion' and count(method)=0 and count(field)=0]" />
+  <attr path="/api/package/class[substring(@name,string-length(@name)-7)='.Default']" name="managedName">DefaultStatic</attr>
+  <remove-node path="/api/package/class[substring(@name,string-length(@name)-7)='.Default' and count(method)=0 and count(field)=0]" />
+
 </metadata>
