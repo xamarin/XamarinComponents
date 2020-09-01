@@ -274,7 +274,7 @@ namespace Xamarin.ExposureNotifications
 						}
 
 						return new ExposureInfo(
-							((DateTime)i.Date).ToLocalTime(),
+							(DateTime)i.Date,
 							TimeSpan.FromSeconds(i.Duration),
 							i.AttenuationValue,
 							totalRisk,

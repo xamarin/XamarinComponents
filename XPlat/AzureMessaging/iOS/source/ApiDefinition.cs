@@ -1,8 +1,8 @@
 ﻿using System;
 using ObjCRuntime;
 using Foundation;
-using UIKit;
 
+#if !__MACOS__
 namespace WindowsAzure.Messaging
 {
 	public delegate void ErrorCallback(NSError error);
@@ -157,6 +157,7 @@ namespace WindowsAzure.Messaging
 		bool SetToken (NSMutableUrlRequest request, out NSError error);
 	}
 }
+#endif
 
 namespace WindowsAzure.Messaging.NotificationHubs
 {
@@ -165,6 +166,9 @@ namespace WindowsAzure.Messaging.NotificationHubs
 	{
 		[Static, Export("startWithConnectionString:hubName:")]
 		void Start(string connectionString, string hubName);
+
+		[Static, Export("startWithInstallationManagement:")]
+		void Start(MSInstallationManagementDelegate managementDelegate);
 
 		[Static, Export("didRegisterForRemoteNotificationsWithDeviceToken:")]
 		void DidRegisterForRemoteNotifications(NSData deviceToken);
@@ -184,9 +188,6 @@ namespace WindowsAzure.Messaging.NotificationHubs
 		[Static, Export("setLifecycleDelegate:")]
 		void SetLifecycleDelegate([NullAllowed] MSInstallationLifecycleDelegate lifecycleDelegate);
 
-		[Static, Export("setManagementDelegate:")]
-		void SetManagementDelegate([NullAllowed] MSInstallationManagementDelegate managementDelegate);
-
 		[Static, Export("isEnabled")]
 		bool IsEnabled();
 
@@ -198,6 +199,12 @@ namespace WindowsAzure.Messaging.NotificationHubs
 
 		[Static, Export("getInstallationId")]
 		string GetInstallationId();
+
+		[Static, Export("getUserId")]
+		string GetUserId();
+
+		[Static, Export("setUserId:")]
+		void SetUserId(string userId);
 
 		[Static, Export("willSaveInstallation")]
 		void WillSaveInstallation();
@@ -254,9 +261,6 @@ namespace WindowsAzure.Messaging.NotificationHubs
     {
 		[Abstract, Export("notificationHub:willUpsertInstallation:completionHandler:")]
 		void WillUpsertInstallation(MSNotificationHub notificationHub, MSInstallation installation, NullableCompletionHandler completionHandler);
-
-		[Abstract, Export("notificationHub:willDeleteInstallation:completionHandler:")]
-		void WillDeleteInstallation(MSNotificationHub notificationHub, string installationId, NullableCompletionHandler completionHandler);
 	}
 
 	[Protocol, Model]
@@ -323,6 +327,9 @@ namespace WindowsAzure.Messaging.NotificationHubs
 
 		[Export("expirationTime")]
 		NSDate ExpirationTime { get; set; }
+
+		[Export("userId")]
+		string UserId { get; set; }
 
 		[Export("templates")]
 		NSDictionary<NSString, MSInstallationTemplate> Templates { get; }

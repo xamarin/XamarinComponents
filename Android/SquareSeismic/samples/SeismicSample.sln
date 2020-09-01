@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.23107.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SeismicSample", "SeismicSample\SeismicSample.csproj", "{6AB88743-C25B-452F-8274-CB014E1BC24D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Square.Seismic", "..\source\Square.Seismic\Square.Seismic.csproj", "{235C66D1-DE8E-4BCB-97AB-482D8AB59C3D}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{6AB88743-C25B-452F-8274-CB014E1BC24D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6AB88743-C25B-452F-8274-CB014E1BC24D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6AB88743-C25B-452F-8274-CB014E1BC24D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6AB88743-C25B-452F-8274-CB014E1BC24D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{235C66D1-DE8E-4BCB-97AB-482D8AB59C3D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{235C66D1-DE8E-4BCB-97AB-482D8AB59C3D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{235C66D1-DE8E-4BCB-97AB-482D8AB59C3D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{235C66D1-DE8E-4BCB-97AB-482D8AB59C3D}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

@@ -1,9 +1,9 @@
 
-var TARGET = Argument ("t", Argument ("target", "Default"));
+var TARGET = Argument ("t", Argument ("target", "ci"));
 
-var AAR_VERSION = "0.2.10";
-var NUGET_VERSION = AAR_VERSION + "-pre2";
-var AAR_URL = $"http://jcenter.bintray.com/com/microsoft/uifabric/OfficeUIFabric/{AAR_VERSION}/OfficeUIFabric-{AAR_VERSION}.aar";
+var AAR_VERSION = "0.3.9";
+var NUGET_VERSION = AAR_VERSION + "-preview01";
+var AAR_URL = $"https://jcenter.bintray.com/com/microsoft/uifabric/OfficeUIFabric/{AAR_VERSION}/OfficeUIFabric-{AAR_VERSION}.aar";
 
 Task ("externals")
 	.WithCriteria (!FileExists ("./externals/OfficeUIFabric.aar"))
@@ -59,5 +59,8 @@ Task ("clean")
 			Force = true
 		});
 });
+
+Task("ci")
+	.IsDependentOn("samples");
 
 RunTarget (TARGET);

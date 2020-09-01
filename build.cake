@@ -9,7 +9,7 @@ var POD_REPO_UPDATE = Argument ("repo-update", Argument ("pod-repo-update", fals
 
 var ROOT_DIR = MakeAbsolute((DirectoryPath)".");
 
-var COPY_OUTPUT_TO_ROOT = Argument ("copyoutputtoroot", false);
+var COPY_OUTPUT_TO_ROOT = Argument ("copyoutputtoroot", true);
 var ROOT_OUTPUT_DIR = ROOT_DIR.Combine ("output");
 
 if (string.IsNullOrEmpty (BUILD_NAMES))
