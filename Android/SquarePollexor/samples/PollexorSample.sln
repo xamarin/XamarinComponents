@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.23107.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PollexorSample", "PollexorSample\PollexorSample.csproj", "{A14C64F9-0CB0-42AA-83F9-8D37F48462B5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Square.Pollexor", "..\source\Square.Pollexor\Square.Pollexor.csproj", "{30D32CDD-AD01-4680-8329-C577935FA299}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{A14C64F9-0CB0-42AA-83F9-8D37F48462B5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A14C64F9-0CB0-42AA-83F9-8D37F48462B5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A14C64F9-0CB0-42AA-83F9-8D37F48462B5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A14C64F9-0CB0-42AA-83F9-8D37F48462B5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{30D32CDD-AD01-4680-8329-C577935FA299}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{30D32CDD-AD01-4680-8329-C577935FA299}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{30D32CDD-AD01-4680-8329-C577935FA299}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{30D32CDD-AD01-4680-8329-C577935FA299}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

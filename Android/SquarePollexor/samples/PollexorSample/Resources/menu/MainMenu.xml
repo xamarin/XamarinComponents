@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+      xmlns:app="http://schemas.android.com/apk/res-auto">
+
+  <item android:id="@+id/original"
+        android:title="@string/original"
+        app:showAsAction="always" />
+
+  <item android:id="@+id/resize"
+        android:title="@string/resize" />
+
+  <item android:id="@+id/cropGravity"
+        android:title="@string/cropGravity" />
+
+  <item android:id="@+id/format"
+        android:title="@string/format" />
+
+  <item android:id="@+id/filter"
+        android:title="@string/filter" />
+
+  <item android:id="@+id/circular"
+        android:title="@string/circular" />
+
+</menu>
