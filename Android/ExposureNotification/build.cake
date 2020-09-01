@@ -1,14 +1,14 @@
 var TARGET = Argument ("t", Argument ("target", "ci"));
 
-var NUGET_VERSION = "18.0.2-eap.6";
-var AAR_URL = "https://github.com/google/exposure-notifications-android/raw/174cf0dab62d0c7c5d2c5d1abe5bef595d0d4942/app/libs/play-services-nearby-18.0.2-eap.aar";
+var NUGET_VERSION = "19.6.1-eap.1";
+var AAR_URL = "https://github.com/google/exposure-notifications-android/raw/339ea6342c7a25a2c238588cb097627ebb020b69/app/libs/play-services-nearby-exposurenotification-1.6.1-eap.aar";
 
 Task ("externals")
 	.Does (() =>
 {
 	EnsureDirectoryExists ("./externals");
 	
-	DownloadFile(AAR_URL, "./externals/play-services-nearby-18.0.2-eap.aar");
+	DownloadFile(AAR_URL, "./externals/play-services-nearby-exposurenotification.aar");
 
 	// Update .csproj nuget versions
 	XmlPoke("./source/PlayServicesNearby/PlayServicesNearby.csproj", "/Project/PropertyGroup/PackageVersion", NUGET_VERSION);
