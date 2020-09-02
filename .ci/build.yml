@@ -318,7 +318,7 @@ jobs:
             alertWarningLevel: 'High'
 
   - ${{ if eq(variables['System.TeamProject'], 'devdiv') }}:
-    - job: checks
+    - job: ${{ parameters.name }}_checks
       displayName: 'Run required code checks'
       condition: eq('refs/heads/${{ parameters.masterBranchName }}', variables['Build.SourceBranch'])
       pool:
