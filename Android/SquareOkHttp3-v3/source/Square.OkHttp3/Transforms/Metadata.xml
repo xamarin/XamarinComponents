@@ -36,16 +36,7 @@
     <attr path="/api/package[@name='okhttp3']/interface[@name='Interceptor.Chain']/method[@name='withWriteTimeout']/parameter[1]" name="managedName">timeout</attr>
     <attr path="/api/package[@name='okhttp3']/interface[@name='Interceptor.Chain']/method[@name='withWriteTimeout']/parameter[2]" name="managedName">unit</attr>
 
-    <attr path="/api/package[@name='okhttp3']/class[@name='MediaType']/method[@name='get' and count(parameter)=1 and parameter[1][@type='java.lang.String']]/parameter[1]" name="managedName">@string</attr>
-    <attr path="/api/package[@name='okhttp3']/class[@name='MediaType']/method[@name='parse' and count(parameter)=1 and parameter[1][@type='java.lang.String']]/parameter[1]" name="managedName">@string</attr>
-
-    <attr path="/api/package[@name='okhttp3']/class[@name='Protocol']/method[@name='valueOf' and count(parameter)=1 and parameter[1][@type='java.lang.String']]/parameter[1]" name="managedName">name</attr>
-
-    <attr path="/api/package[@name='okhttp3']/class[@name='Response']/method[@name='header' and count(parameter)=1 and parameter[1][@type='java.lang.String']]/parameter[1]" name="managedName">name</attr>
-
-    <attr path="/api/package[@name='okhttp3']/class[@name='Route']/constructor[@name='Route' and count(parameter)=3 and parameter[1][@type='okhttp3.Address'] and parameter[2][@type='java.net.Proxy'] and parameter[3][@type='java.net.InetSocketAddress']]/parameter[3]" name="managedName">inetSocketAddress</attr>
-
-    <attr path="/api/package[@name='okhttp3']/class[@name='TlsVersion']/method[@name='valueOf' and count(parameter)=1 and parameter[1][@type='java.lang.String']]/parameter[1]" name="managedName">name</attr>
+    <attr path="/api/package[@name='okhttp3']/class[@name='RequestBody']/method[@name='writeTo' and count(parameter)=1 and parameter[1][@type='okio.BufferedSink']]/parameter[1]" name="managedName">sink</attr>
 
     <attr path="/api/package[@name='okhttp3']/interface[@name='WebSocket']/method[@name='close']/parameter[1]" name="managedName">code</attr>
     <attr path="/api/package[@name='okhttp3']/interface[@name='WebSocket']/method[@name='close']/parameter[2]" name="managedName">reason</attr>
