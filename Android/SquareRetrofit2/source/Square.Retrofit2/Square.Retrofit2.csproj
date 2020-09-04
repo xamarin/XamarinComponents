@@ -28,7 +28,7 @@
   </PropertyGroup>
     
   <ItemGroup>
-    <PackageReference Include="Square.OkHttp3" Version="4.0.0" />
+    <PackageReference Include="Square.OkHttp3" Version="3.14.4" />
   </ItemGroup>
     
   <ItemGroup>
