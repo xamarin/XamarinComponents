@@ -2,9 +2,8 @@
   <PropertyGroup>
     <TargetFrameworks>monoandroid9.0</TargetFrameworks>
     <IsBindingProject>true</IsBindingProject>
-    <AssemblyName>Square.Retrofit2</AssemblyName>
-    <AssemblyVersion>2.0.0.0</AssemblyVersion>
-    <RootNamespace>Square.Retrofit2</RootNamespace>
+    <AssemblyName>Square.Moshi</AssemblyName>
+    <RootNamespace>Square.Moshi</RootNamespace>
     <AndroidUseLatestPlatformSdk>False</AndroidUseLatestPlatformSdk>
     <AndroidUseIntermediateDesignerFile>True</AndroidUseIntermediateDesignerFile>
     <AndroidClassParser>class-parse</AndroidClassParser>
@@ -12,23 +11,23 @@
   </PropertyGroup>
 
   <PropertyGroup>
-    <PackageId>Square.Retrofit2</PackageId>
-    <Title>Retrofit v2 bindings for Xamarin.Android</Title>
-    <Summary>A type-safe HTTP client for Android and Java.</Summary>
-    <Description>A type-safe HTTP client for Android and Java.</Description>
+    <PackageId>Square.Moshi</PackageId>
+    <Title>Moshi bindings for Xamarin.Android</Title>
+    <Summary>Moshi is a modern JSON library for Android and Java.</Summary>
+    <Description>Moshi is a modern JSON library for Android and Java.</Description>
     <Authors>Microsoft</Authors>
     <Owners>Microsoft</Owners>
     <Copyright>© Microsoft Corporation. All rights reserved.</Copyright>
     <PackageProjectUrl>https://go.microsoft.com/fwlink/?linkid=2130312</PackageProjectUrl>
-    <PackageIcon>square.retrofit2_256x256.png</PackageIcon>
+    <PackageIcon>square.moshi_256x256.png</PackageIcon>
     <PackageLicenseFile>LICENSE.md</PackageLicenseFile>
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
-    <PackageTags>retrofit xamarin android monodroid</PackageTags>
-    <PackageVersion>2.7.2</PackageVersion>
+    <PackageTags>moshi xamarin android monodroid</PackageTags>
+    <PackageVersion>1.8.0</PackageVersion>
   </PropertyGroup>
     
   <ItemGroup>
-    <PackageReference Include="Square.OkHttp3" Version="4.0.0" />
+    <PackageReference Include="Square.OkiO" Version="1.17.4" />
   </ItemGroup>
     
   <ItemGroup>
@@ -40,6 +39,6 @@
     
   <ItemGroup>
     <None Include="..\..\License.md" Pack="true" PackagePath="LICENSE.md" />
-    <None Include="..\..\icons\square.retrofit2_256x256.png" Pack="True" PackagePath="\" />
+    <None Include="..\..\icons\square.moshi_256x256.png" Pack="True" PackagePath="\" />
   </ItemGroup>
 </Project>

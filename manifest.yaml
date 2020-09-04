@@ -325,6 +325,11 @@
   TriggerPaths: [ Android/SquareSeismic ]
   MacBuildTargets: [ ci ]
   WindowsBuildTargets: [ ci ]
+- Name: SquareMoshi
+  BuildScript: ./Android/SquareMoshi/build.cake
+  TriggerPaths: [ Android/SquareMoshi ]
+  MacBuildTargets: [ ci ]
+  WindowsBuildTargets: [ ci ]
 
 # will be XPlat in the future
 - Name: TensorFlow.Lite
