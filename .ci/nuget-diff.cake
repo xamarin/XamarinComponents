@@ -1,3 +1,4 @@
+#addin nuget:?package=Cake.FileHelpers&version=3.3.0
 
 // SECTION: Arguments and Settings
 
@@ -23,11 +24,16 @@ Information("");
 if (!GetFiles($"{ARTIFACTS_DIR}/**/*.nupkg").Any()) {
 	Warning($"##vso[task.logissue type=warning]No NuGet packages were found.");
 } else {
+	var version = "--latest";
+	var versionFile = ARTIFACTS_DIR.FullPath + ".baseversion";
+	if (FileExists(versionFile)) {
+		version = "--version=" + FileReadText(versionFile).Trim();
+	}
 	var exitCode = StartProcess("api-tools", new ProcessSettings {
 		Arguments = new ProcessArgumentBuilder()
 			.Append("nuget-diff")
 			.AppendQuoted(ARTIFACTS_DIR.FullPath)
-			.Append("--latest")
+			.Append(version)
 			.Append("--prerelease")
 			.Append("--group-ids")
 			.Append("--ignore-unchanged")
