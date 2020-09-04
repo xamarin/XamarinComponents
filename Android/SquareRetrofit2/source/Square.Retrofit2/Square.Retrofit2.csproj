@@ -24,11 +24,11 @@
     <PackageLicenseFile>LICENSE.md</PackageLicenseFile>
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
     <PackageTags>retrofit xamarin android monodroid</PackageTags>
-    <PackageVersion>2.6.4</PackageVersion>
+    <PackageVersion>2.7.2</PackageVersion>
   </PropertyGroup>
     
   <ItemGroup>
-    <PackageReference Include="Square.OkHttp3" Version="3.12.1" />
+    <PackageReference Include="Square.OkHttp3" Version="3.14.4" />
   </ItemGroup>
     
   <ItemGroup>
