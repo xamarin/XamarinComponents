@@ -20,27 +20,30 @@ Information("");
 
 // SECTION: Diff NuGets
 
-if (!GetFiles($"{ARTIFACTS_DIR}/**/*.nupkg").Any()) {
+var nupkgs = GetFiles($"{ARTIFACTS_DIR}/**/*.nupkg");
+if (!nupkgs.Any()) {
 	Warning($"##vso[task.logissue type=warning]No NuGet packages were found.");
 } else {
-	var version = "--latest";
-	var versionFile = ARTIFACTS_DIR.FullPath + ".baseversion";
-	if (FileExists(versionFile)) {
-		version = "--version=" + System.IO.File.ReadAllText(versionFile).Trim();
+	foreach (var nupkg in nupkgs) {
+		var version = "--latest";
+		var versionFile = nupkg.FullPath + ".baseversion";
+		if (FileExists(versionFile)) {
+			version = "--version=" + System.IO.File.ReadAllText(versionFile).Trim();
+		}
+		var exitCode = StartProcess("api-tools", new ProcessSettings {
+			Arguments = new ProcessArgumentBuilder()
+				.Append("nuget-diff")
+				.AppendQuoted(nupkg.FullPath)
+				.Append(version)
+				.Append("--prerelease")
+				.Append("--group-ids")
+				.Append("--ignore-unchanged")
+				.AppendSwitchQuoted("--output", OUTPUT_DIR.FullPath)
+				.AppendSwitchQuoted("--cache", CACHE_DIR.Combine("package-cache").FullPath)
+		});
+		if (exitCode != 0)
+			throw new Exception ($"api-tools exited with error code {exitCode}.");
 	}
-	var exitCode = StartProcess("api-tools", new ProcessSettings {
-		Arguments = new ProcessArgumentBuilder()
-			.Append("nuget-diff")
-			.AppendQuoted(ARTIFACTS_DIR.FullPath)
-			.Append(version)
-			.Append("--prerelease")
-			.Append("--group-ids")
-			.Append("--ignore-unchanged")
-			.AppendSwitchQuoted("--output", OUTPUT_DIR.FullPath)
-			.AppendSwitchQuoted("--cache", CACHE_DIR.Combine("package-cache").FullPath)
-	});
-	if (exitCode != 0)
-		throw new Exception ($"api-tools exited with error code {exitCode}.");
 }
 
 
