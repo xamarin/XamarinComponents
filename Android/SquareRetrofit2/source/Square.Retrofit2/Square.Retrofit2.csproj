@@ -3,6 +3,7 @@
     <TargetFrameworks>monoandroid9.0</TargetFrameworks>
     <IsBindingProject>true</IsBindingProject>
     <AssemblyName>Square.Retrofit2</AssemblyName>
+    <AssemblyVersion>2.0.0.0</AssemblyVersion>
     <RootNamespace>Square.Retrofit2</RootNamespace>
     <AndroidUseLatestPlatformSdk>False</AndroidUseLatestPlatformSdk>
     <AndroidUseIntermediateDesignerFile>True</AndroidUseIntermediateDesignerFile>
@@ -23,11 +24,11 @@
     <PackageLicenseFile>LICENSE.md</PackageLicenseFile>
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
     <PackageTags>retrofit xamarin android monodroid</PackageTags>
-    <PackageVersion>2.4.0.1</PackageVersion>
+    <PackageVersion>2.6.4</PackageVersion>
   </PropertyGroup>
     
   <ItemGroup>
-    <PackageReference Include="Square.OkHttp3" Version="3.8.0" />
+    <PackageReference Include="Square.OkHttp3" Version="3.12.1" />
   </ItemGroup>
     
   <ItemGroup>
