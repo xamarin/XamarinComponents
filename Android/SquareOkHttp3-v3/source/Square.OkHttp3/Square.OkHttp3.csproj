@@ -4,6 +4,7 @@
     <IsBindingProject>True</IsBindingProject>
     <AssemblyName>Square.OkHttp3</AssemblyName>
     <RootNamespace>Square.OkHttp3</RootNamespace>
+    <AssemblyVersion>3.0.0.0</AssemblyVersion>
     <AndroidUseLatestPlatformSdk>False</AndroidUseLatestPlatformSdk>
     <AndroidUseIntermediateDesignerFile>True</AndroidUseIntermediateDesignerFile>
     <AndroidClassParser>class-parse</AndroidClassParser>
