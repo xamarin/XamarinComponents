@@ -1,4 +1,3 @@
-#addin nuget:?package=Cake.FileHelpers&version=3.3.0
 
 // SECTION: Arguments and Settings
 
@@ -27,7 +26,7 @@ if (!GetFiles($"{ARTIFACTS_DIR}/**/*.nupkg").Any()) {
 	var version = "--latest";
 	var versionFile = ARTIFACTS_DIR.FullPath + ".baseversion";
 	if (FileExists(versionFile)) {
-		version = "--version=" + FileReadText(versionFile).Trim();
+		version = "--version=" + System.IO.File.ReadAllText(versionFile).Trim();
 	}
 	var exitCode = StartProcess("api-tools", new ProcessSettings {
 		Arguments = new ProcessArgumentBuilder()

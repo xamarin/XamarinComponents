@@ -31,7 +31,7 @@ Task("nuget")
 		c.Properties.Add("DesignTimeBuild", new [] { "false" });
 	});
 
-	FileWriteText($"./output/Square.OkHttp3.{NUGET_VERSION}.nupkg.baseversion", "3.14.4");
+	System.IO.File.WriteAllText($"./output/Square.OkHttp3.{NUGET_VERSION}.nupkg.baseversion", "3.14.4");
 });
 
 Task("samples")
