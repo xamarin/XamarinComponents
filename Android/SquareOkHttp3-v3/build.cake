@@ -1,5 +1,8 @@
 var TARGET = Argument ("t", Argument ("target", "ci"));
 
+// this is used for the NuGet diff as v4 is a major changes
+var NUGET_OLD_VERSION = "3.14.4";
+
 var NUGET_VERSION = "3.14.9";
 
 var JAR_VERSION = "3.14.9";
@@ -31,7 +34,7 @@ Task("nuget")
 		c.Properties.Add("DesignTimeBuild", new [] { "false" });
 	});
 
-	System.IO.File.WriteAllText($"./output/Square.OkHttp3.{NUGET_VERSION}.nupkg.baseversion", "3.14.4");
+	System.IO.File.WriteAllText($"./output/Square.OkHttp3.{NUGET_VERSION}.nupkg.baseversion", NUGET_OLD_VERSION);
 });
 
 Task("samples")
