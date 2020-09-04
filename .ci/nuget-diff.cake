@@ -27,7 +27,7 @@ if (!GetFiles($"{ARTIFACTS_DIR}/**/*.nupkg").Any()) {
 		Arguments = new ProcessArgumentBuilder()
 			.Append("nuget-diff")
 			.AppendQuoted(ARTIFACTS_DIR.FullPath)
-			.Append("--version=3.14.4")
+			.Append("--latest")
 			.Append("--prerelease")
 			.Append("--group-ids")
 			.Append("--ignore-unchanged")
