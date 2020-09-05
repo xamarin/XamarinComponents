@@ -102,7 +102,25 @@
   <attr path="/api/package[@name='kotlin.ranges']/class[@name='LongRange']/method[@name='contains' and count(parameter)=1 and parameter[1][@type='long']]/parameter[1]" name="managedType">Java.Lang.Long</attr>
   <attr path="/api/package[@name='kotlin.ranges']/class[@name='UIntRange']/method[starts-with(@name,'contains-') and count(parameter)=1 and parameter[1][@type='uint']]/parameter[1]" name="managedType">Kotlin.UInt</attr>
   <attr path="/api/package[@name='kotlin.ranges']/class[@name='ULongRange']/method[starts-with(@name,'contains-') and count(parameter)=1 and parameter[1][@type='ulong']]/parameter[1]" name="managedType">Kotlin.ULong</attr>
-
+  
+ 
+    
+  <!-- fix Object.implicit obsolete -->
+  <attr path="/api/package[@name='kotlin.collections']/class[@name='ULongIterator']/method[@name='next-s-VKNKU' and count(parameter)=0]" name="managedReturn">ulong</attr>
+  <attr path="/api/package[@name='kotlin.collections']/class[@name='UByteIterator']/method[@name='next-w2LRezQ' and count(parameter)=0]" name="managedReturn">byte</attr>
+  <attr path="/api/package[@name='kotlin.collections']/class[@name='UIntIterator']/method[@name='next-pVg5ArA' and count(parameter)=0]" name="managedReturn">uint</attr>
+  <attr path="/api/package[@name='kotlin.collections']/class[@name='UShortIterator']/method[@name='next-Mh2AYeg' and count(parameter)=0]" name="managedReturn">ushort</attr>
+    
+  <attr path="/api/package[@name='kotlin.ranges']/class[@name='ULongRange']/method[@name='getStart-s-VKNKU' and count(parameter)=0]" name="managedName">GetStart</attr>
+  <attr path="/api/package[@name='kotlin.ranges']/class[@name='ULongRange']/method[@name='getStart-s-VKNKU' and count(parameter)=0]" name="propertyName"></attr>
+  <attr path="/api/package[@name='kotlin.ranges']/class[@name='ULongRange']/method[@name='getEndInclusive-s-VKNKU' and count(parameter)=0]" name="managedName">GetEndInclusive</attr>
+  <attr path="/api/package[@name='kotlin.ranges']/class[@name='ULongRange']/method[@name='getEndInclusive-s-VKNKU' and count(parameter)=0]" name="propertyName"></attr>
+    
+  <attr path="/api/package[@name='kotlin.ranges']/class[@name='UIntRange']/method[@name='getStart-pVg5ArA' and count(parameter)=0]" name="managedName">GetStart</attr>
+  <attr path="/api/package[@name='kotlin.ranges']/class[@name='UIntRange']/method[@name='getStart-pVg5ArA' and count(parameter)=0]" name="propertyName"></attr>
+  <attr path="/api/package[@name='kotlin.ranges']/class[@name='UIntRange']/method[@name='getEndInclusive-pVg5ArA' and count(parameter)=0]" name="managedName">GetEndInclusive</attr>
+  <attr path="/api/package[@name='kotlin.ranges']/class[@name='UIntRange']/method[@name='getEndInclusive-pVg5ArA' and count(parameter)=0]" name="propertyName"></attr>
+    
   <!--  fix up the clash with the abstract members -->
   <attr path="/api/package[@name='kotlin.collections']/class[@name='AbstractCollection']/method[@name='getSize' and count(parameter)=0]" name="managedName">GetSize</attr>
   <attr path="/api/package[@name='kotlin.collections']/class[@name='AbstractCollection']/method[@name='getSize' and count(parameter)=0]" name="propertyName"></attr>
@@ -130,12 +148,25 @@
   <attr path="/api/package[@name='kotlin.sequences']/class[@name='SequencesKt___SequencesKt']/method[@name='max' and count(parameter)=1 and parameter[1][@type='kotlin.sequences.Sequence&lt;java.lang.Float&gt;']]" name="managedName">MaxOfFloat</attr>
   <attr path="/api/package[@name='kotlin.sequences']/class[@name='SequencesKt___SequencesKt']/method[@name='min' and count(parameter)=1 and parameter[1][@type='kotlin.sequences.Sequence&lt;java.lang.Double&gt;']]" name="managedName">MinOfDouble</attr>
   <attr path="/api/package[@name='kotlin.sequences']/class[@name='SequencesKt___SequencesKt']/method[@name='min' and count(parameter)=1 and parameter[1][@type='kotlin.sequences.Sequence&lt;java.lang.Float&gt;']]" name="managedName">MinOfFloat</attr>
+  
+  <attr path="/api/package[@name='kotlin.sequences']/class[@name='SequencesKt___SequencesKt']/method[@name='maxOrNull' and count(parameter)=1 and parameter[1][@type='kotlin.sequences.Sequence&lt;java.lang.Double&gt;']]" name="managedName">MaxOrNullOfDouble</attr>
+  <attr path="/api/package[@name='kotlin.sequences']/class[@name='SequencesKt___SequencesKt']/method[@name='maxOrNull' and count(parameter)=1 and parameter[1][@type='kotlin.sequences.Sequence&lt;java.lang.Float&gt;']]" name="managedName">MaxOrNullOfFloat</attr>
+  <attr path="/api/package[@name='kotlin.sequences']/class[@name='SequencesKt___SequencesKt']/method[@name='minOrNull' and count(parameter)=1 and parameter[1][@type='kotlin.sequences.Sequence&lt;java.lang.Double&gt;']]" name="managedName">MinOrNullOfDouble</attr>
+  <attr path="/api/package[@name='kotlin.sequences']/class[@name='SequencesKt___SequencesKt']/method[@name='minOrNull' and count(parameter)=1 and parameter[1][@type='kotlin.sequences.Sequence&lt;java.lang.Float&gt;']]" name="managedName">MinOrNullOfFloat</attr>
 
   <attr path="/api/package[@name='kotlin.collections']/class[@name='CollectionsKt___CollectionsKt']/method[@name='max' and count(parameter)=1 and parameter[1][@type='java.lang.Iterable&lt;java.lang.Double&gt;']]" name="managedName">MaxOfDouble</attr>
   <attr path="/api/package[@name='kotlin.collections']/class[@name='CollectionsKt___CollectionsKt']/method[@name='max' and count(parameter)=1 and parameter[1][@type='java.lang.Iterable&lt;java.lang.Float&gt;']]" name="managedName">MaxOfFloat</attr>
   <attr path="/api/package[@name='kotlin.collections']/class[@name='CollectionsKt___CollectionsKt']/method[@name='min' and count(parameter)=1 and parameter[1][@type='java.lang.Iterable&lt;java.lang.Double&gt;']]" name="managedName">MinOfDouble</attr>
   <attr path="/api/package[@name='kotlin.collections']/class[@name='CollectionsKt___CollectionsKt']/method[@name='min' and count(parameter)=1 and parameter[1][@type='java.lang.Iterable&lt;java.lang.Float&gt;']]" name="managedName">MinOfFloat</attr>
-
+    
+  <attr path="/api/package[@name='kotlin.collections']/class[@name='CollectionsKt___CollectionsKt']/method[@name='maxOrNull' and count(parameter)=1 and parameter[1][@type='java.lang.Iterable&lt;java.lang.Double&gt;']]" name="managedName">MaxOrNullOfDouble</attr>
+  <attr path="/api/package[@name='kotlin.collections']/class[@name='CollectionsKt___CollectionsKt']/method[@name='maxOrNull' and count(parameter)=1 and parameter[1][@type='java.lang.Iterable&lt;java.lang.Float&gt;']]" name="managedName">MaxOrNullOfFloat</attr>
+  <attr path="/api/package[@name='kotlin.collections']/class[@name='CollectionsKt___CollectionsKt']/method[@name='minOrNull' and count(parameter)=1 and parameter[1][@type='java.lang.Iterable&lt;java.lang.Double&gt;']]" name="managedName">MinOrNullOfDouble</attr>
+  <attr path="/api/package[@name='kotlin.collections']/class[@name='CollectionsKt___CollectionsKt']/method[@name='minOrNull' and count(parameter)=1 and parameter[1][@type='java.lang.Iterable&lt;java.lang.Float&gt;']]" name="managedName">MinOrNullOfFloat</attr>
+  
+  <attr path="/api/package[@name='kotlin.time']/class[@name='Duration']/method[@name='div-LRDsOJo' and count(parameter)=2 and parameter[1][@type='double'] and parameter[2][@type='double']]" name="managedName">DivOther</attr>
+  <attr path="/api/package[@name='kotlin.time']/class[@name='Duration']/method[@name='div-UwyO8pc' and count(parameter)=2 and parameter[1][@type='double'] and parameter[2][@type='double']]" name="managedName">DivScale</attr>
+    
   <remove-node path="/api/package[@name='kotlin.text']/class[@name='StringsKt___StringsKt']/method[@name='drop' and count(parameter)=2 and parameter[1][@type='java.lang.String'] and parameter[2][@type='int']]" />
   <remove-node path="/api/package[@name='kotlin.text']/class[@name='StringsKt___StringsKt']/method[@name='dropLast' and count(parameter)=2 and parameter[1][@type='java.lang.String'] and parameter[2][@type='int']]" />
   <remove-node path="/api/package[@name='kotlin.text']/class[@name='StringsKt___StringsKt']/method[@name='dropLastWhile' and count(parameter)=2 and parameter[1][@type='java.lang.String'] and parameter[2][@type='kotlin.jvm.functions.Function1&lt;? super java.lang.Character, java.lang.Boolean&gt;']]" />
@@ -150,6 +181,7 @@
   <remove-node path="/api/package[@name='kotlin.text']/class[@name='StringsKt___StringsKt']/method[@name='takeLast' and count(parameter)=2 and parameter[1][@type='java.lang.String'] and parameter[2][@type='int']]" />
   <remove-node path="/api/package[@name='kotlin.text']/class[@name='StringsKt___StringsKt']/method[@name='takeLastWhile' and count(parameter)=2 and parameter[1][@type='java.lang.String'] and parameter[2][@type='kotlin.jvm.functions.Function1&lt;? super java.lang.Character, java.lang.Boolean&gt;']]" />
   <remove-node path="/api/package[@name='kotlin.text']/class[@name='StringsKt___StringsKt']/method[@name='takeWhile' and count(parameter)=2 and parameter[1][@type='java.lang.String'] and parameter[2][@type='kotlin.jvm.functions.Function1&lt;? super java.lang.Character, java.lang.Boolean&gt;']]" />
+  <remove-node path="/api/package[@name='kotlin.text']/class[@name='StringsKt___StringsKt']/method[@name='onEachIndexed' and count(parameter)=2 and parameter[1][@type='S'] and parameter[2][@type='kotlin.jvm.functions.Function2&lt;? super java.lang.Integer, ? super java.lang.Character, kotlin.Unit&gt;']]" />>
   <remove-node path="/api/package[@name='kotlin.text']/class[@name='StringsKt__StringsKt']/method[@name='padEnd' and count(parameter)=3 and parameter[1][@type='java.lang.String'] and parameter[2][@type='int'] and parameter[3][@type='char']]" />
   <remove-node path="/api/package[@name='kotlin.text']/class[@name='StringsKt__StringsKt']/method[@name='padStart' and count(parameter)=3 and parameter[1][@type='java.lang.String'] and parameter[2][@type='int'] and parameter[3][@type='char']]" />
   <remove-node path="/api/package[@name='kotlin.text']/class[@name='StringsKt__StringsKt']/method[@name='removePrefix' and count(parameter)=2 and parameter[1][@type='java.lang.String'] and parameter[2][@type='java.lang.CharSequence']]" />
@@ -162,7 +194,7 @@
   <remove-node path="/api/package[@name='kotlin.text']/class[@name='StringsKt__StringsKt']/method[@name='trimEnd' and count(parameter)=2 and parameter[1][@type='java.lang.String'] and parameter[2][@type='kotlin.jvm.functions.Function1&lt;? super java.lang.Character, java.lang.Boolean&gt;']]" />
   <remove-node path="/api/package[@name='kotlin.text']/class[@name='StringsKt__StringsKt']/method[@name='trimStart' and count(parameter)=2 and parameter[1][@type='java.lang.String'] and parameter[2][@type='char...']]" />
   <remove-node path="/api/package[@name='kotlin.text']/class[@name='StringsKt__StringsKt']/method[@name='trimStart' and count(parameter)=2 and parameter[1][@type='java.lang.String'] and parameter[2][@type='kotlin.jvm.functions.Function1&lt;? super java.lang.Character, java.lang.Boolean&gt;']]" />
-
+  
   <!-- fix companions -->
   <attr path="/api/package/class[substring(@name,string-length(@name)-9)='.Companion']" name="managedName">CompanionStatic</attr>
   <remove-node path="/api/package/class[substring(@name,string-length(@name)-9)='.Companion' and count(method)=0 and count(field)=0]" />
