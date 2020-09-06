@@ -300,7 +300,7 @@ jobs:
       # after the build is complete
       - task: PublishBuildArtifacts@1
         displayName: 'Publish artifacts'
-        condition: or(eq(parameters.publishJob, ''), eq(parameters.publishJob, variables['System.JobName']))
+        condition: or(eq('${{ parameters.runChecks }}', ''), eq('${{ parameters.runChecks }}', variables['System.JobName']))
         inputs:
           PathToPublish: ${{ parameters.artifactsPath }}
           ArtifactName: nuget
