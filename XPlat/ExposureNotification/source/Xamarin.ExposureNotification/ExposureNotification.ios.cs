@@ -17,20 +17,27 @@ namespace Xamarin.ExposureNotifications
 	{
 		static ENManager? manager;
 
-		static Lazy<bool> isDailySummaries = new Lazy<bool>(() =>
+		static readonly Lazy<bool> isDailySummaries = new Lazy<bool>(() =>
 		{
-			//var isCorrectOS = UIDevice.CurrentDevice.CheckSystemVersion(13, 7);
-			//if (!isCorrectOS)
-			//	return false;
+			var isCorrectOS = UIDevice.CurrentDevice.CheckSystemVersion(13, 7);
+			if (!isCorrectOS)
+				return false;
 
 			if (!NSBundle.MainBundle.InfoDictionary.TryGetValue(new NSString("ENAPIVersion"), out var version))
 				return false;
 
-			//if(version )
+			if (!(version is NSNumber number) || (number.Int32Value != 1 && number.Int32Value != 2))
+				throw new InvalidOperationException("Value of ENAPIVersion was not a valid number (1 or 2).");
 
-			//// TODO: check plist for ENAPIVersion 2
-			//// ENAPIVersion
-			//if (DailySummaryHandler) { }
+			if (number.Int32Value == 2)
+			{
+				// Unlike Android where this is optional, iOS performs entirely differently depending on the version
+				if (DailySummaryHandler == null)
+					throw new NotImplementedException($"Missing an implementation for {nameof(IExposureNotificationDailySummaryHandler)}");
+
+				return true;
+			}
+
 			return false;
 		});
 
