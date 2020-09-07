@@ -8,13 +8,31 @@ using System.Threading.Tasks;
 using BackgroundTasks;
 using ExposureNotifications;
 using Foundation;
+using UIKit;
 using Xamarin.Essentials;
 
 namespace Xamarin.ExposureNotifications
 {
 	public static partial class ExposureNotification
 	{
-		static ENManager manager;
+		static ENManager? manager;
+
+		static Lazy<bool> isDailySummaries = new Lazy<bool>(() =>
+		{
+			//var isCorrectOS = UIDevice.CurrentDevice.CheckSystemVersion(13, 7);
+			//if (!isCorrectOS)
+			//	return false;
+
+			if (!NSBundle.MainBundle.InfoDictionary.TryGetValue(new NSString("ENAPIVersion"), out var version))
+				return false;
+
+			//if(version )
+
+			//// TODO: check plist for ENAPIVersion 2
+			//// ENAPIVersion
+			//if (DailySummaryHandler) { }
+			return false;
+		});
 
 		static async Task<ENManager> GetManagerAsync()
 		{
@@ -27,39 +45,53 @@ namespace Xamarin.ExposureNotifications
 			return manager;
 		}
 
+		public static bool IsDailySummaries => isDailySummaries.Value;
+
 		static async Task<ENExposureConfiguration> GetConfigurationAsync()
 		{
 			var c = await Handler.GetConfigurationAsync();
 
-			var nc = new ENExposureConfiguration
+			return IsDailySummaries
+				? GetCofig(c)
+				: GetDailyConfig(c);
+
+			static ENExposureConfiguration GetCofig(Configuration c)
 			{
-				AttenuationLevelValues = c.AttenuationScores,
-				DurationLevelValues = c.DurationScores,
-				DaysSinceLastExposureLevelValues = c.DaysSinceLastExposureScores,
-				TransmissionRiskLevelValues = c.TransmissionRiskScores,
-				AttenuationWeight = c.AttenuationWeight,
-				DaysSinceLastExposureWeight = c.DaysSinceLastExposureWeight,
-				DurationWeight = c.DurationWeight,
-				TransmissionRiskWeight = c.TransmissionWeight,
-				MinimumRiskScore = (byte)c.MinimumRiskScore,
-			};
+				var nc = new ENExposureConfiguration
+				{
+					AttenuationLevelValues = c.AttenuationScores,
+					DurationLevelValues = c.DurationScores,
+					DaysSinceLastExposureLevelValues = c.DaysSinceLastExposureScores,
+					TransmissionRiskLevelValues = c.TransmissionRiskScores,
+					AttenuationWeight = c.AttenuationWeight,
+					DaysSinceLastExposureWeight = c.DaysSinceLastExposureWeight,
+					DurationWeight = c.DurationWeight,
+					TransmissionRiskWeight = c.TransmissionWeight,
+					MinimumRiskScore = (byte)c.MinimumRiskScore,
+				};
 
-			var metadata = new NSMutableDictionary();
-			metadata.SetValueForKey(new NSNumber(c.MinimumRiskScore), new NSString("minimumRiskScoreFullRange"));
+				var metadata = new NSMutableDictionary();
+				metadata.SetValueForKey(new NSNumber(c.MinimumRiskScore), new NSString("minimumRiskScoreFullRange"));
 
-			if (c.DurationAtAttenuationThresholds != null)
-			{
-				if (c.DurationAtAttenuationThresholds.Length < 2)
-					throw new ArgumentOutOfRangeException(nameof(c.DurationAtAttenuationThresholds), "Must be an array of length 2");
+				if (c.DurationAtAttenuationThresholds != null)
+				{
+					if (c.DurationAtAttenuationThresholds.Length < 2)
+						throw new ArgumentOutOfRangeException(nameof(c.DurationAtAttenuationThresholds), "Must be an array of length 2");
 
-				var attKey = new NSString("attenuationDurationThresholds");
-				var attValue = NSArray.FromObjects(2, c.DurationAtAttenuationThresholds[0], c.DurationAtAttenuationThresholds[1]);
-				metadata.SetValueForKey(attValue, attKey);
+					var attKey = new NSString("attenuationDurationThresholds");
+					var attValue = NSArray.FromObjects(2, c.DurationAtAttenuationThresholds[0], c.DurationAtAttenuationThresholds[1]);
+					metadata.SetValueForKey(attValue, attKey);
+				}
+
+				nc.Metadata = metadata;
+
+				return nc;
 			}
 
-			nc.Metadata = metadata;
-
-			return nc;
+			static ENExposureConfiguration GetDailyConfig(Configuration c)
+			{
+				return null;
+			}
 		}
 
 		static void PlatformInit()

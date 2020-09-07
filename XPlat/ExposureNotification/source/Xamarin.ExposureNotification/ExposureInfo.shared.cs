@@ -40,7 +40,7 @@ namespace Xamarin.ExposureNotifications
 		}
 
 		[EditorBrowsable(EditorBrowsableState.Never)]
-		public ExposureDetectionSummary(int daysSinceLastExposure, ulong matchedKeyCount, byte maximumRiskScore, TimeSpan[] attenuationDurations, int summationRiskScore)
+		public ExposureDetectionSummary(int daysSinceLastExposure, ulong matchedKeyCount, byte maximumRiskScore, TimeSpan[]? attenuationDurations, int summationRiskScore)
 			: this(daysSinceLastExposure, matchedKeyCount, (int)maximumRiskScore, attenuationDurations, summationRiskScore)
 		{
 		}
@@ -50,7 +50,7 @@ namespace Xamarin.ExposureNotifications
 		{
 		}
 
-		public ExposureDetectionSummary(int daysSinceLastExposure, ulong matchedKeyCount, int highestRiskScore, TimeSpan[] attenuationDurations, int summationRiskScore)
+		public ExposureDetectionSummary(int daysSinceLastExposure, ulong matchedKeyCount, int highestRiskScore, TimeSpan[]? attenuationDurations, int summationRiskScore)
 		{
 			DaysSinceLastExposure = daysSinceLastExposure;
 			MatchedKeyCount = matchedKeyCount;
@@ -69,7 +69,7 @@ namespace Xamarin.ExposureNotifications
 
 		public int HighestRiskScore { get; }
 
-		public TimeSpan[] AttenuationDurations { get; }
+		public TimeSpan[]? AttenuationDurations { get; }
 
 		public int SummationRiskScore { get; }
 	}

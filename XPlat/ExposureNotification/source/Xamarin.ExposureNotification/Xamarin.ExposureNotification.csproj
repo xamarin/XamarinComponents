@@ -56,7 +56,7 @@
 		<Compile Include="*.ios.*.cs" />
 
 		<PackageReference Include="System.IO.Compression" Version="4.3.0" />
-		<PackageReference Include="Xamarin.iOS.ExposureNotification" Version="1.0.0" />
+		<PackageReference Include="Xamarin.iOS.ExposureNotification" Version="1.2.0" />
 	</ItemGroup>
 
 </Project>
