@@ -8,7 +8,7 @@
     <OutputType>Library</OutputType>
     <RootNamespace>KotlinSampleLibrary</RootNamespace>
     <AssemblyName>KotlinSampleLibrary</AssemblyName>
-    <TargetFrameworkVersion>v9.0</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v10.0</TargetFrameworkVersion>
     <MonoAndroidResourcePrefix>Resources</MonoAndroidResourcePrefix>
     <MonoAndroidAssetsPrefix>Assets</MonoAndroidAssetsPrefix>
     <AndroidClassParser>class-parse</AndroidClassParser>
