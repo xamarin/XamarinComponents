@@ -1,7 +1,7 @@
 var TARGET = Argument ("t", Argument ("target", "ci"));
 
-var IOS_VERSION = "3.1.0";
-var IOS_NUGET_VERSION = "3.1.0";
+var IOS_VERSION = "3.1.1";
+var IOS_NUGET_VERSION = "3.1.1";
 var IOS_URL = $"https://github.com/Azure/azure-notificationhubs-ios/releases/download/{IOS_VERSION}/WindowsAzureMessaging-SDK-Apple-{IOS_VERSION}.zip";
 
 var ANDROID_VERSION = "1.1.1";
