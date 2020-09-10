@@ -8,6 +8,7 @@ using Android.Support.V7.App;
 using Android.Widget;
 using Java.Util;
 
+using Kotlin;
 using Kotlin.Jvm;
 using Kotlin.Jvm.Internal;
 using Kotlin.Reflect.Full;
@@ -56,8 +57,19 @@ namespace KotlinSample
 			var properties = KClasses.GetMemberProperties(kotlinClass);
 			var firstProp = properties.FirstOrDefault();
 			textView.Text += $"\nThere are {properties.Count} properties in TestClass, the first is {firstProp.Name}: {firstProp.ReturnType}.\n\n";
+
+
+            // test is Event interface
+            for (int i = 0; i < 5; i++)
+			{
+				textView.Text += $"{instance.TestIsEvent(3*i)}\n";
+			}
+
+			// test bit operations from kotlin 1.4
+			textView.Text += instance.TestBitOperations();
 		}
-	}
+
+}
 
 	public class Set : Kotlin.Collections.AbstractMutableSet
 	{

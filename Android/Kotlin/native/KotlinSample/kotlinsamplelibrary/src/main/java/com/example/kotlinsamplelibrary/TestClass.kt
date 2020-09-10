@@ -10,4 +10,21 @@ class TestClass {
         array.forEach { str -> list.add(str) }
         return list
     }
+
+    fun TestIsEvent(i: Int): String {
+        return "Is ${i} even? - ${isEven.accept(i)}"
+    }
+
+    fun interface IntPredicate {
+        fun accept(i: Int): Boolean
+    }
+
+    private val isEven = IntPredicate { it % 2 == 0 }
+
+    fun TestBitOperations() : String {
+        val number = "1010000".toUInt(radix = 2)
+        return "countOneBits:${number.countOneBits()},\n" +
+                "countTrailingZeroBits:${number.countTrailingZeroBits()},\n" +
+                "takeHighestOneBit:${number.takeHighestOneBit().toString(2)}\n\n"
+    }
 }
