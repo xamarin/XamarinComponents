@@ -1,0 +1,24 @@
+<metadata>
+  <!--
+  This sample removes the class: android.support.v4.content.AsyncTaskLoader.LoadTask:
+  <remove-node path="/api/package[@name='android.support.v4.content']/class[@name='AsyncTaskLoader.LoadTask']" />
+  
+  This sample removes the method: android.support.v4.content.CursorLoader.loadInBackground:
+  <remove-node path="/api/package[@name='android.support.v4.content']/class[@name='CursorLoader']/method[@name='loadInBackground']" />
+  -->
+
+  <attr path="/api/package[@name='okhttp3.ws']" name="managedName">Square.OkHttp3.WS</attr>
+  
+  <remove-node path="/api/package[starts-with(@name, 'okhttp3.internal.ws')]" />
+  <remove-node path="/api/package/class[@visibility='']" />
+
+  <attr path="/api/package[@name='okhttp3.ws']/interface[@name='WebSocketListener']/method[@name='onClose']/parameter[1]" name="managedName">code</attr>
+  <attr path="/api/package[@name='okhttp3.ws']/interface[@name='WebSocketListener']/method[@name='onClose']/parameter[2]" name="managedName">reason</attr>
+  <attr path="/api/package[@name='okhttp3.ws']/interface[@name='WebSocketListener']/method[@name='onPong']/parameter[1]" name="managedName">payload</attr>
+  <attr path="/api/package[@name='okhttp3.ws']/interface[@name='WebSocketListener']/method[@name='onMessage']/parameter[1]" name="managedName">message</attr>
+  <attr path="/api/package[@name='okhttp3.ws']/interface[@name='WebSocketListener']/method[@name='onFailure']/parameter[1]" name="managedName">exception</attr>
+  <attr path="/api/package[@name='okhttp3.ws']/interface[@name='WebSocketListener']/method[@name='onFailure']/parameter[2]" name="managedName">response</attr>
+  <attr path="/api/package[@name='okhttp3.ws']/interface[@name='WebSocketListener']/method[@name='onOpen']/parameter[1]" name="managedName">webSocket</attr>
+  <attr path="/api/package[@name='okhttp3.ws']/interface[@name='WebSocketListener']/method[@name='onOpen']/parameter[2]" name="managedName">response</attr>
+
+</metadata>

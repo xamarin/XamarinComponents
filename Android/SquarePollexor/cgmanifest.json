@@ -1,0 +1,16 @@
+{
+  "Registrations": [
+    {
+      "Component": {
+        "Type": "Maven",
+        "Maven": {
+          "ArtifactId": "pollexor",
+          "GroupId": "com.squareup",
+          "Version": "2.0.4",
+          "NuGetId": "Square.Pollexor"
+        }
+      }
+    }
+  ],
+  "Version": 1
+}

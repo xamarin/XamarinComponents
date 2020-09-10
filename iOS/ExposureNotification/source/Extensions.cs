@@ -18,7 +18,7 @@ namespace ExposureNotifications {
 	}
 
 	public static class ENRiskWeightRange {
-		
+
 		public static byte Default { get; } = 1;
 		public static byte Min { get; } = byte.MinValue;
 		public static byte Max { get; } = 100;
