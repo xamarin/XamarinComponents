@@ -303,6 +303,7 @@ jobs:
           if (Test-Path "${{ parameters.signListPath }}" -and (-not Test-Path "${{ parameters.artifactsPath }}\SignList.xml")) {
             Copy-Item "${{ parameters.signListPath }}" "${{ parameters.artifactsPath }}\SignList.xml"
           }
+        displayName: 'Copy SignList.xml to the nuget artifact'
       - task: PublishBuildArtifacts@1
         displayName: 'Publish artifacts'
         condition: or(eq('${{ parameters.publishJob }}', ''), eq('${{ parameters.publishJob }}', variables['System.JobName']))
