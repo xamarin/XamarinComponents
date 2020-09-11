@@ -300,8 +300,15 @@ jobs:
         displayName: 'Generate API diff'
       # after the build is complete
       - pwsh: |
-          if ((Test-Path "${{ parameters.signListPath }}") -and !(Test-Path "${{ parameters.artifactsPath }}\SignList.xml")) {
+          $srcExists = (Test-Path "${{ parameters.signListPath }}")
+          $dstExists = (Test-Path "${{ parameters.artifactsPath }}\SignList.xml")
+          if ($srcExists -and !$dstExists) {
             Copy-Item "${{ parameters.signListPath }}" "${{ parameters.artifactsPath }}\SignList.xml"
+            Write-Host "Copied ${{ parameters.signListPath }} to ${{ parameters.artifactsPath }}\SignList.xml"
+          } else if (!$srcExists) {
+            Write-Host "${{ parameters.signListPath }} did not exist, nothing copied."
+          } else if ($dstExists) {
+            Write-Host "${{ parameters.artifactsPath }}\SignList.xml already existed, nothing copied."
           }
         displayName: 'Copy SignList.xml to the nuget artifact'
       - task: PublishBuildArtifacts@1
