@@ -300,7 +300,7 @@ jobs:
         displayName: 'Generate API diff'
       # after the build is complete
       - pwsh: |
-          if (Test-Path "${{ parameters.signListPath }}" -and (-not Test-Path "${{ parameters.artifactsPath }}\SignList.xml")) {
+          if (Test-Path "${{ parameters.signListPath }}" -and !(Test-Path "${{ parameters.artifactsPath }}\SignList.xml")) {
             Copy-Item "${{ parameters.signListPath }}" "${{ parameters.artifactsPath }}\SignList.xml"
           }
         displayName: 'Copy SignList.xml to the nuget artifact'
