@@ -325,6 +325,11 @@
   TriggerPaths: [ Android/SquareRetrofit2ConverterGson ]
   MacBuildTargets: [ ci ]
   WindowsBuildTargets: [ ci ]
+- Name: SquareRetrofit2ConverterMoshi
+  BuildScript: ./Android/SquareRetrofit2ConverterMoshi/build.cake
+  TriggerPaths: [ Android/SquareRetrofit2ConverterMoshi ]
+  MacBuildTargets: [ ci ]
+  WindowsBuildTargets: [ ci ]
 - Name: SquareSeismic
   BuildScript: ./Android/SquareSeismic/build.cake
   TriggerPaths: [ Android/SquareSeismic ]

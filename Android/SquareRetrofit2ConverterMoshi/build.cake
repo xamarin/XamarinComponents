@@ -3,24 +3,24 @@ var TARGET = Argument ("t", Argument ("target", "ci"));
 var NUGET_VERSION = "2.7.2";
 
 var JAR_VERSION = "2.7.2";
-var JAR_URL = $"https://repo1.maven.org/maven2/com/squareup/retrofit2/converter-gson/{JAR_VERSION}/converter-gson-{JAR_VERSION}.jar";
+var JAR_URL = $"https://repo1.maven.org/maven2/com/squareup/retrofit2/converter-moshi/{JAR_VERSION}/converter-moshi-{JAR_VERSION}.jar";
 
 Task ("externals")
 	.Does (() =>
 {
 	EnsureDirectoryExists ("./externals");
 	
-	DownloadFile(JAR_URL, "./externals/convertergson.jar");
+	DownloadFile(JAR_URL, "./externals/convertermoshi.jar");
 
 	// Update .csproj nuget versions
-	XmlPoke("./source/Square.Retrofit2.ConverterGson/Square.Retrofit2.ConverterGson.csproj", "/Project/PropertyGroup/PackageVersion", NUGET_VERSION);
+	XmlPoke("./source/Square.Retrofit2.ConverterMoshi/Square.Retrofit2.ConverterMoshi.csproj", "/Project/PropertyGroup/PackageVersion", NUGET_VERSION);
 });
 
 Task("nuget")
 	.IsDependentOn("externals")
 	.Does(() =>
 {
-	MSBuild ("./source/Square.Retrofit2.ConverterGson.sln", c => {
+	MSBuild ("./source/Square.Retrofit2.ConverterMoshi.sln", c => {
 		c.Configuration = "Release";
 		c.Restore = true;
 		c.MaxCpuCount = 0;
