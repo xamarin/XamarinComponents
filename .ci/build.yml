@@ -305,9 +305,9 @@ jobs:
           if ($srcExists -and !$dstExists) {
             Copy-Item "${{ parameters.signListPath }}" "${{ parameters.artifactsPath }}\SignList.xml"
             Write-Host "Copied ${{ parameters.signListPath }} to ${{ parameters.artifactsPath }}\SignList.xml"
-          } else if (!$srcExists) {
+          } elseif (!$srcExists) {
             Write-Host "${{ parameters.signListPath }} did not exist, nothing copied."
-          } else if ($dstExists) {
+          } elseif ($dstExists) {
             Write-Host "${{ parameters.artifactsPath }}\SignList.xml already existed, nothing copied."
           }
         displayName: 'Copy SignList.xml to the nuget artifact'
