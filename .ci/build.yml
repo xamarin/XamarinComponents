@@ -12,6 +12,7 @@ parameters:
   areaPath: ''                                              # the areaPath to log any issues
   runChecks: 'true'
   publishJob: ''                                            # the job to use as the source of the 'nuget' artifact: '', 'windows', 'macos', 'linux'
+  signListPath: 'SignList.xml'                              # the path to the SignList.xml to copy into the nuget artifact for signing
   # job software version parameters
   linuxImage: ''                                            # the name of the Linux VM image (linuxImage: 'Hosted Ubuntu 1604') 
   macosImage: 'macos-latest'                                # the name of the macOS VM image
@@ -298,6 +299,18 @@ jobs:
             --verbosity="${{ parameters.verbosity }}"
         displayName: 'Generate API diff'
       # after the build is complete
+      - pwsh: |
+          $srcExists = (Test-Path "${{ parameters.signListPath }}")
+          $dstExists = (Test-Path "${{ parameters.artifactsPath }}\SignList.xml")
+          if ($srcExists -and !$dstExists) {
+            Copy-Item "${{ parameters.signListPath }}" "${{ parameters.artifactsPath }}\SignList.xml"
+            Write-Host "Copied ${{ parameters.signListPath }} to ${{ parameters.artifactsPath }}\SignList.xml"
+          } elseif (!$srcExists) {
+            Write-Host "${{ parameters.signListPath }} did not exist, nothing copied."
+          } elseif ($dstExists) {
+            Write-Host "${{ parameters.artifactsPath }}\SignList.xml already existed, nothing copied."
+          }
+        displayName: 'Copy SignList.xml to the nuget artifact'
       - task: PublishBuildArtifacts@1
         displayName: 'Publish artifacts'
         condition: or(eq('${{ parameters.publishJob }}', ''), eq('${{ parameters.publishJob }}', variables['System.JobName']))
