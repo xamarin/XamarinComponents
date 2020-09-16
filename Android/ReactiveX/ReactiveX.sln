@@ -7,6 +7,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RxJava", "source\RxJava\RxJ
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RxAndroid", "source\RxAndroid\RxAndroid.csproj", "{70CF23F8-6689-4D20-8567-8B3E6DB82776}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RxKotlin", "source\RxKotlin\RxKotlin.csproj", "{B775B602-BB37-4298-B98D-5DCD5BF96F43}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{70CF23F8-6689-4D20-8567-8B3E6DB82776}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{70CF23F8-6689-4D20-8567-8B3E6DB82776}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{70CF23F8-6689-4D20-8567-8B3E6DB82776}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B775B602-BB37-4298-B98D-5DCD5BF96F43}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B775B602-BB37-4298-B98D-5DCD5BF96F43}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B775B602-BB37-4298-B98D-5DCD5BF96F43}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B775B602-BB37-4298-B98D-5DCD5BF96F43}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
