@@ -1,21 +1,23 @@
 {
-  "Registrations":[ 
+  "Registrations": [
     {
       "Component": {
         "Type": "Maven",
         "Maven": {
           "ArtifactId": "constraint-layout",
           "GroupId": "com.android.support.constraint",
-          "Version": "2.0.0-beta2",
+          "Version": "2.0.1",
           "NuGetId": "Xamarin.Android.Support.Constraint.Layout"
         }
-      },
+      }
+    },
+    {
       "Component": {
         "Type": "Maven",
         "Maven": {
           "ArtifactId": "constraint-layout-solver",
           "GroupId": "com.android.support.constraint",
-          "Version": "2.0.0-beta2",
+          "Version": "2.0.1",
           "NuGetId": "Xamarin.Android.Support.Constraint.Layout.Solver"
         }
       }
