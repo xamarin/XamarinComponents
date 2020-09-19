@@ -46,9 +46,21 @@ Task ("externals")
 	XmlPoke("./source/RxKotlin/RxKotlin.csproj", "/Project/PropertyGroup/PackageVersion", RXKOTLIN_NUGET_VERSION);
 });
 
+Task("native")
+	.Does(() =>
+{
+	var fn = IsRunningOnWindows() ? "gradlew.bat" : "gradlew";
+	var gradlew = MakeAbsolute((FilePath)("./native/ReactiveXSample/" + fn));
+	var exit = StartProcess(gradlew, new ProcessSettings {
+		Arguments = "assemble",
+		WorkingDirectory = "./native/ReactiveXSample/"
+	});
+	if (exit != 0) throw new Exception($"Gradle exited with exit code {exit}.");
+});
 
 Task("libs")
 	.IsDependentOn("externals")
+	.IsDependentOn("native")
 	.Does(() =>
 {
 	MSBuild("./ReactiveX.sln", c => {
@@ -73,18 +85,35 @@ Task("nuget")
 });
 
 Task("samples")
-	.IsDependentOn("nuget");
+	.IsDependentOn("nuget")
+	.Does(() =>
+{
+	var settings = new MSBuildSettings()
+		.SetConfiguration("Release")
+		.SetVerbosity(Verbosity.Minimal)
+		.EnableBinaryLogger("./output/samples.binlog")
+		.WithRestore()
+		.WithProperty("DesignTimeBuild", "false");
+
+	MSBuild("./samples/ReactiveXSample.sln", settings);
+});
 
 Task("ci")
 	.IsDependentOn("externals")
+	.IsDependentOn("libs")
 	.IsDependentOn("nuget")
 	.IsDependentOn("samples");
 
 Task ("clean")
 	.Does (() =>
 {
-	if (DirectoryExists ("./externals/"))
-		DeleteDirectory ("./externals", true);
+	CleanDirectories("./generated/*/bin");
+	CleanDirectories("./generated/*/obj");
+
+	CleanDirectories("./externals/");
+	CleanDirectories("./generated/");
+	CleanDirectories("./native/.gradle");
+	CleanDirectories("./native/**/build");
 });
 
 RunTarget (TARGET);

@@ -28,7 +28,7 @@
   <ItemGroup>
     <None Remove="Transforms\*.xml" />
     <TransformFile Include="Transforms\*.xml" />
-    <LibraryProjectZip Include="..\..\externals\rxandroid.aar" Link="Jars\%(Filename)%(Extension)" />
+    <LibraryProjectZip Include="..\..\externals\rxandroid.aar" Link="Jars\rxandroid.aar" />
   </ItemGroup>
     
   <ItemGroup>

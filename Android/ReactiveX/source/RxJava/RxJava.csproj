@@ -28,7 +28,7 @@
   <ItemGroup>
     <None Remove="Transforms\*.xml" />
     <TransformFile Include="Transforms\*.xml" />
-    <EmbeddedJar Include="..\..\externals\rxjava.jar" Link="Jars\%(Filename)%(Extension)" />
+    <EmbeddedJar Include="..\..\externals\rxjava.jar" Link="Jars\rxjava.jar" />
   </ItemGroup>
     
   <ItemGroup>
