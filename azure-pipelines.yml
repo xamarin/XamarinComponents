@@ -40,6 +40,6 @@ jobs:
       tools:
         - 'Xamarin.AndroidBinderator.Tool': '0.4.2'
   - ${{ if eq(variables['System.TeamProject'], 'devdiv') }}:
-    - template: sign-artifacts/jobs/v1.yml@internal-templates
+    - template: sign-artifacts/jobs/v2.yml@internal-templates
       parameters:
         dependsOn: [ 'build' ]
