@@ -199,11 +199,11 @@ Task ("externals")
 					FileWriteLines ($"./externals/ios/{key}/Podfile", value.ToArray ());
 					CocoaPodRepoUpdate ();
 
-					CocoaPodInstall 
-						(
-							$"./externals/ios/{key}", 
-							new CocoaPodInstallSettings { NoIntegrate = true }
-						);
+					// CocoaPodInstall 
+					// 	(
+					// 		$"./externals/ios/{key}", 
+					// 		new CocoaPodInstallSettings { NoIntegrate = true }
+					// 	);
 				}
 				
 			}
