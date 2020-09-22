@@ -270,6 +270,11 @@
   TriggerPaths: [ Android/SquareOkHttp3 ]
   MacBuildTargets: [ ci ]
   WindowsBuildTargets: [ ci ]
+- Name: SquareOkHttp3v3
+  BuildScript: ./Android/SquareOkHttp3-v3/build.cake
+  TriggerPaths: [ Android/SquareOkHttp3-v3 ]
+  MacBuildTargets: [ ci ]
+  WindowsBuildTargets: [ ci ]
 - Name: SquareOkHttp3UrlConnection
   BuildScript: ./Android/SquareOkHttp3UrlConnection/build.cake
   TriggerPaths: [ Android/SquareOkHttp3UrlConnection ]
@@ -325,6 +330,11 @@
   TriggerPaths: [ Android/SquareSeismic ]
   MacBuildTargets: [ ci ]
   WindowsBuildTargets: [ ci ]
+- Name: SquareMoshi
+  BuildScript: ./Android/SquareMoshi/build.cake
+  TriggerPaths: [ Android/SquareMoshi ]
+  MacBuildTargets: [ ci ]
+  WindowsBuildTargets: [ ci ]
 
 # will be XPlat in the future
 - Name: TensorFlow.Lite
@@ -371,6 +381,11 @@
 - Name: Google.Play.Core
   BuildScript: ./Android/Google.Play.Core//build.cake
   TriggerPaths: [ Android/Google.Play.Core ]
+  MacBuildTargets: [ ci ]
+  WindowsBuildTargets: [ ci ]
+- Name: Google.UserMessagingPlatform
+  BuildScript: ./XPlat/Google.UserMessagingPlatform/build.cake
+  TriggerPaths: [ XPlat/Google.UserMessagingPlatform ]
   MacBuildTargets: [ ci ]
   WindowsBuildTargets: [ ci ]
 
