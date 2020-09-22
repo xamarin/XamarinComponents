@@ -273,11 +273,7 @@ Task("nuget")
 
 Task("ci")
 	.IsDependentOn("libs")
-	.IsDependentOn("nuget")
-	.Does
-	(
-		() => {}
-	);
+	.IsDependentOn("nuget");
 
 RunTarget (TARGET);
 
