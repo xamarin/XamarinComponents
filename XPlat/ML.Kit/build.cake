@@ -220,13 +220,23 @@ Task("libs")
 		{
 			MSBuild
 			(
-				"./Android/source/Xamarin.GoogleFirebase.ML.Kit.sln", 
+				"./Android/source/Xamarin.GoogleFirebase.ML.Kit.sln",
 				c => 
 				{
 					c.Configuration = "Release";
 					c.Restore = true;
 					c.MaxCpuCount = 0;
 					c.Properties.Add("DesignTimeBuild", new [] { "false" });
+					c.SetVerbosity(Verbosity.Diagnostic);
+					c.EnableBinaryLogger($"./output/libs.binlog");
+					c.AddFileLogger
+								(
+									new MSBuildFileLogger 
+									{
+										LogFile = "./output/errors.txt",
+										MSBuildFileLoggerOutput = MSBuildFileLoggerOutput.ErrorsOnly   
+									}
+								);
 				}
 			);
 

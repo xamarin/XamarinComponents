@@ -1,58 +1,28 @@
-<?xml version="1.0" encoding="utf-8"?>
-<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+﻿<Project Sdk="MSBuild.Sdk.Extras/2.0.54">
+
   <PropertyGroup>
-    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
-    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectTypeGuids>{A3F8F2AB-B479-4A4A-A458-A89E7DC349F1};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
-    <ProjectGuid>{949B9425-9233-4EB9-A4ED-AD4322D4BEC8}</ProjectGuid>
-    <OutputType>Library</OutputType>
-    <RootNamespace>ITSwitch</RootNamespace>
-    <MonoMacResourcePrefix>Resources</MonoMacResourcePrefix>
+    <TargetFramework>XamarinMac2.0</TargetFramework>
     <AssemblyName>ITSwitch</AssemblyName>
-    <TargetFrameworkIdentifier>Xamarin.Mac</TargetFrameworkIdentifier>
-    <TargetFrameworkVersion>v2.0</TargetFrameworkVersion>
+    <RootNamespace>ITSwitch</RootNamespace>
+    <DocumentationFile>bin\$(Configuration)\$(TargetFramework)\ITSwitch.xml</DocumentationFile>
+    <IPhoneResourcePrefix>Resources</IPhoneResourcePrefix>
   </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <DebugSymbols>true</DebugSymbols>
-    <DebugType>full</DebugType>
-    <Optimize>false</Optimize>
-    <OutputPath>bin\Debug</OutputPath>
-    <DefineConstants>DEBUG;</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-    <ConsolePause>false</ConsolePause>
-    <UseRefCounting>false</UseRefCounting>
-    <UseSGen>false</UseSGen>
-    <IncludeMonoRuntime>false</IncludeMonoRuntime>
-    <CreatePackage>false</CreatePackage>
-    <EnableCodeSigning>false</EnableCodeSigning>
-    <EnablePackageSigning>false</EnablePackageSigning>
+
+  <PropertyGroup>
+    <PackageId>Xamarin.Mac.ITSwitch</PackageId>
+    <Title>ITSwitch for Xamarin.Mac</Title>
+    <PackageDescription>ITSwitch is a simple and lightweight replica of iOS 7 UISwitch for macOS.</PackageDescription>
+    <Authors>Microsoft</Authors>
+    <Owners>Microsoft</Owners>
+    <Copyright>© Microsoft Corporation. All rights reserved.</Copyright>
+    <PackageProjectUrl>https://go.microsoft.com/fwlink/?linkid=865074</PackageProjectUrl>
+    <PackageLicenseUrl>https://go.microsoft.com/fwlink/?linkid=865013</PackageLicenseUrl>
+    <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
+    <PackageVersion>1.1.0</PackageVersion>
   </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <DebugType>full</DebugType>
-    <Optimize>true</Optimize>
-    <OutputPath>bin\Release</OutputPath>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-    <ConsolePause>false</ConsolePause>
-    <UseRefCounting>false</UseRefCounting>
-    <UseSGen>false</UseSGen>
-    <IncludeMonoRuntime>false</IncludeMonoRuntime>
-    <CreatePackage>false</CreatePackage>
-    <EnableCodeSigning>false</EnableCodeSigning>
-    <EnablePackageSigning>false</EnablePackageSigning>
-  </PropertyGroup>
+
   <ItemGroup>
-    <Reference Include="System" />
-    <Reference Include="System.Core" />
-    <Reference Include="Xamarin.Mac" />
+    <None Include="..\..\External-Dependency-Info.txt" Pack="True" PackagePath="THIRD-PARTY-NOTICES.txt" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Resources\" />
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ITSwitch.cs" />
-  </ItemGroup>
-  <Import Project="$(MSBuildExtensionsPath)\Xamarin\Mac\Xamarin.Mac.CSharp.targets" />
+
 </Project>

@@ -207,5 +207,10 @@ namespace OfficeUIFabricSampleDroid
         public Android.Net.Uri AvatarImageUri { get; set; }
         public string Email { get; set; }
         public string Name { get; set; }
+        public Integer AvatarBackgroundColor 
+        { 
+            get => throw new NotImplementedException(); 
+            set => throw new NotImplementedException(); 
+        }
     }
 }

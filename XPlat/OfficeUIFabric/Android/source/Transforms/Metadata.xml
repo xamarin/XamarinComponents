@@ -65,7 +65,124 @@
   <attr path="/api/package[@name='com.microsoft.officeuifabric.view']/class[@name='WrapContentViewPager.Companion']" name="managedName">WrapContentViewPagerCompanion</attr>
   <attr path="/api/package[@name='com.microsoft.officeuifabric.view']/class[@name='Scroller.ViscousFluidInterpolator.Companion']" name="managedName">ScrollerViscousFluidInterpolatorCompanion</attr>
   
+  
+    <!--
+        flattening the namespaces == poking the bear with the short stick
+        but... wth
+    -->
+    <attr
+        path="/api/package[@name='com.microsoft.officeuifabric.appbarlayout']"
+        name="managedName"
+        >        
+        Microsoft.OfficeUIFabric
+    </attr>
+    <attr
+        path="/api/package[@name='com.microsoft.officeuifabric.appbarlayout']"
+        name="managedName"
+        >        
+        Microsoft.OfficeUIFabric
+    </attr>
+    <attr
+        path="/api/package[@name='com.microsoft.officeuifabric.popupmenu']"
+        name="managedName"
+        >        
+        Microsoft.OfficeUIFabric
+    </attr>
+    <attr
+        path="/api/package[@name='com.microsoft.officeuifabric.search']"
+        name="managedName"
+        >        
+        Microsoft.OfficeUIFabric
+    </attr>
+    <attr
+        path="/api/package[@name='com.microsoft.officeuifabric.theming']"
+        name="managedName"
+        >        
+        Microsoft.OfficeUIFabric
+    </attr>
+    <attr
+        path="/api/package[@name='com.microsoft.officeuifabric.toolbar']"
+        name="managedName"
+        >        
+        Microsoft.OfficeUIFabric
+    </attr>
+    <attr
+        path="/api/package[@name='com.microsoft.officeuifabric.widget']"
+        name="managedName"
+        >        
+        Microsoft.OfficeUIFabric
+    </attr>
+    
+    <attr
+        path="/api/package[@name='com.microsoft.officeuifabric.listitem']/class[@name='ListItemView']/method[@name='getBackground' and count(parameter)=0]"
+        name="return"
+        >
+        android.graphics.drawable.Drawable
+    </attr>
+    <attr
+        path="/api/package[@name='com.microsoft.officeuifabric.listitem']/class[@name='ListItemView']/method[@name='setBackground' and count(parameter)=1 and parameter[1][@type='int']]/parameter[1]"
+        name="type"
+        >
+        android.graphics.drawable.Drawable
+    </attr>
+    <attr
+        path="/api/package[@name='com.microsoft.officeuifabric.listitem']/class[@name='ListItemView']/method[@name='getBackground' and count(parameter)=0]"
+        name="managedReturn"
+        >
+        Android.Graphics.Drawables.Drawable
+    </attr>
+    <attr
+        path="/api/package[@name='com.microsoft.officeuifabric.listitem']/class[@name='ListItemView']/method[@name='setBackground' and count(parameter)=1 and parameter[1][@type='int']]/parameter[1]"
+        name="managedType"
+        >
+        Android.Graphics.Drawables.Drawable
+    </attr>
 
+    <attr
+        path="/api/package[@name='com.microsoft.officeuifabric.listitem']/class[@name='ListSubHeaderView']/method[@name='getBackground' and count(parameter)=0]"
+        name="return"
+        >
+        android.graphics.drawable.Drawable
+    </attr>
+    <attr
+        path="/api/package[@name='com.microsoft.officeuifabric.listitem']/class[@name='ListSubHeaderView']/method[@name='setBackground' and count(parameter)=1 and parameter[1][@type='int']]/parameter[1]"
+        name="type"
+        >
+        android.graphics.drawable.Drawable
+    </attr>
+    <attr
+        path="/api/package[@name='com.microsoft.officeuifabric.listitem']/class[@name='ListSubHeaderView']/method[@name='getBackground' and count(parameter)=0]"
+        name="managedReturn"
+        >
+        Android.Graphics.Drawables.Drawable
+    </attr>
+    <attr
+        path="/api/package[@name='com.microsoft.officeuifabric.listitem']/class[@name='ListSubHeaderView']/method[@name='setBackground' and count(parameter)=1 and parameter[1][@type='int']]/parameter[1]"
+        name="managedType"
+        >
+        Android.Graphics.Drawables.Drawable
+    </attr>
+    <!--
+    -->
+    <attr
+        path="/api/package[@name='com.microsoft.officeuifabric.popupmenu']/class[@name='PopupMenuItem.CREATOR']"
+        name="managedName"
+        >
+        Creator
+    </attr>
+    
+    <attr
+        path="/api/package[@name='com.microsoft.officeuifabric.popupmenu']/class[@name='PopupMenuItem.CREATOR']/method[@name='createFromParcel' and count(parameter)=1 and parameter[1][@type='android.os.Parcel']]"
+        name="managedReturn"
+        >
+        Java.Lang.Object
+    </attr>
+    <attr
+        path="/api/package[@name='com.microsoft.officeuifabric.popupmenu']/class[@name='PopupMenuItem.CREATOR']/method[@name='newArray' and count(parameter)=1 and parameter[1][@type='int']]"
+        name="managedReturn"
+        >
+        Java.Lang.Object[]
+    </attr>
 
-
+    
 </metadata>

@@ -20,7 +20,7 @@
     <PackageProjectUrl>https://go.microsoft.com/fwlink/?linkid=2092028</PackageProjectUrl>
     <PackageLicenseUrl>https://go.microsoft.com/fwlink/?linkid=2100039</PackageLicenseUrl>
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
-    <PackageVersion>0.2.13-pre2</PackageVersion>
+    <PackageVersion>0.3.9-pre2</PackageVersion>
   </PropertyGroup>
 
   <ItemGroup>
