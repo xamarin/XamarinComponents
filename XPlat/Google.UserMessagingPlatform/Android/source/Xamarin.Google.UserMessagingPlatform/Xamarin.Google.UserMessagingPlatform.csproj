@@ -20,7 +20,7 @@
   <PropertyGroup>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <PackageId>Xamarin.Google.UserlMessagingPlatform</PackageId>
-    <PackageVersion>1.0.0-preview01</PackageVersion>
+    <PackageVersion>1.0.0</PackageVersion>
     <Title>Xamarin.Google.UniversalMessagingPlatform</Title>
     <PackageDescription>Bindings for Xamarin.Google.UserMessagingPlatform UMP package</PackageDescription>
     <Owners>Microsoft</Owners>
