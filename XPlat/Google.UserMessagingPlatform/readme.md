@@ -1,7 +1,7 @@
 # Google UMP User Messaging Platform  
 
 
-2020-09-21
+2020-09-26  v.1.0.0
 
 Android and iOS bindings of the UMP User Messaging Platform SDK for Obtaining Consent with the User Messaging Platform.
 
