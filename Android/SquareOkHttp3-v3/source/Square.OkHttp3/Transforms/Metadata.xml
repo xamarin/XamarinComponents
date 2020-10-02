@@ -1,0 +1,49 @@
+<metadata>
+    <attr path="/api/package[@name='okhttp3']" name="managedName">Square.OkHttp3</attr>
+
+    <attr path="/api/package[@name='okhttp3']/class[@name='RealCall']" name="visibility">public</attr>
+    <attr path="/api/package[@name='okhttp3']/class[@name='RealCall']/method[@name='clone' and count(parameter)=0]" name="managedReturn">Square.OkHttp3.ICall</attr>
+
+    <remove-node path="/api/package[starts-with(@name, 'okhttp3.internal')]" />
+    <remove-node path="/api/package/class[@visibility='']" />
+
+    <attr path="/api/package[@name='okhttp3']/interface[@name='Authenticator']/method[@name='authenticate']/parameter[1]" name="managedName">route</attr>
+    <attr path="/api/package[@name='okhttp3']/interface[@name='Authenticator']/method[@name='authenticate']/parameter[2]" name="managedName">response</attr>
+
+    <attr path="/api/package[@name='okhttp3']/interface[@name='Call']/method[@name='enqueue']/parameter[1]" name="managedName">responseCallback</attr>
+    <attr path="/api/package[@name='okhttp3']/interface[@name='Call.Factory']/method[@name='newCall']/parameter[1]" name="managedName">request</attr>
+
+    <attr path="/api/package[@name='okhttp3']/interface[@name='Callback']/method[@name='onFailure']/parameter[1]" name="managedName">call</attr>
+    <attr path="/api/package[@name='okhttp3']/interface[@name='Callback']/method[@name='onFailure']/parameter[2]" name="managedName">exception</attr>
+    <attr path="/api/package[@name='okhttp3']/interface[@name='Callback']/method[@name='onResponse']/parameter[1]" name="managedName">call</attr>
+    <attr path="/api/package[@name='okhttp3']/interface[@name='Callback']/method[@name='onResponse']/parameter[2]" name="managedName">response</attr>
+
+    <attr path="/api/package[@name='okhttp3']/interface[@name='CookieJar']/method[@name='loadForRequest']/parameter[1]" name="managedName">url</attr>
+    <attr path="/api/package[@name='okhttp3']/interface[@name='CookieJar']/method[@name='saveFromResponse']/parameter[1]" name="managedName">url</attr>
+    <attr path="/api/package[@name='okhttp3']/interface[@name='CookieJar']/method[@name='saveFromResponse']/parameter[2]" name="managedName">cookies</attr>
+
+    <attr path="/api/package[@name='okhttp3']/interface[@name='Dns']/method[@name='lookup']/parameter[1]" name="managedName">hostname</attr>
+
+    <attr path="/api/package[@name='okhttp3']/interface[@name='EventListener.Factory']/method[@name='create']/parameter[1]" name="managedName">call</attr>
+
+    <attr path="/api/package[@name='okhttp3']/interface[@name='Interceptor']/method[@name='intercept']/parameter[1]" name="managedName">chain</attr>
+
+    <attr path="/api/package[@name='okhttp3']/interface[@name='Interceptor.Chain']/method[@name='proceed']/parameter[1]" name="managedName">request</attr>
+    <attr path="/api/package[@name='okhttp3']/interface[@name='Interceptor.Chain']/method[@name='withConnectTimeout']/parameter[1]" name="managedName">timeout</attr>
+    <attr path="/api/package[@name='okhttp3']/interface[@name='Interceptor.Chain']/method[@name='withConnectTimeout']/parameter[2]" name="managedName">unit</attr>
+    <attr path="/api/package[@name='okhttp3']/interface[@name='Interceptor.Chain']/method[@name='withReadTimeout']/parameter[1]" name="managedName">timeout</attr>
+    <attr path="/api/package[@name='okhttp3']/interface[@name='Interceptor.Chain']/method[@name='withReadTimeout']/parameter[2]" name="managedName">unit</attr>
+    <attr path="/api/package[@name='okhttp3']/interface[@name='Interceptor.Chain']/method[@name='withWriteTimeout']/parameter[1]" name="managedName">timeout</attr>
+    <attr path="/api/package[@name='okhttp3']/interface[@name='Interceptor.Chain']/method[@name='withWriteTimeout']/parameter[2]" name="managedName">unit</attr>
+
+    <attr path="/api/package[@name='okhttp3']/class[@name='RequestBody']/method[@name='writeTo' and count(parameter)=1 and parameter[1][@type='okio.BufferedSink']]/parameter[1]" name="managedName">sink</attr>
+
+    <attr path="/api/package[@name='okhttp3']/interface[@name='WebSocket']/method[@name='close']/parameter[1]" name="managedName">code</attr>
+    <attr path="/api/package[@name='okhttp3']/interface[@name='WebSocket']/method[@name='close']/parameter[2]" name="managedName">reason</attr>
+    <attr path="/api/package[@name='okhttp3']/interface[@name='WebSocket']/method[@name='send' and count(parameter)=1 and parameter[1][@type='java.lang.String']]/parameter[1]" name="managedName">text</attr>
+    <attr path="/api/package[@name='okhttp3']/interface[@name='WebSocket']/method[@name='send' and count(parameter)=1 and parameter[1][@type='okio.ByteString']]/parameter[1]" name="managedName">bytes</attr>
+
+    <attr path="/api/package[@name='okhttp3']/interface[@name='WebSocket.Factory']/method[@name='newWebSocket']/parameter[1]" name="managedName">request</attr>
+    <attr path="/api/package[@name='okhttp3']/interface[@name='WebSocket.Factory']/method[@name='newWebSocket']/parameter[2]" name="managedName">listener</attr>
+
+</metadata>
