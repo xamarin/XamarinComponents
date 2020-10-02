@@ -1,28 +1,23 @@
-var TARGET = Argument ("t", Argument ("target", "Default"));
+var TARGET = Argument ("t", Argument ("target", "ci"));
 
-var REACTIVE_STREAMS_VERSION = "1.0.2";
+var REACTIVE_STREAMS_VERSION = "1.0.3";
 
 var REACTIVE_STREAMS_NUGET_VERSION = REACTIVE_STREAMS_VERSION;
 var REACTIVE_STREAMS_JAR_URL = $"https://search.maven.org/remotecontent?filepath=org/reactivestreams/reactive-streams/{REACTIVE_STREAMS_VERSION}/reactive-streams-{REACTIVE_STREAMS_VERSION}.jar";
-var REACTIVE_STREAMS_DOCS_URL = $"https://search.maven.org/remotecontent?filepath=org/reactivestreams/reactive-streams/{REACTIVE_STREAMS_VERSION}/reactive-streams-{REACTIVE_STREAMS_VERSION}-javadoc.jar";
+var REACTIVE_STREAMS_SOURCES_URL = $"https://search.maven.org/remotecontent?filepath=org/reactivestreams/reactive-streams/{REACTIVE_STREAMS_VERSION}/reactive-streams-{REACTIVE_STREAMS_VERSION}-sources.jar";
 
 Task ("externals")
-	.WithCriteria (!FileExists ("./externals/reactivestreams.jar"))
 	.Does (() =>
 {
-	if (!DirectoryExists ("./externals/"))
-		CreateDirectory ("./externals");
-
+	EnsureDirectoryExists ("./externals");
+	
 	// Download Dependencies
 	DownloadFile (REACTIVE_STREAMS_JAR_URL, "./externals/reactivestreams.jar");
-	DownloadFile (REACTIVE_STREAMS_DOCS_URL, "./externals/reactivestreams-javadocs.jar");
-
-	Unzip ("./externals/reactivestreams-javadocs.jar", "./externals/reactivestreams-javadocs/");
+	DownloadFile (REACTIVE_STREAMS_SOURCES_URL, "./externals/reactivestreams-sources.jar");
 
 	// Update .csproj nuget versions
 	XmlPoke("./source/ReactiveStreams/ReactiveStreams.csproj", "/Project/PropertyGroup/PackageVersion", REACTIVE_STREAMS_NUGET_VERSION);
 });
-
 
 Task("libs")
 	.IsDependentOn("externals")
@@ -51,6 +46,11 @@ Task("nuget")
 
 Task("samples")
 	.IsDependentOn("nuget");
+
+Task("ci")
+	.IsDependentOn("externals")
+	.IsDependentOn("nuget")
+	.IsDependentOn("samples");
 
 Task ("clean")
 	.Does (() =>
