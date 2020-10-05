@@ -54,16 +54,18 @@ namespace Xamarin.ExposureNotifications
 
 		public static bool IsDailySummaries => isDailySummaries.Value;
 
-		static async Task<ENExposureConfiguration> GetConfigurationAsync()
+		static Task<ENExposureConfiguration> GetConfigurationAsync()
 		{
-			var c = await Handler.GetConfigurationAsync();
-
 			return IsDailySummaries
-				? GetCofig(c)
-				: GetDailyConfig(c);
+				? GetDailyConfigAsync(DailySummaryHandler!)
+				: GetConfigAsync(Handler);
 
-			static ENExposureConfiguration GetCofig(Configuration c)
+			static async Task<ENExposureConfiguration> GetConfigAsync(IExposureNotificationHandler handler)
 			{
+				var c = await handler.GetConfigurationAsync();
+				if (c == null)
+					throw new InvalidOperationException("The configuration was not provided on the handler.");
+
 				var nc = new ENExposureConfiguration
 				{
 					AttenuationLevelValues = c.AttenuationScores,
@@ -95,9 +97,19 @@ namespace Xamarin.ExposureNotifications
 				return nc;
 			}
 
-			static ENExposureConfiguration GetDailyConfig(Configuration c)
+			static async Task<ENExposureConfiguration> GetDailyConfigAsync(IExposureNotificationDailySummaryHandler handler)
 			{
-				return null;
+				var c = await handler.GetDailySummaryConfigurationAsync();
+				if (c == null)
+					throw new InvalidOperationException("The daily summary configuration was not provided on the handler.");
+
+				var nc = new ENExposureConfiguration
+				{
+					AttenuationDurationThresholds = c.AttenuationThresholds,
+					
+				};
+
+				return nc;
 			}
 		}
 
