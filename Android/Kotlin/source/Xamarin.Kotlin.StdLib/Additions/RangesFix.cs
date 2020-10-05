@@ -1,18 +1,22 @@
-﻿using System;
+﻿using Java.Lang;
 
 namespace Kotlin.Ranges
 {
-	public sealed partial class ULongRange
-    {
-        Java.Lang.Long Start => (Java.Lang.Long)(long)GetStart();
+	unsafe partial class ULongRange : IClosedRange
+	{
+		Object IClosedRange.EndInclusive => (long)EndInclusive;
 
-        Java.Lang.Long EndInclusive => (Java.Lang.Long)(long)GetEndInclusive();
-    }
+		Object IClosedRange.Start => (long)Start;
 
-    public sealed partial class UIntRange
-    {
-        Java.Lang.Integer Start => (Java.Lang.Integer)(int)GetStart();
+		bool IClosedRange.Contains(Object value) => Contains((ulong)(long)value);
+	}
 
-        Java.Lang.Integer EndInclusive => (Java.Lang.Integer)(int)GetEndInclusive();
-    }
+	unsafe partial class UIntRange : IClosedRange
+	{
+		Object IClosedRange.EndInclusive => (int)EndInclusive;
+
+		Object IClosedRange.Start => (int)Start;
+
+		bool IClosedRange.Contains(Object value) => Contains((uint)(int)value);
+	}
 }
