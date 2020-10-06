@@ -243,7 +243,7 @@ namespace ExposureNotifications {
 		[Introduced (PlatformName.iOS, 13, 6)]
 		[BindAs (typeof (int []))]
 		[Export ("attenuationDurationThresholds", ArgumentSemantic.Copy)]
-		NSNumber [] AttenuationDurationThresholds { get; }
+		NSNumber [] AttenuationDurationThresholds { get; set; }
 
 		[Introduced (PlatformName.iOS, 13, 7)]
 		[Export ("daysSinceLastExposureThreshold")]
