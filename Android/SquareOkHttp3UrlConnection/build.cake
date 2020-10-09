@@ -1,8 +1,8 @@
 var TARGET = Argument ("t", Argument ("target", "ci"));
 
-var NUGET_VERSION = "3.12.3";
+var NUGET_VERSION = "4.3.1";
 
-var JAR_VERSION = "3.12.3";
+var JAR_VERSION = "4.3.1";
 var JAR_URL = $"https://repo1.maven.org/maven2/com/squareup/okhttp3/okhttp-urlconnection/{JAR_VERSION}/okhttp-urlconnection-{JAR_VERSION}.jar";
 
 Task ("externals")
