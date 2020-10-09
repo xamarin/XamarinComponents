@@ -51,8 +51,8 @@
   <ItemGroup>
     <PackageReference Include="Xamarin.Android.Support.v7.AppCompat" Version="28.0.0.1" />
     <PackageReference Include="Newtonsoft.Json" Version="12.0.2" />
-    <PackageReference Include="Square.OkIO" Version="2.2.2" />
-    <PackageReference Include="Xamarin.Kotlin.StdLib" Version="1.3.50.1" PrivateAssets="None" />
+    <PackageReference Include="Square.OkIO" Version="2.4.1" />
+    <PackageReference Include="Xamarin.Kotlin.StdLib" Version="1.3.61" PrivateAssets="None" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="MainActivity.cs" />
