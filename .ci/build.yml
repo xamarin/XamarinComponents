@@ -30,7 +30,6 @@ parameters:
   verbosity: 'normal'                                       # the build verbosity: 'minimal', 'normal', 'diagnostic'
   configuration: 'Release'                                  # the build configuration: 'Debug', 'Release'
   validPackagePrefixes: []                                  # any NuGet prefixes that should pass validation (always includes Xamarin)
-  skipValidation: false                                     # whether or not to run NuGet package validation
   artifactsPath: 'output'                                   # the path to the NuGet packages that need to be signed, verified and published
   # basic cake build parameters
   cakeTarget: 'ci'                                          # [basic] the Cake target to run (defaults to 'ci')
@@ -139,7 +138,6 @@ jobs:
           Write-Host "Downloading script from $uri..."
           Invoke-WebRequest -Uri $uri -OutFile "validation.cake"
         displayName: 'Download the cake script to validate NuGet packages'
-        condition: ${{ not(parameters.skipValidation) }}
       - pwsh: |
           $uri = "$(TemplateRootUri)/nuget-diff.cake"
           Write-Host "Downloading script from $uri..."
@@ -296,7 +294,6 @@ jobs:
             --namespaces="${{ join(',', parameters.validPackagePrefixes) }}" `
             --verbosity="${{ parameters.verbosity }}"
         displayName: 'Run NuGet package validation'
-        condition: ${{ not(parameters.skipValidation) }}
       - pwsh: |
           dotnet cake nuget-diff.cake `
             --artifacts="${{ parameters.artifactsPath }}" `
