@@ -23,7 +23,7 @@
     <PackageLicenseFile>LICENSE.md</PackageLicenseFile>
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
     <PackageTags>moshi xamarin android monodroid</PackageTags>
-    <PackageVersion>1.8.0</PackageVersion>
+    <PackageVersion>1.9.3</PackageVersion>
   </PropertyGroup>
     
   <ItemGroup>
