@@ -12,6 +12,7 @@ parameters:
   areaPath: ''                                              # the areaPath to log any issues
   runChecks: 'true'
   publishJob: ''                                            # the job to use as the source of the 'nuget' artifact: '', 'windows', 'macos', 'linux'
+  signListPath: 'SignList.xml'                              # the path to the SignList.xml to copy into the nuget artifact for signing
   # job software version parameters
   linuxImage: ''                                            # the name of the Linux VM image (linuxImage: 'Hosted Ubuntu 1604') 
   macosImage: 'macos-latest'                                # the name of the macOS VM image
@@ -25,6 +26,7 @@ parameters:
   cakeTemplatesBranch: 'master'                             # the branch of XamarinComponents that has the templates
   # build parameters
   buildType: 'basic'                                        # the type of build: 'basic', 'manifest', 'directories', 'none'
+  steps: []                                                 # the steps to use when building, typically for 'none'
   verbosity: 'normal'                                       # the build verbosity: 'minimal', 'normal', 'diagnostic'
   configuration: 'Release'                                  # the build configuration: 'Debug', 'Release'
   validPackagePrefixes: []                                  # any NuGet prefixes that should pass validation (always includes Xamarin)
@@ -261,6 +263,8 @@ jobs:
             RepositoryBranch: $(Build.SourceBranchName)
             RepositoryUrl: $(Build.Repository.Uri)
             RepositoryType: "git"
+      # the build steps, typically for 'none' builds
+      - ${{ parameters.steps }}
       - task: PublishTestResults@2
         displayName: Publish the test results (xUnit)
         condition: always()
@@ -298,6 +302,18 @@ jobs:
             --verbosity="${{ parameters.verbosity }}"
         displayName: 'Generate API diff'
       # after the build is complete
+      - pwsh: |
+          $srcExists = (Test-Path "${{ parameters.signListPath }}")
+          $dstExists = (Test-Path "${{ parameters.artifactsPath }}\SignList.xml")
+          if ($srcExists -and !$dstExists) {
+            Copy-Item "${{ parameters.signListPath }}" "${{ parameters.artifactsPath }}\SignList.xml"
+            Write-Host "Copied ${{ parameters.signListPath }} to ${{ parameters.artifactsPath }}\SignList.xml"
+          } elseif (!$srcExists) {
+            Write-Host "${{ parameters.signListPath }} did not exist, nothing copied."
+          } elseif ($dstExists) {
+            Write-Host "${{ parameters.artifactsPath }}\SignList.xml already existed, nothing copied."
+          }
+        displayName: 'Copy SignList.xml to the nuget artifact'
       - task: PublishBuildArtifacts@1
         displayName: 'Publish artifacts'
         condition: or(eq('${{ parameters.publishJob }}', ''), eq('${{ parameters.publishJob }}', variables['System.JobName']))
