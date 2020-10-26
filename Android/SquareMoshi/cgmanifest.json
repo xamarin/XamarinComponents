@@ -6,7 +6,7 @@
         "Maven": {
           "ArtifactId": "moshi",
           "GroupId": "com.squareup.moshi",
-          "Version": "1.9.3",
+          "Version": "1.10.0",
           "NuGetId": "Square.Moshi"
         }
       }
