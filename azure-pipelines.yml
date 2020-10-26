@@ -11,7 +11,7 @@ resources:
       type: github
       name: xamarin/yaml-templates
       endpoint: xamarin
-
+      ref: refs/heads/dev/remove-comments
     - repository: components
       type: github
       name: xamarin/XamarinComponents
