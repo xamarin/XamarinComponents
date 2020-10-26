@@ -44,4 +44,5 @@ jobs:
       parameters:
         dependsOn: [ 'build' ]
         signTags: true
+        signMain: true
         realSign: true
