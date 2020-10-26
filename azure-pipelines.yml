@@ -11,6 +11,7 @@ resources:
       type: github
       name: xamarin/yaml-templates
       endpoint: xamarin
+
     - repository: components
       type: github
       name: xamarin/XamarinComponents
