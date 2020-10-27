@@ -54,6 +54,9 @@
     </method>
   </add-node>
 
+  <!-- Companion -->
+  <attr path="/api/package[@name='okio']/class[contains(@name,'.Companion')]" name="managedName">CompanionStatic</attr>
+
   <!-- parameter names -->
   <attr path="/api/package[@name='okio']/class[@name='Buffer']/method[@name='copyTo' and parameter[1][@type='java.io.OutputStream']]/parameter[1]" name="managedName">@out</attr>
   <attr path="/api/package[@name='okio']/class[@name='Buffer']/method[@name='copyTo' and parameter[2][@type='long']]/parameter[2]" name="managedName">offset</attr>
