@@ -49,9 +49,9 @@
     <None Remove="Transforms\Metadata.xml" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="Xamarin.GooglePlayServices.Base" Version="117.2.1-preview02" />
-    <PackageReference Include="Xamarin.GooglePlayServices.Basement" Version="117.2.1-preview02" />
-    <PackageReference Include="Xamarin.AndroidX.Lifecycle.ViewModel" Version="2.2.0.1" />
+    <PackageReference Include="Xamarin.GooglePlayServices.Base" Version="117.2.1" />
+    <PackageReference Include="Xamarin.GooglePlayServices.Basement" Version="117.2.1" />
+    <PackageReference Include="Xamarin.AndroidX.Lifecycle.ViewModel" Version="2.2.0.3" />
   </ItemGroup>
   <ItemGroup>
     <TransformFile Include="Transforms\EnumFields.xml" />

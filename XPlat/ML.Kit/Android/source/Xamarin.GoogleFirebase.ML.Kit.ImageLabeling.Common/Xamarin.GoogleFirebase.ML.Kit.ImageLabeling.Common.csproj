@@ -49,8 +49,8 @@
     <None Remove="Transforms\Metadata.xml" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="Xamarin.GooglePlayServices.Basement" Version="117.2.1-preview02" />
-    <PackageReference Include="Xamarin.GooglePlayServices.Tasks" Version="117.0.2-preview02" />
+    <PackageReference Include="Xamarin.GooglePlayServices.Basement" Version="117.2.1" />
+    <PackageReference Include="Xamarin.GooglePlayServices.Tasks" Version="117.0.2" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Xamarin.GoogleFirebase.ML.Kit.Common\Xamarin.GoogleFirebase.ML.Kit.Common.csproj" />

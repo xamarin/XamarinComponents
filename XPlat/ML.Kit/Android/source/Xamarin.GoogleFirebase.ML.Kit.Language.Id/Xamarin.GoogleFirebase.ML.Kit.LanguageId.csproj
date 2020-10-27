@@ -30,7 +30,7 @@
     <PackageProjectUrl>https://go.microsoft.com/fwlink/?linkid=2109279</PackageProjectUrl>
     <RequireLicenceAcceptance>true</RequireLicenceAcceptance>
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
-    <PackageTags>xamarin, android, bindings, google, firebase, ml.kit, language-id, barcode, scanning</PackageTags>
+    <PackageTags>xamarin, android, bindings, google, firebase, ml.kit, language-id</PackageTags>
   </PropertyGroup>
 
   <ItemGroup>
@@ -52,12 +52,12 @@
     <PackageReference Include="Xamarin.Google.Android.DataTransport.TransportApi" Version="2.2.0" />
     <PackageReference Include="Xamarin.Google.Android.DataTransport.TransportBackendCct" Version="2.2.2" />
     <PackageReference Include="Xamarin.Google.Android.DataTransport.TransportRuntime" Version="2.2.2" />
-    <PackageReference Include="Xamarin.GooglePlayServices.Base" Version="117.2.1-preview02" />
-    <PackageReference Include="Xamarin.GooglePlayServices.Basement" Version="117.2.1-preview02" />
-    <PackageReference Include="Xamarin.GooglePlayServices.Clearcut" Version="117.0.0-preview04" />
-    <PackageReference Include="Xamarin.GooglePlayServices.Phenotype" Version="117.0.0-preview04" />
-    <PackageReference Include="Xamarin.GooglePlayServices.Tasks" Version="117.0.2-preview02" />
-    <PackageReference Include="Xamarin.Firebase.Components" Version="116.0.0-preview02" />
+    <PackageReference Include="Xamarin.GooglePlayServices.Base" Version="117.2.1" />
+    <PackageReference Include="Xamarin.GooglePlayServices.Basement" Version="117.2.1" />
+    <PackageReference Include="Xamarin.GooglePlayServices.Clearcut" Version="117.0.0" />
+    <PackageReference Include="Xamarin.GooglePlayServices.Phenotype" Version="117.0.0" />
+    <PackageReference Include="Xamarin.GooglePlayServices.Tasks" Version="117.0.2" />
+    <PackageReference Include="Xamarin.Firebase.Components" Version="116.0.0" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Xamarin.GoogleFirebase.ML.Kit.Common\Xamarin.GoogleFirebase.ML.Kit.Common.csproj" />
