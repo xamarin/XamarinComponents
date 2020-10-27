@@ -43,3 +43,6 @@ jobs:
     - template: sign-artifacts/jobs/v1.yml@internal-templates
       parameters:
         dependsOn: [ 'build' ]
+        signTags: true
+        signMain: true
+        realSign: true
