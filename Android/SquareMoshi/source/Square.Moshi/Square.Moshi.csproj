@@ -23,11 +23,11 @@
     <PackageLicenseFile>LICENSE.md</PackageLicenseFile>
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
     <PackageTags>moshi xamarin android monodroid</PackageTags>
-    <PackageVersion>1.8.0</PackageVersion>
+    <PackageVersion>1.11.0</PackageVersion>
   </PropertyGroup>
     
   <ItemGroup>
-    <PackageReference Include="Square.OkiO" Version="1.17.4" />
+    <PackageReference Include="Square.OkiO" Version="2.4.3" />
   </ItemGroup>
     
   <ItemGroup>

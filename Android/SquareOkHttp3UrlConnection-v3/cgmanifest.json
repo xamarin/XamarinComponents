@@ -4,10 +4,10 @@
       "Component": {
         "Type": "Maven",
         "Maven": {
-          "ArtifactId": "okhttp",
+          "ArtifactId": "okhttp-urlconnection",
           "GroupId": "com.squareup.okhttp3",
-          "Version": "4.3.1",
-          "NuGetId": "Square.OkHttp3"
+          "Version": "3.14.9",
+          "NuGetId": "Square.OkHttp3.UrlConnection"
         }
       }
     }
