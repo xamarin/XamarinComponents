@@ -280,6 +280,11 @@
   TriggerPaths: [ Android/SquareOkHttp3UrlConnection ]
   MacBuildTargets: [ ci ]
   WindowsBuildTargets: [ ci ]
+- Name: SquareOkHttp3UrlConnectionv3
+  BuildScript: ./Android/SquareOkHttp3UrlConnection-v3/build.cake
+  TriggerPaths: [ Android/SquareOkHttp3UrlConnection-v3 ]
+  MacBuildTargets: [ ci ]
+  WindowsBuildTargets: [ ci ]
 - Name: SquareOkHttp3WS
   BuildScript: ./Android/SquareOkHttp3WS/build.cake
   TriggerPaths: [ Android/SquareOkHttp3WS ]
