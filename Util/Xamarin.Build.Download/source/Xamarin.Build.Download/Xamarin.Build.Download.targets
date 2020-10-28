@@ -10,19 +10,19 @@
 		<XamarinBuildDownloadAllowUnsecure Condition="'$(XamarinBuildDownloadAllowUnsecure)' == ''">false</XamarinBuildDownloadAllowUnsecure>
 	</PropertyGroup>
 
-	<PropertyGroup Condition="'$(TargetFrameworkIdentifier)'=='Xamarin.iOS' And ('$(OutputType)' != 'Library' OR '$(IsAppExtension)'=='True')">
+	<PropertyGroup Condition="('$(TargetFrameworkIdentifier)'=='Xamarin.iOS' or '$(TargetPlatformIdentifier)'=='ios') and ('$(OutputType)' != 'Library' or '$(IsAppExtension)'=='True')">
 		<_XamarinBuildDownloadMasterBeforeTargets>GetFrameworkPaths</_XamarinBuildDownloadMasterBeforeTargets>
 		<_XamarinBuildDownloadMasterDependsOnTargets>_XamarinBuildDownload;_XamarinBuildCastAssemblyResources</_XamarinBuildDownloadMasterDependsOnTargets>
 	</PropertyGroup>
 
-	<PropertyGroup Condition="'$(TargetFrameworkIdentifier)'=='MonoAndroid'">
+	<PropertyGroup Condition="'$(TargetFrameworkIdentifier)'=='MonoAndroid' or '$(TargetPlatformIdentifier)'=='android'">
 		<_XamarinBuildDownloadIsAndroid>true</_XamarinBuildDownloadIsAndroid>
 		<_XamarinBuildDownloadMasterBeforeTargets>_ResolveLibraryProjectImports</_XamarinBuildDownloadMasterBeforeTargets>
 		<_XamarinBuildDownloadMasterDependsOnTargets>ResolveAssemblyReferences;_XamarinBuildDownload;_XamarinBuildDownloadAarRestore;_XamarinBuildDownloadAarInclude</_XamarinBuildDownloadMasterDependsOnTargets>
 		<_XamarinBuildDownloadAndroidFixManifests Condition="'$(_XamarinBuildDownloadAndroidFixManifests)' == ''">true</_XamarinBuildDownloadAndroidFixManifests>
 	</PropertyGroup>
 
-	<PropertyGroup Condition="'$(TargetFrameworkIdentifier)'!='MonoAndroid'">
+	<PropertyGroup Condition="'$(_XamarinBuildDownloadIsAndroid)'==''">
 		<_XamarinBuildDownloadIsAndroid>false</_XamarinBuildDownloadIsAndroid>
 	</PropertyGroup>
 	
