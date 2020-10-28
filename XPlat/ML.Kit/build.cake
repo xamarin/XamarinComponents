@@ -218,6 +218,29 @@ Task("libs")
 	(
 		() =>
 		{
+			try
+			{
+				DownloadFile
+				(
+					"https://dl.google.com/dl/android/maven2/com/google/android/gms/play-services-base/17.2.1/play-services-base-17.2.1.aar",
+					"/Users/runner/Library/Caches/XamarinBuildDownload/playservicesbase-17.2.1.aar"
+				);				
+			}
+			catch (System.Exception)
+			{				
+			}
+			try
+			{
+				DownloadFile
+				(
+					"https://dl.google.com/dl/android/maven2/com/google/android/gms/play-services-basement/17.2.1/play-services-basement-17.2.1.aar",
+					"/Users/runner/Library/Caches/XamarinBuildDownload/playservicesbasement-17.2.1.aar"
+				);				
+			}
+			catch (System.Exception)
+			{				
+			}
+
 			MSBuild
 			(
 				"./Android/source/Xamarin.GoogleFirebase.ML.Kit.sln",
@@ -276,7 +299,7 @@ Task("nuget")
 						.SetConfiguration("Release")
 						.WithTarget("Pack")
 						//.WithProperty("PackageVersion", NUGET_VERSION)
-						.WithProperty("PackageOutputPath", "../../output")
+						.WithProperty("PackageOutputPath", "../../../output")
 			);
 		}
 );
