@@ -1,17 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using Android.App;
+﻿using Android.App;
 using Android.OS;
 using Android.Runtime;
 using Android.Support.V7.App;
 using Android.Widget;
 using Java.Util;
-
 using Kotlin.Jvm;
 using Kotlin.Jvm.Internal;
+using Kotlin.Ranges;
 using Kotlin.Reflect.Full;
 using KotlinSampleLibrary;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace KotlinSample
 {
@@ -56,6 +55,30 @@ namespace KotlinSample
 			var properties = KClasses.GetMemberProperties(kotlinClass);
 			var firstProp = properties.FirstOrDefault();
 			textView.Text += $"\nThere are {properties.Count} properties in TestClass, the first is {firstProp.Name}: {firstProp.ReturnType}.\n\n";
+
+			// test is even interface
+
+			for (int i = 0; i < 5; i++)
+			{
+				textView.Text += $"{instance.TestIsEven(3 * i)}\n";
+			}
+
+			// test bit operations from kotlin 1.4
+
+			textView.Text += instance.TestBitOperations();
+
+			// test unsigned things
+
+			var uarray = instance.TestUnsignedArray();
+			textView.Text += $"\nThere are {uarray.Length} items in uarray: {string.Join(", ", uarray)}.\n\n";
+			var uval = instance.TestUnsigned();
+			textView.Text += $"\nUnsigned integer: {uval}.\n\n";
+
+			var uIntRange = URangesKt.Until(100, 200);
+			textView.Text += $"\nUnsigned integer range: {uIntRange.Start} - {uIntRange.EndInclusive} contains 150: {uIntRange.Contains(150)}\n\n";
+
+			IClosedRange closedRange = uIntRange;
+			textView.Text += $"\nClosed range: {closedRange.Start} - {closedRange.EndInclusive} contains 150: {closedRange.Contains(150)}\n\n";
 		}
 	}
 
