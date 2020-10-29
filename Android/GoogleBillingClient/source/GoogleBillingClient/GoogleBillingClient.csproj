@@ -35,15 +35,13 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Include="..\..\externals\billing.aar">
-      <Link>billing.jar</Link>
+    <None Include="..\..\externals\billing.aar" Pack="True" PackagePath="aar\billing.aar">
+      <Link>billing.aar</Link>
     </None>
     <None Include="..\..\License.md" Pack="true" PackagePath="LICENSE.md" />
     <None Include="..\..\External-Dependency-Info.txt" Pack="True" PackagePath="THIRD-PARTY-NOTICES.txt" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <LibraryProjectZip Include="..\..\externals\billing.aar" />
+    <None Include="Xamarin.Android.Google.BillingClient.targets" Pack="True" PackagePath="build\monoandroid90" />
+    <None Include="Xamarin.Android.Google.BillingClient.targets" Pack="True" PackagePath="buildTransitive\monoandroid90" />
   </ItemGroup>
 
   <ItemGroup>	
