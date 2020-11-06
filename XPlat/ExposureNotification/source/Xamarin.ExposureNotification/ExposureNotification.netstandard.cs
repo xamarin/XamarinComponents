@@ -22,7 +22,7 @@ namespace Xamarin.ExposureNotifications
 		static Task PlatformScheduleFetch()
 			=> throw new PlatformNotSupportedException();
 
-		static Task<(ExposureDetectionSummary, IEnumerable<ExposureInfo>)> PlatformDetectExposuresAsync(IEnumerable<TemporaryExposureKey> diagnosisKeys, CancellationToken cancellationToken)
+		static Task<(ExposureDetectionSummary, IEnumerable<ExposureInfo>)> PlatformDetectExposuresAsync(IEnumerable<string> downloadedFiles, CancellationToken cancellationToken)
 			=> throw new PlatformNotSupportedException();
 
 		static Task<IEnumerable<TemporaryExposureKey>> PlatformGetTemporaryExposureKeys()

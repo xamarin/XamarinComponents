@@ -171,7 +171,7 @@ namespace Xamarin.ExposureNotifications
 
 			var config = await GetConfigurationAsync();
 
-			// If the app support v2, then use the special token.
+			// If the app supports v2, then use the special token.
 			// If the device is still v1, then this special token has no meaning,
 			// but, if it is v2 capable, then the device will use the v2 path (window mode)
 			var token = DailySummaryHandler != null

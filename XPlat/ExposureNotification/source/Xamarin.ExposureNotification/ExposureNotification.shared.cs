@@ -111,17 +111,9 @@ namespace Xamarin.ExposureNotifications
 				}
 				else
 				{
-#if __IOS__
-					// On iOS we need to check this ourselves and invoke the handler
-					var (summary, info) = await PlatformDetectExposuresAsync(downloadedFiles, cancellationToken);
-
-					// Check that the summary has any matches before notifying the callback
-					if (summary?.MatchedKeyCount > 0)
-						await Handler.ExposureDetectedAsync(summary, info);
-#elif __ANDROID__
-					// on Android this will happen in the broadcast receiver
+					// On Android this will happen in the broadcast receiver
+					// On iOS this will complete the operation directly
 					await PlatformDetectExposuresAsync(downloadedFiles, cancellationToken);
-#endif
 				}
 
 				processedAnyFiles = true;

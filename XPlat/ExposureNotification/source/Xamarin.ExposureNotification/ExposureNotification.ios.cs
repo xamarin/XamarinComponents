@@ -27,7 +27,7 @@ namespace Xamarin.ExposureNotifications
 				return false;
 
 			if (!(version is NSNumber number) || (number.Int32Value != 1 && number.Int32Value != 2))
-				throw new InvalidOperationException("Value of ENAPIVersion was not a valid number (1 or 2).");
+				throw new InvalidOperationException("Value of ENAPIVersion was not a valid version number (1 or 2).");
 
 			if (number.Int32Value == 2)
 			{
@@ -103,10 +103,34 @@ namespace Xamarin.ExposureNotifications
 				if (c == null)
 					throw new InvalidOperationException("The daily summary configuration was not provided on the handler.");
 
+				var infectiousnessMap = new NSMutableDictionary<NSNumber, NSNumber>();
+				foreach (var pair in c.DaysSinceOnsetInfectiousness)
+				{
+					infectiousnessMap[pair.Key] = (int)pair.Value.ToNative();
+				}
+
 				var nc = new ENExposureConfiguration
 				{
+					ImmediateDurationWeight = c.AttenuationWeights[DistanceEstimate.Immediate],
+					NearDurationWeight = c.AttenuationWeights[DistanceEstimate.Near],
+					MediumDurationWeight = c.AttenuationWeights[DistanceEstimate.Medium],
+					OtherDurationWeight = c.AttenuationWeights[DistanceEstimate.Other],
+
+					InfectiousnessForDaysSinceOnsetOfSymptoms = infectiousnessMap.ToNSDictionary(),
+
+					InfectiousnessStandardWeight = c.InfectiousnessWeights[Infectiousness.Standard],
+					InfectiousnessHighWeight = c.InfectiousnessWeights[Infectiousness.High],
+
+					ReportTypeConfirmedTestWeight = c.ReportTypeWeights[ReportType.ConfirmedTest],
+					ReportTypeConfirmedClinicalDiagnosisWeight = c.ReportTypeWeights[ReportType.ConfirmedClinicalDiagnosis],
+					ReportTypeSelfReportedWeight = c.ReportTypeWeights[ReportType.SelfReported],
+					ReportTypeRecursiveWeight = c.ReportTypeWeights[ReportType.Recursive],
+
+					ReportTypeNoneMap = c.DefaultReportType.ToNative(),
+
 					AttenuationDurationThresholds = c.AttenuationThresholds,
-					
+
+					DaysSinceLastExposureThreshold = c.DaysSinceLastExposureThreshold,
 				};
 
 				return nc;
@@ -207,7 +231,7 @@ namespace Xamarin.ExposureNotifications
 		}
 
 		// Tells the local API when new diagnosis keys have been obtained from the server
-		static async Task<(ExposureDetectionSummary, Func<Task<IEnumerable<ExposureInfo>>>)> PlatformDetectExposuresAsync(IEnumerable<string> keyFiles, CancellationToken cancellationToken)
+		static async Task PlatformDetectExposuresAsync(IEnumerable<string> keyFiles, CancellationToken cancellationToken)
 		{
 			// Submit to the API
 			var c = await GetConfigurationAsync();
@@ -262,9 +286,62 @@ namespace Xamarin.ExposureNotifications
 				}
 			}
 
+			// Branch the logic to either return the new data, or fall back to the old info
+			if (IsDailySummaries)
+			{
+				// Check that the summary has actual data before notifying the callback
+				if (detectionSummary.DaySummaries.Length > 0)
+				{
+					var (windows, dailySummary) = await PlatformProcessSummaryV2Async(m, detectionSummary, cancellationToken);
+
+					await DailySummaryHandler!.ExposureStateUpdatedAsync(windows, dailySummary);
+				}
+			}
+			else
+			{
+				var (summary, info) = PlatformProcessSummaryV1(m, detectionSummary, cancellationToken);
+
+				// Check that the summary has any matches before notifying the callback
+				if (summary?.MatchedKeyCount > 0)
+					await Handler.ExposureDetectedAsync(summary, info);
+			}
+		}
+
+		static async Task<(IEnumerable<ExposureWindow>, IEnumerable<DailySummary>)> PlatformProcessSummaryV2Async(ENManager m, ENExposureDetectionSummary detectionSummary, CancellationToken cancellationToken)
+		{
+			var exposureWindows = await m.GetExposureWindowsAsync(detectionSummary);
+			var windows = exposureWindows.Select(w => new ExposureWindow(
+				w.CalibrationConfidence.FromNative(),
+				(DateTime)w.Date,
+				w.Infectiousness.FromNative(),
+				w.DiagnosisReportType.FromNative(),
+				w.ScanInstances.Select(
+					s => new ScanInstance(
+						s.MinimumAttenuation,
+						s.TypicalAttenuation,
+						TimeSpan.FromSeconds(s.SecondsSinceLastScan))).ToArray()));
+
+			var summaries = detectionSummary.DaySummaries.Select(s => new DailySummary(
+				(DateTime)s.Date,
+				s.DaySummary.FromNative()!,
+				new Dictionary<ReportType, DailySummaryReport?>
+				{
+					[ReportType.Unknown] = null,
+					[ReportType.ConfirmedTest] = s.ConfirmedTestSummary?.FromNative(),
+					[ReportType.ConfirmedClinicalDiagnosis] = s.ConfirmedClinicalDiagnosisSummary?.FromNative(),
+					[ReportType.SelfReported] = s.SelfReportedSummary?.FromNative(),
+					[ReportType.Recursive] = s.RecursiveSummary?.FromNative(),
+					[ReportType.Revoked] = null,
+				}));
+
+			return (windows, summaries);
+		}
+
+		static (ExposureDetectionSummary, Func<Task<IEnumerable<ExposureInfo>>>) PlatformProcessSummaryV1(ENManager m, ENExposureDetectionSummary detectionSummary, CancellationToken cancellationToken)
+		{
 			var attDurTs = new List<TimeSpan>();
 			var dictKey = new NSString("attenuationDurations");
-			if (detectionSummary.Metadata.ContainsKey(dictKey))
+			if (detectionSummary.Metadata?.ContainsKey(dictKey) == true)
 			{
 				var attDur = detectionSummary.Metadata.ObjectForKey(dictKey) as NSArray;
 
@@ -274,7 +351,7 @@ namespace Xamarin.ExposureNotifications
 
 			var sumRisk = 0;
 			dictKey = new NSString("riskScoreSumFullRange");
-			if (detectionSummary.Metadata.ContainsKey(dictKey))
+			if (detectionSummary.Metadata?.ContainsKey(dictKey) == true)
 			{
 				var sro = detectionSummary.Metadata.ObjectForKey(dictKey);
 				if (sro is NSNumber sron)
@@ -283,7 +360,7 @@ namespace Xamarin.ExposureNotifications
 
 			var maxRisk = 0;
 			dictKey = new NSString("maximumRiskScoreFullRange");
-			if (detectionSummary.Metadata.ContainsKey(dictKey))
+			if (detectionSummary.Metadata?.ContainsKey(dictKey) == true)
 			{
 				var sro = detectionSummary.Metadata.ObjectForKey(dictKey);
 				if (sro is NSNumber sron)
@@ -313,7 +390,7 @@ namespace Xamarin.ExposureNotifications
 					{
 						var totalRisk = 0;
 						var dictKey = new NSString("totalRiskScoreFullRange");
-						if (i.Metadata.ContainsKey(dictKey))
+						if (i.Metadata?.ContainsKey(dictKey) == true)
 						{
 							var sro = i.Metadata.ObjectForKey(dictKey);
 							if (sro is NSNumber sron)
@@ -395,5 +472,65 @@ namespace Xamarin.ExposureNotifications
 				RiskLevel.Highest => 8,
 				_ => 0,
 			};
+
+		public static Infectiousness FromNative(this ENInfectiousness infectiousness) =>
+			infectiousness switch
+			{
+				ENInfectiousness.None => Infectiousness.None,
+				ENInfectiousness.Standard => Infectiousness.Standard,
+				ENInfectiousness.High => Infectiousness.High,
+				_ => Infectiousness.Standard,
+			};
+
+		public static ENInfectiousness ToNative(this Infectiousness infectiousness) =>
+			infectiousness switch
+			{
+				Infectiousness.None => ENInfectiousness.None,
+				Infectiousness.Standard => ENInfectiousness.Standard,
+				Infectiousness.High => ENInfectiousness.High,
+				_ => ENInfectiousness.Standard,
+			};
+
+		public static ReportType FromNative(this ENDiagnosisReportType reportType) =>
+			reportType switch
+			{
+				ENDiagnosisReportType.Unknown => ReportType.Unknown,
+				ENDiagnosisReportType.ConfirmedTest => ReportType.ConfirmedTest,
+				ENDiagnosisReportType.ConfirmedClinicalDiagnosis => ReportType.ConfirmedClinicalDiagnosis,
+				ENDiagnosisReportType.SelfReported => ReportType.SelfReported,
+				ENDiagnosisReportType.Recursive => ReportType.Recursive,
+				ENDiagnosisReportType.Revoked => ReportType.Revoked,
+				_ => ReportType.Unknown,
+			};
+
+		public static ENDiagnosisReportType ToNative(this ReportType reportType) =>
+			reportType switch
+			{
+				ReportType.Unknown => ENDiagnosisReportType.Unknown,
+				ReportType.ConfirmedTest => ENDiagnosisReportType.ConfirmedTest,
+				ReportType.ConfirmedClinicalDiagnosis => ENDiagnosisReportType.ConfirmedClinicalDiagnosis,
+				ReportType.SelfReported => ENDiagnosisReportType.SelfReported,
+				ReportType.Recursive => ENDiagnosisReportType.Recursive,
+				ReportType.Revoked => ENDiagnosisReportType.Revoked,
+				_ => ENDiagnosisReportType.Unknown,
+			};
+
+		public static CalibrationConfidence FromNative(this ENCalibrationConfidence confidence) =>
+			confidence switch
+			{
+				ENCalibrationConfidence.Lowest => CalibrationConfidence.Lowest,
+				ENCalibrationConfidence.Low => CalibrationConfidence.Low,
+				ENCalibrationConfidence.Medium => CalibrationConfidence.Medium,
+				ENCalibrationConfidence.High => CalibrationConfidence.High,
+				_ => CalibrationConfidence.Lowest,
+			};
+
+		public static DailySummaryReport? FromNative(this ENExposureSummaryItem summary) =>
+			summary == null
+				? null
+				: new DailySummaryReport(summary.MaximumScore, summary.ScoreSum, summary.WeightedDurationSum);
+
+		public static NSDictionary<NSNumber, NSNumber> ToNSDictionary(this NSMutableDictionary<NSNumber, NSNumber> mutable) =>
+			NSDictionary<NSNumber, NSNumber>.FromObjectsAndKeys(mutable.Values, mutable.Keys, (nint)mutable.Count);
 	}
 }
