@@ -11,10 +11,12 @@ resources:
       type: github
       name: xamarin/yaml-templates
       endpoint: xamarin
+      ref: refs/heads/main
     - repository: components
       type: github
       name: xamarin/XamarinComponents
       endpoint: xamarin
+      ref: refs/heads/dev/api-v2
 
 jobs:
   - template: .ci/build.yml@components
