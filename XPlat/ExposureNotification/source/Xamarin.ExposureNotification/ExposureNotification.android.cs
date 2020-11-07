@@ -80,24 +80,20 @@ namespace Xamarin.ExposureNotifications
 			{
 				return await apiCall();
 			}
-			catch (ApiException apiEx)
+			catch (ApiException apiEx) when (apiEx.StatusCode == CommonStatusCodes.ResolutionRequired)
 			{
-				if (apiEx.StatusCode == CommonStatusCodes.ResolutionRequired) // Resolution required
-				{
-					tcsResolveConnection = new TaskCompletionSource<bool>();
+				// Resolution required
+				tcsResolveConnection = new TaskCompletionSource<bool>();
 
-					// Start the resolution
-					apiEx.Status.StartResolutionForResult(Essentials.Platform.CurrentActivity, requestCode);
+				// Start the resolution
+				apiEx.Status.StartResolutionForResult(Essentials.Platform.CurrentActivity, requestCode);
 
-					// Wait for the activity result to be called
-					await tcsResolveConnection.Task;
+				// Wait for the activity result to be called
+				await tcsResolveConnection.Task;
 
-					// Try the original api call again
-					return await apiCall();
-				}
+				// Try the original api call again
+				return await apiCall();
 			}
-
-			return default;
 		}
 
 		static void PlatformInit()
