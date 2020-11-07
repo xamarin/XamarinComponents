@@ -138,11 +138,11 @@ jobs:
           Write-Host "Downloading script from $uri..."
           Invoke-WebRequest -Uri $uri -OutFile "validation.cake"
         displayName: 'Download the cake script to validate NuGet packages'
-      - pwsh: |
-          $uri = "$(TemplateRootUri)/nuget-diff.cake"
-          Write-Host "Downloading script from $uri..."
-          Invoke-WebRequest -Uri $uri -OutFile "nuget-diff.cake"
-        displayName: 'Download the cake script to diff NuGet packages'
+#       - pwsh: |
+#           $uri = "$(TemplateRootUri)/nuget-diff.cake"
+#           Write-Host "Downloading script from $uri..."
+#           Invoke-WebRequest -Uri $uri -OutFile "nuget-diff.cake"
+#         displayName: 'Download the cake script to diff NuGet packages'
       # determine the last successful build for "master" branch
       - pwsh: |
           # determine the "master" branch
@@ -294,13 +294,13 @@ jobs:
             --namespaces="${{ join(',', parameters.validPackagePrefixes) }}" `
             --verbosity="${{ parameters.verbosity }}"
         displayName: 'Run NuGet package validation'
-      - pwsh: |
-          dotnet cake nuget-diff.cake `
-            --artifacts="${{ parameters.artifactsPath }}" `
-            --output="${{ parameters.artifactsPath }}/api-diff" `
-            --cache="$(Agent.TempDirectory)/api-diff" `
-            --verbosity="${{ parameters.verbosity }}"
-        displayName: 'Generate API diff'
+#       - pwsh: |
+#           dotnet cake nuget-diff.cake `
+#             --artifacts="${{ parameters.artifactsPath }}" `
+#             --output="${{ parameters.artifactsPath }}/api-diff" `
+#             --cache="$(Agent.TempDirectory)/api-diff" `
+#             --verbosity="${{ parameters.verbosity }}"
+#         displayName: 'Generate API diff'
       # after the build is complete
       - pwsh: |
           $srcExists = (Test-Path "${{ parameters.signListPath }}")
