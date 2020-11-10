@@ -16,7 +16,7 @@ namespace AndroidBinderator
 			var csprojNamespaces = new XmlNamespaceManager(new NameTable());
 			csprojNamespaces.AddNamespace("ns", "http://schemas.microsoft.com/developer/msbuild/2003");
 
-			var slnFileInfo = new FileInfo(config.SolutionFile);
+			var slnFileInfo = new FileInfo(Path.Combine(config.BasePath, config.SolutionFile));
 
 			// Collect all the projects to be added to the .sln
 			var allProjects = new List<(string guid, string name, string key)>();
