@@ -1,0 +1,16 @@
+{
+  "Registrations": [
+    {
+      "Component": {
+        "Type": "Maven",
+        "Maven": {
+          "ArtifactId": "okio",
+          "GroupId": "com.squareup.okio",
+          "Version": "2.4.3",
+          "NuGetId": "Square.OkIO"
+        }
+      }
+    }
+  ],
+  "Version": 1
+}

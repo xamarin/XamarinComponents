@@ -1,0 +1,12 @@
+﻿<enum-field-mappings>
+  
+<!--
+  <mapping jni-class="com/squareup/timessquare/RangeState" clr-enum-type="Square.TimesSquare.RangeState">
+    <field jni-name="NONE" clr-name="None" value="0" />
+    <field jni-name="FIRST" clr-name="First" value="1" />
+    <field jni-name="MIDDLE" clr-name="Middle" value="2" />
+    <field jni-name="LAST" clr-name="Last" value="3" />
+  </mapping>
+-->
+
+</enum-field-mappings>

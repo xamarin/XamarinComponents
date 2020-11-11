@@ -46,6 +46,7 @@
     <PackageReference Include="Xamarin.Google.Android.DataTransport.TransportBackendCct" Version="2.2.2" />
     <PackageReference Include="Xamarin.Google.Android.DataTransport.TransportRuntime" Version="2.2.2" />
     <PackageReference Include="Xamarin.Firebase.Messaging" Version="120.1.7" />
+    <PackageReference Include="Xamarin.Android.Volley" Version="1.1.1.1" />
   </ItemGroup>
 
   <ItemGroup Condition=" $(TargetFramework.StartsWith('MonoAndroid10.0')) ">
