@@ -1,0 +1,16 @@
+{
+  "Registrations": [
+    {
+      "Component": {
+        "Type": "Maven",
+        "Maven": {
+          "ArtifactId": "seismic",
+          "GroupId": "com.squareup",
+          "Version": "2.71828",
+          "NuGetId": "Square.Seismic"
+        }
+      }
+    }
+  ],
+  "Version": 1
+}
