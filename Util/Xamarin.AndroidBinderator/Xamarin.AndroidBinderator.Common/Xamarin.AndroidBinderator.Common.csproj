@@ -2,13 +2,20 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <PackageId>Xamarin.AndroidBinderator.Common</PackageId>
+    <PackageVersion>1.0.0</PackageVersion>
+    <Title>Xamarin Android Binderator Commons</Title>
     <Authors>Microsoft</Authors>
     <Copyright>© Microsoft Corporation. All rights reserved.</Copyright>
     <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
     <PackageProjectUrl>https://go.microsoft.com/fwlink/?linkid=2100525</PackageProjectUrl>
+    <PackageLicenseUrl>https://go.microsoft.com/fwlink/?linkid=2100608</PackageLicenseUrl>
   </PropertyGroup>
-
+  
   <ItemGroup>
     <PackageReference Include="MavenNet" Version="2.1.2" />
   </ItemGroup>
