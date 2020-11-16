@@ -6,7 +6,7 @@ var IOS_URL = $"https://github.com/Azure/azure-notificationhubs-ios/releases/dow
 
 var ANDROID_VERSION = "1.1.3";
 var ANDROID_NUGET_VERSION = "1.1.3";
-var ANDROID_URL = $"https://dl.bintray.com/microsoftazuremobile/SDK/com/microsoft/azure/notification-hubs-android-sdk/{0}/notification-hubs-android-sdk-{ANDROID_VERSION}.aar";
+var ANDROID_URL = $"https://dl.bintray.com/microsoftazuremobile/SDK/com/microsoft/azure/notification-hubs-android-sdk/{ANDROID_VERSION}/notification-hubs-android-sdk-{ANDROID_VERSION}.aar";
 
 Task("libs-ios")
 	.WithCriteria(IsRunningOnUnix())
