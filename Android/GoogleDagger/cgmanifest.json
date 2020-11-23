@@ -6,7 +6,7 @@
         "Maven": {
           "ArtifactId": "dagger",
           "GroupId": "com.google.dagger",
-          "Version": "2.25.2",
+          "Version": "2.27.0",
           "NuGetId": "Xamarin.Google.Dagger"
         }
       }
