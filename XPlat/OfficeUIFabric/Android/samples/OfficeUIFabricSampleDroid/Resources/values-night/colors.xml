@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ Copyright (c) Microsoft Corporation. All rights reserved.
+  ~ Licensed under the MIT License.
+  -->
+
+<resources>
+
+  <!--Calendar-->
+  <color name="calendar_selected_date_text">@color/uifabric_gray_100</color>
+  <color name="calendar_selected_date_background">#333</color>
+
+  <!--Snackbar-->
+  <color name="snackbar_circular_progress_drawable">@color/uifabric_white</color>
+
+  <!--TemplateView-->
+  <color name="template_view_cell_horizontal_background">@color/uifabric_communication_tint_40</color>
+  <color name="template_view_cell_vertical_background">@color/uifabric_gray_50</color>
+
+</resources>

@@ -1,10 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:minWidth="25px"
-    android:minHeight="25px"
     android:padding="12dp">
     <TextView
         android:textAppearance="?android:attr/textAppearanceMedium"
@@ -13,4 +11,4 @@
         android:id="@+id/textView"
         android:text="..."
         android:gravity="center" />
-</LinearLayout>
+</ScrollView>

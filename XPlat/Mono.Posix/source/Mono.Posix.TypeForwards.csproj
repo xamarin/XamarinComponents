@@ -1,0 +1,27 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net40</TargetFramework>
+    <AssemblyName>Mono.Posix.NETStandard</AssemblyName>
+    <GenerateAssemblyDescriptionAttribute>false</GenerateAssemblyDescriptionAttribute>
+    <GenerateAssemblyTitleAttribute>false</GenerateAssemblyTitleAttribute>
+    <GenerateAssemblyVersionAttribute>false</GenerateAssemblyVersionAttribute>
+    <EnableDefaultItems>false</EnableDefaultItems>
+    <DebugType>portable</DebugType>
+    <SignAssembly>true</SignAssembly>
+    <DelaySign>true</DelaySign>
+    <AssemblyOriginatorKeyFile>..\externals\mono\mcs\class\Open.snk</AssemblyOriginatorKeyFile>
+    <DefineConstants>$(DefineConstants);MONO_POSIX_NETSTANDARD_BUILD;NETSTANDARD2_0</DefineConstants>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Reference Include="C:\Program Files*\Mono\lib\mono\gac\Mono.Posix\*\Mono.Posix.dll" Condition=" '$(OS)' == 'Windows_NT' " />
+    <Reference Include="Mono.Posix" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Include="..\externals\mono\mcs\class\Mono.Posix\Assembly\AssemblyInfo.cs" />
+    <Compile Include="..\working\cs\Mono.Posix.generated.cs" />
+  </ItemGroup>
+
+</Project>

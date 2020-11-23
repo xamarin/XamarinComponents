@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ Copyright (c) Microsoft Corporation. All rights reserved.
+  ~ Licensed under the MIT License.
+  -->
+
+<resources>
+    <!-- *** Theme Semantic Colors *** -->
+
+    <attr name="uifabricColorPrimaryDarker" format="reference|color"/>
+    <attr name="uifabricColorPrimaryLight" format="reference|color"/>
+    <attr name="uifabricColorPrimaryLighter" format="reference|color"/>
+
+    <!-- *** Base Semantic Colors *** -->
+
+    <!--Backgrounds-->
+    <attr name="uifabricBackgroundColor" format="reference|color"/>
+    <attr name="uifabricBackgroundPressedColor" format="reference|color"/>
+    <attr name="uifabricBackgroundPrimaryColor" format="reference|color"/>
+    <attr name="uifabricBackgroundSecondaryColor" format="reference|color"/>
+    <attr name="uifabricBackgroundSecondaryPressedColor" format="reference|color"/>
+
+    <!--Foregrounds-->
+    <attr name="uifabricForegroundColor" format="reference|color"/>
+    <attr name="uifabricForegroundSelectedColor" format="reference|color"/>
+    <attr name="uifabricForegroundSecondaryColor" format="reference|color"/>
+    <attr name="uifabricForegroundSecondaryIconColor" format="reference|color"/>
+    <attr name="uifabricForegroundOnPrimaryColor" format="reference|color"/>
+    <attr name="uifabricForegroundOnSecondaryColor" format="reference|color"/>
+    <attr name="uifabricDividerColor" format="reference|color"/>
+
+    <!--Transparent Backgrounds-->
+    <attr name="uifabricBackgroundSecondary20Color" format="reference|color"/>
+
+    <!--Transparent Foregrounds-->
+    <attr name="uifabricForegroundOnPrimary80Color" format="reference|color"/>
+    <attr name="uifabricForegroundOnPrimary70Color" format="reference|color"/>
+
+    <!-- *** Semantic Colors *** -->
+
+    <!--AppBarLayout-->
+    <attr name="uifabricAppBarLayoutBackgroundColor" format="reference|color"/>
+
+    <!--BottomNavigation-->
+    <attr name="uifabricBottomNavigationBackgroundColor" format="reference|color"/>
+    <attr name="uifabricBottomNavigationForegroundActiveColor" format="reference|color"/>
+    <attr name="uifabricBottomNavigationForegroundInactiveColor" format="reference|color"/>
+
+    <!--BottomSheet-->
+    <attr name="uifabricBottomSheetBackgroundColor" format="reference|color"/>
+    <attr name="uifabricBottomSheetBackgroundPressedColor" format="reference|color"/>
+    <attr name="uifabricBottomSheetIconColor" format="reference|color"/>
+    <attr name="uifabricBottomSheetDividerColor" format="reference|color"/>
+
+    <!--Button-->
+    <attr name="uifabricButtonBackgroundDefaultColor" format="reference|color"/>
+    <attr name="uifabricButtonBackgroundDisabledColor" format="reference|color"/>
+    <attr name="uifabricButtonBackgroundPressedColor" format="reference|color"/>
+    <attr name="uifabricButtonTextDefaultColor" format="reference|color"/>
+    <attr name="uifabricButtonTextDisabledColor" format="reference|color"/>
+
+    <!--Button Borderless-->
+    <attr name="uifabricButtonBorderlessBackgroundDefaultColor" format="reference|color"/>
+    <attr name="uifabricButtonBorderlessBackgroundDisabledColor" format="reference|color"/>
+    <attr name="uifabricButtonBorderlessBackgroundPressedColor" format="reference|color"/>
+    <attr name="uifabricButtonBorderlessTextDefaultColor" format="reference|color"/>
+    <attr name="uifabricButtonBorderlessTextDisabledColor" format="reference|color"/>
+    <attr name="uifabricButtonBorderlessTextPressedColor" format="reference|color"/>
+
+    <!--CalendarView-->
+    <attr name="uifabricCalendarBackgroundColor" format="reference|color"/>
+    <attr name="uifabricCalendarWeekHeadingBackgroundColor" format="reference|color"/>
+    <attr name="uifabricCalendarWeekHeadingWeekDayTextColor" format="reference|color"/>
+    <attr name="uifabricCalendarWeekHeadingWeekendTextColor" format="reference|color"/>
+    <attr name="uifabricCalendarMonthOverlayBackgroundColor" format="reference|color"/>
+    <attr name="uifabricCalendarMonthOverlayTextColor" format="reference|color"/>
+    <attr name="uifabricCalendarOtherMonthBackgroundColor" format="reference|color"/>
+    <attr name="uifabricCalendarSelectedColor" format="reference|color"/>
+    <attr name="uifabricCalendarDayTodayBackgroundColor" format="reference|color"/>
+    <!--day selector-->
+    <attr name="uifabricCalendarDayTextActiveColor" format="reference|color"/>
+    <attr name="uifabricCalendarDayTextActiveCheckedColor" format="reference|color"/>
+    <attr name="uifabricCalendarDayTextInactiveCheckedColor" format="reference|color"/>
+    <attr name="uifabricCalendarDayTextDefaultColor" format="reference|color"/>
+
+    <!--Compound Buttons-->
+    <attr name="uifabricCompoundButtonTintDefaultColor" format="reference|color"/>
+    <attr name="uifabricCompoundButtonTintCheckedColor" format="reference|color"/>
+
+    <!--DateTimePicker-->
+    <attr name="uifabricDateTimePickerToolbarTitleTextColor" format="reference|color"/>
+    <attr name="uifabricDateTimePickerTabTextColor" format="reference|color"/>
+    <attr name="uifabricDateTimePickerDialogBackgroundColor" format="reference|color"/>
+    <attr name="uifabricDateTimePickerToolbarIconColor" format="reference|color"/>
+
+    <!--Dialog-->
+    <attr name="uifabricDialogBackgroundColor" format="reference|color"/>
+    <attr name="uifabricDialogCloseIconColor" format="reference|color"/>
+    <attr name="uifabricDialogTabLayoutBackgroundColor" format="reference|color"/>
+
+    <!--Drawer-->
+    <attr name="uifabricDrawerBackgroundColor" format="reference|color"/>
+    <attr name="uifabricDrawerHandleColor" format="reference|color"/>
+
+    <!--ListItemView-->
+    <attr name="uifabricListItemBackgroundColor" format="reference|color"/>
+    <attr name="uifabricListItemTitleColor" format="reference|color"/>
+    <attr name="uifabricListItemSubtitleColor" format="reference|color"/>
+    <attr name="uifabricListItemSubtitleLargeHeaderColor" format="reference|color"/>
+    <attr name="uifabricListItemFooterColor" format="reference|color"/>
+    <attr name="uifabricListItemRippleColor" format="reference|color"/>
+
+    <!--ListSubHeader-->
+    <attr name="uifabricListSubHeaderTitlePrimaryColor" format="reference|color"/>
+    <attr name="uifabricListSubHeaderTitleSecondaryColor" format="reference|color"/>
+    <attr name="uifabricListSubHeaderTitleTertiaryColor" format="reference|color"/>
+
+    <!--NumberPicker-->
+    <attr name="uifabricNumberPickerBackgroundColor" format="reference|color"/>
+    <attr name="uifabricNumberPickerDefaultTextColor" format="reference|color"/>
+    <attr name="uifabricNumberPickerSelectedTextColor" format="reference|color"/>
+
+    <!--PeoplePicker-->
+    <attr name="uifabricPeoplePickerBackgroundColor" format="reference|color"/>
+    <attr name="uifabricPeoplePickerPopupBackgroundColor" format="reference|color"/>
+    <attr name="uifabricPeoplePickerTextViewBackgroundColor" format="reference|color"/>
+    <attr name="uifabricPeoplePickerTextViewDragBackgroundColor" format="reference|color"/>
+    <attr name="uifabricPeoplePickerHintTextColor" format="reference|color"/>
+    <attr name="uifabricPeoplePickerLabelTextColor" format="reference|color"/>
+    <attr name="uifabricPeoplePickerCountSpanTextColor" format="reference|color"/>
+
+    <!--PersonaChip-->
+    <attr name="uifabricPersonaChipBackgroundNormalColor" format="reference|color"/>
+    <attr name="uifabricPersonaChipBackgroundActiveColor" format="reference|color"/>
+    <attr name="uifabricPersonaChipBackgroundErrorColor" format="reference|color"/>
+    <attr name="uifabricPersonaChipBackgroundErrorActiveColor" format="reference|color"/>
+    <attr name="uifabricPersonaChipBackgroundPressedColor" format="reference|color"/>
+    <attr name="uifabricPersonaChipTextNormalColor" format="reference|color"/>
+    <attr name="uifabricPersonaChipForegroundActiveColor" format="reference|color"/>
+    <attr name="uifabricPersonaChipTextErrorColor" format="reference|color"/>
+    <attr name="uifabricPersonaChipTextDisabledColor" format="reference|color"/>
+
+    <!--PopupMenu-->
+    <attr name="uifabricPopupMenuBackgroundColor" format="reference|color"/>
+    <attr name="uifabricPopupMenuBackgroundPressedColor" format="reference|color"/>
+    <attr name="uifabricPopupMenuItemTitleColor" format="reference|color"/>
+    <attr name="uifabricPopupMenuItemForegroundSelectedColor" format="reference|color"/>
+    <attr name="uifabricPopupMenuItemCheckBackgroundRippleColor" format="reference|color"/>
+
+    <!--Progress-->
+    <attr name="uifabricProgressPrimaryColor" format="reference|color"/>
+
+    <!--Searchbar-->
+    <attr name="uifabricSearchbarBackgroundColor" format="reference|color"/>
+    <attr name="uifabricSearchbarSearchViewContainerBackgroundColor" format="reference|color"/>
+    <attr name="uifabricSearchbarBackButtonColor" format="reference|color"/>
+    <attr name="uifabricSearchbarSearchIconColor" format="reference|color"/>
+    <attr name="uifabricSearchbarSearchViewTextColor" format="reference|color"/>
+    <attr name="uifabricSearchbarSearchViewTextHintColor" format="reference|color"/>
+    <attr name="uifabricSearchbarSearchViewCursorColor" format="reference|color"/>
+    <attr name="uifabricSearchbarProgressColor" format="reference|color"/>
+    <attr name="uifabricSearchbarCloseIconColor" format="reference|color"/>
+
+    <!--Snackbar-->
+    <attr name="uifabricSnackbarBackgroundColor" format="reference|color"/>
+    <attr name="uifabricSnackbarBackgroundAnnouncementColor" format="reference|color"/>
+    <attr name="uifabricSnackbarTextColor" format="reference|color"/>
+    <attr name="uifabricSnackbarActionTextColor" format="reference|color"/>
+    <attr name="uifabricSnackbarActionTextAnnouncementColor" format="reference|color"/>
+
+    <!--TabLayout-->
+    <attr name="uifabricTabTextColor" format="reference|color"/>
+    <attr name="uifabricTabSelectedTextColor" format="reference|color"/>
+    <attr name="uifabricTabIndicatorColor" format="reference|color"/>
+
+    <!--Toolbar-->
+    <attr name="uifabricToolbarBackgroundColor" format="reference|color"/>
+    <attr name="uifabricToolbarTitleTextColor" format="reference|color"/>
+    <attr name="uifabricToolbarSubtitleTextColor" format="reference|color"/>
+    <attr name="uifabricToolbarIconColor" format="reference|color"/>
+
+    <!--Tooltip-->
+    <attr name="uifabricTooltipBackgroundColor" format="reference|color"/>
+    <attr name="uifabricTooltipTextColor" format="reference|color"/>
+</resources>
