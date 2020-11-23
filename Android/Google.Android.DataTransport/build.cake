@@ -14,8 +14,8 @@ Dictionary<string, string> URLS_ARTIFACT_FILES= new Dictionary<string, string>()
 		$"./externals/android/transport-api-2.2.0.aar"
 	},
 	{
-		$"https://maven.google.com//com/google/android/datatransport/transport-backend-cct/2.2.3/transport-backend-cct-2.2.3.aar",
-		$"./externals/android/transport-backend-cct-2.2.3.aar"
+		$"https://maven.google.com//com/google/android/datatransport/transport-backend-cct/2.3.0/transport-backend-cct-2.3.0.aar",
+		$"./externals/android/transport-backend-cct-2.3.0.aar"
 	},
 	{
 		$"https://maven.google.com//com/google/android/datatransport/transport-runtime/2.2.3/transport-runtime-2.2.3.aar",
