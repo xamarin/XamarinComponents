@@ -20,7 +20,7 @@
   <PropertyGroup>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <PackageId>Xamarin.Google.Android.DataTransport.TransportBackendCct</PackageId>
-    <PackageVersion>2.2.2</PackageVersion>
+    <PackageVersion>2.3.0</PackageVersion>
     <Title>Xamarin.Google.Android.DataTransport.TransportBackendCct</Title>
     <PackageDescription>Bindings for Xamarin Google.Android.DataTransport.TransportBackendCct package</PackageDescription>
     <Owners>Microsoft</Owners>

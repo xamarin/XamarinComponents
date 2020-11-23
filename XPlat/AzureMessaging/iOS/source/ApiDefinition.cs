@@ -284,7 +284,7 @@ namespace WindowsAzure.Messaging.NotificationHubs
 		string Body { get; }
 
 		[Export("userInfo")]
-		NSDictionary<NSString, NSString> UserInfo { get; }
+		NSDictionary UserInfo { get; }
 	}
 
 	[Protocol]
