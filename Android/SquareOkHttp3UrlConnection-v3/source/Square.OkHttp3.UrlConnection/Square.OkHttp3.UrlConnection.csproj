@@ -1,0 +1,44 @@
+﻿<Project Sdk="MSBuild.Sdk.Extras/2.1.2">
+  <PropertyGroup>
+    <TargetFrameworks>monoandroid9.0</TargetFrameworks>
+    <IsBindingProject>true</IsBindingProject>
+    <AssemblyName>Square.OkHttp3.UrlConnection</AssemblyName>
+    <RootNamespace>Square.OkHttp3.UrlConnection</RootNamespace>
+    <AndroidUseLatestPlatformSdk>False</AndroidUseLatestPlatformSdk>
+    <AndroidUseIntermediateDesignerFile>True</AndroidUseIntermediateDesignerFile>
+    <AndroidClassParser>class-parse</AndroidClassParser>
+    <AndroidCodegenTarget>XAJavaInterop1</AndroidCodegenTarget>
+  </PropertyGroup>
+    
+  <PropertyGroup>
+    <PackageId>Square.OkHttp3.UrlConnection</PackageId>
+    <Title>OkHttp v3 UrlConnection bindings for Xamarin.Android</Title>
+    <Summary>OkHttp ability to be used with HttpURLConnection.</Summary>
+    <Description>OkHttp ability to be used with HttpURLConnection.</Description>
+       <Authors>Microsoft</Authors>
+    <Owners>Microsoft</Owners>
+    <Copyright>© Microsoft Corporation. All rights reserved.</Copyright>
+    <PackageProjectUrl>https://go.microsoft.com/fwlink/?linkid=2130312</PackageProjectUrl>
+    <PackageIcon>square.okhttp_256x256.png</PackageIcon>
+    <PackageLicenseFile>LICENSE.md</PackageLicenseFile>
+    <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
+    <PackageTags>okhttp square square.okhttp xamarin android monodroid</PackageTags>
+    <PackageVersion>3.14.9</PackageVersion>
+  </PropertyGroup>
+    
+  <ItemGroup>
+    <PackageReference Include="Square.OkHttp3" Version="3.14.9" />
+  </ItemGroup>
+    
+  <ItemGroup>
+    <None Remove="Transforms\*.xml" />
+    <TransformFile Include="Transforms\*.xml" />
+    <EmbeddedJar Include="..\..\externals\*.jar" Link="Jars\%(Filename)%(Extension)" />
+    <LibraryProjectZip Include="..\..\externals\*.aar" Link="Jars\%(Filename)%(Extension)" />
+  </ItemGroup>
+    
+  <ItemGroup>
+    <None Include="..\..\License.md" Pack="true" PackagePath="LICENSE.md" />
+    <None Include="..\..\icons\square.okhttp_256x256.png" Pack="True" PackagePath="\" />
+  </ItemGroup>
+</Project>
