@@ -8,7 +8,7 @@
     <OutputType>Library</OutputType>
     <RootNamespace>KotlinSample</RootNamespace>
     <AssemblyName>KotlinSample</AssemblyName>
-    <TargetFrameworkVersion>v9.0</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v10.0</TargetFrameworkVersion>
     <AndroidApplication>True</AndroidApplication>
     <AndroidResgenFile>Resources\Resource.designer.cs</AndroidResgenFile>
     <AndroidResgenClass>Resource</AndroidResgenClass>
@@ -45,9 +45,9 @@
     <Reference Include="Mono.Android" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="Xamarin.Android.Support.v7.AppCompat" Version="28.0.0.1" />
-    <PackageReference Include="Xamarin.Kotlin.StdLib" Version="1.3.61" />
-    <PackageReference Include="Xamarin.Kotlin.Reflect" Version="1.3.61" />
+    <PackageReference Include="Xamarin.Android.Support.v7.AppCompat" Version="28.0.0.3" />
+    <PackageReference Include="Xamarin.Kotlin.StdLib" Version="1.4.10" />
+    <PackageReference Include="Xamarin.Kotlin.Reflect" Version="1.4.10" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\KotlinSampleLibrary\KotlinSampleLibrary.csproj">

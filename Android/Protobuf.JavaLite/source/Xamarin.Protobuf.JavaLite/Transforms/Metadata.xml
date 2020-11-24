@@ -1,0 +1,251 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<metadata>
+    <!--
+  This sample removes the class: android.support.v4.content.AsyncTaskLoader.LoadTask:
+  <remove-node path="/api/package[@name='android.support.v4.content']/class[@name='AsyncTaskLoader.LoadTask']" />
+  
+  This sample removes the method: android.support.v4.content.CursorLoader.loadInBackground:
+  <remove-node path="/api/package[@name='android.support.v4.content']/class[@name='CursorLoader']/method[@name='loadInBackground']" />
+  -->
+    <attr
+        path="/api/package[@name='com.google.protobuf']" 
+        name="managedName"
+        >
+        Xamarin.Protobuf.Lite
+    </attr>
+
+    <attr
+        path="/api/package[@name='com.google.protobuf']/class[@name='AbstractProtobufList']" 
+        name="visibility"
+        >
+        public
+    </attr>
+    
+    <remove-node
+        path="/api/package[@name='com.google.protobuf']/class[@name='LazyField.LazyIterator']/implements[@name='java.util.Iterator']"
+        >        
+    </remove-node>
+    <remove-node
+        path="/api/package[@name='com.google.protobuf']/class[@name='AbstractMessageLite.Builder']/implements[@name='com.google.protobuf.MessageLite.Builder']"
+        >        
+    </remove-node>
+    <remove-node
+        path="/api/package[@name='com.google.protobuf']/class[@name='AbstractProtobufList']/implements[@name='com.google.protobuf.Internal.ProtobufList']"
+        >        
+    </remove-node>
+    <remove-node
+        path="/api/package[@name='com.google.protobuf']/interface[@name='MessageLite']/implements[@name='com.google.protobuf.MessageLiteOrBuilder']"
+        >        
+    </remove-node>
+    <remove-node
+        path="/api/package[@name='com.google.protobuf']/interface[@name='MessageLite.Builder']/implements[@name='com.google.protobuf.MessageLiteOrBuilder']"
+        >        
+    </remove-node>
+
+    <attr
+        path="/api/package[@name='com.google.protobuf']/class[@name='GeneratedMessageLite']/method[@name='getDefaultInstanceForType' and count(parameter)=0]"
+        name="return"
+        >
+        com.google.protobuf.MessageLite
+    </attr>
+
+    <attr
+        path="/api/package[@name='com.google.protobuf']/class[@name='GeneratedMessageLite.Builder']/method[@name='getDefaultInstanceForType' and count(parameter)=0]"
+        name="return"
+        >
+        com.google.protobuf.MessageLite
+    </attr>
+    
+    <attr
+        path="/api/package[@name='com.google.protobuf']/class[@name='GeneratedMessageLite']/method[@name='newBuilderForType' and count(parameter)=0]"
+        name="return"
+        >
+        com.google.protobuf.MessageLite.Builder
+    </attr>
+  
+    
+    <attr
+        path="/api/package[@name='com.google.protobuf']/class[@name='GeneratedMessageLite']/method[@name='toBuilder' and count(parameter)=0]"
+        name="return"
+        >
+        com.google.protobuf.MessageLite.Builder
+    </attr>
+
+
+    <attr
+        path="/api/package[@name='com.google.protobuf']/class[@name='GeneratedMessageLite.Builder']/method[@name='build' and count(parameter)=0]"
+        name="return"
+        >
+        com.google.protobuf.MessageLite
+    </attr>
+
+    <attr
+        path="/api/package[@name='com.google.protobuf']/class[@name='GeneratedMessageLite.Builder']/method[@name='buildPartial' and count(parameter)=0]"
+        name="return"
+        >
+        com.google.protobuf.MessageLite
+    </attr>
+    
+    <attr
+        path="/api/package[@name='com.google.protobuf']/class[@name='GeneratedMessageLite.Builder']/method[@name='clear' and count(parameter)=0]"
+        name="return"
+        >
+        com.google.protobuf.MessageLite.Builder
+    </attr>
+
+
+    <attr
+        path="/api/package[@name='com.google.protobuf']/class[@name='ByteString']/method[@name='iterator' and count(parameter)=0]"
+        name="managedReturn"
+        >
+        Java.Lang.Object
+    </attr>
+    <attr
+        path="/api/package[@name='com.google.protobuf']/class[@name='Internal.MapAdapter']/method[@name='entrySet' and count(parameter)=0]"
+        name="managedReturn"
+        >
+        System.Collections.ICollection
+    </attr>
+    <!--
+    <attr
+        path="/api/package[@name='com.google.protobuf']/class[@name='Internal.MapAdapter']/method[@name='entrySet' and count(parameter)=0]"
+        name="managedReturn"
+        >
+        System.Collections.ICollection
+    </attr>
+    <attr
+        path="/api/package[@name='com.google.protobuf']/class[@name='MapFieldLite']/method[@name='entrySet' and count(parameter)=0]"
+        name="managedName"
+        >
+        EntrySetImplementation
+    </attr>
+    <attr
+        path="/api/package[@name='com.google.protobuf']/class[@name='MapFieldLite']/method[@name='entrySet' and count(parameter)=0]"
+        name="final"
+        >
+        true
+    </attr>
+    -->
+    <remove-node
+        path="/api/package[@name='com.google.protobuf']/class[@name='MapFieldLite']/method[@name='entrySet' and count(parameter)=0]"
+        >
+    </remove-node>
+
+
+<!--    <remove-node
+        path="/api/package[@name='com.google.protobuf']/class[@name='LazyStringArrayList']/implements[@name='RandomAccess']"
+        >        
+    </remove-node>
+-->
+    <remove-node
+        path="/api/package[@name='com.google.protobuf']/class[@name='Internal']"
+        >
+    </remove-node>
+    <remove-node
+        path="/api/package[@name='com.google.protobuf']/class[@name='LazyStringArrayList']/implements[@name='java.util.RandomAccess']"
+        >
+    </remove-node>
+
+    <attr
+        path="/api/package[@name='com.google.protobuf']/class[@name='FieldSet']"
+        name="visibility"
+        >
+        public
+    </attr>
+
+    <attr
+        path="/api/package[@name='com.google.protobuf']/class[@name='CodedOutputStream']/method[@name='write' and count(parameter)=1 and parameter[1][@type='byte']]"
+        name="abstract"
+        >
+        false
+    </attr>
+    <attr
+        path="/api/package[@name='com.google.protobuf']/class[@name='CodedOutputStream']/method[@name='write' and count(parameter)=3 and parameter[1][@type='byte[]'] and parameter[2][@type='int'] and parameter[3][@type='int']]"        name="abstract"
+        >
+        false
+    </attr>
+    <attr
+        path="/api/package[@name='com.google.protobuf']/class[@name='CodedOutputStream']/method[@name='write' and count(parameter)=1 and parameter[1][@type='java.nio.ByteBuffer']]"
+        name="abstract"
+        >
+        false
+    </attr>
+    <attr
+        path="/api/package[@name='com.google.protobuf']/class[@name='CodedOutputStream']/method[@name='writeLazy' and count(parameter)=3 and parameter[1][@type='byte[]'] and parameter[2][@type='int'] and parameter[3][@type='int']]"
+        name="abstract"
+        >
+        false
+    </attr>
+    <attr
+        path="/api/package[@name='com.google.protobuf']/class[@name='CodedOutputStream']/method[@name='writeLazy' and count(parameter)=1 and parameter[1][@type='java.nio.ByteBuffer']]"
+        name="abstract"
+        >
+        false
+    </attr>
+
+    <remove-node
+        path="/api/package[@name='com.google.protobuf']/class[@name='LazyStringArrayList']/method[@name='remove' and count(parameter)=1 and parameter[1][@type='int' and @name='p0']]"
+        >        
+    </remove-node>
+
+    <attr
+        path="/api/package[@name='com.google.protobuf']/class[@name='UnmodifiableLazyStringList']/method[@name='get' and count(parameter)=1 and parameter[1][@type='int']]"
+        name="managedName"
+        >
+        GetString
+    </attr>
+
+    <attr
+        path="/api/package[@name='com.google.protobuf']/class[@name='ExtensionLite']/method[@name='getDefaultValue' and count(parameter)=0]"
+        name="abstract"
+        >
+        false
+    </attr>
+    <attr
+        path="/api/package[@name='com.google.protobuf']/class[@name='LazyStringArrayList']/method[@name='addAll' and count(parameter)=2 and parameter[1][@type='int'] and parameter[2][@type='java.util.Collection&lt;? extends java.lang.String&gt;']]"
+        name="visibility"
+        >
+        public
+    </attr>
+    <attr
+        path="/api/package[@name='com.google.protobuf']/class[@name='LazyStringArrayList']/method[@name='addAll' and count(parameter)=1 and parameter[1][@type='java.util.Collection&lt;? extends java.lang.String&gt;']]"
+        name="visibility"
+        >
+        public
+    </attr>
+
+    <attr
+        path="/api/package[@name='com.google.protobuf']/class[@name='LazyStringArrayList']/method[@name='get' and count(parameter)=1 and parameter[1][@type='int']]"
+        name="managedReturn"
+        >
+        Java.Lang.Object
+    </attr>
+  <remove-node path="/api/package[@name='com.google.protobuf']/class[@name='LazyStringArrayList']" />
+  <remove-node path="/api/package[@name='com.google.protobuf']/class[@name='UnmodifiableLazyStringList']" />
+  <remove-node path="/api/package[@name='com.google.protobuf']/class[@name='Value']" />
+  <remove-node path="/api/package[@name='com.google.protobuf']/class[@name='NullValue']" />
+  <remove-node path="/api/package[@name='com.google.protobuf']/class[@name='Field']" />
+  <remove-node
+        path="/api/package[@name='com.google.protobuf']/class[@name='LazyStringArrayList']/method[@name='get' and count(parameter)=1 and parameter[1][@type='int']]"
+        >
+    </remove-node>
+    
+    <remove-node
+        path="/api/package[@name='com.google.protobuf']/class[@name='ByteString']/implements[@name='java.lang.Iterable']"
+        >        
+    </remove-node>
+
+<!--    
+    <attr
+        path="/api/package[@name='com.google.protobuf']/class[@name='AbstractParser']/method[@name='parsePartialFrom' and count(parameter)=2 and parameter[1][@type='java.io.InputStream'] and parameter[2][@type='com.google.protobuf.ExtensionRegistryLite']]/parameter[1]"
+        name="managedType"
+        >
+        Xamarin.Protobuf.Lite.CodedInputStream
+    </attr>
+-->
+    <remove-node
+        path="/api/package[@name='com.google.protobuf']/class[@name='AbstractParser']/implements[@name='com.google.protobuf.Parser']"
+        >        
+    </remove-node>
+        
+</metadata>

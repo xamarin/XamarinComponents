@@ -27,7 +27,7 @@
         -->
         <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
         <PackageId>Xamarin.Grpc.Core</PackageId>
-        <PackageVersion>1.24.0.0</PackageVersion>
+        <PackageVersion>1.28.0</PackageVersion>
         <Title>Xamarin.Grpc.Core</Title>
         <PackageDescription>
             Bindings for Google's GRPC Core package
@@ -64,9 +64,9 @@
 
 
   <ItemGroup>
-    <PackageReference Include="Xamarin.Io.OpenCensus.OpenCensusApi" Version="0.12.3" />
-    <PackageReference Include="Xamarin.Io.OpenCensus.OpenCensusContribGrpcMetrics" Version="0.12.3" />
-    <PackageReference Include="Xamarin.Io.PerfMark.PerfMarkApi" Version="0.17.0" />
+    <PackageReference Include="Xamarin.Io.OpenCensus.OpenCensusApi" Version="0.21.0" />
+    <PackageReference Include="Xamarin.Io.OpenCensus.OpenCensusContribGrpcMetrics" Version="0.21.0" />
+    <PackageReference Include="Xamarin.Io.PerfMark.PerfMarkApi" Version="0.19.0" />
   </ItemGroup>
 
   <ItemGroup>
@@ -77,8 +77,8 @@
     <Compile Remove="Additions\LazyStringArrayList.cs" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedJar Include="..\..\externals\android\grpc-core-1.24.0.jar">
-      <Link>Jars\grpc-core-1.24.0.jar</Link>
+    <EmbeddedJar Include="..\..\externals\android\grpc-core-$(PackageVersion).jar">
+      <Link>Jars\grpc-core-$(PackageVersion).jar</Link>
     </EmbeddedJar>
   </ItemGroup>
   <ItemGroup>
