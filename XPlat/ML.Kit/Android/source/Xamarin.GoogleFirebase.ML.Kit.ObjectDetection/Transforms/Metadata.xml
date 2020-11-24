@@ -1,0 +1,57 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<metadata>
+
+    <!--
+    TODO: possible problems! return type covariance/contravariance (needs investigation)
+    
+    ObjectDetectorOptions.Builder.Build()
+    return="com.google.mlkit.vision.objects.defaults.ObjectDetectorOptions"
+    return="com.google.mlkit.vision.objects.ObjectDetectorOptionsBase"
+    
+    removing `build` with return="com.google.mlkit.vision.objects.ObjectDetectorOptionsBase"
+    renaming in Addditions
+    -->    
+    <remove-node
+        path="/api/package[@name='com.google.mlkit.vision.objects.defaults']/class[@name='ObjectDetectorOptions.Builder']/method[@name='build' and count(parameter)=0 and @return='com.google.mlkit.vision.objects.ObjectDetectorOptionsBase' ]"
+        >        
+    </remove-node>
+    
+    <!--
+    TODO: possible problems! return type covariance/contravariance (needs investigation)
+    
+    ObjectDetectorOptions.Builder.EnableClassification()
+    
+    removing `enableClassification` with 
+    renaming in Addditions
+    -->        
+    <remove-node
+        path="/api/package[@name='com.google.mlkit.vision.objects.defaults']/class[@name='ObjectDetectorOptions.Builder']/method[@name='enableClassification' and count(parameter)=0]"
+        >        
+    </remove-node>
+    
+    <!--
+    TODO: possible problems! return type covariance/contravariance (needs investigation)
+    
+    ObjectDetectorOptions.Builder.EnableClassification()
+    
+    removing `enableClassification` with 
+    renaming in Addditions
+    -->        
+    <remove-node
+        path="/api/package[@name='com.google.mlkit.vision.objects.defaults']/class[@name='ObjectDetectorOptions.Builder']/method[@name='enableMultipleObjects' and count(parameter)=0]"
+        >        
+    </remove-node>
+    
+    <!--
+    TODO: possible problems! return type covariance/contravariance (needs investigation)
+    
+    ObjectDetectorOptions.Builder.SetDetectorMode()
+    
+    removing `setDetectorMode` with 
+    renaming in Addditions
+    -->        
+    <remove-node
+        path="/api/package[@name='com.google.mlkit.vision.objects.defaults']/class[@name='ObjectDetectorOptions.Builder']/method[@name='setDetectorMode' and count(parameter)=1 and parameter[1][@type='int']]"
+        >        
+    </remove-node>
+</metadata>

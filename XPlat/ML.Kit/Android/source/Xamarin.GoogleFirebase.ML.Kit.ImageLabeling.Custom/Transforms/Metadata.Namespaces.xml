@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<metadata>
+
+  <attr
+      path="/api/package[@name='com.google.android.gms.internal.mlkit_vision_label_custom']"
+      name="managedName"
+      >
+      Android.Gms.Internal.MLKitVisionLabelCustom
+  </attr>
+  <attr
+      path="/api/package[@name='com.google.mlkit.vision.label.custom']"
+      name="managedName"
+      >
+      Xamarin.GoogleFirebase.ML.Kit.Vision.Label.Custom
+  </attr>
+  <attr
+      path="/api/package[@name='com.google.mlkit.vision.label.custom.internal']"
+      name="managedName"
+      >
+      Xamarin.GoogleFirebase.ML.Kit.Vision.Label.Custom.Internal
+  </attr>
+  
+  
+  
+
+</metadata>

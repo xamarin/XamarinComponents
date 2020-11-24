@@ -1,0 +1,40 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<metadata>
+
+  <attr
+      path="/api/package[@name='com.google.android.gms.internal.mlkit_naturallanguage']"
+      name="managedName"
+      >
+      Android.Gms.Internal.MLKitNaturalLanguage
+  </attr>
+  <attr
+      path="/api/package[@name='com.google.mlkit.nl.smartreply']"
+      name="managedName"
+      >
+      Xamarin.GoogleFirebase.ML.Kit.NL.SmartReply
+  </attr>
+  <attr
+      path="/api/package[@name='com.google.mlkit.nl.smartreply.api']"
+      name="managedName"
+      >
+      Xamarin.GoogleFirebase.ML.Kit.NL.SmartReply.API
+  </attr>
+  <attr
+      path="/api/package[@name='com.google.mlkit.nl.smartreply.component']"
+      name="managedName"
+      >
+      Xamarin.GoogleFirebase.ML.Kit.NL.SmartReply.Component
+  </attr>
+  <attr
+      path="/api/package[@name='com.google.mlkit.nl.smartreply.jni']"
+      name="managedName"
+      >
+      Xamarin.GoogleFirebase.ML.Kit.NL.SmartReply.JNI
+  </attr>
+  
+  
+  
+  
+  
+
+</metadata>

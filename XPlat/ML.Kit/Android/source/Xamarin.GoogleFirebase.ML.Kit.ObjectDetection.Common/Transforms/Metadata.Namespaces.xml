@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<metadata>
+
+  <attr
+      path="/api/package[@name='com.google.mlkit.vision.objects']"
+      name="managedName"
+      >
+      Xamarin.GoogleFirebase.ML.Kit.Vision.Objects
+  </attr>
+  <attr
+      path="/api/package[@name='com.google.mlkit.vision.objects.internal']"
+      name="managedName"
+      >
+      Xamarin.GoogleFirebase.ML.Kit.Vision.Objects.Internal
+  </attr>
+  
+  
+
+</metadata>

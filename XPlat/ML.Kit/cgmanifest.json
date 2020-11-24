@@ -1,0 +1,151 @@
+{
+  "Registrations":[ 
+    {
+      "Component": {
+        "Type": "Maven",
+        "Maven": {
+          "ArtifactId": "common",
+          "GroupId": "com.google.mlkit",
+          "Version": "16.0.0",
+          "NuGetId": "Xamarin.GoogleFirebase.ML.Kit.Common"
+        }
+      },
+      "Component": {
+        "Type": "Maven",
+        "Maven": {
+          "ArtifactId": "barcode-scanning",
+          "GroupId": "com.google.mlkit",
+          "Version": "16.0.0",
+          "NuGetId": "Xamarin.GoogleFirebase.ML.Kit.BarcodeScanning"
+        }
+      },
+      "Component": {
+        "Type": "Maven",
+        "Maven": {
+          "ArtifactId": "face-detection",
+          "GroupId": "com.google.mlkit",
+          "Version": "16.0.0",
+          "NuGetId": "Xamarin.GoogleFirebase.ML.Kit.FaceDetection"
+        }
+      },
+      "Component": {
+        "Type": "Maven",
+        "Maven": {
+          "ArtifactId": "image-labeling",
+          "GroupId": "com.google.mlkit",
+          "Version": "16.0.0",
+          "NuGetId": "Xamarin.GoogleFirebase.ML.Kit.ImageLabeling"
+        }
+      },
+      "Component": {
+        "Type": "Maven",
+        "Maven": {
+          "ArtifactId": "image-labeling-common-automl",
+          "GroupId": "com.google.mlkit",
+          "Version": "16.0.0",
+          "NuGetId": "Xamarin.GoogleFirebase.ML.Kit.ImageLabeling.AutoML"
+        }
+      },
+      "Component": {
+        "Type": "Maven",
+        "Maven": {
+          "ArtifactId": "image-labeling-common",
+          "GroupId": "com.google.mlkit",
+          "Version": "16.0.0",
+          "NuGetId": "Xamarin.GoogleFirebase.ML.Kit.ImageLabeling.Common"
+        }
+      },
+      "Component": {
+        "Type": "Maven",
+        "Maven": {
+          "ArtifactId": "image-labeling-custom",
+          "GroupId": "com.google.mlkit",
+          "Version": "16.0.0",
+          "NuGetId": "Xamarin.GoogleFirebase.ML.Kit.ImageLabeling.Custom"
+        }
+      },
+      "Component": {
+        "Type": "Maven",
+        "Maven": {
+          "ArtifactId": "language-id",
+          "GroupId": "com.google.mlkit",
+          "Version": "16.0.0",
+          "NuGetId": "Xamarin.GoogleFirebase.ML.Kit.LanguageId"
+        }
+      },
+      "Component": {
+        "Type": "Maven",
+        "Maven": {
+          "ArtifactId": "linkfirebase",
+          "GroupId": "com.google.mlkit",
+          "Version": "16.0.0",
+          "NuGetId": "Xamarin.GoogleFirebase.ML.Kit.LinkFirebase"
+        }
+      },
+      "Component": {
+        "Type": "Maven",
+        "Maven": {
+          "ArtifactId": "object-detection",
+          "GroupId": "com.google.mlkit",
+          "Version": "16.0.0",
+          "NuGetId": "Xamarin.GoogleFirebase.ML.Kit.ObjectDetection"
+        }
+      },
+      "Component": {
+        "Type": "Maven",
+        "Maven": {
+          "ArtifactId": "object-detection-common",
+          "GroupId": "com.google.mlkit",
+          "Version": "16.0.0",
+          "NuGetId": "Xamarin.GoogleFirebase.ML.Kit.ObjectDetection.Common"
+        }
+      },
+      "Component": {
+        "Type": "Maven",
+        "Maven": {
+          "ArtifactId": "object-detection-custom",
+          "GroupId": "com.google.mlkit",
+          "Version": "16.0.0",
+          "NuGetId": "Xamarin.GoogleFirebase.ML.Kit.ObjectDetection.Custom"
+        }
+      },
+      "Component": {
+        "Type": "Maven",
+        "Maven": {
+          "ArtifactId": "smart-reply",
+          "GroupId": "com.google.mlkit",
+          "Version": "16.0.0",
+          "NuGetId": "Xamarin.GoogleFirebase.ML.Kit.SmartReply"
+        }
+      },
+      "Component": {
+        "Type": "Maven",
+        "Maven": {
+          "ArtifactId": "translate",
+          "GroupId": "com.google.mlkit",
+          "Version": "16.0.0",
+          "NuGetId": "Xamarin.GoogleFirebase.ML.Kit.Translate"
+        }
+      },
+      "Component": {
+        "Type": "Maven",
+        "Maven": {
+          "ArtifactId": "vision-common",
+          "GroupId": "com.google.mlkit",
+          "Version": "16.0.0",
+          "NuGetId": "Xamarin.GoogleFirebase.ML.Kit.Vision.Common"
+        }
+      },
+      "Component": {
+        "Type": "Maven",
+        "Maven": {
+          "ArtifactId": "vision-internal-vkp",
+          "GroupId": "com.google.mlkit",
+          "Version": "16.0.0",
+          "NuGetId": "Xamarin.GoogleFirebase.ML.Kit.Vision.Internal.Vkp"
+        }
+      }
+    }
+  ],
+  "Version": 1
+}

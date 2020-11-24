@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<metadata>
+    
+    <!--
+    TODO: possible problems! return type covariance/contravariance (needs investigation)
+    
+    ImageLabelerOptions.Builder.Build()
+    return="com.google.mlkit.vision.label.defaults.ImageLabelerOptions"
+    return="com.google.mlkit.vision.label.ImageLabelerOptionsBase"
+    
+    removing `build` with return="com.google.mlkit.vision.label.defaults.ImageLabelerOptions"
+    renaming in Addditions
+    -->
+    <remove-node
+        path="/api/package[@name='com.google.mlkit.vision.label.defaults']/class[@name='ImageLabelerOptions.Builder']/method[@name='build' and count(parameter)=0 and @return='com.google.mlkit.vision.label.defaults.ImageLabelerOptions']"
+        >
+    </remove-node>
+
+    <!--
+    TODO: possible problems! return type covariance/contravariance (needs investigation)
+
+    ImageLabelerOptions.Builder.SetConfidenceThreshold(float)
+    return="com.google.mlkit.vision.label.defaults.ImageLabelerOptions.Builder"
+    return="java.lang.Object"
+    -->
+    <remove-node
+        path="/api/package[@name='com.google.mlkit.vision.label.defaults']/class[@name='ImageLabelerOptions.Builder']/method[@name='setConfidenceThreshold' and count(parameter)=1 and parameter[1][@type='float'] and @return='java.lang.Object']"
+        >
+    </remove-node>
+    
+</metadata>

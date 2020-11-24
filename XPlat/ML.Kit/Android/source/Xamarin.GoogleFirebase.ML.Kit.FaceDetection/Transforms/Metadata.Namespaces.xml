@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<metadata>
+
+    <attr
+        path="/api/package[@name='com.google.mlkit.vision.face']"
+        name="managedName"
+        >
+        Xamarin.GoogleFirebase.ML.Kit.Vision.Face
+    </attr>
+  
+
+
+</metadata>

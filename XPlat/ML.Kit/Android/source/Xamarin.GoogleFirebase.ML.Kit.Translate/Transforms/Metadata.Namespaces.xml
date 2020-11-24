@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<metadata>
+
+  <attr
+      path="/api/package[@name='com.google.android.gms.internal.mlkit_translate']"
+      name="managedName"
+      >
+      Android.Gms.Internal.MLKitTranslate
+  </attr>
+  <attr
+      path="/api/package[@name='com.google.mlkit.nl.translate']"
+      name="managedName"
+      >
+      Xamarin.GoogleFirebase.ML.Kit.NL.Translate
+  </attr>
+  <attr
+      path="/api/package[@name='com.google.mlkit.nl.translate.internal']"
+      name="managedName"
+      >
+      Xamarin.GoogleFirebase.ML.Kit.NL.Translate.Internal
+  </attr>
+  
+  
+  
+
+</metadata>

@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<metadata>
+
+  <attr
+      path="/api/package[@name='com.google.android.gms.internal.mlkit_language_id']"
+      name="managedName"
+      >
+      Android.Gms.Internal.MLKitLanguageId
+  </attr>
+  <attr
+      path="/api/package[@name='com.google.mlkit.nl.languageid']"
+      name="managedName"
+      >
+      Xamarin.GoogleFirebase.ML.Kit.LanguageId
+  </attr>
+  <attr
+      path="/api/package[@name='com.google.mlkit.nl.languageid.internal']"
+      name="managedName"
+        >
+    Xamarin.GoogleFirebase.ML.Kit.LanguageId.Internal
+  </attr>
+  
+  
+  
+</metadata>

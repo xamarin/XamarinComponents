@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<metadata>
+
+  <attr
+      path="/api/package[@name='com.google.android.gms.internal.mlkit_vision_common']"
+      name="managedName"
+      >
+      Android.Gms.Internal.MLKitVisionCommon
+  </attr>
+  <attr
+      path="/api/package[@name='com.google.mlkit.vision.common']"
+      name="managedName"
+      >
+      Xamarin.GoogleFirebase.ML.Kit.Vision.Common
+  </attr>
+  <attr
+      path="/api/package[@name='com.google.mlkit.vision.common.internal']"
+      name="managedName"
+      >
+      Xamarin.GoogleFirebase.ML.Kit.Vision.Common.Internal
+  </attr>
+
+  
+  
+  
+
+</metadata>

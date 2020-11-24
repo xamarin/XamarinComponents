@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<metadata>
+
+    <attr
+        path="/api/package[@name='com.google.android.gms.internal.mlkit_vision_label_bundled']"
+        name="managedName"
+        >
+      Android.Gms.Internal.MLKitVisionLabelBundled
+    </attr>
+  <attr
+      path="/api/package[@name='com.google.mlkit.vision.label.defaults']"
+      name="managedName"
+        >
+      Xamarin.GoogleFirebase.ML.Kit.Vision.Label.Defaults
+  </attr>
+  <attr
+      path="/api/package[@name='com.google.mlkit.vision.label.defaults.internal']"
+      name="managedName"
+        >
+      Xamarin.GoogleFirebase.ML.Kit.Vision.Label.Defaults.Internal
+  </attr>
+
+  
+  
+
+</metadata>

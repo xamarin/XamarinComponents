@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<metadata>
+    <attr
+        path="/api/package[@name='com.google.android.gms.internal.mlkit_vision_label_automl']"
+        name="managedName"
+        >
+        Android.Gms.Internal.MLKitVisionLabelAutoML
+    </attr>
+  <attr
+      path="/api/package[@name='com.google.mlkit.vision.label.automl']"
+      name="managedName"
+        >
+      Xamarin.GoogleFirebase.ML.Kit.Vision.Label.AutoML
+  </attr>
+  <attr
+      path="/api/package[@name='com.google.mlkit.vision.label.automl.internal']"
+      name="managedName"
+        >
+      Xamarin.GoogleFirebase.ML.Kit.Vision.Label.AutoML.Internal
+  </attr>
+  
+  
+  
+
+</metadata>
