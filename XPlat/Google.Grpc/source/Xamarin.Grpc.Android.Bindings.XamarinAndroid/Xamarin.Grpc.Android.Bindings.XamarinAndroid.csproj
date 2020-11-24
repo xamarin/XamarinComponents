@@ -29,7 +29,7 @@
         -->
         <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
         <PackageId>Xamarin.Grpc.Android</PackageId>
-        <PackageVersion>1.25.0</PackageVersion>
+        <PackageVersion>1.28.0</PackageVersion>
         <Title>Xamarin.Grpc.Android</Title>
         <PackageDescription>
             Bindings for Google's GRPC Android package

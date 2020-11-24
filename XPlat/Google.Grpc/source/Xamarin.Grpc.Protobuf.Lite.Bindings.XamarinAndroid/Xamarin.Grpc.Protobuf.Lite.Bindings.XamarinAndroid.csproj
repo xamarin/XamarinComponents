@@ -20,7 +20,7 @@
     <PropertyGroup>
         <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
         <PackageId>Xamarin.Grpc.Protobuf.Lite</PackageId>
-        <PackageVersion>1.25.0</PackageVersion>
+        <PackageVersion>1.28.0</PackageVersion>
         <Title>Xamarin.Grpc.Protobuf.Lite</Title>
         <PackageDescription>
             Bindings for Google's GRPC Protobuf.Lite package
