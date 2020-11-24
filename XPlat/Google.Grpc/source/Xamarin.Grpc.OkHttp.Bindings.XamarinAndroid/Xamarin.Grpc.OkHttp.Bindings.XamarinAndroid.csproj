@@ -23,7 +23,7 @@
         -->
         <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
         <PackageId>Xamarin.Grpc.OkHttp</PackageId>
-        <PackageVersion>1.24.0.0</PackageVersion>
+        <PackageVersion>1.28.0</PackageVersion>
         <Title>Xamarin.Grpc.OkHttp</Title>
         <PackageDescription>
             Bindings for Google's GRPC OkHttp package
@@ -72,8 +72,8 @@
     <Compile Remove="Additions\LazyStringArrayList.cs" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedJar Include="..\..\externals\android\grpc-okhttp-1.24.0.jar">
-      <Link>Jars\grpc-okhttp-1.24.0.jar</Link>
+    <EmbeddedJar Include="..\..\externals\android\grpc-okhttp-$(PackageVersion).jar">
+      <Link>Jars\grpc-okhttp-$(PackageVersion).jar</Link>
     </EmbeddedJar>
   </ItemGroup>
   <ItemGroup>
