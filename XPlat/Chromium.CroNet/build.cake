@@ -7,10 +7,10 @@
 
 var TARGET = Argument ("t", Argument ("target", "ci"));
 
-string v="76.3809.111";
+string v="72.3626.96";
 string CRONET_SDK_VERSION = v;
 
-List<string> CocoaPods = new List<string> 
+List<string> CocoaPods = new List<string>
 {
 	"platform :ios, '12.0'",
 	"install! 'cocoapods', :integrate_targets => false",
@@ -73,16 +73,16 @@ Task ("externals")
 				}
 
 				FileWriteLines ("./externals/ios/Podfile", CocoaPods.ToArray ());
-				
+
 				CocoaPodRepoUpdate ();
 
-				CocoaPodInstall 
+				CocoaPodInstall
 					(
-						"./externals/ios/", 
+						"./externals/ios/",
 						new CocoaPodInstallSettings { NoIntegrate = true }
 					);
 			}
-      
+
 			return;
 		}
 	);
@@ -95,8 +95,30 @@ Task("libs")
 		{
 			MSBuild
 			(
-				"./source/Xamarin.Chromium.CroNet.sln", 
-				c => 
+				"./source/Xamarin.Chromium.CroNet.sln",
+				c =>
+				{
+					c.Configuration = "Release";
+					c.Restore = true;
+					c.MaxCpuCount = 0;
+					c.Properties.Add("DesignTimeBuild", new [] { "false" });
+				}
+			);
+
+			return;
+		}
+	);
+
+Task("samples")
+	.IsDependentOn("nuget")
+	.Does
+	(
+		() =>
+		{
+			MSBuild
+			(
+				"./samples/Samples.sln",
+				c =>
 				{
 					c.Configuration = "Release";
 					c.Restore = true;
@@ -149,6 +171,7 @@ Task("nuget")
 Task("ci")
 	.IsDependentOn("libs")
 	.IsDependentOn("nuget")
+	.IsDependentOn("samples")
 	.Does
 	(
 		() => {}

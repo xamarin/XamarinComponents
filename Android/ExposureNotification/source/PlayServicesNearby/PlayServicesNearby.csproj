@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project Sdk="MSBuild.Sdk.Extras/2.0.54">
+<Project Sdk="MSBuild.Sdk.Extras/2.1.2">
   <PropertyGroup>
     <TargetFrameworks>MonoAndroid10.0</TargetFrameworks>
     <IsBindingProject>true</IsBindingProject>
@@ -8,23 +8,23 @@
     <MonoAndroidAssetsPrefix>Assets</MonoAndroidAssetsPrefix>
     <AndroidUseLatestPlatformSdk>False</AndroidUseLatestPlatformSdk>
     <AndroidUseIntermediateDesignerFile>True</AndroidUseIntermediateDesignerFile>
-    <AndroidResgenFile>Resources\Resource.designer.cs</AndroidResgenFile>
     <RootNamespace>Android.Gms.Nearby</RootNamespace>
     <AndroidClassParser>class-parse</AndroidClassParser>
     <AndroidCodegenTarget>XAJavaInterop1</AndroidCodegenTarget>
+    <LangVersion>8.0</LangVersion>
   </PropertyGroup>
 
   <PropertyGroup>
     <PackageId>Xamarin.GooglePlayServices.Nearby.ExposureNotification</PackageId>
-    <Title>Xamarin.Android Bindings for the play-services-nearby eap for Exposure Notifications</Title>
-    <PackageDescription>Xamarin.Android Bindings for the play-services-nearby eap for Exposure Notifications</PackageDescription>
+    <Title>Xamarin.Android Bindings for the play-services-nearby-exposurenotification eap for Exposure Notifications</Title>
+    <PackageDescription>Xamarin.Android Bindings for the play-services-nearby-exposurenotification eap for Exposure Notifications</PackageDescription>
     <Authors>Microsoft</Authors>
     <Owners>Microsoft</Owners>
     <Copyright>© Microsoft Corporation. All rights reserved.</Copyright>
     <PackageProjectUrl>https://go.microsoft.com/fwlink/?linkid=865337</PackageProjectUrl>
     <PackageLicenseFile>LICENSE.md</PackageLicenseFile>
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
-    <PackageVersion>18.0.2-eap.4</PackageVersion>
+    <PackageVersion>19.6.1-eap.1</PackageVersion>
   </PropertyGroup>
 
   <ItemGroup>
@@ -33,7 +33,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <LibraryProjectZip Include="..\..\externals\play-services-nearby-18.0.2-eap.aar" Link="play-services-nearby.aar" />
+    <LibraryProjectZip Include="..\..\externals\play-services-nearby-exposurenotification.aar" />
     <None Include="..\..\License.md" Pack="true" PackagePath="LICENSE.md" />
   </ItemGroup>
 

@@ -10,6 +10,6 @@
     android:id="@+id/list_example"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/uifabric_list_item_background"
+    android:background="@attr/uifabricListItemBackgroundColor"
     app:layoutManager="android.support.v7.widget.LinearLayoutManager"
     tools:context=".demos.ListItemViewActivity" />

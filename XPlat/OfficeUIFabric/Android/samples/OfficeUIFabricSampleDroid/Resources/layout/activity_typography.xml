@@ -1,8 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!--
-  ~ Copyright (c) Microsoft Corporation. All rights reserved.
-  ~ Licensed under the MIT License.
-  -->
+
 
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
@@ -11,14 +7,12 @@
     android:padding="@dimen/default_layout_margin">
 
     <TextView
-        android:id="@+id/typography_example_headline"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/headline"
         android:textAppearance="@style/TextAppearance.UIFabric.Headline"/>
 
     <TextView
-        android:id="@+id/typography_example_title_1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/default_layout_margin"
@@ -26,7 +20,6 @@
         android:textAppearance="@style/TextAppearance.UIFabric.Title1"/>
 
     <TextView
-        android:id="@+id/typography_example_title_2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/default_layout_margin"
@@ -34,7 +27,6 @@
         android:textAppearance="@style/TextAppearance.UIFabric.Title2"/>
 
     <TextView
-        android:id="@+id/typography_example_heading"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/default_layout_margin"
@@ -42,15 +34,20 @@
         android:textAppearance="@style/TextAppearance.UIFabric.Heading"/>
 
     <TextView
-        android:id="@+id/typography_example_subheading"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/default_layout_margin"
-        android:text="@string/subheading"
-        android:textAppearance="@style/TextAppearance.UIFabric.SubHeading"/>
+        android:text="@string/subheading_1"
+        android:textAppearance="@style/TextAppearance.UIFabric.SubHeading1"/>
 
     <TextView
-        android:id="@+id/typography_example_body_1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/default_layout_margin"
+        android:text="@string/subheading_2"
+        android:textAppearance="@style/TextAppearance.UIFabric.SubHeading2"/>
+
+    <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/default_layout_margin"
@@ -66,7 +63,6 @@
         android:textColor="@android:color/black"/>
 
     <TextView
-        android:id="@+id/typography_example_caption"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/default_layout_margin"

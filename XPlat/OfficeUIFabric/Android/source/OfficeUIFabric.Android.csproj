@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project Sdk="MSBuild.Sdk.Extras/2.0.54">
   <PropertyGroup>
-    <TargetFrameworks>MonoAndroid80</TargetFrameworks>
+    <TargetFramework>MonoAndroid90</TargetFramework>
     <IsBindingProject>true</IsBindingProject>
     <AssemblyName>Xamarin.Microsoft.OfficeUIFabric</AssemblyName>
     <MonoAndroidResourcePrefix>Resources</MonoAndroidResourcePrefix>
@@ -12,6 +12,48 @@
     <RootNamespace>Microsoft.OfficeUIFabric</RootNamespace>
     <AndroidClassParser>class-parse</AndroidClassParser>
     <AndroidCodegenTarget>XAJavaInterop1</AndroidCodegenTarget>
+    <EnableProguard>true</EnableProguard>
+    <AndroidEnableMultiDex>true</AndroidEnableMultiDex>
+    <AndroidUseAapt2>true</AndroidUseAapt2>
+    <AndroidDexTool>d8</AndroidDexTool>
+    <AndroidLinkTool>r8</AndroidLinkTool>
+         
+    <!--
+      No warnings for:
+       - CS0618: 'member' is obsolete: 'text'
+       - CS0109: The member 'member' does not hide an inherited member. The new keyword is not required
+       - CS0114: 'function1' hides inherited member 'function2'. To make the current method override that implementation, add the override keyword. Otherwise add the new keyword.
+       - CS0628: 'member' : new protected member declared in sealed class
+       - CS0108: 'member1' hides inherited member 'member2'. Use the new keyword if hiding was intended.
+       - CS0809: Obsolete member 'member' overrides non-obsolete member 'member'
+    -->
+    <NoWarn>0618;0109;0114;0628;0108;0809;8A04</NoWarn>
+
+    <!--
+      =================================================================================================================
+      Xamarin.Android Bindings specific warnings
+    -->
+    <!--
+      Ignoreable
+      Performance hit for builds
+      - BG8A04: <attr path="XPath" /> matched no nodes.
+      - BG8A00: <remove-node path="XPath" /> matched no nodes.  
+    -->
+    <NoWarn>08A04;BG8A00</NoWarn>
+
+    <!--
+      Harmfull 
+      - BG8401: Skipping managed_type, due to a duplicate field, method or nested type name. (Nested type) (Java type: java_type)  
+      - BG8604: top ancestor Type1 not found for nested type Namespace.Type1.Type2
+      - BG8C00: For type Namespace.Type1, base interface java.Interface does not exist
+      - BG8700: Unknown return type java.Type1 in method Method1 in managed type Namespace.Type2.
+      - BG8800: Unknown parameter type java.Type1 in method Method2 in managed type Namespace.Type2.
+    -->
+    <WarningsAsErrors>BG8401;BG8604;BG8C00;BG8700;BG8800</WarningsAsErrors>
+    <!--
+      Xamarin.Android specific warnings
+      =================================================================================================================
+    -->
   </PropertyGroup>
 
   <PropertyGroup>
@@ -24,7 +66,7 @@
     <PackageProjectUrl>https://go.microsoft.com/fwlink/?linkid=2091993</PackageProjectUrl>
     <PackageLicenseUrl>https://go.microsoft.com/fwlink/?linkid=2099940</PackageLicenseUrl>
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
-    <PackageVersion>0.2.10-pre2</PackageVersion>
+    <PackageVersion>0.3.9-preview01</PackageVersion>
   </PropertyGroup>
 
   <ItemGroup>
@@ -44,15 +86,16 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Xamarin.Android.Support.Design" Version="28.0.0.1" />
-    <PackageReference Include="Xamarin.Android.Support.Exif" Version="28.0.0.1" />
-    <PackageReference Include="Xamarin.Android.Support.v7.AppCompat" Version="28.0.0.1" />
-    <PackageReference Include="Xamarin.Android.Support.v7.CardView" Version="28.0.0.1" />
-    <PackageReference Include="Xamarin.Android.Support.v7.RecyclerView" Version="28.0.0.1" />
-    <PackageReference Include="Xamarin.Kotlin.StdLib" Version="1.3.21" />
-    <PackageReference Include="Xamarin.Kotlin.StdLib.Jdk7" Version="1.3.21" />
+    <PackageReference Include="Xamarin.Android.Support.Design" Version="28.0.0.3" />
+    <PackageReference Include="Xamarin.Android.Support.Exif" Version="28.0.0.3" />
+    <PackageReference Include="Xamarin.Android.Support.v7.AppCompat" Version="28.0.0.3" />
+    <PackageReference Include="Xamarin.Android.Support.v7.CardView" Version="28.0.0.3" />
+    <PackageReference Include="Xamarin.Android.Support.v7.RecyclerView" Version="28.0.0.3" />
+    <PackageReference Include="Xamarin.Kotlin.StdLib" Version="1.3.50.1" />
+    <PackageReference Include="Xamarin.Kotlin.StdLib.Jdk7" Version="1.3.50.1" />
     <PackageReference Include="Xamarin.Android.JakeWharton.ThreeTenAbp" Version="1.2.0.1" />
     <PackageReference Include="Xamarin.Android.Splitwise.TokenAutoComplete" Version="2.0.8" />
+    <PackageReference Include="Xamarin.Android.Support.Loader" Version="28.0.0.3" />
   </ItemGroup>
 
   <ItemGroup>

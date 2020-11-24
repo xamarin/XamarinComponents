@@ -1,0 +1,16 @@
+{
+  "Registrations": [
+    {
+      "Component": {
+        "Type": "Maven",
+        "Maven": {
+          "ArtifactId": "retrofit",
+          "GroupId": "com.squareup.retrofit",
+          "Version": "1.9.0",
+          "NuGetId": "Square.Retrofit"
+        }
+      }
+    }
+  ],
+  "Version": 1
+}

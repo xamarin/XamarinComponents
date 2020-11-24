@@ -1,7 +1,7 @@
 
 #load "../../common.cake"
 
-var TARGET = Argument ("t", Argument ("target", "nuget"));
+var TARGET = Argument ("t", Argument ("target", "ci"));
 
 Task("nuget")
 	.Does(() =>
@@ -16,5 +16,8 @@ Task("nuget")
 		c.Properties.Add("PackageRequireLicenseAcceptance", new [] { "true" });
 	});
 });
+
+Task("ci")
+	.IsDependentOn("nuget");
 
 RunTarget (TARGET);
