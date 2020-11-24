@@ -26,7 +26,7 @@
         -->
         <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
         <PackageId>Xamarin.Grpc.Stub</PackageId>
-        <PackageVersion>1.24.0.0</PackageVersion>
+        <PackageVersion>1.28.0</PackageVersion>
         <Title>Xamarin.Grpc.Stub</Title>
         <PackageDescription>
             Bindings for Google's GRPC Stub package
@@ -69,8 +69,8 @@
     <Folder Include="Jars\" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedJar Include="..\..\externals\android\grpc-stub-1.24.0.jar">
-      <Link>Jars\grpc-stub-1.24.0.jar</Link>
+    <EmbeddedJar Include="..\..\externals\android\grpc-stub-$(PackageVersion).jar">
+      <Link>Jars\grpc-stub-$(PackageVersion).jar</Link>
     </EmbeddedJar>
   </ItemGroup>
   <ItemGroup>
