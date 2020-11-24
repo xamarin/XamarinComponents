@@ -1,8 +1,8 @@
 var TARGET = Argument ("t", Argument ("target", "ci"));
 
-var DAGGERS_VERSION = "2.25.2";
-var DAGGERS_NUGET_VERSION = DAGGERS_VERSION + ".1";
-var DAGGERS_URL = $"http://central.maven.org/maven2/com/google/dagger/dagger/{DAGGERS_VERSION}/dagger-{DAGGERS_VERSION}.jar";
+var DAGGERS_VERSION = "2.27";
+var DAGGERS_NUGET_VERSION = DAGGERS_VERSION + ".0";
+var DAGGERS_URL = $"https://repo1.maven.org/maven2/com/google/dagger/dagger/{DAGGERS_VERSION}/dagger-{DAGGERS_VERSION}.jar";
 
 Task ("externals")
 	.WithCriteria (!FileExists ("./externals/dagger.jar"))

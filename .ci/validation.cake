@@ -14,6 +14,7 @@ var PACKAGE_NAMESPACES = Argument ("n", Argument ("namespaces", ""))
 	.ToList ();
 PACKAGE_NAMESPACES.AddRange (new [] {
 	"Xamarin",
+	"Mono",
 });
 
 
