@@ -737,6 +737,10 @@
   BuildScript: ./XPlat/Mono.Posix/build.cake
   TriggerPaths: [ XPlat/Mono.Posix ]
   LinuxBuildTargets: [ ci ]
+- Name:  ML.Kit
+  BuildScript: ./XPlat/ML.Kit/build.cake
+  TriggerPaths: [ XPlat/ML.Kit ]
+  LinuxBuildTargets: [ ci ]
 
 #######################################################
 # Mac
