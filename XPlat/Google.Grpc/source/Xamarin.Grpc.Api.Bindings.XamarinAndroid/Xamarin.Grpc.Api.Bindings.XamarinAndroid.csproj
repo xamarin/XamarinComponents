@@ -27,7 +27,7 @@
         -->
         <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
         <PackageId>Xamarin.Grpc.Api</PackageId>
-        <PackageVersion>1.24.0.0</PackageVersion>
+        <PackageVersion>1.28.0</PackageVersion>
         <Title>Xamarin.Grpc.Api</Title>
         <PackageDescription>
             Bindings for Google's GRPC Api package
@@ -72,8 +72,8 @@
     <Folder Include="Jars\" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedJar Include="..\..\externals\android\grpc-api-1.24.0.jar">
-      <Link>Jars\grpc-api-1.24.0.jar</Link>
+    <EmbeddedJar Include="..\..\externals\android\grpc-api-$(PackageVersion).jar">
+      <Link>Jars\grpc-api-$(PackageVersion).jar</Link>
     </EmbeddedJar>
   </ItemGroup>
   <ItemGroup>
