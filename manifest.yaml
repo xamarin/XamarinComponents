@@ -735,6 +735,8 @@
 - Name:  ML.Kit
   BuildScript: ./XPlat/ML.Kit/build.cake
   TriggerPaths: [ XPlat/ML.Kit ]
+  WindowsBuildTargets: [ ci ]
+  MacBuildTargets: [ ci ]
   LinuxBuildTargets: [ ci ]
 
 #######################################################
