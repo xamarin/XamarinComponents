@@ -30,4 +30,8 @@
       <None Include="..\External-Dependency-Info.txt" Pack="True" PackagePath="THIRD-PARTY-NOTICES.txt" />
     </ItemGroup>
 
+    <ItemGroup>
+      <ProjectReference Include="..\Xamarin.AndroidBinderator.Common\Xamarin.AndroidBinderator.Common.csproj" />
+    </ItemGroup>
+
 </Project>
