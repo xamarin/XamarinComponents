@@ -23,3 +23,8 @@ IO.OpenCensus bindings for Xamarin.Android which are Grpc dependencies (Grpc.Cor
         *   https://search.maven.org/search?q=a:opencensus-contrib-grpc-metrics
 
         *   https://search.maven.org/remotecontent?filepath=io/opencensus/opencensus-contrib-grpc-metrics/
+
+## Samples
+
+*   https://github.com/PatGet/XamarinPlayCoreUpdater
+

@@ -201,4 +201,12 @@
         Xamarin.Io.OpenCensus.Resources
     </attr>    
     
+    <attr
+        path="/api/package[@name='io.opencensus.resource']"
+        name="managedName"
+        >
+        Xamarin.Io.OpenCensus.Resources
+    </attr>    
+
+
 </metadata>
