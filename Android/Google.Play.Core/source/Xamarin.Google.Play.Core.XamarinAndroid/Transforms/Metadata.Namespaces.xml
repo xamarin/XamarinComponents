@@ -17,51 +17,72 @@
         path="/api/package[@name='com.google.android.play.core.install']"
         name="managedName"
         >
-        Xamarin.Google.Android.Play.Core.AppUpdate.Install
+        Xamarin.Google.Android.Play.Core.Install
     </attr>
     <attr
         path="/api/package[@name='com.google.android.play.core.install.model']"
         name="managedName"
         >
-        Xamarin.Google.Android.Play.Core.AppUpdate.Install.Model
+        Xamarin.Google.Android.Play.Core.Install.Model
     </attr>
     <attr
         path="/api/package[@name='com.google.android.play.core.internal']"
         name="managedName"
         >
-        Xamarin.Google.Android.Play.Core.AppUpdate.Internal
+        Xamarin.Google.Android.Play.Core.Internal
     </attr>
     <attr
         path="/api/package[@name='com.google.android.play.core.listener']"
         name="managedName"
         >
-        Xamarin.Google.Android.Play.Core.AppUpdate.Listener
+        Xamarin.Google.Android.Play.Core.Listener
     </attr>
     <attr
         path="/api/package[@name='com.google.android.play.core.splitcompat']"
         name="managedName"
         >
-        Xamarin.Google.Android.Play.Core.AppUpdate.SplitCompat
+        Xamarin.Google.Android.Play.Core.SplitCompat
     </attr>
     <attr
         path="/api/package[@name='com.google.android.play.core.splitinstall']"
         name="managedName"
         >
-        Xamarin.Google.Android.Play.Core.AppUpdate.SplitInstall
+        Xamarin.Google.Android.Play.Core.SplitInstall
     </attr>
     <attr
         path="/api/package[@name='com.google.android.play.core.splitinstall.model']"
         name="managedName"
         >
-        Xamarin.Google.Android.Play.Core.AppUpdate.SplitInstall.Model
+        Xamarin.Google.Android.Play.Core.SplitInstall.Model
     </attr>
     <attr
         path="/api/package[@name='com.google.android.play.core.tasks']"
         name="managedName"
         >
-        Xamarin.Google.Android.Play.Core.AppUpdate.Tasks
+        Xamarin.Google.Android.Play.Core.Tasks
+    </attr>
+
+    <attr
+        path="/api/package[@name='com.google.android.play.core.common']"
+        name="managedName"
+        >
+        Xamarin.Google.Android.Play.Core.Common
+    </attr>
+
+    <attr
+        path="/api/package[@name='com.google.android.play.core.missingsplits']"
+        name="managedName"
+        >
+        Xamarin.Google.Android.Play.Core.MissingSplits
+    </attr>
+
+    <attr
+    path="/api/package[@name='com.google.android.play.core.splitinstall.testing']"    
+        name="managedName"
+        >
+        Xamarin.Google.Android.Play.Core.SplitInstall.Testing
     </attr>
 
 
-    
+
 </metadata>
