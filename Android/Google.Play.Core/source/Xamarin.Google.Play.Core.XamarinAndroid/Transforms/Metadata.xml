@@ -3,6 +3,18 @@
 
     <remove-node
         path="/api/package[@name='com.google.android.play.core.tasks']/class[@name='Task']/typeParameters"
-    />
-
+        />
+    <remove-node
+        path="/api/package[@name='com.google.android.play.core.internal']"
+        />
+        
+    <!--
+    <attr
+        path="/api/package[@name='com.google.android.play.core.internal']/class[@name='j']"
+        name="obfuscated"
+        >
+        false
+    </attr>
+    -->    
+    
 </metadata>
