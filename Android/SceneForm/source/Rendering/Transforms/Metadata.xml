@@ -44,7 +44,7 @@
         path="/api/package[@name='com.google.ar.sceneform.rendering']/class[@name='ModelRenderable.Builder']/method[@name='setSource' and count(parameter)=2 and parameter[1][@type='android.content.Context'] and parameter[2][@type='android.net.Uri']]"
         name="managedReturn"
         >
-        Google.AR.Sceneform.Rendering.ModelRenderable.Builder
+        Java.Lang.Object
     </attr>
     <attr
         path="/api/package[@name='com.google.ar.sceneform.rendering']/class[@name='ModelRenderable.Builder']/method[@name='setSource' and count(parameter)=3 and parameter[1][@type='android.content.Context'] and parameter[2][@type='android.net.Uri'] and parameter[3][@type='boolean']]"
@@ -64,4 +64,18 @@
         >
         Google.AR.Sceneform.Rendering.ModelRenderable.Builder
     </attr>
+    
+    <attr
+        path="/api/package[@name='com.google.ar.sceneform.rendering']/class[@name='EnvironmentalHdrLightEstimate.CubeMapImage']"
+        name="visibility"
+        >
+        public        
+    </attr>
+    <attr
+        path="/api/package[@name='com.google.ar.sceneform.rendering']/class[@name='Renderable.Builder']"
+        name="visibility"
+        >
+        public        
+    </attr>
+    
 </metadata>

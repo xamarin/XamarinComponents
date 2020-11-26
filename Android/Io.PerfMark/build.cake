@@ -7,7 +7,7 @@
 
 var TARGET = Argument ("t", Argument ("target", "Default"));
 
-string ARTIFACT_VERSION="0.21.0";
+string ARTIFACT_VERSION="0.23.0";
 string JAR_URL = "";
 Dictionary<string, string> JAR_URLS_ARTIFACT_FILES= new Dictionary<string, string>()
 {
