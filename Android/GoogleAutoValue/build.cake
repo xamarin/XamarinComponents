@@ -3,9 +3,9 @@
 
 var TARGET = Argument ("t", Argument ("target", "Default"));
 
-var ANNOTATIONS_VERSION = "1.6.5";
+var ANNOTATIONS_VERSION = "1.6.6";
 var ANNOTATIONS_NUGET_VERSION = ANNOTATIONS_VERSION;
-var ANNOTATIONS_URL = $"http://central.maven.org/maven2/com/google/auto/value/auto-value-annotations/{ANNOTATIONS_VERSION}/auto-value-annotations-{ANNOTATIONS_VERSION}.jar";
+var ANNOTATIONS_URL = $"https://repo1.maven.org/maven2/com/google/auto/value/auto-value-annotations/{ANNOTATIONS_VERSION}/auto-value-annotations-{ANNOTATIONS_VERSION}.jar";
 
 Task ("externals")
 	.WithCriteria (!FileExists ("./externals/auto-value-annotations.jar"))
@@ -60,5 +60,13 @@ Task ("clean")
 			Force = true
 		});
 });
+
+Task("ci")
+	.IsDependentOn("libs")
+	.IsDependentOn("nuget")
+	.Does
+	(
+		() => {}
+	);
 
 RunTarget (TARGET);

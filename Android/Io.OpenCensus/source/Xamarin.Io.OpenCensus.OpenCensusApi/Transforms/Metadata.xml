@@ -194,5 +194,19 @@
         path="/api/package[@name='io.opencensus.stats']/class[@name='ViewData']/method[@name='create' and count(parameter)=4]"
         />
     
+    <attr
+        path="/api/package[@name='io.opencensus.resource']"
+        name="managedName"
+        >
+        Xamarin.Io.OpenCensus.Resources
+    </attr>    
     
+    <attr
+        path="/api/package[@name='io.opencensus.resource']"
+        name="managedName"
+        >
+        Xamarin.Io.OpenCensus.Resources
+    </attr>    
+
+
 </metadata>
