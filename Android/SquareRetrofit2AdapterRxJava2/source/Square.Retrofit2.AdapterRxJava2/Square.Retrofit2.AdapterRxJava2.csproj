@@ -23,12 +23,13 @@
     <PackageLicenseFile>LICENSE.md</PackageLicenseFile>
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
     <PackageTags>rx retrofit xamarin android monodroid</PackageTags>
-    <PackageVersion>2.6.4</PackageVersion>
+    <PackageVersion>2.7.2</PackageVersion>
   </PropertyGroup>
 
   <ItemGroup>
     <PackageReference Include="Xamarin.Android.ReactiveX.RxJava" Version="2.2.7" />
-    <PackageReference Include="Square.Retrofit2" Version="2.6.4" />
+    <PackageReference Include="Square.Retrofit2" Version="2.7.2" />
+    <PackageReference Include="Xamarin.Android.ReactiveStreams" Version="1.0.3" />
   </ItemGroup>
     
   <ItemGroup>
