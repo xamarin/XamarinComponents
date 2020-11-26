@@ -21,7 +21,7 @@
   <PropertyGroup>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <PackageId>Xamarin.Google.Android.Play.Core</PackageId>
-    <PackageVersion>1.5.0</PackageVersion>
+    <PackageVersion>1.6.5</PackageVersion>
     <Title>Xamarin.Google.Android.Play.Core</Title>
     <PackageDescription>Bindings for Xamarin Google.Android.Play.Core package</PackageDescription>
     <Owners>Microsoft</Owners>

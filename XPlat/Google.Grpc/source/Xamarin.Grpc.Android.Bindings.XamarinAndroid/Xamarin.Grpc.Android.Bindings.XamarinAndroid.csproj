@@ -29,7 +29,7 @@
         -->
         <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
         <PackageId>Xamarin.Grpc.Android</PackageId>
-        <PackageVersion>1.24.0.0</PackageVersion>
+        <PackageVersion>1.28.0</PackageVersion>
         <Title>Xamarin.Grpc.Android</Title>
         <PackageDescription>
             Bindings for Google's GRPC Android package
@@ -74,8 +74,8 @@
     <Folder Include="Jars\" />
   </ItemGroup>
   <ItemGroup>
-    <LibraryProjectZip Include="..\..\externals\android\grpc-android-1.24.0.aar">
-      <Link>Jars\grpc-android-1.21.1.aar</Link>
+    <LibraryProjectZip Include="..\..\externals\android\grpc-android-$(PackageVersion).aar">
+      <Link>Jars\grpc-android-$(PackageVersion).aar</Link>
     </LibraryProjectZip>
   </ItemGroup>
   <ItemGroup>

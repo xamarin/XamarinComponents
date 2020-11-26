@@ -6,36 +6,36 @@
 
 var TARGET = Argument ("t", Argument ("target", "Default"));
 
-string ARTIFACT_VERSION="1.24.0";
+string ARTIFACT_VERSION="1.28.0";
 string JAR_URL = "";
 Dictionary<string, string> JAR_URLS_ARTIFACT_FILES= new Dictionary<string, string>()
 {
 	{
-		$"http://central.maven.org/maven2/io/grpc/grpc-android/{ARTIFACT_VERSION}/grpc-android-{ARTIFACT_VERSION}.aar",
+		$"https://repo1.maven.org/maven2/io/grpc/grpc-android/{ARTIFACT_VERSION}/grpc-android-{ARTIFACT_VERSION}.aar",
 		$"./externals/android/grpc-android-{ARTIFACT_VERSION}.aar"
 	},
 	{
-		$"http://central.maven.org/maven2/io/grpc/grpc-api/{ARTIFACT_VERSION}/grpc-api-{ARTIFACT_VERSION}.jar",
+		$"https://repo1.maven.org/maven2/io/grpc/grpc-api/{ARTIFACT_VERSION}/grpc-api-{ARTIFACT_VERSION}.jar",
 		$"./externals/android/grpc-api-{ARTIFACT_VERSION}.jar"
 	},
 	{
-		$"http://central.maven.org/maven2/io/grpc/grpc-stub/{ARTIFACT_VERSION}/grpc-stub-{ARTIFACT_VERSION}.jar",
+		$"https://repo1.maven.org/maven2/io/grpc/grpc-stub/{ARTIFACT_VERSION}/grpc-stub-{ARTIFACT_VERSION}.jar",
 		$"./externals/android/grpc-stub-{ARTIFACT_VERSION}.jar"
 	},
 	{
-		$"http://central.maven.org/maven2/io/grpc/grpc-core/{ARTIFACT_VERSION}/grpc-core-{ARTIFACT_VERSION}.jar",
+		$"https://repo1.maven.org/maven2/io/grpc/grpc-core/{ARTIFACT_VERSION}/grpc-core-{ARTIFACT_VERSION}.jar",
 		$"./externals/android/grpc-core-{ARTIFACT_VERSION}.jar"
 	},
 	{
-		$"http://central.maven.org/maven2/io/grpc/grpc-okhttp/{ARTIFACT_VERSION}/grpc-okhttp-{ARTIFACT_VERSION}.jar",
+		$"https://repo1.maven.org/maven2/io/grpc/grpc-okhttp/{ARTIFACT_VERSION}/grpc-okhttp-{ARTIFACT_VERSION}.jar",
 		$"./externals/android/grpc-okhttp-{ARTIFACT_VERSION}.jar"
 	},
 	{
-		$"http://central.maven.org/maven2/io/grpc/grpc-protobuf-lite/{ARTIFACT_VERSION}/grpc-protobuf-lite-{ARTIFACT_VERSION}.jar",
+		$"https://repo1.maven.org/maven2/io/grpc/grpc-protobuf-lite/{ARTIFACT_VERSION}/grpc-protobuf-lite-{ARTIFACT_VERSION}.jar",
 		$"./externals/android/grpc-protobuf-lite-{ARTIFACT_VERSION}.jar"
 	},
 	{
-		$"http://central.maven.org/maven2/io/grpc/grpc-context/{ARTIFACT_VERSION}/grpc-context-{ARTIFACT_VERSION}.jar",
+		$"https://repo1.maven.org/maven2/io/grpc/grpc-context/{ARTIFACT_VERSION}/grpc-context-{ARTIFACT_VERSION}.jar",
 		$"./externals/android/grpc-context-{ARTIFACT_VERSION}.jar"
 	},
 };

@@ -20,7 +20,7 @@
     <PropertyGroup>
         <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
         <PackageId>Xamarin.Grpc.Context</PackageId>
-        <PackageVersion>1.24.0.0</PackageVersion>
+        <PackageVersion>1.28.0</PackageVersion>
         <Title>Xamarin.Grpc.Context</Title>
         <PackageDescription>
             Bindings for Google's GRPC Context package
@@ -55,8 +55,8 @@
     <Compile Remove="Additions\LazyStringArrayList.cs" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedJar Include="..\..\externals\android\grpc-context-1.24.0.jar">
-      <Link>Jars\grpc-context-1.24.0.jar</Link>
+    <EmbeddedJar Include="..\..\externals\android\grpc-context-$(PackageVersion).jar">
+      <Link>Jars\grpc-context-$(PackageVersion).jar</Link>
     </EmbeddedJar>
   </ItemGroup>
 
