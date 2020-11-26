@@ -2,9 +2,9 @@
 
 var TARGET = Argument ("t", Argument ("target", "ci"));
 
-var SF_VERSION = "1.15.0";
+var SF_VERSION = "1.17.1";
 
-var NUGET_VERSION = "1.15.0";
+var NUGET_VERSION = "1.17.1";
 
 var BASE_JAR_URL = $"https://dl.google.com/dl/android/maven2/com/google/ar/sceneform/sceneform-base/{SF_VERSION}/sceneform-base-{SF_VERSION}.aar";
 var ANIMATION_JAR_URL = $"https://dl.google.com:443/dl/android/maven2/com/google/ar/sceneform/animation/{SF_VERSION}/animation-{SF_VERSION}.aar";

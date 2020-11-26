@@ -20,7 +20,7 @@
   <PropertyGroup>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <PackageId>Xamarin.Io.OpenCensus.OpenCensusApi</PackageId>
-    <PackageVersion>0.24.0</PackageVersion>
+    <PackageVersion>0.27.1</PackageVersion>
     <Title>Xamarin.Io.OpenCensus.OpenCensusApi</Title>
     <PackageDescription>Bindings for Io.OpenCensus.OpenCensusApi package (Google GRPC  dependency)</PackageDescription>
     <Owners>Microsoft</Owners>
@@ -44,11 +44,11 @@
     <Folder Include="Jars\" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedJar Include="..\..\externals\android\opencensus-api-0.24.0.jar">
-      <Link>Jars\opencensus-api-0.24.0.jar</Link>
+    <EmbeddedJar Include="..\..\externals\android\opencensus-api-$(PackageVersion).jar">
+      <Link>Jars\opencensus-api-$(PackageVersion).jar</Link>
     </EmbeddedJar>
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="Xamarin.Grpc.Context" Version="1.24.0" />
+    <PackageReference Include="Xamarin.Grpc.Context" Version="1.25.0" />
   </ItemGroup>
 </Project>
