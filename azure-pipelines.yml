@@ -54,7 +54,7 @@ jobs:
         - 'xamarin.androidbinderator.tool': '0.4.2'
         - 'xamarin.androidx.migration.tool': '1.0.7.1'
   - ${{ if eq(variables['System.TeamProject'], 'devdiv') }}:
-    - template: sign-artifacts/jobs/v1.yml@internal-templates
+    - template: sign-artifacts/jobs/v2.yml@internal-templates
       parameters:
         dependsOn: [ 'build' ]
         signTags: true
