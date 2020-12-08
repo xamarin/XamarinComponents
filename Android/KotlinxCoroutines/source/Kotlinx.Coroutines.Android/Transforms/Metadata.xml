@@ -1,0 +1,5 @@
+﻿<metadata>
+
+  <attr path="/api/package[@name='kotlinx.coroutines.android']/class[@name='HandlerDispatcher']/method[@name='getImmediate' and count(parameter)=0]" name="managedReturn">Kotlinx.Coroutines.MainCoroutineDispatcher</attr>
+
+</metadata>
