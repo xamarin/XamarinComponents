@@ -23,7 +23,7 @@ parameters:
   dotnet: '3.1.302'                                         # the version of .NET Core to use
   cake: '0.38.4'                                            # the version of Cake to use
   apiTools: '1.1.0-preview.1'                               # the version of the api-tools CLI to use
-  xharness: '1.0.0-prerelease.20575.2'
+  xharness: '1.0.0-prerelease.20602.1'
   tools: []                                                 # a list of any additional .NET Core tools needed
   cakeTemplatesBranch: 'master'                             # the branch of XamarinComponents that has the templates
   # build parameters
