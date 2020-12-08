@@ -37,4 +37,7 @@ Task("Default")
 	.IsDependentOn("nuget")
 	.IsDependentOn("tests");
 
+Task("ci")
+	.IsDependentOn("Default");
+
 RunTarget(TARGET);
