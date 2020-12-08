@@ -46,13 +46,9 @@
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Xamarin.AndroidX.AppCompat" Version="1.2.0.5" />
-  <PackageReference Include="Xamarin.AndroidX.Migration" Version="1.0.8" />  <PackageReference Include="Xamarin.Kotlin.StdLib">
-    <Version>1.4.20</Version>
-  </PackageReference>
-  <PackageReference Include="Xamarin.Kotlin.Reflect">
-    <Version>1.4.20</Version>
-  </PackageReference>
-</ItemGroup>
+    <PackageReference Include="Xamarin.Kotlin.StdLib" Version="1.4.20" />
+    <PackageReference Include="Xamarin.Kotlin.Reflect" Version="1.4.20" />
+  </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\KotlinSampleLibrary\KotlinSampleLibrary.csproj">
       <Project>{7284601F-A95A-4707-9FF2-4618AB0A9AA9}</Project>
