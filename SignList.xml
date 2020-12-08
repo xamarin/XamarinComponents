@@ -1,8 +1,10 @@
 <Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
 
   <ItemGroup>
-    <!-- <FirstParty Include="Library.dll" /> -->
-    <!-- <FirstParty Include="Library.jar" /> -->
+    <FirstParty Include="Xamarin.*.dll" />
+
+    <!-- Kotlin -->
+    <FirstParty Include="org.jetbrains.*.jar" />
   </ItemGroup>
 
   <ItemGroup>
