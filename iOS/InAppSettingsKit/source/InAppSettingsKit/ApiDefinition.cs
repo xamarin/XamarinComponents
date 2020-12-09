@@ -13,6 +13,7 @@ using MonoTouch.Foundation;
 using MonoTouch.MessageUI;
 using MonoTouch.ObjCRuntime;
 using MonoTouch.UIKit;
+using Monotouch.WebKit;
 using CGRect = System.Drawing.RectangleF;
 using nint = System.Int32;
 using nfloat = System.Single;
@@ -397,11 +398,11 @@ namespace InAppSettingsKit
 
 		//- (BOOL) settingsViewController:(IASKAppSettingsViewController*) sender validationFailureForSpecifier:(IASKSpecifier*) specifier textField:(IASKTextField*) field previousValue:(NSString*) prevValue;
 		[Export("settingsViewController:validationFailureForSpecifier:textField:previousValue:")]
-		bool ValidationFailureForSpecifier(AppSettingsViewController sender, SettingsTextField textField, string prevValue);
+		bool ValidationFailureForSpecifier(AppSettingsViewController sender, SettingsSpecifier specifier,SettingsTextField textField, string prevValue);
 
 		//- (void) settingsViewController:(IASKAppSettingsViewController*) sender validationSuccessForSpecifier:(IASKSpecifier*) specifier textField:(IASKTextField*) field;
 		[Export("settingsViewController:validationSuccessForSpecifier:textField:")]
-		void ValidationSuccessForSpecifier(AppSettingsViewController sender, SettingsTextField textField);
+		void ValidationSuccessForSpecifier(AppSettingsViewController sender, SettingsSpecifier specifier, SettingsTextField textField);
 	}
 
 	// @interface IASKAppSettingsViewController : UITableViewController <IASKViewController, UITextFieldDelegate, MFMailComposeViewControllerDelegate>
