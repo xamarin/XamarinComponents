@@ -60,6 +60,7 @@
 
   <ItemGroup>
     <None Update="@(Model.NuGetPackageId).targets" Pack="True" PackagePath="build\$(TargetFramework)" />
+    <None Update="@(Model.NuGetPackageId).targets" Pack="True" PackagePath="buildTransitive\$(TargetFramework)" />
   </ItemGroup>
 
   <ItemGroup>
