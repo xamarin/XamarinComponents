@@ -742,7 +742,6 @@
   TriggerPaths: [ XPlat/ML.Kit ]
   WindowsBuildTargets: [ ci ]
   MacBuildTargets: [ ci ]
-  LinuxBuildTargets: [ ci ]
 
 #######################################################
 # Mac
