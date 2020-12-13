@@ -20,7 +20,7 @@
   <PropertyGroup>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <PackageId>Xamarin.GoogleFirebase.ML.Kit.ObjectDetection.Common</PackageId>
-    <PackageVersion>16.0.0-preview01</PackageVersion>
+    <PackageVersion>16.0.0</PackageVersion>
     <Title>Xamarin.GoogleFirebase.ML.Kit.ObjectDetection.Common</Title>
     <PackageDescription>Bindings for Xamarin Google/Firebase ML.Kit object-detection-common package</PackageDescription>
     <Owners>Microsoft</Owners>

@@ -20,7 +20,7 @@
   <PropertyGroup>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <PackageId>Xamarin.GoogleFirebase.ML.Kit.BarcodeScanning</PackageId>
-    <PackageVersion>16.0.0-preview01</PackageVersion>
+    <PackageVersion>16.0.0</PackageVersion>
     <Title>Xamarin.GoogleFirebase.ML.Kit.BarcodeScanning</Title>
     <PackageDescription>Bindings for Xamarin Google/Firebase ML.Kit barcode-scanning package</PackageDescription>
     <Owners>Microsoft</Owners>

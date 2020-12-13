@@ -20,7 +20,7 @@
   <PropertyGroup>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <PackageId>Xamarin.GoogleFirebase.ML.Kit.Translate</PackageId>
-    <PackageVersion>16.0.0-preview01</PackageVersion>
+    <PackageVersion>16.0.0</PackageVersion>
     <Title>Xamarin.GoogleFirebase.ML.Kit.Translate</Title>
     <PackageDescription>Bindings for Xamarin Google/Firebase ML.Kit translate package</PackageDescription>
     <Owners>Microsoft</Owners>
