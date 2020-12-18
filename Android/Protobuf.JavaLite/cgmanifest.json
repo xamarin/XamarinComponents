@@ -6,7 +6,7 @@
         "Maven": {
           "ArtifactId": "protobuf-javalite",
           "GroupId": "com.google.protobuf",
-          "Version": "3.11.0",
+          "Version": "3.14.0",
           "NuGetId": "Xamarin.Protobuf.JavaLite"
         }
       }
