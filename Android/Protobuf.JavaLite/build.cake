@@ -1,8 +1,8 @@
 var TARGET = Argument ("t", Argument ("target", "ci"));
 
-var NUGET_VERSION = "3.11.1";
+var NUGET_VERSION = "3.14.0";
 
-var JAR_VERSION = "3.11.1";
+var JAR_VERSION = "3.14.0";
 var JAR_URL = $"https://repo1.maven.org/maven2/com/google/protobuf/protobuf-javalite/{JAR_VERSION}/protobuf-javalite-{JAR_VERSION}.jar";
 
 Task ("externals")
