@@ -1,6 +1,6 @@
-﻿<Project Sdk="MSBuild.Sdk.Extras/2.1.2">
+﻿<Project Sdk="MSBuild.Sdk.Extras/3.0.22">
   <PropertyGroup>
-    <TargetFrameworks>monoandroid9.0</TargetFrameworks>
+    <TargetFrameworks>monoandroid10.0</TargetFrameworks>
     <IsBindingProject>true</IsBindingProject>
     <AssemblyName>Square.OkHttp3.UrlConnection</AssemblyName>
     <RootNamespace>Square.OkHttp3.UrlConnection</RootNamespace>
@@ -15,7 +15,7 @@
     <Title>OkHttp v3 UrlConnection bindings for Xamarin.Android</Title>
     <Summary>OkHttp ability to be used with HttpURLConnection.</Summary>
     <Description>OkHttp ability to be used with HttpURLConnection.</Description>
-       <Authors>Microsoft</Authors>
+    <Authors>Microsoft</Authors>
     <Owners>Microsoft</Owners>
     <Copyright>© Microsoft Corporation. All rights reserved.</Copyright>
     <PackageProjectUrl>https://go.microsoft.com/fwlink/?linkid=2130312</PackageProjectUrl>
@@ -23,11 +23,11 @@
     <PackageLicenseFile>LICENSE.md</PackageLicenseFile>
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
     <PackageTags>okhttp square square.okhttp xamarin android monodroid</PackageTags>
-    <PackageVersion>4.3.1</PackageVersion>
+    <PackageVersion>4.4.1</PackageVersion>
   </PropertyGroup>
     
   <ItemGroup>
-    <PackageReference Include="Square.OkHttp3" Version="4.3.1" />
+    <PackageReference Include="Square.OkHttp3" Version="4.4.1" />
   </ItemGroup>
     
   <ItemGroup>
