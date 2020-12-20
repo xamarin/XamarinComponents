@@ -1,5 +1,7 @@
 ﻿<metadata>
 
+    <attr path="/api/package[@name='kotlinx.coroutines']" name="managedName">Xamarin.Kotlinx.Coroutines</attr>
+    
   <!-- remove the internal, internal classes -->
   <remove-node path="/api/package[starts-with(@name,'kotlinx.coroutines.internal')]" />
   <remove-node path="/api/package[starts-with(@name,'kotlinx.coroutines.flow.internal')]" />

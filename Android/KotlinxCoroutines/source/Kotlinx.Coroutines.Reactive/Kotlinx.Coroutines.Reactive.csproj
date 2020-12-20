@@ -6,7 +6,7 @@
     <AssemblyName>Xamarin.Kotlinx.Coroutines.Reactive</AssemblyName>
     <AndroidUseLatestPlatformSdk>False</AndroidUseLatestPlatformSdk>
     <AndroidUseIntermediateDesignerFile>True</AndroidUseIntermediateDesignerFile>
-    <RootNamespace>Kotlinx.Coroutines.Reactive</RootNamespace>
+    <RootNamespace>Xamarin.Kotlinx.Coroutines.Reactive</RootNamespace>
     <AndroidClassParser>class-parse</AndroidClassParser>
     <AndroidCodegenTarget>XAJavaInterop1</AndroidCodegenTarget>
     <Java7DocPaths>..\..\externals\kotlinx-coroutines-reactive\</Java7DocPaths>
@@ -34,7 +34,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <EmbeddedJar Include="..\..\externals\kotlinx-coroutines-reactive.jar" />
+    <EmbeddedJar Include="..\..\externals\kotlinx-coroutines-reactive.jar" Link="Jars\kotlinx-coroutines-reactive.jar" />
   </ItemGroup>
 
   <ItemGroup>

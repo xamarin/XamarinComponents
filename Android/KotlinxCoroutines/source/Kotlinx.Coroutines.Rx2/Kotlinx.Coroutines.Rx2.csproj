@@ -6,7 +6,7 @@
     <AssemblyName>Xamarin.Kotlinx.Coroutines.Rx2</AssemblyName>
     <AndroidUseLatestPlatformSdk>False</AndroidUseLatestPlatformSdk>
     <AndroidUseIntermediateDesignerFile>True</AndroidUseIntermediateDesignerFile>
-    <RootNamespace>Kotlinx.Coroutines.Rx2</RootNamespace>
+    <RootNamespace>Xamarin.Kotlinx.Coroutines.Rx2</RootNamespace>
     <AndroidClassParser>class-parse</AndroidClassParser>
     <AndroidCodegenTarget>XAJavaInterop1</AndroidCodegenTarget>
     <Java7DocPaths>..\..\externals\kotlinx-coroutines-rx2\</Java7DocPaths>
@@ -34,7 +34,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <EmbeddedJar Include="..\..\externals\kotlinx-coroutines-rx2.jar" />
+    <EmbeddedJar Include="..\..\externals\kotlinx-coroutines-rx2.jar" Link="Jars\kotlinx-coroutines-rx2.jar" />
   </ItemGroup>
 
   <ItemGroup>
