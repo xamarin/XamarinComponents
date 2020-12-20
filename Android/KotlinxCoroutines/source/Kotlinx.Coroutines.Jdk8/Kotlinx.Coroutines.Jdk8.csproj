@@ -14,7 +14,7 @@
 
   <PropertyGroup>
     <PackageId>Xamarin.Kotlinx.Coroutines.Jdk8</PackageId>
-    <Title>Kotlinx.Coroutines.Jdk8 reference library for Xamarin.Android</Title>
+    <Title>Xamarin.Kotlinx.Coroutines.Jdk8 reference library for Xamarin.Android</Title>
     <PackageDescription>Xamarin.Android bindings for Kotlinx.Coroutines.Jdk8</PackageDescription>
     <Authors>Microsoft</Authors>
     <Owners>Microsoft</Owners>
@@ -26,6 +26,11 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Update="Xamarin.Kotlinx.Coroutines.Jdk8.targets" Pack="True" PackagePath="build\$(TargetFramework)" />
+    <None Update="Xamarin.Kotlinx.Coroutines.Jdk8.targets" Pack="True" PackagePath="buildTransitive\$(TargetFramework)" />
+  </ItemGroup>
+
+  <ItemGroup>
     <TransformFile Include="Transforms\Metadata.xml" />
   </ItemGroup>
 
@@ -34,6 +39,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Include="..\..\externals\kotlinx-coroutines-jdk8.jar" Pack="True" PackagePath="jar\kotlinx-coroutines-jdk8.jar" Visible="false" />
     <EmbeddedJar Include="..\..\externals\kotlinx-coroutines-jdk8.jar" Link="Jars\kotlinx-coroutines-jdk8.jar" />
   </ItemGroup>
 
@@ -41,10 +47,6 @@
     <PackageReference Include="Xamarin.Kotlin.StdLib" Version="1.4.0" />
   </ItemGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\Kotlinx.Coroutines.Core\Kotlinx.Coroutines.Core.csproj" />
-  </ItemGroup>
-  
   <ItemGroup>
     <None Include="..\..\License.md" Pack="true" PackagePath="LICENSE.md" />
   </ItemGroup>

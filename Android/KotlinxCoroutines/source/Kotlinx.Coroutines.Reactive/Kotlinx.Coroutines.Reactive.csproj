@@ -26,6 +26,11 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Update="Xamarin.Kotlinx.Coroutines.Reactive.targets" Pack="True" PackagePath="build\$(TargetFramework)" />
+    <None Update="Xamarin.Kotlinx.Coroutines.Reactive.targets" Pack="True" PackagePath="buildTransitive\$(TargetFramework)" />
+  </ItemGroup>
+
+  <ItemGroup>
     <TransformFile Include="Transforms\Metadata.xml" />
   </ItemGroup>
 
@@ -34,6 +39,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Include="..\..\externals\kotlinx-coroutines-reactive.jar" Pack="True" PackagePath="jar\kotlinx-coroutines-reactive.jar" Visible="false" />
     <EmbeddedJar Include="..\..\externals\kotlinx-coroutines-reactive.jar" Link="Jars\kotlinx-coroutines-reactive.jar" />
   </ItemGroup>
 
@@ -42,10 +48,6 @@
     <PackageReference Include="Xamarin.Kotlin.StdLib" Version="1.4.0" />
   </ItemGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\Kotlinx.Coroutines.Core\Kotlinx.Coroutines.Core.csproj" />
-  </ItemGroup>
-  
   <ItemGroup>
     <None Include="..\..\License.md" Pack="true" PackagePath="LICENSE.md" />
   </ItemGroup>

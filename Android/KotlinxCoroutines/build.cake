@@ -66,6 +66,17 @@ Task ("externals")
 	XmlPoke("./source/Kotlinx.Coroutines.Rx2/Kotlinx.Coroutines.Rx2.csproj", "/Project/PropertyGroup/PackageVersion", KOTLINX_NUGET_VERSION);
 });
 
+Task("native")
+	.Does(() =>
+{
+	var fn = IsRunningOnWindows() ? "gradlew.bat" : "gradlew";
+	var gradlew = MakeAbsolute((FilePath)("./native/KotlinxCoroutinesSample/" + fn));
+	var exit = StartProcess(gradlew, new ProcessSettings {
+		Arguments = "assemble",
+		WorkingDirectory = "./native/KotlinxCoroutinesSample/"
+	});
+	if (exit != 0) throw new Exception($"Gradle exited with exit code {exit}.");
+});
 
 Task("libs")
 	.IsDependentOn("externals")
@@ -93,7 +104,19 @@ Task("nuget")
 });
 
 Task("samples")
-	.IsDependentOn("nuget");
+	.IsDependentOn("native")
+	.IsDependentOn("nuget")
+	.Does(() =>
+{
+	var settings = new MSBuildSettings()
+		.SetConfiguration("Release")
+		.SetVerbosity(Verbosity.Minimal)
+		.EnableBinaryLogger("./output/samples.binlog")
+		.WithRestore()
+		.WithProperty("DesignTimeBuild", "false");
+
+	MSBuild("./samples/KotlinxCoroutinesSample.sln", settings);
+});
 
 Task("ci")
 	.IsDependentOn("externals")

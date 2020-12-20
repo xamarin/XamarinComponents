@@ -14,7 +14,7 @@
 
   <PropertyGroup>
     <PackageId>Xamarin.Kotlinx.Coroutines.Core</PackageId>
-    <Title>Kotlinx.Coroutines.Core reference library for Xamarin.Android</Title>
+    <Title>Xamarin.Kotlinx.Coroutines.Core reference library for Xamarin.Android</Title>
     <PackageDescription>Xamarin.Android bindings for Kotlinx.Coroutines.Core</PackageDescription>
     <Authors>Microsoft</Authors>
     <Owners>Microsoft</Owners>
@@ -26,6 +26,11 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Update="Xamarin.Kotlinx.Coroutines.Core.targets" Pack="True" PackagePath="build\$(TargetFramework)" />
+    <None Update="Xamarin.Kotlinx.Coroutines.Core.targets" Pack="True" PackagePath="buildTransitive\$(TargetFramework)" />
+  </ItemGroup>
+
+  <ItemGroup>
     <TransformFile Include="Transforms\Metadata.xml" />
   </ItemGroup>
 
@@ -34,6 +39,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Include="..\..\externals\kotlinx-coroutines-core.jar" Pack="True" PackagePath="jar\kotlinx-coroutines-core.jar" Visible="false" />
     <EmbeddedJar Include="..\..\externals\kotlinx-coroutines-core.jar" Link="Jars\kotlinx-coroutines-core.jar" />
   </ItemGroup>
 
