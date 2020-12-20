@@ -728,6 +728,11 @@
   TriggerPaths: [ XPlat/Chromium.CroNet ]
   MacBuildTargets: [ ci ]
   WindowsBuildTargets: [ ci ]
+- Name:  ML.Kit
+  BuildScript: ./XPlat/ML.Kit/build.cake
+  TriggerPaths: [ XPlat/ML.Kit ]
+  MacBuildTargets: [ ci ]
+  WindowsBuildTargets: [ ci ]
 - Name:  Mono.Posix
   BuildScript: ./XPlat/Mono.Posix/build.cake
   TriggerPaths: [ XPlat/Mono.Posix ]
@@ -737,7 +742,6 @@
   TriggerPaths: [ XPlat/ML.Kit ]
   WindowsBuildTargets: [ ci ]
   MacBuildTargets: [ ci ]
-  LinuxBuildTargets: [ ci ]
 
 #######################################################
 # Mac

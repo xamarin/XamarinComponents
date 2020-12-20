@@ -75,7 +75,7 @@ Dictionary<string, string> URLS_ARTIFACT_FILES= new Dictionary<string, string>()
 	},
 };
 
-
+// https://developers.google.com/ml-kit/migration/ios
 Dictionary<string, List<string>> CocoaPods = new Dictionary<string, List<string>>
 {
 	{
@@ -85,9 +85,10 @@ Dictionary<string, List<string>> CocoaPods = new Dictionary<string, List<string>
 			"platform :ios, '12.0'",
 			"install! 'cocoapods', :integrate_targets => false",
 			"target 'Xamarin' do",
-			"pod 'Firebase/MLVision', '6.25.0'",
-			"# If using an on-device API:",
-			"pod 'Firebase/MLVisionTextModel', '6.25.0'",
+			// "pod 'Firebase/MLVision', '6.25.0'",
+			// "# If using an on-device API:",
+			// "pod 'Firebase/MLVisionTextModel', '6.25.0'",
+			"pod 'GoogleMLKit/TextRecognition', '6.25.0'",
 			"  use_frameworks!",
 			"end",
 		}
@@ -99,10 +100,11 @@ Dictionary<string, List<string>> CocoaPods = new Dictionary<string, List<string>
 			"platform :ios, '12.0'",
 			"install! 'cocoapods', :integrate_targets => false",
 			"target 'Xamarin' do",
-			"pod 'Firebase/MLVision', '6.25.0'",
-			"# If you want to detect face contours (landmark detection and classification",
-			"# don't require this additional model):",
-			"pod 'Firebase/MLVisionFaceModel', '6.25.0'",
+			// "pod 'Firebase/MLVision', '6.25.0'",
+			// "# If you want to detect face contours (landmark detection and classification",
+			// "# don't require this additional model):",
+			// "pod 'Firebase/MLVisionFaceModel', '6.25.0'",
+			"pod 'GoogleMLKit/FaceDetection', '6.25.0'",
 			"  use_frameworks!",
 			"end",
 		}
@@ -114,8 +116,9 @@ Dictionary<string, List<string>> CocoaPods = new Dictionary<string, List<string>
 			"platform :ios, '12.0'",
 			"install! 'cocoapods', :integrate_targets => false",
 			"target 'Xamarin' do",
-			"pod 'Firebase/MLVision'",
-			"pod 'Firebase/MLVisionBarcodeModel'",
+			// "pod 'Firebase/MLVision'",
+			// "pod 'Firebase/MLVisionBarcodeModel'",
+			"pod 'GoogleMLKit/BarcodeScanning'",
 			"  use_frameworks!",
 			"end",
 		}
@@ -127,9 +130,10 @@ Dictionary<string, List<string>> CocoaPods = new Dictionary<string, List<string>
 			"platform :ios, '12.0'",
 			"install! 'cocoapods', :integrate_targets => false",
 			"target 'Xamarin' do",
-			"pod 'Firebase/MLVision', '6.25.0'",
-			"# If using the on-device API:",
-			"pod 'Firebase/MLVisionLabelModel', '6.25.0'",
+			// "pod 'Firebase/MLVision', '6.25.0'",
+			// "# If using the on-device API:",
+			// "pod 'Firebase/MLVisionLabelModel', '6.25.0'",
+			"pod 'GoogleMLKit/ImageLabeling', '6.25.0'",
 			"  use_frameworks!",
 			"end",
 		}
@@ -141,8 +145,9 @@ Dictionary<string, List<string>> CocoaPods = new Dictionary<string, List<string>
 			"platform :ios, '12.0'",
 			"install! 'cocoapods', :integrate_targets => false",
 			"target 'Xamarin' do",
-			"pod 'Firebase/MLVision', '6.25.0'",
-			"pod 'Firebase/MLVisionObjectDetection', '6.25.0'",
+			// "pod 'Firebase/MLVision', '6.25.0'",
+			// "pod 'Firebase/MLVisionObjectDetection', '6.25.0'",
+			"pod 'GoogleMLKit/ObjectDetection', '6.25.0'",
 			"  use_frameworks!",
 			"end",
 		}

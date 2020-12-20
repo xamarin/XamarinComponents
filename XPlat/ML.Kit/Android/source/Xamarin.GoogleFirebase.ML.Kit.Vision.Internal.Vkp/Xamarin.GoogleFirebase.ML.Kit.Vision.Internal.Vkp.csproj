@@ -20,7 +20,7 @@
   <PropertyGroup>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <PackageId>Xamarin.GoogleFirebase.ML.Kit.Vision.Internal.Vkp</PackageId>
-    <PackageVersion>16.0.0-preview01</PackageVersion>
+    <PackageVersion>16.0.0</PackageVersion>
     <Title>Xamarin.GoogleFirebase.ML.Kit.Vision.Internal.Vkp</Title>
     <PackageDescription>Bindings for Xamarin Google/Firebase ML.Kit vision-internal-vkp package</PackageDescription>
     <Owners>Microsoft</Owners>

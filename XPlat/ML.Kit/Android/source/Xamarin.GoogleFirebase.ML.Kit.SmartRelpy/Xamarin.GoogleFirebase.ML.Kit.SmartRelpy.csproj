@@ -20,7 +20,7 @@
   <PropertyGroup>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <PackageId>Xamarin.GoogleFirebase.ML.Kit.SmartReply</PackageId>
-    <PackageVersion>16.0.0-preview01</PackageVersion>
+    <PackageVersion>16.0.0</PackageVersion>
     <Title>Xamarin.GoogleFirebase.ML.Kit.SmartReply</Title>
     <PackageDescription>Bindings for Xamarin Google/Firebase ML.Kit smart-reply package</PackageDescription>
     <Owners>Microsoft</Owners>
