@@ -78,14 +78,14 @@
 			"groupId" : "org.jetbrains.kotlinx",
 			"artifactId" : "kotlinx-coroutines-android",
 			"version" : "1.3.4",
-			"nugetId" : "Xamarin.KotlinX.CoroutinesAndroid",
+			"nugetId" : "Xamarin.KotlinX.Coroutines.CoroutinesAndroid",
 			"nugetVersion" : "1.3.4"
 		},
 		{
 			"groupId" : "org.jetbrains.kotlinx",
 			"artifactId" : "kotlinx-coroutines-core",
 			"version" : "1.3.4",
-			"nugetId" : "Xamarin.KotlinX.CoroutinesCore",
+			"nugetId" : "Xamarin.KotlinX.Coroutines.Core",
 			"nugetVersion" : "1.3.4"
 		}
 	]
