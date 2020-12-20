@@ -2,6 +2,7 @@
 
   <ItemGroup>
     <FirstParty Include="Xamarin.*.dll" />
+    <FirstParty Include="Square.*.dll" />
 
     <!-- Kotlin -->
     <FirstParty Include="org.jetbrains.*.jar" />
