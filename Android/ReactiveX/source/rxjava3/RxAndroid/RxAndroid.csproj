@@ -1,6 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project Sdk="MSBuild.Sdk.Extras/2.0.54">
   <PropertyGroup>
+    <TargetFramework>MonoAndroid90</TargetFramework>
     <TargetFrameworks>MonoAndroid90</TargetFrameworks>
     <IsBindingProject>true</IsBindingProject>
     <AssemblyName>Xamarin.Android.ReactiveX.RxJava3.RxAndroid</AssemblyName>

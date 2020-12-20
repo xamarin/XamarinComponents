@@ -1,7 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project Sdk="MSBuild.Sdk.Extras/2.0.54">
   <PropertyGroup>
-    <TargetFrameworks>MonoAndroid50</TargetFrameworks>
+    <TargetFramework>MonoAndroid90</TargetFramework>
+    <TargetFrameworks>MonoAndroid90</TargetFrameworks>
     <IsBindingProject>true</IsBindingProject>
     <AssemblyName>Xamarin.Android.ReactiveX.RxAndroid</AssemblyName>
     <MonoAndroidResourcePrefix>Resources</MonoAndroidResourcePrefix>
