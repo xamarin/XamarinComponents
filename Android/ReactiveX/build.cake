@@ -2,38 +2,89 @@
 
 var TARGET = Argument ("t", Argument ("target", "Default"));
 
-var RXANDROID_VERSION = "2.1.1";
-var RXJAVA_VERSION = "2.2.7";
+var RXJAVA2_RXANDROID_VERSION = "2.1.1";
+var RXJAVA2_RXJAVA_VERSION = "2.2.9";
+var RXJAVA2_RXKOTLIN_VERSION = "2.3.0";
 
-var RXANDROID_NUGET_VERSION = RXANDROID_VERSION;
-var RXJAVA_NUGET_VERSION = RXJAVA_VERSION;
+var RXJAVA3_RXANDROID_VERSION = "3.0.0";
+var RXJAVA3_RXJAVA_VERSION = "3.0.0";
+var RXJAVA3_RXKOTLIN_VERSION = "3.0.0";
 
-var RXANDROID_AAR_URL = $"https://search.maven.org/remotecontent?filepath=io/reactivex/rxjava2/rxandroid/{RXANDROID_VERSION}/rxandroid-{RXANDROID_VERSION}.aar";
-var RXANDROID_DOCS_URL = $"https://search.maven.org/remotecontent?filepath=io/reactivex/rxjava2/rxandroid/{RXANDROID_VERSION}/rxandroid-{RXANDROID_VERSION}-javadoc.jar";
+var RXJAVA2_RXANDROID_NUGET_VERSION = RXJAVA2_RXANDROID_VERSION;
+var RXJAVA2_RXJAVA_NUGET_VERSION = RXJAVA2_RXJAVA_VERSION;
+var RXJAVA2_RXKOTLIN_NUGET_VERSION = RXJAVA2_RXKOTLIN_VERSION;
 
-var RXJAVA_JAR_URL = $"https://search.maven.org/remotecontent?filepath=io/reactivex/rxjava2/rxjava/{RXJAVA_VERSION}/rxjava-{RXJAVA_VERSION}.jar";
-var RXJAVA_DOCS_URL = $"https://search.maven.org/remotecontent?filepath=io/reactivex/rxjava2/rxjava/{RXJAVA_VERSION}/rxjava-{RXJAVA_VERSION}-javadoc.jar";
+var RXJAVA3_RXANDROID_NUGET_VERSION = RXJAVA3_RXANDROID_VERSION;
+var RXJAVA3_RXJAVA_NUGET_VERSION = RXJAVA3_RXJAVA_VERSION;
+var RXJAVA3_RXKOTLIN_NUGET_VERSION = RXJAVA3_RXKOTLIN_VERSION;
+
+
+var RXJAVA2_RXANDROID_AAR_URL = $"https://search.maven.org/remotecontent?filepath=io/reactivex/rxjava2/rxandroid/{RXJAVA2_RXANDROID_VERSION}/rxandroid-{RXJAVA2_RXANDROID_VERSION}.aar";
+var RXJAVA2_RXANDROID_DOCS_URL = $"https://search.maven.org/remotecontent?filepath=io/reactivex/rxjava2/rxandroid/{RXJAVA2_RXANDROID_VERSION}/rxandroid-{RXJAVA2_RXANDROID_VERSION}-javadoc.jar";
+
+var RXJAVA2_RXJAVA_JAR_URL = $"https://search.maven.org/remotecontent?filepath=io/reactivex/rxjava2/rxjava/{RXJAVA2_RXJAVA_VERSION}/rxjava-{RXJAVA2_RXJAVA_VERSION}.jar";
+var RXJAVA2_RXJAVA_DOCS_URL = $"https://search.maven.org/remotecontent?filepath=io/reactivex/rxjava2/rxjava/{RXJAVA2_RXJAVA_VERSION}/rxjava-{RXJAVA2_RXJAVA_VERSION}-javadoc.jar";
+
+var RXJAVA2_RXKOTLIN_JAR_URL = $"https://search.maven.org/remotecontent?filepath=io/reactivex/rxjava2/rxkotlin/{RXJAVA2_RXKOTLIN_VERSION}/rxkotlin-{RXJAVA2_RXKOTLIN_VERSION}.jar";
+var RXJAVA2_RXKOTLIN_DOCS_URL = $"https://search.maven.org/remotecontent?filepath=io/reactivex/rxjava2/rxkotlin/{RXJAVA2_RXKOTLIN_VERSION}/rxkotlin-{RXJAVA2_RXKOTLIN_VERSION}-javadoc.jar";
+
+
+var RXJAVA3_RXANDROID_AAR_URL = $"https://search.maven.org/remotecontent?filepath=io/reactivex/rxjava3/rxandroid/{RXJAVA3_RXANDROID_VERSION}/rxandroid-{RXJAVA3_RXANDROID_VERSION}.aar";
+var RXJAVA3_RXANDROID_DOCS_URL = $"https://search.maven.org/remotecontent?filepath=io/reactivex/rxjava3/rxandroid/{RXJAVA3_RXANDROID_VERSION}/rxandroid-{RXJAVA3_RXANDROID_VERSION}-javadoc.jar";
+
+var RXJAVA3_RXJAVA_JAR_URL = $"https://search.maven.org/remotecontent?filepath=io/reactivex/rxjava3/rxjava/{RXJAVA3_RXJAVA_VERSION}/rxjava-{RXJAVA3_RXJAVA_VERSION}.jar";
+var RXJAVA3_RXJAVA_DOCS_URL = $"https://search.maven.org/remotecontent?filepath=io/reactivex/rxjava3/rxjava/{RXJAVA3_RXJAVA_VERSION}/rxjava-{RXJAVA3_RXJAVA_VERSION}-javadoc.jar";
+
+var RXJAVA3_RXKOTLIN_JAR_URL = $"https://search.maven.org/remotecontent?filepath=io/reactivex/rxjava3/rxkotlin/{RXJAVA3_RXKOTLIN_VERSION}/rxkotlin-{RXJAVA3_RXKOTLIN_VERSION}.jar";
+var RXJAVA3_RXKOTLIN_DOCS_URL = $"https://search.maven.org/remotecontent?filepath=io/reactivex/rxjava3/rxkotlin/{RXJAVA3_RXKOTLIN_VERSION}/rxkotlin-{RXJAVA3_RXKOTLIN_VERSION}-javadoc.jar";
 
 Task ("externals")
-	.WithCriteria (!FileExists ("./externals/rxjava.jar"))
+	.WithCriteria (!FileExists ("./externals/rxjava2/rxjava.jar"))
+	.WithCriteria (!FileExists ("./externals/rxjava3/rxjava.jar"))
 	.Does (() =>
 {
-	EnsureDirectoryExists ("./externals/");
+	EnsureDirectoryExists ("./externals/rxjava2/");
+	EnsureDirectoryExists ("./externals/rxjava3/");
 
 	// Download Dependencies
-	DownloadFile (RXJAVA_JAR_URL, "./externals/rxjava.jar");
-	DownloadFile (RXJAVA_DOCS_URL, "./externals/rxjava-javadocs.jar");
+	DownloadFile (RXJAVA2_RXJAVA_JAR_URL, "./externals/rxjava2/rxjava.jar");
+	DownloadFile (RXJAVA2_RXJAVA_DOCS_URL, "./externals/rxjava2/rxjava-javadocs.jar");
 
-	DownloadFile (RXANDROID_AAR_URL, "./externals/rxandroid.aar");
-	DownloadFile (RXANDROID_DOCS_URL, "./externals/rxandroid-javadocs.jar");
+	DownloadFile (RXJAVA2_RXANDROID_AAR_URL, "./externals/rxjava2/rxandroid.aar");
+	DownloadFile (RXJAVA2_RXANDROID_DOCS_URL, "./externals/rxjava2/rxandroid-javadocs.jar");
 
-	Unzip ("./externals/rxjava-javadocs.jar", "./externals/rxjava-javadocs/");
-	Unzip ("./externals/rxandroid-javadocs.jar", "./externals/rxandroid-javadocs/");
-	Unzip ("./externals/rxandroid.aar", "./externals/rxandroid/");
+	DownloadFile (RXJAVA2_RXKOTLIN_JAR_URL, "./externals/rxjava2/rxkotlin.jar");
+	DownloadFile (RXJAVA2_RXKOTLIN_DOCS_URL, "./externals/rxjava2/rxkotlin-javadocs.jar");
+
+	DownloadFile (RXJAVA3_RXJAVA_JAR_URL, "./externals/rxjava3/rxjava.jar");
+	DownloadFile (RXJAVA3_RXJAVA_DOCS_URL, "./externals/rxjava3/rxjava-javadocs.jar");
+
+	DownloadFile (RXJAVA3_RXANDROID_AAR_URL, "./externals/rxjava3/rxandroid.aar");
+	DownloadFile (RXJAVA3_RXANDROID_DOCS_URL, "./externals/rxjava3/rxandroid-javadocs.jar");
+
+	DownloadFile (RXJAVA3_RXKOTLIN_JAR_URL, "./externals/rxjava3/rxkotlin.jar");
+	DownloadFile (RXJAVA3_RXKOTLIN_DOCS_URL, "./externals/rxjava3/rxkotlin-javadocs.jar");
+
+	Unzip ("./externals/rxjava2/rxjava-javadocs.jar", "./externals/rxjava2/rxjava-javadocs/");
+	Unzip ("./externals/rxjava2/rxandroid-javadocs.jar", "./externals/rxjava2/rxandroid-javadocs/");
+	Unzip ("./externals/rxjava2/rxkotlin-javadocs.jar", "./externals/rxjava2/rxkotlin-javadocs/");
+
+	Unzip ("./externals/rxjava2/rxandroid.aar", "./externals/rxjava2/rxandroid/");
+
+	Unzip ("./externals/rxjava3/rxjava-javadocs.jar", "./externals/rxjava3/rxjava-javadocs/");
+	Unzip ("./externals/rxjava3/rxandroid-javadocs.jar", "./externals/rxjava3/rxandroid-javadocs/");
+	Unzip ("./externals/rxjava3/rxkotlin-javadocs.jar", "./externals/rxjava3/rxkotlin-javadocs/");
+
+	Unzip ("./externals/rxjava3/rxandroid.aar", "./externals/rxjava3/rxandroid/");
 
 	// Update .csproj nuget versions
-	XmlPoke("./source/RxJava/RxJava.csproj", "/Project/PropertyGroup/PackageVersion", RXJAVA_NUGET_VERSION);
-	XmlPoke("./source/RxAndroid/RxAndroid.csproj", "/Project/PropertyGroup/PackageVersion", RXANDROID_NUGET_VERSION);
+	XmlPoke("./source/rxjava2/RxJava/RxJava.csproj", "/Project/PropertyGroup/PackageVersion", RXJAVA2_RXJAVA_NUGET_VERSION);
+	XmlPoke("./source/rxjava2/RxAndroid/RxAndroid.csproj", "/Project/PropertyGroup/PackageVersion", RXJAVA2_RXANDROID_NUGET_VERSION);
+	XmlPoke("./source/rxjava2/RxKotlin/RxKotlin.csproj", "/Project/PropertyGroup/PackageVersion", RXJAVA2_RXKOTLIN_NUGET_VERSION);
+
+	XmlPoke("./source/rxjava3/RxJava/RxJava.csproj", "/Project/PropertyGroup/PackageVersion", RXJAVA3_RXJAVA_NUGET_VERSION);
+	XmlPoke("./source/rxjava3/RxAndroid/RxAndroid.csproj", "/Project/PropertyGroup/PackageVersion", RXJAVA3_RXANDROID_NUGET_VERSION);
+	XmlPoke("./source/rxjava3/RxKotlin/RxKotlin.csproj", "/Project/PropertyGroup/PackageVersion", RXJAVA3_RXKOTLIN_NUGET_VERSION);
 });
 
 
@@ -71,5 +122,11 @@ Task ("clean")
 	if (DirectoryExists ("./externals/"))
 		DeleteDirectory ("./externals", true);
 });
+
+Task("Default")
+	.IsDependentOn("samples");
+
+Task("ci")
+	.IsDependentOn("Default");
 
 RunTarget (TARGET);

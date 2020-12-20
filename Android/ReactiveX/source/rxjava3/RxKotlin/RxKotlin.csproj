@@ -3,7 +3,7 @@
   <PropertyGroup>
     <TargetFrameworks>MonoAndroid50</TargetFrameworks>
     <IsBindingProject>true</IsBindingProject>
-    <AssemblyName>Xamarin.Android.ReactiveX.RxJava</AssemblyName>
+    <AssemblyName>Xamarin.Android.ReactiveX.RxJava3.RxKotlin</AssemblyName>
     <MonoAndroidResourcePrefix>Resources</MonoAndroidResourcePrefix>
     <MonoAndroidAssetsPrefix>Assets</MonoAndroidAssetsPrefix>
     <AndroidUseLatestPlatformSdk>False</AndroidUseLatestPlatformSdk>
@@ -12,20 +12,20 @@
     <RootNamespace>ReactiveX</RootNamespace>
     <AndroidClassParser>class-parse</AndroidClassParser>
     <AndroidCodegenTarget>XAJavaInterop1</AndroidCodegenTarget>
-    <Java7DocPaths>..\..\externals\rxjava-javadocs\</Java7DocPaths>
+    <Java7DocPaths>..\..\externals\rxjava3\rxjava-javadocs\</Java7DocPaths>
   </PropertyGroup>
 
   <PropertyGroup>
-    <PackageId>Xamarin.Android.ReactiveX.RxJava</PackageId>
-    <Title>ReactiveX RxJava reference library for Xamarin.Android</Title>
-    <PackageDescription>Xamarin.Android bindings for ReactiveX RxJava</PackageDescription>
+    <PackageId>Xamarin.Android.ReactiveX.RxJava3.RxKotlin</PackageId>
+    <Title>ReactiveX RxJava3 RxKotlin reference library for Xamarin.Android</Title>
+    <PackageDescription>Xamarin.Android bindings for ReactiveX RxJava3 RxKotlin</PackageDescription>
     <Authors>Microsoft</Authors>
     <Owners>Microsoft</Owners>
     <Copyright>© Microsoft Corporation. All rights reserved.</Copyright>
     <PackageProjectUrl>https://go.microsoft.com/fwlink/?linkid=2083771</PackageProjectUrl>
     <PackageLicenseUrl>https://go.microsoft.com/fwlink/?linkid=2083684</PackageLicenseUrl>
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
-    <PackageVersion>2.2.7</PackageVersion>
+    <PackageVersion>3.0.0</PackageVersion>
   </PropertyGroup>
 
   <ItemGroup>
@@ -33,18 +33,17 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Include="..\..\externals\rxjava.jar">
-      <Link>rxjava.jar</Link>
+    <None Include="..\..\..\externals\rxjava3\rxkotlin.jar">
+      <Link>rxkotlin.jar</Link>
     </None>
-    <None Include="..\..\External-Dependency-Info.txt" Pack="True" PackagePath="THIRD-PARTY-NOTICES.txt" />
+    <None Include="..\..\..\External-Dependency-Info.txt" Pack="True" PackagePath="THIRD-PARTY-NOTICES.txt" />
   </ItemGroup>
 
   <ItemGroup>
-    <EmbeddedJar Include="..\..\externals\rxjava.jar" />
+    <EmbeddedJar Include="..\..\..\externals\rxjava3\rxkotlin.jar" />
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Xamarin.Android.ReactiveStreams" Version="1.0.2" />
+    <ProjectReference Include="..\RxJava\RxJava.csproj" />
   </ItemGroup>
-
 </Project>
