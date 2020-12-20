@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -45,9 +45,9 @@
     <Reference Include="Mono.Android" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="Xamarin.Android.Support.v7.AppCompat" Version="28.0.0.3" />
-    <PackageReference Include="Xamarin.Kotlin.StdLib" Version="1.4.10" />
-    <PackageReference Include="Xamarin.Kotlin.Reflect" Version="1.4.10" />
+    <PackageReference Include="Xamarin.AndroidX.AppCompat" Version="1.2.0.5" />
+    <PackageReference Include="Xamarin.Kotlin.StdLib" Version="1.4.20" />
+    <PackageReference Include="Xamarin.Kotlin.Reflect" Version="1.4.20" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\KotlinSampleLibrary\KotlinSampleLibrary.csproj">

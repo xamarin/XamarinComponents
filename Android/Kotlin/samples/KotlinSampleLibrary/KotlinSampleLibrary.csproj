@@ -42,7 +42,7 @@
     <Reference Include="Mono.Android" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="Xamarin.Kotlin.StdLib" Version="1.4.10" />
+    <PackageReference Include="Xamarin.Kotlin.StdLib" Version="1.4.20" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
