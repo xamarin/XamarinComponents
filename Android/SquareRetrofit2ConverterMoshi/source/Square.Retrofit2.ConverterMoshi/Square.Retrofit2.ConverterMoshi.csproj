@@ -2,8 +2,8 @@
   <PropertyGroup>
     <TargetFrameworks>monoandroid9.0</TargetFrameworks>
     <IsBindingProject>true</IsBindingProject>
-    <AssemblyName>Square.Retrofit2.ConverterGson</AssemblyName>
-    <RootNamespace>Square.Retrofit2.ConverterGson</RootNamespace>
+    <AssemblyName>Square.Retrofit2.ConverterMoshi</AssemblyName>
+    <RootNamespace>Square.Retrofit2.ConverterMoshi</RootNamespace>
     <AndroidUseLatestPlatformSdk>False</AndroidUseLatestPlatformSdk>
     <AndroidUseIntermediateDesignerFile>True</AndroidUseIntermediateDesignerFile>
     <AndroidClassParser>class-parse</AndroidClassParser>
@@ -11,10 +11,10 @@
   </PropertyGroup>
 
   <PropertyGroup>
-    <PackageId>Square.Retrofit2.ConverterGson</PackageId>
-    <Title>Retrofit v2 Converter for Gson</Title>
-    <Summary>Retrofit v2 Adapter for Gson bindings for Xamarin.Android.</Summary>
-    <Description>Retrofit v2 Adapter for Gson bindings for Xamarin.Android.</Description>
+    <PackageId>Square.Retrofit2.ConverterMoshi</PackageId>
+    <Title>Retrofit v2 Converter for Moshi</Title>
+    <Summary>Retrofit v2 Adapter for Moshi bindings for Xamarin.Android.</Summary>
+    <Description>Retrofit v2 Adapter for Moshi bindings for Xamarin.Android.</Description>
     <Authors>Microsoft</Authors>
     <Owners>Microsoft</Owners>
     <Copyright>© Microsoft Corporation. All rights reserved.</Copyright>
@@ -22,12 +22,12 @@
     <PackageIcon>square.retrofit2_256x256.png</PackageIcon>
     <PackageLicenseFile>LICENSE.md</PackageLicenseFile>
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
-    <PackageTags>gson retrofit xamarin android monodroid</PackageTags>
+    <PackageTags>moshi retrofit xamarin android monodroid</PackageTags>
     <PackageVersion>2.7.2</PackageVersion>
   </PropertyGroup>
     
   <ItemGroup>
-    <PackageReference Include="GoogleGson" Version="2.8.5" />
+    <PackageReference Include="Square.Moshi" Version="1.8.0" />
     <PackageReference Include="Square.Retrofit2" Version="2.7.2" />
   </ItemGroup>
     
