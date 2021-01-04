@@ -345,6 +345,11 @@
   TriggerPaths: [ Android/SquareMoshi ]
   MacBuildTargets: [ ci ]
   WindowsBuildTargets: [ ci ]
+- Name: SquareOkHttp3LoggingInterceptor
+  BuildScript: ./Android/SquareOkHttp3LoggingInterceptor/build.cake
+  TriggerPaths: [ Android/SquareOkHttp3LoggingInterceptor ]
+  MacBuildTargets: [ ci ]
+  WindowsBuildTargets: [ ci ]
 
 # will be XPlat in the future
 - Name: TensorFlow.Lite
