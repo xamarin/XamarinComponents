@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<metadata>
+    <!--
+    duplicate
+    
+    removed:
+    obsolete
+    -->
+    <remove-node
+        path="/api/package[@name='kotlinx.coroutines.channels']/class[@name='ChannelsKt']/method[@name='filterIndexedTo' and count(parameter)=4 and parameter[1][@type='kotlinx.coroutines.channels.ReceiveChannel&lt;? extends E&gt;'] and parameter[2][@type='C'] and parameter[3][@type='kotlin.jvm.functions.Function2&lt;? super java.lang.Integer, ? super E, java.lang.Boolean&gt;'] and parameter[4][@type='kotlin.coroutines.Continuation&lt;? super C&gt;']]"
+        />
+    <remove-node
+        path="/api/package[@name='kotlinx.coroutines.channels']/class[@name='ChannelsKt']/method[@name='filterIndexedTo' and count(parameter)=4 and parameter[1][@type='kotlinx.coroutines.channels.ReceiveChannel&lt;? extends E&gt;'] and parameter[2][@type='C'] and parameter[3][@type='kotlin.jvm.functions.Function2&lt;? super java.lang.Integer, ? super E, java.lang.Boolean&gt;'] and parameter[4][@type='kotlin.coroutines.Continuation&lt;? super C&gt;']]"
+        />
+    <remove-node
+        path="/api/package[@name='kotlinx.coroutines.channels']/class[@name='ChannelsKt']/method[@name='filterNotTo' and count(parameter)=4 and parameter[1][@type='kotlinx.coroutines.channels.ReceiveChannel&lt;? extends E&gt;'] and parameter[2][@type='C'] and parameter[3][@type='kotlin.jvm.functions.Function1&lt;? super E, java.lang.Boolean&gt;'] and parameter[4][@type='kotlin.coroutines.Continuation&lt;? super C&gt;']]"
+        />
+    <remove-node
+        path="/api/package[@name='kotlinx.coroutines.channels']/class[@name='ChannelsKt']/method[@name='filterNotTo' and count(parameter)=4 and parameter[1][@type='kotlinx.coroutines.channels.ReceiveChannel&lt;? extends E&gt;'] and parameter[2][@type='C'] and parameter[3][@type='kotlin.jvm.functions.Function1&lt;? super E, java.lang.Boolean&gt;'] and parameter[4][@type='kotlin.coroutines.Continuation&lt;? super C&gt;']]"
+        />
+    <remove-node
+        path="/api/package[@name='kotlinx.coroutines.channels']/class[@name='ChannelsKt']/method[@name='filterNotNullTo' and count(parameter)=3 and parameter[1][@type='kotlinx.coroutines.channels.ReceiveChannel&lt;? extends E&gt;'] and parameter[2][@type='C'] and parameter[3][@type='kotlin.coroutines.Continuation&lt;? super C&gt;']]"
+        />
+    <remove-node
+        path="/api/package[@name='kotlinx.coroutines.channels']/class[@name='ChannelsKt']/method[@name='filterNotNullTo' and count(parameter)=3 and parameter[1][@type='kotlinx.coroutines.channels.ReceiveChannel&lt;? extends E&gt;'] and parameter[2][@type='C'] and parameter[3][@type='kotlin.coroutines.Continuation&lt;? super C&gt;']]"
+        />
+
+    <remove-node
+        path="/api/package[@name='kotlinx.coroutines.internal']"
+        />
+
+</metadata>
