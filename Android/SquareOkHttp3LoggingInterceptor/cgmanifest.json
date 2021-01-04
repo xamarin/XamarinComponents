@@ -1,0 +1,16 @@
+{
+  "Registrations": [
+    {
+      "Component": {
+        "Type": "Maven",
+        "Maven": {
+          "ArtifactId": "logging-interceptor",
+          "GroupId": "com.squareup.okhttp3",
+          "Version": "4.3.1",
+          "NuGetId": "Square.OkHttp3.LoggingInterceptor"
+        }
+      }
+    }
+  ],
+  "Version": 1
+}
