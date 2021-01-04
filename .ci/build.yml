@@ -58,7 +58,7 @@ jobs:
             imageName: ${{ parameters.windowsImage }}
     displayName: ${{ parameters.displayName }}
     timeoutInMinutes: ${{ parameters.timeoutInMinutes }}
-    continueOnError: ${{ parameters.continueOnError }}
+    continueOnError: ${{ eq(parameters.continueOnError, 'true') }}
     dependsOn: ${{ parameters.dependsOn }}
     pool:
       vmImage: $(imageName)

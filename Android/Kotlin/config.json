@@ -73,6 +73,13 @@
 			"version" : "13.0",
 			"nugetId" : "Xamarin.Jetbrains.Annotations",
 			"nugetVersion" : "13.0.0.4"
+		},
+		{
+			"groupId" : "org.jetbrains.kotlinx",
+			"artifactId" : "kotlinx-coroutines-android",
+			"version" : "1.3.4",
+			"nugetId" : "Xamarin.KotlinX.Coroutines.CoroutinesAndroid",
+			"nugetVersion" : "1.3.4"
 		}
 	]
 }]
