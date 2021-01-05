@@ -96,7 +96,6 @@
         Xamarin.Google.Android.Play.Core.AssetPacks.Model
     </attr>
 
-
     <attr
         path="/api/package[@name='com.google.android.play.core.review']"
         name="managedName"
