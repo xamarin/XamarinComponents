@@ -1,4 +1,4 @@
-<Project Sdk="MSBuild.Sdk.Extras/2.0.54">
+<Project Sdk="MSBuild.Sdk.Extras/3.0.22">
   <PropertyGroup>
     <AssemblyName>Xamarin.Google.Android.Play.Core</AssemblyName>
 
@@ -8,7 +8,7 @@
     <AndroidUseIntermediateDesignerFile>True</AndroidUseIntermediateDesignerFile>
     <AndroidResgenFile>Resources\Resource.designer.cs</AndroidResgenFile>
 
-    <TargetFramework>MonoAndroid90</TargetFramework>
+    <TargetFrameworks>MonoAndroid9.0;MonoAndroid10.0;MonoAndroid11.0</TargetFrameworks>
     <AndroidCodegenTarget>XAJavaInterop1</AndroidCodegenTarget>
     <RootNamespace>Xamarin.Google.Play.Core</RootNamespace>
   </PropertyGroup>
