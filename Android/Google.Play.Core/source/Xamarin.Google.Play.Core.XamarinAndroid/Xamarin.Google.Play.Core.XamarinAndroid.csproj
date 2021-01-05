@@ -8,7 +8,7 @@
     <AndroidUseIntermediateDesignerFile>True</AndroidUseIntermediateDesignerFile>
     <AndroidResgenFile>Resources\Resource.designer.cs</AndroidResgenFile>
 
-    <TargetFrameworks>MonoAndroid9.0;MonoAndroid10.0;MonoAndroid11.0</TargetFrameworks>
+    <TargetFramework>MonoAndroid90</TargetFramework>
     <AndroidCodegenTarget>XAJavaInterop1</AndroidCodegenTarget>
     <RootNamespace>Xamarin.Google.Play.Core</RootNamespace>
   </PropertyGroup>
