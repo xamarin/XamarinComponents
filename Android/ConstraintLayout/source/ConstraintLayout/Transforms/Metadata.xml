@@ -4,4 +4,6 @@
     <attr path="/api/package[@name='android.support.constraint.motion']" name="managedName">Android.Support.Constraints.Motion</attr>
 
     <remove-node path="/api/package[@name='android.support.constraint.motion']/class[@name='DesignTool']" />
+    
+    <attr path="/api/package[@name='android.support.constraint.motion']/class[@name='MotionLayout']/method[@name='setTransitionListener' and count(parameter)=1 and parameter[1][@type='android.support.constraint.motion.MotionLayout.TransitionListener']]" name="eventName"></attr>
 </metadata>

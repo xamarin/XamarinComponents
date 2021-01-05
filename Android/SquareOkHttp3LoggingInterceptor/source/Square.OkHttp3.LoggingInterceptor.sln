@@ -1,0 +1,17 @@
+
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Square.OkHttp3.LoggingInterceptor", "Square.OkHttp3.LoggingInterceptor\Square.OkHttp3.LoggingInterceptor.csproj", "{EA257654-4BA2-40C4-B078-EF0AD9CB4B86}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{EA257654-4BA2-40C4-B078-EF0AD9CB4B86}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EA257654-4BA2-40C4-B078-EF0AD9CB4B86}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EA257654-4BA2-40C4-B078-EF0AD9CB4B86}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EA257654-4BA2-40C4-B078-EF0AD9CB4B86}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal

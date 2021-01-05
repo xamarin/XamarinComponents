@@ -1,0 +1,16 @@
+{
+  "Registrations": [
+    {
+      "Component": {
+        "Type": "Maven",
+        "Maven": {
+          "ArtifactId": "converter-moshi",
+          "GroupId": "com.squareup.retrofit2",
+          "Version": "2.7.2",
+          "NuGetId": "Square.Retrofit2.ConverterMoshi"
+        }
+      }
+    }
+  ],
+  "Version": 1
+}
