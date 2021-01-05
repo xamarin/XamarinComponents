@@ -4,18 +4,6 @@
     <remove-node
         path="/api/package[@name='com.google.android.play.core.tasks']/class[@name='Task']/typeParameters"
         />
-    <remove-node
-        path="/api/package[@name='com.google.android.play.core.internal']"
-        />
-        
-    <!--
-    <attr
-        path="/api/package[@name='com.google.android.play.core.internal']/class[@name='j']"
-        name="obfuscated"
-        >
-        false
-    </attr>
-    -->
 
     <attr
         path="/api/package[@name='com.google.android.play.core.assetpacks']/class[@name='NativeAssetPackStateUpdateListener']/method[@name='onStateUpdate' and count(parameter)=1 and parameter[1][@type='com.google.android.play.core.assetpacks.AssetPackState']]/parameter[1]"
