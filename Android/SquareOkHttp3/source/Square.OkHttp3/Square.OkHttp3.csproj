@@ -1,6 +1,6 @@
-﻿<Project Sdk="MSBuild.Sdk.Extras/2.1.2">
+﻿<Project Sdk="MSBuild.Sdk.Extras/3.0.22">
   <PropertyGroup>
-    <TargetFrameworks>monoandroid9.0</TargetFrameworks>
+    <TargetFrameworks>monoandroid10.0</TargetFrameworks>
     <IsBindingProject>True</IsBindingProject>
     <AssemblyName>Square.OkHttp3</AssemblyName>
     <RootNamespace>Square.OkHttp3</RootNamespace>
@@ -23,7 +23,7 @@
     <PackageLicenseFile>LICENSE.md</PackageLicenseFile>
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
     <PackageTags>okhttp square square.okhttp xamarin android monodroid</PackageTags>
-    <PackageVersion>4.3.1</PackageVersion>
+    <PackageVersion>4.9.0</PackageVersion>
   </PropertyGroup>
   
   <ItemGroup>
@@ -34,8 +34,8 @@
   </ItemGroup>
   
   <ItemGroup>
-    <PackageReference Include="Square.OkIO" Version="2.4.1" />
-    <PackageReference Include="Xamarin.Kotlin.StdLib" Version="1.3.61" />
+    <PackageReference Include="Square.OkIO" Version="2.8.0" />
+    <PackageReference Include="Xamarin.Kotlin.StdLib" Version="1.4.10" />
   </ItemGroup>
   
   <ItemGroup>

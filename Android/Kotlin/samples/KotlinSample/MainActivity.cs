@@ -1,8 +1,8 @@
 ﻿using Android.App;
 using Android.OS;
 using Android.Runtime;
-using Android.Support.V7.App;
 using Android.Widget;
+using AndroidX.AppCompat.App;
 using Java.Util;
 using Kotlin.Jvm;
 using Kotlin.Jvm.Internal;

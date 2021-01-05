@@ -20,7 +20,7 @@
   <PropertyGroup>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <PackageId>Xamarin.Google.Android.DataTransport.TransportRuntime</PackageId>
-    <PackageVersion>2.2.3</PackageVersion>
+    <PackageVersion>2.2.5</PackageVersion>
     <Title>Xamarin.Google.Android.DataTransport.TransportRuntime</Title>
     <PackageDescription>Bindings for Google.Android.DataTransport.TransportRuntime package</PackageDescription>
     <Owners>Microsoft</Owners>

@@ -6,7 +6,7 @@
         "Maven": {
           "ArtifactId": "transport-api",
           "GroupId": "com.google.android.datatransport",
-          "Version": "2.2.0",
+          "Version": "2.2.1",
           "NuGetId": "Xamarin.Google.Android.DataTransport.TransportApi"
         }
       },
@@ -15,7 +15,7 @@
         "Maven": {
           "ArtifactId": "transport-backend-cct",
           "GroupId": "com.google.android.datatransport",
-          "Version": "2.3.0",
+          "Version": "2.3.3",
           "NuGetId": "Xamarin.Google.Android.DataTransport.TransportBackendCct"
         }
       },
@@ -24,7 +24,7 @@
         "Maven": {
           "ArtifactId": "transport-runtime",
           "GroupId": "com.google.android.datatransport",
-          "Version": "2.2.3",
+          "Version": "2.2.5",
           "NuGetId": "Xamarin.Google.Android.DataTransport.TransportRuntime"
         }
       }
