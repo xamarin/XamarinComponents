@@ -83,6 +83,18 @@
         Xamarin.Google.Android.Play.Core.SplitInstall.Testing
     </attr>
 
+    <attr
+        path="/api/package[@name='com.google.android.play.core.assetpacks']"
+        name="managedName"
+        >
+        Xamarin.Google.Android.Play.Core.AssetPacks
+    </attr>
+    <attr
+        path="/api/package[@name='com.google.android.play.core.assetpacks.model']"
+        name="managedName"
+        >
+        Xamarin.Google.Android.Play.Core.AssetPacks.Model
+    </attr>
 
 
 </metadata>
