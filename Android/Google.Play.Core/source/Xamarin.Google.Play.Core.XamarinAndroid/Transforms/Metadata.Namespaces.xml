@@ -96,5 +96,18 @@
         Xamarin.Google.Android.Play.Core.AssetPacks.Model
     </attr>
 
+    <attr
+        path="/api/package[@name='com.google.android.play.core.review']"
+        name="managedName"
+        >
+        Xamarin.Google.Android.Play.Core.Review
+    </attr>
+    <attr
+        path="/api/package[@name='com.google.android.play.core.review.testing']"
+        name="managedName"
+        >
+        Xamarin.Google.Android.Play.Core.Review.Testing
+    </attr>
+
 
 </metadata>
