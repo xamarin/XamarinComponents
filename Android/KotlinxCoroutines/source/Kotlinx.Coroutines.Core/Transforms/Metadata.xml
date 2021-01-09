@@ -1,7 +1,7 @@
 ﻿<metadata>
     <!-- namespaces -->
     <attr path="/api/package[@name='kotlinx.coroutines']" name="managedName">Xamarin.Kotlinx.Coroutines</attr>
-    <attr path="/api/package[@name='kotlinx.coroutines.channels']" name="managedName">Xamarin.Kotlinx.Coroutines</attr>
+    <attr path="/api/package[@name='kotlinx.coroutines.channels']" name="managedName">Xamarin.Kotlinx.Coroutines.Channels</attr>
     <attr path="/api/package[@name='kotlinx.coroutines.debug']" name="managedName">Xamarin.Kotlinx.Coroutines.Debug</attr>
     <attr path="/api/package[@name='kotlinx.coroutines.flow']" name="managedName">Xamarin.Kotlinx.Coroutines.Flow</attr>
     <attr path="/api/package[@name='kotlinx.coroutines.intrinsics']" name="managedName">Xamarin.Kotlinx.Coroutines.Intrinsics</attr>
