@@ -6,7 +6,7 @@
         "Maven": {
           "ArtifactId": "rxjava",
           "GroupId": "io.reactivex.rxjava2",
-          "Version": "2.2.7"
+          "Version": "2.2.9"
         }
       }
     },
@@ -17,6 +17,47 @@
           "ArtifactId": "rxandroid",
           "GroupId": "io.reactivex.rxjava2",
           "Version": "2.1.1"
+        }
+      }
+    },
+    {
+      "Component": {
+        "Type": "Maven",
+        "Maven": {
+          "ArtifactId": "rxkotlin",
+          "GroupId": "io.reactivex.rxjava2",
+          "Version": "2.4.0"
+        }
+      }
+    },
+
+    {
+      "Component": {
+        "Type": "Maven",
+        "Maven": {
+          "ArtifactId": "rxjava",
+          "GroupId": "io.reactivex.rxjava3",
+          "Version": "3.0.0"
+        }
+      }
+    },
+    {
+      "Component": {
+        "Type": "Maven",
+        "Maven": {
+          "ArtifactId": "rxandroid",
+          "GroupId": "io.reactivex.rxjava3",
+          "Version": "3.0.0"
+        }
+      }
+    },
+    {
+      "Component": {
+        "Type": "Maven",
+        "Maven": {
+          "ArtifactId": "rxkotlin",
+          "GroupId": "io.reactivex.rxjava3",
+          "Version": "3.0.0"
         }
       }
     }
