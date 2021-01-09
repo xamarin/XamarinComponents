@@ -1,42 +1,49 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project Sdk="MSBuild.Sdk.Extras/2.1.2">
+<Project Sdk="MSBuild.Sdk.Extras/3.0.23">
   <PropertyGroup>
     <TargetFrameworks>MonoAndroid90</TargetFrameworks>
     <IsBindingProject>true</IsBindingProject>
-    <AssemblyName>Xamarin.Android.ReactiveX.RxJava</AssemblyName>
+    <AssemblyName>Xamarin.Android.ReactiveX.RxAndroid</AssemblyName>
     <AndroidUseLatestPlatformSdk>False</AndroidUseLatestPlatformSdk>
     <AndroidUseIntermediateDesignerFile>True</AndroidUseIntermediateDesignerFile>
     <RootNamespace>ReactiveX</RootNamespace>
     <AndroidClassParser>class-parse</AndroidClassParser>
     <AndroidCodegenTarget>XAJavaInterop1</AndroidCodegenTarget>
-    <Java7DocPaths>..\..\externals\rxjava-javadocs\</Java7DocPaths>
+    <Java7DocPaths>..\..\externals\rxjava2\rxandroid-javadocs\</Java7DocPaths>
   </PropertyGroup>
 
   <PropertyGroup>
-    <PackageId>Xamarin.Android.ReactiveX.RxJava</PackageId>
-    <Title>ReactiveX RxJava reference library for Xamarin.Android</Title>
-    <PackageDescription>Xamarin.Android bindings for ReactiveX RxJava</PackageDescription>
+    <PackageId>Xamarin.Android.ReactiveX.RxAndroid</PackageId>
+    <Title>ReactiveX RxAndroid reference library for Xamarin.Android</Title>
+    <PackageDescription>Xamarin.Android bindings for ReactiveX RxAndroid</PackageDescription>
     <Authors>Microsoft</Authors>
     <Owners>Microsoft</Owners>
     <Copyright>© Microsoft Corporation. All rights reserved.</Copyright>
     <PackageProjectUrl>https://go.microsoft.com/fwlink/?linkid=2083771</PackageProjectUrl>
     <PackageLicenseFile>LICENSE.md</PackageLicenseFile>
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
-    <PackageVersion>2.2.12</PackageVersion>
+    <PackageVersion>2.1.1</PackageVersion>
   </PropertyGroup>
 
   <ItemGroup>
     <None Remove="Transforms\*.xml" />
     <TransformFile Include="Transforms\*.xml" />
-    <EmbeddedJar Include="..\..\externals\rxjava.jar" Link="Jars\rxjava.jar" />
   </ItemGroup>
-    
+  
   <ItemGroup>
-    <None Include="..\..\License.md" Pack="true" PackagePath="LICENSE.md" />
+    <None Include="..\..\..\externals\rxjava2\rxandroid.aar">
+      <Link>rxandroid.jar</Link>
+    </None>
+    <None Include="..\..\..\External-Dependency-Info.txt" Pack="True" PackagePath="THIRD-PARTY-NOTICES.txt" />
+    <None Include="..\..\..\License.md" Pack="true" PackagePath="LICENSE.md" />
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Xamarin.Android.ReactiveStreams" Version="1.0.2" />
+    <LibraryProjectZip Include="..\..\..\externals\rxjava2\rxandroid.aar" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\RxJava\RxJava.csproj" />
   </ItemGroup>
 
 </Project>

@@ -29,6 +29,36 @@
           "Version": "2.4.0"
         }
       }
+    },
+    {
+      "Component": {
+        "Type": "Maven",
+        "Maven": {
+          "ArtifactId": "rxjava",
+          "GroupId": "io.reactivex.rxjava3",
+          "Version": "3.0.0"
+        }
+      }
+    },
+    {
+      "Component": {
+        "Type": "Maven",
+        "Maven": {
+          "ArtifactId": "rxandroid",
+          "GroupId": "io.reactivex.rxjava3",
+          "Version": "3.0.0"
+        }
+      }
+    },
+    {
+      "Component": {
+        "Type": "Maven",
+        "Maven": {
+          "ArtifactId": "rxkotlin",
+          "GroupId": "io.reactivex.rxjava3",
+          "Version": "3.0.0"
+        }
+      }
     }
   ],
   "Version": 1

@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project Sdk="MSBuild.Sdk.Extras/2.1.2">
+<Project Sdk="MSBuild.Sdk.Extras/3.0.23">
   <PropertyGroup>
-    <TargetFrameworks>MonoAndroid90</TargetFrameworks>
+    <TargetFramework>MonoAndroid90</TargetFramework>
     <IsBindingProject>true</IsBindingProject>
     <AssemblyName>Xamarin.Android.ReactiveX.RxKotlin</AssemblyName>
     <AndroidUseLatestPlatformSdk>False</AndroidUseLatestPlatformSdk>
@@ -25,14 +25,19 @@
     <PackageVersion>2.4.0</PackageVersion>
   </PropertyGroup>
 
+ <ItemGroup>
+    <None Include="..\..\..\externals\rxjava2\rxkotlin.jar">
+      <Link>rxkotlin.jar</Link>
+    </None>
+    <None Include="..\..\..\External-Dependency-Info.txt" Pack="True" PackagePath="THIRD-PARTY-NOTICES.txt" />
+  </ItemGroup>
+
   <ItemGroup>
-    <None Remove="Transforms\*.xml" />
-    <TransformFile Include="Transforms\*.xml" />
-    <EmbeddedJar Include="..\..\externals\rxkotlin.jar" Link="Jars\rxkotlin.jar" />
+    <EmbeddedJar Include="..\..\..\externals\rxjava2\rxkotlin.jar" />
   </ItemGroup>
     
   <ItemGroup>
-    <None Include="..\..\License.md" Pack="true" PackagePath="LICENSE.md" />
+    <None Include="..\..\..\License.md" Pack="true" PackagePath="LICENSE.md" />
   </ItemGroup>
 
   <ItemGroup>

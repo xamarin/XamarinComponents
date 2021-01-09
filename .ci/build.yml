@@ -11,6 +11,7 @@ parameters:
   submodules: false                                         # whether or not to check out submodules
   areaPath: ''                                              # the areaPath to log any issues
   runChecks: 'true'
+  continueOnError: 'false'
   publishJob: ''                                            # the job to use as the source of the 'nuget' artifact: '', 'windows', 'macos', 'linux'
   publishOutputSuffix: ''                                   # the artifact suffix to use when publishing the output folder
   signListPath: 'SignList.xml'                              # the path to the SignList.xml to copy into the nuget artifact for signing
@@ -57,6 +58,7 @@ jobs:
             imageName: ${{ parameters.windowsImage }}
     displayName: ${{ parameters.displayName }}
     timeoutInMinutes: ${{ parameters.timeoutInMinutes }}
+    continueOnError: ${{ eq(parameters.continueOnError, 'true') }}
     dependsOn: ${{ parameters.dependsOn }}
     pool:
       vmImage: $(imageName)
