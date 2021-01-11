@@ -1,8 +1,8 @@
 var TARGET = Argument ("t", Argument ("target", "ci"));
 
-var NUGET_VERSION = "4.3.1";
+var NUGET_VERSION = "4.4.1";
 
-var JAR_VERSION = "4.3.1";
+var JAR_VERSION = "4.4.1";
 var JAR_URL = $"https://repo1.maven.org/maven2/com/squareup/okhttp3/logging-interceptor/{JAR_VERSION}/logging-interceptor-{JAR_VERSION}.jar";
 
 Task ("externals")
