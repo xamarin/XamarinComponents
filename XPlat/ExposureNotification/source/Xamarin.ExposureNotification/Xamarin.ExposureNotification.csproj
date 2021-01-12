@@ -11,9 +11,9 @@
 
 	<PropertyGroup>
 		<PackageId>Xamarin.ExposureNotification</PackageId>
-		<Summary>Cross Platform Exposure Notification for Xamarin</Summary>
-		<Title>Xamarin Exposure Notification</Title>
-		<Description>Cross Platform Exposure Notification for Xamarin</Description>
+		<Summary>Cross-Platform Exposure Notifications for Xamarin</Summary>
+		<Title>Xamarin Exposure Notifications</Title>
+		<Description>Cross-Platform Exposure Notifications for Xamarin</Description>
 		<PackageVersion>0.1.0-preview</PackageVersion>
 		<Authors>Microsoft</Authors>
 		<Owners>microsoft,Xamarin,XamarinNuGet</Owners>
