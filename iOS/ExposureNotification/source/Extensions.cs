@@ -53,18 +53,26 @@ namespace ExposureNotifications {
 
 		private static ENActivityHandlerCallbackDelegate ENActivityHandlerCallbackReference = ENActivityHandlerCallback;
 
-		public void SetLaunchActivityHandler (ENActivityHandler activityHandler)
+		public unsafe void SetLaunchActivityHandler (ENActivityHandler activityHandler)
 		{
 			var key = new NSString ("activityHandler");
 			var sel = Selector.GetHandle ("setValue:forKey:");
 
-			// clear value
-			if (activityHandler == null) {
+			// get old value
+			var oldValue = ValueForKey (key);
+
+			// dispose block
+			if (oldValue != null) {
 				void_objc_msgSend_IntPtr_IntPtr (Handle, sel, IntPtr.Zero, key.Handle);
-				return;
+
+				var descriptor = (BlockLiteral*) oldValue.Handle;
+				descriptor->CleanupBlock ();
 			}
 
-			// create block
+			if (activityHandler == null)
+				return;
+
+			// create new block
 			var block = new BlockLiteral ();
 			block.SetupBlock (ENActivityHandlerCallbackReference, activityHandler);
 			var ptr = _Block_copy (ref block);
