@@ -22,7 +22,7 @@
     <PackageProjectUrl>https://go.microsoft.com/fwlink/?linkid=2128732</PackageProjectUrl>
     <PackageLicenseFile>License.md</PackageLicenseFile>
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
-    <PackageVersion>1.2.1</PackageVersion>
+    <PackageVersion>1.2.2</PackageVersion>
   </PropertyGroup>
 
   <ItemGroup>
