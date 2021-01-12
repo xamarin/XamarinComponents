@@ -27,7 +27,6 @@ namespace ExposureNotifications {
 		public static byte Max { get; } = 100;
 	}
 
-	[Introduced (PlatformName.iOS, 12, 5)]
 	[Flags]
 	public enum ENActivityFlags : uint {
 		PeriodicRun = 1U << 2
@@ -56,9 +55,12 @@ namespace ExposureNotifications {
 
 		public void SetLaunchActivityHandler (ENActivityHandler activityHandler)
 		{
-			var block = new BlockLiteral ();
-			block.SetupBlock (ENActivityHandlerCallbackReference, activityHandler);
-			var ptr = _Block_copy (ref block);
+			var ptr = IntPtr.Zero;
+			if (activityHandler != null) {
+				var block = new BlockLiteral ();
+				block.SetupBlock (ENActivityHandlerCallbackReference, activityHandler);
+				ptr = _Block_copy (ref block);
+			}
 
 			var key = new NSString ("activityHandler");
 			void_objc_msgSend_IntPtr_IntPtr (this.Handle, Selector.GetHandle ("setValue:forKey:"), ptr, key.Handle);
