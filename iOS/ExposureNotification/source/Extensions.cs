@@ -29,7 +29,7 @@ namespace ExposureNotifications {
 
 	[Introduced (PlatformName.iOS, 12, 5)]
 	public enum ENActivityFlags : uint {
-		ENActivityFlagsPeriodicRun = 1U << 2
+		PeriodicRun = 1U << 2
 	}
 
 	public delegate void ENActivityHandler (ENActivityFlags activityFlags);
