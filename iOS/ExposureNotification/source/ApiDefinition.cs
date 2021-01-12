@@ -357,11 +357,6 @@ namespace ExposureNotifications {
 	delegate void ENGetExposureWindowsHandler ([NullAllowed] ENExposureWindow [] exposureWindows, [NullAllowed] NSError error);
 	delegate void ENGetUserTraveledHandler (bool traveled, NSError error);
 
-	[Introduced (PlatformName.iOS, 12, 5)]
-	public enum ENActivityFlags : uint {
-		ENActivityFlagsPeriodicRun = 1U << 2
-	}
-
 	[Introduced (PlatformName.iOS, 13, 5)]
 	[BaseType (typeof (NSObject))]
 	interface ENManager {
@@ -374,9 +369,6 @@ namespace ExposureNotifications {
 
 		[NullAllowed, Export("invalidationHandler", ArgumentSemantic.Copy)]
 		Action InvalidationHandler { get; set; }
-
-		[NullAllowed, Export ("activityHandler", ArgumentSemantic.Copy)]
-		Action<ENActivityFlags> LaunchActivityHandler { get; set; }
 
 		[Async]
 		[Export ("activateWithCompletionHandler:")]
