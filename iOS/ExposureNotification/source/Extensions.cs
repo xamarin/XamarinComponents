@@ -55,15 +55,22 @@ namespace ExposureNotifications {
 
 		public void SetLaunchActivityHandler (ENActivityHandler activityHandler)
 		{
-			var ptr = IntPtr.Zero;
-			if (activityHandler != null) {
-				var block = new BlockLiteral ();
-				block.SetupBlock (ENActivityHandlerCallbackReference, activityHandler);
-				ptr = _Block_copy (ref block);
+			var key = new NSString ("activityHandler");
+			var sel = Selector.GetHandle ("setValue:forKey:");
+
+			// clear value
+			if (activityHandler == null) {
+				void_objc_msgSend_IntPtr_IntPtr (Handle, sel, IntPtr.Zero, key.Handle);
+				return;
 			}
 
-			var key = new NSString ("activityHandler");
-			void_objc_msgSend_IntPtr_IntPtr (this.Handle, Selector.GetHandle ("setValue:forKey:"), ptr, key.Handle);
+			// create block
+			var block = new BlockLiteral ();
+			block.SetupBlock (ENActivityHandlerCallbackReference, activityHandler);
+			var ptr = _Block_copy (ref block);
+
+			// assign
+			void_objc_msgSend_IntPtr_IntPtr (Handle, sel, ptr, key.Handle);
 		}
 	}
 }
