@@ -116,7 +116,8 @@ namespace Xamarin.ExposureNotifications
 			if (!IsSupported)
 				return Task.CompletedTask;
 
-			if (DeviceInfo.Version < new Version(13, 5))
+			// BGTaskScheduler is only available from iOS 13.0
+			if (DeviceInfo.Version < new Version(13, 0))
 				CreateLaunchActivityHandler();
 			else
 				CreateBackgroundTask();
