@@ -35,9 +35,6 @@ namespace ExposureNotifications {
 	public delegate void ENActivityHandler (ENActivityFlags activityFlags);
 
 	partial class ENManager {
-		[DllImport ("/usr/lib/libobjc.dylib", EntryPoint = "_Block_copy")]
-		private static extern IntPtr _Block_copy (ref BlockLiteral block);
-
 		[DllImport ("/usr/lib/libobjc.dylib", EntryPoint = "objc_msgSend")]
 		private extern static void void_objc_msgSend_IntPtr_IntPtr (IntPtr receiver, IntPtr selector, IntPtr arg1, IntPtr arg2);
 
@@ -75,10 +72,10 @@ namespace ExposureNotifications {
 			// create new block
 			var block = new BlockLiteral ();
 			block.SetupBlock (ENActivityHandlerCallbackReference, activityHandler);
-			var ptr = _Block_copy (ref block);
 
 			// assign
-			void_objc_msgSend_IntPtr_IntPtr (Handle, sel, ptr, key.Handle);
+			var ptr = &block;
+			void_objc_msgSend_IntPtr_IntPtr (Handle, sel, (IntPtr)ptr, key.Handle);
 		}
 	}
 }
