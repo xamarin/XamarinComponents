@@ -20,7 +20,7 @@ namespace Xamarin.ExposureNotifications
 		static readonly string backgroundTaskId = AppInfo.PackageName + ".exposure-notification";
 
 		static ENManager instance;
-		static bool isActivated;
+		static Task activateTask;
 
 		// get a valid instance that may not be ready
 		static ENManager Instance
@@ -44,11 +44,8 @@ namespace Xamarin.ExposureNotifications
 
 			var manager = Instance;
 
-			if (!isActivated)
-			{
-				await manager.ActivateAsync();
-				isActivated = true;
-			}
+            activateTask ??= manager.ActivateAsync();
+            await activateTask;
 
 			return manager;
 		}
