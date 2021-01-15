@@ -14,7 +14,7 @@
 		<Summary>Cross-Platform Exposure Notifications for Xamarin</Summary>
 		<Title>Xamarin Exposure Notifications</Title>
 		<Description>Cross-Platform Exposure Notifications for Xamarin</Description>
-		<PackageVersion>0.14.0-preview</PackageVersion>
+		<PackageVersion>0.15.0-preview</PackageVersion>
 		<Authors>Microsoft</Authors>
 		<Owners>microsoft,Xamarin,XamarinNuGet</Owners>
 		<NeutralLanguage>en</NeutralLanguage>
