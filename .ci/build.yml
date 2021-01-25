@@ -106,11 +106,13 @@ jobs:
         inputs:
           version: ${{ parameters.dotnet }}
           performMultiLevelLookup: true
+        condition: ne('${{ parameters.dotnet }}', '')
       - pwsh: |
           dotnet tool install -g api-tools --version ${{ parameters.apiTools }}
           dotnet tool install -g cake.tool --version ${{ parameters.cake }}
           dotnet tool install -g Microsoft.DotNet.XHarness.CLI --version ${{ parameters.xharness }} --add-source https://pkgs.dev.azure.com/dnceng/public/_packaging/dotnet-eng/nuget/v3/index.json
         displayName: 'Install required .NET Core global tools'
+        condition: ne('${{ parameters.dotnet }}', '')
       - ${{ each tool in parameters.tools }}:
         - ${{ each pair in tool }}:
           - pwsh: dotnet tool install -g ${{ pair.key }} --version ${{ pair.value }}
