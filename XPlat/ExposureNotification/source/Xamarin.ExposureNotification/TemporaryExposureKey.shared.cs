@@ -26,7 +26,7 @@ namespace Xamarin.ExposureNotifications
 			TransmissionRiskLevel = transmissionRisk;
 		}
 
-		public byte[] Key { get; set; }
+		public byte[]? Key { get; set; }
 
 		public DateTimeOffset RollingStart { get; set; }
 
