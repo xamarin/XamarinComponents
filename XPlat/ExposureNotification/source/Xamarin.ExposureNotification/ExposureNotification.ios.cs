@@ -14,15 +14,38 @@ namespace Xamarin.ExposureNotifications
 {
 	public static partial class ExposureNotification
 	{
-		static ENManager manager;
+		// This is a special ID suffix which iOS treats a certain way
+		// we can basically request infinite background tasks
+		// and iOS will throttle it sensibly for us.
+		static readonly string backgroundTaskId = AppInfo.PackageName + ".exposure-notification";
 
+		static ENManager instance;
+		static Task activateTask;
+
+		// get a valid instance that may not be ready
+		static ENManager Instance
+		{
+			get
+			{
+				if (instance != null)
+					return instance;
+
+				if (ObjCRuntime.Class.GetHandle("ENManager") != null)
+					return instance ??= new ENManager();
+
+				return null;
+			}
+		}
+
+		// get the activated instance
 		static async Task<ENManager> GetManagerAsync()
 		{
-			if (manager == null)
-			{
-				manager = new ENManager();
-				await manager.ActivateAsync();
-			}
+			EnsureSupported();
+
+			var manager = Instance;
+
+            activateTask ??= manager.ActivateAsync();
+            await activateTask;
 
 			return manager;
 		}
@@ -62,9 +85,9 @@ namespace Xamarin.ExposureNotifications
 			return nc;
 		}
 
-		static void PlatformInit()
+		static async void PlatformInit()
 		{
-			_ = ScheduleFetchAsync();
+			await ScheduleFetchAsync();
 		}
 
 		static async Task PlatformStart()
@@ -87,13 +110,56 @@ namespace Xamarin.ExposureNotifications
 
 		static Task PlatformScheduleFetch()
 		{
-			// This is a special ID suffix which iOS treats a certain way
-			// we can basically request infinite background tasks
-			// and iOS will throttle it sensibly for us.
-			var id = AppInfo.PackageName + ".exposure-notification";
+			if (!IsSupported)
+				return Task.CompletedTask;
 
+			// BGTaskScheduler is only available from iOS 13.0
+			if (DeviceInfo.Version < new Version(13, 0))
+				CreateLaunchActivityHandler();
+			else
+				CreateBackgroundTask();
+
+			return Task.CompletedTask;
+		}
+
+		static void CreateLaunchActivityHandler()
+		{
 			var isUpdating = false;
-			BGTaskScheduler.Shared.Register(id, null, task =>
+			Instance.SetLaunchActivityHandler(activityFlags =>
+			{
+				if (!activityFlags.HasFlag(ENActivityFlags.PeriodicRun))
+					return;
+
+				// Disallow concurrent exposure detection.
+				if (isUpdating)
+					return;
+				isUpdating = true;
+
+				// Run the actual task on a background thread
+				Task.Run(async () =>
+				{
+					try
+					{
+						await UpdateKeysFromServer();
+					}
+					catch (OperationCanceledException)
+					{
+						Console.WriteLine($"[Xamarin.ExposureNotifications] Launch activity handler took too long to complete.");
+					}
+					catch (Exception ex)
+					{
+						Console.WriteLine($"[Xamarin.ExposureNotifications] There was an error running the launch activity handler: {ex}");
+					}
+
+					isUpdating = false;
+				});
+			});
+		}
+
+		static void CreateBackgroundTask()
+		{
+			var isUpdating = false;
+			BGTaskScheduler.Shared.Register(backgroundTaskId, null, task =>
 			{
 				// Disallow concurrent exposure detection, because if allowed we might try to detect the same diagnosis keys more than once
 				if (isUpdating)
@@ -132,14 +198,12 @@ namespace Xamarin.ExposureNotifications
 
 			scheduleBgTask();
 
-			return Task.CompletedTask;
-
-			void scheduleBgTask()
+			static void scheduleBgTask()
 			{
 				if (ENManager.AuthorizationStatus != ENAuthorizationStatus.Authorized)
 					return;
 
-				var newBgTask = new BGProcessingTaskRequest(id);
+				var newBgTask = new BGProcessingTaskRequest(backgroundTaskId);
 				newBgTask.RequiresNetworkConnectivity = true;
 				try
 				{

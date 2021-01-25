@@ -5,4 +5,11 @@
         path="/api/package[@name='com.google.android.play.core.tasks']/class[@name='Task']/typeParameters"
         />
 
+    <attr
+        path="/api/package[@name='com.google.android.play.core.assetpacks']/class[@name='NativeAssetPackStateUpdateListener']/method[@name='onStateUpdate' and count(parameter)=1 and parameter[1][@type='com.google.android.play.core.assetpacks.AssetPackState']]/parameter[1]"
+        name="managedType"
+        >
+        Java.Lang.Object
+    </attr>
+
 </metadata>
