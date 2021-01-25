@@ -276,6 +276,8 @@ namespace AndroidBinderator
 					if (!string.IsNullOrEmpty(mavenDep.Scope) && !mavenDep.Scope.ToLowerInvariant().Equals("compile"))
 						continue;
 
+					mavenDep.Version = FixVersion(mavenDep.Version);
+
 					var depMapping = config.MavenArtifacts.FirstOrDefault(
 						ma => !string.IsNullOrEmpty(ma.Version) 
 						&& ma.GroupId == mavenDep.GroupId
@@ -335,6 +337,20 @@ namespace AndroidBinderator
 				}
 			}
 			return dest;
+		}
+
+		// VersionRange.Parse cannot handle single number versions that we sometimes see in Maven, like "1".
+		// Fix them to be "1.0".
+		// https://github.com/NuGet/Home/issues/10342
+		static string FixVersion(string version)
+		{
+			if (string.IsNullOrWhiteSpace(version))
+				return version;
+
+			if (!version.Contains("."))
+				version += ".0";
+
+			return version;
 		}
 	}
 }

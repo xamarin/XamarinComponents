@@ -61,7 +61,17 @@ namespace Xamarin.ExposureNotifications
 			}
 		}
 
-		// the app support the v2 API
+		// support checks
+
+		public static bool IsSupported => Instance != null;
+
+		internal static void EnsureSupported()
+		{
+			if (!IsSupported)
+				throw new PlatformNotSupportedException("Exposure notifications are not supported on this device.");
+		}
+
+		// the app supports the v2 API
 		internal static IExposureNotificationDailySummaryHandler? DailySummaryHandler
 			=> Handler as IExposureNotificationDailySummaryHandler;
 

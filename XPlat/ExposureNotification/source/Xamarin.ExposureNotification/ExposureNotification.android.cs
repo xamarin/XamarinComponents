@@ -29,10 +29,23 @@ namespace Xamarin.ExposureNotifications
 {
 	public static partial class ExposureNotification
 	{
-		static IExposureNotificationClient? instance;
+		static readonly Lazy<IExposureNotificationClient?> instance = new Lazy<IExposureNotificationClient?>(() =>
+		{
+			return Nearby.GetExposureNotificationClient(Application.Context);
+		});
 
-		static IExposureNotificationClient Instance
-			=> instance ??= Nearby.GetExposureNotificationClient(Application.Context);
+		// get an instance that may not be ready
+		static IExposureNotificationClient? Instance => instance.Value;
+
+		// get the instance that is ready
+		static IExposureNotificationClient GetClient()
+		{
+			EnsureSupported();
+
+			var client = Instance!;
+
+			return client;
+		}
 
 		// Not really "obsolete" as this is just Google's recommendation
 		// and v1 might still be the only thing on the device.
@@ -96,28 +109,28 @@ namespace Xamarin.ExposureNotifications
 			}
 		}
 
-		static void PlatformInit()
+		static async void PlatformInit()
 		{
-			_ = ScheduleFetchAsync();
+			await ScheduleFetchAsync();
 		}
 
 		static Task PlatformStart()
 			=> ResolveApi<bool>(requestCodeStartExposureNotification, async () =>
 				{
-					await Instance.StartAsync();
+					await GetClient().StartAsync();
 					return default;
 				});
 
 		static Task PlatformStop()
 			=> ResolveApi<bool>(requestCodeStartExposureNotification, async () =>
 				{
-					await Instance.StopAsync();
+					await GetClient().StopAsync();
 					return default;
 				});
 
 		static Task<bool> PlatformIsEnabled()
 			=> ResolveApi(requestCodeStartExposureNotification, () =>
-				Instance.IsEnabledAsync());
+				GetClient().IsEnabledAsync());
 
 		public static void ConfigureBackgroundWorkRequest(TimeSpan repeatInterval, Action<PeriodicWorkRequest.Builder> requestBuilder)
 		{
@@ -141,6 +154,9 @@ namespace Xamarin.ExposureNotifications
 
 		static Task PlatformScheduleFetch()
 		{
+			if (!IsSupported)
+				return Task.CompletedTask;
+
 			var workManager = WorkManager.GetInstance(Essentials.Platform.AppContext);
 
 			var workRequestBuilder = new PeriodicWorkRequest.Builder(
@@ -177,7 +193,7 @@ namespace Xamarin.ExposureNotifications
 			// When going v2, the configuration is not actually used, but if
 			// the device is still v1, then we need it
 
-			await Instance.ProvideDiagnosisKeysAsync(
+			await GetClient().ProvideDiagnosisKeysAsync(
 				keyFiles.Select(f => new Java.IO.File(f)).ToList(),
 				config,
 				token);
@@ -188,7 +204,7 @@ namespace Xamarin.ExposureNotifications
 		static Task<IEnumerable<TemporaryExposureKey>> PlatformGetTemporaryExposureKeys()
 			=> ResolveApi(requestCodeGetTempExposureKeyHistory, async () =>
 				{
-					var exposureKeyHistory = await Instance.GetTemporaryExposureKeyHistoryAsync();
+					var exposureKeyHistory = await GetClient().GetTemporaryExposureKeyHistoryAsync();
 
 					return exposureKeyHistory.Select(k =>
 						new TemporaryExposureKey(
@@ -200,7 +216,7 @@ namespace Xamarin.ExposureNotifications
 
 		internal static async Task<IEnumerable<ExposureInfo>> PlatformGetExposureInformationAsync(string token)
 		{
-			var exposures = await Instance.GetExposureInformationAsync(token);
+			var exposures = await GetClient().GetExposureInformationAsync(token);
 			var info = exposures.Select(d => new ExposureInfo(
 				DateTimeOffset.UnixEpoch.AddMilliseconds(d.DateMillisSinceEpoch).UtcDateTime,
 				TimeSpan.FromMinutes(d.DurationMinutes),
@@ -212,7 +228,7 @@ namespace Xamarin.ExposureNotifications
 
 		internal static async Task<ExposureDetectionSummary> PlatformGetExposureSummaryAsync(string token)
 		{
-			var summary = await Instance.GetExposureSummaryAsync(token);
+			var summary = await GetClient().GetExposureSummaryAsync(token);
 
 			// TODO: Reevaluate byte usage here
 			return new ExposureDetectionSummary(
@@ -257,7 +273,7 @@ namespace Xamarin.ExposureNotifications
 				builder.SetReportTypeWeight(pair.Key.ToNative(), pair.Value);
 			}
 
-			var summaries = await Instance.GetDailySummariesAsync(builder.Build());
+			var summaries = await GetClient().GetDailySummariesAsync(builder.Build());
 			if (summaries == null || summaries.Count == 0)
 				return Array.Empty<DailySummary>();
 
@@ -280,7 +296,7 @@ namespace Xamarin.ExposureNotifications
 			if (DailySummaryHandler == null)
 				throw new InvalidOperationException("The handler does not support Exposure Window Mode.");
 
-			var windows = await Instance.GetExposureWindowsAsync();
+			var windows = await GetClient().GetExposureWindowsAsync();
 			if (windows == null || windows.Count == 0)
 				return Array.Empty<ExposureWindow>();
 
@@ -297,7 +313,7 @@ namespace Xamarin.ExposureNotifications
 			if (DailySummaryHandler == null)
 				throw new InvalidOperationException("The handler does not support Exposure Window Mode.");
 
-			var nativeMapping = await Instance.GetDiagnosisKeysDataMappingAsync();
+			var nativeMapping = await GetClient().GetDiagnosisKeysDataMappingAsync();
 			var config = await DailySummaryHandler.GetDailySummaryConfigurationAsync();
 
 			// because this API has a quota, only change when we have to
@@ -314,7 +330,7 @@ namespace Xamarin.ExposureNotifications
 			builder.SetInfectiousnessWhenDaysSinceOnsetMissing(config.DefaultInfectiousness.ToNative());
 			builder.SetReportTypeWhenMissing(config.DefaultReportType.ToNative());
 
-			await Instance.SetDiagnosisKeysDataMappingAsync(builder.Build());
+			await GetClient().SetDiagnosisKeysDataMappingAsync(builder.Build());
 
 			static bool AreEqual(DiagnosisKeysDataMapping mapping, DailySummaryConfiguration config)
 			{
@@ -350,7 +366,7 @@ namespace Xamarin.ExposureNotifications
 			if (bt == null || !bt.IsEnabled)
 				return Status.BluetoothOff;
 
-			var status = await Instance.IsEnabledAsync();
+			var status = await GetClient().IsEnabledAsync();
 
 			return status ? Status.Active : Status.Disabled;
 		}
