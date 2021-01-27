@@ -42,6 +42,8 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="Xamarin.Google.Android.DataTransport.TransportBackendCct" Version="2.3.3" />
+    <PackageReference Include="Xamarin.Google.Android.DataTransport.TransportRuntime" Version="2.2.5" />
     <PackageReference Include="Xamarin.Firebase.Messaging" Version="121.0.1" />
     <PackageReference Include="Xamarin.Android.Volley" Version="1.1.1.1" />
   </ItemGroup>
