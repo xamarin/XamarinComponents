@@ -4,6 +4,7 @@ parameters:
   displayName: 'Build'                                      # the human name of the job
   timeoutInMinutes: 60                                      # the timeout in minutes
   dependsOn: []                                             # any jobs this job depends on
+  initSteps: []                                             # any steps to run before .NET global tools are installed
   preBuildSteps: []                                         # any steps that need to run just before the main compilation starts
   postBuildSteps: []                                        # any steps that need to run just after the main compilation ends
   masterBranchName: 'master'                                # the "master" branch that should be used - can be something other than "master"
@@ -107,12 +108,13 @@ jobs:
           version: ${{ parameters.dotnet }}
           performMultiLevelLookup: true
         condition: ne('${{ parameters.dotnet }}', '')
+      # custom init steps
+      - ${{ parameters.initSteps }}
       - pwsh: |
           dotnet tool install -g api-tools --version ${{ parameters.apiTools }}
           dotnet tool install -g cake.tool --version ${{ parameters.cake }}
           dotnet tool install -g Microsoft.DotNet.XHarness.CLI --version ${{ parameters.xharness }} --add-source https://pkgs.dev.azure.com/dnceng/public/_packaging/dotnet-eng/nuget/v3/index.json
         displayName: 'Install required .NET Core global tools'
-        condition: ne('${{ parameters.dotnet }}', '')
       - ${{ each tool in parameters.tools }}:
         - ${{ each pair in tool }}:
           - pwsh: dotnet tool install -g ${{ pair.key }} --version ${{ pair.value }}
