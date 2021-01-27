@@ -42,8 +42,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Xamarin.AndroidX.AppCompat" Version="1.2.0.5" />
-    <PackageReference Include="Xamarin.AndroidX.Migration" Version="1.0.8" />
     <PackageReference Include="Xamarin.Firebase.Messaging" Version="121.0.1" />
     <PackageReference Include="Xamarin.Android.Volley" Version="1.1.1.1" />
   </ItemGroup>
