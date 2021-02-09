@@ -33,7 +33,7 @@ parameters:
   steps: []                                                 # the steps to use when building, typically for 'none'
   verbosity: 'normal'                                       # the build verbosity: 'minimal', 'normal', 'diagnostic'
   configuration: 'Release'                                  # the build configuration: 'Debug', 'Release'
-  validPackagePrefixes: []                                  # any NuGet prefixes that should pass validation (always includes Xamarin)
+  validPackagePrefixes: [ 'Xamarin', 'Mono' ]               # any NuGet prefixes that should pass validation
   artifactsPath: 'output'                                   # the path to the NuGet packages that need to be signed, verified and published
   # basic cake build parameters
   cakeTarget: 'ci'                                          # [basic] the Cake target to run (defaults to 'ci')
