@@ -26,8 +26,19 @@ namespace Xamarin.ExposureNotifications
 	{
 		static IExposureNotificationClient instance;
 
+		// get an instance that may not be ready
 		static IExposureNotificationClient Instance
 			=> instance ??= Nearby.GetExposureNotificationClient(Application.Context);
+
+		// get the instance that is ready
+		static IExposureNotificationClient GetClient()
+		{
+			EnsureSupported();
+
+			var client = Instance;
+
+			return client;
+		}
 
 		static async Task<ExposureConfiguration> GetConfigurationAsync()
 		{
@@ -89,28 +100,28 @@ namespace Xamarin.ExposureNotifications
 			return default;
 		}
 
-		static void PlatformInit()
+		static async void PlatformInit()
 		{
-			_ = ScheduleFetchAsync();
+			await ScheduleFetchAsync();
 		}
 
 		static Task PlatformStart()
 			=> ResolveApi<object>(requestCodeStartExposureNotification, async () =>
 				{
-					await Instance.StartAsync();
+					await GetClient().StartAsync();
 					return default;
 				});
 
 		static Task PlatformStop()
 			=> ResolveApi<object>(requestCodeStartExposureNotification, async () =>
 				{
-					await Instance.StopAsync();
+					await GetClient().StopAsync();
 					return default;
 				});
 
 		static Task<bool> PlatformIsEnabled()
 			=> ResolveApi(requestCodeStartExposureNotification, () =>
-				Instance.IsEnabledAsync());
+				GetClient().IsEnabledAsync());
 
 		public static void ConfigureBackgroundWorkRequest(TimeSpan repeatInterval, Action<PeriodicWorkRequest.Builder> requestBuilder)
 		{
@@ -134,6 +145,9 @@ namespace Xamarin.ExposureNotifications
 
 		static Task PlatformScheduleFetch()
 		{
+			if (!IsSupported)
+				return Task.CompletedTask;
+
 			var workManager = WorkManager.GetInstance(Essentials.Platform.AppContext);
 
 			var workRequestBuilder = new PeriodicWorkRequest.Builder(
@@ -156,7 +170,7 @@ namespace Xamarin.ExposureNotifications
 		{
 			var config = await GetConfigurationAsync();
 
-			await Instance.ProvideDiagnosisKeysAsync(
+			await GetClient().ProvideDiagnosisKeysAsync(
 				keyFiles.Select(f => new Java.IO.File(f)).ToList(),
 				config,
 				Guid.NewGuid().ToString());
@@ -165,7 +179,7 @@ namespace Xamarin.ExposureNotifications
 		static Task<IEnumerable<TemporaryExposureKey>> PlatformGetTemporaryExposureKeys()
 			=> ResolveApi(requestCodeGetTempExposureKeyHistory, async () =>
 				{
-					var exposureKeyHistory = await Instance.GetTemporaryExposureKeyHistoryAsync();
+					var exposureKeyHistory = await GetClient().GetTemporaryExposureKeyHistoryAsync();
 
 					return exposureKeyHistory.Select(k =>
 						new TemporaryExposureKey(
@@ -177,7 +191,7 @@ namespace Xamarin.ExposureNotifications
 
 		internal static async Task<IEnumerable<ExposureInfo>> PlatformGetExposureInformationAsync(string token)
 		{
-			var exposures = await Instance.GetExposureInformationAsync(token);
+			var exposures = await GetClient().GetExposureInformationAsync(token);
 			var info = exposures.Select(d => new ExposureInfo(
 				DateTimeOffset.UnixEpoch.AddMilliseconds(d.DateMillisSinceEpoch).UtcDateTime,
 				TimeSpan.FromMinutes(d.DurationMinutes),
@@ -189,7 +203,7 @@ namespace Xamarin.ExposureNotifications
 
 		internal static async Task<ExposureDetectionSummary> PlatformGetExposureSummaryAsync(string token)
 		{
-			var summary = await Instance.GetExposureSummaryAsync(token);
+			var summary = await GetClient().GetExposureSummaryAsync(token);
 
 			// TODO: Reevaluate byte usage here
 			return new ExposureDetectionSummary(
@@ -208,7 +222,7 @@ namespace Xamarin.ExposureNotifications
 			if (bt == null || !bt.IsEnabled)
 				return Status.BluetoothOff;
 
-			var status = await Instance.IsEnabledAsync();
+			var status = await GetClient().IsEnabledAsync();
 
 			return status ? Status.Active : Status.Disabled;
 		}

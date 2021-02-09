@@ -28,7 +28,7 @@
     <PackageProjectUrl>https://go.microsoft.com/fwlink/?linkid=864958</PackageProjectUrl>
     <PackageLicenseUrl>https://go.microsoft.com/fwlink/?linkid=864960</PackageLicenseUrl>
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
-    <PackageVersion>1.1.3</PackageVersion>
+    <PackageVersion>1.1.4.1</PackageVersion>
   </PropertyGroup>
 
   <ItemGroup>
@@ -42,11 +42,9 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Xamarin.AndroidX.AppCompat" Version="1.2.0.5" />
-    <PackageReference Include="Xamarin.AndroidX.Migration" Version="1.0.8" />
-    <PackageReference Include="Xamarin.Google.Android.DataTransport.TransportBackendCct" Version="2.2.2" />
-    <PackageReference Include="Xamarin.Google.Android.DataTransport.TransportRuntime" Version="2.2.2" />
-    <PackageReference Include="Xamarin.Firebase.Messaging" Version="120.1.7" />
+    <PackageReference Include="Xamarin.Google.Android.DataTransport.TransportBackendCct" Version="2.3.3" />
+    <PackageReference Include="Xamarin.Google.Android.DataTransport.TransportRuntime" Version="2.2.5" />
+    <PackageReference Include="Xamarin.Firebase.Messaging" Version="121.0.1" />
     <PackageReference Include="Xamarin.Android.Volley" Version="1.1.1.1" />
   </ItemGroup>
 

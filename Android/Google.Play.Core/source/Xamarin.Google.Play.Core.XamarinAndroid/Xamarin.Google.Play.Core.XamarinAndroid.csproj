@@ -1,4 +1,4 @@
-<Project Sdk="MSBuild.Sdk.Extras/2.0.54">
+<Project Sdk="MSBuild.Sdk.Extras/3.0.22">
   <PropertyGroup>
     <AssemblyName>Xamarin.Google.Android.Play.Core</AssemblyName>
 
@@ -21,7 +21,7 @@
   <PropertyGroup>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <PackageId>Xamarin.Google.Android.Play.Core</PackageId>
-    <PackageVersion>1.6.5</PackageVersion>
+    <PackageVersion>1.9.0</PackageVersion>
     <Title>Xamarin.Google.Android.Play.Core</Title>
     <PackageDescription>Bindings for Xamarin Google.Android.Play.Core package</PackageDescription>
     <Owners>Microsoft</Owners>
