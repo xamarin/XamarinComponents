@@ -4,8 +4,8 @@ var IOS_VERSION = "3.1.1";
 var IOS_NUGET_VERSION = "3.1.1";
 var IOS_URL = $"https://github.com/Azure/azure-notificationhubs-ios/releases/download/{IOS_VERSION}/WindowsAzureMessaging-SDK-Apple-{IOS_VERSION}.zip";
 
-var ANDROID_VERSION = "1.1.3";
-var ANDROID_NUGET_VERSION = "1.1.3";
+var ANDROID_VERSION = "1.1.4";
+var ANDROID_NUGET_VERSION = "1.1.4.1";
 var ANDROID_URL = $"https://dl.bintray.com/microsoftazuremobile/SDK/com/microsoft/azure/notification-hubs-android-sdk/{ANDROID_VERSION}/notification-hubs-android-sdk-{ANDROID_VERSION}.aar";
 
 Task("libs-ios")

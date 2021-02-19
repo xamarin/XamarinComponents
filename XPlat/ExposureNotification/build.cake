@@ -1,7 +1,6 @@
 var TARGET = Argument("t", Argument("target", "ci"));
 
 var OUTPUT_PATH = (DirectoryPath)"./output/";
-var NUGET_VERSION = "0.13.0-preview";
 
 Task("nuget")
 	.Does(() =>
@@ -11,7 +10,6 @@ Task("nuget")
 		.WithRestore()
 		.WithTarget("Build")
 		.WithTarget("Pack")
-		.WithProperty("PackageVersion", NUGET_VERSION)
 		.WithProperty("PackageOutputPath", MakeAbsolute(OUTPUT_PATH).FullPath));
 });
 
