@@ -86,9 +86,9 @@ After the externals are downloaded and built, the `.sln` files should compile in
 
 ---
 
-## Xamarin Supported Open Source Components
+## Support & Getting Help
 
-Xamarin Supported Open Source components are a collection of Xamarin built bindings and libraries.
+The following libraries are [supported](Support.md). 
 
 | Name                                  | Description                                                                      | Source                                                           |
 |---------------------------------------|----------------------------------------------------------------------------------|------------------------------------------------------------------|
@@ -97,6 +97,8 @@ Xamarin Supported Open Source components are a collection of Xamarin built bindi
 | Google API's for iOS                  | Bindings for Google's API's for iOS Libraries                                    | [GitHub](https://github.com/xamarin/GoogleAPIsForiOSComponents)  |
 | Facebook SDK's                        | Bindings for Facebook's iOS & Android SDK's                                      | [GitHub](https://github.com/xamarin/FacebookComponents)          |
 | Xamarin.Auth                          | Cross-platform API for authenticating users and storing their accounts.          | [GitHub](https://github.com/xamarin/Xamarin.Auth)                |
+
+To get help, visit the Xamarin area of [Microsoft Q&A](https://docs.microsoft.com/en-us/answers/products/dotnet).
 
 
 ### Xamarin.Essentials
