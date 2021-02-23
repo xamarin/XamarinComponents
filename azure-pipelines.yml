@@ -21,6 +21,7 @@ jobs:
   - template: .ci/build.yml@components
     parameters:
       timeoutInMinutes: 360
+      validPackagePrefixes: [ 'Xamarin' ]
       areaPath: 'DevDiv\Xamarin SDK\Android'
       buildType: 'manifest'
       linuxImage: 'ubuntu-latest'
