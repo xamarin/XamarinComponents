@@ -58,3 +58,4 @@ jobs:
     - template: sign-artifacts/jobs/v2.yml@internal-templates
       parameters:
         dependsOn: [ 'build' ]
+        condition: startsWith(variables['Build.SourceBranch'], 'refs/tags/')
