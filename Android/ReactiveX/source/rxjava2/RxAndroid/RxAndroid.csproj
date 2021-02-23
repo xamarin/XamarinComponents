@@ -34,14 +34,14 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Include="..\..\..\externals\rxjava2\rxandroid.aar">
-      <Link>rxandroid.jar</Link>
+    <None Include="..\..\..\externals\rxjava2\rxandroid-2.1.1.aar">
+      <Link>rxandroid-2.1.1.aar</Link>
     </None>
     <None Include="..\..\..\External-Dependency-Info.txt" Pack="True" PackagePath="THIRD-PARTY-NOTICES.txt" />
   </ItemGroup>
 
   <ItemGroup>
-    <LibraryProjectZip Include="..\..\..\externals\rxjava2\rxandroid.aar" />
+    <LibraryProjectZip Include="..\..\..\externals\rxjava2\rxandroid-2.1.1.aar" />
   </ItemGroup>
 
   <ItemGroup>

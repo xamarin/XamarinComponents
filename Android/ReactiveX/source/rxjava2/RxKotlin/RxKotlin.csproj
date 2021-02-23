@@ -26,7 +26,7 @@
     <PackageProjectUrl>https://go.microsoft.com/fwlink/?linkid=2083771</PackageProjectUrl>
     <PackageLicenseUrl>https://go.microsoft.com/fwlink/?linkid=2083684</PackageLicenseUrl>
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
-    <PackageVersion>2.3.0</PackageVersion>
+    <PackageVersion>2.4.0</PackageVersion>
   </PropertyGroup>
 
   <ItemGroup>
@@ -34,14 +34,14 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Include="..\..\..\externals\rxjava2\rxkotlin.jar">
-      <Link>rxkotlin.jar</Link>
+    <None Include="..\..\..\externals\rxjava2\rxkotlin-2.4.0.jar">
+      <Link>rxkotlin-2.4.0.jar</Link>
     </None>
     <None Include="..\..\..\External-Dependency-Info.txt" Pack="True" PackagePath="THIRD-PARTY-NOTICES.txt" />
   </ItemGroup>
 
   <ItemGroup>
-    <EmbeddedJar Include="..\..\..\externals\rxjava2\rxkotlin.jar" />
+    <EmbeddedJar Include="..\..\..\externals\rxjava2\rxkotlin-2.4.0.jar" />
   </ItemGroup>
 
   <ItemGroup>

@@ -26,7 +26,7 @@
     <PackageProjectUrl>https://go.microsoft.com/fwlink/?linkid=2083771</PackageProjectUrl>
     <PackageLicenseUrl>https://go.microsoft.com/fwlink/?linkid=2083684</PackageLicenseUrl>
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
-    <PackageVersion>2.2.9</PackageVersion>
+    <PackageVersion>2.2.10</PackageVersion>
   </PropertyGroup>
 
   <ItemGroup>
@@ -34,14 +34,14 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Include="..\..\..\externals\rxjava2\rxjava.jar">
-      <Link>rxjava.jar</Link>
+    <None Include="..\..\..\externals\rxjava2\rxjava-2.2.10.jar">
+      <Link>rxjava-2.2.10.jar</Link>
     </None>
     <None Include="..\..\..\External-Dependency-Info.txt" Pack="True" PackagePath="THIRD-PARTY-NOTICES.txt" />
   </ItemGroup>
 
   <ItemGroup>
-    <EmbeddedJar Include="..\..\..\externals\rxjava2\rxjava.jar" />
+    <EmbeddedJar Include="..\..\..\externals\rxjava2\rxjava-2.2.10.jar" />
   </ItemGroup>
 
   <ItemGroup>
