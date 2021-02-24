@@ -25,6 +25,7 @@ jobs:
       areaPath: 'DevDiv\Xamarin SDK\Android'
       buildType: 'manifest'
       linuxImage: 'ubuntu-latest'
+      cakeTemplatesBranch: refs/heads/dev/fix-ci
       validPackagePrefixes: 
         # Preferred prefixes
         - Xamarin
