@@ -1,4 +1,4 @@
-#addin nuget:?package=Cake.XCode&version=4.1.0
+#addin nuget:?package=Cake.XCode&version=4.2.0
 #addin nuget:?package=Cake.Yaml&version=3.1.0&loadDependencies=true
 #addin nuget:?package=Cake.Json&version=4.0.0&loadDependencies=true
 #addin nuget:?package=Xamarin.Nuget.Validator&version=1.1.1
@@ -416,6 +416,39 @@ public class BuildGroup {
 	public bool BuildOnLinux => LinuxBuildTargets?.Any () == true;
 
 	public override string ToString () => Name;
+}
+
+bool IsRunningOnMacOs () {
+	return System.Environment.OSVersion.Platform == PlatformID.MacOSX || MacPlatformDetector.IsMac.Value;
+}
+
+bool IsRunningOnLinux () {
+	return IsRunningOnUnix () && !IsRunningOnMacOs ();
+}
+
+internal static class MacPlatformDetector {
+	internal static readonly Lazy<bool> IsMac = new Lazy<bool> (IsRunningOnMac);
+
+	[DllImport ("libc")]
+	static extern int uname (IntPtr buf);
+
+	static bool IsRunningOnMac () {
+		IntPtr buf = IntPtr.Zero;
+		try {
+			buf = Marshal.AllocHGlobal (8192);
+			// This is a hacktastic way of getting sysname from uname()
+			if (uname (buf) == 0) {
+				string os = Marshal.PtrToStringAnsi (buf);
+				if (os == "Darwin")
+					return true;
+			}
+		} catch {
+		} finally {
+			if (buf != IntPtr.Zero)
+				Marshal.FreeHGlobal (buf);
+		}
+		return false;
+	}
 }
 
 string[] GetGitOutput (string args) {
