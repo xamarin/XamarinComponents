@@ -232,7 +232,7 @@ jobs:
               --gitcommit="$(Build.SourceVersion)" `
               --gitbranch="$(Build.SourceBranch)" `
               --forcebuild="$force" `
-              --names=""$names"" `
+              --names="\"$names\"" `
               --targets="$targets" `
               --copyoutputtoroot=true `
               --configuration="${{ parameters.configuration }}" `
@@ -260,8 +260,8 @@ jobs:
               --gitcommit="$(Build.SourceVersion)" `
               --gitbranch="$(Build.SourceBranch)" `
               --forcebuild="$force" `
-              --names=""$names"" `
-              --targets="$targets" `
+              --names=\"$names\" `
+              --targets="\"$targets"\" `
               --copyoutputtoroot=true `
               --configuration="${{ parameters.configuration }}" `
               --verbosity="${{ parameters.verbosity }}"
