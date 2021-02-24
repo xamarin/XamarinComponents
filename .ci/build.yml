@@ -203,12 +203,12 @@ jobs:
       - ${{ if eq(parameters.buildType, 'basic') }}:
         - pwsh: |
             dotnet cake ${{ parameters.cakeFile }} ${{ parameters.cakeExtraArgs }} `
-              --gitpreviouscommit="$(GitLastSuccessfulCommit)" `
-              --gitcommit="$(Build.SourceVersion)" `
-              --gitbranch="$(Build.SourceBranch)" `
-              --target="${{ parameters.cakeTarget }}" `
-              --configuration="${{ parameters.configuration }}" `
-              --verbosity="${{ parameters.verbosity }}"
+              --gitpreviouscommit=`"$(GitLastSuccessfulCommit)`" `
+              --gitcommit=`"$(Build.SourceVersion)`" `
+              --gitbranch=`"$(Build.SourceBranch)`" `
+              --target=`"${{ parameters.cakeTarget }}`" `
+              --configuration=`"${{ parameters.configuration }}`" `
+              --verbosity=`"${{ parameters.verbosity }}`"
           displayName: 'Run basic build'
           env:
             JavaSdkDirectory: $(JAVA_HOME)
@@ -228,15 +228,15 @@ jobs:
             $names = if ("$env:BUILDDIRECTORYNAMES") { "$env:BUILDDIRECTORYNAMES" } else { "${{ parameters.namesFilter }}" }
             $targets = if ("$env:BUILDDIRECTORYTARGETS") { "$env:BUILDDIRECTORYTARGETS" } else { "${{ parameters.targetsFilter }}" }
             dotnet cake build-directories.cake `
-              --gitpreviouscommit="$(GitLastSuccessfulCommit)" `
-              --gitcommit="$(Build.SourceVersion)" `
-              --gitbranch="$(Build.SourceBranch)" `
-              --forcebuild="$force" `
-              --names="\"$names\"" `
-              --targets="$targets" `
+              --gitpreviouscommit=`"$(GitLastSuccessfulCommit)`" `
+              --gitcommit=`"$(Build.SourceVersion)`" `
+              --gitbranch=`"$(Build.SourceBranch)`" `
+              --forcebuild=`"$force`" `
+              --names=`"$names`" `
+              --targets=`"$targets`" `
               --copyoutputtoroot=true `
-              --configuration="${{ parameters.configuration }}" `
-              --verbosity="${{ parameters.verbosity }}"
+              --configuration=`"${{ parameters.configuration }}`" `
+              --verbosity=`"${{ parameters.verbosity }}`"
           displayName: 'Run directory build'
           env:
             JavaSdkDirectory: $(JAVA_HOME)
@@ -255,16 +255,16 @@ jobs:
             $force = if ("$env:FORCEBUILD") { "$env:FORCEBUILD" } else { "${{ parameters.forceBuild }}" }
             $names = if ("$env:BUILDMANIFESTNAMES") { "$env:BUILDMANIFESTNAMES" } else { "${{ parameters.namesFilter }}" }
             $targets = if ("$env:BUILDMANIFESTTARGETS") { "$env:BUILDMANIFESTTARGETS" } else { "${{ parameters.targetsFilter }}" }
-            echo cake build-manifest.cake `
-              --gitpreviouscommit="$(GitLastSuccessfulCommit)" `
-              --gitcommit="$(Build.SourceVersion)" `
-              --gitbranch="$(Build.SourceBranch)" `
-              --forcebuild="$force" `
+            dotnet cake build-manifest.cake `
+              --gitpreviouscommit=`"$(GitLastSuccessfulCommit)`" `
+              --gitcommit=`"$(Build.SourceVersion)`" `
+              --gitbranch=`"$(Build.SourceBranch)`" `
+              --forcebuild=`"$force`" `
               --names=`"$names`" `
-              --targets="""$targets""" `
+              --targets=`"$targets`" `
               --copyoutputtoroot=true `
-              --configuration="${{ parameters.configuration }}" `
-              --verbosity="${{ parameters.verbosity }}"
+              --configuration=`"${{ parameters.configuration }}`" `
+              --verbosity=`"${{ parameters.verbosity }}`"
           displayName: 'Run manifest build'
           env:
             JavaSdkDirectory: $(JAVA_HOME)
@@ -305,10 +305,10 @@ jobs:
         displayName: 'Run NuGet package validation'
       - pwsh: |
           dotnet cake nuget-diff.cake `
-            --artifacts="${{ parameters.artifactsPath }}" `
-            --output="${{ parameters.artifactsPath }}/api-diff" `
-            --cache="$(Agent.TempDirectory)/api-diff" `
-            --verbosity="${{ parameters.verbosity }}"
+            --artifacts=`"${{ parameters.artifactsPath }}`" `
+            --output=`"${{ parameters.artifactsPath }}/api-diff`" `
+            --cache=`"$(Agent.TempDirectory)/api-diff`" `
+            --verbosity=`"${{ parameters.verbosity }}`"
         displayName: 'Generate API diff'
       # after the build is complete
       - pwsh: |
