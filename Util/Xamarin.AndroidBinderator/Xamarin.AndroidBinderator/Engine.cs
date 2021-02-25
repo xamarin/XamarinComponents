@@ -272,8 +272,8 @@ namespace AndroidBinderator
 				// Gather maven dependencies to try and map out nuget dependencies
 				foreach (var mavenDep in mavenProject.Dependencies)
 				{
-					// We only really care about 'compile' scoped dependencies (also null/blank means compile)
-					if (!string.IsNullOrEmpty(mavenDep.Scope) && !mavenDep.Scope.ToLowerInvariant().Equals("compile"))
+					// We only really care about 'compile' and 'runtime' scoped dependencies (also null/blank means compile)
+					if (!string.IsNullOrEmpty(mavenDep.Scope) && !mavenDep.Scope.ToLowerInvariant().Equals("compile") && !mavenDep.Scope.ToLowerInvariant().Equals("runtime"))
 						continue;
 
 					mavenDep.Version = FixVersion(mavenDep.Version);
