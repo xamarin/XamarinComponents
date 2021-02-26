@@ -143,7 +143,7 @@
       <Version>1.6.5</Version>
     </PackageReference>
     <PackageReference Include="GoogleGson">
-      <Version>2.8.5</Version>
+      <Version>2.8.6</Version>
     </PackageReference>
     <PackageReference Include="Xamarin.Android.Volley">
       <Version>1.1.1.1</Version>

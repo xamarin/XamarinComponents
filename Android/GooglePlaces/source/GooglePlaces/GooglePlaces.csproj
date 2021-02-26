@@ -55,7 +55,7 @@
     <PackageReference Include="Xamarin.GooglePlayServices.Maps" Version="71.1600.0-preview3" />
     <PackageReference Include="Xamarin.GooglePlayServices.Tasks" Version="71.1601.0-preview3" />
     <PackageReference Include="Xamarin.Google.AutoValue.Annotations" Version="1.6.5" />
-    <PackageReference Include="GoogleGson" Version="2.8.5" />
+    <PackageReference Include="GoogleGson" Version="2.8.6" />
   </ItemGroup>
 
   <ItemGroup>
