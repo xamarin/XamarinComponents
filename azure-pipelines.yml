@@ -40,14 +40,10 @@ jobs:
         - JakeWharton.Picasso2OkHttp3Downloader
       preBuildSteps:
         - pwsh: |
-            dotnet tool uninstall --global Cake.Tool
-            dotnet tool install --global Cake.Tool
             dotnet tool install --global boots
             boots https://aka.ms/xamarin-android-commercial-d16-8-macos
           condition: eq(variables['System.JobName'], 'macos')
         - pwsh: |
-            dotnet tool uninstall --global Cake.Tool
-            dotnet tool install --global Cake.Tool
             dotnet tool install --global boots
             boots https://aka.ms/xamarin-android-commercial-d16-8-windows
           condition: eq(variables['System.JobName'], 'windows')
@@ -58,3 +54,4 @@ jobs:
     - template: sign-artifacts/jobs/v2.yml@internal-templates
       parameters:
         dependsOn: [ 'build' ]
+        condition: startsWith(variables['Build.SourceBranch'], 'refs/tags/')

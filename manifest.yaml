@@ -680,10 +680,6 @@
   BuildScript: ./XPlat/Mono.Terminal/build.cake
   TriggerPaths: [ XPlat/Mono.Terminal ]
   MacBuildTargets: [ nuget, samples ]
-- Name: Gigya
-  BuildScript: ./XPlat/Gigya/build.cake
-  TriggerPaths: [ XPlat/Gigya ]
-  MacBuildTargets: [ nuget, samples ]
 - Name: Mono.Options
   BuildScript: ./XPlat/Mono.Options/build.cake
   TriggerPaths: [ XPlat/Mono.Options ]
