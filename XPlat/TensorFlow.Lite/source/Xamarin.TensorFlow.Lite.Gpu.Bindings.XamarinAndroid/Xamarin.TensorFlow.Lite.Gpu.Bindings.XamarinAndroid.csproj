@@ -24,7 +24,7 @@
         -->
         <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
         <PackageId>Xamarin.TensorFlow.Lite.Gpu</PackageId>
-        <PackageVersion>2.1.0.1</PackageVersion>
+        <PackageVersion>2.4.0</PackageVersion>
         <Title>Xamarin.TensorFlow.Lite.Gpu</Title>
         <PackageDescription>
             Bindings for Google's TensorFlow Lite GPU package (Google Play Services dependency)
@@ -45,7 +45,7 @@
     </ItemGroup>
 
     <ItemGroup>
-        <LibraryProjectZip Include="..\..\externals\tensorflow-lite-gpu.aar">
+        <LibraryProjectZip Include="..\..\externals\tensorflow-lite-gpu-2.4.0.aar">
             <Link>Jars\tensorflow-lite-gpu.aar</Link>
         </LibraryProjectZip>
     </ItemGroup>
