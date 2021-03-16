@@ -11,6 +11,7 @@ resources:
       type: github
       name: xamarin/yaml-templates
       endpoint: xamarin
+      ref: refs/heads/main
     - repository: components
       type: github
       name: xamarin/XamarinComponents
@@ -37,9 +38,20 @@ jobs:
         - AndroidEasingFunctions
         - Square
         - JakeWharton.Picasso2OkHttp3Downloader
+      preBuildSteps:
+        - pwsh: |
+            dotnet tool install --global boots
+            boots https://aka.ms/xamarin-android-commercial-d16-8-macos
+          condition: eq(variables['System.JobName'], 'macos')
+        - pwsh: |
+            dotnet tool install --global boots
+            boots https://aka.ms/xamarin-android-commercial-d16-8-windows
+          condition: eq(variables['System.JobName'], 'windows')
       tools:
-        - 'Xamarin.AndroidBinderator.Tool': '0.4.2'
+        - 'xamarin.androidbinderator.tool': '0.4.2'
+        - 'xamarin.androidx.migration.tool': '1.0.7.1'
   - ${{ if eq(variables['System.TeamProject'], 'devdiv') }}:
-    - template: sign-artifacts/jobs/v1.yml@internal-templates
+    - template: sign-artifacts/jobs/v2.yml@internal-templates
       parameters:
         dependsOn: [ 'build' ]
+        condition: startsWith(variables['Build.SourceBranch'], 'refs/tags/')

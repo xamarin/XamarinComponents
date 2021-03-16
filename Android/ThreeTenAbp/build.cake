@@ -1,10 +1,10 @@
 
 #load "../../common.cake"
 
-var TARGET = Argument ("t", Argument ("target", "Default"));
+var TARGET = Argument ("t", Argument ("target", "ci"));
 
-var AAR_VERSION = "1.2.4";
-var JAR_VERSION = "1.4.4";
+var AAR_VERSION = "1.3.0";
+var JAR_VERSION = "1.5.0";
 
 var NUGET_VERSION = AAR_VERSION;
 var AAR_URL = $"https://search.maven.org/remotecontent?filepath=com/jakewharton/threetenabp/threetenabp/{AAR_VERSION}/threetenabp-{AAR_VERSION}.aar";
@@ -54,6 +54,11 @@ Task("nuget")
 
 Task("samples")
 	.IsDependentOn("nuget");
+
+Task("ci")
+	.IsDependentOn("externals")
+	.IsDependentOn("nuget")
+	.IsDependentOn("samples");
 
 Task ("clean")
 	.Does (() =>

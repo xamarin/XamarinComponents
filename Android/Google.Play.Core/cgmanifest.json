@@ -6,7 +6,7 @@
         "Maven": {
           "ArtifactId": "core",
           "GroupId": "com.google.android.play",
-          "Version": "1.6.5",
+          "Version": "1.9.0",
           "NuGetId": "Xamarin.Google.Android.Play.Core"
         }
       }

@@ -4,10 +4,10 @@
     friendlyName += " " + name;
   }
 }
-<Project Sdk="MSBuild.Sdk.Extras/2.0.54">
+<Project Sdk="MSBuild.Sdk.Extras/3.0.22">
 
   <PropertyGroup>
-    <TargetFramework>MonoAndroid90</TargetFramework>
+    <TargetFramework>MonoAndroid10.0</TargetFramework>
     <IsBindingProject>true</IsBindingProject>
     <RootNamespace>Xamarin.Kotlin</RootNamespace>
     @if (!string.IsNullOrEmpty(Model.AssemblyName)) {
@@ -15,11 +15,8 @@
     } else {
     <AssemblyName>@(Model.NuGetPackageId)</AssemblyName>
     }
-    <MonoAndroidResourcePrefix>Resources</MonoAndroidResourcePrefix>
-    <MonoAndroidAssetsPrefix>Assets</MonoAndroidAssetsPrefix>
     <AndroidUseLatestPlatformSdk>False</AndroidUseLatestPlatformSdk>
     <AndroidUseIntermediateDesignerFile>True</AndroidUseIntermediateDesignerFile>
-    <AndroidResgenFile>Resources\Resource.designer.cs</AndroidResgenFile>
     <AndroidDexTool>d8</AndroidDexTool>
     <AndroidEnableDesugar>true</AndroidEnableDesugar>
     <!--
@@ -35,15 +32,7 @@
   </PropertyGroup>
 
   <PropertyGroup>
-    @if(Model.NuGetPackageId == "Xamarin.Kotlin.StdLib") {
-    <!--
-      TODO: https://github.com/xamarin/java.interop/issues/466
-      <AndroidClassParser>class-parse</AndroidClassParser>
-    -->
-    <AndroidClassParser>jar2xml</AndroidClassParser>
-    } else {
     <AndroidClassParser>class-parse</AndroidClassParser>
-    }
     <AndroidCodegenTarget>XAJavaInterop1</AndroidCodegenTarget>
   </PropertyGroup>
 
@@ -64,13 +53,14 @@
     <Owners>Microsoft</Owners>
     <Copyright>© Microsoft Corporation. All rights reserved.</Copyright>
     <PackageProjectUrl>https://go.microsoft.com/fwlink/?linkid=864997</PackageProjectUrl>
-    <PackageLicenseUrl>https://go.microsoft.com/fwlink/?linkid=864999</PackageLicenseUrl>
+    <PackageLicenseFile>LICENSE.md</PackageLicenseFile>
     <!-- <PackageIconUrl></PackageIconUrl> -->
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
   </PropertyGroup>
 
   <ItemGroup>
     <None Update="@(Model.NuGetPackageId).targets" Pack="True" PackagePath="build\$(TargetFramework)" />
+    <None Update="@(Model.NuGetPackageId).targets" Pack="True" PackagePath="buildTransitive\$(TargetFramework)" />
   </ItemGroup>
 
   <ItemGroup>
@@ -83,12 +73,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <KotlinBindingSupportIgnore Condition="Exists('..\..\source\@(Model.NuGetPackageId)\ignore.txt')" Include="..\..\source\@(Model.NuGetPackageId)\ignore.txt" />
-  </ItemGroup>
-
-  <ItemGroup>
     @foreach (var art in @Model.MavenArtifacts) {
-    <None Remove="..\..\externals\@(art.MavenGroupId)\@(art.MavenArtifactId).jar" />
     <None Include="..\..\externals\@(art.MavenGroupId)\@(art.MavenArtifactId).jar" Pack="True" PackagePath="jar\@(art.MavenGroupId).@(art.MavenArtifactId).jar" Visible="false" />
     <InputJar Include="..\..\externals\@(art.MavenGroupId)\@(art.MavenArtifactId).jar" Link="Jars\@(art.MavenGroupId)\@(art.MavenArtifactId).jar" />
     }
@@ -102,7 +87,10 @@
     <PackageReference Include="@(dep.NuGetPackageId)" Version="@(dep.NuGetVersion)" />
       }
     }
-    <PackageReference Include="Xamarin.Kotlin.BindingSupport" Version="0.6.0-preview" PrivateAssets="All" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="..\..\License.md" Pack="true" PackagePath="LICENSE.md" />
   </ItemGroup>
 
 </Project>

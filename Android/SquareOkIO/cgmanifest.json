@@ -6,7 +6,7 @@
         "Maven": {
           "ArtifactId": "okio",
           "GroupId": "com.squareup.okio",
-          "Version": "2.4.1",
+          "Version": "2.8.0",
           "NuGetId": "Square.OkIO"
         }
       }

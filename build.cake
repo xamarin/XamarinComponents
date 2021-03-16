@@ -2,7 +2,7 @@ var VERBOSITY = Argument ("v", Argument ("verbosity", Verbosity.Normal));
 var CONFIGURATION = Argument ("c", Argument ("configuration", "Release"));
 
 var BUILD_NAMES = Argument ("names", Argument ("name", ""));
-var BUILD_TARGETS = Argument ("build-targets", Argument ("targets", Argument ("target", "Default")));
+var BUILD_TARGETS = Argument ("build-targets", Argument ("targets", Argument ("target", "ci")));
 
 var FORCE_BUILD = Argument ("force", Argument ("forcebuild", Argument ("force-build", false)));
 var POD_REPO_UPDATE = Argument ("repo-update", Argument ("pod-repo-update", false));

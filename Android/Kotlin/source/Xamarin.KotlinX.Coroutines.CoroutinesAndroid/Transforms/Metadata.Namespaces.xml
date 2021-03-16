@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<metadata>
+
+  <attr 
+      path="/api/package[@name='kotlinx.coroutines.android']" 
+      name="managedName"
+      >
+      Xamarin.KotlinX.Coroutines.CoroutinesAndroid
+  </attr>
+
+</metadata>
