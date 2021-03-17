@@ -29,8 +29,18 @@
     <PackageVersion>2.2.10</PackageVersion>
   </PropertyGroup>
 
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <LangVersion>latest</LangVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <LangVersion>latest</LangVersion>
+  </PropertyGroup>
   <ItemGroup>
     <TransformFile Include="Transforms\Metadata.xml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Xamarin.Android.ReactiveStreams" Version="1.0.3" />
   </ItemGroup>
 
   <ItemGroup>
@@ -40,12 +50,15 @@
     <None Include="..\..\..\External-Dependency-Info.txt" Pack="True" PackagePath="THIRD-PARTY-NOTICES.txt" />
   </ItemGroup>
 
+  <PropertyGroup>
+    <JavaDocPaths>..\..\..\externals\rxjava2\rxjava-javadocs\</JavaDocPaths>
+  </PropertyGroup>
   <ItemGroup>
-    <EmbeddedJar Include="..\..\..\externals\rxjava2\rxjava-2.2.10.jar" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <PackageReference Include="Xamarin.Android.ReactiveStreams" Version="1.0.2" />
+    <EmbeddedJar  Include="..\..\..\externals\rxjava2\rxjava-2.2.10.jar" />
+    <JavaDocJar   Include="..\..\..\externals\rxjava2\rxjava-javadocs.jar" />
+    <!--
+    <JavaSourceJar Include="..\..\..\externals\rxjava2\" />
+    -->
   </ItemGroup>
 
 </Project>

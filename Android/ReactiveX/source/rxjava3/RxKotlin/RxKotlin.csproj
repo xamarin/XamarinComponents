@@ -40,8 +40,15 @@
     <None Include="..\..\..\External-Dependency-Info.txt" Pack="True" PackagePath="THIRD-PARTY-NOTICES.txt" />
   </ItemGroup>
 
+  <PropertyGroup>
+    <JavaDocPaths>..\..\..\externals\rxjava3\rxkotlin-javadocs\</JavaDocPaths>
+  </PropertyGroup>
   <ItemGroup>
     <EmbeddedJar Include="..\..\..\externals\rxjava3\rxkotlin-3.0.1.jar" />
+    <JavaDocJar  Include="..\..\..\externals\rxjava3\rxkotlin-javadocs.jar" />
+    <!--
+    <JavaSourceJar Include="..\..\..\externals\rxjava3\" />
+    -->
   </ItemGroup>
 
   <ItemGroup>

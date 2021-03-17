@@ -14,8 +14,5 @@
   <attr path="/api/package[@name='io.reactivex.processors']" name="managedName">ReactiveX.Processors</attr>
   <attr path="/api/package[@name='io.reactivex.schedulers']" name="managedName">ReactiveX.Schedulers</attr>
   <attr path="/api/package[@name='io.reactivex.subjects']" name="managedName">ReactiveX.Subjects</attr>
-  <attr path="/api/package[@name='io.reactivex.subscribers']" name="managedName">ReactiveX.Subscribers</attr>
-  
 
-  <remove-node path="/api/package[contains(@name, 'internal')]" />
 </metadata>

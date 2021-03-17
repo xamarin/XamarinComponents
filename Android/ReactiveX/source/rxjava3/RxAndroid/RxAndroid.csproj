@@ -40,12 +40,20 @@
     <None Include="..\..\..\External-Dependency-Info.txt" Pack="True" PackagePath="THIRD-PARTY-NOTICES.txt" />
   </ItemGroup>
 
+
+  <PropertyGroup>
+    <JavaDocPaths>..\..\..\externals\rxjava3\rxandroid-javadocs\</JavaDocPaths>
+  </PropertyGroup>
   <ItemGroup>
     <LibraryProjectZip Include="..\..\..\externals\rxjava3\rxandroid-3.0.0.aar" />
+    <JavaDocJar   Include="..\..\..\externals\rxjava3\rxandroid-javadocs.jar" />
+    <!--
+    <JavaSourceJar Include="..\..\..\externals\rxjava3\" />
+    -->
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Xamarin.Android.ReactiveStreams" Version="1.0.2" />
+    <PackageReference Include="Xamarin.Android.ReactiveStreams" Version="1.0.3" />
   </ItemGroup>
 
   <ItemGroup>
