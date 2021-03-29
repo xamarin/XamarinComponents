@@ -31,8 +31,12 @@
 
   <ItemGroup>
     <TransformFile Include="Transforms\Metadata.xml" />
+    <TransformFile Include="Transforms\Metadata.Namespaces.xml" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Remove="Transforms\Metadata.Namespaces.xml" />
+  </ItemGroup>
   <ItemGroup>
     <None Include="..\..\..\externals\rxjava3\rxandroid-3.0.0.aar">
       <Link>rxandroid-3.0.0.jar</Link>
@@ -46,7 +50,7 @@
   </PropertyGroup>
   <ItemGroup>
     <LibraryProjectZip Include="..\..\..\externals\rxjava3\rxandroid-3.0.0.aar" />
-    <JavaDocJar   Include="..\..\..\externals\rxjava3\rxandroid-javadocs.jar" />
+    <JavaDocJar Include="..\..\..\externals\rxjava3\rxandroid-javadocs.jar" />
     <!--
     <JavaSourceJar Include="..\..\..\externals\rxjava3\" />
     -->

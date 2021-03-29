@@ -31,8 +31,11 @@
 
   <ItemGroup>
     <TransformFile Include="Transforms\Metadata.xml" />
+    <TransformFile Include="Transforms\Metadata.Namespaces.xml" />
   </ItemGroup>
 
+  <ItemGroup>
+  </ItemGroup>
   <ItemGroup>
     <None Include="..\..\..\externals\rxjava3\rxkotlin-3.0.1.jar">
       <Link>rxkotlin-3.0.1.jar</Link>
@@ -45,7 +48,7 @@
   </PropertyGroup>
   <ItemGroup>
     <EmbeddedJar Include="..\..\..\externals\rxjava3\rxkotlin-3.0.1.jar" />
-    <JavaDocJar  Include="..\..\..\externals\rxjava3\rxkotlin-javadocs.jar" />
+    <JavaDocJar Include="..\..\..\externals\rxjava3\rxkotlin-javadocs.jar" />
     <!--
     <JavaSourceJar Include="..\..\..\externals\rxjava3\" />
     -->

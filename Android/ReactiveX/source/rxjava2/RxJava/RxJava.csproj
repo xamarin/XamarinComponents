@@ -37,12 +37,16 @@
   </PropertyGroup>
   <ItemGroup>
     <TransformFile Include="Transforms\Metadata.xml" />
+    <TransformFile Include="Transforms\Metadata.Namespaces.xml" />
   </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="Xamarin.Android.ReactiveStreams" Version="1.0.3" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Remove="Transforms\Metadata.Namespaces.xml" />
+  </ItemGroup>
   <ItemGroup>
     <None Include="..\..\..\externals\rxjava2\rxjava-2.2.10.jar">
       <Link>rxjava-2.2.10.jar</Link>
@@ -54,8 +58,8 @@
     <JavaDocPaths>..\..\..\externals\rxjava2\rxjava-javadocs\</JavaDocPaths>
   </PropertyGroup>
   <ItemGroup>
-    <EmbeddedJar  Include="..\..\..\externals\rxjava2\rxjava-2.2.10.jar" />
-    <JavaDocJar   Include="..\..\..\externals\rxjava2\rxjava-javadocs.jar" />
+    <EmbeddedJar Include="..\..\..\externals\rxjava2\rxjava-2.2.10.jar" />
+    <JavaDocJar Include="..\..\..\externals\rxjava2\rxjava-javadocs.jar" />
     <!--
     <JavaSourceJar Include="..\..\..\externals\rxjava2\" />
     -->

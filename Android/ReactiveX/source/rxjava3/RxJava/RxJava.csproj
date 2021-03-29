@@ -31,6 +31,7 @@
 
   <ItemGroup>
     <TransformFile Include="Transforms\Metadata.xml" />
+    <TransformFile Include="Transforms\Metadata.Namespaces.xml" />
   </ItemGroup>
 
   <ItemGroup>
@@ -45,7 +46,7 @@
   </PropertyGroup>
   <ItemGroup>
     <EmbeddedJar Include="..\..\..\externals\rxjava3\rxjava-3.0.1.jar" />
-    <JavaDocJar  Include="..\..\..\externals\rxjava3\rxjava-javadocs.jar" />
+    <JavaDocJar Include="..\..\..\externals\rxjava3\rxjava-javadocs.jar" />
     <!--
     <JavaSourceJar Include="..\..\..\externals\rxjava3\" />
     -->
