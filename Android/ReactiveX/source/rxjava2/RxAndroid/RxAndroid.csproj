@@ -37,6 +37,7 @@
   </PropertyGroup>
   <ItemGroup>
     <TransformFile Include="Transforms\Metadata.xml" />
+    <TransformFile Include="Transforms\Metadata.Namespaces.xml" />
   </ItemGroup>
 
   <ItemGroup>
