@@ -62,7 +62,7 @@
   </PropertyGroup>
   <ItemGroup>
     <LibraryProjectZip Include="..\..\..\externals\rxjava2\rxandroid-2.1.1.aar" />
-    <JavaDocJar   Include="..\..\..\externals\rxjava2\rxandroid-javadocs.jar" />
+    <JavaDocJar Include="..\..\..\externals\rxjava2\rxandroid-javadocs.jar" />
     <!--
     <JavaSourceJar Include="..\..\..\externals\rxjava2\" />
     -->
