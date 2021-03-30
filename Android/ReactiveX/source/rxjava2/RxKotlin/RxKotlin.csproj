@@ -41,9 +41,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Remove="Transforms\Metadata.Namespaces.xml" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="..\..\..\externals\rxjava2\rxkotlin-2.4.0.jar">
       <Link>rxkotlin-2.4.0.jar</Link>
     </None>

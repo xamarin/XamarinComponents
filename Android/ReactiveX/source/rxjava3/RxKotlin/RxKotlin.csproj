@@ -35,8 +35,6 @@
   </ItemGroup>
 
   <ItemGroup>
-  </ItemGroup>
-  <ItemGroup>
     <None Include="..\..\..\externals\rxjava3\rxkotlin-3.0.1.jar">
       <Link>rxkotlin-3.0.1.jar</Link>
     </None>

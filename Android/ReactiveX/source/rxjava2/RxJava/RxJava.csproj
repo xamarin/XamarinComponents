@@ -45,9 +45,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Remove="Transforms\Metadata.Namespaces.xml" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="..\..\..\externals\rxjava2\rxjava-2.2.10.jar">
       <Link>rxjava-2.2.10.jar</Link>
     </None>

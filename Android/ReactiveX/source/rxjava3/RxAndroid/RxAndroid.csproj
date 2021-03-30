@@ -35,9 +35,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Remove="Transforms\Metadata.Namespaces.xml" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="..\..\..\externals\rxjava3\rxandroid-3.0.0.aar">
       <Link>rxandroid-3.0.0.jar</Link>
     </None>
