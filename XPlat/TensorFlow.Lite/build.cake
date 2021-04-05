@@ -3,8 +3,8 @@ var TARGET = Argument("t", Argument("target", "ci"));
 
 var TENSOR_FLOW_LITE_NUGET_VERSION = "2.4.0";
 var TENSOR_FLOW_LITE_AAR_VERSION = "2.4.0";
-var TENSOR_FLOW_LITE_GPU_NUGET_VERSION = "2.2.0";
-var TENSOR_FLOW_LITE_GPU_AAR_VERSION = "2.2.0";
+var TENSOR_FLOW_LITE_GPU_NUGET_VERSION = "2.3.0";
+var TENSOR_FLOW_LITE_GPU_AAR_VERSION = "2.3.0";
 
 var TENSOR_FLOW_LITE_URL_AAR_VERSION = $"https://repo1.maven.org/maven2/org/tensorflow/tensorflow-lite/{TENSOR_FLOW_LITE_AAR_VERSION}/tensorflow-lite-{TENSOR_FLOW_LITE_AAR_VERSION}.aar";
 var TENSOR_FLOW_LITE_URL_POM_VERSION = $"https://repo1.maven.org/maven2/org/tensorflow/tensorflow-lite/{TENSOR_FLOW_LITE_AAR_VERSION}/tensorflow-lite-{TENSOR_FLOW_LITE_AAR_VERSION}.pom";
