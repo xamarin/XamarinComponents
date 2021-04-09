@@ -20,7 +20,7 @@
     <PropertyGroup>
         <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
         <PackageId>Xamarin.Grpc.Context</PackageId>
-        <PackageVersion>1.29.0</PackageVersion>
+        <PackageVersion>1.31.2</PackageVersion>
         <Title>Xamarin.Grpc.Context</Title>
         <PackageDescription>
             Bindings for Google's GRPC Context package
