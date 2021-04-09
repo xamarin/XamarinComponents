@@ -73,7 +73,7 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedJar Include="..\..\externals\android\grpc-okhttp-$(PackageVersion).jar">
-      <Link>Jars\grpc-okhttp-1.30.2.jar</Link>
+      <Link>Jars\grpc-okhttp-$(PackageVersion).jar</Link>
     </EmbeddedJar>
   </ItemGroup>
   <ItemGroup>
