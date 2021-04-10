@@ -27,7 +27,7 @@
         -->
         <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
         <PackageId>Xamarin.Grpc.Api</PackageId>
-        <PackageVersion>1.31.2</PackageVersion>
+        <PackageVersion>1.37.0</PackageVersion>
         <Title>Xamarin.Grpc.Api</Title>
         <PackageDescription>
             Bindings for Google's GRPC Api package
