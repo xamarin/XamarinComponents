@@ -78,6 +78,5 @@
   <ItemGroup>
     <ProjectReference Include="..\Xamarin.Grpc.Core.Bindings.XamarinAndroid\Xamarin.Grpc.Core.Bindings.XamarinAndroid.csproj" />
   </ItemGroup>
-
     
 </Project>
