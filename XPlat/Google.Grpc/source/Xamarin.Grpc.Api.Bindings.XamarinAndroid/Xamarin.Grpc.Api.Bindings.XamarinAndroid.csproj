@@ -27,7 +27,7 @@
         -->
         <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
         <PackageId>Xamarin.Grpc.Api</PackageId>
-        <PackageVersion>1.29.0</PackageVersion>
+        <PackageVersion>1.37.0</PackageVersion>
         <Title>Xamarin.Grpc.Api</Title>
         <PackageDescription>
             Bindings for Google's GRPC Api package
@@ -75,7 +75,5 @@
   <ItemGroup>
     <ProjectReference Include="..\Xamarin.Grpc.Context.Bindings.XamarinAndroid\Xamarin.Grpc.Context.Bindings.XamarinAndroid.csproj" />
   </ItemGroup>
-  <Import Project="$(MSBuildSDKExtrasTargets)" Condition="Exists('$(MSBuildSDKExtrasTargets)')" />
-
     
 </Project>
