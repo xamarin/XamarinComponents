@@ -35,13 +35,43 @@
   </ItemGroup>
 
   <ItemGroup>
+    <!-- 
+      Reference the extracted .aar's jar just for generating the binding at build time
+      InputJar does not cause the .jar to get included in the final assembly
+      Since we'll include the .aar itself in the package, we don't want to also include
+      the classes.jar from it, we just really need it to generate the binding .dll 
+    -->
+    <InputJar Include="..\..\externals\classes.jar" />
+    
+    <!--
+      Include the .aar directly inside of the nuget package in the specified PackagePath
+      We will reference this from the .targets we include in the nuget
+    -->
     <None Include="..\..\externals\billing.aar" Pack="True" PackagePath="aar\billing.aar">
       <Link>billing.aar</Link>
     </None>
-    <None Include="..\..\License.md" Pack="true" PackagePath="LICENSE.md" />
-    <None Include="..\..\External-Dependency-Info.txt" Pack="True" PackagePath="THIRD-PARTY-NOTICES.txt" />
+    
+    <!--
+      Include the .targets file named the same as the PackageId into the nuget package itself.
+      When you have a .targets with the same name as the package id in the build*/ folders
+      it gets automatically imported by MSBuild into the project referencing the nuget package.
+      
+      We use build\ and buildTransitive\ (which is only supported on newer nuget versions)
+      since the buildTransitive\ ensures that even if this package is referenced implicitly in a project
+      by another nuget package reference, the .targets will still be imported from this package.
+
+      Inside the .targets file we include a reference to the .aar we bundled in the package:
+        <ItemGroup><AndroidAarLibrary Include="..." /></ItemGroup>
+      This will cause the .aar to be included in the final app referencing this nuget package when 
+      it gets built.
+    -->
     <None Include="Xamarin.Android.Google.BillingClient.targets" Pack="True" PackagePath="build\monoandroid90" />
     <None Include="Xamarin.Android.Google.BillingClient.targets" Pack="True" PackagePath="buildTransitive\monoandroid90" />
+    
+    <!-- Include our license and third party notices file in the nuget package -->
+    <None Include="..\..\License.md" Pack="true" PackagePath="LICENSE.md" />
+    <None Include="..\..\External-Dependency-Info.txt" Pack="True" PackagePath="THIRD-PARTY-NOTICES.txt" />
+
   </ItemGroup>
 
   <ItemGroup>	
