@@ -7,7 +7,7 @@ namespace Xamarin.ExposureNotifications
 {
 	public static partial class ExposureNotification
 	{
-		static object Instance => null;
+		static object? Instance => null;
 
 		static void PlatformInit()
 			=> throw new PlatformNotSupportedException();
@@ -24,7 +24,7 @@ namespace Xamarin.ExposureNotifications
 		static Task PlatformScheduleFetch()
 			=> throw new PlatformNotSupportedException();
 
-		static Task<(ExposureDetectionSummary, IEnumerable<ExposureInfo>)> PlatformDetectExposuresAsync(IEnumerable<TemporaryExposureKey> diagnosisKeys, CancellationToken cancellationToken)
+		static Task<(ExposureDetectionSummary, IEnumerable<ExposureInfo>)> PlatformDetectExposuresAsync(IEnumerable<string> downloadedFiles, CancellationToken cancellationToken)
 			=> throw new PlatformNotSupportedException();
 
 		static Task<IEnumerable<TemporaryExposureKey>> PlatformGetTemporaryExposureKeys()

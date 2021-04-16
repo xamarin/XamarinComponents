@@ -1,4 +1,4 @@
-﻿<Project Sdk="MSBuild.Sdk.Extras/2.0.54">
+﻿<Project Sdk="MSBuild.Sdk.Extras/3.0.23">
 
 	<PropertyGroup>
 		<TargetFrameworks>netstandard2.0;xamarin.ios10;monoandroid10.0</TargetFrameworks>
@@ -7,6 +7,7 @@
 		<AssemblyFileVersion>1.0.0.0</AssemblyFileVersion>
 		<Version>1.0.0</Version>
 		<LangVersion>8.0</LangVersion>
+		<Nullable>enable</Nullable>
 	</PropertyGroup>
 
 	<PropertyGroup>
@@ -14,7 +15,7 @@
 		<Summary>Cross-Platform Exposure Notifications for Xamarin</Summary>
 		<Title>Xamarin Exposure Notifications</Title>
 		<Description>Cross-Platform Exposure Notifications for Xamarin</Description>
-		<PackageVersion>0.15.0-preview</PackageVersion>
+		<PackageVersion>0.16.0-alpha</PackageVersion>
 		<Authors>Microsoft</Authors>
 		<Owners>microsoft,Xamarin,XamarinNuGet</Owners>
 		<NeutralLanguage>en</NeutralLanguage>
@@ -45,7 +46,7 @@
 
 		<PackageReference Include="Xamarin.GooglePlayServices.Basement" Version="117.2.1-preview01" />
 		<PackageReference Include="Xamarin.GooglePlayServices.Tasks" Version="117.0.2-preview01" />
-		<PackageReference Include="Xamarin.GooglePlayServices.Nearby.ExposureNotification" Version="18.0.2-eap.6" />
+		<PackageReference Include="Xamarin.GooglePlayServices.Nearby.ExposureNotification" Version="19.7.1-eap.1" />
 		<PackageReference Include="Xamarin.AndroidX.Core" Version="1.2.0" />
 		<PackageReference Include="Xamarin.AndroidX.Work.Runtime" Version="2.3.4.1" />
 	</ItemGroup>

@@ -20,6 +20,14 @@ namespace Xamarin.ExposureNotifications
 		Task UploadSelfExposureKeysToServerAsync(IEnumerable<TemporaryExposureKey> temporaryExposureKeys);
 	}
 
+	public interface IExposureNotificationDailySummaryHandler : IExposureNotificationHandler
+	{
+		Task<DailySummaryConfiguration> GetDailySummaryConfigurationAsync();
+
+		// Might be exposed, check and alert user if necessary
+		Task ExposureStateUpdatedAsync(IEnumerable<ExposureWindow> windows, IEnumerable<DailySummary>? summaries);
+	}
+
 	public interface INativeImplementation
 	{
 		Task StartAsync();
@@ -33,5 +41,10 @@ namespace Xamarin.ExposureNotifications
 		Task<IEnumerable<TemporaryExposureKey>> GetSelfTemporaryExposureKeysAsync();
 
 		Task<Status> GetStatusAsync();
+	}
+
+	public interface IDailySummaryNativeImplementation : INativeImplementation
+	{
+		Task<(IEnumerable<DailySummary> summaries, Func<Task<IEnumerable<ExposureWindow>>> getExposureWindows)> DetectExposureWindowsAsync(IEnumerable<string> files);
 	}
 }

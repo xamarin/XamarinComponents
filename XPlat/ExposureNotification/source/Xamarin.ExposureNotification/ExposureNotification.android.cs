@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Reflection;
 using System.Threading;
 using System.Threading.Tasks;
 using Android.App;
@@ -12,10 +11,16 @@ using Android.Runtime;
 using AndroidX.Work;
 using Java.Nio.FileNio;
 
+using AndroidCalibrationConfidence = Android.Gms.Nearby.ExposureNotification.CalibrationConfidence;
+using AndroidDailySummary = Android.Gms.Nearby.ExposureNotification.DailySummary;
+using AndroidInfectiousness = Android.Gms.Nearby.ExposureNotification.Infectiousness;
+using AndroidReportType = Android.Gms.Nearby.ExposureNotification.ReportType;
 using AndroidRiskLevel = Android.Gms.Nearby.ExposureNotification.RiskLevel;
+using AndroidScanInstance = Android.Gms.Nearby.ExposureNotification.ScanInstance;
+
 using Nearby = Android.Gms.Nearby.NearbyClass;
 
-[assembly: UsesFeature("android.hardware.bluetooth_le", Required=true)]
+[assembly: UsesFeature("android.hardware.bluetooth_le", Required = true)]
 [assembly: UsesFeature("android.hardware.bluetooth")]
 [assembly: UsesPermission(Android.Manifest.Permission.Bluetooth)]
 
@@ -24,21 +29,27 @@ namespace Xamarin.ExposureNotifications
 {
 	public static partial class ExposureNotification
 	{
-		static IExposureNotificationClient instance;
+		static readonly Lazy<IExposureNotificationClient?> instance = new Lazy<IExposureNotificationClient?>(() =>
+		{
+			return Nearby.GetExposureNotificationClient(Application.Context);
+		});
 
 		// get an instance that may not be ready
-		static IExposureNotificationClient Instance
-			=> instance ??= Nearby.GetExposureNotificationClient(Application.Context);
+		static IExposureNotificationClient? Instance => instance.Value;
 
 		// get the instance that is ready
 		static IExposureNotificationClient GetClient()
 		{
 			EnsureSupported();
 
-			var client = Instance;
+			var client = Instance!;
 
 			return client;
 		}
+
+		// Not really "obsolete" as this is just Google's recommendation
+		// and v1 might still be the only thing on the device.
+#pragma warning disable CS0618
 
 		static async Task<ExposureConfiguration> GetConfigurationAsync()
 		{
@@ -58,19 +69,21 @@ namespace Xamarin.ExposureNotifications
 				.Build();
 		}
 
+#pragma warning restore CS0618
+
 		const int requestCodeStartExposureNotification = 1111;
 		const int requestCodeGetTempExposureKeyHistory = 2222;
 
-		static TaskCompletionSource<object> tcsResolveConnection;
+		static TaskCompletionSource<bool>? tcsResolveConnection;
 
 		public static void OnActivityResult(int requestCode, Result resultCode, global::Android.Content.Intent data)
 		{
 			if (requestCode == requestCodeStartExposureNotification || requestCode == requestCodeGetTempExposureKeyHistory)
 			{
 				if (resultCode == Result.Ok)
-					tcsResolveConnection?.TrySetResult(null);
+					tcsResolveConnection?.TrySetResult(true);
 				else
-					tcsResolveConnection.TrySetException(new AccessDeniedException("Failed to resolve Exposure Notifications API"));
+					tcsResolveConnection?.TrySetException(new AccessDeniedException("Failed to resolve Exposure Notifications API"));
 			}
 		}
 
@@ -80,24 +93,20 @@ namespace Xamarin.ExposureNotifications
 			{
 				return await apiCall();
 			}
-			catch (ApiException apiEx)
+			catch (ApiException apiEx) when (apiEx.StatusCode == CommonStatusCodes.ResolutionRequired)
 			{
-				if (apiEx.StatusCode == CommonStatusCodes.ResolutionRequired) // Resolution required
-				{
-					tcsResolveConnection = new TaskCompletionSource<object>();
+				// Resolution required
+				tcsResolveConnection = new TaskCompletionSource<bool>();
 
-					// Start the resolution
-					apiEx.Status.StartResolutionForResult(Essentials.Platform.CurrentActivity, requestCode);
+				// Start the resolution
+				apiEx.Status.StartResolutionForResult(Essentials.Platform.CurrentActivity, requestCode);
 
-					// Wait for the activity result to be called
-					await tcsResolveConnection.Task;
+				// Wait for the activity result to be called
+				await tcsResolveConnection.Task;
 
-					// Try the original api call again
-					return await apiCall();
-				}
+				// Try the original api call again
+				return await apiCall();
 			}
-
-			return default;
 		}
 
 		static async void PlatformInit()
@@ -106,14 +115,14 @@ namespace Xamarin.ExposureNotifications
 		}
 
 		static Task PlatformStart()
-			=> ResolveApi<object>(requestCodeStartExposureNotification, async () =>
+			=> ResolveApi<bool>(requestCodeStartExposureNotification, async () =>
 				{
 					await GetClient().StartAsync();
 					return default;
 				});
 
 		static Task PlatformStop()
-			=> ResolveApi<object>(requestCodeStartExposureNotification, async () =>
+			=> ResolveApi<bool>(requestCodeStartExposureNotification, async () =>
 				{
 					await GetClient().StopAsync();
 					return default;
@@ -166,14 +175,30 @@ namespace Xamarin.ExposureNotifications
 		}
 
 		// Tells the local API when new diagnosis keys have been obtained from the server
-		static async Task PlatformDetectExposuresAsync(IEnumerable<string> keyFiles, System.Threading.CancellationToken cancellationToken)
+		static async Task PlatformDetectExposuresAsync(IEnumerable<string> keyFiles, CancellationToken cancellationToken)
 		{
+			// Not really "obsolete" as this is just Google's recommendation
+			// and v1 might still be the only thing on the device.
+#pragma warning disable CS0618
+
 			var config = await GetConfigurationAsync();
+
+			// If the app supports v2, then use the special token.
+			// If the device is still v1, then this special token has no meaning,
+			// but, if it is v2 capable, then the device will use the v2 path (window mode)
+			var token = DailySummaryHandler != null
+				? ExposureNotificationClient.TokenA
+				: Guid.NewGuid().ToString();
+
+			// When going v2, the configuration is not actually used, but if
+			// the device is still v1, then we need it
 
 			await GetClient().ProvideDiagnosisKeysAsync(
 				keyFiles.Select(f => new Java.IO.File(f)).ToList(),
 				config,
-				Guid.NewGuid().ToString());
+				token);
+
+#pragma warning restore CS0618
 		}
 
 		static Task<IEnumerable<TemporaryExposureKey>> PlatformGetTemporaryExposureKeys()
@@ -186,7 +211,7 @@ namespace Xamarin.ExposureNotifications
 							k.GetKeyData(),
 							k.RollingStartIntervalNumber,
 							TimeSpan.FromMinutes(k.RollingPeriod * 10),
-							k.TransmissionRiskLevel.FromNative()));
+							k.TransmissionRiskLevel.FromNativeRiskLevel()));
 				});
 
 		internal static async Task<IEnumerable<ExposureInfo>> PlatformGetExposureInformationAsync(string token)
@@ -197,7 +222,7 @@ namespace Xamarin.ExposureNotifications
 				TimeSpan.FromMinutes(d.DurationMinutes),
 				d.AttenuationValue,
 				d.TotalRiskScore,
-				d.TransmissionRiskLevel.FromNative()));
+				d.TransmissionRiskLevel.FromNativeRiskLevel()));
 			return info;
 		}
 
@@ -213,6 +238,125 @@ namespace Xamarin.ExposureNotifications
 				summary.GetAttenuationDurationsInMinutes()
 					.Select(a => TimeSpan.FromMinutes(a)).ToArray(),
 				summary.SummationRiskScore);
+		}
+
+		internal static async Task<IEnumerable<DailySummary>> PlatformGetDailySummariesAsync()
+		{
+			if (DailySummaryHandler == null)
+				throw new InvalidOperationException("The handler does not support Exposure Window Mode.");
+
+			var config = await DailySummaryHandler.GetDailySummaryConfigurationAsync();
+			if (config == null)
+				throw new InvalidOperationException("The daily summary configuration was not provided on the handler.");
+
+			var builder = new DailySummariesConfig.DailySummariesConfigBuilder();
+
+			var attenuationThresholds = config.AttenuationThresholds.Select(t => (Java.Lang.Integer)t).ToArray();
+			var attenuationWeights = new Java.Lang.Double[4];
+			var aW = config.AttenuationWeights;
+			attenuationWeights[0] = new Java.Lang.Double(aW[DistanceEstimate.Immediate]);
+			attenuationWeights[1] = new Java.Lang.Double(aW[DistanceEstimate.Near]);
+			attenuationWeights[2] = new Java.Lang.Double(aW[DistanceEstimate.Medium]);
+			attenuationWeights[3] = new Java.Lang.Double(aW[DistanceEstimate.Other]);
+
+			builder.SetAttenuationBuckets(attenuationThresholds, attenuationWeights);
+
+			builder.SetDaysSinceExposureThreshold(config.DaysSinceLastExposureThreshold);
+
+			foreach (var pair in config.InfectiousnessWeights)
+			{
+				builder.SetInfectiousnessWeight(pair.Key.ToNative(), pair.Value);
+			}
+
+			foreach (var pair in config.ReportTypeWeights)
+			{
+				builder.SetReportTypeWeight(pair.Key.ToNative(), pair.Value);
+			}
+
+			var summaries = await GetClient().GetDailySummariesAsync(builder.Build());
+			if (summaries == null || summaries.Count == 0)
+				return Array.Empty<DailySummary>();
+
+			return summaries.Select(s => new DailySummary(
+				DateTime.UnixEpoch + TimeSpan.FromDays(s.DaysSinceEpoch),
+				s.SummaryData.FromNative(),
+				new Dictionary<ReportType, DailySummaryReport?>
+				{
+					[ReportType.Unknown] = s.GetReport(ReportType.Unknown),
+					[ReportType.ConfirmedTest] = s.GetReport(ReportType.ConfirmedTest),
+					[ReportType.ConfirmedClinicalDiagnosis] = s.GetReport(ReportType.ConfirmedClinicalDiagnosis),
+					[ReportType.SelfReported] = s.GetReport(ReportType.SelfReported),
+					[ReportType.Recursive] = s.GetReport(ReportType.Recursive),
+					[ReportType.Revoked] = s.GetReport(ReportType.Revoked),
+				}));
+		}
+
+		internal static async Task<IEnumerable<ExposureWindow>> PlatformGetExposureWindowsAsync()
+		{
+			if (DailySummaryHandler == null)
+				throw new InvalidOperationException("The handler does not support Exposure Window Mode.");
+
+			var windows = await GetClient().GetExposureWindowsAsync();
+			if (windows == null || windows.Count == 0)
+				return Array.Empty<ExposureWindow>();
+
+			return windows.Select(w => new ExposureWindow(
+				w.CalibrationConfidence.FromNativeCalibrationConfidence(),
+				DateTime.UnixEpoch + TimeSpan.FromMilliseconds(w.DateMillisSinceEpoch),
+				w.Infectiousness.FromNativeInfectiousness(),
+				w.ReportType.FromNativeReportType(),
+				w.ScanInstances.Select(s => s.FromNative())));
+		}
+
+		internal static async Task PlatformUpdateDiagnosisKeysDataMappingAsync()
+		{
+			if (DailySummaryHandler == null)
+				throw new InvalidOperationException("The handler does not support Exposure Window Mode.");
+
+			var nativeMapping = await GetClient().GetDiagnosisKeysDataMappingAsync();
+			var config = await DailySummaryHandler.GetDailySummaryConfigurationAsync();
+
+			// because this API has a quota, only change when we have to
+			if (AreEqual(nativeMapping, config))
+				return;
+
+			var builder = new DiagnosisKeysDataMapping.DiagnosisKeysDataMappingBuilder();
+			var newMap = new JavaDictionary<Java.Lang.Integer, Java.Lang.Integer>();
+			foreach (var pair in config.DaysSinceOnsetInfectiousness)
+			{
+				newMap[new Java.Lang.Integer(pair.Key)] = new Java.Lang.Integer(pair.Value.ToNative());
+			}
+			builder.SetDaysSinceOnsetToInfectiousness(newMap);
+			builder.SetInfectiousnessWhenDaysSinceOnsetMissing(config.DefaultInfectiousness.ToNative());
+			builder.SetReportTypeWhenMissing(config.DefaultReportType.ToNative());
+
+			await GetClient().SetDiagnosisKeysDataMappingAsync(builder.Build());
+
+			static bool AreEqual(DiagnosisKeysDataMapping mapping, DailySummaryConfiguration config)
+			{
+				if (mapping.InfectiousnessWhenDaysSinceOnsetMissing != config.DefaultInfectiousness.ToNative())
+					return false;
+				if (mapping.ReportTypeWhenMissing != config.DefaultReportType.ToNative())
+					return false;
+				if (mapping.DaysSinceOnsetToInfectiousness.Count != config.DaysSinceOnsetInfectiousness?.Count)
+					return false;
+
+				// check each value in the map [-14, 14]
+				for (var day = -14; day <= 14; day++)
+				{
+					var native = mapping.DaysSinceOnsetToInfectiousness.TryGetValue(new Java.Lang.Integer(day), out var nativeInfect)
+						? ((int)nativeInfect).FromNativeInfectiousness()
+						: Infectiousness.Standard;
+					var managed = config.DaysSinceOnsetInfectiousness.TryGetValue(day, out var infect)
+						? infect
+						: Infectiousness.Standard;
+
+					if (native != managed)
+						return false;
+				}
+
+				return true;
+			}
 		}
 
 		static async Task<Status> PlatformGetStatusAsync()
@@ -258,7 +402,7 @@ namespace Xamarin.ExposureNotifications
 
 	static partial class Utils
 	{
-		public static RiskLevel FromNative(this int riskLevel) =>
+		public static RiskLevel FromNativeRiskLevel(this int riskLevel) =>
 			riskLevel switch
 			{
 				AndroidRiskLevel.RiskLevelLowest => RiskLevel.Lowest,
@@ -284,6 +428,73 @@ namespace Xamarin.ExposureNotifications
 				RiskLevel.VeryHigh => AndroidRiskLevel.RiskLevelVeryHigh,
 				RiskLevel.Highest => AndroidRiskLevel.RiskLevelHighest,
 				_ => AndroidRiskLevel.RiskLevelInvalid,
+			};
+
+		public static int ToNative(this Infectiousness infectiousness) =>
+			infectiousness switch
+			{
+				Infectiousness.None => AndroidInfectiousness.None,
+				Infectiousness.Standard => AndroidInfectiousness.Standard,
+				Infectiousness.High => AndroidInfectiousness.High,
+				_ => AndroidInfectiousness.Standard,
+			};
+
+		public static Infectiousness FromNativeInfectiousness(this int infectiousness) =>
+			infectiousness switch
+			{
+				AndroidInfectiousness.None => Infectiousness.None,
+				AndroidInfectiousness.Standard => Infectiousness.Standard,
+				AndroidInfectiousness.High => Infectiousness.High,
+				_ => Infectiousness.Standard,
+			};
+
+		public static int ToNative(this ReportType reportType) =>
+			reportType switch
+			{
+				ReportType.Unknown => AndroidReportType.Unknown,
+				ReportType.ConfirmedTest => AndroidReportType.ConfirmedTest,
+				ReportType.ConfirmedClinicalDiagnosis => AndroidReportType.ConfirmedClinicalDiagnosis,
+				ReportType.SelfReported => AndroidReportType.SelfReport,
+				ReportType.Recursive => AndroidReportType.Recursive,
+				ReportType.Revoked => AndroidReportType.Revoked,
+				_ => AndroidReportType.Unknown,
+			};
+
+		public static ReportType FromNativeReportType(this int reportType) =>
+			reportType switch
+			{
+				AndroidReportType.Unknown => ReportType.Unknown,
+				AndroidReportType.ConfirmedTest => ReportType.ConfirmedTest,
+				AndroidReportType.ConfirmedClinicalDiagnosis => ReportType.ConfirmedClinicalDiagnosis,
+				AndroidReportType.SelfReport => ReportType.SelfReported,
+				AndroidReportType.Recursive => ReportType.Recursive,
+				AndroidReportType.Revoked => ReportType.Revoked,
+				_ => ReportType.Unknown,
+			};
+
+		public static DailySummaryReport FromNative(this AndroidDailySummary.ExposureSummaryData data) =>
+			new DailySummaryReport(
+				data.MaximumScore,
+				data.ScoreSum,
+				data.WeightedDurationSum);
+
+		public static ScanInstance FromNative(this AndroidScanInstance instance) =>
+			new ScanInstance(
+				instance.MinAttenuationDb,
+				instance.TypicalAttenuationDb,
+				TimeSpan.FromSeconds(instance.SecondsSinceLastScan));
+
+		public static DailySummaryReport? GetReport(this AndroidDailySummary summary, ReportType reportType) =>
+			summary.GetSummaryDataForReportType(reportType.ToNative())?.FromNative();
+
+		public static CalibrationConfidence FromNativeCalibrationConfidence(this int confidence) =>
+			confidence switch
+			{
+				AndroidCalibrationConfidence.Lowest => CalibrationConfidence.Lowest,
+				AndroidCalibrationConfidence.Low => CalibrationConfidence.Low,
+				AndroidCalibrationConfidence.Medium => CalibrationConfidence.Medium,
+				AndroidCalibrationConfidence.High => CalibrationConfidence.High,
+				_ => AndroidCalibrationConfidence.Lowest,
 			};
 	}
 }
