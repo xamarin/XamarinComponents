@@ -4,9 +4,9 @@
 #addin nuget:?package=Cake.Xamarin
 #addin nuget:?package=Cake.FileHelpers
 
-var TARGET = Argument ("t", Argument ("target", "Default"));
+var TARGET = Argument ("t", Argument ("target", "ci"));
 
-string ARTIFACT_VERSION="1.28.0";
+string ARTIFACT_VERSION="1.37.0";
 string JAR_URL = "";
 Dictionary<string, string> JAR_URLS_ARTIFACT_FILES= new Dictionary<string, string>()
 {
@@ -99,11 +99,19 @@ Task ("clean")
 		{
 			if (DirectoryExists ("./output/"))
 			{
-				DeleteDirectory ("./output/", true);
+				DeleteDirectory ("./output/", new DeleteDirectorySettings {
+											Recursive = true,
+											Force = true
+											}
+								);
 			}
 			if (DirectoryExists ("./externals/"))
 			{
-				DeleteDirectory ("./externals/", true);
+				DeleteDirectory ("./externals/", new DeleteDirectorySettings {
+											Recursive = true,
+											Force = true
+											}
+								);
 			}
 		}
 	);
