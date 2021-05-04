@@ -1,6 +1,6 @@
 #load "../../common.cake"
 
-var TARGET = Argument ("t", Argument ("target", "Default"));
+var TARGET = Argument ("t", Argument ("target", "ci"));
 
 var NUGET_VERSION = "1.0.0.1";
 
