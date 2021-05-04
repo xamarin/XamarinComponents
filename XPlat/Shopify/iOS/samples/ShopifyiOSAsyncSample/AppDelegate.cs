@@ -32,8 +32,8 @@ namespace ShopifyiOSSample
 	{
 		// Enter your shop domain and API Key
 		public const string SHOP_DOMAIN = "xamarinbindingexample.myshopify.com";
-		public const string API_KEY = "6149b5dbe23ad2c34bb7098481471e33";
-		public const string CHANNEL_ID = "46682499";
+		public const string API_KEY = "PLACEHOLDER";
+		public const string CHANNEL_ID = "PLACEHOLDER";
 
 		// Enter your merchant ID
 		public const string MERCHANT_ID = "merchant.com.xamarintests.xamarinbindings";
