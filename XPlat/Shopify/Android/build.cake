@@ -1,7 +1,7 @@
 #load "../../../common.cake"
 
 var VERSION = "1.2.4";
-var URL = string.Format ("https://bintray.com/shopify/shopify-android/download_file?file_path=com%2Fshopify%2Fmobilebuysdk%2Fbuy%2F{0}%2Fbuy-{0}.aar", VERSION);
+var URL = $"https://bintray.com/shopify/shopify-android/download_file?file_path=com%2Fshopify%2Fmobilebuysdk%2Fbuy%2F{VERSION}%2Fbuy-{VERSION}.aar";
 
 var TARGET = Argument ("t", Argument ("target", "Default"));
 

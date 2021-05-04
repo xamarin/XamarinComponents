@@ -4,7 +4,7 @@
 var TARGET = Argument ("t", Argument ("target", "Default"));
 
 var AAR_VERSION = "2.8.0";
-var AAR_URL = string.Format ("https://bintray.com/artifact/download/ischwarz/maven/de/codecrafters/tableview/tableview/{0}/tableview-{0}.aar", AAR_VERSION);
+var AAR_URL = $"https://bintray.com/artifact/download/ischwarz/maven/de/codecrafters/tableview/tableview/{AAR_VERSION}/tableview-{AAR_VERSION}.aar";
 var AAR_FILE = "SortableTableView.aar";
 
 var buildSpec = new BuildSpec () {
