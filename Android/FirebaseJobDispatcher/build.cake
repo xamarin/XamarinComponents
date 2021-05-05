@@ -5,7 +5,7 @@ var TARGET = Argument ("t", Argument ("target", "Default"));
 
 var ANDROID_VERSION = "0.8.5";
 var ANDROID_NUGET_VERSION = "0.8.5";
-var ANDROID_URL = string.Format ("https://jcenter.bintray.com/com/firebase/firebase-jobdispatcher/{0}/firebase-jobdispatcher-{0}.aar", ANDROID_VERSION);
+var ANDROID_URL = $"https://jcenter.bintray.com/com/firebase/firebase-jobdispatcher/{ANDROID_VERSION}/firebase-jobdispatcher-{ANDROID_VERSION}.aar";
 var ANDROID_FILE = "firebase-dispatcher.aar";
 
 var buildSpec = new BuildSpec () {

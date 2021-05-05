@@ -9,7 +9,7 @@
         <AndroidUseIntermediateDesignerFile>True</AndroidUseIntermediateDesignerFile>
         <AndroidResgenFile>Resources\Resource.designer.cs</AndroidResgenFile>
 
-        <TargetFrameworks>MonoAndroid81</TargetFrameworks>
+        <TargetFrameworks>MonoAndroid90</TargetFrameworks>
         <AndroidCodegenTarget>XAJavaInterop1</AndroidCodegenTarget>
     </PropertyGroup>
 
@@ -24,7 +24,7 @@
         -->
         <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
         <PackageId>Xamarin.TensorFlow.Lite</PackageId>
-        <PackageVersion>2.1.0.1</PackageVersion>
+        <PackageVersion>2.4.0</PackageVersion>
         <Title>Xamarin.TensorFlow.Lite</Title>
         <PackageDescription>
             Bindings for Google's TensorFlow Lite package (Google Play Services dependency)
@@ -40,17 +40,24 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <TransformFile Include="transforms\*.xml" />
         <TransformFile Include="Transforms\Metadata.xml" />
     </ItemGroup>
 
     <ItemGroup>
-        <LibraryProjectZip Include="..\..\externals\tensorflow-lite.aar">
+        <LibraryProjectZip Include="..\..\externals\tensorflow-lite-2.4.0.aar">
             <Link>Jars\tensorflow-lite.aar</Link>
         </LibraryProjectZip>
     </ItemGroup>
 
+    <PropertyGroup>
+        <!--
+        <JavaDocPaths>..\..\externals\tensorflow-lite-javadocs\</JavaDocPaths>
+        -->
+    </PropertyGroup>
     <ItemGroup>
-      <None Remove="Transforms\Metadata.xml" />
+        <!--
+        <JavaDocJar Include="..\..\externals\tensorflow-lite-javadoc.aar" />
+        <JavaSourceJar Include="..\..\externals\tensorflow-lite-sources.aar" />
+        -->
     </ItemGroup>
 </Project>
