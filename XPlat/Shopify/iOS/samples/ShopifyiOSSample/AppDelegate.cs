@@ -31,12 +31,12 @@ namespace ShopifyiOSSample
 	public class AppDelegate : UIApplicationDelegate
 	{
 		// Enter your shop domain and API Key
-		public const string SHOP_DOMAIN = "xamarinbindingexample.myshopify.com";
-		public const string API_KEY = "PLACEHOLDER";
-		public const string CHANNEL_ID = "PLACEHOLDER";
+		public const string SHOP_DOMAIN = "TODO-xamarinbindingexample.myshopify.com";
+		public const string API_KEY = "TODO-API-KEY";
+		public const string CHANNEL_ID = "TODO-CHANNEL-ID";
 
 		// Enter your merchant ID
-		public const string MERCHANT_ID = "merchant.com.xamarintests.xamarinbindings";
+		public const string MERCHANT_ID = "TODO-MERCHANT-ID";
 
 		public static NSString CheckoutCallbackNotification = (NSString)"CheckoutCallbackNotification";
 
