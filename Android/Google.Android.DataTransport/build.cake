@@ -18,8 +18,8 @@ Dictionary<string, string> URLS_ARTIFACT_FILES= new Dictionary<string, string>()
 		$"./externals/android/transport-backend-cct-2.3.3.aar"
 	},
 	{
-		$"https://maven.google.com//com/google/android/datatransport/transport-runtime/2.2.5/transport-runtime-2.2.5.aar",
-		$"./externals/android/transport-runtime-2.2.5.aar"
+		$"https://maven.google.com//com/google/android/datatransport/transport-runtime/2.2.6/transport-runtime-2.2.6.aar",
+		$"./externals/android/transport-runtime-2.2.6.aar"
 	},
 };
 
@@ -80,11 +80,13 @@ Task ("clean")
 		{
 			if (DirectoryExists ("./externals/"))
 			{
-				DeleteDirectory ("./externals/", true);
+				DeleteDirectory ("./externals/", 
+									new DeleteDirectorySettings { Recursive = true, Force = true });
 			}
 			if (DirectoryExists ("./output/"))
 			{
-				DeleteDirectory ("./output/", true);
+				DeleteDirectory ("./output/", 
+									new DeleteDirectorySettings { Recursive = true, Force = true });
 			}
 		}
 	);

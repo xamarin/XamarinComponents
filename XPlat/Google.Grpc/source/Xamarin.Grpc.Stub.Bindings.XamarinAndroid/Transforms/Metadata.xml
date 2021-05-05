@@ -14,11 +14,6 @@
         Xamarin.Grpc.Stub.Annotations
     </attr>
     
-    <remove-node
-        path="/api/package[@name='io.grpc.stub']/class[@name='CallStreamObserver']/implements[@name='io.grpc.stub.StreamObserver']"
-        >        
-    </remove-node>
-
     <attr
         path="/api/package[@name='io.grpc.stub']/interface[@name='ServerCalls.StreamingRequestMethod']"
         name="visibility"
@@ -31,6 +26,48 @@
         >
         public
     </attr>
+
+    <attr
+        path="/api/package[@name='io.grpc.stub']/class[@name='CallStreamObserver']/method[@name='request' and count(parameter)=1 and parameter[1][@type='int']]"
+        name="abstract"
+        >
+        false
+    </attr>
+    <attr
+        path="/api/package[@name='io.grpc.stub']/class[@name='ClientCallStreamObserver']/method[@name='setMessageCompression' and count(parameter)=1 and parameter[1][@type='boolean']]"
+        name="abstract"
+        >
+        false
+    </attr>
+    <attr
+        path="/api/package[@name='io.grpc.stub']/class[@name='ClientCallStreamObserver']/method[@name='setOnReadyHandler' and count(parameter)=1 and parameter[1][@type='java.lang.Runnable']]"
+        name="abstract"
+        >
+        false
+    </attr>
+    <attr
+        path="/api/package[@name='io.grpc.stub']/class[@name='ServerCallStreamObserver']/method[@name='setMessageCompression' and count(parameter)=1 and parameter[1][@type='boolean']]"
+        name="abstract"
+        >
+        false
+    </attr>
+    <attr
+        path="/api/package[@name='io.grpc.stub']/class[@name='ServerCallStreamObserver']/method[@name='setOnReadyHandler' and count(parameter)=1 and parameter[1][@type='java.lang.Runnable']]"
+        name="abstract"
+        >
+        false
+    </attr>
+
+
+    <add-node
+        path="/api/package[@name='io.grpc.stub']/class[@name='CallStreamObserver']"
+        >
+        <method abstract="false" deprecated="not deprecated" final="false" name="onNext"  bridge="false" native="false" return="void" jni-return="V" static="false" synchronized="false" synthetic="false" visibility="public">
+            <parameter name="p0" type="java.lang.Object" >
+            </parameter>
+        </method>
+    </add-node>
+
 
 
 </metadata>

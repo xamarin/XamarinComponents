@@ -3,10 +3,10 @@
     <string name="shop_url">xamarinbindingexample.myshopify.com</string>
 
     <!-- Add your Shopify API key here -->
-    <string name="shopify_api_key">6149b5dbe23ad2c34bb7098481471e33</string>
+    <string name="shopify_api_key">PLACEHOLDER</string>
 
     <!-- Add your Channel ID here -->
-    <string name="channel_id">46682499</string>
+    <string name="channel_id">PLACEHOLDER</string>
 
     <!-- Application and Activity Names -->
     <string name="app_name">Mobile Buy Sample</string>
