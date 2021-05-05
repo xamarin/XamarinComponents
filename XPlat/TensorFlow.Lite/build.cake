@@ -14,26 +14,26 @@ var TENSOR_FLOW_LITE_URL_SOURCES_VERSION = $"https://repo1.maven.org/maven2/org/
 var TENSOR_FLOW_LITE_GPU_URL_AAR_VERSION = $"https://bintray.com/google/tensorflow/download_file?file_path=org%2Ftensorflow%2Ftensorflow-lite-gpu%2F{TENSOR_FLOW_LITE_GPU_AAR_VERSION}%2Ftensorflow-lite-gpu-{TENSOR_FLOW_LITE_GPU_AAR_VERSION}.aar";
 
 Task("externals")
-	.WithCriteria(!FileExists($"./externals/tensorflow-lite-{AAR_VERSION}.aar"))
-	.WithCriteria(!FileExists($"./externals/tensorflow-lite-{AAR_VERSION}.pom"))
-	.WithCriteria(!FileExists($"./externals/tensorflow-lite-{AAR_VERSION}-javadoc.aar"))
-	.WithCriteria(!FileExists($"./externals/tensorflow-lite-{AAR_VERSION}-sources.aar"))
+	.WithCriteria(!FileExists($"./externals/tensorflow-lite-{TENSOR_FLOW_LITE_AAR_VERSION}.aar"))
+	.WithCriteria(!FileExists($"./externals/tensorflow-lite-{TENSOR_FLOW_LITE_AAR_VERSION}.pom"))
+	.WithCriteria(!FileExists($"./externals/tensorflow-lite-{TENSOR_FLOW_LITE_AAR_VERSION}-javadoc.aar"))
+	.WithCriteria(!FileExists($"./externals/tensorflow-lite-{TENSOR_FLOW_LITE_AAR_VERSION}-sources.aar"))
 
-	.WithCriteria(!FileExists($"./externals/tensorflow-lite-gpu-{AAR_VERSION}.aar"))
-	.WithCriteria(!FileExists($"./externals/tensorflow-lite-gpu-{AAR_VERSION}.pom"))
+	.WithCriteria(!FileExists($"./externals/tensorflow-lite-gpu-{TENSOR_FLOW_LITE_GPU_AAR_VERSION}.aar"))
+	.WithCriteria(!FileExists($"./externals/tensorflow-lite-gpu-{TENSOR_FLOW_LITE_GPU_AAR_VERSION}.pom"))
 	.Does(() => 
 {
 	EnsureDirectoryExists("./externals/");
-	DownloadFile(TENSOR_FLOW_LITE_URL_AAR_VERSION, "./externals/tensorflow-lite.aar");
+	DownloadFile(TENSOR_FLOW_LITE_URL_AAR_VERSION, $"./externals/tensorflow-lite-{TENSOR_FLOW_LITE_AAR_VERSION}.aar");
 	DownloadFile(TENSOR_FLOW_LITE_URL_POM_VERSION, "./externals/tensorflow-lite.pom");
-	DownloadFile(TENSOR_FLOW_LITE_URL_JAVADOC_VERSION, "./externals/tensorflow-lite-javadoc.aar");
-	DownloadFile(TENSOR_FLOW_LITE_URL_SOURCES_VERSION, "./externals/tensorflow-lite-sources.aar");
+	DownloadFile(TENSOR_FLOW_LITE_URL_JAVADOC_VERSION, $"./externals/tensorflow-lite-javadoc-{TENSOR_FLOW_LITE_AAR_VERSION}.aar");
+	DownloadFile(TENSOR_FLOW_LITE_URL_SOURCES_VERSION, $"./externals/tensorflow-lite-sources-{TENSOR_FLOW_LITE_AAR_VERSION}.aar");
 
-	DownloadFile(TENSOR_FLOW_LITE_GPU_URL_AAR_VERSION, "./externals/tensorflow-lite-gpu.aar");
+	DownloadFile(TENSOR_FLOW_LITE_GPU_URL_AAR_VERSION, $"./externals/tensorflow-lite-gpu-{TENSOR_FLOW_LITE_GPU_AAR_VERSION}.aar");
 
 
-	Unzip ("./externals/tensorflow-lite-javadoc.aar", "./externals/tensorflow-lite-javadoc/");
-	Unzip ("./externals/tensorflow-lite-sources.aar", "./externals/tensorflow-lite-sources/");
+	Unzip ($"./externals/tensorflow-lite-javadoc-{TENSOR_FLOW_LITE_AAR_VERSION}.aar", "./externals/tensorflow-lite-javadoc/");
+	Unzip ($"./externals/tensorflow-lite-sources-{TENSOR_FLOW_LITE_AAR_VERSION}.aar", "./externals/tensorflow-lite-sources/");
 
 	var csproj_01 = "./source/Xamarin.TensorFlow.Lite.Bindings.XamarinAndroid/Xamarin.TensorFlow.Lite.Bindings.XamarinAndroid.csproj";
 	var csproj_02 = "./source/Xamarin.TensorFlow.Lite.Gpu.Bindings.XamarinAndroid/Xamarin.TensorFlow.Lite.Gpu.Bindings.XamarinAndroid.csproj";
