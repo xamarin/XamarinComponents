@@ -14,9 +14,9 @@ namespace BeaconExample
 	[Register ("AppDelegate")]
 	public partial class AppDelegate : UIApplicationDelegate
 	{
-        const string CLOUD_APP_ID = "beacon-example"; //"YOUR-APP-ID";
-        const string CLOUD_APP_TOKEN = "PLACEHOLDER"; //"YOUR-APP-TOKEN";
-        const string PROXIMITY_UUID = "PLACEHOLDER";
+        const string CLOUD_APP_ID = "YOUR-APP-ID";
+        const string CLOUD_APP_TOKEN = "YOUR-APP-TOKEN";
+        const string PROXIMITY_UUID = "B9407F30-F5F8-466E-AFF9-25556B57FE6D";
 
         public static NSUuid BeaconUUID
 		{
