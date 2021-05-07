@@ -16,6 +16,7 @@ resources:
       type: github
       name: xamarin/XamarinComponents
       endpoint: xamarin
+      ref: refs/heads/mattleibow-patch-1
 
 jobs:
   - template: .ci/build.yml@components
