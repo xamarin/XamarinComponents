@@ -70,6 +70,8 @@ Task("nuget")
 
 Task("samples");
 Task("component");
+Task("ci")
+	.IsDependentOn("samples");
 
 Task ("externals")
 	.Does (() => 
