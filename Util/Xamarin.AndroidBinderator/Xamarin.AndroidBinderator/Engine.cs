@@ -15,6 +15,7 @@ using RazorLight;
 using MavenGroup = MavenNet.Models.Group;
 using System.Security.Cryptography;
 using System.Text;
+using System.Diagnostics;
 
 namespace AndroidBinderator
 {
@@ -200,8 +201,44 @@ namespace AndroidBinderator
 						using (var sw = File.Create(sourcesFile))
 							await astrm.CopyToAsync(sw);
 					}
-					catch { }
+					catch
+					{
+						StringBuilder sb = new StringBuilder();
+						sb.AppendLine("OpenArtifactSourcesFile failed for: {mavenArtifact.GroupId}, {mavenArtifact.ArtifactId}, {version}");
+						Trace.WriteLine(sb.ToString());
+					}
 				}
+
+				if (config.DownloadPoms)
+				{
+					try
+					{
+						using (var astrm = await maven.OpenArtifactPomFile(mavenArtifact.GroupId, mavenArtifact.ArtifactId, version))
+						using (var sw = File.Create(sourcesFile))
+							await astrm.CopyToAsync(sw);
+					}
+					catch
+					{
+						StringBuilder sb = new StringBuilder();
+						sb.AppendLine("DownloadPoms failed for: {mavenArtifact.GroupId}, {mavenArtifact.ArtifactId}, {version}");
+						Trace.WriteLine(sb.ToString());
+					}
+				}
+
+
+				if (config.DownloadJavaDocJars)
+				{
+					try
+					{
+					}
+					catch
+					{
+						StringBuilder sb = new StringBuilder();
+						sb.AppendLine("DownloadPoms failed for: {mavenArtifact.GroupId}, {mavenArtifact.ArtifactId}, {version}");
+						Trace.WriteLine(sb.ToString());
+					}
+				}
+
 
 				if (Directory.Exists(artifactExtractDir))
 					Directory.Delete(artifactExtractDir, true);
