@@ -2,6 +2,7 @@
 using Mono.Options;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Threading.Tasks;
 
@@ -11,6 +12,8 @@ namespace Xamarin.AndroidBinderator.Tool
     {
         public static async Task Main(string[] args)
         {
+            Trace.Listeners.Add(new TextWriterTraceListener(Console.Out));
+
             var configs = new List<string>();
             var basePath = string.Empty;
             var shouldShowHelp = false;
