@@ -4,7 +4,7 @@
 var TARGET = Argument ("t", Argument ("target", "Default"));
 
 var AAR_VERSION = "1.1.5";
-var AAR_URL = string.Format ("https://bintray.com/artifact/download/jlmd/maven/com/github/jlmd/AnimatedCircleLoadingView/{0}/AnimatedCircleLoadingView-{0}.aar", AAR_VERSION);
+var AAR_URL = $"https://bintray.com/artifact/download/jlmd/maven/com/github/jlmd/AnimatedCircleLoadingView/{AAR_VERSION}/AnimatedCircleLoadingView-{AAR_VERSION}.aar";
 var AAR_DEST = "./externals/AnimatedCircleLoadingView.aar";
 
 var buildSpec = new BuildSpec () {
