@@ -58,12 +58,12 @@ Task ("externals")
 
 
 	// Update .csproj nuget versions
-	XmlPoke("./source/Kotlinx.Coroutines.Core/Kotlinx.Coroutines.Core.csproj", "/Project/PropertyGroup/PackageVersion", KOTLINX_NUGET_VERSION);
-	XmlPoke("./source/Kotlinx.Coroutines.Android/Kotlinx.Coroutines.Android.csproj", "/Project/PropertyGroup/PackageVersion", KOTLINX_NUGET_VERSION);
-	XmlPoke("./source/Kotlinx.Coroutines.Jdk8/Kotlinx.Coroutines.Jdk8.csproj", "/Project/PropertyGroup/PackageVersion", KOTLINX_NUGET_VERSION);
-	XmlPoke("./source/Kotlinx.Coroutines.Core.Jvm/Kotlinx.Coroutines.Core.Jvm.csproj", "/Project/PropertyGroup/PackageVersion", KOTLINX_NUGET_VERSION);
-	XmlPoke("./source/Kotlinx.Coroutines.Reactive/Kotlinx.Coroutines.Reactive.csproj", "/Project/PropertyGroup/PackageVersion", KOTLINX_NUGET_VERSION);
-	XmlPoke("./source/Kotlinx.Coroutines.Rx2/Kotlinx.Coroutines.Rx2.csproj", "/Project/PropertyGroup/PackageVersion", KOTLINX_NUGET_VERSION);
+	XmlPoke("./source/KotlinX.Coroutines.Core/KotlinX.Coroutines.Core.csproj", "/Project/PropertyGroup/PackageVersion", KOTLINX_NUGET_VERSION);
+	XmlPoke("./source/KotlinX.Coroutines.Android/KotlinX.Coroutines.Android.csproj", "/Project/PropertyGroup/PackageVersion", KOTLINX_NUGET_VERSION);
+	XmlPoke("./source/KotlinX.Coroutines.Jdk8/KotlinX.Coroutines.Jdk8.csproj", "/Project/PropertyGroup/PackageVersion", KOTLINX_NUGET_VERSION);
+	XmlPoke("./source/KotlinX.Coroutines.Core.Jvm/KotlinX.Coroutines.Core.Jvm.csproj", "/Project/PropertyGroup/PackageVersion", KOTLINX_NUGET_VERSION);
+	XmlPoke("./source/KotlinX.Coroutines.Reactive/KotlinX.Coroutines.Reactive.csproj", "/Project/PropertyGroup/PackageVersion", KOTLINX_NUGET_VERSION);
+	XmlPoke("./source/KotlinX.Coroutines.Rx2/KotlinX.Coroutines.Rx2.csproj", "/Project/PropertyGroup/PackageVersion", KOTLINX_NUGET_VERSION);
 });
 
 Task("native")
@@ -82,7 +82,7 @@ Task("libs")
 	.IsDependentOn("externals")
 	.Does(() =>
 {
-	MSBuild("./KotlinxCoroutines.sln", c => {
+	MSBuild("./KotlinXCoroutines.sln", c => {
 		c.Configuration = "Release";
 		c.Restore = true;
 		c.Properties.Add("DesignTimeBuild", new [] { "false" });
@@ -93,7 +93,7 @@ Task("nuget")
 	.IsDependentOn("libs")
 	.Does(() =>
 {
-	MSBuild ("./KotlinxCoroutines.sln", c => {
+	MSBuild ("./KotlinXCoroutines.sln", c => {
 		c.Configuration = "Release";
 		c.Targets.Clear();
 		c.Targets.Add("Pack");
@@ -127,7 +127,10 @@ Task ("clean")
 	.Does (() =>
 {
 	if (DirectoryExists ("./externals/"))
-		DeleteDirectory ("./externals", true);
+		DeleteDirectory ("./externals", new DeleteDirectorySettings {
+												Recursive = true,
+												Force = true
+											});
 });
 
 RunTarget (TARGET);

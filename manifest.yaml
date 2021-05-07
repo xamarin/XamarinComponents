@@ -350,9 +350,9 @@
   TriggerPaths: [ Android/SquareOkHttp3LoggingInterceptor ]
   MacBuildTargets: [ ci ]
   WindowsBuildTargets: [ ci ]
-- Name: KotlinxCoroutines
-  BuildScript: ./Android/KotlinxCoroutines/build.cake
-  TriggerPaths: [ Android/KotlinxCoroutines ]
+- Name: KotlinXCoroutines
+  BuildScript: ./Android/KotlinXCoroutines/build.cake
+  TriggerPaths: [ Android/KotlinXCoroutines ]
   WindowsBuildTargets: [ ci ]
   MacBuildTargets: [ ci ]
 

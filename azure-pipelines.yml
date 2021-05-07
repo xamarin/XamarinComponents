@@ -41,15 +41,15 @@ jobs:
       preBuildSteps:
         - pwsh: |
             dotnet tool install --global boots
-            boots https://aka.ms/xamarin-android-commercial-d16-8-macos
+            boots https://aka.ms/xamarin-android-commercial-d16-9-macos
           condition: eq(variables['System.JobName'], 'macos')
         - pwsh: |
             dotnet tool install --global boots
-            boots https://aka.ms/xamarin-android-commercial-d16-8-windows
+            boots https://aka.ms/xamarin-android-commercial-d16-9-windows
           condition: eq(variables['System.JobName'], 'windows')
       tools:
-        - 'xamarin.androidbinderator.tool': '0.4.2'
-        - 'xamarin.androidx.migration.tool': '1.0.7.1'
+        - 'xamarin.androidbinderator.tool': '0.4.3'
+        - 'xamarin.androidx.migration.tool': '1.0.8'
   - ${{ if eq(variables['System.TeamProject'], 'devdiv') }}:
     - template: sign-artifacts/jobs/v2.yml@internal-templates
       parameters:

@@ -1,6 +1,0 @@
-﻿<metadata>
-
-    <attr path="/api/package[@name='kotlinx.coroutines.future']" name="managedName">Xamarin.Kotlinx.Coroutines.Future</attr>
-    <attr path="/api/package[@name='kotlinx.coroutines.stream']" name="managedName">Xamarin.Kotlinx.Coroutines.Stream</attr>
-    <attr path="/api/package[@name='kotlinx.coroutines.time']" name="managedName">Xamarin.Kotlinx.Coroutines.Time</attr>
-</metadata>
