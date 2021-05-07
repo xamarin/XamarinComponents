@@ -1,7 +1,7 @@
 
 #load "../../common.cake"
 
-var TARGET = Argument ("t", Argument ("target", "Default"));
+var TARGET = Argument ("t", Argument ("target", "ci"));
 
 var LIB_VERSION = "1.6.0";
 var AAR_URL = $"http://search.maven.org/remotecontent?filepath=com/doomonafireball/betterpickers/library/{LIB_VERSION}/library-{LIB_VERSION}.aar";
