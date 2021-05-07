@@ -26,4 +26,8 @@
         Java.Lang.Object
     </attr>
 
+    <remove-node
+        path="/api/package[@name='kotlin.coroutines.jvm.internal']"
+        />
+
 </metadata>
