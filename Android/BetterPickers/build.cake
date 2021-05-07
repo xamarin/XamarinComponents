@@ -4,7 +4,7 @@
 var TARGET = Argument ("t", Argument ("target", "Default"));
 
 var LIB_VERSION = "1.6.0";
-var AAR_URL = string.Format ("http://search.maven.org/remotecontent?filepath=com/doomonafireball/betterpickers/library/{0}/library-{0}.aar", LIB_VERSION);
+var AAR_URL = $"http://search.maven.org/remotecontent?filepath=com/doomonafireball/betterpickers/library/{LIB_VERSION}/library-{LIB_VERSION}.aar";
 
 var ASB_LIB_VERSION = "1.4.0";
 var ASB_AAR_URL = string.Format ("https://bintray.com/artifact/download/bod/JRAF/org/jraf/android-switch-backport/{0}/android-switch-backport-{0}.aar", ASB_LIB_VERSION);

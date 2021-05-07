@@ -44,7 +44,7 @@
     </ItemGroup>
 
     <ItemGroup>
-        <LibraryProjectZip Include="..\..\externals\tensorflow-lite.aar">
+        <LibraryProjectZip Include="..\..\externals\tensorflow-lite-2.4.0.aar">
             <Link>Jars\tensorflow-lite.aar</Link>
         </LibraryProjectZip>
     </ItemGroup>
