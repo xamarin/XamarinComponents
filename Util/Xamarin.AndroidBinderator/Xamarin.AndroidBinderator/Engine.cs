@@ -168,11 +168,17 @@ namespace AndroidBinderator
 					using (var sw = File.Create(md5File))
 						await astrm.CopyToAsync(sw);
 				}
-				catch
+				catch (System.Exception exc)
 				{
 					// Then hash the downloaded artifact
 					using (var file = File.OpenRead(artifactFile))
 						File.WriteAllText(md5File, Util.HashMd5(file));
+
+					StringBuilder sb = new StringBuilder();
+					sb.AppendLine($"OpenLibraryFile failed for: {mavenArtifact.GroupId}, {mavenArtifact.ArtifactId}, {version}");
+					sb.AppendLine($"Message");
+					sb.AppendLine($"{exc.Message}");
+					Trace.WriteLine(sb.ToString());
 				}
 
 				// Determine Sha256
@@ -186,11 +192,17 @@ namespace AndroidBinderator
 					using (var sw = File.Create(sha256File))
 						await astrm.CopyToAsync(sw);
 				}
-				catch
+				catch (System.Exception exc)
 				{
 					// Create Sha256 hash if we couldn't download
 					using (var file = File.OpenRead(artifactFile))
 						File.WriteAllText(sha256File, Util.HashSha256(file));
+
+					StringBuilder sb = new StringBuilder();
+					sb.AppendLine($"OpenLibraryFile failed for: {mavenArtifact.GroupId}, {mavenArtifact.ArtifactId}, {version}");
+					sb.AppendLine($"Message");
+					sb.AppendLine($"{exc.Message}");
+					Trace.WriteLine(sb.ToString());
 				}
 
 				if (config.DownloadJavaSourceJars)
@@ -201,10 +213,12 @@ namespace AndroidBinderator
 						using (var sw = File.Create(sourcesFile))
 							await astrm.CopyToAsync(sw);
 					}
-					catch
+					catch (System.Exception exc)
 					{
 						StringBuilder sb = new StringBuilder();
-						sb.AppendLine("OpenArtifactSourcesFile failed for: {mavenArtifact.GroupId}, {mavenArtifact.ArtifactId}, {version}");
+						sb.AppendLine($"DownloadJavaSourceJars failed for: {mavenArtifact.GroupId}, {mavenArtifact.ArtifactId}, {version}");
+						sb.AppendLine($"Message");
+						sb.AppendLine($"{exc.Message}");
 						Trace.WriteLine(sb.ToString());
 					}
 				}
@@ -217,10 +231,12 @@ namespace AndroidBinderator
 						using (var sw = File.Create(sourcesFile))
 							await astrm.CopyToAsync(sw);
 					}
-					catch
+					catch (System.Exception exc)
 					{
 						StringBuilder sb = new StringBuilder();
-						sb.AppendLine("DownloadPoms failed for: {mavenArtifact.GroupId}, {mavenArtifact.ArtifactId}, {version}");
+						sb.AppendLine($"DownloadPoms failed for: {mavenArtifact.GroupId}, {mavenArtifact.ArtifactId}, {version}");
+						sb.AppendLine($"Message");
+						sb.AppendLine($"{exc.Message}");
 						Trace.WriteLine(sb.ToString());
 					}
 				}
@@ -231,10 +247,12 @@ namespace AndroidBinderator
 					try
 					{
 					}
-					catch
+					catch(System.Exception exc)
 					{
 						StringBuilder sb = new StringBuilder();
-						sb.AppendLine("DownloadPoms failed for: {mavenArtifact.GroupId}, {mavenArtifact.ArtifactId}, {version}");
+						sb.AppendLine($"DownloadJavaDocJars failed for: {mavenArtifact.GroupId}, {mavenArtifact.ArtifactId}, {version}");
+						sb.AppendLine($"Message");
+						sb.AppendLine($"{exc.Message}");
 						Trace.WriteLine(sb.ToString());
 					}
 				}
@@ -355,8 +373,16 @@ namespace AndroidBinderator
 				if (exceptions.Any())
                 {
 					StringBuilder sb = new StringBuilder();
-					sb.AppendLine("Dependency errors:");
-					sb.AppendLine(string.Join(Environment.NewLine, exceptions));
+					sb.AppendLine("");
+					sb.AppendLine($"Dependency errors : {exceptions.Count}");
+					int i = 1;
+					foreach(string exc in exceptions)
+					{
+						sb.AppendLine($"{i}");
+						sb.AppendLine($"	{exc}");
+						i++;
+					}
+
 					throw new Exception(sb.ToString());
                 }
 
