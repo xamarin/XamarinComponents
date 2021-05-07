@@ -8,7 +8,7 @@ var ANDROID_NUGET_VERSION = "0.7.0";
 var IOS_VERSION = "0.92.0";
 var IOS_NUGET_VERSION = "0.92.0";
 
-var AAR_URL = string.Format ("https://bintray.com/openid/net.openid/download_file?file_path=net%2Fopenid%2Fappauth%2F{0}%2Fappauth-{0}.aar", ANDROID_VERSION);
+var AAR_URL = $"https://repo1.maven.org/maven2/net/openid/appauth/{ANDROID_VERSION}/appauth-{ANDROID_VERSION}.aar";
 
 var PODFILE = new List<string> {
 	"platform :ios, '8.0'",

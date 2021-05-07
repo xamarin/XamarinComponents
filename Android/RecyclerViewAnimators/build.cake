@@ -4,7 +4,7 @@
 var TARGET = Argument ("t", Argument ("target", "Default"));
 
 var JAR_VERSION = "2.1.0";
-var JAR_URL = string.Format ("https://bintray.com/artifact/download/wasabeef/maven/jp/wasabeef/recyclerview-animators/{0}/recyclerview-animators-{0}.aar", JAR_VERSION);
+var JAR_URL = $"https://repo1.maven.org/maven2/jp/wasabeef/recyclerview-animators/{JAR_VERSION}/recyclerview-animators-{JAR_VERSION}.aar";
 var JAR_DEST = "./externals/RecyclerViewAnimators.aar";
 
 var buildSpec = new BuildSpec () {

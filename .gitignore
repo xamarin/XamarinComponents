@@ -12,3 +12,4 @@ tmpnupkg/
 .DS_Store
 *.user
 artifacts/
+.idea/
