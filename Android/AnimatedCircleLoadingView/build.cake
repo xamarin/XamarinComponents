@@ -1,7 +1,7 @@
 
 #load "../../common.cake"
 
-var TARGET = Argument ("t", Argument ("target", "Default"));
+var TARGET = Argument ("t", Argument ("target", "ci"));
 
 var AAR_VERSION = "1.1.5";
 var AAR_URL = $"https://bintray.com/artifact/download/jlmd/maven/com/github/jlmd/AnimatedCircleLoadingView/{AAR_VERSION}/AnimatedCircleLoadingView-{AAR_VERSION}.aar";
@@ -42,6 +42,9 @@ Task ("clean").IsDependentOn ("clean-base").Does (() =>
 {	
 	DeleteFiles ("./externals/*.aar");
 });
+
+Task("ci")
+	.IsDependentOn("nuget");
 
 SetupXamarinBuildTasks (buildSpec, Tasks, Task);
 

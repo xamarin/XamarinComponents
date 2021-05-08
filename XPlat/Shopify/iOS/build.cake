@@ -3,7 +3,7 @@
 var VERSION = "1.2.6";
 var URL = string.Format ("https://github.com/Shopify/mobile-buy-sdk-ios/archive/{0}.zip", VERSION);
 
-var TARGET = Argument ("t", Argument ("target", "Default"));
+var TARGET = Argument ("t", Argument ("target", "ci"));
 
 var buildSpec = new BuildSpec {
 	Libs = new [] {
@@ -74,6 +74,11 @@ Task ("clean").IsDependentOn ("clean-base").Does (() =>
 	if (DirectoryExists ("./externals/"))
 		DeleteDirectory ("./externals/", true);
 });
+
+Task("ci")
+	.IsDependentOn("nuget");
+
+
 
 SetupXamarinBuildTasks (buildSpec, Tasks, Task);
 

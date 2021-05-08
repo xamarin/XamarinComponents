@@ -3,7 +3,7 @@
 var VERSION = "1.2.4";
 var URL = $"https://bintray.com/shopify/shopify-android/download_file?file_path=com%2Fshopify%2Fmobilebuysdk%2Fbuy%2F{VERSION}%2Fbuy-{VERSION}.aar";
 
-var TARGET = Argument ("t", Argument ("target", "Default"));
+var TARGET = Argument ("t", Argument ("target", "ci"));
 
 var buildSpec = new BuildSpec {
 	Libs = new [] {
@@ -47,6 +47,10 @@ Task ("clean").IsDependentOn ("clean-base").Does (() =>
 	if (DirectoryExists ("./externals/"))
 		DeleteDirectory ("./externals/", true);
 });
+
+Task("ci")
+	.IsDependentOn("nuget");
+
 
 SetupXamarinBuildTasks (buildSpec, Tasks, Task);
 

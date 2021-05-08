@@ -1,7 +1,7 @@
 
 #load "../../common.cake"
 
-var TARGET = Argument ("t", Argument ("target", "Default"));
+var TARGET = Argument ("t", Argument ("target", "ci"));
 
 var JAR_VERSION = "2.1.0";
 var JAR_URL = $"https://repo1.maven.org/maven2/jp/wasabeef/recyclerview-animators/{JAR_VERSION}/recyclerview-animators-{JAR_VERSION}.aar";
