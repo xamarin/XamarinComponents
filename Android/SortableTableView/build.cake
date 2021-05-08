@@ -38,7 +38,12 @@ Task ("externals")
 	if (!DirectoryExists ("./externals/"))
 		CreateDirectory ("./externals/");
 		
-	DownloadFile (AAR_URL, "./externals/" + AAR_FILE);
+	Information($"Downloading :");
+	Information($"		{AAR_URL}");
+	Information($"to :");
+	Information($"		{AAR_FILE}");
+
+	DownloadFile (AAR_URL, "./externals/" + AAR_FILE);		
 });
 
 Task ("clean").IsDependentOn ("clean-base").Does (() => 
@@ -47,7 +52,15 @@ Task ("clean").IsDependentOn ("clean-base").Does (() =>
 });
 
 Task("ci")
-	.IsDependentOn("nuget");
+	//.IsDependentOn("nuget")
+	.Does 
+	(
+		() => 
+		{
+			Warning($"Not available (moljac 2021-05-08) :");
+			Information($"		{AAR_URL}");
+		}
+	);
 
 SetupXamarinBuildTasks (buildSpec, Tasks, Task);
 

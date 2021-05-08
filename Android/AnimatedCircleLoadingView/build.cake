@@ -33,8 +33,15 @@ var buildSpec = new BuildSpec () {
 Task ("externals").Does (() => 
 {
 	EnsureDirectoryExists ("./externals/");
+	Information($"Downloading :");
+	Information($"		{AAR_URL}");
+	Information($"to :");
+	Information($"		{AAR_DEST}");
+
 	if (!FileExists (AAR_DEST))
+	{	
 		DownloadFile (AAR_URL, AAR_DEST);
+	}
 });
 
 
@@ -44,7 +51,15 @@ Task ("clean").IsDependentOn ("clean-base").Does (() =>
 });
 
 Task("ci")
-	.IsDependentOn("nuget");
+	//.IsDependentOn("nuget")
+	.Does 
+	(
+		() => 
+		{
+			Warning($"Not available (moljac 2021-05-08) :");
+			Information($"		{AAR_URL}");
+		}
+	);
 
 SetupXamarinBuildTasks (buildSpec, Tasks, Task);
 
