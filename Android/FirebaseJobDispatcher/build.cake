@@ -1,7 +1,7 @@
 
 #load "../../common.cake"
 
-var TARGET = Argument ("t", Argument ("target", "Default"));
+var TARGET = Argument ("t", Argument ("target", "ci"));
 
 var ANDROID_VERSION = "0.8.5";
 var ANDROID_NUGET_VERSION = "0.8.5";
@@ -79,6 +79,9 @@ Task ("clean").IsDependentOn ("clean-base").Does (() =>
 {	
 	DeleteFiles ("./externals/*.aar");
 });
+
+Task("ci")
+	.IsDependentOn("nuget");
 
 SetupXamarinBuildTasks (buildSpec, Tasks, Task);
 

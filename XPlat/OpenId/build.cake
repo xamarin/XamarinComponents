@@ -1,7 +1,7 @@
 
 #load "../../common.cake"
 
-var TARGET = Argument ("t", Argument ("target", "Default"));
+var TARGET = Argument ("t", Argument ("target", "ci"));
 
 var ANDROID_VERSION = "0.7.0";
 var ANDROID_NUGET_VERSION = "0.7.0";
@@ -105,6 +105,9 @@ Task ("clean").IsDependentOn ("clean-base").Does (() =>
 	if (DirectoryExists ("./externals"))
 		DeleteDirectory ("./externals", true);
 });
+
+Task("ci")
+	.IsDependentOn("nuget");
 
 SetupXamarinBuildTasks (buildSpec, Tasks, Task);
 

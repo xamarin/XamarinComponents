@@ -1,7 +1,7 @@
 
 #load "../../common.cake"
 
-var TARGET = Argument ("t", Argument ("target", "Default"));
+var TARGET = Argument ("t", Argument ("target", "ci"));
 
 var AAR_VERSION = "2.8.0";
 var AAR_URL = $"https://bintray.com/artifact/download/ischwarz/maven/de/codecrafters/tableview/tableview/{AAR_VERSION}/tableview-{AAR_VERSION}.aar";
@@ -45,6 +45,9 @@ Task ("clean").IsDependentOn ("clean-base").Does (() =>
 {	
 	DeleteFiles ("./externals/*.aar");
 });
+
+Task("ci")
+	.IsDependentOn("nuget");
 
 SetupXamarinBuildTasks (buildSpec, Tasks, Task);
 

@@ -48,6 +48,9 @@ Task ("clean").IsDependentOn ("clean-base").Does (() =>
 	DeleteFiles ("./externals/*.aar");
 });
 
+Task("ci")
+	.IsDependentOn("nuget");
+
 SetupXamarinBuildTasks (buildSpec, Tasks, Task);
 
 RunTarget (TARGET);
