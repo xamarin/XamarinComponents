@@ -22,12 +22,17 @@ namespace LiquidFloatingActionButtonSample
         {
             base.ViewDidLoad();
 
-            var font = UIFont.SystemFontOfSize(10);
+            var font = UIFont.SystemFontOfSize(12);
+
+            LiquidFloatingCell.DefaultTitleColor = UIColor.White;
+
             var cells = new List<LiquidFloatingCell>
             {
-                new LiquidFloatingCell(UIImage.FromBundle("ic_cloud"), "cloud").TitleFont(font).TitleColor(UIColor.White),
-                new LiquidFloatingCell(UIImage.FromBundle("ic_system"), "system").TitleFont(font).TitleColor(UIColor.White),
-                new LiquidFloatingCell(UIImage.FromBundle("ic_place"), "place").TitleFont(font).TitleColor(UIColor.White),
+                new LiquidFloatingCell(UIImage.FromBundle("ic_cloud"), "cloud")
+                    .WithTitleFont(font)
+                    .WithTitleColor(UIColor.Green),
+                new LiquidFloatingCell(UIImage.FromBundle("ic_system"), "system"),
+                new LiquidFloatingCell(UIImage.FromBundle("ic_place"), "place")
             };
 
             topLeftButton.Image = UIImage.FromBundle("ic_art");
@@ -37,12 +42,14 @@ namespace LiquidFloatingActionButtonSample
             {
                 topLeftButton.Close();
             };
-
+            topLeftButton.TitlePosition = TitlePositions.Right;
+            
             bottomRightButton.Cells = cells;
             bottomRightButton.CellSelected += delegate
             {
                 bottomRightButton.Close();
             };
+            bottomRightButton.TitlePosition = TitlePositions.Left;
         }
     }
 }

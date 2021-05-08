@@ -28,6 +28,16 @@ namespace AnimatedButtons
         private UIImageView imageView;
 
         private UIColor originalColor = UIColor.Clear;
+        private UIFont _titleFont;
+        private UIColor _titleColor;
+
+        public static UIColor DefaultTitleColor { get; set; } = UIColor.LabelColor;
+
+        public static UIFont DefaultTitleFont { get; set; } = UIFont.SystemFontOfSize(UIFont.SystemFontSize);
+
+        public UIFont TitleFont { get => _titleFont; }
+
+        public UIColor TitleColor { get => _titleColor; }
 
         public UIView View { get; private set; }
 
@@ -44,7 +54,7 @@ namespace AnimatedButtons
             internal set { actionButton.SetTarget(value); }
         }
 
-        public bool Responsible { get; set; }
+        public bool Responsible { get; set; }        
 
         public override void LayoutSubviews()
         {
@@ -56,13 +66,26 @@ namespace AnimatedButtons
                 var offset = (Frame.Width - radius) / 2f;
                 imageView.Frame = new CGRect(offset, offset, radius, radius);
             }
+        }
+
+        public override void WillMoveToSuperview(UIView newsuper)
+        {
+            base.WillMoveToSuperview(newsuper);
+
+            Label.Font = _titleFont ?? DefaultTitleFont;
+            Label.TextColor = _titleColor ?? DefaultTitleColor;
 
             if (Label != null)
             {
-                var radius = Frame.Width * imageRatio;
-                var offset = (Frame.Width - radius) / 2f;
                 var size = (Label.Text + " ").StringSize(Label.Font);
-                Label.Frame = new CGRect(-size.Width, (Frame.Height - size.Height) / 2, size.Width, size.Height);
+                var actionButton = ActionButton;
+                if (actionButton != null)
+                {
+                    if (actionButton.TitlePosition == TitlePositions.Left)
+                        Label.Frame = new CGRect(-size.Width, (Frame.Height - size.Height) / 2, size.Width, size.Height);
+                    else
+                        Label.Frame = new CGRect(Frame.Width + (" ").StringSize(Label.Font).Width, (Frame.Height - size.Height) / 2, size.Width, size.Height);
+                }
             }
         }
 
@@ -152,15 +175,16 @@ namespace AnimatedButtons
             }
         }
 
-        public LiquidFloatingCell TitleFont(UIFont font)
+        public LiquidFloatingCell WithTitleFont(UIFont font)
         {
-            Label.Font = font;
+            _titleFont = font;
             return this;
         }
 
-        public LiquidFloatingCell TitleColor(UIColor color)
+        public LiquidFloatingCell WithTitleColor(UIColor color)
         {
-            Label.TextColor = color;
+            _titleColor = color;
+            
             return this;
         }
     }
