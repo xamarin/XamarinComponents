@@ -68,10 +68,10 @@ Task("nuget")
 			.WithProperty("PackageOutputPath", "../../output"));
 });
 
-Task("samples");
+Task("samples")
 	.IsDependentOn("nuget");
 Task("component");
-Task("ci");
+Task("ci")
 	.IsDependentOn("samples");
 
 Task ("externals")
