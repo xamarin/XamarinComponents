@@ -31,6 +31,8 @@ namespace AnimatedButtons
 
         public UIView View { get; private set; }
 
+        public UILabel Label { get; private set; }
+
         public LiquidFloatingActionButton ActionButton
         {
             get
@@ -54,11 +56,25 @@ namespace AnimatedButtons
                 var offset = (Frame.Width - radius) / 2f;
                 imageView.Frame = new CGRect(offset, offset, radius, radius);
             }
+
+            if (Label != null)
+            {
+                var radius = Frame.Width * imageRatio;
+                var offset = (Frame.Width - radius) / 2f;
+                var size = (Label.Text + " ").StringSize(Label.Font);
+                Label.Frame = new CGRect(-size.Width, (Frame.Height - size.Height) / 2, size.Width, size.Height);
+            }
         }
 
         public LiquidFloatingCell(UIImage icon)
         {
             Setup(icon);
+        }
+
+        public LiquidFloatingCell(UIImage icon, string title)
+        {
+            Setup(icon);
+            SetupLabel(title);
         }
 
         public LiquidFloatingCell(UIImage icon, nfloat imageRatio)
@@ -70,6 +86,12 @@ namespace AnimatedButtons
         public LiquidFloatingCell(UIView view)
         {
             SetupView(view);
+        }
+
+        private void SetupLabel(string title)
+        {
+            Label = new UILabel() { Text = title, Alpha = 0 };
+            AddSubview(Label);
         }
 
         private void Setup(UIImage image, UIColor tintColor = null)
@@ -128,6 +150,18 @@ namespace AnimatedButtons
             {
                 button.OnCellSelected(this);
             }
+        }
+
+        public LiquidFloatingCell TitleFont(UIFont font)
+        {
+            Label.Font = font;
+            return this;
+        }
+
+        public LiquidFloatingCell TitleColor(UIColor color)
+        {
+            Label.TextColor = color;
+            return this;
         }
     }
 }

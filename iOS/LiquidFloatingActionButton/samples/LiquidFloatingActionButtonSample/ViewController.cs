@@ -21,12 +21,13 @@ namespace LiquidFloatingActionButtonSample
         public override void ViewDidLoad()
         {
             base.ViewDidLoad();
-            
+
+            var font = UIFont.SystemFontOfSize(10);
             var cells = new List<LiquidFloatingCell>
             {
-                new LiquidFloatingCell(UIImage.FromBundle("ic_cloud")),
-                new LiquidFloatingCell(UIImage.FromBundle("ic_system")),
-                new LiquidFloatingCell(UIImage.FromBundle("ic_place")),
+                new LiquidFloatingCell(UIImage.FromBundle("ic_cloud"), "cloud").TitleFont(font).TitleColor(UIColor.White),
+                new LiquidFloatingCell(UIImage.FromBundle("ic_system"), "system").TitleFont(font).TitleColor(UIColor.White),
+                new LiquidFloatingCell(UIImage.FromBundle("ic_place"), "place").TitleFont(font).TitleColor(UIColor.White),
             };
 
             topLeftButton.Image = UIImage.FromBundle("ic_art");
