@@ -1,58 +1,34 @@
+# Starter pipeline
+# Start with a minimal pipeline that you can customize to build and deploy your code.
+# Add steps that build, run tests, deploy, and more:
+# https://aka.ms/yaml
+
 trigger:
-  - master
-  - refs/tags/*
-  
-pr:
-  - master
+- main
 
-resources:
-  repositories:
-    - repository: internal-templates
-      type: github
-      name: xamarin/yaml-templates
-      endpoint: xamarin
-      ref: refs/heads/main
-    - repository: components
-      type: github
-      name: xamarin/XamarinComponents
-      endpoint: xamarin
-      ref: refs/heads/master
+pool:
+  vmImage: 'windows-latest'
 
-jobs:
-  - template: .ci/build.yml@components
-    parameters:
-      timeoutInMinutes: 360
-      areaPath: 'DevDiv\Xamarin SDK\Android'
-      buildType: 'manifest'
-      linuxImage: 'ubuntu-latest'
-      validPackagePrefixes: 
-        # Preferred prefixes
-        - Xamarin
-        - Mono
-        # Other product prefixes
-        - SkiaSharp
-        - HarfBuzzSharp
-        - mdoc
-        # Historical prefixes
-        - Masonry
-        - GoogleGson
-        - AndroidEasingFunctions
-        - Square
-        - JakeWharton.Picasso2OkHttp3Downloader
-      preBuildSteps:
-        - pwsh: |
-            dotnet tool install --global boots
-            boots https://aka.ms/xamarin-android-commercial-d16-8-macos
-          condition: eq(variables['System.JobName'], 'macos')
-        - pwsh: |
-            dotnet tool install --global boots
-            boots https://aka.ms/xamarin-android-commercial-d16-8-windows
-          condition: eq(variables['System.JobName'], 'windows')
-      tools:
-        - 'xamarin.androidbinderator.tool': '0.4.2'
-        - 'xamarin.androidx.migration.tool': '1.0.7.1'
-  - ${{ if eq(variables['System.TeamProject'], 'devdiv') }}:
-    - template: sign-artifacts/jobs/v2.yml@internal-templates
-      parameters:
-        dependsOn: [ 'build' ]
-        condition: startsWith(variables['Build.SourceBranch'], 'refs/tags/')
+steps:
+- task: DotNetCoreCLI@2
+  inputs:
+    command: 'build'
+    projects: 'iOS/LiquidFloatingActionButton/Source/LiquidFloatingActionButton.csproj'
+
+# The second task is dotnet pack command again pointing to the csproj file
+# The nobuild means the project will not be compiled before running pack, because its already built in above step
+- task: DotNetCoreCLI@2
+  displayName: "dotnet pack"
+  inputs:
+    command: 'pack'
+    arguments: '--configuration $(buildConfiguration)'
+    packagesToPack: 'iOS/LiquidFloatingActionButton/Source/LiquidFloatingActionButton.csproj'
+    nobuild: true
+    versioningScheme: 'off'
+
+- task: NuGetCommand@2
+  inputs:
+    command: 'push'
+    packagesToPush: '$(Build.ArtifactStagingDirectory)/**/*.nupkg;!$(Build.ArtifactStagingDirectory)/**/*.symbols.nupkg'
+    nuGetFeedType: 'internal'
+    publishVstsFeed: 'eadbc838-d0d1-499f-a394-2da54247da92/3299ab6d-2681-47da-a731-a19e4e5d123d'
