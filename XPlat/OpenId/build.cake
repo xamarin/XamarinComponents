@@ -91,10 +91,21 @@ Task ("externals-ios")
 		Configuration = "Release",
 	});
 
+	/*
+	fatal error: /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/lipo: 
+		externals/ios/build/Release-iphoneos/AppAuth/libAppAuth.a 
+		and 
+		externals/ios/build/Release-iphonesimulator/AppAuth/libAppAuth.a 
+		have the same architectures (arm64) and can't be in the same fat output file
+	*/
+	/*
 	RunLipoCreate ("./", 
 		"./externals/ios/libAppAuth.a",
 		"./externals/ios/build/Release-iphoneos/AppAuth/libAppAuth.a",
 		"./externals/ios/build/Release-iphonesimulator/AppAuth/libAppAuth.a");
+	*/
+	CopyFile("./externals/ios/build/Release-iphonesimulator/AppAuth/libAppAuth.a", "./externals/ios/libAppAuth.a");
+	
 });
 Task ("externals")
 	.IsDependentOn ("externals-android")
