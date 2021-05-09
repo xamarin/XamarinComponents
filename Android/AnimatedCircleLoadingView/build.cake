@@ -3,7 +3,7 @@
 
 var TARGET = Argument ("t", Argument ("target", "ci"));
 
-var AAR_VERSION = "1.1.3";
+var AAR_VERSION = "1.1.5";
 var AAR_URL = $"https://bintray.com/artifact/download/jlmd/maven/com/github/jlmd/AnimatedCircleLoadingView/{AAR_VERSION}/AnimatedCircleLoadingView-{AAR_VERSION}.aar";
 var AAR_DEST = "./externals/AnimatedCircleLoadingView.aar";
 
