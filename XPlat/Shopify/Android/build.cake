@@ -1,7 +1,7 @@
 #load "../../../common.cake"
 
 var VERSION = "1.2.4";
-var URL = $"https://bintray.com/shopify/shopify-android/download_file?file_path=com%2Fshopify%2Fmobilebuysdk%2Fbuy%2F{VERSION}%2Fbuy-{VERSION}.aar";
+var URL = $"https://github.com/Shopify/mobile-buy-sdk-android/archive/{VERSION}.zip";
 
 var TARGET = Argument ("t", Argument ("target", "ci"));
 
@@ -39,6 +39,10 @@ Task ("externals")
 	.Does (() => 
 {
 	EnsureDirectoryExists ("./externals/");
+
+	Information($"Downloading :");
+	Information($"		{URL}");
+
 	DownloadFile (URL, "./externals/mobile-buy-sdk-android.aar");
 });
 
@@ -49,7 +53,15 @@ Task ("clean").IsDependentOn ("clean-base").Does (() =>
 });
 
 Task("ci")
-	.IsDependentOn("nuget");
+	.IsDependentOn("nuget")
+	.Does 
+	(
+		() => 
+		{
+			// Warning($"Not available (moljac 2021-05-08) :");
+			// Information($"		{URL}");
+		}
+	);
 
 
 SetupXamarinBuildTasks (buildSpec, Tasks, Task);
