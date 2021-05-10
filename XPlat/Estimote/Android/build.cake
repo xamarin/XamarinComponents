@@ -51,6 +51,9 @@ Task ("clean")
 		DeleteDirectory ("./externals", true);
 });
 
+Task("ci")
+	.IsDependentOn("nuget");
+
 SetupXamarinBuildTasks (buildSpec, Tasks, Task);
 
 RunTarget (TARGET);
