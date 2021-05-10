@@ -16,6 +16,7 @@ resources:
       type: github
       name: xamarin/XamarinComponents
       endpoint: xamarin
+      ref: refs/heads/master
 
 jobs:
   - template: .ci/build.yml@components
