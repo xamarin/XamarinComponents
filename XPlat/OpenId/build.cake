@@ -1,7 +1,7 @@
 
 #load "../../common.cake"
 
-var TARGET = Argument ("t", Argument ("target", "Default"));
+var TARGET = Argument ("t", Argument ("target", "ci"));
 
 var ANDROID_VERSION = "0.7.0";
 var ANDROID_NUGET_VERSION = "0.7.0";
@@ -91,10 +91,21 @@ Task ("externals-ios")
 		Configuration = "Release",
 	});
 
+	/*
+	fatal error: /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/lipo: 
+		externals/ios/build/Release-iphoneos/AppAuth/libAppAuth.a 
+		and 
+		externals/ios/build/Release-iphonesimulator/AppAuth/libAppAuth.a 
+		have the same architectures (arm64) and can't be in the same fat output file
+	*/
+	/*
 	RunLipoCreate ("./", 
 		"./externals/ios/libAppAuth.a",
 		"./externals/ios/build/Release-iphoneos/AppAuth/libAppAuth.a",
 		"./externals/ios/build/Release-iphonesimulator/AppAuth/libAppAuth.a");
+	*/
+	CopyFile("./externals/ios/build/Release-iphonesimulator/AppAuth/libAppAuth.a", "./externals/ios/libAppAuth.a");
+	
 });
 Task ("externals")
 	.IsDependentOn ("externals-android")
@@ -105,6 +116,9 @@ Task ("clean").IsDependentOn ("clean-base").Does (() =>
 	if (DirectoryExists ("./externals"))
 		DeleteDirectory ("./externals", true);
 });
+
+Task("ci")
+	.IsDependentOn("nuget");
 
 SetupXamarinBuildTasks (buildSpec, Tasks, Task);
 

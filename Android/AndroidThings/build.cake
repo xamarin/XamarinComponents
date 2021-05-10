@@ -71,7 +71,6 @@ Task("nuget")
 Task("samples")
 	.IsDependentOn("nuget");
 Task("component");
-
 Task("ci")
 	.IsDependentOn("samples");
 
