@@ -43,9 +43,6 @@
     </LibraryProjectZip>
   </ItemGroup>
   <ItemGroup>
-    <Compile Remove="Additions\Xamarin.Io.OpenCensus.Stats.ViewData.cs" />
-  </ItemGroup>
-  <ItemGroup>
     <None Remove="Transforms\EnumFields.xml" />
     <None Remove="Transforms\EnumMethods.xml" />
     <None Remove="Transforms\Metadata.xml" />

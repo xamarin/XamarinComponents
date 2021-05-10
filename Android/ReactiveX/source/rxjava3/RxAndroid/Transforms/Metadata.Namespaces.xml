@@ -1,0 +1,22 @@
+﻿<metadata>
+
+    <attr
+        path="/api/package[@name='io.reactivex.rxjava3.android']"
+        name="managedName"
+        >
+        ReactiveX.RxJava3.Android
+    </attr>
+    <attr
+        path="/api/package[@name='io.reactivex.rxjava3.android.plugins']"
+        name="managedName"
+        >
+        ReactiveX.RxJava3.Android.Plugins
+    </attr>
+    <attr
+        path="/api/package[@name='io.reactivex.rxjava3.android.schedulers']"
+        name="managedName"
+        >
+        ReactiveX.RxJava3.Android.Schedulers
+    </attr>
+  
+</metadata>

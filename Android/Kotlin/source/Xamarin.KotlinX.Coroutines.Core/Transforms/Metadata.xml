@@ -29,4 +29,11 @@
         path="/api/package[@name='kotlinx.coroutines.internal']"
         />
 
+    <attr
+        path="/api/package[@name='kotlinx.coroutines']/class[@name='SchedulerTaskKt']/method[@name='getTaskContext' and count(parameter)=1 and parameter[1][@type='java.lang.Object']]"
+        name="managedReturn"
+        >
+        Java.Lang.Object
+    </attr>
+
 </metadata>

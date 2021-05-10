@@ -1,9 +1,9 @@
 trigger:
-  - master
+  - main
   - refs/tags/*
   
 pr:
-  - master
+  - main
 
 resources:
   repositories:
@@ -16,6 +16,7 @@ resources:
       type: github
       name: xamarin/XamarinComponents
       endpoint: xamarin
+      ref: refs/heads/main
 
 jobs:
   - template: .ci/build.yml@components
@@ -38,6 +39,7 @@ jobs:
         - AndroidEasingFunctions
         - Square
         - JakeWharton.Picasso2OkHttp3Downloader
+        - RecyclerViewAnimators
       preBuildSteps:
         - pwsh: |
             dotnet tool install --global boots

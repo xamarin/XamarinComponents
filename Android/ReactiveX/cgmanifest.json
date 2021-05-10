@@ -6,7 +6,7 @@
         "Maven": {
           "ArtifactId": "rxjava",
           "GroupId": "io.reactivex.rxjava2",
-          "Version": "2.2.9"
+          "Version": "2.2.10"
         }
       }
     },
@@ -37,7 +37,7 @@
         "Maven": {
           "ArtifactId": "rxjava",
           "GroupId": "io.reactivex.rxjava3",
-          "Version": "3.0.0"
+          "Version": "3.0.1"
         }
       }
     },
@@ -57,7 +57,7 @@
         "Maven": {
           "ArtifactId": "rxkotlin",
           "GroupId": "io.reactivex.rxjava3",
-          "Version": "3.0.0"
+          "Version": "3.0.1"
         }
       }
     }
