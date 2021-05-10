@@ -17,6 +17,18 @@ Open Source Components for Xamarin are a collection of open source components (i
     - [Data Caching & Databases](#data-caching--databases)
     - [Create a Plugin for Xamarin](#create-a-plugin-for-xamarin)
 
+## Status
+
+Some of the bindings are obsoleted and commented out in the `manifest.yaml`. The reasons vary from binaries being removed 
+from JCenter/BinTray/JFrog, to stale code or script API used in cake scripts.
+
+Obsoleted bindings (might need some love for update):
+
+*  Shopify
+*  OpenId
+*  AndroidThings
+*  AnimatedCircleLoadingView
+
 ## Building
 
 ### Prerequisites

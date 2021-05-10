@@ -3,6 +3,7 @@
   <ItemGroup>
     <FirstParty Include="Xamarin.*.dll" />
     <FirstParty Include="Square.*.dll" />
+    <FirstParty Include="RecyclerViewAnimators.*.dll" />
 
     <!-- sign all the .jar files -->
     <FirstParty Include="*.jar" />
