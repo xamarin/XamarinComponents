@@ -202,6 +202,7 @@ jobs:
       # the basic build
       - ${{ if eq(parameters.buildType, 'basic') }}:
         - pwsh: |
+            Get-Content $MyInvocation.MyCommand.Definition
             dotnet cake ${{ parameters.cakeFile }} ${{ parameters.cakeExtraArgs }} `
               --gitpreviouscommit="$(GitLastSuccessfulCommit)" `
               --gitcommit="$(Build.SourceVersion)" `
@@ -224,6 +225,7 @@ jobs:
             Invoke-WebRequest -Uri $uri -OutFile "build-directories.cake"
           displayName: 'Download the cake script to build directory-based repositories'
         - pwsh: |
+            Get-Content $MyInvocation.MyCommand.Definition
             $force = if ("$env:FORCEBUILD") { "$env:FORCEBUILD" } else { "${{ parameters.forceBuild }}" }
             $names = if ("$env:BUILDDIRECTORYNAMES") { "$env:BUILDDIRECTORYNAMES" } else { "${{ parameters.namesFilter }}" }
             $targets = if ("$env:BUILDDIRECTORYTARGETS") { "$env:BUILDDIRECTORYTARGETS" } else { "${{ parameters.targetsFilter }}" }
@@ -252,6 +254,7 @@ jobs:
             Invoke-WebRequest -Uri $uri -OutFile "build-manifest.cake"
           displayName: 'Download the cake script to build manifest-based repositories'
         - pwsh: |
+            Get-Content $MyInvocation.MyCommand.Definition
             $force = if ("$env:FORCEBUILD") { "$env:FORCEBUILD" } else { "${{ parameters.forceBuild }}" }
             $names = if ("$env:BUILDMANIFESTNAMES") { "$env:BUILDMANIFESTNAMES" } else { "${{ parameters.namesFilter }}" }
             $targets = if ("$env:BUILDMANIFESTTARGETS") { "$env:BUILDMANIFESTTARGETS" } else { "${{ parameters.targetsFilter }}" }
