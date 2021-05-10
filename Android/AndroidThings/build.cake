@@ -1,4 +1,4 @@
-#load "../../common.cake"
+//#load "../../common.cake"
 
 var TARGET = Argument ("t", Argument ("target", "ci"));
 
@@ -104,7 +104,7 @@ Task ("clean")
 	.Does (() => 
 {
 	if (DirectoryExists ("./externals"))
-		DeleteDirectory ("./externals", true);
+		DeleteDirectory ("./externals", new DeleteDirectorySettings { Force=true });
 });
 
 RunTarget (TARGET);
