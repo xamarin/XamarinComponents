@@ -7,7 +7,7 @@ parameters:
   initSteps: []                                             # any steps to run before .NET global tools are installed
   preBuildSteps: []                                         # any steps that need to run just before the main compilation starts
   postBuildSteps: []                                        # any steps that need to run just after the main compilation ends
-  masterBranchName: 'master'                                # the "master" branch that should be used - can be something other than "master"
+  masterBranchName: 'main'                                  # the "master" branch that should be used - can be something other than "master"
   installAppleCertificates: 'true'                          # whether or not to install the Apple certificates and provisioning profiles
   submodules: false                                         # whether or not to check out submodules
   areaPath: ''                                              # the areaPath to log any issues
@@ -27,7 +27,7 @@ parameters:
   apiTools: '1.1.0-preview.1'                               # the version of the api-tools CLI to use
   xharness: '1.0.0-prerelease.20602.1'
   tools: []                                                 # a list of any additional .NET Core tools needed
-  cakeTemplatesBranch: 'master'                             # the branch of XamarinComponents that has the templates
+  cakeTemplatesBranch: 'main'                               # the branch of XamarinComponents that has the templates
   # build parameters
   buildType: 'basic'                                        # the type of build: 'basic', 'manifest', 'directories', 'none'
   steps: []                                                 # the steps to use when building, typically for 'none'
