@@ -39,6 +39,7 @@ jobs:
         - AndroidEasingFunctions
         - Square
         - JakeWharton.Picasso2OkHttp3Downloader
+        - RecyclerViewAnimators
       preBuildSteps:
         - pwsh: |
             dotnet tool install --global boots
