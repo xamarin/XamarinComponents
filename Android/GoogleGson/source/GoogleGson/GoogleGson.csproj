@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project Sdk="MSBuild.Sdk.Extras/2.0.54">
+<Project Sdk="MSBuild.Sdk.Extras">
   <PropertyGroup>
-    <TargetFrameworks>MonoAndroid44</TargetFrameworks>
+    <TargetFramework>MonoAndroid9.0</TargetFramework>
     <IsBindingProject>true</IsBindingProject>
     <AssemblyName>GoogleGson</AssemblyName>
     <MonoAndroidResourcePrefix>Resources</MonoAndroidResourcePrefix>
