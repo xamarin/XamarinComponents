@@ -1,10 +1,10 @@
 
 #load "../../common.cake"
 
-var TARGET = Argument ("t", Argument ("target", "Default"));
+var TARGET = Argument ("t", Argument ("target", "ci"));
 
 var AAR_VERSION = "2.8.0";
-var AAR_URL = string.Format ("https://bintray.com/artifact/download/ischwarz/maven/de/codecrafters/tableview/tableview/{0}/tableview-{0}.aar", AAR_VERSION);
+var AAR_URL = $"https://bintray.com/artifact/download/ischwarz/maven/de/codecrafters/tableview/tableview/{AAR_VERSION}/tableview-{AAR_VERSION}.aar";
 var AAR_FILE = "SortableTableView.aar";
 
 var buildSpec = new BuildSpec () {
@@ -38,13 +38,29 @@ Task ("externals")
 	if (!DirectoryExists ("./externals/"))
 		CreateDirectory ("./externals/");
 		
-	DownloadFile (AAR_URL, "./externals/" + AAR_FILE);
+	Information($"Downloading :");
+	Information($"		{AAR_URL}");
+	Information($"to :");
+	Information($"		{AAR_FILE}");
+
+	DownloadFile (AAR_URL, "./externals/" + AAR_FILE);		
 });
 
 Task ("clean").IsDependentOn ("clean-base").Does (() => 
 {	
 	DeleteFiles ("./externals/*.aar");
 });
+
+Task("ci")
+	//.IsDependentOn("nuget")
+	.Does 
+	(
+		() => 
+		{
+			Warning($"Not available (moljac 2021-05-08) :");
+			Information($"		{AAR_URL}");
+		}
+	);
 
 SetupXamarinBuildTasks (buildSpec, Tasks, Task);
 
