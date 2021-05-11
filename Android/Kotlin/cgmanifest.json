@@ -59,27 +59,7 @@
           "Version": "13.0.0.3"
         }
       }
-    },
-    {
-      "Component": {
-        "Type": "Maven",
-        "Maven": {
-          "ArtifactId": "kotlinx-coroutines-android",
-          "GroupId": "org.jetbrains.kotlinx",
-          "Version": "1.3.4"
-        }
-      }
-    },
-    {
-      "Component": {
-        "Type": "Maven",
-        "Maven": {
-          "ArtifactId": "kotlinx-coroutines-core",
-          "GroupId": "org.jetbrains.kotlinx",
-          "Version": "1.3.4"
-        }
-      }
-    }
+    }    
   ],
   "Version": 1
 }
