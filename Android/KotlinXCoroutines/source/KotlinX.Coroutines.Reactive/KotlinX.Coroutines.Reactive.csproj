@@ -14,8 +14,8 @@
 
   <PropertyGroup>
     <PackageId>Xamarin.KotlinX.Coroutines.Reactive</PackageId>
-    <Title>Kotlinx.Coroutines.Reactive reference library for Xamarin.Android</Title>
-    <PackageDescription>Xamarin.Android bindings for Kotlinx.Coroutines.Reactive</PackageDescription>
+    <Title>KotlinX.Coroutines.Reactive reference library for Xamarin.Android</Title>
+    <PackageDescription>Xamarin.Android bindings for KotlinX.Coroutines.Reactive</PackageDescription>
     <Authors>Microsoft</Authors>
     <Owners>Microsoft</Owners>
     <Copyright>© Microsoft Corporation. All rights reserved.</Copyright>

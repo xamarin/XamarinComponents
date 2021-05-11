@@ -14,8 +14,8 @@
 
   <PropertyGroup>
     <PackageId>Xamarin.KotlinX.Coroutines.Rx2</PackageId>
-    <Title>Kotlinx.Coroutines.Rx2 reference library for Xamarin.Android</Title>
-    <PackageDescription>Xamarin.Android bindings for Kotlinx.Coroutines.Rx2</PackageDescription>
+    <Title>KotlinX.Coroutines.Rx2 reference library for Xamarin.Android</Title>
+    <PackageDescription>Xamarin.Android bindings for KotlinX.Coroutines.Rx2</PackageDescription>
     <Authors>Microsoft</Authors>
     <Owners>Microsoft</Owners>
     <Copyright>© Microsoft Corporation. All rights reserved.</Copyright>

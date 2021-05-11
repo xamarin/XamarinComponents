@@ -15,7 +15,7 @@
   <PropertyGroup>
     <PackageId>Xamarin.KotlinX.Coroutines.Android</PackageId>
     <Title>Xamarin.KotlinX.Coroutines.Android reference library for Xamarin.Android</Title>
-    <PackageDescription>Xamarin.Android bindings for Kotlinx.Coroutines.Android</PackageDescription>
+    <PackageDescription>Xamarin.Android bindings for KotlinX.Coroutines.Android</PackageDescription>
     <Authors>Microsoft</Authors>
     <Owners>Microsoft</Owners>
     <Copyright>© Microsoft Corporation. All rights reserved.</Copyright>
@@ -48,7 +48,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Kotlinx.Coroutines.Core\Kotlinx.Coroutines.Core.csproj" />
+    <ProjectReference Include="..\KotlinX.Coroutines.Core\KotlinX.Coroutines.Core.csproj" />
   </ItemGroup>
   
   <ItemGroup>

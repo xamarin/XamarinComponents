@@ -15,7 +15,7 @@
   <PropertyGroup>
     <PackageId>Xamarin.KotlinX.Coroutines.Core.Jvm</PackageId>
     <Title>Xamarin.KotlinX.Coroutines.Core.Jvm reference library for Xamarin.Android</Title>
-    <PackageDescription>Xamarin.Android bindings for Kotlinx.Coroutines.Core</PackageDescription>
+    <PackageDescription>Xamarin.Android bindings for KotlinX.Coroutines.Core</PackageDescription>
     <Authors>Microsoft</Authors>
     <Owners>Microsoft</Owners>
     <Copyright>© Microsoft Corporation. All rights reserved.</Copyright>

@@ -15,7 +15,7 @@
   <PropertyGroup>
     <PackageId>Xamarin.KotlinX.Coroutines.Jdk8</PackageId>
     <Title>Xamarin.KotlinX.Coroutines.Jdk8 reference library for Xamarin.Android</Title>
-    <PackageDescription>Xamarin.Android bindings for Kotlinx.Coroutines.Jdk8</PackageDescription>
+    <PackageDescription>Xamarin.Android bindings for KotlinX.Coroutines.Jdk8</PackageDescription>
     <Authors>Microsoft</Authors>
     <Owners>Microsoft</Owners>
     <Copyright>© Microsoft Corporation. All rights reserved.</Copyright>
