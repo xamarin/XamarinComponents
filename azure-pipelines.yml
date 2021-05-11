@@ -40,6 +40,7 @@ jobs:
         - Square
         - JakeWharton.Picasso2OkHttp3Downloader
         - RecyclerViewAnimators
+        - GoogleGson
       preBuildSteps:
         - pwsh: |
             dotnet tool install --global boots
