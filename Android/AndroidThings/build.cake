@@ -1,4 +1,4 @@
-#load "../../common.cake"
+//#load "../../common.cake"
 
 var TARGET = Argument ("t", Argument ("target", "ci"));
 
@@ -68,7 +68,7 @@ Task("nuget")
 			.WithProperty("PackageOutputPath", "../../output"));
 });
 
-Task("samples");
+Task("samples")
 	.IsDependentOn("nuget");
 Task("component");
 Task("ci")
@@ -104,7 +104,7 @@ Task ("clean")
 	.Does (() => 
 {
 	if (DirectoryExists ("./externals"))
-		DeleteDirectory ("./externals", true);
+		DeleteDirectory ("./externals", new DeleteDirectorySettings { Force=true });
 });
 
 RunTarget (TARGET);

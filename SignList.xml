@@ -3,6 +3,8 @@
   <ItemGroup>
     <FirstParty Include="Xamarin.*.dll" />
     <FirstParty Include="Square.*.dll" />
+    <FirstParty Include="RecyclerViewAnimators.*.dll" />
+    <FirstParty Include="GoogleGson.*.dll" />
 
     <!-- sign all the .jar files -->
     <FirstParty Include="*.jar" />
