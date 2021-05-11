@@ -1,5 +1,5 @@
 
-var TARGET = Argument ("t", Argument ("target", "Default"));
+var TARGET = Argument ("t", Argument ("target", "ci"));
 
 var JAR_VERSION = "2.8.6";
 var NUGET_VERSION = JAR_VERSION;
@@ -56,6 +56,9 @@ Task("samples")
 		c.Properties.Add("DesignTimeBuild", new [] { "false" });
 	});
 });
+
+Task ("ci")
+	.IsDependentOn("samples");
 
 Task ("clean")
 	.Does (() =>
