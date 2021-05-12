@@ -56,10 +56,10 @@
         "Maven": {
           "ArtifactId": "annotations",
           "GroupId": "org.jetbrains.kotlin",
-          "Version": "13.0.0.3"
+          "Version": "13.0.0"
         }
       }
-    }    
+    }
   ],
   "Version": 1
 }
