@@ -1,14 +1,14 @@
 
 #load "../../common.cake"
 
-var TARGET = Argument ("t", Argument ("target", "Default"));
+var TARGET = Argument ("t", Argument ("target", "ci"));
 
 var ANDROID_VERSION = "0.7.0";
 var ANDROID_NUGET_VERSION = "0.7.0";
 var IOS_VERSION = "0.92.0";
 var IOS_NUGET_VERSION = "0.92.0";
 
-var AAR_URL = string.Format ("https://bintray.com/openid/net.openid/download_file?file_path=net%2Fopenid%2Fappauth%2F{0}%2Fappauth-{0}.aar", ANDROID_VERSION);
+var AAR_URL = $"https://repo1.maven.org/maven2/net/openid/appauth/{ANDROID_VERSION}/appauth-{ANDROID_VERSION}.aar";
 
 var PODFILE = new List<string> {
 	"platform :ios, '8.0'",
@@ -91,10 +91,21 @@ Task ("externals-ios")
 		Configuration = "Release",
 	});
 
+	/*
+	fatal error: /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/lipo: 
+		externals/ios/build/Release-iphoneos/AppAuth/libAppAuth.a 
+		and 
+		externals/ios/build/Release-iphonesimulator/AppAuth/libAppAuth.a 
+		have the same architectures (arm64) and can't be in the same fat output file
+	*/
+	/*
 	RunLipoCreate ("./", 
 		"./externals/ios/libAppAuth.a",
 		"./externals/ios/build/Release-iphoneos/AppAuth/libAppAuth.a",
 		"./externals/ios/build/Release-iphonesimulator/AppAuth/libAppAuth.a");
+	*/
+	CopyFile("./externals/ios/build/Release-iphonesimulator/AppAuth/libAppAuth.a", "./externals/ios/libAppAuth.a");
+	
 });
 Task ("externals")
 	.IsDependentOn ("externals-android")
@@ -105,6 +116,9 @@ Task ("clean").IsDependentOn ("clean-base").Does (() =>
 	if (DirectoryExists ("./externals"))
 		DeleteDirectory ("./externals", true);
 });
+
+Task("ci")
+	.IsDependentOn("nuget");
 
 SetupXamarinBuildTasks (buildSpec, Tasks, Task);
 
