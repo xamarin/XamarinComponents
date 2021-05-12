@@ -1,30 +1,33 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
-<metadata>
-	<attr path="/api/package[@name='com.google.android.libraries.places.api']" name="managedName">Google.Places</attr>
-	<attr path="/api/package[@name='com.google.android.libraries.places.api.model']" name="managedName">Google.Places</attr>
-	<attr path="/api/package[@name='com.google.android.libraries.places.api.net']" name="managedName">Google.Places</attr>
-	<attr path="/api/package[@name='com.google.android.libraries.places.widget']" name="managedName">Google.Places</attr>
-	<attr path="/api/package[@name='com.google.android.libraries.places.widget.listener']" name="managedName">Google.Places</attr>
-	<attr path="/api/package[@name='com.google.android.libraries.places.widget.model']" name="managedName">Google.Places</attr>
-	
-	<attr path="/api/package[@name='com.google.android.libraries.places.api']/class[@name='Places']" name="managedName">PlacesApi</attr>
-	<attr path="/api/package[@name='com.google.android.libraries.places.widget']/class[@name='Autocomplete.IntentBuilder']" name="extends">Java.Lang.Object</attr>
-	
-	<remove-node path="/api/package[contains(@name, 'com.google.android.libraries.places.internal')]" />
-	<remove-node path="/api/package[contains(@name, 'com.google.android.libraries.places.api.internal')]" />
-	<remove-node path="/api/package/class/implements[contains(@name, 'com.google.android.libraries.places.internal.ay')]" />
-	
-	<remove-node path="/api/*/*/field[contains(@name, 'CREATOR')]" />
-	
-	<remove-node path="/api/package[@name='com.google.android.libraries.places.api']/class[@name='Places']/method[@name='a']" />
-	<remove-node path="/api/package[@name='com.google.android.libraries.places.api.model']/class[@name='AutocompletePrediction']/method[@name='d']" />
-	<remove-node path="/api/package[@name='com.google.android.libraries.places.api.model']/class[@name='AutocompletePrediction']/method[@name='e']" />
-	<remove-node path="/api/package[@name='com.google.android.libraries.places.api.model']/class[@name='AutocompletePrediction']/method[@name='f']" />
-	<remove-node path="/api/package[@name='com.google.android.libraries.places.api.model']/class[@name='AutocompletePrediction.Builder']/method[@name='a']" />
-	<remove-node path="/api/package[@name='com.google.android.libraries.places.api.model']/class[@name='AutocompletePrediction.Builder']/method[@name='b']" />
-	<remove-node path="/api/package[@name='com.google.android.libraries.places.api.model']/class[@name='AutocompletePrediction.Builder']/method[@name='c']" />
-	<remove-node path="/api/package[@name='com.google.android.libraries.places.widget']/class[@name='Autocomplete.IntentBuilder']/method[@name='a']" />
-	<remove-node path="/api/package[@name='com.google.android.libraries.places.widget']/class[@name='AutocompleteFragment']/field[@name='f']" />
-	<remove-node path="/api/package[@name='com.google.android.libraries.places.widget']/class[@name='AutocompleteSupportFragment']/field[@name='f']" />
-	
+﻿<metadata>
+  <attr path="/api/package[@name='com.google.android.libraries.places.api']" name="managedName">Google.Places</attr>
+  <attr path="/api/package[@name='com.google.android.libraries.places.api.model']" name="managedName">Google.Places</attr>
+  <attr path="/api/package[@name='com.google.android.libraries.places.api.net']" name="managedName">Google.Places</attr>
+  <attr path="/api/package[@name='com.google.android.libraries.places.widget']" name="managedName">Google.Places</attr>
+  <attr path="/api/package[@name='com.google.android.libraries.places.widget.listener']" name="managedName">Google.Places</attr>
+  <attr path="/api/package[@name='com.google.android.libraries.places.widget.model']" name="managedName">Google.Places</attr>
+
+  <attr path="/api/package[@name='com.google.android.libraries.places.api']/class[@name='Places']" name="managedName">PlacesApi</attr>
+  <attr path="/api/package[@name='com.google.android.libraries.places.widget']/class[@name='Autocomplete.IntentBuilder']" name="extends">Java.Lang.Object</attr>
+
+  <remove-node path="/api/package[contains(@name, 'com.google.android.libraries.places.internal')]" />
+  <remove-node path="/api/package[contains(@name, 'com.google.android.libraries.places.widget.internal')]" />
+
+  <!-- Get rid of FetchPhotoRequest, FetchPlaceRequest, FindAutoCompletePredictionsRequest, FindCurrentPlaceRequest -->
+  <remove-node path="/api/package/class/implements[contains(@name, 'com.google.android.libraries.places.internal.zzdc')]" />
+
+  <!-- Get rid of all obsfuscated classes starting with zz, bit wide in scope?? -->
+  <remove-node path="/api/package[contains(@name, 'com.google.android.libraries.places')]/class[starts-with(@name, 'zz')]" />
+
+  <remove-node path="/api/*/*/field[contains(@name, 'CREATOR')]" />
+
+  <!-- Get rid of obfuscated methods / constructors -->
+  <remove-node path="/api/package[@name='com.google.android.libraries.places.api']/class[@name='Places']/method[@name='zza']" />
+
+  <remove-node path="/api/package[@name='com.google.android.libraries.places.api.model']/class[@name='AutocompletePrediction.Builder']/method[@name='zza']" />
+  <remove-node path="/api/package[@name='com.google.android.libraries.places.api.model']/class[@name='AutocompletePrediction.Builder']/method[@name='zzb']" />
+  <remove-node path="/api/package[@name='com.google.android.libraries.places.api.model']/class[@name='AutocompletePrediction.Builder']/method[@name='zzc']" />
+
+  <remove-node path="/api/package[@name='com.google.android.libraries.places.widget']/class[@name='Autocomplete.IntentBuilder']/method[@name='zza']" />
+
+  <remove-node path="/api/package[@name='com.google.android.libraries.places.widget']/class[@name='Autocomplete.IntentBuilder']/constructor[@name='Autocomplete.IntentBuilder' and count(parameter)=1 and parameter[1][@type='com.google.android.libraries.places.internal.zzed']]"/>
 </metadata>
