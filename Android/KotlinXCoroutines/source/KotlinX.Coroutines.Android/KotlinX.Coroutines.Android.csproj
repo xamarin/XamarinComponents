@@ -40,7 +40,7 @@
 
   <ItemGroup>
     <None Include="..\..\externals\kotlinx-coroutines-android-$(PackageVersion).jar" Pack="True" PackagePath="jar\kotlinx-coroutines-android-$(PackageVersion).jar" Visible="false" />
-    <EmbeddedJar Include="..\..\externals\kotlinx-coroutines-android-$(PackageVersion).jar" Link="Jars\kotlinx-coroutines-android-$(PackageVersion).jar" />
+    <EmbeddedJar Include="..\..\externals\kotlinx-coroutines-android-$(PackageVersion).jar" Link="Jars\kotlinx-coroutines-android-1.4.2.jar" />
   </ItemGroup>
 
   <ItemGroup>
