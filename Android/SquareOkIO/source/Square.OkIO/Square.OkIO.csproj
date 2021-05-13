@@ -1,4 +1,4 @@
-﻿<Project Sdk="MSBuild.Sdk.Extras/2.1.2">
+﻿<Project Sdk="MSBuild.Sdk.Extras">
   <PropertyGroup>
     <TargetFrameworks>monoandroid9.0</TargetFrameworks>
     <IsBindingProject>true</IsBindingProject>
@@ -26,8 +26,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Xamarin.Kotlin.StdLib" Version="1.4.10" PrivateAssets="None" />
-    <PackageReference Include="Xamarin.Kotlin.StdLib.Common" Version="1.4.10" />
+    <PackageReference Include="Xamarin.Kotlin.StdLib" Version="1.4.32.1" PrivateAssets="None" />
+    <PackageReference Include="Xamarin.Kotlin.StdLib.Common" Version="1.4.32.1" />
   </ItemGroup>
 
   <ItemGroup>
