@@ -22,7 +22,7 @@
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
     <PackageTags>okio square square.okio xamarin android monodroid</PackageTags>
     <PackageProjectUrl>https://go.microsoft.com/fwlink/?linkid=2130312</PackageProjectUrl>
-    <PackageVersion>2.9.0</PackageVersion>
+    <PackageVersion>2.10.0</PackageVersion>
   </PropertyGroup>
 
   <ItemGroup>
