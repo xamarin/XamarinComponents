@@ -352,6 +352,11 @@
   TriggerPaths: [ Android/SquareOkHttp3LoggingInterceptor ]
   MacBuildTargets: [ ci ]
   WindowsBuildTargets: [ ci ]
+- Name: KotlinXCoroutines
+  BuildScript: ./Android/KotlinXCoroutines/build.cake
+  TriggerPaths: [ Android/KotlinXCoroutines ]
+  WindowsBuildTargets: [ ci ]
+  MacBuildTargets: [ ci ]
 
 # will be XPlat in the future
 - Name: TensorFlow.Lite
