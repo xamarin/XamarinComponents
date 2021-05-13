@@ -39,8 +39,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Include="..\..\externals\kotlinx-coroutines-jdk8.jar" Pack="True" PackagePath="jar\kotlinx-coroutines-jdk8.jar" Visible="false" />
-    <EmbeddedJar Include="..\..\externals\kotlinx-coroutines-jdk8.jar" Link="Jars\kotlinx-coroutines-jdk8.jar" />
+    <None Include="..\..\externals\kotlinx-coroutines-jdk8-$(PackageVersion).jar" Pack="True" PackagePath="jar\kotlinx-coroutines-jdk8-$(PackageVersion).jar" Visible="false" />
+    <EmbeddedJar Include="..\..\externals\kotlinx-coroutines-jdk8-$(PackageVersion).jar" Link="Jars\kotlinx-coroutines-jdk8-$(PackageVersion).jar" />
   </ItemGroup>
 
   <ItemGroup>
