@@ -40,7 +40,7 @@
 
   <ItemGroup>
     <None Include="..\..\externals\kotlinx-coroutines-core-$(PackageVersion).jar" Pack="True" PackagePath="jar\kotlinx-coroutines-core-$(PackageVersion).jar" Visible="false" />
-    <EmbeddedJar Include="..\..\externals\kotlinx-coroutines-core-$(PackageVersion).jar" Link="Jars\kotlinx-coroutines-core-$(PackageVersion).jar" />
+    <EmbeddedJar Include="..\..\externals\kotlinx-coroutines-core-$(PackageVersion).jar" Link="Jars\kotlinx-coroutines-core-1.4.3.jar" />
   </ItemGroup>
 
   <ItemGroup>
@@ -52,4 +52,7 @@
     <None Include="..\..\License.md" Pack="true" PackagePath="LICENSE.md" />
   </ItemGroup>
   
+  <ItemGroup>
+    <ProjectReference Include="..\KotlinX.Coroutines.Core.Jvm\KotlinX.Coroutines.Core.Jvm.csproj" />
+  </ItemGroup>
 </Project>
