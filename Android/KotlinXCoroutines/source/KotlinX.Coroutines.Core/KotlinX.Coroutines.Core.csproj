@@ -22,7 +22,7 @@
     <PackageProjectUrl>https://go.microsoft.com/fwlink/?linkid=2083771</PackageProjectUrl>
     <PackageLicenseFile>LICENSE.md</PackageLicenseFile>
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
-    <PackageVersion>1.4.1</PackageVersion>
+    <PackageVersion>1.4.2</PackageVersion>
   </PropertyGroup>
 
   <ItemGroup>
@@ -39,8 +39,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Include="..\..\externals\kotlinx-coroutines-core.jar" Pack="True" PackagePath="jar\kotlinx-coroutines-core.jar" Visible="false" />
-    <EmbeddedJar Include="..\..\externals\kotlinx-coroutines-core.jar" Link="Jars\kotlinx-coroutines-core.jar" />
+    <None Include="..\..\externals\kotlinx-coroutines-core-$(PackageVersion).jar" Pack="True" PackagePath="jar\kotlinx-coroutines-core-$(PackageVersion).jar" Visible="false" />
+    <EmbeddedJar Include="..\..\externals\kotlinx-coroutines-core-$(PackageVersion).jar" Link="Jars\kotlinx-coroutines-core-1.4.2.jar" />
   </ItemGroup>
 
   <ItemGroup>

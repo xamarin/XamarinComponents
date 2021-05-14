@@ -7,6 +7,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KotlinxCoroutinesSample", "
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KotlinxCoroutinesSampleLibrary", "KotlinxCoroutinesSampleLibrary\KotlinxCoroutinesSampleLibrary.csproj", "{7990AD17-9BDE-475D-94C9-E38595AB8EC2}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KotlinX.Coroutines.Android", "..\source\KotlinX.Coroutines.Android\KotlinX.Coroutines.Android.csproj", "{F79118EA-6EE9-4C37-8BFA-C3DA1BB647B6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KotlinX.Coroutines.Core", "..\source\KotlinX.Coroutines.Core\KotlinX.Coroutines.Core.csproj", "{F1E932AA-CEA8-4BD4-A452-3A9CF8E8ACAF}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +25,14 @@ Global
 		{7990AD17-9BDE-475D-94C9-E38595AB8EC2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7990AD17-9BDE-475D-94C9-E38595AB8EC2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7990AD17-9BDE-475D-94C9-E38595AB8EC2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F79118EA-6EE9-4C37-8BFA-C3DA1BB647B6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F79118EA-6EE9-4C37-8BFA-C3DA1BB647B6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F79118EA-6EE9-4C37-8BFA-C3DA1BB647B6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F79118EA-6EE9-4C37-8BFA-C3DA1BB647B6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F1E932AA-CEA8-4BD4-A452-3A9CF8E8ACAF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F1E932AA-CEA8-4BD4-A452-3A9CF8E8ACAF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F1E932AA-CEA8-4BD4-A452-3A9CF8E8ACAF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F1E932AA-CEA8-4BD4-A452-3A9CF8E8ACAF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
