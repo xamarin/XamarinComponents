@@ -52,4 +52,8 @@
     <None Include="..\..\License.md" Pack="true" PackagePath="LICENSE.md" />
   </ItemGroup>
   
+  <ItemGroup>
+    <ProjectReference Include="..\KotlinX.Coroutines.Reactive\KotlinX.Coroutines.Reactive.csproj" />
+    <ProjectReference Include="..\KotlinX.Coroutines.Core.Jvm\KotlinX.Coroutines.Core.Jvm.csproj" />
+  </ItemGroup>
 </Project>
