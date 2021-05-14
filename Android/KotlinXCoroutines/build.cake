@@ -2,26 +2,26 @@
 
 var TARGET = Argument ("t", Argument ("target", "ci"));
 
-var KOTLINX_VERSION = "1.4.2";
-var KOTLINX_NUGET_VERSION = "1.4.2";
+var KOTLINX_VERSION = "1.4.3";
+var KOTLINX_NUGET_VERSION = "1.4.3";
 
 var KOTLINX_CORE_JAR_URL = $"https://repo1.maven.org/maven2/org/jetbrains/kotlinx/kotlinx-coroutines-core/{KOTLINX_VERSION}/kotlinx-coroutines-core-{KOTLINX_VERSION}.jar";
-var KOTLINX_CORE_DOCS_URL = $"https://repo1.maven.org/maven2/org/jetbrains/kotlinx/kotlinx-coroutines-core/{KOTLINX_VERSION}/kotlinx-coroutines-core-{KOTLINX_VERSION}-javadoc.jar";
+var KOTLINX_CORE_DOCS_URL = $"https://repo1.maven.org/maven2/org/jetbrains/kotlinx/kotlinx-coroutines-core/{KOTLINX_VERSION}/kotlinx-coroutines-core-{KOTLINX_VERSION}-sources.jar";
 
 var KOTLINX_ANDROID_JAR_URL = $"https://repo1.maven.org/maven2/org/jetbrains/kotlinx/kotlinx-coroutines-android/{KOTLINX_VERSION}/kotlinx-coroutines-android-{KOTLINX_VERSION}.jar";
-var KOTLINX_ANDROID_DOCS_URL = $"https://repo1.maven.org/maven2/org/jetbrains/kotlinx/kotlinx-coroutines-android/{KOTLINX_VERSION}/kotlinx-coroutines-android-{KOTLINX_VERSION}-javadoc.jar";
+var KOTLINX_ANDROID_DOCS_URL = $"https://repo1.maven.org/maven2/org/jetbrains/kotlinx/kotlinx-coroutines-android/{KOTLINX_VERSION}/kotlinx-coroutines-android-{KOTLINX_VERSION}-sources.jar";
 
 var KOTLINX_JDK8_JAR_URL = $"https://repo1.maven.org/maven2/org/jetbrains/kotlinx/kotlinx-coroutines-jdk8/{KOTLINX_VERSION}/kotlinx-coroutines-jdk8-{KOTLINX_VERSION}.jar";
-var KOTLINX_JDK8_DOCS_URL = $"https://repo1.maven.org/maven2/org/jetbrains/kotlinx/kotlinx-coroutines-jdk8/{KOTLINX_VERSION}/kotlinx-coroutines-jdk8-{KOTLINX_VERSION}-javadoc.jar";
+var KOTLINX_JDK8_DOCS_URL = $"https://repo1.maven.org/maven2/org/jetbrains/kotlinx/kotlinx-coroutines-jdk8/{KOTLINX_VERSION}/kotlinx-coroutines-jdk8-{KOTLINX_VERSION}-sources.jar";
 
 var KOTLINX_JVM_JAR_URL = $"https://repo1.maven.org/maven2/org/jetbrains/kotlinx/kotlinx-coroutines-core-jvm/{KOTLINX_VERSION}/kotlinx-coroutines-core-jvm-{KOTLINX_VERSION}.jar";
-var KOTLINX_JVM_DOCS_URL = $"https://repo1.maven.org/maven2/org/jetbrains/kotlinx/kotlinx-coroutines-core-jvm/{KOTLINX_VERSION}/kotlinx-coroutines-core-jvm-{KOTLINX_VERSION}-javadoc.jar";
+var KOTLINX_JVM_DOCS_URL = $"https://repo1.maven.org/maven2/org/jetbrains/kotlinx/kotlinx-coroutines-core-jvm/{KOTLINX_VERSION}/kotlinx-coroutines-core-jvm-{KOTLINX_VERSION}-sources.jar";
 
 var KOTLINX_REACTIVE_JAR_URL = $"https://repo1.maven.org/maven2/org/jetbrains/kotlinx/kotlinx-coroutines-reactive/{KOTLINX_VERSION}/kotlinx-coroutines-reactive-{KOTLINX_VERSION}.jar";
-var KOTLINX_REACTIVE_DOCS_URL = $"https://repo1.maven.org/maven2/org/jetbrains/kotlinx/kotlinx-coroutines-reactive/{KOTLINX_VERSION}/kotlinx-coroutines-reactive-{KOTLINX_VERSION}-javadoc.jar";
+var KOTLINX_REACTIVE_DOCS_URL = $"https://repo1.maven.org/maven2/org/jetbrains/kotlinx/kotlinx-coroutines-reactive/{KOTLINX_VERSION}/kotlinx-coroutines-reactive-{KOTLINX_VERSION}-sources.jar";
 
 var KOTLINX_RX2_JAR_URL = $"https://repo1.maven.org/maven2/org/jetbrains/kotlinx/kotlinx-coroutines-rx2/{KOTLINX_VERSION}/kotlinx-coroutines-rx2-{KOTLINX_VERSION}.jar";
-var KOTLINX_RX2_DOCS_URL = $"https://repo1.maven.org/maven2/org/jetbrains/kotlinx/kotlinx-coroutines-rx2/{KOTLINX_VERSION}/kotlinx-coroutines-rx2-{KOTLINX_VERSION}-javadoc.jar";
+var KOTLINX_RX2_DOCS_URL = $"https://repo1.maven.org/maven2/org/jetbrains/kotlinx/kotlinx-coroutines-rx2/{KOTLINX_VERSION}/kotlinx-coroutines-rx2-{KOTLINX_VERSION}-sources.jar";
 
 
 Task ("externals")

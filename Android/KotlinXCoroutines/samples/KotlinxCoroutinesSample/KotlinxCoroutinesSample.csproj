@@ -113,8 +113,12 @@
       <Name>KotlinxCoroutinesSampleLibrary</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\source\KotlinX.Coroutines.Android\KotlinX.Coroutines.Android.csproj">
-      <Project>{F79118EA-6EE9-4C37-8BFA-C3DA1BB647B6}</Project>
+      <Project>{A73FCCDA-A064-4962-8CD9-4EC71644CF4B}</Project>
       <Name>KotlinX.Coroutines.Android</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\source\KotlinX.Coroutines.Core\KotlinX.Coroutines.Core.csproj">
+      <Project>{2899073E-4C2A-495F-B02F-85BD0667DD3B}</Project>
+      <Name>KotlinX.Coroutines.Core</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />

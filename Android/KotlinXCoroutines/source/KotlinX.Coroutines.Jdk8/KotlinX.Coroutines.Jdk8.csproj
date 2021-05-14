@@ -22,7 +22,7 @@
     <PackageProjectUrl>https://go.microsoft.com/fwlink/?linkid=2083771</PackageProjectUrl>
     <PackageLicenseFile>LICENSE.md</PackageLicenseFile>
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
-    <PackageVersion>1.4.2</PackageVersion>
+    <PackageVersion>1.4.3</PackageVersion>
   </PropertyGroup>
 
   <ItemGroup>
@@ -51,4 +51,7 @@
     <None Include="..\..\License.md" Pack="true" PackagePath="LICENSE.md" />
   </ItemGroup>
   
+  <ItemGroup>
+    <ProjectReference Include="..\KotlinX.Coroutines.Core.Jvm\KotlinX.Coroutines.Core.Jvm.csproj" />
+  </ItemGroup>
 </Project>
