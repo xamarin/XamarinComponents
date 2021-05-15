@@ -22,7 +22,11 @@
     <PackageProjectUrl>https://go.microsoft.com/fwlink/?linkid=2083771</PackageProjectUrl>
     <PackageLicenseFile>LICENSE.md</PackageLicenseFile>
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
-    <PackageVersion>1.4.3</PackageVersion>
+    <PackageVersion>1.4.3.1</PackageVersion>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <ArtifactVersion>1.4.3</ArtifactVersion>
   </PropertyGroup>
 
   <ItemGroup>
@@ -39,8 +43,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Include="..\..\externals\kotlinx-coroutines-reactive-$(PackageVersion).jar" Pack="True" PackagePath="jar\kotlinx-coroutines-reactive-$(PackageVersion).jar" Visible="false" />
-    <EmbeddedJar Include="..\..\externals\kotlinx-coroutines-reactive-$(PackageVersion).jar" Link="Jars\kotlinx-coroutines-reactive-$(PackageVersion).jar" />
+    <None Include="..\..\externals\kotlinx-coroutines-reactive-$(ArtifactVersion).jar" Pack="True" PackagePath="jar\kotlinx-coroutines-reactive-$(ArtifactVersion).jar" Visible="false" />
+    <EmbeddedJar Include="..\..\externals\kotlinx-coroutines-reactive-$(ArtifactVersion).jar" Link="Jars\kotlinx-coroutines-reactive-$(ArtifactVersion).jar" />
   </ItemGroup>
 
   <ItemGroup>
