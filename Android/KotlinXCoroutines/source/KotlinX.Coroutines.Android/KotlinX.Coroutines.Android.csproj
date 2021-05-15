@@ -22,7 +22,7 @@
     <PackageProjectUrl>https://go.microsoft.com/fwlink/?linkid=2083771</PackageProjectUrl>
     <PackageLicenseFile>LICENSE.md</PackageLicenseFile>
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
-    <PackageVersion>1.4.2</PackageVersion>
+    <PackageVersion>1.4.3</PackageVersion>
   </PropertyGroup>
 
   <ItemGroup>
@@ -40,7 +40,7 @@
 
   <ItemGroup>
     <None Include="..\..\externals\kotlinx-coroutines-android-$(PackageVersion).jar" Pack="True" PackagePath="jar\kotlinx-coroutines-android-$(PackageVersion).jar" Visible="false" />
-    <EmbeddedJar Include="..\..\externals\kotlinx-coroutines-android-$(PackageVersion).jar" Link="Jars\kotlinx-coroutines-android-1.4.2.jar" />
+    <EmbeddedJar Include="..\..\externals\kotlinx-coroutines-android-$(PackageVersion).jar" Link="Jars\kotlinx-coroutines-android-$(PackageVersion).jar" />
   </ItemGroup>
 
   <ItemGroup>
@@ -48,11 +48,10 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\KotlinX.Coroutines.Core\KotlinX.Coroutines.Core.csproj" />
-  </ItemGroup>
-  
-  <ItemGroup>
     <None Include="..\..\License.md" Pack="true" PackagePath="LICENSE.md" />
   </ItemGroup>
   
+  <ItemGroup>
+    <ProjectReference Include="..\KotlinX.Coroutines.Core.Jvm\KotlinX.Coroutines.Core.Jvm.csproj" />
+  </ItemGroup>
 </Project>
