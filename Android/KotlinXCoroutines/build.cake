@@ -2,8 +2,8 @@
 
 var TARGET = Argument ("t", Argument ("target", "ci"));
 
-var KOTLINX_VERSION = "1.4.3";
-var KOTLINX_NUGET_VERSION = "1.4.3";
+var KOTLINX_VERSION = "1.5.0";
+var KOTLINX_NUGET_VERSION = "1.5.0";
 
 var KOTLINX_CORE_JAR_URL = $"https://repo1.maven.org/maven2/org/jetbrains/kotlinx/kotlinx-coroutines-core/{KOTLINX_VERSION}/kotlinx-coroutines-core-{KOTLINX_VERSION}.jar";
 var KOTLINX_CORE_DOCS_URL = $"https://repo1.maven.org/maven2/org/jetbrains/kotlinx/kotlinx-coroutines-core/{KOTLINX_VERSION}/kotlinx-coroutines-core-{KOTLINX_VERSION}-sources.jar";

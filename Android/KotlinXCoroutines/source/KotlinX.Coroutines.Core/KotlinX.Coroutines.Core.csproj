@@ -22,7 +22,7 @@
     <PackageProjectUrl>https://go.microsoft.com/fwlink/?linkid=2083771</PackageProjectUrl>
     <PackageLicenseFile>LICENSE.md</PackageLicenseFile>
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
-    <PackageVersion>1.4.3</PackageVersion>
+    <PackageVersion>1.5.0</PackageVersion>
   </PropertyGroup>
 
   <ItemGroup>
@@ -40,12 +40,12 @@
 
   <ItemGroup>
     <None Include="..\..\externals\kotlinx-coroutines-core-$(PackageVersion).jar" Pack="True" PackagePath="jar\kotlinx-coroutines-core-$(PackageVersion).jar" Visible="false" />
-    <EmbeddedJar Include="..\..\externals\kotlinx-coroutines-core-$(PackageVersion).jar" Link="Jars\kotlinx-coroutines-core-1.4.3.jar" />
+    <EmbeddedJar Include="..\..\externals\kotlinx-coroutines-core-$(PackageVersion).jar" Link="Jars\kotlinx-coroutines-core-1.5.0.jar" />
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Xamarin.Kotlin.StdLib" Version="1.4.32.1" />
-    <PackageReference Include="Xamarin.Kotlin.StdLib.Common" Version="1.4.32.1" />
+    <PackageReference Include="Xamarin.Kotlin.StdLib" Version="1.5.0.1" />
+    <PackageReference Include="Xamarin.Kotlin.StdLib.Common" Version="1.5.0.1" />
   </ItemGroup>
   
   <ItemGroup>
