@@ -1,6 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <EmbeddedReferenceJar Include="$(MSBuildThisFileDirectory)*.jar" />
+    <ReferenceJar Include="$(MSBuildThisFileDirectory)*.jar" />
+    <AndroidJavaLibrary Include="$(MSBuildThisFileDirectory)*.jar" />
   </ItemGroup>
+  <PropertyGroup>
+    <AfterGenerateAndroidManifest>
+      $(AfterGenerateAndroidManifest);
+      _GuavaAddAndroidR8ExtraArguments
+    </AfterGenerateAndroidManifest>
+  </PropertyGroup>
+  <Target Name="_GuavaAddAndroidR8ExtraArguments">
+    <PropertyGroup>
+      <AndroidR8ExtraArguments>$(AndroidR8ExtraArguments) --pg-conf "$(MSBuildThisFileDirectory)..\..\proguard\proguard.txt"</AndroidR8ExtraArguments>
+    </PropertyGroup>
+  </Target>
 </Project>
