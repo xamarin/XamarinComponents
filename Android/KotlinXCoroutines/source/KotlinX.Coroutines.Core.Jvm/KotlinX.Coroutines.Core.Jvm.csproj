@@ -44,7 +44,7 @@
 
   <ItemGroup>
     <None Include="..\..\externals\kotlinx-coroutines-core-jvm-$(ArtifactVersion).jar" Pack="True" PackagePath="jar\kotlinx-coroutines-core-jvm-$(ArtifactVersion).jar" Visible="false" />
-    <EmbeddedJar Include="..\..\externals\kotlinx-coroutines-core-jvm-$(ArtifactVersion).jar" Link="Jars\kotlinx-coroutines-core-jvm-$(ArtifactVersion).jar" />
+    <InputJar Include="..\..\externals\kotlinx-coroutines-core-jvm-$(ArtifactVersion).jar" Link="Jars\kotlinx-coroutines-core-jvm-$(ArtifactVersion).jar" />
     <JavaSourceJar Include="..\..\externals\kotlinx-coroutines-core-jvm-sources-$(ArtifactVersion).jar" />
   </ItemGroup>
 

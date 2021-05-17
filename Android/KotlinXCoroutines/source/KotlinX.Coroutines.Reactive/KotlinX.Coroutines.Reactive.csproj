@@ -44,7 +44,7 @@
 
   <ItemGroup>
     <None Include="..\..\externals\kotlinx-coroutines-reactive-$(ArtifactVersion).jar" Pack="True" PackagePath="jar\kotlinx-coroutines-reactive-$(ArtifactVersion).jar" Visible="false" />
-    <EmbeddedJar Include="..\..\externals\kotlinx-coroutines-reactive-$(ArtifactVersion).jar" Link="Jars\kotlinx-coroutines-reactive-$(ArtifactVersion).jar" />
+    <InputJar Include="..\..\externals\kotlinx-coroutines-reactive-$(ArtifactVersion).jar" Link="Jars\kotlinx-coroutines-reactive-$(ArtifactVersion).jar" />
     <JavaSourceJar Include="..\..\externals\kotlinx-coroutines-reactive-sources-$(ArtifactVersion).jar" />
   </ItemGroup>
 
