@@ -25,6 +25,10 @@
     <PackageVersion>1.5.0</PackageVersion>
   </PropertyGroup>
 
+  <PropertyGroup>
+    <ArtifactVersion>1.5.0</ArtifactVersion>
+  </PropertyGroup>
+
   <ItemGroup>
     <None Update="Xamarin.KotlinX.Coroutines.Core.targets" Pack="True" PackagePath="build\$(TargetFramework)" />
     <None Update="Xamarin.KotlinX.Coroutines.Core.targets" Pack="True" PackagePath="buildTransitive\$(TargetFramework)" />
@@ -39,8 +43,9 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Include="..\..\externals\kotlinx-coroutines-core-$(PackageVersion).jar" Pack="True" PackagePath="jar\kotlinx-coroutines-core-$(PackageVersion).jar" Visible="false" />
-    <EmbeddedJar Include="..\..\externals\kotlinx-coroutines-core-$(PackageVersion).jar" Link="Jars\kotlinx-coroutines-core-1.5.0.jar" />
+    <None Include="..\..\externals\kotlinx-coroutines-core-$(ArtifactVersion).jar" Pack="True" PackagePath="jar\kotlinx-coroutines-core-$(ArtifactVersion).jar" Visible="false" />
+    <InputJar Include="..\..\externals\kotlinx-coroutines-core-$(ArtifactVersion).jar" Link="Jars\kotlinx-coroutines-core-$(ArtifactVersion).jar" />
+    <JavaSourceJar Include="..\..\externals\kotlinx-coroutines-core-sources-$(ArtifactVersion).jar" />
   </ItemGroup>
 
   <ItemGroup>
