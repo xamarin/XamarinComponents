@@ -347,6 +347,11 @@
   TriggerPaths: [ Android/SquareMoshi ]
   MacBuildTargets: [ ci ]
   WindowsBuildTargets: [ ci ]
+- Name: SquareMoshiKotlin
+  BuildScript: ./Android/SquareMoshiKotlin/build.cake
+  TriggerPaths: [ Android/SquareMoshiKotlin ]
+  MacBuildTargets: [ ci ]
+  WindowsBuildTargets: [ ci ]
 - Name: SquareOkHttp3LoggingInterceptor
   BuildScript: ./Android/SquareOkHttp3LoggingInterceptor/build.cake
   TriggerPaths: [ Android/SquareOkHttp3LoggingInterceptor ]
