@@ -167,6 +167,11 @@
   BuildScript: ./Android/RecyclerViewAnimators/build.cake
   TriggerPaths: [ Android/RecyclerViewAnimators ]
   MacBuildTargets: [ nuget, samples ]
+- Name: ReLinker
+  BuildScript: ./Android/ReLinnker/build.cake
+  TriggerPaths: [ Android/ReLinnker ]
+  MacBuildTargets: [ ci ]
+  WindowsBuildTargets: [ ci ]
 - Name: RoundedImageView
   BuildScript: ./Android/RoundedImageView/build.cake
   TriggerPaths: [ Android/RoundedImageView ]
