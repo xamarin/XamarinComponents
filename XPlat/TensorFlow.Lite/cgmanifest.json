@@ -6,7 +6,7 @@
         "Maven": {
           "ArtifactId": "tensorflow-lite",
           "GroupId": "org.tensorflow",
-          "Version": "1.14.0",
+          "Version": "2.4.0",
           "NuGetId": "Xamarin.TensorFlow.Lite"
         }
       }
@@ -17,7 +17,7 @@
         "Maven": {
           "ArtifactId": "tensorflow-lite-gpu",
           "GroupId": "org.tensorflow",
-          "Version": "1.14.0",
+          "Version": "2.4.0",
           "NuGetId": "Xamarin.TensorFlow.Lite.Gpu"
         }
       }

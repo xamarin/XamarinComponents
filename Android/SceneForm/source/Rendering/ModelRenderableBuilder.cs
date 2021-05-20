@@ -12,7 +12,6 @@ namespace Google.AR.Sceneform.Rendering
     {
         public partial class Builder
         {
-            /*
             public unsafe ModelRenderable.Builder SetSource(global::Android.Content.Context context, int resource)
             {
                 var rbuilder = this.JavaCast<Renderable.Builder>();
@@ -44,7 +43,6 @@ namespace Google.AR.Sceneform.Rendering
 
                 return this;
             }
-            */
 
             public void Build(Action<ModelRenderable> completionAction)
             {

@@ -1,4 +1,4 @@
-﻿<Project Sdk="MSBuild.Sdk.Extras/2.0.54">
+﻿<Project Sdk="MSBuild.Sdk.Extras/3.0.23">
   <!--
   https://montemagno.com/converting-xamarin-libraries-to-sdk-style-multi-targeted-projects/
     
@@ -12,7 +12,7 @@
         <AndroidUseIntermediateDesignerFile>True</AndroidUseIntermediateDesignerFile>
         <AndroidResgenFile>Resources\Resource.designer.cs</AndroidResgenFile>
 
-        <TargetFrameworks>MonoAndroid81</TargetFrameworks>
+        <TargetFrameworks>MonoAndroid90</TargetFrameworks>
         <AndroidCodegenTarget>XAJavaInterop1</AndroidCodegenTarget>
     </PropertyGroup>
 
@@ -27,7 +27,7 @@
         -->
         <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
         <PackageId>Xamarin.Grpc.Core</PackageId>
-        <PackageVersion>1.28.0</PackageVersion>
+        <PackageVersion>1.37.0</PackageVersion>
         <Title>Xamarin.Grpc.Core</Title>
         <PackageDescription>
             Bindings for Google's GRPC Core package
@@ -64,9 +64,9 @@
 
 
   <ItemGroup>
-    <PackageReference Include="Xamarin.Io.OpenCensus.OpenCensusApi" Version="0.21.0" />
-    <PackageReference Include="Xamarin.Io.OpenCensus.OpenCensusContribGrpcMetrics" Version="0.21.0" />
-    <PackageReference Include="Xamarin.Io.PerfMark.PerfMarkApi" Version="0.19.0" />
+    <PackageReference Include="Xamarin.Io.OpenCensus.OpenCensusApi" Version="0.28.3" />
+    <PackageReference Include="Xamarin.Io.OpenCensus.OpenCensusContribGrpcMetrics" Version="0.28.3" />
+    <PackageReference Include="Xamarin.Io.PerfMark.PerfMarkApi" Version="0.23.0" />
   </ItemGroup>
 
   <ItemGroup>
