@@ -22,7 +22,11 @@
     <PackageProjectUrl>https://go.microsoft.com/fwlink/?linkid=2083771</PackageProjectUrl>
     <PackageLicenseFile>LICENSE.md</PackageLicenseFile>
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
-    <PackageVersion>1.4.1</PackageVersion>
+    <PackageVersion>1.4.3.1</PackageVersion>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <ArtifactVersion>1.4.3</ArtifactVersion>
   </PropertyGroup>
 
   <ItemGroup>
@@ -39,8 +43,9 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Include="..\..\externals\kotlinx-coroutines-core-jvm.jar" Pack="True" PackagePath="jar\kotlinx-coroutines-core-jvm.jar" Visible="false" />
-    <EmbeddedJar Include="..\..\externals\kotlinx-coroutines-core-jvm.jar" Link="Jars\kotlinx-coroutines-core-jvm.jar" />
+    <None Include="..\..\externals\kotlinx-coroutines-core-jvm-$(ArtifactVersion).jar" Pack="True" PackagePath="jar\kotlinx-coroutines-core-jvm-$(ArtifactVersion).jar" Visible="false" />
+    <InputJar Include="..\..\externals\kotlinx-coroutines-core-jvm-$(ArtifactVersion).jar" Link="Jars\kotlinx-coroutines-core-jvm-$(ArtifactVersion).jar" />
+    <JavaSourceJar Include="..\..\externals\kotlinx-coroutines-core-jvm-sources-$(ArtifactVersion).jar" />
   </ItemGroup>
 
   <ItemGroup>
