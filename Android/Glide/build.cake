@@ -1,7 +1,4 @@
-
-#load "../../common.cake"
-
-var TARGET = Argument ("t", Argument ("target", "Default"));
+var TARGET = Argument ("t", Argument ("target", "ci"));
 
 var NUGET_PATCH = "";
 
@@ -82,7 +79,10 @@ Task ("clean")
 	.Does (() =>
 {
 	if (DirectoryExists ("./externals/"))
-		DeleteDirectory ("./externals", true);
+		DeleteDirectory ("./externals", new DeleteDirectorySettings {
+			Recursive = true,
+			Force = true
+		});
 });
 
 RunTarget (TARGET);
