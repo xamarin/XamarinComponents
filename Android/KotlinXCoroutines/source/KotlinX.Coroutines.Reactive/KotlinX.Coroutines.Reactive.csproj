@@ -22,7 +22,11 @@
     <PackageProjectUrl>https://go.microsoft.com/fwlink/?linkid=2083771</PackageProjectUrl>
     <PackageLicenseFile>LICENSE.md</PackageLicenseFile>
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
-    <PackageVersion>1.4.1</PackageVersion>
+    <PackageVersion>1.4.3.1</PackageVersion>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <ArtifactVersion>1.4.3</ArtifactVersion>
   </PropertyGroup>
 
   <ItemGroup>
@@ -39,8 +43,9 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Include="..\..\externals\kotlinx-coroutines-reactive.jar" Pack="True" PackagePath="jar\kotlinx-coroutines-reactive.jar" Visible="false" />
-    <EmbeddedJar Include="..\..\externals\kotlinx-coroutines-reactive.jar" Link="Jars\kotlinx-coroutines-reactive.jar" />
+    <None Include="..\..\externals\kotlinx-coroutines-reactive-$(ArtifactVersion).jar" Pack="True" PackagePath="jar\kotlinx-coroutines-reactive-$(ArtifactVersion).jar" Visible="false" />
+    <InputJar Include="..\..\externals\kotlinx-coroutines-reactive-$(ArtifactVersion).jar" Link="Jars\kotlinx-coroutines-reactive-$(ArtifactVersion).jar" />
+    <JavaSourceJar Include="..\..\externals\kotlinx-coroutines-reactive-sources-$(ArtifactVersion).jar" />
   </ItemGroup>
 
   <ItemGroup>
@@ -52,4 +57,7 @@
     <None Include="..\..\License.md" Pack="true" PackagePath="LICENSE.md" />
   </ItemGroup>
   
+  <ItemGroup>
+    <ProjectReference Include="..\KotlinX.Coroutines.Core.Jvm\KotlinX.Coroutines.Core.Jvm.csproj" />
+  </ItemGroup>
 </Project>
