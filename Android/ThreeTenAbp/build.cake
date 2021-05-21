@@ -1,6 +1,3 @@
-
-#load "../../common.cake"
-
 var TARGET = Argument ("t", Argument ("target", "ci"));
 
 var AAR_VERSION = "1.3.1";
