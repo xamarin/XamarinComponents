@@ -7,10 +7,6 @@ var GUAVA_VERSION = GUAVA_VERSION_BASE + "-android";
 var GUAVA_FAILUREACCESS_VERSION = "1.0.1";
 var GUAVA_LISTENABLEFUTURE_VERSION = "1.0";
 
-var GUAVA_NUGET_VERSION = "28.2.0.0";
-var GUAVA_FAILUREACCESS_NUGET_VERSION = "1.0.1.2";
-var GUAVA_LISTENABLEFUTURE_NUGET_VERSION = "1.0.0.2";
-
 var JSR305_VERSION = "3.0.2";
 var CHECKER_COMPAT_QUAL_VERSION = "2.5.5";
 var ERROR_PRONE_ANNOTATIONS_VERSION = "2.3.3";
@@ -99,11 +95,6 @@ Task ("externals")
 		if (zipFile != null)
 			zipFile.Close();
 	}
-
-	// Update .csproj nuget versions
-	XmlPoke("./source/Guava/Guava.csproj", "/Project/PropertyGroup/PackageVersion", GUAVA_NUGET_VERSION + "$(PackageVersionSuffix)");
-	XmlPoke("./source/Guava.FailureAccess/Guava.FailureAccess.csproj", "/Project/PropertyGroup/PackageVersion", GUAVA_FAILUREACCESS_NUGET_VERSION + "$(PackageVersionSuffix)");
-	XmlPoke("./source/Guava.ListenableFuture/Guava.ListenableFuture.csproj", "/Project/PropertyGroup/PackageVersion", GUAVA_LISTENABLEFUTURE_NUGET_VERSION + "$(PackageVersionSuffix)");
 });
 
 
@@ -134,7 +125,11 @@ Task("nuget")
 });
 
 Task("samples")
-	.IsDependentOn("nuget");
+	.IsDependentOn("nuget")
+	.Does (() =>
+{
+	MSBuild("./samples/GuavaSample/GuavaSample.csproj", c => c.Restore = true);
+});
 
 Task ("clean")
 	.Does (() =>

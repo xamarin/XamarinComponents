@@ -24,7 +24,7 @@ Guava is a set of core libraries that includes new collection types (such as mul
     <PackageProjectUrl>https://go.microsoft.com/fwlink/?linkid=865028</PackageProjectUrl>
     <PackageLicenseUrl>https://go.microsoft.com/fwlink/?linkid=865030</PackageLicenseUrl>
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
-    <PackageVersion>28.2.0.0$(PackageVersionSuffix)</PackageVersion>
+    <PackageVersion>$(GuavaNuGetVersion)</PackageVersion>
   </PropertyGroup>
 
   <ItemGroup>
