@@ -10,7 +10,7 @@ Task ("externals")
 {
 	EnsureDirectoryExists ("./externals");
 	
-	DownloadFile(JAR_URL, "./externals/recyclerview-fastscroll.aar");
+	DownloadFile(AAR_URL, "./externals/recyclerview-fastscroll.aar");
 
 	// Update .csproj nuget versions
 	XmlPoke("./source/RecyclerView-FastScroll/RecyclerView-FastScroll.csproj", "/Project/PropertyGroup/PackageVersion", NUGET_VERSION);
