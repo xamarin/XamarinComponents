@@ -186,7 +186,7 @@ namespace AndroidBinderator
 				{
 					// First try download, this almost certainly won't work
 					// but in case Maven ever starts supporting sha256 it should start
-					// they currently support .sha1 so there's no reason to believe the naming 
+					// they currently support .sha1 so there's no reason to believe the naming
 					// convention should be any different, and one day .sha256 may exist
 					using (var astrm = await mvnArt.OpenLibraryFile(mavenArtifact.Version, mavenProject.Packaging + ".sha256"))
 					using (var sw = File.Create(sha256File))
@@ -335,7 +335,7 @@ namespace AndroidBinderator
 					mavenDep.Version = FixVersion(mavenDep.Version);
 
 					var depMapping = config.MavenArtifacts.FirstOrDefault(
-						ma => !string.IsNullOrEmpty(ma.Version) 
+						ma => !string.IsNullOrEmpty(ma.Version)
 						&& ma.GroupId == mavenDep.GroupId
 						&& ma.ArtifactId == mavenDep.ArtifactId
 						&& mavenDep.Satisfies(ma.Version));
