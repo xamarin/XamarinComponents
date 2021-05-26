@@ -1,0 +1,16 @@
+{
+  "Registrations": [
+    {
+      "Component": {
+        "Type": "Maven",
+        "Maven": {
+          "ArtifactId": "recyclerview-fastscroll",
+          "GroupId": "com.simplecityapps",
+          "Version": "1.12.0",
+          "NuGetId": "RecyclerView-FastScroll"
+        }
+      }
+    }
+  ],
+  "Version": 1
+}
