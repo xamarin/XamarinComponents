@@ -1,16 +1,16 @@
 var TARGET = Argument ("t", Argument ("target", "ci"));
 
-var NUGET_VERSION = "1.1.3";
+var NUGET_VERSION = "1.1.2";
 
-var AAR_VERSION = "1.1.3";
-var AAR_URL = $"https://bintray.com/artifact/download/jlmd/maven/es/voghdev/pdfviewpager/library/{AAR_VERSION}/library-{AAR_VERSION}.aar";
+var AAR_VERSION = "1.1.2";
+var AAR_URL = $"https://jcenter.bintray.com/es/voghdev/pdfviewpager/library/{AAR_VERSION}/library-{AAR_VERSION}.aar";
 
 Task ("externals")
 	.Does (() =>
 {
 	EnsureDirectoryExists ("./externals");
 	
-	DownloadFile(JAR_URL, "./externals/pdfviewpager.aar");
+	DownloadFile(AAR_URL, "./externals/pdfviewpager.aar");
 
 	// Update .csproj nuget versions
 	XmlPoke("./source/PdfViewPager/PdfViewPager.csproj", "/Project/PropertyGroup/PackageVersion", NUGET_VERSION);
