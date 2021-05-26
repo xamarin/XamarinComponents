@@ -310,7 +310,7 @@ namespace AndroidBinderator
 				var artifactExtractDir = Path.Combine(artifactDir, mavenArtifact.ArtifactId);
 
 				var proguardFile = Path.Combine(artifactExtractDir, "proguard.txt");
-				var exceptions = new List<string>();
+				var exceptions = new List<Exception>();
 
 				projectModel.MavenArtifacts.Add(new MavenArtifactModel
 				{
@@ -342,7 +342,7 @@ namespace AndroidBinderator
 
 					if (depMapping == null)
 					{
-						exceptions.Add($"No matching artifact config found for: {mavenDep.GroupId}.{mavenDep.ArtifactId}:{mavenDep.Version} to satisfy dependency of: {mavenArtifact.GroupId}.{mavenArtifact.ArtifactId}:{mavenArtifact.Version}");
+						exceptions.Add(new Exception($"No matching artifact config found for: {mavenDep.GroupId}.{mavenDep.ArtifactId}:{mavenDep.Version} to satisfy dependency of: {mavenArtifact.GroupId}.{mavenArtifact.ArtifactId}:{mavenArtifact.Version}"));
 						continue;
 					}
 
@@ -372,18 +372,7 @@ namespace AndroidBinderator
 				}
 				if (exceptions.Any())
                 {
-					StringBuilder sb = new StringBuilder();
-					sb.AppendLine("");
-					sb.AppendLine($"Dependency errors : {exceptions.Count}");
-					int i = 1;
-					foreach(string exc in exceptions)
-					{
-						sb.AppendLine($"{i}");
-						sb.AppendLine($"	{exc}");
-						i++;
-					}
-
-					throw new Exception(sb.ToString());
+					throw new AggregateException(exceptions.ToArray());
                 }
 
 			}
