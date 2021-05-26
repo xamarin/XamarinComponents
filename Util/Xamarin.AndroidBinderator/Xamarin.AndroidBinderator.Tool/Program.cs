@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
+using System.Text;
 using System.Threading.Tasks;
 
 namespace Xamarin.AndroidBinderator.Tool
@@ -46,22 +47,39 @@ namespace Xamarin.AndroidBinderator.Tool
                 return;
             }
 
-            foreach (var config in configs)
+            try
             {
-                var cfgs = Newtonsoft.Json.JsonConvert.DeserializeObject<List<BindingConfig>>(File.ReadAllText(config));
-
-                foreach (var c in cfgs)
+                foreach (var config in configs)
                 {
+                    var cfgs = Newtonsoft.Json.JsonConvert.DeserializeObject<List<BindingConfig>>(File.ReadAllText(config));
 
-                    if (string.IsNullOrEmpty(c.BasePath))
+                    foreach (var c in cfgs)
                     {
-                        if (!string.IsNullOrEmpty(basePath))
-                            c.BasePath = basePath;
-                        else
-                            c.BasePath = AppDomain.CurrentDomain.BaseDirectory;
-                    }
 
-                    await Engine.BinderateAsync(c);
+                        if (string.IsNullOrEmpty(c.BasePath))
+                        {
+                            if (!string.IsNullOrEmpty(basePath))
+                                c.BasePath = basePath;
+                            else
+                                c.BasePath = AppDomain.CurrentDomain.BaseDirectory;
+                        }
+
+                        await Engine.BinderateAsync(c);
+                    }
+                }
+            }
+            catch (AggregateException exc_a)
+            {
+                StringBuilder sb = new StringBuilder();
+                sb.AppendLine("");
+                sb.AppendLine($"Dependency errors : {exc_a.InnerExceptions.Count}");
+
+                int i = 1;
+                foreach (Exception exc in exc_a.InnerExceptions)
+                {
+                    sb.AppendLine($"{i}");
+                    sb.AppendLine($"	{exc.ToString()}");
+                    i++;
                 }
             }
         }
