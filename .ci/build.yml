@@ -107,6 +107,7 @@ jobs:
         inputs:
           version: ${{ parameters.dotnet }}
           performMultiLevelLookup: true
+          includePreviewVersions: true
         condition: ne('${{ parameters.dotnet }}', '')
       # custom init steps
       - ${{ parameters.initSteps }}
