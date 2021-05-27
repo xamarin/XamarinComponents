@@ -7,7 +7,7 @@
           "ArtifactId": "recyclerview-fastscroll",
           "GroupId": "com.simplecityapps",
           "Version": "1.12.0",
-          "NuGetId": "Xamarin.RecyclerView.FastScroll"
+          "NuGetId": "RecyclerView.FastScroll"
         }
       }
     }
