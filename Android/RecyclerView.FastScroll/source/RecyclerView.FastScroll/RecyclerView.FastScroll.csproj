@@ -11,7 +11,7 @@
   </PropertyGroup>
 
   <PropertyGroup>
-    <PackageId>RecyclerView.FastScroll</PackageId>
+    <PackageId>Xamarin.RecyclerView.FastScroll</PackageId>
     <Title>RecyclerView.FastScroll bindings for Xamarin.Android</Title>
     <Summary>RecyclerView.FastScroll is a simple FastScroller for Android's RecyclerView.</Summary>
     <Description>RecyclerView.FastScroll is a simple FastScroller for Android's RecyclerView.</Description>
