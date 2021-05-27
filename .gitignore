@@ -13,3 +13,4 @@ tmpnupkg/
 *.user
 artifacts/
 .idea/
+*.binlog
