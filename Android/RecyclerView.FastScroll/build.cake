@@ -10,17 +10,17 @@ Task ("externals")
 {
 	EnsureDirectoryExists ("./externals");
 	
-	DownloadFile(AAR_URL, "./externals/recyclerview-fastscroll.aar");
+	DownloadFile(AAR_URL, "./externals/recyclerview.fastscroll.aar");
 
 	// Update .csproj nuget versions
-	XmlPoke("./source/RecyclerView-FastScroll/RecyclerView-FastScroll.csproj", "/Project/PropertyGroup/PackageVersion", NUGET_VERSION);
+	XmlPoke("./source/RecyclerView.FastScroll/RecyclerView.FastScroll.csproj", "/Project/PropertyGroup/PackageVersion", NUGET_VERSION);
 });
 
 Task("nuget")
 	.IsDependentOn("externals")
 	.Does(() =>
 {
-	MSBuild ("./source/RecyclerView-FastScroll.sln", c => {
+	MSBuild ("./source/RecyclerView.FastScroll.sln", c => {
 		c.Configuration = "Release";
 		c.Restore = true;
 		c.MaxCpuCount = 0;

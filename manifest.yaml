@@ -167,6 +167,11 @@
   BuildScript: ./Android/RecyclerViewAnimators/build.cake
   TriggerPaths: [ Android/RecyclerViewAnimators ]
   MacBuildTargets: [ nuget, samples ]
+- Name: RecyclerView.FastScroll
+  BuildScript: ./Android/RecyclerView.FastScroll/build.cake
+  TriggerPaths: [ Android/RecyclerView.FastScroll ]
+  MacBuildTargets: [ ci ]
+  WindowsBuildTargets: [ ci ]
 - Name: RoundedImageView
   BuildScript: ./Android/RoundedImageView/build.cake
   TriggerPaths: [ Android/RoundedImageView ]

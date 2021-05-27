@@ -7,7 +7,7 @@
   <remove-node path="/api/package[@name='android.support.v4.content']/class[@name='CursorLoader']/method[@name='loadInBackground']" />
   -->
 
-	<attr path="/api/package[@name='com.simplecityapps.recyclerview_fastscroll']" name="managedName">RecyclerViewFastScroll</attr>
+	<attr path="/api/package[@name='com.simplecityapps.recyclerview_fastscroll']" name="managedName">RecyclerView.FastScroll</attr>
 
 	<remove-node path="/api/package[@name='com.simplecityapps.recyclerview_fastscroll.interfaces']" />
 	<remove-node path="/api/package[@name='com.simplecityapps.recyclerview_fastscroll.utils']" />

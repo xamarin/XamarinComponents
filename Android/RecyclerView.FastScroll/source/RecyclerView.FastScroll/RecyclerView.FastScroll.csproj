@@ -2,8 +2,8 @@
   <PropertyGroup>
     <TargetFrameworks>monoandroid9.0</TargetFrameworks>
     <IsBindingProject>true</IsBindingProject>
-    <AssemblyName>RecyclerView-FastScroll</AssemblyName>
-    <RootNamespace>RecyclerView-FastScroll</RootNamespace>
+    <AssemblyName>RecyclerView.FastScroll</AssemblyName>
+    <RootNamespace>RecyclerView.FastScroll</RootNamespace>
     <AndroidUseLatestPlatformSdk>False</AndroidUseLatestPlatformSdk>
     <AndroidUseIntermediateDesignerFile>True</AndroidUseIntermediateDesignerFile>
     <AndroidClassParser>class-parse</AndroidClassParser>
@@ -11,10 +11,10 @@
   </PropertyGroup>
 
   <PropertyGroup>
-    <PackageId>RecyclerView-FastScroll</PackageId>
-    <Title>RecyclerView-FastScroll bindings for Xamarin.Android</Title>
-    <Summary>RecyclerView-FastScroll is a simple FastScroller for Android's RecyclerView.</Summary>
-    <Description>RecyclerView-FastScroll is a simple FastScroller for Android's RecyclerView.</Description>
+    <PackageId>RecyclerView.FastScroll</PackageId>
+    <Title>RecyclerView.FastScroll bindings for Xamarin.Android</Title>
+    <Summary>RecyclerView.FastScroll is a simple FastScroller for Android's RecyclerView.</Summary>
+    <Description>RecyclerView.FastScroll is a simple FastScroller for Android's RecyclerView.</Description>
     <Authors>Microsoft</Authors>
     <Owners>Microsoft</Owners>
     <Copyright>© Microsoft Corporation. All rights reserved.</Copyright>
