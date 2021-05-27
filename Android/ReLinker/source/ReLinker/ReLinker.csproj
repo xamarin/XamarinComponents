@@ -1,6 +1,6 @@
 ﻿<Project Sdk="MSBuild.Sdk.Extras/2.1.2">
   <PropertyGroup>
-    <TargetFrameworks>monoandroid11.0</TargetFrameworks>
+    <TargetFrameworks>monoandroid9.0</TargetFrameworks>
     <IsBindingProject>true</IsBindingProject>
     <AssemblyName>ReLinker</AssemblyName>
     <RootNamespace>ReLinker</RootNamespace>
