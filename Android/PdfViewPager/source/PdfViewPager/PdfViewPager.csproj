@@ -11,7 +11,7 @@
   </PropertyGroup>
 
   <PropertyGroup>
-    <PackageId>PdfViewPager</PackageId>
+    <PackageId>Xamarin.PdfViewPager</PackageId>
     <Title>PdfViewPager bindings for Xamarin.Android</Title>
     <Summary>PdfViewPager is an android widget to display PDF documents in your Activities or Fragments.</Summary>
     <Description>PdfViewPager is an android widget to display PDF documents in your Activities or Fragments.</Description>
