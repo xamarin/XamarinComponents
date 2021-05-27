@@ -11,7 +11,7 @@
   </PropertyGroup>
 
   <PropertyGroup>
-    <PackageId>ReLinker</PackageId>
+    <PackageId>Xamarin.ReLinker</PackageId>
     <Title>ReLinker bindings for Xamarin.Android</Title>
     <Summary>ReLinker is a robust native library loader for Android.</Summary>
     <Description>ReLinker is a robust native library loader for Android.</Description>
