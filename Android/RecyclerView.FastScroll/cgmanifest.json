@@ -6,7 +6,7 @@
         "Maven": {
           "ArtifactId": "recyclerview-fastscroll",
           "GroupId": "com.simplecityapps",
-          "Version": "1.12.0",
+          "Version": "2.0.1",
           "NuGetId": "RecyclerView.FastScroll"
         }
       }
