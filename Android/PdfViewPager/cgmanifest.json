@@ -6,7 +6,7 @@
         "Maven": {
           "ArtifactId": "library",
           "GroupId": "es.voghdev.pdfviewpager",
-          "Version": "1.1.3",
+          "Version": "1.1.2",
           "NuGetId": "PdfViewPager"
         }
       }
