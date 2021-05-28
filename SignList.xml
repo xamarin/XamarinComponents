@@ -23,6 +23,7 @@
   <ItemGroup>
     <!-- <Skip Include="System.*.dll" /> -->
     <Skip Include="System.dll" />
+    <Skip Include="System.*.dll" />
     <Skip Include="mscorlib.dll" />
     <Skip Include="netstandard.dll" />
     <Skip Include="WindowsBase.dll" />
