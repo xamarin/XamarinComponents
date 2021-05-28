@@ -12,10 +12,12 @@
 
   <ItemGroup>
     <!-- <ThirdParty Include="Newtonsoft.Json.dll" /> -->
+    <ThirdParty Include="MavenNet.dll" />
   </ItemGroup>
 
   <ItemGroup>
     <!-- <Skip Include="System.*.dll" /> -->
+    <Skip Include="Microsoft.*.dll" />
   </ItemGroup>
 
 </Project>
