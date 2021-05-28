@@ -13,11 +13,20 @@
   <ItemGroup>
     <!-- <ThirdParty Include="Newtonsoft.Json.dll" /> -->
     <ThirdParty Include="MavenNet.dll" />
+    <ThirdParty Include="ILRepack.dll" />
+    <ThirdParty Include="protobuf-net.dll" />
+    <ThirdParty Include="Newtonsoft.Json.dll" />
+    <ThirdParty Include="Mono.Cecil.dll" />
+    <ThirdParty Include="Mono.Cecil.*.dll" />
   </ItemGroup>
 
   <ItemGroup>
     <!-- <Skip Include="System.*.dll" /> -->
+    <Skip Include="System.*.dll" />
     <Skip Include="Microsoft.*.dll" />
-  </ItemGroup>
-
+    <Skip Include="NuGet.*.dll" />
+    <Skip Include="Mono.*.dll" />
+    <Skip Include="MonoPosixHelper.dll" />
+    <Skip Include="libMonoPosixHelper.dll" />
+  </ItemGroup>  
 </Project>
