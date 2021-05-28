@@ -2,8 +2,8 @@
   <PropertyGroup>
     <TargetFrameworks>monoandroid9.0</TargetFrameworks>
     <IsBindingProject>true</IsBindingProject>
-    <AssemblyName>PdfViewPager</AssemblyName>
-    <RootNamespace>PdfViewPager</RootNamespace>
+    <AssemblyName>Xamarin.PdfViewPager</AssemblyName>
+    <RootNamespace>Xamarin.PdfViewPager</RootNamespace>
     <AndroidUseLatestPlatformSdk>False</AndroidUseLatestPlatformSdk>
     <AndroidUseIntermediateDesignerFile>True</AndroidUseIntermediateDesignerFile>
     <AndroidClassParser>class-parse</AndroidClassParser>
