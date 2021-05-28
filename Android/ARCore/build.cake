@@ -1,4 +1,4 @@
-#load "../../common.cake"
+//#load "../../common.cake"
 
 var TARGET = Argument ("t", Argument ("target", "ci"));
 
