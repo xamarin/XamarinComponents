@@ -158,6 +158,11 @@
   BuildScript: ./Android/PhotoView/build.cake
   TriggerPaths: [ Android/PhotoView ]
   MacBuildTargets: [ nuget, samples ]
+- Name: PdfViewPager
+  BuildScript: ./Android/PdfViewPager/build.cake
+  TriggerPaths: [ Android/PdfViewPager ]
+  MacBuildTargets: [ ci ]
+  WindowsBuildTargets: [ ci ]
 - Name: ReactiveX
   BuildScript: ./Android/ReactiveX/build.cake
   TriggerPaths: [ Android/ReactiveX ]
