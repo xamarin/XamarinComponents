@@ -7,6 +7,6 @@
   <remove-node path="/api/package[@name='android.support.v4.content']/class[@name='CursorLoader']/method[@name='loadInBackground']" />
   -->
 
-	<attr path="/api/package[@name='es.voghdev.pdfviewpager.library']" name="managedName">PdfViewPager</attr>
+	<attr path="/api/package[@name='es.voghdev.pdfviewpager.library']" name="managedName">Xamarin.PdfViewPager</attr>
    
 </metadata>
