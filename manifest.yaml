@@ -367,6 +367,11 @@
   TriggerPaths: [ Android/KotlinXCoroutines ]
   WindowsBuildTargets: [ ci ]
   MacBuildTargets: [ ci ]
+- Name: DesugarJDKLibs
+  BuildScript: ./Android/DesugarJDKLibs/build.cake
+  TriggerPaths: [ Android/DesugarJDKLibs ]
+  WindowsBuildTargets: [ ci ]
+  MacBuildTargets: [ ci ]
 
 # will be XPlat in the future
 - Name: TensorFlow.Lite
