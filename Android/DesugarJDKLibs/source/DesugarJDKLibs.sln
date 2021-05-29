@@ -1,0 +1,17 @@
+
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Xamarin.Android.Tools.DesugarJdkLibs", "Xamarin.Android.Tools.DesugarJdkLibs\Xamarin.Android.Tools.DesugarJdkLibs.csproj", "{EBC199A3-D6D0-4CA3-9E55-89FCE3A63B39}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{EBC199A3-D6D0-4CA3-9E55-89FCE3A63B39}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EBC199A3-D6D0-4CA3-9E55-89FCE3A63B39}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EBC199A3-D6D0-4CA3-9E55-89FCE3A63B39}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EBC199A3-D6D0-4CA3-9E55-89FCE3A63B39}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
