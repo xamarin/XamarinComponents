@@ -173,8 +173,8 @@
   TriggerPaths: [ Android/RecyclerViewAnimators ]
   MacBuildTargets: [ nuget, samples ]
 - Name: ReLinker
-  BuildScript: ./Android/ReLinnker/build.cake
-  TriggerPaths: [ Android/ReLinnker ]
+  BuildScript: ./Android/ReLinker/build.cake
+  TriggerPaths: [ Android/ReLinker ]
   MacBuildTargets: [ ci ]
   WindowsBuildTargets: [ ci ]
 - Name: RecyclerView.FastScroll
