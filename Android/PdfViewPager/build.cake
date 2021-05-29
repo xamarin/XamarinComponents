@@ -1,26 +1,26 @@
 var TARGET = Argument ("t", Argument ("target", "ci"));
 
-var NUGET_VERSION = "4.9.1";
+var NUGET_VERSION = "1.1.2";
 
-var JAR_VERSION = "4.9.1";
-var JAR_URL = $"https://repo1.maven.org/maven2/com/squareup/okhttp3/okhttp-urlconnection/{JAR_VERSION}/okhttp-urlconnection-{JAR_VERSION}.jar";
+var AAR_VERSION = "1.1.2";
+var AAR_URL = $"https://jcenter.bintray.com/es/voghdev/pdfviewpager/library/{AAR_VERSION}/library-{AAR_VERSION}.aar";
 
 Task ("externals")
 	.Does (() =>
 {
 	EnsureDirectoryExists ("./externals");
 	
-	DownloadFile(JAR_URL, "./externals/okhttp3-urlconnection.jar");
+	DownloadFile(AAR_URL, "./externals/pdfviewpager.aar");
 
 	// Update .csproj nuget versions
-	XmlPoke("./source/Square.OkHttp3.UrlConnection/Square.OkHttp3.UrlConnection.csproj", "/Project/PropertyGroup/PackageVersion", NUGET_VERSION);
+	XmlPoke("./source/PdfViewPager/PdfViewPager.csproj", "/Project/PropertyGroup/PackageVersion", NUGET_VERSION);
 });
 
 Task("nuget")
 	.IsDependentOn("externals")
 	.Does(() =>
 {
-	MSBuild ("./source/Square.OkHttp3.UrlConnection.sln", c => {
+	MSBuild ("./source/PdfViewPager.sln", c => {
 		c.Configuration = "Release";
 		c.Restore = true;
 		c.MaxCpuCount = 0;
@@ -32,9 +32,17 @@ Task("nuget")
 	});
 });
 
+Task("samples")
+	.IsDependentOn("nuget")
+	.Does(() =>
+{
+	
+});
+
 Task("ci")
 	.IsDependentOn("externals")
-	.IsDependentOn("nuget");
+	.IsDependentOn("nuget")
+	.IsDependentOn("samples");
 
 Task ("clean")
 	.Does (() =>

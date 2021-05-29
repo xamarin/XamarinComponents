@@ -1,26 +1,26 @@
 var TARGET = Argument ("t", Argument ("target", "ci"));
 
-var NUGET_VERSION = "4.9.1";
+var NUGET_VERSION = "1.1.5";
 
-var JAR_VERSION = "4.9.1";
-var JAR_URL = $"https://repo1.maven.org/maven2/com/squareup/okhttp3/okhttp-urlconnection/{JAR_VERSION}/okhttp-urlconnection-{JAR_VERSION}.jar";
+var JAR_VERSION = "1.1.5";
+var JAR_URL = $"https://dl.google.com/android/maven2/com/android/tools/desugar_jdk_libs/{JAR_VERSION}/desugar_jdk_libs-{JAR_VERSION}.jar";
 
 Task ("externals")
 	.Does (() =>
 {
 	EnsureDirectoryExists ("./externals");
 	
-	DownloadFile(JAR_URL, "./externals/okhttp3-urlconnection.jar");
+	DownloadFile(JAR_URL, $"./externals/desugar_jdk_libs-{JAR_VERSION}.jar");
 
 	// Update .csproj nuget versions
-	XmlPoke("./source/Square.OkHttp3.UrlConnection/Square.OkHttp3.UrlConnection.csproj", "/Project/PropertyGroup/PackageVersion", NUGET_VERSION);
+	XmlPoke("./source/Xamarin.Android.Tools.DesugarJdkLibs/Xamarin.Android.Tools.DesugarJdkLibs.csproj", "/Project/PropertyGroup/PackageVersion", NUGET_VERSION);
 });
 
 Task("nuget")
 	.IsDependentOn("externals")
 	.Does(() =>
 {
-	MSBuild ("./source/Square.OkHttp3.UrlConnection.sln", c => {
+	MSBuild ("./source/DesugarJDKLibs.sln", c => {
 		c.Configuration = "Release";
 		c.Restore = true;
 		c.MaxCpuCount = 0;
@@ -32,9 +32,17 @@ Task("nuget")
 	});
 });
 
+Task("samples")
+	.IsDependentOn("nuget")
+	.Does(() =>
+{
+	
+});
+
 Task("ci")
 	.IsDependentOn("externals")
-	.IsDependentOn("nuget");
+	.IsDependentOn("nuget")
+	.IsDependentOn("samples");
 
 Task ("clean")
 	.Does (() =>
