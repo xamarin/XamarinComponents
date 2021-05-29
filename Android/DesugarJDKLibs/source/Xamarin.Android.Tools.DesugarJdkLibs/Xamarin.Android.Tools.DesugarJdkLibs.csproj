@@ -2,8 +2,8 @@
   <PropertyGroup>
     <TargetFrameworks>monoandroid9.0</TargetFrameworks>
     <IsBindingProject>true</IsBindingProject>
-    <AssemblyName>DesugarJDKLibs</AssemblyName>
-    <RootNamespace>DesugarJDKLibs</RootNamespace>
+    <AssemblyName>Xamarin.Android.Tools.DesugarJdkLibs</AssemblyName>
+    <RootNamespace>Xamarin.Android.Tools.DesugarJdkLibs</RootNamespace>
     <AndroidUseLatestPlatformSdk>False</AndroidUseLatestPlatformSdk>
     <AndroidUseIntermediateDesignerFile>True</AndroidUseIntermediateDesignerFile>
     <AndroidClassParser>class-parse</AndroidClassParser>
@@ -11,7 +11,7 @@
   </PropertyGroup>
 
   <PropertyGroup>
-    <PackageId>DesugarJDKLibs</PackageId>
+    <PackageId>Xamarin.Android.Tools.DesugarJdkLibs</PackageId>
     <Title>DesugarJDKLibs bindings for Xamarin.Android</Title>
     <Summary>DesugarJDKLibs contains a small subset of OpenJDK libraries simplified for use on older runtimes.</Summary>
     <Description>DesugarJDKLibs contains a small subset of OpenJDK libraries simplified for use on older runtimes.</Description>

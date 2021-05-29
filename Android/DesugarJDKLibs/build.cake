@@ -13,7 +13,7 @@ Task ("externals")
 	DownloadFile(JAR_URL, $"./externals/desugar_jdk_libs-{JAR_VERSION}.jar");
 
 	// Update .csproj nuget versions
-	XmlPoke("./source/DesugarJDKLibs/DesugarJDKLibs.csproj", "/Project/PropertyGroup/PackageVersion", NUGET_VERSION);
+	XmlPoke("./source/Xamarin.Android.Tools.DesugarJdkLibs/Xamarin.Android.Tools.DesugarJdkLibs.csproj", "/Project/PropertyGroup/PackageVersion", NUGET_VERSION);
 });
 
 Task("nuget")
