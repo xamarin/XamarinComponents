@@ -158,6 +158,11 @@
   BuildScript: ./Android/PhotoView/build.cake
   TriggerPaths: [ Android/PhotoView ]
   MacBuildTargets: [ nuget, samples ]
+- Name: PdfViewPager
+  BuildScript: ./Android/PdfViewPager/build.cake
+  TriggerPaths: [ Android/PdfViewPager ]
+  MacBuildTargets: [ ci ]
+  WindowsBuildTargets: [ ci ]
 - Name: ReactiveX
   BuildScript: ./Android/ReactiveX/build.cake
   TriggerPaths: [ Android/ReactiveX ]
@@ -170,6 +175,11 @@
 - Name: ReLinker
   BuildScript: ./Android/ReLinnker/build.cake
   TriggerPaths: [ Android/ReLinnker ]
+  MacBuildTargets: [ ci ]
+  WindowsBuildTargets: [ ci ]
+- Name: RecyclerView.FastScroll
+  BuildScript: ./Android/RecyclerView.FastScroll/build.cake
+  TriggerPaths: [ Android/RecyclerView.FastScroll ]
   MacBuildTargets: [ ci ]
   WindowsBuildTargets: [ ci ]
 - Name: RoundedImageView
