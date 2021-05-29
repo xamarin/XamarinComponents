@@ -13,7 +13,7 @@ Task ("externals")
 	DownloadFile(JAR_URL, "./externals/relinker.aar");
 
 	// Update .csproj nuget versions
-	XmlPoke("./source/ReLinker/ReLinker.csproj", "/Project/PropertyGroup/PackageVersion", NUGET_VERSION);
+	XmlPoke("./source/Xamarin.ReLinker/Xamarin.ReLinker.csproj", "/Project/PropertyGroup/PackageVersion", NUGET_VERSION);
 });
 
 Task("nuget")
