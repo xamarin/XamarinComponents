@@ -1,10 +1,10 @@
 var TARGET = Argument ("t", Argument ("target", "Default"));
 
-var PLACES_VERSION = "1.1.0";
-var XAMARIN_FIX_VERSION = "2";
+var PLACES_VERSION = "2.4.0";
+var XAMARIN_FIX_VERSION = "0";
 var PLACES_NUGET_VERSION = $"{PLACES_VERSION}.{XAMARIN_FIX_VERSION}";
 var PLACES_URL = $"https://maven.google.com/com/google/android/libraries/places/places/{PLACES_VERSION}/places-{PLACES_VERSION}.aar";
-var ANDROID_SDK_BUILD_TOOLS_VERSION = "28.0.3";
+var ANDROID_SDK_BUILD_TOOLS_VERSION = "30.0.2";
 
 Task ("externals")
 	.WithCriteria (!FileExists ("./externals/places.aar"))
@@ -75,7 +75,10 @@ Task ("clean")
 		});
 });
 
-Task ("Default")
+Task("ci")
 	.IsDependentOn("samples");
+
+Task ("Default")
+	.IsDependentOn("ci");
 
 RunTarget (TARGET);
