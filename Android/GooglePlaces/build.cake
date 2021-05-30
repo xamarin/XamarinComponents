@@ -75,7 +75,10 @@ Task ("clean")
 		});
 });
 
-Task ("Default")
+Task("ci")
 	.IsDependentOn("samples");
+
+Task ("Default")
+	.IsDependentOn("ci");
 
 RunTarget (TARGET);
