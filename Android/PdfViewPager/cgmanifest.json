@@ -1,0 +1,16 @@
+{
+  "Registrations": [
+    {
+      "Component": {
+        "Type": "Maven",
+        "Maven": {
+          "ArtifactId": "library",
+          "GroupId": "es.voghdev.pdfviewpager",
+          "Version": "1.1.2",
+          "NuGetId": "PdfViewPager"
+        }
+      }
+    }
+  ],
+  "Version": 1
+}

@@ -158,6 +158,11 @@
   BuildScript: ./Android/PhotoView/build.cake
   TriggerPaths: [ Android/PhotoView ]
   MacBuildTargets: [ nuget, samples ]
+- Name: PdfViewPager
+  BuildScript: ./Android/PdfViewPager/build.cake
+  TriggerPaths: [ Android/PdfViewPager ]
+  MacBuildTargets: [ ci ]
+  WindowsBuildTargets: [ ci ]
 - Name: ReactiveX
   BuildScript: ./Android/ReactiveX/build.cake
   TriggerPaths: [ Android/ReactiveX ]
@@ -167,6 +172,16 @@
   BuildScript: ./Android/RecyclerViewAnimators/build.cake
   TriggerPaths: [ Android/RecyclerViewAnimators ]
   MacBuildTargets: [ nuget, samples ]
+- Name: ReLinker
+  BuildScript: ./Android/ReLinker/build.cake
+  TriggerPaths: [ Android/ReLinker ]
+  MacBuildTargets: [ ci ]
+  WindowsBuildTargets: [ ci ]
+- Name: RecyclerView.FastScroll
+  BuildScript: ./Android/RecyclerView.FastScroll/build.cake
+  TriggerPaths: [ Android/RecyclerView.FastScroll ]
+  MacBuildTargets: [ ci ]
+  WindowsBuildTargets: [ ci ]
 - Name: RoundedImageView
   BuildScript: ./Android/RoundedImageView/build.cake
   TriggerPaths: [ Android/RoundedImageView ]
@@ -360,6 +375,11 @@
 - Name: KotlinXCoroutines
   BuildScript: ./Android/KotlinXCoroutines/build.cake
   TriggerPaths: [ Android/KotlinXCoroutines ]
+  WindowsBuildTargets: [ ci ]
+  MacBuildTargets: [ ci ]
+- Name: DesugarJDKLibs
+  BuildScript: ./Android/DesugarJDKLibs/build.cake
+  TriggerPaths: [ Android/DesugarJDKLibs ]
   WindowsBuildTargets: [ ci ]
   MacBuildTargets: [ ci ]
 
