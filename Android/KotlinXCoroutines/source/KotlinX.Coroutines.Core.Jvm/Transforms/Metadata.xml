@@ -18,7 +18,14 @@
       <remove-node path="/api/package[starts-with(@name,'kotlinx.coroutines.flow.internal')]" />
       <remove-node path="/api/package[@name='kotlinx.coroutines']/class[@name='AbstractCoroutine']" />
       <remove-node path="/api/package[@name='kotlinx.coroutines.flow']/class[@name='AbstractFlow']" />
-  
+
+      <!-- remove experimental classes -->
+      <remove-node path="/api/package[@name='kotlinx.coroutines']/class[@name='DelayKt']/method[starts-with(@name,'delay-')]" />
+      <remove-node path="/api/package[@name='kotlinx.coroutines.flow']/class[@name='FlowKt']/method[starts-with(@name,'debounce-')]" />
+      <remove-node path="/api/package[@name='kotlinx.coroutines.flow']/class[@name='FlowKt']/method[starts-with(@name,'sample-')]" />
+      <remove-node path="/api/package[@name='kotlinx.coroutines']/class[@name='TimeoutKt']/method[starts-with(@name,'withTimeout-')]" />
+      <remove-node path="/api/package[@name='kotlinx.coroutines']/class[@name='TimeoutKt']/method[starts-with(@name,'withTimeoutOrNull-')]" />
+
     <attr
         path="/api/package[@name='kotlinx.coroutines']/class[@name='SchedulerTaskKt']/method[@name='getTaskContext' and count(parameter)=1 and parameter[1][@type='java.lang.Object']]"
         name="managedReturn"
