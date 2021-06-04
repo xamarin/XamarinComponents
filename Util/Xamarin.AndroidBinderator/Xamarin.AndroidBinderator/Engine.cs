@@ -241,11 +241,13 @@ namespace AndroidBinderator
 					}
 				}
 
-
 				if (config.DownloadJavaDocJars)
 				{
 					try
 					{
+						// using (var astrm = await maven.OpenArtifactDocsFile(mavenArtifact.GroupId, mavenArtifact.ArtifactId, version))
+						// using (var sw = File.Create(sourcesFile))
+						// 	await astrm.CopyToAsync(sw);
 					}
 					catch(System.Exception exc)
 					{
@@ -257,6 +259,24 @@ namespace AndroidBinderator
 					}
 				}
 
+
+				if (config.DownloadMetadataFiles)
+				{
+					try
+					{
+						using (var astrm = await maven.OpenMavenMetadataFile(mavenArtifact.GroupId, mavenArtifact.ArtifactId))
+						using (var sw = File.Create(sourcesFile))
+							await astrm.CopyToAsync(sw);
+					}
+					catch(System.Exception exc)
+					{
+						StringBuilder sb = new StringBuilder();
+						sb.AppendLine($"OpenMavenMetadataFile failed for: {mavenArtifact.GroupId}, {mavenArtifact.ArtifactId}, {version}");
+						sb.AppendLine($"Message");
+						sb.AppendLine($"{exc.Message}");
+						Trace.WriteLine(sb.ToString());
+					}
+				}
 
 				if (Directory.Exists(artifactExtractDir))
 					Directory.Delete(artifactExtractDir, true);
@@ -342,7 +362,28 @@ namespace AndroidBinderator
 
 					if (depMapping == null)
 					{
-						exceptions.Add(new Exception($"No matching artifact config found for: {mavenDep.GroupId}.{mavenDep.ArtifactId}:{mavenDep.Version} to satisfy dependency of: {mavenArtifact.GroupId}.{mavenArtifact.ArtifactId}:{mavenArtifact.Version}"));
+						StringBuilder sb = new StringBuilder();
+						sb.AppendLine($"");
+						sb.AppendLine($"No matching artifact config found for: ");
+						sb.AppendLine($"			{mavenDep.GroupId}.{mavenDep.ArtifactId}:{mavenDep.Version}");
+						sb.AppendLine($"to satisfy dependency of: ");
+						sb.AppendLine($"			{mavenArtifact.GroupId}.{mavenArtifact.ArtifactId}:{mavenArtifact.Version}");
+						sb.AppendLine($"");
+						sb.AppendLine($"	Please add following json snippet to config.json:");
+						sb.AppendLine($"");
+						sb.AppendLine
+						($@"
+      {{
+        ""groupId"": ""{mavenDep.GroupId}"",
+        ""artifactId"": ""{mavenDep.ArtifactId}"",
+        ""version"": ""{mavenDep.Version}"",
+        ""nugetVersion"": ""CHECK NUGET ID"",
+        ""nugetId"": ""CHECK PREFIX {mavenDep.Version}"",
+        ""dependencyOnly"": true/false
+      }}
+						");
+						sb.AppendLine($"");
+						exceptions.Add(new Exception(sb.ToString()));
 						continue;
 					}
 
