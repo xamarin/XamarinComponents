@@ -69,4 +69,23 @@
       public
     </attr>
 
+    <attr
+      path="/api/package[@name='com.google.android.datatransport.runtime.dagger']"
+      name="managedName"
+      >
+      Xamarin.Google.Android.DataTransport.Runtime.Dagger
+    </attr>
+    <attr
+      path="/api/package[@name='com.google.android.datatransport.runtime.dagger.internal']"
+      name="managedName"
+      >
+      Xamarin.Google.Android.DataTransport.Runtime.Dagger.Internal
+    </attr>
+    <attr
+      path="/api/package[@name='com.google.android.datatransport.runtime.dagger.multibindings']"
+      name="managedName"
+      >
+      Xamarin.Google.Android.DataTransport.Runtime.Dagger.MultiBindings
+    </attr>
+
 </metadata>
