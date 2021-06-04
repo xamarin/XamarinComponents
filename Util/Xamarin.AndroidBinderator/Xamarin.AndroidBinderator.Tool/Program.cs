@@ -81,6 +81,7 @@ namespace Xamarin.AndroidBinderator.Tool
                     sb.AppendLine($"	{exc.ToString()}");
                     i++;
                 }
+                Trace.WriteLine(sb.ToString());
             }
         }
     }

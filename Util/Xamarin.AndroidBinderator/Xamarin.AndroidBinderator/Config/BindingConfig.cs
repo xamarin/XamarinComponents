@@ -29,6 +29,9 @@ namespace AndroidBinderator
 		[JsonProperty("downloadJavaDocJars")]
 		public bool DownloadJavaDocJars { get; set; } = true;
 
+		[JsonProperty("downloadMetadataFiles")]
+		public bool DownloadMetadataFiles { get; set; } = true;
+
 		[JsonProperty("downloadPoms")]
 		public bool DownloadPoms { get; set; } = true;
 
