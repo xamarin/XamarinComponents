@@ -17,11 +17,11 @@ Task ("externals")
 	EnsureDirectoryExists ("./externals/");
 	DownloadFile (AAR_URL, $"./externals/billing-{AAR_VERSION}.aar");
 	DownloadFile (AAR_KTX_URL, $"./externals/billing-ktx-{AAR_KTX_VERSION}.aar");
-	Unzip($"./externals/illing-{AAR_VERSION}.aar", $"./externals/billing-{AAR_VERSION}/");
-	Unzip($"./externals/billing-ktx-{AAR_KTX_VERSION}.aar", $"./externals/billing-{AAR_KTX_VERSION}/");
+	Unzip($"./externals/billing-{AAR_VERSION}.aar", $"./externals/billing-{AAR_VERSION}/");
+	Unzip($"./externals/billing-ktx-{AAR_KTX_VERSION}.aar", $"./externals/billing-ktx-{AAR_KTX_VERSION}/");
 
 	XmlPoke("./source/GoogleBillingClient/GoogleBillingClient.csproj", "/Project/PropertyGroup/PackageVersion", NUGET_VERSION);
-	XmlPoke("./source/GoogleBillingClient/GoogleBillingClient.Ktx.csproj", "/Project/PropertyGroup/PackageVersion", NUGET_VERSION);
+	XmlPoke("./source/GoogleBillingClient.Ktx/GoogleBillingClient.Ktx.csproj", "/Project/PropertyGroup/PackageVersion", NUGET_VERSION);
 });
 
 Task("libs")

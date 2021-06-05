@@ -35,6 +35,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Remove="Xamarin.Kotlin.StdLib" />
+    <None Remove="Xamarin.KotlinX.Coroutines.Core" />
+  </ItemGroup>
+  <ItemGroup>
     <None Include="..\..\externals\billing-ktx-3.0.3.aar">
       <Link>billing-ktx-3.0.3.aar</Link>
     </None>
@@ -47,6 +51,7 @@
   </ItemGroup>
 
   <ItemGroup>	
-    <PackageReference Include="Xamarin.AndroidX.Annotation" Version="1.1.0.1" />	
+    <PackageReference Include="Xamarin.Kotlin.StdLib" Version="1.5.10" />
+    <PackageReference Include="Xamarin.KotlinX.Coroutines.Core" Version="1.5.0" />
   </ItemGroup>
 </Project>
