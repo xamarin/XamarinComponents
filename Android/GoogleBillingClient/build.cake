@@ -12,7 +12,7 @@ var AAR_KTX_URL = $"https://dl.google.com/dl/android/maven2/com/android/billingc
 Task ("externals")
 	.WithCriteria(!FileExists($"./externals/billing-{AAR_VERSION}.aar"))
 	.WithCriteria(!FileExists($"./externals/billing-{AAR_KTX_VERSION}.aar"))
-	.Does (() => 
+	.Does (() =>
 {
 	EnsureDirectoryExists ("./externals/");
 	DownloadFile (AAR_URL, $"./externals/billing-{AAR_VERSION}.aar");
@@ -58,10 +58,9 @@ Task ("clean")
 {
 	if (DirectoryExists ("./externals/"))
 		DeleteDirectory ("./externals", new DeleteDirectorySettings {
-											Recursive = true,
-											Force = true
-											}
-						);
+                                                Recursive = true,
+                                                Force = true
+											});
 });
 
 RunTarget (TARGET);

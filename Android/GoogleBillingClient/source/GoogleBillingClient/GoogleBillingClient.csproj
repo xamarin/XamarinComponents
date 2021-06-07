@@ -35,9 +35,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Include="..\..\externals\billing-4.0.0.aar">
-      <Link>billing-4.0.0.aar</Link>
-    </None>
     <None Include="..\..\License.md" Pack="true" PackagePath="LICENSE.md" />
     <None Include="..\..\External-Dependency-Info.txt" Pack="True" PackagePath="THIRD-PARTY-NOTICES.txt" />
   </ItemGroup>
