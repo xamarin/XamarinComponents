@@ -362,6 +362,11 @@
   TriggerPaths: [ Android/SquareMoshi ]
   MacBuildTargets: [ ci ]
   WindowsBuildTargets: [ ci ]
+- Name: SquareMoshiKotlin
+  BuildScript: ./Android/SquareMoshiKotlin/build.cake
+  TriggerPaths: [ Android/SquareMoshiKotlin ]
+  MacBuildTargets: [ ci ]
+  WindowsBuildTargets: [ ci ]
 - Name: SquareMoshiAdapters
   BuildScript: ./Android/SquareMoshiAdapters/build.cake
   TriggerPaths: [ Android/SquareMoshiAdapters ]
