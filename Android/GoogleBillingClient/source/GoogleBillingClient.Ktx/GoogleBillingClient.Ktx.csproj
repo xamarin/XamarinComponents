@@ -35,13 +35,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Remove="Xamarin.Kotlin.StdLib" />
-    <None Remove="Xamarin.KotlinX.Coroutines.Core" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="..\..\externals\billing-ktx-3.0.3.aar">
-      <Link>billing-ktx-3.0.3.aar</Link>
-    </None>
     <None Include="..\..\License.md" Pack="true" PackagePath="LICENSE.md" />
     <None Include="..\..\External-Dependency-Info.txt" Pack="True" PackagePath="THIRD-PARTY-NOTICES.txt" />
   </ItemGroup>
