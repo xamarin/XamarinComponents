@@ -7,7 +7,7 @@
           "ArtifactId": "audioswitch",
           "GroupId": "com.twilio",
           "Version": "1.1.2",
-          "NuGetId": "AudioSwitch"
+          "NuGetId": "Xamarin.Twilio.AudioSwitch"
         }
       }
     }
