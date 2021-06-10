@@ -5,6 +5,8 @@ VisualStudioVersion = 15.0.28307.572
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GoogleBillingClient", "GoogleBillingClient\GoogleBillingClient.csproj", "{9C98362A-86E1-4C80-8147-B37B25CF78E1}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GoogleBillingClient.Ktx", "GoogleBillingClient.Ktx\GoogleBillingClient.Ktx.csproj", "{B5B85FAC-65EA-4B8F-B9D7-11E90D04ED48}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{9C98362A-86E1-4C80-8147-B37B25CF78E1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9C98362A-86E1-4C80-8147-B37B25CF78E1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9C98362A-86E1-4C80-8147-B37B25CF78E1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B5B85FAC-65EA-4B8F-B9D7-11E90D04ED48}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B5B85FAC-65EA-4B8F-B9D7-11E90D04ED48}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B5B85FAC-65EA-4B8F-B9D7-11E90D04ED48}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B5B85FAC-65EA-4B8F-B9D7-11E90D04ED48}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
