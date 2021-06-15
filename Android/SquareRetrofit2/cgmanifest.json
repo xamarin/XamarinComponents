@@ -6,7 +6,7 @@
         "Maven": {
           "ArtifactId": "retrofit",
           "GroupId": "com.squareup.retrofit2",
-          "Version": "2.8.2",
+          "Version": "2.9.0",
           "NuGetId": "Square.Retrofit2"
         }
       }
