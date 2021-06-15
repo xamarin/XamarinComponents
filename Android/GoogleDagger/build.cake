@@ -1,6 +1,6 @@
 var TARGET = Argument ("t", Argument ("target", "ci"));
 
-var DAGGERS_VERSION = "2.27";
+var DAGGERS_VERSION = "2.30.1";
 var DAGGERS_NUGET_VERSION = DAGGERS_VERSION + ".0";
 var DAGGERS_URL = $"https://repo1.maven.org/maven2/com/google/dagger/dagger/{DAGGERS_VERSION}/dagger-{DAGGERS_VERSION}.jar";
 
@@ -11,10 +11,10 @@ Task ("externals")
 	EnsureDirectoryExists ("./externals");
 	
 	// Download Dependencies
-	DownloadFile (DAGGERS_URL, "./externals/dagger.jar");
+	DownloadFile (DAGGERS_URL, $"./externals/dagger-{DAGGERS_VERSION}.jar");
 
 	// Update .csproj nuget versions
-	XmlPoke("./source/dagger/dagger.csproj", "/Project/PropertyGroup/PackageVersion", DAGGERS_NUGET_VERSION);
+	XmlPoke("./source/Dagger/Dagger.csproj", "/Project/PropertyGroup/PackageVersion", DAGGERS_NUGET_VERSION);
 });
 
 
