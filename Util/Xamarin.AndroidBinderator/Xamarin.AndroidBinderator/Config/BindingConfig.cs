@@ -26,6 +26,15 @@ namespace AndroidBinderator
 		[JsonProperty("downloadJavaSourceJars")]
 		public bool DownloadJavaSourceJars { get; set; } = true;
 
+		[JsonProperty("downloadJavaDocJars")]
+		public bool DownloadJavaDocJars { get; set; } = true;
+
+		[JsonProperty("downloadMetadataFiles")]
+		public bool DownloadMetadataFiles { get; set; } = true;
+
+		[JsonProperty("downloadPoms")]
+		public bool DownloadPoms { get; set; } = true;
+
 		[JsonProperty("externalsDir")]
 		public string ExternalsDir { get; set; } = "externals";
 

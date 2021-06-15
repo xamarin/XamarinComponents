@@ -41,6 +41,8 @@ namespace Bumptech.Glide
         public virtual RequestBuilder EncodeFormat(Bitmap.CompressFormat format) => (RequestBuilder)EncodeFormat_T(format);
 
         public virtual RequestBuilder EncodeQuality(int quality) => (RequestBuilder)EncodeQuality_T(quality);
+	    
+        public virtual RequestBuilder Error(Drawable drawable) => (RequestBuilder)Error_T(drawable);
 
         public virtual RequestBuilder Error(int resourceId) => (RequestBuilder)Error_T(resourceId);
 
@@ -339,6 +341,8 @@ namespace Bumptech.Glide.Request
         public virtual RequestOptions EncodeFormat(Bitmap.CompressFormat format) => (RequestOptions)EncodeFormat_T(format);
 
         public virtual RequestOptions EncodeQuality(int quality) => (RequestOptions)EncodeQuality_T(quality);
+	    
+        public virtual RequestBuilder Error(Drawable drawable) => (RequestBuilder)Error_T(drawable);
 
         public virtual RequestOptions Error(int resourceId) => (RequestOptions)Error_T(resourceId);
 
