@@ -22,7 +22,8 @@ parameters:
   windowsImage: 'windows-latest'                            # the name of the Windows VM image
   mono: 'Latest'                                            # the version of mono to use
   xcode: '12.3'                                             # the version of Xcode to use
-  dotnet: '3.1.302'                                         # the version of .NET Core to use
+  dotnet: '5.0.203'                                         # the version of .NET Core to use
+  dotnetStable: '3.1.408'                                   # the stable version of .NET Core to use
   cake: '0.38.5'                                            # the version of Cake to use
   apiTools: '1.1.0-preview.1'                               # the version of the api-tools CLI to use
   xharness: '1.0.0-prerelease.20602.1'
@@ -105,8 +106,16 @@ jobs:
       - task: UseDotNet@2
         displayName: 'Switch to the correct version of the .NET Core SDK'
         inputs:
+          version: ${{ parameters.dotnetStable }}
+          performMultiLevelLookup: true
+          includePreviewVersions: true
+        condition: ne('${{ parameters.dotnetStable }}', '')
+      - task: UseDotNet@2
+        displayName: 'Switch to the correct version of the .NET Core SDK'
+        inputs:
           version: ${{ parameters.dotnet }}
           performMultiLevelLookup: true
+          includePreviewVersions: true
         condition: ne('${{ parameters.dotnet }}', '')
       # custom init steps
       - ${{ parameters.initSteps }}
