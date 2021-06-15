@@ -6,32 +6,59 @@
     
 	<attr path="/api/package[@name='com.google.vr.dynamite.client']" name="managedName">Google.VR.Dynamite.Client</attr>
       
-    <attr path="/api/package[@name='com.google.ar.core']/class[@name='ArImage']" name="extends">Android.Media.Image</attr> 
-     <attr path="/api/package[@name='com.google.vr.dynamite.client']/class[@name='ObjectWrapper']" name="extends">Java.Lang.Object</attr> 
+  <attr path="/api/package[@name='com.google.ar.core']/class[@name='ArImage']" name="extends">Android.Media.Image</attr> 
+  <attr path="/api/package[@name='com.google.vr.dynamite.client']/class[@name='ObjectWrapper']" name="extends">Java.Lang.Object</attr> 
     
-	<attr path="/api/package[@name='com.google.ar.core']/class[@name='TrackableBase']" name="visibility">public</attr>
+<!--	<attr path="/api/package[@name='com.google.ar.core']/class[@name='TrackableBase']" name="visibility">public</attr>-->
     	
-    <remove-node path="/api/package[@name='com.google.ar.core']/class[@name='Point']/method[@name='getAnchors' and count(parameter)=0]" />
-	<remove-node path="/api/package[@name='com.google.ar.core']/class[@name='Plane']/method[@name='getAnchors' and count(parameter)=0]" />
-	<remove-node path="/api/package[@name='com.google.ar.core']/class[@name='AugmentedImage']/method[@name='getAnchors' and count(parameter)=0]" />
-    
+<!--  <attr-->
+<!--      path="/api/package[@name='com.google.ar.core.services.downloads.aidl']"-->
+<!--      name="managedName"-->
+<!--      >-->
+<!--      Google.AR.Core.Services.Downloads.AIDL-->
+<!--  </attr>-->
+<!--  <attr-->
+<!--      path="/api/package[@name='com.google.ar.core.services.downloads.client']"-->
+<!--      name="managedName"-->
+<!--      >-->
+<!--      Google.AR.Core.Services.Downloads.Client-->
+<!--  </attr>-->
+
     <attr
-        path="/api/package[@name='com.google.ar.core.services.downloads.aidl']"
-        name="managedName"
-        >
-        Google.AR.Core.Services.Downloads.AIDL
-    </attr>
-    <attr
-        path="/api/package[@name='com.google.ar.core.services.downloads.client']"
-        name="managedName"
-        >
-        Google.AR.Core.Services.Downloads.Client
+    path="/api/package[@name='com.google.ar.core']/class[@name='InstantPlacementPoint']/method[@name='getAnchors' and count(parameter)=0]"
+    name="return">
+        java.util.Collection&lt;com.google.ar.core.Anchor&gt;
     </attr>
 
+    <attr
+            path="/api/package[@name='com.google.ar.core']/class[@name='AugmentedImage']/method[@name='getAnchors' and count(parameter)=0]"
+            name="return">
+        java.util.Collection&lt;com.google.ar.core.Anchor&gt;
+    </attr>
+    
+    
+    <attr
+        path="/api/package[@name='com.google.ar.core']/class[@name='Plane']/method[@name='getAnchors' and count(parameter)=0]"
+        name="return">
+        java.util.Collection&lt;com.google.ar.core.Anchor&gt;
+    </attr>
+    
+    <attr
+            path="/api/package[@name='com.google.ar.core']/class[@name='Point']/method[@name='getAnchors' and count(parameter)=0]"
+            name="return">
+        java.util.Collection&lt;com.google.ar.core.Anchor&gt;
+    </attr>
+    
+  <attr 
+      path="/api/package[@name='com.google.ar.core']/class[@name='AugmentedFace']/method[@name='getAnchors' and count(parameter)=0]" 
+      name="return"
+      >
+      java.util.Collection&lt;com.google.ar.core.Anchor&gt;
+  </attr>
+    
     <attr 
-        path="/api/package[@name='com.google.ar.core']/class[@name='AugmentedFace']/method[@name='getAnchors' and count(parameter)=0]" 
-        name="return"
-        >
+        path="/api/package[@name='com.google.ar.core']/class[@name='DepthPoint']/method[@name='getAnchors' and count(parameter)=0]"
+        name="return">
         java.util.Collection&lt;com.google.ar.core.Anchor&gt;
     </attr>
     

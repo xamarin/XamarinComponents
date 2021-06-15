@@ -1,26 +1,25 @@
+var TARGET = Argument ("t", Argument ("target", "ci"));
 
-#load "../../common.cake"
+var NUGET_PATCH = "";
 
-var TARGET = Argument ("t", Argument ("target", "Default"));
-
-var GLIDE_VERSION = "4.11.0";
-var GLIDE_NUGET_VERSION = GLIDE_VERSION;
+var GLIDE_VERSION = "4.12.0";
+var GLIDE_NUGET_VERSION = GLIDE_VERSION + NUGET_PATCH;
 var GLIDE_URL = $"https://repo1.maven.org/maven2/com/github/bumptech/glide/glide/{GLIDE_VERSION}/glide-{GLIDE_VERSION}.aar";
 
 var GIFDECODER_VERSION = GLIDE_VERSION;
-var GIFDECODER_NUGET_VERSION = GIFDECODER_VERSION;
+var GIFDECODER_NUGET_VERSION = GIFDECODER_VERSION + NUGET_PATCH;
 var GIFDECODER_URL = $"https://repo1.maven.org/maven2/com/github/bumptech/glide/gifdecoder/{GIFDECODER_VERSION}/gifdecoder-{GIFDECODER_VERSION}.aar";
 
 var DISKLRUCACHE_VERSION = GLIDE_VERSION;
-var DISKLRUCACHE_NUGET_VERSION = DISKLRUCACHE_VERSION;
+var DISKLRUCACHE_NUGET_VERSION = DISKLRUCACHE_VERSION + NUGET_PATCH;
 var DISKLRUCACHE_URL = $"https://repo1.maven.org/maven2/com/github/bumptech/glide/disklrucache/{DISKLRUCACHE_VERSION}/disklrucache-{DISKLRUCACHE_VERSION}.jar";
 
 var RECYCLERVIEW_VERSION = GLIDE_VERSION;
-var RECYCLERVIEW_NUGET_VERSION = RECYCLERVIEW_VERSION;
+var RECYCLERVIEW_NUGET_VERSION = RECYCLERVIEW_VERSION + NUGET_PATCH;
 var RECYCLERVIEW_URL = $"https://repo1.maven.org/maven2/com/github/bumptech/glide/recyclerview-integration/{RECYCLERVIEW_VERSION}/recyclerview-integration-{RECYCLERVIEW_VERSION}.aar";
 
 Task ("externals")
-	.WithCriteria (!FileExists ("./externals/guava.jar"))
+	.WithCriteria (!FileExists ("./externals/glide.aar"))
 	.Does (() =>
 {
 	if (!DirectoryExists ("./externals/"))
@@ -80,7 +79,10 @@ Task ("clean")
 	.Does (() =>
 {
 	if (DirectoryExists ("./externals/"))
-		DeleteDirectory ("./externals", true);
+		DeleteDirectory ("./externals", new DeleteDirectorySettings {
+			Recursive = true,
+			Force = true
+		});
 });
 
 RunTarget (TARGET);

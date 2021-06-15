@@ -90,6 +90,19 @@
   <attr path="/api/package[@name='com.bumptech.glide.module']/interface[@name='AppliesOptions']" name="visibility">public</attr>
   <attr path="/api/package[@name='com.bumptech.glide.module']/interface[@name='RegistersComponents']" name="visibility">public</attr>
 
+  <add-node path="/api/package[@name='com.bumptech.glide']/class[@name='GlideBuilder']">
+    <method abstract="false" deprecated="not deprecated" final="false" name="build" native="false" return="com.bumptech.glide.Glide" return-not-null="true"  static="false" synchronized="false" visibility="public">
+      <parameter name="context" type="android.content.Context" not-null="true" />
+    </method>
+  </add-node>
+
+  <attr path="/api/package[@name='com.bumptech.glide']/class[@name='GeneratedAppGlideModule']" name="visibility">public</attr>
+  <add-node path="/api/package[@name='com.bumptech.glide']/class[@name='GeneratedAppGlideModule']">
+    <constructor deprecated="not deprecated" final="false" name="GeneratedAppGlideModule" static="false" type="com.bumptech.glide.GeneratedAppGlideModule" synthetic="false" visibility="public" />
+    <method abstract="true" deprecated="not deprecated" final="false" name="getExcludedModuleClasses" native="false" return="java.util.Set&lt;java.lang.Class&gt;" return-not-null="true" static="false" synchronized="false" visibility="public" />
+    <method abstract="false" deprecated="not deprecated" final="false" name="getRequestManagerFactory" native="false" return="com.bumptech.glide.manager.RequestManagerRetriever.RequestManagerFactory" static="false" synchronized="false" visibility="public" />
+  </add-node>
+
   <add-node path="/api/package[@name='com.bumptech.glide.load.model.stream']/class[@name='BaseGlideUrlLoader']">
     <method abstract="true" deprecated="not deprecated" final="false" name="handles" native="false" return="boolean" static="false" synchronized="false" visibility="public">
       <parameter name="model" type="Model" />
@@ -132,4 +145,5 @@
   <remove-node path="/api/package[@name='com.bumptech.glide.load.resource.bytes']/class[@name='BytesResource']/implements[@name='com.bumptech.glide.load.engine.Resource']" />
   <remove-node path="/api/package[@name='com.bumptech.glide.load.resource.gif']/class[@name='StreamGifDecoder']/implements[@name='com.bumptech.glide.load.ResourceDecoder']" />
   <remove-node path="/api/package[@name='com.bumptech.glide.load.resource.bitmap']/class[@name='InputStreamBitmapImageDecoderResourceDecoder']/implements[@name='com.bumptech.glide.load.ResourceDecoder']" />
+  <remove-node path="/api/package[@name='com.bumptech.glide.request']/class[@name='ExperimentalRequestListener']" />
 </metadata>
