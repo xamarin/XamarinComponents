@@ -1,0 +1,16 @@
+{
+  "Registrations": [
+    {
+      "Component": {
+        "Type": "Maven",
+        "Maven": {
+          "ArtifactId": "moshi-kotlin",
+          "GroupId": "com.squareup.moshi",
+          "Version": "1.12.0",
+          "NuGetId": "Square.Moshi.Kotlin"
+        }
+      }
+    }
+  ],
+  "Version": 1
+}

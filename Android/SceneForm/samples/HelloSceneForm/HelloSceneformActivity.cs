@@ -36,7 +36,7 @@ namespace HelloSceneForm
             arFragment = (ArFragment)SupportFragmentManager.FindFragmentById(Resource.Id.ux_fragment);
 
             //load and build the model
-            ModelRenderable.InvokeBuilder().SetSource(this, Resource.Raw.andy).Build(((renderable) =>
+            ((ModelRenderable.Builder) ModelRenderable.InvokeBuilder().SetSource(this, Resource.Raw.andy)).Build(((renderable) =>
             {
                 andyRenderable = renderable;
 
