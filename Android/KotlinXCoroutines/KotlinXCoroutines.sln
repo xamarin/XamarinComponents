@@ -1,0 +1,55 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30717.126
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KotlinX.Coroutines.Core", "source\KotlinX.Coroutines.Core\KotlinX.Coroutines.Core.csproj", "{ADC36DAA-E73E-49B5-B09A-2FD21624C2C5}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KotlinX.Coroutines.Android", "source\KotlinX.Coroutines.Android\KotlinX.Coroutines.Android.csproj", "{C1D66FDB-0EEF-45E3-81DA-34E6B0E20682}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KotlinX.Coroutines.Core.Jvm", "source\KotlinX.Coroutines.Core.Jvm\KotlinX.Coroutines.Core.Jvm.csproj", "{FD684F53-BBBB-4E7A-8197-829A92AA32D8}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KotlinX.Coroutines.Jdk8", "source\KotlinX.Coroutines.Jdk8\KotlinX.Coroutines.Jdk8.csproj", "{A9826864-B261-45C1-A19C-992A3BE7D1FE}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KotlinX.Coroutines.Reactive", "source\KotlinX.Coroutines.Reactive\KotlinX.Coroutines.Reactive.csproj", "{779DAC7E-4C3C-4514-97DF-272A423F7863}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KotlinX.Coroutines.Rx2", "source\KotlinX.Coroutines.Rx2\KotlinX.Coroutines.Rx2.csproj", "{7BEB9F77-2739-4F18-A714-EDB03BDC7E53}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{ADC36DAA-E73E-49B5-B09A-2FD21624C2C5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ADC36DAA-E73E-49B5-B09A-2FD21624C2C5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{ADC36DAA-E73E-49B5-B09A-2FD21624C2C5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{ADC36DAA-E73E-49B5-B09A-2FD21624C2C5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C1D66FDB-0EEF-45E3-81DA-34E6B0E20682}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C1D66FDB-0EEF-45E3-81DA-34E6B0E20682}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C1D66FDB-0EEF-45E3-81DA-34E6B0E20682}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C1D66FDB-0EEF-45E3-81DA-34E6B0E20682}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FD684F53-BBBB-4E7A-8197-829A92AA32D8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FD684F53-BBBB-4E7A-8197-829A92AA32D8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FD684F53-BBBB-4E7A-8197-829A92AA32D8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FD684F53-BBBB-4E7A-8197-829A92AA32D8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A9826864-B261-45C1-A19C-992A3BE7D1FE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A9826864-B261-45C1-A19C-992A3BE7D1FE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A9826864-B261-45C1-A19C-992A3BE7D1FE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A9826864-B261-45C1-A19C-992A3BE7D1FE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{779DAC7E-4C3C-4514-97DF-272A423F7863}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{779DAC7E-4C3C-4514-97DF-272A423F7863}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{779DAC7E-4C3C-4514-97DF-272A423F7863}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{779DAC7E-4C3C-4514-97DF-272A423F7863}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7BEB9F77-2739-4F18-A714-EDB03BDC7E53}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7BEB9F77-2739-4F18-A714-EDB03BDC7E53}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7BEB9F77-2739-4F18-A714-EDB03BDC7E53}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7BEB9F77-2739-4F18-A714-EDB03BDC7E53}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {CAC0F9D3-A924-4A83-8ED8-6DE2B30345DE}
+	EndGlobalSection
+EndGlobal

@@ -24,7 +24,7 @@
     <PackageProjectUrl>https://go.microsoft.com/fwlink/?linkid=2087149</PackageProjectUrl>
     <PackageLicenseUrl>https://go.microsoft.com/fwlink/?linkid=2087221</PackageLicenseUrl>
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
-    <PackageVersion>1.1.0.1</PackageVersion>
+    <PackageVersion>2.4.0.0</PackageVersion>
   </PropertyGroup>
 
   <ItemGroup>
@@ -42,20 +42,63 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Xamarin.Android.Support.v7.AppCompat" Version="28.0.0.1" />
-    <PackageReference Include="Xamarin.Android.Support.v7.CardView" Version="28.0.0.1" />
-    <PackageReference Include="Xamarin.Android.Support.v7.RecyclerView" Version="28.0.0.1" />
-    <PackageReference Include="Xamarin.Android.Support.v4" Version="28.0.0.1" />
-    <PackageReference Include="Xamarin.Android.Volley" Version="1.1.1.1" />
-    <PackageReference Include="Xamarin.Android.Glide" Version="4.9.0" />
-    <PackageReference Include="Xamarin.GooglePlayServices.Base" Version="71.1601.0-preview3" />
-    <PackageReference Include="Xamarin.GooglePlayServices.Basement" Version="71.1610.0-preview3" />
-    <PackageReference Include="Xamarin.GooglePlayServices.Clearcut" Version="71.1600.0-preview3" />
-    <PackageReference Include="Xamarin.GooglePlayServices.Location" Version="71.1600.0-preview3" />
-    <PackageReference Include="Xamarin.GooglePlayServices.Maps" Version="71.1600.0-preview3" />
-    <PackageReference Include="Xamarin.GooglePlayServices.Tasks" Version="71.1601.0-preview3" />
-    <PackageReference Include="Xamarin.Google.AutoValue.Annotations" Version="1.6.5" />
-    <PackageReference Include="GoogleGson" Version="2.8.5" />
+    <PackageReference Include="GoogleGson">
+      <Version>2.8.5</Version>
+    </PackageReference>
+    <PackageReference Include="Xamarin.Android.Volley">
+      <Version>1.1.1.1</Version>
+    </PackageReference>
+    <PackageReference Include="Xamarin.AndroidX.AppCompat">
+      <Version>1.2.0.7</Version>
+    </PackageReference>
+    <PackageReference Include="Xamarin.AndroidX.AppCompat.AppCompatResources">
+      <Version>1.2.0.7</Version>
+    </PackageReference>
+    <PackageReference Include="Xamarin.AndroidX.CardView">
+      <Version>1.0.0.8</Version>
+    </PackageReference>
+    <PackageReference Include="Xamarin.AndroidX.Fragment">
+      <Version>1.3.3</Version>
+    </PackageReference>
+    <PackageReference Include="Xamarin.AndroidX.Lifecycle.Extensions">
+      <Version>2.2.0.7</Version>
+    </PackageReference>
+    <PackageReference Include="Xamarin.AndroidX.RecyclerView">
+      <Version>1.2.0</Version>
+    </PackageReference>
+    <PackageReference Include="Xamarin.Firebase.Encoders.JSON">
+      <Version>117.1.0</Version>
+    </PackageReference>
+    <PackageReference Include="Xamarin.Google.Android.DataTransport.TransportApi">
+      <Version>2.2.0</Version>
+    </PackageReference>
+    <PackageReference Include="Xamarin.Google.Android.DataTransport.TransportBackendCct">
+      <Version>2.3.0</Version>
+    </PackageReference>
+    <PackageReference Include="Xamarin.Google.Android.DataTransport.TransportRuntime">
+      <Version>2.2.3</Version>
+    </PackageReference>
+    <PackageReference Include="Xamarin.Google.AutoValue.Annotations">
+      <Version>1.6.6</Version>
+    </PackageReference>
+    <PackageReference Include="Xamarin.Google.Dagger">
+      <Version>2.25.2.1</Version>
+    </PackageReference>
+    <PackageReference Include="Xamarin.GooglePlayServices.Base">
+      <Version>117.6.0</Version>
+    </PackageReference>
+    <PackageReference Include="Xamarin.GooglePlayServices.Basement">
+      <Version>117.6.0</Version>
+    </PackageReference>
+    <PackageReference Include="Xamarin.GooglePlayServices.Location">
+      <Version>118.0.0</Version>
+    </PackageReference>
+    <PackageReference Include="Xamarin.GooglePlayServices.Maps">
+      <Version>117.0.0</Version>
+    </PackageReference>
+    <PackageReference Include="Xamarin.GooglePlayServices.Tasks">
+      <Version>117.2.1</Version>
+    </PackageReference>
   </ItemGroup>
 
   <ItemGroup>

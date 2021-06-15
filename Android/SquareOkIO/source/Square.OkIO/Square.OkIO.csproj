@@ -1,4 +1,4 @@
-﻿<Project Sdk="MSBuild.Sdk.Extras/2.1.2">
+﻿<Project Sdk="MSBuild.Sdk.Extras">
   <PropertyGroup>
     <TargetFrameworks>monoandroid9.0</TargetFrameworks>
     <IsBindingProject>true</IsBindingProject>
@@ -22,12 +22,12 @@
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
     <PackageTags>okio square square.okio xamarin android monodroid</PackageTags>
     <PackageProjectUrl>https://go.microsoft.com/fwlink/?linkid=2130312</PackageProjectUrl>
-    <PackageVersion>2.8.0</PackageVersion>
+    <PackageVersion>2.10.0</PackageVersion>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Xamarin.Kotlin.StdLib" Version="1.4.0" PrivateAssets="None" />
-    <PackageReference Include="Xamarin.Kotlin.StdLib.Common" Version="1.4.0" />
+    <PackageReference Include="Xamarin.Kotlin.StdLib" Version="1.4.32.1" PrivateAssets="None" />
+    <PackageReference Include="Xamarin.Kotlin.StdLib.Common" Version="1.4.32.1" />
   </ItemGroup>
 
   <ItemGroup>
