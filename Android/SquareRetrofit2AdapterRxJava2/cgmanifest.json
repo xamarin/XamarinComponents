@@ -6,7 +6,7 @@
         "Maven": {
           "ArtifactId": "adapter-rxjava2",
           "GroupId": "com.squareup.retrofit2",
-          "Version": "2.7.2",
+          "Version": "2.5.0",
           "NuGetId": "Square.Retrofit2.AdapterRxJava2"
         }
       }
