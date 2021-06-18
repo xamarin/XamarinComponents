@@ -1,4 +1,4 @@
-﻿<Project Sdk="MSBuild.Sdk.Extras/2.1.2">
+﻿<Project Sdk="MSBuild.Sdk.Extras">
   <PropertyGroup>
     <TargetFrameworks>monoandroid9.0</TargetFrameworks>
     <IsBindingProject>true</IsBindingProject>
@@ -27,8 +27,8 @@
   </PropertyGroup>
     
   <ItemGroup>
-    <PackageReference Include="GoogleGson" Version="2.8.5" />
-    <PackageReference Include="Square.Retrofit2" Version="2.7.2" />
+    <PackageReference Include="GoogleGson" Version="2.8.6" />
+    <PackageReference Include="Square.Retrofit2" Version="2.9.0" />
   </ItemGroup>
     
   <ItemGroup>

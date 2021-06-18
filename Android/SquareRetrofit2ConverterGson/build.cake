@@ -10,7 +10,7 @@ Task ("externals")
 {
 	EnsureDirectoryExists ("./externals");
 	
-	DownloadFile(JAR_URL, "./externals/convertergson.jar");
+	DownloadFile(JAR_URL, $"./externals/convertergson-{JAR_VERSION}.jar");
 
 	// Update .csproj nuget versions
 	XmlPoke("./source/Square.Retrofit2.ConverterGson/Square.Retrofit2.ConverterGson.csproj", "/Project/PropertyGroup/PackageVersion", NUGET_VERSION);
