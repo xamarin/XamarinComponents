@@ -8,9 +8,9 @@ var JAR_URL = $"https://repo1.maven.org/maven2/com/squareup/retrofit2/adapter-rx
 Task ("externals")
 	.Does (() =>
 {
-	EnsureDirectoryExists ("./externals");
+	EnsureDirectoryExists ($"./externals");
 	
-	DownloadFile(JAR_URL, "./externals/adapterrxjava2.jar");
+	DownloadFile(JAR_URL, $"./externals/adapterrxjava2-{JAR_VERSION}.jar");
 
 	// Update .csproj nuget versions
 	XmlPoke("./source/Square.Retrofit2.AdapterRxJava2/Square.Retrofit2.AdapterRxJava2.csproj", "/Project/PropertyGroup/PackageVersion", NUGET_VERSION);
