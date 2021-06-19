@@ -36,6 +36,7 @@
 
   <ItemGroup>
     <EmbeddedJar Include="..\..\externals\dagger-2.34.1.jar" Link="dagger-2.34.1.jar" />
+=======
     <None Include="..\..\External-Dependency-Info.txt" Pack="True" PackagePath="THIRD-PARTY-NOTICES.txt" />
   </ItemGroup>
 
