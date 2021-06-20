@@ -1,6 +1,6 @@
 var TARGET = Argument ("t", Argument ("target", "ci"));
 
-var DAGGERS_VERSION = "2.36";
+var DAGGERS_VERSION = "2.37";
 var DAGGERS_NUGET_VERSION = DAGGERS_VERSION + ".0";
 var DAGGERS_URL = $"https://repo1.maven.org/maven2/com/google/dagger/dagger/{DAGGERS_VERSION}/dagger-{DAGGERS_VERSION}.jar";
 
