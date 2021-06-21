@@ -387,6 +387,11 @@
   TriggerPaths: [ Android/DesugarJDKLibs ]
   WindowsBuildTargets: [ ci ]
   MacBuildTargets: [ ci ]
+- Name: Twilio.AudioSwitch
+  BuildScript: ./Android/AudioSwitch/build.cake
+  TriggerPaths: [ Android/AudioSwitch ]
+  WindowsBuildTargets: [ ci ]
+  MacBuildTargets: [ ci ]
 
 # will be XPlat in the future
 - Name: TensorFlow.Lite
