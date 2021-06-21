@@ -10,7 +10,7 @@ Task ("externals")
 {
 	EnsureDirectoryExists ("./externals");
 	
-	DownloadFile(AAR_URL, "./externals/audioswitch.aar");
+	DownloadFile(AAR_URL, $"./externals/audioswitch-{AAR_VERSION}.aar");
 
 	// Update .csproj nuget versions
 	XmlPoke("./source/AudioSwitch/AudioSwitch.csproj", "/Project/PropertyGroup/PackageVersion", NUGET_VERSION);
