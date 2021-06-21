@@ -392,6 +392,11 @@
   TriggerPaths: [ Android/DesugarJDKLibs ]
   WindowsBuildTargets: [ ci ]
   MacBuildTargets: [ ci ]
+- Name: SignalR.Java.Client
+  BuildScript: ./Android/SignalRJavaClient/build.cake
+  TriggerPaths: [ Android/SignalRJavaClient ]
+  WindowsBuildTargets: [ ci ]
+  MacBuildTargets: [ ci ]
 
 # will be XPlat in the future
 - Name: TensorFlow.Lite
