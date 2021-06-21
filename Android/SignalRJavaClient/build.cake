@@ -10,7 +10,7 @@ Task ("externals")
 {
 	EnsureDirectoryExists ("./externals");
 	
-	DownloadFile(JAR_URL, "./externals/signalr.jar");
+	DownloadFile(JAR_URL, $"./externals/signalr-{JAR_VERSION}.jar");
 
 	// Update .csproj nuget versions
 	XmlPoke("./source/SignalR.Java.Client/SignalR.Java.Client.csproj", "/Project/PropertyGroup/PackageVersion", NUGET_VERSION);

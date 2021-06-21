@@ -1,9 +1,9 @@
-﻿<Project Sdk="MSBuild.Sdk.Extras/2.1.2">
+﻿<Project Sdk="MSBuild.Sdk.Extras">
   <PropertyGroup>
     <TargetFrameworks>monoandroid9.0</TargetFrameworks>
     <IsBindingProject>true</IsBindingProject>
-    <AssemblyName>Xamarin.ASP.NET.SignalR.Java.Client</AssemblyName>
-    <RootNamespace>Xamarin.ASP.NET.SignalR.Java.Client</RootNamespace>
+    <AssemblyName>Xamarin.AspNet.SignalR.Java.Client</AssemblyName>
+    <RootNamespace>Xamarin.AspNet.SignalR.Java.Client</RootNamespace>
     <AndroidUseLatestPlatformSdk>False</AndroidUseLatestPlatformSdk>
     <AndroidUseIntermediateDesignerFile>True</AndroidUseIntermediateDesignerFile>
     <AndroidClassParser>class-parse</AndroidClassParser>
@@ -11,7 +11,7 @@
   </PropertyGroup>
 
   <PropertyGroup>
-    <PackageId>Xamarin.ASP.NET.SignalR.Java.Client</PackageId>
+    <PackageId>Xamarin.AspNet.SignalR.Java.Client</PackageId>
     <Title>SignalR Java Client bindings for Xamarin.Android</Title>
     <Summary>ASP.NET Core SignalR Client for Java applications.</Summary>
     <Description>ASP.NET Core SignalR Client for Java applications.</Description>

@@ -7,7 +7,7 @@
           "ArtifactId": "signalr",
           "GroupId": "com.microsoft.signalr",
           "Version": "5.0.6",
-          "NuGetId": "Xamarin.ASP.NET.SignalR.Java.Client"
+          "NuGetId": "Xamarin.AspNet.SignalR.Java.Client"
         }
       }
     }
