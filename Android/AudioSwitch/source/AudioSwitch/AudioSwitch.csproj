@@ -1,9 +1,9 @@
-﻿<Project Sdk="MSBuild.Sdk.Extras">
+﻿<Project Sdk="MSBuild.Sdk.Extras/2.1.2">
   <PropertyGroup>
     <TargetFrameworks>monoandroid9.0</TargetFrameworks>
     <IsBindingProject>true</IsBindingProject>
-    <AssemblyName>Square.Retrofit2.ConverterGson</AssemblyName>
-    <RootNamespace>Square.Retrofit2.ConverterGson</RootNamespace>
+    <AssemblyName>Xamarin.Twilio.AudioSwitch</AssemblyName>
+    <RootNamespace>Xamarin.Twilio.AudioSwitch</RootNamespace>
     <AndroidUseLatestPlatformSdk>False</AndroidUseLatestPlatformSdk>
     <AndroidUseIntermediateDesignerFile>True</AndroidUseIntermediateDesignerFile>
     <AndroidClassParser>class-parse</AndroidClassParser>
@@ -11,24 +11,23 @@
   </PropertyGroup>
 
   <PropertyGroup>
-    <PackageId>Square.Retrofit2.ConverterGson</PackageId>
-    <Title>Retrofit v2 Converter for Gson</Title>
-    <Summary>Retrofit v2 Adapter for Gson bindings for Xamarin.Android.</Summary>
-    <Description>Retrofit v2 Adapter for Gson bindings for Xamarin.Android.</Description>
+    <PackageId>Xamarin.Twilio.AudioSwitch</PackageId>
+    <Title>AudioSwitch bindings for Xamarin.Android</Title>
+    <Summary>AudioSwitch is an Android audio management library for real-time communication apps.</Summary>
+    <Description>AudioSwitch is an Android audio management library for real-time communication apps.</Description>
     <Authors>Microsoft</Authors>
     <Owners>Microsoft</Owners>
     <Copyright>© Microsoft Corporation. All rights reserved.</Copyright>
     <PackageProjectUrl>https://go.microsoft.com/fwlink/?linkid=2130312</PackageProjectUrl>
-    <PackageIcon>square.retrofit2_256x256.png</PackageIcon>
     <PackageLicenseFile>LICENSE.md</PackageLicenseFile>
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
-    <PackageTags>gson retrofit xamarin android monodroid</PackageTags>
-    <PackageVersion>2.5.0</PackageVersion>
+    <PackageTags>audioswitch xamarin android monodroid</PackageTags>
+    <PackageVersion>1.1.2</PackageVersion>
   </PropertyGroup>
     
   <ItemGroup>
-    <PackageReference Include="GoogleGson" Version="2.8.6" />
-    <PackageReference Include="Square.Retrofit2" Version="2.9.0" />
+    <PackageReference Include="Xamarin.AndroidX.Annotation" Version="1.1.0" />
+    <PackageReference Include="Xamarin.Kotlin.StdLib" Version="1.4.21.1" />
   </ItemGroup>
     
   <ItemGroup>
@@ -37,9 +36,8 @@
     <EmbeddedJar Include="..\..\externals\*.jar" Link="Jars\%(Filename)%(Extension)" />
     <LibraryProjectZip Include="..\..\externals\*.aar" Link="Jars\%(Filename)%(Extension)" />
   </ItemGroup>
-  
+    
   <ItemGroup>
     <None Include="..\..\License.md" Pack="true" PackagePath="LICENSE.md" />
-    <None Include="..\..\icons\square.retrofit2_256x256.png" Pack="True" PackagePath="\" />
   </ItemGroup>
 </Project>
