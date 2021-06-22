@@ -1,41 +1,28 @@
 var TARGET = Argument ("t", Argument ("target", "ci"));
 
-var DAGGERS_VERSION = "2.37";
-var DAGGERS_NUGET_VERSION = DAGGERS_VERSION + ".0";
-var DAGGERS_URL = $"https://repo1.maven.org/maven2/com/google/dagger/dagger/{DAGGERS_VERSION}/dagger-{DAGGERS_VERSION}.jar";
+var NUGET_VERSION = "5.0.6";
+
+var JAR_VERSION = "5.0.6";
+var JAR_URL = $"https://repo1.maven.org/maven2/com/microsoft/signalr/signalr/{JAR_VERSION}/signalr-{JAR_VERSION}.jar";
 
 Task ("externals")
-	.WithCriteria (!FileExists ($"./externals/dagger-{DAGGERS_VERSION}.jar"))
 	.Does (() =>
 {
 	EnsureDirectoryExists ("./externals");
 	
-	// Download Dependencies
-	DownloadFile (DAGGERS_URL, $"./externals/dagger-{DAGGERS_VERSION}.jar");
+	DownloadFile(JAR_URL, $"./externals/signalr-{JAR_VERSION}.jar");
 
 	// Update .csproj nuget versions
-	XmlPoke("./source/Dagger/Dagger.csproj", "/Project/PropertyGroup/PackageVersion", DAGGERS_NUGET_VERSION);
-});
-
-
-Task("libs")
-	.IsDependentOn("externals")
-	.Does(() =>
-{
-	MSBuild("./GoogleDagger.sln", c => {
-		c.Configuration = "Release";
-		c.Restore = true;
-		c.MaxCpuCount = 0;
-		c.Properties.Add("DesignTimeBuild", new [] { "false" });
-	});
+	XmlPoke("./source/SignalR.Java.Client/SignalR.Java.Client.csproj", "/Project/PropertyGroup/PackageVersion", NUGET_VERSION);
 });
 
 Task("nuget")
-	.IsDependentOn("libs")
+	.IsDependentOn("externals")
 	.Does(() =>
 {
-	MSBuild ("./GoogleDagger.sln", c => {
+	MSBuild ("./source/SignalR.Java.Client.sln", c => {
 		c.Configuration = "Release";
+		c.Restore = true;
 		c.MaxCpuCount = 0;
 		c.Targets.Clear();
 		c.Targets.Add("Pack");
@@ -46,9 +33,15 @@ Task("nuget")
 });
 
 Task("samples")
-	.IsDependentOn("nuget");
+	.IsDependentOn("nuget")
+	.Does(() =>
+{
+	
+});
 
 Task("ci")
+	.IsDependentOn("externals")
+	.IsDependentOn("nuget")
 	.IsDependentOn("samples");
 
 Task ("clean")
