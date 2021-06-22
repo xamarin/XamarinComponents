@@ -1,35 +1,33 @@
-﻿<Project Sdk="MSBuild.Sdk.Extras">
+﻿<Project Sdk="MSBuild.Sdk.Extras/2.1.2">
   <PropertyGroup>
     <TargetFrameworks>monoandroid9.0</TargetFrameworks>
     <IsBindingProject>true</IsBindingProject>
-    <AssemblyName>Square.Retrofit2.AdapterRxJava2</AssemblyName>
-    <RootNamespace>Square.Retrofit2.AdapterRxJava2</RootNamespace>
+    <AssemblyName>Xamarin.Twilio.AudioSwitch</AssemblyName>
+    <RootNamespace>Xamarin.Twilio.AudioSwitch</RootNamespace>
     <AndroidUseLatestPlatformSdk>False</AndroidUseLatestPlatformSdk>
     <AndroidUseIntermediateDesignerFile>True</AndroidUseIntermediateDesignerFile>
     <AndroidClassParser>class-parse</AndroidClassParser>
     <AndroidCodegenTarget>XAJavaInterop1</AndroidCodegenTarget>
   </PropertyGroup>
-    
+
   <PropertyGroup>
-    <PackageId>Square.Retrofit2.AdapterRxJava2</PackageId>
-    <Title>Retrofit v2 Adapter for RxJava</Title>
-    <Summary>Retrofit v2 Adapter for RxJava v2 bindings for Xamarin.Android.</Summary>
-    <Description>Retrofit v2 Adapter for RxJava v2 bindings for Xamarin.Android.</Description>
+    <PackageId>Xamarin.Twilio.AudioSwitch</PackageId>
+    <Title>AudioSwitch bindings for Xamarin.Android</Title>
+    <Summary>AudioSwitch is an Android audio management library for real-time communication apps.</Summary>
+    <Description>AudioSwitch is an Android audio management library for real-time communication apps.</Description>
     <Authors>Microsoft</Authors>
     <Owners>Microsoft</Owners>
     <Copyright>© Microsoft Corporation. All rights reserved.</Copyright>
     <PackageProjectUrl>https://go.microsoft.com/fwlink/?linkid=2130312</PackageProjectUrl>
-    <PackageIcon>square.retrofit2_256x256.png</PackageIcon>
     <PackageLicenseFile>LICENSE.md</PackageLicenseFile>
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
-    <PackageTags>rx retrofit xamarin android monodroid</PackageTags>
-    <PackageVersion>2.9.0</PackageVersion>
+    <PackageTags>audioswitch xamarin android monodroid</PackageTags>
+    <PackageVersion>1.1.2</PackageVersion>
   </PropertyGroup>
-
+    
   <ItemGroup>
-    <PackageReference Include="Xamarin.Android.ReactiveX.RxJava" Version="2.2.10.1" />
-    <PackageReference Include="Square.Retrofit2" Version="2.9.0" />
-    <PackageReference Include="Xamarin.Android.ReactiveStreams" Version="1.0.3" />
+    <PackageReference Include="Xamarin.AndroidX.Annotation" Version="1.1.0" />
+    <PackageReference Include="Xamarin.Kotlin.StdLib" Version="1.4.21.1" />
   </ItemGroup>
     
   <ItemGroup>
@@ -41,7 +39,5 @@
     
   <ItemGroup>
     <None Include="..\..\License.md" Pack="true" PackagePath="LICENSE.md" />
-    <None Include="..\..\icons\square.retrofit2_256x256.png" Pack="True" PackagePath="\" />
   </ItemGroup>
-    
 </Project>
