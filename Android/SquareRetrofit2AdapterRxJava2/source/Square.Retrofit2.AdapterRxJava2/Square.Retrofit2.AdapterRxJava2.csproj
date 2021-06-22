@@ -23,7 +23,7 @@
     <PackageLicenseFile>LICENSE.md</PackageLicenseFile>
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
     <PackageTags>rx retrofit xamarin android monodroid</PackageTags>
-    <PackageVersion>2.8.2</PackageVersion>
+    <PackageVersion>2.9.0</PackageVersion>
   </PropertyGroup>
 
   <ItemGroup>
