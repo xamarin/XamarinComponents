@@ -1,26 +1,26 @@
 var TARGET = Argument ("t", Argument ("target", "ci"));
 
-var NUGET_VERSION = "2.6.4";
+var NUGET_VERSION = "1.1.2";
 
-var JAR_VERSION = "2.6.4";
-var JAR_URL = $"https://repo1.maven.org/maven2/com/squareup/retrofit2/adapter-rxjava2/{JAR_VERSION}/adapter-rxjava2-{JAR_VERSION}.jar";
+var AAR_VERSION = "1.1.2";
+var AAR_URL = $"https://repo1.maven.org/maven2/com/twilio/audioswitch/{AAR_VERSION}/audioswitch-{AAR_VERSION}.aar";
 
 Task ("externals")
 	.Does (() =>
 {
-	EnsureDirectoryExists ($"./externals");
+	EnsureDirectoryExists ("./externals");
 	
-	DownloadFile(JAR_URL, $"./externals/adapterrxjava2-{JAR_VERSION}.jar");
+	DownloadFile(AAR_URL, $"./externals/audioswitch-{AAR_VERSION}.aar");
 
 	// Update .csproj nuget versions
-	XmlPoke("./source/Square.Retrofit2.AdapterRxJava2/Square.Retrofit2.AdapterRxJava2.csproj", "/Project/PropertyGroup/PackageVersion", NUGET_VERSION);
+	XmlPoke("./source/AudioSwitch/AudioSwitch.csproj", "/Project/PropertyGroup/PackageVersion", NUGET_VERSION);
 });
 
 Task("nuget")
 	.IsDependentOn("externals")
 	.Does(() =>
 {
-	MSBuild ("./source/Square.Retrofit2.AdapterRxJava2.sln", c => {
+	MSBuild ("./source/AudioSwitch.sln", c => {
 		c.Configuration = "Release";
 		c.Restore = true;
 		c.MaxCpuCount = 0;
@@ -32,10 +32,17 @@ Task("nuget")
 	});
 });
 
+Task("samples")
+	.IsDependentOn("nuget")
+	.Does(() =>
+{
+	
+});
 
 Task("ci")
 	.IsDependentOn("externals")
-	.IsDependentOn("nuget");
+	.IsDependentOn("nuget")
+	.IsDependentOn("samples");
 
 Task ("clean")
 	.Does (() =>

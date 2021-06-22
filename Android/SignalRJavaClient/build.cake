@@ -1,26 +1,26 @@
 var TARGET = Argument ("t", Argument ("target", "ci"));
 
-var NUGET_VERSION = "2.6.4";
+var NUGET_VERSION = "5.0.6";
 
-var JAR_VERSION = "2.6.4";
-var JAR_URL = $"https://repo1.maven.org/maven2/com/squareup/retrofit2/adapter-rxjava2/{JAR_VERSION}/adapter-rxjava2-{JAR_VERSION}.jar";
+var JAR_VERSION = "5.0.6";
+var JAR_URL = $"https://repo1.maven.org/maven2/com/microsoft/signalr/signalr/{JAR_VERSION}/signalr-{JAR_VERSION}.jar";
 
 Task ("externals")
 	.Does (() =>
 {
-	EnsureDirectoryExists ($"./externals");
+	EnsureDirectoryExists ("./externals");
 	
-	DownloadFile(JAR_URL, $"./externals/adapterrxjava2-{JAR_VERSION}.jar");
+	DownloadFile(JAR_URL, $"./externals/signalr-{JAR_VERSION}.jar");
 
 	// Update .csproj nuget versions
-	XmlPoke("./source/Square.Retrofit2.AdapterRxJava2/Square.Retrofit2.AdapterRxJava2.csproj", "/Project/PropertyGroup/PackageVersion", NUGET_VERSION);
+	XmlPoke("./source/SignalR.Java.Client/SignalR.Java.Client.csproj", "/Project/PropertyGroup/PackageVersion", NUGET_VERSION);
 });
 
 Task("nuget")
 	.IsDependentOn("externals")
 	.Does(() =>
 {
-	MSBuild ("./source/Square.Retrofit2.AdapterRxJava2.sln", c => {
+	MSBuild ("./source/SignalR.Java.Client.sln", c => {
 		c.Configuration = "Release";
 		c.Restore = true;
 		c.MaxCpuCount = 0;
@@ -32,10 +32,17 @@ Task("nuget")
 	});
 });
 
+Task("samples")
+	.IsDependentOn("nuget")
+	.Does(() =>
+{
+	
+});
 
 Task("ci")
 	.IsDependentOn("externals")
-	.IsDependentOn("nuget");
+	.IsDependentOn("nuget")
+	.IsDependentOn("samples");
 
 Task ("clean")
 	.Does (() =>

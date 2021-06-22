@@ -272,6 +272,11 @@
   TriggerPaths: [ Android/JakeWhartonPicasso2OkHttp3Downloader ]
   MacBuildTargets: [ ci ]
   WindowsBuildTargets: [ ci ]
+- Name: SignalRJavaClient
+  BuildScript: ./Android/SignalRJavaClient/build.cake
+  TriggerPaths: [ Android/SignalRJavaClient ]
+  MacBuildTargets: [ ci ]
+  WindowsBuildTargets: [ ci ]
 - Name: SquareAndroidTimesSquare
   BuildScript: ./Android/SquareAndroidTimesSquare/build.cake
   TriggerPaths: [ Android/SquareAndroidTimesSquare ]
@@ -385,6 +390,16 @@
 - Name: DesugarJDKLibs
   BuildScript: ./Android/DesugarJDKLibs/build.cake
   TriggerPaths: [ Android/DesugarJDKLibs ]
+  WindowsBuildTargets: [ ci ]
+  MacBuildTargets: [ ci ]
+- Name: SignalR.Java.Client
+  BuildScript: ./Android/SignalRJavaClient/build.cake
+  TriggerPaths: [ Android/SignalRJavaClient ]
+  WindowsBuildTargets: [ ci ]
+  MacBuildTargets: [ ci ]
+- Name: Twilio.AudioSwitch
+  BuildScript: ./Android/AudioSwitch/build.cake
+  TriggerPaths: [ Android/AudioSwitch ]
   WindowsBuildTargets: [ ci ]
   MacBuildTargets: [ ci ]
 
