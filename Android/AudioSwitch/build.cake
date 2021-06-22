@@ -1,41 +1,28 @@
 var TARGET = Argument ("t", Argument ("target", "ci"));
 
-var DAGGERS_VERSION = "2.37";
-var DAGGERS_NUGET_VERSION = DAGGERS_VERSION + ".0";
-var DAGGERS_URL = $"https://repo1.maven.org/maven2/com/google/dagger/dagger/{DAGGERS_VERSION}/dagger-{DAGGERS_VERSION}.jar";
+var NUGET_VERSION = "1.1.2";
+
+var AAR_VERSION = "1.1.2";
+var AAR_URL = $"https://repo1.maven.org/maven2/com/twilio/audioswitch/{AAR_VERSION}/audioswitch-{AAR_VERSION}.aar";
 
 Task ("externals")
-	.WithCriteria (!FileExists ($"./externals/dagger-{DAGGERS_VERSION}.jar"))
 	.Does (() =>
 {
 	EnsureDirectoryExists ("./externals");
 	
-	// Download Dependencies
-	DownloadFile (DAGGERS_URL, $"./externals/dagger-{DAGGERS_VERSION}.jar");
+	DownloadFile(AAR_URL, $"./externals/audioswitch-{AAR_VERSION}.aar");
 
 	// Update .csproj nuget versions
-	XmlPoke("./source/Dagger/Dagger.csproj", "/Project/PropertyGroup/PackageVersion", DAGGERS_NUGET_VERSION);
-});
-
-
-Task("libs")
-	.IsDependentOn("externals")
-	.Does(() =>
-{
-	MSBuild("./GoogleDagger.sln", c => {
-		c.Configuration = "Release";
-		c.Restore = true;
-		c.MaxCpuCount = 0;
-		c.Properties.Add("DesignTimeBuild", new [] { "false" });
-	});
+	XmlPoke("./source/AudioSwitch/AudioSwitch.csproj", "/Project/PropertyGroup/PackageVersion", NUGET_VERSION);
 });
 
 Task("nuget")
-	.IsDependentOn("libs")
+	.IsDependentOn("externals")
 	.Does(() =>
 {
-	MSBuild ("./GoogleDagger.sln", c => {
+	MSBuild ("./source/AudioSwitch.sln", c => {
 		c.Configuration = "Release";
+		c.Restore = true;
 		c.MaxCpuCount = 0;
 		c.Targets.Clear();
 		c.Targets.Add("Pack");
@@ -46,9 +33,15 @@ Task("nuget")
 });
 
 Task("samples")
-	.IsDependentOn("nuget");
+	.IsDependentOn("nuget")
+	.Does(() =>
+{
+	
+});
 
 Task("ci")
+	.IsDependentOn("externals")
+	.IsDependentOn("nuget")
 	.IsDependentOn("samples");
 
 Task ("clean")
