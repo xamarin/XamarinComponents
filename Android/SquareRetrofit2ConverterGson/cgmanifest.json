@@ -6,7 +6,7 @@
         "Maven": {
           "ArtifactId": "converter-gson",
           "GroupId": "com.squareup.retrofit2",
-          "Version": "2.6.4",
+          "Version": "2.7.2",
           "NuGetId": "Square.Retrofit2.ConverterGson"
         }
       }
