@@ -7,7 +7,7 @@
   <remove-node path="/api/package[@name='android.support.v4.content']/class[@name='CursorLoader']/method[@name='loadInBackground']" />
   -->
 
-	<attr path="/api/package[@name='retrofit2.converter.gson']" name="managedName">Square.Retrofit2.Converter.Gson</attr>
+	<attr path="/api/package[@name='retrofit2.converter.scalars']" name="managedName">Square.Retrofit2.Converter.Scalars</attr>
 	
 	<remove-node path="/api/package/class[@visibility='']" />
 	<remove-node path="/api/package/interface[@visibility='']" />
