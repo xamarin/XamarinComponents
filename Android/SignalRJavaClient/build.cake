@@ -1,8 +1,8 @@
 var TARGET = Argument ("t", Argument ("target", "ci"));
 
-var NUGET_VERSION = "5.0.6";
+var NUGET_VERSION = "5.0.7";
 
-var JAR_VERSION = "5.0.6";
+var JAR_VERSION = "5.0.7";
 var JAR_URL = $"https://repo1.maven.org/maven2/com/microsoft/signalr/signalr/{JAR_VERSION}/signalr-{JAR_VERSION}.jar";
 
 Task ("externals")
