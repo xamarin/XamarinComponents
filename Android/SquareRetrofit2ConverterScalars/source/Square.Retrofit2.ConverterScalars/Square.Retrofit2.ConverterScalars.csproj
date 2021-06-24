@@ -23,7 +23,7 @@
     <PackageLicenseFile>LICENSE.md</PackageLicenseFile>
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
     <PackageTags>scalars retrofit xamarin android monodroid</PackageTags>
-    <PackageVersion>2.5.0</PackageVersion>
+    <PackageVersion>2.8.0</PackageVersion>
   </PropertyGroup>
     
   <ItemGroup>
