@@ -7,7 +7,7 @@
   <remove-node path="/api/package[@name='android.support.v4.content']/class[@name='CursorLoader']/method[@name='loadInBackground']" />
   -->
 
-	<attr path="/api/package[@name='com.microsoft.signalr']" name="managedName">Xamarin.ASP.NET.SignalR.Java.Client</attr>
+	<attr path="/api/package[@name='com.microsoft.signalr']" name="managedName">Xamarin.AspNet.SignalR.Java.Client</attr>
        
     <remove-node path="/api/package/class[@visibility='']" />
     <remove-node path="/api/package/interface[@visibility='']" />
