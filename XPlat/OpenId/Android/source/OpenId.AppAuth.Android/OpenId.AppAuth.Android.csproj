@@ -86,12 +86,6 @@
       <HintPath>..\packages\Xamarin.Google.Guava.ListenableFuture.1.0.0.2\lib\monoandroid50\Xamarin.Google.Guava.ListenableFuture.dll</HintPath>
       <Private>True</Private>
     </Reference>
-<!--    <Reference Include="Xamarin.Android.Support.v4">-->
-<!--      <HintPath>..\packages\Xamarin.Android.Support.v4.23.3.0\lib\MonoAndroid403\Xamarin.Android.Support.v4.dll</HintPath>-->
-<!--    </Reference>-->
-<!--    <Reference Include="Xamarin.Android.Support.CustomTabs">-->
-<!--      <HintPath>..\packages\Xamarin.Android.Support.CustomTabs.23.3.0\lib\MonoAndroid403\Xamarin.Android.Support.CustomTabs.dll</HintPath>-->
-<!--    </Reference>-->
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
