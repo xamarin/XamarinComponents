@@ -6,7 +6,7 @@
         "Maven": {
           "ArtifactId": "converter-scalars",
           "GroupId": "com.squareup.retrofit2",
-          "Version": "2.8.0",
+          "Version": "2.9.0",
           "NuGetId": "Square.Retrofit2.ConverterScalars"
         }
       }
