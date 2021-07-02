@@ -1,0 +1,16 @@
+{
+  "Registrations": [
+    {
+      "Component": {
+        "Type": "Maven",
+        "Maven": {
+          "ArtifactId": "signalr",
+          "GroupId": "com.microsoft.signalr",
+          "Version": "5.0.7",
+          "NuGetId": "Xamarin.AspNet.SignalR.Java.Client"
+        }
+      }
+    }
+  ],
+  "Version": 1
+}

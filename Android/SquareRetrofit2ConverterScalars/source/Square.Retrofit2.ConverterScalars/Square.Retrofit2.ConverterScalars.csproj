@@ -2,19 +2,19 @@
   <PropertyGroup>
     <TargetFrameworks>monoandroid9.0</TargetFrameworks>
     <IsBindingProject>true</IsBindingProject>
-    <AssemblyName>Square.Retrofit2.AdapterRxJava2</AssemblyName>
-    <RootNamespace>Square.Retrofit2.AdapterRxJava2</RootNamespace>
+    <AssemblyName>Square.Retrofit2.ConverterScalars</AssemblyName>
+    <RootNamespace>Square.Retrofit2.ConverterScalars</RootNamespace>
     <AndroidUseLatestPlatformSdk>False</AndroidUseLatestPlatformSdk>
     <AndroidUseIntermediateDesignerFile>True</AndroidUseIntermediateDesignerFile>
     <AndroidClassParser>class-parse</AndroidClassParser>
     <AndroidCodegenTarget>XAJavaInterop1</AndroidCodegenTarget>
   </PropertyGroup>
-    
+
   <PropertyGroup>
-    <PackageId>Square.Retrofit2.AdapterRxJava2</PackageId>
-    <Title>Retrofit v2 Adapter for RxJava</Title>
-    <Summary>Retrofit v2 Adapter for RxJava v2 bindings for Xamarin.Android.</Summary>
-    <Description>Retrofit v2 Adapter for RxJava v2 bindings for Xamarin.Android.</Description>
+    <PackageId>Square.Retrofit2.ConverterScalars</PackageId>
+    <Title>Retrofit v2 Converter for Scalars</Title>
+    <Summary>Retrofit v2 Converter for Scalars bindings for Xamarin.Android.</Summary>
+    <Description>Retrofit v2 Converter for Scalars bindings for Xamarin.Android.</Description>
     <Authors>Microsoft</Authors>
     <Owners>Microsoft</Owners>
     <Copyright>© Microsoft Corporation. All rights reserved.</Copyright>
@@ -22,14 +22,13 @@
     <PackageIcon>square.retrofit2_256x256.png</PackageIcon>
     <PackageLicenseFile>LICENSE.md</PackageLicenseFile>
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
-    <PackageTags>rx retrofit xamarin android monodroid</PackageTags>
+    <PackageTags>scalars retrofit xamarin android monodroid</PackageTags>
     <PackageVersion>2.9.0</PackageVersion>
   </PropertyGroup>
-
+    
   <ItemGroup>
-    <PackageReference Include="Xamarin.Android.ReactiveX.RxJava" Version="2.2.10.1" />
+    <PackageReference Include="GoogleGson" Version="2.8.6" />
     <PackageReference Include="Square.Retrofit2" Version="2.9.0" />
-    <PackageReference Include="Xamarin.Android.ReactiveStreams" Version="1.0.3" />
   </ItemGroup>
     
   <ItemGroup>
@@ -38,10 +37,9 @@
     <EmbeddedJar Include="..\..\externals\*.jar" Link="Jars\%(Filename)%(Extension)" />
     <LibraryProjectZip Include="..\..\externals\*.aar" Link="Jars\%(Filename)%(Extension)" />
   </ItemGroup>
-    
+  
   <ItemGroup>
     <None Include="..\..\License.md" Pack="true" PackagePath="LICENSE.md" />
     <None Include="..\..\icons\square.retrofit2_256x256.png" Pack="True" PackagePath="\" />
   </ItemGroup>
-    
 </Project>
