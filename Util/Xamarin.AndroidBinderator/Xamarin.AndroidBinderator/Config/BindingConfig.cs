@@ -56,6 +56,13 @@ namespace AndroidBinderator
 		[JsonProperty("additionalProjects")]
 		public List<string> AdditionalProjects { get; set; } = new List<string>();
 
+		/// True to consider 'Runtime' dependencies from a POM file, False to ignore them.
+		[JsonProperty("strictRuntimeDependencies")]
+		public bool StrictRuntimeDependencies { get; set; }
+
+		[JsonProperty("excludedRuntimeDependencies")]
+		public string ExcludedRuntimeDependencies { get; set; }
+
 		[JsonProperty("metadata")]
 		public Dictionary<string, string> Metadata { get; set; } = new Dictionary<string, string>();
 	}
