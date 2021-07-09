@@ -2,8 +2,8 @@
 
 var TARGET = Argument ("t", Argument ("target", "ci"));
 
-var KOTLINX_VERSION = "1.5.0";
-var KOTLINX_NUGET_VERSION = "1.5.0";
+var KOTLINX_VERSION = "1.5.1";
+var KOTLINX_NUGET_VERSION = "1.5.1";
 
 /*
 	since version 1.4.3 there are no javadocs, but javasources
