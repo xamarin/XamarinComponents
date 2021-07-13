@@ -290,6 +290,7 @@ namespace AndroidBinderator
 		static List<BindingProjectModel> BuildProjectModels(BindingConfig config, TemplateConfig template, Dictionary<string, Project> mavenProjects)
 		{
 			var projectModels = new List<BindingProjectModel>();
+			var exceptions = new List<Exception>();
 
 			var baseMetadata = new Dictionary<string, string>();
 			MergeValues(baseMetadata, config.Metadata);
@@ -330,7 +331,6 @@ namespace AndroidBinderator
 				var artifactExtractDir = Path.Combine(artifactDir, mavenArtifact.ArtifactId);
 
 				var proguardFile = Path.Combine(artifactExtractDir, "proguard.txt");
-				var exceptions = new List<Exception>();
 
 				projectModel.MavenArtifacts.Add(new MavenArtifactModel
 				{
@@ -348,8 +348,7 @@ namespace AndroidBinderator
 				// Gather maven dependencies to try and map out nuget dependencies
 				foreach (var mavenDep in mavenProject.Dependencies)
 				{
-					// We only really care about 'compile' scoped dependencies (also null/blank means compile)
-					if (!string.IsNullOrEmpty(mavenDep.Scope) && !mavenDep.Scope.ToLowerInvariant().Equals("compile"))
+					if (!ShouldIncludeDependency(config, mavenArtifact, mavenDep, exceptions))
 						continue;
 
 					mavenDep.Version = FixVersion(mavenDep.Version);
@@ -359,6 +358,11 @@ namespace AndroidBinderator
 						&& ma.GroupId == mavenDep.GroupId
 						&& ma.ArtifactId == mavenDep.ArtifactId
 						&& mavenDep.Satisfies(ma.Version));
+
+					if (depMapping is null && mavenDep.IsRuntimeDependency()) {
+						exceptions.Add(new Exception($"Artifact '{mavenArtifact.GroupAndArtifactId}' has unknown 'Runtime' dependency '{mavenDep.GroupAndArtifactId()}'. Either fulfill or exclude this dependency."));
+						continue;
+					}
 
 					if (depMapping == null)
 					{
@@ -411,15 +415,39 @@ namespace AndroidBinderator
 						}
 					});
 				}
-				if (exceptions.Any())
-                {
-					throw new AggregateException(exceptions.ToArray());
-                }
 
 			}
 
+			if (exceptions.Any())
+				throw new AggregateException(exceptions.ToArray());
+
 
 			return projectModels;
+		}
+
+		static bool ShouldIncludeDependency(BindingConfig config, MavenArtifactConfig artifact, Dependency dependency, List<Exception> exceptions)
+		{
+			// We always care about 'compile' scoped dependencies
+			if (dependency.IsCompileDependency())
+				return true;
+
+			// If we're not processing Runtime dependencies then ignore the rest
+			if (!config.StrictRuntimeDependencies)
+				return false;
+
+			// The only other thing we may care about is 'runtime', bail if this isn't 'runtime'
+			if (!dependency.IsRuntimeDependency())
+				return false;
+
+			// Check 'artifact' list
+			if (artifact.ExcludedRuntimeDependencies.OrEmpty().Split(',').Contains(dependency.GroupAndArtifactId(), StringComparer.OrdinalIgnoreCase))
+				return false;
+
+			// Check 'global' list
+			if (config.ExcludedRuntimeDependencies.OrEmpty ().Split (',').Contains (dependency.GroupAndArtifactId (), StringComparer.OrdinalIgnoreCase))
+				return false;
+
+			return true;
 		}
 
 		static string GetRelativePath(string filespec, string folder)

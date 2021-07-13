@@ -46,5 +46,10 @@ namespace AndroidBinderator
 
 		[JsonProperty("metadata")]
 		public Dictionary<string, string> Metadata { get; set; } = new Dictionary<string, string>();
+
+		[JsonProperty("excludedRuntimeDependencies")]
+		public string ExcludedRuntimeDependencies { get; set; }
+
+		public string GroupAndArtifactId => $"{GroupId}.{ArtifactId}";
 	}
 }
