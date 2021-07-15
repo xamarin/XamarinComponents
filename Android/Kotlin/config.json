@@ -19,15 +19,15 @@
 		{
 			"groupId" : "org.jetbrains.kotlin",
 			"artifactId" : "kotlin-stdlib",
-			"version" : "1.5.21",
-			"nugetVersion" : "1.5.21",
+			"version" : "1.5.20",
+			"nugetVersion" : "1.5.20",
 			"nugetId" : "Xamarin.Kotlin.StdLib"
 		},
 		{
 			"groupId" : "org.jetbrains.kotlin",
 			"artifactId" : "kotlin-stdlib-common",
-			"version" : "1.5.21",
-			"nugetVersion" : "1.5.21",
+			"version" : "1.5.20",
+			"nugetVersion" : "1.5.20",
 			"nugetId" : "Xamarin.Kotlin.StdLib.Common",
 			"metadata" :
 			{
@@ -37,8 +37,8 @@
 		{
 			"groupId" : "org.jetbrains.kotlin",
 			"artifactId" : "kotlin-reflect",
-			"version" : "1.5.21",
-			"nugetVersion" : "1.5.21",
+			"version" : "1.5.20",
+			"nugetVersion" : "1.5.20",
 			"nugetId" : "Xamarin.Kotlin.Reflect",
 			"metadata" :
 			{
@@ -48,8 +48,8 @@
 		{
 			"groupId" : "org.jetbrains.kotlin",
 			"artifactId" : "kotlin-stdlib-jdk7",
-			"version" : "1.5.21",
-			"nugetVersion" : "1.5.21",
+			"version" : "1.5.20",
+			"nugetVersion" : "1.5.20",
 			"nugetId" : "Xamarin.Kotlin.StdLib.Jdk7",
 			"metadata" :
 			{
@@ -59,8 +59,8 @@
 		{
 			"groupId" : "org.jetbrains.kotlin",
 			"artifactId" : "kotlin-stdlib-jdk8",
-			"version" : "1.5.21",
-			"nugetVersion" : "1.5.21",
+			"version" : "1.5.20",
+			"nugetVersion" : "1.5.20",
 			"nugetId" : "Xamarin.Kotlin.StdLib.Jdk8",
 			"metadata" :
 			{
