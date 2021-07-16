@@ -104,7 +104,7 @@ The following libraries are [supported](Support.md).
 
 | Name                                  | Description                                                                      | Source                                                           |
 |---------------------------------------|----------------------------------------------------------------------------------|------------------------------------------------------------------|
-| Android Support Libraries             | Bindings for Google's Android Support Libraries                                  | [GitHub](https://github.com/xamarin/AndroidSupportComponents)    |
+| AndroidX Libraries                    | Bindings for Google's AndroidX Libraries                                         | [GitHub](https://github.com/xamarin/AndroidX)                    |
 | Google Play Services Client Libraries | Bindings for Google's Play Services Client Libraries                             | [GitHub](https://github.com/xamarin/GooglePlayServicesComponents)|
 | Google API's for iOS                  | Bindings for Google's API's for iOS Libraries                                    | [GitHub](https://github.com/xamarin/GoogleAPIsForiOSComponents)  |
 | Facebook SDK's                        | Bindings for Facebook's iOS & Android SDK's                                      | [GitHub](https://github.com/xamarin/FacebookComponents)          |
