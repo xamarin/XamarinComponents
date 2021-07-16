@@ -22,11 +22,11 @@
     <PackageProjectUrl>https://go.microsoft.com/fwlink/?linkid=2083771</PackageProjectUrl>
     <PackageLicenseFile>LICENSE.md</PackageLicenseFile>
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
-    <PackageVersion>1.5.0</PackageVersion>
+    <PackageVersion>1.5.1</PackageVersion>
   </PropertyGroup>
 
   <PropertyGroup>
-    <ArtifactVersion>1.5.0</ArtifactVersion>
+    <ArtifactVersion>1.5.1</ArtifactVersion>
   </PropertyGroup>
 
   <ItemGroup>
@@ -50,7 +50,7 @@
 
   <ItemGroup>
     <PackageReference Include="Xamarin.Android.ReactiveX.RxJava" Version="2.2.10.1" />
-    <PackageReference Include="Xamarin.Kotlin.StdLib" Version="1.5.0.1" />
+    <PackageReference Include="Xamarin.Kotlin.StdLib" Version="1.5.20" />
   </ItemGroup>
 
   <ItemGroup>
