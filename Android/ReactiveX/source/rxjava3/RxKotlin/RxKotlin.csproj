@@ -2,7 +2,6 @@
 <Project Sdk="MSBuild.Sdk.Extras/3.0.23">
   <PropertyGroup>
     <TargetFramework>MonoAndroid90</TargetFramework>
-    <TargetFrameworks>MonoAndroid90</TargetFrameworks>
     <IsBindingProject>true</IsBindingProject>
     <AssemblyName>Xamarin.Android.ReactiveX.RxJava3.RxKotlin</AssemblyName>
     <MonoAndroidResourcePrefix>Resources</MonoAndroidResourcePrefix>
@@ -26,7 +25,7 @@
     <PackageProjectUrl>https://go.microsoft.com/fwlink/?linkid=2083771</PackageProjectUrl>
     <PackageLicenseUrl>https://go.microsoft.com/fwlink/?linkid=2083684</PackageLicenseUrl>
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
-    <PackageVersion>3.0.1.1</PackageVersion>
+    <PackageVersion>3.0.1.2</PackageVersion>
   </PropertyGroup>
 
   <ItemGroup>
@@ -45,7 +44,7 @@
     <JavaDocPaths>..\..\..\externals\rxjava3\rxkotlin-javadocs\</JavaDocPaths>
   </PropertyGroup>
   <ItemGroup>
-    <EmbeddedJar Include="..\..\..\externals\rxjava3\rxkotlin-3.0.1.jar" />
+    <EmbeddedJar Include="../../../externals/rxjava3/rxkotlin-3.0.1.jar" />
     <JavaDocJar Include="..\..\..\externals\rxjava3\rxkotlin-javadocs.jar" />
     <!--
     <JavaSourceJar Include="..\..\..\externals\rxjava3\" />

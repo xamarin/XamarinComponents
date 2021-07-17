@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project Sdk="MSBuild.Sdk.Extras/3.0.23">
   <PropertyGroup>
     <TargetFrameworks>MonoAndroid90</TargetFrameworks>
@@ -20,9 +20,9 @@
     <Owners>Microsoft</Owners>
     <Copyright>© Microsoft Corporation. All rights reserved.</Copyright>
     <PackageProjectUrl>https://go.microsoft.com/fwlink/?linkid=2083771</PackageProjectUrl>
-    <PackageLicenseFile>LICENSE.md</PackageLicenseFile>
+    <PackageLicenseUrl>https://go.microsoft.com/fwlink/?linkid=2083684</PackageLicenseUrl>
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
-    <PackageVersion>2.2.12</PackageVersion>
+    <PackageVersion>2.2.21</PackageVersion>
   </PropertyGroup>
 
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
@@ -41,9 +41,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Include="..\..\..\externals\rxjava2\rxjava-2.2.10.jar">
-      <Link>rxjava-2.2.10.jar</Link>
-    </None>
     <None Include="..\..\..\External-Dependency-Info.txt" Pack="True" PackagePath="THIRD-PARTY-NOTICES.txt" />
     <None Include="..\..\..\License.md" Pack="true" PackagePath="LICENSE.md" />
   </ItemGroup>
@@ -52,11 +49,8 @@
     <JavaDocPaths>..\..\..\externals\rxjava2\rxjava-javadocs\</JavaDocPaths>
   </PropertyGroup>
   <ItemGroup>
-    <EmbeddedJar Include="..\..\..\externals\rxjava2\rxjava-2.2.10.jar" />
+    <EmbeddedJar Include="../../../externals/rxjava2/rxjava-2.2.21.jar" />
     <JavaDocJar Include="..\..\..\externals\rxjava2\rxjava-javadocs.jar" />
-    <!--
-    <JavaSourceJar Include="..\..\..\externals\rxjava2\" />
-    -->
   </ItemGroup>
 
 </Project>
