@@ -1,0 +1,4 @@
+﻿<metadata>
+
+    <attr path="/api/package[@name='kotlinx.coroutines.reactive']" name="managedName">Xamarin.KotlinX.Coroutines.Reactive</attr>
+</metadata>

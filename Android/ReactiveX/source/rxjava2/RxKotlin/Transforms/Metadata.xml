@@ -1,4 +1,4 @@
-﻿<metadata>
+<metadata>
     
   <attr path="/api/package[@name='io.reactivex.rxkotlin']" name="managedName">ReactiveX.RxKotlin</attr>
     

@@ -1,0 +1,45 @@
+﻿<Project Sdk="MSBuild.Sdk.Extras">
+  <PropertyGroup>
+    <TargetFrameworks>monoandroid9.0</TargetFrameworks>
+    <IsBindingProject>true</IsBindingProject>
+    <AssemblyName>Xamarin.AspNet.SignalR.Java.Client</AssemblyName>
+    <RootNamespace>Xamarin.AspNet.SignalR.Java.Client</RootNamespace>
+    <AndroidUseLatestPlatformSdk>False</AndroidUseLatestPlatformSdk>
+    <AndroidUseIntermediateDesignerFile>True</AndroidUseIntermediateDesignerFile>
+    <AndroidClassParser>class-parse</AndroidClassParser>
+    <AndroidCodegenTarget>XAJavaInterop1</AndroidCodegenTarget>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <PackageId>Xamarin.AspNet.SignalR.Java.Client</PackageId>
+    <Title>SignalR Java Client bindings for Xamarin.Android</Title>
+    <Summary>ASP.NET Core SignalR Client for Java applications.</Summary>
+    <Description>ASP.NET Core SignalR Client for Java applications.</Description>
+    <Authors>Microsoft</Authors>
+    <Owners>Microsoft</Owners>
+    <Copyright>© Microsoft Corporation. All rights reserved.</Copyright>
+    <PackageProjectUrl>https://go.microsoft.com/fwlink/?linkid=2130312</PackageProjectUrl>
+    <PackageLicenseFile>LICENSE.md</PackageLicenseFile>
+    <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
+    <PackageTags>signalr java client xamarin android monodroid</PackageTags>
+    <PackageVersion>5.0.8</PackageVersion>
+  </PropertyGroup>
+    
+  <ItemGroup>
+    <PackageReference Include="Slf4jApi" Version="1.7.30" />
+    <PackageReference Include="GoogleGson" Version="2.8.6" />
+    <PackageReference Include="Square.OkHttp3" Version="4.9.1" />
+    <PackageReference Include="Xamarin.Android.ReactiveX.RxJava" Version="2.2.10.1" />
+  </ItemGroup>
+    
+  <ItemGroup>
+    <None Remove="Transforms\*.xml" />
+    <TransformFile Include="Transforms\*.xml" />
+    <EmbeddedJar Include="..\..\externals\*.jar" Link="Jars\%(Filename)%(Extension)" />
+    <LibraryProjectZip Include="..\..\externals\*.aar" Link="Jars\%(Filename)%(Extension)" />
+  </ItemGroup>
+    
+  <ItemGroup>
+    <None Include="..\..\License.md" Pack="true" PackagePath="LICENSE.md" />
+  </ItemGroup>
+</Project>

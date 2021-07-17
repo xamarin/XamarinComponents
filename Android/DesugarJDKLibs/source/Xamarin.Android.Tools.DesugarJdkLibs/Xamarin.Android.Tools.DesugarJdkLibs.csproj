@@ -1,0 +1,39 @@
+﻿<Project Sdk="MSBuild.Sdk.Extras/2.1.2">
+  <PropertyGroup>
+    <TargetFrameworks>monoandroid9.0</TargetFrameworks>
+    <IsBindingProject>true</IsBindingProject>
+    <AssemblyName>Xamarin.Android.Tools.DesugarJdkLibs</AssemblyName>
+    <RootNamespace>Xamarin.Android.Tools.DesugarJdkLibs</RootNamespace>
+    <AndroidUseLatestPlatformSdk>False</AndroidUseLatestPlatformSdk>
+    <AndroidUseIntermediateDesignerFile>True</AndroidUseIntermediateDesignerFile>
+    <AndroidClassParser>class-parse</AndroidClassParser>
+    <AndroidCodegenTarget>XAJavaInterop1</AndroidCodegenTarget>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <PackageId>Xamarin.Android.Tools.DesugarJdkLibs</PackageId>
+    <Title>DesugarJDKLibs bindings for Xamarin.Android</Title>
+    <Summary>DesugarJDKLibs contains a small subset of OpenJDK libraries simplified for use on older runtimes.</Summary>
+    <Description>DesugarJDKLibs contains a small subset of OpenJDK libraries simplified for use on older runtimes.</Description>
+    <Authors>Microsoft</Authors>
+    <Owners>Microsoft</Owners>
+    <Copyright>© Microsoft Corporation. All rights reserved.</Copyright>
+    <PackageProjectUrl>https://go.microsoft.com/fwlink/?linkid=2130312</PackageProjectUrl>
+    <PackageIcon></PackageIcon>
+    <PackageLicenseFile>LICENSE.md</PackageLicenseFile>
+    <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
+    <PackageTags>desugar jdk libs xamarin android monodroid</PackageTags>
+    <PackageVersion>1.1.5</PackageVersion>
+  </PropertyGroup>
+    
+  <ItemGroup>
+    <None Remove="Transforms\*.xml" />
+    <TransformFile Include="Transforms\*.xml" />
+    <EmbeddedJar Include="..\..\externals\*.jar" Link="Jars\%(Filename)%(Extension)" />
+    <LibraryProjectZip Include="..\..\externals\*.aar" Link="Jars\%(Filename)%(Extension)" />
+  </ItemGroup>
+    
+  <ItemGroup>
+    <None Include="..\..\License.md" Pack="true" PackagePath="LICENSE.md" />
+  </ItemGroup>
+</Project>

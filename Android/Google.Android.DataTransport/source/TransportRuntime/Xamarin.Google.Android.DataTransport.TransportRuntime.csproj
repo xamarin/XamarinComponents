@@ -20,7 +20,7 @@
   <PropertyGroup>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <PackageId>Xamarin.Google.Android.DataTransport.TransportRuntime</PackageId>
-    <PackageVersion>2.2.5</PackageVersion>
+    <PackageVersion>3.0.1</PackageVersion>
     <Title>Xamarin.Google.Android.DataTransport.TransportRuntime</Title>
     <PackageDescription>Bindings for Google.Android.DataTransport.TransportRuntime package</PackageDescription>
     <Owners>Microsoft</Owners>
@@ -48,8 +48,7 @@
     <None Remove="Transforms\Metadata.xml" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="Xamarin.Google.Dagger" Version="2.13.0" />
-    <PackageReference Include="Xamarin.AndroidX.Annotation" Version="1.1.0" />
+    <PackageReference Include="Xamarin.AndroidX.Annotation" Version="1.2.0" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\TransportApi\Xamarin.Google.Android.DataTransport.TransportApi.csproj" />

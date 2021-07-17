@@ -89,11 +89,18 @@ Task("samples")
 
 Task ("clean")
 	.Does (() =>
-{
-	if (DirectoryExists ("./externals/"))
-		DeleteDirectory ("./externals", true);
-});
-
+			{
+				if (DirectoryExists ("./externals/"))
+					DeleteDirectory 
+						("./externals", new DeleteDirectorySettings 
+												{
+													Recursive = true,
+													Force = true
+												}
+						);
+			}
+	);
+	
 Task ("ci")
 	.IsDependentOn("libs")
 	.IsDependentOn("nuget")

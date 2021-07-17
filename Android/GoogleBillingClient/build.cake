@@ -1,21 +1,27 @@
 
-var TARGET = Argument ("t", Argument ("target", "Default"));
+var TARGET = Argument ("t", Argument ("target", "ci"));
 
-var AAR_VERSION = "3.0.0";
+var AAR_VERSION = "4.0.0";
+var AAR_KTX_VERSION = "4.0.0";
 var NUGET_VERSION = AAR_VERSION;
 
 var AAR_URL = $"https://dl.google.com/dl/android/maven2/com/android/billingclient/billing/{AAR_VERSION}/billing-{AAR_VERSION}.aar";
+var AAR_KTX_URL = $"https://dl.google.com/dl/android/maven2/com/android/billingclient/billing-ktx/{AAR_KTX_VERSION}/billing-ktx-{AAR_KTX_VERSION}.aar";
 
 
 Task ("externals")
-	.WithCriteria(!FileExists("./externals/billing.aar"))
-	.Does (() => 
+	.WithCriteria(!FileExists($"./externals/billing-{AAR_VERSION}.aar"))
+	.WithCriteria(!FileExists($"./externals/billing-{AAR_KTX_VERSION}.aar"))
+	.Does (() =>
 {
 	EnsureDirectoryExists ("./externals/");
-	DownloadFile (AAR_URL, "./externals/billing.aar");
-	Unzip("./externals/billing.aar", "./externals/billing/");
+	DownloadFile (AAR_URL, $"./externals/billing-{AAR_VERSION}.aar");
+	DownloadFile (AAR_KTX_URL, $"./externals/billing-ktx-{AAR_KTX_VERSION}.aar");
+	Unzip($"./externals/billing-{AAR_VERSION}.aar", $"./externals/billing-{AAR_VERSION}/");
+	Unzip($"./externals/billing-ktx-{AAR_KTX_VERSION}.aar", $"./externals/billing-ktx-{AAR_KTX_VERSION}/");
 
 	XmlPoke("./source/GoogleBillingClient/GoogleBillingClient.csproj", "/Project/PropertyGroup/PackageVersion", NUGET_VERSION);
+	XmlPoke("./source/GoogleBillingClient.Ktx/GoogleBillingClient.Ktx.csproj", "/Project/PropertyGroup/PackageVersion", NUGET_VERSION);
 });
 
 Task("libs")
@@ -43,11 +49,18 @@ Task("nuget")
 	});
 });
 
+Task ("ci")
+	.IsDependentOn("nuget")
+	;
+
 Task ("clean")
 	.Does (() =>
 {
 	if (DirectoryExists ("./externals/"))
-		DeleteDirectory ("./externals", true);
+		DeleteDirectory ("./externals", new DeleteDirectorySettings {
+                                                Recursive = true,
+                                                Force = true
+											});
 });
 
 RunTarget (TARGET);

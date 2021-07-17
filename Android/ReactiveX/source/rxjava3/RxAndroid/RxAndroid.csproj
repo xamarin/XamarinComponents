@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project Sdk="MSBuild.Sdk.Extras/2.0.54">
+<Project Sdk="MSBuild.Sdk.Extras/3.0.23">
   <PropertyGroup>
     <TargetFramework>MonoAndroid90</TargetFramework>
     <TargetFrameworks>MonoAndroid90</TargetFrameworks>
@@ -26,26 +26,35 @@
     <PackageProjectUrl>https://go.microsoft.com/fwlink/?linkid=2083771</PackageProjectUrl>
     <PackageLicenseUrl>https://go.microsoft.com/fwlink/?linkid=2083684</PackageLicenseUrl>
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
-    <PackageVersion>3.0.0</PackageVersion>
+    <PackageVersion>3.0.0.1</PackageVersion>
   </PropertyGroup>
 
   <ItemGroup>
     <TransformFile Include="Transforms\Metadata.xml" />
+    <TransformFile Include="Transforms\Metadata.Namespaces.xml" />
   </ItemGroup>
 
   <ItemGroup>
-    <None Include="..\..\..\externals\rxjava3\rxandroid.aar">
-      <Link>rxandroid.jar</Link>
+    <None Include="..\..\..\externals\rxjava3\rxandroid-3.0.0.aar">
+      <Link>rxandroid-3.0.0.jar</Link>
     </None>
     <None Include="..\..\..\External-Dependency-Info.txt" Pack="True" PackagePath="THIRD-PARTY-NOTICES.txt" />
   </ItemGroup>
 
+
+  <PropertyGroup>
+    <JavaDocPaths>..\..\..\externals\rxjava3\rxandroid-javadocs\</JavaDocPaths>
+  </PropertyGroup>
   <ItemGroup>
-    <LibraryProjectZip Include="..\..\..\externals\rxjava3\rxandroid.aar" />
+    <LibraryProjectZip Include="..\..\..\externals\rxjava3\rxandroid-3.0.0.aar" />
+    <JavaDocJar Include="..\..\..\externals\rxjava3\rxandroid-javadocs.jar" />
+    <!--
+    <JavaSourceJar Include="..\..\..\externals\rxjava3\" />
+    -->
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Xamarin.Android.ReactiveStreams" Version="1.0.2" />
+    <PackageReference Include="Xamarin.Android.ReactiveStreams" Version="1.0.3" />
   </ItemGroup>
 
   <ItemGroup>

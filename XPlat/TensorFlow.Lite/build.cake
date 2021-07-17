@@ -1,26 +1,44 @@
 
 var TARGET = Argument("t", Argument("target", "ci"));
 
-var NUGET_VERSION = "2.1.0.1";
-var AAR_VERSION = "2.1.0";
+var TENSOR_FLOW_LITE_NUGET_VERSION = "2.4.0";
+var TENSOR_FLOW_LITE_AAR_VERSION = "2.4.0";
+var TENSOR_FLOW_LITE_GPU_NUGET_VERSION = "2.4.0";
+var TENSOR_FLOW_LITE_GPU_AAR_VERSION = "2.4.0";
 
-var NUGET_PACKAGE_ID = "Xamarin.TensorFlow.Lite";
-var AAR_URL_01 = $"https://bintray.com/google/tensorflow/download_file?file_path=org%2Ftensorflow%2Ftensorflow-lite%2F{AAR_VERSION}%2Ftensorflow-lite-{AAR_VERSION}.aar";
-var AAR_URL_02 = $"https://bintray.com/google/tensorflow/download_file?file_path=org%2Ftensorflow%2Ftensorflow-lite-gpu%2F{AAR_VERSION}%2Ftensorflow-lite-gpu-{AAR_VERSION}.aar";
+var TENSOR_FLOW_LITE_URL_AAR_VERSION = $"https://repo1.maven.org/maven2/org/tensorflow/tensorflow-lite/{TENSOR_FLOW_LITE_AAR_VERSION}/tensorflow-lite-{TENSOR_FLOW_LITE_AAR_VERSION}.aar";
+var TENSOR_FLOW_LITE_URL_POM_VERSION = $"https://repo1.maven.org/maven2/org/tensorflow/tensorflow-lite/{TENSOR_FLOW_LITE_AAR_VERSION}/tensorflow-lite-{TENSOR_FLOW_LITE_AAR_VERSION}.pom";
+var TENSOR_FLOW_LITE_URL_JAVADOC_VERSION = $"https://repo1.maven.org/maven2/org/tensorflow/tensorflow-lite/{TENSOR_FLOW_LITE_AAR_VERSION}/tensorflow-lite-{TENSOR_FLOW_LITE_AAR_VERSION}-javadoc.aar";
+var TENSOR_FLOW_LITE_URL_SOURCES_VERSION = $"https://repo1.maven.org/maven2/org/tensorflow/tensorflow-lite/{TENSOR_FLOW_LITE_AAR_VERSION}/tensorflow-lite-{TENSOR_FLOW_LITE_AAR_VERSION}-sources.aar";
+
+var TENSOR_FLOW_LITE_GPU_URL_AAR_VERSION = $"https://bintray.com/google/tensorflow/download_file?file_path=org%2Ftensorflow%2Ftensorflow-lite-gpu%2F{TENSOR_FLOW_LITE_GPU_AAR_VERSION}%2Ftensorflow-lite-gpu-{TENSOR_FLOW_LITE_GPU_AAR_VERSION}.aar";
 
 Task("externals")
-	.WithCriteria(!FileExists("./externals/tensorflow-lite.aar"))
-	.WithCriteria(!FileExists("./externals/tensorflow-lite-gpu.aar"))
+	.WithCriteria(!FileExists($"./externals/tensorflow-lite-{TENSOR_FLOW_LITE_AAR_VERSION}.aar"))
+	.WithCriteria(!FileExists($"./externals/tensorflow-lite-{TENSOR_FLOW_LITE_AAR_VERSION}.pom"))
+	.WithCriteria(!FileExists($"./externals/tensorflow-lite-{TENSOR_FLOW_LITE_AAR_VERSION}-javadoc.aar"))
+	.WithCriteria(!FileExists($"./externals/tensorflow-lite-{TENSOR_FLOW_LITE_AAR_VERSION}-sources.aar"))
+
+	.WithCriteria(!FileExists($"./externals/tensorflow-lite-gpu-{TENSOR_FLOW_LITE_GPU_AAR_VERSION}.aar"))
+	.WithCriteria(!FileExists($"./externals/tensorflow-lite-gpu-{TENSOR_FLOW_LITE_GPU_AAR_VERSION}.pom"))
 	.Does(() => 
 {
 	EnsureDirectoryExists("./externals/");
-	DownloadFile(AAR_URL_01, "./externals/tensorflow-lite.aar");
-	DownloadFile(AAR_URL_02, "./externals/tensorflow-lite-gpu.aar");
+	DownloadFile(TENSOR_FLOW_LITE_URL_AAR_VERSION, $"./externals/tensorflow-lite-{TENSOR_FLOW_LITE_AAR_VERSION}.aar");
+	DownloadFile(TENSOR_FLOW_LITE_URL_POM_VERSION, "./externals/tensorflow-lite.pom");
+	DownloadFile(TENSOR_FLOW_LITE_URL_JAVADOC_VERSION, $"./externals/tensorflow-lite-javadoc-{TENSOR_FLOW_LITE_AAR_VERSION}.aar");
+	DownloadFile(TENSOR_FLOW_LITE_URL_SOURCES_VERSION, $"./externals/tensorflow-lite-sources-{TENSOR_FLOW_LITE_AAR_VERSION}.aar");
+
+	DownloadFile(TENSOR_FLOW_LITE_GPU_URL_AAR_VERSION, $"./externals/tensorflow-lite-gpu-{TENSOR_FLOW_LITE_GPU_AAR_VERSION}.aar");
+
+
+	Unzip ($"./externals/tensorflow-lite-javadoc-{TENSOR_FLOW_LITE_AAR_VERSION}.aar", "./externals/tensorflow-lite-javadoc/");
+	Unzip ($"./externals/tensorflow-lite-sources-{TENSOR_FLOW_LITE_AAR_VERSION}.aar", "./externals/tensorflow-lite-sources/");
 
 	var csproj_01 = "./source/Xamarin.TensorFlow.Lite.Bindings.XamarinAndroid/Xamarin.TensorFlow.Lite.Bindings.XamarinAndroid.csproj";
 	var csproj_02 = "./source/Xamarin.TensorFlow.Lite.Gpu.Bindings.XamarinAndroid/Xamarin.TensorFlow.Lite.Gpu.Bindings.XamarinAndroid.csproj";
-	XmlPoke(csproj_01, "/Project/PropertyGroup/PackageVersion", NUGET_VERSION);
-	XmlPoke(csproj_02, "/Project/PropertyGroup/PackageVersion", NUGET_VERSION);
+	XmlPoke(csproj_01, "/Project/PropertyGroup/PackageVersion", TENSOR_FLOW_LITE_NUGET_VERSION);
+	XmlPoke(csproj_02, "/Project/PropertyGroup/PackageVersion", TENSOR_FLOW_LITE_GPU_NUGET_VERSION);
 });
 
 Task("libs")
@@ -43,7 +61,12 @@ Task("clean")
 	.Does(() =>
 {
 	if (DirectoryExists("./externals/"))
-		DeleteDirectory("./externals", true);
+		DeleteDirectory("./externals", new DeleteDirectorySettings 
+												{
+													Recursive = true,
+													Force = true
+												}
+											);
 });
 
 Task("ci")

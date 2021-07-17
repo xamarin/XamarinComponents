@@ -23,11 +23,11 @@
     <PackageLicenseFile>LICENSE.md</PackageLicenseFile>
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
     <PackageTags>okhttp square square.okhttp xamarin android monodroid</PackageTags>
-    <PackageVersion>4.4.1</PackageVersion>
+    <PackageVersion>4.9.1</PackageVersion>
   </PropertyGroup>
     
   <ItemGroup>
-    <PackageReference Include="Square.OkHttp3" Version="4.4.1" />
+    <PackageReference Include="Square.OkHttp3" Version="4.9.1" />
   </ItemGroup>
     
   <ItemGroup>

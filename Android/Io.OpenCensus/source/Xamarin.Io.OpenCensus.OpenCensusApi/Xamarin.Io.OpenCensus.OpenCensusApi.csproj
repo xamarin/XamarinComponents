@@ -1,4 +1,4 @@
-<Project Sdk="MSBuild.Sdk.Extras/2.0.54">
+<Project Sdk="MSBuild.Sdk.Extras/3.0.23">
   <PropertyGroup>
     <AssemblyName>Xamarin.Io.OpenCensus.OpenCensusApi</AssemblyName>
 
@@ -8,7 +8,7 @@
     <AndroidUseIntermediateDesignerFile>True</AndroidUseIntermediateDesignerFile>
     <AndroidResgenFile>Resources\Resource.designer.cs</AndroidResgenFile>
 
-    <TargetFrameworks>MonoAndroid81</TargetFrameworks>
+    <TargetFrameworks>MonoAndroid90</TargetFrameworks>
     <AndroidCodegenTarget>XAJavaInterop1</AndroidCodegenTarget>
   </PropertyGroup>
 
@@ -20,7 +20,7 @@
   <PropertyGroup>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <PackageId>Xamarin.Io.OpenCensus.OpenCensusApi</PackageId>
-    <PackageVersion>0.27.1</PackageVersion>
+    <PackageVersion>0.28.3</PackageVersion>
     <Title>Xamarin.Io.OpenCensus.OpenCensusApi</Title>
     <PackageDescription>Bindings for Io.OpenCensus.OpenCensusApi package (Google GRPC  dependency)</PackageDescription>
     <Owners>Microsoft</Owners>

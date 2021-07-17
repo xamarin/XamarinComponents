@@ -15,6 +15,7 @@ using RazorLight;
 using MavenGroup = MavenNet.Models.Group;
 using System.Security.Cryptography;
 using System.Text;
+using System.Diagnostics;
 
 namespace AndroidBinderator
 {
@@ -167,11 +168,17 @@ namespace AndroidBinderator
 					using (var sw = File.Create(md5File))
 						await astrm.CopyToAsync(sw);
 				}
-				catch
+				catch (System.Exception exc)
 				{
 					// Then hash the downloaded artifact
 					using (var file = File.OpenRead(artifactFile))
 						File.WriteAllText(md5File, Util.HashMd5(file));
+
+					StringBuilder sb = new StringBuilder();
+					sb.AppendLine($"OpenLibraryFile failed for: {mavenArtifact.GroupId}, {mavenArtifact.ArtifactId}, {version}");
+					sb.AppendLine($"Message");
+					sb.AppendLine($"{exc.Message}");
+					Trace.WriteLine(sb.ToString());
 				}
 
 				// Determine Sha256
@@ -179,17 +186,23 @@ namespace AndroidBinderator
 				{
 					// First try download, this almost certainly won't work
 					// but in case Maven ever starts supporting sha256 it should start
-					// they currently support .sha1 so there's no reason to believe the naming 
+					// they currently support .sha1 so there's no reason to believe the naming
 					// convention should be any different, and one day .sha256 may exist
 					using (var astrm = await mvnArt.OpenLibraryFile(mavenArtifact.Version, mavenProject.Packaging + ".sha256"))
 					using (var sw = File.Create(sha256File))
 						await astrm.CopyToAsync(sw);
 				}
-				catch
+				catch (System.Exception exc)
 				{
 					// Create Sha256 hash if we couldn't download
 					using (var file = File.OpenRead(artifactFile))
 						File.WriteAllText(sha256File, Util.HashSha256(file));
+
+					StringBuilder sb = new StringBuilder();
+					sb.AppendLine($"OpenLibraryFile failed for: {mavenArtifact.GroupId}, {mavenArtifact.ArtifactId}, {version}");
+					sb.AppendLine($"Message");
+					sb.AppendLine($"{exc.Message}");
+					Trace.WriteLine(sb.ToString());
 				}
 
 				if (config.DownloadJavaSourceJars)
@@ -200,7 +213,69 @@ namespace AndroidBinderator
 						using (var sw = File.Create(sourcesFile))
 							await astrm.CopyToAsync(sw);
 					}
-					catch { }
+					catch (System.Exception exc)
+					{
+						StringBuilder sb = new StringBuilder();
+						sb.AppendLine($"DownloadJavaSourceJars failed for: {mavenArtifact.GroupId}, {mavenArtifact.ArtifactId}, {version}");
+						sb.AppendLine($"Message");
+						sb.AppendLine($"{exc.Message}");
+						Trace.WriteLine(sb.ToString());
+					}
+				}
+
+				if (config.DownloadPoms)
+				{
+					try
+					{
+						using (var astrm = await maven.OpenArtifactPomFile(mavenArtifact.GroupId, mavenArtifact.ArtifactId, version))
+						using (var sw = File.Create(sourcesFile))
+							await astrm.CopyToAsync(sw);
+					}
+					catch (System.Exception exc)
+					{
+						StringBuilder sb = new StringBuilder();
+						sb.AppendLine($"DownloadPoms failed for: {mavenArtifact.GroupId}, {mavenArtifact.ArtifactId}, {version}");
+						sb.AppendLine($"Message");
+						sb.AppendLine($"{exc.Message}");
+						Trace.WriteLine(sb.ToString());
+					}
+				}
+
+				if (config.DownloadJavaDocJars)
+				{
+					try
+					{
+						// using (var astrm = await maven.OpenArtifactDocsFile(mavenArtifact.GroupId, mavenArtifact.ArtifactId, version))
+						// using (var sw = File.Create(sourcesFile))
+						// 	await astrm.CopyToAsync(sw);
+					}
+					catch(System.Exception exc)
+					{
+						StringBuilder sb = new StringBuilder();
+						sb.AppendLine($"DownloadJavaDocJars failed for: {mavenArtifact.GroupId}, {mavenArtifact.ArtifactId}, {version}");
+						sb.AppendLine($"Message");
+						sb.AppendLine($"{exc.Message}");
+						Trace.WriteLine(sb.ToString());
+					}
+				}
+
+
+				if (config.DownloadMetadataFiles)
+				{
+					try
+					{
+						using (var astrm = await maven.OpenMavenMetadataFile(mavenArtifact.GroupId, mavenArtifact.ArtifactId))
+						using (var sw = File.Create(sourcesFile))
+							await astrm.CopyToAsync(sw);
+					}
+					catch(System.Exception exc)
+					{
+						StringBuilder sb = new StringBuilder();
+						sb.AppendLine($"OpenMavenMetadataFile failed for: {mavenArtifact.GroupId}, {mavenArtifact.ArtifactId}, {version}");
+						sb.AppendLine($"Message");
+						sb.AppendLine($"{exc.Message}");
+						Trace.WriteLine(sb.ToString());
+					}
 				}
 
 				if (Directory.Exists(artifactExtractDir))
@@ -215,6 +290,7 @@ namespace AndroidBinderator
 		static List<BindingProjectModel> BuildProjectModels(BindingConfig config, TemplateConfig template, Dictionary<string, Project> mavenProjects)
 		{
 			var projectModels = new List<BindingProjectModel>();
+			var exceptions = new List<Exception>();
 
 			var baseMetadata = new Dictionary<string, string>();
 			MergeValues(baseMetadata, config.Metadata);
@@ -272,20 +348,48 @@ namespace AndroidBinderator
 				// Gather maven dependencies to try and map out nuget dependencies
 				foreach (var mavenDep in mavenProject.Dependencies)
 				{
-					// We only really care about 'compile' scoped dependencies (also null/blank means compile)
-					if (!string.IsNullOrEmpty(mavenDep.Scope) && !mavenDep.Scope.ToLowerInvariant().Equals("compile"))
+					if (!ShouldIncludeDependency(config, mavenArtifact, mavenDep, exceptions))
 						continue;
 
 					mavenDep.Version = FixVersion(mavenDep.Version);
 
 					var depMapping = config.MavenArtifacts.FirstOrDefault(
-						ma => !string.IsNullOrEmpty(ma.Version) 
+						ma => !string.IsNullOrEmpty(ma.Version)
 						&& ma.GroupId == mavenDep.GroupId
 						&& ma.ArtifactId == mavenDep.ArtifactId
 						&& mavenDep.Satisfies(ma.Version));
 
+					if (depMapping is null && mavenDep.IsRuntimeDependency()) {
+						exceptions.Add(new Exception($"Artifact '{mavenArtifact.GroupAndArtifactId}' has unknown 'Runtime' dependency '{mavenDep.GroupAndArtifactId()}'. Either fulfill or exclude this dependency."));
+						continue;
+					}
+
 					if (depMapping == null)
-						throw new Exception($"No matching artifact config found for: {mavenDep.GroupId}.{mavenDep.ArtifactId}:{mavenDep.Version} to satisfy dependency of: {mavenArtifact.GroupId}.{mavenArtifact.ArtifactId}:{mavenArtifact.Version}");
+					{
+						StringBuilder sb = new StringBuilder();
+						sb.AppendLine($"");
+						sb.AppendLine($"No matching artifact config found for: ");
+						sb.AppendLine($"			{mavenDep.GroupId}.{mavenDep.ArtifactId}:{mavenDep.Version}");
+						sb.AppendLine($"to satisfy dependency of: ");
+						sb.AppendLine($"			{mavenArtifact.GroupId}.{mavenArtifact.ArtifactId}:{mavenArtifact.Version}");
+						sb.AppendLine($"");
+						sb.AppendLine($"	Please add following json snippet to config.json:");
+						sb.AppendLine($"");
+						sb.AppendLine
+						($@"
+      {{
+        ""groupId"": ""{mavenDep.GroupId}"",
+        ""artifactId"": ""{mavenDep.ArtifactId}"",
+        ""version"": ""{mavenDep.Version}"",
+        ""nugetVersion"": ""CHECK NUGET ID"",
+        ""nugetId"": ""CHECK PREFIX {mavenDep.Version}"",
+        ""dependencyOnly"": true/false
+      }}
+						");
+						sb.AppendLine($"");
+						exceptions.Add(new Exception(sb.ToString()));
+						continue;
+					}
 
 					var dependencyMetadata = new Dictionary<string, string>();
 					MergeValues(dependencyMetadata, baseMetadata);
@@ -311,9 +415,39 @@ namespace AndroidBinderator
 						}
 					});
 				}
+
 			}
 
+			if (exceptions.Any())
+				throw new AggregateException(exceptions.ToArray());
+
+
 			return projectModels;
+		}
+
+		static bool ShouldIncludeDependency(BindingConfig config, MavenArtifactConfig artifact, Dependency dependency, List<Exception> exceptions)
+		{
+			// We always care about 'compile' scoped dependencies
+			if (dependency.IsCompileDependency())
+				return true;
+
+			// If we're not processing Runtime dependencies then ignore the rest
+			if (!config.StrictRuntimeDependencies)
+				return false;
+
+			// The only other thing we may care about is 'runtime', bail if this isn't 'runtime'
+			if (!dependency.IsRuntimeDependency())
+				return false;
+
+			// Check 'artifact' list
+			if (artifact.ExcludedRuntimeDependencies.OrEmpty().Split(',').Contains(dependency.GroupAndArtifactId(), StringComparer.OrdinalIgnoreCase))
+				return false;
+
+			// Check 'global' list
+			if (config.ExcludedRuntimeDependencies.OrEmpty ().Split (',').Contains (dependency.GroupAndArtifactId (), StringComparer.OrdinalIgnoreCase))
+				return false;
+
+			return true;
 		}
 
 		static string GetRelativePath(string filespec, string folder)

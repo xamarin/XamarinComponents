@@ -22,18 +22,45 @@
     <PackageProjectUrl>https://go.microsoft.com/fwlink/?linkid=2083771</PackageProjectUrl>
     <PackageLicenseFile>LICENSE.md</PackageLicenseFile>
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
+<<<<<<< HEAD
     <PackageVersion>2.4.0</PackageVersion>
   </PropertyGroup>
 
  <ItemGroup>
     <None Include="..\..\..\externals\rxjava2\rxkotlin.jar">
       <Link>rxkotlin.jar</Link>
+=======
+    <PackageVersion>2.4.0.1</PackageVersion>
+  </PropertyGroup>
+
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <LangVersion>latest</LangVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <LangVersion>latest</LangVersion>
+  </PropertyGroup>
+  <ItemGroup>
+    <TransformFile Include="Transforms\Metadata.xml" />
+    <TransformFile Include="Transforms\Metadata.Namespaces.xml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="..\..\..\externals\rxjava2\rxkotlin-2.4.0.jar">
+      <Link>rxkotlin-2.4.0.jar</Link>
+>>>>>>> main
     </None>
     <None Include="..\..\..\External-Dependency-Info.txt" Pack="True" PackagePath="THIRD-PARTY-NOTICES.txt" />
   </ItemGroup>
 
+  <PropertyGroup>
+    <JavaDocPaths>..\..\..\externals\rxjava2\rxkotlin-javadocs\</JavaDocPaths>
+  </PropertyGroup>
   <ItemGroup>
-    <EmbeddedJar Include="..\..\..\externals\rxjava2\rxkotlin.jar" />
+    <EmbeddedJar Include="..\..\..\externals\rxjava2\rxkotlin-2.4.0.jar" />
+    <JavaDocJar Include="..\..\..\externals\rxjava2\rxkotlin-javadocs.jar" />
+    <!--
+    <JavaSourceJar Include="..\..\..\externals\rxjava2\" />
+    -->
   </ItemGroup>
     
   <ItemGroup>

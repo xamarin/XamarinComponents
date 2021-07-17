@@ -1,9 +1,9 @@
 trigger:
-  - master
+  - main
   - refs/tags/*
   
 pr:
-  - master
+  - main
 
 resources:
   repositories:
@@ -16,6 +16,12 @@ resources:
       type: github
       name: xamarin/XamarinComponents
       endpoint: xamarin
+      ref: refs/heads/main
+
+variables:
+  DotNet6Version: 6.0.100-preview.4.21255.9
+  XamarinAndroidVsix: https://download.visualstudio.microsoft.com/download/pr/df30312e-15ca-440c-a68f-71b1a607b3a0/bcaeb3543b68c9db872f7e1dba6ba4ccb18c27525a8cbd5101e9301e96a1904c/Xamarin.Android.Sdk-11.3.0.1.vsix
+  XamarinAndroidPkg:  https://download.visualstudio.microsoft.com/download/pr/a0b4924f-c812-48d9-997f-c7e39d5eeb8a/611a6933f16ef1ae837beca7de265713/xamarin.android-11.3.0.1.pkg
 
 jobs:
   - template: .ci/build.yml@components
@@ -38,23 +44,30 @@ jobs:
         - AndroidEasingFunctions
         - Square
         - JakeWharton.Picasso2OkHttp3Downloader
+        - RecyclerViewAnimators
+        - GoogleGson
+      dotnet: $(DotNet6Version)
       preBuildSteps:
         - pwsh: |
-            dotnet tool uninstall --global Cake.Tool
-            dotnet tool install --global Cake.Tool
             dotnet tool install --global boots
-            boots https://aka.ms/xamarin-android-commercial-d16-8-macos
-          condition: eq(variables['System.JobName'], 'macos')
+          displayName: install .NET global tools
         - pwsh: |
-            dotnet tool uninstall --global Cake.Tool
-            dotnet tool install --global Cake.Tool
-            dotnet tool install --global boots
-            boots https://aka.ms/xamarin-android-commercial-d16-8-windows
+            boots $(XamarinAndroidPkg)
+          condition: eq(variables['System.JobName'], 'macos')
+          displayName: install Xamarin.Android
+        - pwsh: |
+            boots $(XamarinAndroidVsix)
           condition: eq(variables['System.JobName'], 'windows')
+          displayName: install Xamarin.Android
+        - pwsh: |
+            dotnet workload install microsoft-android-sdk-full
+          displayName: install .NET 6 Android Workload
+          condition: ne(variables['System.JobName'], 'linux')
       tools:
-        - 'xamarin.androidbinderator.tool': '0.4.2'
-        - 'xamarin.androidx.migration.tool': '1.0.7.1'
+        - 'xamarin.androidbinderator.tool': '0.4.3'
+        - 'xamarin.androidx.migration.tool': '1.0.8'
   - ${{ if eq(variables['System.TeamProject'], 'devdiv') }}:
     - template: sign-artifacts/jobs/v2.yml@internal-templates
       parameters:
         dependsOn: [ 'build' ]
+        condition: startsWith(variables['Build.SourceBranch'], 'refs/tags/')

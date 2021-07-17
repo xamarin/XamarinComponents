@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Project Sdk="MSBuild.Sdk.Extras/3.0.23">
   <PropertyGroup>
     <TargetFrameworks>MonoAndroid90</TargetFrameworks>
@@ -25,25 +25,38 @@
     <PackageVersion>2.2.12</PackageVersion>
   </PropertyGroup>
 
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <LangVersion>latest</LangVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <LangVersion>latest</LangVersion>
+  </PropertyGroup>
   <ItemGroup>
-    <None Remove="Transforms\*.xml" />
-    <TransformFile Include="Transforms\*.xml" />
+    <TransformFile Include="Transforms\Metadata.xml" />
+    <TransformFile Include="Transforms\Metadata.Namespaces.xml" />
   </ItemGroup>
-  
+
   <ItemGroup>
-    <None Include="..\..\..\externals\rxjava2\rxjava.jar">
-      <Link>rxjava.jar</Link>
+    <PackageReference Include="Xamarin.Android.ReactiveStreams" Version="1.0.3" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="..\..\..\externals\rxjava2\rxjava-2.2.10.jar">
+      <Link>rxjava-2.2.10.jar</Link>
     </None>
     <None Include="..\..\..\External-Dependency-Info.txt" Pack="True" PackagePath="THIRD-PARTY-NOTICES.txt" />
     <None Include="..\..\..\License.md" Pack="true" PackagePath="LICENSE.md" />
   </ItemGroup>
 
+  <PropertyGroup>
+    <JavaDocPaths>..\..\..\externals\rxjava2\rxjava-javadocs\</JavaDocPaths>
+  </PropertyGroup>
   <ItemGroup>
-    <EmbeddedJar Include="..\..\..\externals\rxjava2\rxjava.jar" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <PackageReference Include="Xamarin.Android.ReactiveStreams" Version="1.0.2" />
+    <EmbeddedJar Include="..\..\..\externals\rxjava2\rxjava-2.2.10.jar" />
+    <JavaDocJar Include="..\..\..\externals\rxjava2\rxjava-javadocs.jar" />
+    <!--
+    <JavaSourceJar Include="..\..\..\externals\rxjava2\" />
+    -->
   </ItemGroup>
 
 </Project>

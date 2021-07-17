@@ -1,0 +1,63 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project Sdk="MSBuild.Sdk.Extras">
+  <PropertyGroup>
+    <TargetFramework>MonoAndroid9.0</TargetFramework>
+    <IsBindingProject>true</IsBindingProject>
+    <AssemblyName>Xamarin.KotlinX.Coroutines.Core</AssemblyName>
+    <AndroidUseLatestPlatformSdk>False</AndroidUseLatestPlatformSdk>
+    <AndroidUseIntermediateDesignerFile>True</AndroidUseIntermediateDesignerFile>
+    <RootNamespace>Xamarin.KotlinX.Coroutines.Core</RootNamespace>
+    <AndroidClassParser>class-parse</AndroidClassParser>
+    <AndroidCodegenTarget>XAJavaInterop1</AndroidCodegenTarget>
+    <Java7DocPaths>..\..\externals\kotlinx-coroutines-core\</Java7DocPaths>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <PackageId>Xamarin.KotlinX.Coroutines.Core</PackageId>
+    <Title>Xamarin.KotlinX.Coroutines.Core reference library for Xamarin.Android</Title>
+    <PackageDescription>Xamarin.Android bindings for KotlinX.Coroutines.Core</PackageDescription>
+    <Authors>Microsoft</Authors>
+    <Owners>Microsoft</Owners>
+    <Copyright>© Microsoft Corporation. All rights reserved.</Copyright>
+    <PackageProjectUrl>https://go.microsoft.com/fwlink/?linkid=2083771</PackageProjectUrl>
+    <PackageLicenseFile>LICENSE.md</PackageLicenseFile>
+    <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
+    <PackageVersion>1.5.1</PackageVersion>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <ArtifactVersion>1.5.1</ArtifactVersion>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Update="Xamarin.KotlinX.Coroutines.Core.targets" Pack="True" PackagePath="build\$(TargetFramework)" />
+    <None Update="Xamarin.KotlinX.Coroutines.Core.targets" Pack="True" PackagePath="buildTransitive\$(TargetFramework)" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <TransformFile Include="Transforms\Metadata.xml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="..\..\External-Dependency-Info.txt" Pack="True" PackagePath="THIRD-PARTY-NOTICES.txt" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="..\..\externals\kotlinx-coroutines-core-$(ArtifactVersion).jar" Pack="True" PackagePath="jar\kotlinx-coroutines-core-$(ArtifactVersion).jar" Visible="false" />
+    <InputJar Include="..\..\externals\kotlinx-coroutines-core-$(ArtifactVersion).jar" Link="Jars\kotlinx-coroutines-core-$(ArtifactVersion).jar" />
+    <JavaSourceJar Include="..\..\externals\kotlinx-coroutines-core-sources-$(ArtifactVersion).jar" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Xamarin.Kotlin.StdLib" Version="1.5.20" />
+    <PackageReference Include="Xamarin.Kotlin.StdLib.Common" Version="1.5.20" />
+  </ItemGroup>
+  
+  <ItemGroup>
+    <None Include="..\..\License.md" Pack="true" PackagePath="LICENSE.md" />
+  </ItemGroup>
+  
+  <ItemGroup>
+    <ProjectReference Include="..\KotlinX.Coroutines.Core.Jvm\KotlinX.Coroutines.Core.Jvm.csproj" />
+  </ItemGroup>
+</Project>

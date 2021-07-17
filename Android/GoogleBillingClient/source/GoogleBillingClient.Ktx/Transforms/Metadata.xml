@@ -1,0 +1,21 @@
+﻿<metadata>
+	<!-- namespaces -->
+	<attr
+		path="/api/package[@name='com.android.billingclient']"
+		name="managedName"
+		>
+		Android.BillingClient
+	</attr>
+	<attr
+		path="/api/package[@name='com.android.billingclient.api']"
+		name="managedName"
+		>
+		Android.BillingClient.Api
+	</attr>
+	<attr
+		path="/api/package[@name='com.android.billingclient.ktx']"
+		name="managedName"
+		>
+		Android.BillingClient.Ktx
+	</attr>
+</metadata>

@@ -26,6 +26,15 @@ namespace AndroidBinderator
 		[JsonProperty("downloadJavaSourceJars")]
 		public bool DownloadJavaSourceJars { get; set; } = true;
 
+		[JsonProperty("downloadJavaDocJars")]
+		public bool DownloadJavaDocJars { get; set; } = true;
+
+		[JsonProperty("downloadMetadataFiles")]
+		public bool DownloadMetadataFiles { get; set; } = true;
+
+		[JsonProperty("downloadPoms")]
+		public bool DownloadPoms { get; set; } = true;
+
 		[JsonProperty("externalsDir")]
 		public string ExternalsDir { get; set; } = "externals";
 
@@ -46,6 +55,13 @@ namespace AndroidBinderator
 
 		[JsonProperty("additionalProjects")]
 		public List<string> AdditionalProjects { get; set; } = new List<string>();
+
+		/// True to consider 'Runtime' dependencies from a POM file, False to ignore them.
+		[JsonProperty("strictRuntimeDependencies")]
+		public bool StrictRuntimeDependencies { get; set; }
+
+		[JsonProperty("excludedRuntimeDependencies")]
+		public string ExcludedRuntimeDependencies { get; set; }
 
 		[JsonProperty("metadata")]
 		public Dictionary<string, string> Metadata { get; set; } = new Dictionary<string, string>();

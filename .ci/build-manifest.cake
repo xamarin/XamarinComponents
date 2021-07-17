@@ -1,4 +1,4 @@
-#addin nuget:?package=Cake.XCode&version=4.1.0
+#addin nuget:?package=Cake.XCode&version=4.2.0
 #addin nuget:?package=Cake.Yaml&version=3.1.0&loadDependencies=true
 #addin nuget:?package=Cake.Json&version=4.0.0&loadDependencies=true
 #addin nuget:?package=Xamarin.Nuget.Validator&version=1.1.1
@@ -122,7 +122,7 @@ if (FORCE_BUILD) {
 	foreach (var buildGroup in BUILD_GROUPS) {
 		// If ignore triggers for the platform this is running on, do not add the group even if the trigger is matched
 		if ((buildGroup.IgnoreTriggersOnLinux && IsRunningOnLinux ()) ||
-			(buildGroup.IgnoreTriggersOnMac && IsRunningOnMac ()) ||
+			(buildGroup.IgnoreTriggersOnMac && IsRunningOnMacOs ()) ||
 			(buildGroup.IgnoreTriggersOnWindows && IsRunningOnWindows ()))
 			continue;
 
@@ -202,7 +202,7 @@ if (BUILD_NAMES.Length > 0) {
 
 // Remove the builds that cannot run on this platform
 groupsToBuild = groupsToBuild
-	.Where (bg => (bg.BuildOnWindows && IsRunningOnWindows ()) || (bg.BuildOnMac && IsRunningOnMac ()) || (bg.BuildOnLinux && IsRunningOnLinux ()))
+	.Where (bg => (bg.BuildOnWindows && IsRunningOnWindows ()) || (bg.BuildOnMac && IsRunningOnMacOs ()) || (bg.BuildOnLinux && IsRunningOnLinux ()))
 	.ToList ();
 if (groupsToBuild.Count > 0) {
 	Information ("Removed the items that cannot build on this platform, leaving:" + Environment.NewLine +
@@ -223,7 +223,7 @@ if (groupsToBuild.Count == 0) {
 	// Make a note if nothing changed...
 	Warning ("No changed files affected any of the paths from the manifest.yaml.");
 } else {
-	if (IsRunningOnMac ()) {
+	if (IsRunningOnMacOs ()) {
 		// Make sure cocoapods are up to date if needed
 		if (podRepoUpdate != PodRepoUpdate.NotRequired) {
 			if (podRepoUpdate == PodRepoUpdate.Forced)
@@ -268,7 +268,7 @@ if (groupsToBuild.Count == 0) {
 			targets = BUILD_TARGETS.ToList ();
 		else if (IsRunningOnWindows ())
 			targets = buildGroup.WindowsBuildTargets.ToList ();
-		else if (IsRunningOnMac ())
+		else if (IsRunningOnMacOs ())
 			targets = buildGroup.MacBuildTargets.ToList ();
 		else if (IsRunningOnLinux ())
 			targets = buildGroup.LinuxBuildTargets.ToList ();
@@ -418,12 +418,12 @@ public class BuildGroup {
 	public override string ToString () => Name;
 }
 
-bool IsRunningOnMac () {
+bool IsRunningOnMacOs () {
 	return System.Environment.OSVersion.Platform == PlatformID.MacOSX || MacPlatformDetector.IsMac.Value;
 }
 
 bool IsRunningOnLinux () {
-	return IsRunningOnUnix () && !IsRunningOnMac ();
+	return IsRunningOnUnix () && !IsRunningOnMacOs ();
 }
 
 internal static class MacPlatformDetector {

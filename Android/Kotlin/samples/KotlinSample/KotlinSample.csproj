@@ -46,8 +46,8 @@
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Xamarin.AndroidX.AppCompat" Version="1.2.0.5" />
-    <PackageReference Include="Xamarin.Kotlin.StdLib" Version="1.4.20" />
-    <PackageReference Include="Xamarin.Kotlin.Reflect" Version="1.4.20" />
+    <PackageReference Include="Xamarin.Kotlin.StdLib" Version="1.5.20" />
+    <PackageReference Include="Xamarin.Kotlin.Reflect" Version="1.5.20" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\KotlinSampleLibrary\KotlinSampleLibrary.csproj">

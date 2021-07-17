@@ -22,28 +22,56 @@
     <PackageProjectUrl>https://go.microsoft.com/fwlink/?linkid=2083771</PackageProjectUrl>
     <PackageLicenseFile>LICENSE.md</PackageLicenseFile>
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
-    <PackageVersion>2.1.1</PackageVersion>
+    <PackageVersion>2.1.1.1</PackageVersion>
   </PropertyGroup>
 
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <LangVersion>latest</LangVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <LangVersion>latest</LangVersion>
+  </PropertyGroup>
   <ItemGroup>
+<<<<<<< HEAD
     <None Remove="Transforms\*.xml" />
     <TransformFile Include="Transforms\*.xml" />
+=======
+    <TransformFile Include="Transforms\Metadata.xml" />
+    <TransformFile Include="Transforms\Metadata.Namespaces.xml" />
+>>>>>>> main
   </ItemGroup>
   
   <ItemGroup>
-    <None Include="..\..\..\externals\rxjava2\rxandroid.aar">
-      <Link>rxandroid.jar</Link>
+    <None Include="..\..\..\externals\rxjava2\rxandroid-2.1.1.aar">
+      <Link>rxandroid-2.1.1.aar</Link>
     </None>
     <None Include="..\..\..\External-Dependency-Info.txt" Pack="True" PackagePath="THIRD-PARTY-NOTICES.txt" />
     <None Include="..\..\..\License.md" Pack="true" PackagePath="LICENSE.md" />
   </ItemGroup>
 
   <ItemGroup>
-    <LibraryProjectZip Include="..\..\..\externals\rxjava2\rxandroid.aar" />
   </ItemGroup>
 
   <ItemGroup>
+<<<<<<< HEAD
+=======
+    <PackageReference Include="Xamarin.Android.ReactiveStreams" Version="1.0.3" />
+  </ItemGroup>
+
+  <ItemGroup>
+>>>>>>> main
     <ProjectReference Include="..\RxJava\RxJava.csproj" />
+  </ItemGroup>
+
+  <PropertyGroup>
+    <JavaDocPaths>..\..\..\externals\rxjava2\rxandroid-javadocs\</JavaDocPaths>
+  </PropertyGroup>
+  <ItemGroup>
+    <LibraryProjectZip Include="..\..\..\externals\rxjava2\rxandroid-2.1.1.aar" />
+    <JavaDocJar Include="..\..\..\externals\rxjava2\rxandroid-javadocs.jar" />
+    <!--
+    <JavaSourceJar Include="..\..\..\externals\rxjava2\" />
+    -->
   </ItemGroup>
 
 </Project>

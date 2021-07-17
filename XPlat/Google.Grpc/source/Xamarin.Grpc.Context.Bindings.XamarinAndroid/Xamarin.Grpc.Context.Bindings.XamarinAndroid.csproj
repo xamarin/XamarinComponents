@@ -1,4 +1,4 @@
-﻿<Project Sdk="MSBuild.Sdk.Extras/2.0.54">
+﻿<Project Sdk="MSBuild.Sdk.Extras/3.0.23">
     <PropertyGroup>
         <AssemblyName>Xamarin.Grpc.Context</AssemblyName>
 
@@ -8,7 +8,7 @@
         <AndroidUseIntermediateDesignerFile>True</AndroidUseIntermediateDesignerFile>
         <AndroidResgenFile>Resources\Resource.designer.cs</AndroidResgenFile>
 
-        <TargetFrameworks>MonoAndroid81</TargetFrameworks>
+        <TargetFrameworks>MonoAndroid90</TargetFrameworks>
         <AndroidCodegenTarget>XAJavaInterop1</AndroidCodegenTarget>
     </PropertyGroup>
 
@@ -20,7 +20,7 @@
     <PropertyGroup>
         <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
         <PackageId>Xamarin.Grpc.Context</PackageId>
-        <PackageVersion>1.28.0</PackageVersion>
+        <PackageVersion>1.37.0</PackageVersion>
         <Title>Xamarin.Grpc.Context</Title>
         <PackageDescription>
             Bindings for Google's GRPC Context package
