@@ -297,29 +297,9 @@
   TriggerPaths: [ Android/SquareOkHttp3-v3 ]
   MacBuildTargets: [ ci ]
   WindowsBuildTargets: [ ci ]
-- Name: SquareOkHttp3UrlConnection
-  BuildScript: ./Android/SquareOkHttp3UrlConnection/build.cake
-  TriggerPaths: [ Android/SquareOkHttp3UrlConnection ]
-  MacBuildTargets: [ ci ]
-  WindowsBuildTargets: [ ci ]
-- Name: SquareOkHttp3UrlConnectionv3
-  BuildScript: ./Android/SquareOkHttp3UrlConnection-v3/build.cake
-  TriggerPaths: [ Android/SquareOkHttp3UrlConnection-v3 ]
-  MacBuildTargets: [ ci ]
-  WindowsBuildTargets: [ ci ]
 - Name: SquareOkHttp3WS
   BuildScript: ./Android/SquareOkHttp3WS/build.cake
   TriggerPaths: [ Android/SquareOkHttp3WS ]
-  MacBuildTargets: [ ci ]
-  WindowsBuildTargets: [ ci ]
-- Name: SquareOkHttpUrlConnection
-  BuildScript: ./Android/SquareOkHttpUrlConnection/build.cake
-  TriggerPaths: [ Android/SquareOkHttpUrlConnection ]
-  MacBuildTargets: [ ci ]
-  WindowsBuildTargets: [ ci ]
-- Name: SquareOkHttpWS
-  BuildScript: ./Android/SquareOkHttpWS/build.cake
-  TriggerPaths: [ Android/SquareOkHttpWS ]
   MacBuildTargets: [ ci ]
   WindowsBuildTargets: [ ci ]
 - Name: SquareOkIO

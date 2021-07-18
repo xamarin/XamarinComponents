@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OkHttpSample", "OkHttpSampl
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Square.OkHttp", "..\source\Square.OkHttp\Square.OkHttp.csproj", "{47225658-05B3-4F0D-A040-6A22E238F4B0}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Square.OkHttp.WS", "..\source\Square.OkHttp.WS\Square.OkHttp.WS.csproj", "{04A89A26-C768-4AB2-87F1-8392DF4258F5}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{47225658-05B3-4F0D-A040-6A22E238F4B0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{47225658-05B3-4F0D-A040-6A22E238F4B0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{47225658-05B3-4F0D-A040-6A22E238F4B0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{04A89A26-C768-4AB2-87F1-8392DF4258F5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{04A89A26-C768-4AB2-87F1-8392DF4258F5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{04A89A26-C768-4AB2-87F1-8392DF4258F5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{04A89A26-C768-4AB2-87F1-8392DF4258F5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

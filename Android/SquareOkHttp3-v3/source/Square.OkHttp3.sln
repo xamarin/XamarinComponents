@@ -5,6 +5,10 @@ VisualStudioVersion = 16.0.30413.136
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Square.OkHttp3", "Square.OkHttp3\Square.OkHttp3.csproj", "{EE5B87EC-8734-4B04-890E-83F6E2ECE0CC}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Square.OkHttp3.LoggingInterceptor", "Square.OkHttp3.LoggingInterceptor\Square.OkHttp3.LoggingInterceptor.csproj", "{BFB6553A-93BB-41CC-B168-69DD9D192B8B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Square.OkHttp3.UrlConnection", "Square.OkHttp3.UrlConnection\Square.OkHttp3.UrlConnection.csproj", "{662FE1FE-B992-4E2C-9F18-6BAD482456E6}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +19,14 @@ Global
 		{EE5B87EC-8734-4B04-890E-83F6E2ECE0CC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EE5B87EC-8734-4B04-890E-83F6E2ECE0CC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EE5B87EC-8734-4B04-890E-83F6E2ECE0CC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BFB6553A-93BB-41CC-B168-69DD9D192B8B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BFB6553A-93BB-41CC-B168-69DD9D192B8B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BFB6553A-93BB-41CC-B168-69DD9D192B8B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BFB6553A-93BB-41CC-B168-69DD9D192B8B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{662FE1FE-B992-4E2C-9F18-6BAD482456E6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{662FE1FE-B992-4E2C-9F18-6BAD482456E6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{662FE1FE-B992-4E2C-9F18-6BAD482456E6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{662FE1FE-B992-4E2C-9F18-6BAD482456E6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
