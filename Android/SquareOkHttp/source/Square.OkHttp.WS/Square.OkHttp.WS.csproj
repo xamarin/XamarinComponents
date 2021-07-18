@@ -1,9 +1,9 @@
 ﻿<Project Sdk="MSBuild.Sdk.Extras/3.0.23">
   <PropertyGroup>
     <TargetFrameworks>monoandroid10.0</TargetFrameworks>
-    <IsBindingProject>True</IsBindingProject>
-    <AssemblyName>Square.OkHttp3</AssemblyName>
-    <RootNamespace>Square.OkHttp3</RootNamespace>
+    <IsBindingProject>true</IsBindingProject>
+    <AssemblyName>Square.OkHttp.WS</AssemblyName>
+    <RootNamespace>Square.OkHttp.WS</RootNamespace>
     <AndroidUseLatestPlatformSdk>False</AndroidUseLatestPlatformSdk>
     <AndroidUseIntermediateDesignerFile>True</AndroidUseIntermediateDesignerFile>
     <AndroidClassParser>class-parse</AndroidClassParser>
@@ -11,10 +11,10 @@
   </PropertyGroup>
   
   <PropertyGroup>
-    <PackageId>Square.OkHttp3</PackageId>
-    <Title>OkHttp v3 bindings for Xamarin.Android</Title>
-    <Summary>An HTTP+HTTP/2 client for Android and Java applications.</Summary>
-    <Description>An HTTP+HTTP/2 client for Android and Java applications.</Description>
+    <PackageId>Square.OkHttp.WS</PackageId>
+    <Title>OkHttp v2 Web Sockets bindings for Xamarin.Android</Title>
+    <Summary>A RFC6455-compliant web socket implementation.</Summary>
+    <Description>A RFC6455-compliant web socket implementation.</Description>
     <Authors>Microsoft</Authors>
     <Owners>Microsoft</Owners>
     <Copyright>© Microsoft Corporation. All rights reserved.</Copyright>
@@ -22,24 +22,22 @@
     <PackageIcon>square.okhttp_256x256.png</PackageIcon>
     <PackageLicenseFile>LICENSE.md</PackageLicenseFile>
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
-    <PackageTags>okhttp square square.okhttp xamarin android monodroid</PackageTags>
-    <PackageVersion>4.9.1.1</PackageVersion>
+    <PackageTags>websocket okhttp square square.okhttp xamarin android monodroid</PackageTags>
+    <PackageVersion>2.7.5.2</PackageVersion>
   </PropertyGroup>
-  
+        
   <ItemGroup>
     <None Remove="Transforms\*.xml" />
     <TransformFile Include="Transforms\*.xml" />
-    <EmbeddedJar Include="..\..\externals\okhttp3.jar" Link="Jars\%(Filename)%(Extension)" />
-  </ItemGroup>
-  
-  <ItemGroup>
-    <PackageReference Include="Square.OkIO" Version="2.10.0" />
-    <PackageReference Include="Xamarin.Kotlin.StdLib" Version="1.4.32.1" />
-  </ItemGroup>
-  
+    <EmbeddedJar Include="..\..\externals\okhttp-ws.jar" Link="Jars\okhttp-ws.jar" />
+  </ItemGroup>  
+    
   <ItemGroup>
     <None Include="..\..\License.md" Pack="true" PackagePath="LICENSE.md" />
     <None Include="..\..\icons\square.okhttp_256x256.png" Pack="True" PackagePath="\" />
   </ItemGroup>
-
+    
+  <ItemGroup>
+    <ProjectReference Include="..\Square.OkHttp\Square.OkHttp.csproj" />
+  </ItemGroup>
 </Project>

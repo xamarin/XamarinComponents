@@ -3,7 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30413.136
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Square.OkHttp3", "Square.OkHttp3\Square.OkHttp3.csproj", "{EE5B87EC-8734-4B04-890E-83F6E2ECE0CC}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Square.OkHttp3", "Square.OkHttp3\Square.OkHttp3.csproj", "{EE5B87EC-8734-4B04-890E-83F6E2ECE0CC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Square.OkHttp3.UrlConnection", "Square.OkHttp3.UrlConnection\Square.OkHttp3.UrlConnection.csproj", "{B1A0F864-CA00-4647-9EDA-A00BD96A82FF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Square.OkHttp3.LoggingInterceptor", "Square.OkHttp3.LoggingInterceptor\Square.OkHttp3.LoggingInterceptor.csproj", "{CEF287F0-C25B-487D-9A37-23A283B46F1F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +19,14 @@ Global
 		{EE5B87EC-8734-4B04-890E-83F6E2ECE0CC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EE5B87EC-8734-4B04-890E-83F6E2ECE0CC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EE5B87EC-8734-4B04-890E-83F6E2ECE0CC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B1A0F864-CA00-4647-9EDA-A00BD96A82FF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B1A0F864-CA00-4647-9EDA-A00BD96A82FF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B1A0F864-CA00-4647-9EDA-A00BD96A82FF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B1A0F864-CA00-4647-9EDA-A00BD96A82FF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CEF287F0-C25B-487D-9A37-23A283B46F1F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CEF287F0-C25B-487D-9A37-23A283B46F1F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CEF287F0-C25B-487D-9A37-23A283B46F1F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CEF287F0-C25B-487D-9A37-23A283B46F1F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

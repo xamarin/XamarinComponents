@@ -1,6 +1,6 @@
-﻿<Project Sdk="MSBuild.Sdk.Extras/2.0.54">
+﻿<Project Sdk="MSBuild.Sdk.Extras/3.0.23">
   <PropertyGroup>
-    <TargetFrameworks>monoandroid9.0</TargetFrameworks>
+    <TargetFrameworks>monoandroid10.0</TargetFrameworks>
     <IsBindingProject>true</IsBindingProject>
     <AssemblyName>Square.OkHttp</AssemblyName>
     <RootNamespace>Square.OkHttp</RootNamespace>
@@ -19,11 +19,11 @@
     <Owners>Microsoft</Owners>
     <Copyright>© Microsoft Corporation. All rights reserved.</Copyright>
     <PackageProjectUrl>https://go.microsoft.com/fwlink/?linkid=2130312</PackageProjectUrl>  
-    <PackageIconUrl>https://raw.githubusercontent.com/xamarin/XamarinComponents/master/Android/SquareOkHttp/icons/square.okhttp_256x256.png</PackageIconUrl>
+    <PackageIcon>square.okhttp_256x256.png</PackageIcon>
     <PackageLicenseFile>LICENSE.md</PackageLicenseFile>
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
     <PackageTags>okhttp square square.okhttp xamarin android monodroid</PackageTags>
-    <PackageVersion>2.7.5.1</PackageVersion>
+    <PackageVersion>2.7.5.2</PackageVersion>
   </PropertyGroup>
     
   <ItemGroup>
@@ -33,11 +33,11 @@
   <ItemGroup>
     <None Remove="Transforms\*.xml" />
     <TransformFile Include="Transforms\*.xml" />
-    <EmbeddedJar Include="..\..\externals\*.jar" Link="Jars\%(Filename)%(Extension)" />
-    <LibraryProjectZip Include="..\..\externals\*.aar" Link="Jars\%(Filename)%(Extension)" />
+    <EmbeddedJar Include="..\..\externals\okhttp.jar" Link="Jars\okhttp.jar" />
   </ItemGroup>
     
   <ItemGroup>
     <None Include="..\..\License.md" Pack="true" PackagePath="LICENSE.md" />
+    <None Include="..\..\icons\square.okhttp_256x256.png" Pack="True" PackagePath="\" />
   </ItemGroup>
 </Project>
