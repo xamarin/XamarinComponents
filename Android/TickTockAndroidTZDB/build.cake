@@ -10,7 +10,7 @@ Task ("externals")
 {
 	EnsureDirectoryExists ("./externals");
 	
-	DownloadFile(JAR_URL, "./externals/ticktock-android-tzdb.jar");
+	DownloadFile(JAR_URL, $"./externals/ticktock-android-tzdb-{JAR_VERSION}.jar");
 
 	// Update .csproj nuget versions
 	XmlPoke("./source/TickTockAndroidTZDB/TickTockAndroidTZDB.csproj", "/Project/PropertyGroup/PackageVersion", NUGET_VERSION);
