@@ -10,7 +10,7 @@ Task ("externals")
 {
 	EnsureDirectoryExists ("./externals");
 	
-	DownloadFile(JAR_URL, "./externals/ticktock-runtime.jar");
+	DownloadFile(JAR_URL, $"./externals/ticktock-runtime-{JAR_VERSION}.jar");
 
 	// Update .csproj nuget versions
 	XmlPoke("./source/TickTockRuntime/TickTockRuntime.csproj", "/Project/PropertyGroup/PackageVersion", NUGET_VERSION);
