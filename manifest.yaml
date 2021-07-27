@@ -418,6 +418,11 @@
   TriggerPaths: [ Android/ThreeTenAbp ]
   MacBuildTargets: [ libs, nuget]
   WindowsBuildTargets: [ libs, nuget]
+- Name: TickTockAndroidTZDB
+  BuildScript: ./Android/TickTockAndroidTZDB/build.cake
+  TriggerPaths: [ Android/TickTockAndroidTZDB ]
+  MacBuildTargets: [ ci ]
+  WindowsBuildTargets: [ ci ]
 - Name: TokenAutoComplete
   BuildScript: ./Android/TokenAutoComplete/build.cake
   TriggerPaths: [ Android/TokenAutoComplete ]

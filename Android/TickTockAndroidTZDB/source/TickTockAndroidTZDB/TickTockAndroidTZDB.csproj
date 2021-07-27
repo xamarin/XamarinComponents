@@ -1,0 +1,43 @@
+﻿<Project Sdk="MSBuild.Sdk.Extras/2.1.2">
+  <PropertyGroup>
+    <TargetFrameworks>monoandroid10.0</TargetFrameworks>
+    <IsBindingProject>true</IsBindingProject>
+    <AssemblyName>TickTockAndroidTZDB</AssemblyName>
+    <RootNamespace>TickTockAndroidTZDB</RootNamespace>
+    <AndroidUseLatestPlatformSdk>False</AndroidUseLatestPlatformSdk>
+    <AndroidUseIntermediateDesignerFile>True</AndroidUseIntermediateDesignerFile>
+    <AndroidClassParser>class-parse</AndroidClassParser>
+    <AndroidCodegenTarget>XAJavaInterop1</AndroidCodegenTarget>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <PackageId>Xamarin.Dev.ZacSweers.TickTock.Android.TZDB</PackageId>
+    <Title>TickTock Android TZDB bindings for Xamarin.Android</Title>
+    <Summary>TickTock is a timezone data management library for the JVM and Android targeting java.time.* APIs in Java 8 or above.</Summary>
+    <Description>TickTock is a timezone data management library for the JVM and Android targeting java.time.* APIs in Java 8 or above.</Description>
+    <Authors>Microsoft</Authors>
+    <Owners>Microsoft</Owners>
+    <Copyright>© Microsoft Corporation. All rights reserved.</Copyright>
+    <PackageProjectUrl>https://go.microsoft.com/fwlink/?linkid=2130312</PackageProjectUrl>
+    <PackageLicenseFile>LICENSE.md</PackageLicenseFile>
+    <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
+    <PackageTags>ticktock android tzbd xamarin android monodroid</PackageTags>
+    <PackageVersion>1.1.0-2020f</PackageVersion>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Xamarin.Dev.ZacSweers.TickTock.Runtime" Version="1.1.0-2020f" />
+    <PackageReference Include="Xamarin.AndroidX.Startup.Runtime" Version="1.0.0" />
+  </ItemGroup>
+    
+  <ItemGroup>
+    <None Remove="Transforms\*.xml" />
+    <TransformFile Include="Transforms\*.xml" />
+    <EmbeddedJar Include="..\..\externals\*.jar" Link="Jars\%(Filename)%(Extension)" />
+    <LibraryProjectZip Include="..\..\externals\*.aar" Link="Jars\%(Filename)%(Extension)" />
+  </ItemGroup>
+    
+  <ItemGroup>
+    <None Include="..\..\License.md" Pack="true" PackagePath="LICENSE.md" />
+  </ItemGroup>
+</Project>
