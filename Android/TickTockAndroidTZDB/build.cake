@@ -2,15 +2,15 @@ var TARGET = Argument ("t", Argument ("target", "ci"));
 
 var NUGET_VERSION = "1.1.0-2020f";
 
-var JAR_VERSION = "1.1.0-2020f";
-var JAR_URL = $"https://repo1.maven.org/maven2/dev/zacsweers/ticktock/ticktock-android-tzdb/{JAR_VERSION}/ticktock-android-tzdb-{JAR_VERSION}.jar";
+var AAR_VERSION = "1.1.0-2020f";
+var AAR_URL = $"https://repo1.maven.org/maven2/dev/zacsweers/ticktock/ticktock-android-tzdb/{AAR_VERSION}/ticktock-android-tzdb-{AAR_VERSION}.aar";
 
 Task ("externals")
 	.Does (() =>
 {
 	EnsureDirectoryExists ("./externals");
 	
-	DownloadFile(JAR_URL, $"./externals/ticktock-android-tzdb-{JAR_VERSION}.jar");
+	DownloadFile(AAR_URL, $"./externals/ticktock-android-tzdb-{AAR_VERSION}.aar");
 
 	// Update .csproj nuget versions
 	XmlPoke("./source/TickTockAndroidTZDB/TickTockAndroidTZDB.csproj", "/Project/PropertyGroup/PackageVersion", NUGET_VERSION);
