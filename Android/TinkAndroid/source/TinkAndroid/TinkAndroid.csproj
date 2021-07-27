@@ -11,7 +11,7 @@
   </PropertyGroup>
 
   <PropertyGroup>
-    <PackageId>TinkAndroid</PackageId>
+    <PackageId>Xamarin.Com.Google.Crypto.Tink.Android</PackageId>
     <Title>Tink Android bindings for Xamarin.Android</Title>
     <Summary>Tink is a small cryptographic library that provides a safe, simple, agile and fast way to accomplish some common cryptographic tasks.</Summary>
     <Description>Tink is a small cryptographic library that provides a safe, simple, agile and fast way to accomplish some common cryptographic tasks.</Description>
