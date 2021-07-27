@@ -108,6 +108,11 @@
   BuildScript: ./Android/Timber/build.cake
   TriggerPaths: [ Android/Timber ]
   MacBuildTargets: [ nuget, samples ]
+- Name: TinkAndroid
+  BuildScript: ./Android/TinkAndroid/build.cake
+  TriggerPaths: [ Android/TinkAndroid ]
+  MacBuildTargets: [ ci ]
+  WindowsBuildTargets: [ ci ]
 - Name: Explosions
   BuildScript: ./Android/Explosions/build.cake
   TriggerPaths: [ Android/Explosions ]
