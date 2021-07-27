@@ -10,7 +10,7 @@ Task ("externals")
 {
 	EnsureDirectoryExists ("./externals");
 	
-	DownloadFile(JAR_URL, "./externals/tink-android.jar");
+	DownloadFile(JAR_URL, $"./externals/tink-android-{JAR_VERSION}.jar");
 
 	// Update .csproj nuget versions
 	XmlPoke("./source/TinkAndroid/TinkAndroid.csproj", "/Project/PropertyGroup/PackageVersion", NUGET_VERSION);
