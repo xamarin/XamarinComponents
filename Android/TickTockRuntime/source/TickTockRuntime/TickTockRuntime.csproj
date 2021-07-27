@@ -2,8 +2,8 @@
   <PropertyGroup>
     <TargetFrameworks>monoandroid10.0</TargetFrameworks>
     <IsBindingProject>true</IsBindingProject>
-    <AssemblyName>TickTock</AssemblyName>
-    <RootNamespace>TickTock</RootNamespace>
+    <AssemblyName>TickTockRuntime</AssemblyName>
+    <RootNamespace>TickTockRuntime</RootNamespace>
     <AndroidUseLatestPlatformSdk>False</AndroidUseLatestPlatformSdk>
     <AndroidUseIntermediateDesignerFile>True</AndroidUseIntermediateDesignerFile>
     <AndroidClassParser>class-parse</AndroidClassParser>
@@ -12,7 +12,7 @@
 
   <PropertyGroup>
     <PackageId>Xamarin.Dev.ZacSweers.TickTock.Runtime</PackageId>
-    <Title>TickTock bindings for Xamarin.Android</Title>
+    <Title>TickTock Runtime bindings for Xamarin.Android</Title>
     <Summary>TickTock is a timezone data management library for the JVM and Android targeting java.time.* APIs in Java 8 or above.</Summary>
     <Description>TickTock is a timezone data management library for the JVM and Android targeting java.time.* APIs in Java 8 or above.</Description>
     <Authors>Microsoft</Authors>
@@ -21,7 +21,7 @@
     <PackageProjectUrl>https://go.microsoft.com/fwlink/?linkid=2130312</PackageProjectUrl>
     <PackageLicenseFile>LICENSE.md</PackageLicenseFile>
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
-    <PackageTags>ticktock xamarin android monodroid</PackageTags>
+    <PackageTags>ticktock runtime xamarin android monodroid</PackageTags>
     <PackageVersion>1.1.0-2020f</PackageVersion>
   </PropertyGroup>
     

@@ -1,8 +1,8 @@
 **Xamarin is not responsible for, nor does it grant any licenses to, third-party packages. Some packages may require or install dependencies which are governed by additional licenses.**
 
-Note: This component depends on [TickTock](https://github.com/ZacSweers/ticktock), which is subject to the [Apache 2.0](https://github.com/ZacSweers/ticktock/blob/main/LICENSE.txt)
+Note: This component depends on [TickTock Runtime](https://github.com/ZacSweers/ticktock), which is subject to the [Apache 2.0](https://github.com/ZacSweers/ticktock/blob/main/LICENSE.txt)
 
-### Xamarin Component for TickTock for Xamarin.Android
+### Xamarin Component for TickTock Runtime for Xamarin.Android
 
 **The MIT License (MIT)**
 

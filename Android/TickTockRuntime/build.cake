@@ -10,17 +10,17 @@ Task ("externals")
 {
 	EnsureDirectoryExists ("./externals");
 	
-	DownloadFile(JAR_URL, "./externals/ticktock.jar");
+	DownloadFile(JAR_URL, "./externals/ticktock-runtime.jar");
 
 	// Update .csproj nuget versions
-	XmlPoke("./source/TickTock/TickTock.csproj", "/Project/PropertyGroup/PackageVersion", NUGET_VERSION);
+	XmlPoke("./source/TickTockRuntime/TickTockRuntime.csproj", "/Project/PropertyGroup/PackageVersion", NUGET_VERSION);
 });
 
 Task("nuget")
 	.IsDependentOn("externals")
 	.Does(() =>
 {
-	MSBuild ("./source/TickTock.sln", c => {
+	MSBuild ("./source/TickTockRuntime.sln", c => {
 		c.Configuration = "Release";
 		c.Restore = true;
 		c.MaxCpuCount = 0;

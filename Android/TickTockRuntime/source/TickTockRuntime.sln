@@ -1,7 +1,7 @@
 
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TickTock", "TickTock\TickTock.csproj", "{EBC199A3-D6D0-4CA3-9E55-89FCE3A63B39}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TickTockRuntime", "TickTockRuntime\TickTockRuntime.csproj", "{EBC199A3-D6D0-4CA3-9E55-89FCE3A63B39}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
