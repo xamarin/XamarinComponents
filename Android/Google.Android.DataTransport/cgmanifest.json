@@ -24,7 +24,7 @@
         "Maven": {
           "ArtifactId": "transport-runtime",
           "GroupId": "com.google.android.datatransport",
-          "Version": "3.0.0",
+          "Version": "3.0.1",
           "NuGetId": "Xamarin.Google.Android.DataTransport.TransportRuntime"
         }
       }
