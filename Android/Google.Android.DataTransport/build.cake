@@ -18,8 +18,8 @@ Dictionary<string, string> URLS_ARTIFACT_FILES= new Dictionary<string, string>()
 		$"./externals/android/transport-backend-cct-3.0.0.aar"
 	},
 	{
-		$"https://maven.google.com//com/google/android/datatransport/transport-runtime/3.0.0/transport-runtime-3.0.0.aar",
-		$"./externals/android/transport-runtime-3.0.0.aar"
+		$"https://maven.google.com//com/google/android/datatransport/transport-runtime/3.0.1/transport-runtime-3.0.1.aar",
+		$"./externals/android/transport-runtime-3.0.1.aar"
 	},
 };
 

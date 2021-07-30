@@ -6,7 +6,7 @@
         "Maven": {
           "ArtifactId": "kotlin-stdlib",
           "GroupId": "org.jetbrains.kotlin",
-          "Version": "1.5.10"
+          "Version": "1.5.20"
         }
       }
     },
@@ -16,7 +16,7 @@
         "Maven": {
           "ArtifactId": "kotlin-stdlib-common",
           "GroupId": "org.jetbrains.kotlin",
-          "Version": "1.5.10"
+          "Version": "1.5.20"
         }
       }
     },
@@ -26,7 +26,7 @@
         "Maven": {
           "ArtifactId": "kotlin-reflect",
           "GroupId": "org.jetbrains.kotlin",
-          "Version": "1.5.10"
+          "Version": "1.5.20"
         }
       }
     },
@@ -36,7 +36,7 @@
         "Maven": {
           "ArtifactId": "kotlin-stdlib-jdk7",
           "GroupId": "org.jetbrains.kotlin",
-          "Version": "1.5.10"
+          "Version": "1.5.20"
         }
       }
     },
@@ -46,7 +46,7 @@
         "Maven": {
           "ArtifactId": "kotlin-stdlib-jdk8",
           "GroupId": "org.jetbrains.kotlin",
-          "Version": "1.5.10"
+          "Version": "1.5.20"
         }
       }
     },

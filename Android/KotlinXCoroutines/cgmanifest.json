@@ -6,7 +6,7 @@
         "Maven": {
           "ArtifactId": "kotlinx-coroutines-core",
           "GroupId": "org.jetbrains.kotlinx",
-          "Version": "1.5.0"
+          "Version": "1.5.1"
         }
       }
     },
@@ -16,7 +16,7 @@
         "Maven": {
           "ArtifactId": "kotlinx-coroutines-android",
           "GroupId": "org.jetbrains.kotlinx",
-          "Version": "1.5.0"
+          "Version": "1.5.1"
         }
       }
     },
@@ -26,7 +26,7 @@
         "Maven": {
           "ArtifactId": "kotlinx-coroutines-jdk8",
           "GroupId": "org.jetbrains.kotlinx",
-          "Version": "1.5.0"
+          "Version": "1.5.1"
         }
       }
     },
@@ -36,7 +36,7 @@
         "Maven": {
           "ArtifactId": "kotlinx-coroutines-core-jvm",
           "GroupId": "org.jetbrains.kotlinx",
-          "Version": "1.5.0"
+          "Version": "1.5.1"
         }
       }
     },
@@ -46,7 +46,7 @@
         "Maven": {
           "ArtifactId": "kotlinx-coroutines-reactive",
           "GroupId": "org.jetbrains.kotlinx",
-          "Version": "1.5.0"
+          "Version": "1.5.1"
         }
       }
     },
@@ -56,7 +56,7 @@
         "Maven": {
           "ArtifactId": "kotlinx-coroutines-rx2",
           "GroupId": "org.jetbrains.kotlinx",
-          "Version": "1.5.0"
+          "Version": "1.5.1"
         }
       }
     }
