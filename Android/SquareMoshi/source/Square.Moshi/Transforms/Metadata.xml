@@ -7,7 +7,7 @@
   <remove-node path="/api/package[@name='android.support.v4.content']/class[@name='CursorLoader']/method[@name='loadInBackground']" />
   -->
 
-	<attr path="/api/package[@name='com.squareup.moshi']" name="managedName">Square.Moshi</attr>
+	<attr path="/api/package[@name='com.squareup.moshi']" name="managedName">Square.Moshi2</attr>
    
     <remove-node path="/api/package[starts-with(@name, 'com.squareup.moshi.internal')]" />
     
