@@ -1,0 +1,52 @@
+﻿<Project Sdk="MSBuild.Sdk.Extras">
+  <PropertyGroup>
+    <TargetFrameworks>monoandroid9.0</TargetFrameworks>
+    <IsBindingProject>true</IsBindingProject>
+    <AssemblyName>CoilBase</AssemblyName>
+    <RootNamespace>CoilBase</RootNamespace>
+    <AndroidUseLatestPlatformSdk>False</AndroidUseLatestPlatformSdk>
+    <AndroidUseIntermediateDesignerFile>True</AndroidUseIntermediateDesignerFile>
+    <AndroidClassParser>class-parse</AndroidClassParser>
+    <AndroidCodegenTarget>XAJavaInterop1</AndroidCodegenTarget>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <PackageId>Xamarin.Io.Coil.Kt.Coil.Base</PackageId>
+    <Title>Coil Base bindings for Xamarin.Android</Title>
+    <Summary>Coil is an image loading library for Android backed by Kotlin Coroutines.</Summary>
+    <Description>Coil is an image loading library for Android backed by Kotlin Coroutines.</Description>
+    <Authors>Microsoft</Authors>
+    <Owners>Microsoft</Owners>
+    <Copyright>© Microsoft Corporation. All rights reserved.</Copyright>
+    <PackageProjectUrl>https://go.microsoft.com/fwlink/?linkid=2130312</PackageProjectUrl>
+    <PackageLicenseFile>LICENSE.md</PackageLicenseFile>
+    <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
+    <PackageTags>coil base xamarin android monodroid</PackageTags>
+    <PackageVersion>1.3.2</PackageVersion>
+  </PropertyGroup>
+    
+  <ItemGroup>
+    <PackageReference Include="Xamarin.AndroidX.Lifecycle.Common.Java8" Version="2.3.1.1" />
+    <PackageReference Include="Square.OkHttp3" Version="4.9.1" />
+    <PackageReference Include="Square.OkIO" Version="2.10.0" />
+    <PackageReference Include="Xamarin.Kotlin.StdLib" Version="1.5.21" />
+    <PackageReference Include="Xamarin.KotlinX.Coroutines.Android" Version="1.5.1" />
+    <PackageReference Include="Xamarin.AndroidX.Annotation" Version="1.2.0.1" />
+    <PackageReference Include="Xamarin.AndroidX.AppCompat.AppCompatResources" Version="1.3.1.1" />
+    <PackageReference Include="Xamarin.AndroidX.Collection.Ktx" Version="1.1.0.1" />
+    <PackageReference Include="Xamarin.AndroidX.Core.Core.Ktx" Version="1.6.0.1" />
+    <PackageReference Include="Xamarin.AndroidX.ExifInterface" Version="1.3.3" />
+    <PackageReference Include="Xamarin.AndroidX.Lifecycle.Runtime" Version="2.3.1.2" />
+  </ItemGroup>
+    
+  <ItemGroup>
+    <None Remove="Transforms\*.xml" />
+    <TransformFile Include="Transforms\*.xml" />
+    <EmbeddedJar Include="..\..\externals\*.jar" Link="Jars\%(Filename)%(Extension)" />
+    <LibraryProjectZip Include="..\..\externals\*.aar" Link="Jars\%(Filename)%(Extension)" />
+  </ItemGroup>
+    
+  <ItemGroup>
+    <None Include="..\..\License.md" Pack="true" PackagePath="LICENSE.md" />
+  </ItemGroup>
+</Project>
