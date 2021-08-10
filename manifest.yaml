@@ -16,6 +16,11 @@
   TriggerPaths: [ Android/ARCore ]
   MacBuildTargets: [ ci ]
   WindowsBuildTargets: [ ci ]
+- Name: Coil
+  BuildScript: ./Android/Coil/build.cake
+  TriggerPaths: [ Android/Coil ]
+  MacBuildTargets: [ ci ]
+  WindowsBuildTargets: [ ci ]
 - Name: ConstraintLayout
   BuildScript: ./Android/ConstraintLayout/build.cake
   TriggerPaths: [ Android/ConstraintLayout ]
