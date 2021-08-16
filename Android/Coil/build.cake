@@ -10,7 +10,7 @@ Task ("externals")
 {
 	EnsureDirectoryExists ("./externals");
 	
-	DownloadFile(AAR_URL, $"./externals/coil-{AAR_VERSION}.jar");
+	DownloadFile(AAR_URL, $"./externals/coil-{AAR_VERSION}.aar");
 
 	// Update .csproj nuget versions
 	XmlPoke("./source/Coil/Coil.csproj", "/Project/PropertyGroup/PackageVersion", NUGET_VERSION);
