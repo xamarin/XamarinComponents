@@ -7,7 +7,7 @@
   <remove-node path="/api/package[@name='android.support.v4.content']/class[@name='CursorLoader']/method[@name='loadInBackground']" />
   -->
 
-	<attr path="/api/package[@name='dev.zacsweers.ticktock.runtime']" name="managedName">TickTockRuntime</attr>
+	<attr path="/api/package[@name='dev.zacsweers.ticktock.runtime']" name="managedName">Xamarin.TickTockRuntime</attr>
 
 	<remove-node path="/api/package[@name='dev.zacsweers.ticktock.runtime']" />
    
