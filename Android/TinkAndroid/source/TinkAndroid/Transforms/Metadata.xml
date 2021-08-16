@@ -7,7 +7,7 @@
   <remove-node path="/api/package[@name='android.support.v4.content']/class[@name='CursorLoader']/method[@name='loadInBackground']" />
   -->
 
-	<attr path="/api/package[@name='com.google.crypto.tink']" name="managedName">TinkAndroid</attr>
+	<attr path="/api/package[@name='com.google.crypto.tink']" name="managedName">Xamarin.TinkAndroid</attr>
 
   <remove-node path="/api/package[@name='com.google.crypto.tink']" />
   <remove-node path="/api/package[@name='com.google.crypto.tink.subtle']" /> 
