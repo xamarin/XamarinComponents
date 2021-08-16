@@ -33,7 +33,7 @@
   <ItemGroup>
     <None Remove="Transforms\*.xml" />
     <TransformFile Include="Transforms\*.xml" />
-    <EmbeddedJar Include="..\..\externals\*.jar" Link="Jars\%(Filename)%(Extension)" />
+    <EmbeddedJar Include="..\..\externals\*.aar" Link="Jars\%(Filename)%(Extension)" />
     <LibraryProjectZip Include="..\..\externals\*.aar" Link="Jars\%(Filename)%(Extension)" />
   </ItemGroup>
     

@@ -7,7 +7,7 @@
   <remove-node path="/api/package[@name='android.support.v4.content']/class[@name='CursorLoader']/method[@name='loadInBackground']" />
   -->
 
-	<attr path="/api/package[@name='dev.zacsweers.ticktock.android.tzdb']" name="managedName">TickTockAndroidTZDB</attr>
+	<attr path="/api/package[@name='dev.zacsweers.ticktock.android.tzdb']" name="managedName">Xamarin.TickTockAndroidTZDB</attr>
 
 	<remove-node path="/api/package[@name='dev.zacsweers.ticktock.android.tzdb']" />
    
