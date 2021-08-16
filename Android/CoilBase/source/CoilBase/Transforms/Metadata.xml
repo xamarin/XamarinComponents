@@ -7,6 +7,6 @@
   <remove-node path="/api/package[@name='android.support.v4.content']/class[@name='CursorLoader']/method[@name='loadInBackground']" />
   -->
 
-	<attr path="/api/package[@name='coil']" name="managedName">CoilBase</attr>
+	<attr path="/api/package[@name='coil']" name="managedName">Xamarin.Coil</attr>
    
 </metadata>
