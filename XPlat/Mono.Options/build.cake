@@ -2,12 +2,12 @@
 
 var TARGET = Argument("t", Argument("target", "ci"));
 
-var MONO_TAG = "mono-6.6.0.162";
+var MONO_TAG = "mono-6.12.0.148";
 
 var ASSEMBLY_VERSION = "6.0.0.0";
-var ASSEMBLY_FILE_VERSION = "6.6.0.0";
-var ASSEMBLY_INFO_VERSION = "6.6.0.162";
-var NUGET_VERSION = "6.6.0.162";
+var ASSEMBLY_FILE_VERSION = "6.12.0.0";
+var ASSEMBLY_INFO_VERSION = "6.12.0.148";
+var NUGET_VERSION = "6.12.0.148";
 
 var OUTPUT_PATH = (DirectoryPath)"./output/";
 
