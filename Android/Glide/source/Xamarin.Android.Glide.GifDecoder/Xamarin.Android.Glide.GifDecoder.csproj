@@ -1,17 +1,8 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<Project Sdk="MSBuild.Sdk.Extras">
+﻿<Project Sdk="Xamarin.Legacy.Sdk">
   <PropertyGroup>
-    <TargetFrameworks>MonoAndroid10.0</TargetFrameworks>
+    <TargetFrameworks>net6.0-android30;MonoAndroid10.0</TargetFrameworks>
     <IsBindingProject>true</IsBindingProject>
-    <AssemblyName>Xamarin.Android.Glide.GifDecoder</AssemblyName>
-    <MonoAndroidResourcePrefix>Resources</MonoAndroidResourcePrefix>
-    <MonoAndroidAssetsPrefix>Assets</MonoAndroidAssetsPrefix>
-    <AndroidUseLatestPlatformSdk>False</AndroidUseLatestPlatformSdk>
-    <AndroidUseIntermediateDesignerFile>True</AndroidUseIntermediateDesignerFile>
-    <AndroidResgenFile>Resources\Resource.designer.cs</AndroidResgenFile>
     <RootNamespace>Bumptech.Glide.GifDecoder</RootNamespace>
-    <AndroidClassParser>class-parse</AndroidClassParser>
-    <AndroidCodegenTarget>XAJavaInterop1</AndroidCodegenTarget>
   </PropertyGroup>
 
   <PropertyGroup>
@@ -28,11 +19,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <TransformFile Include="Transforms\*.xml" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <PackageReference Include="Xamarin.AndroidX.Annotation" Version="1.1.0.1" />
+    <PackageReference Include="Xamarin.AndroidX.Annotation" Version="1.2.0.1" />
   </ItemGroup>
 
   <ItemGroup>

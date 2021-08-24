@@ -45,27 +45,26 @@ Task("libs")
 	.IsDependentOn("externals")
 	.Does(() =>
 {
-	MSBuild("./source/Xamarin.Android.Glide.sln", c => {
-		c.Configuration = "Release";
-		c.Restore = true;
-		c.MaxCpuCount = 0;
-		c.Properties.Add("DesignTimeBuild", new [] { "false" });
-	});
+	DotNetCoreRestore ("./source/Xamarin.Android.Glide.sln");
+
+	DotNetCoreMSBuild ("./source/Xamarin.Android.Glide.sln",
+		new DotNetCoreMSBuildSettings()
+			.SetConfiguration("Release")
+	);
 });
 
 Task("nuget")
 	.IsDependentOn("libs")
 	.Does(() =>
 {
-	MSBuild ("./source/Xamarin.Android.Glide.sln", c => {
-		c.Configuration = "Release";
-		c.MaxCpuCount = 0;
-		c.Targets.Clear();
-		c.Targets.Add("Pack");
-		c.Properties.Add("PackageOutputPath", new [] { MakeAbsolute(new FilePath("./output")).FullPath });
-		c.Properties.Add("PackageRequireLicenseAcceptance", new [] { "true" });
-		c.Properties.Add("DesignTimeBuild", new [] { "false" });
-	});
+	DotNetCoreMSBuild ("./source/Xamarin.Android.Glide.sln",
+		new DotNetCoreMSBuildSettings()
+			.WithTarget("Pack")
+			.SetConfiguration("Release")
+			.WithProperty ("PackageOutputPath", MakeAbsolute(new FilePath("./output")).FullPath)
+			.WithProperty ("PackageRequireLicenseAcceptance", "true")
+			.WithProperty ("NoBuild", "true")
+	);
 });
 
 Task("samples")

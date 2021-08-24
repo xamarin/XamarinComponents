@@ -1,0 +1,8 @@
+<Project>
+  <!-- see: https://github.com/xamarin/xamarin-android/blob/5f408ebb22df51b598c62f776ee0f82f92661b58/Documentation/guides/OneDotNetBindingProjects.md -->
+  <PropertyGroup>
+    <AndroidBoundInterfacesContainConstants>false</AndroidBoundInterfacesContainConstants>
+    <AndroidBoundInterfacesContainTypes>false</AndroidBoundInterfacesContainTypes>
+    <AndroidBoundInterfacesContainStaticAndDefaultInterfaceMethods>false</AndroidBoundInterfacesContainStaticAndDefaultInterfaceMethods>
+  </PropertyGroup>
+</Project>
