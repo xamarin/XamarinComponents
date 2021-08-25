@@ -27,7 +27,7 @@
 
   <ItemGroup>
     <PackageReference Include="Xamarin.Dev.ZacSweers.TickTock.Runtime" Version="1.1.0-2020f" />
-    <PackageReference Include="Xamarin.AndroidX.Startup.Runtime" Version="1.0.0" />
+    <PackageReference Include="Xamarin.AndroidX.Startup.StartupRuntime" Version="1.0.0" />
   </ItemGroup>
     
   <ItemGroup>
