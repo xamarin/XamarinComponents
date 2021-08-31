@@ -10,6 +10,7 @@ namespace AndroidBinderator
 		public string MavenArtifactPackaging { get; set; }
 		public string MavenArtifactMd5 { get; set; }
 		public string MavenArtifactSha256 { get; set; }
+		public MavenArtifactConfig MavenArtifactConfig { get; set; }
 
 		public string DownloadedArtifact { get; set; }
 		public string ProguardFile { get; set; }
