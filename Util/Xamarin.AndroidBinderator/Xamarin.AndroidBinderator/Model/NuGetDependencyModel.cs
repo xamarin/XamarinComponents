@@ -9,6 +9,7 @@ namespace AndroidBinderator
 		public string NuGetPackageId { get; set; }
 		public string NuGetVersionBase { get; set; }
 		public string NuGetVersionSuffix { get; set; }
+		public MavenArtifactConfig MavenArtifactConfig { get; set; }
 
 		public string NuGetVersion =>
 			!IsProjectReference || string.IsNullOrWhiteSpace(NuGetVersionSuffix)
