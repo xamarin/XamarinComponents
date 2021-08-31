@@ -50,6 +50,9 @@ namespace AndroidBinderator
 		[JsonProperty("excludedRuntimeDependencies")]
 		public string ExcludedRuntimeDependencies { get; set; }
 
+		[JsonProperty("templateSet")]
+		public string TemplateSet { get; set; }
+
 		public string GroupAndArtifactId => $"{GroupId}.{ArtifactId}";
 	}
 }
