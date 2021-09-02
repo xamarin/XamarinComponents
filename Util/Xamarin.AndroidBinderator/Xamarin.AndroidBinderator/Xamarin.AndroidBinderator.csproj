@@ -8,7 +8,7 @@
     </PropertyGroup>
 
     <PropertyGroup>
-        <PackageVersion>2.2.7</PackageVersion>
+        <PackageVersion>2.2.8</PackageVersion>
         <PackageId>Xamarin.AndroidBinderator</PackageId>
         <Title>Xamarin.AndroidBinderator</Title>
         <PackageDescription>An engine to generate Xamarin Binding projects from Maven repositories with a JSON config and razor templates.</PackageDescription>
