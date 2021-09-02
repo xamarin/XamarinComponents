@@ -33,18 +33,8 @@ namespace AndroidBinderator
 
 		public static async Task BinderateAsync(BindingConfig config)
 		{
-			MavenRepository maven;
-
-			if (config.MavenRepositoryType == MavenRepoType.Directory)
-				maven = MavenRepository.FromDirectory(config.MavenRepositoryLocation);
-			else if (config.MavenRepositoryType == MavenRepoType.Url)
-				maven = MavenRepository.FromUrl(config.MavenRepositoryLocation);
-			else if (config.MavenRepositoryType == MavenRepoType.MavenCentral)
-				maven = MavenRepository.FromMavenCentral();
-			else
-				maven = MavenRepository.FromGoogle();
-
-			await maven.Refresh(config.MavenArtifacts.Where(ma => !ma.DependencyOnly).Select(ma => ma.GroupId).Distinct().ToArray());
+			// Prime our Maven repositories
+			await MavenFactory.Initialize(config);
 
 			if (config.DownloadExternals)
 			{
@@ -53,18 +43,20 @@ namespace AndroidBinderator
 					Directory.CreateDirectory(artifactDir);
 			}
 
-			await ProcessConfig(maven, config);
+			await ProcessConfig(config);
 		}
 
-		static async Task ProcessConfig(MavenRepository maven, BindingConfig config)
+		static async Task ProcessConfig(BindingConfig config)
 		{
 			var mavenProjects = new Dictionary<string, Project>();
 			var mavenGroups = new List<MavenGroup>();
 
 			foreach (var artifact in config.MavenArtifacts)
 			{
-                if (artifact.DependencyOnly)
-                    continue;
+				if (artifact.DependencyOnly)
+					continue;
+
+				var maven = MavenFactory.GetMavenRepository (config, artifact);
 
 				var mavenGroup = maven.Groups.FirstOrDefault(g => g.Id == artifact.GroupId);
 
@@ -77,29 +69,30 @@ namespace AndroidBinderator
 			}
 
 			if (config.DownloadExternals)
-				await DownloadArtifacts(maven, config, mavenProjects);
+				await DownloadArtifacts(config, mavenProjects);
 
 			var slnProjModels = new Dictionary<string, BindingProjectModel>();
+			var models = BuildProjectModels(config, mavenProjects);
 
-			foreach (var template in config.Templates)
-			{
-				var models = BuildProjectModels(config, template, mavenProjects);
+			var json = Newtonsoft.Json.JsonConvert.SerializeObject(models);
 
-				var json = Newtonsoft.Json.JsonConvert.SerializeObject(models);
+			if (config.Debug.DumpModels)
+				File.WriteAllText(Path.Combine(config.BasePath, "models.json"), json);
 
-				if (config.Debug.DumpModels)
-					File.WriteAllText(Path.Combine(config.BasePath, "models.json"), json);
+			var engine = new RazorLightEngineBuilder()
+				.UseMemoryCachingProvider()
+				.Build();
 
-				var inputTemplateFile = Path.Combine(config.BasePath, template.TemplateFile);
-				var templateSrc = File.ReadAllText(inputTemplateFile);
+			foreach (var model in models) {
+				var template_set = config.GetTemplateSet(model.MavenArtifacts.FirstOrDefault()?.MavenArtifactConfig?.TemplateSet);
 
-				var engine = new RazorLightEngineBuilder()
-					.UseMemoryCachingProvider()
-					.Build();
+				foreach (var template in template_set.Templates) {
+					var inputTemplateFile = Path.Combine(config.BasePath, template.TemplateFile);
+					var templateSrc = File.ReadAllText(inputTemplateFile);
 
-				foreach (var model in models)
-				{
-					var outputFile = new FileInfo(template.GetOutputFile(config, model));
+					AssignMetadata(model, template);
+
+					var outputFile = new FileInfo (template.GetOutputFile (config, model));
 					if (!outputFile.Directory.Exists)
 						outputFile.Directory.Create();
 
@@ -121,7 +114,7 @@ namespace AndroidBinderator
 			}
 		}
 
-		static async Task DownloadArtifacts(MavenRepository maven, BindingConfig config, Dictionary<string, Project> mavenProjects)
+		static async Task DownloadArtifacts(BindingConfig config, Dictionary<string, Project> mavenProjects)
 		{
 			var httpClient = new HttpClient();
 
@@ -131,6 +124,7 @@ namespace AndroidBinderator
                 if (mavenArtifact.DependencyOnly)
                     continue;
 
+				var maven = MavenFactory.GetMavenRepository(config, mavenArtifact);
 				var version = mavenArtifact.Version;
 
 				if (!mavenProjects.TryGetValue($"{mavenArtifact.GroupId}/{mavenArtifact.ArtifactId}-{mavenArtifact.Version}", out var mavenProject))
@@ -287,14 +281,10 @@ namespace AndroidBinderator
 			}
 		}
 
-		static List<BindingProjectModel> BuildProjectModels(BindingConfig config, TemplateConfig template, Dictionary<string, Project> mavenProjects)
+		static List<BindingProjectModel> BuildProjectModels(BindingConfig config, Dictionary<string, Project> mavenProjects)
 		{
 			var projectModels = new List<BindingProjectModel>();
 			var exceptions = new List<Exception>();
-
-			var baseMetadata = new Dictionary<string, string>();
-			MergeValues(baseMetadata, config.Metadata);
-			MergeValues(baseMetadata, template.Metadata);
 
 			foreach (var mavenArtifact in config.MavenArtifacts)
 			{
@@ -304,10 +294,6 @@ namespace AndroidBinderator
 				if (!mavenProjects.TryGetValue($"{mavenArtifact.GroupId}/{mavenArtifact.ArtifactId}-{mavenArtifact.Version}", out var mavenProject))
 					continue;
 
-				var artifactMetadata = new Dictionary<string, string>();
-				MergeValues(artifactMetadata, baseMetadata);
-				MergeValues(artifactMetadata, mavenArtifact.Metadata);
-
 				var projectModel = new BindingProjectModel
 				{
 					Name = mavenArtifact.ArtifactId,
@@ -316,7 +302,6 @@ namespace AndroidBinderator
 					NuGetVersionSuffix = config.NugetVersionSuffix,
 					MavenGroupId = mavenArtifact.GroupId,
 					AssemblyName = mavenArtifact.AssemblyName,
-					Metadata = artifactMetadata,
 					Config = config
 				};
 				projectModels.Add(projectModel);
@@ -341,9 +326,8 @@ namespace AndroidBinderator
 					MavenArtifactMd5 = md5,
 					MavenArtifactSha256 = sha256,
 					ProguardFile = File.Exists(proguardFile) ? GetRelativePath(proguardFile, config.BasePath).Replace("/", "\\") : null,
-					Metadata = artifactMetadata,
+					MavenArtifactConfig = mavenArtifact
 				});
-
 
 				// Gather maven dependencies to try and map out nuget dependencies
 				foreach (var mavenDep in mavenProject.Dependencies)
@@ -391,17 +375,13 @@ namespace AndroidBinderator
 						continue;
 					}
 
-					var dependencyMetadata = new Dictionary<string, string>();
-					MergeValues(dependencyMetadata, baseMetadata);
-					MergeValues(dependencyMetadata, depMapping.Metadata);
-
 					projectModel.NuGetDependencies.Add(new NuGetDependencyModel
 					{
 						IsProjectReference = !depMapping.DependencyOnly,
 						NuGetPackageId = depMapping.NugetPackageId,
 						NuGetVersionBase = depMapping.NugetVersion,
 						NuGetVersionSuffix = config.NugetVersionSuffix,
-						Metadata = dependencyMetadata,
+						MavenArtifactConfig = depMapping,
 
 						MavenArtifact = new MavenArtifactModel
 						{
@@ -411,7 +391,6 @@ namespace AndroidBinderator
 							MavenArtifactMd5 = md5,
 							MavenArtifactSha256 = sha256,
 							DownloadedArtifact = artifactFile,
-							Metadata = dependencyMetadata,
 						}
 					});
 				}
@@ -423,6 +402,39 @@ namespace AndroidBinderator
 
 
 			return projectModels;
+		}
+
+		static void AssignMetadata (BindingProjectModel project, TemplateConfig template)
+		{
+			// Calculate metadata from the config file and template file
+			var baseMetadata = new Dictionary<string, string>();
+
+			MergeValues(baseMetadata, project.Config.Metadata);
+			MergeValues(baseMetadata, template.Metadata);
+
+			// Add metadata for artifact
+			var artifactMetadata = new Dictionary<string, string>();
+			MergeValues(artifactMetadata, baseMetadata);
+
+			if (project.MavenArtifacts.FirstOrDefault() is MavenArtifactModel artifact)
+				MergeValues(artifactMetadata, artifact.MavenArtifactConfig.Metadata);
+
+			project.Metadata = artifactMetadata;
+
+			foreach (var art in project.MavenArtifacts)
+				art.Metadata = artifactMetadata;
+
+			// Add metadata for dependency
+			var dependencyMetadata = new Dictionary<string, string>();
+			MergeValues(dependencyMetadata, baseMetadata);
+
+			if (project.NuGetDependencies.FirstOrDefault() is NuGetDependencyModel depMapping)
+				MergeValues(dependencyMetadata, depMapping.MavenArtifactConfig.Metadata);
+
+			foreach (var dep in project.NuGetDependencies) {
+				dep.Metadata = dependencyMetadata;
+				dep.MavenArtifact.Metadata = dependencyMetadata;
+			}
 		}
 
 		static bool ShouldIncludeDependency(BindingConfig config, MavenArtifactConfig artifact, Dependency dependency, List<Exception> exceptions)
