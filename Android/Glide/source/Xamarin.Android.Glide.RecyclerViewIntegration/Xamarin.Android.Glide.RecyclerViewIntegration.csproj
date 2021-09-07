@@ -43,7 +43,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Xamarin.AndroidX.RecyclerView" Version="1.1.0.1" />
+    <PackageReference Include="Xamarin.AndroidX.RecyclerView" Version="1.2.1.1" />
   </ItemGroup>
 
   <ItemGroup>
