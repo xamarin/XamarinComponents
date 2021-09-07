@@ -2,8 +2,8 @@
   <PropertyGroup>
     <TargetFrameworks>monoandroid9.0</TargetFrameworks>
     <IsBindingProject>true</IsBindingProject>
-    <AssemblyName>CoilBase</AssemblyName>
-    <RootNamespace>CoilBase</RootNamespace>
+    <AssemblyName>Xamarin.CoilBase</AssemblyName>
+    <RootNamespace>Xamarin.CoilBase</RootNamespace>
     <AndroidUseLatestPlatformSdk>False</AndroidUseLatestPlatformSdk>
     <AndroidUseIntermediateDesignerFile>True</AndroidUseIntermediateDesignerFile>
     <AndroidClassParser>class-parse</AndroidClassParser>
@@ -11,7 +11,7 @@
   </PropertyGroup>
 
   <PropertyGroup>
-    <PackageId>Xamarin.Io.Coil.Kt.Coil.Base</PackageId>
+    <PackageId>Xamarin.Io.CoilKt.CoilBase</PackageId>
     <Title>Coil Base bindings for Xamarin.Android</Title>
     <Summary>Coil is an image loading library for Android backed by Kotlin Coroutines.</Summary>
     <Description>Coil is an image loading library for Android backed by Kotlin Coroutines.</Description>
