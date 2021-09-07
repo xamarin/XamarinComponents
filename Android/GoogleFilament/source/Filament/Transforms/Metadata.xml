@@ -1,3 +1,6 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <metadata>
+    <attr path="/api/package[@name='com.google.android.filament']" name="managedName">Google.Filament</attr>
+    <attr path="/api/package[@name='com.google.android.filament.android']" name="managedName">Google.Filament.Android</attr>
+    <attr path="/api/package[@name='com.google.android.filament.proguard']" name="managedName">Google.Filament.Proguard</attr>
 </metadata>

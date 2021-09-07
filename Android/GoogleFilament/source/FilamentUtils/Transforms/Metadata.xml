@@ -1,3 +1,5 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <metadata>
+    <attr path="/api/package[@name='com.google.android.filament.textured']" name="managedName">Google.Filament.Textured</attr>
+    <attr path="/api/package[@name='com.google.android.filament.utils']" name="managedName">Google.Filament.Utils</attr>
 </metadata>

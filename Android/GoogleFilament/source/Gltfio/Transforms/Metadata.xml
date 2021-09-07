@@ -1,3 +1,4 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <metadata>
+    <attr path="/api/package[@name='com.google.android.filament.gltfio']" name="managedName">Google.Filament.Gltfio</attr>
 </metadata>
