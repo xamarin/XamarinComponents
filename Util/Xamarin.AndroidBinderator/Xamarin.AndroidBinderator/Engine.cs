@@ -33,18 +33,8 @@ namespace AndroidBinderator
 
 		public static async Task BinderateAsync(BindingConfig config)
 		{
-			MavenRepository maven;
-
-			if (config.MavenRepositoryType == MavenRepoType.Directory)
-				maven = MavenRepository.FromDirectory(config.MavenRepositoryLocation);
-			else if (config.MavenRepositoryType == MavenRepoType.Url)
-				maven = MavenRepository.FromUrl(config.MavenRepositoryLocation);
-			else if (config.MavenRepositoryType == MavenRepoType.MavenCentral)
-				maven = MavenRepository.FromMavenCentral();
-			else
-				maven = MavenRepository.FromGoogle();
-
-			await maven.Refresh(config.MavenArtifacts.Where(ma => !ma.DependencyOnly).Select(ma => ma.GroupId).Distinct().ToArray());
+			// Prime our Maven repositories
+			await MavenFactory.Initialize(config);
 
 			if (config.DownloadExternals)
 			{
@@ -53,18 +43,20 @@ namespace AndroidBinderator
 					Directory.CreateDirectory(artifactDir);
 			}
 
-			await ProcessConfig(maven, config);
+			await ProcessConfig(config);
 		}
 
-		static async Task ProcessConfig(MavenRepository maven, BindingConfig config)
+		static async Task ProcessConfig(BindingConfig config)
 		{
 			var mavenProjects = new Dictionary<string, Project>();
 			var mavenGroups = new List<MavenGroup>();
 
 			foreach (var artifact in config.MavenArtifacts)
 			{
-                if (artifact.DependencyOnly)
-                    continue;
+				if (artifact.DependencyOnly)
+					continue;
+
+				var maven = MavenFactory.GetMavenRepository (config, artifact);
 
 				var mavenGroup = maven.Groups.FirstOrDefault(g => g.Id == artifact.GroupId);
 
@@ -77,29 +69,30 @@ namespace AndroidBinderator
 			}
 
 			if (config.DownloadExternals)
-				await DownloadArtifacts(maven, config, mavenProjects);
+				await DownloadArtifacts(config, mavenProjects);
 
 			var slnProjModels = new Dictionary<string, BindingProjectModel>();
+			var models = BuildProjectModels(config, mavenProjects);
 
-			foreach (var template in config.Templates)
-			{
-				var models = BuildProjectModels(config, template, mavenProjects);
+			var json = Newtonsoft.Json.JsonConvert.SerializeObject(models);
 
-				var json = Newtonsoft.Json.JsonConvert.SerializeObject(models);
+			if (config.Debug.DumpModels)
+				File.WriteAllText(Path.Combine(config.BasePath, "models.json"), json);
 
-				if (config.Debug.DumpModels)
-					File.WriteAllText(Path.Combine(config.BasePath, "models.json"), json);
+			var engine = new RazorLightEngineBuilder()
+				.UseMemoryCachingProvider()
+				.Build();
 
-				var inputTemplateFile = Path.Combine(config.BasePath, template.TemplateFile);
-				var templateSrc = File.ReadAllText(inputTemplateFile);
+			foreach (var model in models) {
+				var template_set = config.GetTemplateSet(model.MavenArtifacts.FirstOrDefault()?.MavenArtifactConfig?.TemplateSet);
 
-				var engine = new RazorLightEngineBuilder()
-					.UseMemoryCachingProvider()
-					.Build();
+				foreach (var template in template_set.Templates) {
+					var inputTemplateFile = Path.Combine(config.BasePath, template.TemplateFile);
+					var templateSrc = File.ReadAllText(inputTemplateFile);
 
-				foreach (var model in models)
-				{
-					var outputFile = new FileInfo(template.GetOutputFile(config, model));
+					AssignMetadata(model, template);
+
+					var outputFile = new FileInfo (template.GetOutputFile (config, model));
 					if (!outputFile.Directory.Exists)
 						outputFile.Directory.Create();
 
@@ -121,7 +114,7 @@ namespace AndroidBinderator
 			}
 		}
 
-		static async Task DownloadArtifacts(MavenRepository maven, BindingConfig config, Dictionary<string, Project> mavenProjects)
+		static async Task DownloadArtifacts(BindingConfig config, Dictionary<string, Project> mavenProjects)
 		{
 			var httpClient = new HttpClient();
 
@@ -131,6 +124,7 @@ namespace AndroidBinderator
                 if (mavenArtifact.DependencyOnly)
                     continue;
 
+				var maven = MavenFactory.GetMavenRepository(config, mavenArtifact);
 				var version = mavenArtifact.Version;
 
 				if (!mavenProjects.TryGetValue($"{mavenArtifact.GroupId}/{mavenArtifact.ArtifactId}-{mavenArtifact.Version}", out var mavenProject))
@@ -140,142 +134,65 @@ namespace AndroidBinderator
 					config.BasePath,
 					config.ExternalsDir,
 					mavenArtifact.GroupId);
-				var artifactFile = Path.Combine(artifactDir, config.DownloadExternalsWithFullName ? $"{mavenArtifact.GroupId}.{mavenArtifact.ArtifactId}.{mavenProject.Packaging}"
-					: $"{mavenArtifact.ArtifactId}.{mavenProject.Packaging}");
-				var md5File = artifactFile + ".md5";
-				var sha256File = artifactFile + ".sha256";
-				var sourcesFile = Path.Combine(artifactDir, config.DownloadExternalsWithFullName ? $"{mavenArtifact.GroupId}.{mavenArtifact.ArtifactId}-sources.jar"
-					: $"{mavenArtifact.ArtifactId}-sources.jar");
+
 				var artifactExtractDir = Path.Combine(artifactDir, mavenArtifact.ArtifactId);
 
-				if (!Directory.Exists(artifactDir))
-					Directory.CreateDirectory(artifactDir);
-				if (!Directory.Exists(artifactExtractDir))
-					Directory.CreateDirectory(artifactExtractDir);
+				Directory.CreateDirectory(artifactDir);
+				Directory.CreateDirectory(artifactExtractDir);
 
 				var mvnArt = maven.Groups.FirstOrDefault(g => g.Id == mavenArtifact.GroupId)?.Artifacts?.FirstOrDefault(a => a.Id == mavenArtifact.ArtifactId);
 
 				// Download artifact
-				using (var astrm = await mvnArt.OpenLibraryFile(mavenArtifact.Version, mavenProject.Packaging))
-				using (var sw = File.Create(artifactFile))
-					await astrm.CopyToAsync(sw);
+				var artifactFile = await DownloadPayload(mvnArt, mavenArtifact, mavenProject, artifactDir, config);
 
 				// Determine MD5
-				try
-				{
-					// First try download
-					using (var astrm = await mvnArt.OpenLibraryFile(mavenArtifact.Version, mavenProject.Packaging + ".md5"))
-					using (var sw = File.Create(md5File))
-						await astrm.CopyToAsync(sw);
-				}
-				catch (System.Exception exc)
-				{
+				var md5File = artifactFile + ".md5";
+				var md5_func = new Func<Task<Stream>>(() => mvnArt.OpenLibraryFile(mavenArtifact.Version, mavenProject.Packaging + ".md5"));
+
+				if (!(await TryDownloadFile(md5_func, md5File, ErrorLevel.Info))) {
 					// Then hash the downloaded artifact
 					using (var file = File.OpenRead(artifactFile))
-						File.WriteAllText(md5File, Util.HashMd5(file));
-
-					StringBuilder sb = new StringBuilder();
-					sb.AppendLine($"OpenLibraryFile failed for: {mavenArtifact.GroupId}, {mavenArtifact.ArtifactId}, {version}");
-					sb.AppendLine($"Message");
-					sb.AppendLine($"{exc.Message}");
-					Trace.WriteLine(sb.ToString());
+						File.WriteAllText (md5File, Util.HashMd5(file));
 				}
 
 				// Determine Sha256
-				try
-				{
-					// First try download, this almost certainly won't work
-					// but in case Maven ever starts supporting sha256 it should start
-					// they currently support .sha1 so there's no reason to believe the naming
-					// convention should be any different, and one day .sha256 may exist
-					using (var astrm = await mvnArt.OpenLibraryFile(mavenArtifact.Version, mavenProject.Packaging + ".sha256"))
-					using (var sw = File.Create(sha256File))
-						await astrm.CopyToAsync(sw);
-				}
-				catch (System.Exception exc)
-				{
+				var sha256File = artifactFile + ".sha256";
+				var sha_func = new Func<Task<Stream>>(() => mvnArt.OpenLibraryFile(mavenArtifact.Version, mavenProject.Packaging + ".sha256"));
+
+				// First try download, this almost certainly won't work
+				// but in case Maven ever starts supporting sha256 it should start
+				// they currently support .sha1 so there's no reason to believe the naming
+				// convention should be any different, and one day .sha256 may exist
+				if (!(await TryDownloadFile(sha_func, sha256File, ErrorLevel.Ignore))) {
 					// Create Sha256 hash if we couldn't download
 					using (var file = File.OpenRead(artifactFile))
 						File.WriteAllText(sha256File, Util.HashSha256(file));
-
-					StringBuilder sb = new StringBuilder();
-					sb.AppendLine($"OpenLibraryFile failed for: {mavenArtifact.GroupId}, {mavenArtifact.ArtifactId}, {version}");
-					sb.AppendLine($"Message");
-					sb.AppendLine($"{exc.Message}");
-					Trace.WriteLine(sb.ToString());
 				}
 
-				if (config.DownloadJavaSourceJars)
-				{
-					try
-					{
-						using (var astrm = await maven.OpenArtifactSourcesFile(mavenArtifact.GroupId, mavenArtifact.ArtifactId, version))
-						using (var sw = File.Create(sourcesFile))
-							await astrm.CopyToAsync(sw);
-					}
-					catch (System.Exception exc)
-					{
-						StringBuilder sb = new StringBuilder();
-						sb.AppendLine($"DownloadJavaSourceJars failed for: {mavenArtifact.GroupId}, {mavenArtifact.ArtifactId}, {version}");
-						sb.AppendLine($"Message");
-						sb.AppendLine($"{exc.Message}");
-						Trace.WriteLine(sb.ToString());
-					}
+				var base_file_name = Path.Combine (artifactDir, config.DownloadExternalsWithFullName ? $"{mavenArtifact.GroupId}.{mavenArtifact.ArtifactId}" : $"{mavenArtifact.ArtifactId}");
+
+				if (config.DownloadJavaSourceJars) {
+					var source_file = base_file_name + "-sources.jar";
+					var source_func = new Func<Task<Stream>>(() => maven.OpenArtifactSourcesFile(mavenArtifact.GroupId, mavenArtifact.ArtifactId, version));
+					await TryDownloadFile(source_func, source_file, ErrorLevel.Info);
 				}
 
-				if (config.DownloadPoms)
-				{
-					try
-					{
-						using (var astrm = await maven.OpenArtifactPomFile(mavenArtifact.GroupId, mavenArtifact.ArtifactId, version))
-						using (var sw = File.Create(sourcesFile))
-							await astrm.CopyToAsync(sw);
-					}
-					catch (System.Exception exc)
-					{
-						StringBuilder sb = new StringBuilder();
-						sb.AppendLine($"DownloadPoms failed for: {mavenArtifact.GroupId}, {mavenArtifact.ArtifactId}, {version}");
-						sb.AppendLine($"Message");
-						sb.AppendLine($"{exc.Message}");
-						Trace.WriteLine(sb.ToString());
-					}
+				if (config.DownloadPoms) {
+					var pom_file = base_file_name + ".pom";
+					var pom_func = new Func<Task<Stream>>(() => maven.OpenArtifactPomFile(mavenArtifact.GroupId, mavenArtifact.ArtifactId, version));
+					await TryDownloadFile(pom_func, pom_file, ErrorLevel.Info);
 				}
 
-				if (config.DownloadJavaDocJars)
-				{
-					try
-					{
-						// using (var astrm = await maven.OpenArtifactDocsFile(mavenArtifact.GroupId, mavenArtifact.ArtifactId, version))
-						// using (var sw = File.Create(sourcesFile))
-						// 	await astrm.CopyToAsync(sw);
-					}
-					catch(System.Exception exc)
-					{
-						StringBuilder sb = new StringBuilder();
-						sb.AppendLine($"DownloadJavaDocJars failed for: {mavenArtifact.GroupId}, {mavenArtifact.ArtifactId}, {version}");
-						sb.AppendLine($"Message");
-						sb.AppendLine($"{exc.Message}");
-						Trace.WriteLine(sb.ToString());
-					}
+				if (config.DownloadJavaDocJars) {
+					var javadoc_file = base_file_name + "-javadoc.jar";
+					var javadoc_func = new Func<Task<Stream>> (() => maven.OpenArtifactDocsFile (mavenArtifact.GroupId, mavenArtifact.ArtifactId, version));
+					await TryDownloadFile (javadoc_func, javadoc_file, ErrorLevel.Info);
 				}
 
-
-				if (config.DownloadMetadataFiles)
-				{
-					try
-					{
-						using (var astrm = await maven.OpenMavenMetadataFile(mavenArtifact.GroupId, mavenArtifact.ArtifactId))
-						using (var sw = File.Create(sourcesFile))
-							await astrm.CopyToAsync(sw);
-					}
-					catch(System.Exception exc)
-					{
-						StringBuilder sb = new StringBuilder();
-						sb.AppendLine($"OpenMavenMetadataFile failed for: {mavenArtifact.GroupId}, {mavenArtifact.ArtifactId}, {version}");
-						sb.AppendLine($"Message");
-						sb.AppendLine($"{exc.Message}");
-						Trace.WriteLine(sb.ToString());
-					}
+				if (config.DownloadMetadataFiles) {
+					var metadata_file = base_file_name + "-metadata.xml";
+					var metadata_func = new Func<Task<Stream>>(() => maven.OpenMavenMetadataFile(mavenArtifact.GroupId, mavenArtifact.ArtifactId));
+					await TryDownloadFile(metadata_func, metadata_file, ErrorLevel.Info);
 				}
 
 				if (Directory.Exists(artifactExtractDir))
@@ -287,14 +204,76 @@ namespace AndroidBinderator
 			}
 		}
 
-		static List<BindingProjectModel> BuildProjectModels(BindingConfig config, TemplateConfig template, Dictionary<string, Project> mavenProjects)
+		// Returns artifact output path
+		static async Task<string> DownloadPayload(Artifact mvnArt, MavenArtifactConfig mavenArtifact, Project mavenProject, string artifactDir, BindingConfig config)
+		{
+			var package_prefix = config.DownloadExternalsWithFullName ? $"{mavenArtifact.GroupId}." : string.Empty;
+			package_prefix += $"{mavenArtifact.ArtifactId}.";
+
+			var base_path = Path.Combine(artifactDir, package_prefix);
+
+			if (mavenProject.Packaging == "jar" || mavenProject.Packaging == "aar") {
+				var func = new Func<Task<Stream>>(() => mvnArt.OpenLibraryFile(mavenArtifact.Version, mavenProject.Packaging));
+				await TryDownloadFile(func, base_path + mavenProject.Packaging, ErrorLevel.Error);
+
+				return base_path + mavenProject.Packaging;
+			}
+
+			// Sometimes the "Packaging" isn't useful, like "bundle" for Guava or "pom" for KotlinX Coroutines.
+			// In this case we're going to try "jar" and "aar" to try to find the real payload
+
+			// Try jar
+			var jar_func = new Func<Task<Stream>>(() => mvnArt.OpenLibraryFile(mavenArtifact.Version, "jar"));
+			var jar_result = await TryDownloadFile(jar_func, base_path + "jar", ErrorLevel.Ignore);
+
+			if (jar_result) {
+				mavenProject.Packaging = "jar";
+				return base_path + "jar";
+			}
+
+			// Try aar
+			var aar_func = new Func<Task<Stream>>(() => mvnArt.OpenLibraryFile(mavenArtifact.Version, "aar"));
+			var aar_result = await TryDownloadFile(aar_func, base_path + "aar", ErrorLevel.Ignore);
+
+			if (aar_result) {
+				mavenProject.Packaging = "aar";
+				return base_path + "aar";
+			}
+
+			throw new Exception($"Could not find artifact payload {base_path + "jar"}. [Packaging was {mavenProject.Packaging}.]");
+		}
+
+		// Return value indicates download success
+		static async Task<bool> TryDownloadFile(Func<Task<Stream>> func, string outputFile, ErrorLevel level = ErrorLevel.Info)
+		{
+			try {
+				using (var astrm = await func.Invoke())
+				using (var sw = File.Create(outputFile))
+					await astrm.CopyToAsync(sw);
+
+				return true;
+			} catch (Exception ex) {
+				if (level == ErrorLevel.Error)
+					throw;
+
+				if (level == ErrorLevel.Info)
+					Trace.WriteLine($"Failed to download {Path.GetFileName (outputFile)}: {ex.Message}");
+
+				return false;
+			}
+		}
+
+		enum ErrorLevel
+		{
+			Ignore,
+			Info,
+			Error
+		}
+
+		static List<BindingProjectModel> BuildProjectModels(BindingConfig config, Dictionary<string, Project> mavenProjects)
 		{
 			var projectModels = new List<BindingProjectModel>();
 			var exceptions = new List<Exception>();
-
-			var baseMetadata = new Dictionary<string, string>();
-			MergeValues(baseMetadata, config.Metadata);
-			MergeValues(baseMetadata, template.Metadata);
 
 			foreach (var mavenArtifact in config.MavenArtifacts)
 			{
@@ -304,10 +283,6 @@ namespace AndroidBinderator
 				if (!mavenProjects.TryGetValue($"{mavenArtifact.GroupId}/{mavenArtifact.ArtifactId}-{mavenArtifact.Version}", out var mavenProject))
 					continue;
 
-				var artifactMetadata = new Dictionary<string, string>();
-				MergeValues(artifactMetadata, baseMetadata);
-				MergeValues(artifactMetadata, mavenArtifact.Metadata);
-
 				var projectModel = new BindingProjectModel
 				{
 					Name = mavenArtifact.ArtifactId,
@@ -316,7 +291,6 @@ namespace AndroidBinderator
 					NuGetVersionSuffix = config.NugetVersionSuffix,
 					MavenGroupId = mavenArtifact.GroupId,
 					AssemblyName = mavenArtifact.AssemblyName,
-					Metadata = artifactMetadata,
 					Config = config
 				};
 				projectModels.Add(projectModel);
@@ -341,9 +315,8 @@ namespace AndroidBinderator
 					MavenArtifactMd5 = md5,
 					MavenArtifactSha256 = sha256,
 					ProguardFile = File.Exists(proguardFile) ? GetRelativePath(proguardFile, config.BasePath).Replace("/", "\\") : null,
-					Metadata = artifactMetadata,
+					MavenArtifactConfig = mavenArtifact
 				});
-
 
 				// Gather maven dependencies to try and map out nuget dependencies
 				foreach (var mavenDep in mavenProject.Dependencies)
@@ -391,17 +364,13 @@ namespace AndroidBinderator
 						continue;
 					}
 
-					var dependencyMetadata = new Dictionary<string, string>();
-					MergeValues(dependencyMetadata, baseMetadata);
-					MergeValues(dependencyMetadata, depMapping.Metadata);
-
 					projectModel.NuGetDependencies.Add(new NuGetDependencyModel
 					{
 						IsProjectReference = !depMapping.DependencyOnly,
 						NuGetPackageId = depMapping.NugetPackageId,
 						NuGetVersionBase = depMapping.NugetVersion,
 						NuGetVersionSuffix = config.NugetVersionSuffix,
-						Metadata = dependencyMetadata,
+						MavenArtifactConfig = depMapping,
 
 						MavenArtifact = new MavenArtifactModel
 						{
@@ -411,7 +380,6 @@ namespace AndroidBinderator
 							MavenArtifactMd5 = md5,
 							MavenArtifactSha256 = sha256,
 							DownloadedArtifact = artifactFile,
-							Metadata = dependencyMetadata,
 						}
 					});
 				}
@@ -423,6 +391,39 @@ namespace AndroidBinderator
 
 
 			return projectModels;
+		}
+
+		static void AssignMetadata (BindingProjectModel project, TemplateConfig template)
+		{
+			// Calculate metadata from the config file and template file
+			var baseMetadata = new Dictionary<string, string>();
+
+			MergeValues(baseMetadata, project.Config.Metadata);
+			MergeValues(baseMetadata, template.Metadata);
+
+			// Add metadata for artifact
+			var artifactMetadata = new Dictionary<string, string>();
+			MergeValues(artifactMetadata, baseMetadata);
+
+			if (project.MavenArtifacts.FirstOrDefault() is MavenArtifactModel artifact)
+				MergeValues(artifactMetadata, artifact.MavenArtifactConfig.Metadata);
+
+			project.Metadata = artifactMetadata;
+
+			foreach (var art in project.MavenArtifacts)
+				art.Metadata = artifactMetadata;
+
+			// Add metadata for dependency
+			var dependencyMetadata = new Dictionary<string, string>();
+			MergeValues(dependencyMetadata, baseMetadata);
+
+			if (project.NuGetDependencies.FirstOrDefault() is NuGetDependencyModel depMapping)
+				MergeValues(dependencyMetadata, depMapping.MavenArtifactConfig.Metadata);
+
+			foreach (var dep in project.NuGetDependencies) {
+				dep.Metadata = dependencyMetadata;
+				dep.MavenArtifact.Metadata = dependencyMetadata;
+			}
 		}
 
 		static bool ShouldIncludeDependency(BindingConfig config, MavenArtifactConfig artifact, Dependency dependency, List<Exception> exceptions)
