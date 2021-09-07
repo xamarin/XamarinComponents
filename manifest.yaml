@@ -26,6 +26,11 @@
   TriggerPaths: [ Android/ConstraintLayout ]
   MacBuildTargets: [ ci ]
   WindowsBuildTargets: [ ci ]
+- Name: CoilBase
+  BuildScript: ./Android/CoilBase/build.cake
+  TriggerPaths: [ Android/CoilBase ]
+  MacBuildTargets: [ ci ]
+  WindowsBuildTargets: [ ci ]
 - Name: GoogleAndroidVending
   BuildScript: ./Android/GoogleAndroidVending/build.cake
   TriggerPaths: [ Android/GoogleAndroidVending ]
