@@ -1,0 +1,16 @@
+{
+  "Registrations":[ 
+    {
+      "Component": {
+        "Type": "Maven",
+        "Maven": {
+          "ArtifactId": "filament",
+          "GroupId": "com.google.filament",
+          "Version": "1.10.7",
+          "NuGetId": "Xamarin.Google.Filament"
+        }
+      }
+    }
+  ],
+  "Version": 1
+}

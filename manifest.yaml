@@ -465,6 +465,11 @@
   TriggerPaths: [ Android/Protobuf.JavaLite ]
   MacBuildTargets: [ ci ]
   WindowsBuildTargets: [ ci ]
+- Name: GoogleFilament
+  BuildScript: ./Android/GoogleFilament/build.cake
+  TriggerPaths: [ Android/GoogleFilament ]
+  MacBuildTargets: [ ci ]
+  WindowsBuildTargets: [ ci ]
 
 
 #######################################################
