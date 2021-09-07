@@ -4,10 +4,32 @@
       "Component": {
         "Type": "Maven",
         "Maven": {
-          "ArtifactId": "filament",
-          "GroupId": "com.google.filament",
+          "ArtifactId": "filament-android",
+          "GroupId": "com.google.android.filament",
           "Version": "1.10.7",
-          "NuGetId": "Xamarin.Google.Filament"
+          "NuGetId": "Xamarin.Google.Filament.Filament"
+        }
+      }
+    },
+    {
+      "Component": {
+        "Type": "Maven",
+        "Maven": {
+          "ArtifactId": "gltfio-android",
+          "GroupId": "com.google.android.filament",
+          "Version": "1.10.7",
+          "NuGetId": "Xamarin.Google.Filament.Gltfio"
+        }
+      }
+    },
+    {
+      "Component": {
+        "Type": "Maven",
+        "Maven": {
+          "ArtifactId": "filament-utils-android",
+          "GroupId": "com.google.android.filament",
+          "Version": "1.10.7",
+          "NuGetId": "Xamarin.Google.Filament.Utils"
         }
       }
     }
