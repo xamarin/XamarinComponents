@@ -1,8 +1,8 @@
 var TARGET = Argument ("t", Argument ("target", "ci"));
 
-var NUGET_PATCH = ".2";
+var NUGET_PATCH = ".1";
 
-var GLIDE_VERSION = "4.11.0";
+var GLIDE_VERSION = "4.12.0";
 var GLIDE_NUGET_VERSION = GLIDE_VERSION + NUGET_PATCH;
 var GLIDE_URL = $"https://repo1.maven.org/maven2/com/github/bumptech/glide/glide/{GLIDE_VERSION}/glide-{GLIDE_VERSION}.aar";
 
