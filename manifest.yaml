@@ -782,10 +782,10 @@
 #   BuildScript: ./XPlat/Stripe/bindings/Android/build.cake
 #   TriggerPaths: [ XPlat/Stripe/bindings/Android ]
 #   MacBuildTargets: [ nuget, samples ]
-- Name: DropboxApiV2
-  BuildScript: ./XPlat/DropboxApiV2/build.cake
-  TriggerPaths: [ XPlat/DropboxApiV2 ]
-  MacBuildTargets: [ nuget, samples ]
+# - Name: DropboxApiV2
+#   BuildScript: ./XPlat/DropboxApiV2/build.cake
+#   TriggerPaths: [ XPlat/DropboxApiV2 ]
+#   MacBuildTargets: [ nuget, samples ]
 - Name: OfficeUIFabricAndroid
   BuildScript: ./XPlat/OfficeUIFabric/Android/build.cake
   TriggerPaths: [ XPlat/OfficeUIFabric/Android ]
