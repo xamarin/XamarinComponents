@@ -43,9 +43,9 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Xamarin.AndroidX.Fragment" Version="1.3.3" />
-    <PackageReference Include="Xamarin.AndroidX.ExifInterface" Version="1.3.2.2" />
-    <PackageReference Include="Xamarin.AndroidX.VectorDrawable.Animated" Version="1.1.0.7" />
+    <PackageReference Include="Xamarin.AndroidX.Fragment" Version="1.3.6.1" />
+    <PackageReference Include="Xamarin.AndroidX.ExifInterface" Version="1.3.3" />
+    <PackageReference Include="Xamarin.AndroidX.VectorDrawable.Animated" Version="1.1.0.8" />
   </ItemGroup>
 
   <ItemGroup>
