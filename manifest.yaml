@@ -716,10 +716,10 @@
   BuildScript: ./XPlat/YouTube.Player/android/build.cake
   TriggerPaths: [ XPlat/YouTube.Player/android ]
   MacBuildTargets: [ nuget, samples ]
-- Name: YouTube.Player.iOS
-  BuildScript: ./XPlat/YouTube.Player/ios/build.cake
-  TriggerPaths: [ XPlat/YouTube.Player/ios ]
-  MacBuildTargets: [ nuget, samples ]
+# - Name: YouTube.Player.iOS
+#   BuildScript: ./XPlat/YouTube.Player/ios/build.cake
+#   TriggerPaths: [ XPlat/YouTube.Player/ios ]
+#   MacBuildTargets: [ nuget, samples ]
 - Name: CardIOAndroid
   BuildScript: ./XPlat/CardIO/Android/build.cake
   TriggerPaths: [ XPlat/CardIO/Android ]
@@ -783,14 +783,14 @@
   BuildScript: ./XPlat/Stripe/bindings/iOS/build.cake
   TriggerPaths: [ XPlat/Stripe/bindings/iOS ]
   MacBuildTargets: [ nuget, samples ]
-- Name: StripeAndroidBindings
-  BuildScript: ./XPlat/Stripe/bindings/Android/build.cake
-  TriggerPaths: [ XPlat/Stripe/bindings/Android ]
-  MacBuildTargets: [ nuget, samples ]
-- Name: DropboxApiV2
-  BuildScript: ./XPlat/DropboxApiV2/build.cake
-  TriggerPaths: [ XPlat/DropboxApiV2 ]
-  MacBuildTargets: [ nuget, samples ]
+# - Name: StripeAndroidBindings
+#   BuildScript: ./XPlat/Stripe/bindings/Android/build.cake
+#   TriggerPaths: [ XPlat/Stripe/bindings/Android ]
+#   MacBuildTargets: [ nuget, samples ]
+# - Name: DropboxApiV2
+#   BuildScript: ./XPlat/DropboxApiV2/build.cake
+#   TriggerPaths: [ XPlat/DropboxApiV2 ]
+#   MacBuildTargets: [ nuget, samples ]
 - Name: OfficeUIFabricAndroid
   BuildScript: ./XPlat/OfficeUIFabric/Android/build.cake
   TriggerPaths: [ XPlat/OfficeUIFabric/Android ]
