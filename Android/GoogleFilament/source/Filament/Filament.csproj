@@ -27,6 +27,10 @@
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
     <PackageVersion>1.10.7</PackageVersion>
   </PropertyGroup>
+  
+  <ItemGroup>
+    <PackageReference Include="Xamarin.AndroidX.Annotation" Version="1.1.0" />
+  </ItemGroup>
 
   <ItemGroup>
     <None Remove="Transforms\*.xml" />

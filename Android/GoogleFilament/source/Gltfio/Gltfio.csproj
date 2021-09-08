@@ -29,6 +29,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Xamarin.AndroidX.Annotation" Version="1.1.0" />
+  </ItemGroup>
+
+  <ItemGroup>
     <None Remove="Transforms\*.xml" />
     <TransformFile Include="Transforms\*.xml" />
   </ItemGroup>
