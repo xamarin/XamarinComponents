@@ -17,16 +17,13 @@ var CreatePodSpec = new Action<string, string> ((platform, version) => {
 		(v1 ? "install! 'cocoapods', :integrate_targets => false" : ""),
 		"target 'Xamarin' do",
 		"  pod 'SDWebImage', '" + POD_VERSION + "'",
-		"  pod 'SDWebImageAPNGCoder', '0.1.1'",
 		"  pod 'SDWebImageAVIFCoder', '0.9.0'",
 		"  pod 'SDWebImageFLIFCoder', '0.4.0'",
 		"  pod 'SDWebImageFLPlugin', '0.5.0'",
 		"  pod 'SDWebImageHEIFCoder', '0.10.1'",
-		"  pod 'SDWebImageLinkPlugin', '0.3.0'",
 		"  pod 'SDWebImagePDFCoder', '0.8.0'",
 		"  pod 'SDWebImagePhotosPlugin', '1.2.0'",
 		"  pod 'SDWebImageVideoCoder', '0.2.0'",
-		"  pod 'SDWebImageWebPCoder', '0.8.4'",
 		"end",
 	};
 
