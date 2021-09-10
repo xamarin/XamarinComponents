@@ -13,6 +13,6 @@ namespace AndroidBinderator
 
 		public static bool IsCompileDependency (this Dependency dependency) => string.IsNullOrWhiteSpace (dependency.Scope) || dependency.Scope.ToLowerInvariant ().Equals ("compile");
 
-		public static bool IsRuntimeDependency (this Dependency dependency) => dependency != null && dependency.Scope.ToLowerInvariant ().Equals ("runtime");
+		public static bool IsRuntimeDependency (this Dependency dependency) => dependency?.Scope != null && dependency.Scope.ToLowerInvariant ().Equals ("runtime");
 	}
 }
