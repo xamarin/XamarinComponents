@@ -1,0 +1,16 @@
+{
+  "Registrations": [
+    {
+      "Component": {
+        "Type": "Maven",
+        "Maven": {
+          "ArtifactId": "coil-base",
+          "GroupId": "io.coil-kt",
+          "Version": "1.3.2",
+          "NuGetId": "Xamarin.Io.CoilKt.CoilBase"
+        }
+      }
+    }
+  ],
+  "Version": 1
+}

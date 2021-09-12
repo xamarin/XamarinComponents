@@ -1,0 +1,141 @@
+﻿<metadata>
+	<!--
+  This sample removes the class: android.support.v4.content.AsyncTaskLoader.LoadTask:
+  <remove-node path="/api/package[@name='android.support.v4.content']/class[@name='AsyncTaskLoader.LoadTask']" />
+  
+  This sample removes the method: android.support.v4.content.CursorLoader.loadInBackground:
+  <remove-node path="/api/package[@name='android.support.v4.content']/class[@name='CursorLoader']/method[@name='loadInBackground']" />
+  -->
+
+	<attr 
+    path="/api/package[@name='coil']" 
+    name="managedName"
+    >
+    Xamarin.Coil
+  </attr>
+	<attr 
+    path="/api/package[@name='coil.annotation']" 
+    name="managedName"
+    >
+    Xamarin.Coil.Annotation
+  </attr>
+	<attr 
+    path="/api/package[@name='coil.bitmap']" 
+    name="managedName"
+    >
+    Xamarin.Coil.Bitmap
+  </attr>
+	<attr 
+    path="/api/package[@name='coil.collection']" 
+    name="managedName"
+    >
+    Xamarin.Coil.Collection
+  </attr>
+	<attr 
+    path="/api/package[@name='coil.decode']" 
+    name="managedName"
+    >
+    Xamarin.Coil.Decode
+  </attr>
+	<attr 
+    path="/api/package[@name='coil.drawable']" 
+    name="managedName"
+    >
+    Xamarin.Coil.Drawable
+  </attr>
+	<attr 
+    path="/api/package[@name='coil.fetch']" 
+    name="managedName"
+    >
+    Xamarin.Coil.Fetch
+  </attr>
+	<attr 
+    path="/api/package[@name='coil.intercept']" 
+    name="managedName"
+    >
+    Xamarin.Coil.Intercept
+  </attr>
+	<attr 
+    path="/api/package[@name='coil.map']" 
+    name="managedName"
+    >
+    Xamarin.Coil.Map
+  </attr>
+	<attr 
+    path="/api/package[@name='coil.memory']" 
+    name="managedName"
+    >
+    Xamarin.Coil.Memory
+  </attr>
+	<attr 
+    path="/api/package[@name='coil.network']" 
+    name="managedName"
+    >
+    Xamarin.Coil.Network
+  </attr>
+	<attr 
+    path="/api/package[@name='coil.request']" 
+    name="managedName"
+    >
+    Xamarin.Coil.Request
+  </attr>
+	<attr 
+    path="/api/package[@name='coil.size']" 
+    name="managedName"
+    >
+    Xamarin.Coil.Size
+  </attr>
+	<attr 
+    path="/api/package[@name='coil.target']" 
+    name="managedName"
+    >
+    Xamarin.Coil.Target
+  </attr>
+	<attr 
+    path="/api/package[@name='coil.transform']" 
+    name="managedName"
+    >
+    Xamarin.Coil.Transform
+  </attr>
+	<attr 
+    path="/api/package[@name='coil.transition']" 
+    name="managedName"
+    >
+    Xamarin.Coil.Transition
+  </attr>
+	<attr 
+    path="/api/package[@name='coil.util']" 
+    name="managedName"
+    >
+    Xamarin.Coil.Util
+  </attr>
+   
+  <attr
+    path="/api/package[@name='coil.size']/class[@name='OriginalSize.Creator']/method[@name='createFromParcel' and count(parameter)=1 and parameter[1][@type='android.os.Parcel']]"
+    name="managedReturn"
+    >
+    Java.Lang.Object
+  </attr>
+  <attr
+    path="/api/package[@name='coil.size']/class[@name='OriginalSize.Creator']/method[@name='newArray' and count(parameter)=1 and parameter[1][@type='int']]"
+    name="managedReturn"
+    >
+    Java.Lang.Object[]
+  </attr>
+
+  <attr
+    path="/api/package[@name='coil.size']/class[@name='PixelSize.Creator']/method[@name='createFromParcel' and count(parameter)=1 and parameter[1][@type='android.os.Parcel']]"
+    name="managedReturn"
+    >
+    Java.Lang.Object
+  </attr>
+  <attr
+    path="/api/package[@name='coil.size']/class[@name='PixelSize.Creator']/method[@name='newArray' and count(parameter)=1 and parameter[1][@type='int']]"
+    name="managedReturn"
+    >
+    Java.Lang.Object[]
+  </attr>
+
+
+
+</metadata>
