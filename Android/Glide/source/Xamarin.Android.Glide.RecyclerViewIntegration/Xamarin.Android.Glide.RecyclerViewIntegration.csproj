@@ -13,7 +13,7 @@
     <PackageProjectUrl>https://go.microsoft.com/fwlink/?linkid=864954</PackageProjectUrl>
     <PackageLicenseUrl>https://go.microsoft.com/fwlink/?linkid=865026</PackageLicenseUrl>
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
-    <PackageVersion>4.12.0</PackageVersion>
+    <PackageVersion>4.12.0.1</PackageVersion>
   </PropertyGroup>
 
   <ItemGroup>

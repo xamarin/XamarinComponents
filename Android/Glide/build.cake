@@ -1,6 +1,6 @@
 var TARGET = Argument ("t", Argument ("target", "ci"));
 
-var NUGET_PATCH = "";
+var NUGET_PATCH = ".1";
 
 var GLIDE_VERSION = "4.12.0";
 var GLIDE_NUGET_VERSION = GLIDE_VERSION + NUGET_PATCH;
