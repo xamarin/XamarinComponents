@@ -324,7 +324,7 @@ namespace AndroidBinderator
 					if (!ShouldIncludeDependency(config, mavenArtifact, mavenDep, exceptions))
 						continue;
 
-					mavenDep.Version = FixVersion(mavenDep.Version);
+					mavenDep.Version = FixVersion(mavenDep.Version, mavenProject);
 
 					var depMapping = config.MavenArtifacts.FirstOrDefault(
 						ma => !string.IsNullOrEmpty(ma.Version)
@@ -477,10 +477,27 @@ namespace AndroidBinderator
 		// VersionRange.Parse cannot handle single number versions that we sometimes see in Maven, like "1".
 		// Fix them to be "1.0".
 		// https://github.com/NuGet/Home/issues/10342
-		static string FixVersion(string version)
+		static string FixVersion(string version, Project project)
 		{
 			if (string.IsNullOrWhiteSpace(version))
 				return version;
+
+			// Handle versions with Properties, like:
+			// <properties>
+			//   <java.version>1.8</java.version>
+			//   <gson.version>2.8.6</gson.version>
+			// </properties>
+			// <dependencies>
+			//   <dependency>
+			//     <groupId>com.google.code.gson</groupId>
+			//     <artifactId>gson</artifactId>
+			//     <version>${gson.version}</version>
+			//   </dependency>
+			// </dependencies>
+			if (project?.Properties != null) {
+				foreach (var prop in project.Properties.Any)
+					version = version.Replace($"${{{prop.Name.LocalName}}}", prop.Value);
+			}
 
 			if (!version.Contains("."))
 				version += ".0";
