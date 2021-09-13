@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project Sdk="MSBuild.Sdk.Extras">
     <PropertyGroup>
-        <TargetFrameworks>MonoAndroid10.0</TargetFrameworks>
+        <TargetFramework>MonoAndroid9.0</TargetFramework>
         <IsBindingProject>true</IsBindingProject>
         <AssemblyName>OpenId.AppAuth.Android</AssemblyName>
         <MonoAndroidResourcePrefix>Resources</MonoAndroidResourcePrefix>
