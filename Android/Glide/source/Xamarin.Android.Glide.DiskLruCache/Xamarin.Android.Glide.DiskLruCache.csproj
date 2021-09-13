@@ -1,7 +1,5 @@
 ﻿<Project Sdk="Xamarin.Legacy.Sdk">
   <PropertyGroup>
-    <TargetFrameworks>net6.0-android30;MonoAndroid10.0</TargetFrameworks>
-    <IsBindingProject>true</IsBindingProject>
     <RootNamespace>Bumptech.Glide.DiskLruCache</RootNamespace>
   </PropertyGroup>
 
@@ -19,14 +17,13 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Include="..\..\externals\disklrucache.jar">
-      <Link>disklrucache.jar</Link>
-    </None>
+    <None Include="..\..\externals\disklrucache.jar" Pack="True" PackagePath="jar" />
+    <None Include="$(MSBuildThisFileName).targets" Pack="True" PackagePath="@(GlideBuildFolders)" />
     <None Include="..\..\External-Dependency-Info.txt" Pack="True" PackagePath="THIRD-PARTY-NOTICES.txt" />
   </ItemGroup>
 
   <ItemGroup>
-    <EmbeddedJar Include="..\..\externals\disklrucache.jar" />
+    <InputJar Include="..\..\externals\disklrucache.jar" />
   </ItemGroup>
 
 </Project>

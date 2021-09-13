@@ -1,8 +1,15 @@
 <Project>
-  <!-- see: https://github.com/xamarin/xamarin-android/blob/5f408ebb22df51b598c62f776ee0f82f92661b58/Documentation/guides/OneDotNetBindingProjects.md -->
   <PropertyGroup>
+    <TargetFrameworks>net6.0-android30;MonoAndroid10.0</TargetFrameworks>
+    <IsBindingProject>true</IsBindingProject>
+    <!-- see: https://github.com/xamarin/xamarin-android/blob/5f408ebb22df51b598c62f776ee0f82f92661b58/Documentation/guides/OneDotNetBindingProjects.md -->
     <AndroidBoundInterfacesContainConstants>false</AndroidBoundInterfacesContainConstants>
     <AndroidBoundInterfacesContainTypes>false</AndroidBoundInterfacesContainTypes>
     <AndroidBoundInterfacesContainStaticAndDefaultInterfaceMethods>false</AndroidBoundInterfacesContainStaticAndDefaultInterfaceMethods>
   </PropertyGroup>
+  <ItemGroup>
+    <_TFMs Include="@(TargetFrameworks)" />
+    <GlideBuildFolders Include="@(_TFMs->'build\%(Identity))" />
+    <GlideBuildFolders Include="@(_TFMs->'buildTransitive\%(Identity))" />
+  </ItemGroup>
 </Project>

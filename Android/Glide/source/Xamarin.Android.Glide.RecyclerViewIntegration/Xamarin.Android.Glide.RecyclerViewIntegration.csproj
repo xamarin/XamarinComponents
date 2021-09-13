@@ -1,7 +1,5 @@
 ﻿<Project Sdk="Xamarin.Legacy.Sdk">
   <PropertyGroup>
-    <TargetFrameworks>net6.0-android30;MonoAndroid10.0</TargetFrameworks>
-    <IsBindingProject>true</IsBindingProject>
     <RootNamespace>Bumptech.Glide.Integration.RecyclerView</RootNamespace>
   </PropertyGroup>
 
@@ -19,14 +17,13 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Include="..\..\externals\recyclerview-integration.aar">
-      <Link>recyclerview-integration.aar</Link>
-    </None>
+    <None Include="..\..\externals\recyclerview-integration.aar" Pack="True" PackagePath="aar" />
+    <None Include="$(MSBuildThisFileName).targets" Pack="True" PackagePath="@(GlideBuildFolders)" />
     <None Include="..\..\External-Dependency-Info.txt" Pack="True" PackagePath="THIRD-PARTY-NOTICES.txt" />
   </ItemGroup>
 
   <ItemGroup>
-    <LibraryProjectZip Include="..\..\externals\recyclerview-integration.aar" />
+    <InputJar Include="..\..\externals\recyclerview-integration\classes.jar" />
   </ItemGroup>
 
   <ItemGroup>

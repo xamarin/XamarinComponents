@@ -1,7 +1,5 @@
 ﻿<Project Sdk="Xamarin.Legacy.Sdk">
   <PropertyGroup>
-    <TargetFrameworks>net6.0-android30;MonoAndroid10.0</TargetFrameworks>
-    <IsBindingProject>true</IsBindingProject>
     <RootNamespace>Bumptech.Glide.GifDecoder</RootNamespace>
   </PropertyGroup>
 
@@ -23,14 +21,13 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Include="..\..\externals\gifdecoder.aar">
-      <Link>gifdecoder.aar</Link>
-    </None>
+    <None Include="..\..\externals\gifdecoder.aar" Pack="True" PackagePath="aar" />
+    <None Include="$(MSBuildThisFileName).targets" Pack="True" PackagePath="@(GlideBuildFolders)" />
     <None Include="..\..\External-Dependency-Info.txt" Pack="True" PackagePath="THIRD-PARTY-NOTICES.txt" />
   </ItemGroup>
 
   <ItemGroup>
-    <LibraryProjectZip Include="..\..\externals\gifdecoder.aar" />
+    <InputJar Include="..\..\externals\gifdecoder\classes.jar" />
   </ItemGroup>
 
 </Project>

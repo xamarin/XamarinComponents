@@ -19,7 +19,7 @@ var RECYCLERVIEW_NUGET_VERSION = RECYCLERVIEW_VERSION + NUGET_PATCH;
 var RECYCLERVIEW_URL = $"https://repo1.maven.org/maven2/com/github/bumptech/glide/recyclerview-integration/{RECYCLERVIEW_VERSION}/recyclerview-integration-{RECYCLERVIEW_VERSION}.aar";
 
 Task ("externals")
-	.WithCriteria (!FileExists ("./externals/glide.aar"))
+	.WithCriteria (!FileExists ("./externals/glide/classes.jar"))
 	.Does (() =>
 {
 	if (!DirectoryExists ("./externals/"))
@@ -27,12 +27,15 @@ Task ("externals")
 
 	// Download Dependencies
 	DownloadFile (GLIDE_URL, "./externals/glide.aar");
+	Unzip ("./externals/glide.aar", "./externals/glide/");
 	
 	DownloadFile(GIFDECODER_URL, "./externals/gifdecoder.aar");
+	Unzip ("./externals/gifdecoder.aar", "./externals/gifdecoder/");
 
 	DownloadFile(DISKLRUCACHE_URL, "./externals/disklrucache.jar");
 
 	DownloadFile(RECYCLERVIEW_URL, "./externals/recyclerview-integration.aar");
+	Unzip ("./externals/recyclerview-integration.aar", "./externals/recyclerview-integration/");
 
 	// Update .csproj nuget versions
 	XmlPoke("./source/Xamarin.Android.Glide/Xamarin.Android.Glide.csproj", "/Project/PropertyGroup/PackageVersion", GLIDE_NUGET_VERSION);
