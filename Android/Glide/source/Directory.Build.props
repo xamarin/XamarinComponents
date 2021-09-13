@@ -1,6 +1,6 @@
 <Project>
   <PropertyGroup>
-    <TargetFrameworks>net6.0-android30;MonoAndroid10.0</TargetFrameworks>
+    <TargetFrameworks>net6.0-android30.0;MonoAndroid10.0</TargetFrameworks>
     <IsBindingProject>true</IsBindingProject>
     <Authors>Microsoft</Authors>
     <Owners>Microsoft</Owners>
