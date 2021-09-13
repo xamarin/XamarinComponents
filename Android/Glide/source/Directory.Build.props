@@ -2,6 +2,13 @@
   <PropertyGroup>
     <TargetFrameworks>net6.0-android30;MonoAndroid10.0</TargetFrameworks>
     <IsBindingProject>true</IsBindingProject>
+    <PackageVersion>4.12.0.1</PackageVersion>
+    <Authors>Microsoft</Authors>
+    <Owners>Microsoft</Owners>
+    <Copyright>© Microsoft Corporation. All rights reserved.</Copyright>
+    <PackageProjectUrl>https://go.microsoft.com/fwlink/?linkid=864954</PackageProjectUrl>
+    <PackageLicenseUrl>https://go.microsoft.com/fwlink/?linkid=865026</PackageLicenseUrl>
+    <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
     <!-- see: https://github.com/xamarin/xamarin-android/blob/5f408ebb22df51b598c62f776ee0f82f92661b58/Documentation/guides/OneDotNetBindingProjects.md -->
     <AndroidBoundInterfacesContainConstants>false</AndroidBoundInterfacesContainConstants>
     <AndroidBoundInterfacesContainTypes>false</AndroidBoundInterfacesContainTypes>

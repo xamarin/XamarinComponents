@@ -7,13 +7,6 @@
     <PackageId>Xamarin.Android.Glide.GifDecoder</PackageId>
     <Title>Glide GIF Decoder for Xamarin.Android</Title>
     <PackageDescription>Xamarin.Android bindings for Glide GIF Decoder</PackageDescription>
-    <Authors>Microsoft</Authors>
-    <Owners>Microsoft</Owners>
-    <Copyright>© Microsoft Corporation. All rights reserved.</Copyright>
-    <PackageProjectUrl>https://go.microsoft.com/fwlink/?linkid=864954</PackageProjectUrl>
-    <PackageLicenseUrl>https://go.microsoft.com/fwlink/?linkid=865026</PackageLicenseUrl>
-    <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
-    <PackageVersion>4.12.0.1</PackageVersion>
   </PropertyGroup>
 
   <ItemGroup>
