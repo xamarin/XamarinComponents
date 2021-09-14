@@ -10,6 +10,39 @@
           "NuGetId": "Square.OkHttp3"
         }
       }
+    },
+    {
+      "Component": {
+        "Type": "Maven",
+        "Maven": {
+          "ArtifactId": "okhttp-urlconnection",
+          "GroupId": "com.squareup.okhttp3",
+          "Version": "3.14.9",
+          "NuGetId": "Square.OkHttp3.UrlConnection"
+        }
+      }
+    },
+    {
+      "Component": {
+        "Type": "Maven",
+        "Maven": {
+          "ArtifactId": "logging-interceptor",
+          "GroupId": "com.squareup.okhttp3",
+          "Version": "3.14.9",
+          "NuGetId": "Square.OkHttp3.LoggingInterceptor"
+        }
+      }
+    },
+    {
+      "Component": {
+        "Type": "Maven",
+        "Maven": {
+          "ArtifactId": "okhttp-ws",
+          "GroupId": "com.squareup.okhttp3",
+          "Version": "3.4.2",
+          "NuGetId": "Square.OkHttp3.WS"
+        }
+      }
     }
   ],
   "Version": 1

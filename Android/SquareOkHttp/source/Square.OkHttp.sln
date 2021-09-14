@@ -3,6 +3,10 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Square.OkHttp", "Square.OkHttp\Square.OkHttp.csproj", "{57FB9D46-F6EB-49B7-AF8C-06E063961F3A}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Square.OkHttp.WS", "Square.OkHttp.WS\Square.OkHttp.WS.csproj", "{8BB7484D-43F5-4C1C-953F-6FF83AFA177D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Square.OkHttp.UrlConnection", "Square.OkHttp.UrlConnection\Square.OkHttp.UrlConnection.csproj", "{5EA8F782-B5F1-481D-9BCC-0209F0969F81}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -13,5 +17,13 @@ Global
 		{57FB9D46-F6EB-49B7-AF8C-06E063961F3A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{57FB9D46-F6EB-49B7-AF8C-06E063961F3A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{57FB9D46-F6EB-49B7-AF8C-06E063961F3A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8BB7484D-43F5-4C1C-953F-6FF83AFA177D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8BB7484D-43F5-4C1C-953F-6FF83AFA177D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8BB7484D-43F5-4C1C-953F-6FF83AFA177D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8BB7484D-43F5-4C1C-953F-6FF83AFA177D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5EA8F782-B5F1-481D-9BCC-0209F0969F81}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5EA8F782-B5F1-481D-9BCC-0209F0969F81}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5EA8F782-B5F1-481D-9BCC-0209F0969F81}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5EA8F782-B5F1-481D-9BCC-0209F0969F81}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
