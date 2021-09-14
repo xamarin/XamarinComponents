@@ -15,7 +15,7 @@
   </PropertyGroup>
   <ItemGroup>
     <_TFMs Include="@(TargetFrameworks)" />
-    <GlideBuildFolders Include="@(_TFMs->'build\%(Identity))" />
-    <GlideBuildFolders Include="@(_TFMs->'buildTransitive\%(Identity))" />
+    <GlideBuildFolders Include="@(_TFMs->'build\%(Identity)')" />
+    <GlideBuildFolders Include="@(_TFMs->'buildTransitive\%(Identity)')" />
   </ItemGroup>
 </Project>
