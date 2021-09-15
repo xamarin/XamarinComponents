@@ -134,142 +134,65 @@ namespace AndroidBinderator
 					config.BasePath,
 					config.ExternalsDir,
 					mavenArtifact.GroupId);
-				var artifactFile = Path.Combine(artifactDir, config.DownloadExternalsWithFullName ? $"{mavenArtifact.GroupId}.{mavenArtifact.ArtifactId}.{mavenProject.Packaging}"
-					: $"{mavenArtifact.ArtifactId}.{mavenProject.Packaging}");
-				var md5File = artifactFile + ".md5";
-				var sha256File = artifactFile + ".sha256";
-				var sourcesFile = Path.Combine(artifactDir, config.DownloadExternalsWithFullName ? $"{mavenArtifact.GroupId}.{mavenArtifact.ArtifactId}-sources.jar"
-					: $"{mavenArtifact.ArtifactId}-sources.jar");
+
 				var artifactExtractDir = Path.Combine(artifactDir, mavenArtifact.ArtifactId);
 
-				if (!Directory.Exists(artifactDir))
-					Directory.CreateDirectory(artifactDir);
-				if (!Directory.Exists(artifactExtractDir))
-					Directory.CreateDirectory(artifactExtractDir);
+				Directory.CreateDirectory(artifactDir);
+				Directory.CreateDirectory(artifactExtractDir);
 
 				var mvnArt = maven.Groups.FirstOrDefault(g => g.Id == mavenArtifact.GroupId)?.Artifacts?.FirstOrDefault(a => a.Id == mavenArtifact.ArtifactId);
 
 				// Download artifact
-				using (var astrm = await mvnArt.OpenLibraryFile(mavenArtifact.Version, mavenProject.Packaging))
-				using (var sw = File.Create(artifactFile))
-					await astrm.CopyToAsync(sw);
+				var artifactFile = await DownloadPayload(mvnArt, mavenArtifact, mavenProject, artifactDir, config);
 
 				// Determine MD5
-				try
-				{
-					// First try download
-					using (var astrm = await mvnArt.OpenLibraryFile(mavenArtifact.Version, mavenProject.Packaging + ".md5"))
-					using (var sw = File.Create(md5File))
-						await astrm.CopyToAsync(sw);
-				}
-				catch (System.Exception exc)
-				{
+				var md5File = artifactFile + ".md5";
+				var md5_func = new Func<Task<Stream>>(() => mvnArt.OpenLibraryFile(mavenArtifact.Version, mavenProject.Packaging + ".md5"));
+
+				if (!(await TryDownloadFile(md5_func, md5File, ErrorLevel.Info))) {
 					// Then hash the downloaded artifact
 					using (var file = File.OpenRead(artifactFile))
-						File.WriteAllText(md5File, Util.HashMd5(file));
-
-					StringBuilder sb = new StringBuilder();
-					sb.AppendLine($"OpenLibraryFile failed for: {mavenArtifact.GroupId}, {mavenArtifact.ArtifactId}, {version}");
-					sb.AppendLine($"Message");
-					sb.AppendLine($"{exc.Message}");
-					Trace.WriteLine(sb.ToString());
+						File.WriteAllText (md5File, Util.HashMd5(file));
 				}
 
 				// Determine Sha256
-				try
-				{
-					// First try download, this almost certainly won't work
-					// but in case Maven ever starts supporting sha256 it should start
-					// they currently support .sha1 so there's no reason to believe the naming
-					// convention should be any different, and one day .sha256 may exist
-					using (var astrm = await mvnArt.OpenLibraryFile(mavenArtifact.Version, mavenProject.Packaging + ".sha256"))
-					using (var sw = File.Create(sha256File))
-						await astrm.CopyToAsync(sw);
-				}
-				catch (System.Exception exc)
-				{
+				var sha256File = artifactFile + ".sha256";
+				var sha_func = new Func<Task<Stream>>(() => mvnArt.OpenLibraryFile(mavenArtifact.Version, mavenProject.Packaging + ".sha256"));
+
+				// First try download, this almost certainly won't work
+				// but in case Maven ever starts supporting sha256 it should start
+				// they currently support .sha1 so there's no reason to believe the naming
+				// convention should be any different, and one day .sha256 may exist
+				if (!(await TryDownloadFile(sha_func, sha256File, ErrorLevel.Ignore))) {
 					// Create Sha256 hash if we couldn't download
 					using (var file = File.OpenRead(artifactFile))
 						File.WriteAllText(sha256File, Util.HashSha256(file));
-
-					StringBuilder sb = new StringBuilder();
-					sb.AppendLine($"OpenLibraryFile failed for: {mavenArtifact.GroupId}, {mavenArtifact.ArtifactId}, {version}");
-					sb.AppendLine($"Message");
-					sb.AppendLine($"{exc.Message}");
-					Trace.WriteLine(sb.ToString());
 				}
 
-				if (config.DownloadJavaSourceJars)
-				{
-					try
-					{
-						using (var astrm = await maven.OpenArtifactSourcesFile(mavenArtifact.GroupId, mavenArtifact.ArtifactId, version))
-						using (var sw = File.Create(sourcesFile))
-							await astrm.CopyToAsync(sw);
-					}
-					catch (System.Exception exc)
-					{
-						StringBuilder sb = new StringBuilder();
-						sb.AppendLine($"DownloadJavaSourceJars failed for: {mavenArtifact.GroupId}, {mavenArtifact.ArtifactId}, {version}");
-						sb.AppendLine($"Message");
-						sb.AppendLine($"{exc.Message}");
-						Trace.WriteLine(sb.ToString());
-					}
+				var base_file_name = Path.Combine (artifactDir, config.DownloadExternalsWithFullName ? $"{mavenArtifact.GroupId}.{mavenArtifact.ArtifactId}" : $"{mavenArtifact.ArtifactId}");
+
+				if (config.DownloadJavaSourceJars) {
+					var source_file = base_file_name + "-sources.jar";
+					var source_func = new Func<Task<Stream>>(() => maven.OpenArtifactSourcesFile(mavenArtifact.GroupId, mavenArtifact.ArtifactId, version));
+					await TryDownloadFile(source_func, source_file, ErrorLevel.Info);
 				}
 
-				if (config.DownloadPoms)
-				{
-					try
-					{
-						using (var astrm = await maven.OpenArtifactPomFile(mavenArtifact.GroupId, mavenArtifact.ArtifactId, version))
-						using (var sw = File.Create(sourcesFile))
-							await astrm.CopyToAsync(sw);
-					}
-					catch (System.Exception exc)
-					{
-						StringBuilder sb = new StringBuilder();
-						sb.AppendLine($"DownloadPoms failed for: {mavenArtifact.GroupId}, {mavenArtifact.ArtifactId}, {version}");
-						sb.AppendLine($"Message");
-						sb.AppendLine($"{exc.Message}");
-						Trace.WriteLine(sb.ToString());
-					}
+				if (config.DownloadPoms) {
+					var pom_file = base_file_name + ".pom";
+					var pom_func = new Func<Task<Stream>>(() => maven.OpenArtifactPomFile(mavenArtifact.GroupId, mavenArtifact.ArtifactId, version));
+					await TryDownloadFile(pom_func, pom_file, ErrorLevel.Info);
 				}
 
-				if (config.DownloadJavaDocJars)
-				{
-					try
-					{
-						// using (var astrm = await maven.OpenArtifactDocsFile(mavenArtifact.GroupId, mavenArtifact.ArtifactId, version))
-						// using (var sw = File.Create(sourcesFile))
-						// 	await astrm.CopyToAsync(sw);
-					}
-					catch(System.Exception exc)
-					{
-						StringBuilder sb = new StringBuilder();
-						sb.AppendLine($"DownloadJavaDocJars failed for: {mavenArtifact.GroupId}, {mavenArtifact.ArtifactId}, {version}");
-						sb.AppendLine($"Message");
-						sb.AppendLine($"{exc.Message}");
-						Trace.WriteLine(sb.ToString());
-					}
+				if (config.DownloadJavaDocJars) {
+					var javadoc_file = base_file_name + "-javadoc.jar";
+					var javadoc_func = new Func<Task<Stream>> (() => maven.OpenArtifactDocsFile (mavenArtifact.GroupId, mavenArtifact.ArtifactId, version));
+					await TryDownloadFile (javadoc_func, javadoc_file, ErrorLevel.Info);
 				}
 
-
-				if (config.DownloadMetadataFiles)
-				{
-					try
-					{
-						using (var astrm = await maven.OpenMavenMetadataFile(mavenArtifact.GroupId, mavenArtifact.ArtifactId))
-						using (var sw = File.Create(sourcesFile))
-							await astrm.CopyToAsync(sw);
-					}
-					catch(System.Exception exc)
-					{
-						StringBuilder sb = new StringBuilder();
-						sb.AppendLine($"OpenMavenMetadataFile failed for: {mavenArtifact.GroupId}, {mavenArtifact.ArtifactId}, {version}");
-						sb.AppendLine($"Message");
-						sb.AppendLine($"{exc.Message}");
-						Trace.WriteLine(sb.ToString());
-					}
+				if (config.DownloadMetadataFiles) {
+					var metadata_file = base_file_name + "-metadata.xml";
+					var metadata_func = new Func<Task<Stream>>(() => maven.OpenMavenMetadataFile(mavenArtifact.GroupId, mavenArtifact.ArtifactId));
+					await TryDownloadFile(metadata_func, metadata_file, ErrorLevel.Info);
 				}
 
 				if (Directory.Exists(artifactExtractDir))
@@ -279,6 +202,72 @@ namespace AndroidBinderator
 				if (mavenProject.Packaging.ToLowerInvariant() == "aar")
 					ZipFile.ExtractToDirectory(artifactFile, artifactExtractDir);
 			}
+		}
+
+		// Returns artifact output path
+		static async Task<string> DownloadPayload(Artifact mvnArt, MavenArtifactConfig mavenArtifact, Project mavenProject, string artifactDir, BindingConfig config)
+		{
+			var package_prefix = config.DownloadExternalsWithFullName ? $"{mavenArtifact.GroupId}." : string.Empty;
+			package_prefix += $"{mavenArtifact.ArtifactId}.";
+
+			var base_path = Path.Combine(artifactDir, package_prefix);
+
+			if (mavenProject.Packaging == "jar" || mavenProject.Packaging == "aar") {
+				var func = new Func<Task<Stream>>(() => mvnArt.OpenLibraryFile(mavenArtifact.Version, mavenProject.Packaging));
+				await TryDownloadFile(func, base_path + mavenProject.Packaging, ErrorLevel.Error);
+
+				return base_path + mavenProject.Packaging;
+			}
+
+			// Sometimes the "Packaging" isn't useful, like "bundle" for Guava or "pom" for KotlinX Coroutines.
+			// In this case we're going to try "jar" and "aar" to try to find the real payload
+
+			// Try jar
+			var jar_func = new Func<Task<Stream>>(() => mvnArt.OpenLibraryFile(mavenArtifact.Version, "jar"));
+			var jar_result = await TryDownloadFile(jar_func, base_path + "jar", ErrorLevel.Ignore);
+
+			if (jar_result) {
+				mavenProject.Packaging = "jar";
+				return base_path + "jar";
+			}
+
+			// Try aar
+			var aar_func = new Func<Task<Stream>>(() => mvnArt.OpenLibraryFile(mavenArtifact.Version, "aar"));
+			var aar_result = await TryDownloadFile(aar_func, base_path + "aar", ErrorLevel.Ignore);
+
+			if (aar_result) {
+				mavenProject.Packaging = "aar";
+				return base_path + "aar";
+			}
+
+			throw new Exception($"Could not find artifact payload {base_path + "jar"}. [Packaging was {mavenProject.Packaging}.]");
+		}
+
+		// Return value indicates download success
+		static async Task<bool> TryDownloadFile(Func<Task<Stream>> func, string outputFile, ErrorLevel level = ErrorLevel.Info)
+		{
+			try {
+				using (var astrm = await func.Invoke())
+				using (var sw = File.Create(outputFile))
+					await astrm.CopyToAsync(sw);
+
+				return true;
+			} catch (Exception ex) {
+				if (level == ErrorLevel.Error)
+					throw;
+
+				if (level == ErrorLevel.Info)
+					Trace.WriteLine($"Failed to download {Path.GetFileName (outputFile)}: {ex.Message}");
+
+				return false;
+			}
+		}
+
+		enum ErrorLevel
+		{
+			Ignore,
+			Info,
+			Error
 		}
 
 		static List<BindingProjectModel> BuildProjectModels(BindingConfig config, Dictionary<string, Project> mavenProjects)
@@ -335,7 +324,7 @@ namespace AndroidBinderator
 					if (!ShouldIncludeDependency(config, mavenArtifact, mavenDep, exceptions))
 						continue;
 
-					mavenDep.Version = FixVersion(mavenDep.Version);
+					mavenDep.Version = FixVersion(mavenDep.Version, mavenProject);
 
 					var depMapping = config.MavenArtifacts.FirstOrDefault(
 						ma => !string.IsNullOrEmpty(ma.Version)
@@ -488,10 +477,27 @@ namespace AndroidBinderator
 		// VersionRange.Parse cannot handle single number versions that we sometimes see in Maven, like "1".
 		// Fix them to be "1.0".
 		// https://github.com/NuGet/Home/issues/10342
-		static string FixVersion(string version)
+		static string FixVersion(string version, Project project)
 		{
 			if (string.IsNullOrWhiteSpace(version))
 				return version;
+
+			// Handle versions with Properties, like:
+			// <properties>
+			//   <java.version>1.8</java.version>
+			//   <gson.version>2.8.6</gson.version>
+			// </properties>
+			// <dependencies>
+			//   <dependency>
+			//     <groupId>com.google.code.gson</groupId>
+			//     <artifactId>gson</artifactId>
+			//     <version>${gson.version}</version>
+			//   </dependency>
+			// </dependencies>
+			if (project?.Properties != null) {
+				foreach (var prop in project.Properties.Any)
+					version = version.Replace($"${{{prop.Name.LocalName}}}", prop.Value);
+			}
 
 			if (!version.Contains("."))
 				version += ".0";
