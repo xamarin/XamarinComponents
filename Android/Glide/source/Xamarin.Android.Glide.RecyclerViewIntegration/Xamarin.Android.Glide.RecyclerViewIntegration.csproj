@@ -4,7 +4,6 @@
   </PropertyGroup>
 
   <PropertyGroup>
-    <PackageId>Xamarin.Android.Glide.RecyclerViewIntegration</PackageId>
     <Title>Glide RecyclerView integration for Xamarin.Android</Title>
     <PackageDescription>Xamarin.Android bindings for Glide RecyclerView integration</PackageDescription>
     <PackageVersion>4.12.0.1</PackageVersion>
@@ -12,7 +11,7 @@
 
   <ItemGroup>
     <None Include="..\..\externals\recyclerview-integration.aar" Pack="True" PackagePath="aar" />
-    <None Include="$(MSBuildThisFileName).targets" Pack="True" PackagePath="@(GlideBuildFolders)" />
+    <None Include="$(PackageId).targets" Pack="True" PackagePath="@(GlideBuildFolders)" />
     <None Include="..\..\External-Dependency-Info.txt" Pack="True" PackagePath="THIRD-PARTY-NOTICES.txt" />
   </ItemGroup>
 
