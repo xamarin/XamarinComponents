@@ -22,11 +22,11 @@
     <PackageProjectUrl>https://go.microsoft.com/fwlink/?linkid=2083771</PackageProjectUrl>
     <PackageLicenseFile>LICENSE.md</PackageLicenseFile>
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
-    <PackageVersion>1.5.1</PackageVersion>
+    <PackageVersion>1.5.2</PackageVersion>
   </PropertyGroup>
 
   <PropertyGroup>
-    <ArtifactVersion>1.5.1</ArtifactVersion>
+    <ArtifactVersion>1.5.2</ArtifactVersion>
   </PropertyGroup>
 
   <ItemGroup>
@@ -49,7 +49,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Xamarin.Kotlin.StdLib" Version="1.5.20" />
+    <PackageReference Include="Xamarin.Kotlin.StdLib" Version="1.5.30" />
   </ItemGroup>
 
   <ItemGroup>

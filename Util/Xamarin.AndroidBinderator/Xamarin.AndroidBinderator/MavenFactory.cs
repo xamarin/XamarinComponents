@@ -22,8 +22,17 @@ namespace AndroidBinderator
 				artifact_mavens.Add((repo, artifact));
 			}
 
-			foreach (var group in artifact_mavens.GroupBy(a => a.Item1))
-				await group.Key.Refresh(group.Select (g => g.Item2.GroupId).Distinct().ToArray());
+			foreach (var maven_group in artifact_mavens.GroupBy(a => a.Item1)) {
+				var maven = maven_group.Key;
+				var artifacts = maven_group.Select(a => a.Item2);
+
+				foreach (var artifact_group in artifacts.GroupBy(a => a.GroupId)) {
+					var gid = artifact_group.Key;
+					var artifact_ids = artifact_group.Select(a => a.ArtifactId).ToArray();
+
+					await maven.Populate(gid, artifact_ids);
+				}
+			}
 		}
 
 		public static MavenRepository GetMavenRepository(BindingConfig config, MavenArtifactConfig artifact)
