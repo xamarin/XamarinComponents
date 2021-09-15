@@ -48,6 +48,12 @@ jobs:
         - GoogleGson
       dotnet: $(DotNet6Version)
       preBuildSteps:
+        - task: JavaToolInstaller@0
+          displayName: install JDK 11
+          inputs:
+            versionSpec: '11'
+            jdkArchitectureOption: 'x64'
+            jdkSourceOption: 'PreInstalled'
         - pwsh: |
             dotnet tool install --global boots
           displayName: install .NET global tools
