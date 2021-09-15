@@ -1,6 +1,6 @@
 <Project>
   <PropertyGroup>
-    <TargetFrameworks>net6.0-android30.0;MonoAndroid10.0</TargetFrameworks>
+    <TargetFrameworks>net6.0-android;MonoAndroid10.0</TargetFrameworks>
     <IsBindingProject>true</IsBindingProject>
     <Authors>Microsoft</Authors>
     <Owners>Microsoft</Owners>
@@ -14,8 +14,9 @@
     <AndroidBoundInterfacesContainStaticAndDefaultInterfaceMethods>false</AndroidBoundInterfacesContainStaticAndDefaultInterfaceMethods>
   </PropertyGroup>
   <ItemGroup>
-    <_TFMs Include="@(TargetFrameworks)" />
-    <GlideBuildFolders Include="@(_TFMs->'build\%(Identity)')" />
-    <GlideBuildFolders Include="@(_TFMs->'buildTransitive\%(Identity)')" />
+    <GlideBuildFolders Include="build\MonoAndroid10.0" />
+    <GlideBuildFolders Include="buildTransitive\MonoAndroid10.0" />
+    <GlideBuildFolders Include="build\net6.0-android31.0" />
+    <GlideBuildFolders Include="buildTransitive\net6.0-android31.0" />
   </ItemGroup>
 </Project>
