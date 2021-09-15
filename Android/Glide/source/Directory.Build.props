@@ -10,6 +10,8 @@
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
     <!-- .NET 6+ generates Resource.designer.cs files for bindings projects which we do not want -->
     <AndroidGenerateResourceDesigner>false</AndroidGenerateResourceDesigner>
+    <!-- .NET 6+ packages support back to API-21 -->
+    <SupportedOSPlatformVersion>21</SupportedOSPlatformVersion>
     <!-- see: https://github.com/xamarin/xamarin-android/blob/5f408ebb22df51b598c62f776ee0f82f92661b58/Documentation/guides/OneDotNetBindingProjects.md -->
     <AndroidBoundInterfacesContainConstants>false</AndroidBoundInterfacesContainConstants>
     <AndroidBoundInterfacesContainTypes>false</AndroidBoundInterfacesContainTypes>
