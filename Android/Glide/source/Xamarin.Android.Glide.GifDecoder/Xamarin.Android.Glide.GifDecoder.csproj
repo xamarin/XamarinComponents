@@ -6,7 +6,7 @@
   <PropertyGroup>
     <Title>Glide GIF Decoder for Xamarin.Android</Title>
     <PackageDescription>Xamarin.Android bindings for Glide GIF Decoder</PackageDescription>
-    <PackageVersion>4.12.0.1</PackageVersion>
+    <PackageVersion>4.12.0.2</PackageVersion>
   </PropertyGroup>
 
   <ItemGroup>
