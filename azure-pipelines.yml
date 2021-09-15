@@ -60,7 +60,7 @@ jobs:
           condition: eq(variables['System.JobName'], 'windows')
           displayName: install Xamarin.Android
         - pwsh: |
-            dotnet workload install microsoft-android-sdk-full
+            dotnet workload install android
           displayName: install .NET 6 Android Workload
           condition: ne(variables['System.JobName'], 'linux')
       tools:
