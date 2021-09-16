@@ -17,6 +17,7 @@ parameters:
   publishOutputSuffix: ''                                   # the artifact suffix to use when publishing the output folder
   signListPath: 'SignList.xml'                              # the path to the SignList.xml to copy into the nuget artifact for signing
   # job software version parameters
+  agentPoolName: 'Azure Pipelines'                          # the name of the Azure VM pool
   linuxImage: ''                                            # the name of the Linux VM image (linuxImage: 'Hosted Ubuntu 1604') 
   macosImage: 'macos-latest'                                # the name of the macOS VM image
   windowsImage: 'windows-latest'                            # the name of the Windows VM image
@@ -63,6 +64,7 @@ jobs:
     continueOnError: ${{ eq(parameters.continueOnError, 'true') }}
     dependsOn: ${{ parameters.dependsOn }}
     pool:
+      name: ${{ parameters.agentPoolName }}
       vmImage: $(imageName)
     steps:
       - checkout: self
