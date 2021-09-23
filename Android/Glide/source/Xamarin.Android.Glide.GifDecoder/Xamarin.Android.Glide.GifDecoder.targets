@@ -1,0 +1,7 @@
+<Project>
+  <ItemGroup>
+    <AndroidAarLibrary Include="$(MSBuildThisFileDirectory)..\..\aar\gifdecoder.aar">
+      <AndroidXSkipAndroidXMigration>true</AndroidXSkipAndroidXMigration>
+    </AndroidAarLibrary>
+  </ItemGroup>
+</Project>
