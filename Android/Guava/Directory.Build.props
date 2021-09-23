@@ -3,12 +3,24 @@
     <!-- Uncomment if a $(PackageVersionSuffix) is ever needed -->
     <!-- <PackageVersionSuffix>-net6preview04</PackageVersionSuffix> -->
     <!-- <PackageVersionSuffix Condition=" '$(BUILD_BUILDID)' != '' ">$(PackageVersionSuffix).$(BUILD_BUILDID)</PackageVersionSuffix> -->
-    <GuavaNuGetVersion>28.2.0.1$(PackageVersionSuffix)</GuavaNuGetVersion>
-    <GuavaFailureAccessNuGetVersion>1.0.1.3$(PackageVersionSuffix)</GuavaFailureAccessNuGetVersion>
-    <GuavaListenableFutureNuGetVersion>1.0.0.3$(PackageVersionSuffix)</GuavaListenableFutureNuGetVersion>
+    <GuavaNuGetVersion>29.0.0$(PackageVersionSuffix)</GuavaNuGetVersion>
+    <GuavaFailureAccessNuGetVersion>1.0.1.4$(PackageVersionSuffix)</GuavaFailureAccessNuGetVersion>
+    <GuavaListenableFutureNuGetVersion>1.0.0.4$(PackageVersionSuffix)</GuavaListenableFutureNuGetVersion>
+    
+    <!-- Opt out of C#8 features to maintain compatibility with legacy -->
+    <AndroidBoundInterfacesContainConstants>false</AndroidBoundInterfacesContainConstants>
+    <AndroidBoundInterfacesContainTypes>false</AndroidBoundInterfacesContainTypes>
+    <AndroidBoundInterfacesContainStaticAndDefaultInterfaceMethods>false</AndroidBoundInterfacesContainStaticAndDefaultInterfaceMethods>
+    
+    <!-- .NET 6+ generates Resource.designer.cs files for bindings projects which we do not want -->
+    <AndroidGenerateResourceDesigner>false</AndroidGenerateResourceDesigner>
+    
+    <!-- .NET 6+ packages support back to API-21 -->
+    <SupportedOSPlatformVersion>21</SupportedOSPlatformVersion>
+
   </PropertyGroup>
   <ItemGroup>
     <_NuGetBuildFolders Include="build\;buildTransitive\" />
-    <_TfmNuGetBuildFolders Include="@(_NuGetBuildFolders->'%(Identity)monoandroid90\');@(_NuGetBuildFolders->'%(Identity)net6.0-android30.0\')" />
+    <_TfmNuGetBuildFolders Include="@(_NuGetBuildFolders->'%(Identity)monoandroid90\');@(_NuGetBuildFolders->'%(Identity)net6.0-android31.0\')" />
   </ItemGroup>
 </Project>

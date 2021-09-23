@@ -1,45 +1,22 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<Project Sdk="MSBuild.Sdk.Extras">
+﻿<Project Sdk="Xamarin.Legacy.Sdk">
   <PropertyGroup>
-    <TargetFrameworks>MonoAndroid9.0;MonoAndroid10.0</TargetFrameworks>
-    <IsBindingProject>true</IsBindingProject>
-    <AssemblyName>Xamarin.Android.Glide.RecyclerViewIntegration</AssemblyName>
-    <MonoAndroidResourcePrefix>Resources</MonoAndroidResourcePrefix>
-    <MonoAndroidAssetsPrefix>Assets</MonoAndroidAssetsPrefix>
-    <AndroidUseLatestPlatformSdk>False</AndroidUseLatestPlatformSdk>
-    <AndroidUseIntermediateDesignerFile>True</AndroidUseIntermediateDesignerFile>
-    <AndroidResgenFile>Resources\Resource.designer.cs</AndroidResgenFile>
     <RootNamespace>Bumptech.Glide.Integration.RecyclerView</RootNamespace>
-    <AndroidClassParser>class-parse</AndroidClassParser>
-    <AndroidCodegenTarget>XAJavaInterop1</AndroidCodegenTarget>
   </PropertyGroup>
 
   <PropertyGroup>
-    <PackageId>Xamarin.Android.Glide.RecyclerViewIntegration</PackageId>
     <Title>Glide RecyclerView integration for Xamarin.Android</Title>
     <PackageDescription>Xamarin.Android bindings for Glide RecyclerView integration</PackageDescription>
-    <Authors>Microsoft</Authors>
-    <Owners>Microsoft</Owners>
-    <Copyright>© Microsoft Corporation. All rights reserved.</Copyright>
-    <PackageProjectUrl>https://go.microsoft.com/fwlink/?linkid=864954</PackageProjectUrl>
-    <PackageLicenseUrl>https://go.microsoft.com/fwlink/?linkid=865026</PackageLicenseUrl>
-    <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
-    <PackageVersion>4.12.0.1</PackageVersion>
+    <PackageVersion>4.12.0.2</PackageVersion>
   </PropertyGroup>
 
   <ItemGroup>
-    <TransformFile Include="Transforms\*.xml" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <None Include="..\..\externals\recyclerview-integration.aar">
-      <Link>recyclerview-integration.aar</Link>
-    </None>
+    <None Include="..\..\externals\recyclerview-integration.aar" Pack="True" PackagePath="aar" />
+    <None Include="$(PackageId).targets" Pack="True" PackagePath="@(GlideBuildFolders)" />
     <None Include="..\..\External-Dependency-Info.txt" Pack="True" PackagePath="THIRD-PARTY-NOTICES.txt" />
   </ItemGroup>
 
   <ItemGroup>
-    <LibraryProjectZip Include="..\..\externals\recyclerview-integration.aar" />
+    <InputJar Include="..\..\externals\recyclerview-integration\classes.jar" />
   </ItemGroup>
 
   <ItemGroup>

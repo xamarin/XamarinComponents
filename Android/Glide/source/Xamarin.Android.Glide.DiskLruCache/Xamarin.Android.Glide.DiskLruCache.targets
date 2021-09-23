@@ -1,0 +1,7 @@
+<Project>
+  <ItemGroup>
+    <AndroidJavaLibrary Condition=" '$(AndroidApplication)' == 'true' " Include="$(MSBuildThisFileDirectory)..\..\jar\disklrucache.jar">
+      <AndroidXSkipAndroidXMigration>true</AndroidXSkipAndroidXMigration>
+    </AndroidJavaLibrary>
+  </ItemGroup>
+</Project>

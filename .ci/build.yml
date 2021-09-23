@@ -17,6 +17,9 @@ parameters:
   publishOutputSuffix: ''                                   # the artifact suffix to use when publishing the output folder
   signListPath: 'SignList.xml'                              # the path to the SignList.xml to copy into the nuget artifact for signing
   # job software version parameters
+  linuxAgentPoolName: 'Azure Pipelines'                     # the name of the Linux VM pool
+  macosAgentPoolName: 'Azure Pipelines'                     # the name of the macOS VM pool
+  windowsAgentPoolName: 'Azure Pipelines'                   # the name of the Windows VM pool
   linuxImage: ''                                            # the name of the Linux VM image (linuxImage: 'Hosted Ubuntu 1604') 
   macosImage: 'macos-latest'                                # the name of the macOS VM image
   windowsImage: 'windows-latest'                            # the name of the Windows VM image
@@ -51,18 +54,22 @@ jobs:
       matrix:
         ${{ if ne(parameters.linuxImage, '') }}:
           linux:
+            poolName: ${{ parameters.linuxAgentPoolName }}
             imageName: ${{ parameters.linuxImage }}
         ${{ if ne(parameters.macosImage, '') }}:
           macos:
+            poolName: ${{ parameters.macosAgentPoolName }}
             imageName: ${{ parameters.macosImage }}
         ${{ if ne(parameters.windowsImage, '') }}:
           windows:
+            poolName: ${{ parameters.windowsAgentPoolName }}
             imageName: ${{ parameters.windowsImage }}
     displayName: ${{ parameters.displayName }}
     timeoutInMinutes: ${{ parameters.timeoutInMinutes }}
     continueOnError: ${{ eq(parameters.continueOnError, 'true') }}
     dependsOn: ${{ parameters.dependsOn }}
     pool:
+      name: $(poolName)
       vmImage: $(imageName)
     steps:
       - checkout: self

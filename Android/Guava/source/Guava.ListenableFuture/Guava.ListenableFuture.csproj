@@ -1,6 +1,6 @@
 ﻿<Project Sdk="Xamarin.Legacy.Sdk">
   <PropertyGroup>
-    <TargetFrameworks>net6.0-android30;monoandroid90</TargetFrameworks>
+    <TargetFrameworks>net6.0-android;monoandroid90</TargetFrameworks>
     <IsBindingProject>true</IsBindingProject>
     <AssemblyName>Xamarin.Google.Guava.ListenableFuture</AssemblyName>
     <RootNamespace>Guava.ListenableFuture</RootNamespace>
