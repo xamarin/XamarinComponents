@@ -326,6 +326,9 @@ namespace AndroidBinderator
 
 					mavenDep.Version = FixVersion(mavenDep.Version, mavenProject);
 
+					mavenDep.GroupId = mavenDep.GroupId.Replace ("${project.groupId}", mavenProject.GroupId);
+					mavenDep.Version = mavenDep.Version.Replace ("${project.version}", mavenProject.Version);
+
 					var depMapping = config.MavenArtifacts.FirstOrDefault(
 						ma => !string.IsNullOrEmpty(ma.Version)
 						&& ma.GroupId == mavenDep.GroupId
@@ -354,8 +357,8 @@ namespace AndroidBinderator
         ""groupId"": ""{mavenDep.GroupId}"",
         ""artifactId"": ""{mavenDep.ArtifactId}"",
         ""version"": ""{mavenDep.Version}"",
-        ""nugetVersion"": ""CHECK NUGET ID"",
-        ""nugetId"": ""CHECK PREFIX {mavenDep.Version}"",
+        ""nugetVersion"": ""CHECK PREFIX {mavenDep.Version}"",
+        ""nugetId"": ""CHECK NUGET VERSION"",
         ""dependencyOnly"": true/false
       }}
 						");
