@@ -327,7 +327,7 @@ namespace AndroidBinderator
 					mavenDep.Version = FixVersion(mavenDep.Version, mavenProject);
 
 					mavenDep.GroupId = mavenDep.GroupId.Replace ("${project.groupId}", mavenProject.GroupId);
-					mavenDep.Version = mavenDep.Version.Replace ("${project.version}", mavenProject.Version);
+					mavenDep.Version = mavenDep.Version?.Replace ("${project.version}", mavenProject.Version);
 
 					var depMapping = config.MavenArtifacts.FirstOrDefault(
 						ma => !string.IsNullOrEmpty(ma.Version)
@@ -358,7 +358,7 @@ namespace AndroidBinderator
         ""artifactId"": ""{mavenDep.ArtifactId}"",
         ""version"": ""{mavenDep.Version}"",
         ""nugetVersion"": ""CHECK PREFIX {mavenDep.Version}"",
-        ""nugetId"": ""CHECK NUGET VERSION"",
+        ""nugetId"": ""CHECK NUGET ID"",
         ""dependencyOnly"": true/false
       }}
 						");
@@ -431,6 +431,9 @@ namespace AndroidBinderator
 
 		static bool ShouldIncludeDependency(BindingConfig config, MavenArtifactConfig artifact, Dependency dependency, List<Exception> exceptions)
 		{
+			if (dependency.Version == null)
+				return false;
+
 			// We always care about 'compile' scoped dependencies
 			if (dependency.IsCompileDependency())
 				return true;
