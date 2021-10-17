@@ -1,0 +1,39 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<Project Sdk="MSBuild.Sdk.Extras/3.0.38">
+	<PropertyGroup>
+		<TargetFrameworks>MonoAndroid8.0;MonoAndroid9.0;MonoAndroid10.0;MonoAndroid11.0</TargetFrameworks>
+		<IsBindingProject>true</IsBindingProject>
+		<AssemblyName>Square.Otto</AssemblyName>
+		<RootNamespace>Square.Otto</RootNamespace>
+		<AndroidUseLatestPlatformSdk>False</AndroidUseLatestPlatformSdk>
+		<AndroidUseIntermediateDesignerFile>True</AndroidUseIntermediateDesignerFile>
+		<AndroidClassParser>class-parse</AndroidClassParser>
+		<AndroidCodegenTarget>XAJavaInterop1</AndroidCodegenTarget>
+	</PropertyGroup>
+	<PropertyGroup>
+		<PackageId>Square.Otto</PackageId>
+		<Title>Otto bindings for Xamarin.Android</Title>
+		<Summary>Otto - An event bus by Square</Summary>
+		<Description>An enhanced Guava-based event bus with emphasis on Android support.</Description>
+		<Authors>Microsoft</Authors>
+		<Owners>Microsoft</Owners>
+		<Copyright>© Microsoft Corporation. All rights reserved.</Copyright>
+		<PackageLicenseFile>License.md</PackageLicenseFile>
+		<PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
+		<PackageTags>Otto square square.otto xamarin android monodroid</PackageTags>
+		<PackageProjectUrl>https://go.microsoft.com/fwlink/?linkid=2130312</PackageProjectUrl>
+		<PackageVersion>1.3.8</PackageVersion>
+	</PropertyGroup>
+	<PropertyGroup>
+		<NoWarn>0618;0109;0114;0628;0108;0809;0113</NoWarn>
+		<MSBuildWarningsAsMessages>XA0113</MSBuildWarningsAsMessages>
+	</PropertyGroup>
+	<ItemGroup>
+		<None Remove="Transforms\*.xml" />
+		<TransformFile Include="Transforms\*.xml" />
+		<EmbeddedJar Include="..\..\externals\*.jar" Link="Jars\%(Filename)%(Extension)" />
+	</ItemGroup>
+	<ItemGroup>
+		<None Include="..\..\License.md" Pack="true" PackagePath="License.md" />
+	</ItemGroup>
+</Project>
