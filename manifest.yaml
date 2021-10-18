@@ -465,6 +465,11 @@
   TriggerPaths: [ Android/Protobuf.JavaLite ]
   MacBuildTargets: [ ci ]
   WindowsBuildTargets: [ ci ]
+- Name: SquareOtto
+  BuildScript: ./Android/SquareOtto/build.cake
+  TriggerPaths: [ Android/SquareOtto ]
+  MacBuildTargets: [ ci ]
+  WindowsBuildTargets: [ ci ]
 
 
 #######################################################
