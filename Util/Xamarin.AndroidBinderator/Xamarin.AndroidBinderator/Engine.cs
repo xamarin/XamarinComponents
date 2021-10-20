@@ -431,7 +431,7 @@ namespace AndroidBinderator
 
 		static bool ShouldIncludeDependency(BindingConfig config, MavenArtifactConfig artifact, Dependency dependency, List<Exception> exceptions)
 		{
-			if (dependency.Version == null)
+			if (dependency.Scope == "test")
 				return false;
 
 			// We always care about 'compile' scoped dependencies
