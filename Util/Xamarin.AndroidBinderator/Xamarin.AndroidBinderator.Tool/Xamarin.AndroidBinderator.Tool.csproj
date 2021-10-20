@@ -3,7 +3,7 @@
   <PropertyGroup>
     <PackAsTool>true</PackAsTool>
     <OutputType>Exe</OutputType>
-    <TargetFrameworks>netcoreapp2.1;netcoreapp3.1;net5.0</TargetFrameworks>
+    <TargetFrameworks>net5.0;netcoreapp3.1;netcoreapp2.1</TargetFrameworks>
     <ToolCommandName>xamarin-android-binderator</ToolCommandName>
     <AssemblyName>Xamarin.AndroidBinderator.Tool</AssemblyName>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
