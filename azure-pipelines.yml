@@ -28,6 +28,7 @@ jobs:
     parameters:
       timeoutInMinutes: 360
       areaPath: 'DevDiv\Xamarin SDK\Android'
+      xcode: 13.0
       buildType: 'manifest'
       linuxImage: 'ubuntu-latest'
       validPackagePrefixes: 
