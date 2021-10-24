@@ -19,15 +19,16 @@ resources:
       ref: refs/heads/main
 
 variables:
-  DotNet6Version: 6.0.100-preview.4.21255.9
-  XamarinAndroidVsix: https://download.visualstudio.microsoft.com/download/pr/df30312e-15ca-440c-a68f-71b1a607b3a0/bcaeb3543b68c9db872f7e1dba6ba4ccb18c27525a8cbd5101e9301e96a1904c/Xamarin.Android.Sdk-11.3.0.1.vsix
-  XamarinAndroidPkg:  https://download.visualstudio.microsoft.com/download/pr/a0b4924f-c812-48d9-997f-c7e39d5eeb8a/611a6933f16ef1ae837beca7de265713/xamarin.android-11.3.0.1.pkg
-
+  DotNet6Version: 6.0.100-rc.1.21463.6
+  XamarinAndroidVsix: https://download.visualstudio.microsoft.com/download/pr/7372b89a-b719-426c-9916-c33cbc6c7a61/45c38957fdcacfbee95be95ee40c4f5a4cc9ace69416625ad26e2da83b176941/Xamarin.Android.Sdk-11.4.0.5.vsix
+  # NOTE: there wasn't a public release of 16.11 for macOS
+  XamarinAndroidPkg:  https://dl.internalx.com/vsts-devdiv/Xamarin.Android/public/4941337/d16-11/7776c9f1c8fac303c3aa57867825990850be0384/xamarin.android-11.4.0.5.pkg
 jobs:
   - template: .ci/build.yml@components
     parameters:
       timeoutInMinutes: 360
       areaPath: 'DevDiv\Xamarin SDK\Android'
+      xcode: 13.0
       buildType: 'manifest'
       linuxImage: 'ubuntu-latest'
       validPackagePrefixes: 
@@ -48,6 +49,12 @@ jobs:
         - GoogleGson
       dotnet: $(DotNet6Version)
       preBuildSteps:
+        - task: JavaToolInstaller@0
+          displayName: install JDK 11
+          inputs:
+            versionSpec: '11'
+            jdkArchitectureOption: 'x64'
+            jdkSourceOption: 'PreInstalled'
         - pwsh: |
             dotnet tool install --global boots
           displayName: install .NET global tools
@@ -60,7 +67,7 @@ jobs:
           condition: eq(variables['System.JobName'], 'windows')
           displayName: install Xamarin.Android
         - pwsh: |
-            dotnet workload install microsoft-android-sdk-full
+            dotnet workload install android
           displayName: install .NET 6 Android Workload
           condition: ne(variables['System.JobName'], 'linux')
       tools:
