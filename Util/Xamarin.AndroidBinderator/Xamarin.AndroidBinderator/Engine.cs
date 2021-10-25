@@ -431,7 +431,9 @@ namespace AndroidBinderator
 
 		static bool ShouldIncludeDependency(BindingConfig config, MavenArtifactConfig artifact, Dependency dependency, List<Exception> exceptions)
 		{
-			if (dependency.Scope == "test")
+			// TODO: MavenNET - implement the stuff to pull version from <dependencyManagement> information
+			//	 from the parent POM.
+			if (string.IsNullOrEmpty(dependency.Version))
 				return false;
 
 			// We always care about 'compile' scoped dependencies
