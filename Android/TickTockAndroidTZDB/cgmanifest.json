@@ -1,0 +1,16 @@
+{
+  "Registrations": [
+    {
+      "Component": {
+        "Type": "Maven",
+        "Maven": {
+          "ArtifactId": "ticktock-android-tzdb",
+          "GroupId": "dev.zacsweers.ticktock",
+          "Version": "1.1.0-2020f",
+          "NuGetId": "Xamarin.Dev.ZacSweers.TickTock.Android.TZDB"
+        }
+      }
+    }
+  ],
+  "Version": 1
+}
