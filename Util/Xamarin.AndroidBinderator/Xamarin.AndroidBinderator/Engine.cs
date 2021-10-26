@@ -431,14 +431,13 @@ namespace AndroidBinderator
 
 		static bool ShouldIncludeDependency(BindingConfig config, MavenArtifactConfig artifact, Dependency dependency, List<Exception> exceptions)
 		{
-			// TODO: MavenNET - implement the stuff to pull version from <dependencyManagement> information
-			//	 from the parent POM.
-			if (string.IsNullOrEmpty(dependency.Version))
+			// Check 'artifact' list
+			if (artifact.ExcludedRuntimeDependencies.OrEmpty ().Split (',').Contains (dependency.GroupAndArtifactId (), StringComparer.OrdinalIgnoreCase))
 				return false;
 
-			// We always care about 'compile' scoped dependencies
-			if (dependency.IsCompileDependency())
-				return true;
+			// Check 'global' list
+			if (config.ExcludedRuntimeDependencies.OrEmpty ().Split (',').Contains (dependency.GroupAndArtifactId (), StringComparer.OrdinalIgnoreCase))
+				return false;
 
 			// If we're not processing Runtime dependencies then ignore the rest
 			if (!config.StrictRuntimeDependencies)
@@ -448,13 +447,9 @@ namespace AndroidBinderator
 			if (!dependency.IsRuntimeDependency())
 				return false;
 
-			// Check 'artifact' list
-			if (artifact.ExcludedRuntimeDependencies.OrEmpty().Split(',').Contains(dependency.GroupAndArtifactId(), StringComparer.OrdinalIgnoreCase))
-				return false;
-
-			// Check 'global' list
-			if (config.ExcludedRuntimeDependencies.OrEmpty ().Split (',').Contains (dependency.GroupAndArtifactId (), StringComparer.OrdinalIgnoreCase))
-				return false;
+			// We always care about 'compile' scoped dependencies
+			if (dependency.IsCompileDependency ())
+				return true;
 
 			return true;
 		}
