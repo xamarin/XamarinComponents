@@ -439,17 +439,17 @@ namespace AndroidBinderator
 			if (config.ExcludedRuntimeDependencies.OrEmpty ().Split (',').Contains (dependency.GroupAndArtifactId (), StringComparer.OrdinalIgnoreCase))
 				return false;
 
+			// We always care about 'compile' scoped dependencies
+			if (dependency.IsCompileDependency ())
+				return true;
+
 			// If we're not processing Runtime dependencies then ignore the rest
 			if (!config.StrictRuntimeDependencies)
 				return false;
 
 			// The only other thing we may care about is 'runtime', bail if this isn't 'runtime'
-			if (!dependency.IsRuntimeDependency())
+			if (!dependency.IsRuntimeDependency ())
 				return false;
-
-			// We always care about 'compile' scoped dependencies
-			if (dependency.IsCompileDependency ())
-				return true;
 
 			return true;
 		}
