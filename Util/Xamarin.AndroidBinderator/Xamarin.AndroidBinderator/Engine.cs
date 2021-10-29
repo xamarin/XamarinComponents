@@ -327,7 +327,7 @@ namespace AndroidBinderator
 					mavenDep.Version = FixVersion(mavenDep.Version, mavenProject);
 
 					mavenDep.GroupId = mavenDep.GroupId.Replace ("${project.groupId}", mavenProject.GroupId);
-					mavenDep.Version = mavenDep.Version.Replace ("${project.version}", mavenProject.Version);
+					mavenDep.Version = mavenDep.Version?.Replace ("${project.version}", mavenProject.Version);
 
 					var depMapping = config.MavenArtifacts.FirstOrDefault(
 						ma => !string.IsNullOrEmpty(ma.Version)
@@ -358,7 +358,7 @@ namespace AndroidBinderator
         ""artifactId"": ""{mavenDep.ArtifactId}"",
         ""version"": ""{mavenDep.Version}"",
         ""nugetVersion"": ""CHECK PREFIX {mavenDep.Version}"",
-        ""nugetId"": ""CHECK NUGET VERSION"",
+        ""nugetId"": ""CHECK NUGET ID"",
         ""dependencyOnly"": true/false
       }}
 						");
@@ -431,8 +431,16 @@ namespace AndroidBinderator
 
 		static bool ShouldIncludeDependency(BindingConfig config, MavenArtifactConfig artifact, Dependency dependency, List<Exception> exceptions)
 		{
+			// Check 'artifact' list
+			if (artifact.ExcludedRuntimeDependencies.OrEmpty ().Split (',').Contains (dependency.GroupAndArtifactId (), StringComparer.OrdinalIgnoreCase))
+				return false;
+
+			// Check 'global' list
+			if (config.ExcludedRuntimeDependencies.OrEmpty ().Split (',').Contains (dependency.GroupAndArtifactId (), StringComparer.OrdinalIgnoreCase))
+				return false;
+
 			// We always care about 'compile' scoped dependencies
-			if (dependency.IsCompileDependency())
+			if (dependency.IsCompileDependency ())
 				return true;
 
 			// If we're not processing Runtime dependencies then ignore the rest
@@ -440,15 +448,7 @@ namespace AndroidBinderator
 				return false;
 
 			// The only other thing we may care about is 'runtime', bail if this isn't 'runtime'
-			if (!dependency.IsRuntimeDependency())
-				return false;
-
-			// Check 'artifact' list
-			if (artifact.ExcludedRuntimeDependencies.OrEmpty().Split(',').Contains(dependency.GroupAndArtifactId(), StringComparer.OrdinalIgnoreCase))
-				return false;
-
-			// Check 'global' list
-			if (config.ExcludedRuntimeDependencies.OrEmpty ().Split (',').Contains (dependency.GroupAndArtifactId (), StringComparer.OrdinalIgnoreCase))
+			if (!dependency.IsRuntimeDependency ())
 				return false;
 
 			return true;
