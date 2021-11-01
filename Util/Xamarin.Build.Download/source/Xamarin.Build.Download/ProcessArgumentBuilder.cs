@@ -89,9 +89,9 @@ namespace Xamarin.MacDev
 
 		static void AppendQuoted (StringBuilder quoted, string text)
 		{
-			quoted.AppendFormat ("\"");
-			quoted.AppendFormat (text);
-			quoted.AppendFormat ("\"");
+			quoted.Append ("\"");
+			quoted.Append (text);
+			quoted.Append ("\"");
 		}
 
 		/// <summary>Adds an argument, quoting and escaping as necessary.</summary>
