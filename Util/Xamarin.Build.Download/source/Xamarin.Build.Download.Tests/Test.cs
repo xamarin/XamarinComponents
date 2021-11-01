@@ -122,7 +122,7 @@ namespace NativeLibraryDownloaderTests
 
 			var success = BuildProject (engine, project, "_XamarinBuildDownload", log);
 
-			
+
 			AssertNoMessagesOrWarnings (log, DEFAULT_IGNORE_PATTERNS);
 			Assert.True (success);
 
@@ -332,7 +332,7 @@ namespace NativeLibraryDownloaderTests
 			var artifactXbdId = "gpsbasement-16.2.0";
 
 			var r = AndroidAarAdd(unpackDir, artifactXbdId, "https://dl.google.com/dl/android/maven2/com/google/android/gms/play-services-basement/16.2.0/play-services-basement-16.2.0.aar", true);
-			
+
 			AssertNoMessagesOrWarnings(r.logs, DEFAULT_IGNORE_PATTERNS);
 			Assert.True(r.success);
 
@@ -361,7 +361,7 @@ namespace NativeLibraryDownloaderTests
 			var engine = new ProjectCollection ();
 			var prel = ProjectRootElement.Create (Path.Combine (TempDir, "project.csproj"), engine);
 
-			
+
 			prel.SetProperty ("XamarinBuildDownloadDir", unpackDir);
 			prel.SetProperty ("TargetFrameworkIdentifier", "MonoAndroid");
 			prel.SetProperty ("TargetFrameworkVersion", "v9.0");
@@ -678,7 +678,7 @@ namespace NativeLibraryDownloaderTests
 					{ "RangeStart", "199278205" },
 					{ "RangeEnd", "199589731" },
 				});
-			
+
 			AddCoreTargets (prel);
 
 			var project = new ProjectInstance (prel);
@@ -693,6 +693,38 @@ namespace NativeLibraryDownloaderTests
 
 			Assert.Equal (2, itemToDownload.Count);
 			Assert.True (itemToDownload.First ().GetMetadata ("Url").EvaluatedValue == itemUrl);
+		}
+
+		[Fact]
+		public void TestPathGreaterThan260Chars ()
+		{
+			var engine = new ProjectCollection ();
+			var prel = ProjectRootElement.Create (Path.Combine (TempDir, "project.csproj"), engine);
+
+			var unpackDir = GetTempPath ("unpacked");
+
+			for (var i = 1; unpackDir.Length < 260; i++)
+				unpackDir = Path.Combine (unpackDir, $"segment{i}");
+
+			prel.SetProperty ("XamarinBuildDownloadDir", unpackDir);
+
+			prel.AddItem (
+				"XamarinBuildDownload", "GAppM-8.8.0", new Dictionary<string, string> {
+					{ "Url", "https://dl.google.com/firebase/ios/analytics/86849febfdc4ff13/GoogleAppMeasurement-8.8.0.tar.gz" },
+					{ "Kind", "Tgz" }
+				});
+
+			AddCoreTargets (prel);
+
+			var project = new ProjectInstance (prel);
+			var log = new MSBuildTestLogger ();
+
+			var success = BuildProject (engine, project, "_XamarinBuildDownload", log);
+
+			AssertNoMessagesOrWarnings (log, DEFAULT_IGNORE_PATTERNS);
+			Assert.True (success);
+
+			Assert.True (File.Exists (Path.Combine (unpackDir, "GAppM-8.8.0", "GoogleAppMeasurement-8.8.0", "dummy.txt")));
 		}
 	}
 }
