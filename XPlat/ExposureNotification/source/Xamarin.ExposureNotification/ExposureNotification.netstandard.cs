@@ -7,6 +7,8 @@ namespace Xamarin.ExposureNotifications
 {
 	public static partial class ExposureNotification
 	{
+		static object Instance => null;
+
 		static void PlatformInit()
 			=> throw new PlatformNotSupportedException();
 

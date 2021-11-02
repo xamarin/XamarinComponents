@@ -24,7 +24,7 @@
     <PackageProjectUrl>https://go.microsoft.com/fwlink/?linkid=2091414</PackageProjectUrl>
     <PackageLicenseUrl>https://go.microsoft.com/fwlink/?linkid=2091801</PackageLicenseUrl>
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
-    <PackageVersion>1.6.5</PackageVersion>
+    <PackageVersion>1.6.6</PackageVersion>
   </PropertyGroup>
 
   <ItemGroup>

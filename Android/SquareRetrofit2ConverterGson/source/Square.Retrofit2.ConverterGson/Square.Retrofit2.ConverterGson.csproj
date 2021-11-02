@@ -1,4 +1,4 @@
-﻿<Project Sdk="MSBuild.Sdk.Extras/2.1.2">
+﻿<Project Sdk="MSBuild.Sdk.Extras">
   <PropertyGroup>
     <TargetFrameworks>monoandroid9.0</TargetFrameworks>
     <IsBindingProject>true</IsBindingProject>
@@ -23,12 +23,12 @@
     <PackageLicenseFile>LICENSE.md</PackageLicenseFile>
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
     <PackageTags>gson retrofit xamarin android monodroid</PackageTags>
-    <PackageVersion>2.4.0.1</PackageVersion>
+    <PackageVersion>2.9.0</PackageVersion>
   </PropertyGroup>
     
   <ItemGroup>
-    <PackageReference Include="GoogleGson" Version="2.8.1" />
-    <PackageReference Include="Square.Retrofit2" Version="2.4.0.1" />
+    <PackageReference Include="GoogleGson" Version="2.8.6" />
+    <PackageReference Include="Square.Retrofit2" Version="2.9.0" />
   </ItemGroup>
     
   <ItemGroup>

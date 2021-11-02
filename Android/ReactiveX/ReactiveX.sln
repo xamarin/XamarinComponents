@@ -3,9 +3,21 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.28307.271
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RxJava", "source\RxJava\RxJava.csproj", "{0BE023AD-E65C-40FB-87D1-DF7D5B1D5FAD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RxJava", "source\rxjava2\RxJava\RxJava.csproj", "{0BE023AD-E65C-40FB-87D1-DF7D5B1D5FAD}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RxAndroid", "source\RxAndroid\RxAndroid.csproj", "{70CF23F8-6689-4D20-8567-8B3E6DB82776}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RxAndroid", "source\rxjava2\RxAndroid\RxAndroid.csproj", "{70CF23F8-6689-4D20-8567-8B3E6DB82776}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "rxjava2", "rxjava2", "{DDDC79DA-8853-4970-84EF-DCC25E0C715B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RxKotlin", "source\rxjava2\RxKotlin\RxKotlin.csproj", "{184427A0-0B81-4930-8514-8FD39DF051AE}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "rxjava3", "rxjava3", "{E1B792D9-759A-4E23-BA04-93960575E7C7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RxKotlin", "source\rxjava3\RxKotlin\RxKotlin.csproj", "{6F60A3CC-1210-4C32-AC2B-1377B0CDE600}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RxAndroid", "source\rxjava3\RxAndroid\RxAndroid.csproj", "{A928EFB1-F50B-4D15-89E1-4E738CDB6FE9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RxJava", "source\rxjava3\RxJava\RxJava.csproj", "{A60AD121-F128-47EC-BC57-395C7F1EA894}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,11 +33,35 @@ Global
 		{70CF23F8-6689-4D20-8567-8B3E6DB82776}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{70CF23F8-6689-4D20-8567-8B3E6DB82776}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{70CF23F8-6689-4D20-8567-8B3E6DB82776}.Release|Any CPU.Build.0 = Release|Any CPU
+		{184427A0-0B81-4930-8514-8FD39DF051AE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{184427A0-0B81-4930-8514-8FD39DF051AE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{184427A0-0B81-4930-8514-8FD39DF051AE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{184427A0-0B81-4930-8514-8FD39DF051AE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6F60A3CC-1210-4C32-AC2B-1377B0CDE600}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6F60A3CC-1210-4C32-AC2B-1377B0CDE600}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6F60A3CC-1210-4C32-AC2B-1377B0CDE600}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6F60A3CC-1210-4C32-AC2B-1377B0CDE600}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A928EFB1-F50B-4D15-89E1-4E738CDB6FE9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A928EFB1-F50B-4D15-89E1-4E738CDB6FE9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A928EFB1-F50B-4D15-89E1-4E738CDB6FE9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A928EFB1-F50B-4D15-89E1-4E738CDB6FE9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A60AD121-F128-47EC-BC57-395C7F1EA894}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A60AD121-F128-47EC-BC57-395C7F1EA894}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A60AD121-F128-47EC-BC57-395C7F1EA894}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A60AD121-F128-47EC-BC57-395C7F1EA894}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {CAC0F9D3-A924-4A83-8ED8-6DE2B30345DE}
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{70CF23F8-6689-4D20-8567-8B3E6DB82776} = {DDDC79DA-8853-4970-84EF-DCC25E0C715B}
+		{0BE023AD-E65C-40FB-87D1-DF7D5B1D5FAD} = {DDDC79DA-8853-4970-84EF-DCC25E0C715B}
+		{184427A0-0B81-4930-8514-8FD39DF051AE} = {DDDC79DA-8853-4970-84EF-DCC25E0C715B}
+		{6F60A3CC-1210-4C32-AC2B-1377B0CDE600} = {E1B792D9-759A-4E23-BA04-93960575E7C7}
+		{A928EFB1-F50B-4D15-89E1-4E738CDB6FE9} = {E1B792D9-759A-4E23-BA04-93960575E7C7}
+		{A60AD121-F128-47EC-BC57-395C7F1EA894} = {E1B792D9-759A-4E23-BA04-93960575E7C7}
 	EndGlobalSection
 EndGlobal

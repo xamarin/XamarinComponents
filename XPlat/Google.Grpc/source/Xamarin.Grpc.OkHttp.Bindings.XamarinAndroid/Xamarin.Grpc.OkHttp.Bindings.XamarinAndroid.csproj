@@ -1,4 +1,4 @@
-﻿<Project Sdk="MSBuild.Sdk.Extras/2.0.54">
+﻿<Project Sdk="MSBuild.Sdk.Extras/3.0.23">
     <PropertyGroup>
         <AssemblyName>Xamarin.Grpc.OkHttp</AssemblyName>
 
@@ -8,7 +8,7 @@
         <AndroidUseIntermediateDesignerFile>True</AndroidUseIntermediateDesignerFile>
         <AndroidResgenFile>Resources\Resource.designer.cs</AndroidResgenFile>
 
-        <TargetFrameworks>MonoAndroid81</TargetFrameworks>
+        <TargetFrameworks>MonoAndroid90</TargetFrameworks>
         <AndroidCodegenTarget>XAJavaInterop1</AndroidCodegenTarget>
     </PropertyGroup>
 
@@ -23,7 +23,7 @@
         -->
         <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
         <PackageId>Xamarin.Grpc.OkHttp</PackageId>
-        <PackageVersion>1.24.0.0</PackageVersion>
+        <PackageVersion>1.37.0</PackageVersion>
         <Title>Xamarin.Grpc.OkHttp</Title>
         <PackageDescription>
             Bindings for Google's GRPC OkHttp package
@@ -60,8 +60,8 @@
 
 
   <ItemGroup>
-    <PackageReference Include="Square.OkIO" Version="1.13.0.1" />
-    <PackageReference Include="Square.OkHttp" Version="2.5.0" />
+    <PackageReference Include="Square.OkIO" Version="2.8.0" />
+    <PackageReference Include="Square.OkHttp" Version="2.7.5.1" />
   </ItemGroup>
 
   <ItemGroup>
@@ -72,8 +72,8 @@
     <Compile Remove="Additions\LazyStringArrayList.cs" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedJar Include="..\..\externals\android\grpc-okhttp-1.24.0.jar">
-      <Link>Jars\grpc-okhttp-1.24.0.jar</Link>
+    <EmbeddedJar Include="..\..\externals\android\grpc-okhttp-$(PackageVersion).jar">
+      <Link>Jars\grpc-okhttp-$(PackageVersion).jar</Link>
     </EmbeddedJar>
   </ItemGroup>
   <ItemGroup>

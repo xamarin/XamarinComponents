@@ -1,12 +1,12 @@
 var TARGET = Argument ("t", Argument ("target", "ci"));
 
-var IOS_VERSION = "3.1.0";
-var IOS_NUGET_VERSION = "3.1.0";
+var IOS_VERSION = "3.1.1";
+var IOS_NUGET_VERSION = "3.1.1";
 var IOS_URL = $"https://github.com/Azure/azure-notificationhubs-ios/releases/download/{IOS_VERSION}/WindowsAzureMessaging-SDK-Apple-{IOS_VERSION}.zip";
 
-var ANDROID_VERSION = "1.1.1";
-var ANDROID_NUGET_VERSION = "1.1.1";
-var ANDROID_URL = string.Format ("https://dl.bintray.com/microsoftazuremobile/SDK/com/microsoft/azure/notification-hubs-android-sdk/{0}/notification-hubs-android-sdk-{0}.aar", ANDROID_VERSION);
+var ANDROID_VERSION = "1.1.4";
+var ANDROID_NUGET_VERSION = "1.1.4.1";
+var ANDROID_URL = $"https://repo1.maven.org/maven2/com/microsoft/azure/notification-hubs-android-sdk/{ANDROID_VERSION}/notification-hubs-android-sdk-{ANDROID_VERSION}.aar";
 
 Task("libs-ios")
 	.WithCriteria(IsRunningOnUnix())
@@ -182,10 +182,17 @@ Task ("clean")
 	.Does (() => 
 {
 	if (DirectoryExists ("./Android/externals"))
-		DeleteDirectory ("./Android/externals", true);
+		DeleteDirectory ("./Android/externals", new DeleteDirectorySettings {
+		Recursive = true,
+		Force = true
+	});
 
 	if (DirectoryExists ("./iOS/externals"))
-		DeleteDirectory ("./iOS/externals", true);
-});
+		DeleteDirectory ("./iOS/externals", new DeleteDirectorySettings {
+		Recursive = true,
+		Force = true
+	});
+}
+);
 
 RunTarget (TARGET);

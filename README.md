@@ -17,6 +17,18 @@ Open Source Components for Xamarin are a collection of open source components (i
     - [Data Caching & Databases](#data-caching--databases)
     - [Create a Plugin for Xamarin](#create-a-plugin-for-xamarin)
 
+## Status
+
+Some of the bindings are obsoleted and commented out in the `manifest.yaml`. The reasons vary from binaries being removed 
+from JCenter/BinTray/JFrog, to stale code or script API used in cake scripts.
+
+Obsoleted bindings (might need some love for update):
+
+*  Shopify
+*  OpenId
+*  AndroidThings
+*  AnimatedCircleLoadingView
+
 ## Building
 
 ### Prerequisites
@@ -86,17 +98,19 @@ After the externals are downloaded and built, the `.sln` files should compile in
 
 ---
 
-## Xamarin Supported Open Source Components
+## Support & Getting Help
 
-Xamarin Supported Open Source components are a collection of Xamarin built bindings and libraries.
+The following libraries are [supported](Support.md). 
 
 | Name                                  | Description                                                                      | Source                                                           |
 |---------------------------------------|----------------------------------------------------------------------------------|------------------------------------------------------------------|
-| Android Support Libraries             | Bindings for Google's Android Support Libraries                                  | [GitHub](https://github.com/xamarin/AndroidSupportComponents)    |
+| AndroidX Libraries                    | Bindings for Google's AndroidX Libraries                                         | [GitHub](https://github.com/xamarin/AndroidX)                    |
 | Google Play Services Client Libraries | Bindings for Google's Play Services Client Libraries                             | [GitHub](https://github.com/xamarin/GooglePlayServicesComponents)|
 | Google API's for iOS                  | Bindings for Google's API's for iOS Libraries                                    | [GitHub](https://github.com/xamarin/GoogleAPIsForiOSComponents)  |
 | Facebook SDK's                        | Bindings for Facebook's iOS & Android SDK's                                      | [GitHub](https://github.com/xamarin/FacebookComponents)          |
 | Xamarin.Auth                          | Cross-platform API for authenticating users and storing their accounts.          | [GitHub](https://github.com/xamarin/Xamarin.Auth)                |
+
+To get help, visit the Xamarin area of [Microsoft Q&A](https://docs.microsoft.com/en-us/answers/products/dotnet).
 
 
 ### Xamarin.Essentials

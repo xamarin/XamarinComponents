@@ -1,9 +1,0 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
-<enum-method-mappings>
-	<mapping jni-class="com/gigya/socialize/android/GSAPI">
-		<method jni-name="handleAndroidPermissionsResult" parameter="grantResults" clr-enum-type="Android.Content.PM.Permission[]" />
-	</mapping>
-	<mapping jni-interface="com/gigya/socialize/android/event/GSAndroidPermissionListener">
-		<method jni-name="onAndroidPermissionsResult" parameter="p1" clr-enum-type="Android.Content.PM.Permission[]" />
-	</mapping>
-</enum-method-mappings>

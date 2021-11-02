@@ -1,8 +1,8 @@
 var TARGET = Argument ("t", Argument ("target", "ci"));
 
-var NUGET_VERSION = "2.4.0.1";
+var NUGET_VERSION = "2.9.0";
 
-var JAR_VERSION = "2.4.0";
+var JAR_VERSION = "2.9.0";
 var JAR_URL = $"https://repo1.maven.org/maven2/com/squareup/retrofit2/converter-gson/{JAR_VERSION}/converter-gson-{JAR_VERSION}.jar";
 
 Task ("externals")
@@ -10,7 +10,7 @@ Task ("externals")
 {
 	EnsureDirectoryExists ("./externals");
 	
-	DownloadFile(JAR_URL, "./externals/convertergson.jar");
+	DownloadFile(JAR_URL, $"./externals/convertergson-{JAR_VERSION}.jar");
 
 	// Update .csproj nuget versions
 	XmlPoke("./source/Square.Retrofit2.ConverterGson/Square.Retrofit2.ConverterGson.csproj", "/Project/PropertyGroup/PackageVersion", NUGET_VERSION);

@@ -7,6 +7,24 @@
         >
         Xamarin.Google.Android.DataTransport.Cct.A
     </attr>
+    <attr
+        path="/api/package[@name='com.google.android.datatransport.cct']"
+        name="managedName"
+        >
+        Xamarin.Google.Android.DataTransport.Cct
+    </attr>
+    <attr
+        path="/api/package[@name='com.google.android.datatransport.backend.cct']"
+        name="managedName"
+        >
+        Xamarin.Google.Android.DataTransport.Backend.Cct
+    </attr>
+    <attr
+        path="/api/package[@name='com.google.android.datatransport.cct.internal']"
+        name="managedName"
+        >
+        Xamarin.Google.Android.DataTransport.Cct.Internal
+    </attr>
     
     
 </metadata>

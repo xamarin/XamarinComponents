@@ -1,0 +1,66 @@
+
+configurations.implementation.canBeResolved = true
+
+task copyXamarinDependencies(type: Copy) {
+    from configurations.implementation
+    into "xamarin"
+}
+
+task listXamarinDependencies() {
+    doLast {
+
+        println("===================================================")
+        println("                    XAMARIN                        ")
+        println("===================================================")
+        println(" Here is a list of local and maven artifact")
+        println(" dependencies in your project's module.")
+        println(" In many cases you can find NuGet packages ")
+        println(" instead of including the .jar/.aar's in your ")
+        println(" binding project directly (ie: androidx.*).")
+        println("")
+        println(" All artifacts are copied to the 'xamarin' folder")
+        println(" of your project's module.")
+        println("")
+        println("DEPENDENCIES:  {GROUPID}:{ARTIFACTID} ({VERSION})")
+        println("")
+
+        def config = configurations.implementation
+
+        def psep = File.separatorChar
+
+        config.resolvedConfiguration.resolvedArtifacts.sort({ artsort -> "${artsort.moduleVersion.id.group}.${artsort.moduleVersion.id.name}" })
+        .each { art ->
+            println "Maven Artifact: ${art.moduleVersion.id.group}:${art.moduleVersion.id.name} (${art.moduleVersion.id.version})"
+
+            // Rename to include the maven group id so it's more obvious
+            def prename = file("xamarin${psep}${art.moduleVersion.id.name}-${art.moduleVersion.id.version}.${art.extension}")
+            def newname = file ("xamarin${psep}${art.moduleVersion.id.group}.${art.moduleVersion.id.name}-${art.moduleVersion.id.version}.${art.extension}")
+            prename.renameTo(newname)
+        }
+
+        config.files.each { ff ->
+            if (!config.resolvedConfiguration.resolvedArtifacts.any { art -> art.file.absolutePath == ff.absolutePath })
+            {
+                println("Local File: ${ff.absolutePath}");
+            }
+        }
+
+        println("---------------------------------------------------")
+
+        println "Library Output: build${psep}outputs${psep}aar${psep}${project.name}-release.aar";
+        println "                (This is probably what you want to bind)"
+
+        println("===================================================")
+    }
+
+}
+
+task xamarin() {
+    dependsOn 'bundleReleaseAar'
+    dependsOn listXamarinDependencies
+    dependsOn copyXamarinDependencies
+
+    tasks.findByName('listXamarinDependencies').mustRunAfter('bundleReleaseAar')
+    tasks.findByName('listXamarinDependencies').mustRunAfter('copyXamarinDependencies')
+    tasks.findByName('copyXamarinDependencies').mustRunAfter('bundleReleaseAar')
+}

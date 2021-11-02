@@ -1,0 +1,1053 @@
+﻿<metadata>
+    <add-node
+        path="/api/package[@name='io.reactivex.rxjava3.internal.observers']/class[@name='BasicFuseableObserver']"
+        >
+        <method abstract="true" deprecated="not deprecated" final="false" name="onNext" jni-signature="(Ljava/lang/Object;)V" bridge="false" native="false" return="void" jni-return="V" static="false" synchronized="false" synthetic="false" visibility="public">
+            <parameter name="t" type="T" jni-type="TT;">
+            </parameter>
+        </method>
+        <method abstract="true" deprecated="not deprecated" final="false" name="poll" jni-signature="()Ljava/lang/Object;" bridge="false" native="false" return="T" jni-return="TT;" static="false" synchronized="false" synthetic="false" visibility="public">
+        </method>
+    </add-node>
+
+
+    <add-node
+        path="/api/package[@name='io.reactivex.rxjava3.internal.observers']/class[@name='BasicIntQueueDisposable']"
+        >
+        <method abstract="true" deprecated="not deprecated" final="false" name="poll" jni-signature="()Ljava/lang/Object;" bridge="false" native="false" return="T" jni-return="TT;" static="false" synchronized="false" synthetic="false" visibility="public">
+        </method>
+    </add-node>
+    <add-node
+        path="/api/package[@name='io.reactivex.rxjava3.internal.observers']/class[@name='BasicQueueDisposable']"
+        >
+        <method abstract="true" deprecated="not deprecated" final="false" name="poll" jni-signature="()Ljava/lang/Object;" bridge="false" native="false" return="T" jni-return="TT;" static="false" synchronized="false" synthetic="false" visibility="public">
+        </method>
+    </add-node>
+
+    <add-node
+        path="/api/package[@name='io.reactivex.rxjava3.observers']/class[@name='DefaultObserver']"
+        >
+        <method abstract="true" deprecated="not deprecated" final="false" name="onNext" jni-signature="(Ljava/lang/Object;)V" bridge="false" native="false" return="void" jni-return="V" static="false" synchronized="false" synthetic="false" visibility="public">
+            <parameter name="t" type="T" jni-type="TT;">
+            </parameter>
+        </method>
+    </add-node>
+
+    <attr
+        path="/api/package[@name='io.reactivex.rxjava3.core']/class[@name='Observable']/method[@name='subscribeActual' and count(parameter)=1 and parameter[1][@type='io.reactivex.rxjava3.core.Observer&lt;? super T&gt;']]"
+        name="visibility"
+        >
+        public
+    </attr>
+    <attr
+        path="/api/package[@name='io.reactivex.rxjava3.core']/class[@name='Completable']/method[@name='subscribeActual' and count(parameter)=1 and parameter[1][@type='io.reactivex.rxjava3.core.CompletableObserver']]"
+        name="visibility"
+        >
+        public
+    </attr>
+
+    <attr
+        path="/api/package/class/method[@name='subscribeActual']"
+        name="visibility"
+        >
+        public
+    </attr>
+    <attr
+        path="/api/package/class/method[@name='isDisposed']"
+        name="visibility"
+        >
+        public
+    </attr>
+    <attr
+        path="/api/package/class/method[@name='disposed']"
+        name="visibility"
+        >
+        public
+    </attr>
+
+    <attr
+        path="/api/package[@name='io.reactivex.rxjava3.disposables']/interface[@name='Disposable']/method[@name='isDisposed' and count(parameter)=0]"
+        name="visibility"
+        >
+        public
+    </attr>
+    <attr
+        path="/api/package[@name='io.reactivex.rxjava3.observers']/class[@name='BaseTestConsumer']/method[@name='isDisposed' and count(parameter)=0]"
+        name="visibility"
+        >
+        public
+    </attr>
+    <attr
+        path="/api/package[@name='io.reactivex.rxjava3.observers']/class[@name='BaseTestConsumer']/method[@name='dispose' and count(parameter)=0]"
+        name="visibility"
+        >
+        public
+    </attr>
+
+    <!--
+    <attr
+        path="/api/package[@name='io.reactivex.rxjava3.internal.operators.completable']/class[@name='CompletableAmb']/method[@name='subscribeActual' and count(parameter)=1 and parameter[1][@type='io.reactivex.CompletableObserver']]"
+        name="visibility"
+        >
+        protected
+    </attr>
+    <attr
+        path="/api/package[@name='io.reactivex.rxjava3.internal.operators.completable']/class[@name='CompletableConcat']/method[@name='subscribeActual' and count(parameter)=1 and parameter[1][@type='io.reactivex.CompletableObserver']]"
+        name="visibility"
+        >
+        protected
+    </attr>
+    <attr
+        path="/api/package[@name='io.reactivex.rxjava3.internal.operators.completable']/class[@name='CompletableConcatArray']/method[@name='subscribeActual' and count(parameter)=1 and parameter[1][@type='io.reactivex.CompletableObserver']]"
+        name="visibility"
+        >
+        protected
+    </attr>
+    <attr
+        path="/api/package[@name='io.reactivex.rxjava3.internal.operators.completable']/class[@name='CompletableConcatIterable']/method[@name='subscribeActual' and count(parameter)=1 and parameter[1][@type='io.reactivex.CompletableObserver']]"
+        name="visibility"
+        >
+        protected
+    </attr>
+    <attr
+        path="/api/package[@name='io.reactivex.rxjava3.internal.operators.completable']/class[@name='CompletableEmpty']/method[@name='subscribeActual' and count(parameter)=1 and parameter[1][@type='io.reactivex.CompletableObserver']]"
+        name="visibility"
+        >
+        protected
+    </attr>
+    <attr
+        path="/api/package[@name='io.reactivex.rxjava3.internal.operators.completable']/class[@name='CompletableMerge']/method[@name='subscribeActual' and count(parameter)=1 and parameter[1][@type='io.reactivex.CompletableObserver']]"
+        name="visibility"
+        >
+        protected
+    </attr>
+    <attr
+        path="/api/package[@name='io.reactivex.rxjava3.internal.operators.completable']/class[@name='CompletableMergeArray']/method[@name='subscribeActual' and count(parameter)=1 and parameter[1][@type='io.reactivex.CompletableObserver']]"
+        name="visibility"
+        >
+        protected
+    </attr>
+    <attr
+        path="/api/package[@name='io.reactivex.rxjava3.internal.operators.completable']/class[@name='CompletableMergeDelayErrorArray']/method[@name='subscribeActual' and count(parameter)=1 and parameter[1][@type='io.reactivex.CompletableObserver']]"
+        name="visibility"
+        >
+        protected
+    </attr>
+    <attr
+        path="/api/package[@name='io.reactivex.rxjava3.internal.operators.completable']/class[@name='CompletableMergeDelayErrorIterable']/method[@name='subscribeActual' and count(parameter)=1 and parameter[1][@type='io.reactivex.CompletableObserver']]"
+        name="visibility"
+        >
+        protected
+    </attr>
+    <attr
+        path="/api/package[@name='io.reactivex.rxjava3.internal.operators.completable']/class[@name='CompletableMergeIterable']/method[@name='subscribeActual' and count(parameter)=1 and parameter[1][@type='io.reactivex.CompletableObserver']]"
+        name="visibility"
+        >
+        protected
+    </attr>
+    <attr
+        path="/api/package[@name='io.reactivex.rxjava3.internal.operators.flowable']/class[@name='FlowableAmb']/method[@name='subscribeActual' and count(parameter)=1 and parameter[1][@type='org.reactivestreams.Subscriber&lt;? super T&gt;']]"
+        name="visibility"
+        >
+        protected
+    </attr>
+    <attr
+        path="/api/package[@name='io.reactivex.rxjava3.internal.operators.flowable']/class[@name='FlowableAutoConnect']/method[@name='subscribeActual' and count(parameter)=1 and parameter[1][@type='org.reactivestreams.Subscriber&lt;? super T&gt;']]"
+        name="visibility"
+        >
+        protected
+    </attr>
+    <attr
+        path="/api/package[@name='io.reactivex.rxjava3.internal.operators.flowable']/class[@name='FlowableBuffer']/method[@name='subscribeActual' and count(parameter)=1 and parameter[1][@type='org.reactivestreams.Subscriber&lt;? super C&gt;']]"
+        name="visibility"
+        >
+        protected
+    </attr>
+    <attr
+        path="/api/package[@name='io.reactivex.rxjava3.internal.operators.completable']/class[@name='CompletableTimeout']/method[@name='subscribeActual' and count(parameter)=1 and parameter[1][@type='io.reactivex.CompletableObserver']]"
+        name="visibility"
+        >
+        protected
+    </attr>
+    <attr
+        path="/api/package[@name='io.reactivex.rxjava3.internal.operators.flowable']/class[@name='FlowableCombineLatest']/method[@name='subscribeActual' and count(parameter)=1 and parameter[1][@type='org.reactivestreams.Subscriber&lt;? super R&gt;']]"
+        name="visibility"
+        >
+        protected
+    </attr>
+    <attr
+        path="/api/package[@name='io.reactivex.rxjava3.internal.operators.observable']/class[@name='ObservableAutoConnect']/method[@name='subscribeActual' and count(parameter)=1 and parameter[1][@type='io.reactivex.Observer&lt;? super T&gt;']]"
+        name="visibility"
+        >
+        protected
+    </attr>
+    <attr
+        path="/api/package[@name='io.reactivex.rxjava3.internal.operators.flowable']/class[@name='FlowableCreate']/method[@name='subscribeActual' and count(parameter)=1 and parameter[1][@type='org.reactivestreams.Subscriber&lt;? super T&gt;']]"
+        name="visibility"
+        >
+        protected
+    </attr>
+    <attr
+        path="/api/package[@name='io.reactivex.rxjava3.internal.operators.flowable']/class[@name='FlowableGenerate']/method[@name='subscribeActual' and count(parameter)=1 and parameter[1][@type='org.reactivestreams.Subscriber&lt;? super T&gt;']]"
+        name="visibility"
+        >
+        protected
+    </attr>
+    <attr
+        path="/api/package[@name='io.reactivex.rxjava3.internal.operators.flowable']/class[@name='FlowableEmpty']/method[@name='subscribeActual' and count(parameter)=1 and parameter[1][@type='org.reactivestreams.Subscriber&lt;? super java.lang.Object&gt;']]"
+        name="visibility"
+        >
+        protected
+    </attr>
+    <attr
+        path="/api/package[@name='io.reactivex.rxjava3.internal.operators.observable']/class[@name='ObservableCombineLatest']/method[@name='subscribeActual' and count(parameter)=1 and parameter[1][@type='io.reactivex.Observer&lt;? super R&gt;']]"
+        name="visibility"
+        >
+        protected
+    </attr>
+    <attr
+        path="/api/package[@name='io.reactivex.rxjava3.internal.operators.flowable']/class[@name='FlowableError']/method[@name='subscribeActual' and count(parameter)=1 and parameter[1][@type='org.reactivestreams.Subscriber&lt;? super T&gt;']]"
+        name="visibility"
+        >
+        protected
+    </attr>
+    <attr
+        path="/api/package[@name='io.reactivex.rxjava3.internal.operators.observable']/class[@name='ObservableConcatMap']/method[@name='subscribeActual' and count(parameter)=1 and parameter[1][@type='io.reactivex.Observer&lt;? super U&gt;']]"
+        name="visibility"
+        >
+        protected
+    </attr>
+    <attr
+        path="/api/package[@name='io.reactivex.rxjava3.internal.operators.flowable']/class[@name='FlowableDelaySubscriptionOther']/method[@name='subscribeActual' and count(parameter)=1 and parameter[1][@type='org.reactivestreams.Subscriber&lt;? super T&gt;']]"
+        name="visibility"
+        >
+        protected
+    </attr>
+    <attr
+        path="/api/package[@name='io.reactivex.rxjava3.internal.operators.observable']/class[@name='ObservableIgnoreElementsCompletable']/method[@name='subscribeActual' and count(parameter)=1 and parameter[1][@type='io.reactivex.CompletableObserver']]"
+        name="visibility"
+        >
+        protected
+    </attr>
+    <attr
+        path="/api/package[@name='io.reactivex.rxjava3.internal.operators.flowable']/class[@name='FlowableRepeatWhen']/method[@name='subscribeActual' and count(parameter)=1 and parameter[1][@type='org.reactivestreams.Subscriber&lt;? super T&gt;']]"
+        name="visibility"
+        >
+        protected
+    </attr>
+    <attr
+        path="/api/package[@name='io.reactivex.rxjava3.internal.operators.flowable']/class[@name='FlowableSubscribeOn']/method[@name='subscribeActual' and count(parameter)=1 and parameter[1][@type='org.reactivestreams.Subscriber&lt;? super T&gt;']]"
+        name="visibility"
+        >
+        protected
+    </attr>
+    <attr
+        path="/api/package[@name='io.reactivex.rxjava3.internal.operators.observable']/class[@name='ObservableLift']/method[@name='subscribeActual' and count(parameter)=1 and parameter[1][@type='io.reactivex.Observer&lt;? super R&gt;']]"
+        name="visibility"
+        >
+        protected
+    </attr>
+    <attr
+        path="/api/package[@name='io.reactivex.rxjava3.internal.operators.observable']/class[@name='ObservableMap']/method[@name='subscribeActual' and count(parameter)=1 and parameter[1][@type='io.reactivex.Observer&lt;? super U&gt;']]"
+        name="visibility"
+        >
+        protected
+    </attr>
+    <attr
+        path="/api/package[@name='io.reactivex.rxjava3.internal.operators.observable']/class[@name='ObservableMapNotification']/method[@name='subscribeActual' and count(parameter)=1 and parameter[1][@type='io.reactivex.Observer&lt;? super io.reactivex.ObservableSource&lt;? extends R&gt;&gt;']]"
+        name="visibility"
+        >
+        protected
+    </attr>
+    <attr
+        path="/api/package[@name='io.reactivex.rxjava3.internal.operators.observable']/class[@name='ObservableInterval']/method[@name='subscribeActual' and count(parameter)=1 and parameter[1][@type='io.reactivex.Observer&lt;? super java.lang.Long&gt;']]"
+        name="visibility"
+        >
+        protected
+    </attr>
+    <attr
+        path="/api/package[@name='io.reactivex.rxjava3.internal.operators.flowable']/class[@name='FlowableSequenceEqual']/method[@name='subscribeActual' and count(parameter)=1 and parameter[1][@type='org.reactivestreams.Subscriber&lt;? super java.lang.Boolean&gt;']]"
+        name="visibility"
+        >
+        protected
+    </attr>
+    <attr
+        path="/api/package[@name='io.reactivex.rxjava3.internal.operators.observable']/class[@name='ObservableOnErrorNext']/method[@name='subscribeActual' and count(parameter)=1 and parameter[1][@type='io.reactivex.Observer&lt;? super T&gt;']]"
+        name="visibility"
+        >
+        protected
+    </attr>
+    <attr
+        path="/api/package[@name='io.reactivex.rxjava3.internal.operators.observable']/class[@name='ObservableIntervalRange']/method[@name='subscribeActual' and count(parameter)=1 and parameter[1][@type='io.reactivex.Observer&lt;? super java.lang.Long&gt;']]"
+        name="visibility"
+        >
+        protected
+    </attr>
+    <attr
+        path="/api/package[@name='io.reactivex.rxjava3.internal.operators.single']/class[@name='SingleToFlowable']/method[@name='subscribeActual' and count(parameter)=1 and parameter[1][@type='org.reactivestreams.Subscriber&lt;? super T&gt;']]"
+        name="visibility"
+        >
+        protected
+    </attr>
+    <attr
+        path="/api/package[@name='io.reactivex.rxjava3.internal.operators.observable']/class[@name='ObservableOnErrorReturn']/method[@name='subscribeActual' and count(parameter)=1 and parameter[1][@type='io.reactivex.Observer&lt;? super T&gt;']]"
+        name="visibility"
+        >
+        protected
+    </attr>
+    <attr
+        path="/api/package[@name='io.reactivex.rxjava3.internal.operators.single']/class[@name='SingleToObservable']/method[@name='subscribeActual' and count(parameter)=1 and parameter[1][@type='io.reactivex.Observer&lt;? super T&gt;']]"
+        name="visibility"
+        >
+        protected
+    </attr>
+    <attr
+        path="/api/package[@name='io.reactivex.rxjava3.internal.operators.flowable']/class[@name='FlowableRange']/method[@name='subscribeActual' and count(parameter)=1 and parameter[1][@type='org.reactivestreams.Subscriber&lt;? super java.lang.Integer&gt;']]"
+        name="visibility"
+        >
+        protected
+    </attr>
+    <attr
+        path="/api/package[@name='io.reactivex.rxjava3.internal.operators.flowable']/class[@name='FlowableUsing']/method[@name='subscribeActual' and count(parameter)=1 and parameter[1][@type='org.reactivestreams.Subscriber&lt;? super T&gt;']]"
+        name="visibility"
+        >
+        protected
+    </attr>
+    <attr
+        path="/api/package[@name='io.reactivex.rxjava3.internal.operators.flowable']/class[@name='FlowableZip']/method[@name='subscribeActual' and count(parameter)=1 and parameter[1][@type='org.reactivestreams.Subscriber&lt;? super R&gt;']]"
+        name="visibility"
+        >
+        protected
+    </attr>
+    <attr
+        path="/api/package[@name='io.reactivex.rxjava3.internal.operators.observable']/class[@name='ObservableMaterialize']/method[@name='subscribeActual' and count(parameter)=1 and parameter[1][@type='io.reactivex.Observer&lt;? super io.reactivex.Notification&lt;T&gt;&gt;']]"
+        name="visibility"
+        >
+        protected
+    </attr>
+    <attr
+        path="/api/package[@name='io.reactivex.rxjava3.internal.operators.flowable']/class[@name='FlowableWindow']/method[@name='subscribeActual' and count(parameter)=1 and parameter[1][@type='org.reactivestreams.Subscriber&lt;? super io.reactivex.Flowable&lt;T&gt;&gt;']]"
+        name="visibility"
+        >
+        protected
+    </attr>
+    <attr
+        path="/api/package[@name='io.reactivex.rxjava3.internal.operators.flowable']/class[@name='FlowableZipIterable']/method[@name='subscribeActual' and count(parameter)=1 and parameter[1][@type='org.reactivestreams.Subscriber&lt;? super V&gt;']]"
+        name="visibility"
+        >
+        protected
+    </attr>
+    <attr
+        path="/api/package[@name='io.reactivex.rxjava3.internal.operators.observable']/class[@name='ObservableRetryPredicate']/method[@name='subscribeActual' and count(parameter)=1 and parameter[1][@type='io.reactivex.Observer&lt;? super T&gt;']]"
+        name="visibility"
+        >
+        protected
+    </attr>
+    <attr
+        path="/api/package[@name='io.reactivex.rxjava3.internal.operators.observable']/class[@name='ObservableSampleTimed']/method[@name='subscribeActual' and count(parameter)=1 and parameter[1][@type='io.reactivex.Observer&lt;? super T&gt;']]"
+        name="visibility"
+        >
+        protected
+    </attr>
+    <attr
+        path="/api/package[@name='io.reactivex.rxjava3.internal.operators.observable']/class[@name='ObservableScanSeed']/method[@name='subscribeActual' and count(parameter)=1 and parameter[1][@type='io.reactivex.Observer&lt;? super R&gt;']]"
+        name="visibility"
+        >
+        protected
+    </attr>
+    <attr
+        path="/api/package[@name='io.reactivex.rxjava3.internal.operators.observable']/class[@name='ObservableSampleWithObservable']/method[@name='subscribeActual' and count(parameter)=1 and parameter[1][@type='io.reactivex.Observer&lt;? super T&gt;']]"
+        name="visibility"
+        >
+        protected
+    </attr>
+    <attr
+        path="/api/package[@name='io.reactivex.rxjava3.internal.operators.observable']/class[@name='ObservableSequenceEqual']/method[@name='subscribeActual' and count(parameter)=1 and parameter[1][@type='io.reactivex.Observer&lt;? super java.lang.Boolean&gt;']]"
+        name="visibility"
+        >
+        protected
+    </attr>
+    <attr
+        path="/api/package[@name='io.reactivex.rxjava3.internal.operators.observable']/class[@name='ObservableSkipLast']/method[@name='subscribeActual' and count(parameter)=1 and parameter[1][@type='io.reactivex.Observer&lt;? super T&gt;']]"
+        name="visibility"
+        >
+        protected
+    </attr>
+    <attr
+        path="/api/package[@name='io.reactivex.rxjava3.internal.operators.observable']/class[@name='ObservableRepeat']/method[@name='subscribeActual' and count(parameter)=1 and parameter[1][@type='io.reactivex.Observer&lt;? super T&gt;']]"
+        name="visibility"
+        >
+        protected
+    </attr>
+    <attr
+        path="/api/package[@name='io.reactivex.rxjava3.internal.operators.observable']/class[@name='ObservableScan']/method[@name='subscribeActual' and count(parameter)=1 and parameter[1][@type='io.reactivex.Observer&lt;? super T&gt;']]"
+        name="visibility"
+        >
+        protected
+    </attr>
+    <attr
+        path="/api/package[@name='io.reactivex.rxjava3.internal.operators.observable']/class[@name='ObservableSingleMaybe']/method[@name='subscribeActual' and count(parameter)=1 and parameter[1][@type='io.reactivex.MaybeObserver&lt;? super T&gt;']]"
+        name="visibility"
+        >
+        protected
+    </attr>
+    <attr
+        path="/api/package[@name='io.reactivex.rxjava3.internal.operators.observable']/class[@name='ObservableSwitchIfEmpty']/method[@name='subscribeActual' and count(parameter)=1 and parameter[1][@type='io.reactivex.Observer&lt;? super T&gt;']]"
+        name="visibility"
+        >
+        protected
+    </attr>
+    <attr
+        path="/api/package[@name='io.reactivex.rxjava3.internal.operators.observable']/class[@name='ObservableSequenceEqualSingle']/method[@name='subscribeActual' and count(parameter)=1 and parameter[1][@type='io.reactivex.SingleObserver&lt;? super java.lang.Boolean&gt;']]"
+        name="visibility"
+        >
+        protected
+    </attr>
+    <attr
+        path="/api/package[@name='io.reactivex.rxjava3.internal.operators.observable']/class[@name='ObservableThrottleFirstTimed']/method[@name='subscribeActual' and count(parameter)=1 and parameter[1][@type='io.reactivex.Observer&lt;? super T&gt;']]"
+        name="visibility"
+        >
+        protected
+    </attr>
+    <attr
+        path="/api/package[@name='io.reactivex.rxjava3.internal.operators.flowable']/class[@name='FlowableFlattenIterable']/method[@name='subscribeActual' and count(parameter)=1 and parameter[1][@type='org.reactivestreams.Subscriber&lt;? super R&gt;']]"
+        name="visibility"
+        >
+        protected
+    </attr>
+    <attr
+        path="/api/package[@name='io.reactivex.rxjava3.internal.operators.flowable']/class[@name='FlowableFromArray']/method[@name='subscribeActual' and count(parameter)=1 and parameter[1][@type='org.reactivestreams.Subscriber&lt;? super T&gt;']]"
+        name="visibility"
+        >
+        protected
+    </attr>
+    <attr
+        path="/api/package[@name='io.reactivex.rxjava3.internal.operators.observable']/class[@name='ObservableCount']/method[@name='subscribeActual' and count(parameter)=1 and parameter[1][@type='io.reactivex.Observer&lt;? super java.lang.Long&gt;']]"
+        name="visibility"
+        >
+        protected
+    </attr>
+    <attr
+        path="/api/package[@name='io.reactivex.rxjava3.internal.operators.flowable']/class[@name='FlowableFromCallable']/method[@name='subscribeActual' and count(parameter)=1 and parameter[1][@type='org.reactivestreams.Subscriber&lt;? super T&gt;']]"
+        name="visibility"
+        >
+        protected
+    </attr>
+    <attr
+        path="/api/package[@name='io.reactivex.rxjava3.internal.operators.observable']/class[@name='ObservableCountSingle']/method[@name='subscribeActual' and count(parameter)=1 and parameter[1][@type='io.reactivex.SingleObserver&lt;? super java.lang.Long&gt;']]"
+        name="visibility"
+        >
+        protected
+    </attr>
+    <attr
+        path="/api/package[@name='io.reactivex.rxjava3.internal.operators.flowable']/class[@name='FlowableFromFuture']/method[@name='subscribeActual' and count(parameter)=1 and parameter[1][@type='org.reactivestreams.Subscriber&lt;? super T&gt;']]"
+        name="visibility"
+        >
+        protected
+    </attr>
+    <attr
+        path="/api/package[@name='io.reactivex.rxjava3.internal.operators.observable']/class[@name='ObservableDebounce']/method[@name='subscribeActual' and count(parameter)=1 and parameter[1][@type='io.reactivex.Observer&lt;? super T&gt;']]"
+        name="visibility"
+        >
+        protected
+    </attr>
+    <attr
+        path="/api/package[@name='io.reactivex.rxjava3.internal.operators.observable']/class[@name='ObservableDelaySubscriptionOther']/method[@name='subscribeActual' and count(parameter)=1 and parameter[1][@type='io.reactivex.Observer&lt;? super T&gt;']]"
+        name="visibility"
+        >
+        protected
+    </attr>
+    <attr
+        path="/api/package[@name='io.reactivex.rxjava3.internal.operators.flowable']/class[@name='FlowableFromIterable']/method[@name='subscribeActual' and count(parameter)=1 and parameter[1][@type='org.reactivestreams.Subscriber&lt;? super T&gt;']]"
+        name="visibility"
+        >
+        protected
+    </attr>
+    <attr
+        path="/api/package[@name='io.reactivex.rxjava3.internal.operators.observable']/class[@name='ObservableDebounceTimed']/method[@name='subscribeActual' and count(parameter)=1 and parameter[1][@type='io.reactivex.Observer&lt;? super T&gt;']]"
+        name="visibility"
+        >
+        protected
+    </attr>
+    <attr
+        path="/api/package[@name='io.reactivex.rxjava3.internal.operators.observable']/class[@name='ObservableDematerialize']/method[@name='subscribeActual' and count(parameter)=1 and parameter[1][@type='io.reactivex.Observer&lt;? super R&gt;']]"
+        name="visibility"
+        >
+        protected
+    </attr>
+    <attr
+        path="/api/package[@name='io.reactivex.rxjava3.internal.operators.observable']/class[@name='ObservableDefer']/method[@name='subscribeActual' and count(parameter)=1 and parameter[1][@type='io.reactivex.Observer&lt;? super T&gt;']]"
+        name="visibility"
+        >
+        protected
+    </attr>
+    <attr
+        path="/api/package[@name='io.reactivex.rxjava3.internal.operators.observable']/class[@name='ObservableDelay']/method[@name='subscribeActual' and count(parameter)=1 and parameter[1][@type='io.reactivex.Observer&lt;? super T&gt;']]"
+        name="visibility"
+        >
+        protected
+    </attr>
+    <attr
+        path="/api/package[@name='io.reactivex.rxjava3.internal.operators.observable']/class[@name='ObservableDoOnEach']/method[@name='subscribeActual' and count(parameter)=1 and parameter[1][@type='io.reactivex.Observer&lt;? super T&gt;']]"
+        name="visibility"
+        >
+        protected
+    </attr>
+    <attr
+        path="/api/package[@name='io.reactivex.rxjava3.internal.operators.observable']/class[@name='ObservableElementAtSingle']/method[@name='subscribeActual' and count(parameter)=1 and parameter[1][@type='io.reactivex.SingleObserver&lt;? super T&gt;']]"
+        name="visibility"
+        >
+        protected
+    </attr>
+    <attr
+        path="/api/package[@name='io.reactivex.rxjava3.internal.operators.observable']/class[@name='ObservableElementAt']/method[@name='subscribeActual' and count(parameter)=1 and parameter[1][@type='io.reactivex.Observer&lt;? super T&gt;']]"
+        name="visibility"
+        >
+        protected
+    </attr>
+    <attr
+        path="/api/package[@name='io.reactivex.rxjava3.internal.operators.flowable']/class[@name='FlowableLift']/method[@name='subscribeActual' and count(parameter)=1 and parameter[1][@type='org.reactivestreams.Subscriber&lt;? super R&gt;']]"
+        name="visibility"
+        >
+        protected
+    </attr>
+    <attr
+        path="/api/package[@name='io.reactivex.rxjava3.internal.operators.observable']/class[@name='ObservableElementAtMaybe']/method[@name='subscribeActual' and count(parameter)=1 and parameter[1][@type='io.reactivex.MaybeObserver&lt;? super T&gt;']]"
+        name="visibility"
+        >
+        protected
+    </attr>
+    <attr
+        path="/api/package[@name='io.reactivex.rxjava3.internal.operators.observable']/class[@name='ObservableError']/method[@name='subscribeActual' and count(parameter)=1 and parameter[1][@type='io.reactivex.Observer&lt;? super T&gt;']]"
+        name="visibility"
+        >
+        protected
+    </attr>
+    <attr
+        path="/api/package[@name='io.reactivex.rxjava3.internal.operators.observable']/class[@name='ObservableFromArray']/method[@name='subscribeActual' and count(parameter)=1 and parameter[1][@type='io.reactivex.Observer&lt;? super T&gt;']]"
+        name="visibility"
+        >
+        protected
+    </attr>
+    <attr
+        path="/api/package[@name='io.reactivex.rxjava3.internal.operators.observable']/class[@name='ObservableFilter']/method[@name='subscribeActual' and count(parameter)=1 and parameter[1][@type='io.reactivex.Observer&lt;? super T&gt;']]"
+        name="visibility"
+        >
+        protected
+    </attr>
+    <attr
+        path="/api/package[@name='io.reactivex.rxjava3.internal.operators.flowable']/class[@name='FlowableNever']/method[@name='subscribeActual' and count(parameter)=1 and parameter[1][@type='org.reactivestreams.Subscriber&lt;? super java.lang.Object&gt;']]"
+        name="visibility"
+        >
+        protected
+    </attr>
+    <attr
+        path="/api/package[@name='io.reactivex.rxjava3.internal.operators.observable']/class[@name='ObservableIgnoreElements']/method[@name='subscribeActual' and count(parameter)=1 and parameter[1][@type='io.reactivex.Observer&lt;? super T&gt;']]"
+        name="visibility"
+        >
+        protected
+    </attr>
+    <attr
+        path="/api/package[@name='io.reactivex.rxjava3.internal.operators.observable']/class[@name='ObservableFlatMap']/method[@name='subscribeActual' and count(parameter)=1 and parameter[1][@type='io.reactivex.Observer&lt;? super U&gt;']]"
+        name="visibility"
+        >
+        protected
+    </attr>
+    <attr
+        path="/api/package[@name='io.reactivex.rxjava3.internal.operators.observable']/class[@name='ObservableFromCallable']/method[@name='subscribeActual' and count(parameter)=1 and parameter[1][@type='io.reactivex.Observer&lt;? super T&gt;']]"
+        name="visibility"
+        >
+        protected
+    </attr>
+    <attr
+        path="/api/package[@name='io.reactivex.rxjava3.internal.operators.flowable']/class[@name='FlowableObserveOn']/method[@name='subscribeActual' and count(parameter)=1 and parameter[1][@type='org.reactivestreams.Subscriber&lt;? super T&gt;']]"
+        name="visibility"
+        >
+        protected
+    </attr>
+    <attr
+        path="/api/package[@name='io.reactivex.rxjava3.internal.operators.observable']/class[@name='ObservableFromFuture']/method[@name='subscribeActual' and count(parameter)=1 and parameter[1][@type='io.reactivex.Observer&lt;? super T&gt;']]"
+        name="visibility"
+        >
+        protected
+    </attr>
+    <attr
+        path="/api/package[@name='io.reactivex.rxjava3.internal.operators.observable']/class[@name='ObservableFromIterable']/method[@name='subscribeActual' and count(parameter)=1 and parameter[1][@type='io.reactivex.Observer&lt;? super T&gt;']]"
+        name="visibility"
+        >
+        protected
+    </attr>
+    <attr
+        path="/api/package[@name='io.reactivex.rxjava3.internal.operators.flowable']/class[@name='FlowableRetryBiPredicate']/method[@name='subscribeActual' and count(parameter)=1 and parameter[1][@type='org.reactivestreams.Subscriber&lt;? super T&gt;']]"
+        name="visibility"
+        >
+        protected
+    </attr>
+    <attr
+        path="/api/package[@name='io.reactivex.rxjava3.internal.operators.observable']/class[@name='ObservableGenerate']/method[@name='subscribeActual' and count(parameter)=1 and parameter[1][@type='io.reactivex.Observer&lt;? super T&gt;']]"
+        name="visibility"
+        >
+        protected
+    </attr>
+    <attr
+        path="/api/package[@name='io.reactivex.rxjava3.internal.operators.flowable']/class[@name='FlowableInterval']/method[@name='subscribeActual' and count(parameter)=1 and parameter[1][@type='org.reactivestreams.Subscriber&lt;? super java.lang.Long&gt;']]"
+        name="visibility"
+        >
+        protected
+    </attr>
+    <attr
+        path="/api/package[@name='io.reactivex.rxjava3.internal.operators.flowable']/class[@name='FlowableRetryPredicate']/method[@name='subscribeActual' and count(parameter)=1 and parameter[1][@type='org.reactivestreams.Subscriber&lt;? super T&gt;']]"
+        name="visibility"
+        >
+        protected
+    </attr>
+    <attr
+        path="/api/package[@name='io.reactivex.rxjava3.internal.operators.observable']/class[@name='ObservableGroupBy']/method[@name='subscribeActual' and count(parameter)=1 and parameter[1][@type='io.reactivex.Observer&lt;? super io.reactivex.observables.GroupedObservable&lt;K, V&gt;&gt;']]"
+        name="visibility"
+        >
+        protected
+    </attr>
+    <attr
+        path="/api/package[@name='io.reactivex.rxjava3.internal.operators.flowable']/class[@name='FlowableIntervalRange']/method[@name='subscribeActual' and count(parameter)=1 and parameter[1][@type='org.reactivestreams.Subscriber&lt;? super java.lang.Long&gt;']]"
+        name="visibility"
+        >
+        protected
+    </attr>
+    <attr
+        path="/api/package[@name='io.reactivex.rxjava3.internal.operators.flowable']/class[@name='FlowableRetryWhen']/method[@name='subscribeActual' and count(parameter)=1 and parameter[1][@type='org.reactivestreams.Subscriber&lt;? super T&gt;']]"
+        name="visibility"
+        >
+        protected
+    </attr>
+    <attr
+        path="/api/package[@name='io.reactivex.rxjava3.internal.operators.observable']/class[@name='ObservableSubscribeOn']/method[@name='subscribeActual' and count(parameter)=1 and parameter[1][@type='io.reactivex.Observer&lt;? super T&gt;']]"
+        name="visibility"
+        >
+        protected
+    </attr>
+    <attr
+        path="/api/package[@name='io.reactivex.rxjava3.internal.operators.observable']/class[@name='ObservableTakeLastOne']/method[@name='subscribeActual' and count(parameter)=1 and parameter[1][@type='io.reactivex.Observer&lt;? super T&gt;']]"
+        name="visibility"
+        >
+        protected
+    </attr>
+    <attr
+        path="/api/package[@name='io.reactivex.rxjava3.internal.operators.observable']/class[@name='ObservableTakeLastTimed']/method[@name='subscribeActual' and count(parameter)=1 and parameter[1][@type='io.reactivex.Observer&lt;? super T&gt;']]"
+        name="visibility"
+        >
+        protected
+    </attr>
+    <attr
+        path="/api/package[@name='io.reactivex.rxjava3.internal.operators.observable']/class[@name='ObservableSwitchMap']/method[@name='subscribeActual' and count(parameter)=1 and parameter[1][@type='io.reactivex.Observer&lt;? super R&gt;']]"
+        name="visibility"
+        >
+        protected
+    </attr>
+    <attr
+        path="/api/package[@name='io.reactivex.rxjava3.internal.operators.observable']/class[@name='ObservableSingleSingle']/method[@name='subscribeActual' and count(parameter)=1 and parameter[1][@type='io.reactivex.SingleObserver&lt;? super T&gt;']]"
+        name="visibility"
+        >
+        protected
+    </attr>
+    <attr
+        path="/api/package[@name='io.reactivex.rxjava3.internal.operators.observable']/class[@name='ObservableUsing']/method[@name='subscribeActual' and count(parameter)=1 and parameter[1][@type='io.reactivex.Observer&lt;? super T&gt;']]"
+        name="visibility"
+        >
+        protected
+    </attr>
+    <attr
+        path="/api/package[@name='io.reactivex.rxjava3.internal.operators.observable']/class[@name='ObservableWindowBoundary']/method[@name='subscribeActual' and count(parameter)=1 and parameter[1][@type='io.reactivex.Observer&lt;? super io.reactivex.Observable&lt;T&gt;&gt;']]"
+        name="visibility"
+        >
+        protected
+    </attr>
+    <attr
+        path="/api/package[@name='io.reactivex.rxjava3.internal.operators.flowable']/class[@name='FlowableSequenceEqualSingle']/method[@name='subscribeActual' and count(parameter)=1 and parameter[1][@type='io.reactivex.SingleObserver&lt;? super java.lang.Boolean&gt;']]"
+        name="visibility"
+        >
+        protected
+    </attr>
+    <attr
+        path="/api/package[@name='io.reactivex.rxjava3.internal.operators.observable']/class[@name='ObservableRepeatUntil']/method[@name='subscribeActual' and count(parameter)=1 and parameter[1][@type='io.reactivex.Observer&lt;? super T&gt;']]"
+        name="visibility"
+        >
+        protected
+    </attr>
+    <attr
+        path="/api/package[@name='io.reactivex.rxjava3.internal.operators.observable']/class[@name='ObservableSkip']/method[@name='subscribeActual' and count(parameter)=1 and parameter[1][@type='io.reactivex.Observer&lt;? super T&gt;']]"
+        name="visibility"
+        >
+        protected
+    </attr>
+    <attr
+        path="/api/package[@name='io.reactivex.rxjava3.internal.operators.observable']/class[@name='ObservableWindow']/method[@name='subscribeActual' and count(parameter)=1 and parameter[1][@type='io.reactivex.Observer&lt;? super io.reactivex.Observable&lt;T&gt;&gt;']]"
+        name="visibility"
+        >
+        protected
+    </attr>
+    <attr
+        path="/api/package[@name='io.reactivex.rxjava3.internal.operators.observable']/class[@name='ObservableWindowBoundarySelector']/method[@name='subscribeActual' and count(parameter)=1 and parameter[1][@type='io.reactivex.Observer&lt;? super io.reactivex.Observable&lt;T&gt;&gt;']]"
+        name="visibility"
+        >
+        protected
+    </attr>
+    <attr
+        path="/api/package[@name='io.reactivex.rxjava3.internal.operators.observable']/class[@name='ObservableTakeUntil']/method[@name='subscribeActual' and count(parameter)=1 and parameter[1][@type='io.reactivex.Observer&lt;? super T&gt;']]"
+        name="visibility"
+        >
+        protected
+    </attr>
+    <attr
+        path="/api/package[@name='io.reactivex.rxjava3.internal.operators.flowable']/class[@name='FlowableRepeat']/method[@name='subscribeActual' and count(parameter)=1 and parameter[1][@type='org.reactivestreams.Subscriber&lt;? super T&gt;']]"
+        name="visibility"
+        >
+        protected
+    </attr>
+    <attr
+        path="/api/package[@name='io.reactivex.rxjava3.internal.operators.observable']/class[@name='ObservableTakeLast']/method[@name='subscribeActual' and count(parameter)=1 and parameter[1][@type='io.reactivex.Observer&lt;? super T&gt;']]"
+        name="visibility"
+        >
+        protected
+    </attr>
+    <attr
+        path="/api/package[@name='io.reactivex.rxjava3.internal.operators.observable']/class[@name='ObservableZipIterable']/method[@name='subscribeActual' and count(parameter)=1 and parameter[1][@type='io.reactivex.Observer&lt;? super V&gt;']]"
+        name="visibility"
+        >
+        protected
+    </attr>
+    <attr
+        path="/api/package[@name='io.reactivex.rxjava3.internal.operators.observable']/class[@name='ObservableWindowBoundarySupplier']/method[@name='subscribeActual' and count(parameter)=1 and parameter[1][@type='io.reactivex.Observer&lt;? super io.reactivex.Observable&lt;T&gt;&gt;']]"
+        name="visibility"
+        >
+        protected
+    </attr>
+    <attr
+        path="/api/package[@name='io.reactivex.rxjava3.internal.operators.observable']/class[@name='ObservableTakeUntilPredicate']/method[@name='subscribeActual' and count(parameter)=1 and parameter[1][@type='io.reactivex.Observer&lt;? super T&gt;']]"
+        name="visibility"
+        >
+        protected
+    </attr>
+    <attr
+        path="/api/package[@name='io.reactivex.rxjava3.internal.operators.flowable']/class[@name='FlowableRangeLong']/method[@name='subscribeActual' and count(parameter)=1 and parameter[1][@type='org.reactivestreams.Subscriber&lt;? super java.lang.Long&gt;']]"
+        name="visibility"
+        >
+        protected
+    </attr>
+    <attr
+        path="/api/package[@name='io.reactivex.rxjava3.internal.operators.flowable']/class[@name='FlowableRepeatUntil']/method[@name='subscribeActual' and count(parameter)=1 and parameter[1][@type='org.reactivestreams.Subscriber&lt;? super T&gt;']]"
+        name="visibility"
+        >
+        protected
+    </attr>
+    <attr
+        path="/api/package[@name='io.reactivex.rxjava3.internal.operators.observable']/class[@name='ObservableSkipLastTimed']/method[@name='subscribeActual' and count(parameter)=1 and parameter[1][@type='io.reactivex.Observer&lt;? super T&gt;']]"
+        name="visibility"
+        >
+        protected
+    </attr>
+    <attr
+        path="/api/package[@name='io.reactivex.rxjava3.internal.operators.observable']/class[@name='ObservableTimeInterval']/method[@name='subscribeActual' and count(parameter)=1 and parameter[1][@type='io.reactivex.Observer&lt;? super io.reactivex.schedulers.Timed&lt;T&gt;&gt;']]"
+        name="visibility"
+        >
+        protected
+    </attr>
+    <attr
+        path="/api/package[@name='io.reactivex.rxjava3.internal.operators.observable']/class[@name='ObservableTakeWhile']/method[@name='subscribeActual' and count(parameter)=1 and parameter[1][@type='io.reactivex.Observer&lt;? super T&gt;']]"
+        name="visibility"
+        >
+        protected
+    </attr>
+    <attr
+        path="/api/package[@name='io.reactivex.rxjava3.internal.operators.observable']/class[@name='ObservableSkipUntil']/method[@name='subscribeActual' and count(parameter)=1 and parameter[1][@type='io.reactivex.Observer&lt;? super T&gt;']]"
+        name="visibility"
+        >
+        protected
+    </attr>
+    <attr
+        path="/api/package[@name='io.reactivex.rxjava3.internal.operators.observable']/class[@name='ObservableWindowTimed']/method[@name='subscribeActual' and count(parameter)=1 and parameter[1][@type='io.reactivex.Observer&lt;? super io.reactivex.Observable&lt;T&gt;&gt;']]"
+        name="visibility"
+        >
+        protected
+    </attr>
+    <attr
+        path="/api/package[@name='io.reactivex.rxjava3.internal.operators.observable']/class[@name='ObservableSkipWhile']/method[@name='subscribeActual' and count(parameter)=1 and parameter[1][@type='io.reactivex.Observer&lt;? super T&gt;']]"
+        name="visibility"
+        >
+        protected
+    </attr>
+    <attr
+        path="/api/package[@name='io.reactivex.rxjava3.internal.operators.observable']/class[@name='ObservableRetryBiPredicate']/method[@name='subscribeActual' and count(parameter)=1 and parameter[1][@type='io.reactivex.Observer&lt;? super T&gt;']]"
+        name="visibility"
+        >
+        protected
+    </attr>
+    <attr
+        path="/api/package[@name='io.reactivex.rxjava3.internal.operators.observable']/class[@name='ObservableWithLatestFrom']/method[@name='subscribeActual' and count(parameter)=1 and parameter[1][@type='io.reactivex.Observer&lt;? super R&gt;']]"
+        name="visibility"
+        >
+        protected
+    </attr>
+    <attr
+        path="/api/package[@name='io.reactivex.rxjava3.internal.operators.observable']/class[@name='ObservableTimer']/method[@name='subscribeActual' and count(parameter)=1 and parameter[1][@type='io.reactivex.Observer&lt;? super java.lang.Long&gt;']]"
+        name="visibility"
+        >
+        protected
+    </attr>
+    <attr
+        path="/api/package[@name='io.reactivex.rxjava3.internal.operators.observable']/class[@name='ObservableToList']/method[@name='subscribeActual' and count(parameter)=1 and parameter[1][@type='io.reactivex.Observer&lt;? super U&gt;']]"
+        name="visibility"
+        >
+        protected
+    </attr>
+    <attr
+        path="/api/package[@name='io.reactivex.rxjava3.internal.operators.observable']/class[@name='ObservableZip']/method[@name='subscribeActual' and count(parameter)=1 and parameter[1][@type='io.reactivex.Observer&lt;? super R&gt;']]"
+        name="visibility"
+        >
+        protected
+    </attr>
+    <attr
+        path="/api/package[@name='io.reactivex.rxjava3.internal.operators.observable']/class[@name='ObservableToListSingle']/method[@name='subscribeActual' and count(parameter)=1 and parameter[1][@type='io.reactivex.SingleObserver&lt;? super U&gt;']]"
+        name="visibility"
+        >
+        protected
+    </attr>
+    <attr
+        path="/api/package[@name='io.reactivex.rxjava3.internal.operators.observable']/class[@name='ObservableUnsubscribeOn']/method[@name='subscribeActual' and count(parameter)=1 and parameter[1][@type='io.reactivex.Observer&lt;? super T&gt;']]"
+        name="visibility"
+        >
+        protected
+    </attr>
+    <attr
+        path="/api/package[@name='io.reactivex.rxjava3.internal.operators.flowable']/class[@name='FlowableTimer']/method[@name='subscribeActual' and count(parameter)=1 and parameter[1][@type='org.reactivestreams.Subscriber&lt;? super java.lang.Long&gt;']]"
+        name="visibility"
+        >
+        protected
+    </attr>
+    <attr
+        path="/api/package[@name='io.reactivex.rxjava3.internal.operators.observable']/class[@name='ObservableAmb']/method[@name='subscribeActual' and count(parameter)=1 and parameter[1][@type='io.reactivex.Observer&lt;? super T&gt;']]"
+        name="visibility"
+        >
+        protected
+    </attr>
+    <attr
+        path="/api/package[@name='io.reactivex.rxjava3.internal.operators.flowable']/class[@name='FlowableDefer']/method[@name='subscribeActual' and count(parameter)=1 and parameter[1][@type='org.reactivestreams.Subscriber&lt;? super T&gt;']]"
+        name="visibility"
+        >
+        protected
+    </attr>
+    -->
+
+    <add-node
+        path="/api/package[@name='io.reactivex.rxjava3.subjects']/class[@name='Subject']"
+        >
+        <method abstract="true" deprecated="not deprecated" final="false" name="onNext" jni-signature="(Ljava/lang/Object;)V" bridge="false" native="false" return="void" jni-return="V" static="false" synchronized="false" synthetic="false" visibility="public">
+            <parameter name="t" type="T" jni-type="TT;">
+            </parameter>
+        </method>
+    </add-node>
+
+
+    <add-node
+        path="/api/package[@name='io.reactivex.rxjava3.internal.observers']/class[@name='BlockingBaseObserver']"
+        >
+        <method abstract="true" deprecated="not deprecated" final="false" name="onNext" jni-signature="(Ljava/lang/Object;)V" bridge="false" native="false" return="void" jni-return="V" static="false" synchronized="false" synthetic="false" visibility="public">
+            <parameter name="t" type="T" jni-type="TT;">
+            </parameter>
+        </method>
+    </add-node>
+    <add-node
+        path="/api/package[@name='io.reactivex.rxjava3.observers']/class[@name='DisposableObserver']"
+        >
+        <method abstract="true" deprecated="not deprecated" final="false" name="onNext" jni-signature="(Ljava/lang/Object;)V" bridge="false" native="false" return="void" jni-return="V" static="false" synchronized="false" synthetic="false" visibility="public">
+            <parameter name="t" type="T" jni-type="TT;">
+            </parameter>
+        </method>
+    </add-node>
+    <add-node
+        path="/api/package[@name='io.reactivex.rxjava3.observers']/class[@name='ResourceObserver']"
+        >
+        <method abstract="true" deprecated="not deprecated" final="false" name="onNext" jni-signature="(Ljava/lang/Object;)V" bridge="false" native="false" return="void" jni-return="V" static="false" synchronized="false" synthetic="false" visibility="public">
+            <parameter name="t" type="T" jni-type="TT;">
+            </parameter>
+        </method>
+    </add-node>
+    <add-node
+        path="/api/package[@name='io.reactivex.rxjava3.internal.observers']/class[@name='DeferredScalarObserver']"
+        >
+        <method abstract="true" deprecated="not deprecated" final="false" name="onNext" jni-signature="(Ljava/lang/Object;)V" bridge="false" native="false" return="void" jni-return="V" static="false" synchronized="false" synthetic="false" visibility="public">
+            <parameter name="t" type="T" jni-type="TT;">
+            </parameter>
+        </method>
+    </add-node>
+    <add-node
+        path="/api/package[@name='io.reactivex.rxjava3.internal.observers']/class[@name='QueueDrainObserver']"
+        >
+        <method abstract="true" deprecated="not deprecated" final="false" name="onNext" jni-signature="(Ljava/lang/Object;)V" bridge="false" native="false" return="void" jni-return="V" static="false" synchronized="false" synthetic="false" visibility="public">
+            <parameter name="t" type="T" jni-type="TT;">
+            </parameter>
+        </method>
+    </add-node>
+
+
+    <add-node
+        path="/api/package[@name='io.reactivex.rxjava3.internal.subscriptions']/class[@name='BasicIntQueueSubscription']"
+        >
+        <method abstract="true" deprecated="not deprecated" final="false" name="poll" jni-signature="()Ljava/lang/Object;" bridge="false" native="false" return="T" jni-return="TT;" static="false" synchronized="false" synthetic="false" visibility="public">
+        </method>
+    </add-node>
+    <add-node
+        path="/api/package[@name='io.reactivex.rxjava3.internal.subscribers']/class[@name='BasicFuseableSubscriber']"
+        >
+        <method abstract="true" deprecated="not deprecated" final="false" name="poll" jni-signature="()Ljava/lang/Object;" bridge="false" native="false" return="T" jni-return="TT;" static="false" synchronized="false" synthetic="false" visibility="public">
+        </method>
+    </add-node>
+    <add-node
+        path="/api/package[@name='io.reactivex.rxjava3.internal.subscriptions']/class[@name='BasicQueueSubscription']"
+        >
+        <method abstract="false" deprecated="not deprecated" final="false" name="poll" jni-signature="()Ljava/lang/Object;" bridge="false" native="false" return="T" jni-return="TT;" static="false" synchronized="false" synthetic="false" visibility="public">
+        </method>
+    </add-node>
+    <add-node
+        path="/api/package[@name='io.reactivex.rxjava3.internal.subscriptions']/class[@name='DeferredScalarSubscription']/method[@name='poll' and count(parameter)=0]"
+        >
+        <method abstract="true" deprecated="not deprecated" final="false" name="poll" jni-signature="()Ljava/lang/Object;" bridge="false" native="false" return="T" jni-return="TT;" static="false" synchronized="false" synthetic="false" visibility="public">
+        </method>
+    </add-node>
+    <add-node
+        path="/api/package[@name='io.reactivex.rxjava3.internal.subscribers']/class[@name='BasicFuseableConditionalSubscriber']"
+        >
+        <method abstract="true" deprecated="not deprecated" final="false" name="poll" jni-signature="()Ljava/lang/Object;" bridge="false" native="false" return="T" jni-return="TT;" static="false" synchronized="false" synthetic="false" visibility="public">
+        </method>
+    </add-node>
+    <add-node
+        path="/api/package[@name='io.reactivex.rxjava3.internal.operators.flowable']/class[@name='FlowableGroupBy']"
+        >
+        <method abstract="false" deprecated="not deprecated" final="false" name="poll" jni-signature="()Ljava/lang/Object;" bridge="false" native="false" return="T" jni-return="TT;" static="false" synchronized="false" synthetic="false" visibility="public">
+        </method>
+    </add-node>
+
+
+    <attr
+        path="/api/package[@name='io.reactivex.rxjava3.internal.operators.flowable']/class[@name='FlowableGroupBy.GroupBySubscriber']/method[@name='poll' and count(parameter)=0]"
+        name="managedReturn"
+        >
+        Java.Lang.Object
+    </attr>
+    <attr
+        path="/api/package[@name='io.reactivex.rxjava3.subscribers']/class[@name='TestSubscriber']/method[@name='assertSubscribed' and count(parameter)=0]"
+        name="managedReturn"
+        >
+        Java.Lang.Object
+    </attr>
+    <attr
+        path="/api/package[@name='io.reactivex.rxjava3.subscribers']/class[@name='TestSubscriber']/method[@name='assertNotSubscribed' and count(parameter)=0]"
+        name="managedReturn"
+        >
+        Java.Lang.Object
+    </attr>
+    <attr
+        path="/api/package[@name='io.reactivex.rxjava3.observers']/class[@name='TestObserver']/method[@name='assertNotSubscribed' and count(parameter)=0]"
+        name="managedReturn"
+        >
+        Java.Lang.Object
+    </attr>
+    <attr
+        path="/api/package[@name='io.reactivex.rxjava3.observers']/class[@name='TestObserver']/method[@name='assertSubscribed' and count(parameter)=0]"
+        name="managedReturn"
+        >
+        Java.Lang.Object
+    </attr>
+
+
+    <add-node
+        path="/api/package[@name='io.reactivex.rxjava3.internal.subscribers']/class[@name='BasicFuseableConditionalSubscriber']"
+        >
+        <method abstract="true" deprecated="not deprecated" final="false" name="tryOnNext" jni-signature="(Ljava/lang/Object;)Z" bridge="false" native="false" return="boolean" jni-return="Z" static="false" synchronized="false" synthetic="false" visibility="public">
+            <parameter name="p0" type="T" jni-type="TT;">
+            </parameter>
+        </method>
+    </add-node>
+
+    <attr
+        path="/api/package[@name='io.reactivex.rxjava3.internal.schedulers']/class[@name='ScheduledDirectTask']/method[@name='call' and count(parameter)=0]"
+        name="managedReturn"
+        >
+        Java.Lang.Object
+    </attr>
+    <attr
+        path="/api/package[@name='io.reactivex.rxjava3.internal.util']/class[@name='ArrayListSupplier']/method[@name='call' and count(parameter)=0]"
+        name="managedReturn"
+        >
+        Java.Lang.Object
+    </attr>
+    <attr
+        path="/api/package[@name='io.reactivex.rxjava3.internal.util']/class[@name='HashMapSupplier']/method[@name='call' and count(parameter)=0]"
+        name="managedReturn"
+        >
+        Java.Lang.Object
+    </attr>
+
+    <add-node
+        path="/api/package[@name='io.reactivex.rxjava3.observers']/class[@name='DisposableMaybeObserver']"
+        >
+        <method abstract="true" deprecated="not deprecated" final="false" name="onSuccess" jni-signature="(Ljava/lang/Object;)V" bridge="false" native="false" return="void" jni-return="V" static="false" synchronized="false" synthetic="false" visibility="public">
+            <parameter name="t" type="T" jni-type="TT;">
+            </parameter>
+        </method>
+    </add-node>
+    <add-node
+        path="/api/package[@name='io.reactivex.rxjava3.observers']/class[@name='DisposableSingleObserver']"
+        >
+        <method abstract="true" deprecated="not deprecated" final="false" name="onSuccess" jni-signature="(Ljava/lang/Object;)V" bridge="false" native="false" return="void" jni-return="V" static="false" synchronized="false" synthetic="false" visibility="public">
+            <parameter name="t" type="T" jni-type="TT;">
+            </parameter>
+        </method>
+    </add-node>
+    <add-node
+        path="/api/package[@name='io.reactivex.rxjava3.observers']/class[@name='ResourceMaybeObserver']"
+        >
+        <method abstract="true" deprecated="not deprecated" final="false" name="onSuccess" jni-signature="(Ljava/lang/Object;)V" bridge="false" native="false" return="void" jni-return="V" static="false" synchronized="false" synthetic="false" visibility="public">
+            <parameter name="t" type="T" jni-type="TT;">
+            </parameter>
+        </method>
+    </add-node>
+    <add-node
+        path="/api/package[@name='io.reactivex.rxjava3.observers']/class[@name='ResourceSingleObserver']"
+        >
+        <method abstract="true" deprecated="not deprecated" final="false" name="onSuccess" jni-signature="(Ljava/lang/Object;)V" bridge="false" native="false" return="void" jni-return="V" static="false" synchronized="false" synthetic="false" visibility="public">
+            <parameter name="t" type="T" jni-type="TT;">
+            </parameter>
+        </method>
+    </add-node>
+
+    <remove-node
+        path="/api/package[@name='io.reactivex.rxjava3.internal.util']/class[@name='SorterFunction']"
+        />
+    <remove-node
+        path="/api/package[@name='io.reactivex.rxjava3.internal.util']/class[@name='MergerBiFunction']"
+        />
+    <remove-node
+        path="/api/package[@name='io.reactivex.rxjava3.internal.util']/class[@name='ListAddBiConsumer']"
+        />
+
+    <remove-node
+        path="/api/package[@name='io.reactivex.rxjava3.internal.util']/class[@name='ArrayListSupplier']"
+        />
+    <remove-node
+        path="/api/package[@name='io.reactivex.rxjava3.internal.util']/class[@name='ArrayListSupplier']/method[@name='apply' and count(parameter)=1 and parameter[1][@type='java.lang.Object']]"
+        />
+    <remove-node
+        path="/api/package[@name='io.reactivex.rxjava3.internal.util']/class[@name='HashMapSupplier']"
+        />
+
+
+    <attr
+        path="/api/package[@name='io.reactivex.rxjava3.subscribers']/class[@name='TestSubscriber']/method[@name='dispose' and count(parameter)=0]"
+        name="visibility"
+        >
+        public
+    </attr>
+
+ 
+
+</metadata>

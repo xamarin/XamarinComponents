@@ -1,12 +1,12 @@
-#load "../../common.cake"
+//#load "../../common.cake"
 
-var TARGET = Argument ("t", Argument ("target", "Default"));
+var TARGET = Argument ("t", Argument ("target", "ci"));
 
 var NUGET_VERSION = "1.0.0.1";
 
 var JAR_VERSION = "1.0";
-var JAR_URL = string.Format ("https://bintray.com/google/androidthings/download_file?file_path=com%2Fgoogle%2Fandroid%2Fthings%2Fandroidthings%2F{0}%2Fandroidthings-{0}.jar", JAR_VERSION);
-var DOCS_URL = string.Format ("https://bintray.com/google/androidthings/download_file?file_path=com%2Fgoogle%2Fandroid%2Fthings%2Fandroidthings%2F{0}%2Fandroidthings-{0}-javadoc.jar", JAR_VERSION);
+var JAR_URL = $"https://bintray.com/google/androidthings/download_file?file_path=com%2Fgoogle%2Fandroid%2Fthings%2Fandroidthings%2F{JAR_VERSION}%2Fandroidthings-{JAR_VERSION}.jar";
+var DOCS_URL = $"https://bintray.com/google/androidthings/download_file?file_path=com%2Fgoogle%2Fandroid%2Fthings%2Fandroidthings%2F{JAR_VERSION}%2Fandroidthings-{JAR_VERSION}-javadoc.jar";
 
 var CONTRIB_URL = "https://bintray.com/google/androidthings/download_file?file_path=com%2Fgoogle%2Fandroid%2Fthings%2Fcontrib%2Fdriver-{0}%2F{1}%2Fdriver-{0}-{1}.aar";
 var CONTRIB_SRC_URL = "https://bintray.com/google/androidthings/download_file?file_path=com%2Fgoogle%2Fandroid%2Fthings%2Fcontrib%2Fdriver-{0}%2F{1}%2Fdriver-{0}-{1}-sources.jar";
@@ -68,8 +68,12 @@ Task("nuget")
 			.WithProperty("PackageOutputPath", "../../output"));
 });
 
-Task("samples");
+Task("samples")
+	.IsDependentOn("nuget");
 Task("component");
+
+Task("ci")
+	.IsDependentOn("samples");
 
 Task ("externals")
 	.Does (() => 
@@ -101,7 +105,7 @@ Task ("clean")
 	.Does (() => 
 {
 	if (DirectoryExists ("./externals"))
-		DeleteDirectory ("./externals", true);
+		DeleteDirectory ("./externals", new DeleteDirectorySettings { Force=true });
 });
 
 RunTarget (TARGET);

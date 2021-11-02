@@ -12,10 +12,6 @@ var ROOT_OUTPUT_DIR = ROOT_DIR.Combine ("output");
 var PACKAGE_NAMESPACES = Argument ("n", Argument ("namespaces", ""))
 	.Split (new [] { ",", ";" }, StringSplitOptions.RemoveEmptyEntries)
 	.ToList ();
-PACKAGE_NAMESPACES.AddRange (new [] {
-	"Xamarin",
-	"Mono",
-});
 
 
 // SECTION: Main Script

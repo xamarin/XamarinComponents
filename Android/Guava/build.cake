@@ -2,14 +2,10 @@
 
 var TARGET = Argument ("t", Argument ("target", "ci"));
 
-var GUAVA_VERSION_BASE = "28.2";
+var GUAVA_VERSION_BASE = "29.0";
 var GUAVA_VERSION = GUAVA_VERSION_BASE + "-android";
 var GUAVA_FAILUREACCESS_VERSION = "1.0.1";
 var GUAVA_LISTENABLEFUTURE_VERSION = "1.0";
-
-var GUAVA_NUGET_VERSION = "28.2.0.0";
-var GUAVA_FAILUREACCESS_NUGET_VERSION = "1.0.1.2";
-var GUAVA_LISTENABLEFUTURE_NUGET_VERSION = "1.0.0.2";
 
 var JSR305_VERSION = "3.0.2";
 var CHECKER_COMPAT_QUAL_VERSION = "2.5.5";
@@ -99,11 +95,6 @@ Task ("externals")
 		if (zipFile != null)
 			zipFile.Close();
 	}
-
-	// Update .csproj nuget versions
-	XmlPoke("./source/Guava/Guava.csproj", "/Project/PropertyGroup/PackageVersion", GUAVA_NUGET_VERSION);
-	XmlPoke("./source/Guava.FailureAccess/Guava.FailureAccess.csproj", "/Project/PropertyGroup/PackageVersion", GUAVA_FAILUREACCESS_NUGET_VERSION);
-	XmlPoke("./source/Guava.ListenableFuture/Guava.ListenableFuture.csproj", "/Project/PropertyGroup/PackageVersion", GUAVA_LISTENABLEFUTURE_NUGET_VERSION);
 });
 
 
@@ -111,38 +102,40 @@ Task("libs")
 	.IsDependentOn("externals")
 	.Does(() =>
 {
-	MSBuild("./Guava.sln", c => {
-		c.Configuration = "Release";
-		c.Restore = true;
-		c.MaxCpuCount = 0;
-		c.Properties.Add("DesignTimeBuild", new [] { "false" });
-	});
+	DotNetCoreRestore ("./Guava.sln");
+
+	DotNetCoreMSBuild ("./Guava.sln",
+		new DotNetCoreMSBuildSettings()
+			.SetConfiguration("Release")
+	);
 });
 
 Task("nuget")
 	.IsDependentOn("libs")
 	.Does(() =>
 {
-	MSBuild ("./Guava.sln", c => {
-		c.Configuration = "Release";
-		c.MaxCpuCount = 0;
-		c.Targets.Clear();
-		c.Targets.Add("Pack");
-		c.Properties.Add("PackageOutputPath", new [] { MakeAbsolute(new FilePath("./output")).FullPath });
-		c.Properties.Add("PackageRequireLicenseAcceptance", new [] { "true" });
-		c.Properties.Add("DesignTimeBuild", new [] { "false" });
-		c.Properties.Add("NoBuild", new [] { "true" });
-	});
+	DotNetCoreMSBuild ("./Guava.sln",
+		new DotNetCoreMSBuildSettings()
+			.WithTarget("Pack")
+			.SetConfiguration("Release")
+			.WithProperty ("PackageOutputPath", MakeAbsolute(new FilePath("./output")).FullPath)
+			.WithProperty ("PackageRequireLicenseAcceptance", "true")
+			.WithProperty ("NoBuild", "true")
+	);
 });
 
 Task("samples")
-	.IsDependentOn("nuget");
+	.IsDependentOn("nuget")
+	.Does (() =>
+{
+	MSBuild("./samples/GuavaSample/GuavaSample.csproj", c => c.Restore = true);
+});
 
 Task ("clean")
 	.Does (() =>
 {
 	if (DirectoryExists ("./externals/"))
-		DeleteDirectory ("./externals", true);
+		DeleteDirectory ("./externals", new DeleteDirectorySettings { Recursive = true });
 });
 
 Task ("ci")

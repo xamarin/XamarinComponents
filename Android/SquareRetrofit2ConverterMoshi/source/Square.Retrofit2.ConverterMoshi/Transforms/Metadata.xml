@@ -1,0 +1,19 @@
+﻿<metadata>
+	<!--
+  This sample removes the class: android.support.v4.content.AsyncTaskLoader.LoadTask:
+  <remove-node path="/api/package[@name='android.support.v4.content']/class[@name='AsyncTaskLoader.LoadTask']" />
+  
+  This sample removes the method: android.support.v4.content.CursorLoader.loadInBackground:
+  <remove-node path="/api/package[@name='android.support.v4.content']/class[@name='CursorLoader']/method[@name='loadInBackground']" />
+  -->
+
+	<attr path="/api/package[@name='retrofit2.converter.gson']" name="managedName">Square.Retrofit2.Converter.Gson</attr>
+	
+	<remove-node path="/api/package/class[@visibility='']" />
+	<remove-node path="/api/package/interface[@visibility='']" />
+	<remove-node path="/api/package/class[@deprecated='deprecated']" />
+	<remove-node path="/api/package/interface[@deprecated='deprecated']" />
+	<remove-node path="/api/package/class/method[@deprecated='deprecated']" />
+	<remove-node path="/api/package/interface/method[@deprecated='deprecated']" />
+
+</metadata>

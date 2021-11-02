@@ -3,7 +3,7 @@
   <PropertyGroup>
     <PackAsTool>true</PackAsTool>
     <OutputType>Exe</OutputType>
-    <TargetFrameworks>netcoreapp2.1;netcoreapp3.0</TargetFrameworks>
+    <TargetFrameworks>net5.0;netcoreapp3.1;netcoreapp2.1</TargetFrameworks>
     <ToolCommandName>xamarin-android-binderator</ToolCommandName>
     <AssemblyName>Xamarin.AndroidBinderator.Tool</AssemblyName>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
@@ -12,7 +12,7 @@
 
   <PropertyGroup>
     <PackageId>Xamarin.AndroidBinderator.Tool</PackageId>
-    <PackageVersion>0.4.3</PackageVersion>
+    <PackageVersion>0.5.2</PackageVersion>
     <Title>Xamarin Android Binderator</Title>
     <PackageDescription>A tool for generating Xamarin.Android Binding projects from Razor templates and Maven Repository data.</PackageDescription>
     <PackageProjectUrl>https://go.microsoft.com/fwlink/?linkid=2100525</PackageProjectUrl>
@@ -24,7 +24,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Mono.Options" Version="6.6.0.161" />
+    <PackageReference Include="Mono.Options" Version="6.12.0.148" />
   </ItemGroup>
 
   <ItemGroup>

@@ -6,7 +6,7 @@
         "Maven": {
           "ArtifactId": "perfmark-api",
           "GroupId": "io.perfmark",
-          "Version": "0.21.0",
+          "Version": "0.23.0",
           "NuGetId": "Xamarin.Io.PerfMark.PerfMarkApi"
         }
       }

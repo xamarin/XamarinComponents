@@ -3,7 +3,7 @@
   <PropertyGroup>
     <AndroidCodegenTarget>XAJavaInterop1</AndroidCodegenTarget>
     <TargetFrameworkVersion>v10.0</TargetFrameworkVersion>
-    <ReleaseVersion>1.16.0</ReleaseVersion>
+    <ReleaseVersion>1.26.0</ReleaseVersion>
   </PropertyGroup>
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>

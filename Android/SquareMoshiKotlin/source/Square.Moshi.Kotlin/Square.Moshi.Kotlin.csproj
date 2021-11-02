@@ -1,0 +1,46 @@
+﻿<Project Sdk="MSBuild.Sdk.Extras">
+  <PropertyGroup>
+    <TargetFrameworks>monoandroid9.0</TargetFrameworks>
+    <IsBindingProject>true</IsBindingProject>
+    <AssemblyName>Square.Moshi.Kotlin</AssemblyName>
+    <RootNamespace>Square.Moshi.Kotlin</RootNamespace>
+    <AndroidUseLatestPlatformSdk>False</AndroidUseLatestPlatformSdk>
+    <AndroidUseIntermediateDesignerFile>True</AndroidUseIntermediateDesignerFile>
+    <AndroidClassParser>class-parse</AndroidClassParser>
+    <AndroidCodegenTarget>XAJavaInterop1</AndroidCodegenTarget>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <PackageId>Square.Moshi.Kotlin</PackageId>
+    <Title>Moshi Kotlin bindings for Xamarin.Android</Title>
+    <Summary>Moshi is a modern JSON library for Android and Java.</Summary>
+    <Description>Moshi is a modern JSON library for Android and Java.</Description>
+    <Authors>Microsoft</Authors>
+    <Owners>Microsoft</Owners>
+    <Copyright>© Microsoft Corporation. All rights reserved.</Copyright>
+    <PackageProjectUrl>https://go.microsoft.com/fwlink/?linkid=2130312</PackageProjectUrl>
+    <PackageIcon>square.moshi_256x256.png</PackageIcon>
+    <PackageLicenseFile>LICENSE.md</PackageLicenseFile>
+    <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
+    <PackageTags>moshi kotlin xamarin android monodroid</PackageTags>
+    <PackageVersion>1.12.0</PackageVersion>
+  </PropertyGroup>
+    
+  <ItemGroup>
+    <PackageReference Include="Square.Moshi" Version="1.12.0" />
+    <PackageReference Include="Xamarin.Kotlin.Reflect" Version="1.4.32.1" />
+    <PackageReference Include="Xamarin.Kotlin.StdLib" Version="1.4.32.1" />
+  </ItemGroup>
+    
+  <ItemGroup>
+    <None Remove="Transforms\*.xml" />
+    <TransformFile Include="Transforms\*.xml" />
+    <EmbeddedJar Include="..\..\externals\*.jar" Link="Jars\%(Filename)%(Extension)" />
+    <LibraryProjectZip Include="..\..\externals\*.aar" Link="Jars\%(Filename)%(Extension)" />
+  </ItemGroup>
+    
+  <ItemGroup>
+    <None Include="..\..\License.md" Pack="true" PackagePath="LICENSE.md" />
+    <None Include="..\..\icons\square.moshi_256x256.png" Pack="True" PackagePath="\" />
+  </ItemGroup>
+</Project>

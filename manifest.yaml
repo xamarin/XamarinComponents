@@ -16,9 +16,19 @@
   TriggerPaths: [ Android/ARCore ]
   MacBuildTargets: [ ci ]
   WindowsBuildTargets: [ ci ]
+- Name: Coil
+  BuildScript: ./Android/Coil/build.cake
+  TriggerPaths: [ Android/Coil ]
+  MacBuildTargets: [ ci ]
+  WindowsBuildTargets: [ ci ]
 - Name: ConstraintLayout
   BuildScript: ./Android/ConstraintLayout/build.cake
   TriggerPaths: [ Android/ConstraintLayout ]
+  MacBuildTargets: [ ci ]
+  WindowsBuildTargets: [ ci ]
+- Name: CoilBase
+  BuildScript: ./Android/CoilBase/build.cake
+  TriggerPaths: [ Android/CoilBase ]
   MacBuildTargets: [ ci ]
   WindowsBuildTargets: [ ci ]
 - Name: GoogleAndroidVending
@@ -36,18 +46,20 @@
   TriggerPaths: [ Android/JavaxInject ]
   MacBuildTargets: [ ci ]
   WindowsBuildTargets: [ ci ]
-- Name: AndroidThings
-  BuildScript: ./Android/AndroidThings/build.cake
-  TriggerPaths: [ Android/AndroidThings ]
-  MacBuildTargets: [ nuget ]
+# Obsolete
+# - Name: AndroidThings
+#   BuildScript: ./Android/AndroidThings/build.cake
+#   TriggerPaths: [ Android/AndroidThings ]
+#   MacBuildTargets: [ nuget ]
 - Name: AndroidViewAnimations
   BuildScript: ./Android/AndroidViewAnimations/build.cake
   TriggerPaths: [ Android/AndroidViewAnimations ]
   MacBuildTargets: [ nuget, samples ]
-- Name: AnimatedCircleLoadingView
-  BuildScript: ./Android/AnimatedCircleLoadingView/build.cake
-  TriggerPaths: [ Android/AnimatedCircleLoadingView ]
-  MacBuildTargets: [ nuget, samples ]
+# Obsolete
+# - Name: AnimatedCircleLoadingView
+#   BuildScript: ./Android/AnimatedCircleLoadingView/build.cake
+#   TriggerPaths: [ Android/AnimatedCircleLoadingView ]
+#   MacBuildTargets: [ nuget, samples ]
 - Name: AutoFitTextView
   BuildScript: ./Android/AutoFitTextView/build.cake
   TriggerPaths: [ Android/AutoFitTextView ]
@@ -156,6 +168,11 @@
   BuildScript: ./Android/PhotoView/build.cake
   TriggerPaths: [ Android/PhotoView ]
   MacBuildTargets: [ nuget, samples ]
+- Name: PdfViewPager
+  BuildScript: ./Android/PdfViewPager/build.cake
+  TriggerPaths: [ Android/PdfViewPager ]
+  MacBuildTargets: [ ci ]
+  WindowsBuildTargets: [ ci ]
 - Name: ReactiveX
   BuildScript: ./Android/ReactiveX/build.cake
   TriggerPaths: [ Android/ReactiveX ]
@@ -165,6 +182,16 @@
   BuildScript: ./Android/RecyclerViewAnimators/build.cake
   TriggerPaths: [ Android/RecyclerViewAnimators ]
   MacBuildTargets: [ nuget, samples ]
+- Name: ReLinker
+  BuildScript: ./Android/ReLinker/build.cake
+  TriggerPaths: [ Android/ReLinker ]
+  MacBuildTargets: [ ci ]
+  WindowsBuildTargets: [ ci ]
+- Name: RecyclerView.FastScroll
+  BuildScript: ./Android/RecyclerView.FastScroll/build.cake
+  TriggerPaths: [ Android/RecyclerView.FastScroll ]
+  MacBuildTargets: [ ci ]
+  WindowsBuildTargets: [ ci ]
 - Name: RoundedImageView
   BuildScript: ./Android/RoundedImageView/build.cake
   TriggerPaths: [ Android/RoundedImageView ]
@@ -255,6 +282,11 @@
   TriggerPaths: [ Android/JakeWhartonPicasso2OkHttp3Downloader ]
   MacBuildTargets: [ ci ]
   WindowsBuildTargets: [ ci ]
+- Name: SignalRJavaClient
+  BuildScript: ./Android/SignalRJavaClient/build.cake
+  TriggerPaths: [ Android/SignalRJavaClient ]
+  MacBuildTargets: [ ci ]
+  WindowsBuildTargets: [ ci ]
 - Name: SquareAndroidTimesSquare
   BuildScript: ./Android/SquareAndroidTimesSquare/build.cake
   TriggerPaths: [ Android/SquareAndroidTimesSquare ]
@@ -330,6 +362,16 @@
   TriggerPaths: [ Android/SquareRetrofit2ConverterGson ]
   MacBuildTargets: [ ci ]
   WindowsBuildTargets: [ ci ]
+- Name: SquareRetrofit2ConverterScalars
+  BuildScript: ./Android/SquareRetrofit2ConverterScalars/build.cake
+  TriggerPaths: [ Android/SquareRetrofit2ConverterScalars ]
+  MacBuildTargets: [ ci ]
+  WindowsBuildTargets: [ ci ]
+- Name: SquareRetrofit2ConverterMoshi
+  BuildScript: ./Android/SquareRetrofit2ConverterMoshi/build.cake
+  TriggerPaths: [ Android/SquareRetrofit2ConverterMoshi ]
+  MacBuildTargets: [ ci ]
+  WindowsBuildTargets: [ ci ]
 - Name: SquareSeismic
   BuildScript: ./Android/SquareSeismic/build.cake
   TriggerPaths: [ Android/SquareSeismic ]
@@ -340,6 +382,41 @@
   TriggerPaths: [ Android/SquareMoshi ]
   MacBuildTargets: [ ci ]
   WindowsBuildTargets: [ ci ]
+- Name: SquareMoshiKotlin
+  BuildScript: ./Android/SquareMoshiKotlin/build.cake
+  TriggerPaths: [ Android/SquareMoshiKotlin ]
+  MacBuildTargets: [ ci ]
+  WindowsBuildTargets: [ ci ]
+- Name: SquareMoshiAdapters
+  BuildScript: ./Android/SquareMoshiAdapters/build.cake
+  TriggerPaths: [ Android/SquareMoshiAdapters ]
+  MacBuildTargets: [ ci ]
+  WindowsBuildTargets: [ ci ]
+- Name: SquareOkHttp3LoggingInterceptor
+  BuildScript: ./Android/SquareOkHttp3LoggingInterceptor/build.cake
+  TriggerPaths: [ Android/SquareOkHttp3LoggingInterceptor ]
+  MacBuildTargets: [ ci ]
+  WindowsBuildTargets: [ ci ]
+- Name: KotlinXCoroutines
+  BuildScript: ./Android/KotlinXCoroutines/build.cake
+  TriggerPaths: [ Android/KotlinXCoroutines ]
+  WindowsBuildTargets: [ ci ]
+  MacBuildTargets: [ ci ]
+- Name: DesugarJDKLibs
+  BuildScript: ./Android/DesugarJDKLibs/build.cake
+  TriggerPaths: [ Android/DesugarJDKLibs ]
+  WindowsBuildTargets: [ ci ]
+  MacBuildTargets: [ ci ]
+- Name: SignalR.Java.Client
+  BuildScript: ./Android/SignalRJavaClient/build.cake
+  TriggerPaths: [ Android/SignalRJavaClient ]
+  WindowsBuildTargets: [ ci ]
+  MacBuildTargets: [ ci ]
+- Name: Twilio.AudioSwitch
+  BuildScript: ./Android/AudioSwitch/build.cake
+  TriggerPaths: [ Android/AudioSwitch ]
+  WindowsBuildTargets: [ ci ]
+  MacBuildTargets: [ ci ]
 
 # will be XPlat in the future
 - Name: TensorFlow.Lite
@@ -391,6 +468,9 @@
 - Name: Google.UserMessagingPlatform
   BuildScript: ./XPlat/Google.UserMessagingPlatform/build.cake
   TriggerPaths: [ XPlat/Google.UserMessagingPlatform ]
+- Name: Protobuf.JavaLite
+  BuildScript: ./Android/Protobuf.JavaLite/build.cake
+  TriggerPaths: [ Android/Protobuf.JavaLite ]
   MacBuildTargets: [ ci ]
   WindowsBuildTargets: [ ci ]
 
@@ -625,10 +705,11 @@
   BuildScript: ./XPlat/GoogleVR/iOS/build.cake
   TriggerPaths: [ XPlat/GoogleVR/iOS ]
   MacBuildTargets: [ nuget, samples ]
-- Name: OpenId
-  BuildScript: ./XPlat/OpenId/build.cake
-  TriggerPaths: [ XPlat/OpenId ]
-  MacBuildTargets: [ nuget, samples ]
+# Obsolete
+# - Name: OpenId
+#   BuildScript: ./XPlat/OpenId/build.cake
+#   TriggerPaths: [ XPlat/OpenId ]
+#   MacBuildTargets: [ nuget, samples ]
 - Name: AzureMessaging
   BuildScript: ./XPlat/AzureMessaging/build.cake
   TriggerPaths: [ XPlat/AzureMessaging ]
@@ -638,10 +719,10 @@
   BuildScript: ./XPlat/YouTube.Player/android/build.cake
   TriggerPaths: [ XPlat/YouTube.Player/android ]
   MacBuildTargets: [ nuget, samples ]
-- Name: YouTube.Player.iOS
-  BuildScript: ./XPlat/YouTube.Player/ios/build.cake
-  TriggerPaths: [ XPlat/YouTube.Player/ios ]
-  MacBuildTargets: [ nuget, samples ]
+# - Name: YouTube.Player.iOS
+#   BuildScript: ./XPlat/YouTube.Player/ios/build.cake
+#   TriggerPaths: [ XPlat/YouTube.Player/ios ]
+#   MacBuildTargets: [ nuget, samples ]
 - Name: CardIOAndroid
   BuildScript: ./XPlat/CardIO/Android/build.cake
   TriggerPaths: [ XPlat/CardIO/Android ]
@@ -670,10 +751,6 @@
   BuildScript: ./XPlat/Mono.Terminal/build.cake
   TriggerPaths: [ XPlat/Mono.Terminal ]
   MacBuildTargets: [ nuget, samples ]
-- Name: Gigya
-  BuildScript: ./XPlat/Gigya/build.cake
-  TriggerPaths: [ XPlat/Gigya ]
-  MacBuildTargets: [ nuget, samples ]
 - Name: Mono.Options
   BuildScript: ./XPlat/Mono.Options/build.cake
   TriggerPaths: [ XPlat/Mono.Options ]
@@ -695,26 +772,28 @@
   BuildScript: ./XPlat/RadialProgress/build.cake
   TriggerPaths: [ XPlat/RadialProgress ]
   MacBuildTargets: [ nuget, samples ]
-- Name: ShopifyAndroid
-  BuildScript: ./XPlat/Shopify/Android/build.cake
-  TriggerPaths: [ XPlat/Shopify/Android ]
-  MacBuildTargets: [ nuget, samples ]
-- Name: ShopifyiOS
-  BuildScript: ./XPlat/Shopify/iOS/build.cake
-  TriggerPaths: [ XPlat/Shopify/iOS ]
-  MacBuildTargets: [ nuget, samples ]
+# Obsolete
+# - Name: ShopifyAndroid
+#   BuildScript: ./XPlat/Shopify/Android/build.cake
+#   TriggerPaths: [ XPlat/Shopify/Android ]
+#   MacBuildTargets: [ nuget, samples ]
+# Obsolete
+# - Name: ShopifyiOS
+#   BuildScript: ./XPlat/Shopify/iOS/build.cake
+#   TriggerPaths: [ XPlat/Shopify/iOS ]
+#   MacBuildTargets: [ nuget, samples ]
 - Name: StripeiOSBindings
   BuildScript: ./XPlat/Stripe/bindings/iOS/build.cake
   TriggerPaths: [ XPlat/Stripe/bindings/iOS ]
   MacBuildTargets: [ nuget, samples ]
-- Name: StripeAndroidBindings
-  BuildScript: ./XPlat/Stripe/bindings/Android/build.cake
-  TriggerPaths: [ XPlat/Stripe/bindings/Android ]
-  MacBuildTargets: [ nuget, samples ]
-- Name: DropboxApiV2
-  BuildScript: ./XPlat/DropboxApiV2/build.cake
-  TriggerPaths: [ XPlat/DropboxApiV2 ]
-  MacBuildTargets: [ nuget, samples ]
+# - Name: StripeAndroidBindings
+#   BuildScript: ./XPlat/Stripe/bindings/Android/build.cake
+#   TriggerPaths: [ XPlat/Stripe/bindings/Android ]
+#   MacBuildTargets: [ nuget, samples ]
+# - Name: DropboxApiV2
+#   BuildScript: ./XPlat/DropboxApiV2/build.cake
+#   TriggerPaths: [ XPlat/DropboxApiV2 ]
+#   MacBuildTargets: [ nuget, samples ]
 - Name: OfficeUIFabricAndroid
   BuildScript: ./XPlat/OfficeUIFabric/Android/build.cake
   TriggerPaths: [ XPlat/OfficeUIFabric/Android ]

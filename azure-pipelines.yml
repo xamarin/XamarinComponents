@@ -1,9 +1,9 @@
 trigger:
-  - master
+  - main
   - refs/tags/*
   
 pr:
-  - master
+  - main
 
 resources:
   repositories:
@@ -11,16 +11,24 @@ resources:
       type: github
       name: xamarin/yaml-templates
       endpoint: xamarin
+      ref: refs/heads/main
     - repository: components
       type: github
       name: xamarin/XamarinComponents
       endpoint: xamarin
+      ref: refs/heads/main
 
+variables:
+  DotNet6Version: 6.0.100-rc.2.21505.57
+  XamarinAndroidVsix: https://download.visualstudio.microsoft.com/download/pr/7372b89a-b719-426c-9916-c33cbc6c7a61/45c38957fdcacfbee95be95ee40c4f5a4cc9ace69416625ad26e2da83b176941/Xamarin.Android.Sdk-11.4.0.5.vsix
+  # NOTE: there wasn't a public release of 16.11 for macOS
+  XamarinAndroidPkg:  https://dl.internalx.com/vsts-devdiv/Xamarin.Android/public/4941337/d16-11/7776c9f1c8fac303c3aa57867825990850be0384/xamarin.android-11.4.0.5.pkg
 jobs:
   - template: .ci/build.yml@components
     parameters:
       timeoutInMinutes: 360
       areaPath: 'DevDiv\Xamarin SDK\Android'
+      xcode: 13.0
       buildType: 'manifest'
       linuxImage: 'ubuntu-latest'
       validPackagePrefixes: 
@@ -37,26 +45,36 @@ jobs:
         - AndroidEasingFunctions
         - Square
         - JakeWharton.Picasso2OkHttp3Downloader
+        - RecyclerViewAnimators
+        - GoogleGson
+      dotnet: $(DotNet6Version)
       preBuildSteps:
+        - task: JavaToolInstaller@0
+          displayName: install JDK 11
+          inputs:
+            versionSpec: '11'
+            jdkArchitectureOption: 'x64'
+            jdkSourceOption: 'PreInstalled'
         - pwsh: |
-            dotnet tool uninstall --global Cake.Tool
-            dotnet tool install --global Cake.Tool
             dotnet tool install --global boots
-            boots https://aka.ms/xamarin-android-commercial-d16-8-macos
+          displayName: install .NET global tools
+        - pwsh: |
+            boots $(XamarinAndroidPkg)
           condition: eq(variables['System.JobName'], 'macos')
+          displayName: install Xamarin.Android
         - pwsh: |
-            dotnet tool uninstall --global Cake.Tool
-            dotnet tool install --global Cake.Tool
-            dotnet tool install --global boots
-            boots https://aka.ms/xamarin-android-commercial-d16-8-windows
+            boots $(XamarinAndroidVsix)
           condition: eq(variables['System.JobName'], 'windows')
+          displayName: install Xamarin.Android
+        - pwsh: |
+            dotnet workload install android
+          displayName: install .NET 6 Android Workload
+          condition: ne(variables['System.JobName'], 'linux')
       tools:
-        - 'xamarin.androidbinderator.tool': '0.4.2'
-        - 'xamarin.androidx.migration.tool': '1.0.7.1'
+        - 'xamarin.androidbinderator.tool': '0.5.1'
+        - 'xamarin.androidx.migration.tool': '1.0.8'
   - ${{ if eq(variables['System.TeamProject'], 'devdiv') }}:
-    - template: sign-artifacts/jobs/v1.yml@internal-templates
+    - template: sign-artifacts/jobs/v2.yml@internal-templates
       parameters:
         dependsOn: [ 'build' ]
-        signTags: true
-        signMain: true
-        realSign: true
+        condition: startsWith(variables['Build.SourceBranch'], 'refs/tags/')

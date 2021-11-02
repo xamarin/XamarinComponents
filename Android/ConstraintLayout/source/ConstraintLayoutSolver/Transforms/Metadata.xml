@@ -13,5 +13,13 @@
 	<attr path="/api/package[@name='android.support.constraint.solver.widgets']/class[@name='Guideline']/field[@name='RELATIVE_UNKNWON']" name="managedName">RELATIVE_UNKNOWN</attr>
 	<attr path="/api/package[@name='android.support.constraint.solver.widgets']/class[@name='Guideline']/field[@name='VERTICAL']" name="managedName">VERTICAL</attr>
 	<attr path="/api/package[@name='android.support.constraint.solver.widgets']/class[@name='Guideline']/field[@name='HORIZONTAL']" name="managedName">HORIZONTAL</attr>
+    
+    <attr path="/api/package[@name='android.support.constraint.solver.state']/class[@name='Dimension']/method[@name='Fixed' and count(parameter)=1 and parameter[1][@type='int']]" name="managedName">FixedFromValue</attr>
+    <attr path="/api/package[@name='android.support.constraint.solver.state']/class[@name='Dimension']/method[@name='Suggested' and count(parameter)=1 and parameter[1][@type='int']]" name="managedName">SuggestedFromValue</attr>
+    <remove-node path="/api/package[@name='android.support.constraint.solver.state']/class[@name='Dimension']/method[@name='Percent' and count(parameter)=2 and parameter[1][@type='java.lang.Object'] and parameter[2][@type='float']]" />
+    <remove-node path="/api/package[@name='android.support.constraint.solver.state']/class[@name='Dimension']/method[@name='Fixed' and count(parameter)=1 and parameter[1][@type='java.lang.Object']]" />
+    <remove-node path="/api/package[@name='android.support.constraint.solver.state']/class[@name='Dimension']/method[@name='suggested' and count(parameter)=1 and parameter[1][@type='java.lang.Object']]" />
+    
+    <remove-node path="/api/package[@name='android.support.constraint.solver.widgets.analyzer']/class[@name='WidgetRun']"/>
 </metadata>
 

@@ -4,10 +4,10 @@
     friendlyName += " " + name;
   }
 }
-<Project Sdk="MSBuild.Sdk.Extras/2.1.2">
+<Project Sdk="MSBuild.Sdk.Extras">
 
   <PropertyGroup>
-    <TargetFramework>MonoAndroid90</TargetFramework>
+    <TargetFramework>MonoAndroid9.0</TargetFramework>
     <IsBindingProject>true</IsBindingProject>
     <RootNamespace>Xamarin.Kotlin</RootNamespace>
     @if (!string.IsNullOrEmpty(Model.AssemblyName)) {
@@ -59,7 +59,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Update="@(Model.NuGetPackageId).targets" Pack="True" PackagePath="build\$(TargetFramework)" />
+    <None Update="@(Model.NuGetPackageId).targets" Pack="True" PackagePath="build\$(TargetFramework);buildTransitive\$(TargetFramework)" />
   </ItemGroup>
 
   <ItemGroup>

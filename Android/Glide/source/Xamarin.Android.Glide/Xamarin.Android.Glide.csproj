@@ -1,51 +1,28 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<Project Sdk="MSBuild.Sdk.Extras/2.0.54">
+﻿<Project Sdk="Xamarin.Legacy.Sdk">
   <PropertyGroup>
-    <TargetFrameworks>MonoAndroid10.0</TargetFrameworks>
-    <IsBindingProject>true</IsBindingProject>
-    <AssemblyName>Xamarin.Android.Glide</AssemblyName>
-    <MonoAndroidResourcePrefix>Resources</MonoAndroidResourcePrefix>
-    <MonoAndroidAssetsPrefix>Assets</MonoAndroidAssetsPrefix>
-    <AndroidUseLatestPlatformSdk>False</AndroidUseLatestPlatformSdk>
-    <AndroidUseIntermediateDesignerFile>True</AndroidUseIntermediateDesignerFile>
-    <AndroidResgenFile>Resources\Resource.designer.cs</AndroidResgenFile>
     <RootNamespace>Bumptech.Glide</RootNamespace>
-    <AndroidClassParser>class-parse</AndroidClassParser>
-    <AndroidCodegenTarget>XAJavaInterop1</AndroidCodegenTarget>
   </PropertyGroup>
 
   <PropertyGroup>
-    <PackageId>Xamarin.Android.Glide</PackageId>
     <Title>Glide for Xamarin.Android</Title>
     <PackageDescription>Xamarin.Android bindings for Glide</PackageDescription>
-    <Authors>Microsoft</Authors>
-    <Owners>Microsoft</Owners>
-    <Copyright>© Microsoft Corporation. All rights reserved.</Copyright>
-    <PackageProjectUrl>https://go.microsoft.com/fwlink/?linkid=864954</PackageProjectUrl>
-    <PackageLicenseUrl>https://go.microsoft.com/fwlink/?linkid=865026</PackageLicenseUrl>
-    <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
-    <PackageVersion>4.11.0</PackageVersion>
+    <PackageVersion>4.12.0.2</PackageVersion>
   </PropertyGroup>
 
   <ItemGroup>
-    <TransformFile Include="Transforms\*.xml" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <None Include="..\..\externals\glide.aar">
-      <Link>glide.aar</Link>
-    </None>
+    <None Include="..\..\externals\glide.aar" Pack="True" PackagePath="aar" />
+    <None Include="$(PackageId).targets" Pack="True" PackagePath="@(GlideBuildFolders)" />
     <None Include="..\..\External-Dependency-Info.txt" Pack="True" PackagePath="THIRD-PARTY-NOTICES.txt" />
   </ItemGroup>
 
   <ItemGroup>
-    <LibraryProjectZip Include="..\..\externals\glide.aar" />
+    <InputJar Include="..\..\externals\glide\classes.jar" />
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Xamarin.AndroidX.Fragment" Version="1.2.4.1" />
-    <PackageReference Include="Xamarin.AndroidX.ExifInterface" Version="1.1.0.1" />
-    <PackageReference Include="Xamarin.AndroidX.VectorDrawable.Animated" Version="1.1.0.1" />
+    <PackageReference Include="Xamarin.AndroidX.Fragment" Version="1.3.6.1" />
+    <PackageReference Include="Xamarin.AndroidX.ExifInterface" Version="1.3.3" />
+    <PackageReference Include="Xamarin.AndroidX.VectorDrawable.Animated" Version="1.1.0.8" />
   </ItemGroup>
 
   <ItemGroup>

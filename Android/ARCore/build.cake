@@ -1,10 +1,10 @@
-#load "../../common.cake"
+//#load "../../common.cake"
 
 var TARGET = Argument ("t", Argument ("target", "ci"));
 
-var NUGET_VERSION = "1.16.0";
+var NUGET_VERSION = "1.26.0";
 
-var AAR_VERSION = "1.16.0";
+var AAR_VERSION = "1.26.0";
 var AAR_URL = string.Format("https://dl.google.com/dl/android/maven2/com/google/ar/core/{0}/core-{0}.aar", AAR_VERSION);
 var OBJ_VERSION = "0.3.0";
 var OBJ_URL = string.Format("https://oss.sonatype.org/content/repositories/releases/de/javagl/obj/{0}/obj-{0}.jar", OBJ_VERSION);
@@ -69,7 +69,7 @@ Task ("clean")
 	.Does (() =>
 {
 	if (DirectoryExists ("./externals/"))
-		DeleteDirectory ("./externals", true);
+		DeleteDirectory ("./externals", new DeleteDirectorySettings { Force=true });
 });
 
 Task("ci")

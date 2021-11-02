@@ -1,0 +1,28 @@
+﻿<metadata>
+    <!-- namespaces -->
+    <attr path="/api/package[@name='kotlinx.coroutines']" name="managedName">Xamarin.KotlinX.Coroutines</attr>
+    <attr path="/api/package[@name='kotlinx.coroutines.channels']" name="managedName">Xamarin.KotlinX.Coroutines.Channels</attr>
+    <attr path="/api/package[@name='kotlinx.coroutines.debug']" name="managedName">Xamarin.KotlinX.Coroutines.Debug</attr>
+    <attr path="/api/package[@name='kotlinx.coroutines.flow']" name="managedName">Xamarin.KotlinX.Coroutines.Flow</attr>
+    <attr path="/api/package[@name='kotlinx.coroutines.intrinsics']" name="managedName">Xamarin.KotlinX.Coroutines.Intrinsics</attr>
+    <attr path="/api/package[@name='kotlinx.coroutines.scheduling']" name="managedName">Xamarin.KotlinX.Coroutines.Scheduling</attr>
+    <attr path="/api/package[@name='kotlinx.coroutines.selects']" name="managedName">Xamarin.KotlinX.Coroutines.Selects</attr>
+    <attr path="/api/package[@name='kotlinx.coroutines.sync']" name="managedName">Xamarin.KotlinX.Coroutines.Sync</attr>
+    <attr path="/api/package[@name='kotlinx.coroutines.test']" name="managedName">Xamarin.KotlinX.Coroutines.Test</attr>
+    
+    <!-- remove the internal, internal classes -->
+    <remove-node path="/api/package[starts-with(@name,'kotlinx.coroutines.internal')]" />
+    <remove-node path="/api/package[starts-with(@name,'kotlinx.coroutines.debug.internal')]" />
+    <remove-node path="/api/package[starts-with(@name,'kotlinx.coroutines.jvm.internal')]" />
+    <remove-node path="/api/package[starts-with(@name,'kotlinx.coroutines.flow.internal')]" />
+    <remove-node path="/api/package[@name='kotlinx.coroutines']/class[@name='AbstractCoroutine']" />
+    <remove-node path="/api/package[@name='kotlinx.coroutines.flow']/class[@name='AbstractFlow']" />
+
+    <attr
+        path="/api/package[@name='kotlinx.coroutines']/class[@name='SchedulerTaskKt']/method[@name='getTaskContext' and count(parameter)=1 and parameter[1][@type='java.lang.Object']]"
+        name="managedReturn"
+        >
+        Java.Lang.Object
+    </attr>
+
+</metadata>

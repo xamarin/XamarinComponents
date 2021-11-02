@@ -1,7 +1,7 @@
 var TARGET = Argument ("target", Argument ("t", "ci"));
 
-var NUGET_VERSION = "2.0.0-beta2";
-var AAR_VERSION = "2.0.0-beta2";
+var NUGET_VERSION = "2.0.1";
+var AAR_VERSION = "2.0.1";
 
 var CONSTRAINT_LAYOUT_URL = string.Format ("https://dl.google.com/dl/android/maven2/com/android/support/constraint/constraint-layout/{0}/constraint-layout-{0}.aar", AAR_VERSION);
 var CONSTRAINT_LAYOUT_SOLVER_URL = string.Format ("https://dl.google.com/dl/android/maven2/com/android/support/constraint/constraint-layout-solver/{0}/constraint-layout-solver-{0}.jar", AAR_VERSION);

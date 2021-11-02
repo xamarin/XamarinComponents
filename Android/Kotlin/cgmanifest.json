@@ -1,0 +1,65 @@
+{
+  "Registrations": [
+    {
+      "Component": {
+        "Type": "Maven",
+        "Maven": {
+          "ArtifactId": "kotlin-stdlib",
+          "GroupId": "org.jetbrains.kotlin",
+          "Version": "1.5.30"
+        }
+      }
+    },
+    {
+      "Component": {
+        "Type": "Maven",
+        "Maven": {
+          "ArtifactId": "kotlin-stdlib-common",
+          "GroupId": "org.jetbrains.kotlin",
+          "Version": "1.5.30"
+        }
+      }
+    },
+    {
+      "Component": {
+        "Type": "Maven",
+        "Maven": {
+          "ArtifactId": "kotlin-reflect",
+          "GroupId": "org.jetbrains.kotlin",
+          "Version": "1.5.30"
+        }
+      }
+    },
+    {
+      "Component": {
+        "Type": "Maven",
+        "Maven": {
+          "ArtifactId": "kotlin-stdlib-jdk7",
+          "GroupId": "org.jetbrains.kotlin",
+          "Version": "1.5.30"
+        }
+      }
+    },
+    {
+      "Component": {
+        "Type": "Maven",
+        "Maven": {
+          "ArtifactId": "kotlin-stdlib-jdk8",
+          "GroupId": "org.jetbrains.kotlin",
+          "Version": "1.5.30"
+        }
+      }
+    },
+    {
+      "Component": {
+        "Type": "Maven",
+        "Maven": {
+          "ArtifactId": "annotations",
+          "GroupId": "org.jetbrains.kotlin",
+          "Version": "13.0.0"
+        }
+      }
+    }
+  ],
+  "Version": 1
+}

@@ -4,32 +4,40 @@ parameters:
   displayName: 'Build'                                      # the human name of the job
   timeoutInMinutes: 60                                      # the timeout in minutes
   dependsOn: []                                             # any jobs this job depends on
+  initSteps: []                                             # any steps to run before .NET global tools are installed
   preBuildSteps: []                                         # any steps that need to run just before the main compilation starts
   postBuildSteps: []                                        # any steps that need to run just after the main compilation ends
-  masterBranchName: 'master'                                # the "master" branch that should be used - can be something other than "master"
+  masterBranchName: 'main'                                  # the "master" branch that should be used - can be something other than "master"
   installAppleCertificates: 'true'                          # whether or not to install the Apple certificates and provisioning profiles
   submodules: false                                         # whether or not to check out submodules
   areaPath: ''                                              # the areaPath to log any issues
   runChecks: 'true'
+  continueOnError: 'false'
   publishJob: ''                                            # the job to use as the source of the 'nuget' artifact: '', 'windows', 'macos', 'linux'
+  publishOutputSuffix: ''                                   # the artifact suffix to use when publishing the output folder
   signListPath: 'SignList.xml'                              # the path to the SignList.xml to copy into the nuget artifact for signing
   # job software version parameters
+  linuxAgentPoolName: 'Azure Pipelines'                     # the name of the Linux VM pool
+  macosAgentPoolName: 'Azure Pipelines'                     # the name of the macOS VM pool
+  windowsAgentPoolName: 'Azure Pipelines'                   # the name of the Windows VM pool
   linuxImage: ''                                            # the name of the Linux VM image (linuxImage: 'Hosted Ubuntu 1604') 
   macosImage: 'macos-latest'                                # the name of the macOS VM image
   windowsImage: 'windows-latest'                            # the name of the Windows VM image
   mono: 'Latest'                                            # the version of mono to use
-  xcode: '11.6'                                             # the version of Xcode to use
-  dotnet: '3.1.302'                                         # the version of .NET Core to use
-  cake: '0.38.4'                                            # the version of Cake to use
+  xcode: '12.3'                                             # the version of Xcode to use
+  dotnet: '5.0.203'                                         # the version of .NET Core to use
+  dotnetStable: '3.1.408'                                   # the stable version of .NET Core to use
+  cake: '0.38.5'                                            # the version of Cake to use
   apiTools: '1.1.0-preview.1'                               # the version of the api-tools CLI to use
+  xharness: '1.0.0-prerelease.20602.1'
   tools: []                                                 # a list of any additional .NET Core tools needed
-  cakeTemplatesBranch: 'master'                             # the branch of XamarinComponents that has the templates
+  cakeTemplatesBranch: 'main'                               # the branch of XamarinComponents that has the templates
   # build parameters
   buildType: 'basic'                                        # the type of build: 'basic', 'manifest', 'directories', 'none'
   steps: []                                                 # the steps to use when building, typically for 'none'
   verbosity: 'normal'                                       # the build verbosity: 'minimal', 'normal', 'diagnostic'
   configuration: 'Release'                                  # the build configuration: 'Debug', 'Release'
-  validPackagePrefixes: []                                  # any NuGet prefixes that should pass validation (always includes Xamarin)
+  validPackagePrefixes: [ 'Xamarin', 'Mono' ]               # any NuGet prefixes that should pass validation
   artifactsPath: 'output'                                   # the path to the NuGet packages that need to be signed, verified and published
   # basic cake build parameters
   cakeTarget: 'ci'                                          # [basic] the Cake target to run (defaults to 'ci')
@@ -46,17 +54,22 @@ jobs:
       matrix:
         ${{ if ne(parameters.linuxImage, '') }}:
           linux:
+            poolName: ${{ parameters.linuxAgentPoolName }}
             imageName: ${{ parameters.linuxImage }}
         ${{ if ne(parameters.macosImage, '') }}:
           macos:
+            poolName: ${{ parameters.macosAgentPoolName }}
             imageName: ${{ parameters.macosImage }}
         ${{ if ne(parameters.windowsImage, '') }}:
           windows:
+            poolName: ${{ parameters.windowsAgentPoolName }}
             imageName: ${{ parameters.windowsImage }}
     displayName: ${{ parameters.displayName }}
     timeoutInMinutes: ${{ parameters.timeoutInMinutes }}
+    continueOnError: ${{ eq(parameters.continueOnError, 'true') }}
     dependsOn: ${{ parameters.dependsOn }}
     pool:
+      name: $(poolName)
       vmImage: $(imageName)
     steps:
       - checkout: self
@@ -100,11 +113,23 @@ jobs:
       - task: UseDotNet@2
         displayName: 'Switch to the correct version of the .NET Core SDK'
         inputs:
+          version: ${{ parameters.dotnetStable }}
+          performMultiLevelLookup: true
+          includePreviewVersions: true
+        condition: ne('${{ parameters.dotnetStable }}', '')
+      - task: UseDotNet@2
+        displayName: 'Switch to the correct version of the .NET Core SDK'
+        inputs:
           version: ${{ parameters.dotnet }}
           performMultiLevelLookup: true
+          includePreviewVersions: true
+        condition: ne('${{ parameters.dotnet }}', '')
+      # custom init steps
+      - ${{ parameters.initSteps }}
       - pwsh: |
           dotnet tool install -g api-tools --version ${{ parameters.apiTools }}
           dotnet tool install -g cake.tool --version ${{ parameters.cake }}
+          dotnet tool install -g Microsoft.DotNet.XHarness.CLI --version ${{ parameters.xharness }} --add-source https://pkgs.dev.azure.com/dnceng/public/_packaging/dotnet-eng/nuget/v3/index.json
         displayName: 'Install required .NET Core global tools'
       - ${{ each tool in parameters.tools }}:
         - ${{ each pair in tool }}:
@@ -193,6 +218,7 @@ jobs:
       # the basic build
       - ${{ if eq(parameters.buildType, 'basic') }}:
         - pwsh: |
+            Get-Content $MyInvocation.MyCommand.Definition
             dotnet cake ${{ parameters.cakeFile }} ${{ parameters.cakeExtraArgs }} `
               --gitpreviouscommit="$(GitLastSuccessfulCommit)" `
               --gitcommit="$(Build.SourceVersion)" `
@@ -215,6 +241,7 @@ jobs:
             Invoke-WebRequest -Uri $uri -OutFile "build-directories.cake"
           displayName: 'Download the cake script to build directory-based repositories'
         - pwsh: |
+            Get-Content $MyInvocation.MyCommand.Definition
             $force = if ("$env:FORCEBUILD") { "$env:FORCEBUILD" } else { "${{ parameters.forceBuild }}" }
             $names = if ("$env:BUILDDIRECTORYNAMES") { "$env:BUILDDIRECTORYNAMES" } else { "${{ parameters.namesFilter }}" }
             $targets = if ("$env:BUILDDIRECTORYTARGETS") { "$env:BUILDDIRECTORYTARGETS" } else { "${{ parameters.targetsFilter }}" }
@@ -243,6 +270,7 @@ jobs:
             Invoke-WebRequest -Uri $uri -OutFile "build-manifest.cake"
           displayName: 'Download the cake script to build manifest-based repositories'
         - pwsh: |
+            Get-Content $MyInvocation.MyCommand.Definition
             $force = if ("$env:FORCEBUILD") { "$env:FORCEBUILD" } else { "${{ parameters.forceBuild }}" }
             $names = if ("$env:BUILDMANIFESTNAMES") { "$env:BUILDMANIFESTNAMES" } else { "${{ parameters.namesFilter }}" }
             $targets = if ("$env:BUILDMANIFESTTARGETS") { "$env:BUILDMANIFESTTARGETS" } else { "${{ parameters.targetsFilter }}" }
@@ -325,7 +353,7 @@ jobs:
         condition: always()
         inputs:
           PathToPublish: output
-          ArtifactName: output-$(System.JobName)
+          ArtifactName: output-$(System.JobName)${{ parameters.publishOutputSuffix }}
       # run any required checks
       - ${{ if eq(variables['System.TeamProject'], 'devdiv') }}:
         - task: ComponentGovernanceComponentDetection@0

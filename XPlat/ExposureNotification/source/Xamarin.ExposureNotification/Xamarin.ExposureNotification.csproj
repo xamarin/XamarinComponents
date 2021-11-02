@@ -11,10 +11,10 @@
 
 	<PropertyGroup>
 		<PackageId>Xamarin.ExposureNotification</PackageId>
-		<Summary>Cross Platform Exposure Notification for Xamarin</Summary>
-		<Title>Xamarin Exposure Notification</Title>
-		<Description>Cross Platform Exposure Notification for Xamarin</Description>
-		<PackageVersion>0.1.0-preview</PackageVersion>
+		<Summary>Cross-Platform Exposure Notifications for Xamarin</Summary>
+		<Title>Xamarin Exposure Notifications</Title>
+		<Description>Cross-Platform Exposure Notifications for Xamarin</Description>
+		<PackageVersion>0.15.0-preview</PackageVersion>
 		<Authors>Microsoft</Authors>
 		<Owners>microsoft,Xamarin,XamarinNuGet</Owners>
 		<NeutralLanguage>en</NeutralLanguage>
@@ -31,7 +31,7 @@
 
 		<None Include="..\..\LICENSE.md" Pack="True" PackagePath="LICENSE.md" />
 
-		<PackageReference Include="Xamarin.Essentials" Version="1.5.3.1" />
+		<PackageReference Include="Xamarin.Essentials" Version="1.5.3.2" />
 	</ItemGroup>
 
 	<ItemGroup Condition=" $(TargetFramework.StartsWith('netstandard')) ">
@@ -55,7 +55,7 @@
 		<Compile Include="*.ios.*.cs" />
 
 		<PackageReference Include="System.IO.Compression" Version="4.3.0" />
-		<PackageReference Include="Xamarin.iOS.ExposureNotification" Version="1.0.0" />
+		<PackageReference Include="Xamarin.iOS.ExposureNotification" Version="1.2.2-preview1" />
 	</ItemGroup>
 
 </Project>

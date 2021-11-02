@@ -4,25 +4,24 @@ using Android.App;
 using Android.Content.PM;
 using Android.OS;
 using Android.Runtime;
-using Android.Support.Design.Widget;
-using Android.Support.V4.App;
-using Android.Support.V4.Content;
-using Android.Support.V7.App;
 using Android.Views;
 using Android.Widget;
+using AndroidX.AppCompat.App;
+using AndroidX.Core.App;
+using AndroidX.Core.Content;
 
 using Google.Places;
 using System.Collections.Generic;
 using Android.Gms.Tasks;
-using Java.Lang;
 using PlacesSample.Models;
+
 
 namespace PlacesSample {
 	[Activity (Label = "@string/app_name", Theme = "@style/AppTheme.NoActionBar", MainLauncher = true)]
 	public class MainActivity : AppCompatActivity, IOnSuccessListener, IOnFailureListener, IOnCompleteListener {
 
 		const string apiKey = "";
-
+							   
 		Button btnSearch;
 		ProgressBar loading;
 		ListView places;

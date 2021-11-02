@@ -1,0 +1,37 @@
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+
+  <ItemGroup>
+    <FirstParty Include="Xamarin.*.dll" />
+    <FirstParty Include="Square.*.dll" />
+    <FirstParty Include="RecyclerViewAnimators.*.dll" />
+    <FirstParty Include="GoogleGson*.dll" />
+
+    <!-- sign all the .jar files -->
+    <FirstParty Include="*.jar" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <!-- <ThirdParty Include="Newtonsoft.Json.dll" /> -->
+    <ThirdParty Include="MavenNet.dll" />
+    <ThirdParty Include="ILRepack.dll" />
+    <ThirdParty Include="protobuf-net.dll" />
+    <ThirdParty Include="Newtonsoft.Json.dll" />
+    <ThirdParty Include="Mono.Cecil.dll" />
+    <ThirdParty Include="Mono.Cecil.*.dll" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <!-- <Skip Include="System.*.dll" /> -->
+    <Skip Include="System.dll" />
+    <Skip Include="System.*.dll" />
+    <Skip Include="mscorlib.dll" />
+    <Skip Include="netstandard.dll" />
+    <Skip Include="WindowsBase.dll" />
+    <Skip Include="Microsoft.*.dll" />
+    <Skip Include="NuGet.*.dll" />
+    <Skip Include="Mono.*.dll" />
+    <Skip Include="MonoPosixHelper.dll" />
+    <Skip Include="libMonoPosixHelper.dll" />
+    <Skip Include="RazorLight.dll" />    
+  </ItemGroup>  
+</Project>

@@ -1,8 +1,7 @@
 var TARGET = Argument ("t", Argument ("target", "ci"));
 
-var NUGET_VERSION = "2.4.3";
-
-var JAR_VERSION = "2.4.3";
+var NUGET_VERSION = "2.10.0";
+var JAR_VERSION = "2.10.0";
 var JAR_URL = $"https://repo1.maven.org/maven2/com/squareup/okio/okio/{JAR_VERSION}/okio-{JAR_VERSION}.jar";
 
 Task ("externals")

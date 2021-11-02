@@ -18,6 +18,14 @@ namespace Xamarin.ExposureNotifications
 		public static bool OverridesNativeImplementation
 			=> ExposureNotification.nativeImplementation != null;
 
+		public static bool IsSupported => Instance != null;
+
+		internal static void EnsureSupported()
+		{
+			if (Instance == null)
+				throw new PlatformNotSupportedException("Exposure notifications are not supported on this device.");
+		}
+
 		internal static IExposureNotificationHandler Handler
 		{
 			get
