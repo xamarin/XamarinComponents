@@ -21,7 +21,7 @@
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <PackageId>Xamarin.Google.UserMessagingPlatform</PackageId>
     <PackageVersion>1.0.0</PackageVersion>
-    <Title>Xamarin.Google.UniversalMessagingPlatform</Title>
+    <Title>Xamarin.Google.UserMessagingPlatform</Title>
     <PackageDescription>Bindings for Xamarin.Google.UserMessagingPlatform UMP package</PackageDescription>
     <Owners>Microsoft</Owners>
     <Authors>Microsoft</Authors>
