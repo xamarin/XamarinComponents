@@ -1,8 +1,8 @@
 var TARGET = Argument ("t", Argument ("target", "ci"));
 
-var NUGET_VERSION = "1.1.0-2020f";
+var NUGET_VERSION = "1.2.0-2021e";
 
-var AAR_VERSION = "1.1.0-2020f";
+var AAR_VERSION = "1.2.0-2021e";
 var AAR_URL = $"https://repo1.maven.org/maven2/dev/zacsweers/ticktock/ticktock-android-tzdb/{AAR_VERSION}/ticktock-android-tzdb-{AAR_VERSION}.aar";
 
 Task ("externals")

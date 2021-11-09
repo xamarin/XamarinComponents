@@ -22,11 +22,11 @@
     <PackageLicenseFile>LICENSE.md</PackageLicenseFile>
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
     <PackageTags>ticktock android tzbd xamarin android monodroid</PackageTags>
-    <PackageVersion>1.1.0-2020f</PackageVersion>
+    <PackageVersion>1.2.0-2021e</PackageVersion>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Xamarin.Dev.ZacSweers.TickTock.Runtime" Version="1.1.0-2020f" />
+    <PackageReference Include="Xamarin.Dev.ZacSweers.TickTock.Runtime" Version="1.2.0-2021e" />
     <PackageReference Include="Xamarin.AndroidX.Startup.StartupRuntime" Version="1.0.0" />
   </ItemGroup>
     

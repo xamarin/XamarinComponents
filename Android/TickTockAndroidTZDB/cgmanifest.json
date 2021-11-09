@@ -6,7 +6,7 @@
         "Maven": {
           "ArtifactId": "ticktock-android-tzdb",
           "GroupId": "dev.zacsweers.ticktock",
-          "Version": "1.1.0-2020f",
+          "Version": "1.2.0-2021e",
           "NuGetId": "Xamarin.Dev.ZacSweers.TickTock.Android.TZDB"
         }
       }

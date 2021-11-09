@@ -1,8 +1,8 @@
 var TARGET = Argument ("t", Argument ("target", "ci"));
 
-var NUGET_VERSION = "1.1.0-2020f";
+var NUGET_VERSION = "1.2.0-2021e";
 
-var JAR_VERSION = "1.1.0-2020f";
+var JAR_VERSION = "1.2.0-2021e";
 var JAR_URL = $"https://repo1.maven.org/maven2/dev/zacsweers/ticktock/ticktock-runtime/{JAR_VERSION}/ticktock-runtime-{JAR_VERSION}.jar";
 
 Task ("externals")

@@ -22,7 +22,7 @@
     <PackageLicenseFile>LICENSE.md</PackageLicenseFile>
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
     <PackageTags>ticktock runtime xamarin android monodroid</PackageTags>
-    <PackageVersion>1.1.0-2020f</PackageVersion>
+    <PackageVersion>1.2.0-2021e</PackageVersion>
   </PropertyGroup>
     
   <ItemGroup>
