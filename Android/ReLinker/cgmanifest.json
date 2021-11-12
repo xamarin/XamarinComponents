@@ -6,7 +6,7 @@
         "Maven": {
           "ArtifactId": "relinker",
           "GroupId": "com.getkeepsafe.relinker",
-          "Version": "1.4.3",
+          "Version": "1.4.4",
           "NuGetId": "Xamarin.ReLinker"
         }
       }
