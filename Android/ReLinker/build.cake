@@ -1,8 +1,8 @@
 var TARGET = Argument ("t", Argument ("target", "ci"));
 
-var NUGET_VERSION = "1.4.3";
+var NUGET_VERSION = "1.4.4";
 
-var JAR_VERSION = "1.4.3";
+var JAR_VERSION = "1.4.4";
 var JAR_URL = $"https://repo1.maven.org/maven2/com/getkeepsafe/relinker/relinker/{JAR_VERSION}/relinker-{JAR_VERSION}.aar";
 
 Task ("externals")
