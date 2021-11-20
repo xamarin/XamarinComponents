@@ -23,7 +23,7 @@
     <PackageLicenseFile>LICENSE.md</PackageLicenseFile>
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
     <PackageTags>relinker xamarin android monodroid</PackageTags>
-    <PackageVersion>1.4.3</PackageVersion>
+    <PackageVersion>1.4.4</PackageVersion>
   </PropertyGroup>
     
   <ItemGroup>
