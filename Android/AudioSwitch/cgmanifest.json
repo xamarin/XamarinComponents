@@ -6,7 +6,7 @@
         "Maven": {
           "ArtifactId": "audioswitch",
           "GroupId": "com.twilio",
-          "Version": "1.1.2",
+          "Version": "1.1.3",
           "NuGetId": "Xamarin.Twilio.AudioSwitch"
         }
       }

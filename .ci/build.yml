@@ -21,12 +21,15 @@ parameters:
   macosAgentPoolName: 'Azure Pipelines'                     # the name of the macOS VM pool
   windowsAgentPoolName: 'Azure Pipelines'                   # the name of the Windows VM pool
   linuxImage: ''                                            # the name of the Linux VM image (linuxImage: 'Hosted Ubuntu 1604') 
-  macosImage: 'macos-latest'                                # the name of the macOS VM image
+  macosImage: 'macOS-11'                                    # the name of the macOS VM image
+                                                            # 20211121 
+                                                            # macOS-latest = macOS-10.15
+                                                            # macOS-11 required for XCode 13.1
   windowsImage: 'windows-latest'                            # the name of the Windows VM image
   mono: 'Latest'                                            # the version of mono to use
-  xcode: '12.3'                                             # the version of Xcode to use
-  dotnet: '5.0.203'                                         # the version of .NET Core to use
-  dotnetStable: '3.1.408'                                   # the stable version of .NET Core to use
+  xcode: '13.1'                                             # the version of Xcode to use
+  dotnet: '6.0.100'                                         # the version of .NET Core to use
+  dotnetStable: '3.1.415'                                   # the stable version of .NET Core to use
   cake: '0.38.5'                                            # the version of Cake to use
   apiTools: '1.1.0-preview.1'                               # the version of the api-tools CLI to use
   xharness: '1.0.0-prerelease.20602.1'
