@@ -287,10 +287,22 @@ namespace Xamarin.Build.Download
 			default:
 				throw new ArgumentException ("kind");
 			}
-			return new ProcessStartInfo (args.ProcessPath, args.ToString ()) {
-				WorkingDirectory = contentDir,
-				CreateNoWindow = true
-			};
+
+			ProcessStartInfo psi = null;
+			if (Platform.IsWindows)
+				psi = new ProcessStartInfo (args.ProcessPath, args.ToString ())
+				{
+					WorkingDirectory = null,
+					CreateNoWindow = true
+				};
+			else
+				psi = new ProcessStartInfo (args.ProcessPath, args.ToString ())
+				{
+					WorkingDirectory = contentDir,
+					CreateNoWindow = true
+				};
+
+			return psi;
 		}
 
 		static ProcessArgumentBuilder Build7ZipExtractionArgs (string file, string contentDir, string user7ZipPath, bool ignoreTarSymLinks, string vsInstallRoot)
