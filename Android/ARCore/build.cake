@@ -2,7 +2,7 @@
 
 var TARGET = Argument ("t", Argument ("target", "ci"));
 
-var NUGET_VERSION = "1.26.0";
+var NUGET_VERSION = "1.26.0.1";
 
 var AAR_VERSION = "1.26.0";
 var AAR_URL = string.Format("https://dl.google.com/dl/android/maven2/com/google/ar/core/{0}/core-{0}.aar", AAR_VERSION);
