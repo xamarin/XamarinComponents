@@ -14,7 +14,9 @@
   <remove-node path="/api/package[@name='com.google.ar.core']/class[@name='Point']/method[@name='getAnchors' and count(parameter)=0]" />
 	<remove-node path="/api/package[@name='com.google.ar.core']/class[@name='Plane']/method[@name='getAnchors' and count(parameter)=0]" />
   <remove-node path="/api/package[@name='com.google.ar.core']/class[@name='AugmentedImage']/method[@name='getAnchors' and count(parameter)=0]" />
+  <remove-node path="/api/package[@name='com.google.ar.core']/class[@name='AugmentedFace']/method[@name='getAnchors' and count(parameter)=0]" />
 	<remove-node path="/api/package[@name='com.google.ar.core']/class[@name='InstantPlacementPoint']/method[@name='getAnchors' and count(parameter)=0]" />
+	<remove-node path="/api/package[@name='com.google.ar.core']/class[@name='DepthPoint']/method[@name='getAnchors' and count(parameter)=0]" />
     
   <attr
       path="/api/package[@name='com.google.ar.core.services.downloads.aidl']"
@@ -27,13 +29,6 @@
       name="managedName"
       >
       Google.AR.Core.Services.Downloads.Client
-  </attr>
-
-  <attr 
-      path="/api/package[@name='com.google.ar.core']/class[@name='AugmentedFace']/method[@name='getAnchors' and count(parameter)=0]" 
-      name="return"
-      >
-      java.util.Collection&lt;com.google.ar.core.Anchor&gt;
   </attr>
     
 </metadata>
