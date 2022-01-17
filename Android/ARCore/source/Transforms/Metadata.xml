@@ -51,15 +51,23 @@
     
   <attr 
       path="/api/package[@name='com.google.ar.core']/class[@name='AugmentedFace']/method[@name='getAnchors' and count(parameter)=0]" 
-      name="return"
-      >
+      name="return">
       java.util.Collection&lt;com.google.ar.core.Anchor&gt;
   </attr>
     
-    <attr 
-        path="/api/package[@name='com.google.ar.core']/class[@name='DepthPoint']/method[@name='getAnchors' and count(parameter)=0]"
-        name="return">
+    <!-- Duplicated -->
+    <remove-node path="/api/package[@name='com.google.ar.core']/class[@name='DepthPoint']/method[@name='getAnchors' and count(parameter)=0]" />
+    
+    
+
+    <!--<attr path="/api/package[@name='com.google.ar.core']/class[@name='DepthPoint']/method[@name='getAnchors' and count(parameter)=0]"
+          name="return">
         java.util.Collection&lt;com.google.ar.core.Anchor&gt;
-    </attr>
+    </attr>-->
+
+    <attr path="/api/package[@name='com.google.ar.core']/class[@name='InstallActivity']/method[@name='onDestroy' and count(parameter)=0]"
+          name="managedOverride">override</attr>
+    <attr path="/api/package[@name='com.google.ar.core']/class[@name='InstallActivity']/method[@name='onDestroy' and count(parameter)=0]"
+          name="visibility">protected</attr>
     
 </metadata>
