@@ -1,13 +1,13 @@
-﻿//using System;
+﻿using System;
 
-//namespace Google.AR.Core
-//{
-
-//    public static class ArCoreExtensions
-//    {
-//        public static void Test()
-//        {
-//            new Frame(IntPtr.Zero, null).AcquireRawDepthImage
-//        }
-//    }
-//}
+namespace Google.AR.Core
+{
+    // Add ITrackable interface
+    // https://developers.google.com/ar/reference/java/com/google/ar/core/Trackable
+    public partial class AugmentedFace : Google.AR.Core.ITrackable {}
+    public partial class AugmentedImage : Google.AR.Core.ITrackable {}
+    public partial class DepthPoint : Google.AR.Core.ITrackable {}
+    public partial class InstantPlacementPoint : Google.AR.Core.ITrackable {}
+    public partial class Plane : Google.AR.Core.ITrackable {}
+    public partial class Point : Google.AR.Core.ITrackable {}
+}
