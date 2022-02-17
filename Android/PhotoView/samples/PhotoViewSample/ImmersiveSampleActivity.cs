@@ -18,7 +18,7 @@ namespace PhotoViewSample
             SetContentView(Resource.Layout.activity_immersive);
 
             var photoView = FindViewById<PhotoView>(Resource.Id.photo_view);
-            photoView.PhotoTap += (sender, e) =>
+            photoView.PhotoTap += (_, _) =>
             {
                 // FullScreen();
             };
