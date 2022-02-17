@@ -1,8 +1,7 @@
 ﻿using Android.App;
 using Android.OS;
-using Android.Support.V7.App;
-using Square.Picasso;
-
+using AndroidX.AppCompat.App;
+using Bumptech.Glide;
 using ImageViews.Photo;
 
 namespace PhotoViewSample
@@ -18,8 +17,7 @@ namespace PhotoViewSample
 
             var photoView = FindViewById<PhotoView>(Resource.Id.iv_photo);
 
-            Picasso
-                .With(this)
+            Glide.With(this)
                 .Load("http://pbs.twimg.com/media/Bist9mvIYAAeAyQ.jpg")
                 .Into(photoView);
         }

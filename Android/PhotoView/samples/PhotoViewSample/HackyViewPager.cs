@@ -1,21 +1,18 @@
 ﻿using Android.Content;
-using Android.Views;
-using Android.Support.V4.View;
 using Android.Util;
+using Android.Views;
+using AndroidX.ViewPager.Widget;
+using Java.Lang;
 
 namespace PhotoViewSample
 {
     public class HackyViewPager : ViewPager
     {
         public HackyViewPager(Context context)
-            : base(context)
-        {
-        }
+            : base(context) { }
 
         public HackyViewPager(Context context, IAttributeSet attrs)
-            : base(context, attrs)
-        {
-        }
+            : base(context, attrs) { }
 
         public override bool OnInterceptTouchEvent(MotionEvent ev)
         {
@@ -31,7 +28,7 @@ namespace PhotoViewSample
             {
                 return base.OnInterceptTouchEvent(ev);
             }
-            catch(Java.Lang.IllegalArgumentException ex)
+            catch (IllegalArgumentException ex)
             {
                 ex.PrintStackTrace();
                 return false;

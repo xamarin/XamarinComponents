@@ -2,11 +2,11 @@
 using Android.App;
 using Android.Content;
 using Android.OS;
-using Android.Support.V4.App;
-using Android.Support.V7.App;
-using Android.Support.V7.Widget;
 using Android.Views;
 using Android.Widget;
+using AndroidX.AppCompat.App;
+using AndroidX.Core.App;
+using AndroidX.RecyclerView.Widget;
 
 namespace PhotoViewSample
 {
@@ -50,9 +50,7 @@ namespace PhotoViewSample
                 return holder;
             }
 
-            public override void OnBindViewHolder(RecyclerView.ViewHolder holder, int position)
-            {
-            }
+            public override void OnBindViewHolder(RecyclerView.ViewHolder holder, int position) { }
 
             public override int ItemCount => 20;
 
@@ -67,10 +65,7 @@ namespace PhotoViewSample
                 return new ImageViewHolder(view);
             }
 
-            public ImageViewHolder(View view)
-                : base(view)
-            {
-            }
+            public ImageViewHolder(View view) : base(view) { }
         }
     }
 }

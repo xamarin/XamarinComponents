@@ -3,7 +3,7 @@
 
 var TARGET = Argument ("t", Argument ("target", "Default"));
 
-var AAR_VERSION = "2.1.3";
+var AAR_VERSION = "2.3.0";
 var AAR_URL = string.Format ("https://jitpack.io/com/github/chrisbanes/PhotoView/{0}/PhotoView-{0}.aar", AAR_VERSION);
 var AAR_FILE = "PhotoView.aar";
 

@@ -1,8 +1,6 @@
 ﻿using Android.App;
 using Android.OS;
-using Android.Support.V7.App;
-
-using ImageViews.Photo;
+using AndroidX.AppCompat.App;
 
 namespace PhotoViewSample
 {

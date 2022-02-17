@@ -1,8 +1,7 @@
 ﻿using Android.App;
 using Android.OS;
-using Android.Support.V7.App;
-using Android.Support.V7.Widget;
-
+using AndroidX.AppCompat.App;
+using AndroidX.AppCompat.Widget;
 using ImageViews.Photo;
 
 namespace PhotoViewSample
@@ -83,6 +82,7 @@ namespace PhotoViewSample
             {
                 RotateLoop();
             }
+
             rotating = !rotating;
         }
 

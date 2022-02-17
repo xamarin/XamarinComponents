@@ -1,10 +1,10 @@
 ﻿using Android.App;
 using Android.OS;
-using Android.Support.V4.View;
-using Android.Support.V7.App;
 using Android.Views;
-
+using AndroidX.AppCompat.App;
+using AndroidX.ViewPager.Widget;
 using ImageViews.Photo;
+using Java.Lang;
 
 namespace PhotoViewSample
 {
@@ -25,7 +25,7 @@ namespace PhotoViewSample
         {
             public override int Count => 6;
 
-            public override Java.Lang.Object InstantiateItem(ViewGroup container, int position)
+            public override Object InstantiateItem(ViewGroup container, int position)
             {
                 var photoView = new PhotoView(container.Context);
                 photoView.SetImageResource(Resource.Drawable.wallpaper);
@@ -36,12 +36,12 @@ namespace PhotoViewSample
                 return photoView;
             }
 
-            public override void DestroyItem(ViewGroup container, int position, Java.Lang.Object objectValue)
+            public override void DestroyItem(ViewGroup container, int position, Object objectValue)
             {
-                container.RemoveView((View)objectValue);
+                container.RemoveView((View) objectValue);
             }
 
-            public override bool IsViewFromObject(View view, Java.Lang.Object objectValue)
+            public override bool IsViewFromObject(View view, Object objectValue)
             {
                 return view == objectValue;
             }
