@@ -3,7 +3,7 @@
   <metadata>
     <id>Xamarin.Android.PhotoView</id>
     <title>PhotoView for Xamarin.Android</title>
-    <version>2.1.4</version>
+    <version>2.3.0</version>
     <authors>Microsoft</authors>
     <owners>Microsoft</owners>
     <requireLicenseAcceptance>true</requireLicenseAcceptance>
@@ -11,6 +11,11 @@
     <copyright>© Microsoft Corporation. All rights reserved.</copyright>
     <projectUrl>https://go.microsoft.com/fwlink/?linkid=864989</projectUrl>
     <licenseUrl>https://go.microsoft.com/fwlink/?linkid=865070</licenseUrl>
+    <dependencies>
+      <group targetFramework="monoandroid90">
+        <dependency id="Xamarin.AndroidX.AppCompat" version="1.1.0.2"/>
+      </group>
+    </dependencies>
   </metadata>
   <files>
     <file src="output/PhotoView.dll" target="lib/MonoAndroid" />
