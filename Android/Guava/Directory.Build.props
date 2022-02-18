@@ -3,9 +3,9 @@
     <!-- Uncomment if a $(PackageVersionSuffix) is ever needed -->
     <!-- <PackageVersionSuffix>-net6preview04</PackageVersionSuffix> -->
     <!-- <PackageVersionSuffix Condition=" '$(BUILD_BUILDID)' != '' ">$(PackageVersionSuffix).$(BUILD_BUILDID)</PackageVersionSuffix> -->
-    <GuavaNuGetVersion>29.0.0$(PackageVersionSuffix)</GuavaNuGetVersion>
-    <GuavaFailureAccessNuGetVersion>1.0.1.5$(PackageVersionSuffix)</GuavaFailureAccessNuGetVersion>
-    <GuavaListenableFutureNuGetVersion>1.0.0.5$(PackageVersionSuffix)</GuavaListenableFutureNuGetVersion>
+    <GuavaNuGetVersion>30.1.0$(PackageVersionSuffix)</GuavaNuGetVersion>
+    <GuavaFailureAccessNuGetVersion>1.0.1.7$(PackageVersionSuffix)</GuavaFailureAccessNuGetVersion>
+    <GuavaListenableFutureNuGetVersion>1.0.0.7$(PackageVersionSuffix)</GuavaListenableFutureNuGetVersion>
     
     <!-- Opt out of C#8 features to maintain compatibility with legacy -->
     <AndroidBoundInterfacesContainConstants>false</AndroidBoundInterfacesContainConstants>
