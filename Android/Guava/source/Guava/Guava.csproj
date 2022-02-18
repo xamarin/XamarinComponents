@@ -4,7 +4,9 @@
     <IsBindingProject>true</IsBindingProject>
     <AssemblyName>Xamarin.Google.Guava</AssemblyName>
     <RootNamespace>Guava</RootNamespace>
+    <!--
     <Java7DocPaths>..\..\externals\guava-javadocs\</Java7DocPaths>
+    -->
   </PropertyGroup>
 
   <PropertyGroup>
