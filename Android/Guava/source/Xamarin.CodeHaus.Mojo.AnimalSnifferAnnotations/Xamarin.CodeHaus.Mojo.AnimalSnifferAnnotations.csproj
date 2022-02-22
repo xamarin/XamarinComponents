@@ -1,0 +1,37 @@
+﻿<Project Sdk="Xamarin.Legacy.Sdk">
+  <PropertyGroup>
+    <TargetFrameworks>net6.0-android;monoandroid90</TargetFrameworks>
+    <IsBindingProject>true</IsBindingProject>
+    <AssemblyName>Xamarin.CodeHaus.Mojo.AnimalSnifferAnnotations</AssemblyName>
+    <RootNamespace>Xamarin.CodeHaus.Mojo.AnimalSnifferAnnotations</RootNamespace>
+    <!--
+    <Java7DocPaths>..\..\externals\guava-javadocs\</Java7DocPaths>
+    -->
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <PackageId>Xamarin.CodeHaus.Mojo.AnimalSnifferAnnotations</PackageId>
+    <Title>Xamarin.CodeHaus.Mojo.AnimalSnifferAnnotations</Title>
+    <PackageDescription>
+      Xamarin.CodeHaus.Mojo.AnimalSnifferAnnotations
+    </PackageDescription>
+    <Authors>Microsoft</Authors>
+    <Owners>Microsoft</Owners>
+    <Copyright>© Microsoft Corporation. All rights reserved.</Copyright>
+    <PackageProjectUrl>https://go.microsoft.com/fwlink/?linkid=865028</PackageProjectUrl>
+    <PackageLicenseUrl>https://go.microsoft.com/fwlink/?linkid=865030</PackageLicenseUrl>
+    <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
+    <PackageVersion>$(GuavaNuGetVersion)</PackageVersion>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Include="Xamarin.CodeHaus.Mojo.AnimalSnifferAnnotations.targets" Pack="True" PackagePath="@(_TfmNuGetBuildFolders-&gt;'%(Identity)$(PackageId).targets')" />
+    <None Include="..\..\externals\animal-sniffer-annotations.jar" Pack="True" PackagePath="jar" />
+    <None Include="..\..\External-Dependency-Info.txt" Pack="True" PackagePath="THIRD-PARTY-NOTICES.txt" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <InputJar Include="..\..\externals\animal-sniffer-annotations.jar" />
+  </ItemGroup>
+
+</Project>
