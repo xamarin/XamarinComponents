@@ -64,7 +64,7 @@ jobs:
           macos:
             poolName: ${{ parameters.macosAgentPoolName }}
             imageName: ${{ parameters.macosImage }}
-        ${{ if ne(parameters.windowsImage, '') }}:
+        ${{ if or(ne(parameters.windowsImage, ''), ne(parameters.windowsImageOverride, '')) }}:
           windows:
             poolName: ${{ parameters.windowsAgentPoolName }}
             imageName: ${{ parameters.windowsImage }}
