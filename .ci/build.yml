@@ -64,13 +64,10 @@ jobs:
           macos:
             poolName: ${{ parameters.macosAgentPoolName }}
             imageName: ${{ parameters.macosImage }}
-        ${{ if or(ne(parameters.windowsImage, ''), ne(parameters.windowsImageOverride, '')) }}:
+        ${{ if ne(parameters.windowsImage, '') }}:
           windows:
             poolName: ${{ parameters.windowsAgentPoolName }}
             imageName: ${{ parameters.windowsImage }}
-            ${{ if ne(parameters.windowsImageOverride, '') }}:
-              demands:
-              - ImageOverride -equals ${{ parameters.windowsImageOverride }}
     displayName: ${{ parameters.displayName }}
     timeoutInMinutes: ${{ parameters.timeoutInMinutes }}
     continueOnError: ${{ eq(parameters.continueOnError, 'true') }}
@@ -78,6 +75,9 @@ jobs:
     pool:
       name: $(poolName)
       vmImage: $(imageName)
+      ${{ if and(eq(variables['System.JobName'], 'windows'), ne(parameters.windowsImageOverride, '')) }}:
+        demands:
+        - ImageOverride -equals ${{ parameters.windowsImageOverride }}
     steps:
       - checkout: self
         submodules: ${{ parameters.submodules }}
