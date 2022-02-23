@@ -26,7 +26,7 @@ parameters:
                                                             # macOS-latest = macOS-10.15
                                                             # macOS-11 required for XCode 13.1
   windowsImage: 'windows-latest'                            # the name of the Windows VM image
-  windowsImageOverride: ''                                  # used to access 1ES hardened images: name of ImageOverride demand to use such as AzurePipelinesWindows2019compliant when windowsAgentPoolName set to the AzurePipelines-EO pool
+  windowsImageOverride: ''                                  # used to access 1ES hardened images: name of ImageOverride demand to use such as AzurePipelinesWindows2022compliant when windowsAgentPoolName set to the AzurePipelines-EO pool
   mono: 'Latest'                                            # the version of mono to use
   xcode: '13.1'                                             # the version of Xcode to use
   dotnet: '6.0.100'                                         # the version of .NET Core to use
