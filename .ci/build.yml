@@ -26,6 +26,7 @@ parameters:
                                                             # macOS-latest = macOS-10.15
                                                             # macOS-11 required for XCode 13.1
   windowsImage: 'windows-latest'                            # the name of the Windows VM image
+  windowsImageOverride: ''                                  # used to access 1ES hardened images
   mono: 'Latest'                                            # the version of mono to use
   xcode: '13.1'                                             # the version of Xcode to use
   dotnet: '6.0.200'                                         # the version of .NET Core to use
@@ -74,6 +75,9 @@ jobs:
     pool:
       name: $(poolName)
       vmImage: $(imageName)
+      ${{ if ne(parameters.windowsImageOverride, '') }}:
+        demands: 
+        - ImageOverride -equals ${{ parameters.windowsImageOverride }}
     steps:
       - checkout: self
         submodules: ${{ parameters.submodules }}
