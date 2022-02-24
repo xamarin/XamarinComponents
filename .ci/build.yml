@@ -53,80 +53,80 @@ parameters:
   targetsFilter: 'ci'                                       # [manifest, directories] the targets of the items to build
 
 jobs:
-  - job: ${{ parameters.name }}
-    strategy:
-      matrix:
-        ${{ if ne(parameters.linuxImage, '') }}:
-          linux:
-            poolName: ${{ parameters.linuxAgentPoolName }}
-            imageName: ${{ parameters.linuxImage }}
-            demands: ''
-        ${{ if ne(parameters.macosImage, '') }}:
-          macos:
-            poolName: ${{ parameters.macosAgentPoolName }}
-            imageName: ${{ parameters.macosImage }}
-            demands: ''
-        ${{ if or(ne(parameters.windowsAgentPoolName, 'Azure Pipelines'), ne(parameters.windowsImage, '')) }}:
-          windows:
-            poolName: ${{ parameters.windowsAgentPoolName }}
-            imageName: ${{ parameters.windowsImage }}
-            demands: ImageOverride -equals ${{ parameters.windowsImageOverride }}
+- job: ${{ parameters.name }}
+  strategy:
+    matrix:
+      ${{ if ne(parameters.linuxImage, '') }}:
+        linux:
+          poolName: ${{ parameters.linuxAgentPoolName }}
+          imageName: ${{ parameters.linuxImage }}
+          demands: ''
+      ${{ if ne(parameters.macosImage, '') }}:
+        macos:
+          poolName: ${{ parameters.macosAgentPoolName }}
+          imageName: ${{ parameters.macosImage }}
+          demands: ''
+      ${{ if or(ne(parameters.windowsAgentPoolName, 'Azure Pipelines'), ne(parameters.windowsImage, '')) }}:
+        windows:
+          poolName: ${{ parameters.windowsAgentPoolName }}
+          imageName: ${{ parameters.windowsImage }}
+          demands: ImageOverride -equals ${{ parameters.windowsImageOverride }}
 
-    displayName: ${{ parameters.displayName }}
-    timeoutInMinutes: ${{ parameters.timeoutInMinutes }}
-    continueOnError: ${{ eq(parameters.continueOnError, 'true') }}
-    dependsOn: ${{ parameters.dependsOn }}
-    pool:
-      name: $(poolName)
-      vmImage: $(imageName)
-      demands: $(demands)
-    steps:
-    - template: build.steps.yml
-      parameters:
-        name: ${{ parameters.name }}
-        displayName: ${{ parameters.displayName }}
-        timeoutInMinutes: ${{ parameters.timeoutInMinutes }}
-        dependsOn: ${{ parameters.dependsOn }}
-        initSteps: ${{ parameters.initSteps }}
-        preBuildSteps: ${{ parameters.preBuildSteps }}
-        postBuildSteps: ${{ parameters.postBuildSteps }}
-        masterBranchName: ${{ parameters.masterBranchName }}
-        installAppleCertificates: ${{ parameters.installAppleCertificates }}
-        submodules: ${{ parameters.submodules }}
-        areaPath: ${{ parameters.areaPath }}
-        runChecks: ${{ parameters.runChecks }}
-        continueOnError: ${{ parameters.continueOnError }}
-        publishJob: ${{ parameters.publishJob }}
-        publishOutputSuffix: ${{ parameters.publishOutputSuffix }}
-        signListPath: ${{ parameters.signListPath }}
-        linuxAgentPoolName: ${{ parameters.linuxAgentPoolName }}
-        macosAgentPoolName: ${{ parameters.macosAgentPoolName }}
-        windowsAgentPoolName: ${{ parameters.windowsAgentPoolName }}
-        linuxImage: ${{ parameters.linuxImage }}
-        macosImage: ${{ parameters.macosImage }}
-        windowsImage: ${{ parameters.windowsImage }}
-        windowsImageOverride: ${{ parameters.windowsImageOverride }}
-        mono: ${{ parameters.mono }}
-        xcode: ${{ parameters.xcode }}
-        dotnet: ${{ parameters.dotnet }}
-        dotnetStable: ${{ parameters.dotnetStable }}
-        cake: ${{ parameters.cake }}
-        apiTools: ${{ parameters.apiTools }}
-        xharness: ${{ parameters.xharness }}
-        tools: ${{ parameters.tools }}
-        cakeTemplatesBranch: ${{ parameters.cakeTemplatesBranch }}
-        buildType: ${{ parameters.buildType }}
-        steps: ${{ parameters.steps }}
-        verbosity: ${{ parameters.verbosity }}
-        configuration: ${{ parameters.configuration }}
-        validPackagePrefixes: ${{ parameters.validPackagePrefixes }}
-        artifactsPath: ${{ parameters.artifactsPath }}
-        cakeTarget: ${{ parameters.cakeTarget }}
-        cakeFile: ${{ parameters.cakeFile }}
-        cakeExtraArgs: ${{ parameters.cakeExtraArgs }}
-        forceBuild: ${{ parameters.forceBuild }}
-        namesFilter: ${{ parameters.namesFilter }}
-        targetsFilter: ${{ parameters.targetsFilter }}
+  displayName: ${{ parameters.displayName }}
+  timeoutInMinutes: ${{ parameters.timeoutInMinutes }}
+  continueOnError: ${{ eq(parameters.continueOnError, 'true') }}
+  dependsOn: ${{ parameters.dependsOn }}
+  pool:
+    name: $(poolName)
+    vmImage: $(imageName)
+    demands: $(demands)
+  steps:
+  - template: build.steps.yml
+    parameters:
+      name: ${{ parameters.name }}
+      displayName: ${{ parameters.displayName }}
+      timeoutInMinutes: ${{ parameters.timeoutInMinutes }}
+      dependsOn: ${{ parameters.dependsOn }}
+      initSteps: ${{ parameters.initSteps }}
+      preBuildSteps: ${{ parameters.preBuildSteps }}
+      postBuildSteps: ${{ parameters.postBuildSteps }}
+      masterBranchName: ${{ parameters.masterBranchName }}
+      installAppleCertificates: ${{ parameters.installAppleCertificates }}
+      submodules: ${{ parameters.submodules }}
+      areaPath: ${{ parameters.areaPath }}
+      runChecks: ${{ parameters.runChecks }}
+      continueOnError: ${{ parameters.continueOnError }}
+      publishJob: ${{ parameters.publishJob }}
+      publishOutputSuffix: ${{ parameters.publishOutputSuffix }}
+      signListPath: ${{ parameters.signListPath }}
+      linuxAgentPoolName: ${{ parameters.linuxAgentPoolName }}
+      macosAgentPoolName: ${{ parameters.macosAgentPoolName }}
+      windowsAgentPoolName: ${{ parameters.windowsAgentPoolName }}
+      linuxImage: ${{ parameters.linuxImage }}
+      macosImage: ${{ parameters.macosImage }}
+      windowsImage: ${{ parameters.windowsImage }}
+      windowsImageOverride: ${{ parameters.windowsImageOverride }}
+      mono: ${{ parameters.mono }}
+      xcode: ${{ parameters.xcode }}
+      dotnet: ${{ parameters.dotnet }}
+      dotnetStable: ${{ parameters.dotnetStable }}
+      cake: ${{ parameters.cake }}
+      apiTools: ${{ parameters.apiTools }}
+      xharness: ${{ parameters.xharness }}
+      tools: ${{ parameters.tools }}
+      cakeTemplatesBranch: ${{ parameters.cakeTemplatesBranch }}
+      buildType: ${{ parameters.buildType }}
+      steps: ${{ parameters.steps }}
+      verbosity: ${{ parameters.verbosity }}
+      configuration: ${{ parameters.configuration }}
+      validPackagePrefixes: ${{ parameters.validPackagePrefixes }}
+      artifactsPath: ${{ parameters.artifactsPath }}
+      cakeTarget: ${{ parameters.cakeTarget }}
+      cakeFile: ${{ parameters.cakeFile }}
+      cakeExtraArgs: ${{ parameters.cakeExtraArgs }}
+      forceBuild: ${{ parameters.forceBuild }}
+      namesFilter: ${{ parameters.namesFilter }}
+      targetsFilter: ${{ parameters.targetsFilter }}
 
 - ${{ if and(eq(parameters.runChecks, 'true'), eq(variables['System.TeamProject'], 'devdiv')) }}:
   - job: ${{ parameters.name }}_checks
