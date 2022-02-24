@@ -78,8 +78,9 @@ jobs:
     pool:
       name: $(poolName)
       vmImage: $(imageName)
-      demands:
-      - ImageOverride -equals $(imageOverride)
+      ${{ if ne(${{ imageOverride }}, '') }}:
+        demands:
+        - ImageOverride -equals ${{ imageOverride }}
     steps:
       - checkout: self
         submodules: ${{ parameters.submodules }}
