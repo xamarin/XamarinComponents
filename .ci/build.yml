@@ -118,9 +118,9 @@ parameters:
         poolDemand: Agent.Name
       # - ${{ if or(ne(parameters.windowsAgentPoolName, 'Azure Pipelines'), ne(parameters.windowsImage, '')) }}:
       - name: windows
-        poolName: 'Azure Pipelines'                             # ${{ parameters.windowsAgentPoolName }}
-        imageName: 'windows-2019'
-        poolDemand: Agent.Name
+        poolName: 'AzurePipelines-EO'                             # ${{ parameters.windowsAgentPoolName }}
+        imageName: ''
+        poolDemand: ImageOverride -equals AzurePipelinesWindows2019compliant
 
 jobs:
 - ${{ each buildPlatform in parameters.BuildPlatforms }}:
