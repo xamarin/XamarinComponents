@@ -28,7 +28,7 @@ jobs:
     parameters:
       timeoutInMinutes: 360
       areaPath: 'DevDiv\Xamarin SDK\Android'
-      macosImage: 'macOS-11'                                  # the name of the macOS VM image
+      # macosImage: 'macOS-11'  # UNDONE: TEST: DO NOT MERGE TO MAIN                                 # the name of the macOS VM image
                                                               # BigSur 20211120
       windowsAgentPoolName: AzurePipelines-EO
       windowsImage: ''
@@ -36,7 +36,7 @@ jobs:
 
       xcode: 13.1
       buildType: 'manifest'
-      linuxImage: 'ubuntu-latest'
+      # linuxImage: 'ubuntu-latest'       # UNDONE: TEST: DO NOT MERGE TO MAIN
       validPackagePrefixes: 
         # Preferred prefixes
         - Xamarin
