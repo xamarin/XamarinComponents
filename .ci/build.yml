@@ -70,7 +70,7 @@ jobs:
           windows:
             poolName: ${{ parameters.windowsAgentPoolName }}
             imageName: ${{ parameters.windowsImage }}
-            demands: 'demands: ImageOverride -equals ${{ parameters.windowsImageOverride }}'
+            demands: 'ImageOverride -equals ${{ parameters.windowsImageOverride }}'
 
     displayName: ${{ parameters.displayName }}
     timeoutInMinutes: ${{ parameters.timeoutInMinutes }}
@@ -79,7 +79,7 @@ jobs:
     pool:
       name: $(poolName)
       vmImage: $(imageName)
-      $(demands)
+      demands: $(demands)
     steps:
     - template: build.steps.yml
       parameters:
