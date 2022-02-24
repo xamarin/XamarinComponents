@@ -70,7 +70,8 @@ jobs:
         windows:
           poolName: ${{ parameters.windowsAgentPoolName }}
           imageName: ${{ parameters.windowsImage }}
-          poolDemand: 'ImageOverride -equals ${{ parameters.windowsImageOverride }}'
+          # poolDemand: 'ImageOverride -equals ${{ parameters.windowsImageOverride }}'
+          poolDemand: 'Agent.Name'
 
   displayName: ${{ parameters.displayName }}
   timeoutInMinutes: ${{ parameters.timeoutInMinutes }}
