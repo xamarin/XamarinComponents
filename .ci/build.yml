@@ -53,7 +53,7 @@ parameters:
   targetsFilter: 'ci'                                       # [manifest, directories] the targets of the items to build
 
 jobs:
-- ${{ if or(ne(parameters.linuxImage, ''), ne(parameters.macosImage, '')) }}:
+- ${{ if or(ne(parameters.linuxImage, ''), ne(parameters.macosImage, '')) }}:   # This condition is necessary in case 
   - job: ${{ parameters.name }}
     strategy:
       matrix:
@@ -122,7 +122,10 @@ jobs:
 
 # We would ordinarily include the windows build as part of the matrix above; however, selectively including the ImageOverride agent pool demand for only windows when the matrix is run is not possible
 - ${{ if or(ne(parameters.windowsAgentPoolName, 'Azure Pipelines'), ne(parameters.windowsImage, '')) }}:
-  - job: '${{ parameters.name }}_windows'
+  - ${{ if or(ne(parameters.linuxImage, ''), ne(parameters.macosImage, '')) }}:
+    - job: '${{ parameters.name }}_windows'
+  - ${{ if and(eq(parameters.linuxImage, ''), eq(parameters.macosImage, '')) }}:
+    - job: '${{ parameters.name }}'
     displayName: '${{ parameters.displayName }} windows'
     timeoutInMinutes: ${{ parameters.timeoutInMinutes }}
     continueOnError: ${{ eq(parameters.continueOnError, 'true') }}
