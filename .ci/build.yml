@@ -60,17 +60,17 @@ jobs:
         linux:
           poolName: ${{ parameters.linuxAgentPoolName }}
           imageName: ${{ parameters.linuxImage }}
-          demands: ['ImageOverride -equals ${{ parameters.windowsImageOverride }}']
+          demand: 'agent.name'                            # Capability that always exists
       ${{ if ne(parameters.macosImage, '') }}:
         macos:
           poolName: ${{ parameters.macosAgentPoolName }}
           imageName: ${{ parameters.macosImage }}
-          demands: ['ImageOverride -equals ${{ parameters.windowsImageOverride }}']
+          demand: 'agent.name'                            # Capability that always exists
       ${{ if or(ne(parameters.windowsAgentPoolName, 'Azure Pipelines'), ne(parameters.windowsImage, '')) }}:
         windows:
           poolName: ${{ parameters.windowsAgentPoolName }}
           imageName: ${{ parameters.windowsImage }}
-          demands: ['ImageOverride -equals ${{ parameters.windowsImageOverride }}']
+          demand: 'ImageOverride -equals ${{ parameters.windowsImageOverride }}'
 
   displayName: ${{ parameters.displayName }}
   timeoutInMinutes: ${{ parameters.timeoutInMinutes }}
@@ -79,7 +79,8 @@ jobs:
   pool:
     name: $(poolName)
     vmImage: $(imageName)
-    demands: $(demands)
+    demands:
+    - $(demand)
   steps:
   - template: build.steps.yml
     parameters:
