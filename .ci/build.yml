@@ -20,9 +20,9 @@ parameters:
   linuxAgentPoolName: 'Azure Pipelines'                     # the name of the Linux VM pool
   macosAgentPoolName: 'Azure Pipelines'                     # the name of the macOS VM pool
   windowsAgentPoolName: 'Azure Pipelines'                   # the name of the Windows VM pool
-  linuxImage: ''                                            # the name of the Linux VM image (linuxImage: 'Hosted Ubuntu 1604') 
+  linuxImage: ''                                            # the name of the Linux VM image (linuxImage: 'Hosted Ubuntu 1604')
   macosImage: 'macOS-11'                                    # the name of the macOS VM image
-                                                            # 20211121 
+                                                            # 20211121
                                                             # macOS-latest = macOS-10.15
                                                             # macOS-11 required for XCode 13.1
   windowsImage: 'windows-latest'                            # the name of the Windows VM image
@@ -53,390 +53,139 @@ parameters:
   targetsFilter: 'ci'                                       # [manifest, directories] the targets of the items to build
 
 jobs:
-  - job: ${{ parameters.name }}
-    strategy:
-      matrix:
-        ${{ if ne(parameters.linuxImage, '') }}:
-          linux:
-            poolName: ${{ parameters.linuxAgentPoolName }}
-            imageName: ${{ parameters.linuxImage }}
-            imageOverride: ''
-        ${{ if ne(parameters.macosImage, '') }}:
-          macos:
-            poolName: ${{ parameters.macosAgentPoolName }}
-            imageName: ${{ parameters.macosImage }}
-            imageOverride: ''
-        ${{ if or(ne(parameters.windowsAgentPoolName, 'Azure Pipelines'), ne(parameters.windowsImage, '')) }}:
-          windows:
-            poolName: ${{ parameters.windowsAgentPoolName }}
-            imageName: ${{ parameters.windowsImage }}
-            imageOverride: ${{ parameters.windowsImageOverride }}
-    displayName: ${{ parameters.displayName }}
-    timeoutInMinutes: ${{ parameters.timeoutInMinutes }}
-    continueOnError: ${{ eq(parameters.continueOnError, 'true') }}
-    dependsOn: ${{ parameters.dependsOn }}
+- job: ${{ parameters.name }}
+  strategy:
+    matrix:
+      ${{ if ne(parameters.linuxImage, '') }}:
+        linux:
+          poolName: ${{ parameters.linuxAgentPoolName }}
+          imageName: ${{ parameters.linuxImage }}
+      ${{ if ne(parameters.macosImage, '') }}:
+        macos:
+          poolName: ${{ parameters.macosAgentPoolName }}
+          imageName: ${{ parameters.macosImage }}
+      ${{ if or(ne(parameters.windowsAgentPoolName, 'Azure Pipelines'), ne(parameters.windowsImage, '')) }}:
+        windows:
+          poolName: ${{ parameters.windowsAgentPoolName }}
+          imageName: ${{ parameters.windowsImage }}
+  displayName: ${{ parameters.displayName }}
+  timeoutInMinutes: ${{ parameters.timeoutInMinutes }}
+  continueOnError: ${{ eq(parameters.continueOnError, 'true') }}
+  dependsOn: ${{ parameters.dependsOn }}
+  pool:
+    name: $(poolName)
+    vmImage: $(imageName)
+  steps:
+  - template: build.steps.yml
+    parameters:
+      name: ${{ parameters.name }}
+      displayName: ${{ parameters.displayName }}
+      timeoutInMinutes: ${{ parameters.timeoutInMinutes }}
+      dependsOn: ${{ parameters.dependsOn }}
+      initSteps: ${{ parameters.initSteps }}
+      preBuildSteps: ${{ parameters.preBuildSteps }}
+      postBuildSteps: ${{ parameters.postBuildSteps }}
+      masterBranchName: ${{ parameters.masterBranchName }}
+      installAppleCertificates: ${{ parameters.installAppleCertificates }}
+      submodules: ${{ parameters.submodules }}
+      areaPath: ${{ parameters.areaPath }}
+      runChecks: ${{ parameters.runChecks }}
+      continueOnError: ${{ parameters.continueOnError }}
+      publishJob: ${{ parameters.publishJob }}
+      publishOutputSuffix: ${{ parameters.publishOutputSuffix }}
+      signListPath: ${{ parameters.signListPath }}
+      linuxAgentPoolName: ${{ parameters.linuxAgentPoolName }}
+      macosAgentPoolName: ${{ parameters.macosAgentPoolName }}
+      windowsAgentPoolName: ${{ parameters.windowsAgentPoolName }}
+      linuxImage: ${{ parameters.linuxImage }}
+      macosImage: ${{ parameters.macosImage }}
+      windowsImage: ${{ parameters.windowsImage }}
+      windowsImageOverride: ${{ parameters.windowsImageOverride }}
+      mono: ${{ parameters.mono }}
+      xcode: ${{ parameters.xcode }}
+      dotnet: ${{ parameters.dotnet }}
+      dotnetStable: ${{ parameters.dotnetStable }}
+      cake: ${{ parameters.cake }}
+      apiTools: ${{ parameters.apiTools }}
+      xharness: ${{ parameters.xharness }}
+      tools: ${{ parameters.tools }}
+      cakeTemplatesBranch: ${{ parameters.cakeTemplatesBranch }}
+      buildType: ${{ parameters.buildType }}
+      steps: ${{ parameters.steps }}
+      verbosity: ${{ parameters.verbosity }}
+      configuration: ${{ parameters.configuration }}
+      validPackagePrefixes: ${{ parameters.validPackagePrefixes }}
+      artifactsPath: ${{ parameters.artifactsPath }}
+      cakeTarget: ${{ parameters.cakeTarget }}
+      cakeFile: ${{ parameters.cakeFile }}
+      cakeExtraArgs: ${{ parameters.cakeExtraArgs }}
+      forceBuild: ${{ parameters.forceBuild }}
+      namesFilter: ${{ parameters.namesFilter }}
+      targetsFilter: ${{ parameters.targetsFilter }}
+
+- ${{ if and(eq(parameters.runChecks, 'true'), eq(variables['System.TeamProject'], 'devdiv')) }}:
+  - job: ${{ parameters.name }}_checks
+    displayName: 'Run required code checks'
+    condition: eq('refs/heads/${{ parameters.masterBranchName }}', variables['Build.SourceBranch'])
     pool:
-      name: $(poolName)
-      vmImage: $(imageName)
-      ${{ if ne(${{ imageOverride }}, '') }}:
-        demands:
-        - ImageOverride -equals ${{ imageOverride }}
+      name: 'Hosted Windows 2019 with VS2019'
     steps:
-      - checkout: self
-        submodules: ${{ parameters.submodules }}
-      # before the build starts, make sure the tooling is as expected
-      - bash: sudo $AGENT_HOMEDIRECTORY/scripts/select-xamarin-sdk.sh ${{ parameters.mono }}
-        displayName: 'Switch to the latest Xamarin SDK'
-        condition: eq(variables['System.JobName'], 'macos')
-      - bash: echo '##vso[task.setvariable variable=MD_APPLE_SDK_ROOT;]'/Applications/Xcode_${{ parameters.xcode }}.app;sudo xcode-select --switch /Applications/Xcode_${{ parameters.xcode }}.app/Contents/Developer
-        displayName: 'Switch to the latest Xcode'
-        condition: eq(variables['System.JobName'], 'macos')
-      - ${{ if eq(parameters.installAppleCertificates, 'true') }}:
-        - task: InstallAppleProvisioningProfile@1
-          condition: eq(variables['System.JobName'], 'macos')
-          displayName: 'Install the iOS provisioning profile'
-          inputs:
-            provProfileSecureFile: 'Components iOS Provisioning.mobileprovision'
-        - task: InstallAppleProvisioningProfile@1
-          condition: eq(variables['System.JobName'], 'macos')
-          displayName: 'Install the macOS provisioning profile'
-          inputs:
-            provProfileSecureFile: 'Components Mac Provisioning.mobileprovision'
-        - task: InstallAppleProvisioningProfile@1
-          condition: eq(variables['System.JobName'], 'macos')
-          displayName: 'Install the tvOS provisioning profile'
-          inputs:
-            provProfileSecureFile: 'Components tvOS Provisioning.mobileprovision'
-        - task: InstallAppleCertificate@2
-          condition: eq(variables['System.JobName'], 'macos')
-          displayName: 'Install the iOS certificate'
-          inputs:
-            certSecureFile: 'Components iOS Certificate.p12'
-        - task: InstallAppleCertificate@2
-          condition: eq(variables['System.JobName'], 'macos')
-          displayName: 'Install the macOS certificate'
-          inputs:
-            certSecureFile: 'Components Mac Certificate.p12'
-      - bash: echo '##vso[task.setvariable variable=PATH;]'$PATH:$HOME/.dotnet/tools
-        displayName: 'Add ~/.dotnet/tools to the PATH environment variable'
-        condition: or(eq(variables['System.JobName'], 'macos'), eq(variables['System.JobName'], 'linux'))
-      - task: UseDotNet@2
-        displayName: 'Switch to the correct version of the .NET Core SDK'
-        inputs:
-          version: ${{ parameters.dotnetStable }}
-          performMultiLevelLookup: true
-          includePreviewVersions: true
-        condition: ne('${{ parameters.dotnetStable }}', '')
-      - task: UseDotNet@2
-        displayName: 'Switch to the correct version of the .NET Core SDK'
-        inputs:
-          version: ${{ parameters.dotnet }}
-          performMultiLevelLookup: true
-          includePreviewVersions: true
-        condition: ne('${{ parameters.dotnet }}', '')
-      # custom init steps
-      - ${{ parameters.initSteps }}
-      - pwsh: |
-          dotnet tool install -g api-tools --version ${{ parameters.apiTools }}
-          dotnet tool install -g cake.tool --version ${{ parameters.cake }}
-          dotnet tool install -g Microsoft.DotNet.XHarness.CLI --version ${{ parameters.xharness }} --add-source https://pkgs.dev.azure.com/dnceng/public/_packaging/dotnet-eng/nuget/v3/index.json
-        displayName: 'Install required .NET Core global tools'
-      - ${{ each tool in parameters.tools }}:
-        - ${{ each pair in tool }}:
-          - pwsh: dotnet tool install -g ${{ pair.key }} --version ${{ pair.value }}
-            displayName: 'Install additional .NET Core global tool: ${{ pair.key }}'
-      - task: NuGetToolInstaller@1
-        inputs:
-          checkLatest: true
-        displayName: 'Download the latest nuget.exe'
-      - pwsh: |
-          $branch = "${{ parameters.cakeTemplatesBranch }}"
-          if (("$(Build.Repository.Id)" -eq "xamarin/XamarinComponents") -and ("$(System.PullRequest.IsFork)" -eq "False") -and ("$env:FORCE_MASTER_TEMPLATES" -ne "True")) {
-            if ("$env:SYSTEM_PULLREQUEST_SOURCEBRANCH") {
-              $branch = "$env:SYSTEM_PULLREQUEST_SOURCEBRANCH"
-            } else {
-              $branch = "$(Build.SourceBranch)"
-            }
-          }
-          if ($branch.StartsWith("refs/heads/")) {
-            $branch = $branch.Substring(11)
-          }
-          if ($branch.StartsWith("refs/tags/")) {
-            $branch = $branch.Substring(10)
-          }
-          $root = "https://raw.githubusercontent.com/xamarin/XamarinComponents/$branch/.ci"
-          Write-Host "##vso[task.setvariable variable=TemplateRootUri]$root"
-          Write-Host "URL root for templates: $root"
-        displayName: 'Resolve the cake templates URL'
-      - pwsh: |
-          $uri = "$(TemplateRootUri)/validation.cake"
-          Write-Host "Downloading script from $uri..."
-          Invoke-WebRequest -Uri $uri -OutFile "validation.cake"
-        displayName: 'Download the cake script to validate NuGet packages'
-      - pwsh: |
-          $uri = "$(TemplateRootUri)/nuget-diff.cake"
-          Write-Host "Downloading script from $uri..."
-          Invoke-WebRequest -Uri $uri -OutFile "nuget-diff.cake"
-        displayName: 'Download the cake script to diff NuGet packages'
-      # determine the last successful build for "master" branch
-      - pwsh: |
-          # determine the "master" branch
-          $masterBranch = "${{ parameters.masterBranchName }}"
-          $encodedBranch = [Uri]::EscapeDataString("refs/heads/$masterBranch")
-          Write-Host "Master branch: $masterBranch"
-
-          # determine the "current" branch
-          $branch = "$(Build.SourceBranch)"
-          if ("$env:SYSTEM_PULLREQUEST_TARGETBRANCH") {
-            $branch = "$env:SYSTEM_PULLREQUEST_TARGETBRANCH"
-          }
-          if ($branch.StartsWith("refs/heads/")) {
-            $branch = $branch.Substring(11)
-            Write-Host "Current branch: $branch"
-          }
-          if ($branch.StartsWith("refs/tags/")) {
-            $branch = $branch.Substring(10)
-            Write-Host "Current tag: $branch"
-          }
-
-          if (($branch -eq $masterBranch) -and ("$(System.PullRequest.IsFork)" -eq "False")) {
-            Write-Host "Branch is master, fetching last successful build commit..."
-
-            $url = "$(System.TeamFoundationCollectionUri)$(System.TeamProjectId)/_apis/build/builds/?definitions=$(System.DefinitionId)&branchName=$encodedBranch&statusFilter=completed&resultFilter=succeeded&api-version=5.0"
-            Write-Host "URL for last successful master build: $url"
-
-            $json = Invoke-RestMethod -Uri $url -Headers @{
-                Authorization = "Bearer $(System.AccessToken)"
-            }
-            Write-Host "JSON response:"
-            Write-Host "$json"
-
-            $lastSuccessfulBuildCommit = try { $json.value[0].sourceVersion; } catch { $null }
-          }
-
-          if ($lastSuccessfulBuildCommit) {
-            Write-Host "Last successful commit found: $lastSuccessfulBuildCommit"
-          } else {
-            $lastSuccessfulBuildCommit = "origin/$masterBranch"
-            Write-Host "No previously successful build found, using $lastSuccessfulBuildCommit."
-          }
-
-          Write-Host "##vso[task.setvariable variable=GitLastSuccessfulCommit]$lastSuccessfulBuildCommit"
-        displayName: 'Find the last successful commit'
-      # custom pre-build steps
-      - ${{ parameters.preBuildSteps }}
-      # the basic build
-      - ${{ if eq(parameters.buildType, 'basic') }}:
-        - pwsh: |
-            Get-Content $MyInvocation.MyCommand.Definition
-            dotnet cake ${{ parameters.cakeFile }} ${{ parameters.cakeExtraArgs }} `
-              --gitpreviouscommit="$(GitLastSuccessfulCommit)" `
-              --gitcommit="$(Build.SourceVersion)" `
-              --gitbranch="$(Build.SourceBranch)" `
-              --target="${{ parameters.cakeTarget }}" `
-              --configuration="${{ parameters.configuration }}" `
-              --verbosity="${{ parameters.verbosity }}"
-          displayName: 'Run basic build'
-          env:
-            JavaSdkDirectory: $(JAVA_HOME)
-            RepositoryCommit: $(Build.SourceVersion)
-            RepositoryBranch: $(Build.SourceBranchName)
-            RepositoryUrl: $(Build.Repository.Uri)
-            RepositoryType: "git"
-      # the directory-based build
-      - ${{ if eq(parameters.buildType, 'directories') }}:
-        - pwsh: |
-            $uri = "$(TemplateRootUri)/build-directories.cake"
-            Write-Host "Downloading script from $uri..."
-            Invoke-WebRequest -Uri $uri -OutFile "build-directories.cake"
-          displayName: 'Download the cake script to build directory-based repositories'
-        - pwsh: |
-            Get-Content $MyInvocation.MyCommand.Definition
-            $force = if ("$env:FORCEBUILD") { "$env:FORCEBUILD" } else { "${{ parameters.forceBuild }}" }
-            $names = if ("$env:BUILDDIRECTORYNAMES") { "$env:BUILDDIRECTORYNAMES" } else { "${{ parameters.namesFilter }}" }
-            $targets = if ("$env:BUILDDIRECTORYTARGETS") { "$env:BUILDDIRECTORYTARGETS" } else { "${{ parameters.targetsFilter }}" }
-            dotnet cake build-directories.cake `
-              --gitpreviouscommit="$(GitLastSuccessfulCommit)" `
-              --gitcommit="$(Build.SourceVersion)" `
-              --gitbranch="$(Build.SourceBranch)" `
-              --forcebuild="$force" `
-              --names="$names" `
-              --targets="$targets" `
-              --copyoutputtoroot=true `
-              --configuration="${{ parameters.configuration }}" `
-              --verbosity="${{ parameters.verbosity }}"
-          displayName: 'Run directory build'
-          env:
-            JavaSdkDirectory: $(JAVA_HOME)
-            RepositoryCommit: $(Build.SourceVersion)
-            RepositoryBranch: $(Build.SourceBranchName)
-            RepositoryUrl: $(Build.Repository.Uri)
-            RepositoryType: "git"
-      # the manifest-based build
-      - ${{ if eq(parameters.buildType, 'manifest') }}:
-        - pwsh: |
-            $uri = "$(TemplateRootUri)/build-manifest.cake"
-            Write-Host "Downloading script from $uri..."
-            Invoke-WebRequest -Uri $uri -OutFile "build-manifest.cake"
-          displayName: 'Download the cake script to build manifest-based repositories'
-        - pwsh: |
-            Get-Content $MyInvocation.MyCommand.Definition
-            $force = if ("$env:FORCEBUILD") { "$env:FORCEBUILD" } else { "${{ parameters.forceBuild }}" }
-            $names = if ("$env:BUILDMANIFESTNAMES") { "$env:BUILDMANIFESTNAMES" } else { "${{ parameters.namesFilter }}" }
-            $targets = if ("$env:BUILDMANIFESTTARGETS") { "$env:BUILDMANIFESTTARGETS" } else { "${{ parameters.targetsFilter }}" }
-            dotnet cake build-manifest.cake `
-              --gitpreviouscommit="$(GitLastSuccessfulCommit)" `
-              --gitcommit="$(Build.SourceVersion)" `
-              --gitbranch="$(Build.SourceBranch)" `
-              --forcebuild="$force" `
-              --names="$names" `
-              --targets="$targets" `
-              --copyoutputtoroot=true `
-              --configuration="${{ parameters.configuration }}" `
-              --verbosity="${{ parameters.verbosity }}"
-          displayName: 'Run manifest build'
-          env:
-            JavaSdkDirectory: $(JAVA_HOME)
-            RepositoryCommit: $(Build.SourceVersion)
-            RepositoryBranch: $(Build.SourceBranchName)
-            RepositoryUrl: $(Build.Repository.Uri)
-            RepositoryType: "git"
-      # the build steps, typically for 'none' builds
-      - ${{ parameters.steps }}
-      - task: PublishTestResults@2
-        displayName: Publish the test results (xUnit)
-        condition: always()
-        inputs:
-          testResultsFormat: xUnit
-          testResultsFiles: 'output/**/*TestResults.xml'
-          testRunTitle: 'xUnit Test results for $(System.JobName)'
-      - task: PublishTestResults@2
-        displayName: Publish the test results (NUnit)
-        condition: always()
-        inputs:
-          testResultsFormat: NUnit
-          testResultsFiles: 'output/**/*TestResults.xml'
-          testRunTitle: 'NUnit Test results for $(System.JobName)'
-      - task: PublishTestResults@2
-        displayName: Publish the test results (VSTest)
-        condition: always()
-        inputs:
-          testResultsFormat: VSTest
-          testResultsFiles: 'output/**/*.trx'
-          testRunTitle: 'VS Test results for $(System.JobName)'
-      # custom post-build steps
-      - ${{ parameters.postBuildSteps }}
-      # post-build steps
-      - pwsh: |
-          dotnet cake validation.cake `
-            --namespaces="${{ join(',', parameters.validPackagePrefixes) }}" `
-            --verbosity="${{ parameters.verbosity }}"
-        displayName: 'Run NuGet package validation'
-      - pwsh: |
-          dotnet cake nuget-diff.cake `
-            --artifacts="${{ parameters.artifactsPath }}" `
-            --output="${{ parameters.artifactsPath }}/api-diff" `
-            --cache="$(Agent.TempDirectory)/api-diff" `
-            --verbosity="${{ parameters.verbosity }}"
-        displayName: 'Generate API diff'
-      # after the build is complete
-      - pwsh: |
-          $srcExists = (Test-Path "${{ parameters.signListPath }}")
-          $dstExists = (Test-Path "${{ parameters.artifactsPath }}\SignList.xml")
-          if ($srcExists -and !$dstExists) {
-            Copy-Item "${{ parameters.signListPath }}" "${{ parameters.artifactsPath }}\SignList.xml"
-            Write-Host "Copied ${{ parameters.signListPath }} to ${{ parameters.artifactsPath }}\SignList.xml"
-          } elseif (!$srcExists) {
-            Write-Host "${{ parameters.signListPath }} did not exist, nothing copied."
-          } elseif ($dstExists) {
-            Write-Host "${{ parameters.artifactsPath }}\SignList.xml already existed, nothing copied."
-          }
-        displayName: 'Copy SignList.xml to the nuget artifact'
-      - task: PublishBuildArtifacts@1
-        displayName: 'Publish artifacts'
-        condition: or(eq('${{ parameters.publishJob }}', ''), eq('${{ parameters.publishJob }}', variables['System.JobName']))
-        inputs:
-          PathToPublish: ${{ parameters.artifactsPath }}
-          ArtifactName: nuget
-      - task: PublishBuildArtifacts@1
-        displayName: 'Publish platform artifacts'
-        condition: always()
-        inputs:
-          PathToPublish: output
-          ArtifactName: output-$(System.JobName)${{ parameters.publishOutputSuffix }}
-      # run any required checks
-      - ${{ if eq(variables['System.TeamProject'], 'devdiv') }}:
-        - task: ComponentGovernanceComponentDetection@0
-          displayName: 'Run component detection'
-          condition: and(always(), eq('refs/heads/${{ parameters.masterBranchName }}', variables['Build.SourceBranch']))
-          inputs:
-            scanType: 'Register'
-            verbosity: 'Verbose'
-            alertWarningLevel: 'High'
-
-  - ${{ if and(eq(parameters.runChecks, 'true'), eq(variables['System.TeamProject'], 'devdiv')) }}:
-    - job: ${{ parameters.name }}_checks
-      displayName: 'Run required code checks'
-      condition: eq('refs/heads/${{ parameters.masterBranchName }}', variables['Build.SourceBranch'])
-      pool:
-        name: 'Hosted Windows 2019 with VS2019'
-      steps:
-        - pwsh: |
-            $repo = "$(Build.Repository.Id)"
-            $repo = $repo.Substring($repo.IndexOf("/") + 1)
-            $branch = "${{ parameters.masterBranchName }}"
-            $CODEBASE_NAME = $repo + "_" + $branch
-            echo "Using codebase: $CODEBASE_NAME"
-            Write-Host "##vso[task.setvariable variable=CODEBASE_NAME]$CODEBASE_NAME"
-        - task: CredScan@2
-          displayName: 'Analyze source for credentials'
-          inputs:
-            toolMajorVersion: 'V2'
-        - task: PoliCheck@1
-          inputs:
-            inputType: 'Basic'
-            targetType: 'F'
-        - task: SdtReport@1
-          displayName: 'Create security analysis report'
-          inputs:
-            AllTools: false
-            APIScan: false
-            BinSkim: false
-            CodesignValidation: false
-            CredScan: true
-            FortifySCA: false
-            FxCop: false
-            ModernCop: false
-            MSRD: false
-            PoliCheck: true
-            RoslynAnalyzers: false
-            SDLNativeRules: false
-            Semmle: false
-            TSLint: false
-            ToolLogsNotFoundAction: 'Standard'
-        - task: PublishSecurityAnalysisLogs@3
-          displayName: 'Publish security analysis logs'
-        - task: TSAUpload@1
-          continueOnError: true
-          inputs:
-            tsaVersion: 'TsaV2'
-            codebase: 'NewOrUpdate'
-            tsaEnvironment: 'PROD'
-            codeBaseName: '$(CODEBASE_NAME)'
-            notificationAlias: 'xamacomd@microsoft.com'
-            notifyAlwaysV2: false
-            instanceUrlForTsaV2: 'DEVDIV'
-            projectNameDEVDIV: 'DevDiv'
-            areaPath: '${{ parameters.areaPath }}'
-            iterationPath: 'DevDiv\OneVS'
-            uploadAPIScan: false
-            uploadBinSkim: false
-            uploadCredScan: true
-            uploadFortifySCA: false
-            uploadFxCop: false
-            uploadModernCop: false
-            uploadPoliCheck: true
-            uploadPREfast: false
-            uploadRoslyn: false
-            uploadTSLint: false
-            uploadAsync: true
+    - pwsh: |
+        $repo = "$(Build.Repository.Id)"
+        $repo = $repo.Substring($repo.IndexOf("/") + 1)
+        $branch = "${{ parameters.masterBranchName }}"
+        $CODEBASE_NAME = $repo + "_" + $branch
+        echo "Using codebase: $CODEBASE_NAME"
+        Write-Host "##vso[task.setvariable variable=CODEBASE_NAME]$CODEBASE_NAME"
+    - task: CredScan@2
+      displayName: 'Analyze source for credentials'
+      inputs:
+        toolMajorVersion: 'V2'
+    - task: PoliCheck@1
+      inputs:
+        inputType: 'Basic'
+        targetType: 'F'
+    - task: SdtReport@1
+      displayName: 'Create security analysis report'
+      inputs:
+        AllTools: false
+        APIScan: false
+        BinSkim: false
+        CodesignValidation: false
+        CredScan: true
+        FortifySCA: false
+        FxCop: false
+        ModernCop: false
+        MSRD: false
+        PoliCheck: true
+        RoslynAnalyzers: false
+        SDLNativeRules: false
+        Semmle: false
+        TSLint: false
+        ToolLogsNotFoundAction: 'Standard'
+    - task: PublishSecurityAnalysisLogs@3
+      displayName: 'Publish security analysis logs'
+    - task: TSAUpload@1
+      continueOnError: true
+      inputs:
+        tsaVersion: 'TsaV2'
+        codebase: 'NewOrUpdate'
+        tsaEnvironment: 'PROD'
+        codeBaseName: '$(CODEBASE_NAME)'
+        notificationAlias: 'xamacomd@microsoft.com'
+        notifyAlwaysV2: false
+        instanceUrlForTsaV2: 'DEVDIV'
+        projectNameDEVDIV: 'DevDiv'
+        areaPath: '${{ parameters.areaPath }}'
+        iterationPath: 'DevDiv\OneVS'
+        uploadAPIScan: false
+        uploadBinSkim: false
+        uploadCredScan: true
+        uploadFortifySCA: false
+        uploadFxCop: false
+        uploadModernCop: false
+        uploadPoliCheck: true
+        uploadPREfast: false
+        uploadRoslyn: false
+        uploadTSLint: false
+        uploadAsync: true
