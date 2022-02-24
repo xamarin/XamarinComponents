@@ -53,7 +53,7 @@ parameters:
   targetsFilter: 'ci'                                       # [manifest, directories] the targets of the items to build
 
 jobs:
-- if ${{ or(ne(parameters.linuxImage, ''), ne(parameters.macosImage, '')) }}:
+- ${{ if or(ne(parameters.linuxImage, ''), ne(parameters.macosImage, '')) }}:
   - job: ${{ parameters.name }}
     strategy:
       matrix:
