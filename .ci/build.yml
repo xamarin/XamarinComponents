@@ -1,6 +1,7 @@
 parameters:
   # job parameters
-  name: 'build'                                             # the name of the build job for dependency purposes
+  - name: name
+    value: 'build'                                          # the name of the build job for dependency purposes
   - name: displayName                                       # the human name of the job
     value: 'Build'
   timeoutInMinutes: 60                                      # the timeout in minutes
