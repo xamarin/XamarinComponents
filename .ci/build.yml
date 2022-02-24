@@ -75,7 +75,7 @@ jobs:
     pool:
       name: $(poolName)
       vmImage: $(imageName)
-      ${{ if and(eq(variables.poolName, 'windows'), ne(parameters.windowsImageOverride, '')) }}:
+      ${{ if ne(parameters.windowsImageOverride, '') }}:
         demands:
         - ImageOverride -equals ${{ parameters.windowsImageOverride }}
     steps:
