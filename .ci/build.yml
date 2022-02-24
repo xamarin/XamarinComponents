@@ -55,21 +55,21 @@ parameters:
   - name: BuildPlatforms
     type: object
     default:
-      - ${{ if ne(parameters.linuxImage, '') }}:
-        - name: linux
-          poolName: ${{ parameters.linuxAgentPoolName }}
-          imageName: ${{ parameters.linuxImage }}
-          poolDemand: Agent.Name
-      - ${{ if ne(parameters.macosImage, '') }}:
-        - name: macOS
-          poolName: ${{ parameters.macosAgentPoolName }}
-          imageName: ${{ parameters.macosImage }}
-          poolDemand: Agent.Name
-      - ${{ if or(ne(parameters.windowsAgentPoolName, 'Azure Pipelines'), ne(parameters.windowsImage, '')) }}:
-        - name: windows
-          poolName: ${{ parameters.windowsAgentPoolName }}
-          imageName: ${{ parameters.windowsImage }}
-          poolDemand: Agent.Name
+      # - ${{ if ne(parameters.linuxImage, '') }}:
+    - name: linux
+      poolName: ${{ parameters.linuxAgentPoolName }}
+      imageName: ${{ parameters.linuxImage }}
+      poolDemand: Agent.Name
+      # - ${{ if ne(parameters.macosImage, '') }}:
+    - name: macOS
+      poolName: ${{ parameters.macosAgentPoolName }}
+      imageName: ${{ parameters.macosImage }}
+      poolDemand: Agent.Name
+      # - ${{ if or(ne(parameters.windowsAgentPoolName, 'Azure Pipelines'), ne(parameters.windowsImage, '')) }}:
+    - name: windows
+      poolName: ${{ parameters.windowsAgentPoolName }}
+      imageName: ${{ parameters.windowsImage }}
+      poolDemand: Agent.Name
 
 jobs:
 - ${{ each buildPlatform in parameters.BuildPlatforms }}:
