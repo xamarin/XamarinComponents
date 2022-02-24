@@ -121,7 +121,11 @@ jobs:
 
 # We would ordinarily include the windows build as part of the matrix above; however, selectively including the agent pool demand when the matrix is run is not possible
 - ${{ if or(ne(parameters.windowsAgentPoolName, 'Azure Pipelines'), ne(parameters.windowsImage, '')) }}:
-  - job: '${{ parameters.name }} windows'
+  - job: '${{ parameters.name }}_windows'
+    displayName: '${{ parameters.displayName }} windows'
+    timeoutInMinutes: ${{ parameters.timeoutInMinutes }}
+    continueOnError: ${{ eq(parameters.continueOnError, 'true') }}
+    dependsOn: ${{ parameters.dependsOn }}
     pool:
       name: ${{ parameters.windowsAgentPoolName }}
       vmImage: ${{ parameters.windowsImage }}
