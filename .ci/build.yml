@@ -124,7 +124,7 @@ parameters:
 
 jobs:
 - ${{ each buildPlatform in parameters.BuildPlatforms }}:
-  - job: ${{ parameters.name }}_${{ buildPlatform.name }}
+  - job: ${{ buildPlatform.name }}
     displayName: ${{ parameters.displayName }} ${{ buildPlatform.name }}
     timeoutInMinutes: ${{ parameters.timeoutInMinutes }}
     continueOnError: ${{ eq(parameters.continueOnError, 'true') }}
