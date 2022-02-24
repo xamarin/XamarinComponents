@@ -101,18 +101,18 @@ parameters:
     default:
       # - ${{ if ne(parameters.linuxImage, '') }}:
       - name: linux
-        poolName: ${{ parameters.linuxAgentPoolName }}
-        imageName: ${{ parameters.linuxImage }}
+        poolName: 'Azure Pipelines'                             # '${{ parameters.linuxAgentPoolName }}'
+        imageName: 'ubuntu-latest'
         poolDemand: Agent.Name
       # - ${{ if ne(parameters.macosImage, '') }}:
       - name: macOS
-        poolName: ${{ parameters.macosAgentPoolName }}
-        imageName: ${{ parameters.macosImage }}
+        poolName: 'Azure Pipelines'                             # ${{ parameters.macosAgentPoolName }}
+        imageName: 'internal-macos-11'
         poolDemand: Agent.Name
       # - ${{ if or(ne(parameters.windowsAgentPoolName, 'Azure Pipelines'), ne(parameters.windowsImage, '')) }}:
       - name: windows
-        poolName: ${{ parameters.windowsAgentPoolName }}
-        imageName: ${{ parameters.windowsImage }}
+        poolName: 'Azure Pipelines'                             # ${{ parameters.windowsAgentPoolName }}
+        imageName: 'windows-2019'
         poolDemand: Agent.Name
 
 jobs:
