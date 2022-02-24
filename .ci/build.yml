@@ -79,8 +79,7 @@ jobs:
   pool:
     name: $(poolName)
     vmImage: $(imageName)
-    demands:
-    - $(poolDemand)
+    demands: $(poolDemand)
   steps:
   - template: build.steps.yml
     parameters:
