@@ -8,12 +8,16 @@ parameters:
     default: 60
   - name: dependsOn                                         # any jobs this job depends on
     default: []
+    type: object
   - name: initSteps                                         # any steps to run before .NET global tools are installed
     default: []
+    type: object
   - name: preBuildSteps                                     # any steps that need to run just before the main compilation starts
     default: []
+    type: object
   - name: postBuildSteps                                    # any steps that need to run just after the main compilation ends
     default: []
+    type: object
   - name: masterBranchName                                  # the "master" branch that should be used - can be something other than "master"
     default: 'main'
   - name: installAppleCertificates                          # whether or not to install the Apple certificates and provisioning profiles
@@ -66,6 +70,7 @@ parameters:
     default: '1.0.0-prerelease.20602.1'
   - name: tools                                             # a list of any additional .NET Core tools needed
     default: []
+    type: object
   - name: cakeTemplatesBranch
     default: 'main'                                         # the branch of XamarinComponents that has the templates
   # build parameters
@@ -73,12 +78,14 @@ parameters:
     default: 'basic'
   - name: steps                                             # the steps to use when building, typically for 'none'
     default: []
+    type: object
   - name: verbosity                                         # the build verbosity: 'minimal', 'normal', 'diagnostic'
     default: 'normal'
   - name: configuration                                     # the build configuration: 'Debug', 'Release'
     default: 'Release'
   - name: validPackagePrefixes                              # any NuGet prefixes that should pass validation
     default: [ 'Xamarin', 'Mono' ]
+    type: object
   - name: artifactsPath                                     # the path to the NuGet packages that need to be signed, verified and published
     default: 'output'
   # basic cake build parameters
