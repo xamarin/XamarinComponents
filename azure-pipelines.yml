@@ -82,5 +82,5 @@ jobs:
   - ${{ if eq(variables['System.TeamProject'], 'devdiv') }}:
     - template: sign-artifacts/jobs/v2.yml@internal-templates
       parameters:
-        dependsOn: [ 'build' ]
+        dependsOn: [ 'build_windows', 'build_mac', 'build_linux' ]            # UNDONE: TEST: DO NOT MERGE TO MAIN
         condition: startsWith(variables['Build.SourceBranch'], 'refs/tags/')
