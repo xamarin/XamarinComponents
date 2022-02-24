@@ -16,7 +16,7 @@ resources:
       type: github
       name: xamarin/XamarinComponents
       endpoint: xamarin
-      ref: refs/heads/main
+      ref: refs/heads/dev/bond/eo-agent-pool    # UNDONE: DO NOT MERGE TO MAIN
 
 variables:
   DotNet6Version: 6.0.100
