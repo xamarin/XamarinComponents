@@ -1,3 +1,6 @@
+# Compared to the build.yml template, this template adds support for the windowsImageOverride parameter. See comments associated with the parameter for more details.
+# You may also need to update your dependsOn clauses associated with this template from ['build'] to ['macOS','linux','windows'] -- or whatever subset of images you use
+#
 parameters:
   # job parameters
   name: 'build'                                             # the name of the build job for dependency purposes
