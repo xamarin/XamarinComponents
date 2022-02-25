@@ -128,7 +128,7 @@ Task("samples")
 	.IsDependentOn("nuget")
 	.Does (() =>
 {
-	DotNetCoreMSBuild("./samples/GuavaSample/GuavaSample.csproj", c => c.Restore = true);
+	MSBuild("./samples/GuavaSample/GuavaSample.csproj", c => c.Restore = true);
 });
 
 Task ("clean")
