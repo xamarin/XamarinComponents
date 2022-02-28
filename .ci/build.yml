@@ -26,7 +26,7 @@ parameters:
                                                             # macOS-latest = macOS-10.15
                                                             # macOS-11 required for XCode 13.1
   windowsImage: 'windows-latest'                            # the name of the Windows VM image
-  windowsImageOverride: ''                                  # used to access 1ES hardened images
+  windowsImageOverride: ''                                  # used to access 1ES hardened images: name of ImageOverride demand to use such as AzurePipelinesWindows2022compliant when windowsAgentPoolName set to the AzurePipelines-EO pool
   mono: 'Latest'                                            # the version of mono to use
   xcode: '13.1'                                             # the version of Xcode to use
   dotnet: '6.0.200'                                         # the version of .NET Core to use
@@ -64,7 +64,7 @@ jobs:
           macos:
             poolName: ${{ parameters.macosAgentPoolName }}
             imageName: ${{ parameters.macosImage }}
-        ${{ if ne(parameters.windowsImage, '') }}:
+        ${{ if or(ne(parameters.windowsAgentPoolName, 'Azure Pipelines'), ne(parameters.windowsImage, ''), ne(parameters.windowsImageOverride, '')) }}:
           windows:
             poolName: ${{ parameters.windowsAgentPoolName }}
             imageName: ${{ parameters.windowsImage }}
@@ -75,8 +75,8 @@ jobs:
     pool:
       name: $(poolName)
       vmImage: $(imageName)
-      ${{ if ne(parameters.windowsImageOverride, '') }}:
-        demands: 
+      ${{ if and(eq(variables['System.JobName'], 'windows'), ne(parameters.windowsImageOverride, '')) }}:
+        demands:
         - ImageOverride -equals ${{ parameters.windowsImageOverride }}
     steps:
       - checkout: self

@@ -30,6 +30,7 @@ jobs:
       areaPath: 'DevDiv\Xamarin SDK\Android'
       macosImage: 'macOS-11'                                  # the name of the macOS VM image
                                                               # BigSur 20211120
+      windowsImage: 'windows-2019'
       xcode: 13.1
       buildType: 'manifest'
       linuxImage: 'ubuntu-latest'
