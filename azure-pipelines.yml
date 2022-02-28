@@ -24,7 +24,7 @@ variables:
   # NOTE: there wasn't a public release of 16.11 for macOS
   XamarinAndroidPkg:  https://dl.internalx.com/vsts-devdiv/Xamarin.Android/public/4941337/d16-11/7776c9f1c8fac303c3aa57867825990850be0384/xamarin.android-11.4.0.5.pkg
 jobs:
-  - template: .ci/build.yml@components
+  - template: .ci/build.v1.yml@components
     parameters:
       timeoutInMinutes: 360
       areaPath: 'DevDiv\Xamarin SDK\Android'
