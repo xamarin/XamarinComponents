@@ -1,3 +1,6 @@
+# To take advantage of the windowsImageOverride parameter to target executive order (EO) compliant windows pools such as AzurePipelines-EO, use the build.v1.yml template instead
+# You may also need to update your dependsOn clauses associated with that template from ['build'] to ['macOS','linux','windows'] -- or whatever subset of images you use
+#
 parameters:
   # job parameters
   name: 'build'                                             # the name of the build job for dependency purposes
