@@ -16,7 +16,7 @@ resources:
       type: github
       name: xamarin/XamarinComponents
       endpoint: xamarin
-      ref: refs/heads/main
+      ref: refs/heads/dev/bond/eo-linux-image-override-test  # UNDONE: TEST: DO NOT MERGE TO MAIN
 
 variables:
   DotNet6Version: 6.0.200
@@ -33,9 +33,14 @@ jobs:
       windowsAgentPoolName: AzurePipelines-EO
       windowsImage: ''
       windowsImageOverride: AzurePipelinesWindows2019compliant
+
       xcode: 13.1
       buildType: 'manifest'
-      linuxImage: 'ubuntu-latest'
+
+      linuxAgentPoolName: AzurePipelines-EO
+      linuxImage: ''
+      linuxImageOverride: AzurePipelinesUbuntu20.04compliant
+
       validPackagePrefixes: 
         # Preferred prefixes
         - Xamarin
