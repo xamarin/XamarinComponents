@@ -1,6 +1,6 @@
 ﻿<Project Sdk="MSBuild.Sdk.Extras">
   <PropertyGroup>
-    <TargetFrameworks>monoandroid12.0</TargetFrameworks>
+    <TargetFrameworks>monoandroid11.0</TargetFrameworks>
     <IsBindingProject>true</IsBindingProject>
     <AssemblyName>Xamarin.Twilio.AudioSwitch</AssemblyName>
     <RootNamespace>Xamarin.Twilio.AudioSwitch</RootNamespace>
