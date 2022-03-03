@@ -30,7 +30,7 @@ Guava is a set of core libraries that includes new collection types (such as mul
   </PropertyGroup>
 
   <ItemGroup>
-    <None Include="Guava.targets" Pack="True" PackagePath="@(_TfmNuGetBuildFolders->'%(Identity)$(PackageId).targets')" />
+    <None Include="Guava.targets" Pack="True" PackagePath="@(_TfmNuGetBuildFolders-&gt;'%(Identity)$(PackageId).targets')" />
     <None Include="..\..\externals\guava.jar" Pack="True" PackagePath="jar" />
     <None Include="..\..\External-Dependency-Info.txt" Pack="True" PackagePath="THIRD-PARTY-NOTICES.txt" />
   </ItemGroup>
@@ -38,6 +38,11 @@ Guava is a set of core libraries that includes new collection types (such as mul
   <ItemGroup>
     <ProjectReference Include="..\Guava.FailureAccess\Guava.FailureAccess.csproj" PrivateAssets="None" />
     <ProjectReference Include="..\Guava.ListenableFuture\Guava.ListenableFuture.csproj" PrivateAssets="None" />
+    <ProjectReference Include="..\Xamarin.CheckerFramework.CheckerCompatQual\Xamarin.CheckerFramework.CheckerCompatQual.csproj" />
+    <ProjectReference Include="..\Xamarin.CodeHaus.Mojo.AnimalSnifferAnnotations\Xamarin.CodeHaus.Mojo.AnimalSnifferAnnotations.csproj" />
+    <ProjectReference Include="..\Xamarin.Google.Code.FindBugs.JSR305\Xamarin.Google.Code.FindBugs.JSR305.csproj" />
+    <ProjectReference Include="..\Xamarin.Google.ErrorProne.Annotations\Xamarin.Google.ErrorProne.Annotations.csproj" />
+    <ProjectReference Include="..\Xamarin.Google.J2Objc.Annotations\Xamarin.Google.J2Objc.Annotations.csproj" />
   </ItemGroup>
 
   <ItemGroup>
