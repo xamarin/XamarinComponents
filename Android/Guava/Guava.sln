@@ -9,13 +9,9 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Guava.FailureAccess", "sour
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Guava.ListenableFuture", "source\Guava.ListenableFuture\Guava.ListenableFuture.csproj", "{6ADF0C2E-8513-40E6-921B-08AEFD7CBDD6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Xamarin.Google.Code.FindBugs.JSR305", "source\Xamarin.Google.Code.FindBugs.JSR305\Xamarin.Google.Code.FindBugs.JSR305.csproj", "{CE8BA5DD-ECCF-4719-BBA3-4CC572CF6336}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Xamarin.CodeHaus.Mojo.AnimalSnifferAnnotations", "source\Xamarin.CodeHaus.Mojo.AnimalSnifferAnnotations\Xamarin.CodeHaus.Mojo.AnimalSnifferAnnotations.csproj", "{6AF86A5B-1122-4413-8198-4B2F3FBAB725}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Xamarin.Google.J2Objc.Annotations", "source\Xamarin.Google.J2Objc.Annotations\Xamarin.Google.J2Objc.Annotations.csproj", "{650C222B-1BE3-4F5E-970A-96B78002B741}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Xamarin.Google.ErrorProne.Annotations", "source\Xamarin.Google.ErrorProne.Annotations\Xamarin.Google.ErrorProne.Annotations.csproj", "{83DDC212-16EA-4F0F-BB91-67B5BAC459F8}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Xamarin.CheckerFramework.CheckerCompatQual", "source\Xamarin.CheckerFramework.CheckerCompatQual\Xamarin.CheckerFramework.CheckerCompatQual.csproj", "{A5060B44-96C5-4B01-A024-C7310386F118}"
 EndProject
@@ -37,10 +33,6 @@ Global
 		{6ADF0C2E-8513-40E6-921B-08AEFD7CBDD6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6ADF0C2E-8513-40E6-921B-08AEFD7CBDD6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6ADF0C2E-8513-40E6-921B-08AEFD7CBDD6}.Release|Any CPU.Build.0 = Release|Any CPU
-		{CE8BA5DD-ECCF-4719-BBA3-4CC572CF6336}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{CE8BA5DD-ECCF-4719-BBA3-4CC572CF6336}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{CE8BA5DD-ECCF-4719-BBA3-4CC572CF6336}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{CE8BA5DD-ECCF-4719-BBA3-4CC572CF6336}.Release|Any CPU.Build.0 = Release|Any CPU
 		{6AF86A5B-1122-4413-8198-4B2F3FBAB725}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{6AF86A5B-1122-4413-8198-4B2F3FBAB725}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6AF86A5B-1122-4413-8198-4B2F3FBAB725}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -49,10 +41,6 @@ Global
 		{650C222B-1BE3-4F5E-970A-96B78002B741}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{650C222B-1BE3-4F5E-970A-96B78002B741}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{650C222B-1BE3-4F5E-970A-96B78002B741}.Release|Any CPU.Build.0 = Release|Any CPU
-		{83DDC212-16EA-4F0F-BB91-67B5BAC459F8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{83DDC212-16EA-4F0F-BB91-67B5BAC459F8}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{83DDC212-16EA-4F0F-BB91-67B5BAC459F8}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{83DDC212-16EA-4F0F-BB91-67B5BAC459F8}.Release|Any CPU.Build.0 = Release|Any CPU
 		{A5060B44-96C5-4B01-A024-C7310386F118}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{A5060B44-96C5-4B01-A024-C7310386F118}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A5060B44-96C5-4B01-A024-C7310386F118}.Release|Any CPU.ActiveCfg = Release|Any CPU
