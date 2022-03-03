@@ -30,6 +30,11 @@ Guava is a set of core libraries that includes new collection types (such as mul
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Xamarin.Google.Code.FindBugs.JSR305" />
+    <None Remove="Xamarin.Google.ErrorProne.Annotations" />
+    <None Remove="Xamarin.CodeHaus.Mojo.AnimalSnifferAnnotations" />
+  </ItemGroup>
+  <ItemGroup>
     <None Include="Guava.targets" Pack="True" PackagePath="@(_TfmNuGetBuildFolders-&gt;'%(Identity)$(PackageId).targets')" />
     <None Include="..\..\externals\guava.jar" Pack="True" PackagePath="jar" />
     <None Include="..\..\External-Dependency-Info.txt" Pack="True" PackagePath="THIRD-PARTY-NOTICES.txt" />
@@ -49,4 +54,9 @@ Guava is a set of core libraries that includes new collection types (such as mul
     <InputJar Include="..\..\externals\guava.jar" />
   </ItemGroup>
 
+  <ItemGroup>
+    <PackageReference Include="Xamarin.Google.Code.FindBugs.JSR305" Version="3.0.2.2" />
+    <PackageReference Include="Xamarin.Google.ErrorProne.Annotations" Version="2.4.0.1" />
+    <PackageReference Include="Xamarin.CodeHaus.Mojo.AnimalSnifferAnnotations" Version="1.18.0.1" />
+  </ItemGroup>
 </Project>
