@@ -120,7 +120,7 @@ jobs:
 
 - ${{ if ne(parameters.macosImage, '') }}:
   - job: macos
-    displayName: ${{ parameters.displayName }}
+    displayName: '${{ parameters.displayName }} macos'
     timeoutInMinutes: ${{ parameters.timeoutInMinutes }}
     continueOnError: ${{ eq(parameters.continueOnError, 'true') }}
     dependsOn: ${{ parameters.dependsOn }}
