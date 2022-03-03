@@ -23,13 +23,13 @@
     <PackageLicenseFile>LICENSE.md</PackageLicenseFile>
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
     <PackageTags>moshi kotlin xamarin android monodroid</PackageTags>
-    <PackageVersion>1.12.0</PackageVersion>
+    <PackageVersion>1.13.0</PackageVersion>
   </PropertyGroup>
     
   <ItemGroup>
-    <PackageReference Include="Square.Moshi" Version="1.12.0" />
-    <PackageReference Include="Xamarin.Kotlin.Reflect" Version="1.4.32.1" />
-    <PackageReference Include="Xamarin.Kotlin.StdLib" Version="1.4.32.1" />
+    <PackageReference Include="Square.Moshi" Version="1.13.0" />
+    <PackageReference Include="Xamarin.Kotlin.Reflect" Version="1.6.0" />
+    <PackageReference Include="Xamarin.Kotlin.StdLib" Version="1.6.0" />
   </ItemGroup>
     
   <ItemGroup>

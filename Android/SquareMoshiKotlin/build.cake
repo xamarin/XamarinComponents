@@ -1,8 +1,8 @@
 var TARGET = Argument ("t", Argument ("target", "ci"));
 
-var NUGET_VERSION = "1.12.0";
+var NUGET_VERSION = "1.13.0";
 
-var JAR_VERSION = "1.12.0";
+var JAR_VERSION = "1.13.0";
 var JAR_URL = $"https://repo1.maven.org/maven2/com/squareup/moshi/moshi-kotlin/{JAR_VERSION}/moshi-kotlin-{JAR_VERSION}.jar";
 
 Task ("externals")
