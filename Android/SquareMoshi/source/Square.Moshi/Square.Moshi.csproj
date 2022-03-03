@@ -1,6 +1,6 @@
 ﻿<Project Sdk="MSBuild.Sdk.Extras">
   <PropertyGroup>
-    <TargetFrameworks>monoandroid11.0</TargetFrameworks>
+    <TargetFrameworks>monoandroid12.0</TargetFrameworks>
     <IsBindingProject>true</IsBindingProject>
     <AssemblyName>Square.Moshi</AssemblyName>
     <RootNamespace>Square.Moshi</RootNamespace>
@@ -28,7 +28,7 @@
     
   <ItemGroup>
     <PackageReference Include="Square.OkiO" Version="2.10.0" />
-    <PackageReference Include="Xamarin.Kotlin.StdLib.Jdk8" Version="1.6.0" />
+    <PackageReference Include="Xamarin.Kotlin.StdLib.Jdk8" Version="1.6.10" />
   </ItemGroup>
     
   <ItemGroup>
