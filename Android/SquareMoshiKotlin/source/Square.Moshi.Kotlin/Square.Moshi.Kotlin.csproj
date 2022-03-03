@@ -1,6 +1,6 @@
 ﻿<Project Sdk="MSBuild.Sdk.Extras">
   <PropertyGroup>
-    <TargetFrameworks>monoandroid9.0</TargetFrameworks>
+    <TargetFrameworks>monoandroid12.0</TargetFrameworks>
     <IsBindingProject>true</IsBindingProject>
     <AssemblyName>Square.Moshi.Kotlin</AssemblyName>
     <RootNamespace>Square.Moshi.Kotlin</RootNamespace>
@@ -28,8 +28,8 @@
     
   <ItemGroup>
     <PackageReference Include="Square.Moshi" Version="1.13.0" />
-    <PackageReference Include="Xamarin.Kotlin.Reflect" Version="1.6.0" />
-    <PackageReference Include="Xamarin.Kotlin.StdLib.Jdk8" Version="1.6.0" />
+    <PackageReference Include="Xamarin.Kotlin.Reflect" Version="1.6.10" />
+    <PackageReference Include="Xamarin.Kotlin.StdLib.Jdk8" Version="1.6.10" />
   </ItemGroup>
     
   <ItemGroup>
