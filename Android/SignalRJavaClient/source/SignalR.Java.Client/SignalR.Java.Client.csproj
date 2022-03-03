@@ -22,7 +22,7 @@
     <PackageLicenseFile>LICENSE.md</PackageLicenseFile>
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
     <PackageTags>signalr java client xamarin android monodroid</PackageTags>
-    <PackageVersion>6.0.1</PackageVersion>
+    <PackageVersion>6.0.2</PackageVersion>
   </PropertyGroup>
     
   <ItemGroup>
