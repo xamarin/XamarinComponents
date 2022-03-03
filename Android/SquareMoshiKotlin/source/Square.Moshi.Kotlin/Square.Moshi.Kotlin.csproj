@@ -29,7 +29,7 @@
   <ItemGroup>
     <PackageReference Include="Square.Moshi" Version="1.13.0" />
     <PackageReference Include="Xamarin.Kotlin.Reflect" Version="1.6.0" />
-    <PackageReference Include="Xamarin.Kotlin.StdLib" Version="1.6.0" />
+    <PackageReference Include="Xamarin.Kotlin.StdLib.Jdk8" Version="1.6.0" />
   </ItemGroup>
     
   <ItemGroup>
