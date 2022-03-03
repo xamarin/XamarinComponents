@@ -24,6 +24,7 @@ parameters:
   macosAgentPoolName: 'Azure Pipelines'                     # the name of the macOS VM pool
   windowsAgentPoolName: 'Azure Pipelines'                   # the name of the Windows VM pool
   linuxImage: ''                                            # the name of the Linux VM image (linuxImage: 'Hosted Ubuntu 1604')
+  linuxImageOverride: ''                                    # used to access 1ES hardened images: name of ImageOverride demand to use such as AzurePipelinesUbuntu20.04compliant or AzurePipelinesUbuntu18.04compliant when linuxAgentPoolName set to the AzurePipelines-EO pool
   macosImage: 'macOS-11'                                    # the name of the macOS VM image
                                                             # 20211121
                                                             # macOS-latest = macOS-10.15
@@ -56,28 +57,76 @@ parameters:
   targetsFilter: 'ci'                                       # [manifest, directories] the targets of the items to build
 
 jobs:
-- ${{ if or(ne(parameters.linuxImage, ''), ne(parameters.macosImage, '')) }}:
-  - job: ${{ parameters.name }}
-    strategy:
-      matrix:
-        ${{ if ne(parameters.linuxImage, '') }}:
-          linux:
-            poolName: ${{ parameters.linuxAgentPoolName }}
-            imageName: ${{ parameters.linuxImage }}
-            poolDemand: Agent.Name
-        ${{ if ne(parameters.macosImage, '') }}:
-          macos:
-            poolName: ${{ parameters.macosAgentPoolName }}
-            imageName: ${{ parameters.macosImage }}
-            poolDemand: Agent.Name
+- ${{ if or(ne(parameters.linuxAgentPoolName, 'Azure Pipelines'), ne(parameters.linuxImage, '')) }}:
+  - job: linux
+    displayName: '${{ parameters.displayName }} linux'
+    timeoutInMinutes: ${{ parameters.timeoutInMinutes }}
+    continueOnError: ${{ eq(parameters.continueOnError, 'true') }}
+    dependsOn: ${{ parameters.dependsOn }}
+    pool:
+      name: ${{ parameters.linuxAgentPoolName }}
+      vmImage: ${{ parameters.linuxImage }}
+      ${{ if ne(parameters.linuxImageOverride, '') }}:
+        demands:
+        - ImageOverride -equals ${{ parameters.linuxImageOverride }}
+    steps:
+    - template: build.steps.v1.yml
+      parameters:
+        name: ${{ parameters.name }}
+        displayName: ${{ parameters.displayName }}
+        timeoutInMinutes: ${{ parameters.timeoutInMinutes }}
+        dependsOn: ${{ parameters.dependsOn }}
+        initSteps: ${{ parameters.initSteps }}
+        preBuildSteps: ${{ parameters.preBuildSteps }}
+        postBuildSteps: ${{ parameters.postBuildSteps }}
+        masterBranchName: ${{ parameters.masterBranchName }}
+        installAppleCertificates: ${{ parameters.installAppleCertificates }}
+        submodules: ${{ parameters.submodules }}
+        areaPath: ${{ parameters.areaPath }}
+        runChecks: ${{ parameters.runChecks }}
+        continueOnError: ${{ parameters.continueOnError }}
+        publishJob: ${{ parameters.publishJob }}
+        publishOutputSuffix: ${{ parameters.publishOutputSuffix }}
+        signListPath: ${{ parameters.signListPath }}
+        linuxAgentPoolName: ${{ parameters.linuxAgentPoolName }}
+        macosAgentPoolName: ${{ parameters.macosAgentPoolName }}
+        windowsAgentPoolName: ${{ parameters.windowsAgentPoolName }}
+        linuxImage: ${{ parameters.linuxImage }}
+        macosImage: ${{ parameters.macosImage }}
+        windowsImage: ${{ parameters.windowsImage }}
+        windowsImageOverride: ${{ parameters.windowsImageOverride }}
+        mono: ${{ parameters.mono }}
+        xcode: ${{ parameters.xcode }}
+        dotnet: ${{ parameters.dotnet }}
+        dotnetStable: ${{ parameters.dotnetStable }}
+        cake: ${{ parameters.cake }}
+        apiTools: ${{ parameters.apiTools }}
+        xharness: ${{ parameters.xharness }}
+        tools: ${{ parameters.tools }}
+        cakeTemplatesBranch: ${{ parameters.cakeTemplatesBranch }}
+        buildType: ${{ parameters.buildType }}
+        steps: ${{ parameters.steps }}
+        verbosity: ${{ parameters.verbosity }}
+        configuration: ${{ parameters.configuration }}
+        validPackagePrefixes: ${{ parameters.validPackagePrefixes }}
+        artifactsPath: ${{ parameters.artifactsPath }}
+        cakeTarget: ${{ parameters.cakeTarget }}
+        cakeFile: ${{ parameters.cakeFile }}
+        cakeExtraArgs: ${{ parameters.cakeExtraArgs }}
+        forceBuild: ${{ parameters.forceBuild }}
+        namesFilter: ${{ parameters.namesFilter }}
+        targetsFilter: ${{ parameters.targetsFilter }}
 
+
+- ${{ if ne(parameters.macosImage, '') }}:
+  - job: macos
     displayName: ${{ parameters.displayName }}
     timeoutInMinutes: ${{ parameters.timeoutInMinutes }}
     continueOnError: ${{ eq(parameters.continueOnError, 'true') }}
     dependsOn: ${{ parameters.dependsOn }}
     pool:
-      name: $(poolName)
-      vmImage: $(imageName)
+      name: ${{ parameters.macosAgentPoolName }}
+      vmImage: ${{ parameters.macosImage }}
     steps:
     - template: build.steps.v1.yml
       parameters:
