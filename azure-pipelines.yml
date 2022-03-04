@@ -38,10 +38,9 @@ jobs:
         windowsAgentPoolName: AzurePipelines-EO
         windowsImage: ''
         windowsImageOverride: AzurePipelinesWindows2019compliant
-     
+        linuxImage: 'ubuntu-latest'
       xcode: 13.1
       buildType: 'manifest'
-      linuxImage: 'ubuntu-latest'
       validPackagePrefixes: 
         # Preferred prefixes
         - Xamarin
