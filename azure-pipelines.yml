@@ -28,11 +28,17 @@ jobs:
     parameters:
       timeoutInMinutes: 360
       areaPath: 'DevDiv\Xamarin SDK\Android'
-      macosImage: 'macOS-11'                                  # the name of the macOS VM image
+      ${{ if startsWith(variables['Build.SourceBranch'], 'refs/tags/') }}:  # We only need to ship from OSX builds so don't run on windows
+        windowsAgentPoolName: ''
+        windowsImage: ''
+        linuxImage: ''
+      ${{ elseif eq(variables['System.TeamProject'], 'devdiv') }}:    # The AzurePipelines-EO pool is only available in DevDiv
+        macosImage: 'macOS-11'                                  # the name of the macOS VM image
                                                               # BigSur 20211120
-      windowsAgentPoolName: AzurePipelines-EO
-      windowsImage: ''
-      windowsImageOverride: AzurePipelinesWindows2019compliant
+        windowsAgentPoolName: AzurePipelines-EO
+        windowsImage: ''
+        windowsImageOverride: AzurePipelinesWindows2019compliant
+     
       xcode: 13.1
       buildType: 'manifest'
       linuxImage: 'ubuntu-latest'
