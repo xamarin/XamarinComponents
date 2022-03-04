@@ -1,7 +1,7 @@
 trigger:
   - main
   - refs/tags/*
-  
+
 pr:
   - main
 
@@ -33,10 +33,15 @@ jobs:
       windowsAgentPoolName: AzurePipelines-EO
       windowsImage: ''
       windowsImageOverride: AzurePipelinesWindows2019compliant
+
       xcode: 13.1
       buildType: 'manifest'
-      linuxImage: 'ubuntu-latest'
-      validPackagePrefixes: 
+
+      linuxAgentPoolName: AzurePipelines-EO
+      linuxsImage: ''
+      linuxImageOverride: AzurePipelinesUbuntu20.04compliant
+
+      validPackagePrefixes:
         # Preferred prefixes
         - Xamarin
         - Mono
