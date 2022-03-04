@@ -22,7 +22,7 @@ variables:
   DotNet6Version: 6.0.200
   XamarinAndroidVsix: https://download.visualstudio.microsoft.com/download/pr/7372b89a-b719-426c-9916-c33cbc6c7a61/45c38957fdcacfbee95be95ee40c4f5a4cc9ace69416625ad26e2da83b176941/Xamarin.Android.Sdk-11.4.0.5.vsix
   # NOTE: there wasn't a public release of 16.11 for macOS
-  XamarinAndroidPkg:  https://dl.internalx.com/vsts-devdiv/Xamarin.Android/public/4941337/d16-11/7776c9f1c8fac303c3aa57867825990850be0384/xamarin.android-11.4.0.5.pkg
+  XamarinAndroidPkg: https://dl.internalx.com/vsts-devdiv/Xamarin.Android/public/5673868/d17-1/19b97b7614b275a84d9e38096bd1fe0e25a494d4/xamarin.android-12.2.0.4.pkg
 jobs:
   - template: .ci/build.v1.yml@components
     parameters:
