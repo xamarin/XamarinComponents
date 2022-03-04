@@ -1,7 +1,7 @@
 
 var TARGET = Argument ("t", Argument ("target", "ci"));
 
-var JAR_VERSION = "2.8.6";
+var JAR_VERSION = "2.8.9";
 var NUGET_VERSION = JAR_VERSION;
 
 var JAR_URL = string.Format ("http://search.maven.org/remotecontent?filepath=com/google/code/gson/gson/{0}/gson-{0}.jar", JAR_VERSION);
