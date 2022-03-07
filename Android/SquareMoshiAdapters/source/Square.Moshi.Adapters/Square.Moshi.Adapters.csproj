@@ -1,6 +1,6 @@
 ﻿<Project Sdk="MSBuild.Sdk.Extras">
   <PropertyGroup>
-    <TargetFrameworks>monoandroid9.0</TargetFrameworks>
+    <TargetFrameworks>monoandroid12.0</TargetFrameworks>
     <IsBindingProject>true</IsBindingProject>
     <AssemblyName>Square.Moshi.Adapters</AssemblyName>
     <RootNamespace>Square.Moshi.Adapters</RootNamespace>
@@ -23,12 +23,12 @@
     <PackageLicenseFile>LICENSE.md</PackageLicenseFile>
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
     <PackageTags>moshi adapters xamarin android monodroid</PackageTags>
-    <PackageVersion>1.12.0</PackageVersion>
+    <PackageVersion>1.13.0</PackageVersion>
   </PropertyGroup>
     
   <ItemGroup>
-    <PackageReference Include="Square.Moshi" Version="1.12.0" />
-    <PackageReference Include="Xamarin.Kotlin.StdLib" Version="1.4.32.1" />
+    <PackageReference Include="Square.Moshi" Version="1.13.0" />
+    <PackageReference Include="Xamarin.Kotlin.StdLib.Jdk8" Version="1.6.10" />
   </ItemGroup>
     
   <ItemGroup>

@@ -1,7 +1,7 @@
 trigger:
   - main
   - refs/tags/*
-  
+
 pr:
   - main
 
@@ -22,7 +22,7 @@ variables:
   DotNet6Version: 6.0.200
   XamarinAndroidVsix: https://aka.ms/xamarin-android-commercial-d17-1-windows
   # NOTE: there wasn't a public release of 16.11 for macOS
-  XamarinAndroidPkg:  https://dl.internalx.com/vsts-devdiv/Xamarin.Android/public/4941337/d16-11/7776c9f1c8fac303c3aa57867825990850be0384/xamarin.android-11.4.0.5.pkg
+  XamarinAndroidPkg: https://dl.internalx.com/vsts-devdiv/Xamarin.Android/public/5673868/d17-1/19b97b7614b275a84d9e38096bd1fe0e25a494d4/xamarin.android-12.2.0.4.pkg
 jobs:
   - template: .ci/build.v1.yml@components
     parameters:
@@ -33,10 +33,15 @@ jobs:
       windowsAgentPoolName: AzurePipelines-EO
       windowsImage: ''
       windowsImageOverride: AzurePipelinesWindows2019compliant
+
       xcode: 13.1
       buildType: 'manifest'
-      linuxImage: 'ubuntu-latest'
-      validPackagePrefixes: 
+
+      linuxAgentPoolName: AzurePipelines-EO
+      linuxsImage: ''
+      linuxImageOverride: AzurePipelinesUbuntu20.04compliant
+
+      validPackagePrefixes:
         # Preferred prefixes
         - Xamarin
         - Mono
@@ -81,5 +86,5 @@ jobs:
   - ${{ if eq(variables['System.TeamProject'], 'devdiv') }}:
     - template: sign-artifacts/jobs/v2.yml@internal-templates
       parameters:
-        dependsOn: [ 'build' ]
+        dependsOn: [ 'linux', 'macos', 'windows' ]
         condition: startsWith(variables['Build.SourceBranch'], 'refs/tags/')
