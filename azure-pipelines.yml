@@ -1,7 +1,7 @@
 trigger:
   - main
   - refs/tags/*
-  
+
 pr:
   - main
 
@@ -34,14 +34,16 @@ jobs:
         linuxImage: ''
       ${{ elseif eq(variables['System.TeamProject'], 'devdiv') }}:    # The AzurePipelines-EO pool is only available in DevDiv
         macosImage: 'macOS-11'                                  # the name of the macOS VM image
-                                                              # BigSur 20211120
         windowsAgentPoolName: AzurePipelines-EO
         windowsImage: ''
         windowsImageOverride: AzurePipelinesWindows2019compliant
-        linuxImage: 'ubuntu-latest'
+        linuxAgentPoolName: AzurePipelines-EO
+        linuxsImage: ''
+        linuxImageOverride: AzurePipelinesUbuntu20.04compliant
       xcode: 13.1
       buildType: 'manifest'
       validPackagePrefixes: 
+      validPackagePrefixes:
         # Preferred prefixes
         - Xamarin
         - Mono
@@ -86,5 +88,14 @@ jobs:
   - ${{ if eq(variables['System.TeamProject'], 'devdiv') }}:
     - template: sign-artifacts/jobs/v2.yml@internal-templates
       parameters:
-        dependsOn: [ 'build' ]
+        dependsOn: [ 'linux', 'macos', 'windows' ]
+        condition: startsWith(variables['Build.SourceBranch'], 'refs/tags/')
+    # Executive Order (EO): Software Bill of Materials (SBOM): https://eng.ms/docs/cloud-ai-platform/devdiv/one-engineering-system-1es/1es-docs/secure-supply-chain/ado-sbom-generator
+    - template: compliance/sbom/job.v1.yml@internal-templates
+      parameters:
+        dependsOn: [ 'signing' ]
+        artifactNames: [ 'nuget-signed' ]
+        packageName: Xamarin.Components         # SBOM package name. TODO: Customize for specific component: Replace with the name of the nuget package such as Square.Moshi.Adapters
+        packageVersionRegex: ''                 # SBOM package version. TODO: Customize for specific component: Regular expression used to glean the version number from the package name such as '(?i)^Square.Moshi.Adapters\.(?<version>\d+\.\d+\.\d+).nupkg$'
+        packageFilter: '*.nupkg'
         condition: startsWith(variables['Build.SourceBranch'], 'refs/tags/')
