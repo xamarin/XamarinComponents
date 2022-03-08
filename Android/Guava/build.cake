@@ -2,16 +2,16 @@
 
 var TARGET = Argument ("t", Argument ("target", "ci"));
 
-var GUAVA_VERSION_BASE = "29.0";
+var GUAVA_VERSION_BASE = "30.0";
 var GUAVA_VERSION = GUAVA_VERSION_BASE + "-android";
 var GUAVA_FAILUREACCESS_VERSION = "1.0.1";
 var GUAVA_LISTENABLEFUTURE_VERSION = "1.0";
 
 var JSR305_VERSION = "3.0.2";
 var CHECKER_COMPAT_QUAL_VERSION = "2.5.5";
-var ERROR_PRONE_ANNOTATIONS_VERSION = "2.3.3";
+var ERROR_PRONE_ANNOTATIONS_VERSION = "2.3.4";
 var J2OBJC_ANNOTATIONS_VERSION = "1.3";
-var ANIMAL_SNIFFER_ANNOTATIONS_VERSION = "1.17";
+var ANIMAL_SNIFFER_ANNOTATIONS_VERSION = "1.19";
 
 var GUAVA_JAR_URL = string.Format ("http://search.maven.org/remotecontent?filepath=com/google/guava/guava/{0}/guava-{0}.jar", GUAVA_VERSION);
 var GUAVA_DOCS_URL = string.Format ("http://search.maven.org/remotecontent?filepath=com/google/guava/guava/{0}/guava-{0}-javadoc.jar", GUAVA_VERSION);
