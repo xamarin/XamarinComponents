@@ -2,7 +2,7 @@
 
 var TARGET = Argument ("t", Argument ("target", "ci"));
 
-var GUAVA_VERSION_BASE = "30.1.1";
+var GUAVA_VERSION_BASE = "31.0.1";
 var GUAVA_VERSION = GUAVA_VERSION_BASE + "-android";
 var GUAVA_FAILUREACCESS_VERSION = "1.0.1";
 var GUAVA_LISTENABLEFUTURE_VERSION = "1.0";
