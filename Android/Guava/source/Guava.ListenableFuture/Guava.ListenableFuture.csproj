@@ -4,7 +4,9 @@
     <IsBindingProject>true</IsBindingProject>
     <AssemblyName>Xamarin.Google.Guava.ListenableFuture</AssemblyName>
     <RootNamespace>Guava.ListenableFuture</RootNamespace>
+    <!--
     <Java7DocPaths>..\..\externals\guava-listenablefuture-javadocs\</Java7DocPaths>
+    -->
   </PropertyGroup>
 
   <PropertyGroup>
