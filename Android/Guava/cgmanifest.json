@@ -6,7 +6,7 @@
         "Maven": {
           "ArtifactId": "guava",
           "GroupId": "com.google.guava",
-          "Version": "31.0.1-android"
+          "Version": "31.1-android"
         }
       }
     },
