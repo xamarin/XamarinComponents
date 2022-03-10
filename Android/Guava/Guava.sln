@@ -9,6 +9,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Guava.FailureAccess", "sour
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Guava.ListenableFuture", "source\Guava.ListenableFuture\Guava.ListenableFuture.csproj", "{6ADF0C2E-8513-40E6-921B-08AEFD7CBDD6}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Xamarin.Google.J2Objc.Annotations", "source\Xamarin.Google.J2Objc.Annotations\Xamarin.Google.J2Objc.Annotations.csproj", "{650C222B-1BE3-4F5E-970A-96B78002B741}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Xamarin.CheckerFramework.CheckerCompatQual", "source\Xamarin.CheckerFramework.CheckerCompatQual\Xamarin.CheckerFramework.CheckerCompatQual.csproj", "{A5060B44-96C5-4B01-A024-C7310386F118}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +31,14 @@ Global
 		{6ADF0C2E-8513-40E6-921B-08AEFD7CBDD6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6ADF0C2E-8513-40E6-921B-08AEFD7CBDD6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6ADF0C2E-8513-40E6-921B-08AEFD7CBDD6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{650C222B-1BE3-4F5E-970A-96B78002B741}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{650C222B-1BE3-4F5E-970A-96B78002B741}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{650C222B-1BE3-4F5E-970A-96B78002B741}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{650C222B-1BE3-4F5E-970A-96B78002B741}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A5060B44-96C5-4B01-A024-C7310386F118}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A5060B44-96C5-4B01-A024-C7310386F118}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A5060B44-96C5-4B01-A024-C7310386F118}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A5060B44-96C5-4B01-A024-C7310386F118}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
