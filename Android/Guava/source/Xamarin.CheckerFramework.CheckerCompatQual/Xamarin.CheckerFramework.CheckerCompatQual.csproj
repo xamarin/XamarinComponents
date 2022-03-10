@@ -1,0 +1,37 @@
+﻿<Project Sdk="Xamarin.Legacy.Sdk">
+  <PropertyGroup>
+    <TargetFrameworks>net6.0-android;monoandroid90</TargetFrameworks>
+    <IsBindingProject>true</IsBindingProject>
+    <AssemblyName>Xamarin.CheckerFramework.CheckerCompatQual</AssemblyName>
+    <RootNamespace>Xamarin.CheckerFramework.CheckerCompatQual</RootNamespace>
+    <!--
+    <Java7DocPaths>..\..\externals\guava-javadocs\</Java7DocPaths>
+    -->
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <PackageId>Xamarin.CheckerFramework.CheckerCompatQual</PackageId>
+    <Title>Xamarin.CheckerFramework.CheckerCompatQual</Title>
+    <PackageDescription>
+      Xamarin.CheckerFramework.CheckerCompatQual
+    </PackageDescription>
+    <Authors>Microsoft</Authors>
+    <Owners>Microsoft</Owners>
+    <Copyright>© Microsoft Corporation. All rights reserved.</Copyright>
+    <PackageProjectUrl>https://go.microsoft.com/fwlink/?linkid=865028</PackageProjectUrl>
+    <PackageLicenseUrl>https://go.microsoft.com/fwlink/?linkid=865030</PackageLicenseUrl>
+    <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
+    <PackageVersion>2.5.5</PackageVersion>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Include="Xamarin.CheckerFramework.CheckerCompatQual.targets" Pack="True" PackagePath="@(_TfmNuGetBuildFolders-&gt;'%(Identity)$(PackageId).targets')" />
+    <None Include="..\..\externals\checker-compat-qual-annotations.jar" Pack="True" PackagePath="jar" />
+    <None Include="..\..\External-Dependency-Info.txt" Pack="True" PackagePath="THIRD-PARTY-NOTICES.txt" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <InputJar Include="..\..\externals\checker-compat-qual-annotations.jar" />
+  </ItemGroup>
+
+</Project>
