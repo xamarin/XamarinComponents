@@ -1,8 +1,8 @@
 var TARGET = Argument ("t", Argument ("target", "ci"));
 
-var NUGET_VERSION = "2.7.2";
+var NUGET_VERSION = "2.9.0";
 
-var JAR_VERSION = "2.7.2";
+var JAR_VERSION = "2.9.0";
 var JAR_URL = $"https://repo1.maven.org/maven2/com/squareup/retrofit2/converter-moshi/{JAR_VERSION}/converter-moshi-{JAR_VERSION}.jar";
 
 Task ("externals")
