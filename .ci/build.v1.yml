@@ -1,0 +1,303 @@
+# Compared to the build.yml template, this template adds support for the windowsImageOverride parameter. See comments associated with the parameter for more details.
+# You may also need to update your dependsOn clauses associated with this template from ['build'] to ['macOS','linux','windows'] -- or whatever subset of images you use
+#
+parameters:
+  # job parameters
+  name: 'build'                                             # the name of the build job for dependency purposes
+  displayName: 'Build'                                      # the human name of the job
+  timeoutInMinutes: 60                                      # the timeout in minutes
+  dependsOn: []                                             # any jobs this job depends on
+  initSteps: []                                             # any steps to run before .NET global tools are installed
+  preBuildSteps: []                                         # any steps that need to run just before the main compilation starts
+  postBuildSteps: []                                        # any steps that need to run just after the main compilation ends
+  masterBranchName: 'main'                                  # the "master" branch that should be used - can be something other than "master"
+  installAppleCertificates: 'true'                          # whether or not to install the Apple certificates and provisioning profiles
+  submodules: false                                         # whether or not to check out submodules
+  areaPath: ''                                              # the areaPath to log any issues
+  runChecks: 'true'
+  continueOnError: 'false'
+  publishJob: ''                                            # the job to use as the source of the 'nuget' artifact: '', 'windows', 'macos', 'linux'
+  publishOutputSuffix: ''                                   # the artifact suffix to use when publishing the output folder
+  signListPath: 'SignList.xml'                              # the path to the SignList.xml to copy into the nuget artifact for signing
+  # job software version parameters
+  linuxAgentPoolName: 'Azure Pipelines'                     # the name of the Linux VM pool
+  macosAgentPoolName: 'Azure Pipelines'                     # the name of the macOS VM pool
+  windowsAgentPoolName: 'Azure Pipelines'                   # the name of the Windows VM pool
+  linuxImage: ''                                            # the name of the Linux VM image (linuxImage: 'Hosted Ubuntu 1604')
+  linuxImageOverride: ''                                    # used to access 1ES hardened images: name of ImageOverride demand to use such as AzurePipelinesUbuntu20.04compliant or AzurePipelinesUbuntu18.04compliant when linuxAgentPoolName set to the AzurePipelines-EO pool
+  macosImage: 'macOS-11'                                    # the name of the macOS VM image
+                                                            # 20211121
+                                                            # macOS-latest = macOS-10.15
+                                                            # macOS-11 required for XCode 13.1
+  windowsImage: 'windows-latest'                            # the name of the Windows VM image
+  windowsImageOverride: ''                                  # used to access 1ES hardened images: name of ImageOverride demand to use such as AzurePipelinesWindows2022compliant when windowsAgentPoolName set to the AzurePipelines-EO pool
+  mono: 'Latest'                                            # the version of mono to use
+  xcode: '13.1'                                             # the version of Xcode to use
+  dotnet: '6.0.100'                                         # the version of .NET Core to use
+  dotnetStable: '3.1.415'                                   # the stable version of .NET Core to use
+  cake: '0.38.5'                                            # the version of Cake to use
+  apiTools: '1.1.0-preview.1'                               # the version of the api-tools CLI to use
+  xharness: '1.0.0-prerelease.20602.1'
+  tools: []                                                 # a list of any additional .NET Core tools needed
+  cakeTemplatesBranch: 'main'                               # the branch of XamarinComponents that has the templates
+  # build parameters
+  buildType: 'basic'                                        # the type of build: 'basic', 'manifest', 'directories', 'none'
+  steps: []                                                 # the steps to use when building, typically for 'none'
+  verbosity: 'normal'                                       # the build verbosity: 'minimal', 'normal', 'diagnostic'
+  configuration: 'Release'                                  # the build configuration: 'Debug', 'Release'
+  validPackagePrefixes: [ 'Xamarin', 'Mono' ]               # any NuGet prefixes that should pass validation
+  artifactsPath: 'output'                                   # the path to the NuGet packages that need to be signed, verified and published
+  # basic cake build parameters
+  cakeTarget: 'ci'                                          # [basic] the Cake target to run (defaults to 'ci')
+  cakeFile: 'build.cake'                                    # [basic] the path to the build.cake file (can be any filename)
+  cakeExtraArgs: ''                                         # [basic] any additional cake CLI arguments
+  # manifest-based build parameters
+  forceBuild: 'false'                                       # [manifest, directories] whether or not to force the build
+  namesFilter: ''                                           # [manifest, directories] the names of the items to build
+  targetsFilter: 'ci'                                       # [manifest, directories] the targets of the items to build
+
+jobs:
+- ${{ if or(ne(parameters.linuxAgentPoolName, 'Azure Pipelines'), ne(parameters.linuxImage, '')) }}:
+  - job: linux
+    displayName: '${{ parameters.displayName }} linux'
+    timeoutInMinutes: ${{ parameters.timeoutInMinutes }}
+    continueOnError: ${{ eq(parameters.continueOnError, 'true') }}
+    dependsOn: ${{ parameters.dependsOn }}
+    pool:
+      name: ${{ parameters.linuxAgentPoolName }}
+      vmImage: ${{ parameters.linuxImage }}
+      ${{ if ne(parameters.linuxImageOverride, '') }}:
+        demands:
+        - ImageOverride -equals ${{ parameters.linuxImageOverride }}
+    steps:
+    - template: build.steps.v1.yml
+      parameters:
+        name: ${{ parameters.name }}
+        displayName: ${{ parameters.displayName }}
+        timeoutInMinutes: ${{ parameters.timeoutInMinutes }}
+        dependsOn: ${{ parameters.dependsOn }}
+        initSteps: ${{ parameters.initSteps }}
+        preBuildSteps: ${{ parameters.preBuildSteps }}
+        postBuildSteps: ${{ parameters.postBuildSteps }}
+        masterBranchName: ${{ parameters.masterBranchName }}
+        installAppleCertificates: ${{ parameters.installAppleCertificates }}
+        submodules: ${{ parameters.submodules }}
+        areaPath: ${{ parameters.areaPath }}
+        runChecks: ${{ parameters.runChecks }}
+        continueOnError: ${{ parameters.continueOnError }}
+        publishJob: ${{ parameters.publishJob }}
+        publishOutputSuffix: ${{ parameters.publishOutputSuffix }}
+        signListPath: ${{ parameters.signListPath }}
+        linuxAgentPoolName: ${{ parameters.linuxAgentPoolName }}
+        macosAgentPoolName: ${{ parameters.macosAgentPoolName }}
+        windowsAgentPoolName: ${{ parameters.windowsAgentPoolName }}
+        linuxImage: ${{ parameters.linuxImage }}
+        macosImage: ${{ parameters.macosImage }}
+        windowsImage: ${{ parameters.windowsImage }}
+        windowsImageOverride: ${{ parameters.windowsImageOverride }}
+        mono: ${{ parameters.mono }}
+        xcode: ${{ parameters.xcode }}
+        dotnet: ${{ parameters.dotnet }}
+        dotnetStable: ${{ parameters.dotnetStable }}
+        cake: ${{ parameters.cake }}
+        apiTools: ${{ parameters.apiTools }}
+        xharness: ${{ parameters.xharness }}
+        tools: ${{ parameters.tools }}
+        cakeTemplatesBranch: ${{ parameters.cakeTemplatesBranch }}
+        buildType: ${{ parameters.buildType }}
+        steps: ${{ parameters.steps }}
+        verbosity: ${{ parameters.verbosity }}
+        configuration: ${{ parameters.configuration }}
+        validPackagePrefixes: ${{ parameters.validPackagePrefixes }}
+        artifactsPath: ${{ parameters.artifactsPath }}
+        cakeTarget: ${{ parameters.cakeTarget }}
+        cakeFile: ${{ parameters.cakeFile }}
+        cakeExtraArgs: ${{ parameters.cakeExtraArgs }}
+        forceBuild: ${{ parameters.forceBuild }}
+        namesFilter: ${{ parameters.namesFilter }}
+        targetsFilter: ${{ parameters.targetsFilter }}
+
+
+- ${{ if ne(parameters.macosImage, '') }}:
+  - job: macos
+    displayName: '${{ parameters.displayName }} macos'
+    timeoutInMinutes: ${{ parameters.timeoutInMinutes }}
+    continueOnError: ${{ eq(parameters.continueOnError, 'true') }}
+    dependsOn: ${{ parameters.dependsOn }}
+    pool:
+      name: ${{ parameters.macosAgentPoolName }}
+      vmImage: ${{ parameters.macosImage }}
+    steps:
+    - template: build.steps.v1.yml
+      parameters:
+        name: ${{ parameters.name }}
+        displayName: ${{ parameters.displayName }}
+        timeoutInMinutes: ${{ parameters.timeoutInMinutes }}
+        dependsOn: ${{ parameters.dependsOn }}
+        initSteps: ${{ parameters.initSteps }}
+        preBuildSteps: ${{ parameters.preBuildSteps }}
+        postBuildSteps: ${{ parameters.postBuildSteps }}
+        masterBranchName: ${{ parameters.masterBranchName }}
+        installAppleCertificates: ${{ parameters.installAppleCertificates }}
+        submodules: ${{ parameters.submodules }}
+        areaPath: ${{ parameters.areaPath }}
+        runChecks: ${{ parameters.runChecks }}
+        continueOnError: ${{ parameters.continueOnError }}
+        publishJob: ${{ parameters.publishJob }}
+        publishOutputSuffix: ${{ parameters.publishOutputSuffix }}
+        signListPath: ${{ parameters.signListPath }}
+        linuxAgentPoolName: ${{ parameters.linuxAgentPoolName }}
+        macosAgentPoolName: ${{ parameters.macosAgentPoolName }}
+        windowsAgentPoolName: ${{ parameters.windowsAgentPoolName }}
+        linuxImage: ${{ parameters.linuxImage }}
+        macosImage: ${{ parameters.macosImage }}
+        windowsImage: ${{ parameters.windowsImage }}
+        windowsImageOverride: ${{ parameters.windowsImageOverride }}
+        mono: ${{ parameters.mono }}
+        xcode: ${{ parameters.xcode }}
+        dotnet: ${{ parameters.dotnet }}
+        dotnetStable: ${{ parameters.dotnetStable }}
+        cake: ${{ parameters.cake }}
+        apiTools: ${{ parameters.apiTools }}
+        xharness: ${{ parameters.xharness }}
+        tools: ${{ parameters.tools }}
+        cakeTemplatesBranch: ${{ parameters.cakeTemplatesBranch }}
+        buildType: ${{ parameters.buildType }}
+        steps: ${{ parameters.steps }}
+        verbosity: ${{ parameters.verbosity }}
+        configuration: ${{ parameters.configuration }}
+        validPackagePrefixes: ${{ parameters.validPackagePrefixes }}
+        artifactsPath: ${{ parameters.artifactsPath }}
+        cakeTarget: ${{ parameters.cakeTarget }}
+        cakeFile: ${{ parameters.cakeFile }}
+        cakeExtraArgs: ${{ parameters.cakeExtraArgs }}
+        forceBuild: ${{ parameters.forceBuild }}
+        namesFilter: ${{ parameters.namesFilter }}
+        targetsFilter: ${{ parameters.targetsFilter }}
+
+- ${{ if or(ne(parameters.windowsAgentPoolName, 'Azure Pipelines'), ne(parameters.windowsImage, '')) }}:
+  - job: windows
+    displayName: '${{ parameters.displayName }} windows'
+    timeoutInMinutes: ${{ parameters.timeoutInMinutes }}
+    continueOnError: ${{ eq(parameters.continueOnError, 'true') }}
+    dependsOn: ${{ parameters.dependsOn }}
+    pool:
+      name: ${{ parameters.windowsAgentPoolName }}
+      vmImage: ${{ parameters.windowsImage }}
+      ${{ if ne(parameters.windowsImageOverride, '') }}:
+        demands:
+        - ImageOverride -equals ${{ parameters.windowsImageOverride }}
+    steps:
+    - template: build.steps.v1.yml
+      parameters:
+        name: ${{ parameters.name }}
+        displayName: ${{ parameters.displayName }}
+        timeoutInMinutes: ${{ parameters.timeoutInMinutes }}
+        dependsOn: ${{ parameters.dependsOn }}
+        initSteps: ${{ parameters.initSteps }}
+        preBuildSteps: ${{ parameters.preBuildSteps }}
+        postBuildSteps: ${{ parameters.postBuildSteps }}
+        masterBranchName: ${{ parameters.masterBranchName }}
+        installAppleCertificates: ${{ parameters.installAppleCertificates }}
+        submodules: ${{ parameters.submodules }}
+        areaPath: ${{ parameters.areaPath }}
+        runChecks: ${{ parameters.runChecks }}
+        continueOnError: ${{ parameters.continueOnError }}
+        publishJob: ${{ parameters.publishJob }}
+        publishOutputSuffix: ${{ parameters.publishOutputSuffix }}
+        signListPath: ${{ parameters.signListPath }}
+        linuxAgentPoolName: ${{ parameters.linuxAgentPoolName }}
+        macosAgentPoolName: ${{ parameters.macosAgentPoolName }}
+        windowsAgentPoolName: ${{ parameters.windowsAgentPoolName }}
+        linuxImage: ${{ parameters.linuxImage }}
+        macosImage: ${{ parameters.macosImage }}
+        windowsImage: ${{ parameters.windowsImage }}
+        windowsImageOverride: ${{ parameters.windowsImageOverride }}
+        mono: ${{ parameters.mono }}
+        xcode: ${{ parameters.xcode }}
+        dotnet: ${{ parameters.dotnet }}
+        dotnetStable: ${{ parameters.dotnetStable }}
+        cake: ${{ parameters.cake }}
+        apiTools: ${{ parameters.apiTools }}
+        xharness: ${{ parameters.xharness }}
+        tools: ${{ parameters.tools }}
+        cakeTemplatesBranch: ${{ parameters.cakeTemplatesBranch }}
+        buildType: ${{ parameters.buildType }}
+        steps: ${{ parameters.steps }}
+        verbosity: ${{ parameters.verbosity }}
+        configuration: ${{ parameters.configuration }}
+        validPackagePrefixes: ${{ parameters.validPackagePrefixes }}
+        artifactsPath: ${{ parameters.artifactsPath }}
+        cakeTarget: ${{ parameters.cakeTarget }}
+        cakeFile: ${{ parameters.cakeFile }}
+        cakeExtraArgs: ${{ parameters.cakeExtraArgs }}
+        forceBuild: ${{ parameters.forceBuild }}
+        namesFilter: ${{ parameters.namesFilter }}
+        targetsFilter: ${{ parameters.targetsFilter }}
+
+- ${{ if and(eq(parameters.runChecks, 'true'), eq(variables['System.TeamProject'], 'devdiv')) }}:
+  - job: ${{ parameters.name }}_checks
+    displayName: 'Run required code checks'
+    condition: eq('refs/heads/${{ parameters.masterBranchName }}', variables['Build.SourceBranch'])
+    pool:
+      name: 'Hosted Windows 2019 with VS2019'
+    steps:
+    - pwsh: |
+        $repo = "$(Build.Repository.Id)"
+        $repo = $repo.Substring($repo.IndexOf("/") + 1)
+        $branch = "${{ parameters.masterBranchName }}"
+        $CODEBASE_NAME = $repo + "_" + $branch
+        echo "Using codebase: $CODEBASE_NAME"
+        Write-Host "##vso[task.setvariable variable=CODEBASE_NAME]$CODEBASE_NAME"
+    - task: CredScan@2
+      displayName: 'Analyze source for credentials'
+      inputs:
+        toolMajorVersion: 'V2'
+    - task: PoliCheck@1
+      inputs:
+        inputType: 'Basic'
+        targetType: 'F'
+    - task: SdtReport@1
+      displayName: 'Create security analysis report'
+      inputs:
+        AllTools: false
+        APIScan: false
+        BinSkim: false
+        CodesignValidation: false
+        CredScan: true
+        FortifySCA: false
+        FxCop: false
+        ModernCop: false
+        MSRD: false
+        PoliCheck: true
+        RoslynAnalyzers: false
+        SDLNativeRules: false
+        Semmle: false
+        TSLint: false
+        ToolLogsNotFoundAction: 'Standard'
+    - task: PublishSecurityAnalysisLogs@3
+      displayName: 'Publish security analysis logs'
+    - task: TSAUpload@1
+      continueOnError: true
+      inputs:
+        tsaVersion: 'TsaV2'
+        codebase: 'NewOrUpdate'
+        tsaEnvironment: 'PROD'
+        codeBaseName: '$(CODEBASE_NAME)'
+        notificationAlias: 'xamacomd@microsoft.com'
+        notifyAlwaysV2: false
+        instanceUrlForTsaV2: 'DEVDIV'
+        projectNameDEVDIV: 'DevDiv'
+        areaPath: '${{ parameters.areaPath }}'
+        iterationPath: 'DevDiv\OneVS'
+        uploadAPIScan: false
+        uploadBinSkim: false
+        uploadCredScan: true
+        uploadFortifySCA: false
+        uploadFxCop: false
+        uploadModernCop: false
+        uploadPoliCheck: true
+        uploadPREfast: false
+        uploadRoslyn: false
+        uploadTSLint: false
+        uploadAsync: true
