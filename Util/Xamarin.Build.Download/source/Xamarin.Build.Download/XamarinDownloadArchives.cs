@@ -167,6 +167,7 @@ namespace Xamarin.Build.Download
 						};
 						using (var client = new WebClient ()) {
 							client.DownloadProgressChanged += downloadHandler;
+							client.Headers.Add ("User-Agent: Mozilla/5.0");
 							LogMessage ("  Downloading {0} to {1}", xbd.Url, xbd.CacheFile);
 							client.DownloadFileTaskAsync (xbd.Url, xbd.CacheFile).Wait (token);
 
