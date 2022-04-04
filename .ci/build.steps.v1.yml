@@ -90,7 +90,7 @@ steps:
         certSecureFile: 'Components Mac Certificate.p12'
   - bash: echo '##vso[task.setvariable variable=PATH;]'$PATH:$HOME/.dotnet/tools
     displayName: 'Add ~/.dotnet/tools to the PATH environment variable'
-    condition: or(eq( variables['Agent.OS'], 'Darwin' ), ne(eq( variables['Agent.OS'], 'Linux' ))
+    condition: or(eq( variables['Agent.OS'], 'Darwin' ), eq( variables['Agent.OS'], 'Linux' ))
   - task: UseDotNet@2
     displayName: 'Switch to the correct version of the .NET Core SDK'
     inputs:
