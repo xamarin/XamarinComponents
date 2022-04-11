@@ -26,6 +26,7 @@ variables:
 jobs:
   - template: .ci/build.v1.yml@components
     parameters:
+      name: 'run_build'
       timeoutInMinutes: 360
       areaPath: 'DevDiv\Xamarin SDK\Android'
       macosImage: 'macOS-11'                                  # the name of the macOS VM image
