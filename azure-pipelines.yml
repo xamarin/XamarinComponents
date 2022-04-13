@@ -16,7 +16,7 @@ resources:
       type: github
       name: xamarin/XamarinComponents
       endpoint: xamarin
-      ref: refs/heads/main
+      ref: refs/pull/1360/merge
 
 variables:
   DotNet6Version: 6.0.200
