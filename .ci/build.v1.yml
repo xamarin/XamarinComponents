@@ -58,7 +58,7 @@ parameters:
 
 jobs:
 - ${{ if or(ne(parameters.linuxAgentPoolName, 'Azure Pipelines'), ne(parameters.linuxImage, '')) }}:
-  - job: ${{ parameters.name }}
+  - job: ${{ parameters.name }}_linux
     displayName: '${{ parameters.displayName }} linux'
     timeoutInMinutes: ${{ parameters.timeoutInMinutes }}
     continueOnError: ${{ eq(parameters.continueOnError, 'true') }}
@@ -119,7 +119,7 @@ jobs:
 
 
 - ${{ if ne(parameters.macosImage, '') }}:
-  - job: ${{ parameters.name }}
+  - job: ${{ parameters.name }}_macos
     displayName: '${{ parameters.displayName }} macos'
     timeoutInMinutes: ${{ parameters.timeoutInMinutes }}
     continueOnError: ${{ eq(parameters.continueOnError, 'true') }}
