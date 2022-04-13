@@ -86,7 +86,7 @@ jobs:
   - ${{ if eq(variables['System.TeamProject'], 'devdiv') }}:
     - template: sign-artifacts/jobs/v2.yml@internal-templates
       parameters:
-        dependsOn: [ 'linux', 'macos', 'windows' ]
+        dependsOn: [ 'build_linux', 'build_macos', 'windows' ]
         condition: startsWith(variables['Build.SourceBranch'], 'refs/tags/')
     # Executive Order (EO): Software Bill of Materials (SBOM): https://eng.ms/docs/cloud-ai-platform/devdiv/one-engineering-system-1es/1es-docs/secure-supply-chain/ado-sbom-generator
     - template: compliance/sbom/job.v1.yml@internal-templates
