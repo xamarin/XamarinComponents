@@ -12,6 +12,7 @@
 
 	<PropertyGroup Condition="('$(TargetFrameworkIdentifier)'=='Xamarin.iOS' or '$(TargetPlatformIdentifier)'=='ios') and ('$(OutputType)' != 'Library' or '$(IsAppExtension)'=='True')">
 		<_XamarinBuildDownloadMasterBeforeTargets>GetFrameworkPaths</_XamarinBuildDownloadMasterBeforeTargets>
+		<_XamarinBuildDownloadMasterBeforeTargets Condition="$(TargetFramework.Contains('-ios'))">_BeforeCoreCompileInterfaceDefinitions</_XamarinBuildDownloadMasterBeforeTargets>
 		<_XamarinBuildDownloadMasterDependsOnTargets>_XamarinBuildDownload;_XamarinBuildCastAssemblyResources</_XamarinBuildDownloadMasterDependsOnTargets>
 	</PropertyGroup>
 

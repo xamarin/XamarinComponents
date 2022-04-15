@@ -1,9 +1,9 @@
 
 #load "../../common.cake"
 
-var TARGET = Argument ("t", Argument ("target", "Default"));
+var TARGET = Argument ("t", Argument ("target", "ci"));
 
-var SWIFT_RUNTIME_SUPPORT_VERSION = "0.2.0";
+var SWIFT_RUNTIME_SUPPORT_VERSION = "0.2.1";
 var SWIFT_RUNTIME_SUPPORT_NUGET_VERSION = SWIFT_RUNTIME_SUPPORT_VERSION;
 
 Task ("externals")
@@ -41,5 +41,11 @@ Task("nuget")
 
 Task("samples")
 	.IsDependentOn("nuget");
+
+Task("ci")
+	.IsDependentOn("externals")
+	.IsDependentOn("libs")
+	.IsDependentOn("nuget")
+	.IsDependentOn("samples");
 
 RunTarget (TARGET);
