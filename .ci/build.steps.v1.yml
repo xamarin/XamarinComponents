@@ -1,0 +1,347 @@
+parameters:
+  # job parameters
+  name: 'build'                                             # the name of the build job for dependency purposes
+  displayName: 'Build'                                      # the human name of the job
+  timeoutInMinutes: 60                                      # the timeout in minutes
+  dependsOn: []                                             # any jobs this job depends on
+  initSteps: []                                             # any steps to run before .NET global tools are installed
+  preBuildSteps: []                                         # any steps that need to run just before the main compilation starts
+  postBuildSteps: []                                        # any steps that need to run just after the main compilation ends
+  masterBranchName: 'main'                                  # the "master" branch that should be used - can be something other than "master"
+  installAppleCertificates: 'true'                          # whether or not to install the Apple certificates and provisioning profiles
+  submodules: false                                         # whether or not to check out submodules
+  areaPath: ''                                              # the areaPath to log any issues
+  runChecks: 'true'
+  continueOnError: 'false'
+  publishJob: ''                                            # the job to use as the source of the 'nuget' artifact: '', 'windows', 'macos', 'linux'
+  publishOutputSuffix: ''                                   # the artifact suffix to use when publishing the output folder
+  signListPath: 'SignList.xml'                              # the path to the SignList.xml to copy into the nuget artifact for signing
+  # job software version parameters
+  linuxAgentPoolName: 'Azure Pipelines'                     # the name of the Linux VM pool
+  macosAgentPoolName: 'Azure Pipelines'                     # the name of the macOS VM pool
+  windowsAgentPoolName: 'Azure Pipelines'                   # the name of the Windows VM pool
+  linuxImage: ''                                            # the name of the Linux VM image (linuxImage: 'Hosted Ubuntu 1604') 
+  macosImage: 'macOS-11'                                    # the name of the macOS VM image
+                                                            # 20211121 
+                                                            # macOS-latest = macOS-10.15
+                                                            # macOS-11 required for XCode 13.1
+  windowsImage: 'windows-latest'                            # the name of the Windows VM image
+  windowsImageOverride: ''                                  # used to access 1ES hardened images: name of ImageOverride demand to use such as AzurePipelinesWindows2022compliant when windowsAgentPoolName set to the AzurePipelines-EO pool
+  mono: 'Latest'                                            # the version of mono to use
+  xcode: '13.1'                                             # the version of Xcode to use
+  dotnet: '6.0.100'                                         # the version of .NET Core to use
+  dotnetStable: '3.1.415'                                   # the stable version of .NET Core to use
+  cake: '0.38.5'                                            # the version of Cake to use
+  apiTools: '1.1.0-preview.1'                               # the version of the api-tools CLI to use
+  xharness: '1.0.0-prerelease.20602.1'
+  tools: []                                                 # a list of any additional .NET Core tools needed
+  cakeTemplatesBranch: 'main'                               # the branch of XamarinComponents that has the templates
+  # build parameters
+  buildType: 'basic'                                        # the type of build: 'basic', 'manifest', 'directories', 'none'
+  steps: []                                                 # the steps to use when building, typically for 'none'
+  verbosity: 'normal'                                       # the build verbosity: 'minimal', 'normal', 'diagnostic'
+  configuration: 'Release'                                  # the build configuration: 'Debug', 'Release'
+  validPackagePrefixes: [ 'Xamarin', 'Mono' ]               # any NuGet prefixes that should pass validation
+  artifactsPath: 'output'                                   # the path to the NuGet packages that need to be signed, verified and published
+  # basic cake build parameters
+  cakeTarget: 'ci'                                          # [basic] the Cake target to run (defaults to 'ci')
+  cakeFile: 'build.cake'                                    # [basic] the path to the build.cake file (can be any filename)
+  cakeExtraArgs: ''                                         # [basic] any additional cake CLI arguments
+  # manifest-based build parameters
+  forceBuild: 'false'                                       # [manifest, directories] whether or not to force the build
+  namesFilter: ''                                           # [manifest, directories] the names of the items to build
+  targetsFilter: 'ci'                                       # [manifest, directories] the targets of the items to build
+
+steps:
+  - checkout: self
+    submodules: ${{ parameters.submodules }}
+  # before the build starts, make sure the tooling is as expected
+  - bash: sudo $AGENT_HOMEDIRECTORY/scripts/select-xamarin-sdk.sh ${{ parameters.mono }}
+    displayName: 'Switch to the latest Xamarin SDK'
+    condition: eq( variables['Agent.OS'], 'Darwin' )
+  - bash: echo '##vso[task.setvariable variable=MD_APPLE_SDK_ROOT;]'/Applications/Xcode_${{ parameters.xcode }}.app;sudo xcode-select --switch /Applications/Xcode_${{ parameters.xcode }}.app/Contents/Developer
+    displayName: 'Switch to the latest Xcode'
+    condition: eq( variables['Agent.OS'], 'Darwin' )
+  - ${{ if eq(parameters.installAppleCertificates, 'true') }}:
+    - task: InstallAppleProvisioningProfile@1
+      condition: eq( variables['Agent.OS'], 'Darwin' )
+      displayName: 'Install the iOS provisioning profile'
+      inputs:
+        provProfileSecureFile: 'Components iOS Provisioning.mobileprovision'
+    - task: InstallAppleProvisioningProfile@1
+      condition: eq( variables['Agent.OS'], 'Darwin' )
+      displayName: 'Install the macOS provisioning profile'
+      inputs:
+        provProfileSecureFile: 'Components Mac Provisioning.mobileprovision'
+    - task: InstallAppleProvisioningProfile@1
+      condition: eq( variables['Agent.OS'], 'Darwin' )
+      displayName: 'Install the tvOS provisioning profile'
+      inputs:
+        provProfileSecureFile: 'Components tvOS Provisioning.mobileprovision'
+    - task: InstallAppleCertificate@2
+      condition: eq( variables['Agent.OS'], 'Darwin' )
+      displayName: 'Install the iOS certificate'
+      inputs:
+        certSecureFile: 'Components iOS Certificate.p12'
+    - task: InstallAppleCertificate@2
+      condition: eq( variables['Agent.OS'], 'Darwin' )
+      displayName: 'Install the macOS certificate'
+      inputs:
+        certSecureFile: 'Components Mac Certificate.p12'
+  - bash: echo '##vso[task.setvariable variable=PATH;]'$PATH:$HOME/.dotnet/tools
+    displayName: 'Add ~/.dotnet/tools to the PATH environment variable'
+    condition: or(eq( variables['Agent.OS'], 'Darwin' ), eq( variables['Agent.OS'], 'Linux' ))
+  - task: UseDotNet@2
+    displayName: 'Switch to the correct version of the .NET Core SDK'
+    inputs:
+      version: ${{ parameters.dotnetStable }}
+      performMultiLevelLookup: true
+      includePreviewVersions: true
+    condition: ne('${{ parameters.dotnetStable }}', '')
+  - task: UseDotNet@2
+    displayName: 'Switch to the correct version of the .NET Core SDK'
+    inputs:
+      version: ${{ parameters.dotnet }}
+      performMultiLevelLookup: true
+      includePreviewVersions: true
+    condition: ne('${{ parameters.dotnet }}', '')
+  # custom init steps
+  - ${{ parameters.initSteps }}
+  - pwsh: |
+      dotnet tool install -g api-tools --version ${{ parameters.apiTools }}
+      dotnet tool install -g cake.tool --version ${{ parameters.cake }}
+      dotnet tool install -g Microsoft.DotNet.XHarness.CLI --version ${{ parameters.xharness }} --add-source https://pkgs.dev.azure.com/dnceng/public/_packaging/dotnet-eng/nuget/v3/index.json
+    displayName: 'Install required .NET Core global tools'
+  - ${{ each tool in parameters.tools }}:
+    - ${{ each pair in tool }}:
+      - pwsh: dotnet tool install -g ${{ pair.key }} --version ${{ pair.value }}
+        displayName: 'Install additional .NET Core global tool: ${{ pair.key }}'
+  - task: NuGetToolInstaller@1
+    inputs:
+      checkLatest: true
+    displayName: 'Download the latest nuget.exe'
+  - pwsh: |
+      $branch = "${{ parameters.cakeTemplatesBranch }}"
+      if (("$(Build.Repository.Id)" -eq "xamarin/XamarinComponents") -and ("$(System.PullRequest.IsFork)" -eq "False") -and ("$env:FORCE_MASTER_TEMPLATES" -ne "True")) {
+        if ("$env:SYSTEM_PULLREQUEST_SOURCEBRANCH") {
+          $branch = "$env:SYSTEM_PULLREQUEST_SOURCEBRANCH"
+        } else {
+          $branch = "$(Build.SourceBranch)"
+        }
+      }
+      if ($branch.StartsWith("refs/heads/")) {
+        $branch = $branch.Substring(11)
+      }
+      if ($branch.StartsWith("refs/tags/")) {
+        $branch = $branch.Substring(10)
+      }
+      $root = "https://raw.githubusercontent.com/xamarin/XamarinComponents/$branch/.ci"
+      Write-Host "##vso[task.setvariable variable=TemplateRootUri]$root"
+      Write-Host "URL root for templates: $root"
+    displayName: 'Resolve the cake templates URL'
+  - pwsh: |
+      $uri = "$(TemplateRootUri)/validation.cake"
+      Write-Host "Downloading script from $uri..."
+      Invoke-WebRequest -Uri $uri -OutFile "validation.cake"
+    displayName: 'Download the cake script to validate NuGet packages'
+  - pwsh: |
+      $uri = "$(TemplateRootUri)/nuget-diff.cake"
+      Write-Host "Downloading script from $uri..."
+      Invoke-WebRequest -Uri $uri -OutFile "nuget-diff.cake"
+    displayName: 'Download the cake script to diff NuGet packages'
+  # determine the last successful build for "master" branch
+  - pwsh: |
+      # determine the "master" branch
+      $masterBranch = "${{ parameters.masterBranchName }}"
+      $encodedBranch = [Uri]::EscapeDataString("refs/heads/$masterBranch")
+      Write-Host "Master branch: $masterBranch"
+
+      # determine the "current" branch
+      $branch = "$(Build.SourceBranch)"
+      if ("$env:SYSTEM_PULLREQUEST_TARGETBRANCH") {
+        $branch = "$env:SYSTEM_PULLREQUEST_TARGETBRANCH"
+      }
+      if ($branch.StartsWith("refs/heads/")) {
+        $branch = $branch.Substring(11)
+        Write-Host "Current branch: $branch"
+      }
+      if ($branch.StartsWith("refs/tags/")) {
+        $branch = $branch.Substring(10)
+        Write-Host "Current tag: $branch"
+      }
+
+      if (($branch -eq $masterBranch) -and ("$(System.PullRequest.IsFork)" -eq "False")) {
+        Write-Host "Branch is master, fetching last successful build commit..."
+
+        $url = "$(System.TeamFoundationCollectionUri)$(System.TeamProjectId)/_apis/build/builds/?definitions=$(System.DefinitionId)&branchName=$encodedBranch&statusFilter=completed&resultFilter=succeeded&api-version=5.0"
+        Write-Host "URL for last successful master build: $url"
+
+        $json = Invoke-RestMethod -Uri $url -Headers @{
+            Authorization = "Bearer $(System.AccessToken)"
+        }
+        Write-Host "JSON response:"
+        Write-Host "$json"
+
+        $lastSuccessfulBuildCommit = try { $json.value[0].sourceVersion; } catch { $null }
+      }
+
+      if ($lastSuccessfulBuildCommit) {
+        Write-Host "Last successful commit found: $lastSuccessfulBuildCommit"
+      } else {
+        $lastSuccessfulBuildCommit = "origin/$masterBranch"
+        Write-Host "No previously successful build found, using $lastSuccessfulBuildCommit."
+      }
+
+      Write-Host "##vso[task.setvariable variable=GitLastSuccessfulCommit]$lastSuccessfulBuildCommit"
+    displayName: 'Find the last successful commit'
+  # custom pre-build steps
+  - ${{ parameters.preBuildSteps }}
+  # the basic build
+  - ${{ if eq(parameters.buildType, 'basic') }}:
+    - pwsh: |
+        Get-Content $MyInvocation.MyCommand.Definition
+        dotnet cake ${{ parameters.cakeFile }} ${{ parameters.cakeExtraArgs }} `
+          --gitpreviouscommit="$(GitLastSuccessfulCommit)" `
+          --gitcommit="$(Build.SourceVersion)" `
+          --gitbranch="$(Build.SourceBranch)" `
+          --target="${{ parameters.cakeTarget }}" `
+          --configuration="${{ parameters.configuration }}" `
+          --verbosity="${{ parameters.verbosity }}"
+      displayName: 'Run basic build'
+      env:
+        JavaSdkDirectory: $(JAVA_HOME)
+        RepositoryCommit: $(Build.SourceVersion)
+        RepositoryBranch: $(Build.SourceBranchName)
+        RepositoryUrl: $(Build.Repository.Uri)
+        RepositoryType: "git"
+  # the directory-based build
+  - ${{ if eq(parameters.buildType, 'directories') }}:
+    - pwsh: |
+        $uri = "$(TemplateRootUri)/build-directories.cake"
+        Write-Host "Downloading script from $uri..."
+        Invoke-WebRequest -Uri $uri -OutFile "build-directories.cake"
+      displayName: 'Download the cake script to build directory-based repositories'
+    - pwsh: |
+        Get-Content $MyInvocation.MyCommand.Definition
+        $force = if ("$env:FORCEBUILD") { "$env:FORCEBUILD" } else { "${{ parameters.forceBuild }}" }
+        $names = if ("$env:BUILDDIRECTORYNAMES") { "$env:BUILDDIRECTORYNAMES" } else { "${{ parameters.namesFilter }}" }
+        $targets = if ("$env:BUILDDIRECTORYTARGETS") { "$env:BUILDDIRECTORYTARGETS" } else { "${{ parameters.targetsFilter }}" }
+        dotnet cake build-directories.cake `
+          --gitpreviouscommit="$(GitLastSuccessfulCommit)" `
+          --gitcommit="$(Build.SourceVersion)" `
+          --gitbranch="$(Build.SourceBranch)" `
+          --forcebuild="$force" `
+          --names="$names" `
+          --targets="$targets" `
+          --copyoutputtoroot=true `
+          --configuration="${{ parameters.configuration }}" `
+          --verbosity="${{ parameters.verbosity }}"
+      displayName: 'Run directory build'
+      env:
+        JavaSdkDirectory: $(JAVA_HOME)
+        RepositoryCommit: $(Build.SourceVersion)
+        RepositoryBranch: $(Build.SourceBranchName)
+        RepositoryUrl: $(Build.Repository.Uri)
+        RepositoryType: "git"
+  # the manifest-based build
+  - ${{ if eq(parameters.buildType, 'manifest') }}:
+    - pwsh: |
+        $uri = "$(TemplateRootUri)/build-manifest.cake"
+        Write-Host "Downloading script from $uri..."
+        Invoke-WebRequest -Uri $uri -OutFile "build-manifest.cake"
+      displayName: 'Download the cake script to build manifest-based repositories'
+    - pwsh: |
+        Get-Content $MyInvocation.MyCommand.Definition
+        $force = if ("$env:FORCEBUILD") { "$env:FORCEBUILD" } else { "${{ parameters.forceBuild }}" }
+        $names = if ("$env:BUILDMANIFESTNAMES") { "$env:BUILDMANIFESTNAMES" } else { "${{ parameters.namesFilter }}" }
+        $targets = if ("$env:BUILDMANIFESTTARGETS") { "$env:BUILDMANIFESTTARGETS" } else { "${{ parameters.targetsFilter }}" }
+        dotnet cake build-manifest.cake `
+          --gitpreviouscommit="$(GitLastSuccessfulCommit)" `
+          --gitcommit="$(Build.SourceVersion)" `
+          --gitbranch="$(Build.SourceBranch)" `
+          --forcebuild="$force" `
+          --names="$names" `
+          --targets="$targets" `
+          --copyoutputtoroot=true `
+          --configuration="${{ parameters.configuration }}" `
+          --verbosity="${{ parameters.verbosity }}"
+      displayName: 'Run manifest build'
+      env:
+        JavaSdkDirectory: $(JAVA_HOME)
+        RepositoryCommit: $(Build.SourceVersion)
+        RepositoryBranch: $(Build.SourceBranchName)
+        RepositoryUrl: $(Build.Repository.Uri)
+        RepositoryType: "git"
+  # the build steps, typically for 'none' builds
+  - ${{ parameters.steps }}
+  - task: PublishTestResults@2
+    displayName: Publish the test results (xUnit)
+    condition: always()
+    inputs:
+      testResultsFormat: xUnit
+      testResultsFiles: 'output/**/*TestResults.xml'
+      testRunTitle: 'xUnit Test results for $(System.JobName)'
+  - task: PublishTestResults@2
+    displayName: Publish the test results (NUnit)
+    condition: always()
+    inputs:
+      testResultsFormat: NUnit
+      testResultsFiles: 'output/**/*TestResults.xml'
+      testRunTitle: 'NUnit Test results for $(System.JobName)'
+  - task: PublishTestResults@2
+    displayName: Publish the test results (VSTest)
+    condition: always()
+    inputs:
+      testResultsFormat: VSTest
+      testResultsFiles: 'output/**/*.trx'
+      testRunTitle: 'VS Test results for $(System.JobName)'
+  # custom post-build steps
+  - ${{ parameters.postBuildSteps }}
+  # post-build steps
+  - pwsh: |
+      dotnet cake validation.cake `
+        --namespaces="${{ join(',', parameters.validPackagePrefixes) }}" `
+        --verbosity="${{ parameters.verbosity }}"
+    displayName: 'Run NuGet package validation'
+  - pwsh: |
+      dotnet cake nuget-diff.cake `
+        --artifacts="${{ parameters.artifactsPath }}" `
+        --output="${{ parameters.artifactsPath }}/api-diff" `
+        --cache="$(Agent.TempDirectory)/api-diff" `
+        --verbosity="${{ parameters.verbosity }}"
+    displayName: 'Generate API diff'
+  # after the build is complete
+  - pwsh: |
+      $srcExists = (Test-Path "${{ parameters.signListPath }}")
+      $dstExists = (Test-Path "${{ parameters.artifactsPath }}\SignList.xml")
+      if ($srcExists -and !$dstExists) {
+        Copy-Item "${{ parameters.signListPath }}" "${{ parameters.artifactsPath }}\SignList.xml"
+        Write-Host "Copied ${{ parameters.signListPath }} to ${{ parameters.artifactsPath }}\SignList.xml"
+      } elseif (!$srcExists) {
+        Write-Host "${{ parameters.signListPath }} did not exist, nothing copied."
+      } elseif ($dstExists) {
+        Write-Host "${{ parameters.artifactsPath }}\SignList.xml already existed, nothing copied."
+      }
+    displayName: 'Copy SignList.xml to the nuget artifact'
+  - task: PublishBuildArtifacts@1
+    displayName: 'Publish artifacts'
+    condition: or(eq('${{ parameters.publishJob }}', ''), eq('${{ parameters.publishJob }}', variables['System.JobName']))
+    inputs:
+      PathToPublish: ${{ parameters.artifactsPath }}
+      ArtifactName: nuget
+  - task: PublishBuildArtifacts@1
+    displayName: 'Publish platform artifacts'
+    condition: always()
+    inputs:
+      PathToPublish: output
+      ArtifactName: output-$(System.JobName)${{ parameters.publishOutputSuffix }}
+  # run any required checks
+  - ${{ if eq(variables['System.TeamProject'], 'devdiv') }}:
+    - task: ComponentGovernanceComponentDetection@0
+      displayName: 'Run component detection'
+      condition: and(always(), eq('refs/heads/${{ parameters.masterBranchName }}', variables['Build.SourceBranch']))
+      inputs:
+        scanType: 'Register'
+        verbosity: 'Verbose'
+        alertWarningLevel: 'High'
+
