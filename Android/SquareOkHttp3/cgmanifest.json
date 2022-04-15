@@ -6,7 +6,7 @@
         "maven": {
           "ArtifactId": "okhttp",
           "GroupId": "com.squareup.okhttp3",
-          "Version": "4.9.2",
+          "Version": "4.9.3",
           "NuGetId": "Square.OkHttp3"
         }
       }

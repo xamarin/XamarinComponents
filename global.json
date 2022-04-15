@@ -1,9 +1,9 @@
 {
     "msbuild-sdks": 
     {
-        "MSBuild.Sdk.Extras": "3.0.23",
-        "Microsoft.Build.Traversal": "2.1.1",
-        "Microsoft.Build.NoTargets": "2.0.1",
-        "Xamarin.Legacy.Sdk": "0.1.0-alpha2"
+        "MSBuild.Sdk.Extras": "3.0.44",
+        "Microsoft.Build.Traversal": "3.1.3",
+        "Microsoft.Build.NoTargets": "3.3.0",
+        "Xamarin.Legacy.Sdk": "0.1.2-alpha6"
     }
 }
