@@ -3,23 +3,25 @@ var TARGET = Argument ("t", Argument ("target", "ci"));
 Task("libs")
 	.Does(() =>
 {
-	MSBuild("./source/Xamarin.Build.Download.sln", c => {
-		c.Configuration = "Release";
-		c.Restore = true;
-	});
+	var dotNetCoreBuildSettings = new DotNetCoreBuildSettings { 
+		Configuration = "Release",
+		Verbosity = DotNetCoreVerbosity.Diagnostic,
+	};
+	DotNetCoreBuild("./source/Xamarin.Build.Download.sln", dotNetCoreBuildSettings);
 });
 
 Task("nuget")
 	.IsDependentOn("libs")
 	.Does(() =>
 {
-	MSBuild ("./source/Xamarin.Build.Download.sln", c => {
-		c.Configuration = "Release";
-		c.Restore = true;
-		c.Targets.Clear();
-		c.Targets.Add("Pack");
-		c.Properties.Add("PackageOutputPath", new [] { MakeAbsolute(new FilePath("./output")).FullPath });
-	});
+	var dotNetCorePackSettings = new DotNetCorePackSettings {
+		Configuration = "Release",
+		NoRestore = true,
+		NoBuild = true,
+		OutputDirectory = "./output/",
+		Verbosity = DotNetCoreVerbosity.Diagnostic,
+	};
+	DotNetCorePack($"./source/Xamarin.Build.Download.sln", dotNetCorePackSettings);
 });
 
 Task("tests")
