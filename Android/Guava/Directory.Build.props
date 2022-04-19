@@ -5,7 +5,7 @@
     <!-- <PackageVersionSuffix Condition=" '$(BUILD_BUILDID)' != '' ">$(PackageVersionSuffix).$(BUILD_BUILDID)</PackageVersionSuffix> -->
     <GuavaNuGetVersion>31.1.0.1$(PackageVersionSuffix)</GuavaNuGetVersion>
     <GuavaFailureAccessNuGetVersion>1.0.1.6$(PackageVersionSuffix)</GuavaFailureAccessNuGetVersion>
-    <GuavaListenableFutureNuGetVersion>1.0.0.7$(PackageVersionSuffix)</GuavaListenableFutureNuGetVersion>
+    <GuavaListenableFutureNuGetVersion>9999.0</GuavaListenableFutureNuGetVersion>
     
     <!-- Opt out of C#8 features to maintain compatibility with legacy -->
     <AndroidBoundInterfacesContainConstants>false</AndroidBoundInterfacesContainConstants>

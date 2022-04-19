@@ -15,6 +15,12 @@
     <PackageDescription>
 Xamarin.Android bindings for Google Guava ListenableFuture
 
+NOTE: This version (9999.0) of this package is not intended to be used directly. It does not provide
+a 'guava-listenablefuture.jar'.  This version is used when a project references both Guava and 
+Guava.ListenableFuture.  In this scenario, the only type normally in this package (ListenableFuture.class) is
+provided in 'guava.jar' instead.  This avoids creating a Java error with duplicating this type that
+happens when both .jar's are included in an application.
+
 NOTE: This package is meant to be used as a reference only for other binding projects that depend on Guava.
 This package does not expose any useful API's in the .dll itself.
 
@@ -30,8 +36,6 @@ Guava is a set of core libraries that includes new collection types (such as mul
   </PropertyGroup>
 
   <ItemGroup>
-    <None Include="Guava.ListenableFuture.targets" Pack="True" PackagePath="@(_TfmNuGetBuildFolders->'%(Identity)$(PackageId).targets')" />
-    <None Include="..\..\externals\guava-listenablefuture.jar" Pack="True" PackagePath="jar" />
     <None Include="..\..\External-Dependency-Info.txt" Pack="True" PackagePath="THIRD-PARTY-NOTICES.txt" />
   </ItemGroup>
 
