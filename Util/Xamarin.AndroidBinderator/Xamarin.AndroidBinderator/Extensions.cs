@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using MavenNet.Models;
 
@@ -14,5 +15,11 @@ namespace AndroidBinderator
 		public static bool IsCompileDependency (this Dependency dependency) => string.IsNullOrWhiteSpace (dependency.Scope) || dependency.Scope.ToLowerInvariant ().Equals ("compile");
 
 		public static bool IsRuntimeDependency (this Dependency dependency) => dependency?.Scope != null && dependency.Scope.ToLowerInvariant ().Equals ("runtime");
+
+		public static Dependency FindParentDependency (this Project project, Dependency dependency)
+		{
+			return project.DependencyManagement?.Dependencies?.FirstOrDefault (
+				d => d.GroupAndArtifactId () == dependency.GroupAndArtifactId () && d.Classifier != "sources");
+		}
 	}
 }
