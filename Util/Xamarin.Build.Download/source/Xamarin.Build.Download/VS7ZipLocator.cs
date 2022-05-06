@@ -97,19 +97,22 @@ namespace Xamarin.Build.Download
 				{
 					using (var key = Registry.LocalMachine.OpenSubKey(@"SOFTWARE\Xamarin\VisualStudio"))
 					{
-						foreach (var skName in key.GetSubKeyNames())
+						if (key != null)
 						{
-							using (var sk = key.OpenSubKey(skName))
+							foreach (var skName in key.GetSubKeyNames())
 							{
-								if (sk == null)
-									continue;
-								var path = sk.GetValue("Path") as string;
-								if (path == null)
-									continue;
-								path = Path.Combine(path, version, "7-Zip", "7z.exe");
-								if (File.Exists(path))
+								using (var sk = key.OpenSubKey(skName))
 								{
-									return path;
+									if (sk == null)
+										continue;
+									var path = sk.GetValue("Path") as string;
+									if (path == null)
+										continue;
+									path = Path.Combine(path, version, "7-Zip", "7z.exe");
+									if (File.Exists(path))
+									{
+										return path;
+									}
 								}
 							}
 						}
@@ -119,25 +122,28 @@ namespace Xamarin.Build.Download
 
 			using (var key = Registry.CurrentUser.OpenSubKey(@"SOFTWARE\Microsoft\VisualStudio"))
 			{
-				foreach (var skName in key.GetSubKeyNames())
+				if (key != null)
 				{
-					if (skName == null || !skName.EndsWith("_Config"))
-						continue;
-
-					using (var sk = key.OpenSubKey(skName + @"\Packages\{296e6a4e-2bd5-44b7-a96d-8ee3d9cda2f6}"))
+					foreach (var skName in key.GetSubKeyNames())
 					{
-						if (sk == null)
+						if (skName == null || !skName.EndsWith("_Config"))
 							continue;
 
-						var path = sk.GetValue("CodeBase") as string;
-
-						if (path == null)
-							continue;
-
-						var sZipPath = Path.Combine(Path.GetDirectoryName(path), "7-Zip", "7z.exe");
-						if (File.Exists(sZipPath))
+						using (var sk = key.OpenSubKey(skName + @"\Packages\{296e6a4e-2bd5-44b7-a96d-8ee3d9cda2f6}"))
 						{
-							return sZipPath;
+							if (sk == null)
+								continue;
+
+							var path = sk.GetValue("CodeBase") as string;
+
+							if (path == null)
+								continue;
+
+							var sZipPath = Path.Combine(Path.GetDirectoryName(path), "7-Zip", "7z.exe");
+							if (File.Exists(sZipPath))
+							{
+								return sZipPath;
+							}
 						}
 					}
 				}
@@ -150,19 +156,22 @@ namespace Xamarin.Build.Download
 				{
 					using (var key = Registry.CurrentUser.OpenSubKey(@"SOFTWARE\Xamarin\VisualStudio"))
 					{
-						foreach (var skName in key.GetSubKeyNames())
+						if (key != null)
 						{
-							using (var sk = key.OpenSubKey(skName))
+							foreach (var skName in key.GetSubKeyNames())
 							{
-								if (sk == null)
-									continue;
-								var path = sk.GetValue("Path") as string;
-								if (path == null)
-									continue;
-								path = Path.Combine(path, "Xamarin", version, "7-Zip", "7z.exe");
-								if (File.Exists(path))
+								using (var sk = key.OpenSubKey(skName))
 								{
-									return path;
+									if (sk == null)
+										continue;
+									var path = sk.GetValue("Path") as string;
+									if (path == null)
+										continue;
+									path = Path.Combine(path, "Xamarin", version, "7-Zip", "7z.exe");
+									if (File.Exists(path))
+									{
+										return path;
+									}
 								}
 							}
 						}
