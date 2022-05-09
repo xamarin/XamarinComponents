@@ -22,14 +22,14 @@
     <PackageLicenseFile>LICENSE.md</PackageLicenseFile>
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
     <PackageTags>signalr java client xamarin android monodroid</PackageTags>
-    <PackageVersion>5.0.9</PackageVersion>
+    <PackageVersion>6.0.2</PackageVersion>
   </PropertyGroup>
     
   <ItemGroup>
     <PackageReference Include="Slf4jApi" Version="1.7.30" />
     <PackageReference Include="GoogleGson" Version="2.8.6" />
     <PackageReference Include="Square.OkHttp3" Version="4.9.1" />
-    <PackageReference Include="Xamarin.Android.ReactiveX.RxJava" Version="2.2.10.1" />
+    <PackageReference Include="Xamarin.Android.ReactiveX.RxJava3.RxJava" Version="3.1.2" />
   </ItemGroup>
     
   <ItemGroup>

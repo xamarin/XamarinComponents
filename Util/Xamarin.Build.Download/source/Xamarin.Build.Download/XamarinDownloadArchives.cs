@@ -32,8 +32,6 @@ namespace Xamarin.Build.Download
 
 		public bool IsAndroid { get; set; }
 
-		public bool AndroidFixManifests { get; set; }
-
 		DownloadUtils downloadUtils;
 
 		public override bool Execute ()
@@ -167,12 +165,9 @@ namespace Xamarin.Build.Download
 						};
 						using (var client = new WebClient ()) {
 							client.DownloadProgressChanged += downloadHandler;
+							client.Headers.Add ("User-Agent: Mozilla/5.0");
 							LogMessage ("  Downloading {0} to {1}", xbd.Url, xbd.CacheFile);
 							client.DownloadFileTaskAsync (xbd.Url, xbd.CacheFile).Wait (token);
-
-							// Run through our AAR fixups if it's android
-							if (IsAndroid)
-								AndroidAarFixups.FixupAar(xbd.CacheFile, AndroidFixManifests, Log);
 
 							LogMessage ("  Downloading Complete");
 							client.DownloadProgressChanged -= downloadHandler;
@@ -287,10 +282,22 @@ namespace Xamarin.Build.Download
 			default:
 				throw new ArgumentException ("kind");
 			}
-			return new ProcessStartInfo (args.ProcessPath, args.ToString ()) {
-				WorkingDirectory = contentDir,
-				CreateNoWindow = true
-			};
+
+			ProcessStartInfo psi = null;
+			if (Platform.IsWindows)
+				psi = new ProcessStartInfo (args.ProcessPath, args.ToString ())
+				{
+					WorkingDirectory = null,
+					CreateNoWindow = true
+				};
+			else
+				psi = new ProcessStartInfo (args.ProcessPath, args.ToString ())
+				{
+					WorkingDirectory = contentDir,
+					CreateNoWindow = true
+				};
+
+			return psi;
 		}
 
 		static ProcessArgumentBuilder Build7ZipExtractionArgs (string file, string contentDir, string user7ZipPath, bool ignoreTarSymLinks, string vsInstallRoot)

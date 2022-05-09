@@ -1,6 +1,6 @@
-﻿<Project Sdk="MSBuild.Sdk.Extras/2.1.2">
+﻿<Project Sdk="MSBuild.Sdk.Extras">
   <PropertyGroup>
-    <TargetFrameworks>monoandroid9.0</TargetFrameworks>
+    <TargetFrameworks>monoandroid12.0</TargetFrameworks>
     <IsBindingProject>true</IsBindingProject>
     <AssemblyName>Xamarin.Twilio.AudioSwitch</AssemblyName>
     <RootNamespace>Xamarin.Twilio.AudioSwitch</RootNamespace>
@@ -22,11 +22,11 @@
     <PackageLicenseFile>LICENSE.md</PackageLicenseFile>
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
     <PackageTags>audioswitch xamarin android monodroid</PackageTags>
-    <PackageVersion>1.1.2</PackageVersion>
+    <PackageVersion>1.1.4</PackageVersion>
   </PropertyGroup>
     
   <ItemGroup>
-    <PackageReference Include="Xamarin.AndroidX.Annotation" Version="1.1.0" />
+    <PackageReference Include="Xamarin.AndroidX.Annotation" Version="1.2.0" />
     <PackageReference Include="Xamarin.Kotlin.StdLib" Version="1.4.21.1" />
   </ItemGroup>
     

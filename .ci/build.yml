@@ -1,3 +1,6 @@
+# To take advantage of the windowsImageOverride parameter to target executive order (EO) compliant windows pools such as AzurePipelines-EO, use the build.v1.yml template instead
+# You may also need to update your dependsOn clauses associated with that template from ['build'] to ['macOS','linux','windows'] -- or whatever subset of images you use
+#
 parameters:
   # job parameters
   name: 'build'                                             # the name of the build job for dependency purposes
@@ -21,12 +24,15 @@ parameters:
   macosAgentPoolName: 'Azure Pipelines'                     # the name of the macOS VM pool
   windowsAgentPoolName: 'Azure Pipelines'                   # the name of the Windows VM pool
   linuxImage: ''                                            # the name of the Linux VM image (linuxImage: 'Hosted Ubuntu 1604') 
-  macosImage: 'macos-latest'                                # the name of the macOS VM image
+  macosImage: 'macOS-11'                                    # the name of the macOS VM image
+                                                            # 20211121 
+                                                            # macOS-latest = macOS-10.15
+                                                            # macOS-11 required for XCode 13.1
   windowsImage: 'windows-latest'                            # the name of the Windows VM image
   mono: 'Latest'                                            # the version of mono to use
-  xcode: '12.3'                                             # the version of Xcode to use
-  dotnet: '5.0.203'                                         # the version of .NET Core to use
-  dotnetStable: '3.1.408'                                   # the stable version of .NET Core to use
+  xcode: '13.1'                                             # the version of Xcode to use
+  dotnet: '6.0.200'                                         # the version of .NET Core to use
+  dotnetStable: '3.1.416'                                   # the stable version of .NET Core to use
   cake: '0.38.5'                                            # the version of Cake to use
   apiTools: '1.1.0-preview.1'                               # the version of the api-tools CLI to use
   xharness: '1.0.0-prerelease.20602.1'
@@ -127,13 +133,13 @@ jobs:
       # custom init steps
       - ${{ parameters.initSteps }}
       - pwsh: |
-          dotnet tool install -g api-tools --version ${{ parameters.apiTools }}
-          dotnet tool install -g cake.tool --version ${{ parameters.cake }}
-          dotnet tool install -g Microsoft.DotNet.XHarness.CLI --version ${{ parameters.xharness }} --add-source https://pkgs.dev.azure.com/dnceng/public/_packaging/dotnet-eng/nuget/v3/index.json
+          dotnet tool update -g api-tools --version ${{ parameters.apiTools }}
+          dotnet tool update -g cake.tool --version ${{ parameters.cake }}
+          dotnet tool update -g Microsoft.DotNet.XHarness.CLI --version ${{ parameters.xharness }} --add-source https://pkgs.dev.azure.com/dnceng/public/_packaging/dotnet-eng/nuget/v3/index.json
         displayName: 'Install required .NET Core global tools'
       - ${{ each tool in parameters.tools }}:
         - ${{ each pair in tool }}:
-          - pwsh: dotnet tool install -g ${{ pair.key }} --version ${{ pair.value }}
+          - pwsh: dotnet tool update -g ${{ pair.key }} --version ${{ pair.value }}
             displayName: 'Install additional .NET Core global tool: ${{ pair.key }}'
       - task: NuGetToolInstaller@1
         inputs:

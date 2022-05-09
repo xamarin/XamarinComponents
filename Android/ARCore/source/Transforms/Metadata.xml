@@ -1,65 +1,54 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <metadata>
-	<attr path="/api/package[@name='com.google.ar.core']" name="managedName">Google.AR.Core</attr>
-	<attr path="/api/package[@name='com.google.ar.core.annotations']" name="managedName">Google.AR.Core.Annotations</attr>
-	<attr path="/api/package[@name='com.google.ar.core.exceptions']" name="managedName">Google.AR.Core.Exceptions</attr>
-    
-	<attr path="/api/package[@name='com.google.vr.dynamite.client']" name="managedName">Google.VR.Dynamite.Client</attr>
-      
-  <attr path="/api/package[@name='com.google.ar.core']/class[@name='ArImage']" name="extends">Android.Media.Image</attr> 
-  <attr path="/api/package[@name='com.google.vr.dynamite.client']/class[@name='ObjectWrapper']" name="extends">Java.Lang.Object</attr> 
-    
-<!--	<attr path="/api/package[@name='com.google.ar.core']/class[@name='TrackableBase']" name="visibility">public</attr>-->
-    	
-<!--  <attr-->
-<!--      path="/api/package[@name='com.google.ar.core.services.downloads.aidl']"-->
-<!--      name="managedName"-->
-<!--      >-->
-<!--      Google.AR.Core.Services.Downloads.AIDL-->
-<!--  </attr>-->
-<!--  <attr-->
-<!--      path="/api/package[@name='com.google.ar.core.services.downloads.client']"-->
-<!--      name="managedName"-->
-<!--      >-->
-<!--      Google.AR.Core.Services.Downloads.Client-->
-<!--  </attr>-->
+    <attr path="/api/package[@name='com.google.ar.core']" name="managedName">Google.AR.Core</attr>
+    <attr path="/api/package[@name='com.google.ar.core.annotations']" name="managedName">Google.AR.Core.Annotations</attr>
+    <attr path="/api/package[@name='com.google.ar.core.exceptions']" name="managedName">Google.AR.Core.Exceptions</attr>
+    <attr path="/api/package[@name='com.google.vr.dynamite.client']" name="managedName">Google.VR.Dynamite.Client</attr>
+    <attr path="/api/package[@name='com.google.ar.core']/class[@name='ArImage']" name="extends">Android.Media.Image</attr>
+    <!-- ?? -->
+    <attr path="/api/package[@name='com.google.vr.dynamite.client']/class[@name='ObjectWrapper']" name="extends">Java.Lang.Object</attr>
+   	
+<!--  
+    <attr path="/api/package[@name='com.google.ar.core.services.downloads.aidl']" name="managedName">Google.AR.Core.Services.Downloads.AIDL</attr>
+    <attr path="/api/package[@name='com.google.ar.core.services.downloads.client']" name="managedName">Google.AR.Core.Services.Downloads.Client</attr>
+-->
 
-    <attr
-    path="/api/package[@name='com.google.ar.core']/class[@name='InstantPlacementPoint']/method[@name='getAnchors' and count(parameter)=0]"
-    name="return">
-        java.util.Collection&lt;com.google.ar.core.Anchor&gt;
-    </attr>
+    <!-- Missing ITrackable inheritance
+    not supported, moved into additions
+    <attr path="/api/package[@name='com.google.ar.core']/class[@name='Plane']" name="extends">Java.Lang.Object,Google.AR.Core.ITrackable</attr>
+    -->
 
-    <attr
-            path="/api/package[@name='com.google.ar.core']/class[@name='AugmentedImage']/method[@name='getAnchors' and count(parameter)=0]"
-            name="return">
+    <!-- 
+    ITrackable derived classes 
+    -->
+    <attr path="/api/package[@name='com.google.ar.core']/class[@name='InstantPlacementPoint']/method[@name='getAnchors' and count(parameter)=0]" name="return">
         java.util.Collection&lt;com.google.ar.core.Anchor&gt;
     </attr>
     
-    
-    <attr
-        path="/api/package[@name='com.google.ar.core']/class[@name='Plane']/method[@name='getAnchors' and count(parameter)=0]"
-        name="return">
+    <attr path="/api/package[@name='com.google.ar.core']/class[@name='AugmentedImage']/method[@name='getAnchors' and count(parameter)=0]" name="return">
         java.util.Collection&lt;com.google.ar.core.Anchor&gt;
     </attr>
     
-    <attr
-            path="/api/package[@name='com.google.ar.core']/class[@name='Point']/method[@name='getAnchors' and count(parameter)=0]"
-            name="return">
+    <attr path="/api/package[@name='com.google.ar.core']/class[@name='Plane']/method[@name='getAnchors' and count(parameter)=0]" name="return">
         java.util.Collection&lt;com.google.ar.core.Anchor&gt;
     </attr>
     
-  <attr 
-      path="/api/package[@name='com.google.ar.core']/class[@name='AugmentedFace']/method[@name='getAnchors' and count(parameter)=0]" 
-      name="return"
-      >
+    <attr path="/api/package[@name='com.google.ar.core']/class[@name='Point']/method[@name='getAnchors' and count(parameter)=0]" name="return">
+        java.util.Collection&lt;com.google.ar.core.Anchor&gt;
+    </attr>
+    
+    <attr path="/api/package[@name='com.google.ar.core']/class[@name='AugmentedFace']/method[@name='getAnchors' and count(parameter)=0]" name="return">
       java.util.Collection&lt;com.google.ar.core.Anchor&gt;
-  </attr>
+    </attr>
     
-    <attr 
-        path="/api/package[@name='com.google.ar.core']/class[@name='DepthPoint']/method[@name='getAnchors' and count(parameter)=0]"
-        name="return">
+    <attr path="/api/package[@name='com.google.ar.core']/class[@name='DepthPoint']/method[@name='getAnchors' and count(parameter)=0]" name="return">
         java.util.Collection&lt;com.google.ar.core.Anchor&gt;
     </attr>
+
+    <!-- 
+    Others 
+    -->
+    <attr path="/api/package[@name='com.google.ar.core']/class[@name='InstallActivity']/method[@name='onDestroy' and count(parameter)=0]" name="managedOverride">override</attr>
+    <attr path="/api/package[@name='com.google.ar.core']/class[@name='InstallActivity']/method[@name='onDestroy' and count(parameter)=0]" name="visibility">protected</attr>
     
 </metadata>

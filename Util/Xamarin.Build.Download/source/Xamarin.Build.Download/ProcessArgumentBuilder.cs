@@ -33,8 +33,6 @@ namespace Xamarin.MacDev
 	/// </summary>
 	class ProcessArgumentBuilder
 	{
-		static readonly char[] QuoteSpecials = new char[] { ' ', '\\', '\'', '"', ',', ';' };
-
 		readonly HashSet<string> hash = new HashSet<string> ();
 		readonly StringBuilder builder = new StringBuilder ();
 
@@ -91,19 +89,9 @@ namespace Xamarin.MacDev
 
 		static void AppendQuoted (StringBuilder quoted, string text)
 		{
-			if (text.IndexOfAny (QuoteSpecials) != -1) {
-				quoted.Append ("\"");
-
-				for (int i = 0; i < text.Length; i++) {
-					if (text[i] == '\\' || text[i] == '"')
-						quoted.Append ('\\');
-					quoted.Append (text[i]);
-				}
-
-				quoted.Append ("\"");
-			} else {
-				quoted.Append (text);
-			}
+			quoted.Append ("\"");
+			quoted.Append (text);
+			quoted.Append ("\"");
 		}
 
 		/// <summary>Adds an argument, quoting and escaping as necessary.</summary>
