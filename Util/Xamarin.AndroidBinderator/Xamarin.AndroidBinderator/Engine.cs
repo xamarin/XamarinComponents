@@ -336,7 +336,15 @@ namespace AndroidBinderator
 						&& mavenDep.Satisfies(ma.Version));
 
 					if (depMapping is null && mavenDep.IsRuntimeDependency()) {
-						exceptions.Add(new Exception($"Artifact '{mavenArtifact.GroupAndArtifactId}' has unknown 'Runtime' dependency '{mavenDep.GroupAndArtifactId()}'. Either fulfill or exclude this dependency."));
+						StringBuilder sb = new StringBuilder ();
+						sb.AppendLine ($"");
+						sb.AppendLine ($"Artifact");
+						sb.AppendLine ($"	{mavenArtifact.GroupId}.{mavenArtifact.ArtifactId}:{mavenArtifact.Version}");
+						sb.AppendLine ($"has unknown 'Runtime' dependency ");
+						sb.AppendLine ($"	{mavenDep.GroupId}.{mavenDep.ArtifactId}:{mavenDep.Version}");
+						sb.AppendLine ($"Either fulfill or exclude this dependency.");
+
+						exceptions.Add(new Exception(sb.ToString()));
 						continue;
 					}
 
