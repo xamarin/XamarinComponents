@@ -1,8 +1,8 @@
 var TARGET = Argument ("t", Argument ("target", "ci"));
 
-var NUGET_VERSION = "1.3.2";
+var NUGET_VERSION = "1.4.0";
 
-var AAR_VERSION = "1.3.2";
+var AAR_VERSION = "1.4.0";
 var AAR_URL = $"https://repo1.maven.org/maven2/io/coil-kt/coil-base/{AAR_VERSION}/coil-base-{AAR_VERSION}.aar";
 
 Task ("externals")

@@ -6,7 +6,7 @@
         "Maven": {
           "ArtifactId": "tensorflow-lite",
           "GroupId": "org.tensorflow",
-          "Version": "2.4.0",
+          "Version": "2.5.0",
           "NuGetId": "Xamarin.TensorFlow.Lite"
         }
       }

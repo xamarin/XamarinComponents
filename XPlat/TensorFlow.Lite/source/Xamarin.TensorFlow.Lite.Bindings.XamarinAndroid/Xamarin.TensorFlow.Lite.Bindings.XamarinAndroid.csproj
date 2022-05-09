@@ -24,7 +24,7 @@
         -->
         <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
         <PackageId>Xamarin.TensorFlow.Lite</PackageId>
-        <PackageVersion>2.4.0</PackageVersion>
+        <PackageVersion>2.5.0</PackageVersion>
         <Title>Xamarin.TensorFlow.Lite</Title>
         <PackageDescription>
             Bindings for Google's TensorFlow Lite package (Google Play Services dependency)
@@ -44,7 +44,7 @@
     </ItemGroup>
 
     <ItemGroup>
-        <LibraryProjectZip Include="..\..\externals\tensorflow-lite-2.4.0.aar">
+        <LibraryProjectZip Include="..\..\externals\tensorflow-lite-2.5.0.aar">
             <Link>Jars\tensorflow-lite.aar</Link>
         </LibraryProjectZip>
     </ItemGroup>
