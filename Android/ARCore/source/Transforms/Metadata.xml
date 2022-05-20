@@ -50,5 +50,18 @@
     -->
     <attr path="/api/package[@name='com.google.ar.core']/class[@name='InstallActivity']/method[@name='onDestroy' and count(parameter)=0]" name="managedOverride">override</attr>
     <attr path="/api/package[@name='com.google.ar.core']/class[@name='InstallActivity']/method[@name='onDestroy' and count(parameter)=0]" name="visibility">protected</attr>
+
+    <!--
+	Earth class implemented a Java Finalizer. Implement a C# Destructor and call the finalize method.
+    The C# Destructor is in the partial class under the Addition folder.
+	-->
+    <attr path="/api/package[@name='com.google.ar.core']/class[@name='Earth']/method[@name='finalize' and count(parameter)=0]" name="managedName">InternalFinalize</attr>
+    <attr path="/api/package[@name='com.google.ar.core']/class[@name='Earth']/method[@name='finalize' and count(parameter)=0]" name="visibility">internal</attr>
     
+    <!--
+	Duplicate method with a different return value
+    // Metadata.xml XPath method reference: path="/api/package[@name='com.google.ar.core']/class[@name='Earth']/method[@name='getAnchors' and count(parameter)=0]"
+	-->
+    <remove-node path="/api/package[@name='com.google.ar.core']/class[@name='TrackableBase']/method[@name='getAnchors' and count(parameter)=0]" />
+
 </metadata>

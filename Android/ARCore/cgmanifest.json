@@ -6,7 +6,7 @@
         "Maven": {
           "ArtifactId": "core",
           "GroupId": "com.google.ar",
-          "Version": "1.26.0",
+          "Version": "1.31.0",
           "NuGetId": "Xamarin.Google.ARCore"
         }
       }
