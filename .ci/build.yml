@@ -10,6 +10,7 @@ parameters:
   initSteps: []                                             # any steps to run before .NET global tools are installed
   preBuildSteps: []                                         # any steps that need to run just before the main compilation starts
   postBuildSteps: []                                        # any steps that need to run just after the main compilation ends
+  postDiffBuildSteps: []                                    # any steps that need to run after the API Diff ends
   masterBranchName: 'main'                                  # the "master" branch that should be used - can be something other than "master"
   installAppleCertificates: 'true'                          # whether or not to install the Apple certificates and provisioning profiles
   submodules: false                                         # whether or not to check out submodules
@@ -360,6 +361,8 @@ jobs:
         inputs:
           PathToPublish: output
           ArtifactName: output-$(System.JobName)${{ parameters.publishOutputSuffix }}
+      # custom post-api-diff steps
+      - ${{ parameters.postDiffBuildSteps }}
       # run any required checks
       - ${{ if eq(variables['System.TeamProject'], 'devdiv') }}:
         - task: ComponentGovernanceComponentDetection@0
