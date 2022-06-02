@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Security.Cryptography;
 using System.Text;
 using System.Text.RegularExpressions;
@@ -13,14 +14,16 @@ namespace Xamarin.Build.Download
 {
 	public class DownloadUtils
 	{
-		public DownloadUtils (ILogger logger, string cacheDir)
+		public DownloadUtils(ILogger logger, string cacheDir, bool bypassValidation)
 		{
 			Log = logger;
-			CacheDir = GetCacheDir (cacheDir);
+			CacheDir = GetCacheDir(cacheDir);
+			BypassValidation = bypassValidation;
 		}
 
 		public ILogger Log { get; private set; }
 		public string CacheDir { get; private set; }
+		public bool BypassValidation { get; private set; }
 
 		public IEnumerable<XamarinBuildDownload> ParseDownloadItems (ITaskItem[] items, bool allowUnsecureUrls)
 		{
@@ -30,51 +33,64 @@ namespace Xamarin.Build.Download
 			var results = new List<XamarinBuildDownload> ();
 
 			foreach (var item in items) {
-				var xbd = new XamarinBuildDownload ();
+                try
+                {
+					var xbd = new XamarinBuildDownload();
 
-				xbd.Id = item.ItemSpec;
-				if (!ValidateId (xbd.Id)) {
-					Log.LogCodedError (ErrorCodes.XbdInvalidItemId, "Invalid item ID {0}", xbd.Id);
-					continue;
+					xbd.Id = item.ItemSpec;
+					if (!ValidateId(xbd.Id, this.BypassValidation))
+					{
+						Log.LogCodedError(ErrorCodes.XbdInvalidItemId, "Invalid item ID {0}", xbd.Id);
+						continue;
+					}
+					xbd.Url = item.GetMetadata("Url");
+					if (string.IsNullOrEmpty(xbd.Url))
+					{
+						Log.LogCodedError(ErrorCodes.XbdInvalidUrl, "Missing required Url metadata on item {0}", item.ItemSpec);
+						continue;
+					}
+					xbd.Sha256 = item.GetMetadata("Sha256");
+					xbd.Kind = GetKind(xbd.Url, item.GetMetadata("Kind"));
+					if (xbd.Kind == ArchiveKind.Unknown)
+					{
+						//TODO we may be able to determine the kind from the server response
+						continue;
+					}
+					if (!EnsureSecureUrl(item, xbd.Url, allowUnsecureUrls))
+					{
+						continue;
+					}
+
+					xbd.CustomErrorCode = item.GetMetadata("CustomErrorCode");
+					xbd.CustomErrorMessage = item.GetMetadata("CustomErrorMessage");
+
+					// By default, use the kind (tgz or zip) as the file extension for the cache file
+					var cacheFileExt = xbd.Kind.ToString().ToLower();
+
+					// If we have an uncompressed file specified (move file instead of decompressing it)
+					if (xbd.Kind == ArchiveKind.Uncompressed)
+					{
+						// Get the filename
+						xbd.ToFile = item.GetMetadata("ToFile");
+						// If we have a tofile set, try and grab its extension
+						if (!string.IsNullOrEmpty(xbd.ToFile))
+							cacheFileExt = Path.GetExtension(xbd.ToFile)?.ToLower() ?? string.Empty;
+					}
+
+					xbd.CacheFile = Path.Combine(CacheDir, item.ItemSpec.TrimEnd('.') + "." + cacheFileExt.TrimStart('.'));
+					xbd.DestinationDir = Path.GetFullPath(Path.Combine(CacheDir, item.ItemSpec));
+
+					int lockTimeout = 60;
+					if (int.TryParse(item.GetMetadata("ExclusiveLockTimeout"), out lockTimeout))
+						xbd.ExclusiveLockTimeout = lockTimeout;
+
+					results.Add(xbd);
 				}
-				xbd.Url = item.GetMetadata ("Url");
-				if (string.IsNullOrEmpty (xbd.Url)) {
-					Log.LogCodedError (ErrorCodes.XbdInvalidUrl, "Missing required Url metadata on item {0}", item.ItemSpec);
-					continue;
-				}
-				xbd.Sha256 = item.GetMetadata ("Sha256");
-				xbd.Kind = GetKind (xbd.Url, item.GetMetadata ("Kind"));
-				if (xbd.Kind == ArchiveKind.Unknown) {
-					//TODO we may be able to determine the kind from the server response
-					continue;
-				}
-				if (!EnsureSecureUrl (item, xbd.Url, allowUnsecureUrls)) {
-					continue;
-				}
-
-				xbd.CustomErrorCode = item.GetMetadata ("CustomErrorCode");
-				xbd.CustomErrorMessage = item.GetMetadata ("CustomErrorMessage");
-
-				// By default, use the kind (tgz or zip) as the file extension for the cache file
-				var cacheFileExt = xbd.Kind.ToString ().ToLower ();
-
-				// If we have an uncompressed file specified (move file instead of decompressing it)
-				if (xbd.Kind == ArchiveKind.Uncompressed) {
-					// Get the filename
-					xbd.ToFile = item.GetMetadata ("ToFile");
-					// If we have a tofile set, try and grab its extension
-					if (!string.IsNullOrEmpty (xbd.ToFile))
-						cacheFileExt = Path.GetExtension (xbd.ToFile)?.ToLower () ?? string.Empty;
-				}
-
-				xbd.CacheFile = Path.Combine (CacheDir, item.ItemSpec.TrimEnd('.') + "." + cacheFileExt.TrimStart('.'));
-				xbd.DestinationDir = Path.GetFullPath (Path.Combine (CacheDir, item.ItemSpec));
-
-				int lockTimeout = 60;
-				if (int.TryParse (item.GetMetadata ("ExclusiveLockTimeout"), out lockTimeout))
-					xbd.ExclusiveLockTimeout = lockTimeout;
-
-				results.Add (xbd);
+				catch(Exception ex)
+                {
+					Log.LogErrorFromException(ex);
+                }
+				
 			}
 
 			// Deduplicate possible results by their Id which should be unique always for the given archive
@@ -91,7 +107,7 @@ namespace Xamarin.Build.Download
 			foreach (var part in items) {
 
 				var id = part.ItemSpec;
-				if (!DownloadUtils.ValidateId (id)) {
+				if (!DownloadUtils.ValidateId (id, this.BypassValidation)) {
 					Log.LogCodedError (ErrorCodes.XbdInvalidItemId, "Invalid item ID {0}", id);
 					continue;
 				}
@@ -216,8 +232,12 @@ namespace Xamarin.Build.Download
 			return File.Exists (Path.Combine (cacheDirectory, partialZipDownload.Id, partialZipDownload.ToFile));
 		}
 
-		public static bool ValidateId (string id)
+		public static bool ValidateId (string id, bool bypassValidation = false)
 		{
+			// Always return true if we choose to bypass the validation
+			if (bypassValidation)
+				return true;
+
 			try {
 				var match = idRegex.Match (id);
 				return match.Length == id.Length;

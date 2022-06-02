@@ -20,6 +20,8 @@ namespace Xamarin.Build.Download
 		public bool AllowUnsecureUrls { get; set; }
 
 		public bool IsAndroid { get; set; }
+		public bool BypassValidation { get; set; }
+
 
 		HttpClient http;
 
@@ -35,7 +37,7 @@ namespace Xamarin.Build.Download
 					http = new HttpClient ();
 
 					var cacheDir = DownloadUtils.GetCacheDir (CacheDirectory);
-					var downloadUtils = new DownloadUtils (this, cacheDir);
+					var downloadUtils = new DownloadUtils (this, cacheDir, BypassValidation);
 
 					parts = downloadUtils.ParsePartialZipDownloadItems (Parts, AllowUnsecureUrls);
 

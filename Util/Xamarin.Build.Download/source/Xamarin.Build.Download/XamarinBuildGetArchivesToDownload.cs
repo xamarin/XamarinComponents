@@ -20,13 +20,15 @@ namespace Xamarin.Build.Download
 
 		public bool AllowUnsecureUrls { get; set; }
 
+		public bool BypassValidation { get; set; }
+
 		DownloadUtils downloadUtils;
 
 		public override bool Execute ()
 		{
 			var results = new List<ITaskItem> ();
 
-			downloadUtils = new DownloadUtils (this, CacheDirectory);
+			downloadUtils = new DownloadUtils (this, CacheDirectory, BypassValidation);
 
 			var items = downloadUtils.ParseDownloadItems (Archives, AllowUnsecureUrls);
 

@@ -26,6 +26,10 @@
 		<_XamarinBuildDownloadIsAndroid>false</_XamarinBuildDownloadIsAndroid>
 	</PropertyGroup>
 	
+	<PropertyGroup Condition="'$(XamarinBuildDownloadBypassValidation)' == 'true'">
+		<BypassValidation>true</BypassValidation>
+	</PropertyGroup>
+
 	<PropertyGroup>
 		<CleanDependsOn>
 			$(CleanDependsOn);
@@ -57,6 +61,7 @@
 			User7ZipPath="$(XamarinBuildDownloadUser7ZipPath)"
 			VsInstallRoot="$(VsInstallRoot)"
 			IsAndroid="$(_XamarinBuildDownloadIsAndroid)"
+			BypassValidation="$(BypassValidation)"
 			/>
 	</Target>
 
@@ -67,6 +72,7 @@
 			Parts="@(XamarinBuildDownloadPartialZip)"
 			CacheDirectory="$(XamarinBuildDownloadDir)"
 			IsAndroid="$(_XamarinBuildDownloadIsAndroid)"
+			BypassValidation="$(BypassValidation)"
 			/>
 	</Target>
 
@@ -115,7 +121,8 @@
 			Archives="@(XamarinBuildDownload)"
 			PartialZipDownloads="@(XamarinBuildDownloadPartialZip)"
 			DestinationBase="$(XamarinBuildDownloadDir)"
-			CacheDirectory="$(XamarinBuildDownloadDir)">
+			CacheDirectory="$(XamarinBuildDownloadDir)"
+			BypassValidation="$(BypassValidation)">
 			<Output TaskParameter="ArchivesToDownload" ItemName="XamarinBuildDownloadItemToDownload" />
 		</XamarinBuildGetArchivesToDownload>
 	</Target>

@@ -32,12 +32,13 @@ namespace Xamarin.Build.Download
 
 		public bool IsAndroid { get; set; }
 
+		public bool BypassValidation { get; set; }
+
 		DownloadUtils downloadUtils;
 
 		public override bool Execute ()
 		{
-			downloadUtils = new DownloadUtils (this, CacheDirectory);
-
+			downloadUtils = new DownloadUtils (this, CacheDirectory, BypassValidation);
 			Task.Run (async () => {
 				try {
 					var items = downloadUtils.ParseDownloadItems (Archives, AllowUnsecureUrls);
