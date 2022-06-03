@@ -33,64 +33,57 @@ namespace Xamarin.Build.Download
 			var results = new List<XamarinBuildDownload> ();
 
 			foreach (var item in items) {
-                try
-                {
-					var xbd = new XamarinBuildDownload();
+				var xbd = new XamarinBuildDownload();
 
-					xbd.Id = item.ItemSpec;
-					if (!ValidateId(xbd.Id, this.BypassValidation))
-					{
-						Log.LogCodedError(ErrorCodes.XbdInvalidItemId, "Invalid item ID {0}", xbd.Id);
-						continue;
-					}
-					xbd.Url = item.GetMetadata("Url");
-					if (string.IsNullOrEmpty(xbd.Url))
-					{
-						Log.LogCodedError(ErrorCodes.XbdInvalidUrl, "Missing required Url metadata on item {0}", item.ItemSpec);
-						continue;
-					}
-					xbd.Sha256 = item.GetMetadata("Sha256");
-					xbd.Kind = GetKind(xbd.Url, item.GetMetadata("Kind"));
-					if (xbd.Kind == ArchiveKind.Unknown)
-					{
-						//TODO we may be able to determine the kind from the server response
-						continue;
-					}
-					if (!EnsureSecureUrl(item, xbd.Url, allowUnsecureUrls))
-					{
-						continue;
-					}
-
-					xbd.CustomErrorCode = item.GetMetadata("CustomErrorCode");
-					xbd.CustomErrorMessage = item.GetMetadata("CustomErrorMessage");
-
-					// By default, use the kind (tgz or zip) as the file extension for the cache file
-					var cacheFileExt = xbd.Kind.ToString().ToLower();
-
-					// If we have an uncompressed file specified (move file instead of decompressing it)
-					if (xbd.Kind == ArchiveKind.Uncompressed)
-					{
-						// Get the filename
-						xbd.ToFile = item.GetMetadata("ToFile");
-						// If we have a tofile set, try and grab its extension
-						if (!string.IsNullOrEmpty(xbd.ToFile))
-							cacheFileExt = Path.GetExtension(xbd.ToFile)?.ToLower() ?? string.Empty;
-					}
-
-					xbd.CacheFile = Path.Combine(CacheDir, item.ItemSpec.TrimEnd('.') + "." + cacheFileExt.TrimStart('.'));
-					xbd.DestinationDir = Path.GetFullPath(Path.Combine(CacheDir, item.ItemSpec));
-
-					int lockTimeout = 60;
-					if (int.TryParse(item.GetMetadata("ExclusiveLockTimeout"), out lockTimeout))
-						xbd.ExclusiveLockTimeout = lockTimeout;
-
-					results.Add(xbd);
+				xbd.Id = item.ItemSpec;
+				if (!ValidateId(xbd.Id, this.BypassValidation))
+				{
+					Log.LogCodedError(ErrorCodes.XbdInvalidItemId, "Invalid item ID {0}", xbd.Id);
+					continue;
 				}
-				catch(Exception ex)
-                {
-					Log.LogErrorFromException(ex);
-                }
-				
+				xbd.Url = item.GetMetadata("Url");
+				if (string.IsNullOrEmpty(xbd.Url))
+				{
+					Log.LogCodedError(ErrorCodes.XbdInvalidUrl, "Missing required Url metadata on item {0}", item.ItemSpec);
+					continue;
+				}
+				xbd.Sha256 = item.GetMetadata("Sha256");
+				xbd.Kind = GetKind(xbd.Url, item.GetMetadata("Kind"));
+				if (xbd.Kind == ArchiveKind.Unknown)
+				{
+					//TODO we may be able to determine the kind from the server response
+					continue;
+				}
+				if (!EnsureSecureUrl(item, xbd.Url, allowUnsecureUrls))
+				{
+					continue;
+				}
+
+				xbd.CustomErrorCode = item.GetMetadata("CustomErrorCode");
+				xbd.CustomErrorMessage = item.GetMetadata("CustomErrorMessage");
+
+				// By default, use the kind (tgz or zip) as the file extension for the cache file
+				var cacheFileExt = xbd.Kind.ToString().ToLower();
+
+				// If we have an uncompressed file specified (move file instead of decompressing it)
+				if (xbd.Kind == ArchiveKind.Uncompressed)
+				{
+					// Get the filename
+					xbd.ToFile = item.GetMetadata("ToFile");
+					// If we have a tofile set, try and grab its extension
+					if (!string.IsNullOrEmpty(xbd.ToFile))
+						cacheFileExt = Path.GetExtension(xbd.ToFile)?.ToLower() ?? string.Empty;
+				}
+
+				xbd.CacheFile = Path.Combine(CacheDir, item.ItemSpec.TrimEnd('.') + "." + cacheFileExt.TrimStart('.'));
+				xbd.DestinationDir = Path.GetFullPath(Path.Combine(CacheDir, item.ItemSpec));
+
+				int lockTimeout = 60;
+				if (int.TryParse(item.GetMetadata("ExclusiveLockTimeout"), out lockTimeout))
+					xbd.ExclusiveLockTimeout = lockTimeout;
+
+				results.Add(xbd);
+
 			}
 
 			// Deduplicate possible results by their Id which should be unique always for the given archive
