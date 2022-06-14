@@ -1,4 +1,4 @@
-#addin nuget:?package=Cake.XCode&version=4.2.0
+#addin nuget:?package=Cake.XCode&version=5.0.0
 #addin nuget:?package=Cake.Yaml&version=3.1.0&loadDependencies=true
 #addin nuget:?package=Cake.Json&version=4.0.0&loadDependencies=true
 #addin nuget:?package=Xamarin.Nuget.Validator&version=1.1.1
@@ -416,14 +416,6 @@ public class BuildGroup {
 	public bool BuildOnLinux => LinuxBuildTargets?.Any () == true;
 
 	public override string ToString () => Name;
-}
-
-bool IsRunningOnMacOs () {
-	return System.Environment.OSVersion.Platform == PlatformID.MacOSX || MacPlatformDetector.IsMac.Value;
-}
-
-bool IsRunningOnLinux () {
-	return IsRunningOnUnix () && !IsRunningOnMacOs ();
 }
 
 internal static class MacPlatformDetector {

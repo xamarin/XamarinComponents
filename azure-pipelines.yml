@@ -34,7 +34,7 @@ jobs:
       windowsImage: ''
       windowsImageOverride: AzurePipelinesWindows2019compliant
 
-      xcode: 13.3.1
+      xcode: 13.2.1
       buildType: 'manifest'
 
       linuxAgentPoolName: AzurePipelines-EO
