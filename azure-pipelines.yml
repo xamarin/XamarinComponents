@@ -19,7 +19,7 @@ resources:
       ref: refs/heads/main
 
 variables:
-  DotNet6Version: 6.0.200
+  DotNet6Version: 6.0.300
   XamarinAndroidVsix: https://aka.ms/xamarin-android-commercial-d17-1-windows
   # NOTE: there wasn't a public release of 16.11 for macOS
   XamarinAndroidPkg: https://dl.internalx.com/vsts-devdiv/Xamarin.Android/public/5673868/d17-1/19b97b7614b275a84d9e38096bd1fe0e25a494d4/xamarin.android-12.2.0.4.pkg
@@ -34,7 +34,7 @@ jobs:
       windowsImage: ''
       windowsImageOverride: AzurePipelinesWindows2019compliant
 
-      xcode: 13.1
+      xcode: 13.2.1
       buildType: 'manifest'
 
       linuxAgentPoolName: AzurePipelines-EO
@@ -81,8 +81,8 @@ jobs:
           displayName: install .NET 6 Android Workload
           condition: ne(variables['System.JobName'], 'linux')
       tools:
-        - 'xamarin.androidbinderator.tool': '0.5.3'
-        - 'xamarin.androidx.migration.tool': '1.0.8'
+        - 'xamarin.androidbinderator.tool': '0.5.4'
+        - 'xamarin.androidx.migration.tool': '1.0.9'
   - ${{ if eq(variables['System.TeamProject'], 'devdiv') }}:
     - template: sign-artifacts/jobs/v2.yml@internal-templates
       parameters:
