@@ -28,11 +28,11 @@ parameters:
   windowsImage: 'windows-latest'                            # the name of the Windows VM image
   windowsImageOverride: ''                                  # used to access 1ES hardened images: name of ImageOverride demand to use such as AzurePipelinesWindows2022compliant when windowsAgentPoolName set to the AzurePipelines-EO pool
   mono: 'Latest'                                            # the version of mono to use
-  xcode: '13.1'                                             # the version of Xcode to use
-  dotnet: '6.0.100'                                         # the version of .NET Core to use
-  dotnetStable: '3.1.415'                                   # the stable version of .NET Core to use
-  cake: '0.38.5'                                            # the version of Cake to use
-  apiTools: '1.1.0-preview.1'                               # the version of the api-tools CLI to use
+  xcode: '13.2.1'                                           # the version of Xcode to use
+  dotnet: '6.0.300'                                         # the version of .NET Core to use
+  dotnetStable: '6.0.300'                                   # the stable version of .NET Core to use
+  cake: '2.2.0'                                             # the version of Cake to use
+  apiTools: '1.3.4'                                         # the version of the api-tools CLI to use
   xharness: '1.0.0-prerelease.20602.1'
   tools: []                                                 # a list of any additional .NET Core tools needed
   cakeTemplatesBranch: 'main'                               # the branch of XamarinComponents that has the templates
@@ -231,7 +231,7 @@ steps:
           --gitcommit="$(Build.SourceVersion)" `
           --gitbranch="$(Build.SourceBranch)" `
           --forcebuild="$force" `
-          --names="$names" `
+          --names "$names" `
           --targets="$targets" `
           --copyoutputtoroot=true `
           --configuration="${{ parameters.configuration }}" `
@@ -260,7 +260,7 @@ steps:
           --gitcommit="$(Build.SourceVersion)" `
           --gitbranch="$(Build.SourceBranch)" `
           --forcebuild="$force" `
-          --names="$names" `
+          --names "$names" `
           --targets="$targets" `
           --copyoutputtoroot=true `
           --configuration="${{ parameters.configuration }}" `
