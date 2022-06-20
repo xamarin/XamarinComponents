@@ -1,6 +1,6 @@
 ﻿<Project Sdk="MSBuild.Sdk.Extras">
   <PropertyGroup>
-    <TargetFrameworks>monoandroid9.0</TargetFrameworks>
+    <TargetFrameworks>monoandroid12.0</TargetFrameworks>
     <IsBindingProject>true</IsBindingProject>
     <AssemblyName>Xamarin.AspNet.SignalR.Java.Client</AssemblyName>
     <RootNamespace>Xamarin.AspNet.SignalR.Java.Client</RootNamespace>
