@@ -20,21 +20,22 @@ resources:
 
 variables:
   DotNet6Version: 6.0.300
-  XamarinAndroidVsix: https://aka.ms/xamarin-android-commercial-d17-1-windows
+  # matching builds
   # NOTE: there wasn't a public release of 16.11 for macOS
-  XamarinAndroidPkg: https://dl.internalx.com/vsts-devdiv/Xamarin.Android/public/5673868/d17-1/19b97b7614b275a84d9e38096bd1fe0e25a494d4/xamarin.android-12.2.0.4.pkg
+  LegacyXamarinAndroidPkg:  https://dl.internalx.com/vsts-devdiv/Xamarin.Android/public/6454390/6.0.4xx/0b8d593a61bb49120fdf817e8dfdbc4b33937772/xamarin.android-12.3.99.117.pkg
+  LegacyXamarinAndroidVsix: https://dl.internalx.com/vsts-devdiv/Xamarin.Android/public/6454390/6.0.4xx/0b8d593a61bb49120fdf817e8dfdbc4b33937772/Xamarin.Android.Sdk-12.3.99.117.vsix
 jobs:
   - template: .ci/build.v1.yml@components
     parameters:
       timeoutInMinutes: 360
       areaPath: 'DevDiv\Xamarin SDK\Android'
-      macosImage: 'macOS-11'                                  # the name of the macOS VM image
-                                                              # BigSur 20211120
+      macosImage: 'macOS-12'                                  # the name of the macOS VM image
+                                                              # Monterey 20220728
       windowsAgentPoolName: AzurePipelines-EO
       windowsImage: ''
       windowsImageOverride: AzurePipelinesWindows2019compliant
 
-      xcode: 13.2.1
+      xcode: 13.3.1
       buildType: 'manifest'
 
       linuxAgentPoolName: AzurePipelines-EO
@@ -82,7 +83,7 @@ jobs:
           condition: ne(variables['System.JobName'], 'linux')
       tools:
         - 'xamarin.androidbinderator.tool': '0.5.4'
-        - 'xamarin.androidx.migration.tool': '1.0.9'
+        - 'xamarin.androidx.migration.tool': '1.0.10'
   - ${{ if eq(variables['System.TeamProject'], 'devdiv') }}:
     - template: sign-artifacts/jobs/v2.yml@internal-templates
       parameters:
