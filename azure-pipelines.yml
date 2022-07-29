@@ -20,6 +20,10 @@ resources:
 
 variables:
   DotNet6Version: 6.0.300
+  DotNet6Source: https://aka.ms/dotnet6/nuget/index.json
+  NuGetOrgSource: https://api.nuget.org/v3/index.json
+  XamarinDotNetWorkloadSource: workloads.json   # or url (check for recent versions - redth)
+                                                # https://aka.ms/dotnet/maui/6.0.400.json
   # matching builds
   # NOTE: there wasn't a public release of 16.11 for macOS
   LegacyXamarinAndroidPkg:  https://dl.internalx.com/vsts-devdiv/Xamarin.Android/public/6454390/6.0.4xx/0b8d593a61bb49120fdf817e8dfdbc4b33937772/xamarin.android-12.3.99.117.pkg
@@ -78,7 +82,9 @@ jobs:
           condition: eq(variables['System.JobName'], 'windows')
           displayName: install Xamarin.Android
         - pwsh: |
-            dotnet workload install android
+            dotnet workload update --verbosity diag --from-rollback-file $(XamarinDotNetWorkloadSource) --source $(Dotnet6Source) --source $(NuGetOrgSource)
+            dotnet workload install android --verbosity diag --skip-manifest-update --source $(Dotnet6Source) --source $(NuGetOrgSource)
+            dotnet workload install maui --verbosity diag --skip-manifest-update --source $(Dotnet6Source) --source $(NuGetOrgSource)
           displayName: install .NET 6 Android Workload
           condition: ne(variables['System.JobName'], 'linux')
       tools:
