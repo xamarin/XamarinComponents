@@ -6,7 +6,7 @@
   <PropertyGroup>
     <Title>Glide RecyclerView integration for Xamarin.Android</Title>
     <PackageDescription>Xamarin.Android bindings for Glide RecyclerView integration</PackageDescription>
-    <PackageVersion>4.12.0.2</PackageVersion>
+    <PackageVersion>4.13.2.0</PackageVersion>
   </PropertyGroup>
 
   <ItemGroup>
@@ -20,7 +20,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Xamarin.AndroidX.RecyclerView" Version="1.2.1.1" />
+    <PackageReference Include="Xamarin.AndroidX.RecyclerView" Version="1.2.1.7" />
   </ItemGroup>
 
   <ItemGroup>

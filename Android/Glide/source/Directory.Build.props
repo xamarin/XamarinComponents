@@ -1,6 +1,6 @@
 <Project>
   <PropertyGroup>
-    <TargetFrameworks>MonoAndroid9.0;MonoAndroid10.0;net6.0-android</TargetFrameworks>
+    <TargetFrameworks>MonoAndroid12.0;net6.0-android</TargetFrameworks>
     <IsBindingProject>true</IsBindingProject>
     <Authors>Microsoft</Authors>
     <Owners>Microsoft</Owners>
@@ -18,11 +18,9 @@
     <AndroidBoundInterfacesContainStaticAndDefaultInterfaceMethods>false</AndroidBoundInterfacesContainStaticAndDefaultInterfaceMethods>
   </PropertyGroup>
   <ItemGroup>
-    <GlideBuildFolders Include="build\monoandroid9.0" />
-    <GlideBuildFolders Include="build\monoandroid10.0" />
+    <GlideBuildFolders Include="build\monoandroid12.0" />
     <GlideBuildFolders Include="build\net6.0-android31.0" />
-    <GlideBuildFolders Include="buildTransitive\monoandroid9.0" />
-    <GlideBuildFolders Include="buildTransitive\monoandroid10.0" />
+    <GlideBuildFolders Include="buildTransitive\monoandroid12.0" />
     <GlideBuildFolders Include="buildTransitive\net6.0-android31.0" />
   </ItemGroup>
 </Project>
