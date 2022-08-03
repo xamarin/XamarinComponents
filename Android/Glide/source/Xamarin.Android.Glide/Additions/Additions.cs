@@ -7,7 +7,6 @@ using Android.Graphics.Drawables;
 using Android.Net;
 using Android.OS;
 using Android.Runtime;
-//using Android.Service.Autofill;
 using Bumptech.Glide.Load;
 using Bumptech.Glide.Load.Engine;
 using Bumptech.Glide.Load.Resource.Bitmap;
