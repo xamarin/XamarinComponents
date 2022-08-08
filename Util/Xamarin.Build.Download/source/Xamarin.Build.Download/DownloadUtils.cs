@@ -197,9 +197,9 @@ namespace Xamarin.Build.Download
 		//VERSION:
 		// * components separated by periods
 		// * each component must consist of letters and numbers
-		//
+		// * optional hyphen and pre-release id (eg: '-beta01')
 		static readonly Regex idRegex = new Regex (
-			@"[A-Za-z]+[A-Za-z\d\._]*[A-Za-z\d]+-[A-Za-z\d]+(\.[A-Za-z\d]+)*(/[A-Za-z]+[A-Za-z\d\._]*[A-Za-z\d]+)?"
+			@"[A-Za-z]+[A-Za-z\d\._]*[A-Za-z\d]+-[A-Za-z\d]+(\.[A-Za-z\d]+)*(/[A-Za-z]+[A-Za-z\d\._]*[A-Za-z\d]+)?(-\w*)?"
 			,
 			RegexOptions.Compiled
 		);
