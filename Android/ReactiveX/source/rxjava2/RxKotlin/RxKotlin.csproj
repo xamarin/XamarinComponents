@@ -2,18 +2,14 @@
 <Project Sdk="MSBuild.Sdk.Extras/3.0.23">
   <PropertyGroup>
     <TargetFramework>MonoAndroid90</TargetFramework>
-    <TargetFrameworks>MonoAndroid90</TargetFrameworks>
     <IsBindingProject>true</IsBindingProject>
     <AssemblyName>Xamarin.Android.ReactiveX.RxKotlin</AssemblyName>
-    <MonoAndroidResourcePrefix>Resources</MonoAndroidResourcePrefix>
-    <MonoAndroidAssetsPrefix>Assets</MonoAndroidAssetsPrefix>
     <AndroidUseLatestPlatformSdk>False</AndroidUseLatestPlatformSdk>
     <AndroidUseIntermediateDesignerFile>True</AndroidUseIntermediateDesignerFile>
-    <AndroidResgenFile>Resources\Resource.designer.cs</AndroidResgenFile>
-    <RootNamespace>ReactiveX</RootNamespace>
+    <RootNamespace>RxKotlin</RootNamespace>
     <AndroidClassParser>class-parse</AndroidClassParser>
     <AndroidCodegenTarget>XAJavaInterop1</AndroidCodegenTarget>
-    <Java7DocPaths>..\..\externals\rxjava2\rxjava-javadocs\</Java7DocPaths>
+    <Java7DocPaths>..\..\externals\rxkotlin-javadocs\</Java7DocPaths>
   </PropertyGroup>
 
   <PropertyGroup>
@@ -26,7 +22,7 @@
     <PackageProjectUrl>https://go.microsoft.com/fwlink/?linkid=2083771</PackageProjectUrl>
     <PackageLicenseUrl>https://go.microsoft.com/fwlink/?linkid=2083684</PackageLicenseUrl>
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
-    <PackageVersion>2.4.0.1</PackageVersion>
+    <PackageVersion>2.4.0.2</PackageVersion>
   </PropertyGroup>
 
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
@@ -41,9 +37,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Include="..\..\..\externals\rxjava2\rxkotlin-2.4.0.jar">
-      <Link>rxkotlin-2.4.0.jar</Link>
-    </None>
     <None Include="..\..\..\External-Dependency-Info.txt" Pack="True" PackagePath="THIRD-PARTY-NOTICES.txt" />
   </ItemGroup>
 
@@ -51,11 +44,16 @@
     <JavaDocPaths>..\..\..\externals\rxjava2\rxkotlin-javadocs\</JavaDocPaths>
   </PropertyGroup>
   <ItemGroup>
-    <EmbeddedJar Include="..\..\..\externals\rxjava2\rxkotlin-2.4.0.jar" />
+    <EmbeddedJar Include="../../../externals/rxjava2/rxkotlin-2.4.0.jar" />
     <JavaDocJar Include="..\..\..\externals\rxjava2\rxkotlin-javadocs.jar" />
-    <!--
-    <JavaSourceJar Include="..\..\..\externals\rxjava2\" />
-    -->
+  </ItemGroup>
+    
+  <ItemGroup>
+    <None Include="..\..\..\License.md" Pack="true" PackagePath="LICENSE.md" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Xamarin.Kotlin.StdLib" Version="1.3.41" />
   </ItemGroup>
 
   <ItemGroup>

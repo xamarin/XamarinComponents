@@ -1,7 +1,7 @@
 THIRD-PARTY SOFTWARE NOTICES AND INFORMATION
 Do not translate or localize
 
-Xamarin Components for ReactiveX RxJava and RxAndroid incorporates 
+Xamarin Components for ReactiveX RxJava, RxKotlin, and RxAndroid incorporates 
 third party material from the projects listed below. The original copyright 
 notice and the license under which Microsoft received such third party 
 material are set forth below.  Microsoft reserves all other rights not 

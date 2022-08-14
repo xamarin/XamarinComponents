@@ -1,22 +1,22 @@
-#addin nuget:?package=SharpZipLib
+#addin nuget:?package=SharpZipLib&version=1.2.0
 
-var TARGET = Argument ("t", Argument ("target", "Default"));
+var TARGET = Argument ("t", Argument ("target", "ci"));
 
-var RXJAVA2_RXJAVA_VERSION = "2.2.10";
+var RXJAVA2_RXJAVA_VERSION = "2.2.21";
 var RXJAVA2_RXANDROID_VERSION = "2.1.1";
 var RXJAVA2_RXKOTLIN_VERSION = "2.4.0";
 
-var RXJAVA3_RXJAVA_VERSION = "3.0.1";
+var RXJAVA3_RXJAVA_VERSION = "3.0.13";
 var RXJAVA3_RXANDROID_VERSION = "3.0.0";
 var RXJAVA3_RXKOTLIN_VERSION = "3.0.1";
 
-var RXJAVA2_RXJAVA_NUGET_VERSION = $"{RXJAVA2_RXJAVA_VERSION}.1";
-var RXJAVA2_RXANDROID_NUGET_VERSION = $"{RXJAVA2_RXANDROID_VERSION}.1";
-var RXJAVA2_RXKOTLIN_NUGET_VERSION = $"{RXJAVA2_RXKOTLIN_VERSION}.1";
+var RXJAVA2_RXJAVA_NUGET_VERSION = $"{RXJAVA2_RXJAVA_VERSION}";
+var RXJAVA2_RXANDROID_NUGET_VERSION = $"{RXJAVA2_RXANDROID_VERSION}.2";
+var RXJAVA2_RXKOTLIN_NUGET_VERSION = $"{RXJAVA2_RXKOTLIN_VERSION}.2";
 
-var RXJAVA3_RXJAVA_NUGET_VERSION = $"{RXJAVA3_RXJAVA_VERSION}.1";
-var RXJAVA3_RXANDROID_NUGET_VERSION = $"{RXJAVA3_RXANDROID_VERSION}.1";
-var RXJAVA3_RXKOTLIN_NUGET_VERSION = $"{RXJAVA3_RXKOTLIN_VERSION}.1";
+var RXJAVA3_RXJAVA_NUGET_VERSION = $"{RXJAVA3_RXJAVA_VERSION}";
+var RXJAVA3_RXANDROID_NUGET_VERSION = $"{RXJAVA3_RXANDROID_VERSION}.2";
+var RXJAVA3_RXKOTLIN_NUGET_VERSION = $"{RXJAVA3_RXKOTLIN_VERSION}.2";
 
 
 var RXJAVA2_RXJAVA_JAR_URL = $"https://search.maven.org/remotecontent?filepath=io/reactivex/rxjava2/rxjava/{RXJAVA2_RXJAVA_VERSION}/rxjava-{RXJAVA2_RXJAVA_VERSION}.jar";
@@ -79,17 +79,35 @@ Task ("externals")
 
 	// Update .csproj nuget versions
 	XmlPoke("./source/rxjava2/RxJava/RxJava.csproj", "/Project/PropertyGroup/PackageVersion", RXJAVA2_RXJAVA_NUGET_VERSION);
+	XmlPoke("./source/rxjava2/RxJava/RxJava.csproj", "/Project/ItemGroup/EmbeddedJar/@Include", $"../../../externals/rxjava2/rxjava-{RXJAVA2_RXJAVA_VERSION}.jar");
 	XmlPoke("./source/rxjava2/RxAndroid/RxAndroid.csproj", "/Project/PropertyGroup/PackageVersion", RXJAVA2_RXANDROID_NUGET_VERSION);
+	XmlPoke("./source/rxjava2/RxAndroid/RxAndroid.csproj", "/Project/ItemGroup/LibraryProjectZip/@Include", $"../../../externals/rxjava2/rxandroid-{RXJAVA2_RXANDROID_VERSION}.aar");
 	XmlPoke("./source/rxjava2/RxKotlin/RxKotlin.csproj", "/Project/PropertyGroup/PackageVersion", RXJAVA2_RXKOTLIN_NUGET_VERSION);
+	XmlPoke("./source/rxjava2/RxKotlin/RxKotlin.csproj", "/Project/ItemGroup/EmbeddedJar/@Include", $"../../../externals/rxjava2/rxkotlin-{RXJAVA2_RXKOTLIN_VERSION}.jar");
 
 	XmlPoke("./source/rxjava3/RxJava/RxJava.csproj", "/Project/PropertyGroup/PackageVersion", RXJAVA3_RXJAVA_NUGET_VERSION);
+	XmlPoke("./source/rxjava3/RxJava/RxJava.csproj", "/Project/ItemGroup/EmbeddedJar/@Include", $"../../../externals/rxjava3/rxjava-{RXJAVA3_RXJAVA_VERSION}.jar");
 	XmlPoke("./source/rxjava3/RxAndroid/RxAndroid.csproj", "/Project/PropertyGroup/PackageVersion", RXJAVA3_RXANDROID_NUGET_VERSION);
+	XmlPoke("./source/rxjava3/RxAndroid/RxAndroid.csproj", "/Project/ItemGroup/LibraryProjectZip/@Include", $"../../../externals/rxjava3/rxandroid-{RXJAVA3_RXANDROID_VERSION}.aar");
 	XmlPoke("./source/rxjava3/RxKotlin/RxKotlin.csproj", "/Project/PropertyGroup/PackageVersion", RXJAVA3_RXKOTLIN_NUGET_VERSION);
+	XmlPoke("./source/rxjava3/RxKotlin/RxKotlin.csproj", "/Project/ItemGroup/EmbeddedJar/@Include", $"../../../externals/rxjava3/rxkotlin-{RXJAVA3_RXKOTLIN_VERSION}.jar");
 });
 
+Task("native")
+	.Does(() =>
+{
+	var fn = IsRunningOnWindows() ? "gradlew.bat" : "gradlew";
+	var gradlew = MakeAbsolute((FilePath)("./native/ReactiveXSample/" + fn));
+	var exit = StartProcess(gradlew, new ProcessSettings {
+		Arguments = "assemble",
+		WorkingDirectory = "./native/ReactiveXSample/"
+	});
+	if (exit != 0) throw new Exception($"Gradle exited with exit code {exit}.");
+});
 
 Task("libs")
 	.IsDependentOn("externals")
+	.IsDependentOn("native")
 	.Does(() =>
 {
 	MSBuild("./ReactiveX.sln", c => {
@@ -114,7 +132,18 @@ Task("nuget")
 });
 
 Task("samples")
-	.IsDependentOn("nuget");
+	.IsDependentOn("nuget")
+	.Does(() =>
+{
+	var settings = new MSBuildSettings()
+		.SetConfiguration("Release")
+		.SetVerbosity(Verbosity.Minimal)
+		.EnableBinaryLogger("./output/samples.binlog")
+		.WithRestore()
+		.WithProperty("DesignTimeBuild", "false");
+
+	MSBuild("./samples/ReactiveXSample.sln", settings);
+});
 
 Task ("clean")
 	.Does (() =>
@@ -125,6 +154,12 @@ Task ("clean")
 											Force = true
 											}
 						);
+
+	CleanDirectories("./generated/*/bin");
+	CleanDirectories("./generated/*/obj");
+	CleanDirectories("./generated/");
+	CleanDirectories("./native/.gradle");
+	CleanDirectories("./native/**/build");
 });
 
 Task("Default")
