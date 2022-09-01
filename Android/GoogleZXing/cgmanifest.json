@@ -1,16 +1,17 @@
 {
-    "Registrations": [
-      {
-        "Component": {
-          "Type": "Maven",
-          "Maven": {
-            "ArtifactId": "core",
-            "GroupId": "com.google.zxing",
-            "Version": "3.3.3",
-            "NuGetId": "Xamarin.Google.ZXing.Core"
-          }
+  "$schema": "https://json.schemastore.org/component-detection-manifest.json",
+  "Registrations": [
+    {
+      "Component": {
+        "Type": "Maven",
+        "Maven": {
+          "ArtifactId": "core",
+          "GroupId": "com.google.zxing",
+          "Version": "3.3.3",
+          "NuGetId": "Xamarin.Google.ZXing.Core"
         }
       }
-    ],
-    "Version": 1
-  }
+    }
+  ],
+  "Version": 1
+}

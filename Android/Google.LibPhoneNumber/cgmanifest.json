@@ -1,16 +1,17 @@
 {
-    "Registrations": [
-        {
-            "Component": {
-                "Type": "Maven",
-                "Maven": {
-                    "ArtifactId": "libphonenumber",
-                    "GroupId": "com.googlecode.libphonenumber",
-                    "Version": "8.10.23",
-                    "NuGetId": "Xamarin.Google.LibPhoneNumber"
-                }
-            }
+  "$schema": "https://json.schemastore.org/component-detection-manifest.json",
+  "Registrations": [
+    {
+      "Component": {
+        "Type": "Maven",
+        "Maven": {
+          "ArtifactId": "libphonenumber",
+          "GroupId": "com.googlecode.libphonenumber",
+          "Version": "8.10.23",
+          "NuGetId": "Xamarin.Google.LibPhoneNumber"
         }
-    ],
-    "Version": 1
+      }
+    }
+  ],
+  "Version": 1
 }
