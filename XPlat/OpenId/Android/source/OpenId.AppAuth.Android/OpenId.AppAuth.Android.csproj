@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project Sdk="MSBuild.Sdk.Extras">
     <PropertyGroup>
-        <TargetFramework>MonoAndroid9.0</TargetFramework>
+        <TargetFramework>MonoAndroid12.0</TargetFramework>
         <IsBindingProject>true</IsBindingProject>
         <AssemblyName>OpenId.AppAuth.Android</AssemblyName>
         <MonoAndroidResourcePrefix>Resources</MonoAndroidResourcePrefix>
@@ -29,7 +29,7 @@
         <PackageProjectUrl>https://go.microsoft.com/fwlink/?linkid=865038</PackageProjectUrl>
         <PackageLicenseUrl>https://go.microsoft.com/fwlink/?linkid=864980</PackageLicenseUrl>
         <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
-        <PackageVersion>0.9.0</PackageVersion>
+        <PackageVersion>0.11.1</PackageVersion>
     </PropertyGroup>
 
     <ItemGroup>
