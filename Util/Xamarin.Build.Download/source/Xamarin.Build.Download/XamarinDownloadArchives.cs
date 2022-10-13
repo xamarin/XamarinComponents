@@ -109,6 +109,7 @@ namespace Xamarin.Build.Download
 				} catch { }
 			}
 
+			LogMessage ("Hash mismatch for file: " + fileToHash, MessageImportance.High);
 			return false;
 		}
 
@@ -151,6 +152,10 @@ namespace Xamarin.Build.Download
 					LogMessage ("Timed out waiting for an exclusive file lock on: " + lockFile, MessageImportance.High);
 					return false;
 				}
+
+				// Check flag again in case someone else downloaded this while we were waiting for the lock
+				if (File.Exists (flagFile))
+					return true;
 
 				if (!File.Exists (xbd.CacheFile) || !IsValidDownload (xbd.DestinationDir + ".sha256", xbd.CacheFile, xbd.Sha256)) {
 					try {
