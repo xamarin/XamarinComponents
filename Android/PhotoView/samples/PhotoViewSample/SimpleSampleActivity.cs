@@ -5,7 +5,6 @@ using Android.OS;
 using Android.Widget;
 using AndroidX.AppCompat.App;
 using ImageViews.Photo;
-using Debug = System.Diagnostics.Debug;
 
 namespace PhotoViewSample
 {
@@ -47,7 +46,7 @@ namespace PhotoViewSample
             photoView.OutsidePhotoTap += (sender, e) => { ShowToast("You have a tap event on the place where out of the photo."); };
             photoView.SingleFling += (sender, e) =>
             {
-                Debug.WriteLine($"Fling velocityX: {e.VelocityX:0.00}, velocityY: {e.VelocityY:0.00}");
+                System.Diagnostics.Debug.WriteLine($"Fling velocityX: {e.VelocityX:0.00}, velocityY: {e.VelocityY:0.00}");
                 e.Handled = true;
             };
         }
@@ -102,7 +101,7 @@ namespace PhotoViewSample
                     var r = new Random();
                     float minScale = photoView.MinimumScale;
                     float maxScale = photoView.MaximumScale;
-                    float randomScale = minScale + ((float) r.NextDouble() * (maxScale - minScale));
+                    float randomScale = minScale + ((float)r.NextDouble() * (maxScale - minScale));
                     photoView.SetScale(randomScale, e.Item.ItemId == Resource.Id.menu_scale_random_animate);
                     ShowToast($"Scaled to: {randomScale:0.00}");
                     e.Handled = true;

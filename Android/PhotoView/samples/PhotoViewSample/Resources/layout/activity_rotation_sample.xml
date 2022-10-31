@@ -12,7 +12,7 @@
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
-            android:background="?attr/colorPrimary" />
+            android:background="?attr/colorPrimary"/>
 
     </com.google.android.material.appbar.AppBarLayout>
 
@@ -20,6 +20,6 @@
         android:id="@+id/iv_photo"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:src="@drawable/wallpaper" />
+        android:src="@drawable/wallpaper"/>
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

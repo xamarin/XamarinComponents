@@ -82,7 +82,6 @@ namespace PhotoViewSample
             {
                 RotateLoop();
             }
-
             rotating = !rotating;
         }
 

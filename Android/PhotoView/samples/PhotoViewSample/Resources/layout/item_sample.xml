@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
-
 <FrameLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
@@ -11,7 +10,7 @@
     <View
         android:layout_width="match_parent"
         android:layout_height="1dp"
-        android:background="@android:color/white" />
+        android:background="@android:color/white"/>
 
     <TextView
         android:id="@+id/title"
@@ -20,12 +19,12 @@
         android:layout_gravity="center_vertical"
         android:textSize="20sp"
         android:layout_margin="16dp"
-        tools:text="Hello there" />
+        tools:text="Hello there"/>
 
     <View
         android:layout_width="match_parent"
         android:layout_height="1dp"
         android:layout_gravity="bottom"
-        android:background="@android:color/white" />
+        android:background="@android:color/white"/>
 
 </FrameLayout>
