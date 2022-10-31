@@ -32,8 +32,6 @@ namespace Xamarin.Build.Download
 
 		public bool IsAndroid { get; set; }
 
-		public bool AndroidFixManifests { get; set; }
-
 		DownloadUtils downloadUtils;
 
 		public override bool Execute ()
@@ -111,6 +109,7 @@ namespace Xamarin.Build.Download
 				} catch { }
 			}
 
+			LogMessage ("Hash mismatch for file: " + fileToHash, MessageImportance.High);
 			return false;
 		}
 
@@ -154,6 +153,10 @@ namespace Xamarin.Build.Download
 					return false;
 				}
 
+				// Check flag again in case someone else downloaded this while we were waiting for the lock
+				if (File.Exists (flagFile))
+					return true;
+
 				if (!File.Exists (xbd.CacheFile) || !IsValidDownload (xbd.DestinationDir + ".sha256", xbd.CacheFile, xbd.Sha256)) {
 					try {
 						int progress = -1;
@@ -167,12 +170,9 @@ namespace Xamarin.Build.Download
 						};
 						using (var client = new WebClient ()) {
 							client.DownloadProgressChanged += downloadHandler;
+							client.Headers.Add ("User-Agent: Mozilla/5.0");
 							LogMessage ("  Downloading {0} to {1}", xbd.Url, xbd.CacheFile);
 							client.DownloadFileTaskAsync (xbd.Url, xbd.CacheFile).Wait (token);
-
-							// Run through our AAR fixups if it's android
-							if (IsAndroid)
-								AndroidAarFixups.FixupAar(xbd.CacheFile, AndroidFixManifests, Log);
 
 							LogMessage ("  Downloading Complete");
 							client.DownloadProgressChanged -= downloadHandler;

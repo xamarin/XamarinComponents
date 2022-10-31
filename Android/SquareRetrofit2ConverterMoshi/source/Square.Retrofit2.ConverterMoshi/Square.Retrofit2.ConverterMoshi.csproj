@@ -23,12 +23,12 @@
     <PackageLicenseFile>LICENSE.md</PackageLicenseFile>
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
     <PackageTags>moshi retrofit xamarin android monodroid</PackageTags>
-    <PackageVersion>2.7.2</PackageVersion>
+    <PackageVersion>2.9.0</PackageVersion>
   </PropertyGroup>
     
   <ItemGroup>
     <PackageReference Include="Square.Moshi" Version="1.8.0" />
-    <PackageReference Include="Square.Retrofit2" Version="2.7.2" />
+    <PackageReference Include="Square.Retrofit2" Version="2.9.0" />
   </ItemGroup>
     
   <ItemGroup>

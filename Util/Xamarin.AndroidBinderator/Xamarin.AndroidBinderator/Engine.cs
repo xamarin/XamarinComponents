@@ -321,10 +321,10 @@ namespace AndroidBinderator
 				// Gather maven dependencies to try and map out nuget dependencies
 				foreach (var mavenDep in mavenProject.Dependencies)
 				{
+					FixDependency(config, mavenArtifact, mavenDep, mavenProject);
+
 					if (!ShouldIncludeDependency(config, mavenArtifact, mavenDep, exceptions))
 						continue;
-
-					mavenDep.Version = FixVersion(mavenDep.Version, mavenProject);
 
 					mavenDep.GroupId = mavenDep.GroupId.Replace ("${project.groupId}", mavenProject.GroupId);
 					mavenDep.Version = mavenDep.Version?.Replace ("${project.version}", mavenProject.Version);
@@ -336,7 +336,15 @@ namespace AndroidBinderator
 						&& mavenDep.Satisfies(ma.Version));
 
 					if (depMapping is null && mavenDep.IsRuntimeDependency()) {
-						exceptions.Add(new Exception($"Artifact '{mavenArtifact.GroupAndArtifactId}' has unknown 'Runtime' dependency '{mavenDep.GroupAndArtifactId()}'. Either fulfill or exclude this dependency."));
+						StringBuilder sb = new StringBuilder ();
+						sb.AppendLine ($"");
+						sb.AppendLine ($"Artifact");
+						sb.AppendLine ($"	{mavenArtifact.GroupId}.{mavenArtifact.ArtifactId}:{mavenArtifact.Version}");
+						sb.AppendLine ($"has unknown 'Runtime' dependency ");
+						sb.AppendLine ($"	{mavenDep.GroupId}.{mavenDep.ArtifactId}:{mavenDep.Version}");
+						sb.AppendLine ($"Either fulfill or exclude this dependency.");
+
+						exceptions.Add(new Exception(sb.ToString()));
 						continue;
 					}
 
@@ -477,14 +485,40 @@ namespace AndroidBinderator
 			return dest;
 		}
 
-		// VersionRange.Parse cannot handle single number versions that we sometimes see in Maven, like "1".
-		// Fix them to be "1.0".
-		// https://github.com/NuGet/Home/issues/10342
-		static string FixVersion(string version, Project project)
+		static void FixDependency(BindingConfig config, MavenArtifactConfig mavenArtifact, Dependency dependency, Project project)
 		{
-			if (string.IsNullOrWhiteSpace(version))
-				return version;
+			// Handle Parent POM
+			if ((string.IsNullOrEmpty(dependency.Version) || string.IsNullOrEmpty(dependency.Scope)) && project.Parent != null) {
+				var parent_pom = GetParentPom(config, mavenArtifact, project.Parent);
+				var parent_dependency = parent_pom.FindParentDependency(dependency);
 
+				// Try to fish a version out of the parent POM
+				if (string.IsNullOrEmpty(dependency.Version))
+					dependency.Version = ReplaceVersionProperties(parent_pom, parent_dependency?.Version);
+
+				// Try to fish a scope out of the parent POM
+				if (string.IsNullOrEmpty(dependency.Scope))
+					dependency.Scope = parent_dependency?.Scope;
+			}
+
+			var version = dependency.Version;
+
+			if (string.IsNullOrWhiteSpace(version))
+				return;
+
+			version = ReplaceVersionProperties(project, version);
+
+			// VersionRange.Parse cannot handle single number versions that we sometimes see in Maven, like "1".
+			// Fix them to be "1.0".
+			// https://github.com/NuGet/Home/issues/10342
+			if (!version.Contains("."))
+				version += ".0";
+
+			dependency.Version = version;
+		}
+
+		static string ReplaceVersionProperties(Project project, string version)
+		{
 			// Handle versions with Properties, like:
 			// <properties>
 			//   <java.version>1.8</java.version>
@@ -497,15 +531,31 @@ namespace AndroidBinderator
 			//     <version>${gson.version}</version>
 			//   </dependency>
 			// </dependencies>
-			if (project?.Properties != null) {
-				foreach (var prop in project.Properties.Any)
-					version = version.Replace($"${{{prop.Name.LocalName}}}", prop.Value);
-			}
+			if (string.IsNullOrWhiteSpace(version) || project?.Properties == null)
+				return version;
 
-			if (!version.Contains("."))
-				version += ".0";
+			foreach (var prop in project.Properties.Any)
+				version = version.Replace ($"${{{prop.Name.LocalName}}}", prop.Value);
 
 			return version;
+		}
+
+		static Dictionary<string, Project> parent_poms = new Dictionary<string, Project>();
+
+		static Project GetParentPom(BindingConfig config, MavenArtifactConfig mavenArtifact, Parent parent)
+		{
+			var key = $"{parent.GroupId}.{parent.ArtifactId}-{parent.Version}";
+
+			if (parent_poms.TryGetValue(key, out var cached_pom))
+				return cached_pom;
+
+			var maven = MavenFactory.GetMavenRepository(config, mavenArtifact);
+			maven.Populate(parent.GroupId, parent.ArtifactId).Wait();
+			var pom = maven.GetProjectAsync(parent.GroupId, parent.ArtifactId, parent.Version).Result;
+
+			parent_poms.Add(key, pom);
+
+			return pom;
 		}
 	}
 }

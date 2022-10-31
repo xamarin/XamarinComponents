@@ -1,7 +1,7 @@
 trigger:
   - main
   - refs/tags/*
-  
+
 pr:
   - main
 
@@ -19,21 +19,34 @@ resources:
       ref: refs/heads/main
 
 variables:
-  DotNet6Version: 6.0.100
-  XamarinAndroidVsix: https://download.visualstudio.microsoft.com/download/pr/7372b89a-b719-426c-9916-c33cbc6c7a61/45c38957fdcacfbee95be95ee40c4f5a4cc9ace69416625ad26e2da83b176941/Xamarin.Android.Sdk-11.4.0.5.vsix
+  DotNet6Version: 6.0.300
+  DotNet6Source: https://aka.ms/dotnet6/nuget/index.json
+  NuGetOrgSource: https://api.nuget.org/v3/index.json
+  XamarinDotNetWorkloadSource: workloads.json   # or url (check for recent versions - redth)
+                                                # https://aka.ms/dotnet/maui/6.0.400.json
+  # matching builds
   # NOTE: there wasn't a public release of 16.11 for macOS
-  XamarinAndroidPkg:  https://dl.internalx.com/vsts-devdiv/Xamarin.Android/public/4941337/d16-11/7776c9f1c8fac303c3aa57867825990850be0384/xamarin.android-11.4.0.5.pkg
+  LegacyXamarinAndroidPkg:  https://dl.internalx.com/vsts-devdiv/Xamarin.Android/public/6454390/6.0.4xx/0b8d593a61bb49120fdf817e8dfdbc4b33937772/xamarin.android-12.3.99.117.pkg
+  LegacyXamarinAndroidVsix: https://dl.internalx.com/vsts-devdiv/Xamarin.Android/public/6454390/6.0.4xx/0b8d593a61bb49120fdf817e8dfdbc4b33937772/Xamarin.Android.Sdk-12.3.99.117.vsix
 jobs:
-  - template: .ci/build.yml@components
+  - template: .ci/build.v1.yml@components
     parameters:
       timeoutInMinutes: 360
       areaPath: 'DevDiv\Xamarin SDK\Android'
-      macosImage: 'macOS-11'                                  # the name of the macOS VM image
-                                                              # BigSur 20211120
-      xcode: 13.1
+      macosImage: 'macOS-12'                                  # the name of the macOS VM image
+                                                              # Monterey 20220728
+      windowsAgentPoolName: AzurePipelines-EO
+      windowsImage: ''
+      windowsImageOverride: AzurePipelinesWindows2019compliant
+
+      xcode: 13.3.1
       buildType: 'manifest'
-      linuxImage: 'ubuntu-latest'
-      validPackagePrefixes: 
+
+      linuxAgentPoolName: AzurePipelines-EO
+      linuxsImage: ''
+      linuxImageOverride: AzurePipelinesUbuntu20.04compliant
+
+      validPackagePrefixes:
         # Preferred prefixes
         - Xamarin
         - Mono
@@ -69,14 +82,25 @@ jobs:
           condition: eq(variables['System.JobName'], 'windows')
           displayName: install Xamarin.Android
         - pwsh: |
-            dotnet workload install android
+            dotnet workload update --verbosity diag --from-rollback-file $(XamarinDotNetWorkloadSource) --source $(Dotnet6Source) --source $(NuGetOrgSource)
+            dotnet workload install android --verbosity diag --skip-manifest-update --source $(Dotnet6Source) --source $(NuGetOrgSource)
+            dotnet workload install maui --verbosity diag --skip-manifest-update --source $(Dotnet6Source) --source $(NuGetOrgSource)
           displayName: install .NET 6 Android Workload
           condition: ne(variables['System.JobName'], 'linux')
       tools:
-        - 'xamarin.androidbinderator.tool': '0.5.2'
-        - 'xamarin.androidx.migration.tool': '1.0.8'
+        - 'xamarin.androidbinderator.tool': '0.5.4'
+        - 'xamarin.androidx.migration.tool': '1.0.10'
   - ${{ if eq(variables['System.TeamProject'], 'devdiv') }}:
     - template: sign-artifacts/jobs/v2.yml@internal-templates
       parameters:
-        dependsOn: [ 'build' ]
+        dependsOn: [ 'build_linux', 'build_macos', 'windows' ]
+        condition: startsWith(variables['Build.SourceBranch'], 'refs/tags/')
+    # Executive Order (EO): Software Bill of Materials (SBOM): https://eng.ms/docs/cloud-ai-platform/devdiv/one-engineering-system-1es/1es-docs/secure-supply-chain/ado-sbom-generator
+    - template: compliance/sbom/job.v1.yml@internal-templates
+      parameters:
+        dependsOn: [ 'signing' ]
+        artifactNames: [ 'nuget-signed' ]
+        packageName: Xamarin.Components         # SBOM package name. TODO: Customize for specific component: Replace with the name of the nuget package such as Square.Moshi.Adapters
+        packageVersionRegex: ''                 # SBOM package version. TODO: Customize for specific component: Regular expression used to glean the version number from the package name such as '(?i)^Square.Moshi.Adapters\.(?<version>\d+\.\d+\.\d+).nupkg$'
+        packageFilter: '*.nupkg'
         condition: startsWith(variables['Build.SourceBranch'], 'refs/tags/')

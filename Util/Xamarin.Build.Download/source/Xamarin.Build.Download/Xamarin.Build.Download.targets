@@ -12,6 +12,7 @@
 
 	<PropertyGroup Condition="('$(TargetFrameworkIdentifier)'=='Xamarin.iOS' or '$(TargetPlatformIdentifier)'=='ios') and ('$(OutputType)' != 'Library' or '$(IsAppExtension)'=='True')">
 		<_XamarinBuildDownloadMasterBeforeTargets>GetFrameworkPaths</_XamarinBuildDownloadMasterBeforeTargets>
+		<_XamarinBuildDownloadMasterBeforeTargets Condition="$(TargetFramework.Contains('-ios'))">_BeforeCoreCompileInterfaceDefinitions</_XamarinBuildDownloadMasterBeforeTargets>
 		<_XamarinBuildDownloadMasterDependsOnTargets>_XamarinBuildDownload;_XamarinBuildCastAssemblyResources</_XamarinBuildDownloadMasterDependsOnTargets>
 	</PropertyGroup>
 
@@ -19,7 +20,6 @@
 		<_XamarinBuildDownloadIsAndroid>true</_XamarinBuildDownloadIsAndroid>
 		<_XamarinBuildDownloadMasterBeforeTargets>_ResolveLibraryProjectImports</_XamarinBuildDownloadMasterBeforeTargets>
 		<_XamarinBuildDownloadMasterDependsOnTargets>ResolveAssemblyReferences;_XamarinBuildDownload;_XamarinBuildDownloadAarRestore;_XamarinBuildDownloadAarInclude</_XamarinBuildDownloadMasterDependsOnTargets>
-		<_XamarinBuildDownloadAndroidFixManifests Condition="'$(_XamarinBuildDownloadAndroidFixManifests)' == ''">true</_XamarinBuildDownloadAndroidFixManifests>
 	</PropertyGroup>
 
 	<PropertyGroup Condition="'$(_XamarinBuildDownloadIsAndroid)'==''">
@@ -57,7 +57,6 @@
 			User7ZipPath="$(XamarinBuildDownloadUser7ZipPath)"
 			VsInstallRoot="$(VsInstallRoot)"
 			IsAndroid="$(_XamarinBuildDownloadIsAndroid)"
-			AndroidFixManifests="$(_XamarinBuildDownloadAndroidFixManifests)"
 			/>
 	</Target>
 
@@ -68,7 +67,6 @@
 			Parts="@(XamarinBuildDownloadPartialZip)"
 			CacheDirectory="$(XamarinBuildDownloadDir)"
 			IsAndroid="$(_XamarinBuildDownloadIsAndroid)"
-			AndroidFixManifests="$(_XamarinBuildDownloadAndroidFixManifests)"
 			/>
 	</Target>
 
