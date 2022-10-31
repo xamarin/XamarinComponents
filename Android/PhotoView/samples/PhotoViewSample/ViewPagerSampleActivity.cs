@@ -37,7 +37,7 @@ namespace PhotoViewSample
 
             public override void DestroyItem(ViewGroup container, int position, Java.Lang.Object objectValue)
             {
-                container.RemoveView((View) objectValue);
+                container.RemoveView((View)objectValue);
             }
 
             public override bool IsViewFromObject(View view, Java.Lang.Object objectValue)
