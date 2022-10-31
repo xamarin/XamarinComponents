@@ -2,7 +2,7 @@
 
 namespace ImageViews.Photo
 {
-	public partial class PhotoView
+	partial class PhotoView
 	{
 		public Matrix DisplayMatrix
 		{

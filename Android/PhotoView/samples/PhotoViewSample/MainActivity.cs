@@ -32,12 +32,12 @@ namespace PhotoViewSample
         {
             private static List<KeyValuePair<string, Type>> options = new Dictionary<string, Type>
             {
-                {"Simple Sample", typeof(SimpleSampleActivity)},
-                {"ViewPager Sample", typeof(ViewPagerSampleActivity)},
-                {"Rotation Sample", typeof(RotationSampleActivity)},
-                {"Picasso Sample", typeof(PicassoSampleActivity)},
-                {"Activity Transition Sample", typeof(ActivityTransitionSampleActivity)},
-                {"Immersive Sample", typeof(ImmersiveSampleActivity)},
+                { "Simple Sample", typeof(SimpleSampleActivity) },
+                { "ViewPager Sample", typeof(ViewPagerSampleActivity) },
+                { "Rotation Sample", typeof(RotationSampleActivity) },
+                { "Picasso Sample", typeof(PicassoSampleActivity) },
+                { "Activity Transition Sample", typeof(ActivityTransitionSampleActivity) },
+                { "Immersive Sample", typeof(ImmersiveSampleActivity) },
             }.ToList();
 
             public override RecyclerView.ViewHolder OnCreateViewHolder(ViewGroup parent, int viewType)
@@ -47,7 +47,7 @@ namespace PhotoViewSample
 
             public override void OnBindViewHolder(RecyclerView.ViewHolder holder, int position)
             {
-                ((ItemViewHolder) holder).Bind(options[position]);
+                ((ItemViewHolder)holder).Bind(options[position]);
             }
 
             public override int ItemCount => options.Count;
@@ -69,7 +69,10 @@ namespace PhotoViewSample
             {
                 textTitle = view.FindViewById<TextView>(Resource.Id.title);
 
-                ItemView.Click += (sender, e) => { ItemView.Context.StartActivity(new Intent(ItemView.Context, activityType)); };
+                ItemView.Click += (sender, e) =>
+                {
+                    ItemView.Context.StartActivity(new Intent(ItemView.Context, activityType));
+                };
             }
 
             public void Bind(KeyValuePair<string, Type> option)

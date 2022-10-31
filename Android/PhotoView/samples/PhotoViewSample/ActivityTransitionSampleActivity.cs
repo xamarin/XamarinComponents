@@ -50,7 +50,9 @@ namespace PhotoViewSample
                 return holder;
             }
 
-            public override void OnBindViewHolder(RecyclerView.ViewHolder holder, int position) { }
+            public override void OnBindViewHolder(RecyclerView.ViewHolder holder, int position)
+            {
+            }
 
             public override int ItemCount => 20;
 
@@ -65,7 +67,9 @@ namespace PhotoViewSample
                 return new ImageViewHolder(view);
             }
 
-            public ImageViewHolder(View view) : base(view) { }
+            public ImageViewHolder(View view) : base(view)
+            {
+            }
         }
     }
 }

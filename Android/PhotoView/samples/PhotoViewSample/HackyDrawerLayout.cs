@@ -2,17 +2,20 @@
 using Android.Util;
 using Android.Views;
 using AndroidX.DrawerLayout.Widget;
-using Java.Lang;
 
 namespace PhotoViewSample
 {
     public class HackyDrawerLayout : DrawerLayout
     {
         public HackyDrawerLayout(Context context)
-            : base(context) { }
+            : base(context)
+        {
+        }
 
         public HackyDrawerLayout(Context context, IAttributeSet attrs)
-            : base(context, attrs) { }
+            : base(context, attrs)
+        {
+        }
 
         public override bool OnInterceptTouchEvent(MotionEvent ev)
         {
@@ -28,7 +31,7 @@ namespace PhotoViewSample
             {
                 return base.OnInterceptTouchEvent(ev);
             }
-            catch (IllegalArgumentException ex)
+            catch (Java.Lang.IllegalArgumentException ex)
             {
                 ex.PrintStackTrace();
                 return false;
