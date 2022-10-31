@@ -67,7 +67,7 @@ namespace PhotoViewSample
                 return new ImageViewHolder(view);
             }
 
-            public ImageViewHolder(View view) 
+            public ImageViewHolder(View view)
                 : base(view)
             {
             }

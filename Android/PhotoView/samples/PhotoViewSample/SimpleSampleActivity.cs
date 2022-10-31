@@ -36,14 +36,20 @@ namespace PhotoViewSample
             photoView.SetImageBitmap(bitmap);
 
             // Lets attach some listeners, not required though!
-            photoView.MatrixChange += (sender, e) => { currentMatrixTextView.Text = e.Rect.ToString(); };
+            photoView.MatrixChange += (sender, e) =>
+            {
+                currentMatrixTextView.Text = e.Rect.ToString();
+            };
             photoView.PhotoTap += (sender, e) =>
             {
                 float xPercentage = e.X * 100f;
                 float yPercentage = e.Y * 100f;
                 ShowToast($"Photo Tap! X:{xPercentage:0.00} % Y:{yPercentage:0.00} % ID: {(e.View == null ? 0 : e.View.Id)}");
             };
-            photoView.OutsidePhotoTap += (sender, e) => { ShowToast("You have a tap event on the place where out of the photo."); };
+            photoView.OutsidePhotoTap += (sender, e) =>
+            {
+                ShowToast("You have a tap event on the place where out of the photo.");
+            };
             photoView.SingleFling += (sender, e) =>
             {
                 System.Diagnostics.Debug.WriteLine($"Fling velocityX: {e.VelocityX:0.00}, velocityY: {e.VelocityY:0.00}");
@@ -101,7 +107,7 @@ namespace PhotoViewSample
                     var r = new Random();
                     float minScale = photoView.MinimumScale;
                     float maxScale = photoView.MaximumScale;
-                    float randomScale = minScale + ((float)r.NextDouble() * (maxScale - minScale));
+                    float randomScale = minScale + ((float) r.NextDouble() * (maxScale - minScale));
                     photoView.SetScale(randomScale, e.Item.ItemId == Resource.Id.menu_scale_random_animate);
                     ShowToast($"Scaled to: {randomScale:0.00}");
                     e.Handled = true;

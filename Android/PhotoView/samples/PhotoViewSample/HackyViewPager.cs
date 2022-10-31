@@ -31,7 +31,7 @@ namespace PhotoViewSample
             {
                 return base.OnInterceptTouchEvent(ev);
             }
-            catch (Java.Lang.IllegalArgumentException ex)
+            catch(Java.Lang.IllegalArgumentException ex)
             {
                 ex.PrintStackTrace();
                 return false;
