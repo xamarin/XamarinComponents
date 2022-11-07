@@ -465,6 +465,9 @@
   TriggerPaths: [ Android/Google.Play.Core ]
   MacBuildTargets: [ ci ]
   WindowsBuildTargets: [ ci ]
+- Name: Google.UserMessagingPlatform
+  BuildScript: ./XPlat/Google.UserMessagingPlatform/build.cake
+  TriggerPaths: [ XPlat/Google.UserMessagingPlatform ]
 - Name: Protobuf.JavaLite
   BuildScript: ./Android/Protobuf.JavaLite/build.cake
   TriggerPaths: [ Android/Protobuf.JavaLite ]
