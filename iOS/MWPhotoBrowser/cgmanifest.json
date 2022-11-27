@@ -1,14 +1,15 @@
 {
-  "Registrations":[
+  "$schema": "https://json.schemastore.org/component-detection-manifest.json",
+  "Registrations": [
     {
       "Component": {
         "Type": "git",
         "Git": {
-           "CommitHash": "66ddd73859978a9c24c6ce014634f3bde351e917",
-           "RepositoryUrl": "https://github.com/mwaterfall/MWPhotoBrowser.git",
-           "NugetId": "Xamarin.MWPhotoBrowser"
-          }
-     }
+          "CommitHash": "66ddd73859978a9c24c6ce014634f3bde351e917",
+          "RepositoryUrl": "https://github.com/mwaterfall/MWPhotoBrowser.git",
+          "NugetId": "Xamarin.MWPhotoBrowser"
+        }
+      }
     }
   ],
   "Version": 1

@@ -1,45 +1,46 @@
 {
-    "Registrations":[ 
-      {
-        "Component": {
-          "Type": "Maven",
-          "Maven": {
-            "ArtifactId": "glide",
-            "GroupId": "com.github.bumptech.glide",
-            "Version": "4.12.0"
-          }
-        }
-      },
-      {
-        "Component": {
-          "Type": "Maven",
-          "Maven": {
-            "ArtifactId": "gifdecoder",
-            "GroupId": "com.github.bumptech.glide",
-            "Version": "4.12.0"
-          }
-        }
-      },
-      {
-        "Component": {
-          "Type": "Maven",
-          "Maven": {
-            "ArtifactId": "disklrucache",
-            "GroupId": "com.github.bumptech.glide",
-            "Version": "4.12.0"
-          }
-        }
-      },
-      {
-        "Component": {
-          "Type": "Maven",
-          "Maven": {
-            "ArtifactId": "recyclerview-integration",
-            "GroupId": "com.github.bumptech.glide",
-            "Version": "4.12.0"
-          }
+  "$schema": "https://json.schemastore.org/component-detection-manifest.json",
+  "Registrations": [
+    {
+      "Component": {
+        "Type": "Maven",
+        "Maven": {
+          "ArtifactId": "glide",
+          "GroupId": "com.github.bumptech.glide",
+          "Version": "4.12.0"
         }
       }
-    ],
-    "Version": 1
-  }
+    },
+    {
+      "Component": {
+        "Type": "Maven",
+        "Maven": {
+          "ArtifactId": "gifdecoder",
+          "GroupId": "com.github.bumptech.glide",
+          "Version": "4.12.0"
+        }
+      }
+    },
+    {
+      "Component": {
+        "Type": "Maven",
+        "Maven": {
+          "ArtifactId": "disklrucache",
+          "GroupId": "com.github.bumptech.glide",
+          "Version": "4.12.0"
+        }
+      }
+    },
+    {
+      "Component": {
+        "Type": "Maven",
+        "Maven": {
+          "ArtifactId": "recyclerview-integration",
+          "GroupId": "com.github.bumptech.glide",
+          "Version": "4.12.0"
+        }
+      }
+    }
+  ],
+  "Version": 1
+}

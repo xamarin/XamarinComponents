@@ -1,27 +1,28 @@
 {
-	"Registrations": [
-		{
-			"component": {
-				"type": "git",
-				"git": {
-					"name": "play-licensing",
-					"repositoryUrl": "https://github.com/google/play-licensing.git",
-					"commitHash": "89ebdfcf52562018ff4c366055f0e35393919763"
-                },
-                "nugetId": "Xamarin.Google.Android.Vending.Licensing"
-            }
+  "$schema": "https://json.schemastore.org/component-detection-manifest.json",
+  "Registrations": [
+    {
+      "component": {
+        "type": "git",
+        "git": {
+          "name": "play-licensing",
+          "repositoryUrl": "https://github.com/google/play-licensing.git",
+          "commitHash": "89ebdfcf52562018ff4c366055f0e35393919763"
         },
-        {
-            "component": {
-				"type": "git",
-				"git": {
-					"name": "play-apk-expansion",
-					"repositoryUrl": "https://github.com/google/play-apk-expansion.git",
-					"commitHash": "9ecf54e5ce7c5a74a2eeedcec4d940ea52b16f0e"
-                },
-                "nugetId": "Xamarin.Google.Android.Vending.Expansion.Downloader"
-			}
-		}
-	],
-	"Version": 1
+        "nugetId": "Xamarin.Google.Android.Vending.Licensing"
+      }
+    },
+    {
+      "component": {
+        "type": "git",
+        "git": {
+          "name": "play-apk-expansion",
+          "repositoryUrl": "https://github.com/google/play-apk-expansion.git",
+          "commitHash": "9ecf54e5ce7c5a74a2eeedcec4d940ea52b16f0e"
+        },
+        "nugetId": "Xamarin.Google.Android.Vending.Expansion.Downloader"
+      }
+    }
+  ],
+  "Version": 1
 }

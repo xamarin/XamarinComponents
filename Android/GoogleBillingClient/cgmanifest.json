@@ -1,15 +1,16 @@
 {
-    "Registrations":[ 
-      {
-        "Component": {
-          "Type": "Maven",
-          "Maven": {
-            "ArtifactId": "billing",
-            "GroupId": "com.android.billingclient",
-            "Version": "4.0.0"
-          }
+  "$schema": "https://json.schemastore.org/component-detection-manifest.json",
+  "Registrations": [
+    {
+      "Component": {
+        "Type": "Maven",
+        "Maven": {
+          "ArtifactId": "billing",
+          "GroupId": "com.android.billingclient",
+          "Version": "4.0.0"
         }
       }
-    ],
-    "Version": 1
-  }
+    }
+  ],
+  "Version": 1
+}
