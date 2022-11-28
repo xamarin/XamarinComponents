@@ -432,7 +432,7 @@ jobs:
             instanceUrlForTsaV2: 'DEVDIV'
             projectNameDEVDIV: 'DevDiv'
             areaPath: '${{ parameters.areaPath }}'
-            iterationPath: 'DevDiv\OneVS'
+            iterationPath: 'DevDiv\Future Backlog'
             uploadAPIScan: false
             uploadBinSkim: false
             uploadCredScan: true
