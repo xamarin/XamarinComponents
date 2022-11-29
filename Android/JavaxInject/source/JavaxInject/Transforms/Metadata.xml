@@ -1,4 +1,0 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
-<metadata>
-    <attr path="/api/package[@name='javax.inject']" name="managedName">JavaX.Inject</attr>
-</metadata>

@@ -1,7 +1,0 @@
-<Project>
-  <ItemGroup>
-    <AndroidAarLibrary Include="$(MSBuildThisFileDirectory)..\..\aar\glide.aar">
-      <AndroidXSkipAndroidXMigration>true</AndroidXSkipAndroidXMigration>
-    </AndroidAarLibrary>
-  </ItemGroup>
-</Project>

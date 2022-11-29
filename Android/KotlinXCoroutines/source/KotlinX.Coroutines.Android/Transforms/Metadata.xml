@@ -1,6 +1,0 @@
-﻿<metadata>
-
-    <attr path="/api/package[@name='kotlinx.coroutines.android']" name="managedName">Xamarin.KotlinX.Coroutines.CoroutinesAndroid</attr>
-    <attr path="/api/package[@name='kotlinx.coroutines.android']/class[@name='HandlerDispatcher']/method[@name='getImmediate' and count(parameter)=0]" name="managedReturn">Xamarin.KotlinX.Coroutines.MainCoroutineDispatcher</attr>
-
-</metadata>
