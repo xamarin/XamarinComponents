@@ -1,4 +1,0 @@
-<metadata>
-  <!-- Rename Namespaces -->
-  <attr path="/api/package[@name='com.google.common.util.concurrent']" name="managedName">Google.Common.Util.Concurrent</attr>
-</metadata>
