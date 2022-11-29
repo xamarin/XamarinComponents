@@ -1,8 +1,8 @@
 
 var TARGET = Argument ("t", Argument ("target", "ci"));
 
-var AAR_VERSION = "4.0.0";
-var AAR_KTX_VERSION = "4.0.0";
+var AAR_VERSION = "5.0.0";
+var AAR_KTX_VERSION = "5.0.0";
 var NUGET_VERSION = AAR_VERSION;
 
 var AAR_URL = $"https://dl.google.com/dl/android/maven2/com/android/billingclient/billing/{AAR_VERSION}/billing-{AAR_VERSION}.aar";

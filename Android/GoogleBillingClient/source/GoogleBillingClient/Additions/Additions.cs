@@ -29,7 +29,21 @@ namespace Android.BillingClient.Api
 		public IList<SkuDetails> SkuDetails { get; set; }
 	}
 
-	public partial class BillingClient
+    public class QueryProductDetailsResult
+    {
+        public BillingResult Result { get; set; }
+
+        public IList<ProductDetails> ProductDetails { get; set; }
+    }
+
+    public class QueryPurchasesResult
+    {
+        public BillingResult Result { get; set; }
+
+        public IList<Purchase> Purchases { get; set; }
+    }
+
+    public partial class BillingClient
 	{
 		public partial class Builder
 		{
@@ -114,7 +128,43 @@ namespace Android.BillingClient.Api
 			return tcs.Task;
 		}
 
-		public Task<BillingResult> StartConnectionAsync(Action onDisconnected = null)
+        public Task<QueryProductDetailsResult> QueryProductDetailsAsync(QueryProductDetailsParams productDetailsParams)
+        {
+            var tcs = new TaskCompletionSource<QueryProductDetailsResult>();
+
+            var listener = new InternalProductDetailsResponseListener
+            {
+                ProductDetailsResponseHandler = (r, s) => tcs.TrySetResult(new QueryProductDetailsResult
+                {
+                    Result = r,
+                    ProductDetails = s
+                })
+            };
+
+            QueryProductDetails(productDetailsParams, listener);
+
+            return tcs.Task;
+        }
+
+        public Task<QueryPurchasesResult> QueryPurchasesAsync(QueryPurchasesParams purchasesParams)
+        {
+            var tcs = new TaskCompletionSource<QueryPurchasesResult>();
+
+            var listener = new InternalPurchasesResponseListener
+            {
+                PurchasesResponseHandler = (r, s) => tcs.TrySetResult(new QueryPurchasesResult
+                {
+                    Result = r,
+                    Purchases = s
+                })
+            };
+
+            QueryPurchases(purchasesParams, listener);
+
+            return tcs.Task;
+        }
+
+        public Task<BillingResult> StartConnectionAsync(Action onDisconnected = null)
 		{
 			var tcs = new TaskCompletionSource<BillingResult>();
 
@@ -219,4 +269,20 @@ namespace Android.BillingClient.Api
 		public void OnSkuDetailsResponse(BillingResult result, IList<SkuDetails> skuDetails)
 			=> SkuDetailsResponseHandler?.Invoke(result, skuDetails);
 	}
+
+    internal class InternalProductDetailsResponseListener : Java.Lang.Object, IProductDetailsResponseListener
+    {
+        public Action<BillingResult, IList<ProductDetails>> ProductDetailsResponseHandler { get; set; }
+
+        public void OnProductDetailsResponse(BillingResult result, IList<ProductDetails> skuDetails)
+            => ProductDetailsResponseHandler?.Invoke(result, skuDetails);
+    }
+
+    internal class InternalPurchasesResponseListener : Java.Lang.Object, IPurchasesResponseListener
+    {
+        public Action<BillingResult, IList<Purchase>> PurchasesResponseHandler { get; set; }
+
+        public void OnQueryPurchasesResponse(BillingResult result, IList<Purchase> purchases)
+            => PurchasesResponseHandler?.Invoke(result, purchases);
+    }
 }
