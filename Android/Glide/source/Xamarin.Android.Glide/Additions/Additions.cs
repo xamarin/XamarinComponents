@@ -15,6 +15,7 @@ using Bumptech.Glide.Request.Transition;
 using Java.IO;
 using Java.Lang;
 using Java.Util.Concurrent;
+using static Android.Graphics.BitmapFactory;
 
 namespace Bumptech.Glide
 {
@@ -35,13 +36,13 @@ namespace Bumptech.Glide
         public virtual RequestBuilder Decode(Class resourceClass) => (RequestBuilder)Decode_T(resourceClass);
 
         public virtual RequestBuilder DisallowHardwareConfig() => (RequestBuilder)DisallowHardwareConfig_T();
-        
+
         public virtual RequestBuilder Downsample(DownsampleStrategy strategy) => (RequestBuilder)Downsample_T(strategy);
 
         public virtual RequestBuilder EncodeFormat(Bitmap.CompressFormat format) => (RequestBuilder)EncodeFormat_T(format);
 
         public virtual RequestBuilder EncodeQuality(int quality) => (RequestBuilder)EncodeQuality_T(quality);
-	    
+
         public virtual RequestBuilder Error(Drawable drawable) => (RequestBuilder)Error_T(drawable);
 
         public virtual RequestBuilder Error(int resourceId) => (RequestBuilder)Error_T(resourceId);
@@ -57,7 +58,7 @@ namespace Bumptech.Glide
         public virtual RequestBuilder Frame(long frameTimeMicros) => (RequestBuilder)Frame_T(frameTimeMicros);
 
         public virtual RequestBuilder Lock() => (RequestBuilder)Lock_T();
-        
+
         public virtual RequestBuilder OptionalCenterCrop() => (RequestBuilder)OptionalCenterCrop_T();
 
         public virtual RequestBuilder OptionalCenterInside() => (RequestBuilder)OptionalCenterInside_T();
@@ -77,7 +78,7 @@ namespace Bumptech.Glide
         public virtual RequestBuilder Placeholder(Drawable drawable) => (RequestBuilder)Placeholder_T(drawable);
 
         public virtual RequestBuilder Placeholder(int resourceId) => (RequestBuilder)Placeholder_T(resourceId);
-        
+
         public virtual RequestBuilder Set(Option option, Object value) => (RequestBuilder)Set_T(option, value);
 
         public virtual RequestBuilder SetDiskCacheStrategy(DiskCacheStrategy strategy) => (RequestBuilder)DiskCacheStrategy_T(strategy);
@@ -118,22 +119,22 @@ namespace Bumptech.Glide.Load.Data
     }
 
     public partial class FileDescriptorAssetPathFetcher
-	{
+    {
         protected override void Close(Object data) => Close((ParcelFileDescriptor)data);
 
         protected override Object LoadResource(AssetManager assetManager, string path) => LoadResource_T(assetManager, path);
     }
 
-	public partial class FileDescriptorLocalUriFetcher
-	{
-		protected override void Close(Object data) => Close((ParcelFileDescriptor)data);
+    public partial class FileDescriptorLocalUriFetcher
+    {
+        protected override void Close(Object data) => Close((ParcelFileDescriptor)data);
 
         protected override Object LoadResource(Uri uri, ContentResolver contentResolver) => LoadResource_T(uri, contentResolver);
     }
 
     public partial class StreamAssetPathFetcher
-	{
-		protected override void Close(Object data)
+    {
+        protected override void Close(Object data)
         {
             var stream = InputStreamInvoker.FromJniHandle(((InputStream)data).Handle, JniHandleOwnership.DoNotTransfer);
 
@@ -141,23 +142,23 @@ namespace Bumptech.Glide.Load.Data
         }
 
         protected override Object LoadResource(AssetManager assetManager, string path)
-		{
-			var handle = InputStreamAdapter.ToLocalJniHandle(LoadResource_T(assetManager, path));
+        {
+            var handle = InputStreamAdapter.ToLocalJniHandle(LoadResource_T(assetManager, path));
 
-			try
-			{
-				return new Object(handle, JniHandleOwnership.TransferLocalRef);
-			}
-			finally
-			{
-				JNIEnv.DeleteLocalRef(handle);
-			}
-		}
-	}
+            try
+            {
+                return new Object(handle, JniHandleOwnership.TransferLocalRef);
+            }
+            finally
+            {
+                JNIEnv.DeleteLocalRef(handle);
+            }
+        }
+    }
 
     public partial class StreamLocalUriFetcher
-	{
-		protected override void Close(Object data)
+    {
+        protected override void Close(Object data)
         {
             var stream = InputStreamInvoker.FromJniHandle(((InputStream)data).Handle, JniHandleOwnership.DoNotTransfer);
 
@@ -165,19 +166,19 @@ namespace Bumptech.Glide.Load.Data
         }
 
         protected override Object LoadResource(Uri uri, ContentResolver contentResolver)
-		{
-			var handle = InputStreamAdapter.ToLocalJniHandle(LoadResource_T(uri, contentResolver));
+        {
+            var handle = InputStreamAdapter.ToLocalJniHandle(LoadResource_T(uri, contentResolver));
 
-			try
-			{
-				return new Object(handle, JniHandleOwnership.TransferLocalRef);
-			}
-			finally
-			{
-				JNIEnv.DeleteLocalRef(handle);
-			}
-		}
-	}
+            try
+            {
+                return new Object(handle, JniHandleOwnership.TransferLocalRef);
+            }
+            finally
+            {
+                JNIEnv.DeleteLocalRef(handle);
+            }
+        }
+    }
 }
 
 namespace Bumptech.Glide.Load.Engine.Executor
@@ -196,32 +197,32 @@ namespace Bumptech.Glide.Load.Engine.Executor
 
 namespace Bumptech.Glide.Load.Model
 {
-	public partial class AssetUriLoader
-	{
-		public virtual ModelLoaderLoadData BuildLoadData(Object model, int width, int height, Options options) =>
+    public partial class AssetUriLoader
+    {
+        public virtual ModelLoaderLoadData BuildLoadData(Object model, int width, int height, Options options) =>
             BuildLoadData((Uri)model, width, height, options);
 
         public virtual bool Handles(Object model) => Handles((Uri)model);
     }
 
     public partial class ByteArrayLoader
-	{
-		public virtual ModelLoaderLoadData BuildLoadData(Object model, int width, int height, Options options) =>
+    {
+        public virtual ModelLoaderLoadData BuildLoadData(Object model, int width, int height, Options options) =>
             BuildLoadData(model?.ToArray<byte>(), width, height, options);
 
         public virtual bool Handles(Object model) => Handles(model?.ToArray<byte>());
     }
 
-	public partial class StringLoader
-	{
-		public virtual ModelLoaderLoadData BuildLoadData(Object model, int width, int height, Options options) =>
+    public partial class StringLoader
+    {
+        public virtual ModelLoaderLoadData BuildLoadData(Object model, int width, int height, Options options) =>
             BuildLoadData(model?.ToString(), width, height, options);
 
         public virtual bool Handles(Object model) => Handles(model?.ToString());
     }
     public partial class FileLoader
-	{
-		public virtual ModelLoaderLoadData BuildLoadData(Object model, int width, int height, Options options) =>
+    {
+        public virtual ModelLoaderLoadData BuildLoadData(Object model, int width, int height, Options options) =>
             BuildLoadData((File)model, width, height, options);
 
         public virtual bool Handles(Object model) => Handles((File)model);
@@ -236,16 +237,16 @@ namespace Bumptech.Glide.Load.Model
     }
 
     public partial class UriLoader
-	{
-		public virtual ModelLoaderLoadData BuildLoadData(Object model, int width, int height, Options options) =>
+    {
+        public virtual ModelLoaderLoadData BuildLoadData(Object model, int width, int height, Options options) =>
             BuildLoadData((Uri)model, width, height, options);
 
         public virtual bool Handles(Object model) => Handles((Uri)model);
     }
 
     public partial class UrlUriLoader
-	{
-		public virtual ModelLoaderLoadData BuildLoadData(Object model, int width, int height, Options options) =>
+    {
+        public virtual ModelLoaderLoadData BuildLoadData(Object model, int width, int height, Options options) =>
             BuildLoadData((Uri)model, width, height, options);
 
         public virtual bool Handles(Object model) => Handles((Uri)model);
@@ -280,7 +281,7 @@ namespace Bumptech.Glide.Load.Resource
 namespace Bumptech.Glide.Load.Resource.Gif
 {
     public partial class GifDrawableEncoder
-	{
+    {
         public virtual unsafe bool Encode(Object data, global::Java.IO.File file, global::Bumptech.Glide.Load.Options options)
             => Encode((IResource)data, file, options);
     }
@@ -288,32 +289,32 @@ namespace Bumptech.Glide.Load.Resource.Gif
 
 namespace Bumptech.Glide.Load.Resource.Bitmap
 {
-	public partial class BitmapDrawableEncoder
-	{
-		public virtual bool Encode(Object data, Java.IO.File file, Options options) => Encode((IResource)data, file, options);
+    public partial class BitmapDrawableEncoder
+    {
+        public virtual bool Encode(Object data, Java.IO.File file, Options options) => Encode((IResource)data, file, options);
     }
 
     public partial class BitmapEncoder
-	{
-		public virtual bool Encode(Object data, Java.IO.File file, Options options) => Encode((IResource)data, file, options);
+    {
+        public virtual bool Encode(Object data, Java.IO.File file, Options options) => Encode((IResource)data, file, options);
     }
 
     public partial class StreamBitmapDecoder : IResourceDecoder
-	{
-		IResource IResourceDecoder.Decode(Object source, int width, int height, Options options)
-		{
-			var stream = InputStreamInvoker.FromJniHandle(source.Handle, JniHandleOwnership.DoNotTransfer);
+    {
+        IResource IResourceDecoder.Decode(Object source, int width, int height, Options options)
+        {
+            var stream = InputStreamInvoker.FromJniHandle(source.Handle, JniHandleOwnership.DoNotTransfer);
 
-			return Decode(stream, width, height, options);
-		}
+            return Decode(stream, width, height, options);
+        }
 
-		bool IResourceDecoder.Handles(Object source, Options options)
-		{
-			var stream = InputStreamInvoker.FromJniHandle(source.Handle, JniHandleOwnership.DoNotTransfer);
+        bool IResourceDecoder.Handles(Object source, Options options)
+        {
+            var stream = InputStreamInvoker.FromJniHandle(source.Handle, JniHandleOwnership.DoNotTransfer);
 
-			return Handles(stream, options);
-		}
-	}
+            return Handles(stream, options);
+        }
+    }
 }
 
 namespace Bumptech.Glide.Request
@@ -341,7 +342,7 @@ namespace Bumptech.Glide.Request
         public virtual RequestOptions EncodeFormat(Bitmap.CompressFormat format) => (RequestOptions)EncodeFormat_T(format);
 
         public virtual RequestOptions EncodeQuality(int quality) => (RequestOptions)EncodeQuality_T(quality);
-	    
+
         public virtual RequestBuilder Error(Drawable drawable) => (RequestBuilder)Error_T(drawable);
 
         public virtual RequestOptions Error(int resourceId) => (RequestOptions)Error_T(resourceId);
