@@ -1,33 +1,16 @@
 # Open Source Components for Xamarin
 
 [![GitHub License](https://img.shields.io/badge/license-MIT-lightgrey.svg)](https://github.com/xamarin/XamarinComponents/blob/master/LICENSE)
-[![contributions welcome](https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat)](https://github.com/xamarin/XamarinComponents/issues)
-[![GitHub contributors](https://img.shields.io/github/contributors/xamarin/XamarinComponents.svg)](https://github.com/xamarin/XamarinComponents/graphs/contributors)
 
 Open Source Components for Xamarin are a collection of open source components (including bindings and plugins) created by Xamarin and others in the community.
 
- - [Building](#building)
-    - [Prerequisites](#prerequisites)
-    - [Compiling](#compiling)
-    - [Working in Visual Studio](#working-in-visual-studio)
- - [Xamarin Supported Open Source Components](#xamarin-supported-open-source-components)
-    - [Xamarin.Essentials](#xamarinessentials)
- - [Community Provided Open Source Plugins](#community-provided-open-source-plugins)
-    - [Popular Plugins](#popular-plugins)
-    - [Data Caching & Databases](#data-caching--databases)
-    - [Create a Plugin for Xamarin](#create-a-plugin-for-xamarin)
-
 ## Status
 
-Some of the bindings are obsoleted and commented out in the `manifest.yaml`. The reasons vary from binaries being removed 
-from JCenter/BinTray/JFrog, to stale code or script API used in cake scripts.
+Please note that this repository of bindings for third-party mobile libraries is considered unsupported and unmaintained.  We have moved many of the most popular and essential bindings to other repositories where they will be supported: https://github.com/xamarin/XamarinComponents/pull/1417.
 
-Obsoleted bindings (might need some love for update):
+Existing bindings published from this repository will continue to be available on NuGet, but will not receive fixes or updates to newer versions.
 
-*  Shopify
-*  OpenId
-*  AndroidThings
-*  AnimatedCircleLoadingView
+For details of bindings officially supported by Microsoft, see the [Support](https://github.com/xamarin/XamarinComponents/blob/main/Support.md) page.
 
 ## Building
 

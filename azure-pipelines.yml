@@ -32,7 +32,7 @@ jobs:
   - template: .ci/build.v1.yml@components
     parameters:
       timeoutInMinutes: 360
-      areaPath: 'DevDiv\Xamarin SDK\Android'
+      areaPath: 'DevDiv\VS Client - Runtime SDKs\Android'
       macosImage: 'macOS-12'                                  # the name of the macOS VM image
                                                               # Monterey 20220728
       windowsAgentPoolName: AzurePipelines-EO

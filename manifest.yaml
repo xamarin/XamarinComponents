@@ -36,16 +36,6 @@
   TriggerPaths: [ Android/GoogleAndroidVending ]
   MacBuildTargets: [ ci ]
   WindowsBuildTargets: [ ci ]
-- Name: GoogleDagger
-  BuildScript: ./Android/GoogleDagger/build.cake
-  TriggerPaths: [ Android/GoogleDagger ]
-  MacBuildTargets: [ ci ]
-  WindowsBuildTargets: [ ci ]
-- Name: JavaxInject
-  BuildScript: ./Android/JavaxInject/build.cake
-  TriggerPaths: [ Android/JavaxInject ]
-  MacBuildTargets: [ ci ]
-  WindowsBuildTargets: [ ci ]
 # Obsolete
 # - Name: AndroidThings
 #   BuildScript: ./Android/AndroidThings/build.cake
@@ -80,11 +70,6 @@
   BuildScript: ./Android/Crashlytics/build.cake
   TriggerPaths: [ Android/Crashlytics ]
   MacBuildTargets: [ nuget, samples ]
-- Name: ReactiveStreams
-  BuildScript: ./Android/ReactiveStreams/build.cake
-  TriggerPaths: [ Android/ReactiveStreams ]
-  MacBuildTargets: [ nuget ]
-  WindowsBuildTargets: [ nuget ]
 - Name: RenderScriptV8
   BuildScript: ./Android/RenderScriptV8/build.cake
   TriggerPaths: [ Android/RenderScriptV8 ]
@@ -127,19 +112,6 @@
   BuildScript: ./Android/FloatingSearchView/build.cake
   TriggerPaths: [ Android/FloatingSearchView ]
   MacBuildTargets: [ nuget, samples ]
-- Name: GoogleGson
-  BuildScript: ./Android/GoogleGson/build.cake
-  TriggerPaths: [ Android/GoogleGson ]
-  MacBuildTargets: [ nuget, samples ]
-- Name: GoogleZXing
-  BuildScript: ./Android/GoogleZXing/build.cake
-  TriggerPaths: [ Android/GoogleZXing ]
-  MacBuildTargets: [ ci ]
-  WindowsBuildTargets: [ ci ]
-- Name: Guava
-  BuildScript: ./Android/Guava/build.cake
-  TriggerPaths: [ Android/Guava ]
-  WindowsBuildTargets: [ nuget ]
 - Name: JacksonCore
   BuildScript: ./Android/Jackson.Core/build.cake
   TriggerPaths: [ Android/Jackson.Core ]
@@ -173,11 +145,6 @@
   TriggerPaths: [ Android/PdfViewPager ]
   MacBuildTargets: [ ci ]
   WindowsBuildTargets: [ ci ]
-- Name: ReactiveX
-  BuildScript: ./Android/ReactiveX/build.cake
-  TriggerPaths: [ Android/ReactiveX ]
-  WindowsBuildTargets: [ nuget ]
-  MacBuildTargets: [ nuget ]
 - Name: RecyclerViewAnimators
   BuildScript: ./Android/RecyclerViewAnimators/build.cake
   TriggerPaths: [ Android/RecyclerViewAnimators ]
@@ -217,11 +184,6 @@
   TriggerPaths: [ Android/StickyListHeaders ]
   MacBuildTargets: [ ci ]
   WindowsBuildTargets: [ ci ]
-- Name: Kotlin
-  BuildScript: ./Android/Kotlin/build.cake
-  TriggerPaths: [ Android/Kotlin ]
-  WindowsBuildTargets: [ ci ]
-  MacBuildTargets: [ ci ]
 - Name: UniversalImageLoader
   BuildScript: ./Android/UniversalImageLoader/build.cake
   TriggerPaths: [ Android/UniversalImageLoader ]
@@ -234,14 +196,6 @@
   BuildScript: ./Android/VectorCompat/build.cake
   TriggerPaths: [ Android/VectorCompat ]
   MacBuildTargets: [ nuget, samples ]
-- Name: Volley
-  BuildScript: ./Android/Volley/build.cake
-  TriggerPaths: [ Android/Volley ]
-  MacBuildTargets: [nuget]
-- Name: Glide
-  BuildScript: ./Android/Glide/build.cake
-  TriggerPaths: [ Android/Glide ]
-  WindowsBuildTargets: [ ci ]
 - Name: Wear
   BuildScript: ./Android/Wear/build.cake
   TriggerPaths: [ Android/Wear ]
@@ -260,23 +214,10 @@
   TriggerPaths: [ Android/SurfaceDuo ]
   MacBuildTargets: [ ci ]
   WindowsBuildTargets: [ ci ]
-- Name: GoogleAutoValue
-  BuildScript: ./Android/GoogleAutoValue/build.cake
-  TriggerPaths: [ Android/GoogleAutoValue ]
-  MacBuildTargets: [ libs, nuget ]
 - Name: GooglePlaces
   BuildScript: ./Android/GooglePlaces/build.cake
   TriggerPaths: [ Android/GooglePlaces ]
   MacBuildTargets: [ nuget, samples ]
-- Name: GoogleBillingClient
-  BuildScript: ./Android/GoogleBillingClient/build.cake
-  TriggerPaths: [ Android/GoogleBillingClient ]
-  MacBuildTargets: [ libs, nuget]
-- Name: SquarePicasso
-  BuildScript: ./Android/SquarePicasso/build.cake
-  TriggerPaths: [ Android/SquarePicasso ]
-  MacBuildTargets: [ ci ]
-  WindowsBuildTargets: [ ci ]
 - Name: JakeWhartonPicasso2OkHttp3Downloader
   BuildScript: ./Android/JakeWhartonPicasso2OkHttp3Downloader/build.cake
   TriggerPaths: [ Android/JakeWhartonPicasso2OkHttp3Downloader ]
@@ -292,24 +233,9 @@
   TriggerPaths: [ Android/SquareAndroidTimesSquare ]
   MacBuildTargets: [ ci ]
   WindowsBuildTargets: [ ci ]
-- Name: SquareOkHttp
-  BuildScript: ./Android/SquareOkHttp/build.cake
-  TriggerPaths: [ Android/SquareOkHttp ]
-  MacBuildTargets: [ ci ]
-  WindowsBuildTargets: [ ci ]
-- Name: SquareOkHttp3
-  BuildScript: ./Android/SquareOkHttp3/build.cake
-  TriggerPaths: [ Android/SquareOkHttp3 ]
-  MacBuildTargets: [ ci ]
-  WindowsBuildTargets: [ ci ]
 - Name: SquareOkHttp3v3
   BuildScript: ./Android/SquareOkHttp3-v3/build.cake
   TriggerPaths: [ Android/SquareOkHttp3-v3 ]
-  MacBuildTargets: [ ci ]
-  WindowsBuildTargets: [ ci ]
-- Name: SquareOkHttp3UrlConnection
-  BuildScript: ./Android/SquareOkHttp3UrlConnection/build.cake
-  TriggerPaths: [ Android/SquareOkHttp3UrlConnection ]
   MacBuildTargets: [ ci ]
   WindowsBuildTargets: [ ci ]
 - Name: SquareOkHttp3UrlConnectionv3
@@ -322,49 +248,9 @@
   TriggerPaths: [ Android/SquareOkHttp3WS ]
   MacBuildTargets: [ ci ]
   WindowsBuildTargets: [ ci ]
-- Name: SquareOkHttpUrlConnection
-  BuildScript: ./Android/SquareOkHttpUrlConnection/build.cake
-  TriggerPaths: [ Android/SquareOkHttpUrlConnection ]
-  MacBuildTargets: [ ci ]
-  WindowsBuildTargets: [ ci ]
-- Name: SquareOkHttpWS
-  BuildScript: ./Android/SquareOkHttpWS/build.cake
-  TriggerPaths: [ Android/SquareOkHttpWS ]
-  MacBuildTargets: [ ci ]
-  WindowsBuildTargets: [ ci ]
-- Name: SquareOkIO
-  BuildScript: ./Android/SquareOkIO/build.cake
-  TriggerPaths: [ Android/SquareOkIO ]
-  MacBuildTargets: [ ci ]
-  WindowsBuildTargets: [ ci ]
 - Name: SquarePollexor
   BuildScript: ./Android/SquarePollexor/build.cake
   TriggerPaths: [ Android/SquarePollexor ]
-  MacBuildTargets: [ ci ]
-  WindowsBuildTargets: [ ci ]
-- Name: SquareRetrofit
-  BuildScript: ./Android/SquareRetrofit/build.cake
-  TriggerPaths: [ Android/SquareRetrofit ]
-  MacBuildTargets: [ ci ]
-  WindowsBuildTargets: [ ci ]
-- Name: SquareRetrofit2
-  BuildScript: ./Android/SquareRetrofit2/build.cake
-  TriggerPaths: [ Android/SquareRetrofit2 ]
-  MacBuildTargets: [ ci ]
-  WindowsBuildTargets: [ ci ]
-- Name: SquareRetrofit2AdapterRxJava2
-  BuildScript: ./Android/SquareRetrofit2AdapterRxJava2/build.cake
-  TriggerPaths: [ Android/SquareRetrofit2AdapterRxJava2 ]
-  MacBuildTargets: [ ci ]
-  WindowsBuildTargets: [ ci ]
-- Name: SquareRetrofit2ConverterGson
-  BuildScript: ./Android/SquareRetrofit2ConverterGson/build.cake
-  TriggerPaths: [ Android/SquareRetrofit2ConverterGson ]
-  MacBuildTargets: [ ci ]
-  WindowsBuildTargets: [ ci ]
-- Name: SquareRetrofit2ConverterScalars
-  BuildScript: ./Android/SquareRetrofit2ConverterScalars/build.cake
-  TriggerPaths: [ Android/SquareRetrofit2ConverterScalars ]
   MacBuildTargets: [ ci ]
   WindowsBuildTargets: [ ci ]
 - Name: SquareRetrofit2ConverterMoshi
@@ -392,16 +278,6 @@
   TriggerPaths: [ Android/SquareMoshiAdapters ]
   MacBuildTargets: [ ci ]
   WindowsBuildTargets: [ ci ]
-- Name: SquareOkHttp3LoggingInterceptor
-  BuildScript: ./Android/SquareOkHttp3LoggingInterceptor/build.cake
-  TriggerPaths: [ Android/SquareOkHttp3LoggingInterceptor ]
-  MacBuildTargets: [ ci ]
-  WindowsBuildTargets: [ ci ]
-- Name: KotlinXCoroutines
-  BuildScript: ./Android/KotlinXCoroutines/build.cake
-  TriggerPaths: [ Android/KotlinXCoroutines ]
-  WindowsBuildTargets: [ ci ]
-  MacBuildTargets: [ ci ]
 - Name: DesugarJDKLibs
   BuildScript: ./Android/DesugarJDKLibs/build.cake
   TriggerPaths: [ Android/DesugarJDKLibs ]
@@ -419,10 +295,6 @@
   MacBuildTargets: [ ci ]
 
 # will be XPlat in the future
-- Name: TensorFlow.Lite
-  BuildScript: ./XPlat/TensorFlow.Lite/build.cake
-  TriggerPaths: [ XPlat/TensorFlow.Lite ]
-  MacBuildTargets: [ libs, nuget]
 - Name: ThreeTenAbp
   BuildScript: ./Android/ThreeTenAbp/build.cake
   TriggerPaths: [ Android/ThreeTenAbp ]
@@ -433,41 +305,9 @@
   TriggerPaths: [ Android/TokenAutoComplete ]
   MacBuildTargets: [ libs, nuget]
   WindowsBuildTargets: [ libs, nuget]
-- Name: Protobuf.Lite
-  BuildScript: ./XPlat/Protobuf.Lite/build.cake
-  TriggerPaths: [ XPlat/Protobuf.Lite ]
-  MacBuildTargets: [ libs, nuget]
-- Name: Google.Grpc
-  BuildScript: ./XPlat/Google.Grpc/build.cake
-  TriggerPaths: [ XPlat/Google.Grpc ]
-  MacBuildTargets: [ libs, nuget]
-- Name: Io.OpenCensus
-  BuildScript: ./Android/Io.OpenCensus/build.cake
-  TriggerPaths: [ Android/Io.OpenCensus ]
-  MacBuildTargets: [ libs, nuget]
-- Name: Io.PerfMark
-  BuildScript: ./Android/Io.PerfMark/build.cake
-  TriggerPaths: [ Android/Io.PerfMark ]
-  MacBuildTargets: [ ci ]
-  WindowsBuildTargets: [ ci ]
-- Name: Google.Android.DataTransport
-  BuildScript: ./Android/Google.Android.DataTransport/build.cake
-  TriggerPaths: [ Android/Google.Android.DataTransport ]
-  MacBuildTargets: [ ci ]
-  WindowsBuildTargets: [ ci ]
 - Name:  CheckerFramework.Checker
   BuildScript: ./Android/CheckerFramework.Checker/build.cake
   TriggerPaths: [ Android/CheckerFramework.Checker ]
-  MacBuildTargets: [ ci ]
-  WindowsBuildTargets: [ ci ]
-- Name: Google.Play.Core
-  BuildScript: ./Android/Google.Play.Core//build.cake
-  TriggerPaths: [ Android/Google.Play.Core ]
-  MacBuildTargets: [ ci ]
-  WindowsBuildTargets: [ ci ]
-- Name: Protobuf.JavaLite
-  BuildScript: ./Android/Protobuf.JavaLite/build.cake
-  TriggerPaths: [ Android/Protobuf.JavaLite ]
   MacBuildTargets: [ ci ]
   WindowsBuildTargets: [ ci ]
 
@@ -799,11 +639,6 @@
   BuildScript: ./XPlat/OfficeUIFabric/iOS/build.cake
   TriggerPaths: [ XPlat/OfficeUIFabric/iOS ]
   MacBuildTargets: [ nuget, samples ]
-- Name:  Chromium.CroNet
-  BuildScript: ./XPlat/Chromium.CroNet/build.cake
-  TriggerPaths: [ XPlat/Chromium.CroNet ]
-  MacBuildTargets: [ ci ]
-  WindowsBuildTargets: [ ci ]
 - Name:  Mono.Posix
   BuildScript: ./XPlat/Mono.Posix/build.cake
   TriggerPaths: [ XPlat/Mono.Posix ]
@@ -822,11 +657,6 @@
 # Utilities
 #######################################################
 
-- Name: Xamarin.Build.Download
-  BuildScript: ./Util/Xamarin.Build.Download/build.cake
-  TriggerPaths: [ Util/Xamarin.Build.Download ]
-  MacBuildTargets: [ ci ]
-  WindowsBuildTargets: [ ci ]
 - Name: Cake.Xamarin.Binding.Util
   BuildScript: ./Util/Cake.Xamarin.Binding.Util/build.cake
   TriggerPaths: [ Util/Cake.Xamarin.Binding.Util ]
@@ -849,10 +679,6 @@
   TriggerPaths: [ Util/Xamarin.Build.TypeRedirector ]
   WindowsBuildTargets: [ ci ]
   MacBuildTargets: [ ci ]
-- Name: Xamarin.AndroidBinderator
-  BuildScript: ./Util/Xamarin.AndroidBinderator/build.cake
-  TriggerPaths: [ Util/Xamarin.AndroidBinderator ]
-  WindowsBuildTargets: [ nuget ]
 - Name: Xamarin.Kotlin.BindingSupport
   BuildScript: ./Util/Xamarin.Kotlin.BindingSupport/build.cake
   TriggerPaths: [ Util/Xamarin.Kotlin.BindingSupport ]
