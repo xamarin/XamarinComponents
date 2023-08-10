@@ -63,18 +63,23 @@ jobs:
           linux:
             poolName: ${{ parameters.linuxAgentPoolName }}
             imageName: ${{ parameters.linuxImage }}
+            runCodeQL: false
         ${{ if ne(parameters.macosImage, '') }}:
           macos:
             poolName: ${{ parameters.macosAgentPoolName }}
             imageName: ${{ parameters.macosImage }}
+            runCodeQL: false
         ${{ if ne(parameters.windowsImage, '') }}:
           windows:
             poolName: ${{ parameters.windowsAgentPoolName }}
             imageName: ${{ parameters.windowsImage }}
+            runCodeQL: true
     displayName: ${{ parameters.displayName }}
     timeoutInMinutes: ${{ parameters.timeoutInMinutes }}
     continueOnError: ${{ eq(parameters.continueOnError, 'true') }}
     dependsOn: ${{ parameters.dependsOn }}
+    variables:
+      Codeql.Enabled: $(runCodeQL)
     pool:
       name: $(poolName)
       vmImage: $(imageName)
@@ -427,7 +432,7 @@ jobs:
             instanceUrlForTsaV2: 'DEVDIV'
             projectNameDEVDIV: 'DevDiv'
             areaPath: '${{ parameters.areaPath }}'
-            iterationPath: 'DevDiv\OneVS'
+            iterationPath: 'DevDiv\Future Backlog'
             uploadAPIScan: false
             uploadBinSkim: false
             uploadCredScan: true
