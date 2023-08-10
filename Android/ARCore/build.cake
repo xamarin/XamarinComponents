@@ -2,9 +2,9 @@
 
 var TARGET = Argument ("t", Argument ("target", "ci"));
 
-var NUGET_VERSION = "1.31.0";
+var NUGET_VERSION = "1.38.0-pre1";
 
-var AAR_VERSION = "1.31.0";
+var AAR_VERSION = "1.38.0";
 var AAR_URL = string.Format("https://dl.google.com/dl/android/maven2/com/google/ar/core/{0}/core-{0}.aar", AAR_VERSION);
 var OBJ_VERSION = "0.3.0";
 var OBJ_URL = string.Format("https://oss.sonatype.org/content/repositories/releases/de/javagl/obj/{0}/obj-{0}.jar", OBJ_VERSION);
