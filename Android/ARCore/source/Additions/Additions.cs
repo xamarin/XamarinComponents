@@ -18,5 +18,13 @@ namespace Google.AR.Core
             InternalFinalize();
         }
     }
+
+    public partial class StreetscapeGeometry
+    {
+        ~StreetscapeGeometry()
+        {
+            InternalFinalize();
+        }
+    }
 }
  
