@@ -2,8 +2,8 @@
 <Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <AndroidCodegenTarget>XAJavaInterop1</AndroidCodegenTarget>
-    <TargetFrameworkVersion>v10.0</TargetFrameworkVersion>
-    <ReleaseVersion>1.31.0</ReleaseVersion>
+    <TargetFrameworkVersion>v11.0</TargetFrameworkVersion>
+    <ReleaseVersion>1.38.0</ReleaseVersion>
   </PropertyGroup>
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -13,7 +13,6 @@
     <OutputType>Library</OutputType>
     <RootNamespace>Xamarin.Google.ARCore</RootNamespace>
     <AssemblyName>Xamarin.Google.ARCore</AssemblyName>
-    <TargetFrameworkVersion>v10.0</TargetFrameworkVersion>
     <MonoAndroidResourcePrefix>Resources</MonoAndroidResourcePrefix>
     <MonoAndroidAssetsPrefix>Assets</MonoAndroidAssetsPrefix>
     <AndroidUseLatestPlatformSdk>false</AndroidUseLatestPlatformSdk>
