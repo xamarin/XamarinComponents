@@ -44,6 +44,13 @@
     <attr path="/api/package[@name='com.google.ar.core']/class[@name='DepthPoint']/method[@name='getAnchors' and count(parameter)=0]" name="return">
         java.util.Collection&lt;com.google.ar.core.Anchor&gt;
     </attr>
+    <attr path="/api/package[@name='com.google.ar.core']/class[@name='Earth']/method[@name='getAnchors' and count(parameter)=0]" name="return">
+        java.util.Collection&lt;com.google.ar.core.Anchor&gt;
+    </attr>
+    <attr path="/api/package[@name='com.google.ar.core']/class[@name='Earth']/method[@name='finalize' and count(parameter)=0]" name="visibility">internal</attr>
+    <attr path="/api/package[@name='com.google.ar.core']/class[@name='Earth']/method[@name='finalize' and count(parameter)=0]" name="managedName">FinalizeNative</attr>
+
+
 
     <!-- 
     Others 
