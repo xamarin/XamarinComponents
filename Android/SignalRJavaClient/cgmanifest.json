@@ -6,7 +6,7 @@
         "Maven": {
           "ArtifactId": "signalr",
           "GroupId": "com.microsoft.signalr",
-          "Version": "6.0.2",
+          "Version": "6.0.5",
           "NuGetId": "Xamarin.AspNet.SignalR.Java.Client"
         }
       }
