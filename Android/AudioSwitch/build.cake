@@ -1,8 +1,8 @@
 var TARGET = Argument ("t", Argument ("target", "ci"));
 
-var NUGET_VERSION = "1.1.4";
+var NUGET_VERSION = "1.1.5";
 
-var AAR_VERSION = "1.1.4";
+var AAR_VERSION = "1.1.5";
 var AAR_URL = $"https://repo1.maven.org/maven2/com/twilio/audioswitch/{AAR_VERSION}/audioswitch-{AAR_VERSION}.aar";
 
 Task ("externals")
