@@ -10,6 +10,7 @@ parameters:
   initSteps: []                                             # any steps to run before .NET global tools are installed
   preBuildSteps: []                                         # any steps that need to run just before the main compilation starts
   postBuildSteps: []                                        # any steps that need to run just after the main compilation ends
+  postCheckoutSteps: []                                     # any steps that need to run just after the repository was checked out
   postDiffBuildSteps: []                                    # any steps that need to run after the API Diff ends
   masterBranchName: 'main'                                  # the "master" branch that should be used - can be something other than "master"
   installAppleCertificates: 'true'                          # whether or not to install the Apple certificates and provisioning profiles
@@ -86,6 +87,8 @@ jobs:
     steps:
       - checkout: self
         submodules: ${{ parameters.submodules }}
+      # custom post checkout steps
+      - ${{ parameters.postCheckoutSteps }}
       # before the build starts, make sure the tooling is as expected
       - bash: sudo $AGENT_HOMEDIRECTORY/scripts/select-xamarin-sdk.sh ${{ parameters.mono }}
         displayName: 'Switch to the latest Xamarin SDK'
