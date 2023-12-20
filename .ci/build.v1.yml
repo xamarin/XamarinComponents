@@ -32,7 +32,7 @@ parameters:
   windowsImage: 'windows-latest'                            # the name of the Windows VM image
   windowsImageOverride: ''                                  # used to access 1ES hardened images: name of ImageOverride demand to use such as AzurePipelinesWindows2022compliant when windowsAgentPoolName set to the AzurePipelines-EO pool
   mono: 'Latest'                                            # the version of mono to use
-  xcode: '13.3.1'                                           # the version of Xcode to use
+  xcode: '13.2.1'                                           # the version of Xcode to use
   dotnet: '6.0.300'                                         # the version of .NET Core to use
   dotnetStable: '6.0.300'                                   # the stable version of .NET Core to use
   cake: '2.2.0'                                             # the version of Cake to use

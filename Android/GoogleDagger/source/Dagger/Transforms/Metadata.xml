@@ -1,8 +1,0 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
-<metadata>
-	 <attr path="/api/package[@name='dagger.internal']/class[@name='MapFactory']/method[@name='get' and count(parameter)=0]" name="managedName">GetDictionary</attr>
-    <attr path="/api/package[@name='dagger.internal']/class[@name='MapProviderFactory']/method[@name='get' and count(parameter)=0]" name="managedName">GetDictionary</attr>
-    <attr path="/api/package[@name='dagger.internal']/class[@name='SetFactory']/method[@name='get' and count(parameter)=0]" name="managedName">GetCollection</attr>
-    <attr path="/api/package[@name='dagger.internal']/class[@name='ProviderOfLazy']/method[@name='get' and count(parameter)=0]" name="managedName">GetLazy</attr>
-    <remove-node path="/api/package[@name='dagger.internal']/class[@name='MapProviderFactory']/implements" />
-</metadata>

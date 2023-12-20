@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="UTF-8" ?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-	<PropertyGroup>
-        <_SRSMasterAfterTargets>_CodesignNativeLibraries</_SRSMasterAfterTargets>
+    <PropertyGroup>
+        <_SRSMasterAfterTargets>BeforeCodesign</_SRSMasterAfterTargets>
         <_SRSMasterDependsOnTargets>_SRSCopySwiftDependencies</_SRSMasterDependsOnTargets>
         <_XcodeToolChainRelativeToSdkRoot>/../../../../../Toolchains/XcodeDefault.xctoolchain/</_XcodeToolChainRelativeToSdkRoot>
         <_TargetPlatform Condition=" '$(Platform)' == 'iPhoneSimulator' ">iphonesimulator</_TargetPlatform>
@@ -14,12 +14,12 @@
             <_SRSRemoteMirror Condition=" '$(Configuration)' != 'Debug' "></_SRSRemoteMirror>
             <_SRSRemoteMirror Condition=" '$(Configuration)' == 'Debug' ">--resource-destination '$(_AppBundlePath)' --resource-library libswiftRemoteMirror.dylib</_SRSRemoteMirror>
         </PropertyGroup>
-        
+
         <Message Text="Copying Swift Frameworks dependencies for $(_NativeExecutable) to the $(_AppBundlePath)Frameworks folder." />
-        <Exec Condition="'$(_CodeSigningKey)' != ''" SessionId="$(BuildSessionId)" Command="$(_SdkRoot)$(_XcodeToolChainRelativeToSdkRoot)usr/bin/swift-stdlib-tool --copy --verbose --sign '$(_CodeSigningKey)' --scan-executable '$(_NativeExecutable)' --scan-folder '$(_AppBundlePath)Frameworks/' --scan-folder '$(_AppBundlePath)PlugIns/' --platform '$(_TargetPlatform)' --toolchain '$(_SdkRoot)$(_XcodeToolChainRelativeToSdkRoot)' --destination '$(_AppBundlePath)Frameworks/' $(_SRSRemoteMirror) --unsigned-destination '$(DeviceSpecificIntermediateOutputPath)SwiftSupport' --strip-bitcode --strip-bitcode-tool '$(_SdkRoot)$(_XcodeToolChainRelativeToSdkRoot)usr/bin/bitcode_strip' --emit-dependency-info '$(DeviceSpecificIntermediateOutputPath)SwiftStdLibToolInputDependencies.dep' --source-libraries '$(_SdkRoot)$(_XcodeToolChainRelativeToSdkRoot)usr/lib/swift-5.5/$(_TargetPlatform)'" />
-        <Exec Condition="'$(_CodeSigningKey)' == ''" SessionId="$(BuildSessionId)" Command="$(_SdkRoot)$(_XcodeToolChainRelativeToSdkRoot)usr/bin/swift-stdlib-tool --copy --verbose                             --scan-executable '$(_NativeExecutable)' --scan-folder '$(_AppBundlePath)Frameworks/' --scan-folder '$(_AppBundlePath)PlugIns/' --platform '$(_TargetPlatform)' --toolchain '$(_SdkRoot)$(_XcodeToolChainRelativeToSdkRoot)' --destination '$(_AppBundlePath)Frameworks/' $(_SRSRemoteMirror) --unsigned-destination '$(DeviceSpecificIntermediateOutputPath)SwiftSupport' --strip-bitcode --strip-bitcode-tool '$(_SdkRoot)$(_XcodeToolChainRelativeToSdkRoot)usr/bin/bitcode_strip' --emit-dependency-info '$(DeviceSpecificIntermediateOutputPath)SwiftStdLibToolInputDependencies.dep' --source-libraries '$(_SdkRoot)$(_XcodeToolChainRelativeToSdkRoot)usr/lib/swift-5.5/$(_TargetPlatform)'" />
+        <Exec Condition="'$(_CodeSigningKey)' != ''" SessionId="$(BuildSessionId)" Command="$(_SdkRoot)$(_XcodeToolChainRelativeToSdkRoot)usr/bin/swift-stdlib-tool --copy --verbose --sign '$(_CodeSigningKey)' --scan-executable '$(_NativeExecutable)' --scan-folder '$(_AppBundlePath)Frameworks/' --scan-folder '$(_AppBundlePath)PlugIns/' --platform '$(_TargetPlatform)' --destination '$(_AppBundlePath)Frameworks/' $(_SRSRemoteMirror) --unsigned-destination '$(DeviceSpecificIntermediateOutputPath)SwiftSupport' --strip-bitcode --source-libraries '$(_SdkRoot)$(_XcodeToolChainRelativeToSdkRoot)usr/lib/swift-5.5/$(_TargetPlatform)'" />
+        <Exec Condition="'$(_CodeSigningKey)' == ''" SessionId="$(BuildSessionId)" Command="$(_SdkRoot)$(_XcodeToolChainRelativeToSdkRoot)usr/bin/swift-stdlib-tool --copy --verbose                             --scan-executable '$(_NativeExecutable)' --scan-folder '$(_AppBundlePath)Frameworks/' --scan-folder '$(_AppBundlePath)PlugIns/' --platform '$(_TargetPlatform)' --destination '$(_AppBundlePath)Frameworks/' $(_SRSRemoteMirror) --unsigned-destination '$(DeviceSpecificIntermediateOutputPath)SwiftSupport' --strip-bitcode --source-libraries '$(_SdkRoot)$(_XcodeToolChainRelativeToSdkRoot)usr/lib/swift-5.5/$(_TargetPlatform)'" />
     </Target>
-    
+
     <Target Name="_SRSCopySwiftSupport" Condition="'$(ArchiveOnBuild)'=='true'" AfterTargets="Archive">
         <Message Text="Copying SwiftSupport folder from $(DeviceSpecificIntermediateOutputPath)SwiftSupport to $(ArchiveDir)/SwiftSupport folder." />
         <Ditto SessionId="$(BuildSessionId)" Condition="'$(IsMacEnabled)' == 'true'" ToolExe="$(DittoExe)" ToolPath="$(DittoPath)" Source="$(DeviceSpecificIntermediateOutputPath)SwiftSupport" Destination="$(ArchiveDir)/SwiftSupport" />
