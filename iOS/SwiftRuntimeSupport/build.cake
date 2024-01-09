@@ -3,7 +3,7 @@
 
 var TARGET = Argument ("t", Argument ("target", "ci"));
 
-var SWIFT_RUNTIME_SUPPORT_VERSION = "0.2.2";
+var SWIFT_RUNTIME_SUPPORT_VERSION = "0.2.3";
 var SWIFT_RUNTIME_SUPPORT_NUGET_VERSION = SWIFT_RUNTIME_SUPPORT_VERSION;
 
 Task ("externals")
