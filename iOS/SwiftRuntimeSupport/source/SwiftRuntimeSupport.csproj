@@ -1,11 +1,7 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<Project Sdk="MSBuild.Sdk.Extras/2.0.54">
+﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFrameworks>Xamarin.iOS10</TargetFrameworks>
+    <TargetFramework>net7.0-ios</TargetFramework>
     <IsBindingProject>true</IsBindingProject>
-    <AssemblyName>Xamarin.iOS.SwiftRuntimeSupport</AssemblyName>
-    <IPhoneResourcePrefix>Resources</IPhoneResourcePrefix>
-    <RootNamespace>Xamarin.iOS.SwiftRuntimeSupport</RootNamespace>
   </PropertyGroup>
 
   <PropertyGroup>
@@ -18,7 +14,7 @@
     <PackageProjectUrl>https://go.microsoft.com/fwlink/?linkid=2092210</PackageProjectUrl>
     <PackageLicenseFile>LICENSE.md</PackageLicenseFile>
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
-    <PackageVersion>0.2.2</PackageVersion>
+    <PackageVersion>0.2.3</PackageVersion>
   </PropertyGroup>
 
   <ItemGroup>
@@ -29,18 +25,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Reference Include="Xamarin.iOS" />
-  </ItemGroup>
-  
-  <ItemGroup>
-    <Folder Include="Resources\" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Compile Remove="ApiDefinition.cs" />
-  </ItemGroup>
-  <ItemGroup>
     <ObjcBindingApiDefinition Include="ApiDefinition.cs" />
   </ItemGroup>
-
 </Project>
