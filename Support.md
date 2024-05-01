@@ -7,10 +7,7 @@ Xamarin Supported Open Source components are a collection of Xamarin built bindi
 | Name                                  | Description                                                                      | Source                                                           |
 |---------------------------------------|----------------------------------------------------------------------------------|------------------------------------------------------------------|
 | AndroidX Libraries                    | Bindings for Google's AndroidX Libraries                                         | [GitHub](https://github.com/xamarin/AndroidX)                    |
-| Google Play Services Client Libraries | Bindings for Google's Play Services Client Libraries                             | [GitHub](https://github.com/xamarin/GooglePlayServicesComponents)|
-| Google API's for iOS                  | Bindings for Google's API's for iOS Libraries                                    | [GitHub](https://github.com/xamarin/GoogleAPIsForiOSComponents)  |
-| Facebook SDK's                        | Bindings for Facebook's iOS & Android SDK's                                      | [GitHub](https://github.com/xamarin/FacebookComponents)          |
-| Xamarin.Auth                          | Cross-platform API for authenticating users and storing their accounts.          | [GitHub](https://github.com/xamarin/Xamarin.Auth)                |
+| Google Play Services Client Libraries for Android | Bindings for Google's Play Services Client Libraries                             | [GitHub](https://github.com/xamarin/GooglePlayServicesComponents)|
 
 ## How to file issues and get help  
 
