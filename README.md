@@ -1,14 +1,14 @@
-# Open Source Components for Xamarin
+# Open Source Components
 
 [![GitHub License](https://img.shields.io/badge/license-MIT-lightgrey.svg)](https://github.com/xamarin/XamarinComponents/blob/master/LICENSE)
 
-Open Source Components for Xamarin are a collection of open source components (including bindings and plugins) created by Xamarin and others in the community.
+These are a collection of open source components (including bindings and plugins) created by Xamarin and others in the community.
 
 ## Status
 
-Please note that this repository of bindings for third-party mobile libraries is considered unsupported and unmaintained.  We have moved many of the most popular and essential bindings to other repositories where they will be supported: https://github.com/xamarin/XamarinComponents/pull/1417.
+Please note that this repository of bindings for third-party mobile libraries is considered unsupported and unmaintained.  We have moved many of the most popular and essential bindings to other repositories.
 
-Existing bindings published from this repository will continue to be available on NuGet, but will not receive fixes or updates to newer versions.
+Existing bindings published from this repository will not receive fixes or updates to newer versions.
 
 For details of bindings officially supported by Microsoft, see the [Support](https://github.com/xamarin/XamarinComponents/blob/main/Support.md) page.
 
@@ -85,22 +85,7 @@ After the externals are downloaded and built, the `.sln` files should compile in
 
 The following libraries are [supported](Support.md). 
 
-| Name                                  | Description                                                                      | Source                                                           |
-|---------------------------------------|----------------------------------------------------------------------------------|------------------------------------------------------------------|
-| AndroidX Libraries                    | Bindings for Google's AndroidX Libraries                                         | [GitHub](https://github.com/xamarin/AndroidX)                    |
-| Google Play Services Client Libraries | Bindings for Google's Play Services Client Libraries                             | [GitHub](https://github.com/xamarin/GooglePlayServicesComponents)|
-| Google API's for iOS                  | Bindings for Google's API's for iOS Libraries                                    | [GitHub](https://github.com/xamarin/GoogleAPIsForiOSComponents)  |
-| Facebook SDK's                        | Bindings for Facebook's iOS & Android SDK's                                      | [GitHub](https://github.com/xamarin/FacebookComponents)          |
-| Xamarin.Auth                          | Cross-platform API for authenticating users and storing their accounts.          | [GitHub](https://github.com/xamarin/Xamarin.Auth)                |
-
-To get help, visit the Xamarin area of [Microsoft Q&A](https://docs.microsoft.com/en-us/answers/products/dotnet).
-
-
-### Xamarin.Essentials
-
-Xamarin.Essentials gives developers essential cross-platform APIs for their mobile applications. Xamarin.Essentials exposes over 60 native APIs in a single cross-platform package for developers to consume in their iOS, Android, UWP, or Xamarin.Forms application. Browse through the [documentation](https://docs.microsoft.com/xamarin/essentials) on how to get started today.
-
-The repository for Xamarin.Essentials can be found at https://github.com/xamarin/Essentials. If you have any suggestions or feature requests, or if you find any issues, please open a new issue.
+To get help, visit the .NET area of [Microsoft Q&A](https://docs.microsoft.com/en-us/answers/products/dotnet).
 
 ---
 
