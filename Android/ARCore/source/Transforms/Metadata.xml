@@ -7,11 +7,11 @@
     <attr path="/api/package[@name='com.google.ar.core']/class[@name='ArImage']" name="extends">Android.Media.Image</attr>
     <!-- ?? -->
     <attr path="/api/package[@name='com.google.vr.dynamite.client']/class[@name='ObjectWrapper']" name="extends">Java.Lang.Object</attr>
-   	
-<!--  
-    <attr path="/api/package[@name='com.google.ar.core.services.downloads.aidl']" name="managedName">Google.AR.Core.Services.Downloads.AIDL</attr>
-    <attr path="/api/package[@name='com.google.ar.core.services.downloads.client']" name="managedName">Google.AR.Core.Services.Downloads.Client</attr>
--->
+
+    <!--  
+        <attr path="/api/package[@name='com.google.ar.core.services.downloads.aidl']" name="managedName">Google.AR.Core.Services.Downloads.AIDL</attr>
+        <attr path="/api/package[@name='com.google.ar.core.services.downloads.client']" name="managedName">Google.AR.Core.Services.Downloads.Client</attr>
+    -->
 
     <!-- Missing ITrackable inheritance
     not supported, moved into additions
@@ -24,23 +24,23 @@
     <attr path="/api/package[@name='com.google.ar.core']/class[@name='InstantPlacementPoint']/method[@name='getAnchors' and count(parameter)=0]" name="return">
         java.util.Collection&lt;com.google.ar.core.Anchor&gt;
     </attr>
-    
+
     <attr path="/api/package[@name='com.google.ar.core']/class[@name='AugmentedImage']/method[@name='getAnchors' and count(parameter)=0]" name="return">
         java.util.Collection&lt;com.google.ar.core.Anchor&gt;
     </attr>
-    
+
     <attr path="/api/package[@name='com.google.ar.core']/class[@name='Plane']/method[@name='getAnchors' and count(parameter)=0]" name="return">
         java.util.Collection&lt;com.google.ar.core.Anchor&gt;
     </attr>
-    
+
     <attr path="/api/package[@name='com.google.ar.core']/class[@name='Point']/method[@name='getAnchors' and count(parameter)=0]" name="return">
         java.util.Collection&lt;com.google.ar.core.Anchor&gt;
     </attr>
-    
+
     <attr path="/api/package[@name='com.google.ar.core']/class[@name='AugmentedFace']/method[@name='getAnchors' and count(parameter)=0]" name="return">
-      java.util.Collection&lt;com.google.ar.core.Anchor&gt;
+        java.util.Collection&lt;com.google.ar.core.Anchor&gt;
     </attr>
-    
+
     <attr path="/api/package[@name='com.google.ar.core']/class[@name='DepthPoint']/method[@name='getAnchors' and count(parameter)=0]" name="return">
         java.util.Collection&lt;com.google.ar.core.Anchor&gt;
     </attr>
@@ -50,5 +50,21 @@
     -->
     <attr path="/api/package[@name='com.google.ar.core']/class[@name='InstallActivity']/method[@name='onDestroy' and count(parameter)=0]" name="managedOverride">override</attr>
     <attr path="/api/package[@name='com.google.ar.core']/class[@name='InstallActivity']/method[@name='onDestroy' and count(parameter)=0]" name="visibility">protected</attr>
-    
+
+    <!--
+	Implements a Java Finalizer. Instead implement a C# Destructor and call the finalize method.
+    The C# Destructor is in the partial class under the Addition folder.
+	-->
+    <attr path="/api/package[@name='com.google.ar.core']/class[@name='Earth']/method[@name='finalize' and count(parameter)=0]" name="managedName">InternalFinalize</attr>
+    <attr path="/api/package[@name='com.google.ar.core']/class[@name='Earth']/method[@name='finalize' and count(parameter)=0]" name="visibility">internal</attr>
+    <attr path="/api/package[@name='com.google.ar.core']/class[@name='StreetscapeGeometry']/method[@name='finalize' and count(parameter)=0]" name="managedName">InternalFinalize</attr>
+    <attr path="/api/package[@name='com.google.ar.core']/class[@name='StreetscapeGeometry']/method[@name='finalize' and count(parameter)=0]" name="visibility">internal</attr>
+
+    <!--
+	Duplicate method with a different return value
+    // Metadata.xml XPath method reference: path="/api/package[@name='com.google.ar.core']/class[@name='Earth']/method[@name='getAnchors' and count(parameter)=0]"
+	-->
+    <remove-node path="/api/package[@name='com.google.ar.core']/class[@name='TrackableBase']/method[@name='getAnchors' and count(parameter)=0]" />
+
+
 </metadata>

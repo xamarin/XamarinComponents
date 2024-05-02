@@ -10,4 +10,20 @@ namespace Google.AR.Core
     public partial class InstantPlacementPoint : Google.AR.Core.ITrackable {}
     public partial class Plane : Google.AR.Core.ITrackable {}
     public partial class Point : Google.AR.Core.ITrackable {}
+
+    public partial class Earth
+    {
+        ~Earth()
+        {
+            InternalFinalize();
+        }
+    }
+
+    public partial class StreetscapeGeometry
+    {
+        ~StreetscapeGeometry()
+        {
+            InternalFinalize();
+        }
+    }
 }
