@@ -1,16 +1,17 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project Sdk="MSBuild.Sdk.Extras/2.0.54">
+<Project Sdk="Xamarin.Legacy.Sdk">
   <PropertyGroup>
-    <TargetFrameworks>MonoAndroid90</TargetFrameworks>
+    <TargetFrameworks>MonoAndroid9.0;net6.0-android</TargetFrameworks>
     <IsBindingProject>true</IsBindingProject>
     <AssemblyName>Xamarin.DuoSdk</AssemblyName>
     <MonoAndroidResourcePrefix>Resources</MonoAndroidResourcePrefix>
     <MonoAndroidAssetsPrefix>Assets</MonoAndroidAssetsPrefix>
     <AndroidUseLatestPlatformSdk>False</AndroidUseLatestPlatformSdk>
-    <AndroidUseIntermediateDesignerFile>True</AndroidUseIntermediateDesignerFile>
+    <AndroidUseIntermediateDesignerFile>False</AndroidUseIntermediateDesignerFile>
     <AndroidResgenFile>Resources\Resource.designer.cs</AndroidResgenFile>
     <RootNamespace>Xamarin.DuoSdk</RootNamespace>
     <AndroidClassParser>class-parse</AndroidClassParser>
+    <AndroidFragmentType>AndroidX.Fragment.App.Fragment</AndroidFragmentType>
     <AndroidCodegenTarget>XAJavaInterop1</AndroidCodegenTarget>
   </PropertyGroup>
 
@@ -24,7 +25,7 @@
     <PackageProjectUrl>https://go.microsoft.com/fwlink/?linkid=2115916</PackageProjectUrl>
     <PackageLicenseFile>LICENSE.md</PackageLicenseFile>
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
-    <PackageVersion>0.0.3.3</PackageVersion>
+    <PackageVersion>0.0.4.0</PackageVersion>
   </PropertyGroup>
 
   <ItemGroup>
@@ -34,11 +35,7 @@
 
   <ItemGroup>
     <EmbeddedJar Include="Jars\com.microsoft.device.display.displaymask.jar" Link="com.microsoft.device.display.displaymask.jar" />
-     <None Include="..\..\License.md" Pack="true" PackagePath="LICENSE.md" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Reference Include="Mono.Android" />
+    <None Include="..\..\License.md" Pack="true" PackagePath="LICENSE.md" />
   </ItemGroup>
 
 </Project>
