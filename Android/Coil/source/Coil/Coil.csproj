@@ -22,11 +22,11 @@
     <PackageLicenseFile>LICENSE.md</PackageLicenseFile>
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
     <PackageTags>coil xamarin android monodroid</PackageTags>
-    <PackageVersion>1.4.0</PackageVersion>
+    <PackageVersion>2.0.0</PackageVersion>
   </PropertyGroup>
     
   <ItemGroup>
-    <PackageReference Include="Xamarin.Io.CoilKt.CoilBase" Version="1.4.0" />
+    <PackageReference Include="Xamarin.Io.CoilKt.CoilBase" Version="2.0.0" />
   </ItemGroup>
     
   <ItemGroup>
