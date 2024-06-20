@@ -1,6 +1,6 @@
 ﻿<Project Sdk="MSBuild.Sdk.Extras">
   <PropertyGroup>
-    <TargetFrameworks>monoandroid9.0</TargetFrameworks>
+    <TargetFrameworks>monoandroid12.0</TargetFrameworks>
     <IsBindingProject>true</IsBindingProject>
     <AssemblyName>Xamarin.AspNet.SignalR.Java.Client</AssemblyName>
     <RootNamespace>Xamarin.AspNet.SignalR.Java.Client</RootNamespace>
@@ -22,7 +22,7 @@
     <PackageLicenseFile>LICENSE.md</PackageLicenseFile>
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
     <PackageTags>signalr java client xamarin android monodroid</PackageTags>
-    <PackageVersion>6.0.2</PackageVersion>
+    <PackageVersion>6.0.5</PackageVersion>
   </PropertyGroup>
     
   <ItemGroup>
